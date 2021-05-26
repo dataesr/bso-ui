@@ -1,0 +1,39 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import "./style.scss";
+
+function Home() {
+  return (
+    <div className="Home">
+      <h1>Home</h1>
+      <ul>
+        <li>
+          <Link to="/baro-national">Baromètre National</Link>
+        </li>
+        <li>
+          <Link to="/baro-sante">Baromètre Santé</Link>
+          <ul>
+            <li>
+              <Link to="/baro-sante/essais-cliniques">Essai Cliniques</Link>
+            </li>
+            <li>
+              <Link to="/baro-sante/publications">
+                Baromètre Santé Publications
+              </Link>
+            </li>
+            <li>
+              <Link to="/baro-sante/etudes">
+                Etudes Observationnelles
+              </Link>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <Link to="/theme">Thèmes</Link>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+export default Home;
