@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Link as DSLink } from '@dataesr/react-dsfr';
 import "./style.scss";
 
 function Home() {
@@ -8,7 +9,11 @@ function Home() {
       <h1>Home</h1>
       <ul>
         <li>
-          <Link to="/baro-national">Baromètre National</Link>
+          <DSLink
+              as={<Link to="/baro-national"/>}
+              href="/my-page"
+              isSimple>Baromètre National
+          </DSLink>
         </li>
         <li>
           <Link to="/baro-sante">Baromètre Santé</Link>
