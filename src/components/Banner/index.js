@@ -1,6 +1,7 @@
-import React from 'react';
-import { Callout, CalloutText, CalloutTitle } from '@dataesr/react-dsfr';
 import './style.scss';
+
+import { Callout, CalloutText, CalloutTitle } from '@dataesr/react-dsfr';
+import React from 'react';
 
 function Banner() {
   return (

@@ -1,7 +1,8 @@
+import './style.scss';
+
+import { Link as DSLink } from '@dataesr/react-dsfr';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './style.scss';
-import { Link as DSLink } from '@dataesr/react-dsfr';
 
 function Home() {
   return (

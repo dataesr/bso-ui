@@ -1,14 +1,15 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './style/main.scss';
 
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Home from './pages/Accueil';
-import Theme from './pages/Theme';
 import BaroNational from './pages/BaroNational';
 import BaroSante from './pages/BaroSante';
-import SantePublications from './pages/BaroSante/SantePublications';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
+import SantePublications from './pages/BaroSante/SantePublications';
+import Theme from './pages/Theme';
 
 function App() {
   return (
