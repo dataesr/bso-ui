@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './style.scss';
 import { Link as DSLink } from '@dataesr/react-dsfr';
-import "./style.scss";
 
 function Home() {
   return (
@@ -9,10 +9,8 @@ function Home() {
       <h1>Home</h1>
       <ul>
         <li>
-          <DSLink
-              as={<Link to="/baro-national"/>}
-              href="/my-page"
-              isSimple>Baromètre National
+          <DSLink as={<Link to="/baro-national" />} href="/my-page" isSimple>
+            Baromètre National
           </DSLink>
         </li>
         <li>
@@ -27,9 +25,7 @@ function Home() {
               </Link>
             </li>
             <li>
-              <Link to="/baro-sante/etudes">
-                Etudes Observationnelles
-              </Link>
+              <Link to="/baro-sante/etudes">Etudes Observationnelles</Link>
             </li>
           </ul>
         </li>
