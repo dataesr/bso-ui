@@ -10,6 +10,6 @@ Front-end pour le Baromètre de la Science Ouverte
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The version number follow [semver](https://semver.org/).
+The version number follows [semver](https://semver.org/).
 
 To create a new release, use `npm version patch|minor|major`.
