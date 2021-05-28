@@ -1,9 +1,9 @@
 # bso-ui
 Front-end pour le Baromètre de la Science Ouverte
 
-![example workflow](https://github.com/dataesr/bso-ui/actions/workflows/release.yml/badge.svg)
+![version](https://img.shields.io/github/package-json/v/dataesr/bso-ui)
+![release](https://github.com/dataesr/bso-ui/actions/workflows/release.yml/badge.svg)
 
-<br/>
 <br/>
 
 ## Boilerplate
@@ -12,4 +12,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The version number follow [semver](https://semver.org/).
 
-To create a new release, push a new tag to github.
+To create a new release, use `npm version patch|minor|major`.
