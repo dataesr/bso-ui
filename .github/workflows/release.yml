@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  IMAGE: bso-ui
+  IMAGE: dataesr/bso-ui
 
 jobs:
   release:
