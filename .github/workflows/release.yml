@@ -7,7 +7,6 @@ on:
 
 env:
   IMAGE: bso-ui
-  OWNER: dataesr
 
 jobs:
   release:
@@ -35,3 +34,19 @@ jobs:
           tag_name: ${{ steps.version.outputs.version }}
           release_name: ${{ steps.version.outputs.version }}
           body: "${{ steps.changelog.outputs.changes }}"
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get version
+        id: version
+        run: echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+      - name: Login docker
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build image
+        run: docker build -t $IMAGE:latest -t $IMAGE:${{ steps.version.outputs.version }} .
+      - name: Push image
+        run: |
+          docker push $IMAGE:latest
+          docker push $IMAGE:${{ steps.version.outputs.version }}
