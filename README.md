@@ -19,10 +19,8 @@ To create a new release, use `npm version patch|minor|major`.
 
 ## Scripts disponibles
 
-### `yarn start`
-
-### `yarn test`
-
-### `yarn build`
-
-### `yarn eject`
+* `npm run start`
+* `npm run build`
+* `npm run test`
+* `npm run prepare`
+* `npm run eject`
