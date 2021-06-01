@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 function BaroSante() {
   return (
-    <div className="BaroSante">
+    <div className='BaroSante'>
       <h1>BaroSante</h1>
-      <Link to="/">Go to Home page</Link>
+      <Link to='/'>Go to Home page</Link>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos
         dolorem et, explicabo id illum, laudantium molestias officia placeat

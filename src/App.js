@@ -22,40 +22,40 @@ function App() {
     <Router>
       <BSOHeader />
       <Switch>
-        <Route exact path="/">
+        <Route exact path='/'>
           <Accueil />
         </Route>
-        <Route exact path="/baro-national">
+        <Route exact path='/baro-national'>
           <BaroNational />
         </Route>
-        <Route exact path="/baro-sante">
+        <Route exact path='/baro-sante'>
           <BaroSante />
         </Route>
-        <Route exact path="/baro-sante/publications">
+        <Route exact path='/baro-sante/publications'>
           <SantePublications />
         </Route>
-        <Route exact path="/baro-sante/essais-cliniques">
+        <Route exact path='/baro-sante/essais-cliniques'>
           <EssaisCliniques />
         </Route>
-        <Route exact path="/baro-sante/etudes">
+        <Route exact path='/baro-sante/etudes'>
           <Etudes />
         </Route>
-        <Route exact path="/themes">
+        <Route exact path='/themes'>
           <Themes />
         </Route>
-        <Route exact path="/methodologie">
+        <Route exact path='/a-propos/methodologie'>
           <Methodologie />
         </Route>
-        <Route exact path="/faq">
+        <Route exact path='/a-propos/faq'>
           <FAQ />
         </Route>
-        <Route exact path="/glossaire">
+        <Route exact path='/a-propos/glossaire'>
           <Glossaire />
         </Route>
-        <Route exact path="/projet">
+        <Route exact path='/a-propos/projet'>
           <Projet />
         </Route>
-        <Route exact path="/notes-flash">
+        <Route exact path='/a-propos/notes-flash'>
           <NotesFlash />
         </Route>
       </Switch>
