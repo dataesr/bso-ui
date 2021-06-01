@@ -4,7 +4,7 @@ import { Link as DSLink } from '@dataesr/react-dsfr';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Home() {
+function Accueil() {
   return (
     <div className="Home">
       <h1>Home</h1>
@@ -38,4 +38,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Accueil;
