@@ -3,7 +3,7 @@ import './style/main.scss';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import BSOHeader from './components/BSOHeader';
+import BSOHeader from './components/Header';
 import Accueil from './pages/Accueil';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
