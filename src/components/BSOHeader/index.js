@@ -1,3 +1,5 @@
+import './style.scss';
+
 import {
   Header as DSHeader,
   HeaderBody,
@@ -11,13 +13,17 @@ import React, { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 function BSOHeader() {
-  const [path, setPath] = useState(useLocation());
   const location = useLocation();
+  const [path, setPath] = useState(() => {
+    return location.pathname || '';
+  });
+
   useEffect(() => {
     if (path !== location.pathname) {
       setPath(location.pathname);
     }
   }, [path, setPath, location]);
+
   return (
     <DSHeader closeButtonLabel='fermer'>
       <HeaderBody>
@@ -25,8 +31,9 @@ function BSOHeader() {
           Ministère de l'enseignement supérieur et de la recherche
         </Logo>
         <Service
+          description=''
+          className='main-title'
           title='Le Baromètre français de la Science Ouverte'
-          description='Le Baromètre français de la Science Ouverte'
         />
       </HeaderBody>
       <HeaderNav>
