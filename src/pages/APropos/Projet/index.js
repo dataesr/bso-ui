@@ -4,7 +4,7 @@ import React from 'react';
 
 function Projet() {
   return (
-    <div className='Projet'>
+    <div className='projet'>
       <h1>Projet page</h1>
     </div>
   );

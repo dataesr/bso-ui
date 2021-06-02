@@ -91,7 +91,7 @@ function BSOHeader() {
           <NavSubItem
             current={path === '/a-propos/faq'}
             title='FAQ'
-            asLink={<RouterLink to='/faq' />}
+            asLink={<RouterLink to='/a-propos/faq' />}
           />
           <NavSubItem
             current={path === '/a-propos/glossaire'}

@@ -4,7 +4,7 @@ import React from 'react';
 
 function Methodologie() {
   return (
-    <div className='Methodologie'>
+    <div className='methodologie'>
       <h1>Methodologie page</h1>
     </div>
   );
