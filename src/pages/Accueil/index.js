@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function Accueil() {
   return (
     <div className='accueil'>
-      <h1>Home</h1>
+      <h1>Accueil</h1>
       <ul>
         <li>
           <DSLink as={<Link to='/baro-national' />} href='/my-page' isSimple>
