@@ -4,7 +4,7 @@ import Banner from '../../components/Banner';
 
 function BaroSante() {
   return (
-    <div className='BaroSante'>
+    <div className='baro-sante'>
       <Banner
         backgroundColor='--blue-soft-100'
         supTitle='Baromètre français de la science ouverte'

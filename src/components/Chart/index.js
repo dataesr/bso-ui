@@ -2,7 +2,7 @@ import React from 'react';
 
 function Chart() {
   return (
-    <div className='Chart'>
+    <div className='chart'>
       <h1>Chart</h1>
     </div>
   );
