@@ -1,3 +1,23 @@
 .banner {
-  background: #5770be;
+  background: var(--bannerBackgroundColor);
+  color: #fff;
+  text-align: center;
+}
+
+.sup-title {
+  @include font-size(20);
+}
+
+.title {
+  @include font-size(32);
+}
+
+.sub-title {
+  @include font-size(16);
+}
+
+@media screen and(min-width: 540px) {
+  .banner {
+    text-align: left;
+  }
 }

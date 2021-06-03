@@ -1,1 +1,9 @@
+@import 'mixins.scss';
 @import 'colours.scss';
+@import 'breakPoints.scss';
+@import 'src/components/Banner/style.scss';
+@import 'src/components/Header/style.scss';
+
+html {
+  font-size: 100%;
+}
