@@ -15,7 +15,7 @@ function Accueil() {
 à partir de données fiables, ouvertes et maîtrisées.'
         link={{ label: 'Voir la dernière note flash', url: '' }}
         chip={{
-          label:
+          title:
             'Site mis à jour le 2 février 2021 avec les données 2013 à 2020',
           backgroundColor: '--blue-soft-125',
         }}
