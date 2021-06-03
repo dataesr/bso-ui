@@ -1,9 +1,16 @@
 import React from 'react';
 
+import Banner from '../../../components/Banner';
+
 function Projet() {
   return (
     <div className='projet'>
-      <h1>Projet page</h1>
+      <Banner
+        backgroundColor='--blue-soft-50'
+        textColor='--blue-dark-125'
+        supTitle='Baromètre français de la Science ouverte'
+        title='Le projet'
+      />
     </div>
   );
 }

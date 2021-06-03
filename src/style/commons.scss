@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.text-left {
+  text-align: left;
+}
+
 /**
   Position
  */
@@ -21,4 +25,57 @@
  */
 .bg-white {
   background-color: #fff;
+}
+
+/**
+  Mediaqueries
+ */
+@media screen and(min-width: 1280px) {
+  .text-center-xxl {
+    text-align: center;
+  }
+
+  .text-left-xxl {
+    text-align: left;
+  }
+}
+
+@media screen and(min-width: 992px) {
+  .text-center-xl {
+    text-align: center;
+  }
+
+  .text-left-xl {
+    text-align: left;
+  }
+}
+
+@media screen and(min-width: 768px) {
+  .text-center-l {
+    text-align: center;
+  }
+
+  .text-left-l {
+    text-align: left;
+  }
+}
+
+@media screen and(min-width: 576px) {
+  .text-center-m {
+    text-align: center;
+  }
+
+  .text-left-m {
+    text-align: left;
+  }
+}
+
+@media screen and(min-width: 376px) {
+  .text-center-s {
+    text-align: center;
+  }
+
+  .text-left-s {
+    text-align: left;
+  }
 }

@@ -1,8 +1,7 @@
 .banner {
-  padding: 50px 10px;
   background: var(--bannerBackgroundColor);
-  color: #fff;
-  text-align: center;
+  color: var(--bannerTextColor);
+  padding: 50px 0;
 }
 
 .sup-title {
@@ -19,6 +18,6 @@
 
 @media screen and(min-width: 576px) {
   .banner {
-    text-align: left;
+    padding: 30px 0;
   }
 }
