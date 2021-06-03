@@ -12,7 +12,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
-function BSOHeader() {
+function Header() {
   const location = useLocation();
   const [path, setPath] = useState(() => {
     return location.pathname || '';
@@ -113,4 +113,4 @@ function BSOHeader() {
     </DSHeader>
   );
 }
-export default BSOHeader;
+export default Header;
