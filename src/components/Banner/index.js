@@ -11,21 +11,23 @@ function Banner({ backgroundColor, subTitle, supTitle, title, link, chip }) {
   return (
     <section className='banner'>
       <Container>
-        <Row justifyContent='center' alignItems='middle'>
-          <Col n='12 sm-10'>
+        <Row justifyContent='center' alignItems='middle' gutters>
+          <Col n='12 sm-9'>
             <small className='sup-title'>{supTitle}</small>
             <h2 className='title'>{title}</h2>
             <h3 className='sub-title'>{subTitle}</h3>
-            <Button
-              icon='ri-arrow-right-line'
-              iconPosition='right'
-              size='md'
-              title='title'
-            >
-              Voir la dernière note flash
-            </Button>
+            {link && (
+              <Button
+                icon='ri-arrow-right-line'
+                iconPosition='right'
+                size='md'
+                title='title'
+              >
+                {link.label}
+              </Button>
+            )}
           </Col>
-          <Col n='3 sm-2'>
+          <Col n='sm-3'>
             <Chip title={chip.title} backgroundColor={chip.backgroundColor} />
           </Col>
         </Row>
@@ -44,7 +46,7 @@ Banner.propTypes = {
     url: PropTypes.string.isRequired,
   }),
   chip: PropTypes.exact({
-    label: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     backgroundColor: PropTypes.string.isRequired,
   }),
 };

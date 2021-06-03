@@ -1,31 +1,24 @@
 .chip {
   @include font-size(12, 16);
   position: relative;
+  display: flex;
   z-index: 1;
-  width: 100px;
-  padding-top: 60px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 14px;
-    left: -22px;
-    width: 148px;
-    height: 148px;
-    -moz-border-radius: 80px;
-    -webkit-border-radius: 80px;
-    border-radius: 100%;
-    background-color: var(--blue-soft-125);
-    z-index: -1;
-  }
+  background: var(--blue-soft-125);
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  text-align: center;
+  height: 132px;
+  width: 132px;
+  padding: 20px;
 
   &::after {
     content: '';
     position: absolute;
-    top: 20px;
-    left: -16px;
-    width: 136px;
-    height: 136px;
+    top: 6px;
+    left: 6px;
+    width: 120px;
+    height: 120px;
     -moz-border-radius: 80px;
     -webkit-border-radius: 80px;
     border-radius: 100%;
@@ -41,17 +34,10 @@
 @media screen and(min-width: 576px) {
   .chip {
     @include font-size(14, 16);
-    padding-top: 10px;
-    width: 130px;
-
-    &::before {
-      top: -40px;
-      width: 180px;
-      height: 180px;
-    }
+    width: 180px;
+    height: 180px;
 
     &::after {
-      top: -34px;
       width: 168px;
       height: 168px;
     }

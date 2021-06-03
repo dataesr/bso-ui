@@ -17,7 +17,7 @@
   @include font-size(16, 24);
 }
 
-@media screen and(min-width: 540px) {
+@media screen and(min-width: 576px) {
   .banner {
     text-align: left;
   }
