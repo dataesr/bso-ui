@@ -12,9 +12,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 function Header() {
   const location = useLocation();
-  const [path, setPath] = useState(() => {
-    return location.pathname || '';
-  });
+  const [path, setPath] = useState(() => location.pathname || '');
 
   useEffect(() => {
     if (path !== location.pathname) {
@@ -34,9 +32,9 @@ function Header() {
           title='Le Baromètre français de la Science Ouverte'
         />
       </HeaderBody>
-      <HeaderNav>
+      <HeaderNav path={path}>
         <NavItem
-          current={path.startsWith('/baro-national')}
+          current={path === '/baro-national'}
           title='Le baromètre national'
         >
           <NavSubItem
