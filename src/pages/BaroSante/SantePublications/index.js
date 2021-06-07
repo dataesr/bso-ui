@@ -1,22 +1,24 @@
 import React from 'react';
-import BarsChart from '../../../components/charts/bars-chart';
-import LinesChart from '../../../components/charts/lines-chart';
+import QuestionSection from '../../../components/question-section';
+import ChartsDynamiqueOuverture from '../../../components/charts/publications/general/charts-dynamique-ouverture';
 
-function Publications() {
+const Publications = () => {
   return (
-    <div>
+    <>
       <h1>Publications</h1>
-      <div>
-        <div>
-          Quelle est la dynamique d’ouverture de la santé en France ?
-          <span>i</span>
-        </div>
-        <div>Text intro du graph</div>
-        <BarsChart idChart="chartPublicationsGeneral_1" />
-        <LinesChart idChart="chartPublicationsGeneral_2" />
-      </div>
-    </div>
+      Chiffres clés
+      <br />
+      Tabs
+      <QuestionSection
+        title="Quelle est la dynamique d’ouverture de la santé en France ?"
+        info="info text"
+        description="description text"
+        backgroundColor="#D5DBEF"
+      >
+        <ChartsDynamiqueOuverture />
+      </QuestionSection>
+    </>
   );
-}
+};
 
 export default Publications;
