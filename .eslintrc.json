@@ -1,6 +1,9 @@
 {
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "import/newline-after-import": ["error", { "count": 1 }]
   },
+  "plugins": ["simple-import-sort"],
   "extends": "react-app"
 }

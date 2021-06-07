@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
 import Axios from 'axios';
-import GraphComments from '../../graph-comments';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import React, { useRef, useState } from 'react';
 
 import { ES_API_URL } from '../../../../configs/config';
+import GraphComments from '../../graph-comments';
 
 const headers = {
   headers: {
@@ -169,17 +169,17 @@ const Chart = () => {
         highcharts={Highcharts}
         options={optionsGraph1}
         ref={chart1}
-        id="chart1"
+        id='chart1'
       />
-      <GraphComments comments="Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco." />
+      <GraphComments comments='Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco.' />
 
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph2}
         ref={chart1}
-        id="chart1"
+        id='chart1'
       />
-      <GraphComments comments="Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco." />
+      <GraphComments comments='Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco.' />
       {/* <GraphFooter /> */}
     </>
   );

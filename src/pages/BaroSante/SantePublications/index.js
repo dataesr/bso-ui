@@ -1,8 +1,9 @@
 import React from 'react';
-import QuestionSection from '../../../components/question-section';
-import ChartsDynamiqueOuverture from '../../../components/charts/publications/general/charts-dynamique-ouverture';
 
-const Publications = () => {
+import ChartsDynamiqueOuverture from '../../../components/charts/publications/general/charts-dynamique-ouverture';
+import QuestionSection from '../../../components/question-section';
+
+function SantePublications() {
   return (
     <>
       <h1>Publications</h1>
@@ -10,15 +11,15 @@ const Publications = () => {
       <br />
       Tabs
       <QuestionSection
-        title="Quelle est la dynamique d’ouverture de la santé en France ?"
-        info="info text"
-        description="description text"
-        backgroundColor="#D5DBEF"
+        title='Quelle est la dynamique d’ouverture de la santé en France ?'
+        info='info text'
+        description='description text'
+        backgroundColor='#D5DBEF'
       >
         <ChartsDynamiqueOuverture />
       </QuestionSection>
     </>
   );
-};
+}
 
-export default Publications;
+export default SantePublications;
