@@ -36,6 +36,8 @@ jobs:
           body: "${{ steps.changelog.outputs.changes }}"
 
   docker:
+    needs:
+      - release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -53,3 +55,16 @@ jobs:
       - name: Notify in Slack
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{"text":"📦 New release <https://github.com/dataesr/bso-ui/releases/tag/${{ steps.version.outputs.version }}|${{ steps.version.outputs.version }}> in bso-ui"}' ${{ secrets.SLACK_WEBHOOK }}
+
+  slack:
+    needs:
+      - docker
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dataesr/slack-notifier-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN}}
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          slack_channel: '#bsso_bso2'
