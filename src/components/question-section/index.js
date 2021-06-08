@@ -1,3 +1,4 @@
+import { Container } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -10,12 +11,14 @@ const QuestionSection = ({
 }) => {
   return (
     <section style={{ backgroundColor }}>
-      <h2>
-        {title}
-        <span>i</span>
-      </h2>
-      <p>{description}</p>
-      {children}
+      <Container>
+        <h2>
+          {title}
+          <span>i</span>
+        </h2>
+        <p>{description}</p>
+        {children}
+      </Container>
     </section>
   );
 };

@@ -1,11 +1,11 @@
 /**
- *  Design System
- *  variables already set are from @dataesr/react-dsfr
+ * Design System
+ * variables already setted are from @dataesr/react-dsfr
  */
 :root {
   --blue-soft-175: #26283f;
   --blue-soft-150: #334476;
-  --blue-soft-125: var(----blue-soft-600);
+  --blue-soft-125: var(--blue-soft-600);
   --blue-soft-100: var(--blue-soft-500);
   --blue-soft-75: #abb8de;
   --blue-soft-50: var(--blue-soft-300);
@@ -106,28 +106,27 @@
   --pink-dark-75: #e7c4bb;
   --pink-dark-50: var(--pink-dark-300);
   --pink-dark-25: var(--pink-dark-200);
-  --pruple-125: var(--purple-600);
-  --pruple-100: var(--purple-500);
-  --pruple-75: #bea6ad;
-  --pruple-50: var(--purple-300);
-  --pruple-25: var(--purple-200);
-  --pruple-medium-175: #3b1d49;
-  --pruple-medium-150: #5c356f;
-  --pruple-medium-125: #825c94;
-  --pruple-medium-100: #a677bc;
-  --pruple-medium-75: #ce9de5;
-  --pruple-medium-50: #eccdfb;
-  --pruple-medium-25: #f6ebfc;
+  --purple-125: var(--purple-600);
+  --purple-100: var(--purple-500);
+  --purple-75: #bea6ad;
+  --purple-50: var(--purple-300);
+  --purple-25: var(--purple-200);
+  --purple-medium-175: #3b1d49;
+  --purple-medium-150: #5c356f;
+  --purple-medium-125: #825c94;
+  --purple-medium-100: #a677bc;
+  --purple-medium-75: #ce9de5;
+  --purple-medium-50: #eccdfb;
+  --purple-medium-25: #f6ebfc;
   --brown-125: var(--brown-600);
   --brown-100: var(--brown-500);
   --brown-175: #d0b4ac;
   --brown-50: #e8dad6;
   --brown-25: var(--brown-200);
-}
-/**
+
+  /**
   Surcharge BSO
  */
-:root {
   --diamond: #5cdce5;
   --hybrid: #725d3e;
   --affiliation: #846dc5;

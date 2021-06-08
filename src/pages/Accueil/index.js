@@ -1,5 +1,3 @@
-import './style.scss';
-
 import { Link as DSLink } from '@dataesr/react-dsfr';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -7,7 +5,6 @@ import { Link } from 'react-router-dom';
 function Accueil() {
   return (
     <div className='accueil'>
-      <h1>Accueil</h1>
       <ul>
         <li>
           <DSLink as={<Link to='/baro-national' />} href='/my-page' isSimple>
