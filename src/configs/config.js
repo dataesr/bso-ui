@@ -3,7 +3,7 @@ export const ES_API_URL =
 
 export const HEADERS = {
   headers: {
-    Authorization: 'Basic QlNPOnZuODRxOVhlZjlVN3BtVQ==',
+    Authorization: '',
     'Content-Type': 'application/json',
   },
 };
