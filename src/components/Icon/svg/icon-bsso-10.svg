@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-bssoo-10">
+    <title>archives</title>
+    <g id="icon-bsso-archives">
+        <path id="icon-back"
+              class="color-2"
+              d="M60.5 33V68H18.5V33M60.5 33L67 39M60.5 33H18.5M18.5 33L12 39M30 26.5H49M30 29.5H49M19 33L23 39.5H56L60 33M34.5 49H44.5C46.1569 49 47.5 47.6569 47.5 46C47.5 44.3431 46.1569 43 44.5 43H34.5C32.8431 43 31.5 44.3431 31.5 46C31.5 47.6569 32.8431 49 34.5 49ZM30 19H42V23H30V19ZM22 11H58V33H22V11ZM58 19H50V11L58 19Z"
+              stroke="#D5DBEF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="icon-front"
+              class="color-1"
+              d="M60.5 33V68H18.5V33M60.5 33L67 39M60.5 33H18.5M18.5 33L12 39M30 26.5H49M30 29.5H49M19 33L23 39.5H56L60 33M34.5 49H44.5C46.1569 49 47.5 47.6569 47.5 46C47.5 44.3431 46.1569 43 44.5 43H34.5C32.8431 43 31.5 44.3431 31.5 46C31.5 47.6569 32.8431 49 34.5 49ZM30 19H42V23H30V19ZM22 11H58V33H22V11ZM58 19H50V11L58 19Z"
+              stroke="#3D4167" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+</svg>

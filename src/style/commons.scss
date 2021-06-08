@@ -28,6 +28,22 @@
 }
 
 /**
+  Espacement
+ */
+
+.p-8 {
+  padding: 8px;
+}
+
+.p-16 {
+  padding: 16px;
+}
+
+.pt-16 {
+  padding-top: 16px;
+}
+
+/**
   Mediaqueries
  */
 @media screen and(min-width: 1280px) {

@@ -1,0 +1,47 @@
+// https://codesandbox.io/s/serene-beaver-hi5wo?file=/src/Icon.js
+import React, { useEffect, useState } from 'react';
+
+import { getCSSColour, setCSSColour } from '../../utils/helpers';
+
+/**
+ *
+ * @param name
+ * @param borderColor
+ * @param rest
+ * @returns {JSX.Element}
+ * @constructor
+ */
+const Icon = ({ name, color1, color2, ...rest }) => {
+  const [iconModule, setIconModule] = useState();
+
+  useEffect(() => {
+    import(
+      `!!@svgr/webpack?-svgo,+titleProp,+ref!./../../components/Icon/svg/${name}.svg`
+    )
+      .then((module) => {
+        setIconModule(module);
+      })
+      .catch((error) => {
+        console.error(`Icon with name: ${name} not found! - ${error}`);
+      });
+  }, [name]);
+
+  const renderIcon = () => {
+    if (!iconModule) return null;
+
+    setCSSColour(`--${name}-color-1`, getCSSColour(`--${color1}`) || color1);
+
+    setCSSColour(`--${name}-color-2`, getCSSColour(`--${color2}`) || color2);
+
+    /**
+     * Equal to:
+     * import { ReactComponent as Icon } from "./path/to/icon.svg";
+     */
+    const Component = iconModule.default;
+    return <Component {...rest} />;
+  };
+
+  return <div className={`${name}`}>{renderIcon()}</div>;
+};
+
+export default Icon;
