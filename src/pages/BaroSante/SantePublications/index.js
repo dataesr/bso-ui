@@ -2,7 +2,7 @@ import { Container } from '@dataesr/react-dsfr';
 import React from 'react';
 
 import ChartsDynamiqueOuverture from '../../../components/charts/publications/general/charts-dynamique-ouverture/charts-dynamique-ouverture';
-import ChartsVoiesOuverture from '../../../components/charts/publications/general/charts-voies-ouverture';
+import ChartsVoiesOuverture from '../../../components/charts/publications/general/charts-voies-ouverture/charts-voies-ouverture';
 import QuestionSection from '../../../components/question-section';
 
 function SantePublications() {

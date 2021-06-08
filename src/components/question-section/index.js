@@ -10,7 +10,7 @@ const QuestionSection = ({
   children,
 }) => {
   return (
-    <section style={{ backgroundColor }}>
+    <section style={{ backgroundColor, paddingTop: '28px' }}>
       <Container>
         <h2>
           {title}

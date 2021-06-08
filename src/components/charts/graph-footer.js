@@ -10,11 +10,13 @@ const GraphFooter = ({
   onXlsButtonClick,
   onPngButtonClick,
 }) => (
-  <Container>
-    {date ? `Données mise à jour le ${date}` : null}
-    {date && source ? <hr /> : null}
-    {source ? `Source : ${source}` : null}
-  </Container>
+  <div style={{ backgroundColor: '#EDEDF2' }}>
+    <Container>
+      {date ? `Données mise à jour le ${date}` : null}
+      {date && source ? <hr /> : null}
+      {source ? `Source : ${source}` : null}
+    </Container>
+  </div>
 );
 
 export default GraphFooter;
