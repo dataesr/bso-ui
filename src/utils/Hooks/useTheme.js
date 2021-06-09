@@ -4,12 +4,12 @@ import { createContext, useContext, useState } from 'react';
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
-  const storedTheme = localStorage.getItem('theme') || 'light';
+  const storedTheme = localStorage.getItem('__bso_theme__') || 'light';
   const [theme, setTheme] = useState(storedTheme);
   document.documentElement.setAttribute('data-fr-theme', storedTheme);
 
   const switchTheme = (newTheme) => {
-    localStorage.setItem('theme', newTheme);
+    localStorage.setItem('__bso_theme__', newTheme);
     setTheme(newTheme);
     document.documentElement.setAttribute('data-fr-theme', newTheme);
   };
