@@ -26,84 +26,82 @@ function useGetData(BASE_URL, id) {
       .sort((a, b) => b - a);
   }
 
-  async function getDataByObservationDates(datesObservation) {
-    // Pour chaque date d'observation, récupération des données associées
-    const queries = [];
-    datesObservation?.forEach((oneDate) => {
-      let query = {
-        size: 0,
-        aggs: {
-          by_publication_year: {
-            terms: {
-              field: 'publication_year',
-            },
-            aggs: {
-              by_is_oa: {
-                terms: {
-                  field: `oa_details.${oneDate}.is_oa`,
-                },
+  async function getDataForLastObservationDate(lastObservationDate) {
+    const query = {
+      size: 0,
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'publication_year',
+          },
+          aggs: {
+            by_oa_host_type: {
+              terms: {
+                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
               },
             },
           },
         },
-      };
-      queries.push(Axios.post(ES_API_URL, query, HEADERS));
+      },
+    };
+
+    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) =>
+      console.log(e)
+    );
+    const data = res.data.aggregations.by_publication_year.buckets;
+
+    // Tri pour avoir les années dans l'ordre d'affichage du graph
+    data.sort((a, b) => a.key - b.key);
+
+    const categories = []; // Elements d'abscisse
+    const repository = []; // archive ouverte
+    const publisher = []; // éditeur
+    const publisherRepository = []; // les 2
+
+    data.forEach((el) => {
+      categories.push(el.key);
+      let temp = el.by_oa_host_type.buckets.find(
+        (item) => item.key === 'repository'
+      );
+      repository.push(temp.doc_count || 0);
+
+      temp = el.by_oa_host_type.buckets.find(
+        (item) => item.key === 'publisher'
+      );
+      publisher.push(temp.doc_count || 0);
+
+      temp = el.by_oa_host_type.buckets.find(
+        (item) => item.key === 'publisher;repository'
+      );
+      publisherRepository.push(temp.doc_count || 0);
     });
 
-    const res = await Axios.all(queries).catch((e) => console.log(e));
-
-    const allData = res.map((d, i) => ({
-      observationDate: datesObservation[i],
-      data: d.data.aggregations.by_publication_year.buckets,
-    }));
-
-    const colors = [
-      '#FF6F4C',
-      '#CB634B',
-      '#CB634B',
-      '#CB634B',
-      '#8F4939',
-      '#8F4939',
-      '#8F4939',
+    const dataGraph = [
+      {
+        name: 'publisher;repository',
+        data: publisherRepository,
+        color: '#91AE4F',
+      },
+      {
+        name: 'repository',
+        data: repository,
+        color: '#19905B',
+      },
+      {
+        name: 'publisher',
+        data: publisher,
+        color: '#EAD737',
+      },
     ];
-    const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
-
-    const dataGraph2 = [];
-    allData.forEach((observationDateData, i) => {
-      const serie = {};
-      serie.name = `Année d'observation ${observationDateData.observationDate}`;
-      serie.color = colors[i];
-      serie.dashStyle = lineStyle[i];
-      serie.data = observationDateData.data
-        .sort((a, b) => a.key - b.key)
-        .filter(
-          (el) =>
-            el.key <
-              parseInt(
-                observationDateData.observationDate.substring(0, 4),
-                10
-              ) &&
-            el.by_is_oa.buckets.length > 0 &&
-            el.doc_count
-        )
-        .map((el) =>
-          Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count)
-        );
-      dataGraph2.push(serie);
-    });
-
-    const dataGraph1 = dataGraph2.map((el) => ({
-      name: el.name.split(' ')[2],
-      y: el.data[el.data.length - 1],
-    }));
-
-    return { dataGraph1, dataGraph2 };
+    return { categories, dataGraph };
   }
 
   async function getData() {
     try {
       const observationDates = await getObservationDates();
-      const dataGraph = await getDataByObservationDates(observationDates);
+      const dataGraph = await getDataForLastObservationDate(
+        observationDates[0]
+      );
       setData(dataGraph);
       setLoading(false);
     } catch (error) {
