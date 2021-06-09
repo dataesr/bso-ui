@@ -2,8 +2,15 @@
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "import/newline-after-import": ["error", { "count": 1 }]
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "react/jsx-filename-extension": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/no-unescaped-entities": 0
   },
   "plugins": ["simple-import-sort"],
-  "extends": "react-app"
+  "extends": [
+    "react-app",
+    "airbnb",
+    "airbnb/hooks"
+  ]
 }

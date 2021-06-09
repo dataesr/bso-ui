@@ -1,0 +1,22 @@
+{
+  "app.commons.fermer": "fermer",
+  "app.commons.modal.fermer": "Fermer la fenêtre modale",
+  "app.commons.theme.light": "Thème clair",
+  "app.commons.theme.dark": "Thème sombre",
+  "app.header.nav.a-propos": "À propos",
+  "app.header.nav.a-propos-faq": "FAQ",
+  "app.header.nav.a-propos-gloassaire": "Glossaire",
+  "app.header.nav.a-propos-methodologie": "Méthodologie",
+  "app.header.nav.a-propos-notes-flash": "Notes flash",
+  "app.header.nav.a-propos-projet": "Le projet",
+  "app.header.nav.baro-national": "Le Baromètre national",
+  "app.header.nav.baro-national-acceuil": "Accueil baromètre national",
+  "app.header.nav.baro-national-publications": "Les publications",
+  "app.header.nav.baro-sante": "Le baromètre santé",
+  "app.header.nav.baro-sante-acceuil": "Accueil baromètre santé",
+  "app.header.nav.baro-sante-essais": "Les essais cliniques",
+  "app.header.nav.baro-sante-etudes": "Les études observationnelles",
+  "app.header.nav.baro-sante-publications": "Les publications en santé",
+  "app.header.nav.themes": "Thèmes",
+  "app.header.title": "Le Baromètre français de la Science Ouverte"
+}

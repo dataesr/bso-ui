@@ -4,7 +4,7 @@ import React from 'react';
 
 function NotesFlash() {
   return (
-    <div className='notes-flash'>
+    <div className="notes-flash">
       <h1>NotesFlash page</h1>
     </div>
   );
