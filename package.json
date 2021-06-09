@@ -49,7 +49,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.+(js|json)": [
+    "src/**/*.+(js)": [
       "eslint"
     ],
     "src/**/*.{js,json,scss,md}": [
