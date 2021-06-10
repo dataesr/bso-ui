@@ -24,3 +24,20 @@ To create a new release, use `npm version patch|minor|major`.
 * `npm run test`
 * `npm run prepare`
 * `npm run eject`
+
+## Ajouter une nouvelle icône BSSO
+
+* Ajouter le fichier `icon-bsso-[x].svg` dans `src/components/Icon/svg` en respectant ce format de nommage
+* Ajouter à la balise `<svg>` du fichier la class `icon-bsso-[x]`
+* Ajouter une balise `<title>` pour l'accessibilité
+* Ajouter aux balises `<path>` les class correspondantes `class="color-1"` `class="color-2"`
+* Mettre à jour la variable `$icon-bsso-max` dans `src/style/variables.scss`
+
+### Utilisation 
+```
+ <Icon
+    name='icon-bsso-[x]'
+    color1='blue-soft-125'
+    color2='gold'
+  />
+```

@@ -8,8 +8,8 @@
   align-items: center;
   border-radius: 100%;
   text-align: center;
-  height: 132px;
-  width: 132px;
+  height: 148px;
+  width: 148px;
   padding: 20px;
 
   &::after {
@@ -17,10 +17,10 @@
     position: absolute;
     top: 6px;
     left: 6px;
-    width: 120px;
-    height: 120px;
-    -moz-border-radius: 80px;
-    -webkit-border-radius: 80px;
+    width: 136px;
+    height: 136px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
     border-radius: 100%;
     background: radial-gradient(
       ellipse at center,
@@ -28,6 +28,14 @@
       var(--blue-dark-125) 51.5%
     );
     z-index: -1;
+  }
+
+  .icon {
+    color: var(--yellow-medium-100);
+
+    &.icon-left {
+      margin-right: 0;
+    }
   }
 }
 

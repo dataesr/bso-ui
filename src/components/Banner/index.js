@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { getCSSColour, setCSSColour } from '../../utils/helpers';
-import Chip from '../UI/Chip';
 
 function Banner({
   backgroundColor,
@@ -13,12 +12,16 @@ function Banner({
   title,
   link,
   chip,
+  icons,
 }) {
   setCSSColour(
     '--bannerBackgroundColor',
-    getCSSColour(backgroundColor) || backgroundColor
+    getCSSColour(`--${backgroundColor}`) || backgroundColor
   );
-  setCSSColour('--bannerTextColor', getCSSColour(textColor) || textColor);
+  setCSSColour(
+    '--bannerTextColor',
+    getCSSColour(`--${textColor}`) || textColor
+  );
 
   return (
     <section className='banner text-center text-left-m'>
@@ -27,7 +30,8 @@ function Banner({
           <Col n='12 sm-9'>
             <small className='sup-title'>{supTitle}</small>
             <h2 className='title marianne-extra-bold'>{title}</h2>
-            <h3 className='sub-title'>{subTitle}</h3>
+            {icons || ''}
+            <h3 className='sub-title pt-16'>{subTitle}</h3>
             {link && (
               <Button
                 icon='ri-arrow-right-line'
@@ -39,11 +43,7 @@ function Banner({
               </Button>
             )}
           </Col>
-          {chip && (
-            <Col n='sm-3'>
-              <Chip title={chip.title} backgroundColor={chip.backgroundColor} />
-            </Col>
-          )}
+          {chip && <Col n='sm-3'>{chip}</Col>}
         </Row>
       </Container>
     </section>

@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-bssoo-13">
+    <title>disciplines</title>
+    <g id="icon-bsso-disciplines">
+        <path id="icon-back"
+              class="color-2"
+              d="M33 42H47M8 68L8 26C8 23.7909 9.79086 22 12 22L69 22C71.2091 22 73 23.7909 73 26V68H8ZM8 36H73V39H8V36ZM40.5 12C34.701 12 30 16.3173 30 21.6429V22H34.6667V21.6429C34.6667 18.6842 37.2783 16.2857 40.5 16.2857C43.7217 16.2857 46.3333 18.6842 46.3333 21.6429V22H51V21.6429C51 16.3173 46.299 12 40.5 12ZM33 39H47V46H33V39Z"
+              stroke="#D5DBEF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="icon-front"
+              class="color-1"
+              d="M33 42H47M8 68L8 26C8 23.7909 9.79086 22 12 22L69 22C71.2091 22 73 23.7909 73 26V68H8ZM8 36H73V39H8V36ZM40.5 12C34.701 12 30 16.3173 30 21.6429V22H34.6667V21.6429C34.6667 18.6842 37.2783 16.2857 40.5 16.2857C43.7217 16.2857 46.3333 18.6842 46.3333 21.6429V22H51V21.6429C51 16.3173 46.299 12 40.5 12ZM33 39H47V46H33V39Z"
+              stroke="#3D4167" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+</svg>
