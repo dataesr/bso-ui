@@ -23,18 +23,18 @@ export default function SwitchLangButton() {
     <>
       <Button
         ref={langButtonRef}
-        icon="fr-fi-volume-up-fill"
-        iconPosition="left"
-        className="fr-link"
+        icon='fr-fi-volume-up-fill'
+        iconPosition='left'
+        className='fr-link'
         onClick={() => setIsLangModalOpen(!isLangModalOpen)}
       >
         <FormattedMessage
-          id="app.lang.change"
-          defaultMessage="Changer la langue"
+          id='app.lang.change'
+          defaultMessage='Changer la langue'
         />
       </Button>
       <Modal
-        size="sm"
+        size='sm'
         isOpen={isLangModalOpen}
         hide={() => {
           setIsLangModalOpen(false);
@@ -49,12 +49,12 @@ export default function SwitchLangButton() {
             defaultMessage: 'Fermer la fenêtre modale',
           })}
         >
-          <FormattedMessage id="app.commons.fermer" defaultMessage="fermer" />
+          <FormattedMessage id='app.commons.fermer' defaultMessage='fermer' />
         </ModalClose>
         <ModalTitle>
           <FormattedMessage
-            id="app.lang.params"
-            defaultMessage="Paramètre de langue"
+            id='app.lang.params'
+            defaultMessage='Paramètre de langue'
           />
         </ModalTitle>
         <ModalContent>
@@ -69,8 +69,8 @@ export default function SwitchLangButton() {
                 id: 'app.lang.fr',
                 defaultMessage: 'Français',
               })}
-              imageURL="https://www.countryflags.io/fr/flat/64.png"
-              value="fr"
+              imageURL='https://www.countryflags.io/fr/flat/64.png'
+              value='fr'
               isExtended
               onChange={(e) => setSelectedLang(e.target.value)}
             />
@@ -79,8 +79,8 @@ export default function SwitchLangButton() {
                 id: 'app.lang.en',
                 defaultMessage: 'Anglais',
               })}
-              imageURL="https://www.countryflags.io/gb/flat/64.png"
-              value="en"
+              imageURL='https://www.countryflags.io/gb/flat/64.png'
+              value='en'
               isExtended
               onChange={(e) => setSelectedLang(e.target.value)}
             />
@@ -88,17 +88,17 @@ export default function SwitchLangButton() {
         </ModalContent>
         <ModalFooter>
           <Button
-            title="title"
+            title='title'
             secondary
             onClick={() => setIsLangModalOpen(false)}
           >
             <FormattedMessage
-              id="app.commons.annuler"
-              defaultMessage="Annuler"
+              id='app.commons.annuler'
+              defaultMessage='Annuler'
             />
           </Button>
           <Button
-            title="title"
+            title='title'
             onClick={() => {
               if (lang !== selectedLang) {
                 switchLang(selectedLang);
@@ -107,8 +107,8 @@ export default function SwitchLangButton() {
             }}
           >
             <FormattedMessage
-              id="app.lang.change"
-              defaultMessage="Changer la langue"
+              id='app.lang.change'
+              defaultMessage='Changer la langue'
             />
           </Button>
         </ModalFooter>

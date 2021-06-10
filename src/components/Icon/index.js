@@ -1,4 +1,5 @@
 // https://codesandbox.io/s/serene-beaver-hi5wo?file=/src/Icon.js
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 import { getCSSColour, setCSSColour } from '../../utils/helpers';
@@ -21,7 +22,7 @@ const Icon = ({ name, color1, color2, ...rest }) => {
         setIconModule(module);
       })
       .catch((error) => {
-        console.error(`Icon with name: ${name} not found! - ${error}`);
+        console.error(`Icon with name: ${name} not found! - ${error}`); // eslint-disable-line
       });
   }, [name]);
 
@@ -43,4 +44,14 @@ const Icon = ({ name, color1, color2, ...rest }) => {
   return <div className={`${name}`}>{renderIcon()}</div>;
 };
 
+Icon.defaultProps = {
+  color1: 'blue-dark-125',
+  color2: 'blue-dark-125',
+};
+
+Icon.propTypes = {
+  name: PropTypes.string.isRequired,
+  color1: PropTypes.string,
+  color2: PropTypes.string,
+};
 export default Icon;
