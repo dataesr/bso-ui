@@ -1,5 +1,6 @@
 // import Axios from 'axios';
 import Highcharts from 'highcharts';
+import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 
@@ -8,9 +9,12 @@ import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import getData from './get-data';
 
+treemapModule(Highcharts);
+
 const Chart = () => {
   const chart1 = useRef();
   const chart2 = useRef();
+  const chart3 = useRef();
 
   const { data, isLoading, isError } = getData();
 
@@ -83,6 +87,36 @@ const Chart = () => {
     series: data.dataGraph,
   };
 
+  const optionGraph3 = {
+    series: [
+      {
+        type: 'treemap',
+        layoutAlgorithm: 'stripes',
+        alternateStartingDirection: true,
+        levels: [
+          {
+            level: 1,
+            layoutAlgorithm: 'sliceAndDice',
+            dataLabels: {
+              enabled: true,
+              align: 'left',
+              verticalAlign: 'top',
+              style: {
+                fontSize: '15px',
+                fontWeight: 'bold',
+              },
+            },
+          },
+        ],
+        data: data.dataGraph3,
+      },
+    ],
+    title: {
+      text: "Répartition des publications ouvertes en santé par types d'hébergement",
+      align: 'left',
+    },
+  };
+
   return (
     <>
       <HighchartsReact
@@ -99,6 +133,15 @@ const Chart = () => {
         options={optionsGraph2}
         ref={chart2}
         id='chart2'
+      />
+      <GraphComments comments='Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco.' />
+      <GraphFooter />
+
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionGraph3}
+        ref={chart3}
+        id='chart3'
       />
       <GraphComments comments='Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco.' />
       <GraphFooter />

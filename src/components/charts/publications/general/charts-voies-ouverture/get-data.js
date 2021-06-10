@@ -57,6 +57,7 @@ function useGetData(BASE_URL, id) {
     const repository = []; // archive ouverte
     const publisher = []; // éditeur
     const publisherRepository = []; // les 2
+    const closed = []; // acces fermé
 
     data.forEach((el) => {
       categories.push(el.key);
@@ -93,7 +94,39 @@ function useGetData(BASE_URL, id) {
         color: '#EAD737',
       },
     ];
-    return { categories, dataGraph };
+
+    const dataGraph3 = [
+      {
+        name: 'publisher',
+        value: data[data.length - 1].by_oa_host_type.buckets.find(
+          (item) => item.key === 'publisher'
+        ).doc_count,
+        color: '#EAD737',
+      },
+      {
+        name: 'publisher;repository',
+        value: data[data.length - 1].by_oa_host_type.buckets.find(
+          (item) => item.key === 'publisher;repository'
+        ).doc_count,
+        color: '#91AE4F',
+      },
+      {
+        name: 'repository',
+        value: data[data.length - 1].by_oa_host_type.buckets.find(
+          (item) => item.key === 'repository'
+        ).doc_count,
+        color: '#19905B',
+      },
+      {
+        name: 'closed',
+        value: data[data.length - 1].by_oa_host_type.buckets.find(
+          (item) => item.key === 'closed'
+        ).doc_count,
+        color: '#26283F',
+      },
+    ];
+
+    return { categories, dataGraph, dataGraph3 };
   }
 
   async function getData() {
