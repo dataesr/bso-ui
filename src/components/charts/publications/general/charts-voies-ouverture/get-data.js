@@ -125,20 +125,19 @@ function useGetData() {
     return { categories, dataGraph, dataGraph3 };
   }
 
-  async function getData() {
-    try {
-      const observationDates = await getObservationDates();
-      const dataGraph = await getDataForLastObservationDate(observationDates[0]);
-      setData(dataGraph);
-      setLoading(false);
-    } catch (error) {
-      setError(true);
-      setLoading(false);
-    }
-  }
   useEffect(() => {
+    async function getData() {
+      try {
+        const observationDates = await getObservationDates();
+        const dataGraph = await getDataForLastObservationDate(observationDates[0]);
+        setData(dataGraph);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    }
     getData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { allData, isLoading, isError };

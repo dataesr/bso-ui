@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../configs/config';
 
-function useGetData(BASE_URL, id) {
+function useGetData() {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -18,9 +18,7 @@ function useGetData(BASE_URL, id) {
         },
       },
     };
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) =>
-      console.log(e)
-    );
+    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     return res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort((a, b) => b - a);
@@ -29,8 +27,8 @@ function useGetData(BASE_URL, id) {
   async function getDataByObservationDates(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    datesObservation?.forEach(oneDate => {
-      let query = {
+    datesObservation?.forEach((oneDate) => {
+      const query = {
         size: 0,
         aggs: {
           by_publication_year: {
@@ -54,7 +52,7 @@ function useGetData(BASE_URL, id) {
 
     const allData = res.map((d, i) => ({
       observationDate: datesObservation[i],
-      data: d.data.aggregations.by_publication_year.buckets
+      data: d.data.aggregations.by_publication_year.buckets,
     }));
 
     const colors = [
@@ -77,18 +75,15 @@ function useGetData(BASE_URL, id) {
       serie.data = observationDateData.data
         .sort((a, b) => a.key - b.key)
         .filter(
-          (el) =>
-            el.key <
-              parseInt(
+          (el) => el.key
+              < parseInt(
                 observationDateData.observationDate.substring(0, 4),
-                10
-              ) &&
-            el.by_is_oa.buckets.length > 0 &&
-            el.doc_count
+                10,
+              )
+            && el.by_is_oa.buckets.length > 0
+            && el.doc_count,
         )
-        .map((el) =>
-          Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count)
-        );
+        .map((el) => Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count));
       dataGraph2.push(serie);
     });
 
@@ -100,18 +95,18 @@ function useGetData(BASE_URL, id) {
     return { dataGraph1, dataGraph2 };
   }
 
-  async function getData() {
-    try {
-      const observationDates = await getObservationDates();
-      const dataGraph = await getDataByObservationDates(observationDates);
-      setData(dataGraph);
-      setLoading(false);
-    } catch (error) {
-      setError(true);
-      setLoading(false);
-    }
-  }
   useEffect(() => {
+    async function getData() {
+      try {
+        const observationDates = await getObservationDates();
+        const dataGraph = await getDataByObservationDates(observationDates);
+        setData(dataGraph);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    }
     getData();
   }, []);
 

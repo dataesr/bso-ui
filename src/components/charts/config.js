@@ -1,4 +1,4 @@
-export const GRAPH_CONFIG = [
+export default [
   {
     id: 'chartPublicationsGeneral_1',
     type: 'bar',

@@ -5,10 +5,10 @@ import React from 'react';
 const GraphFooter = ({
   source,
   date,
-  graphId,
-  onCsvButtonClick,
-  onXlsButtonClick,
-  onPngButtonClick,
+  // graphId,
+  // onCsvButtonClick,
+  // onXlsButtonClick,
+  // onPngButtonClick,
 }) => (
   <div style={{ backgroundColor: '#EDEDF2' }}>
     <Container>
@@ -30,16 +30,16 @@ export default GraphFooter;
 GraphFooter.defaultProps = {
   source: '',
   date: '',
-  graphId: '',
-  onCsvButtonClick: null,
-  onXlsButtonClick: null,
-  onPngButtonClick: null,
+  // graphId: '',
+  // onCsvButtonClick: null,
+  // onXlsButtonClick: null,
+  // onPngButtonClick: null,
 };
-GraphFooter.prototype = {
+GraphFooter.propTypes = {
   source: PropTypes.string,
   date: PropTypes.string,
-  graphId: PropTypes.string, // pour lien intégration
-  onCsvButtonClick: PropTypes.func,
-  onXlsButtonClick: PropTypes.func,
-  onPngButtonClick: PropTypes.func,
+  // graphId: PropTypes.string, // pour lien intégration
+  // onCsvButtonClick: PropTypes.func,
+  // onXlsButtonClick: PropTypes.func,
+  // onPngButtonClick: PropTypes.func,
 };

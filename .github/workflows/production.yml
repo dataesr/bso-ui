@@ -3,7 +3,7 @@ name: Production deployment
 on:
   push:
     tags:
-      - "*"
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 env:
   # Must match k8s deployment name
@@ -26,7 +26,7 @@ jobs:
         run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image
-        run: docker build -f Dockerfile -t ${{ github.repository }} .
+        run: docker build -t ${{ github.repository }} .
 
       - name: Push image
         run: |
@@ -55,8 +55,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config_file: .github/config/changelog.js
-      - name: print changelog
-        run: echo "${{ steps.changelog.outputs.changes }}"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

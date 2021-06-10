@@ -12,6 +12,6 @@ const GraphComments = ({ comments }) => (
 
 export default GraphComments;
 
-GraphComments.prototype = {
+GraphComments.propTypes = {
   comments: PropTypes.string.isRequired,
 };

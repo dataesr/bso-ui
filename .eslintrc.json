@@ -5,10 +5,22 @@
     "import/newline-after-import": ["error", { "count": 1 }],
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
-    "react/no-unescaped-entities": 0
+    "react/no-unescaped-entities": 0,
+    "template-curly-spacing": "off",
+    "indent": [
+      "error",
+      2,
+      {
+        "ignoredNodes": [
+          "TemplateLiteral"
+        ]
+      }
+    ]
   },
   "plugins": ["simple-import-sort"],
   "extends": [
-    "react-app"
+    "react-app",
+    "airbnb",
+    "airbnb/hooks"
   ]
 }
