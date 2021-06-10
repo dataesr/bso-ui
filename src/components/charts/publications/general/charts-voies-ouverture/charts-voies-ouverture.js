@@ -16,7 +16,7 @@ const Chart = () => {
   const chart2 = useRef();
   const chart3 = useRef();
 
-  const { data, isLoading, isError } = getData();
+  const { allData, isLoading, isError } = getData();
 
   if (isLoading) {
     return <>Loading...</>;
@@ -34,7 +34,7 @@ const Chart = () => {
       align: 'left',
     },
     xAxis: {
-      categories: data.categories,
+      categories: allData.categories,
     },
     legend: {
       verticalAlign: 'top',
@@ -51,7 +51,7 @@ const Chart = () => {
         },
       },
     },
-    series: data.dataGraph,
+    series: allData.dataGraph,
   };
 
   const optionsGraph2 = {
@@ -63,7 +63,7 @@ const Chart = () => {
       align: 'left',
     },
     xAxis: {
-      categories: data.categories,
+      categories: allData.categories,
     },
     legend: {
       verticalAlign: 'top',
@@ -84,7 +84,7 @@ const Chart = () => {
         fillOpacity: 1,
       },
     },
-    series: data.dataGraph,
+    series: allData.dataGraph,
   };
 
   const optionGraph3 = {
@@ -108,7 +108,7 @@ const Chart = () => {
             },
           },
         ],
-        data: data.dataGraph3,
+        data: allData.dataGraph3,
       },
     ],
     title: {
@@ -123,27 +123,27 @@ const Chart = () => {
         highcharts={Highcharts}
         options={optionsGraph1}
         ref={chart1}
-        id='chart1'
+        id="chart1"
       />
-      <GraphComments comments='Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco.' />
+      <GraphComments comments="Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco." />
       <GraphFooter />
 
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph2}
         ref={chart2}
-        id='chart2'
+        id="chart2"
       />
-      <GraphComments comments='Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco.' />
+      <GraphComments comments="Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco." />
       <GraphFooter />
 
       <HighchartsReact
         highcharts={Highcharts}
         options={optionGraph3}
         ref={chart3}
-        id='chart3'
+        id="chart3"
       />
-      <GraphComments comments='Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco.' />
+      <GraphComments comments="Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo. Excepteur do et ipsum elit quis. Culpa Lorem irure fugiat veniam dolore duis culpa laboris ullamco commodo deserunt ea. Aliqua mollit est esse laboris. Dolore pariatur laborum non non. Adipisicing laboris eiusmod pariatur nulla ad proident labore cillum ullamco voluptate est ullamco." />
       <GraphFooter />
     </>
   );

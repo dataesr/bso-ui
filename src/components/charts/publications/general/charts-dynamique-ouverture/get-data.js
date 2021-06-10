@@ -29,7 +29,7 @@ function useGetData(BASE_URL, id) {
   async function getDataByObservationDates(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    datesObservation?.forEach((oneDate) => {
+    datesObservation?.forEach(oneDate => {
       let query = {
         size: 0,
         aggs: {
@@ -54,7 +54,7 @@ function useGetData(BASE_URL, id) {
 
     const allData = res.map((d, i) => ({
       observationDate: datesObservation[i],
-      data: d.data.aggregations.by_publication_year.buckets,
+      data: d.data.aggregations.by_publication_year.buckets
     }));
 
     const colors = [

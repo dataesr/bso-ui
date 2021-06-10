@@ -4,31 +4,32 @@ import { Link } from 'react-router-dom';
 
 function Accueil() {
   return (
-    <div className='accueil'>
+    <div className="accueil">
+      <h1>Accueil</h1>
       <ul>
         <li>
-          <DSLink as={<Link to='/baro-national' />} href='/my-page' isSimple>
+          <DSLink as={<Link to="/baro-national" />} href="/my-page" isSimple>
             Baromètre National
           </DSLink>
         </li>
         <li>
-          <Link to='/baro-sante'>Baromètre Santé</Link>
+          <Link to="/baro-sante">Baromètre Santé</Link>
           <ul>
             <li>
-              <Link to='/baro-sante/essais-cliniques'>Essai Cliniques</Link>
+              <Link to="/baro-sante/essais-cliniques">Essai Cliniques</Link>
             </li>
             <li>
-              <Link to='/baro-sante/publications'>
+              <Link to="/baro-sante/publications">
                 Baromètre Santé Publications
               </Link>
             </li>
             <li>
-              <Link to='/baro-sante/etudes'>Etudes Observationnelles</Link>
+              <Link to="/baro-sante/etudes">Etudes Observationnelles</Link>
             </li>
           </ul>
         </li>
         <li>
-          <Link to='/theme'>Thèmes</Link>
+          <Link to="/theme">Thèmes</Link>
         </li>
       </ul>
     </div>
