@@ -52,7 +52,7 @@
     "src/**/*.+(js)": [
       "eslint --fix"
     ],
-    "src/**/*.{js,json,scss,md}": [
+    "src/**/*.{scss,md}": [
       "prettier --write"
     ]
   }
