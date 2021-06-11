@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import { getCSSColour, setCSSColour } from '../../utils/helpers';
+import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
 
 function Banner({
@@ -17,13 +17,13 @@ function Banner({
   icons,
   sticky,
 }) {
-  setCSSColour(
+  setCSSProperty(
     '--bannerBackgroundColor',
-    getCSSColour(`--${backgroundColor}`) || backgroundColor,
+    getCSSProperty(`--${backgroundColor}`) || backgroundColor,
   );
-  setCSSColour(
+  setCSSProperty(
     '--bannerTextColor',
-    getCSSColour(`--${textColor}`) || textColor,
+    getCSSProperty(`--${textColor}`) || textColor,
   );
 
   const [sticked, setSticked] = useState(false);
