@@ -16,10 +16,16 @@
       "warn",
       2,
       {
-        "ignoredNodes": ["TemplateLiteral"]
+        "ignoredNodes": [
+          "TemplateLiteral"
+        ]
       }
     ]
   },
   "plugins": ["simple-import-sort"],
-  "extends": ["react-app", "airbnb", "airbnb/hooks"]
+  "extends": [
+    "react-app",
+    "airbnb",
+    "airbnb/hooks"
+  ]
 }

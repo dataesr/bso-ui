@@ -3,6 +3,7 @@
  */
 @import 'mixins.scss';
 @import 'colours.scss';
+@import 'breakPoints.scss';
 @import 'variables.scss';
 @import 'fonts.scss';
 @import 'commons.scss';
@@ -14,6 +15,7 @@
 @import 'src/components/Header/style.scss';
 @import 'src/components/Chip/style.scss';
 @import 'src/components/Icon/style.scss';
+@import 'src/components/UI/Chip/style.scss';
 
 /*
   Global
