@@ -5,12 +5,15 @@
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
     "react/no-unescaped-entities": 0,
+    "no-unused-vars": "warn",
     "jsx-quotes": [2, "prefer-single"],
     "template-curly-spacing": "off",
     "object-curly-newline": "off",
     "react/jsx-props-no-spreading": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "max-len": ["warn", 100],
     "indent": [
-      "error",
+      "warn",
       2,
       {
         "ignoredNodes": [

@@ -1,19 +1,40 @@
 .banner {
+  position: relative;
   background: var(--bannerBackgroundColor);
   color: var(--bannerTextColor);
   padding: 50px 0;
-}
 
-.sup-title {
-  @include font-size(20, 24);
-}
+  .sup-title {
+    @include font-size(20, 24);
+  }
 
-.title {
-  @include font-size(32, 40);
-}
+  .title {
+    @include font-size(32, 40);
+  }
 
-.sub-title {
-  @include font-size(16, 24);
+  .sub-title {
+    @include font-size(16, 24);
+  }
+
+  &.sticky {
+    position: sticky;
+    top: -1px;
+    padding: 0;
+
+    .sub-title,
+    .icons,
+    .chip {
+      display: none;
+    }
+
+    .sup-title {
+      @include font-size(12, 16);
+    }
+
+    .title {
+      @include font-size(14, 16);
+    }
+  }
 }
 
 @media screen and(min-width: 576px) {

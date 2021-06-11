@@ -3,8 +3,8 @@
   "version": "0.0.6",
   "private": true,
   "dependencies": {
-    "@dataesr/react-dsfr": "^0.3.6",
-    "axios": "^0.21.1",
+    "@dataesr/react-dsfr": "^0.4.2",
+    "classnames": "^2.3.1",
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
     "prop-types": "^15.7.2",
@@ -15,10 +15,10 @@
     "react-scripts": "4.0.3"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^18.2.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
@@ -34,7 +34,8 @@
     "prepare": "husky install",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/**/*.js",
-    "prettier": "prettier --write **/*.js"
+    "prettier": "prettier --write **/*.js",
+    "stylelint": "stylelint --fix **/*.scss"
   },
   "browserslist": {
     "production": [
