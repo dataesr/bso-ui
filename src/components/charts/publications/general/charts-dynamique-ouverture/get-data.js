@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import { ES_API_URL, HEADERS } from '../../../../../configs/config';
+import { ES_API_URL, HEADERS } from '../../../../../config/config';
 
 function useGetData() {
   const [data, setData] = useState({});

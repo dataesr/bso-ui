@@ -4,7 +4,6 @@ import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 
-// import { ES_API_URL } from '../../../../../configs/config';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import getData from './get-data';
