@@ -1,4 +1,3 @@
-// import Axios from 'axios';
 import Highcharts from 'highcharts';
 import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
