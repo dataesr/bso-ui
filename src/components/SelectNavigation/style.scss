@@ -1,0 +1,21 @@
+.bso-select-navigation {
+  background: var(--blue-dark-125);
+  border-radius: 8px;
+  position: absolute;
+  bottom: -80px;
+  width: 100%;
+
+  .fr-select--valid {
+    box-shadow: none;
+  }
+
+  .sticky & {
+    position: relative;
+    bottom: 0;
+    border-radius: 0;
+
+    .title {
+      display: none;
+    }
+  }
+}

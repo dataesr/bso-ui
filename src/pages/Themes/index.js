@@ -47,6 +47,7 @@ function Theme() {
       </Col>
     </Row>
   );
+
   return (
     <div className='themes'>
       <Banner
@@ -57,6 +58,14 @@ function Theme() {
 en France à partir de données fiables, ouvertes et maîtrisées.'
         chip={renderChip}
         icons={renderIcons}
+        selectNavigation={{
+          title: 'Title',
+          onChange: () => {},
+          options: [
+            { label: 'Label', value: 'value1' },
+            { label: 'Label', value: 'value1' },
+          ],
+        }}
       />
     </div>
   );

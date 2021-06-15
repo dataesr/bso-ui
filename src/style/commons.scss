@@ -43,6 +43,10 @@
   padding-top: 16px;
 }
 
+.mb-60 {
+  margin-bottom: 60px;
+}
+
 /**
   Mediaqueries
  */
@@ -66,13 +70,21 @@
   }
 }
 
-@media screen and(min-width: 768px) {
+@media screen and(min-width: 736px) {
   .text-center-l {
     text-align: center;
   }
 
   .text-left-l {
     text-align: left;
+  }
+
+  .mb-m-0 {
+    margin-bottom: 0;
+  }
+
+  .mb-m-60 {
+    margin-bottom: 60px;
   }
 }
 

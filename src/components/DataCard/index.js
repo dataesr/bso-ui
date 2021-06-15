@@ -6,7 +6,7 @@ import Gauge from './Gauge';
 
 function DataCard({ sentence, buttonLabel, topData, percentage }) {
   return (
-    <Card hasArrow={false} href='/' className='datacard text-center'>
+    <Card hasArrow={false} href='/' className='bso-datacard text-center'>
       <CardDescription>
         {topData && <p className='top-data marianne-extra-bold'>{topData}</p>}
         <Gauge percentage={percentage} />

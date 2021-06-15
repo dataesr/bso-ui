@@ -13,7 +13,7 @@ function BaroSante() {
     />
   );
   const renderIcons = (
-    <Row justifyContent='' alignItems='middle' gutters>
+    <Row alignItems='middle' gutters>
       <Col n='4 md-2'>
         <Icon
           name='icon-bsso-28'
