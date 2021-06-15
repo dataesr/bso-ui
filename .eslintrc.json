@@ -11,6 +11,7 @@
     "object-curly-newline": "off",
     "react/jsx-props-no-spreading": "off",
     "react-hooks/exhaustive-deps": "warn",
+    "max-len": ["warn", 200],
     "react/prop-types": "warn",
     "indent": [
       "warn",
