@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
-import SelectNavigation from '../SelectNavigation';
+import SelectNavigation from './SelectNavigation';
 
 function Banner({
   backgroundColor,
