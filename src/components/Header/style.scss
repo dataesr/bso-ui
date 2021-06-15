@@ -1,9 +1,13 @@
-.main-title {
-  color: var(--blue-soft-100);
+.bso-header {
+  .main-title {
+    color: var(--blue-soft-100);
+  }
 }
 
 @media screen and (min-width: 992px) {
-  .main-title {
-    max-width: 270px;
+  .bso-header {
+    .main-title {
+      max-width: 270px;
+    }
   }
 }

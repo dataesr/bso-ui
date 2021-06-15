@@ -16,6 +16,7 @@ import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
 import Themes from './pages/Themes';
+import Theme1 from './pages/Themes/Theme-1';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import useLang from './utils/Hooks/useLang';
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route exact path='/themes'>
             <Themes />
+          </Route>
+          <Route exact path='/theme-1'>
+            <Theme1 />
           </Route>
           <Route exact path='/a-propos/methodologie'>
             <Methodologie />

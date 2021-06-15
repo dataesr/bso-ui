@@ -28,7 +28,7 @@ function Header() {
   }, [path, setPath, location]);
 
   return (
-    <DSHeader closeButtonLabel='fermer'>
+    <DSHeader closeButtonLabel='fermer' className='bso-header'>
       <HeaderBody>
         <Logo splitCharacter={10}>
           Ministère de l'enseignement supérieur et de la recherche
