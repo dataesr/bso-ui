@@ -4,26 +4,10 @@ import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../configs/config';
 
-function useGetData() {
+function useGetData(observationDate) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-
-  async function getObservationDates() {
-    // Récupération de toutes les dates d'observation
-    const query = {
-      size: 0,
-      aggs: {
-        observation_dates: {
-          terms: { field: 'observation_dates.keyword', size: 100 },
-        },
-      },
-    };
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
-    return res?.data?.aggregations?.observation_dates?.buckets
-      .map((el) => el.key)
-      .sort((a, b) => b - a);
-  }
 
   async function getDataForLastObservationDate(lastObservationDate) {
     const query = {
@@ -55,23 +39,24 @@ function useGetData() {
     const publisher = []; // éditeur
     const publisherRepository = []; // les 2
 
-    data.forEach((el) => {
-      categories.push(el.key);
-      let temp = el.by_oa_host_type.buckets.find(
-        (item) => item.key === 'repository',
-      );
-      repository.push(temp.doc_count || 0);
+    data.filter((el) => (el.key > 2012 && el.key < lastObservationDate.substring(0, 4)))
+      .forEach((el) => {
+        categories.push(el.key);
+        let temp = el.by_oa_host_type.buckets.find(
+          (item) => item.key === 'repository',
+        );
+        repository.push(temp.doc_count || 0);
 
-      temp = el.by_oa_host_type.buckets.find(
-        (item) => item.key === 'publisher',
-      );
-      publisher.push(temp.doc_count || 0);
+        temp = el.by_oa_host_type.buckets.find(
+          (item) => item.key === 'publisher',
+        );
+        publisher.push(temp.doc_count || 0);
 
-      temp = el.by_oa_host_type.buckets.find(
-        (item) => item.key === 'publisher;repository',
-      );
-      publisherRepository.push(temp.doc_count || 0);
-    });
+        temp = el.by_oa_host_type.buckets.find(
+          (item) => item.key === 'publisher;repository',
+        );
+        publisherRepository.push(temp.doc_count || 0);
+      });
 
     const dataGraph = [
       {
@@ -128,8 +113,7 @@ function useGetData() {
   useEffect(() => {
     async function getData() {
       try {
-        const observationDates = await getObservationDates();
-        const dataGraph = await getDataForLastObservationDate(observationDates[0]);
+        const dataGraph = await getDataForLastObservationDate(observationDate);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
@@ -138,7 +122,7 @@ function useGetData() {
       }
     }
     getData();
-  }, []);
+  }, [observationDate]);
 
   return { allData, isLoading, isError };
 }

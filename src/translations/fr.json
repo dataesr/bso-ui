@@ -2,6 +2,7 @@
   "app.commons.annuler": "Annuler",
   "app.commons.fermer": "fermer",
   "app.commons.modal.fermer": "Fermer la fenêtre modale",
+  "app.commons.graph-comment.label": "Commentaire",
   "app.theme.light": "Thème clair",
   "app.theme.dark": "Thème sombre",
   "app.theme.params": "Paramètres d'affichage",
@@ -27,5 +28,17 @@
   "app.header.nav.baro-sante-etudes": "Les études observationnelles",
   "app.header.nav.baro-sante-publications": "Les publications en santé",
   "app.header.nav.themes": "Thèmes",
-  "app.header.title": "Le Baromètre français de la Science Ouverte"
+  "app.header.title": "Le Baromètre français de la Science Ouverte",
+  "app.sante-publi.general.dynamique-ouverture.title": "Quelle est la dynamique d’ouverture de la santé en France",
+  "app.sante-publi.general.dynamique-ouverture.description": "description text .dynamique-ouverture",
+  "app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture.title": "Taux d'ouverture des publications françaises, dans le domaine de la santé, par millésime",
+  "app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture.comments": "Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo",
+  "app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion.title": "Evolution de la proportion d'accès ouvert pour les publication en santé par millésime",
+  "app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion.comments": "Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo",
+  "app.sante-publi.general.voies-ouverture.chart-evolution-taux.title": "Evolution du taux d'accès ouvert des publications en santé par année et par types d'hébergement",
+  "app.sante-publi.general.voies-ouverture.chart-evolution-taux.comments": "Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo",
+  "app.sante-publi.general.voies-ouverture.chart-repartition-taux.title": "Répartition du taux d'accès ouvert des publications en santé par année et par types d'hébergement",
+  "app.sante-publi.general.voies-ouverture.chart-repartition-taux.comments": "Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo",
+  "app.sante-publi.general.voies-ouverture.chart-repartition-publications.title": "Répartition des publications ouvertes en santé par types d'hébergement",
+  "app.sante-publi.general.voies-ouverture.chart-repartition-publications.comments": "Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo"
 }

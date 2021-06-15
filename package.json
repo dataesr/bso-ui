@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@dataesr/react-dsfr": "^0.3.6",
+    "@loadable/component": "^5.15.0",
     "axios": "^0.21.1",
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
