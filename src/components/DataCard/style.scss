@@ -1,0 +1,37 @@
+.datacard {
+  background-color: pink !important;
+  color: var(--blue-dark-125);
+
+  .gauge {
+    max-height: 200px;
+
+    svg {
+      path {
+        transform: rotate(-30.999999999999986deg);
+        transform-origin: 100px 100px;
+
+        &.stroke {
+          stroke: var(--blue-dark-125);
+        }
+      }
+
+      text {
+        @include font-size(40, 40);
+        fill: var(--blue-dark-125);
+        font-family: "Marianne Extra Bold", serif;
+      }
+    }
+  }
+
+  .fr-card__body {
+    justify-content: center;
+  }
+
+  .sentence {
+    @include font-size(14, 20);
+  }
+
+  .top-data {
+    @include font-size(36, 36);
+  }
+}

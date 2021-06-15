@@ -18,6 +18,7 @@ function useGetData() {
         },
       },
     };
+    /* eslint-disable no-console */
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     return res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
@@ -48,6 +49,7 @@ function useGetData() {
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 
+    /* eslint-disable no-console */
     const res = await Axios.all(queries).catch((e) => console.log(e));
 
     const allData = res.map((d, i) => ({
