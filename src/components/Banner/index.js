@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
+import SelectNavigation from './SelectNavigation';
 
 function Banner({
   backgroundColor,
@@ -16,6 +17,7 @@ function Banner({
   chip,
   icons,
   sticky,
+  selectNavigation,
 }) {
   setCSSProperty(
     '--bannerBackgroundColor',
@@ -31,7 +33,7 @@ function Banner({
 
   useEffect(() => {
     if (sticky) {
-      const banner = document.querySelector('.banner');
+      const banner = document.querySelector('.bso-banner');
       const heightBanner = banner.getBoundingClientRect().height;
 
       if (scrollTop > banner.offsetTop + heightBanner && scrollingDown) {
@@ -44,17 +46,28 @@ function Banner({
 
   return (
     <section
-      className={classNames('banner text-center text-left-m', {
+      className={classNames('bso-banner text-left-m', {
         sticky: sticky && sticked,
+        'mb-60': selectNavigation,
       })}
     >
       <Container>
-        <Row justifyContent='center' alignItems='middle' gutters>
-          <Col n='12 sm-9'>
+        <Row
+          justifyContent={!sticked ? 'center' : 'start'}
+          alignItems='middle'
+          gutters={!sticked}
+        >
+          <Col n={sticked ? '12 sm-7' : '12 sm-9'}>
             <small className='sup-title'>{supTitle}</small>
-            <h2 className='title marianne-extra-bold'>{title}</h2>
+            <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
-            <h3 className='sub-title pt-16'>{subTitle}</h3>
+            <h3
+              className={classNames('sub-title pt-16 ', {
+                'mb-m-60': selectNavigation,
+              })}
+            >
+              {subTitle}
+            </h3>
             {link && (
               <Button
                 icon='ri-arrow-right-line'
@@ -66,8 +79,36 @@ function Banner({
               </Button>
             )}
           </Col>
-          {!sticked && chip && <Col n='sm-3'>{chip}</Col>}
+          {selectNavigation && sticked && (
+            <Col n='12 md-4' className='relative'>
+              <SelectNavigation
+                sticked={sticked}
+                title={selectNavigation.title}
+                options={selectNavigation.options}
+                onChange={selectNavigation.onChange}
+              />
+            </Col>
+          )}
+          <div
+            className={classNames({
+              'mb-60 mb-m-0': selectNavigation,
+            })}
+          >
+            {!sticked && chip && <Col n='sm-3'>{chip}</Col>}
+          </div>
         </Row>
+        {selectNavigation && !sticked && (
+          <Row>
+            <Col n='12 md-5' className='relative'>
+              <SelectNavigation
+                sticked={sticked}
+                title={selectNavigation.title}
+                options={selectNavigation.options}
+                onChange={selectNavigation.onChange}
+              />
+            </Col>
+          </Row>
+        )}
       </Container>
     </section>
   );
@@ -80,6 +121,7 @@ Banner.defaultProps = {
   link: null,
   chip: null,
   icons: null,
+  selectNavigation: null,
   sticky: true,
 };
 
@@ -90,14 +132,21 @@ Banner.propTypes = {
   supTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   icons: PropTypes.element,
+  chip: PropTypes.element,
+  selectNavigation: PropTypes.exact({
+    onChange: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(
+      PropTypes.exact({
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+  }),
   subTitle: PropTypes.string,
   link: PropTypes.exact({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-  }),
-  chip: PropTypes.exact({
-    title: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string.isRequired,
   }),
 };
 export default Banner;

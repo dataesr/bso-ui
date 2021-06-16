@@ -1,4 +1,4 @@
-.banner {
+.bso-banner {
   position: relative;
   background: var(--bannerBackgroundColor);
   color: var(--bannerTextColor);
@@ -8,12 +8,24 @@
     @include font-size(20, 24);
   }
 
-  .title {
+  .main-title {
     @include font-size(32, 40);
   }
 
   .sub-title {
     @include font-size(16, 24);
+  }
+
+  .bso-select-navigation {
+    background: var(--blue-dark-125);
+    border-radius: 8px;
+    position: absolute;
+    bottom: -80px;
+    width: 100%;
+
+    .fr-select--valid {
+      box-shadow: none;
+    }
   }
 
   &.sticky {
@@ -31,8 +43,18 @@
       @include font-size(12, 16);
     }
 
-    .title {
+    .main-title {
       @include font-size(14, 16);
+    }
+
+    .bso-select-navigation {
+      position: relative;
+      bottom: 0;
+      border-radius: 0;
+
+      .title {
+        display: none;
+      }
     }
   }
 }
