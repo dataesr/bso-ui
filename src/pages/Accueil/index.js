@@ -50,6 +50,9 @@ function Accueil() {
         <li>
           <Link to='/theme'>Thèmes</Link>
         </li>
+        <li>
+          <Link to='/theme-1'>Thème 1</Link>
+        </li>
       </ul>
     </div>
   );

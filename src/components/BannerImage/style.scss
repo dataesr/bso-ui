@@ -1,0 +1,54 @@
+.bso-banner-image {
+  height: 40vh;
+  color: var(--blue-dark-125);
+
+  .wrap-titles {
+    text-align: center;
+    z-index: 1;
+
+    .main-title {
+      @include font-size(48, 56);
+    }
+
+    .sup-title {
+      @include font-size(20, 24);
+    }
+
+    .sub-title {
+      @include font-size(16, 24);
+      font-weight: initial;
+    }
+  }
+
+  img {
+    height: 40vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .white-overlay {
+    background: #fff;
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.6;
+  }
+}
+
+@media screen and(min-width: 576px) {
+  .bso-banner-image {
+    .wrap-titles {
+      text-align: left;
+    }
+
+    .white-overlay {
+      width: 58%;
+    }
+  }
+}
