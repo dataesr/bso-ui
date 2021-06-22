@@ -39,11 +39,7 @@ function Gauge({ percentage }) {
               stroke='currentColor'
             />
           </g>
-          <text
-            x='60'
-            y='180'
-            className='marianne-extra-bold'
-          >
+          <text x='60' y='180' className='marianne-extra-bold'>
             {`${percentage}%`}
           </text>
         </svg>

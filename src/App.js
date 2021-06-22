@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
@@ -15,6 +16,7 @@ import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
+import Integration from './pages/Integration';
 import Themes from './pages/Themes';
 import Theme1 from './pages/Themes/Theme-1';
 import messagesEN from './translations/en.json';
@@ -72,6 +74,10 @@ function App() {
           <Route exact path='/a-propos/notes-flash'>
             <NotesFlash />
           </Route>
+          <Route
+            path='/integration/:graphId'
+            render={(props) => <Integration {...props} />}
+          />
         </Switch>
       </Router>
     </IntlProvider>

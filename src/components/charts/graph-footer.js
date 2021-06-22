@@ -5,7 +5,7 @@ import React from 'react';
 const GraphFooter = ({
   source,
   date,
-  // graphId,
+  graphId,
   // onCsvButtonClick,
   // onXlsButtonClick,
   // onPngButtonClick,
@@ -15,9 +15,8 @@ const GraphFooter = ({
       {date ? `Données mise à jour le ${date}` : null}
       {date && source ? <hr /> : null}
       {source ? `Source : ${source}` : null}
-      {/* <div>
-        data
-      </div> */}
+      {source && graphId ? <hr /> : null}
+      {graphId && <a href={`/integration/${graphId}`}>cible du lien d'integration</a>}
     </Container>
     <div style={{ backgroundColor: '#5770BE' }}>
       <Container>share</Container>
@@ -30,7 +29,7 @@ export default GraphFooter;
 GraphFooter.defaultProps = {
   source: '',
   date: '',
-  // graphId: '',
+  graphId: '',
   // onCsvButtonClick: null,
   // onXlsButtonClick: null,
   // onPngButtonClick: null,
@@ -38,7 +37,7 @@ GraphFooter.defaultProps = {
 GraphFooter.propTypes = {
   source: PropTypes.string,
   date: PropTypes.string,
-  // graphId: PropTypes.string, // pour lien intégration
+  graphId: PropTypes.string, // pour lien intégration
   // onCsvButtonClick: PropTypes.func,
   // onXlsButtonClick: PropTypes.func,
   // onPngButtonClick: PropTypes.func,

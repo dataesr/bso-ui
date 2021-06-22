@@ -3,27 +3,10 @@ import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 
-function useGetData() {
+function useGetData(observationDates) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-
-  async function getObservationDates() {
-    // Récupération de toutes les dates d'observation
-    const query = {
-      size: 0,
-      aggs: {
-        observation_dates: {
-          terms: { field: 'observation_dates.keyword', size: 100 },
-        },
-      },
-    };
-    /* eslint-disable no-console */
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
-    return res?.data?.aggregations?.observation_dates?.buckets
-      .map((el) => el.key)
-      .sort((a, b) => b - a);
-  }
 
   async function getDataByObservationDates(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -49,8 +32,10 @@ function useGetData() {
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 
-    /* eslint-disable no-console */
-    const res = await Axios.all(queries).catch((e) => console.log(e));
+    const res = await Axios.all(queries).catch(() => {
+      setError(true);
+      setLoading(false);
+    });
 
     const allData = res.map((d, i) => ({
       observationDate: datesObservation[i],
@@ -83,7 +68,8 @@ function useGetData() {
                 10,
               )
             && el.by_is_oa.buckets.length > 0
-            && el.doc_count,
+            && el.doc_count
+            && el.key > 2012,
         )
         .map((el) => Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count));
       dataGraph2.push(serie);
@@ -100,7 +86,6 @@ function useGetData() {
   useEffect(() => {
     async function getData() {
       try {
-        const observationDates = await getObservationDates();
         const dataGraph = await getDataByObservationDates(observationDates);
         setData(dataGraph);
         setLoading(false);
@@ -110,7 +95,7 @@ function useGetData() {
       }
     }
     getData();
-  }, []);
+  }, [observationDates]);
 
   return { data, isLoading, isError };
 }
