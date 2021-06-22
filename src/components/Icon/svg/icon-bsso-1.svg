@@ -1,0 +1,13 @@
+<svg width="86" height="63" viewBox="0 0 86 63" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-bssoo-1">
+    <title>chart bar grouped</title>
+    <g id="icon-bsso-chartbargrouped">
+        <path id="icon-back"
+              class="color-2"
+              d="M3 60H83M15 33H20V60H15V33ZM23 25H28V60H23V25ZM36 21H41V60H36V21ZM44 15H49V60H44V15ZM57 26H62V60H57V26ZM65 19H70V60H65V19Z"
+              stroke="#D5DBEF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="icon-front"
+              class="color-1"
+              d="M3 60H83M15 33H20V60H15V33ZM23 25H28V60H23V25ZM36 21H41V60H36V21ZM44 15H49V60H44V15ZM57 26H62V60H57V26ZM65 19H70V60H65V19Z"
+              stroke="#3D4167" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+</svg>

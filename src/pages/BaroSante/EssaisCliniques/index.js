@@ -2,7 +2,7 @@ import React from 'react';
 
 function EssaisCliniques() {
   return (
-    <div className="essais">
+    <div className='essais'>
       <h1>Essais Cliniques</h1>
     </div>
   );

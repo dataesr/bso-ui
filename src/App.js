@@ -18,6 +18,7 @@ import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
 import Integration from './pages/Integration';
 import Themes from './pages/Themes';
+import Theme1 from './pages/Themes/Theme-1';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import useLang from './utils/Hooks/useLang';
@@ -30,47 +31,53 @@ const messages = {
 function App() {
   const { lang } = useLang();
   return (
-    <IntlProvider locale="fr" messages={messages[lang]}>
+    <IntlProvider locale='fr' messages={messages[lang]}>
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Accueil />
           </Route>
-          <Route exact path="/baro-national">
+          <Route exact path='/baro-national'>
             <BaroNational />
           </Route>
-          <Route exact path="/baro-sante">
+          <Route exact path='/baro-sante'>
             <BaroSante />
           </Route>
-          <Route exact path="/baro-sante/publications">
+          <Route exact path='/baro-sante/publications'>
             <SantePublications />
           </Route>
-          <Route exact path="/baro-sante/essais-cliniques">
+          <Route exact path='/baro-sante/essais-cliniques'>
             <EssaisCliniques />
           </Route>
-          <Route exact path="/baro-sante/etudes">
+          <Route exact path='/baro-sante/etudes'>
             <Etudes />
           </Route>
-          <Route exact path="/themes">
+          <Route exact path='/themes'>
             <Themes />
           </Route>
-          <Route exact path="/a-propos/methodologie">
+          <Route exact path='/theme-1'>
+            <Theme1 />
+          </Route>
+          <Route exact path='/a-propos/methodologie'>
             <Methodologie />
           </Route>
-          <Route exact path="/a-propos/faq">
+          <Route exact path='/a-propos/faq'>
             <FAQ />
           </Route>
-          <Route exact path="/a-propos/glossaire">
+          <Route exact path='/a-propos/glossaire'>
             <Glossaire />
           </Route>
-          <Route exact path="/a-propos/projet">
+          <Route exact path='/a-propos/projet'>
             <Projet />
           </Route>
-          <Route exact path="/a-propos/notes-flash">
+          <Route exact path='/a-propos/notes-flash'>
             <NotesFlash />
           </Route>
-          <Route path="/integration/:graphId" render={(props) => (<Integration {...props} />)} />
+          <Route
+            path='/integration/:graphId'
+            render={(props) => <Integration {...props} />}
+          />
         </Switch>
       </Router>
     </IntlProvider>

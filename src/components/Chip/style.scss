@@ -1,4 +1,4 @@
-.chip {
+.bso-chip {
   @include font-size(12, 16);
   position: relative;
   display: flex;
@@ -8,19 +8,20 @@
   align-items: center;
   border-radius: 100%;
   text-align: center;
-  height: 132px;
-  width: 132px;
+  height: 148px;
+  width: 148px;
   padding: 20px;
+  margin: 0 auto;
 
   &::after {
     content: '';
     position: absolute;
     top: 6px;
     left: 6px;
-    width: 120px;
-    height: 120px;
-    -moz-border-radius: 80px;
-    -webkit-border-radius: 80px;
+    width: 136px;
+    height: 136px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
     border-radius: 100%;
     background: radial-gradient(
       ellipse at center,
@@ -29,10 +30,18 @@
     );
     z-index: -1;
   }
+
+  .icon {
+    color: var(--yellow-medium-100);
+
+    &.icon-left {
+      margin-right: 0;
+    }
+  }
 }
 
 @media screen and(min-width: 576px) {
-  .chip {
+  .bso-chip {
     @include font-size(14, 16);
     width: 180px;
     height: 180px;

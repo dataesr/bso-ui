@@ -1,5 +1,66 @@
-.banner {
+.bso-banner {
+  position: relative;
   background: var(--bannerBackgroundColor);
   color: var(--bannerTextColor);
   padding: 50px 0;
+
+  .sup-title {
+    @include font-size(20, 24);
+  }
+
+  .main-title {
+    @include font-size(32, 40);
+  }
+
+  .sub-title {
+    @include font-size(16, 24);
+  }
+
+  .bso-select-navigation {
+    background: var(--blue-dark-125);
+    border-radius: 8px;
+    position: absolute;
+    bottom: -80px;
+    width: 100%;
+
+    .fr-select--valid {
+      box-shadow: none;
+    }
+  }
+
+  &.sticky {
+    position: sticky;
+    top: -1px;
+    padding: 0;
+
+    .sub-title,
+    .icons,
+    .chip {
+      display: none;
+    }
+
+    .sup-title {
+      @include font-size(12, 16);
+    }
+
+    .main-title {
+      @include font-size(14, 16);
+    }
+
+    .bso-select-navigation {
+      position: relative;
+      bottom: 0;
+      border-radius: 0;
+
+      .title {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 576px) {
+  .banner {
+    padding: 30px 0;
+  }
 }

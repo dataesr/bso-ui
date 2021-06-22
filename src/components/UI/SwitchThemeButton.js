@@ -21,18 +21,18 @@ export default function SwitchThemeButton() {
     <>
       <Button
         ref={themeButtonRef}
-        icon="fr-fi-theme-fill"
-        iconPosition="left"
-        className="fr-link"
+        icon='fr-fi-theme-fill'
+        iconPosition='left'
+        className='fr-link'
         onClick={() => setIsThemeModalOpen(!isThemeModalOpen)}
       >
         <FormattedMessage
-          id="app.theme.change"
-          defaultMessage="Changer le thème"
+          id='app.theme.change'
+          defaultMessage='Changer le thème'
         />
       </Button>
       <Modal
-        size="sm"
+        size='sm'
         isOpen={isThemeModalOpen}
         hide={() => {
           setIsThemeModalOpen(false);
@@ -47,17 +47,17 @@ export default function SwitchThemeButton() {
             defaultMessage: 'Fermer la fenêtre modale',
           })}
         >
-          <FormattedMessage id="app.commons.fermer" defaultMessage="fermer" />
+          <FormattedMessage id='app.commons.fermer' defaultMessage='fermer' />
         </ModalClose>
         <ModalTitle>
           <FormattedMessage
-            id="app.theme.params"
+            id='app.theme.params'
             defaultMessage="Paramètres d'affichage"
           />
         </ModalTitle>
         <ModalContent>
           <RadioGroup
-            className="fr-switch-theme"
+            className='fr-switch-theme'
             legend={intl.formatMessage({
               id: 'app.theme.legend',
               defaultMassage:
@@ -69,7 +69,7 @@ export default function SwitchThemeButton() {
                 id: 'app.theme.light',
                 defaultMassage: 'Thème clair',
               })}
-              value="light"
+              value='light'
               isExtended
               onChange={(e) => theme !== e.target.value && switchTheme(e.target.value)}
             />
@@ -78,7 +78,7 @@ export default function SwitchThemeButton() {
                 id: 'app.theme.dark',
                 defaultMassage: 'Thème sombre',
               })}
-              value="dark"
+              value='dark'
               isExtended
               onChange={(e) => theme !== e.target.value && switchTheme(e.target.value)}
             />

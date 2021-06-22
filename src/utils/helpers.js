@@ -1,7 +1,17 @@
-export function getCSSColour(variable) {
-  return getComputedStyle(document.documentElement).getPropertyValue(variable);
+/**
+ *
+ * @param property
+ * @returns {string}
+ */
+export function getCSSProperty(property) {
+  return getComputedStyle(document.documentElement).getPropertyValue(property);
 }
 
-export function setCSSColour(property, colour) {
-  document.documentElement.style.setProperty(property, colour);
+/**
+ *
+ * @param property
+ * @param value
+ */
+export function setCSSProperty(property, value) {
+  document.documentElement.style.setProperty(property, value);
 }

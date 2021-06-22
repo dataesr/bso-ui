@@ -1,17 +1,152 @@
-import './style.scss';
+import { Button, Col, Container, Row } from '@dataesr/react-dsfr';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 
-import { Callout, CalloutText, CalloutTitle } from '@dataesr/react-dsfr';
-import React from 'react';
+import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
+import useScroll from '../../utils/Hooks/useScroll';
+import SelectNavigation from './SelectNavigation';
 
-function Banner() {
+function Banner({
+  backgroundColor,
+  textColor,
+  subTitle,
+  supTitle,
+  title,
+  link,
+  chip,
+  icons,
+  sticky,
+  selectNavigation,
+}) {
+  setCSSProperty(
+    '--bannerBackgroundColor',
+    getCSSProperty(`--${backgroundColor}`) || backgroundColor,
+  );
+  setCSSProperty(
+    '--bannerTextColor',
+    getCSSProperty(`--${textColor}`) || textColor,
+  );
+
+  const [sticked, setSticked] = useState(false);
+  const { scrollTop, scrollingDown } = useScroll();
+
+  useEffect(() => {
+    if (sticky) {
+      const banner = document.querySelector('.bso-banner');
+      const heightBanner = banner.getBoundingClientRect().height;
+
+      if (scrollTop > banner.offsetTop + heightBanner && scrollingDown) {
+        setSticked(true);
+      } else if (scrollTop < banner.offsetTop && !scrollingDown) {
+        setSticked(false);
+      }
+    }
+  }, [scrollTop, scrollingDown, sticky]);
+
   return (
-    <div className="banner">
-      <Callout hasInfoIcon={false}>
-        <CalloutTitle as="h3">Callout title</CalloutTitle>
-        <CalloutText>Callout text that might be short and concise.</CalloutText>
-      </Callout>
-    </div>
+    <section
+      className={classNames('bso-banner text-left-m', {
+        sticky: sticky && sticked,
+        'mb-60': selectNavigation,
+      })}
+    >
+      <Container>
+        <Row
+          justifyContent={!sticked ? 'center' : 'start'}
+          alignItems='middle'
+          gutters={!sticked}
+        >
+          <Col n={sticked ? '12 sm-7' : '12 sm-9'}>
+            <small className='sup-title'>{supTitle}</small>
+            <h2 className='main-title marianne-extra-bold'>{title}</h2>
+            <section className='icons'>{icons || ''}</section>
+            <h3
+              className={classNames('sub-title pt-16 ', {
+                'mb-m-60': selectNavigation,
+              })}
+            >
+              {subTitle}
+            </h3>
+            {link && (
+              <Button
+                icon='ri-arrow-right-line'
+                iconPosition='right'
+                size='md'
+                title='title'
+              >
+                {link.label}
+              </Button>
+            )}
+          </Col>
+          {selectNavigation && sticked && (
+            <Col n='12 md-4' className='relative'>
+              <SelectNavigation
+                sticked={sticked}
+                title={selectNavigation.title}
+                options={selectNavigation.options}
+                onChange={selectNavigation.onChange}
+              />
+            </Col>
+          )}
+          <div
+            className={classNames({
+              'mb-60 mb-m-0': selectNavigation,
+            })}
+          >
+            {!sticked && chip && <Col n='sm-3'>{chip}</Col>}
+          </div>
+        </Row>
+        {selectNavigation && !sticked && (
+          <Row>
+            <Col n='12 md-5' className='relative'>
+              <SelectNavigation
+                sticked={sticked}
+                title={selectNavigation.title}
+                options={selectNavigation.options}
+                onChange={selectNavigation.onChange}
+              />
+            </Col>
+          </Row>
+        )}
+      </Container>
+    </section>
   );
 }
 
+Banner.defaultProps = {
+  textColor: '#fff',
+  supTitle: '',
+  subTitle: '',
+  link: null,
+  chip: null,
+  icons: null,
+  selectNavigation: null,
+  sticky: true,
+};
+
+Banner.propTypes = {
+  sticky: PropTypes.bool,
+  backgroundColor: PropTypes.string.isRequired,
+  textColor: PropTypes.string,
+  supTitle: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  icons: PropTypes.element,
+  chip: PropTypes.element,
+  selectNavigation: PropTypes.exact({
+    onChange: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(
+      PropTypes.exact({
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+  }),
+  subTitle: PropTypes.string,
+  link: PropTypes.exact({
+    label: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
+};
 export default Banner;

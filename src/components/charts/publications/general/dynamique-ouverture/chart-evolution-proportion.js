@@ -4,7 +4,6 @@ import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import config from '../../../config';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import useGetData from './get-data';
@@ -13,7 +12,6 @@ const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion';
-  const graphConfig = config.find((gf) => gf.id === graphId);
   const { observationDates, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationDates);
 
@@ -59,10 +57,12 @@ const Chart = () => {
         ref={chartRef}
         id={graphId}
       />
-      <GraphComments comments={intl.formatMessage({ id: `${graphId}.comments` })} />
+      <GraphComments
+        comments={intl.formatMessage({ id: `${graphId}.comments` })}
+      />
       <GraphFooter
         date={updateDate}
-        source={graphConfig.source}
+        source={intl.formatMessage({ id: `${graphId}.source` })}
         graphId={graphId}
       />
     </>

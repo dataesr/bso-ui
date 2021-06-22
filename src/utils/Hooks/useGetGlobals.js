@@ -1,17 +1,16 @@
 import Axios from 'axios';
 import PropTypes from 'prop-types';
-import {
-  createContext, useContext,
-  useEffect, useState,
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-import { ES_API_URL, HEADERS } from '../../configs/config';
+import { ES_API_URL, HEADERS } from '../../config/config';
 
 export const GlobalsContext = createContext();
 
 export const GlobalsContextProvider = ({ children }) => {
   const storedObservationDates = localStorage.getItem('__observationDates__') || [];
-  const [observationDates, setObservationDates] = useState(storedObservationDates);
+  const [observationDates, setObservationDates] = useState(
+    storedObservationDates,
+  );
 
   const storedUpdateDate = localStorage.getItem('__updateDate__') || null;
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);

@@ -2,7 +2,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import { ES_API_URL, HEADERS } from '../../../../../configs/config';
+import { ES_API_URL, HEADERS } from '../../../../../config/config';
 
 function useGetData(observationDate) {
   const [allData, setData] = useState({});
@@ -39,7 +39,10 @@ function useGetData(observationDate) {
     const publisher = []; // éditeur
     const publisherRepository = []; // les 2
 
-    data.filter((el) => (el.key > 2012 && el.key < lastObservationDate.substring(0, 4)))
+    data
+      .filter(
+        (el) => el.key > 2012 && el.key < lastObservationDate.substring(0, 4),
+      )
       .forEach((el) => {
         categories.push(el.key);
         let temp = el.by_oa_host_type.buckets.find(

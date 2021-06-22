@@ -13,18 +13,18 @@ function SantePublications() {
         Chiffres clés
       </Container>
       <QuestionSection
-        title="Quelle est la dynamique d’ouverture de la santé en France ?"
-        info="info text"
-        description="description text"
-        backgroundColor="#D5DBEF"
+        title='Quelle est la dynamique d’ouverture de la santé en France ?'
+        info='info text'
+        description='description text'
+        backgroundColor='#D5DBEF'
       >
         <ChartsDynamiqueOuverture />
       </QuestionSection>
       <QuestionSection
         title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
-        info="info text"
-        description="description text"
-        backgroundColor="#EEF1F8"
+        info='info text'
+        description='description text'
+        backgroundColor='#EEF1F8'
       >
         <ChartsVoiesOuverture />
       </QuestionSection>
