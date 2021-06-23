@@ -3,6 +3,7 @@
   background: var(--bannerBackgroundColor);
   color: var(--bannerTextColor);
   padding: 50px 0;
+  z-index: 1;
 
   .sup-title {
     @include font-size(20, 24);

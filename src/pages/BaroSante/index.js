@@ -4,6 +4,7 @@ import React from 'react';
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
 import Icon from '../../components/Icon';
+import TabNavigation from '../../components/TabNavigation';
 
 function BaroSante() {
   const renderChip = (
@@ -49,6 +50,181 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
         chip={renderChip}
         icons={renderIcons}
       />
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+        molestias neque ratione repudiandae tempore! Dolorem dolorum excepturi
+        fugiat illo, iusto labore laboriosam nobis quo sequi veritatis. Commodi
+        ex quo tempore.
+      </p>
+      <TabNavigation />
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+        commodi consequuntur deleniti dicta earum, excepturi fugiat incidunt nam
+        necessitatibus officia quae quo sunt veritatis! Explicabo laudantium
+        nostrum perspiciatis saepe ut.
+      </p>
     </div>
   );
 }
