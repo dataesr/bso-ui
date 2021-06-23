@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import siteColors from '../../../../../style/colours.scss';
 
 function useGetData(observationDates) {
   const [data, setData] = useState({});
