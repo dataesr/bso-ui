@@ -32,4 +32,5 @@ Tab.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
 };
+
 export default Tab;
