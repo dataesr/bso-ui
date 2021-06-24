@@ -1,0 +1,118 @@
+.bso-tab-navigation {
+  background-color: #fff;
+  box-shadow: 0 12px 30px -10px rgba(82, 102, 161, 0.75);
+
+  &.sticky {
+    position: sticky;
+  }
+
+  .bso-tab-navigation-mobile {
+    .fr-sidemenu__title {
+      display: none;
+    }
+
+    .fr-sidemenu__inner {
+      background-color: var(--blue-soft-125);
+
+      & > .fr-sidemenu__btn {
+        border-top: 2px solid var(--blue-dark-125);
+      }
+
+      .fr-sidemenu__btn {
+        @include font-size(14, 16);
+        color: var(--blue-dark-125);
+        transition: background-color 0.2s ease-in-out;
+        background-color: var(--blue-soft-50);
+
+        &[aria-expanded="true"] {
+          color: #fff;
+          transition: background-color 0.2s ease-in-out;
+          background-color: var(--blue-soft-125);
+        }
+      }
+
+      .fr-sidemenu__item {
+        &:not(.no-border) {
+          border-color: var(--blue-dark-125);
+        }
+
+        .fr-sidemenu__link {
+          @include font-size(14, 20);
+          color: #fff;
+          padding: 4px 0;
+        }
+
+        .no-border {
+          border: none;
+        }
+
+        &:first-child > .fr-sidemenu__link {
+          padding-top: 8px;
+        }
+
+        &:last-child > .fr-sidemenu__link {
+          padding-bottom: 0;
+        }
+
+        .fr-sidemenu__btn {
+          @include font-size(14, 20);
+          color: #fff;
+          font-weight: 700;
+          border-bottom: none;
+          text-transform: uppercase;
+          background-color: var(--blue-soft-125);
+        }
+      }
+    }
+  }
+
+  .tab {
+    margin: 0 5px;
+
+    a {
+      text-decoration: none;
+      box-shadow: none;
+    }
+
+    .tab-button {
+      @include font-size(14, 16);
+      padding: 6px 8px 10px 16px;
+      border-top: 2px solid var(--blue-dark-125);
+      background: var(--blue-dark-125);
+
+      &.active {
+        background: var(--blue-soft-125);
+      }
+    }
+
+    .tab-links {
+      position: absolute;
+      left: 0;
+      top: 31px;
+      min-width: 340px;
+      transition: max-height 0.6s ease-in-out;
+      max-height: 300px;
+      overflow: hidden;
+
+      &.hidden {
+        transition: max-height 0.2s ease-out;
+        max-height: 0;
+      }
+
+      li {
+        @include font-size(14, 20);
+        padding: 5px 20px 5px 32px;
+        background-color: var(--blue-soft-125);
+
+        &:first-child {
+          padding-top: 20px;
+        }
+
+        &:last-child {
+          padding-bottom: 20px;
+          border-radius: 0 0 8px 8px;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,11 @@
-import { Col, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 
+import AnchorNavigation from '../../components/AnchorNavigaton';
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
+import DataCard from '../../components/DataCard';
 import Icon from '../../components/Icon';
-import TabNavigation from '../../components/TabNavigation';
 
 function Theme() {
   const renderChip = (
@@ -50,7 +51,7 @@ function Theme() {
   );
 
   return (
-    <div className='themes'>
+    <section className='themes'>
       <Banner
         backgroundColor='blue-soft-100'
         supTitle='Baromètre français de la Science ouverte'
@@ -68,170 +69,124 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
           ],
         }}
       />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <TabNavigation />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        aperiam assumenda consectetur consequatur cum dolore, eum excepturi,
-        iusto obcaecati possimus quam reiciendis rerum sapiente tenetur ullam
-        veniam, vitae voluptates. Expedita.
-      </p>
-    </div>
+      <Container>
+        <Row gutters>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+        </Row>
+      </Container>
+      <AnchorNavigation
+        tabs={[
+          {
+            mainLabel: 'Général',
+            links: [
+              {
+                label: 'Lien vers quelque chose 1',
+                href: '#anchor',
+              },
+              {
+                label: 'Lien vers quelque chose 2',
+                href: '#anchor',
+              },
+            ],
+          },
+          {
+            mainLabel: 'La dynamique d’ouverture en santé',
+            links: [
+              {
+                label: 'Les genres des productions ouvertes 1',
+                href: '#anchor',
+              },
+              {
+                label: 'Les genres des productions ouvertes 2',
+                href: '#anchor',
+              },
+            ],
+          },
+        ]}
+      />
+      <Container>
+        <Row gutters>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+        </Row>
+        <Row gutters>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 }
 
