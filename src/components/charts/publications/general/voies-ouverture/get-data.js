@@ -3,6 +3,12 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import {
+  accesferme,
+  archiveouverte100,
+  editeurarchive,
+  editeurplateforme100,
+} from '../../../../../style/colours.module.scss';
 
 function useGetData(observationDate) {
   const [allData, setData] = useState({});
@@ -65,17 +71,17 @@ function useGetData(observationDate) {
       {
         name: 'publisher;repository',
         data: publisherRepository,
-        color: '#91AE4F',
+        color: editeurarchive,
       },
       {
         name: 'repository',
         data: repository,
-        color: '#19905B',
+        color: archiveouverte100,
       },
       {
         name: 'publisher',
         data: publisher,
-        color: '#EAD737',
+        color: editeurplateforme100,
       },
     ];
 
@@ -85,28 +91,28 @@ function useGetData(observationDate) {
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'publisher',
         ).doc_count,
-        color: '#EAD737',
+        color: editeurplateforme100,
       },
       {
         name: 'publisher;repository',
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'publisher;repository',
         ).doc_count,
-        color: '#91AE4F',
+        color: editeurarchive,
       },
       {
         name: 'repository',
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'repository',
         ).doc_count,
-        color: '#19905B',
+        color: archiveouverte100,
       },
       {
         name: 'closed',
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'closed',
         ).doc_count,
-        color: '#26283F',
+        color: accesferme,
       },
     ];
 
