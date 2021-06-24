@@ -9,6 +9,10 @@
   text-align: left;
 }
 
+.text-right {
+  text-align: right;
+}
+
 /**
   Position
  */
@@ -57,6 +61,11 @@
 
 .pt-16 {
   padding-top: 16px;
+}
+
+.px-24 {
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .mb-60 {

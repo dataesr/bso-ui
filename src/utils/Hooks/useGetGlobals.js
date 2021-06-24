@@ -7,7 +7,9 @@ import { ES_API_URL, HEADERS } from '../../config/config';
 export const GlobalsContext = createContext();
 
 export const GlobalsContextProvider = ({ children }) => {
-  const storedObservationDates = localStorage.getItem('__observationDates__') || [];
+  const storedObservationDates = localStorage.getItem(
+    '__observationDates__',
+  ) || ['2020'];
   const [observationDates, setObservationDates] = useState(
     storedObservationDates,
   );

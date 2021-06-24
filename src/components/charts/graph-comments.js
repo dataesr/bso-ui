@@ -1,8 +1,10 @@
+import './graph.scss';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const GraphComments = ({ comments }) => (
-  <div style={{ backgroundColor: 'white', padding: '28px' }}>
+  <div className='graph-comments'>
     <div>
       <strong>Commentaire</strong>
     </div>

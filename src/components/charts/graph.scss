@@ -1,0 +1,53 @@
+.graph-container {
+  padding: 24px 24px 0 24px;
+  background-color: var(--w-g750);
+}
+
+.graph-comments {
+  padding: 0 28px 16px 28px;
+  color: var(--blue-dark-125);
+}
+
+.graph-footer {
+  background-color: var(--blue-dark-25);
+  color: var(--blue-dark-125);
+  padding-top: 8px;
+
+  .source {
+    font-style: italic;
+  }
+
+  .download {
+    padding-right: 8px;
+  }
+
+  .share {
+    background-color: var(--blue-soft-100);
+    color: white;
+    font-weight: bold;
+
+    .text {
+      padding-right: 8px;
+    }
+  }
+
+  .integration {
+    padding-left: 16px;
+    padding-right: 8px;
+  }
+
+  hr {
+    border-top: 1px solid var(--blue-dark-50);
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    height: 32px;
+    padding-top: 6px;
+  }
+
+  .icon-click {
+    cursor: pointer;
+  }
+}

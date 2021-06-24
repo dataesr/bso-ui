@@ -2,6 +2,11 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import {
+  discipline100,
+  discipline125,
+  discipline150,
+} from '../../../../../style/colours.module.scss';
 
 function useGetData(observationDates) {
   const [data, setData] = useState({});
@@ -43,23 +48,20 @@ function useGetData(observationDates) {
     }));
 
     const colors = [
-      '#FF6F4C',
-      '#CB634B',
-      '#CB634B',
-      '#CB634B',
-      '#8F4939',
-      '#8F4939',
-      '#8F4939',
+      discipline100,
+      discipline125,
+      discipline125,
+      discipline125,
+      discipline150,
+      discipline150,
+      discipline150,
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
 
     const dataGraph2 = [];
     allData.forEach((observationDateData, i) => {
       const serie = {};
-      serie.name = `Année d'observation ${observationDateData.observationDate}`;
-      serie.color = colors[i];
-      serie.dashStyle = lineStyle[i];
-      serie.data = observationDateData.data
+      const filtered = observationDateData.data
         .sort((a, b) => a.key - b.key)
         .filter(
           (el) => el.key
@@ -70,14 +72,23 @@ function useGetData(observationDates) {
             && el.by_is_oa.buckets.length > 0
             && el.doc_count
             && el.key > 2012,
-        )
-        .map((el) => Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count));
+        );
+      serie.name = observationDateData.observationDate;
+      serie.color = colors[i];
+      serie.dashStyle = lineStyle[i];
+      serie.data = filtered.map((el) => Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count));
+      serie.ratios = filtered.map(
+        (el) => `(${el.by_is_oa.buckets[0].doc_count * 100}/${el.doc_count})`,
+      );
+      serie.publicationDate = filtered[filtered.length - 1].key;
       dataGraph2.push(serie);
     });
 
     const dataGraph1 = dataGraph2.map((el) => ({
-      name: el.name.split(' ')[2],
+      name: el.name, // observation date
       y: el.data[el.data.length - 1],
+      ratio: el.ratios[el.data.length - 1],
+      publicationDate: el.publicationDate,
     }));
 
     return { dataGraph1, dataGraph2 };
