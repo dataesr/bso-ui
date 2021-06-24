@@ -34,6 +34,7 @@
   "app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture.title": "EN Taux d'ouverture des publications françaises, dans le domaine de la santé, par millésime",
   "app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture.comments": "EN Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo",
   "app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture.source": "EN source",
+  "app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture.tooltip": "EN <strong>Taux d'accès ouvert observé en {point.name}</strong><br /><strong>{point.y}</strong> des publications françaises publiées en {point.publicationDate} sont en accès ouvert {point.ratio}",
   "app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion.title": "EN Evolution de la proportion d'accès ouvert pour les publication en santé par millésime",
   "app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion.comments": "EN Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo",
   "app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion.source": "EN source",

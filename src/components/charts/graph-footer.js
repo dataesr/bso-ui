@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import './graph.scss';
+
 import {
-  Button,
   Col,
   Container,
   Modal,
@@ -7,57 +9,89 @@ import {
   ModalContent,
   ModalTitle,
   Row,
+  Text,
 } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 const GraphFooter = ({
   source,
   date,
   graphId,
-  // onCsvButtonClick,
-  // onXlsButtonClick,
-  // onPngButtonClick,
+  onCsvButtonClick,
+  onPngButtonClick,
 }) => {
   const intl = useIntl();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const shareButtonRef = useRef();
   return (
     <>
-      <div style={{ backgroundColor: '#EDEDF2' }}>
+      <div className='graph-footer'>
         <Container>
-          {date ? `Données mise à jour le ${date}` : null}
-          {date && source ? <hr /> : null}
-          {source ? `Source : ${source}` : null}
-          {source && graphId ? <hr /> : null}
-          {graphId ? (
-            <Button
-              ref={shareButtonRef}
-              icon='ri-file-code-fill'
-              styleAsLink
-              size='sm'
-              iconPosition='right'
-              onClick={() => setIsModalOpen(!isModalOpen)}
-            >
-              <FormattedMessage
-                id='app.graph.integration'
-                defaultMessage='Intégrer le graphique'
-              />
-            </Button>
-          ) : null}
+          <Row>
+            <Col>
+              {date ? (
+                <Text size='xs'>{`Données mise à jour le ${date}`}</Text>
+              ) : null}
+              {date && source ? <hr /> : null}
+              {source ? (
+                <Text size='xs' className='source'>
+                  {`Source : ${source}`}
+                </Text>
+              ) : null}
+              {source && graphId ? <hr /> : null}
+              <p>
+                <Text size='xs' as='span' className='download'>
+                  <FormattedMessage
+                    id='app.graph.download'
+                    defaultMessage='Télécharger'
+                  />
+                </Text>
+                <i
+                  className='ri-file-excel-fill icon-click'
+                  onClick={() => onCsvButtonClick()}
+                  onKeyPress={() => onCsvButtonClick()}
+                  role='button'
+                  tabIndex={0}
+                />
+                <i
+                  className='ri-file-chart-fill icon-click'
+                  onClick={() => onPngButtonClick()}
+                  onKeyPress={() => onPngButtonClick()}
+                  role='button'
+                  tabIndex={0}
+                />
+                {graphId ? (
+                  <>
+                    <Text size='xs' as='span' className='integration'>
+                      <FormattedMessage
+                        id='app.graph.integration'
+                        defaultMessage='Intégrer le graphique'
+                      />
+                    </Text>
+                    <i
+                      className='ri-file-code-fill icon-click'
+                      onClick={() => setIsModalOpen(!isModalOpen)}
+                      onKeyPress={() => setIsModalOpen(!isModalOpen)}
+                      role='button'
+                      tabIndex={0}
+                    />
+                  </>
+                ) : null}
+              </p>
+            </Col>
+          </Row>
         </Container>
-        <Container
-          fluid
-          style={{ backgroundColor: '#5770BE' }}
-          className='px-24'
-        >
-          <Row justifyContent='end'>
+        <Container fluid className='share'>
+          <Row>
             <Col className='text-right'>
-              <FormattedMessage
-                id='app.graph.share'
-                defaultMessage='Partager ce graphique'
-              />
+              <Text size='xs' as='span' className='text'>
+                <FormattedMessage
+                  id='app.graph.share'
+                  defaultMessage='Partager ce graphique'
+                />
+              </Text>
+
               <i className='ri-twitter-fill' />
               <i className='ri-linkedin-box-fill' />
               <i className='ri-facebook-box-fill' />
@@ -117,15 +151,13 @@ GraphFooter.defaultProps = {
   source: '',
   date: '',
   graphId: '',
-  // onCsvButtonClick: null,
-  // onXlsButtonClick: null,
-  // onPngButtonClick: null,
+  onCsvButtonClick: null,
+  onPngButtonClick: null,
 };
 GraphFooter.propTypes = {
   source: PropTypes.string,
   date: PropTypes.string,
   graphId: PropTypes.string, // pour lien intégration
-  // onCsvButtonClick: PropTypes.func,
-  // onXlsButtonClick: PropTypes.func,
-  // onPngButtonClick: PropTypes.func,
+  onCsvButtonClick: PropTypes.func,
+  onPngButtonClick: PropTypes.func,
 };
