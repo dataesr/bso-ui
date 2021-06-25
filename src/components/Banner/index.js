@@ -33,6 +33,7 @@ function Banner({
 
   useEffect(() => {
     if (sticky) {
+      // TODO use useRef
       const banner = document.querySelector('.bso-banner');
       const heightBanner = banner.getBoundingClientRect().height;
 
@@ -46,7 +47,7 @@ function Banner({
 
   return (
     <section
-      className={classNames('bso-banner text-left-m', {
+      className={classNames('bso-banner z-200 text-left-m', {
         sticky: sticky && sticked,
         'mb-60': selectNavigation,
       })}

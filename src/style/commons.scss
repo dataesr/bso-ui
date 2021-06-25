@@ -20,6 +20,14 @@
   position: relative;
 }
 
+.z-200 {
+  z-index: 200;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
 .flex {
   display: flex;
 }
@@ -29,6 +37,10 @@
  */
 .bg-white {
   background-color: #fff;
+}
+
+.txt-white {
+  color: #fff;
 }
 
 /**
@@ -41,6 +53,10 @@
 
 .p-16 {
   padding: 16px;
+}
+
+.pt-8 {
+  padding-top: 8px;
 }
 
 .pt-16 {
