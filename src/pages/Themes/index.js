@@ -1,9 +1,13 @@
-import { Col, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 
+import AnchorNavigation from '../../components/AnchorNavigaton';
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
+import DataCard from '../../components/DataCard';
+import Glossary from '../../components/Glossary';
 import Icon from '../../components/Icon';
+import GlossaryWords from './glossary-test.json';
 
 function Theme() {
   const renderChip = (
@@ -49,7 +53,7 @@ function Theme() {
   );
 
   return (
-    <div className='themes'>
+    <section className='themes'>
       <Banner
         backgroundColor='blue-soft-100'
         supTitle='Baromètre français de la Science ouverte'
@@ -67,7 +71,150 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
           ],
         }}
       />
-    </div>
+      <Container>
+        <Glossary words={GlossaryWords} />
+        <p>
+          Lorem ipsum dolor sit amet,
+          <span className='glossary-word' data-glossary-key='essais'>
+            Essais cliniques déclarés
+          </span>
+          adipisicing elit. Alias, facere illum laborum maxime quo reiciendis
+          tenetur vel. Aut blanditiis consectetur delectus, ducimus et eveniet
+          ex libero maxime praesentium quae quod?
+        </p>
+        <p>
+          Lorem
+          <span className='glossary-word' data-glossary-key='test0'>
+            test 0
+          </span>
+          ipsum dolor sit amet, consectetur adipisicing elit. Ad
+          <span className='glossary-word' data-glossary-key='test1'>
+            test 1
+          </span>
+          delectus ea ex fugiat hic, illum quibusdam repudiandae? Aut distinctio
+          dolor dolorem eveniet id itaque iusto, sed ullam
+          <span className='glossary-word' data-glossary-key='test2'>
+            test 2
+          </span>
+          vitae.
+        </p>
+        <Row gutters>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+        </Row>
+      </Container>
+      <AnchorNavigation
+        tabs={[
+          {
+            mainLabel: 'Général',
+            links: [
+              {
+                label: 'Lien vers quelque chose 1',
+                href: '#anchor',
+              },
+              {
+                label: 'Lien vers quelque chose 2',
+                href: '#anchor',
+              },
+            ],
+          },
+          {
+            mainLabel: 'La dynamique d’ouverture en santé',
+            links: [
+              {
+                label: 'Les genres des productions ouvertes 1',
+                href: '#anchor',
+              },
+              {
+                label: 'Les genres des productions ouvertes 2',
+                href: '#anchor',
+              },
+            ],
+          },
+        ]}
+      />
+      <Container>
+        <Row gutters>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+        </Row>
+        <Row gutters>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+          <Col>
+            <DataCard
+              topData={"L'Allemagne"}
+              buttonLabel='Voir en détail'
+              sentence='elle a Merkel'
+            />
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 }
 

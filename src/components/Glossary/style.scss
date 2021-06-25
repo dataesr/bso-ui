@@ -1,0 +1,91 @@
+.bso-glossary {
+  transition: right 0.6s ease-in-out;
+  background-color: var(--blue-dark-125);
+  color: #fff;
+  max-width: 100vw;
+  position: fixed;
+  top: 0;
+  right: -100vw;
+  height: 100%;
+
+  &.open {
+    transition: right 0.2s ease-out;
+    right: 0;
+  }
+
+  .close {
+    color: #fff;
+    background: none;
+  }
+
+  .wrapper-title {
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--blue-soft-100);
+  }
+
+  .content {
+    max-height: calc(100vh - 120px);
+    overflow-y: scroll;
+    padding: 0 20px;
+
+    .word-item {
+      border-bottom: 2px solid var(--blue-soft-125);
+
+      &.active p:first-child {
+        color: var(--yellow-medium-100);
+      }
+    }
+  }
+
+  .fr-btn {
+    position: relative;
+    left: -139px;
+    top: 60px;
+  }
+
+  .to-glossary-page {
+    @include font-size(12,12);
+    box-shadow: none;
+    padding: 6px 16px;
+    background-color: var(--blue-soft-100);
+
+    span {
+      vertical-align: middle;
+    }
+  }
+}
+
+.glossary-word {
+  position: relative;
+  cursor: pointer;
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
+  border-color: inherit;
+  margin: 0 26px 0 4px;
+
+  &::after {
+    @include font-size(14,19);
+    content: 'i';
+    font-family: 'dsfr-icons', serif;
+    top: 4px;
+    position: absolute;
+    background-color: var(--blue-dark-125);
+    border-radius: 30px;
+    color: white;
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    right: -22px;
+  }
+}
+
+@media screen and(min-width: 992px) {
+  .bso-glossary {
+    max-width: 45vw;
+    right: -45vw;
+
+    .fr-btn {
+      left: -145px;
+    }
+  }
+}

@@ -20,6 +20,18 @@
   position: relative;
 }
 
+.z-200 {
+  z-index: 200;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
+.z-3000 {
+  z-index: 3000;
+}
+
 .flex {
   display: flex;
 }
@@ -29,6 +41,10 @@
  */
 .bg-white {
   background-color: #fff;
+}
+
+.text-white {
+  color: #fff;
 }
 
 /**
@@ -43,13 +59,37 @@
   padding: 16px;
 }
 
+.pt-8 {
+  padding-top: 8px;
+}
+
 .pt-16 {
   padding-top: 16px;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.pb-16 {
+  padding-bottom: 16px;
 }
 
 .px-24 {
   padding-left: 24px;
   padding-right: 24px;
+}
+
+.pb-32 {
+  padding-bottom: 32px;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
 }
 
 .mb-60 {

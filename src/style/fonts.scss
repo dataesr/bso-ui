@@ -45,3 +45,15 @@
 .marianne-thin-italic {
   font-family: 'Marianne Thin Italic', sans-serif;
 }
+
+.fs-20-20 {
+  @include font-size(20,20);
+}
+
+.fs-16-24 {
+  @include font-size(16,24);
+}
+
+.fs-14-24 {
+  @include font-size(14,24);
+}
