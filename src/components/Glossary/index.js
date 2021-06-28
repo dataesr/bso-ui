@@ -111,7 +111,6 @@ function Glossary({ words }) {
                 <GlossaryItem
                   glossaryKey={key}
                   key={uuidv4()}
-                  ref={itemRefs.current[i]}
                   definition={words[0][key].fr}
                   active={key === active}
                   word={words[0][key].word}

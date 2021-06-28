@@ -1,14 +1,11 @@
 import { Icon as DSIcon } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { forwardRef } from 'react';
+import React from 'react';
 
-const GlossaryItem = forwardRef((props, ref) => {
-  const { word, active, definition, index, glossaryKey } = props;
-
+function GlossaryItem({ word, active, definition, index, glossaryKey }) {
   return (
     <article
-      ref={ref}
       data-glossary-word={glossaryKey}
       className={classNames('word-item mb-20 pb-16', {
         'pt-20': index === 0,
@@ -29,13 +26,13 @@ const GlossaryItem = forwardRef((props, ref) => {
       <p className='fs-14-24 m-0'>{definition}</p>
     </article>
   );
-});
+}
 
 GlossaryItem.propTypes = {
   glossaryKey: PropTypes.string.isRequired,
   word: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired,
-  definition: PropTypes.bool.isRequired,
+  definition: PropTypes.string.isRequired,
 };
 export default GlossaryItem;

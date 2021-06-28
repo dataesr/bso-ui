@@ -57,9 +57,6 @@ function AnchorNavigation({ tabs }) {
     setOffsetTop,
     initOffsetTop,
   ]);
-  const onTest = () => {
-    console.debug('==== DEBUG ==== ');
-  };
   return (
     <section
       ref={ref}
@@ -80,7 +77,7 @@ function AnchorNavigation({ tabs }) {
                 <SideMenuItem key={uuidv4()} title={tab.mainLabel}>
                   {tab.links.map((link) => (
                     <SideMenuLink
-                      onClick={onTest}
+                      key={uuidv4()}
                       className='no-border'
                       href={link.href}
                     >
