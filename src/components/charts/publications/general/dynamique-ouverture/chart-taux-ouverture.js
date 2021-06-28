@@ -7,12 +7,10 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  bluedark125,
-  discipline100,
-  g800,
-} from '../../../../../style/colours.module.scss';
+import { discipline100, g800 } from '../../../../../style/colours.module.scss';
+import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import useGetData from './get-data';
@@ -28,102 +26,48 @@ const Chart = () => {
   const { data, isLoading, isError } = useGetData(observationDates);
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <Loader />;
   }
   if (isError) {
     return <>Error</>;
   }
 
   const { dataGraph1 } = data;
-
-  const optionsGraph1 = {
-    colors: [discipline100],
-    chart: {
-      type: 'bar',
-      backgroundColor: 'var(--w-g750)',
-    },
-    title: {
-      text: intl.formatMessage({ id: `${graphId}.title` }),
-      align: 'left',
-      style: {
-        color: bluedark125,
-        fontSize: '16px',
-        fontWeight: 'bold',
-      },
-    },
-    yAxis: { visible: false },
-    tooltip: {
-      headerFormat: '',
-      pointFormat: intl.formatMessage({ id: `${graphId}.tooltip` }),
-    },
-    plotOptions: {
-      bar: {
-        dataLabels: {
-          enabled: true,
-          format: '{point.y}%',
-          style: {
-            color: g800,
-            fontSize: '20px',
-            fontWeight: 'bold',
-          },
-        },
-      },
-    },
-    credits: { enabled: false },
-    xAxis: {
-      type: 'category',
-      lineWidth: 0,
-      tickWidth: 0,
-      labels: {
+  const optionsGraph1 = getGraphOptions(graphId, intl);
+  optionsGraph1.chart.type = 'bar';
+  optionsGraph1.colors = [discipline100];
+  optionsGraph1.yAxis = { visible: false };
+  optionsGraph1.plotOptions = {
+    bar: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.y}%',
         style: {
-          color: 'var(--g800)',
-          fontSize: '12px',
+          color: g800,
+          fontSize: '20px',
           fontWeight: 'bold',
         },
       },
     },
-    series: [
-      {
-        data: dataGraph1,
-        showInLegend: false,
+  };
+  optionsGraph1.xAxis = {
+    type: 'category',
+    lineWidth: 0,
+    tickWidth: 0,
+    labels: {
+      style: {
+        color: 'var(--g800)',
+        fontSize: '12px',
+        fontWeight: 'bold',
       },
-    ],
-    responsive: {
-      rules: [
-        {
-          condition: {
-            maxWidth: 700,
-          },
-          chartOptions: {
-            legend: {
-              layout: 'horizontal',
-              align: 'center',
-              verticalAlign: 'bottom',
-            },
-          },
-        },
-      ],
-    },
-    exporting: {
-      buttons: {
-        contextButton: {
-          enabled: true,
-        },
-      },
-      chartOptions: {
-        legend: {
-          enabled: true,
-        },
-        title: {
-          text: 'fileName',
-        },
-        subtitle: {
-          text: 'source',
-        },
-      },
-      filename: 'filename',
     },
   };
+  optionsGraph1.series = [
+    {
+      data: dataGraph1,
+      showInLegend: false,
+    },
+  ];
 
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({

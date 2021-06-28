@@ -1,12 +1,19 @@
 import Highcharts from 'highcharts';
+import HCExportingData from 'highcharts/modules/export-data';
+import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import useGetData from './get-data';
+
+HCExporting(Highcharts);
+HCExportingData(Highcharts);
 
 const Chart = () => {
   const chartRef = useRef();
@@ -18,7 +25,7 @@ const Chart = () => {
   );
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <Loader />;
   }
   if (isError) {
     return <>Error</>;
@@ -26,40 +33,35 @@ const Chart = () => {
 
   const { dataGraph, categories } = allData;
 
-  const optionsGraph = {
-    chart: {
-      type: 'area',
-    },
+  const optionsGraph = getGraphOptions(graphId, intl);
+  optionsGraph.chart.type = 'area';
+  optionsGraph.xAxis = {
+    categories,
+    tickmarkPlacement: 'on',
     title: {
-      text: intl.formatMessage({ id: `${graphId}.title` }),
-      align: 'left',
+      enabled: false,
     },
-    xAxis: {
-      categories,
-      tickmarkPlacement: 'on',
-      title: {
-        enabled: false,
-      },
-    },
-    legend: {
-      verticalAlign: 'top',
-    },
-    tooltip: {
-      headerFormat: '<b>{point.x}</b><br/>',
-      pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
-    },
-    plotOptions: {
-      area: {
-        stacking: 'normal',
+  };
+  optionsGraph.plotOptions = {
+    area: {
+      stacking: 'normal',
+      lineColor: '#fff',
+      lineWidth: 3,
+      marker: {
+        lineWidth: 1,
         lineColor: '#fff',
-        lineWidth: 3,
-        marker: {
-          lineWidth: 1,
-          lineColor: '#fff',
-        },
       },
     },
-    series: dataGraph,
+  };
+  optionsGraph.series = dataGraph;
+
+  const exportChartPng = () => {
+    chartRef.current.chart.exportChart({
+      type: 'image/png',
+    });
+  };
+  const exportChartCsv = () => {
+    chartRef.current.chart.downloadCSV();
   };
 
   return (
@@ -77,6 +79,8 @@ const Chart = () => {
         date={updateDate}
         source={intl.formatMessage({ id: `${graphId}.source` })}
         graphId={graphId}
+        onPngButtonClick={exportChartPng}
+        onCsvButtonClick={exportChartCsv}
       />
     </>
   );

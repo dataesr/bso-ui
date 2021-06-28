@@ -1,15 +1,21 @@
 import Highcharts from 'highcharts';
+import HCExportingData from 'highcharts/modules/export-data';
+import HCExporting from 'highcharts/modules/exporting';
 import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import useGetData from './get-data';
 
 treemapModule(Highcharts);
+HCExporting(Highcharts);
+HCExportingData(Highcharts);
 
 const Chart = () => {
   const chartRef = useRef();
@@ -21,42 +27,45 @@ const Chart = () => {
   );
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <Loader />;
   }
   if (isError) {
-    return <>Error 3</>;
+    return <>Error</>;
   }
 
   const { dataGraph3 } = allData;
 
-  const optionsGraph = {
-    series: [
-      {
-        type: 'treemap',
-        layoutAlgorithm: 'stripes',
-        alternateStartingDirection: true,
-        levels: [
-          {
-            level: 1,
-            layoutAlgorithm: 'sliceAndDice',
-            dataLabels: {
-              enabled: true,
-              align: 'left',
-              verticalAlign: 'top',
-              style: {
-                fontSize: '15px',
-                fontWeight: 'bold',
-              },
+  const optionsGraph = getGraphOptions(graphId, intl);
+  optionsGraph.series = [
+    {
+      type: 'treemap',
+      layoutAlgorithm: 'stripes',
+      alternateStartingDirection: true,
+      levels: [
+        {
+          level: 1,
+          layoutAlgorithm: 'sliceAndDice',
+          dataLabels: {
+            enabled: true,
+            align: 'left',
+            verticalAlign: 'top',
+            style: {
+              fontSize: '15px',
+              fontWeight: 'bold',
             },
           },
-        ],
-        data: dataGraph3,
-      },
-    ],
-    title: {
-      text: intl.formatMessage({ id: `${graphId}.title` }),
-      align: 'left',
+        },
+      ],
+      data: dataGraph3,
     },
+  ];
+  const exportChartPng = () => {
+    chartRef.current.chart.exportChart({
+      type: 'image/png',
+    });
+  };
+  const exportChartCsv = () => {
+    chartRef.current.chart.downloadCSV();
   };
 
   return (
@@ -74,6 +83,8 @@ const Chart = () => {
         date={updateDate}
         source={intl.formatMessage({ id: `${graphId}.source` })}
         graphId={graphId}
+        onPngButtonClick={exportChartPng}
+        onCsvButtonClick={exportChartCsv}
       />
     </>
   );
