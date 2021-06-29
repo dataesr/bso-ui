@@ -15,3 +15,60 @@ export function getCSSProperty(property) {
 export function setCSSProperty(property, value) {
   document.documentElement.style.setProperty(property, value);
 }
+
+export function getGraphOptions(graphId, intl) {
+  return {
+    chart: {
+      backgroundColor: 'var(--w-g750)',
+    },
+    title: {
+      text: intl.formatMessage({ id: `${graphId}.title` }),
+      align: 'left',
+      style: {
+        color: 'var(--blue-dark-125)',
+        fontSize: '16px',
+        fontWeight: 'bold',
+      },
+    },
+    tooltip: {
+      headerFormat: '',
+      pointFormat: intl.formatMessage({ id: `${graphId}.tooltip` }),
+    },
+    credits: { enabled: false },
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 700,
+          },
+          chartOptions: {
+            legend: {
+              layout: 'horizontal',
+              align: 'center',
+              verticalAlign: 'bottom',
+            },
+          },
+        },
+      ],
+    },
+    exporting: {
+      buttons: {
+        contextButton: {
+          enabled: true,
+        },
+      },
+      chartOptions: {
+        legend: {
+          enabled: true,
+        },
+        title: {
+          text: intl.formatMessage({ id: `${graphId}.title` }),
+        },
+        subtitle: {
+          text: intl.formatMessage({ id: `${graphId}.source` }),
+        },
+      },
+      filename: intl.formatMessage({ id: `${graphId}.title` }),
+    },
+  };
+}
