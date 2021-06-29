@@ -78,7 +78,7 @@ const Chart = () => {
     chartRef.current.chart.downloadCSV();
   };
 
-  const chart1Comments = intl.formatMessage(
+  const chartComments = intl.formatMessage(
     { id: `${graphId}.comments` },
     {
       a: dataGraph1[0].y,
@@ -96,9 +96,9 @@ const Chart = () => {
           highcharts={Highcharts}
           options={optionsGraph1}
           ref={chartRef}
-          id='chart1'
+          iid={graphId}
         />
-        <GraphComments comments={chart1Comments} />
+        <GraphComments comments={chartComments} />
       </div>
       <GraphFooter
         date={updateDate}

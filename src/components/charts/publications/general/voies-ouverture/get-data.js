@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../../../../style/colours.module.scss';
 
 function useGetData(observationDate) {
+  const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -69,17 +71,19 @@ function useGetData(observationDate) {
 
     const dataGraph = [
       {
-        name: 'publisher;repository',
+        name: intl.formatMessage({
+          id: 'app.type-hebergement.publisher-repository',
+        }),
         data: publisherRepository,
         color: editeurarchive,
       },
       {
-        name: 'repository',
+        name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
         data: repository,
         color: archiveouverte100,
       },
       {
-        name: 'publisher',
+        name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
         data: publisher,
         color: editeurplateforme100,
       },
@@ -87,28 +91,30 @@ function useGetData(observationDate) {
 
     const dataGraph3 = [
       {
-        name: 'publisher',
+        name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'publisher',
         ).doc_count,
         color: editeurplateforme100,
       },
       {
-        name: 'publisher;repository',
+        name: intl.formatMessage({
+          id: 'app.type-hebergement.publisher-repository',
+        }),
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'publisher;repository',
         ).doc_count,
         color: editeurarchive,
       },
       {
-        name: 'repository',
+        name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'repository',
         ).doc_count,
         color: archiveouverte100,
       },
       {
-        name: 'closed',
+        name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
         value: data[data.length - 1].by_oa_host_type.buckets.find(
           (item) => item.key === 'closed',
         ).doc_count,
