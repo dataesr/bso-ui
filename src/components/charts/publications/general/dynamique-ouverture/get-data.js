@@ -78,7 +78,7 @@ function useGetData(observationDates) {
       serie.dashStyle = lineStyle[i];
       serie.data = filtered.map((el) => Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count));
       serie.ratios = filtered.map(
-        (el) => `(${el.by_is_oa.buckets[0].doc_count * 100}/${el.doc_count})`,
+        (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
       );
       serie.publicationDate = filtered[filtered.length - 1].key;
       dataGraph2.push(serie);

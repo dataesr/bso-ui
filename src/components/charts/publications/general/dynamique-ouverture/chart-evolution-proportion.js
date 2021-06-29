@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -66,6 +67,8 @@ const Chart = () => {
       m: dataGraph2[1]?.name,
     },
   );
+
+  // console.log(optionsGraph2);
 
   return (
     <>
