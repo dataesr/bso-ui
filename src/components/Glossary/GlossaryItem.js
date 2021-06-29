@@ -3,12 +3,11 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function GlossaryItem({ word, active, definition, index, glossaryKey }) {
+function GlossaryItem({ word, active, definition, className, glossaryKey }) {
   return (
     <article
       data-glossary-word={glossaryKey}
-      className={classNames('word-item mb-20 pb-16', {
-        'pt-20': index === 0,
+      className={classNames(`glossary-item mb-20 pb-16 ${className}`, {
         active,
       })}
     >
@@ -31,7 +30,7 @@ function GlossaryItem({ word, active, definition, index, glossaryKey }) {
 GlossaryItem.propTypes = {
   glossaryKey: PropTypes.string.isRequired,
   word: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
+  className: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
   definition: PropTypes.string.isRequired,
 };

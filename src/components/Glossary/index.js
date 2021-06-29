@@ -15,65 +15,74 @@ import { v4 as uuidv4 } from 'uuid';
 import GlossaryItem from './GlossaryItem';
 
 function Glossary({ words }) {
-  const [open, setOpen] = useState(false);
-  const [glossaryWords, setGlossaryWords] = useState([]);
-  const [active, setActive] = useState('');
-  const itemRefs = useRef([]);
+  const contentRef = useRef();
+  const [openPanel, setOpenPanel] = useState(false);
+  const [glossaryEntries, setGlossaryEntries] = useState([]);
+  const [activeKey, setActiveKey] = useState('');
+
+  const activeClassManage = useCallback((glossaryKey = '', action) => {
+    if (glossaryKey) {
+      const activeClassObj = {
+        remove: (elm) => elm.classList.remove('active'),
+        add: (elm) => elm.classList.add('active'),
+      };
+      const x = document.querySelector(`[data-glossary-key=${glossaryKey}]`);
+      activeClassObj[action](x);
+    }
+  }, []);
+
+  const glossaryPanel = useCallback(
+    (key, open) => {
+      activeClassManage(activeKey, 'remove');
+      setActiveKey(key);
+      setOpenPanel(open);
+    },
+    [activeKey, setActiveKey, setOpenPanel, activeClassManage],
+  );
 
   const onClickWord = useCallback(
     (glossaryKey) => {
-      const content = document.querySelector('.content');
-      setOpen(true);
-      setActive(glossaryKey);
-      const elm = document.querySelector(
+      glossaryPanel(glossaryKey, true);
+      activeClassManage(glossaryKey, 'add');
+
+      const glossaryWord = document.querySelector(
         `[data-glossary-word='${glossaryKey}']`,
       );
-      if (elm) {
-        content.scrollTop = elm.offsetTop - 10;
+
+      if (glossaryWord && contentRef.current) {
+        contentRef.current.scrollTop = glossaryWord.offsetTop - 15;
       }
     },
-    [setOpen, setActive],
+    [glossaryPanel, activeClassManage],
   );
 
   useEffect(() => {
-    if (glossaryWords.length > 0) {
-      itemRefs.current = glossaryWords.map(
-        (_, i) => itemRefs.current[i] ?? React.createRef(),
-      );
-
-      for (let i = 0; i < glossaryWords.length; i += 1) {
-        glossaryWords[i].addEventListener('click', (e) => {
+    if (glossaryEntries.length > 0) {
+      for (let i = 0; i < glossaryEntries.length; i += 1) {
+        glossaryEntries[i].addEventListener('click', (e) => {
           onClickWord(e.target.dataset.glossaryKey);
         });
       }
     }
-  }, [onClickWord, setOpen, glossaryWords]);
+  }, [onClickWord, glossaryEntries]);
 
   useEffect(() => {
-    if (glossaryWords.length === 0) {
-      setGlossaryWords(Array.from(document.querySelectorAll('.glossary-word')));
+    if (glossaryEntries.length === 0) {
+      setGlossaryEntries(
+        Array.from(document.querySelectorAll('.glossary-entry')),
+      );
     }
-  }, [glossaryWords, setGlossaryWords]);
+  }, [glossaryEntries, setGlossaryEntries]);
 
   useEffect(() => {
-    const content = document.querySelector('.content');
-    document.body.style.overflow = open ? 'hidden' : null;
-    if (!open) {
-      content.scrollTop = 0;
-    }
-  }, [open]);
+    document.body.style.overflow = openPanel ? 'hidden' : null;
+  }, [openPanel]);
 
   return (
-    <section className={classNames('bso-glossary z-3000', { open })}>
+    <section className={classNames('bso-glossary z-3000', { openPanel })}>
       <Container>
         <DSIcon name='ri-information-fill' size='1x' iconPosition='right'>
-          <Button
-            size='sm'
-            onClick={() => {
-              setActive('');
-              setOpen(!open);
-            }}
-          >
+          <Button size='sm' onClick={() => glossaryPanel('', !openPanel)}>
             Glossaire
           </Button>
         </DSIcon>
@@ -89,7 +98,7 @@ function Glossary({ words }) {
                 <button
                   className='close'
                   type='button'
-                  onClick={() => setOpen(false)}
+                  onClick={() => glossaryPanel('', false)}
                 >
                   <DSIcon
                     className='ds-fr--v-middle'
@@ -104,19 +113,21 @@ function Glossary({ words }) {
             </Row>
           </Col>
         </Row>
-        <Row className='content relative'>
+        <Row>
           <Col n='12'>
-            {words
-              && Object.keys(words[0]).map((key, i) => (
-                <GlossaryItem
-                  glossaryKey={key}
-                  key={uuidv4()}
-                  definition={words[0][key].fr}
-                  active={key === active}
-                  word={words[0][key].word}
-                  index={i}
-                />
-              ))}
+            <div ref={contentRef} className='content relative'>
+              {words
+                && Object.keys(words[0]).map((key, i) => (
+                  <GlossaryItem
+                    glossaryKey={key}
+                    key={uuidv4()}
+                    definition={words[0][key].fr}
+                    active={key === activeKey}
+                    word={words[0][key].word}
+                    className={i === 0 ? 'pt-20' : ''}
+                  />
+                ))}
+            </div>
           </Col>
         </Row>
         <Row>

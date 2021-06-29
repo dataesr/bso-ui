@@ -75,7 +75,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
         <Glossary words={GlossaryWords} />
         <p>
           Lorem ipsum dolor sit amet,
-          <span className='glossary-word' data-glossary-key='essais'>
+          <span className='glossary-entry' data-glossary-key='essais'>
             Essais cliniques déclarés
           </span>
           adipisicing elit. Alias, facere illum laborum maxime quo reiciendis
@@ -84,16 +84,16 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
         </p>
         <p>
           Lorem
-          <span className='glossary-word' data-glossary-key='test0'>
+          <span className='glossary-entry' data-glossary-key='test0'>
             test 0
           </span>
           ipsum dolor sit amet, consectetur adipisicing elit. Ad
-          <span className='glossary-word' data-glossary-key='test1'>
+          <span className='glossary-entry' data-glossary-key='test1'>
             test 1
           </span>
           delectus ea ex fugiat hic, illum quibusdam repudiandae? Aut distinctio
           dolor dolorem eveniet id itaque iusto, sed ullam
-          <span className='glossary-word' data-glossary-key='test2'>
+          <span className='glossary-entry' data-glossary-key='test2'>
             test 2
           </span>
           vitae.

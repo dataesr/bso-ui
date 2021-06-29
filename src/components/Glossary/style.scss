@@ -28,7 +28,7 @@
     overflow-y: scroll;
     padding: 0 20px;
 
-    .word-item {
+    .glossary-item {
       border-bottom: 2px solid var(--blue-soft-125);
 
       &.active p:first-child {
@@ -76,6 +76,10 @@
     width: 18px;
     text-align: center;
     right: -22px;
+  }
+
+  &.active {
+    background-color: var(--yellow-medium-100);
   }
 }
 
