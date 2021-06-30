@@ -39,7 +39,8 @@
 
   .fr-btn {
     position: relative;
-    left: -139px;
+    width: 120px;
+    left: -136px;
     top: 60px;
   }
 
@@ -55,7 +56,7 @@
   }
 }
 
-.glossary-word {
+.glossary-entry {
   position: relative;
   cursor: pointer;
   font-weight: bold;
@@ -89,7 +90,7 @@
     right: -45vw;
 
     .fr-btn {
-      left: -145px;
+      left: -144px;
     }
   }
 }
