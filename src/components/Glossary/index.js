@@ -9,12 +9,14 @@ import {
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import GlossaryItem from './GlossaryItem';
 
 function Glossary({ words }) {
+  const intl = useIntl();
   const contentRef = useRef();
   const [openPanel, setOpenPanel] = useState(false);
   const [glossaryEntries, setGlossaryEntries] = useState([]);
@@ -83,7 +85,11 @@ function Glossary({ words }) {
       <Container>
         <DSIcon name='ri-information-fill' size='1x' iconPosition='right'>
           <Button size='sm' onClick={() => glossaryPanel('', !openPanel)}>
-            Glossaire
+            title=
+            {intl.formatMessage({
+              id: 'app.glossary',
+              defaultMessage: 'Glossaire',
+            })}
           </Button>
         </DSIcon>
         <Row>
