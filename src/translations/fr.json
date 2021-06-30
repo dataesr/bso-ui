@@ -17,6 +17,7 @@
   "app.type-hebergement.repository": "archive ouverte",
   "app.type-hebergement.publisher-repository": "éditeur & archive ouverte",
   "app.type-hebergement.closed": "Accès fermé",
+  "app.glossary": "Glossaire",
   "app.header.nav.a-propos": "À propos",
   "app.header.nav.a-propos-faq": "FAQ",
   "app.header.nav.a-propos-gloassaire": "Glossaire",

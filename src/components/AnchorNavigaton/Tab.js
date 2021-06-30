@@ -9,7 +9,7 @@ function Tab({ label, children }) {
   return (
     <section className='tab marianne-light relative'>
       <button
-        className={classNames('tab-button txt-white', { active: open })}
+        className={classNames('tab-button text-white', { active: open })}
         type='button'
         onClick={() => setOpen(!open)}
       >
@@ -21,7 +21,7 @@ function Tab({ label, children }) {
           <span className={classNames({ 'marianne-bold': open })}>{label}</span>
         </Icon>
       </button>
-      <ul className={classNames('tab-links txt-white', { hidden: !open })}>
+      <ul className={classNames('tab-links text-white', { hidden: !open })}>
         {children}
       </ul>
     </section>
@@ -30,7 +30,7 @@ function Tab({ label, children }) {
 
 Tab.propTypes = {
   label: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Tab;

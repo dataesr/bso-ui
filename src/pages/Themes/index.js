@@ -5,7 +5,9 @@ import AnchorNavigation from '../../components/AnchorNavigaton';
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
 import DataCard from '../../components/DataCard';
+import Glossary from '../../components/Glossary';
 import Icon from '../../components/Icon';
+import GlossaryWords from './glossary-test.json';
 
 function Theme() {
   const renderChip = (
@@ -70,6 +72,32 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
         }}
       />
       <Container>
+        <Glossary words={GlossaryWords} />
+        <p>
+          Lorem ipsum dolor sit amet,
+          <span className='glossary-entry' data-glossary-key='essais'>
+            Essais cliniques déclarés
+          </span>
+          adipisicing elit. Alias, facere illum laborum maxime quo reiciendis
+          tenetur vel. Aut blanditiis consectetur delectus, ducimus et eveniet
+          ex libero maxime praesentium quae quod?
+        </p>
+        <p>
+          Lorem
+          <span className='glossary-entry' data-glossary-key='test0'>
+            test 0
+          </span>
+          ipsum dolor sit amet, consectetur adipisicing elit. Ad
+          <span className='glossary-entry' data-glossary-key='test1'>
+            test 1
+          </span>
+          delectus ea ex fugiat hic, illum quibusdam repudiandae? Aut distinctio
+          dolor dolorem eveniet id itaque iusto, sed ullam
+          <span className='glossary-entry' data-glossary-key='test2'>
+            test 2
+          </span>
+          vitae.
+        </p>
         <Row gutters>
           <Col>
             <DataCard

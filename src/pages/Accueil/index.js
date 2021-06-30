@@ -1,6 +1,5 @@
-import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import DataCard from '../../components/DataCard';
 
@@ -25,35 +24,6 @@ function Accueil() {
           </Col>
         </Row>
       </Container>
-      <ul>
-        <li>
-          <DSLink as={<Link to='/baro-national' />} href='/my-page' isSimple>
-            Baromètre National
-          </DSLink>
-        </li>
-        <li>
-          <Link to='/baro-sante'>Baromètre Santé</Link>
-          <ul>
-            <li>
-              <Link to='/baro-sante/essais-cliniques'>Essai Cliniques</Link>
-            </li>
-            <li>
-              <Link to='/baro-sante/publications'>
-                Baromètre Santé Publications
-              </Link>
-            </li>
-            <li>
-              <Link to='/baro-sante/etudes'>Etudes Observationnelles</Link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <Link to='/theme'>Thèmes</Link>
-        </li>
-        <li>
-          <Link to='/theme-1'>Thème 1</Link>
-        </li>
-      </ul>
     </div>
   );
 }

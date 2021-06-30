@@ -8,6 +8,7 @@ import {
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import useScroll from '../../utils/Hooks/useScroll';
 import useViewport from '../../utils/Hooks/useViewport';
@@ -56,7 +57,6 @@ function AnchorNavigation({ tabs }) {
     setOffsetTop,
     initOffsetTop,
   ]);
-
   return (
     <section
       ref={ref}
@@ -74,9 +74,13 @@ function AnchorNavigation({ tabs }) {
           >
             {tabs
               && tabs.map((tab) => (
-                <SideMenuItem title={tab.mainLabel}>
+                <SideMenuItem key={uuidv4()} title={tab.mainLabel}>
                   {tab.links.map((link) => (
-                    <SideMenuLink className='no-border' href={link.href}>
+                    <SideMenuLink
+                      key={uuidv4()}
+                      className='no-border'
+                      href={link.href}
+                    >
                       {link.label}
                     </SideMenuLink>
                   ))}
@@ -90,9 +94,9 @@ function AnchorNavigation({ tabs }) {
               <Row>
                 {tabs
                   && tabs.map((tab) => (
-                    <Tab label={tab.mainLabel}>
+                    <Tab key={uuidv4()} label={tab.mainLabel}>
                       {tab.links.map((link) => (
-                        <li>
+                        <li key={uuidv4()}>
                           <a href={link.href}>{link.label}</a>
                         </li>
                       ))}

@@ -1,6 +1,7 @@
 /*
   Layout
  */
+@import 'reset.scss';
 @import 'mixins.scss';
 @import 'colours.module.scss';
 @import 'breakPoints.scss';
@@ -18,6 +19,7 @@
 @import 'src/components/DataCard/style.scss';
 @import 'src/components/BannerImage/style.scss';
 @import 'src/components/AnchorNavigaton/style.scss';
+@import 'src/components/Glossary/style.scss';
 
 /*
   Global
