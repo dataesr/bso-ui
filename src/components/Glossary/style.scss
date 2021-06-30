@@ -8,7 +8,7 @@
   right: -100vw;
   height: 100%;
 
-  &.open {
+  &.openPanel {
     transition: right 0.2s ease-out;
     right: 0;
   }

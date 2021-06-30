@@ -85,7 +85,6 @@ function Glossary({ words }) {
       <Container>
         <DSIcon name='ri-information-fill' size='1x' iconPosition='right'>
           <Button size='sm' onClick={() => glossaryPanel('', !openPanel)}>
-            title=
             {intl.formatMessage({
               id: 'app.glossary',
               defaultMessage: 'Glossaire',
