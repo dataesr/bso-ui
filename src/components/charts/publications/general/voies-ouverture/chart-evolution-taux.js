@@ -10,6 +10,7 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
+import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -66,15 +67,18 @@ const Chart = () => {
 
   return (
     <>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={optionsGraph}
-        ref={chartRef}
-        id={graphId}
-      />
-      <GraphComments
-        comments={intl.formatMessage({ id: `${graphId}.comments` })}
-      />
+      <div fluid className='graph-container'>
+        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={optionsGraph}
+          ref={chartRef}
+          id={graphId}
+        />
+        <GraphComments
+          comments={intl.formatMessage({ id: `${graphId}.comments` })}
+        />
+      </div>
       <GraphFooter
         date={updateDate}
         source={intl.formatMessage({ id: `${graphId}.source` })}

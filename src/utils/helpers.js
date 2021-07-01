@@ -21,15 +21,7 @@ export function getGraphOptions(graphId, intl) {
     chart: {
       backgroundColor: 'var(--w-g750)',
     },
-    title: {
-      text: intl.formatMessage({ id: `${graphId}.title` }),
-      align: 'left',
-      style: {
-        color: 'var(--blue-dark-125)',
-        fontSize: '16px',
-        fontWeight: 'bold',
-      },
-    },
+    title: { text: '' },
     tooltip: {
       headerFormat: '',
       pointFormat: intl.formatMessage({ id: `${graphId}.tooltip` }),

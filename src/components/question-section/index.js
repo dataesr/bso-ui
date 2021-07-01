@@ -1,38 +1,32 @@
 import { Container } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
-const QuestionSection = ({
-  title,
-  // info,
-  description,
-  backgroundColor,
-  children,
-}) => (
-  <section style={{ backgroundColor, paddingTop: '28px' }}>
-    <Container>
-      <h2>
-        {title}
-        <span>i</span>
-      </h2>
-      <p>{description}</p>
-      {children}
-    </Container>
-  </section>
-);
+const QuestionSection = ({ intlKey, backgroundColor, children }) => {
+  const intl = useIntl();
+  return (
+    <section style={{ backgroundColor, paddingTop: '28px' }}>
+      <Container>
+        <h2>
+          {intl.formatMessage({ id: `${intlKey}.title` })}
+          <span>i</span>
+        </h2>
+        <p>{intl.formatMessage({ id: `${intlKey}.description` })}</p>
+        {children}
+      </Container>
+    </section>
+  );
+};
 
 export default QuestionSection;
 
 QuestionSection.defaultProps = {
-  // info: PropTypes.string,
-  description: '',
   backgroundColor: '',
   children: '',
 };
 QuestionSection.propTypes = {
-  title: PropTypes.string.isRequired,
-  // info: PropTypes.string,
-  description: PropTypes.string,
+  intlKey: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string,
   children: PropTypes.string,
 };
