@@ -3,7 +3,8 @@
   box-shadow: 0 12px 30px -10px rgba(82, 102, 161, 0.75);
 
   &.sticky {
-    position: sticky;
+    position: fixed;
+    width: 100%;
   }
 
   .bso-tab-navigation-mobile {
@@ -88,7 +89,7 @@
     .tab-links {
       position: absolute;
       left: 0;
-      top: 31px;
+      top: 27px;
       min-width: 340px;
       transition: max-height 0.6s ease-in-out;
       max-height: 300px;

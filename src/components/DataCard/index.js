@@ -9,7 +9,7 @@ function DataCard({ sentence, buttonLabel, topData, percentage }) {
     <Card hasArrow={false} href='/' className='bso-datacard text-center'>
       <CardDescription>
         {topData && <p className='top-data marianne-extra-bold'>{topData}</p>}
-        <Gauge percentage={percentage} />
+        {percentage && <Gauge percentage={percentage} />}
         <p className='sentence'>{sentence}</p>
         {buttonLabel && (
           <Button
