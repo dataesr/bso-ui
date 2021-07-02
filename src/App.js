@@ -2,7 +2,7 @@
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import Accueil from './pages/Accueil';
@@ -29,58 +29,93 @@ const messages = {
 };
 
 function App() {
-  const { lang } = useLang();
+  const { lang, urls } = useLang();
   return (
-    <IntlProvider locale='fr' messages={messages[lang]}>
-      <Router>
+    <BrowserRouter>
+      <IntlProvider locale={lang} messages={messages[lang]}>
         <Header />
         <Switch>
-          <Route exact path='/'>
+          <Route exact path={Object.keys(urls.home).map((l) => urls.home[l])}>
             <Accueil />
           </Route>
-          <Route exact path='/baro-national'>
+          <Route
+            exact
+            path={Object.keys(urls.national).map((l) => urls.national[l])}
+          >
             <BaroNational />
           </Route>
-          <Route exact path='/baro-sante'>
+          <Route exact path={Object.keys(urls.sante).map((l) => urls.sante[l])}>
             <BaroSante />
           </Route>
-          <Route exact path='/baro-sante/publications'>
+          <Route
+            exact
+            path={Object.keys(urls.santePublications).map(
+              (l) => urls.santePublications[l],
+            )}
+          >
             <SantePublications />
           </Route>
-          <Route exact path='/baro-sante/essais-cliniques'>
+          <Route
+            exact
+            path={Object.keys(urls.santeEssais).map((l) => urls.santeEssais[l])}
+          >
             <EssaisCliniques />
           </Route>
-          <Route exact path='/baro-sante/etudes'>
+          <Route
+            exact
+            path={Object.keys(urls.santeEtudes).map((l) => urls.santeEtudes[l])}
+          >
             <Etudes />
           </Route>
-          <Route exact path='/themes'>
+          <Route
+            exact
+            path={Object.keys(urls.themes).map((l) => urls.themes[l])}
+          >
             <Themes />
           </Route>
-          <Route exact path='/theme-1'>
+          <Route
+            exact
+            path={Object.keys(urls.themes1).map((l) => urls.themes1[l])}
+          >
             <Theme1 />
           </Route>
-          <Route exact path='/a-propos/methodologie'>
+          <Route
+            exact
+            path={Object.keys(urls.methodologie).map(
+              (l) => urls.methodologie[l],
+            )}
+          >
             <Methodologie />
           </Route>
-          <Route exact path='/a-propos/faq'>
+          <Route exact path={Object.keys(urls.faq).map((l) => urls.faq[l])}>
             <FAQ />
           </Route>
-          <Route exact path='/a-propos/glossaire'>
+          <Route
+            exact
+            path={Object.keys(urls.glossaire).map((l) => urls.glossaire[l])}
+          >
             <Glossaire />
           </Route>
-          <Route exact path='/a-propos/projet'>
+          <Route
+            exact
+            path={Object.keys(urls.projet).map((l) => urls.projet[l])}
+          >
             <Projet />
           </Route>
-          <Route exact path='/a-propos/notes-flash'>
+          <Route exact path={Object.keys(urls.flash).map((l) => urls.flash[l])}>
             <NotesFlash />
           </Route>
           <Route
-            path='/integration/:graphId'
-            render={(props) => <Integration {...props} />}
-          />
+            path={Object.keys(urls.integration).map((l) => urls.integration[l])}
+          >
+            <Integration />
+          </Route>
+          <Route exact path='*'>
+            <div>Not Found</div>
+          </Route>
         </Switch>
-      </Router>
-    </IntlProvider>
+      </IntlProvider>
+    </BrowserRouter>
   );
 }
 

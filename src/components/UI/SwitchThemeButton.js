@@ -21,9 +21,9 @@ export default function SwitchThemeButton() {
     <>
       <Button
         ref={themeButtonRef}
-        icon='fr-fi-theme-fill'
+        icon='ri-sun-line'
         iconPosition='left'
-        className='fr-link'
+        styleAsLink
         onClick={() => setIsThemeModalOpen(!isThemeModalOpen)}
       >
         <FormattedMessage

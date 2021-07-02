@@ -13,10 +13,12 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
+import useLang from '../../utils/Hooks/useLang';
 import SwitchThemeButton from '../UI/SwitchLangButton';
 import SwitchLangButton from '../UI/SwitchThemeButton';
 
 function Header() {
+  const { lang, urls } = useLang();
   const intl = useIntl();
   const location = useLocation();
   const [path, setPath] = useState(() => location.pathname || '');
@@ -41,38 +43,38 @@ function Header() {
             defaultMessage: 'Baromêtre français de la science ouverte',
           })}
         />
+        <Tool>
+          <ToolItemGroup>
+            <SwitchThemeButton />
+            <SwitchLangButton />
+          </ToolItemGroup>
+        </Tool>
       </HeaderBody>
-      <Tool>
-        <ToolItemGroup>
-          <SwitchThemeButton />
-          <SwitchLangButton />
-        </ToolItemGroup>
-      </Tool>
       <HeaderNav path={path}>
         <NavItem
-          current={path === '/baro-national'}
+          current={path === urls.home[lang]}
           title={intl.formatMessage({
             id: 'app.header.nav.baro-national',
             defaultMessage: 'Le Baromètre national',
           })}
         >
           <NavSubItem
-            current={path === '/baro-national'}
+            current={path === urls.home[lang]}
             title='Accueil baromètre national'
             asLink={(
-              <RouterLink to='/baro-national'>
+              <RouterLink to={urls.home[lang]}>
                 Accueil baromètre national
               </RouterLink>
             )}
           />
           <NavSubItem
-            current={path === '/baro-national/publications'}
+            current={path === urls.nationalPublications[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.baro-national-publications',
               defaultMessage: 'Les publications',
             })}
             asLink={(
-              <RouterLink to='/baro-national/publications'>
+              <RouterLink to={urls.nationalPublications[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.baro-national-publications',
                   defaultMessage: 'Les publications',
@@ -82,20 +84,20 @@ function Header() {
           />
         </NavItem>
         <NavItem
-          current={path.startsWith('/baro-sante')}
+          current={path.startsWith(urls.sante[lang])}
           title={intl.formatMessage({
             id: 'app.header.nav.baro-sante',
             defaultMessage: 'Le baromètre santé',
           })}
         >
           <NavSubItem
-            current={path === '/baro-sante'}
+            current={path === urls.sante[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.baro-sante-acceuil',
               defaultMessage: 'Accueil baromètre santé',
             })}
             asLink={(
-              <RouterLink to='/baro-sante'>
+              <RouterLink to={urls.sante[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.baro-sante-acceuil',
                   defaultMessage: 'Accueil baromètre santé',
@@ -104,13 +106,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === '/baro-sante/publications'}
+            current={path === urls.santePublications[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.baro-sante-publications',
               defaultMessage: 'Les publications en santé',
             })}
             asLink={(
-              <RouterLink to='/baro-sante/publications'>
+              <RouterLink to={urls.santePublications[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.baro-sante-publications',
                   defaultMessage: 'Les publications en santé',
@@ -119,13 +121,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === '/baro-sante/essais-cliniques'}
+            current={path === urls.santeEssais[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.baro-sante-essais',
               defaultMessage: 'Les essais cliniques',
             })}
             asLink={(
-              <RouterLink to='/baro-sante/essais-cliniques'>
+              <RouterLink to={urls.santeEssais[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.baro-sante-essais',
                   defaultMessage: 'Les essais cliniques',
@@ -134,13 +136,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === '/baro-sante/etudes'}
+            current={path === urls.santeEtudes[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.baro-sante-etudes',
               defaultMessage: 'Les études observationnelles',
             })}
             asLink={(
-              <RouterLink to='/baro-sante/etudes'>
+              <RouterLink to={urls.santeEtudes[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.baro-sante-etudes',
                   defaultMessage: 'Les études observationnelles',
@@ -150,28 +152,35 @@ function Header() {
           />
         </NavItem>
         <NavItem
-          current={path === '/themes'}
+          current={path === urls.themes[lang]}
           title={intl.formatMessage({
             id: 'app.header.nav.themes',
             defaultMessage: 'Thèmes',
           })}
-          asLink={<RouterLink to='/themes'>Thèmes</RouterLink>}
+          asLink={(
+            <RouterLink to={urls.themes[lang]}>
+              {intl.formatMessage({
+                id: 'app.header.nav.themes',
+                defaultMessage: 'Thèmes',
+              })}
+            </RouterLink>
+          )}
         />
         <NavItem
-          current={path.startsWith('/a-propos')}
+          current={path.startsWith(`/${urls.methodologie[lang].split('/')[1]}`)}
           title={intl.formatMessage({
             id: 'app.header.nav.a-propos',
             defaultMessage: 'À propos',
           })}
         >
           <NavSubItem
-            current={path === '/a-propos/methodologie'}
+            current={path === urls.methodologie[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.a-propos-methodologie',
               defaultMessage: 'Méthodologie',
             })}
             asLink={(
-              <RouterLink to='/a-propos/methodologie'>
+              <RouterLink to={urls.methodologie[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.a-propos-methodologie',
                   defaultMessage: 'Méthodologie',
@@ -180,13 +189,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === '/a-propos/faq'}
+            current={path === urls.faq[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.a-propos-faq',
               defaultMessage: 'FAQ',
             })}
             asLink={(
-              <RouterLink to='/a-propos/faq'>
+              <RouterLink to={urls.faq[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.a-propos-faq',
                   defaultMessage: 'FAQ',
@@ -195,13 +204,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === '/a-propos/glossaire'}
+            current={path === urls.glossaire[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.a-propos-gloassaire',
               defaultMessage: 'Glossaire',
             })}
             asLink={(
-              <RouterLink to='/a-propos/glossaire'>
+              <RouterLink to={urls.glossaire[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.a-propos-gloassaire',
                   defaultMessage: 'Glossaire',
@@ -210,13 +219,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === '/a-propos/projet'}
+            current={path === urls.projet[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.a-propos-projet',
               defaultMessage: 'Le projet',
             })}
             asLink={(
-              <RouterLink to='/a-propos/projet'>
+              <RouterLink to={urls.projet[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.a-propos-projet',
                   defaultMessage: 'Le projet',
@@ -225,13 +234,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === '/a-propos/notes-flash'}
+            current={path === urls.flash[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.a-propos-notes-flash',
               defaultMessage: 'Notes flash',
             })}
             asLink={(
-              <RouterLink to='/a-propos/notes-flash'>
+              <RouterLink to={urls.flash[lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.a-propos-notes-flash',
                   defaultMessage: 'Notes flash',

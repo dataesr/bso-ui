@@ -1,26 +1,26 @@
 import PropTypes from 'prop-types';
 import { createContext, useContext, useState } from 'react';
 
+import urls from '../../config/urls';
+
 export const LangContext = createContext();
 
 export const LangContextProvider = ({ supportedLanguages, children }) => {
-  const locale = supportedLanguages.includes(
-    navigator.language.split(/[-_]/)[0],
-  )
-    ? navigator.language.split(/[-_]/)[0]
-    : 'en';
+  const locale = 'fr';
   const selectedLang = localStorage.getItem('__bso_lang__');
   const [lang, setLang] = useState(selectedLang || locale);
 
-  const switchLang = (newLang) => {
-    if (supportedLanguages.includes(newLang)) {
+  const switchLang = (newLang, pathname) => {
+    if (supportedLanguages.includes(newLang) && newLang !== lang) {
+      const url = Object.keys(urls).find((key) => urls[key][lang] === pathname);
       localStorage.setItem('__bso_lang__', newLang);
       setLang(newLang);
+      window.location.replace(urls[url][newLang]);
     }
   };
 
   return (
-    <LangContext.Provider value={{ lang, switchLang }}>
+    <LangContext.Provider value={{ lang, switchLang, urls }}>
       {children}
     </LangContext.Provider>
   );

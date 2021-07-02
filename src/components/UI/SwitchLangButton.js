@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonGroup,
   Modal,
   ModalClose,
   ModalContent,
@@ -10,10 +11,12 @@ import {
 } from '@dataesr/react-dsfr';
 import React, { useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import useLang from '../../utils/Hooks/useLang';
 
 export default function SwitchLangButton() {
+  const { pathname } = useLocation();
   const intl = useIntl();
   const { lang, switchLang } = useLang();
   const [isLangModalOpen, setIsLangModalOpen] = useState(false);
@@ -23,9 +26,9 @@ export default function SwitchLangButton() {
     <>
       <Button
         ref={langButtonRef}
-        icon='fr-fi-volume-up-fill'
+        icon='ri-volume-up-fill'
         iconPosition='left'
-        className='fr-link'
+        styleAsLink
         onClick={() => setIsLangModalOpen(!isLangModalOpen)}
       >
         <FormattedMessage
@@ -87,30 +90,32 @@ export default function SwitchLangButton() {
           </RadioGroup>
         </ModalContent>
         <ModalFooter>
-          <Button
-            title='title'
-            secondary
-            onClick={() => setIsLangModalOpen(false)}
-          >
-            <FormattedMessage
-              id='app.commons.annuler'
-              defaultMessage='Annuler'
-            />
-          </Button>
-          <Button
-            title='title'
-            onClick={() => {
-              if (lang !== selectedLang) {
-                switchLang(selectedLang);
-              }
-              setIsLangModalOpen(false);
-            }}
-          >
-            <FormattedMessage
-              id='app.lang.change'
-              defaultMessage='Changer la langue'
-            />
-          </Button>
+          <ButtonGroup isInlineFrom='sm'>
+            <Button
+              title='title'
+              secondary
+              onClick={() => setIsLangModalOpen(false)}
+            >
+              <FormattedMessage
+                id='app.commons.annuler'
+                defaultMessage='Annuler'
+              />
+            </Button>
+            <Button
+              title='title'
+              onClick={() => {
+                if (lang !== selectedLang) {
+                  switchLang(selectedLang, pathname);
+                }
+                setIsLangModalOpen(false);
+              }}
+            >
+              <FormattedMessage
+                id='app.lang.change'
+                defaultMessage='Changer la langue'
+              />
+            </Button>
+          </ButtonGroup>
         </ModalFooter>
       </Modal>
     </>
