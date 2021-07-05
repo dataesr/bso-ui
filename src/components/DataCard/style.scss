@@ -1,6 +1,29 @@
 .bso-datacard {
-  background-color: pink !important;
   color: var(--blue-dark-125);
+
+  .pink {
+    background-color: var(--publication-25);
+  }
+
+  .brown {
+    background-color: var(--brown-50);
+  }
+
+  .aqua {
+    background-color: #ddf7f9;
+  }
+
+  .yellow {
+    background-color: var(--yellow-medium-50);
+  }
+
+  .blue {
+    background-color: var(--blue-soft-50);
+  }
+
+  .green {
+    background-color: var(--green-soft-50);
+  }
 
   .gauge {
     max-height: 200px;

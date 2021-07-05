@@ -49,9 +49,7 @@ function App() {
           </Route>
           <Route
             exact
-            path={Object.keys(urls.santePublications).map(
-              (l) => urls.santePublications[l],
-            )}
+            path={urls.santePublications.tabs.map((tab) => Object.keys(tab).map((l) => tab[l]))}
           >
             <SantePublications />
           </Route>

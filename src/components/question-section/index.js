@@ -1,22 +1,20 @@
-import { Container } from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const QuestionSection = ({
-  title,
-  // info,
-  description,
-  backgroundColor,
-  children,
-}) => (
-  <section style={{ backgroundColor, paddingTop: '28px' }}>
+const QuestionSection = ({ title, description, backgroundColor, children }) => (
+  <section style={{ backgroundColor }} className='relative w-100 pt-32'>
     <Container>
-      <h2>
-        {title}
-        <span>i</span>
-      </h2>
-      <p>{description}</p>
-      {children}
+      <Row>
+        <Col n='12'>
+          <h2>
+            {title}
+            <span>i</span>
+          </h2>
+          <p>{description}</p>
+          {children}
+        </Col>
+      </Row>
     </Container>
   </section>
 );
@@ -24,14 +22,12 @@ const QuestionSection = ({
 export default QuestionSection;
 
 QuestionSection.defaultProps = {
-  // info: PropTypes.string,
   description: '',
   backgroundColor: '',
   children: '',
 };
 QuestionSection.propTypes = {
   title: PropTypes.string.isRequired,
-  // info: PropTypes.string,
   description: PropTypes.string,
   backgroundColor: PropTypes.string,
   children: PropTypes.string,

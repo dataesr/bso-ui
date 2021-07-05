@@ -1,7 +1,6 @@
 import { Col, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 
-import AnchorNavigation from '../../components/AnchorNavigaton';
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
 import Icon from '../../components/Icon';
@@ -49,36 +48,6 @@ function BaroSante() {
 en France à partir de données fiables, ouvertes et maîtrisées.'
         chip={renderChip}
         icons={renderIcons}
-      />
-      <AnchorNavigation
-        tabs={[
-          {
-            mainLabel: 'Général',
-            links: [
-              {
-                label: 'Lien vers quelque chose 1',
-                href: '#anchor',
-              },
-              {
-                label: 'Lien vers quelque chose 2',
-                href: '#anchor',
-              },
-            ],
-          },
-          {
-            mainLabel: 'La dynamique d’ouverture en santé',
-            links: [
-              {
-                label: 'Les genres des productions ouvertes 1',
-                href: '#anchor',
-              },
-              {
-                label: 'Les genres des productions ouvertes 2',
-                href: '#anchor',
-              },
-            ],
-          },
-        ]}
       />
     </div>
   );
