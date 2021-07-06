@@ -8,12 +8,14 @@ import ChartsDynamiqueOuverture from '../../../components/charts/publications/ge
 import ChartsVoiesOuverture from '../../../components/charts/publications/general/voies-ouverture';
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
+import Glossary from '../../../components/Glossary';
 import GraphNavigation from '../../../components/GraphNavigaton';
 import Content from '../../../components/GraphNavigaton/Content';
-import ItemHeader from '../../../components/GraphNavigaton/ItemHeader';
+import HeaderItem from '../../../components/GraphNavigaton/HeaderItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import { ES_API_URL, HEADERS } from '../../../config/config';
+import GlossaryWords from '../../../translations/glossary.json';
 
 const objLocation = {
   '/sante/publications/dynamique': 'La dynamique d’ouverture en santé',
@@ -104,14 +106,21 @@ function SantePublications() {
               </Col>
               <Col n='12 md-6'>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Adipisci dignissimos dolorem ex ipsum libero! Ad asperiores at
-                  dicta ducimus laboriosam magni, maiores minima natus neque
-                  odit quibusdam rem voluptatum. Officiis.
+                  Lorem ipsum dolor sit amet,
+                  {' '}
+                  <span className='glossary-entry' data-glossary-key='essais'>
+                    Essais cliniques déclarés
+                  </span>
+                  {' '}
+                  consectetur adipisicing elit. Adipisci dignissimos dolorem ex
+                  ipsum libero! Ad asperiores at dicta ducimus laboriosam magni,
+                  maiores minima natus neque odit quibusdam rem voluptatum.
+                  Officiis.
                 </p>
               </Col>
             </Row>
           </Container>
+          <Glossary words={GlossaryWords} />
           <Container>
             <section className='pb-32'>
               <Row gutters>
@@ -151,13 +160,12 @@ function SantePublications() {
         </Row>
         <Row>
           <GraphNavigation buttonLabel={objLocation[location.pathname]}>
-            <ItemHeader
+            <HeaderItem
+              paths={[
+                '/sante/publications/general',
+                '/health/publications/general',
+              ]}
               mainLabel='Général'
-              currentPath={
-                ['/sante/publications/general'].indexOf(
-                  `${location.pathname}`,
-                ) > -1
-              }
               links={[
                 {
                   label: 'Les publications en santé',
@@ -165,7 +173,7 @@ function SantePublications() {
                 },
               ]}
             >
-              <Content activePath={['/sante/publications/general']}>
+              <Content>
                 <QuestionSection
                   title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
                   info='info text'
@@ -175,14 +183,10 @@ function SantePublications() {
                   <ChartsVoiesOuverture />
                 </QuestionSection>
               </Content>
-            </ItemHeader>
-            <ItemHeader
+            </HeaderItem>
+            <HeaderItem
+              paths={['/sante/publications/dynamique']}
               mainLabel='La dynamique d’ouverture en santé'
-              currentPath={
-                ['/sante/publications/dynamique'].indexOf(
-                  `${location.pathname}`,
-                ) > -1
-              }
               links={[
                 {
                   label: 'La dynamique d’ouverture en santé',
@@ -190,7 +194,7 @@ function SantePublications() {
                 },
               ]}
             >
-              <Content activePath={['/sante/publications/dynamique']}>
+              <Content>
                 <QuestionSection
                   title='Quelle est la dynamique d’ouverture de la santé en France ?'
                   info='info text'
@@ -200,7 +204,7 @@ function SantePublications() {
                   <ChartsDynamiqueOuverture />
                 </QuestionSection>
               </Content>
-            </ItemHeader>
+            </HeaderItem>
           </GraphNavigation>
         </Row>
       </section>

@@ -6,7 +6,7 @@ import Chip from '../../components/Chip';
 import DataCard from '../../components/DataCard';
 import Glossary from '../../components/Glossary';
 import Icon from '../../components/Icon';
-import GlossaryWords from './glossary-test.json';
+import GlossaryWords from '../../translations/glossary.json';
 
 function Theme() {
   const renderChip = (

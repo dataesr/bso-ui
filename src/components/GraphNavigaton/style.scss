@@ -3,7 +3,7 @@
   width: 100%;
 
   &.sticky {
-    box-shadow: 0 12px 30px -10px rgba(82, 102, 161, 0.75);
+    box-shadow: 0 12px 30px -10px rgb(82, 102, 161);
     position: fixed;
   }
 
@@ -81,7 +81,7 @@
       border-top: 2px solid var(--blue-dark-125);
       background: var(--blue-dark-125);
 
-      &.current {
+      &.activeTab {
         color: var(--blue-dark-125);
         background: var(--blue-soft-50);
       }

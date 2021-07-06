@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-function SubItemTab({ label, current, children }) {
+function SubItemTab({ label, activeTab, children }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ function SubItemTab({ label, current, children }) {
       <button
         className={classNames('tab-button text-white', {
           active: open,
-          'marianne-bold current': current,
+          'marianne-bold activeTab': activeTab,
         })}
         type='button'
         onClick={() => setOpen(!open)}
@@ -33,7 +33,7 @@ function SubItemTab({ label, current, children }) {
 
 SubItemTab.propTypes = {
   label: PropTypes.string.isRequired,
-  current: PropTypes.bool.isRequired,
+  activeTab: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 

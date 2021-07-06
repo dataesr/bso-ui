@@ -1,7 +1,13 @@
 import { Container, Row, SideMenu } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { Children, useEffect, useRef, useState } from 'react';
+import React, {
+  Children,
+  cloneElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import useScroll from '../../utils/Hooks/useScroll';
 import useViewport from '../../utils/Hooks/useViewport';
@@ -49,10 +55,14 @@ function GraphNavigation({ buttonLabel, children }) {
     setOffsetTop,
     initOffsetTop,
   ]);
-  const contentNavigation = [];
-  const contentItemNavigation = Children.toArray(children).filter((child) => {
-    contentNavigation.push(child.props.children);
-    return child.type.name === 'ItemHeader';
+  const contents = [];
+  const headerItems = Children.toArray(children).filter((child) => {
+    const content = cloneElement(child.props.children, {
+      ...child.props.children.props,
+      paths: child.props.paths,
+    });
+    contents.push(content);
+    return child.type.name === 'HeaderItem';
   });
   return (
     <>
@@ -71,19 +81,19 @@ function GraphNavigation({ buttonLabel, children }) {
               className='navigation-mobile'
               buttonLabel={buttonLabel}
             >
-              {contentItemNavigation}
+              {headerItems}
             </SideMenu>
           )}
           {(tablet || desktop) && (
             <section className='navigation-desktop pt-8'>
               <nav>
-                <Row>{contentItemNavigation}</Row>
+                <Row>{headerItems}</Row>
               </nav>
             </section>
           )}
         </Container>
       </section>
-      {contentNavigation.map((content) => content)}
+      {contents}
     </>
   );
 }

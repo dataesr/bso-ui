@@ -5,15 +5,15 @@ import {
 } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import useViewport from '../../utils/Hooks/useViewport';
 import SubItemTab from './SubItemTab';
 
-function ItemHeader({ links, currentPath, mainLabel }) {
+function HeaderItem({ links, mainLabel, paths }) {
+  const location = useLocation();
   const { mobile, tablet, desktop } = useViewport();
-
   return (
     <>
       {mobile && (
@@ -26,7 +26,11 @@ function ItemHeader({ links, currentPath, mainLabel }) {
         </SideMenuItem>
       )}
       {(desktop || tablet) && (
-        <SubItemTab key={uuidv4()} label={mainLabel} current={currentPath}>
+        <SubItemTab
+          key={uuidv4()}
+          label={mainLabel}
+          activeTab={paths.indexOf(`${location.pathname}`) > -1}
+        >
           {links.map((link) => (
             <li key={uuidv4()}>
               <DSLink as={<Link to={link.href} />}>{link.label}</DSLink>
@@ -38,7 +42,7 @@ function ItemHeader({ links, currentPath, mainLabel }) {
   );
 }
 
-ItemHeader.propTypes = {
+HeaderItem.propTypes = {
   mainLabel: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({
@@ -46,7 +50,7 @@ ItemHeader.propTypes = {
       href: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  currentPath: PropTypes.string.isRequired,
+  paths: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default ItemHeader;
+export default HeaderItem;
