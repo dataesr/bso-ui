@@ -22,7 +22,7 @@ const objLocation = {
   '/sante/publications/general': 'Général',
 };
 function SantePublications() {
-  const [rate, setRate] = useState('');
+  const [rate, setRate] = useState(null);
   const location = useLocation();
 
   const getOpenPublicationRate = async (mill) => {

@@ -8,6 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import useScroll from '../../utils/Hooks/useScroll';
 import useViewport from '../../utils/Hooks/useViewport';
@@ -59,10 +60,12 @@ function GraphNavigation({ buttonLabel, children }) {
   const headerItems = Children.toArray(children).filter((child) => {
     const content = cloneElement(child.props.children, {
       ...child.props.children.props,
+      key: uuidv4(),
       paths: child.props.paths,
     });
     contents.push(content);
-    return child.type.name === 'HeaderItem';
+    // eslint-disable-next-line no-underscore-dangle
+    return child.props.__TYPE === 'HeaderItem';
   });
   return (
     <>

@@ -42,6 +42,10 @@ function HeaderItem({ links, mainLabel, paths }) {
   );
 }
 
+HeaderItem.defaultProps = {
+  __TYPE: 'HeaderItem',
+};
+
 HeaderItem.propTypes = {
   mainLabel: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
@@ -51,6 +55,8 @@ HeaderItem.propTypes = {
     }),
   ).isRequired,
   paths: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
+  __TYPE: PropTypes.string,
 };
 
 export default HeaderItem;
