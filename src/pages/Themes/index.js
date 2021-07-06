@@ -1,13 +1,12 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 
-import AnchorNavigation from '../../components/AnchorNavigaton';
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
 import DataCard from '../../components/DataCard';
 import Glossary from '../../components/Glossary';
 import Icon from '../../components/Icon';
-import GlossaryWords from './glossary-test.json';
+import GlossaryWords from '../../translations/glossary.json';
 
 function Theme() {
   const renderChip = (
@@ -129,36 +128,6 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
           </Col>
         </Row>
       </Container>
-      <AnchorNavigation
-        tabs={[
-          {
-            mainLabel: 'Général',
-            links: [
-              {
-                label: 'Lien vers quelque chose 1',
-                href: '#anchor',
-              },
-              {
-                label: 'Lien vers quelque chose 2',
-                href: '#anchor',
-              },
-            ],
-          },
-          {
-            mainLabel: 'La dynamique d’ouverture en santé',
-            links: [
-              {
-                label: 'Les genres des productions ouvertes 1',
-                href: '#anchor',
-              },
-              {
-                label: 'Les genres des productions ouvertes 2',
-                href: '#anchor',
-              },
-            ],
-          },
-        ]}
-      />
       <Container>
         <Row gutters>
           <Col>

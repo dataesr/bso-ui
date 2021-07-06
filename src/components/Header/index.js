@@ -106,13 +106,13 @@ function Header() {
             )}
           />
           <NavSubItem
-            current={path === urls.santePublications[lang]}
+            current={path === urls.santePublications.tabs[0][lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.baro-sante-publications',
               defaultMessage: 'Les publications en santé',
             })}
             asLink={(
-              <RouterLink to={urls.santePublications[lang]}>
+              <RouterLink to={urls.santePublications.tabs[0][lang]}>
                 {intl.formatMessage({
                   id: 'app.header.nav.baro-sante-publications',
                   defaultMessage: 'Les publications en santé',

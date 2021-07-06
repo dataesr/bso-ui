@@ -16,8 +16,18 @@ export default {
     en: '/health',
   },
   santePublications: {
-    fr: '/sante/publications',
-    en: '/health/publications',
+    tabs: [
+      {
+        fr: '/sante/publications/general',
+        en: '/health/publications/general',
+      },
+      {
+        fr: '/sante/publications/dynamique',
+        en: '/health/publications/dynamic',
+      },
+    ],
+    fr: '/sante/publications/general',
+    en: '/health/publications/general',
   },
   santeEssais: {
     fr: '/sante/essais-cliniques',

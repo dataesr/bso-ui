@@ -84,7 +84,11 @@ function Glossary({ words }) {
     <section className={classNames('bso-glossary z-3000', { openPanel })}>
       <Container>
         <DSIcon name='ri-information-fill' size='1x' iconPosition='right'>
-          <Button size='sm' onClick={() => glossaryPanel('', !openPanel)}>
+          <Button
+            size='sm'
+            onClick={() => glossaryPanel('', !openPanel)}
+            className='blue'
+          >
             {intl.formatMessage({
               id: 'app.glossary',
               defaultMessage: 'Glossaire',
@@ -121,17 +125,20 @@ function Glossary({ words }) {
         <Row>
           <Col n='12'>
             <div ref={contentRef} className='content relative'>
-              {words
-                && Object.keys(words[0]).map((key, i) => (
-                  <GlossaryItem
-                    glossaryKey={key}
-                    key={uuidv4()}
-                    definition={words[0][key].fr}
-                    active={key === activeKey}
-                    word={words[0][key].word}
-                    className={i === 0 ? 'pt-20' : ''}
-                  />
-                ))}
+              {glossaryEntries
+                && glossaryEntries.map((entry, i) => {
+                  const key = entry.getAttribute('data-glossary-key');
+                  return (
+                    <GlossaryItem
+                      glossaryKey={key}
+                      key={uuidv4()}
+                      definition={words[0][key].fr}
+                      active={key === activeKey}
+                      word={words[0][key].word}
+                      className={i === 0 ? 'pt-20' : ''}
+                    />
+                  );
+                })}
             </div>
           </Col>
         </Row>
@@ -141,12 +148,10 @@ function Glossary({ words }) {
               className='to-glossary-page'
               icon='ri-arrow-right-line'
               iconSize='lg'
-              as={(
-                <Link to='/a-propos/glossaire'>
-                  Toutes les définitions dans le glossaire complet
-                </Link>
-              )}
-            />
+              as={<Link to='/a-propos/glossaire' />}
+            >
+              Toutes les définitions dans le glossaire complet
+            </DSLink>
           </Col>
         </Row>
       </Container>

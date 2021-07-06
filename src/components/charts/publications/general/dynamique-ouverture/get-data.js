@@ -83,7 +83,6 @@ function useGetData(observationDates) {
       serie.publicationDate = filtered[filtered.length - 1].key;
       dataGraph2.push(serie);
     });
-
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
       y: el.data[el.data.length - 1],

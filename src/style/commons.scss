@@ -71,6 +71,10 @@
   padding-top: 20px;
 }
 
+.pt-32 {
+  padding-top: 32px;
+}
+
 .pb-16 {
   padding-bottom: 16px;
 }
@@ -92,8 +96,20 @@
   margin-bottom: 20px;
 }
 
+.mb-32 {
+  margin-bottom: 32px;
+}
+
 .mb-60 {
   margin-bottom: 60px;
+}
+
+/**
+ Position
+ */
+
+.w-100 {
+  width: 100%;
 }
 
 /**

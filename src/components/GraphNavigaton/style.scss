@@ -1,13 +1,13 @@
 .bso-tab-navigation {
   background-color: #fff;
-  box-shadow: 0 12px 30px -10px rgba(82, 102, 161, 0.75);
+  width: 100%;
 
   &.sticky {
+    box-shadow: 0 12px 30px -10px rgb(82, 102, 161);
     position: fixed;
-    width: 100%;
   }
 
-  .bso-tab-navigation-mobile {
+  .navigation-mobile {
     .fr-sidemenu__title {
       display: none;
     }
@@ -81,7 +81,13 @@
       border-top: 2px solid var(--blue-dark-125);
       background: var(--blue-dark-125);
 
+      &.activeTab {
+        color: var(--blue-dark-125);
+        background: var(--blue-soft-50);
+      }
+
       &.active {
+        color: #fff;
         background: var(--blue-soft-125);
       }
     }

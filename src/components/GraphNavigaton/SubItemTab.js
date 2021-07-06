@@ -3,13 +3,16 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-function Tab({ label, children }) {
+function SubItemTab({ label, activeTab, children }) {
   const [open, setOpen] = useState(false);
 
   return (
     <section className='tab marianne-light relative'>
       <button
-        className={classNames('tab-button text-white', { active: open })}
+        className={classNames('tab-button text-white', {
+          active: open,
+          'marianne-bold activeTab': activeTab,
+        })}
         type='button'
         onClick={() => setOpen(!open)}
       >
@@ -28,9 +31,10 @@ function Tab({ label, children }) {
   );
 }
 
-Tab.propTypes = {
+SubItemTab.propTypes = {
   label: PropTypes.string.isRequired,
+  activeTab: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default Tab;
+export default SubItemTab;
