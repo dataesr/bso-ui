@@ -9,9 +9,9 @@ import ChartsVoiesOuverture from '../../../components/charts/publications/genera
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
-import GraphSection from '../../../components/GraphSection';
-import ContentItem from '../../../components/GraphSection/ContentItem';
-import SectionItem from '../../../components/GraphSection/SectionItem';
+import GraphSection from '../../../components/GraphNavigation';
+import GraphContent from '../../../components/GraphNavigation/GraphContent';
+import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import { ES_API_URL, HEADERS } from '../../../config/config';
@@ -160,7 +160,7 @@ function SantePublications() {
         </Row>
         <Row>
           <GraphSection buttonLabel={objLocation[location.pathname]}>
-            <SectionItem
+            <GraphItem
               paths={[
                 '/sante/publications/general',
                 '/health/publications/general',
@@ -173,7 +173,7 @@ function SantePublications() {
                 },
               ]}
             >
-              <ContentItem>
+              <GraphContent>
                 <QuestionSection
                   title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
                   info='info text'
@@ -182,9 +182,9 @@ function SantePublications() {
                 >
                   <ChartsVoiesOuverture />
                 </QuestionSection>
-              </ContentItem>
-            </SectionItem>
-            <SectionItem
+              </GraphContent>
+            </GraphItem>
+            <GraphItem
               paths={['/sante/publications/dynamique']}
               mainLabel='La dynamique d’ouverture en santé'
               links={[
@@ -194,7 +194,7 @@ function SantePublications() {
                 },
               ]}
             >
-              <ContentItem>
+              <GraphContent>
                 <QuestionSection
                   title='Quelle est la dynamique d’ouverture de la santé en France ?'
                   info='info text'
@@ -203,8 +203,8 @@ function SantePublications() {
                 >
                   <ChartsDynamiqueOuverture />
                 </QuestionSection>
-              </ContentItem>
-            </SectionItem>
+              </GraphContent>
+            </GraphItem>
           </GraphSection>
         </Row>
       </section>

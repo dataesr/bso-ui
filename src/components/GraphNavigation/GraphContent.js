@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-function ContentItem({ children, paths }) {
+function GraphContent({ children, paths }) {
   const location = useLocation();
   return paths.indexOf(`${location.pathname}`) > -1 ? <>{children}</> : null;
 }
 
-ContentItem.defaultProps = {
+GraphContent.defaultProps = {
   paths: [''],
 };
-ContentItem.propTypes = {
+GraphContent.propTypes = {
   children: PropTypes.node.isRequired,
   paths: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default ContentItem;
+export default GraphContent;

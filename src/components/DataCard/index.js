@@ -16,7 +16,7 @@ function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
       <CardDescription as='div'>
         {topData && <p className='top-data marianne-extra-bold'>{topData}</p>}
         {percentage ? <Gauge percentage={percentage} /> : <Loader />}
-        <div className='sentence'>{sentence}</div>
+        <p className='sentence'>{sentence}</p>
         {buttonLabel && (
           <Button
             icon='ri-arrow-down-line'

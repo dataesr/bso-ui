@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-function TabSubItem({ label, activeTab, children }) {
+function GraphTabSubItem({ label, activeTab, children }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -31,10 +31,10 @@ function TabSubItem({ label, activeTab, children }) {
   );
 }
 
-TabSubItem.propTypes = {
+GraphTabSubItem.propTypes = {
   label: PropTypes.string.isRequired,
   activeTab: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default TabSubItem;
+export default GraphTabSubItem;

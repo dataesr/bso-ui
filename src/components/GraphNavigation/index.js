@@ -70,7 +70,7 @@ function GraphSection({ buttonLabel, children }) {
         for (let i = 0; i < Children.toArray(children).length; i += 1) {
           const section = Children.toArray(children)[i];
           // eslint-disable-next-line no-underscore-dangle
-          if (section.props.__TYPE === 'SectionItem') {
+          if (section.props.__TYPE === 'GraphItem') {
             headers.push(section);
           }
 
