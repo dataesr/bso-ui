@@ -17,6 +17,9 @@
   "app.commons.fermer": "close",
   "app.commons.modal.fermer": "Close the modal window",
   "app.commons.graph-comment.label": "Comment",
+  "app.graph.download": "Download",
+  "app.graph.integration": "Integration",
+  "app.graph.share": "Share",
   "app.theme.dark": "Dark theme",
   "app.theme.light": "Light theme",
   "app.theme.params": "Theme parameter",
@@ -61,5 +64,9 @@
   "app.sante-publi.general.voies-ouverture.chart-repartition-taux.source": "EN source",
   "app.sante-publi.general.voies-ouverture.chart-repartition-publications.title": "EN Répartition des publications ouvertes en santé par types d'hébergement",
   "app.sante-publi.general.voies-ouverture.chart-repartition-publications.comments": "EN Veniam incididunt nostrud sunt qui occaecat dolore esse sit aliquip excepteur ipsum. Adipisicing et proident culpa labore irure anim irure occaecat commodo",
+  "app.sante-publi.general.voies-ouverture.chart-repartition-publications.tooltip": "tooltip",
+  "app.sante-publi.general.voies-ouverture.chart-repartition-taux.tooltip": "tooltip",
+  "app.sante-publi.general.voies-ouverture.chart-evolution-taux.tooltip": "tooltip",
+  "app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion.tooltip": "tooltip",
   "app.sante-publi.general.voies-ouverture.chart-repartition-publications.source": "EN source"
 }

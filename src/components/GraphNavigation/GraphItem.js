@@ -9,9 +9,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import useViewport from '../../utils/Hooks/useViewport';
-import SubItemTab from './SubItemTab';
+import GraphTabSubItem from './GraphTabSubItem';
 
-function HeaderItem({ links, mainLabel, paths }) {
+function GraphItem({ links, mainLabel, paths }) {
   const location = useLocation();
   const { mobile, tablet, desktop } = useViewport();
   return (
@@ -26,7 +26,7 @@ function HeaderItem({ links, mainLabel, paths }) {
         </SideMenuItem>
       )}
       {(desktop || tablet) && (
-        <SubItemTab
+        <GraphTabSubItem
           key={uuidv4()}
           label={mainLabel}
           activeTab={paths.indexOf(`${location.pathname}`) > -1}
@@ -36,17 +36,17 @@ function HeaderItem({ links, mainLabel, paths }) {
               <DSLink as={<Link to={link.href} />}>{link.label}</DSLink>
             </li>
           ))}
-        </SubItemTab>
+        </GraphTabSubItem>
       )}
     </>
   );
 }
 
-HeaderItem.defaultProps = {
-  __TYPE: 'HeaderItem',
+GraphItem.defaultProps = {
+  __TYPE: 'GraphItem',
 };
 
-HeaderItem.propTypes = {
+GraphItem.propTypes = {
   mainLabel: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({
@@ -59,4 +59,4 @@ HeaderItem.propTypes = {
   __TYPE: PropTypes.string,
 };
 
-export default HeaderItem;
+export default GraphItem;

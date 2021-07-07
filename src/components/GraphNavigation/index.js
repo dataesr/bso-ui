@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, {
   Children,
   cloneElement,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -13,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import useScroll from '../../utils/Hooks/useScroll';
 import useViewport from '../../utils/Hooks/useViewport';
 
-function GraphNavigation({ buttonLabel, children }) {
+function GraphSection({ buttonLabel, children }) {
   const [sticky, setSticky] = useState(false);
   const [offsetTop, setOffsetTop] = useState(null);
   const [initOffsetTop, setInitOffsetTop] = useState(null);
@@ -22,6 +23,8 @@ function GraphNavigation({ buttonLabel, children }) {
   const { scrollTop, scrollingDown } = useScroll();
   const { mobile, tablet, desktop } = useViewport();
   const ref = useRef(null);
+  const [contents, setContents] = useState([]);
+  const [headerItems, setHeaderItems] = useState(null);
 
   useEffect(() => {
     if (sticky && !bannerHeight) {
@@ -37,36 +40,54 @@ function GraphNavigation({ buttonLabel, children }) {
     }
   }, [offsetTop, setOffsetTop]);
 
-  useEffect(() => {
-    if (ref.current.offsetTop !== offsetTop) {
-      setOffsetTop(ref.current.offsetTop);
-    }
-
+  const handleScroll = useCallback(() => {
     if (scrollTop > offsetTop - bannerHeight && scrollingDown) {
       setSticky(true);
     } else if (scrollTop < initOffsetTop && !scrollingDown) {
       setSticky(false);
     }
   }, [
-    bannerHeight,
     scrollTop,
-    scrollingDown,
     setSticky,
-    offsetTop,
-    setOffsetTop,
     initOffsetTop,
+    scrollingDown,
+    offsetTop,
+    bannerHeight,
   ]);
-  const contents = [];
-  const headerItems = Children.toArray(children).filter((child) => {
-    const content = cloneElement(child.props.children, {
-      ...child.props.children.props,
-      key: uuidv4(),
-      paths: child.props.paths,
-    });
-    contents.push(content);
-    // eslint-disable-next-line no-underscore-dangle
-    return child.props.__TYPE === 'HeaderItem';
-  });
+
+  useEffect(() => {
+    if (ref.current.offsetTop !== offsetTop) {
+      setOffsetTop(ref.current.offsetTop);
+    }
+    handleScroll();
+  }, [offsetTop, handleScroll]);
+
+  useEffect(
+    () => () => {
+      const content = [];
+      const headers = [];
+      if (!headerItems && contents.length === 0) {
+        for (let i = 0; i < Children.toArray(children).length; i += 1) {
+          const section = Children.toArray(children)[i];
+          // eslint-disable-next-line no-underscore-dangle
+          if (section.props.__TYPE === 'GraphItem') {
+            headers.push(section);
+          }
+
+          content.push(
+            cloneElement(section.props.children, {
+              ...section.props.children.props,
+              key: uuidv4(),
+              paths: section.props.paths,
+            }),
+          );
+        }
+        setHeaderItems(headers);
+        setContents(content);
+      }
+    },
+    [children, setContents, contents, headerItems, setHeaderItems],
+  );
   return (
     <>
       <section
@@ -101,9 +122,9 @@ function GraphNavigation({ buttonLabel, children }) {
   );
 }
 
-GraphNavigation.propTypes = {
+GraphSection.propTypes = {
   children: PropTypes.node.isRequired,
   buttonLabel: PropTypes.string.isRequired,
 };
 
-export default GraphNavigation;
+export default GraphSection;

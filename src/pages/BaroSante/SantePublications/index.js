@@ -9,9 +9,9 @@ import ChartsVoiesOuverture from '../../../components/charts/publications/genera
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
-import GraphNavigation from '../../../components/GraphNavigaton';
-import Content from '../../../components/GraphNavigaton/Content';
-import HeaderItem from '../../../components/GraphNavigaton/HeaderItem';
+import GraphSection from '../../../components/GraphNavigation';
+import GraphContent from '../../../components/GraphNavigation/GraphContent';
+import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import { ES_API_URL, HEADERS } from '../../../config/config';
@@ -159,8 +159,8 @@ function SantePublications() {
           </Container>
         </Row>
         <Row>
-          <GraphNavigation buttonLabel={objLocation[location.pathname]}>
-            <HeaderItem
+          <GraphSection buttonLabel={objLocation[location.pathname]}>
+            <GraphItem
               paths={[
                 '/sante/publications/general',
                 '/health/publications/general',
@@ -173,7 +173,7 @@ function SantePublications() {
                 },
               ]}
             >
-              <Content>
+              <GraphContent>
                 <QuestionSection
                   title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
                   info='info text'
@@ -182,9 +182,9 @@ function SantePublications() {
                 >
                   <ChartsVoiesOuverture />
                 </QuestionSection>
-              </Content>
-            </HeaderItem>
-            <HeaderItem
+              </GraphContent>
+            </GraphItem>
+            <GraphItem
               paths={['/sante/publications/dynamique']}
               mainLabel='La dynamique d’ouverture en santé'
               links={[
@@ -194,7 +194,7 @@ function SantePublications() {
                 },
               ]}
             >
-              <Content>
+              <GraphContent>
                 <QuestionSection
                   title='Quelle est la dynamique d’ouverture de la santé en France ?'
                   info='info text'
@@ -203,9 +203,9 @@ function SantePublications() {
                 >
                   <ChartsDynamiqueOuverture />
                 </QuestionSection>
-              </Content>
-            </HeaderItem>
-          </GraphNavigation>
+              </GraphContent>
+            </GraphItem>
+          </GraphSection>
         </Row>
       </section>
     </Container>

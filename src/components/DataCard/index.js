@@ -13,7 +13,7 @@ function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
       className='bso-datacard text-center'
       bodyClassName={background}
     >
-      <CardDescription>
+      <CardDescription as='div'>
         {topData && <p className='top-data marianne-extra-bold'>{topData}</p>}
         {percentage ? <Gauge percentage={percentage} /> : <Loader />}
         <p className='sentence'>{sentence}</p>

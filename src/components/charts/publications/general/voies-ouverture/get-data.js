@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
@@ -17,113 +17,116 @@ function useGetData(observationDate) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
-  async function getDataForLastObservationDate(lastObservationDate) {
-    const query = {
-      size: 0,
-      aggs: {
-        by_publication_year: {
-          terms: {
-            field: 'publication_year',
-          },
-          aggs: {
-            by_oa_host_type: {
-              terms: {
-                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+  const getDataForLastObservationDate = useCallback(
+    async (lastObservationDate) => {
+      const query = {
+        size: 0,
+        aggs: {
+          by_publication_year: {
+            terms: {
+              field: 'publication_year',
+            },
+            aggs: {
+              by_oa_host_type: {
+                terms: {
+                  field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+                },
               },
             },
           },
         },
-      },
-    };
+      };
 
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
-    const data = res.data.aggregations.by_publication_year.buckets;
+      const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+      const data = res.data.aggregations.by_publication_year.buckets;
 
-    // Tri pour avoir les années dans l'ordre d'affichage du graph
-    data.sort((a, b) => a.key - b.key);
+      // Tri pour avoir les années dans l'ordre d'affichage du graph
+      data.sort((a, b) => a.key - b.key);
 
-    const categories = []; // Elements d'abscisse
-    const repository = []; // archive ouverte
-    const publisher = []; // éditeur
-    const publisherRepository = []; // les 2
+      const categories = []; // Elements d'abscisse
+      const repository = []; // archive ouverte
+      const publisher = []; // éditeur
+      const publisherRepository = []; // les 2
 
-    data
-      .filter(
-        (el) => el.key > 2012 && el.key < lastObservationDate.substring(0, 4),
-      )
-      .forEach((el) => {
-        categories.push(el.key);
-        let temp = el.by_oa_host_type.buckets.find(
-          (item) => item.key === 'repository',
-        );
-        repository.push(temp.doc_count || 0);
+      data
+        .filter(
+          (el) => el.key > 2012 && el.key < lastObservationDate.substring(0, 4),
+        )
+        .forEach((el) => {
+          categories.push(el.key);
+          let temp = el.by_oa_host_type.buckets.find(
+            (item) => item.key === 'repository',
+          );
+          repository.push(temp.doc_count || 0);
 
-        temp = el.by_oa_host_type.buckets.find(
-          (item) => item.key === 'publisher',
-        );
-        publisher.push(temp.doc_count || 0);
+          temp = el.by_oa_host_type.buckets.find(
+            (item) => item.key === 'publisher',
+          );
+          publisher.push(temp.doc_count || 0);
 
-        temp = el.by_oa_host_type.buckets.find(
-          (item) => item.key === 'publisher;repository',
-        );
-        publisherRepository.push(temp.doc_count || 0);
-      });
+          temp = el.by_oa_host_type.buckets.find(
+            (item) => item.key === 'publisher;repository',
+          );
+          publisherRepository.push(temp.doc_count || 0);
+        });
 
-    const dataGraph = [
-      {
-        name: intl.formatMessage({
-          id: 'app.type-hebergement.publisher-repository',
-        }),
-        data: publisherRepository,
-        color: editeurarchive,
-      },
-      {
-        name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
-        data: repository,
-        color: archiveouverte100,
-      },
-      {
-        name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-        data: publisher,
-        color: editeurplateforme100,
-      },
-    ];
+      const dataGraph = [
+        {
+          name: intl.formatMessage({
+            id: 'app.type-hebergement.publisher-repository',
+          }),
+          data: publisherRepository,
+          color: editeurarchive,
+        },
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
+          data: repository,
+          color: archiveouverte100,
+        },
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          data: publisher,
+          color: editeurplateforme100,
+        },
+      ];
 
-    const dataGraph3 = [
-      {
-        name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-        value: data[data.length - 1].by_oa_host_type.buckets.find(
-          (item) => item.key === 'publisher',
-        ).doc_count,
-        color: editeurplateforme100,
-      },
-      {
-        name: intl.formatMessage({
-          id: 'app.type-hebergement.publisher-repository',
-        }),
-        value: data[data.length - 1].by_oa_host_type.buckets.find(
-          (item) => item.key === 'publisher;repository',
-        ).doc_count,
-        color: editeurarchive,
-      },
-      {
-        name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
-        value: data[data.length - 1].by_oa_host_type.buckets.find(
-          (item) => item.key === 'repository',
-        ).doc_count,
-        color: archiveouverte100,
-      },
-      {
-        name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-        value: data[data.length - 1].by_oa_host_type.buckets.find(
-          (item) => item.key === 'closed',
-        ).doc_count,
-        color: accesferme,
-      },
-    ];
+      const dataGraph3 = [
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          value: data[data.length - 1].by_oa_host_type.buckets.find(
+            (item) => item.key === 'publisher',
+          ).doc_count,
+          color: editeurplateforme100,
+        },
+        {
+          name: intl.formatMessage({
+            id: 'app.type-hebergement.publisher-repository',
+          }),
+          value: data[data.length - 1].by_oa_host_type.buckets.find(
+            (item) => item.key === 'publisher;repository',
+          ).doc_count,
+          color: editeurarchive,
+        },
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
+          value: data[data.length - 1].by_oa_host_type.buckets.find(
+            (item) => item.key === 'repository',
+          ).doc_count,
+          color: archiveouverte100,
+        },
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
+          value: data[data.length - 1].by_oa_host_type.buckets.find(
+            (item) => item.key === 'closed',
+          ).doc_count,
+          color: accesferme,
+        },
+      ];
 
-    return { categories, dataGraph, dataGraph3 };
-  }
+      return { categories, dataGraph, dataGraph3 };
+    },
+    [intl],
+  );
 
   useEffect(() => {
     async function getData() {
@@ -137,7 +140,13 @@ function useGetData(observationDate) {
       }
     }
     getData();
-  }, [observationDate]);
+  }, [
+    observationDate,
+    setData,
+    setLoading,
+    setError,
+    getDataForLastObservationDate,
+  ]);
 
   return { allData, isLoading, isError };
 }

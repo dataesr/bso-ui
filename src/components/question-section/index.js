@@ -24,11 +24,11 @@ export default QuestionSection;
 QuestionSection.defaultProps = {
   description: '',
   backgroundColor: '',
-  children: '',
+  children: null,
 };
 QuestionSection.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   backgroundColor: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.node,
 };

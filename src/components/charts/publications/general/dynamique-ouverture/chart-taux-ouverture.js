@@ -90,7 +90,7 @@ const Chart = () => {
 
   return (
     <>
-      <div fluid className='graph-container'>
+      <div className='graph-container'>
         {/* <GraphFilters /> */}
         <HighchartsReact
           highcharts={Highcharts}
