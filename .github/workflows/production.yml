@@ -8,7 +8,7 @@ on:
 env:
   # Must match k8s deployment name
   DEPLOYMENT: bso-ui
-  DEPLOYMENT_URL: https://bso.dataesr.ovh
+  DEPLOYMENT_URL: barometredelascienceouverte.gouv.fr
   SLACK_NOTIFICATION_CHANNEL: '#bsso_bso2'
 
 jobs:

@@ -1,5 +1,6 @@
 import './style/main.scss';
 
+import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const messages = {
@@ -14,6 +15,10 @@ function WaitForIt({ language }) {
     </div>
   );
 }
+
+WaitForIt.propTypes = {
+  language: PropTypes.string.isRequired,
+};
 
 function App() {
   const language = window.location.host.startsWith('french') ? 'en' : 'fr';
