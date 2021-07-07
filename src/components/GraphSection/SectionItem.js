@@ -9,9 +9,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import useViewport from '../../utils/Hooks/useViewport';
-import SubItemTab from './SubItemTab';
+import TabSubItem from './TabSubItem';
 
-function HeaderItem({ links, mainLabel, paths }) {
+function SectionItem({ links, mainLabel, paths }) {
   const location = useLocation();
   const { mobile, tablet, desktop } = useViewport();
   return (
@@ -26,7 +26,7 @@ function HeaderItem({ links, mainLabel, paths }) {
         </SideMenuItem>
       )}
       {(desktop || tablet) && (
-        <SubItemTab
+        <TabSubItem
           key={uuidv4()}
           label={mainLabel}
           activeTab={paths.indexOf(`${location.pathname}`) > -1}
@@ -36,17 +36,17 @@ function HeaderItem({ links, mainLabel, paths }) {
               <DSLink as={<Link to={link.href} />}>{link.label}</DSLink>
             </li>
           ))}
-        </SubItemTab>
+        </TabSubItem>
       )}
     </>
   );
 }
 
-HeaderItem.defaultProps = {
-  __TYPE: 'HeaderItem',
+SectionItem.defaultProps = {
+  __TYPE: 'SectionItem',
 };
 
-HeaderItem.propTypes = {
+SectionItem.propTypes = {
   mainLabel: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({
@@ -59,4 +59,4 @@ HeaderItem.propTypes = {
   __TYPE: PropTypes.string,
 };
 
-export default HeaderItem;
+export default SectionItem;

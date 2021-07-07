@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-function SubItemTab({ label, activeTab, children }) {
+function TabSubItem({ label, activeTab, children }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -31,10 +31,10 @@ function SubItemTab({ label, activeTab, children }) {
   );
 }
 
-SubItemTab.propTypes = {
+TabSubItem.propTypes = {
   label: PropTypes.string.isRequired,
   activeTab: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default SubItemTab;
+export default TabSubItem;

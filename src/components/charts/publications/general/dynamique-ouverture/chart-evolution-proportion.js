@@ -69,7 +69,7 @@ const Chart = () => {
 
   return (
     <>
-      <div fluid className='graph-container'>
+      <div className='graph-container'>
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph2}

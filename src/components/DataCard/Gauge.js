@@ -7,7 +7,7 @@ function Gauge({ percentage }) {
 
   return (
     percentage && (
-      <div className='gauge'>
+      <span className='gauge'>
         <svg
           version='1.1'
           x='0px'
@@ -43,7 +43,7 @@ function Gauge({ percentage }) {
             {`${percentage}%`}
           </text>
         </svg>
-      </div>
+      </span>
     )
   );
 }
