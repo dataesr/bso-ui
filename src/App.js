@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const messages = {
   fr: 'Le nouveau baromêtre de la science ouverte arrive bientôt...',
-  en: 'A new French Open Science Monitor is comming soon...',
+  en: 'A new French Open Science Monitor is coming soon...',
 };
 
 function WaitForIt({ language }) {
