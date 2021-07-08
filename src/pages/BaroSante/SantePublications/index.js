@@ -15,7 +15,7 @@ import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import { ES_API_URL, HEADERS } from '../../../config/config';
-import GlossaryWords from '../../../translations/glossary.json';
+import GlossaryEntries from '../../../translations/glossary.json';
 
 const objLocation = {
   '/sante/publications/dynamique': 'La dynamique d’ouverture en santé',
@@ -108,7 +108,7 @@ function SantePublications() {
                 <p>
                   Lorem ipsum dolor sit amet,
                   {' '}
-                  <span className='glossary-entry' data-glossary-key='essais'>
+                  <span className='glossary-entry' data-glossary-key='essai_clinique'>
                     Essais cliniques déclarés
                   </span>
                   {' '}
@@ -120,7 +120,7 @@ function SantePublications() {
               </Col>
             </Row>
           </Container>
-          <Glossary words={GlossaryWords} />
+          <Glossary entries={GlossaryEntries} />
           <Container>
             <section className='pb-32'>
               <Row gutters>

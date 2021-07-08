@@ -1,24 +1,173 @@
 [
   {
-    "essais": {
-      "word": "Essais cliniques déclarés",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "apc": {
+      "entry": { 
+        "fr": "Frais de publications",
+	"en": "Article Processing Charges (APC)"
+      },
+      "definition": {
+	"fr": "Certaines revues en accès ouvert demandent aux auteurs des frais de publication, appelés aussi APC (Article Processing Charges) pour financer le travail éditorial. Il existe d’autres modèles de financement.",
+	"en": "Some open access journals charge authors a publication fee to fund editorial work. There are other business models."
+      }
     },
-    "test0": {
-      "word": "Test0",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "acces_ouvert": {
+      "entry": { 
+        "fr": "Accès ouvert (aux publications) ",
+	"en": "Open access (to publications)"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
     },
-    "test1": {
-      "word": "Test1",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "essai_clinique": {
+      "entry": { 
+        "fr": "Essai clinique",
+	"en": "Clinical study"
+      },
+      "definition": {
+	"fr": "Aussi appelé études interventionelles, c'est un type de recherche clinique dans laquelle les participants sont répartis dans des groupes qui reçoivent une ou plusieurs interventions afin que les chercheurs puissent évaluer les effets des interventions sur les résultats biomédicaux ou liés à la santé. La notion d'intervention est définie comme tout acte réalisé sur la personne non justifié par la prise en charge médicale de la personne",
+	"en": "Also called interventional studies, this is a type of clinical research in which participants are assigned to groups that receive one or more interventions so that researchers can evaluate the effects of the interventions on biomedical or health-related outcomes. Intervention is defined as any act performed on the person that is not justified by the medical management of the person"
+      }
     },
-    "test2": {
-      "word": "Test2",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "etude_observationelle": {
+      "entry": { 
+        "fr": "Etude observationelle",
+	"en": "Observational study"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
+    },
+    "diamond": {
+      "entry": { 
+        "fr": "Modèle Diamant",
+	"en": "Diamond model"
+      },
+      "definition": {
+	"fr": "La majorité des revues en accès ouvert ne demandent pas de frais de publication aux auteurs. Dans ce modèle de publication en accès ouvert, les coûts de publication sont pris en charge en amont par un État, une université, un consortium d’établissements publics ou une organisation à but non lucratif.",
+	"en": "The majority of open access journals do not charge authors a publication fee. In this model of open access publishing, the costs of publication are borne upstream by a state, university, consortium of public institutions, or nonprofit organization."
+      }
+    },
+    "hybrid": {
+      "entry": { 
+        "fr": "Revue hybride",
+	"en": "Hybrid journal"
+      },
+      "definition": {
+        "fr": "Est considérée comme hybride une revue qui est diffusée par abonnement et qui propose à ses auteurs de payer des frais de publication (également appelés « APC ») afin que leur article soit publié en accès ouvert. Ce paiement de frais supplémentaires dans une revue sous abonnement instaure un double paiement (« double-dipping »).",
+	"en": "A hybrid journal is one that is distributed by subscription and that offers to pay a publication fee (also called 'APC') to its authors in order to have their article published in open access. This payment of additional fees in a subscription journal creates a double payment ('double-dipping')."
+      }
+    },
+    "publication": {
+      "entry": { 
+        "fr": "Publication",
+	"en": "Publication"
+      },
+      "definition": {
+	"fr": "Communication scientifique que les chercheurs font de leurs travaux. Ces publications ont subi une évaluation scientifique par les pairs.",
+	"en": "Scholarly communication that researchers make of their work. These publications have undergone a scientific evaluation by peers."
+      }
+    },
+    "hal": {
+      "entry": { 
+        "fr": "HAL",
+	"en": "HAL"
+      },
+      "definition": {
+	"fr": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service.",
+	"en": "French national open archive carried by the Centre for Direct Scientific Communication (CCSD), a joint service unit."
+      }
+    },
+    "doi": {
+      "entry": { 
+        "fr": "DOI (Digital Object Identifier)"
+      },
+      "definition": {
+        "fr": "Suite de chiffres, lettres et symboles, constituant un identifiant attribué à une publication, de façon non ambigüe et pérenne.",
+	"en": "A sequence of numbers, letters and symbols, constituting an identifier assigned to a publication in an unambiguous and permanent manner."
+      }
+    },
+    "unpaywall": {
+      "entry": { 
+        "fr": "Unpaywall",
+	"en": "Unpaywall"
+      },
+      "definition": {
+	"fr": "Base de données mondiale, ouverte, recensant plus de 100 millions de DOIs avec leur méta-données disponibles (titre, auteur, éditeur …) et leur type d’accès.",
+	"en": "Worldwide, open database, listing more than 100 million DOIs with their available metadata (title, author, publisher ...) and their access type."
+      }
+    },
+    "archive_ouverte": {
+      "entry": { 
+        "fr": "todo",
+	"en": "todo"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
+    },
+    "promoteur": {
+      "entry": { 
+        "fr": "Promoteur",
+	"en": "Lead sponsor"
+      },
+      "definition": {
+	"fr": "Personne physique ou morale qui est responsable d'une recherche impliquant la personne humaine, en assure la gestion et vérifie que son financement est prévu.",
+	"en": "A natural or legal person who is responsible for research involving the human person, ensures its management and verifies that its funding is provided"
+      }
+    },
+    "clinicaltrials.gov": {
+      "entry": { 
+        "fr": "todo",
+	"en": "todo"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
+    },
+    "euctr": {
+      "entry": { 
+        "fr": "todo",
+	"en": "todo"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
+    },
+    "type_hebergement_oa": {
+      "entry": { 
+        "fr": "todo",
+	"en": "todo"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
+    },
+    "resultat_essai_clinique": {
+      "entry": { 
+        "fr": "todo",
+	"en": "todo"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
+    },
+    "pgo": {
+      "entry": { 
+        "fr": "todo",
+	"en": "todo"
+      },
+      "definition": {
+	"fr": "todo",
+	"en": "todo"
+      }
     }
   }
 ]

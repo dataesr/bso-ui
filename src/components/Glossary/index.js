@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import GlossaryItem from './GlossaryItem';
 
-function Glossary({ words }) {
+function Glossary({ entries }) {
   const intl = useIntl();
   const contentRef = useRef();
   const [openPanel, setOpenPanel] = useState(false);
@@ -47,12 +47,12 @@ function Glossary({ words }) {
       glossaryPanel(glossaryKey, true);
       activeClassManage(glossaryKey, 'add');
 
-      const glossaryWord = document.querySelector(
-        `[data-glossary-word='${glossaryKey}']`,
+      const glossaryEntry = document.querySelector(
+        `[data-glossary-entry='${glossaryKey}']`,
       );
 
-      if (glossaryWord && contentRef.current) {
-        contentRef.current.scrollTop = glossaryWord.offsetTop - 15;
+      if (glossaryEntry && contentRef.current) {
+        contentRef.current.scrollTop = glossaryEntry.offsetTop - 15;
       }
     },
     [glossaryPanel, activeClassManage],
@@ -132,9 +132,9 @@ function Glossary({ words }) {
                     <GlossaryItem
                       glossaryKey={key}
                       key={uuidv4()}
-                      definition={words[0][key].fr}
+                      definition={entries[0][key].definition.fr}
                       active={key === activeKey}
-                      word={words[0][key].word}
+                      entry={entries[0][key].entry.fr}
                       className={i === 0 ? 'pt-20' : ''}
                     />
                   );
@@ -160,6 +160,6 @@ function Glossary({ words }) {
 }
 
 Glossary.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.object).isRequired,
+  entries: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 export default Glossary;
