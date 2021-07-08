@@ -157,13 +157,13 @@
     display: block;
   }
 
-  .px-md-64 {
-    padding-left: 64px;
-    padding-right: 64px;
+  .px-xl-142 {
+    padding-left: 142px;
+    padding-right: 142px;
   }
 }
 
-@media screen and(min-width: 736px) {
+@media screen and(min-width: 768px) {
   .text-center-l {
     text-align: center;
   }
@@ -172,12 +172,17 @@
     text-align: left;
   }
 
-  .mb-m-0 {
+  .mb-l-0 {
     margin-bottom: 0;
   }
 
-  .mb-m-60 {
+  .mb-l-60 {
     margin-bottom: 60px;
+  }
+
+  .px-l-64 {
+    padding-left: 64px;
+    padding-right: 64px;
   }
 }
 
@@ -188,6 +193,11 @@
 
   .text-left-m {
     text-align: left;
+  }
+
+  .px-md-64 {
+    padding-left: 64px;
+    padding-right: 64px;
   }
 }
 

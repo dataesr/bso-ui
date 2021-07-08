@@ -16,6 +16,7 @@ import Chip from '../../components/Chip';
 import Icon from '../../components/Icon';
 import IconCard from '../../components/IconCard';
 import PageExtract from '../../components/PageExtract';
+import logoBso from '../../images/logo-bso.png';
 
 function BaroSante() {
   const renderChip = (
@@ -113,6 +114,52 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
               />
             </Col>
             <Col n='12'>
+              <Container fluid>
+                <section className='px-20 py-48 px-l-64 px-xl-142 bg-medium-blue'>
+                  <Row>
+                    <Col n='12'>
+                      <Card
+                        bodyClassName='bg-white'
+                        href='/'
+                        isHorizontal
+                        hasArrow={false}
+                      >
+                        <CardDescription as='div'>
+                          <Container fluid>
+                            <Row justifyContent='center' alignItems='middle'>
+                              <Col n='12 md-4'>
+                                <p className='text-card-logo pb-16 blue-dark text-center text-left-l marianne-bold fs-24-32'>
+                                  Explorer aussi le Baromètre national de la
+                                  science ouverte
+                                </p>
+                              </Col>
+                              <Col n='12 md-7'>
+                                <section className='wrap-logo text-center'>
+                                  <img
+                                    className='w-100'
+                                    src={logoBso}
+                                    alt='logo baromètre natonal'
+                                  />
+                                </section>
+                              </Col>
+                              <Col n='12'>
+                                <DSIcon name='ri-link' size='2x' as='div'>
+                                  <DSLink
+                                    className='w-100 text-right'
+                                    as={<Link to='/national' />}
+                                  />
+                                </DSIcon>
+                              </Col>
+                            </Row>
+                          </Container>
+                        </CardDescription>
+                      </Card>
+                    </Col>
+                  </Row>
+                </section>
+              </Container>
+            </Col>
+            <Col n='12'>
               <Container>
                 <section>
                   <Row>
@@ -172,7 +219,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                         )}
                       />
                     </Col>
-                    <Col n='12' className='mb-20 none block-xl'>
+                    <Col n='12' className='mb-20'>
                       <Card
                         bodyClassName='bg-white'
                         href='/'

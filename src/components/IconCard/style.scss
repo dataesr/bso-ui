@@ -1,0 +1,14 @@
+.icon-card {
+  &.fr-card__body {
+    padding: 20px 0 10px 20px;
+  }
+
+  .fr-card__desc {
+    margin-bottom: 0;
+  }
+
+  a {
+    @include font-size(12, 24);
+    box-shadow: none;
+  }
+}
