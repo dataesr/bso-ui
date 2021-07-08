@@ -36,6 +36,10 @@
   display: flex;
 }
 
+.none {
+  display: none;
+}
+
 /**
   Colorimétrie
  */
@@ -79,13 +83,28 @@
   padding-bottom: 16px;
 }
 
+.pb-32 {
+  padding-bottom: 32px;
+}
+
+.px-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .px-24 {
   padding-left: 24px;
   padding-right: 24px;
 }
 
-.pb-32 {
-  padding-bottom: 32px;
+.py-28 {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.py-48 {
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
 
 .m-0 {
@@ -132,6 +151,15 @@
 
   .text-left-xl {
     text-align: left;
+  }
+
+  .block-xl {
+    display: block;
+  }
+
+  .px-md-64 {
+    padding-left: 64px;
+    padding-right: 64px;
   }
 }
 

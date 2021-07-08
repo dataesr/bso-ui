@@ -6,4 +6,18 @@
   .contentTitle {
     @include font-size(40, 48);
   }
+
+  &.home {
+    .blue {
+      color: var(--blue-soft-125);
+    }
+
+    .blue-dark {
+      color: var(--blue-dark-125);
+    }
+
+    .bg-blue {
+      background: var(--blue-soft-50);
+    }
+  }
 }
