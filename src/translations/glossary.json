@@ -16,8 +16,8 @@
 	"en": "Open access (to publications)"
       },
       "definition": {
-	"fr": "todo",
-	"en": "todo"
+	"fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public.",
+	"en": "Open access publications are research publications that are freely available on the public Internet."
       }
     },
     "doaj": {
@@ -26,8 +26,8 @@
 	"en": "DOAJ"
       },
       "definition": {
-	"fr": "Directory of open access journals ",
-	"en": "Directory of open access journals"
+	"fr": "Le Directory of Open Access Journals (DOAJ) est un site web qui héberge une liste de revues en libre accès, établie par la communauté et gérée par Infrastructure Services for Open Access (IS4OA).",
+	"en": "The Directory of Open Access Journals (DOAJ) is a website that hosts a community-generated list of open access journals managed by Infrastructure Services for Open Access (IS4OA)."
       }
     },
     "essai_clinique": {
@@ -36,8 +36,8 @@
 	"en": "Clinical study"
       },
       "definition": {
-	"fr": "Aussi appelé études interventionelles, c'est un type de recherche clinique dans laquelle les participants sont répartis dans des groupes qui reçoivent une ou plusieurs interventions afin que les chercheurs puissent évaluer les effets des interventions sur les résultats biomédicaux ou liés à la santé. La notion d'intervention est définie comme tout acte réalisé sur la personne non justifié par la prise en charge médicale de la personne",
-	"en": "Also called interventional studies, this is a type of clinical research in which participants are assigned to groups that receive one or more interventions so that researchers can evaluate the effects of the interventions on biomedical or health-related outcomes. Intervention is defined as any act performed on the person that is not justified by the medical management of the person"
+	"fr": "Aussi appelé études interventionelles, c'est un type de recherche clinique dans laquelle les participants sont répartis dans des groupes qui reçoivent une ou plusieurs interventions afin que les chercheurs puissent évaluer les effets des interventions sur les résultats biomédicaux ou liés à la santé. La notion d'intervention est définie comme tout acte réalisé sur la personne non justifié par la prise en charge médicale de la personne.",
+	"en": "Also called interventional studies, this is a type of clinical research in which participants are assigned to groups that receive one or more interventions so that researchers can evaluate the effects of the interventions on biomedical or health-related outcomes. Intervention is defined as any act performed on the person that is not justified by the medical management of the person."
       }
     },
     "etude_observationelle": {
@@ -46,8 +46,8 @@
 	"en": "Observational study"
       },
       "definition": {
-	"fr": "todo",
-	"en": "todo"
+	"fr": "Ces études non interventionelles peuvent être à visée descriptive ou étiologique. Le chercheur va observer la réalité sans intervenir sur les conditions d’exposition des sujets.",
+	"en": "These non-interventional studies can be descriptive or etiological. The researcher will observe the reality without intervening on the conditions of exposure of the subjects."
       }
     },
     "diamond": {
@@ -60,7 +60,17 @@
 	"en": "The majority of open access journals do not charge authors a publication fee. In this model of open access publishing, the costs of publication are borne upstream by a state, university, consortium of public institutions, or nonprofit organization."
       }
     },
-    "hybrid": {
+    "full_apc": {
+      "entry": { 
+        "fr": "Modèle tout APC",
+	"en": "Full APC model"
+      },
+      "definition": {
+	"fr": "Concerne les revues entièrement en accès ouvert et licence libre, demandant systématiquement des frais de publication.",
+	"en": "Concerns fully open access and free license journals that systematically charge a publication fee."
+      }
+    },
+    "revue_hybrid": {
       "entry": { 
         "fr": "Revue hybride",
 	"en": "Hybrid journal"
@@ -86,8 +96,28 @@
 	"en": "HAL"
       },
       "definition": {
-	"fr": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service.",
+	"fr": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service. <a href='https://hal.archives-ouvertes.fr/'> site </a>",
 	"en": "French national open archive carried by the Centre for Direct Scientific Communication (CCSD), a joint service unit."
+      }
+    },
+    "openapc": {
+      "entry": { 
+        "fr": "OpenAPC",
+	"en": "OpenAPC"
+      },
+      "definition": {
+	"fr": "L'initiative OpenAPC collecte et diffuse sous licence ouverte des données concernant les frais de publication de certaines publications.",
+	"en": "The OpenAPC initiative collects and disseminates data on the publication costs of selected publications under an open license."
+      }
+    },
+    "publication_fr": {
+      "entry": { 
+        "fr": "Publication française",
+	"en": "French publication"
+      },
+      "definition": {
+	"fr": "Publication dont au moins un auteur a une affiliation française.",
+	"en": "Publication of which at least one author has a French affiliation."
       }
     },
     "doi": {
@@ -162,12 +192,12 @@
     },
     "resultat_essai_clinique": {
       "entry": { 
-        "fr": "todo",
-	"en": "todo"
+        "fr": "Résultat d'un essai clinique",
+	"en": "Clinical trial results"
       },
       "definition": {
-	"fr": "todo",
-	"en": "todo"
+	"fr": "Données structurées résultantes d'un essai clinique. Ces données peuvent être soumises et rendues publiques sur un registre comme ClinicalTrials.org. ",
+	"en": "Structured data resulting from a clinical trial. This data can be submitted to and made public on a registry such as ClinicalTrials.org."
       }
     },
     "pgo": {
