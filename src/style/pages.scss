@@ -6,4 +6,47 @@
   .contentTitle {
     @include font-size(40, 48);
   }
+
+  &.home {
+    .blue {
+      color: var(--blue-soft-125);
+    }
+
+    .blue-dark {
+      color: var(--blue-dark-125);
+    }
+
+    .bg-blue {
+      background: var(--blue-soft-50);
+    }
+
+    .text-card-logo {
+      max-width: 380px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media screen and(min-width: 576px) {
+  .page {
+    &.home {
+      .wrap-logo {
+        img {
+          max-width: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and(min-width: 768px) {
+  .page {
+    &.home {
+      .wrap-logo {
+        img {
+          max-width: 300px;
+        }
+      }
+    }
+  }
 }

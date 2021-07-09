@@ -64,7 +64,7 @@ function Banner({
             <section className='icons'>{icons || ''}</section>
             <h3
               className={classNames('sub-title pt-16 ', {
-                'mb-m-60': selectNavigation,
+                'mb-l-60': selectNavigation,
               })}
             >
               {subTitle}
@@ -92,7 +92,7 @@ function Banner({
           )}
           <div
             className={classNames({
-              'mb-60 mb-m-0': selectNavigation,
+              'mb-60 mb-l-0': selectNavigation,
             })}
           >
             {!sticked && chip && <Col n='sm-3'>{chip}</Col>}

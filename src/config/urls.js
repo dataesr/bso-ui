@@ -22,8 +22,8 @@ export default {
         en: '/health/publications/general',
       },
       {
-        fr: '/sante/publications/dynamique',
-        en: '/health/publications/dynamic',
+        fr: '/sante/publications/discipline',
+        en: '/health/publications/discipline',
       },
     ],
     fr: '/sante/publications/general',

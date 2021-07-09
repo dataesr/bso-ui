@@ -18,6 +18,8 @@
   "app.commons.modal.fermer": "Fermer la fenêtre modale",
   "app.commons.graph-comment.label": "Commentaire",
   "app.graph.download": "Télécharger",
+  "app.graph.download.csv": "csv",
+  "app.graph.download.png": "png",
   "app.graph.integration": "Integration",
   "app.graph.share": "Partager",
   "app.theme.light": "Thème clair",
