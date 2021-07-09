@@ -10,7 +10,7 @@ function InfoCard({ title, data1, data2 }) {
     <Card
       className='info-card text-center'
       bodyClassName='bg-white'
-      href='/'
+      href='/test'
       hasArrow={false}
     >
       <CardDescription as='div'>

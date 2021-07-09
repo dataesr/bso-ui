@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function PageExtract({ title, introText, link, children }) {
+function HomeSection({ title, introText, link, children }) {
   return (
-    <section className='page-extract px-20 mb-60 px-md-64'>
+    <section className='home-section px-20 mb-60 px-md-64'>
       <h3 className='marianne-extra-bold fs-28-32 fs-32-40-xl'>{title}</h3>
       <p className='fs-16-28'>{introText}</p>
       {children}
@@ -23,7 +23,7 @@ function PageExtract({ title, introText, link, children }) {
   );
 }
 
-PageExtract.propTypes = {
+HomeSection.propTypes = {
   title: PropTypes.string.isRequired,
   introText: PropTypes.string.isRequired,
   link: PropTypes.shape({
@@ -32,4 +32,4 @@ PageExtract.propTypes = {
   }).isRequired,
   children: PropTypes.element.isRequired,
 };
-export default PageExtract;
+export default HomeSection;

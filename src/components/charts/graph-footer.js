@@ -88,7 +88,7 @@ const GraphFooter = ({
                     <Text size='xs' as='span' className='download'>
                       <FormattedMessage
                         id='app.graph.download.png'
-                        defaultMessage='PNG'
+                        defaultMessage='png'
                       />
                     </Text>
                   </DSIcon>

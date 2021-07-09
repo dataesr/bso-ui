@@ -15,10 +15,10 @@ import Banner from '../../components/Banner';
 import ChartEvolutionProportion from '../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuverture from '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import Chip from '../../components/Chip';
+import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
-import IconCard from '../../components/IconCard';
 import InfoCard from '../../components/InfoCard';
-import PageExtract from '../../components/PageExtract';
+import LinkCard from '../../components/LinkCard';
 import logoBso from '../../images/logo-bso.png';
 
 function BaroSante() {
@@ -79,7 +79,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
               </section>
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
-              <PageExtract
+              <HomeSection
                 link={{
                   href: '/sante/publications/dynamique',
                   label: 'Voir le détail des publications',
@@ -110,10 +110,10 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                     </Col>
                   </Row>
                 </Container>
-              </PageExtract>
+              </HomeSection>
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
-              <PageExtract
+              <HomeSection
                 link={{
                   href: '/sante/essais-cliniques',
                   label: 'Voir le détail des essais cliniques',
@@ -125,7 +125,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
               />
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
-              <PageExtract
+              <HomeSection
                 link={{
                   href: '/sante/etudes-observationelles',
                   label: 'Voir le détail des études observationnelles',
@@ -183,17 +183,6 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                 </section>
               </Container>
             </Col>
-            <Col n='12'>
-              <Container>
-                <section>
-                  <Row>
-                    <Col>
-                      {/* <h4 className='marianne fs-28-32 text-center m-0'>Découvrez aussi l’ouverture de la science sur les thèmes du moment</h4> */}
-                    </Col>
-                  </Row>
-                </section>
-              </Container>
-            </Col>
             <Col>
               <Container fluid className='bg-blue'>
                 <section className='py-48 px-20 px-md-64'>
@@ -205,7 +194,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                       </h4>
                     </Col>
                     <Col n='12 md-4' className='mb-20'>
-                      <IconCard
+                      <LinkCard
                         title='Les outils'
                         linkUrl='/sante/outils'
                         icon={(
@@ -218,7 +207,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                       />
                     </Col>
                     <Col n='12 md-4' className='mb-20'>
-                      <IconCard
+                      <LinkCard
                         title='Tutoriels'
                         linkUrl='/sante/tutoriels'
                         icon={(
@@ -231,7 +220,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                       />
                     </Col>
                     <Col n='12 md-4' className='mb-20'>
-                      <IconCard
+                      <LinkCard
                         title='Témoignages'
                         linkUrl='/sante/temoignages'
                         icon={(
@@ -271,13 +260,6 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                 </section>
               </Container>
             </Col>
-            {/* <section> */}
-            {/*  <h4>Le baromètre santé, aujourd’hui c’est…</h4> */}
-            {/*  <p> */}
-            {/*    Site mis à jour le 2 février 2021 */}
-            {/*    (données 2013-2020) */}
-            {/*  </p> */}
-            {/* </section> */}
           </Row>
         </section>
       </Container>
