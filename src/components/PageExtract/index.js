@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function PageExtract({ title, introText, link }) {
+function PageExtract({ title, introText, link, children }) {
   return (
     <section className='page-extract px-20 mb-60 px-md-64'>
       <h3 className='marianne-extra-bold fs-28-32 fs-32-40-xl'>{title}</h3>
       <p className='fs-16-28'>{introText}</p>
+      {children}
       <div className='button-link marianne-bold relative'>
         <DSIcon
           className='ds-fr--v-middle'
@@ -29,5 +30,6 @@ PageExtract.propTypes = {
     label: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
   }).isRequired,
+  children: PropTypes.element.isRequired,
 };
 export default PageExtract;

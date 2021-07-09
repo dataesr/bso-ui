@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function IconCard({ title, linkUrl, icon }) {
+function LinkCard({ title, linkUrl, icon }) {
   return (
     <Card bodyClassName='icon-card bg-white' href='/' hasArrow={false}>
       <CardDescription as='div'>
@@ -32,10 +32,10 @@ function IconCard({ title, linkUrl, icon }) {
   );
 }
 
-IconCard.propTypes = {
+LinkCard.propTypes = {
   title: PropTypes.string.isRequired,
   linkUrl: PropTypes.string.isRequired,
   icon: PropTypes.element.isRequired,
 };
 
-export default IconCard;
+export default LinkCard;

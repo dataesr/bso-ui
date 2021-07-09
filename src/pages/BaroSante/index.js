@@ -12,9 +12,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
+import ChartEvolutionProportion from '../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
+import ChartTauxOuverture from '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import Chip from '../../components/Chip';
 import Icon from '../../components/Icon';
 import IconCard from '../../components/IconCard';
+import InfoCard from '../../components/InfoCard';
 import PageExtract from '../../components/PageExtract';
 import logoBso from '../../images/logo-bso.png';
 
@@ -86,7 +89,28 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
           mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du
           nombre de publications en accès ouvert rapporté au nombre total de publications
           sur le même périmètre (par exemple par année, discipline ou éditeur)…`}
-              />
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12 md-8'>
+                      <ChartTauxOuverture
+                        graphComments={false}
+                        graphFooter={false}
+                      />
+                    </Col>
+                    <Col n='12 md-4'>
+                      <InfoCard
+                        data1='+7'
+                        data2='pts'
+                        title='Progression 2019 2020'
+                      />
+                    </Col>
+                    <Col n='12'>
+                      <ChartEvolutionProportion graphComments={false} />
+                    </Col>
+                  </Row>
+                </Container>
+              </PageExtract>
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
               <PageExtract

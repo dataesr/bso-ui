@@ -14,6 +14,7 @@ import GraphTabSubItem from './GraphTabSubItem';
 function GraphItem({ links, mainLabel, paths }) {
   const location = useLocation();
   const { mobile, tablet, desktop } = useViewport();
+  // TODO scrollTo
   return (
     <>
       {mobile && (

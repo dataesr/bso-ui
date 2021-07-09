@@ -36,6 +36,14 @@
   display: flex;
 }
 
+.flex-end {
+  justify-content: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
 .none {
   display: none;
 }
@@ -45,6 +53,11 @@
  */
 .bg-white {
   background-color: #fff;
+}
+
+.bg-medium-blue,
+.fr-btn.bg-medium-blue {
+  background: var(--blue-soft-100);
 }
 
 .text-white {

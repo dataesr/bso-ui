@@ -2,8 +2,10 @@
 import './graph.scss';
 
 import {
+  Button as DSButton,
   Col,
   Container,
+  Icon as DSIcon,
   Modal,
   ModalClose,
   ModalContent,
@@ -47,36 +49,73 @@ const GraphFooter = ({
                     defaultMessage='Télécharger'
                   />
                 </Text>
-                <i
-                  className='ri-file-excel-fill icon-click'
+                <span
+                  className='icon-click'
+                  tabIndex={0}
+                  role='button'
                   onClick={() => onCsvButtonClick()}
                   onKeyPress={() => onCsvButtonClick()}
-                  role='button'
-                  tabIndex={0}
-                />
-                <i
-                  className='ri-file-chart-fill icon-click'
-                  onClick={() => onPngButtonClick()}
-                  onKeyPress={() => onPngButtonClick()}
-                  role='button'
-                  tabIndex={0}
-                />
-                {graphId ? (
-                  <>
-                    <Text size='xs' as='span' className='integration'>
+                >
+                  <DSIcon
+                    name='ri-file-excel-fill'
+                    size='lg'
+                    as='span'
+                    iconPosition='right'
+                    className='ds-fr--v-middle'
+                  >
+                    <Text size='xs' as='span' className='download'>
                       <FormattedMessage
-                        id='app.graph.integration'
-                        defaultMessage='Intégrer le graphique'
+                        id='app.graph.download.csv'
+                        defaultMessage='csv'
                       />
                     </Text>
-                    <i
-                      className='ri-file-code-fill icon-click'
-                      onClick={() => setIsModalOpen(!isModalOpen)}
-                      onKeyPress={() => setIsModalOpen(!isModalOpen)}
-                      role='button'
-                      tabIndex={0}
-                    />
-                  </>
+                  </DSIcon>
+                </span>
+                <span
+                  className='icon-click'
+                  tabIndex={0}
+                  role='button'
+                  onClick={() => onPngButtonClick()}
+                  onKeyPress={() => onPngButtonClick()}
+                >
+                  <DSIcon
+                    name='ri-file-chart-fill '
+                    size='lg'
+                    as='span'
+                    iconPosition='right'
+                    className='ds-fr--v-middle icon-click'
+                  >
+                    <Text size='xs' as='span' className='download'>
+                      <FormattedMessage
+                        id='app.graph.download.png'
+                        defaultMessage='PNG'
+                      />
+                    </Text>
+                  </DSIcon>
+                </span>
+                {graphId ? (
+                  <span
+                    className='icon-click'
+                    tabIndex={0}
+                    role='button'
+                    onClick={() => setIsModalOpen(!isModalOpen)}
+                    onKeyPress={() => setIsModalOpen(!isModalOpen)}
+                  >
+                    <DSIcon
+                      name='ri-file-code-fill'
+                      size='lg'
+                      as='span'
+                      iconPosition='right'
+                      className='ds-fr--v-middle icon-click'
+                    >
+                      <Text size='xs' as='span' className=''>
+                        <FormattedMessage
+                          id='app.graph.integration'
+                          defaultMessage='Intégrer le graphique'
+                        />
+                      </Text>
+                    </DSIcon>
+                  </span>
                 ) : null}
               </p>
             </Col>
@@ -85,16 +124,32 @@ const GraphFooter = ({
         <Container fluid className='share'>
           <Row>
             <Col className='text-right'>
-              <Text size='xs' as='span' className='text'>
-                <FormattedMessage
-                  id='app.graph.share'
-                  defaultMessage='Partager ce graphique'
+              <div className='flex flex-end align-center'>
+                <div className='fs-14-24 marianne'>
+                  <FormattedMessage
+                    id='app.graph.share'
+                    defaultMessage='Partager ce graphique'
+                  />
+                </div>
+                <DSButton
+                  title='twitter'
+                  icon='ri-twitter-fill'
+                  size='sm'
+                  className='bg-medium-blue'
                 />
-              </Text>
-
-              <i className='ri-twitter-fill' />
-              <i className='ri-linkedin-box-fill' />
-              <i className='ri-facebook-box-fill' />
+                <DSButton
+                  title='linkedin'
+                  icon='ri-linkedin-box-fill'
+                  size='sm'
+                  className='bg-medium-blue'
+                />
+                <DSButton
+                  title='facebook'
+                  icon='ri-facebook-box-fill'
+                  size='sm'
+                  className='bg-medium-blue'
+                />
+              </div>
             </Col>
           </Row>
         </Container>

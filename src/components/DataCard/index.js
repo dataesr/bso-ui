@@ -14,8 +14,16 @@ function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
       bodyClassName={background}
     >
       <CardDescription as='div'>
-        {topData && <p className='top-data marianne-extra-bold'>{topData}</p>}
-        {percentage ? <Gauge percentage={percentage} /> : <Loader />}
+        {topData || percentage ? (
+          <>
+            {topData && (
+              <p className='top-data marianne-extra-bold'>{topData}</p>
+            )}
+            {percentage && <Gauge percentage={percentage} />}
+          </>
+        ) : (
+          <Loader />
+        )}
         <p className='sentence'>{sentence}</p>
         {buttonLabel && (
           <Button

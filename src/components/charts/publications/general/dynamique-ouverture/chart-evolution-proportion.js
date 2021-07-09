@@ -2,6 +2,7 @@ import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -15,7 +16,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = () => {
+const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion';
@@ -76,17 +77,28 @@ const Chart = () => {
           ref={chartRef}
           id={graphId}
         />
-        <GraphComments comments={chartComments} />
+        {graphComments && <GraphComments comments={chartComments} />}
       </div>
-      <GraphFooter
-        date={updateDate}
-        source={intl.formatMessage({ id: `${graphId}.source` })}
-        graphId={graphId}
-        onPngButtonClick={exportChartPng}
-        onCsvButtonClick={exportChartCsv}
-      />
+      {graphFooter && (
+        <GraphFooter
+          date={updateDate}
+          source={intl.formatMessage({ id: `${graphId}.source` })}
+          graphId={graphId}
+          onPngButtonClick={exportChartPng}
+          onCsvButtonClick={exportChartCsv}
+        />
+      )}
     </>
   );
+};
+
+Chart.defaultProps = {
+  graphFooter: true,
+  graphComments: true,
+};
+Chart.propTypes = {
+  graphFooter: PropTypes.bool,
+  graphComments: PropTypes.bool,
 };
 
 export default Chart;

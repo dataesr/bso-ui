@@ -161,34 +161,19 @@ function SantePublications() {
         <Row>
           <GraphSection buttonLabel={objLocation[location.pathname]}>
             <GraphItem
+              mainLabel='Général'
               paths={[
                 '/sante/publications/general',
                 '/health/publications/general',
               ]}
-              mainLabel='Général'
               links={[
                 {
+                  anchor: 'general',
                   label: 'Les publications en santé',
-                  href: '/sante/publications/general',
+                  href: '/sante/publications/general#general',
                 },
-              ]}
-            >
-              <GraphContent>
-                <QuestionSection
-                  title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
-                  info='info text'
-                  description='description text'
-                  backgroundColor='#D5DBEF'
-                >
-                  <ChartsVoiesOuverture />
-                </QuestionSection>
-              </GraphContent>
-            </GraphItem>
-            <GraphItem
-              paths={['/sante/publications/dynamique']}
-              mainLabel='La dynamique d’ouverture en santé'
-              links={[
                 {
+                  anchor: 'dynamic',
                   label: 'La dynamique d’ouverture en santé',
                   href: '/sante/publications/dynamique',
                 },
@@ -203,6 +188,30 @@ function SantePublications() {
                 >
                   <ChartsDynamiqueOuverture />
                 </QuestionSection>
+                <QuestionSection
+                  title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
+                  info='info text'
+                  description='description text'
+                  backgroundColor='#D5DBEF'
+                >
+                  <ChartsVoiesOuverture />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+            <GraphItem
+              paths={['/sante/publications/discipline']}
+              mainLabel='Les disciplines'
+              links={[
+                {
+                  href: '/sante/publications/discipline',
+                  label: 'Les disciplines',
+                },
+              ]}
+            >
+              <GraphContent>
+                <div id='#discipline'>
+                  <p>Disciplines</p>
+                </div>
               </GraphContent>
             </GraphItem>
           </GraphSection>
