@@ -16,6 +16,32 @@ export function setCSSProperty(property, value) {
   document.documentElement.style.setProperty(property, value);
 }
 
+/**
+ *
+ * @param date
+ * @param lang
+ * @returns {string}
+ */
+export function getDateFormated(date, lang) {
+  const dateFormat = { fr: 'fr-fr', en: 'en-en' };
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  return new Date(date).toLocaleDateString(dateFormat[lang], options);
+}
+
+/**
+ *
+ * @param graphId
+ * @param intl
+ * @returns {{exporting:
+ * {chartOptions: {legend: {enabled: boolean}, subtitle: {text: *}, title: {text: *}},
+ * buttons: {contextButton: {enabled: boolean}}, filename: *},
+ * credits: {enabled: boolean},
+ * responsive: {rules: [{chartOptions: {legend: {layout: string, verticalAlign: string, align: string}},
+ * condition: {maxWidth: number}}]}, tooltip: {headerFormat: string, pointFormat: *},
+ * title: {style: {color: string, fontSize: string, fontWeight: string}, text: *, align: string},
+ * chart: {backgroundColor: string}
+ * }}
+ */
 export function getGraphOptions(graphId, intl) {
   return {
     chart: {

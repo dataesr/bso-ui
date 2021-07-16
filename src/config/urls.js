@@ -1,15 +1,11 @@
 export default {
-  home: {
+  national: {
     fr: '/',
     en: '/',
   },
-  national: {
-    fr: '/national',
-    en: '/national',
-  },
   nationalPublications: {
-    fr: '/national/publications',
-    en: '/national/publications',
+    fr: '/publications',
+    en: '/publications',
   },
   sante: {
     fr: '/sante',

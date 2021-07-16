@@ -1,6 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
-import Axios from 'axios';
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
@@ -14,59 +14,28 @@ import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
-import { ES_API_URL, HEADERS } from '../../../config/config';
 import GlossaryEntries from '../../../translations/glossary.json';
+import { GetPublicationRateFrom } from '../../../utils/dataFetchHelper';
+import useGlobals from '../../../utils/Hooks/useGetGlobals';
 
 const objLocation = {
-  '/sante/publications/dynamique': 'La dynamique d’ouverture en santé',
-  '/sante/publications/general': 'Général',
+  '/sante/publications/discipline': 'app.sante-publi.disciplines',
+  '/sante/publications/general': 'app.sante-publi.general',
 };
+
 function SantePublications() {
   const [rate, setRate] = useState(null);
   const location = useLocation();
+  const { observationDates } = useGlobals();
 
-  const getOpenPublicationRate = async (mill) => {
-    const publicationsSearch = await Axios.post(
-      ES_API_URL,
-      {
-        size: 0,
-        aggs: {
-          by_publication_year: {
-            terms: {
-              field: 'publication_year',
-            },
-            aggs: {
-              by_is_oa: {
-                terms: {
-                  field: `oa_details.${mill}.is_oa`,
-                },
-              },
-            },
-          },
-        },
-      },
-      HEADERS,
-    );
-    const sortedData = publicationsSearch?.data?.aggregations.by_publication_year.buckets
-      .sort((a, b) => a.key - b.key)
-      .filter(
-        (el) => el.key < parseInt(mill.substring(0, 4), 10)
-            && el.by_is_oa.buckets.length > 0
-            && el.doc_count
-            && el.key > 2012,
-      );
+  GetPublicationRateFrom(observationDates[1]).then((resp) => {
+    const { rateByYear } = resp;
 
-    const truncatedData = sortedData.map((elm) => Math.trunc((elm.by_is_oa.buckets[0].doc_count * 100) / elm.doc_count));
     if (!rate) {
-      setTimeout(() => {
-        setRate(truncatedData[truncatedData.length - 1]);
-      }, 2000);
+      setRate(rateByYear);
     }
-  };
-  getOpenPublicationRate('2020');
-  const renderChip = (
-    <Chip label='Site mis à jour le 2 février 2021 avec les données 2013 à 2020' />
-  );
+  });
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -84,7 +53,7 @@ function SantePublications() {
         backgroundColor='blue-soft-100'
         supTitle='baromètre de la Science ouverte en Santé'
         title='Les publications en santé'
-        chip={renderChip}
+        chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
           title: 'Navigation par objet de recherche',
@@ -108,7 +77,10 @@ function SantePublications() {
                 <p>
                   Lorem ipsum dolor sit amet,
                   {' '}
-                  <span className='glossary-entry' data-glossary-key='essai_clinique'>
+                  <span
+                    className='glossary-entry'
+                    data-glossary-key='essai_clinique'
+                  >
                     Essais cliniques déclarés
                   </span>
                   {' '}
@@ -159,7 +131,14 @@ function SantePublications() {
           </Container>
         </Row>
         <Row>
-          <GraphSection buttonLabel={objLocation[location.pathname]}>
+          <GraphSection
+            buttonLabel={(
+              <FormattedMessage
+                id={objLocation[location.pathname]}
+                defaultMessage='General'
+              />
+            )}
+          >
             <GraphItem
               mainLabel='Général'
               paths={[
@@ -175,7 +154,7 @@ function SantePublications() {
                 {
                   anchor: 'dynamic',
                   label: 'La dynamique d’ouverture en santé',
-                  href: '/sante/publications/dynamique',
+                  href: '/sante/publications/general#dynamic',
                 },
               ]}
             >

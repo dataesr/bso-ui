@@ -1,33 +1,31 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-export default function useFetch({
-  api,
-  method,
-  url,
-  data = null,
-  config = null,
-}) {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+import { HEADERS } from '../../config/config';
+
+export default function useFetch({ method, url, options }) {
+  const [response, setResponse] = useState({});
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        api[method](url, JSON.parse(config), JSON.parse(data))
-          .then((res) => {
-            setResponse(res.data);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      } catch (err) {
-        setError(err);
-      }
+      setIsLoading(true);
+      axios[method](url, options, HEADERS)
+        .then((jsonData) => {
+          setResponse(jsonData);
+          setIsLoading(false);
+          return true;
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          setError({ error: true, message: err });
+        });
     };
-
     fetchData();
-  }, [api, method, url, data, config]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
-  return { response, error, isLoading };
+  if (!response) return null;
+  return { response, isLoading, error };
 }
