@@ -8,7 +8,8 @@ import {
   Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
-import React from 'react';
+import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
@@ -20,14 +21,32 @@ import Icon from '../../components/Icon';
 import InfoCard from '../../components/InfoCard';
 import LinkCard from '../../components/LinkCard';
 import logoBso from '../../images/logo-bso.png';
+import { GetPublicationRateFrom } from '../../utils/dataFetchHelper';
+import { getDateFormated } from '../../utils/helpers';
+import useGlobals from '../../utils/Hooks/useGetGlobals';
+import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
-  const renderChip = (
-    <Chip
-      label='Site mis à jour le 2 février 2021 avec les données 2013 à 2020'
-      backgroundColor='blue-soft-125'
-    />
-  );
+  const { updateDate, observationDates } = useGlobals();
+  const [progression, setProgression] = useState({});
+  const { lang } = useLang();
+  const start = observationDates[2];
+  const end = observationDates[1];
+
+  const updateProgression = (res) => {
+    const { rateByYear, year } = res;
+    if (Object.keys(progression).indexOf(year) < 0 && rateByYear) {
+      setProgression((prev) => ({ ...prev, [year]: rateByYear }));
+    }
+  };
+  GetPublicationRateFrom(end).then((res) => {
+    updateProgression(res);
+  });
+
+  GetPublicationRateFrom(start).then((res) => {
+    updateProgression(res);
+  });
+
   const renderIcons = (
     <Row alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -62,7 +81,7 @@ function BaroSante() {
         subTitle='Publications, essais cliniques, études observationnelles:
         Découvrez l’évolution de l’accès ouvert de la recherche en santé
 en France à partir de données fiables, ouvertes et maîtrisées.'
-        chip={renderChip}
+        chip={<Chip backgroundColor='blue-soft-125' />}
         icons={renderIcons}
       />
       <Container fluid>
@@ -74,7 +93,15 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                   Les chiffres-clés de la Santé
                 </h2>
                 <p className='fs-14-24 blue m-0'>
-                  Site mis à jour le 2 février 2021 (données 2013-2020)
+                  <FormattedMessage
+                    values={{
+                      date: getDateFormated(updateDate, lang),
+                      endDate: end,
+                      startDate: observationDates[observationDates.length - 1],
+                    }}
+                    id='app.sante.update.date'
+                    defaultMessage=''
+                  />
                 </p>
               </section>
             </Col>
@@ -100,9 +127,20 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                     </Col>
                     <Col n='12 md-4'>
                       <InfoCard
-                        data1='+7'
+                        data1={`${
+                          progression[start] > progression[end] ? '+' : ''
+                        }${progression[start] - progression[end]}`}
                         data2='pts'
-                        title='Progression 2019 2020'
+                        title={(
+                          <FormattedMessage
+                            values={{
+                              startYear: start,
+                              endYear: end,
+                            }}
+                            id='app.sante-publi.progression'
+                            defaultMessage='Progression'
+                          />
+                        )}
                       />
                     </Col>
                     <Col n='12'>

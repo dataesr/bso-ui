@@ -52,17 +52,17 @@ function Header() {
       </HeaderBody>
       <HeaderNav path={path}>
         <NavItem
-          current={path === urls.home[lang]}
+          current={path === urls.national[lang]}
           title={intl.formatMessage({
             id: 'app.header.nav.baro-national',
             defaultMessage: 'Le Baromètre national',
           })}
         >
           <NavSubItem
-            current={path === urls.home[lang]}
+            current={path === urls.national[lang]}
             title='Accueil baromètre national'
             asLink={(
-              <RouterLink to={urls.home[lang]}>
+              <RouterLink to={urls.national[lang]}>
                 Accueil baromètre national
               </RouterLink>
             )}
