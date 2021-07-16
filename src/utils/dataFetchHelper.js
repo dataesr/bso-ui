@@ -29,8 +29,8 @@ export async function GetPublicationFrom(year) {
 }
 
 export async function GetPublicationRateFrom(year) {
-  const n = new Date();
-  const currentMillesime = n.getFullYear() - 1;
+  const date = new Date();
+  const currentMillesime = date.getFullYear() - 1;
   let rate = null;
   const rateResult = {};
 
@@ -66,13 +66,12 @@ export async function GetPublicationRateFrom(year) {
           && el.doc_count
           && el.key > 2012,
       );
-
     const truncatedData = sortedData.map((elm) => Math.trunc((elm.by_is_oa.buckets[0].doc_count * 100) / elm.doc_count));
     rate = truncatedData[truncatedData.length - 1];
 
     if (Object.keys(rateResult).length === 0 && rate) {
       rateResult.rateByYear = rate;
-      rateResult.year = year ? year.toString() : currentMillesime;
+      rateResult.year = year ? year.toString() : currentMillesime.toString();
     }
   }
   return rateResult;

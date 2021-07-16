@@ -128,7 +128,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                     <Col n='12 md-4'>
                       <InfoCard
                         data1={`${
-                          progression[start] > progression[end] ? '+' : '-'
+                          progression[start] > progression[end] ? '+' : ''
                         }${progression[start] - progression[end]}`}
                         data2='pts'
                         title={(
