@@ -8,7 +8,7 @@ import {
   Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
@@ -30,22 +30,47 @@ function BaroSante() {
   const { updateDate, observationDates } = useGlobals();
   const [progression, setProgression] = useState({});
   const { lang } = useLang();
-  const start = observationDates[2];
-  const end = observationDates[1];
+  const [start, setStart] = useState('2020');
+  const [end, setEnd] = useState('2021Q1');
 
-  const updateProgression = (res) => {
-    const { rateByYear, year } = res;
-    if (Object.keys(progression).indexOf(year) < 0 && rateByYear) {
-      setProgression((prev) => ({ ...prev, [year]: rateByYear }));
+  const updateProgression = (res, year) => {
+    const { rate } = res;
+    if (
+      (Object.keys(progression).indexOf(year) < 0 && rate)
+      || (progression[year] !== rate && rate)
+    ) {
+      setProgression((prev) => ({ ...prev, [year]: rate }));
     }
   };
-  GetPublicationRateFrom(end).then((res) => {
-    updateProgression(res);
-  });
 
   GetPublicationRateFrom(start).then((res) => {
-    updateProgression(res);
+    updateProgression(res, start);
   });
+
+  GetPublicationRateFrom(end).then((res) => {
+    updateProgression(res, end.substring(0, 4));
+  });
+
+  useEffect(() => {
+    setStart(observationDates[1]);
+    setEnd(observationDates[0]);
+  }, [observationDates]);
+
+  const progressionPoints = () => {
+    let progPoints = '';
+    if (end && start) {
+      const cleanEnd = end.substring(0, 4);
+      const rhesus = progression[cleanEnd] >= progression[start] ? '+' : '';
+      const endNumber = progression[cleanEnd]
+        ? parseInt(progression[cleanEnd], 10)
+        : 0;
+      const startNumber = progression[start]
+        ? parseInt(progression[start], 10)
+        : 0;
+      progPoints = `${rhesus}${endNumber - startNumber}`;
+    }
+    return progPoints;
+  };
 
   const renderIcons = (
     <Row alignItems='middle' gutters>
@@ -127,15 +152,13 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                     </Col>
                     <Col n='12 md-4'>
                       <InfoCard
-                        data1={`${
-                          progression[start] > progression[end] ? '+' : ''
-                        }${progression[start] - progression[end]}`}
+                        data1={`${progressionPoints()}`}
                         data2='pts'
                         title={(
                           <FormattedMessage
                             values={{
                               startYear: start,
-                              endYear: end,
+                              endYear: end.substring(0, 4),
                             }}
                             id='app.sante-publi.progression'
                             defaultMessage='Progression'

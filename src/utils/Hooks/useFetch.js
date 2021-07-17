@@ -15,7 +15,6 @@ export default function useFetch({ method, url, options }) {
         .then((jsonData) => {
           setResponse(jsonData);
           setIsLoading(false);
-          return true;
         })
         .catch((err) => {
           setIsLoading(false);
