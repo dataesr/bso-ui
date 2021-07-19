@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -11,6 +12,7 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
+import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -70,7 +72,8 @@ const Chart = ({ graphFooter, graphComments }) => {
 
   return (
     <>
-      <div className='graph-container'>
+      <div fluid className='graph-container'>
+        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph2}
