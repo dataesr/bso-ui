@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
 import useScroll from '../../utils/Hooks/useScroll';
@@ -103,7 +104,9 @@ function GraphSection({ buttonLabel, children }) {
             <SideMenu
               title=''
               className='navigation-mobile'
-              buttonLabel={buttonLabel}
+              buttonLabel={
+                <FormattedMessage id={buttonLabel} defaultMessage='General' />
+              }
             >
               {headerItems}
             </SideMenu>
