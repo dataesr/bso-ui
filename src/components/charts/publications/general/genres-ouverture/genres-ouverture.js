@@ -1,9 +1,10 @@
+import { Toggle } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { getGraphOptions } from '../../../../../utils/helpers';
@@ -21,10 +22,12 @@ HCExportingData(Highcharts);
 const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-publications';
+  const [isOa, setIsOa] = useState(false);
+  const graphId = 'app.sante-publi.general.genres-ouverture.chart-repartition-genres';
   const { observationDates, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     observationDates[0] || 2020,
+    isOa,
   );
 
   if (isLoading) {
@@ -34,7 +37,7 @@ const Chart = () => {
     return <>Error</>;
   }
 
-  const { dataGraph3 } = allData;
+  const { dataGraph } = allData;
 
   const optionsGraph = getGraphOptions(graphId, intl);
   optionsGraph.series = [
@@ -57,7 +60,7 @@ const Chart = () => {
           },
         },
       ],
-      data: dataGraph3,
+      data: dataGraph,
     },
   ];
   const exportChartPng = () => {
@@ -69,19 +72,53 @@ const Chart = () => {
     chartRef.current.chart.downloadCSV();
   };
 
+  let chartComments = 'comment par defaut';
+  if (!isOa) {
+    const journalArticleOpened = dataGraph.find(
+      (el) => el.key === 'journal-article' && el.parent === 'opened',
+    )?.value;
+    const journalArticleClosed = dataGraph.find(
+      (el) => el.key === 'journal-article' && el.parent === 'closed',
+    )?.value;
+    const ratio1 = journalArticleOpened / (journalArticleOpened + journalArticleClosed);
+    const bookChapterOpened = dataGraph.find(
+      (el) => el.key === 'book-chapter' && el.parent === 'opened',
+    )?.value;
+    const bookChapterClosed = dataGraph.find(
+      (el) => el.key === 'book-chapter' && el.parent === 'closed',
+    )?.value;
+    const ratio2 = bookChapterOpened / (bookChapterOpened + bookChapterClosed);
+
+    chartComments = intl.formatMessage(
+      { id: `${graphId}.comments` },
+      {
+        a: observationDates[0],
+        b: journalArticleOpened,
+        c: journalArticleClosed,
+        d: Math.floor(ratio1 * 100),
+        e: bookChapterOpened,
+        f: bookChapterClosed,
+        g: Math.floor(ratio2 * 100),
+      },
+    );
+  }
+
   return (
     <>
       <div fluid className='graph-container'>
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <Toggle
+          isChecked={isOa}
+          onChange={() => setIsOa(!isOa)}
+          label={intl.formatMessage({ id: `${graphId}.toggle-label` })}
+        />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
           id={graphId}
         />
-        <GraphComments
-          comments={intl.formatMessage({ id: `${graphId}.comments` })}
-        />
+        <GraphComments comments={chartComments} />
       </div>
       <GraphFooter
         date={updateDate}

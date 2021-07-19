@@ -14,6 +14,7 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
+import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -91,7 +92,8 @@ const Chart = ({ graphFooter, graphComments }) => {
 
   return (
     <>
-      <div className='graph-container'>
+      <div fluid className='graph-container'>
+        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
         {/* <GraphFilters /> */}
         <HighchartsReact
           highcharts={Highcharts}
