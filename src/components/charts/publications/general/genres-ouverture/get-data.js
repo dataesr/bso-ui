@@ -146,6 +146,7 @@ function useGetData(observationDate, isOa) {
       }
     }
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationDate, isOa]);
 
   return { allData, isLoading, isError };

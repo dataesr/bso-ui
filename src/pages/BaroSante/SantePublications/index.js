@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
-import ChartsDynamiqueOuverture from '../../../components/charts/publications/general/dynamique-ouverture';
-import ChartsVoiesOuverture from '../../../components/charts/publications/general/voies-ouverture';
+import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
+import ChartEvolutionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-evolution-taux';
+import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
+import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
@@ -13,6 +15,7 @@ import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
+import { bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { GetPublicationRateFrom } from '../../../utils/dataFetchHelper';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
@@ -163,20 +166,18 @@ function SantePublications() {
             >
               <GraphContent>
                 <QuestionSection
-                  title='Quelle est la dynamique d’ouverture de la santé en France ?'
-                  info='info text'
-                  description='description text'
-                  backgroundColor='#D5DBEF'
+                  intlKey='app.sante-publi.general.voies-ouverture'
+                  backgroundColor={bluesoft50}
                 >
-                  <ChartsDynamiqueOuverture />
+                  <ChartRepartitionTaux />
+                  <ChartEvolutionTaux />
+                  <ChartRepartitionPublications />
                 </QuestionSection>
                 <QuestionSection
-                  title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
-                  info='info text'
-                  description='description text'
-                  backgroundColor='#D5DBEF'
+                  intlKey='app.sante-publi.general.genres-ouverture'
+                  backgroundColor={bluesoft50}
                 >
-                  <ChartsVoiesOuverture />
+                  <ChartGenreOuverture />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
