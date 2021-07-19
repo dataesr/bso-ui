@@ -13,11 +13,13 @@ import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
+import useLang from '../../utils/Hooks/useLang';
 import GlossaryItem from './GlossaryItem';
 
 function Glossary({ entries }) {
   const intl = useIntl();
   const contentRef = useRef();
+  const { lang } = useLang();
   const [openPanel, setOpenPanel] = useState(false);
   const [glossaryEntries, setGlossaryEntries] = useState([]);
   const [activeKey, setActiveKey] = useState('');
@@ -100,7 +102,10 @@ function Glossary({ entries }) {
             <Row>
               <Col n='9'>
                 <div className='fs-20-20 marianne-extra-bold'>
-                  Glossaire de la page
+                  {intl.formatMessage({
+                    id: 'app.glossary.title',
+                    defaultMessage: 'Glossaire de la page',
+                  })}
                 </div>
               </Col>
               <Col n='3' className='text-right'>
@@ -132,9 +137,9 @@ function Glossary({ entries }) {
                     <GlossaryItem
                       glossaryKey={key}
                       key={uuidv4()}
-                      definition={entries[0][key].definition.fr}
+                      definition={entries[0][key].definition[lang]}
                       active={key === activeKey}
-                      entry={entries[0][key].entry.fr}
+                      entry={entries[0][key].entry[lang]}
                       className={i === 0 ? 'pt-20' : ''}
                     />
                   );

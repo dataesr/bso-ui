@@ -1,6 +1,5 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
@@ -17,20 +16,27 @@ import QuestionSection from '../../../components/question-section';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { GetPublicationRateFrom } from '../../../utils/dataFetchHelper';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
+import useLang from '../../../utils/Hooks/useLang';
 
-const objLocation = {
-  '/sante/publications/discipline': 'app.sante-publi.disciplines',
-  '/sante/publications/general': 'app.sante-publi.general',
+const objButtonLabel = {
+  fr: {
+    '/sante/publications/discipline': 'app.sante-publi.disciplines',
+    '/sante/publications/general': 'app.sante-publi.general',
+  },
+  en: {
+    '/health/publications/discipline': 'app.sante-publi.disciplines',
+    '/health/publications/general': 'app.sante-publi.general',
+  },
 };
 
 function SantePublications() {
+  const { lang } = useLang();
   const [rate, setRate] = useState(null);
   const location = useLocation();
   const { observationDates } = useGlobals();
 
-  GetPublicationRateFrom(observationDates[1]).then((resp) => {
-    const { rateByYear } = resp;
-
+  GetPublicationRateFrom(observationDates[1] || '2021Q1').then((resp) => {
+    const { rate: rateByYear } = resp;
     if (!rate) {
       setRate(rateByYear);
     }
@@ -79,15 +85,19 @@ function SantePublications() {
                   {' '}
                   <span
                     className='glossary-entry'
-                    data-glossary-key='essai_clinique'
+                    data-glossary-key='etude_observationelle'
                   >
-                    Essais cliniques déclarés
+                    etude_observationelle
                   </span>
                   {' '}
                   consectetur adipisicing elit. Adipisci dignissimos dolorem ex
                   ipsum libero! Ad asperiores at dicta ducimus laboriosam magni,
-                  maiores minima natus neque odit quibusdam rem voluptatum.
-                  Officiis.
+                  maiores
+                  {' '}
+                  <span className='glossary-entry' data-glossary-key='hal'>
+                    hal
+                  </span>
+                  minima natus neque odit quibusdam rem voluptatum. Officiis.
                 </p>
               </Col>
             </Row>
@@ -131,14 +141,7 @@ function SantePublications() {
           </Container>
         </Row>
         <Row>
-          <GraphSection
-            buttonLabel={(
-              <FormattedMessage
-                id={objLocation[location.pathname]}
-                defaultMessage='General'
-              />
-            )}
-          >
+          <GraphSection buttonLabel={objButtonLabel[lang][location.pathname]}>
             <GraphItem
               mainLabel='Général'
               paths={[

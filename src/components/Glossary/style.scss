@@ -7,12 +7,12 @@
   top: 0;
   right: -100vw;
   height: 100%;
-  box-shadow: 14px 0 25px rgb(61, 65, 103),
-    17px 0 10px rgb(82, 102, 161),
-    -2px 0 30px rgb(61, 65, 103);
 
   &.openPanel {
-    transition: right 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    box-shadow: 14px 0 25px rgb(61, 65, 103),
+      17px 0 10px rgb(82, 102, 161),
+      -2px 0 30px rgb(61, 65, 103);
     right: 0;
   }
 
@@ -98,7 +98,7 @@
 
 @media screen and(min-width: 992px) {
   .bso-glossary {
-    max-width: 45vw;
+    max-width: 44vw;
     right: -44vw;
 
     .fr-btn {
