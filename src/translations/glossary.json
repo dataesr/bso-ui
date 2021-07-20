@@ -91,14 +91,9 @@
       }
     },
     "hal": {
-      "entry": {
-        "fr": "hal",
-        "en": "hal"
-      },
-      "definition": {
-        "fr": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service. {link}",
-        "en": "French national open archive carried by the Centre for Direct Scientific Communication (CCSD), a joint service unit. {link}"
-      }
+      "intlEntry": "app.hal",
+      "intlDefinition": "app.glossary.definition.hal",
+      "cta": "http://www.hal.com"
     },
     "openapc": {
       "entry": {

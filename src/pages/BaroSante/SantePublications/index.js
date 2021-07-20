@@ -10,6 +10,7 @@ import ChartRepartitionTaux from '../../../components/charts/publications/genera
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
+import GlossaryEntry from '../../../components/Glossary/GlossaryEntry';
 import GraphSection from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
@@ -84,22 +85,10 @@ function SantePublications() {
               </Col>
               <Col n='12 md-6'>
                 <p>
-                  Lorem ipsum dolor sit amet,
-                  {' '}
-                  <span
-                    className='glossary-entry'
-                    data-glossary-key='etude_observationelle'
-                  >
-                    etude_observationelle
-                  </span>
-                  {' '}
-                  consectetur adipisicing elit. Adipisci dignissimos dolorem ex
-                  ipsum libero! Ad asperiores at dicta ducimus laboriosam magni,
-                  maiores
-                  {' '}
-                  <span className='glossary-entry' data-glossary-key='hal'>
-                    hal
-                  </span>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Adipisci dignissimos dolorem ex ipsum libero! Ad asperiores at
+                  dicta ducimus laboriosam magni, maiores
+                  <GlossaryEntry intlKey='app.hal' glossaryKey='hal' />
                   minima natus neque odit quibusdam rem voluptatum. Officiis.
                 </p>
               </Col>
