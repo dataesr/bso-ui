@@ -41,7 +41,7 @@ InfoCard.defaultProps = {
   data2: '',
 };
 InfoCard.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   data1: PropTypes.string.isRequired,
   data2: PropTypes.string,
 };

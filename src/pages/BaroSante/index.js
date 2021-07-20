@@ -183,7 +183,9 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                 introText={`Les essais cliniques déclarés external-link-square-alt désignent nisl sit cursus id lacus.
                   Morbi neque consequat nisl fermentum, massa tellus ut elementum. Ac elementum enim arcu suspendisse vestibulum.
                   Laoreet viverra aenean risus accumsan eu. In elit tempor commodo scelerisque pretium,`}
-              />
+              >
+                <Container fluid />
+              </HomeSection>
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
               <HomeSection
@@ -196,7 +198,9 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                   Morbi neque consequat nisl fermentum, massa tellus ut elementum. Ac elementum enim arcu suspendisse vestibulum.
                   Laoreet viverra aenean risus accumsan eu.
                   In elit tempor commodo scelerisque pretium,`}
-              />
+              >
+                <Container fluid />
+              </HomeSection>
             </Col>
             <Col n='12'>
               <Container fluid>

@@ -10,7 +10,6 @@ import ChartRepartitionTaux from '../../../components/charts/publications/genera
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
-import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphSection from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
@@ -82,12 +81,6 @@ function SantePublications() {
                 <h1 className='contentTitle marianne-bold mb-32'>
                   Publications en santé
                 </h1>
-              </Col>
-              <Col n='12 md-6'>
-                <GlossaryFormattedMessage
-                  intlKey='app.text.hal'
-                  glossaryKey='hal'
-                />
               </Col>
             </Row>
           </Container>

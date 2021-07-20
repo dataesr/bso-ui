@@ -54,7 +54,7 @@ function Banner({
     >
       <Container>
         <Row
-          justifyContent={!sticked ? 'center' : 'start'}
+          justifyContent={!sticked ? 'center' : 'left'}
           alignItems='middle'
           gutters={!sticked}
         >
