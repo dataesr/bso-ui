@@ -45,7 +45,7 @@
   "app.publication-genre.report": "app.publication-genre.report",
   "app.glossary": "Glossaire",
   "app.glossary.complete": "Toutes les définitions dans le glossaire complet",
-  "app.glossary.definition.hal": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service. <cta>www.hal.com</cta>",
+  "app.glossary.definition.hal": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service. <cta>hal.com</cta>",
   "app.glossary.title": "Glossaire de la page",
   "app.header.nav.a-propos": "À propos",
   "app.hal": "HAL",
