@@ -8,9 +8,9 @@ import Loader from '../Loader';
 function InfoCard({ title, data1, data2 }) {
   return (
     <Card
-      className='info-card text-center'
+      className='bso-info-card text-center'
       bodyClassName='bg-white'
-      href='/test'
+      href='/'
       hasArrow={false}
     >
       <CardDescription as='div'>

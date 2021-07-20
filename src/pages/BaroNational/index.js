@@ -1,11 +1,14 @@
 import { Col, Row } from '@dataesr/react-dsfr';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
 import Icon from '../../components/Icon';
 
 function BaroNational() {
+  const intl = useIntl();
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -52,7 +55,10 @@ function BaroNational() {
         title='le Baromètre français de la sciences Ouverte'
         subTitle='Il mesure l’évolution de l’accès ouvert de la recherche en France
 à partir de données fiables, ouvertes et maîtrisées.'
-        link={{ label: 'Voir la dernière note flash', url: '' }}
+        link={{
+          label: 'Voir la dernière note flash',
+          url: intl.formatMessage({ id: 'url.about.flash' }),
+        }}
         icons={renderIcons}
         chip={<Chip />}
       />
