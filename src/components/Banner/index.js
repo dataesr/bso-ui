@@ -55,7 +55,7 @@ function Banner({
     >
       <Container>
         <Row
-          justifyContent={!sticked ? 'center' : 'start'}
+          justifyContent={!sticked ? 'center' : 'left'}
           alignItems='middle'
           gutters={!sticked}
         >
@@ -132,8 +132,8 @@ Banner.propTypes = {
   sticky: PropTypes.bool,
   backgroundColor: PropTypes.string.isRequired,
   textColor: PropTypes.string,
-  supTitle: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  supTitle: PropTypes.element,
+  title: PropTypes.element.isRequired,
   icons: PropTypes.element,
   chip: PropTypes.element,
   selectNavigation: PropTypes.exact({
@@ -146,7 +146,7 @@ Banner.propTypes = {
       }),
     ).isRequired,
   }),
-  subTitle: PropTypes.string,
+  subTitle: PropTypes.element,
   link: PropTypes.exact({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

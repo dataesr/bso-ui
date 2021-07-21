@@ -24,10 +24,10 @@ function HomeSection({ title, introText, link, children }) {
 }
 
 HomeSection.propTypes = {
-  title: PropTypes.string.isRequired,
-  introText: PropTypes.string.isRequired,
+  title: PropTypes.element.isRequired,
+  introText: PropTypes.element.isRequired,
   link: PropTypes.shape({
-    label: PropTypes.string.isRequired,
+    label: PropTypes.element.isRequired,
     href: PropTypes.string.isRequired,
   }).isRequired,
   children: PropTypes.element.isRequired,

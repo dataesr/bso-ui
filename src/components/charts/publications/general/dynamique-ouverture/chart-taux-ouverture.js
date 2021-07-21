@@ -92,7 +92,7 @@ const Chart = ({ graphFooter, graphComments }) => {
 
   return (
     <>
-      <div fluid className='graph-container'>
+      <div className='graph-container'>
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
         {/* <GraphFilters /> */}
         <HighchartsReact
