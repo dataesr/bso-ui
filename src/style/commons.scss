@@ -55,6 +55,14 @@
   background-color: #fff;
 }
 
+.bg-yellow {
+  background-color: var(--yellow-medium-50);
+}
+
+.bg-dark-blue {
+  background: var(--blue-soft-150);
+}
+
 .bg-medium-blue,
 .fr-btn.bg-medium-blue {
   background: var(--blue-soft-100);
@@ -62,6 +70,10 @@
 
 .text-white {
   color: #fff;
+}
+
+.text-blue {
+  color: var(--blue-soft-100);
 }
 
 /**
@@ -98,6 +110,10 @@
 
 .pb-32 {
   padding-bottom: 32px;
+}
+
+.pb-56 {
+  padding-bottom: 56px;
 }
 
 .px-20 {
