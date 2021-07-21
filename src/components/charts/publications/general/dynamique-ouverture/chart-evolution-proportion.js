@@ -24,15 +24,14 @@ const Chart = ({ graphFooter, graphComments }) => {
   const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion';
   const { observationDates, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationDates);
+  const { dataGraph2 } = data;
 
-  if (isLoading) {
+  if (isLoading || !dataGraph2) {
     return <Loader />;
   }
   if (isError) {
     return <>Error</>;
   }
-
-  const { dataGraph2 } = data;
 
   const optionsGraph2 = getGraphOptions(graphId, intl);
   optionsGraph2.chart.type = 'spline';

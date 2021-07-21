@@ -24,15 +24,14 @@ const Chart = () => {
   const { allData, isLoading, isError } = useGetData(
     observationDates[0] || '2020',
   );
+  const { dataGraph, categories } = allData;
 
-  if (isLoading) {
+  if (isLoading || !dataGraph || !categories) {
     return <Loader />;
   }
   if (isError) {
     return <>Error</>;
   }
-
-  const { dataGraph, categories } = allData;
 
   const optionsGraph = getGraphOptions(graphId, intl);
   optionsGraph.chart.type = 'area';

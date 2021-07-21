@@ -15,16 +15,21 @@ function useGetData(observationDate) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
+  // const [isError, setError] = useState(false);
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
       const query = {
         size: 0,
+        query: {
+          bool: {
+            filter: [{ term: { 'domains.keyword': 'health' } }],
+          },
+        },
         aggs: {
           by_publication_year: {
             terms: {
-              field: 'publication_year',
+              field: 'year',
             },
             aggs: {
               by_oa_host_type: {
@@ -50,24 +55,27 @@ function useGetData(observationDate) {
 
       data
         .filter(
-          (el) => el.key > 2012 && el.key < lastObservationDate.substring(0, 4),
+          (el) => el.key > 2012
+            && parseInt(el.key, 10)
+              < parseInt(lastObservationDate.substring(0, 4), 10),
         )
         .forEach((el) => {
           categories.push(el.key);
+
           let temp = el.by_oa_host_type.buckets.find(
             (item) => item.key === 'repository',
           );
-          repository.push(temp.doc_count || 0);
+          repository.push(temp?.doc_count || 0);
 
           temp = el.by_oa_host_type.buckets.find(
             (item) => item.key === 'publisher',
           );
-          publisher.push(temp.doc_count || 0);
+          publisher.push(temp?.doc_count || 0);
 
           temp = el.by_oa_host_type.buckets.find(
             (item) => item.key === 'publisher;repository',
           );
-          publisherRepository.push(temp.doc_count || 0);
+          publisherRepository.push(temp?.doc_count || 0);
         });
 
       const dataGraph = [
@@ -135,19 +143,14 @@ function useGetData(observationDate) {
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
-        setError(true);
+        // setError(true);
         setLoading(false);
       }
     }
     getData();
-  }, [
-    observationDate,
-    setData,
-    setLoading,
-    setError,
-    getDataForLastObservationDate,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [observationDate]);
 
-  return { allData, isLoading, isError };
+  return { allData, isLoading };
 }
 export default useGetData;

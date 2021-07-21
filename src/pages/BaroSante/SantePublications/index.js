@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
+import ChartEvolutionProportion from '../../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
+import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
 import ChartEvolutionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-evolution-taux';
 import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
@@ -38,7 +40,7 @@ function SantePublications() {
   const location = useLocation();
   const { observationDates } = useGlobals();
 
-  GetPublicationRateFrom(observationDates[1] || '2021Q1').then((resp) => {
+  GetPublicationRateFrom(observationDates[1] || '2021Q2').then((resp) => {
     const { rate: rateByYear } = resp;
     if (!rate) {
       setRate(rateByYear);
@@ -165,6 +167,13 @@ function SantePublications() {
               ]}
             >
               <GraphContent>
+                <QuestionSection
+                  intlKey='app.sante-publi.general.dynamique-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuverture />
+                  <ChartEvolutionProportion />
+                </QuestionSection>
                 <QuestionSection
                   intlKey='app.sante-publi.general.voies-ouverture'
                   backgroundColor={bluesoft50}

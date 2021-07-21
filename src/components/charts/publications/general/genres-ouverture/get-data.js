@@ -16,13 +16,17 @@ function useGetData(observationDate, isOa) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
 
   async function getDataForLastObservationDate(lastObservationDate) {
     let query = '';
     if (!isOa) {
       query = {
         size: 0,
+        query: {
+          bool: {
+            filter: [{ term: { 'domains.keyword': 'health' } }],
+          },
+        },
         aggs: {
           by_is_oa: {
             terms: {
@@ -141,7 +145,6 @@ function useGetData(observationDate, isOa) {
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
-        setError(true);
         setLoading(false);
       }
     }
@@ -149,6 +152,6 @@ function useGetData(observationDate, isOa) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationDate, isOa]);
 
-  return { allData, isLoading, isError };
+  return { allData, isLoading };
 }
 export default useGetData;

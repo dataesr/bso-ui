@@ -21,18 +21,12 @@ const Chart = () => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-taux';
   const { observationDates, updateDate } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
-    observationDates[0] || 2020,
-  );
+  const { allData, isLoading } = useGetData(observationDates[0]);
+  const { dataGraph, categories } = allData;
 
-  if (isLoading) {
+  if (isLoading || !dataGraph || !categories) {
     return <Loader />;
   }
-  if (isError) {
-    return <>Error</>;
-  }
-
-  const { dataGraph, categories } = allData;
 
   const optionsGraph = getGraphOptions(graphId, intl);
   optionsGraph.chart.type = 'column';

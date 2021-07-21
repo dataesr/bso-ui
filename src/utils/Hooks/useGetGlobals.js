@@ -9,7 +9,7 @@ export const GlobalsContext = createContext();
 export const GlobalsContextProvider = ({ children }) => {
   const storedObservationDates = localStorage.getItem(
     '__observationDates__',
-  ) || ['2020'];
+  ) || ['2021'];
   const [observationDates, setObservationDates] = useState(
     storedObservationDates,
   );
@@ -21,6 +21,11 @@ export const GlobalsContextProvider = ({ children }) => {
     // Récupération de toutes les dates d'observation
     const query = {
       size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
       aggs: {
         observation_dates: {
           terms: { field: 'observation_dates.keyword', size: 100 },
@@ -30,21 +35,22 @@ export const GlobalsContextProvider = ({ children }) => {
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     return res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
-      .sort((a, b) => b - a);
+      .sort()
+      .reverse();
   }
 
-  async function getUpdateDate() {
+  async function getUpdateDate(lastDate) {
     // Récupération de la date de modification
     const query = {
       size: 0,
       aggs: {
         snapshot_date: {
-          terms: { field: 'oa_details.2021Q1.snapshot_date.keyword' },
+          terms: { field: `oa_details.${lastDate}.snapshot_date.keyword` },
         },
       },
     };
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const date = res?.data?.aggregations?.snapshot_date?.buckets[0].key;
+    const date = res?.data?.aggregations?.snapshot_date?.buckets[0]?.key;
     return [date.slice(0, 4), '-', date.slice(4, 6), '-', date.slice(6)].join(
       '',
     );
@@ -52,8 +58,9 @@ export const GlobalsContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getData() {
-      setObservationDates(await getObservationDates());
-      setUpdateDate(await getUpdateDate());
+      const obDates = await getObservationDates();
+      setObservationDates(obDates);
+      setUpdateDate(await getUpdateDate(obDates[0]));
     }
     getData();
   }, []);

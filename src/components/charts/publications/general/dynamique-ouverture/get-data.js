@@ -19,10 +19,15 @@ function useGetData(observationDates) {
     datesObservation?.forEach((oneDate) => {
       const query = {
         size: 0,
+        query: {
+          bool: {
+            filter: [{ term: { 'domains.keyword': 'health' } }],
+          },
+        },
         aggs: {
           by_publication_year: {
             terms: {
-              field: 'publication_year',
+              field: 'year',
             },
             aggs: {
               by_is_oa: {
@@ -57,7 +62,6 @@ function useGetData(observationDates) {
       discipline150,
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
-
     const dataGraph2 = [];
     allData.forEach((observationDateData, i) => {
       const serie = {};
@@ -100,7 +104,7 @@ function useGetData(observationDates) {
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
-        setError(true);
+        // setError(true);
         setLoading(false);
       }
     }

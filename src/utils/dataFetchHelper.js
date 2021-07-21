@@ -10,7 +10,7 @@ export async function GetPublicationFrom(year) {
       aggs: {
         by_publication_year: {
           terms: {
-            field: 'publication_year',
+            field: 'year',
           },
           aggs: {
             by_is_oa: {
@@ -33,7 +33,7 @@ export const GetPublicationRateFrom = async (year) => {
     aggs: {
       by_publication_year: {
         terms: {
-          field: 'publication_year',
+          field: 'year',
         },
         aggs: {
           by_is_oa: {
