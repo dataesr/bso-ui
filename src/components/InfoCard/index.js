@@ -1,19 +1,29 @@
 import { Card, CardDescription } from '@dataesr/react-dsfr';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import Loader from '../Loader';
 
-function InfoCard({ title, subTitle, bodyClassName, data1, data2, icon }) {
+function InfoCard({
+  title,
+  subTitle,
+  bodyClassName,
+  data1,
+  data2,
+  icon,
+  small,
+  cardClassNames,
+}) {
   return (
     <Card
-      className='bso-info-card text-center'
+      className={classNames('bso-info-card text-center', cardClassNames)}
       bodyClassName={bodyClassName}
       href='/'
       hasArrow={false}
     >
       <CardDescription as='div'>
-        <section className='pb-16 pt-32'>
+        <section className={classNames({ 'pb-16 pt-32': !small })}>
           {icon}
           {data1 ? (
             <section>
@@ -22,7 +32,7 @@ function InfoCard({ title, subTitle, bodyClassName, data1, data2, icon }) {
                 <span className='fs-48-48'>{data1}</span>
                 {data2 && <span className='fs-28-32'>{data2}</span>}
               </div>
-              {subTitle && <div className='fs-20-20'>{subTitle}</div>}
+              {subTitle && <div className='fs-14-24'>{subTitle}</div>}
             </section>
           ) : (
             <Loader />
@@ -35,7 +45,9 @@ function InfoCard({ title, subTitle, bodyClassName, data1, data2, icon }) {
 
 InfoCard.defaultProps = {
   data2: '',
+  cardClassNames: '',
   title: null,
+  small: false,
   subTitle: null,
   bodyClassName: 'bg-white',
 };
@@ -45,6 +57,8 @@ InfoCard.propTypes = {
   subTitle: PropTypes.element,
   data1: PropTypes.string.isRequired,
   data2: PropTypes.string,
+  cardClassNames: PropTypes.string,
+  small: PropTypes.bool,
   icon: PropTypes.element.isRequired,
 };
 

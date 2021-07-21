@@ -20,22 +20,32 @@ import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
 import InfoCard from '../../components/InfoCard';
 import LinkCard from '../../components/LinkCard';
-import WrapperCol from '../../components/WrapperCol';
+import TodaySection from '../../components/TodaySection';
+import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
 import logoBso from '../../images/logo-bso.png';
 import { GetPublicationRateFrom } from '../../utils/dataFetchHelper';
 import { getDateFormated } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
-import useViewport from '../../utils/Hooks/useViewport';
 
 function BaroSante() {
-  const { mobile, tablet, desktop } = useViewport();
   const { updateDate, observationDates } = useGlobals();
   const [progression, setProgression] = useState({});
   const { lang } = useLang();
   const [start, setStart] = useState('2020');
   const [end, setEnd] = useState('2021Q1');
 
+  const renderUpdateDate = () => (
+    <FormattedMessage
+      values={{
+        date: getDateFormated(updateDate, lang),
+        endDate: end,
+        startDate: observationDates[observationDates.length - 1],
+      }}
+      id='app.sante.update.date'
+      defaultMessage=''
+    />
+  );
   const updateProgression = (res, year) => {
     const { rate } = res;
     if (
@@ -118,17 +128,7 @@ function BaroSante() {
                 <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
                   <FormattedMessage id='app.sante-home.numbers' />
                 </h2>
-                <p className='fs-14-24 blue m-0'>
-                  <FormattedMessage
-                    values={{
-                      date: getDateFormated(updateDate, lang),
-                      endDate: end,
-                      startDate: observationDates[observationDates.length - 1],
-                    }}
-                    id='app.sante.update.date'
-                    defaultMessage=''
-                  />
-                </p>
+                <p className='fs-14-24 blue m-0'>{renderUpdateDate()}</p>
               </section>
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
@@ -257,7 +257,7 @@ function BaroSante() {
             </Col>
             <Col>
               <Container fluid className='bg-blue'>
-                <section className='py-48 px-20 px-md-64'>
+                <section className='py-48 px-20 px-md-64 max-996'>
                   <Row gutters>
                     <Col n='12'>
                       <h4 className='marianne fs-28-32 text-left-m text-center m-0 mb-32'>
@@ -332,98 +332,57 @@ function BaroSante() {
               </Container>
             </Col>
             <Col n='12'>
-              <Container>
-                <section className='py-48'>
-                  <Row gutters>
-                    <WrapperCol
-                      columns='12 md-4'
-                      container={mobile}
-                      gutters={false}
-                    >
-                      <p>
-                        Le baromètre santé, aujourd’hui c’est… Site mis à jour
-                        le 2 février 2021 (données 2013-2020)
-                      </p>
-                      <Card bodyClassName='bg-soft-blue' href='/'>
-                        <CardDescription as='div'>
-                          <DSLink as={<Link to='a-propos/methodologie' />}>
-                            <h6 className='m-0'>
-                              Sur quoi sont basés nos résultats ?
-                            </h6>
-                            <p>
-                              Découvrez notre méthodologie pour le baromètre
-                              santé
-                            </p>
-                            <Icon
-                              name='icon-bsso-22'
-                              color1='blue-dark-125'
-                              color2='blue-soft-75'
-                            />
-                          </DSLink>
-                        </CardDescription>
-                      </Card>
-                    </WrapperCol>
-                    <WrapperCol active={tablet || desktop} columns='12 md-8'>
-                      <Col n='6 md-6'>
-                        <InfoCard
-                          bodyClassName='bg-soft-pink'
-                          subTitle={<FormattedMessage id='app.publications' />}
-                          icon={(
-                            <Icon
-                              name='icon-bsso-28'
-                              color1='blue-dark-125'
-                              color2='publication-50'
-                            />
-                          )}
-                          data1='xx'
-                        />
-                      </Col>
-                      <Col n='6 md-6'>
-                        <InfoCard
-                          bodyClassName='bg-yellow'
-                          subTitle={<FormattedMessage id='app.editors' />}
-                          icon={(
-                            <Icon
-                              name='icon-bsso-14'
-                              color1='blue-dark-125'
-                              color2='yellow-medium-75'
-                            />
-                          )}
-                          data1='xx'
-                        />
-                      </Col>
-                      <Col n='6 md-6'>
-                        <InfoCard
-                          bodyClassName='bg-soft-pink'
-                          subTitle={<FormattedMessage id='app.books' />}
-                          icon={(
-                            <Icon
-                              name='icon-bsso-28'
-                              color1='blue-dark-125'
-                              color2='publication-50'
-                            />
-                          )}
-                          data1='xx'
-                        />
-                      </Col>
-                      <Col n='6 md-6'>
-                        <InfoCard
-                          bodyClassName='bg-soft-pink'
-                          subTitle={<FormattedMessage id='app.open-archives' />}
-                          icon={(
-                            <Icon
-                              name='icon-bsso-28'
-                              color1='blue-dark-125'
-                              color2='publication-50'
-                            />
-                          )}
-                          data1='xx'
-                        />
-                      </Col>
-                    </WrapperCol>
-                  </Row>
-                </section>
-              </Container>
+              <TodaySection updateDate={renderUpdateDate()}>
+                <TodaySectionItem
+                  data='--'
+                  icoName='icon-bsso-28'
+                  iconColor='purple-50'
+                  intlSubTitle='app.publications'
+                  backgroundColorClass='bg-soft-purple'
+                />
+                <TodaySectionItem
+                  data='--'
+                  icoName='icon-bsso-2'
+                  iconColor='purple-50'
+                  intlSubTitle='app.books'
+                  backgroundColorClass='bg-soft-pink'
+                />
+                <TodaySectionItem
+                  data='--'
+                  icoName='icon-bsso-14'
+                  iconColor='yellow-medium-75'
+                  intlSubTitle='app.editors'
+                  backgroundColorClass='bg-yellow'
+                />
+                <TodaySectionItem
+                  data='--'
+                  icoName='icon-bsso-10'
+                  iconColor='green-medium-75'
+                  intlSubTitle='app.open-archives'
+                  backgroundColorClass='bg-medium-green'
+                />
+                <TodaySectionItem
+                  data='--'
+                  icoName='icon-bsso-10'
+                  iconColor='green-light-75'
+                  intlSubTitle='app.obs-dates'
+                  backgroundColorClass='bg-soft-green'
+                />
+                <TodaySectionItem
+                  data='--'
+                  icoName='icon-bsso-24'
+                  iconColor='purple-medium-50'
+                  intlSubTitle='app.clinical-essays'
+                  backgroundColorClass='bg-medium-purple'
+                />
+                <TodaySectionItem
+                  data='--'
+                  icoName='icon-bsso-6'
+                  iconColor='yellow-medium-75'
+                  intlSubTitle='app.observable-studies'
+                  backgroundColorClass='bg-yellow'
+                />
+              </TodaySection>
             </Col>
           </Row>
         </section>

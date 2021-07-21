@@ -59,12 +59,28 @@
   background-color: var(--yellow-medium-50);
 }
 
+.bg-soft-green {
+  background-color: var(--green-light-50);
+}
+
 .bg-soft-pink {
   background-color: var(--publication-25);
 }
 
+.bg-soft-purple {
+  background-color: var(--purple-25);
+}
+
+.bg-medium-purple {
+  background-color: var(--purple-medium-25);
+}
+
 .bg-dark-blue {
   background: var(--blue-soft-150);
+}
+
+.bg-medium-green {
+  background: var(--green-medium-25);
 }
 
 .bg-soft-blue {
@@ -168,6 +184,10 @@
   width: 100%;
 }
 
+.h-50 {
+  height: 50%;
+}
+
 /**
   Mediaqueries
  */
@@ -178,6 +198,11 @@
 
   .text-left-xxl {
     text-align: left;
+  }
+
+  .max-996 {
+    max-width: 996px;
+    margin: 0 auto;
   }
 }
 
@@ -215,6 +240,11 @@
 
   .mb-l-60 {
     margin-bottom: 60px;
+  }
+
+  .px-l-0 {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .px-l-64 {
