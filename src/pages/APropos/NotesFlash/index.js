@@ -84,7 +84,7 @@ function NotesFlash() {
             </Col>
             <Col n='12'>
               <Card
-                bodyClassName='bg-blue-dark text-white'
+                bodyClassName='bg-dark-blue text-white'
                 hasArrow={false}
                 href='https://github.com/dataesr/bso-ui'
               >
