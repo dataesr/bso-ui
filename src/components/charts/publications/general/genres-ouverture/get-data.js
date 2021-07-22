@@ -21,6 +21,7 @@ function useGetData(observationDate, isOa) {
   async function getDataForLastObservationDate(lastObservationDate) {
     let query = '';
     if (!isOa) {
+      // TODO move options to helpers
       query = {
         size: 0,
         aggs: {
@@ -40,6 +41,7 @@ function useGetData(observationDate, isOa) {
         },
       };
     } else {
+      // TODO move options to helpers
       query = {
         size: 0,
         aggs: {

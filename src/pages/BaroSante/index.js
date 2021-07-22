@@ -20,10 +20,12 @@ import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
 import InfoCard from '../../components/InfoCard';
 import LinkCard from '../../components/LinkCard';
+import TodaySection from '../../components/TodaySection';
+import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
 import logoBso from '../../images/logo-bso.png';
-import { GetPublicationRateFrom } from '../../utils/dataFetchHelper';
 import { getDateFormated } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
+import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
@@ -32,7 +34,17 @@ function BaroSante() {
   const { lang } = useLang();
   const [start, setStart] = useState('2020');
   const [end, setEnd] = useState('2021Q1');
-
+  const renderUpdateDate = () => (
+    <FormattedMessage
+      values={{
+        date: getDateFormated(updateDate, lang),
+        endDate: end,
+        startDate: observationDates[observationDates.length - 1],
+      }}
+      id='app.sante.update.date'
+      defaultMessage=''
+    />
+  );
   const updateProgression = (res, year) => {
     const { rate } = res;
     if (
@@ -43,11 +55,11 @@ function BaroSante() {
     }
   };
 
-  GetPublicationRateFrom(start).then((res) => {
+  useGetPublicationRateFrom(start).then((res) => {
     updateProgression(res, start);
   });
 
-  GetPublicationRateFrom(end).then((res) => {
+  useGetPublicationRateFrom(end).then((res) => {
     updateProgression(res, end.substring(0, 4));
   });
 
@@ -101,11 +113,9 @@ function BaroSante() {
     <div className='baro-sante page home'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle='Baromètre français de la science ouverte'
-        title='Santé'
-        subTitle='Publications, essais cliniques, études observationnelles:
-        Découvrez l’évolution de l’accès ouvert de la recherche en santé
-en France à partir de données fiables, ouvertes et maîtrisées.'
+        supTitle={<FormattedMessage id='app.baro.science-ouverte' />}
+        title={<FormattedMessage id='app.commons.health' />}
+        subTitle={<FormattedMessage id='app.baro-sante.intro-banner' />}
         chip={<Chip backgroundColor='blue-soft-125' />}
         icons={renderIcons}
       />
@@ -115,32 +125,21 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
             <Col n='8 md-12 xl-9' className='px-20 px-md-64' offset='xl-3'>
               <section className='py-28'>
                 <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
-                  Les chiffres-clés de la Santé
+                  <FormattedMessage id='app.sante-home.numbers' />
                 </h2>
-                <p className='fs-14-24 blue m-0'>
-                  <FormattedMessage
-                    values={{
-                      date: getDateFormated(updateDate, lang),
-                      endDate: end,
-                      startDate: observationDates[observationDates.length - 1],
-                    }}
-                    id='app.sante.update.date'
-                    defaultMessage=''
-                  />
-                </p>
+                <p className='fs-14-24 blue m-0'>{renderUpdateDate()}</p>
               </section>
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
               <HomeSection
                 link={{
                   href: '/sante/publications/dynamique',
-                  label: 'Voir le détail des publications',
+                  label: <FormattedMessage id='app.baro-sante.detail-publi' />,
                 }}
-                title='Les publications'
-                introText={`Les publications en accès ouvert external-link-square-alt désignent les publications de recherche
-          mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du
-          nombre de publications en accès ouvert rapporté au nombre total de publications
-          sur le même périmètre (par exemple par année, discipline ou éditeur)…`}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-national-publications' />
+                }
+                introText={<FormattedMessage id='app.baro-sante.intro' />}
               >
                 <Container fluid>
                   <Row gutters alignItems='top'>
@@ -152,6 +151,13 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                     </Col>
                     <Col n='12 md-4'>
                       <InfoCard
+                        icon={(
+                          <Icon
+                            name='icon-bsso-33'
+                            color1='blue-dark-125'
+                            color2='orange-soft-50'
+                          />
+                        )}
                         data1={`${progressionPoints()}`}
                         data2='pts'
                         title={(
@@ -177,25 +183,30 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
               <HomeSection
                 link={{
                   href: '/sante/essais-cliniques',
-                  label: 'Voir le détail des essais cliniques',
+                  label: <FormattedMessage id='app.baro-sante.detail-essays' />,
                 }}
-                title='Les essais cliniques'
-                introText={`Les essais cliniques déclarés external-link-square-alt désignent nisl sit cursus id lacus.
-                  Morbi neque consequat nisl fermentum, massa tellus ut elementum. Ac elementum enim arcu suspendisse vestibulum.
-                  Laoreet viverra aenean risus accumsan eu. In elit tempor commodo scelerisque pretium,`}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-sante-essais' />
+                }
+                introText={
+                  <FormattedMessage id='app.baro-sante.essays-intro' />
+                }
               />
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
               <HomeSection
                 link={{
                   href: '/sante/etudes-observationelles',
-                  label: 'Voir le détail des études observationnelles',
+                  label: (
+                    <FormattedMessage id='app.baro-sante.detail-studies' />
+                  ),
                 }}
-                title='Les études observationnelles'
-                introText={`Les études observationnelles déclarées external-link-square-alt désignent nisl sit cursus id lacus.
-                  Morbi neque consequat nisl fermentum, massa tellus ut elementum. Ac elementum enim arcu suspendisse vestibulum.
-                  Laoreet viverra aenean risus accumsan eu.
-                  In elit tempor commodo scelerisque pretium,`}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-sante-etudes' />
+                }
+                introText={
+                  <FormattedMessage id='app.baro-sante.studies-intro' />
+                }
               />
             </Col>
             <Col n='12'>
@@ -214,8 +225,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                             <Row justifyContent='center' alignItems='middle'>
                               <Col n='12 md-4'>
                                 <p className='text-card-logo pb-16 blue-dark text-center text-left-l marianne-bold fs-24-32'>
-                                  Explorer aussi le Baromètre national de la
-                                  science ouverte
+                                  <FormattedMessage id='app.commons.explore-national' />
                                 </p>
                               </Col>
                               <Col n='12 md-7'>
@@ -246,7 +256,7 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
             </Col>
             <Col>
               <Container fluid className='bg-blue'>
-                <section className='py-48 px-20 px-md-64'>
+                <section className='py-48 px-20 px-md-64 max-996'>
                   <Row gutters>
                     <Col n='12'>
                       <h4 className='marianne fs-28-32 text-left-m text-center m-0 mb-32'>
@@ -301,12 +311,11 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                         hasArrow={false}
                       >
                         <CardTitle className='blue-dark'>
-                          Découvrez Ouvrir la science
+                          <FormattedMessage id='app.commons.discover' />
                         </CardTitle>
                         <CardDescription as='div'>
                           <p className='m-0'>
-                            Plus de contenus et de bonnes pratiques sur le site
-                            de référence sur la Science Ouverte
+                            <FormattedMessage id='app.commons.more-on-reference' />
                           </p>
                           <DSIcon name='ri-link' size='2x' as='div'>
                             <DSLink
@@ -320,6 +329,59 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
                   </Row>
                 </section>
               </Container>
+            </Col>
+            <Col n='12'>
+              <TodaySection updateDate={renderUpdateDate()}>
+                <TodaySectionItem
+                  itemKey='publication'
+                  iconName='icon-bsso-28'
+                  iconColor='purple-50'
+                  intlSubTitle='app.publications'
+                  backgroundColorClass='bg-soft-purple'
+                />
+                <TodaySectionItem
+                  itemKey='journal'
+                  iconName='icon-bsso-2'
+                  iconColor='purple-50'
+                  intlSubTitle='app.journals'
+                  backgroundColorClass='bg-soft-pink'
+                />
+                <TodaySectionItem
+                  itemKey='publisher'
+                  iconName='icon-bsso-14'
+                  iconColor='yellow-medium-75'
+                  intlSubTitle='app.publishers'
+                  backgroundColorClass='bg-yellow'
+                />
+                <TodaySectionItem
+                  itemKey='repository'
+                  iconName='icon-bsso-10'
+                  iconColor='green-medium-75'
+                  intlSubTitle='app.repositories'
+                  backgroundColorClass='bg-medium-green'
+                />
+                <TodaySectionItem
+                  itemKey='obsDates'
+                  iconName='icon-bsso-10'
+                  iconColor='green-light-75'
+                  intlSubTitle='app.obs-dates'
+                  backgroundColorClass='bg-soft-green'
+                />
+                <TodaySectionItem
+                  itemKey='interventional'
+                  iconName='icon-bsso-24'
+                  iconColor='purple-medium-50'
+                  intlSubTitle='app.interventionals'
+                  backgroundColorClass='bg-medium-purple'
+                />
+                <TodaySectionItem
+                  itemKey='observational'
+                  iconName='icon-bsso-6'
+                  iconColor='yellow-medium-75'
+                  intlSubTitle='app.observationals'
+                  backgroundColorClass='bg-yellow'
+                />
+              </TodaySection>
             </Col>
           </Row>
         </section>

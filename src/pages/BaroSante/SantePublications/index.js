@@ -17,8 +17,8 @@ import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import { bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
-import { GetPublicationRateFrom } from '../../../utils/dataFetchHelper';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
+import useGetPublicationRateFrom from '../../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../../utils/Hooks/useLang';
 
 const objButtonLabel = {
@@ -38,7 +38,7 @@ function SantePublications() {
   const location = useLocation();
   const { observationDates } = useGlobals();
 
-  GetPublicationRateFrom(observationDates[1] || '2021Q1').then((resp) => {
+  useGetPublicationRateFrom(observationDates[1] || '2021Q1').then((resp) => {
     const { rate: rateByYear } = resp;
     if (!rate) {
       setRate(rateByYear);
