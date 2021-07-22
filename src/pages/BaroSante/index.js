@@ -23,9 +23,9 @@ import LinkCard from '../../components/LinkCard';
 import TodaySection from '../../components/TodaySection';
 import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
 import logoBso from '../../images/logo-bso.png';
-import { GetPublicationRateFrom } from '../../utils/dataFetchHelper';
 import { getDateFormated } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
+import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
@@ -34,7 +34,6 @@ function BaroSante() {
   const { lang } = useLang();
   const [start, setStart] = useState('2020');
   const [end, setEnd] = useState('2021Q1');
-
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
@@ -56,11 +55,11 @@ function BaroSante() {
     }
   };
 
-  GetPublicationRateFrom(start).then((res) => {
+  useGetPublicationRateFrom(start).then((res) => {
     updateProgression(res, start);
   });
 
-  GetPublicationRateFrom(end).then((res) => {
+  useGetPublicationRateFrom(end).then((res) => {
     updateProgression(res, end.substring(0, 4));
   });
 
@@ -334,49 +333,49 @@ function BaroSante() {
             <Col n='12'>
               <TodaySection updateDate={renderUpdateDate()}>
                 <TodaySectionItem
-                  data='--'
+                  itemKey='publicationCount'
                   icoName='icon-bsso-28'
                   iconColor='purple-50'
                   intlSubTitle='app.publications'
                   backgroundColorClass='bg-soft-purple'
                 />
                 <TodaySectionItem
-                  data='--'
+                  itemKey='books'
                   icoName='icon-bsso-2'
                   iconColor='purple-50'
                   intlSubTitle='app.books'
                   backgroundColorClass='bg-soft-pink'
                 />
                 <TodaySectionItem
-                  data='--'
+                  itemKey='editors'
                   icoName='icon-bsso-14'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.editors'
                   backgroundColorClass='bg-yellow'
                 />
                 <TodaySectionItem
-                  data='--'
+                  itemKey='openArchives'
                   icoName='icon-bsso-10'
                   iconColor='green-medium-75'
                   intlSubTitle='app.open-archives'
                   backgroundColorClass='bg-medium-green'
                 />
                 <TodaySectionItem
-                  data='--'
+                  itemKey='obsDates'
                   icoName='icon-bsso-10'
                   iconColor='green-light-75'
                   intlSubTitle='app.obs-dates'
                   backgroundColorClass='bg-soft-green'
                 />
                 <TodaySectionItem
-                  data='--'
+                  itemKey='clinicalEssays'
                   icoName='icon-bsso-24'
                   iconColor='purple-medium-50'
                   intlSubTitle='app.clinical-essays'
                   backgroundColorClass='bg-medium-purple'
                 />
                 <TodaySectionItem
-                  data='--'
+                  itemKey='observableStudies'
                   icoName='icon-bsso-6'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.observable-studies'

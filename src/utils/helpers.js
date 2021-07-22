@@ -90,3 +90,48 @@ export function getGraphOptions(graphId, intl) {
     },
   };
 }
+
+/**
+ *
+ * @param key
+ * @param parameter
+ * @returns {*|{}}
+ */
+export function getFetchOptions(key, parameter) {
+  const allOptions = {
+    publicationRate: (year) => ({
+      size: 0,
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'publication_year',
+          },
+          aggs: {
+            by_is_oa: {
+              terms: {
+                field: `oa_details.${year}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    publicationCount: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        publication_count: {
+          cardinality: {
+            field: 'doi.keyword',
+            precision_threshold: 1000,
+          },
+        },
+      },
+    },
+  };
+  return (parameter ? allOptions[key](parameter) : allOptions[key]) || {};
+}
