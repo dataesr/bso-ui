@@ -333,54 +333,54 @@ function BaroSante() {
             <Col n='12'>
               <TodaySection updateDate={renderUpdateDate()}>
                 <TodaySectionItem
-                  itemKey='publicationCount'
-                  icoName='icon-bsso-28'
+                  itemKey='publication'
+                  iconName='icon-bsso-28'
                   iconColor='purple-50'
                   intlSubTitle='app.publications'
                   backgroundColorClass='bg-soft-purple'
                 />
                 <TodaySectionItem
-                  itemKey='books'
-                  icoName='icon-bsso-2'
+                  itemKey='journal'
+                  iconName='icon-bsso-2'
                   iconColor='purple-50'
-                  intlSubTitle='app.books'
+                  intlSubTitle='app.journals'
                   backgroundColorClass='bg-soft-pink'
                 />
                 <TodaySectionItem
-                  itemKey='editors'
-                  icoName='icon-bsso-14'
+                  itemKey='publisher'
+                  iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
-                  intlSubTitle='app.editors'
+                  intlSubTitle='app.publishers'
                   backgroundColorClass='bg-yellow'
                 />
                 <TodaySectionItem
-                  itemKey='openArchives'
-                  icoName='icon-bsso-10'
+                  itemKey='repository'
+                  iconName='icon-bsso-10'
                   iconColor='green-medium-75'
-                  intlSubTitle='app.open-archives'
+                  intlSubTitle='app.repositories'
                   backgroundColorClass='bg-medium-green'
                 />
                 <TodaySectionItem
                   itemKey='obsDates'
-                  icoName='icon-bsso-10'
+                  iconName='icon-bsso-10'
                   iconColor='green-light-75'
                   intlSubTitle='app.obs-dates'
                   backgroundColorClass='bg-soft-green'
                 />
-                <TodaySectionItem
-                  itemKey='clinicalEssays'
-                  icoName='icon-bsso-24'
-                  iconColor='purple-medium-50'
-                  intlSubTitle='app.clinical-essays'
-                  backgroundColorClass='bg-medium-purple'
-                />
-                <TodaySectionItem
-                  itemKey='observableStudies'
-                  icoName='icon-bsso-6'
-                  iconColor='yellow-medium-75'
-                  intlSubTitle='app.observable-studies'
-                  backgroundColorClass='bg-yellow'
-                />
+                {/* <TodaySectionItem */}
+                {/*  itemKey='interventional' */}
+                {/*  iconName='icon-bsso-24' */}
+                {/*  iconColor='purple-medium-50' */}
+                {/*  intlSubTitle='app.interventional' */}
+                {/*  backgroundColorClass='bg-medium-purple' */}
+                {/* /> */}
+                {/* <TodaySectionItem */}
+                {/*  itemKey='observableStudies' */}
+                {/*  iconName='icon-bsso-6' */}
+                {/*  iconColor='yellow-medium-75' */}
+                {/*  intlSubTitle='app.observable-studies' */}
+                {/*  backgroundColorClass='bg-yellow' */}
+                {/* /> */}
               </TodaySection>
             </Col>
           </Row>
