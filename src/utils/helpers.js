@@ -196,7 +196,15 @@ export function getFetchOptions(key, parameter) {
         },
       },
     },
-    clinical: {
+    interventional: {
+      size: 0,
+      aggs: {
+        study_type: {
+          terms: { field: 'study_type.keyword' },
+        },
+      },
+    },
+    observational: {
       size: 0,
       aggs: {
         study_type: {

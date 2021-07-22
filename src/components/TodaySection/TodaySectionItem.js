@@ -4,21 +4,36 @@ import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FormattedMessage } from 'react-intl';
 
-import { ES_API_URL } from '../../config/config';
+import { CLINICAL_TRIALS_API_URL, ES_API_URL } from '../../config/config';
 import { getFetchOptions } from '../../utils/helpers';
 import useDataFetch from '../../utils/Hooks/useDataFetch';
 import Icon from '../Icon';
 import InfoCard from '../InfoCard';
 import Loader from '../Loader';
 
-const pathByKey = {
-  publication: 'publication_count.value',
-  publisher: 'publisher_count.value',
-  repository: 'repositories_count.value',
-  obsDates: 'observation_dates_count.value',
-  journal: 'journal_count.value',
-  clinical: 'study_type.buckets[0]',
-  observableStudies: 'publication_count',
+const fetchInfos = {
+  publication: {
+    path: 'aggregations.publication_count.value',
+    url: ES_API_URL,
+  },
+  publisher: { path: 'aggregations.publisher_count.value', url: ES_API_URL },
+  repository: {
+    path: 'aggregations.repositories_count.value',
+    url: ES_API_URL,
+  },
+  obsDates: {
+    path: 'aggregations.observation_dates_count.value',
+    url: ES_API_URL,
+  },
+  journal: { path: 'aggregations.journal_count.value', url: ES_API_URL },
+  interventional: {
+    path: 'aggregations.study_type.buckets.0.doc_count',
+    url: CLINICAL_TRIALS_API_URL,
+  },
+  observational: {
+    path: 'aggregations.study_type.buckets.1.doc_count',
+    url: CLINICAL_TRIALS_API_URL,
+  },
 };
 
 function TodaySectionItem({
@@ -31,7 +46,7 @@ function TodaySectionItem({
   const [todayData, setTodayData] = useState({});
   const { fetch, response, isMounted } = useDataFetch({
     key: itemKey,
-    url: ES_API_URL,
+    url: fetchInfos[itemKey].url,
     method: 'post',
     options: getFetchOptions(itemKey),
   });
@@ -52,7 +67,7 @@ function TodaySectionItem({
     if (response && !todayData[itemKey]) {
       setTodayData((prev) => ({
         ...prev,
-        [itemKey]: getValueByPath(pathByKey[itemKey], response?.aggregations),
+        [itemKey]: getValueByPath(fetchInfos[itemKey].path, response),
       }));
     }
   }, [response, todayData, setTodayData, itemKey]);
@@ -64,7 +79,13 @@ function TodaySectionItem({
           small
           bodyClassName={backgroundColorClass}
           subTitle={<FormattedMessage id={intlSubTitle} />}
-          data1={todayData[itemKey] || <Loader spacing='' size='80' />}
+          data1={
+            todayData[itemKey] ? (
+              todayData[itemKey].toString()
+            ) : (
+              <Loader spacing='' size='80' />
+            )
+          }
           icon={
             <Icon name={iconName} color1='blue-dark-125' color2={iconColor} />
           }

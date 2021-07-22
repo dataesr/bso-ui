@@ -367,20 +367,20 @@ function BaroSante() {
                   intlSubTitle='app.obs-dates'
                   backgroundColorClass='bg-soft-green'
                 />
-                {/* <TodaySectionItem */}
-                {/*  itemKey='interventional' */}
-                {/*  iconName='icon-bsso-24' */}
-                {/*  iconColor='purple-medium-50' */}
-                {/*  intlSubTitle='app.interventional' */}
-                {/*  backgroundColorClass='bg-medium-purple' */}
-                {/* /> */}
-                {/* <TodaySectionItem */}
-                {/*  itemKey='observableStudies' */}
-                {/*  iconName='icon-bsso-6' */}
-                {/*  iconColor='yellow-medium-75' */}
-                {/*  intlSubTitle='app.observable-studies' */}
-                {/*  backgroundColorClass='bg-yellow' */}
-                {/* /> */}
+                <TodaySectionItem
+                  itemKey='interventional'
+                  iconName='icon-bsso-24'
+                  iconColor='purple-medium-50'
+                  intlSubTitle='app.interventionals'
+                  backgroundColorClass='bg-medium-purple'
+                />
+                <TodaySectionItem
+                  itemKey='observational'
+                  iconName='icon-bsso-6'
+                  iconColor='yellow-medium-75'
+                  intlSubTitle='app.observationals'
+                  backgroundColorClass='bg-yellow'
+                />
               </TodaySection>
             </Col>
           </Row>

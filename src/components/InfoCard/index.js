@@ -55,7 +55,7 @@ InfoCard.propTypes = {
   bodyClassName: PropTypes.string,
   title: PropTypes.element,
   subTitle: PropTypes.element,
-  data1: PropTypes.string.isRequired,
+  data1: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   data2: PropTypes.string,
   cardClassNames: PropTypes.string,
   small: PropTypes.bool,
