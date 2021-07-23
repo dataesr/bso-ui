@@ -32,7 +32,6 @@ export default async function useGetPublicationRateFrom(year) {
         rate: truncatedData[truncatedData.length - 1],
         year,
       }));
-      // result.rate = truncatedData[truncatedData.length - 1];
     }
     return () => {
       isMounted.current = false;

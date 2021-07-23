@@ -39,9 +39,6 @@ function BaroSante() {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
 
-  // const [startObj, setStartObj] = useState();
-  // const [endObj, setEndObj] = useState();
-
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
@@ -64,18 +61,12 @@ function BaroSante() {
   };
 
   useGetPublicationRateFrom(start).then((res) => {
-    // if (!startObj) {
-    //   setStartObj(res);
-    // }
     if (start) {
       updateProgression(res, start);
     }
   });
 
   useGetPublicationRateFrom(end).then((res) => {
-    // if (!endObj) {
-    //   setEndObj(res);
-    // }
     if (end) {
       updateProgression(res, end.substring(0, 4));
     }
