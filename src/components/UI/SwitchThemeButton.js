@@ -63,6 +63,7 @@ export default function SwitchThemeButton() {
               defaultMassage:
                 'Choisissez un thème pour personnaliser l’apparence du site.',
             })}
+            value={theme}
           >
             <Radio
               label={intl.formatMessage({

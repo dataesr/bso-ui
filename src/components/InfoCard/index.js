@@ -27,7 +27,7 @@ function InfoCard({
           {icon}
           {data1 ? (
             <section>
-              {title && <div className='fs-20-20'>{title}</div>}
+              {title && <div className='fs-20-26'>{title}</div>}
               <div className='marianne-extra-bold'>
                 <span className='fs-48-48'>{data1}</span>
                 {data2 && <span className='fs-28-32'>{data2}</span>}
