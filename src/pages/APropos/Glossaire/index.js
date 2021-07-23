@@ -1,8 +1,12 @@
 import { Col, Row } from '@dataesr/react-dsfr';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
+import Glossary from '../../../components/Glossary';
+import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import Icon from '../../../components/Icon';
+import GlossaryEntries from '../../../translations/glossary.json';
 
 function Glossaire() {
   const renderIcons = (
@@ -21,9 +25,14 @@ function Glossaire() {
       <Banner
         backgroundColor='green-soft-25'
         textColor='blue-dark-125'
-        supTitle='Baromètre français de la Science ouverte'
-        title='Glossaire'
+        supTitle={<FormattedMessage id='app.baro.science-ouverte' />}
+        title={<FormattedMessage id='app.glossary' />}
         icons={renderIcons}
+      />
+      <Glossary entries={GlossaryEntries} />
+      <GlossaryFormattedMessage
+        intlKey='app.text.test'
+        glossaryKey='essai_clinique'
       />
     </div>
   );

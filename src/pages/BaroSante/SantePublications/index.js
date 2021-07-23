@@ -1,5 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
@@ -10,6 +11,7 @@ import ChartRepartitionTaux from '../../../components/charts/publications/genera
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
+import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphSection from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
@@ -60,8 +62,8 @@ function SantePublications() {
     <Container fluid className='page'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle='baromètre de la Science ouverte en Santé'
-        title='Les publications en santé'
+        supTitle={<FormattedMessage id='app.baro-sante.sub-title' />}
+        title={<FormattedMessage id='app.baro-sante.title' />}
         chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
@@ -69,7 +71,7 @@ function SantePublications() {
           onChange: () => {},
           options: [
             { label: 'Label', value: 'value1' },
-            { label: 'Label', value: 'value1' },
+            { label: 'Label', value: 'value2' },
           ],
         }}
       />
@@ -79,28 +81,13 @@ function SantePublications() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  Publications en santé
+                  <FormattedMessage id='app.baro-sante.main-title' />
                 </h1>
-              </Col>
-              <Col n='12 md-6'>
                 <p>
-                  Lorem ipsum dolor sit amet,
-                  {' '}
-                  <span
-                    className='glossary-entry'
-                    data-glossary-key='etude_observationelle'
-                  >
-                    etude_observationelle
-                  </span>
-                  {' '}
-                  consectetur adipisicing elit. Adipisci dignissimos dolorem ex
-                  ipsum libero! Ad asperiores at dicta ducimus laboriosam magni,
-                  maiores
-                  {' '}
-                  <span className='glossary-entry' data-glossary-key='hal'>
-                    hal
-                  </span>
-                  minima natus neque odit quibusdam rem voluptatum. Officiis.
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-sante.intro'
+                    glossaryKey='acces_ouvert'
+                  />
                 </p>
               </Col>
             </Row>

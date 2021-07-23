@@ -13,13 +13,11 @@ import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-import useLang from '../../utils/Hooks/useLang';
 import GlossaryItem from './GlossaryItem';
 
 function Glossary({ entries }) {
   const intl = useIntl();
   const contentRef = useRef();
-  const { lang } = useLang();
   const [openPanel, setOpenPanel] = useState(false);
   const [glossaryEntries, setGlossaryEntries] = useState([]);
   const [activeKey, setActiveKey] = useState('');
@@ -30,8 +28,10 @@ function Glossary({ entries }) {
         remove: (elm) => elm.classList.remove('active'),
         add: (elm) => elm.classList.add('active'),
       };
-      const x = document.querySelector(`[data-glossary-key=${glossaryKey}]`);
-      activeClassObj[action](x);
+      const glossaryKeyElement = document.querySelector(
+        `[data-glossary-key=${glossaryKey}]`,
+      );
+      activeClassObj[action](glossaryKeyElement);
     }
   }, []);
 
@@ -44,7 +44,7 @@ function Glossary({ entries }) {
     [activeKey, setActiveKey, setOpenPanel, activeClassManage],
   );
 
-  const onClickWord = useCallback(
+  const onClickEntry = useCallback(
     (glossaryKey) => {
       glossaryPanel(glossaryKey, true);
       activeClassManage(glossaryKey, 'add');
@@ -64,11 +64,11 @@ function Glossary({ entries }) {
     if (glossaryEntries.length > 0) {
       for (let i = 0; i < glossaryEntries.length; i += 1) {
         glossaryEntries[i].addEventListener('click', (e) => {
-          onClickWord(e.target.dataset.glossaryKey);
+          onClickEntry(e.target.dataset.glossaryKey);
         });
       }
     }
-  }, [onClickWord, glossaryEntries]);
+  }, [onClickEntry, glossaryEntries]);
 
   useEffect(() => {
     if (glossaryEntries.length === 0) {
@@ -133,14 +133,16 @@ function Glossary({ entries }) {
               {glossaryEntries
                 && glossaryEntries.map((entry, i) => {
                   const key = entry.getAttribute('data-glossary-key');
+                  const currentEntry = entries[0][key];
                   return (
                     <GlossaryItem
                       glossaryKey={key}
                       key={uuidv4()}
-                      definition={entries[0][key].definition[lang]}
+                      intlDefinition={currentEntry.intlDefinition}
                       active={key === activeKey}
-                      entry={entries[0][key].entry[lang]}
+                      intlEntry={currentEntry.intlEntry}
                       className={i === 0 ? 'pt-20' : ''}
+                      link={currentEntry.cta || null}
                     />
                   );
                 })}
@@ -155,7 +157,11 @@ function Glossary({ entries }) {
               iconSize='lg'
               as={<Link to='/a-propos/glossaire' />}
             >
-              Toutes les définitions dans le glossaire complet
+              {intl.formatMessage({
+                id: 'app.glossary.complete',
+                defaultMessage:
+                  'Toutes les définitions dans le glossaire complet',
+              })}
             </DSLink>
           </Col>
         </Row>

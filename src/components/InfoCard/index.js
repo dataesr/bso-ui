@@ -53,7 +53,7 @@ InfoCard.defaultProps = {
 };
 InfoCard.propTypes = {
   bodyClassName: PropTypes.string,
-  title: PropTypes.element,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   subTitle: PropTypes.element,
   data1: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   data2: PropTypes.string,
