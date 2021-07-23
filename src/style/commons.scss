@@ -13,6 +13,14 @@
   text-align: right;
 }
 
+.text-upper {
+  text-transform: uppercase;
+}
+
+.d-inline {
+  display: inline;
+}
+
 /**
   Position
  */
@@ -59,8 +67,12 @@
   background-color: var(--yellow-medium-50);
 }
 
-.bg-soft-green {
+.bg-light-green {
   background-color: var(--green-light-50);
+}
+
+.bg-soft-green {
+  background-color: var(--green-soft-25);
 }
 
 .bg-soft-pink {
@@ -162,6 +174,10 @@
 
 .m-0 {
   margin: 0;
+}
+
+.my-5 {
+  margin: 0 5px;
 }
 
 .mb-20 {

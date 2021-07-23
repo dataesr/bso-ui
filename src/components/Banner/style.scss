@@ -57,6 +57,18 @@
       }
     }
   }
+
+  button {
+    color: var(--blue-dark-125);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0;
+    border-bottom: 2px solid var(--green-soft-25);
+
+    &.active {
+      border-bottom: 2px solid var(--blue-dark-125);
+    }
+  }
 }
 
 @media screen and(min-width: 576px) {
