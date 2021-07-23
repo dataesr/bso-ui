@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { CLINICAL_TRIALS_API_URL, ES_API_URL } from '../../config/config';
 import { getFetchOptions } from '../../utils/helpers';
-import useDataFetch from '../../utils/Hooks/useDataFetch';
+import useFetch from '../../utils/Hooks/useFetch';
 import Icon from '../Icon';
 import InfoCard from '../InfoCard';
 import Loader from '../Loader';
@@ -44,8 +44,7 @@ function TodaySectionItem({
   itemKey,
 }) {
   const [todayData, setTodayData] = useState({});
-  const { fetch, response, isMounted } = useDataFetch({
-    key: itemKey,
+  const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
     options: getFetchOptions(itemKey),

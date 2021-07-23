@@ -83,10 +83,10 @@ const Chart = ({ graphFooter, graphComments }) => {
   const chartComments = intl.formatMessage(
     { id: `${graphId}.comments` },
     {
-      a: dataGraph1[0].y,
-      b: dataGraph1[0].publicationDate,
-      c: dataGraph1[0].publicationDate + 1,
-      d: dataGraph1[0].name,
+      a: dataGraph1[0] ? dataGraph1[0].y : '',
+      b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
+      c: dataGraph1[0] ? dataGraph1[0].publicationDate + 1 : '',
+      d: dataGraph1[0] ? dataGraph1[0].name : '',
     },
   );
 
