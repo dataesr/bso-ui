@@ -82,6 +82,10 @@
   @include font-size(28,32);
 }
 
+.fs-32-40 {
+  @include font-size(32, 40);
+}
+
 .fs-48-48 {
   @include font-size(48,48);
 }

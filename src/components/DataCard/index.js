@@ -9,7 +9,7 @@ function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
   return (
     <Card
       hasArrow={false}
-      href='/test'
+      href='/'
       className='bso-datacard text-center'
       bodyClassName={background}
     >

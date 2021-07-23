@@ -104,7 +104,6 @@ function useGetData(observationDates) {
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
-        // setError(true);
         setLoading(false);
       }
     }

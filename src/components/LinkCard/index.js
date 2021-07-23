@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 function LinkCard({ title, linkUrl, icon }) {
   return (
-    <Card bodyClassName='icon-card bg-white' href='/' hasArrow={false}>
+    <Card bodyClassName='bso-link-card bg-white' href='/' hasArrow={false}>
       <CardDescription as='div'>
         {icon}
         <h6 className='m-0'>{title}</h6>

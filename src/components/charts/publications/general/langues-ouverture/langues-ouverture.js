@@ -23,7 +23,7 @@ const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isOa, setIsOa] = useState(false);
-  const graphId = 'app.sante-publi.general.genres-ouverture.chart-repartition-genres';
+  const graphId = 'app.sante-publi.general.langues-ouverture.chart-repartition-publications';
   const { observationDates, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     observationDates[0] || 2020,

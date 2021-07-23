@@ -1,7 +1,8 @@
-import { Button, Col, Container, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
@@ -70,14 +71,15 @@ function Banner({
               {subTitle}
             </h3>
             {link && (
-              <Button
+              <DSLink
+                display='middle'
+                className='bso-link'
                 icon='ri-arrow-right-line'
-                iconPosition='right'
-                size='md'
-                title='title'
+                iconSize='lg'
+                as={<Link to={link.url} />}
               >
                 {link.label}
-              </Button>
+              </DSLink>
             )}
           </Col>
           {selectNavigation && sticked && (

@@ -1,5 +1,6 @@
 import { Col, Row } from '@dataesr/react-dsfr';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
@@ -52,7 +53,10 @@ function BaroNational() {
         title='le Baromètre français de la sciences Ouverte'
         subTitle='Il mesure l’évolution de l’accès ouvert de la recherche en France
 à partir de données fiables, ouvertes et maîtrisées.'
-        link={{ label: 'Voir la dernière note flash', url: '' }}
+        link={{
+          label: <FormattedMessage id='app.notes.flash.see' />,
+          url: <FormattedMessage id='url.about.flash' />,
+        }}
         icons={renderIcons}
         chip={<Chip />}
       />
