@@ -66,6 +66,7 @@ export default function SwitchLangButton() {
               id: 'app.lang.legend',
               defaultMessage: 'Choisissez une langue pour le site.',
             })}
+            value={lang}
           >
             <Radio
               label={intl.formatMessage({
