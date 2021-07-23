@@ -42,7 +42,7 @@ export default {
     en: '/theme-1',
   },
   methodologie: {
-    fr: '/a-propos/metodologie',
+    fr: '/a-propos/methodologie',
     en: '/about/methodology',
   },
   faq: {
