@@ -81,13 +81,14 @@ function SantePublications() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  Publications en santé
+                  <FormattedMessage id='app.baro-sante.main-title' />
                 </h1>
-                <GlossaryFormattedMessage
-                  intlKey='app.text'
-                  link='http://www.leroymerlin.fr'
-                  glossaryKey='essai_clinique'
-                />
+                <p>
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-sante.intro'
+                    glossaryKey='acces_ouvert'
+                  />
+                </p>
               </Col>
             </Row>
           </Container>
