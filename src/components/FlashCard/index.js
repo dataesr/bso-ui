@@ -16,7 +16,7 @@ function FlashCard({ url, intlTitle }) {
         <section className='text-right'>
           <div>
             <Link target='_blank' href={url}>
-              la note
+              <FormattedMessage id='app.notes.flash.note' />
             </Link>
           </div>
           <div>
