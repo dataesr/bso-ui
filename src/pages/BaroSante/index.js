@@ -177,13 +177,14 @@ function BaroSante() {
                             color2='orange-soft-50'
                           />
                         )}
-                        data1={`${progressionPoints()}`}
+                        data1={progressionPoints()}
                         data2='pts'
                         title={(
                           <FormattedMessage
                             values={{
                               startYear: start,
                               endYear: end,
+                              div: (chunks) => <div>{chunks}</div>,
                             }}
                             id='app.sante-publi.progression'
                             defaultMessage='Progression'
