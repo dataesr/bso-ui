@@ -385,7 +385,7 @@ function BaroSante() {
                   iconName='icon-bsso-10'
                   iconColor='green-light-75'
                   intlSubTitle='app.obs-dates'
-                  backgroundColorClass='bg-soft-green'
+                  backgroundColorClass='bg-light-green'
                 />
                 <TodaySectionItem
                   itemKey='interventional'

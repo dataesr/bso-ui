@@ -27,7 +27,7 @@
   "app.glossary.acces_ouvert": "Accès ouvert (aux publications)",
   "app.glossary.acces_ouvert.definition": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public.",
   "app.glossary.apc": "Frais de publications",
-  "app.glossary.apc;definition": "Certaines revues en accès ouvert demandent aux auteurs des frais de publication, appelés aussi APC (Article Processing Charges) pour financer le travail éditorial. Il existe d’autres modèles de financement.",
+  "app.glossary.apc.definition": "Certaines revues en accès ouvert demandent aux auteurs des frais de publication, appelés aussi APC (Article Processing Charges) pour financer le travail éditorial. Il existe d’autres modèles de financement.",
   "app.glossary.archive_ouverte": "Archive ouverte",
   "app.glossary.archive_ouverte.definition": "Une archive ouverte est une plateforme numérique contenant des documents issus de la recherche scientifique et offrant un accès gratuit, immédiat et permanent aux résultats de la recherche, que chacun peut utiliser, télécharger et distribuer. Le dépôt dans une archive ouverte est l'une des modalités de mise en œuvre de l'accès ouvert aux publications.",
   "app.glossary.clinicaltrials_gov": "ClinicalTrials.gov",

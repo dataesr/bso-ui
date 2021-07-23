@@ -19,6 +19,7 @@ function Banner({
   icons,
   sticky,
   selectNavigation,
+  children,
 }) {
   setCSSProperty(
     '--bannerBackgroundColor',
@@ -48,10 +49,13 @@ function Banner({
 
   return (
     <section
-      className={classNames('bso-banner z-200 text-left-m', {
-        sticky: sticky && sticked,
-        'mb-60': selectNavigation,
-      })}
+      className={classNames(
+        'bso-banner z-200 text-left-m text-center text-left-lg',
+        {
+          sticky: sticky && sticked,
+          'mb-60': selectNavigation,
+        },
+      )}
     >
       <Container>
         <Row
@@ -63,13 +67,15 @@ function Banner({
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
-            <h3
-              className={classNames('sub-title pt-16 ', {
-                'mb-l-60': selectNavigation,
-              })}
-            >
-              {subTitle}
-            </h3>
+            {subTitle && (
+              <h3
+                className={classNames('sub-title pt-16 ', {
+                  'mb-l-60': selectNavigation,
+                })}
+              >
+                {subTitle}
+              </h3>
+            )}
             {link && (
               <DSLink
                 display='middle'
@@ -92,6 +98,7 @@ function Banner({
               />
             </Col>
           )}
+          <Col n='12 sm-9'>{children}</Col>
           <div
             className={classNames({
               'mb-60 mb-l-0': selectNavigation,
@@ -124,12 +131,14 @@ Banner.defaultProps = {
   link: null,
   chip: null,
   icons: null,
+  children: null,
   selectNavigation: null,
   sticky: true,
 };
 
 Banner.propTypes = {
   sticky: PropTypes.bool,
+  children: PropTypes.node,
   backgroundColor: PropTypes.string.isRequired,
   textColor: PropTypes.string,
   supTitle: PropTypes.element,

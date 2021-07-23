@@ -1,11 +1,13 @@
 [
   {
     "acces_ouvert": {
+      "category": "1",
       "intlDefinition": "app.glossary.acces_ouvert.definition",
       "intlEntry": "app.glossary.acces_ouvert"
     },
     "apc": {
-      "intlDefinition": "appglossary.apc.definition",
+      "category": "2",
+      "intlDefinition": "app.glossary.apc.definition",
       "intlEntry": "app.glossary.apc"
     },
     "archive_ouverte": {
@@ -42,7 +44,7 @@
     },
     "full_apc": {
       "intlDefinition": "app.glossary.full_apc.definition",
-      "intlEntry": "app.glossaryfull_apc."
+      "intlEntry": "app.glossary.full_apc"
     },
     "hal": {
       "intlDefinition": "app.glossary.hal.definition",
