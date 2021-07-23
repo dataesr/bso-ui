@@ -35,7 +35,7 @@ function InfoCard({
               {subTitle && <div className='fs-14-24'>{subTitle}</div>}
             </section>
           ) : (
-            <Loader />
+            <Loader size='50' spacing='py-3w' />
           )}
         </section>
       </CardDescription>

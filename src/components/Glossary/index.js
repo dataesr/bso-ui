@@ -9,7 +9,7 @@ import {
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -89,12 +89,9 @@ function Glossary({ entries }) {
           <Button
             size='sm'
             onClick={() => glossaryPanel('', !openPanel)}
-            className='blue'
+            className='btn-blue text-white'
           >
-            {intl.formatMessage({
-              id: 'app.glossary',
-              defaultMessage: 'Glossaire',
-            })}
+            <FormattedMessage id='app.glossary' defaultMessage='Glossaire' />
           </Button>
         </DSIcon>
         <Row>
@@ -102,10 +99,10 @@ function Glossary({ entries }) {
             <Row>
               <Col n='9'>
                 <div className='fs-20-20 marianne-extra-bold'>
-                  {intl.formatMessage({
-                    id: 'app.glossary.title',
-                    defaultMessage: 'Glossaire de la page',
-                  })}
+                  <FormattedMessage
+                    id='app.glossary.title'
+                    defaultMessage='Glossaire de la page'
+                  />
                 </div>
               </Col>
               <Col n='3' className='text-right'>
@@ -120,7 +117,9 @@ function Glossary({ entries }) {
                     size='lg'
                     iconPosition='right'
                   >
-                    <span>Fermer</span>
+                    <span>
+                      <FormattedMessage id='app.commons.fermer' />
+                    </span>
                   </DSIcon>
                 </button>
               </Col>

@@ -94,7 +94,7 @@ function GraphSection({ buttonLabel, children }) {
       <section
         ref={ref}
         style={{ top: sticky ? bannerHeight - 1 : 0 }}
-        className={classNames('bso-tab-navigation relative z-100', {
+        className={classNames('bso-tab-navigation relative z-100 w-100', {
           sticky,
           mobile,
         })}

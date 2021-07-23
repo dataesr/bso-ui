@@ -16,6 +16,8 @@ import Banner from '../../components/Banner';
 import ChartEvolutionProportion from '../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuverture from '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import Chip from '../../components/Chip';
+import Glossary from '../../components/Glossary';
+import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
 import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
 import InfoCard from '../../components/InfoCard';
@@ -23,17 +25,23 @@ import LinkCard from '../../components/LinkCard';
 import TodaySection from '../../components/TodaySection';
 import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
 import logoBso from '../../images/logo-bso.png';
+import GlossaryEntries from '../../translations/glossary.json';
 import { getDateFormated } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
+  // TODO init observationDates [2020, 2021]
   const { updateDate, observationDates } = useGlobals();
   const [progression, setProgression] = useState({});
   const { lang } = useLang();
-  const [start, setStart] = useState('2020');
-  const [end, setEnd] = useState('2021Q1');
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+
+  // const [startObj, setStartObj] = useState();
+  // const [endObj, setEndObj] = useState();
+
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
@@ -56,16 +64,28 @@ function BaroSante() {
   };
 
   useGetPublicationRateFrom(start).then((res) => {
-    updateProgression(res, start);
+    // if (!startObj) {
+    //   setStartObj(res);
+    // }
+    if (start) {
+      updateProgression(res, start);
+    }
   });
 
   useGetPublicationRateFrom(end).then((res) => {
-    updateProgression(res, end.substring(0, 4));
+    // if (!endObj) {
+    //   setEndObj(res);
+    // }
+    if (end) {
+      updateProgression(res, end.substring(0, 4));
+    }
   });
 
   useEffect(() => {
-    setStart(observationDates[1]);
-    setEnd(observationDates[0]);
+    if (observationDates.length > 0) {
+      setStart(observationDates[1]);
+      setEnd(observationDates[0]);
+    }
   }, [observationDates]);
 
   const progressionPoints = () => {
@@ -75,11 +95,13 @@ function BaroSante() {
       const rhesus = progression[cleanEnd] >= progression[start] ? '+' : '';
       const endNumber = progression[cleanEnd]
         ? parseInt(progression[cleanEnd], 10)
-        : 0;
+        : null;
       const startNumber = progression[start]
         ? parseInt(progression[start], 10)
-        : 0;
-      progPoints = `${rhesus}${endNumber - startNumber}`;
+        : null;
+      if (startNumber && endNumber) {
+        progPoints = `${rhesus}${endNumber - startNumber}`;
+      }
     }
     return progPoints;
   };
@@ -131,6 +153,7 @@ function BaroSante() {
               </section>
             </Col>
             <Col n='12 xl-9' offset='xl-3'>
+              <Glossary entries={GlossaryEntries} />
               <HomeSection
                 link={{
                   href: '/sante/publications/dynamique',
@@ -139,7 +162,12 @@ function BaroSante() {
                 title={
                   <FormattedMessage id='app.header.nav.baro-national-publications' />
                 }
-                introText={<FormattedMessage id='app.baro-sante.intro' />}
+                introText={(
+                  <GlossaryFormattedMessage
+                    glossaryKey='acces_ouvert'
+                    intlKey='app.baro-sante.intro'
+                  />
+                )}
               >
                 <Container fluid>
                   <Row gutters alignItems='top'>
@@ -164,7 +192,7 @@ function BaroSante() {
                           <FormattedMessage
                             values={{
                               startYear: start,
-                              endYear: end.substring(0, 4),
+                              endYear: end,
                             }}
                             id='app.sante-publi.progression'
                             defaultMessage='Progression'
