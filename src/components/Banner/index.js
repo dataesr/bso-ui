@@ -119,8 +119,8 @@ function Banner({
 
 Banner.defaultProps = {
   textColor: '#fff',
-  supTitle: '',
-  subTitle: '',
+  supTitle: null,
+  subTitle: null,
   link: null,
   chip: null,
   icons: null,

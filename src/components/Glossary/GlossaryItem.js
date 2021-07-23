@@ -77,7 +77,7 @@ GlossaryItem.defaultProps = {
 
 GlossaryItem.propTypes = {
   glossaryKey: PropTypes.string.isRequired,
-  link: PropTypes.func,
+  link: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   intlEntry: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,

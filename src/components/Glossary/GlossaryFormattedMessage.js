@@ -32,6 +32,6 @@ GlossaryFormattedMessage.defaultProps = {
 GlossaryFormattedMessage.propTypes = {
   glossaryKey: PropTypes.string.isRequired,
   intlKey: PropTypes.string.isRequired,
-  link: PropTypes.func,
+  link: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 export default GlossaryFormattedMessage;

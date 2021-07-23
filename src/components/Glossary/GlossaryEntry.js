@@ -11,11 +11,14 @@ function GlossaryEntry({ intlKey, glossaryKey, defaultMessage }) {
 }
 
 GlossaryEntry.defaultProps = {
-  defaultMessage: 'test',
+  defaultMessage: '?',
 };
 GlossaryEntry.propTypes = {
   glossaryKey: PropTypes.string.isRequired,
   defaultMessage: PropTypes.string,
-  intlKey: PropTypes.string.isRequired,
+  intlKey: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
 };
 export default GlossaryEntry;
