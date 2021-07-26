@@ -80,7 +80,7 @@ function TodaySectionItem({
           subTitle={<FormattedMessage id={intlSubTitle} />}
           data1={
             todayData[itemKey] ? (
-              todayData[itemKey].toString()
+              todayData[itemKey]
             ) : (
               <Loader spacing='' size='80' />
             )

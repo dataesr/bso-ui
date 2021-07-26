@@ -86,7 +86,7 @@ function SantePublications() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.intro'
-                    glossaryKey='acces_ouvert'
+                    glossaryKey='acces-ouvert'
                   />
                 </p>
               </Col>

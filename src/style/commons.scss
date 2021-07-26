@@ -21,6 +21,10 @@
   display: inline;
 }
 
+.d-block {
+  display: block;
+}
+
 /**
   Position
  */
@@ -77,6 +81,10 @@
 
 .bg-soft-pink {
   background-color: var(--publication-25);
+}
+
+.bg-light-pink {
+  background-color: var(--pink-light-50);
 }
 
 .bg-soft-purple {
@@ -190,6 +198,10 @@
 
 .mb-60 {
   margin-bottom: 60px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
 }
 
 /**

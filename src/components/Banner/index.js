@@ -50,10 +50,10 @@ function Banner({
   return (
     <section
       className={classNames(
-        'bso-banner z-200 text-left-m text-center text-left-lg',
+        'bso-banner z-200 text-left-m text-center text-left-lg mb-60',
         {
           sticky: sticky && sticked,
-          'mb-60': selectNavigation,
+          'mb-100': selectNavigation,
         },
       )}
     >
@@ -63,7 +63,7 @@ function Banner({
           alignItems='middle'
           gutters={!sticked}
         >
-          <Col n={`${chip ? 'md-10' : 'md-12'} ${sticked ? 'sm-7' : 'sm-9'}`}>
+          <Col n={sticked ? '12 sm-7' : '12 sm-9'}>
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
@@ -98,14 +98,18 @@ function Banner({
               />
             </Col>
           )}
-          <Col n='12 sm-9'>{children}</Col>
-          <div
-            className={classNames({
-              'mb-60 mb-l-0': selectNavigation,
-            })}
-          >
-            {!sticked && chip && <Col n='sm-2'>{chip}</Col>}
-          </div>
+          {children && <Col n='12 sm-9'>{children}</Col>}
+          {!sticked && chip && (
+            <Col n='sm-3'>
+              <div
+                className={classNames({
+                  'mb-60 mb-l-0': selectNavigation,
+                })}
+              >
+                {chip}
+              </div>
+            </Col>
+          )}
         </Row>
         {selectNavigation && !sticked && (
           <Row>
