@@ -1,22 +1,22 @@
 [
   {
-    "acces_ouvert": {
+    "acces-ouvert": {
       "category": "1",
-      "intlDefinition": "app.glossary.acces_ouvert.definition",
-      "intlEntry": "app.glossary.acces_ouvert"
+      "intlDefinition": "app.glossary.acces-ouvert.definition",
+      "intlEntry": "app.glossary.acces-ouvert"
     },
     "apc": {
       "category": "2",
       "intlDefinition": "app.glossary.apc.definition",
       "intlEntry": "app.glossary.apc"
     },
-    "archive_ouverte": {
-      "intlDefinition": "app.glossary.archive_ouverte.definition",
-      "intlEntry": "app.glossary.archive_ouverte"
+    "archive-ouverte": {
+      "intlDefinition": "app.glossary.archive-ouverte.definition",
+      "intlEntry": "app.glossary.archive-ouverte"
     },
-    "clinicaltrials_gov": {
-      "intlDefinition": "app.glossary.clinicaltrials_gov.definition",
-      "intlEntry": "app.glossary.clinicaltrials_gov"
+    "clinicaltrials-gov": {
+      "intlDefinition": "app.glossary.clinicaltrials-gov.definition",
+      "intlEntry": "app.glossary.clinicaltrials-gov"
     },
     "diamond": {
       "intlDefinition": "app.glossary.diamond.definition",
@@ -30,21 +30,21 @@
       "intlDefinition": "app.glossary.doi.definition",
       "intlEntry": "app.glossary.doi"
     },
-    "essai_clinique": {
-      "intlDefinition": "app.glossary.essai_clinique.definition",
-      "intlEntry": "app.glossary.essai_clinique"
+    "essai-clinique": {
+      "intlDefinition": "app.glossary.essai-clinique.definition",
+      "intlEntry": "app.glossary.essai-clinique"
     },
-    "etude_observationelle": {
-      "intlDefinition": "app.glossary.etude_observationelle.definition",
-      "intlEntry": "app.glossary.etude_observationelle"
+    "etude-observationelle": {
+      "intlDefinition": "app.glossary.etude-observationelle.definition",
+      "intlEntry": "app.glossary.etude-observationelle"
     },
     "eudract": {
       "intlDefinition": "app.glossary.eudract.definition",
       "intlEntry": "app.glossary.eudract"
     },
-    "full_apc": {
-      "intlDefinition": "app.glossary.full_apc.definition",
-      "intlEntry": "app.glossary.full_apc"
+    "full-apc": {
+      "intlDefinition": "app.glossary.full-apc.definition",
+      "intlEntry": "app.glossary.full-apc"
     },
     "hal": {
       "intlDefinition": "app.glossary.hal.definition",
@@ -66,21 +66,21 @@
       "intlDefinition": "app.glossary.publication.definition",
       "intlEntry": "app.glossary.publication"
     },
-    "publication_fr": {
-      "intlDefinition": "app.glossary.publication_fr.definition",
-      "intlEntry": "app.glossary.publication_fr"
+    "publication-fr": {
+      "intlDefinition": "app.glossary.publication-fr.definition",
+      "intlEntry": "app.glossary.publication-fr"
     },
-    "resultat_essai_clinique": {
-      "intlDefinition": "app.glossary.resultat_essai_clinique.definition",
-      "intlEntry": "app.glossary.resultat_essai_clinique"
+    "resultat-essai-clinique": {
+      "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
+      "intlEntry": "app.glossary.resultat-essai-clinique"
     },
-    "revue_hybrid": {
-      "intlDefinition": "app.glossary.revue_hybrid.definition",
-      "intlEntry": "app.glossary.revue_hybrid"
+    "revue-hybrid": {
+      "intlDefinition": "app.glossary.revue-hybrid.definition",
+      "intlEntry": "app.glossary.revue-hybrid"
     },
-    "type_hebergement_oa": {
-      "intlDefinition": "app.glossary.type_hebergement_oa.definition",
-      "intlEntry": "app.glossary.type_hebergement_oa"
+    "type-hebergement-oa": {
+      "intlDefinition": "app.glossary.type-hebergement-oa.definition",
+      "intlEntry": "app.glossary.type-hebergement-oa"
     },
     "unpaywall": {
       "intlDefinition": "app.glossary.unpaywall.definition",

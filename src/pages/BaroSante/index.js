@@ -155,7 +155,7 @@ function BaroSante() {
                 }
                 introText={(
                   <GlossaryFormattedMessage
-                    glossaryKey='acces_ouvert'
+                    glossaryKey='acces-ouvert'
                     intlKey='app.baro-sante.intro'
                   />
                 )}
