@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import useLang from '../../utils/Hooks/useLang';
 import Loader from '../Loader';
 
 function InfoCard({
@@ -15,6 +16,8 @@ function InfoCard({
   small,
   cardClassNames,
 }) {
+  const { lang } = useLang();
+
   return (
     <Card
       className={classNames('bso-info-card text-center', cardClassNames)}
@@ -29,7 +32,13 @@ function InfoCard({
             <section>
               {title && <div className='fs-20-26'>{title}</div>}
               <div className='marianne-extra-bold'>
-                <span className='fs-48-48'>{data1}</span>
+                <span className='fs-48-48'>
+                  {typeof data1 === 'number'
+                    ? Intl.NumberFormat(`${lang}-${lang.toUpperCase()}`, {
+                      maximumSignificantDigits: 3,
+                    }).format(data1)
+                    : data1}
+                </span>
                 {data2 && <span className='fs-28-32'>{data2}</span>}
               </div>
               {subTitle && <div className='fs-14-24'>{subTitle}</div>}
@@ -55,7 +64,11 @@ InfoCard.propTypes = {
   bodyClassName: PropTypes.string,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   subTitle: PropTypes.element,
-  data1: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  data1: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.element,
+  ]).isRequired,
   data2: PropTypes.string,
   cardClassNames: PropTypes.string,
   small: PropTypes.bool,

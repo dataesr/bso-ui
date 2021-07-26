@@ -1,0 +1,29 @@
+[
+  {
+    "methodology_steps": {
+      "intlDefinition": "app.faq.methodology_steps.definition",
+      "intlEntry": "app.faq.methodology_steps"
+    },
+    "differences_ce": {
+      "intlDefinition": "app.faq.differences_ce.definition",
+      "intlEntry": "app.faq.differences_ce",
+      "cta": "https://ec.europa.eu/info/research-and-innovation/strategy/goals-research-and-innovation-policy/open-science/open-science-monitor_en"
+    },
+    "perimeter_barometer": {
+      "intlDefinition": "app.faq.perimeter_barometer.definition",
+      "intlEntry": "app.faq.perimeter_barometer"
+    },
+    "access_to_publications": {
+      "intlDefinition": "app.faq.access_to_publications.definition",
+      "intlEntry": "app.faq.access_to_publications"
+    },
+    "date_update": {
+      "intlDefinition": "app.faq.date_update.definition",
+      "intlEntry": "app.faq.date_update"
+    },
+    "baro_buzz_lightyear": {
+      "intlDefinition": "app.faq.baro_buzz_lightyear.definition",
+      "intlEntry": "app.faq.baro_buzz_lightyear"
+    }
+  }
+]
