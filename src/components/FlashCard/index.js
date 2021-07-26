@@ -7,7 +7,7 @@ function FlashCard({ url, intlTitle }) {
   return (
     <Card bodyClassName='bso-flash-card bg-yellow' hasArrow={false} href={url}>
       <CardDetail className='fs-14-24 marianne-bold'>
-        Note flash du SIES
+        <FormattedMessage id='app.notes.flash.title' />
       </CardDetail>
       <CardDescription as='div'>
         <div className='fs-20-20 marianne-bold pb-32'>
@@ -16,7 +16,7 @@ function FlashCard({ url, intlTitle }) {
         <section className='text-right'>
           <div>
             <Link target='_blank' href={url}>
-              la note
+              <FormattedMessage id='app.notes.flash.note' />
             </Link>
           </div>
           <div>
