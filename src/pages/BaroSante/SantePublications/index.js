@@ -6,6 +6,7 @@ import Banner from '../../../components/Banner';
 import ChartEvolutionProportion from '../../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
+import ChartTauxOuvertureFinancement from '../../../components/charts/publications/general/impact-financement/chart-taux-ouverture';
 import ChartLanguesOuverture from '../../../components/charts/publications/general/langues-ouverture/langues-ouverture';
 import ChartEvolutionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-evolution-taux';
 import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
@@ -197,6 +198,12 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                 >
                   <ChartLanguesOuverture />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.sante-publi.general.impact-financement'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuvertureFinancement />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 const QuestionSection = ({ intlKey, backgroundColor, children }) => {
   const intl = useIntl();
   return (
-    <section style={{ backgroundColor, paddingTop: '28px' }}>
+    <section style={{ backgroundColor, paddingTop: '28px', width: '100%' }}>
       <Container>
         <h2>
           {intl.formatMessage({ id: `${intlKey}.title` })}
