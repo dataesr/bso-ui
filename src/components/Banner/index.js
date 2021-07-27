@@ -19,6 +19,7 @@ function Banner({
   icons,
   sticky,
   selectNavigation,
+  children,
 }) {
   setCSSProperty(
     '--bannerBackgroundColor',
@@ -48,14 +49,17 @@ function Banner({
 
   return (
     <section
-      className={classNames('bso-banner z-200 text-left-m', {
-        sticky: sticky && sticked,
-        'mb-60': selectNavigation,
-      })}
+      className={classNames(
+        'bso-banner z-200 text-left-m text-center text-left-lg mb-60',
+        {
+          sticky: sticky && sticked,
+          'mb-100': selectNavigation,
+        },
+      )}
     >
       <Container>
         <Row
-          justifyContent={!sticked ? 'center' : 'start'}
+          justifyContent={!sticked ? 'center' : 'left'}
           alignItems='middle'
           gutters={!sticked}
         >
@@ -63,13 +67,15 @@ function Banner({
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
-            <h3
-              className={classNames('sub-title pt-16 ', {
-                'mb-l-60': selectNavigation,
-              })}
-            >
-              {subTitle}
-            </h3>
+            {subTitle && (
+              <h3
+                className={classNames('sub-title pt-16 ', {
+                  'mb-l-60': selectNavigation,
+                })}
+              >
+                {subTitle}
+              </h3>
+            )}
             {link && (
               <DSLink
                 display='middle'
@@ -92,13 +98,18 @@ function Banner({
               />
             </Col>
           )}
-          <div
-            className={classNames({
-              'mb-60 mb-l-0': selectNavigation,
-            })}
-          >
-            {!sticked && chip && <Col n='sm-3'>{chip}</Col>}
-          </div>
+          {children && <Col n='12 sm-9'>{children}</Col>}
+          {!sticked && chip && (
+            <Col n='sm-3'>
+              <div
+                className={classNames({
+                  'mb-60 mb-l-0': selectNavigation,
+                })}
+              >
+                {chip}
+              </div>
+            </Col>
+          )}
         </Row>
         {selectNavigation && !sticked && (
           <Row>
@@ -119,21 +130,23 @@ function Banner({
 
 Banner.defaultProps = {
   textColor: '#fff',
-  supTitle: '',
-  subTitle: '',
+  supTitle: null,
+  subTitle: null,
   link: null,
   chip: null,
   icons: null,
+  children: null,
   selectNavigation: null,
   sticky: true,
 };
 
 Banner.propTypes = {
   sticky: PropTypes.bool,
+  children: PropTypes.node,
   backgroundColor: PropTypes.string.isRequired,
   textColor: PropTypes.string,
-  supTitle: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  supTitle: PropTypes.element,
+  title: PropTypes.element.isRequired,
   icons: PropTypes.element,
   chip: PropTypes.element,
   selectNavigation: PropTypes.exact({
@@ -146,7 +159,7 @@ Banner.propTypes = {
       }),
     ).isRequired,
   }),
-  subTitle: PropTypes.string,
+  subTitle: PropTypes.element,
   link: PropTypes.exact({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

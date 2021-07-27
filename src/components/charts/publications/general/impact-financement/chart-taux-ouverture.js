@@ -6,7 +6,6 @@ import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { getGraphOptions } from '../../../../../utils/helpers';
-import useFetch from '../../../../../utils/Hooks/useFetch';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';

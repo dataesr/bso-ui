@@ -19,6 +19,7 @@ function useGetData(observationDate) {
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
+      // TODO move options to helpers
       const query = {
         size: 0,
         query: {

@@ -1,214 +1,90 @@
 [
   {
+    "acces-ouvert": {
+      "category": "1",
+      "intlDefinition": "app.glossary.acces-ouvert.definition",
+      "intlEntry": "app.glossary.acces-ouvert"
+    },
     "apc": {
-      "entry": {
-        "fr": "Frais de publications",
-        "en": "Article Processing Charges (APC)"
-      },
-      "definition": {
-        "fr": "Certaines revues en accès ouvert demandent aux auteurs des frais de publication, appelés aussi APC (Article Processing Charges) pour financer le travail éditorial. Il existe d’autres modèles de financement.",
-        "en": "Some open access journals charge authors a publication fee to fund editorial work. There are other business models."
-      }
+      "category": "2",
+      "intlDefinition": "app.glossary.apc.definition",
+      "intlEntry": "app.glossary.apc"
     },
-    "acces_ouvert": {
-      "entry": {
-        "fr": "Accès ouvert (aux publications) ",
-        "en": "Open access (to publications)"
-      },
-      "definition": {
-        "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public.",
-        "en": "Open access publications are research publications that are freely available on the public Internet."
-      }
+    "archive-ouverte": {
+      "intlDefinition": "app.glossary.archive-ouverte.definition",
+      "intlEntry": "app.glossary.archive-ouverte"
     },
-    "doaj": {
-      "entry": {
-        "fr": "DOAJ",
-        "en": "DOAJ"
-      },
-      "definition": {
-        "fr": "Le Directory of Open Access Journals (DOAJ) est un site web qui héberge une liste de revues en libre accès, établie par la communauté et gérée par Infrastructure Services for Open Access (IS4OA).",
-        "en": "The Directory of Open Access Journals (DOAJ) is a website that hosts a community-generated list of open access journals managed by Infrastructure Services for Open Access (IS4OA)."
-      }
-    },
-    "essai_clinique": {
-      "entry": {
-        "fr": "Essai clinique",
-        "en": "Clinical study"
-      },
-      "definition": {
-        "fr": "Aussi appelé études interventionelles, c'est un type de recherche clinique dans laquelle les participants sont répartis dans des groupes qui reçoivent une ou plusieurs interventions afin que les chercheurs puissent évaluer les effets des interventions sur les résultats biomédicaux ou liés à la santé. La notion d'intervention est définie comme tout acte réalisé sur la personne non justifié par la prise en charge médicale de la personne.",
-        "en": "Also called interventional studies, this is a type of clinical research in which participants are assigned to groups that receive one or more interventions so that researchers can evaluate the effects of the interventions on biomedical or health-related outcomes. Intervention is defined as any act performed on the person that is not justified by the medical management of the person."
-      }
-    },
-    "etude_observationelle": {
-      "entry": {
-        "fr": "Etude observationelle",
-        "en": "Observational study"
-      },
-      "definition": {
-        "fr": "Ces études non interventionelles peuvent être à visée descriptive ou étiologique. Le chercheur va observer la réalité sans intervenir sur les conditions d’exposition des sujets.",
-        "en": "These non-interventional studies can be descriptive or etiological. The researcher will observe the reality without intervening on the conditions of exposure of the subjects."
-      }
+    "clinicaltrials-gov": {
+      "intlDefinition": "app.glossary.clinicaltrials-gov.definition",
+      "intlEntry": "app.glossary.clinicaltrials-gov"
     },
     "diamond": {
-      "entry": {
-        "fr": "Modèle Diamant",
-        "en": "Diamond model"
-      },
-      "definition": {
-        "fr": "La majorité des revues en accès ouvert ne demandent pas de frais de publication aux auteurs. Dans ce modèle de publication en accès ouvert, les coûts de publication sont pris en charge en amont par un État, une université, un consortium d’établissements publics ou une organisation à but non lucratif.",
-        "en": "The majority of open access journals do not charge authors a publication fee. In this model of open access publishing, the costs of publication are borne upstream by a state, university, consortium of public institutions, or nonprofit organization."
-      }
+      "intlDefinition": "app.glossary.diamond.definition",
+      "intlEntry": "app.glossary.diamond"
     },
-    "full_apc": {
-      "entry": {
-        "fr": "Modèle tout APC",
-        "en": "Full APC model"
-      },
-      "definition": {
-        "fr": "Concerne les revues entièrement en accès ouvert et licence libre, demandant systématiquement des frais de publication.",
-        "en": "Concerns fully open access and free license journals that systematically charge a publication fee."
-      }
-    },
-    "revue_hybrid": {
-      "entry": {
-        "fr": "Revue hybride",
-        "en": "Hybrid journal"
-      },
-      "definition": {
-        "fr": "Est considérée comme hybride une revue qui est diffusée par abonnement et qui propose à ses auteurs de payer des frais de publication (également appelés « APC ») afin que leur article soit publié en accès ouvert. Ce paiement de frais supplémentaires dans une revue sous abonnement instaure un double paiement (« double-dipping »).",
-        "en": "A hybrid journal is one that is distributed by subscription and that offers to pay a publication fee (also called 'APC') to its authors in order to have their article published in open access. This payment of additional fees in a subscription journal creates a double payment ('double-dipping')."
-      }
-    },
-    "publication": {
-      "entry": {
-        "fr": "Publication",
-        "en": "Publication"
-      },
-      "definition": {
-        "fr": "Communication scientifique que les chercheurs font de leurs travaux. Ces publications ont subi une évaluation scientifique par les pairs.",
-        "en": "Scholarly communication that researchers make of their work. These publications have undergone a scientific evaluation by peers."
-      }
-    },
-    "hal": {
-      "entry": {
-        "fr": "hal",
-        "en": "hal"
-      },
-      "definition": {
-        "fr": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service. {link}",
-        "en": "French national open archive carried by the Centre for Direct Scientific Communication (CCSD), a joint service unit. {link}"
-      }
-    },
-    "openapc": {
-      "entry": {
-        "fr": "OpenAPC",
-        "en": "OpenAPC"
-      },
-      "definition": {
-        "fr": "L'initiative OpenAPC collecte et diffuse sous licence ouverte des données concernant les frais de publication de certaines publications.",
-        "en": "The OpenAPC initiative collects and disseminates data on the publication costs of selected publications under an open license."
-      }
-    },
-    "publication_fr": {
-      "entry": {
-        "fr": "Publication française",
-        "en": "French publication"
-      },
-      "definition": {
-        "fr": "Publication dont au moins un auteur a une affiliation française.",
-        "en": "Publication of which at least one author has a French affiliation."
-      }
+    "doaj": {
+      "intlDefinition": "app.glossary.doaj.definition",
+      "intlEntry": "app.glossary.doaj"
     },
     "doi": {
-      "entry": {
-        "fr": "DOI (Digital Object Identifier)",
-        "en": "DOI (Digital Object Identifier)"
-      },
-      "definition": {
-        "fr": "Suite de chiffres, lettres et symboles, constituant un identifiant attribué à une publication, de façon non ambigüe et pérenne.",
-        "en": "A sequence of numbers, letters and symbols, constituting an identifier assigned to a publication in an unambiguous and permanent manner."
-      }
+      "intlDefinition": "app.glossary.doi.definition",
+      "intlEntry": "app.glossary.doi"
     },
-    "unpaywall": {
-      "entry": {
-        "fr": "Unpaywall",
-        "en": "Unpaywall"
-      },
-      "definition": {
-        "fr": "Base de données mondiale, ouverte, recensant plus de 100 millions de DOIs avec leur méta-données disponibles (titre, auteur, éditeur …) et leur type d’accès.",
-        "en": "Worldwide, open database, listing more than 100 million DOIs with their available metadata (title, author, publisher ...) and their access type."
-      }
+    "essai-clinique": {
+      "intlDefinition": "app.glossary.essai-clinique.definition",
+      "intlEntry": "app.glossary.essai-clinique"
     },
-    "archive_ouverte": {
-      "entry": {
-        "fr": "Archive ouverte",
-        "en": "Open repository"
-      },
-      "definition": {
-        "fr": "Une archive ouverte est une plateforme numérique contenant des documents issus de la recherche scientifique et offrant un accès gratuit, immédiat et permanent aux résultats de la recherche, que chacun peut utiliser, télécharger et distribuer. Le dépôt dans une archive ouverte est l'une des modalités de mise en œuvre de l'accès ouvert aux publications.",
-        "en": "An open repository or open archive is a digital platform containing documents from scientific research and provides free, immediate and permanent access to research results for anyone to use, download and distribute. The deposit in an open archive is one of the modalities of implementation of the open access to scientific publications."
-      }
-    },
-    "promoteur": {
-      "entry": {
-        "fr": "Promoteur",
-        "en": "Lead sponsor"
-      },
-      "definition": {
-        "fr": "Personne physique ou morale qui est responsable d'une recherche impliquant la personne humaine, en assure la gestion et vérifie que son financement est prévu.",
-        "en": "A natural or legal person who is responsible for research involving the human person, ensures its management and verifies that its funding is provided"
-      }
-    },
-    "clinicaltrials.gov": {
-      "entry": {
-        "fr": "ClinicalTrials.gov",
-        "en": "ClinicalTrials.gov"
-      },
-      "definition": {
-        "fr": "ClinicalTrials.gov est le plus grand registre d'essais cliniques en ligne. Il est tenu par l'United States National Library of Medicine au nom des National Institutes of Health (NIH). ",
-        "en": "ClinicalTrials.gov is a registry of clinical trials. It is run by the United States National Library of Medicine (NLM) at the National Institutes of Health, and is the largest clinical trials database."
-      }
+    "etude-observationelle": {
+      "intlDefinition": "app.glossary.etude-observationelle.definition",
+      "intlEntry": "app.glossary.etude-observationelle"
     },
     "eudract": {
-      "entry": {
-        "fr": "EudraCT (European Union Drug Regulating Authorities Clinical Trials)",
-        "en": "EudraCT (European Union Drug Regulating Authorities Clinical Trials)"
-      },
-      "definition": {
-        "fr": "EudraCT est la base de données européenne des essais cliniques médicaments expérimentaux ayant au moins un site dans l'Union européenne et commençant le 1er mai 2004 ou après.",
-        "en": "EudraCT is the European Clinical Trials Database of clinical trials of investigational medicinal products with at least one site in the European Union commencing 1 May 2004 or later."
-      }
+      "intlDefinition": "app.glossary.eudract.definition",
+      "intlEntry": "app.glossary.eudract"
     },
-    "type_hebergement_oa": {
-      "entry": {
-        "fr": "Type d'hébergement pour l'accès ouvert",
-        "en": "Open access host type"
-      },
-      "definition": {
-        "fr": "Il existe un certain nombre de variantes pour la mise en accès ouvert des publications. Une publication peut être en accès ouvert selon une ou plusieurs de ces variantes. Certaines variantes reposent sur le modèle économique de l'éditeur ou plateforme d'édition qui met elle-même la publication en accès ouvert : il s'agit d'un hébergement chez l'éditeur ; une autre variante repose sur le dépôt sur une ou plusieurs archives ouvertes : c'est alors un hébergement sur archive ouverte.",
-        "en": "There are a number of variants for making publications open access. A publication can be open access in one or more of these variants. Some variants are based on the business model of the publisher or publishing platform that itself makes the publication open access: this is hosting by the publisher; another variant is based on deposit in one or more open archives: this is open repository hosting."
-      }
+    "full-apc": {
+      "intlDefinition": "app.glossary.full-apc.definition",
+      "intlEntry": "app.glossary.full-apc"
     },
-    "resultat_essai_clinique": {
-      "entry": {
-        "fr": "Résultat d'un essai clinique",
-        "en": "Clinical trial results"
-      },
-      "definition": {
-        "fr": "Données structurées résultantes d'un essai clinique. Ces données peuvent être soumises et rendues publiques sur un registre comme ClinicalTrials.org. ",
-        "en": "Structured data resulting from a clinical trial. This data can be submitted to and made public on a registry such as ClinicalTrials.org."
-      }
+    "hal": {
+      "intlDefinition": "app.glossary.hal.definition",
+      "intlEntry": "app.glossary.hal"
+    },
+    "openapc": {
+      "intlDefinition": "app.glossary.openapc.definition",
+      "intlEntry": "app.glossary.openapc"
     },
     "pgo": {
-      "entry": {
-        "fr": "PGO (Partenariat pour un gouvernement ouvert)",
-        "en": "OGP (Open government partnership)"
-      },
-      "definition": {
-        "fr": "Organisation regroupant 75 pays et des centaines d’organisations de la société civile pour la transparence de l’action publique.",
-        "en": "Organization of 75 countries and hundreds of civil society organizations for transparency in public action."
-      }
+      "intlDefinition": "app.glossary.pgo.definition",
+      "intlEntry": "app.glossary.pgo"
+    },
+    "promoteur": {
+      "intlDefinition": "app.glossary.promoteur.definition",
+      "intlEntry": "app.glossary.promoteur"
+    },
+    "publication": {
+      "intlDefinition": "app.glossary.publication.definition",
+      "intlEntry": "app.glossary.publication"
+    },
+    "publication-fr": {
+      "intlDefinition": "app.glossary.publication-fr.definition",
+      "intlEntry": "app.glossary.publication-fr"
+    },
+    "resultat-essai-clinique": {
+      "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
+      "intlEntry": "app.glossary.resultat-essai-clinique"
+    },
+    "revue-hybrid": {
+      "intlDefinition": "app.glossary.revue-hybrid.definition",
+      "intlEntry": "app.glossary.revue-hybrid"
+    },
+    "type-hebergement-oa": {
+      "intlDefinition": "app.glossary.type-hebergement-oa.definition",
+      "intlEntry": "app.glossary.type-hebergement-oa"
+    },
+    "unpaywall": {
+      "intlDefinition": "app.glossary.unpaywall.definition",
+      "intlEntry": "app.glossary.unpaywall"
     }
   }
 ]

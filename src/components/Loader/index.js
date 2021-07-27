@@ -3,10 +3,10 @@ import './loader.scss';
 import { Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 
-export default function LoadingSpinner({ size }) {
+export default function LoadingSpinner({ size, spacing }) {
   return (
     <Container>
-      <Row alignItems='middle' spacing='py-15w px-auto' justifyContent='center'>
+      <Row alignItems='middle' spacing={spacing} justifyContent='center'>
         <svg
           className='loader'
           style={{ height: size, width: size }}
@@ -23,8 +23,10 @@ export default function LoadingSpinner({ size }) {
 
 LoadingSpinner.propTypes = {
   size: PropTypes.string,
+  spacing: PropTypes.string,
 };
 
 LoadingSpinner.defaultProps = {
   size: '100px',
+  spacing: 'py-15w px-auto',
 };

@@ -2,7 +2,7 @@
   transition: right 0.6s ease-in-out;
   background-color: var(--blue-dark-125);
   color: #fff;
-  max-width: 100vw;
+  width: 100vw;
   position: fixed;
   top: 0;
   right: -100vw;
@@ -47,7 +47,7 @@
     left: -136px;
     top: 20vh;
 
-    &.blue {
+    &.btn-blue {
       background-color: var(--blue-dark-125);
     }
 
@@ -98,8 +98,8 @@
 
 @media screen and(min-width: 992px) {
   .bso-glossary {
-    max-width: 44vw;
-    right: -44vw;
+    width: 40vw;
+    right: -40vw;
 
     .fr-btn {
       left: -144px;

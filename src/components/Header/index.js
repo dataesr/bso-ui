@@ -7,6 +7,7 @@ import {
   NavSubItem,
   Service,
   Tool,
+  ToolItem,
   ToolItemGroup,
 } from '@dataesr/react-dsfr';
 import { useEffect, useState } from 'react';
@@ -45,8 +46,12 @@ function Header() {
         />
         <Tool>
           <ToolItemGroup>
-            <SwitchThemeButton />
-            <SwitchLangButton />
+            <ToolItem as='div'>
+              <SwitchThemeButton />
+            </ToolItem>
+            <ToolItem as='div'>
+              <SwitchLangButton />
+            </ToolItem>
           </ToolItemGroup>
         </Tool>
       </HeaderBody>

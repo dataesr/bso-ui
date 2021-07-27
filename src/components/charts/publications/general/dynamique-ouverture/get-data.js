@@ -7,6 +7,7 @@ import {
   discipline125,
   discipline150,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDates) {
   const [data, setData] = useState({});
@@ -17,28 +18,7 @@ function useGetData(observationDates) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = {
-        size: 0,
-        query: {
-          bool: {
-            filter: [{ term: { 'domains.keyword': 'health' } }],
-          },
-        },
-        aggs: {
-          by_publication_year: {
-            terms: {
-              field: 'year',
-            },
-            aggs: {
-              by_is_oa: {
-                terms: {
-                  field: `oa_details.${oneDate}.is_oa`,
-                },
-              },
-            },
-          },
-        },
-      };
+      const query = getFetchOptions('publicationRate', oneDate);
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 

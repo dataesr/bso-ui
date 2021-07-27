@@ -90,3 +90,128 @@ export function getGraphOptions(graphId, intl) {
     },
   };
 }
+
+/**
+ *
+ * @param key
+ * @param parameter
+ * @returns {*|{}}
+ */
+export function getFetchOptions(key, parameter) {
+  const allOptions = {
+    publicationRate: (year) => ({
+      size: 0,
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'publication_year',
+          },
+          aggs: {
+            by_is_oa: {
+              terms: {
+                field: `oa_details.${year}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    publication: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        publication_count: {
+          cardinality: {
+            field: 'doi.keyword',
+            precision_threshold: 1000,
+          },
+        },
+      },
+    },
+    publisher: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        publisher_count: {
+          cardinality: {
+            field: 'publisher.keyword',
+            precision_threshold: 10,
+          },
+        },
+      },
+    },
+    journal: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        journal_count: {
+          cardinality: {
+            field: 'journal_issn_l.keyword',
+            precision_threshold: 10,
+          },
+        },
+      },
+    },
+    repository: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        repositories_count: {
+          cardinality: {
+            field: 'oa_details.2021Q1.repositories.keyword',
+            precision_threshold: 10,
+          },
+        },
+      },
+    },
+    obsDates: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        observation_dates_count: {
+          cardinality: {
+            field: 'observation_dates.keyword',
+            precision_threshold: 1,
+          },
+        },
+      },
+    },
+    interventional: {
+      size: 0,
+      aggs: {
+        study_type: {
+          terms: { field: 'study_type.keyword' },
+        },
+      },
+    },
+    observational: {
+      size: 0,
+      aggs: {
+        study_type: {
+          terms: { field: 'study_type.keyword' },
+        },
+      },
+    },
+  };
+  return (parameter ? allOptions[key](parameter) : allOptions[key]) || {};
+}

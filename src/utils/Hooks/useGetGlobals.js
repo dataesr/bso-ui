@@ -18,6 +18,7 @@ export const GlobalsContextProvider = ({ children }) => {
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
   async function getObservationDates() {
+    // TODO move options to helpers
     // Récupération de toutes les dates d'observation
     const query = {
       size: 0,

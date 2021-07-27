@@ -1,0 +1,109 @@
+import { Col } from '@dataesr/react-dsfr';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { FormattedMessage } from 'react-intl';
+
+import { CLINICAL_TRIALS_API_URL, ES_API_URL } from '../../config/config';
+import { getFetchOptions } from '../../utils/helpers';
+import useFetch from '../../utils/Hooks/useFetch';
+import Icon from '../Icon';
+import InfoCard from '../InfoCard';
+import Loader from '../Loader';
+
+const fetchInfos = {
+  publication: {
+    path: 'aggregations.publication_count.value',
+    url: ES_API_URL,
+  },
+  publisher: { path: 'aggregations.publisher_count.value', url: ES_API_URL },
+  repository: {
+    path: 'aggregations.repositories_count.value',
+    url: ES_API_URL,
+  },
+  obsDates: {
+    path: 'aggregations.observation_dates_count.value',
+    url: ES_API_URL,
+  },
+  journal: { path: 'aggregations.journal_count.value', url: ES_API_URL },
+  interventional: {
+    path: 'aggregations.study_type.buckets.0.doc_count',
+    url: CLINICAL_TRIALS_API_URL,
+  },
+  observational: {
+    path: 'aggregations.study_type.buckets.1.doc_count',
+    url: CLINICAL_TRIALS_API_URL,
+  },
+};
+
+function TodaySectionItem({
+  iconName,
+  iconColor,
+  intlSubTitle,
+  backgroundColorClass,
+  itemKey,
+}) {
+  const [todayData, setTodayData] = useState({});
+  const { fetch, response, isMounted } = useFetch({
+    url: fetchInfos[itemKey].url,
+    method: 'post',
+    options: getFetchOptions(itemKey),
+  });
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView && !Object.keys(todayData).length) {
+      fetch();
+    }
+    return () => {
+      isMounted.current = false;
+    };
+  }, [inView, todayData, fetch, isMounted]);
+
+  const getValueByPath = (path, object) => path.split('.').reduce((p, prop) => p[prop], object);
+
+  useEffect(() => {
+    if (response && !todayData[itemKey]) {
+      setTodayData((prev) => ({
+        ...prev,
+        [itemKey]: getValueByPath(fetchInfos[itemKey].path, response),
+      }));
+    }
+  }, [response, todayData, setTodayData, itemKey]);
+  return (
+    <Col n='6 sm-4 md-6'>
+      <span ref={ref}>
+        <InfoCard
+          cardClassNames='text-left-l'
+          small
+          bodyClassName={backgroundColorClass}
+          subTitle={<FormattedMessage id={intlSubTitle} />}
+          data1={
+            todayData[itemKey] ? (
+              todayData[itemKey]
+            ) : (
+              <Loader spacing='' size='80' />
+            )
+          }
+          icon={
+            <Icon name={iconName} color1='blue-dark-125' color2={iconColor} />
+          }
+        />
+      </span>
+    </Col>
+  );
+}
+
+TodaySectionItem.defaultProps = {
+  todayData: { publicationCount: '' },
+};
+
+TodaySectionItem.propTypes = {
+  backgroundColorClass: PropTypes.string.isRequired,
+  todayData: PropTypes.shape({ publicationCount: PropTypes.string }),
+  intlSubTitle: PropTypes.string.isRequired,
+  iconColor: PropTypes.string.isRequired,
+  itemKey: PropTypes.string.isRequired,
+  iconName: PropTypes.string.isRequired,
+};
+export default TodaySectionItem;

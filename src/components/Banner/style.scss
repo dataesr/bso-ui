@@ -20,7 +20,7 @@
     background: var(--blue-dark-125);
     border-radius: 8px;
     position: absolute;
-    bottom: -80px;
+    bottom: -130px;
     width: 100%;
 
     .fr-select--valid {
@@ -55,6 +55,18 @@
       .title {
         display: none;
       }
+    }
+  }
+
+  button {
+    color: var(--blue-dark-125);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0;
+    border-bottom: 2px solid var(--green-soft-25);
+
+    &.active {
+      border-color: var(--blue-dark-125);
     }
   }
 }
