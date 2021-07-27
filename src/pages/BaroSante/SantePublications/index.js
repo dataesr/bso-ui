@@ -7,6 +7,7 @@ import Banner from '../../../components/Banner';
 import ChartEvolutionProportion from '../../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
+import ChartRepartitionDeclarations from '../../../components/charts/publications/general/impact-financement/chart-repartition-declarations';
 import ChartTauxOuvertureFinancement from '../../../components/charts/publications/general/impact-financement/chart-taux-ouverture';
 import ChartLanguesOuverture from '../../../components/charts/publications/general/langues-ouverture/langues-ouverture';
 import ChartEvolutionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-evolution-taux';
@@ -191,6 +192,7 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                 >
                   <ChartTauxOuvertureFinancement />
+                  <ChartRepartitionDeclarations />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
