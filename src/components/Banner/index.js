@@ -59,13 +59,10 @@ function Banner({
 
   return (
     <section
-      className={classNames(
-        'bso-banner z-200 text-left-m text-center text-left-lg mb-60',
-        {
-          sticky: sticky && sticked,
-          'mb-100': selectNavigation,
-        },
-      )}
+      className={classNames('bso-banner z-200 text-left-xl text-center mb-60', {
+        sticky: sticky && sticked,
+        'mb-100': selectNavigation,
+      })}
     >
       <Container>
         <Row
@@ -99,7 +96,7 @@ function Banner({
             )}
           </Col>
           {selectNavigation && sticked && (
-            <Col n='12 md-4' className='relative'>
+            <Col n='12 lg-4' className='relative'>
               <SelectNavigation
                 sticked={sticked}
                 title={selectNavigation.title}
