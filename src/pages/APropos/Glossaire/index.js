@@ -79,18 +79,20 @@ function Glossaire() {
   );
   const renderItems = () => {
     let r;
+    const firstGlossaryEntry = GlossaryEntries[0];
     if (!activeLetter) {
-      r = Object.keys(GlossaryEntries[0]).map((key) => getItem(GlossaryEntries[0][key]));
+      r = Object.keys(firstGlossaryEntry).map((key) => getItem(firstGlossaryEntry[key]));
     } else {
-      r = Object.keys(GlossaryEntries[0]).map((key) => {
+      r = Object.keys(firstGlossaryEntry).map((key) => {
         const firstLetterEntry = intl.formatMessage({
-          id: GlossaryEntries[0][key].intlEntry,
+          id: firstGlossaryEntry[key].intlEntry,
         })[0];
         return activeLetter && firstLetterEntry.toLowerCase() === activeLetter
-          ? getItem(GlossaryEntries[0][key])
+          ? getItem(firstGlossaryEntry[key])
           : null;
       });
     }
+    r.sort((a, b) => b.props.title < a.props.title);
     return r;
   };
   const renderIcons = (
