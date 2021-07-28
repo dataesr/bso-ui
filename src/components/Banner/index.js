@@ -48,13 +48,11 @@ function Banner({
   }, [scrollTop, scrollingDown, sticky]);
 
   function getClass(isSticked, isChip) {
-    let myClass;
+    let myClass = '12';
     if (isSticked) {
-      myClass = '12 sm-7';
+      myClass += ' sm-7';
     } else if (isChip) {
-      myClass = '12 sm-10';
-    } else {
-      myClass = '12 sm-12';
+      myClass += ' sm-10';
     }
     return myClass;
   }
@@ -112,7 +110,7 @@ function Banner({
           )}
           {children && <Col n='12 sm-9'>{children}</Col>}
           {!sticked && chip && (
-            <Col n='2'>
+            <Col n='12 sm-2'>
               <div
                 className={classNames({
                   'mb-60 mb-l-0': selectNavigation,
