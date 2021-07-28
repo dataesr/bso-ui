@@ -110,7 +110,7 @@ function Banner({
               />
             </Col>
           )}
-          {children && <Col n='12 sm-9'>{children}</Col>}
+          {children && <Col n='12'>{children}</Col>}
           {!sticked && chip && (
             <Col n='2'>
               <div

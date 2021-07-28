@@ -49,10 +49,13 @@ function Glossaire() {
     'y',
     'z',
   ];
-  const options = alphabet.map((letter) => ({ label: letter, value: letter }));
-  options.push({
+  const options = alphabet.map((letter) => ({
+    label: letter.toUpperCase(),
+    value: letter,
+  }));
+  options.unshift({
     value: '',
-    label: 'Selectionner une lettre',
+    label: intl.formatMessage({ id: 'app.glossary.select-letter' }),
     disabled: false,
     hidden: false,
   });
@@ -75,7 +78,7 @@ function Glossaire() {
     </AccordionItem>
   );
   const renderItems = () => {
-    let r = null;
+    let r;
     if (!activeLetter) {
       r = Object.keys(GlossaryEntries[0]).map((key) => getItem(GlossaryEntries[0][key]));
     } else {
@@ -143,7 +146,6 @@ function Glossaire() {
           )}
           {mobile && (
             <Select
-              label='Selectionner une lettre'
               onChange={(e) => {
                 setActiveLetter(e.target.value);
               }}
