@@ -63,7 +63,7 @@ function Banner({
           alignItems='middle'
           gutters={!sticked}
         >
-          <Col n={sticked ? '12 sm-7' : '12 sm-9'}>
+          <Col n={`${chip ? 'md-10' : 'md-12'} ${sticked ? 'sm-7' : 'sm-9'}`}>
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
