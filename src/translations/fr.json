@@ -77,6 +77,7 @@
   "app.glossary.resultat-essai-clinique.definition": "Données structurées résultantes d'un essai clinique. Ces données peuvent être soumises et rendues publiques sur un registre comme ClinicalTrials.org.",
   "app.glossary.revue-hybrid": "Revue hybride",
   "app.glossary.revue-hybrid.definition": "Est considérée comme hybride une revue qui est diffusée par abonnement et qui propose à ses auteurs de payer des frais de publication (également appelés « APC ») afin que leur article soit publié en accès ouvert. Ce paiement de frais supplémentaires dans une revue sous abonnement instaure un double paiement (« double-dipping »).",
+  "app.glossary.select-letter": "Sélectionner une lettre",
   "app.glossary.title": "Glossaire de la page",
   "app.glossary.type-hebergement-oa": "Type d'hébergement pour l'accès ouvert",
   "app.glossary.type-hebergement-oa.definition": "Il existe un certain nombre de variantes pour la mise en accès ouvert des publications. Une publication peut être en accès ouvert selon une ou plusieurs de ces variantes. Certaines variantes reposent sur le modèle économique de l'éditeur ou plateforme d'édition qui met elle-même la publication en accès ouvert : il s'agit d'un hébergement chez l'éditeur ; une autre variante repose sur le dépôt sur une ou plusieurs archives ouvertes : c'est alors un hébergement sur archive ouverte.",
