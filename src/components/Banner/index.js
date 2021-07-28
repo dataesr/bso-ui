@@ -47,6 +47,18 @@ function Banner({
     }
   }, [scrollTop, scrollingDown, sticky]);
 
+  function getClass(isSticked, isChip) {
+    let myClass;
+    if (isSticked) {
+      myClass = '12 sm-7';
+    } else if (isChip) {
+      myClass = '12 sm-10';
+    } else {
+      myClass = '12 sm-12';
+    }
+    return myClass;
+  }
+
   return (
     <section
       className={classNames(
@@ -63,7 +75,7 @@ function Banner({
           alignItems='middle'
           gutters={!sticked}
         >
-          <Col n={`${chip ? 'md-10' : 'md-12'} ${sticked ? 'sm-7' : 'sm-9'}`}>
+          <Col n={getClass(sticked, chip)}>
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
