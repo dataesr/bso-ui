@@ -74,6 +74,7 @@
   "app.glossary.resultat-essai-clinique.definition": "Structured data resulting from a clinical trial. This data can be submitted to and made public on a registry such as ClinicalTrials.org.",
   "app.glossary.revue-hybrid": "Hybrid journal",
   "app.glossary.revue-hybrid.definition": "A hybrid journal is one that is distributed by subscription and that offers to pay a publication fee (also called 'APC') to its authors in order to have their article published in open access. This payment of additional fees in a subscription journal creates a double payment ('double-dipping').",
+  "app.glossary.select-letter": "Select a letter",
   "app.glossary.title": "Glossaire of the page",
   "app.glossary.type-hebergement-oa": "Open access host type",
   "app.glossary.type-hebergement-oa.definition": "There are a number of variants for making publications open access. A publication can be open access in one or more of these variants. Some variants are based on the business model of the publisher or publishing platform that itself makes the publication open access: this is hosting by the publisher; another variant is based on deposit in one or more open archives: this is open repository hosting.",
