@@ -50,9 +50,9 @@ function Banner({
   function getClass(isSticked, isChip) {
     let myClass = '12';
     if (isSticked) {
-      myClass += ' sm-7';
+      myClass += ' lg-7';
     } else if (isChip) {
-      myClass += ' sm-10';
+      myClass += ' lg-10';
     }
     return myClass;
   }
@@ -110,7 +110,7 @@ function Banner({
           )}
           {children && <Col n='12'>{children}</Col>}
           {!sticked && chip && (
-            <Col n='12 sm-2'>
+            <Col n='12 lg-2'>
               <div
                 className={classNames({
                   'mb-60 mb-l-0': selectNavigation,
