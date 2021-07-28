@@ -100,7 +100,7 @@ function Banner({
           )}
           {children && <Col n='12 sm-9'>{children}</Col>}
           {!sticked && chip && (
-            <Col n='sm-3'>
+            <Col n='2'>
               <div
                 className={classNames({
                   'mb-60 mb-l-0': selectNavigation,
