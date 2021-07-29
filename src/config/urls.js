@@ -50,7 +50,7 @@ export default {
     en: '/about/questions',
   },
   glossaire: {
-    fr: '/a-propos/gloassaire',
+    fr: '/a-propos/glossaire',
     en: '/about/glossary',
   },
   flash: {

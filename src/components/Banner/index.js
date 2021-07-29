@@ -47,19 +47,9 @@ function Banner({
     }
   }, [scrollTop, scrollingDown, sticky]);
 
-  function getClass(isSticked, isChip) {
-    let myClass = '12';
-    if (isSticked) {
-      myClass += ' lg-7';
-    } else if (isChip) {
-      myClass += ' lg-10';
-    }
-    return myClass;
-  }
-
   return (
     <section
-      className={classNames('bso-banner z-200 text-left-xl text-center mb-60', {
+      className={classNames('bso-banner z-200 text-left-l text-center mb-60', {
         sticky: sticky && sticked,
         'mb-100': selectNavigation,
       })}
@@ -70,7 +60,7 @@ function Banner({
           alignItems='middle'
           gutters={!sticked}
         >
-          <Col n={getClass(sticked, chip)}>
+          <Col n={classNames('12', { 'md-8': sticked, 'md-9': !sticked })}>
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
@@ -96,7 +86,10 @@ function Banner({
             )}
           </Col>
           {selectNavigation && sticked && (
-            <Col n='12 lg-4' className='relative'>
+            <Col
+              n={classNames('12', { 'md-4': sticked, 'md-3': !sticked })}
+              className='relative'
+            >
               <SelectNavigation
                 sticked={sticked}
                 title={selectNavigation.title}
@@ -107,7 +100,7 @@ function Banner({
           )}
           {children && <Col n='12'>{children}</Col>}
           {!sticked && chip && (
-            <Col n='12 lg-2'>
+            <Col n='12 md-3'>
               <div
                 className={classNames({
                   'mb-60 mb-l-0': selectNavigation,

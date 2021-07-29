@@ -3,7 +3,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { getGraphOptions } from '../../../../../utils/helpers';
