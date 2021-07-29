@@ -15,7 +15,6 @@ function useGetData(observationDate) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  // const [isError, setError] = useState(false);
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
@@ -144,7 +143,6 @@ function useGetData(observationDate) {
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
-        // setError(true);
         setLoading(false);
       }
     }

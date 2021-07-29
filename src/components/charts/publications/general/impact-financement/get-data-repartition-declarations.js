@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
   accesferme,
-  accesouvert,
   archiveouverte100,
   editeurarchive,
   editeurplateforme100,
