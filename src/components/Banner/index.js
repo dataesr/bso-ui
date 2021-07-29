@@ -60,7 +60,12 @@ function Banner({
           alignItems='middle'
           gutters={!sticked}
         >
-          <Col n={classNames('12', { 'md-8': sticked, 'md-9': !sticked })}>
+          <Col
+            n={classNames('12', {
+              'md-8': chip && sticked,
+              'md-9': chip && !sticked,
+            })}
+          >
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>

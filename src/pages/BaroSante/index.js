@@ -99,21 +99,21 @@ function BaroSante() {
 
   const renderIcons = (
     <Row alignItems='middle' gutters>
-      <Col n='4 lg-2'>
+      <Col n='4 md-2'>
         <Icon
           name='icon-bsso-28'
           color1='blue-soft-125'
           color2='publication-25'
         />
       </Col>
-      <Col n='4 lg-2'>
+      <Col n='4 md-2'>
         <Icon
           name='icon-bsso-15'
           color1='blue-soft-125'
           color2='green-soft-50'
         />
       </Col>
-      <Col n='4 lg-2'>
+      <Col n='4 md-2'>
         <Icon
           name='icon-bsso-17'
           color1='blue-soft-125'
