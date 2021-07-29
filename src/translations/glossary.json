@@ -50,10 +50,6 @@
       "intlDefinition": "app.glossary.hal.definition",
       "intlEntry": "app.glossary.hal"
     },
-    "openapc": {
-      "intlDefinition": "app.glossary.openapc.definition",
-      "intlEntry": "app.glossary.openapc"
-    },
     "pgo": {
       "intlDefinition": "app.glossary.pgo.definition",
       "intlEntry": "app.glossary.pgo"

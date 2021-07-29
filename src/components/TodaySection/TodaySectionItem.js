@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { FormattedMessage } from 'react-intl';
 
 import { CLINICAL_TRIALS_API_URL, ES_API_URL } from '../../config/config';
-import { getFetchOptions } from '../../utils/helpers';
+import { getFetchOptions, getValueByPath } from '../../utils/helpers';
 import useFetch from '../../utils/Hooks/useFetch';
 import Icon from '../Icon';
 import InfoCard from '../InfoCard';
@@ -59,8 +59,6 @@ function TodaySectionItem({
       isMounted.current = false;
     };
   }, [inView, todayData, fetch, isMounted]);
-
-  const getValueByPath = (path, object) => path.split('.').reduce((p, prop) => p[prop], object);
 
   useEffect(() => {
     if (response && !todayData[itemKey]) {

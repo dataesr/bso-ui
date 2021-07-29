@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import GlossaryEntries from '../../../translations/glossary.json';
+import { sortByPath } from '../../../utils/helpers';
 import useViewport from '../../../utils/Hooks/useViewport';
 
 function Glossaire() {
@@ -77,6 +78,7 @@ function Glossaire() {
       </Container>
     </AccordionItem>
   );
+
   const renderItems = () => {
     let r;
     const firstGlossaryEntry = GlossaryEntries[0];
@@ -92,9 +94,9 @@ function Glossaire() {
           : null;
       });
     }
-    r.sort((a, b) => b.props.title < a.props.title);
-    return r;
+    return sortByPath(r, 'props.title');
   };
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -106,6 +108,7 @@ function Glossaire() {
       </Col>
     </Row>
   );
+
   return (
     <section className='bso-glossaire'>
       <Banner

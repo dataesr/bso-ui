@@ -30,6 +30,36 @@ export function getDateFormated(date, lang) {
 
 /**
  *
+ * @param path
+ * @param object
+ * @returns {*}
+ */
+export function getValueByPath(path, object) {
+  return path.split('.').reduce((p, prop) => p[prop], object);
+}
+
+/**
+ *
+ * @param array
+ * @param path
+ * @returns {*[]}
+ */
+export function sortByPath(array, path) {
+  return [...array].sort((a, b) => {
+    const nameA = a ? getValueByPath(path, a).toLowerCase() : 0;
+    const nameB = b ? getValueByPath(path, b).toLowerCase() : 0;
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
+/**
+ *
  * @param graphId
  * @param intl
  * @returns {{exporting:
