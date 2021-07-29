@@ -1,8 +1,9 @@
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
+import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { getGraphOptions } from '../../../../../utils/helpers';
@@ -11,22 +12,23 @@ import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import GraphTitle from '../../../graph-title';
-import useGetData from './get-data';
+import useGetData from './get-data-repartition-declarations';
 
+treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
 const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.general.voies-ouverture.chart-evolution-taux';
+  const graphId = 'app.sante-publi.general.impact-financement.chart-repartition-financements';
   const { observationDates, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    observationDates[0] || '2020',
+    observationDates[0] || 2020,
   );
-  const { dataGraph, categories } = allData;
+  const { dataGraph } = allData;
 
-  if (isLoading || !dataGraph || !categories) {
+  if (isLoading || !dataGraph) {
     return <Loader />;
   }
   if (isError) {
@@ -34,27 +36,29 @@ const Chart = () => {
   }
 
   const optionsGraph = getGraphOptions(graphId, intl);
-  optionsGraph.chart.type = 'area';
-  optionsGraph.xAxis = {
-    categories,
-    tickmarkPlacement: 'on',
-    title: {
-      enabled: false,
+  optionsGraph.series = [
+    {
+      type: 'treemap',
+      layoutAlgorithm: 'stripes',
+      alternateStartingDirection: true,
+      levels: [
+        {
+          level: 1,
+          layoutAlgorithm: 'sliceAndDice',
+          dataLabels: {
+            enabled: true,
+            align: 'left',
+            verticalAlign: 'top',
+            style: {
+              fontSize: '15px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      ],
+      data: dataGraph,
     },
-  };
-  optionsGraph.plotOptions = {
-    area: {
-      stacking: 'normal',
-      lineColor: '#fff',
-      lineWidth: 3,
-      marker: {
-        lineWidth: 1,
-        lineColor: '#fff',
-      },
-    },
-  };
-  optionsGraph.series = dataGraph;
-
+  ];
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
       type: 'image/png',
@@ -63,6 +67,8 @@ const Chart = () => {
   const exportChartCsv = () => {
     chartRef.current.chart.downloadCSV();
   };
+
+  const chartComments = 'comment par defaut';
 
   return (
     <>
@@ -74,9 +80,7 @@ const Chart = () => {
           ref={chartRef}
           id={graphId}
         />
-        <GraphComments
-          comments={intl.formatMessage({ id: `${graphId}.comments` })}
-        />
+        <GraphComments comments={chartComments} />
       </div>
       <GraphFooter
         date={updateDate}

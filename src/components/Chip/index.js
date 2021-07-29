@@ -17,8 +17,8 @@ export default function Chip() {
           <FormattedMessage
             values={{
               date: getDateFormated(updateDate, lang),
-              endDate: observationDates[1],
-              startDate: observationDates[observationDates.length - 1],
+              endDate: observationDates[0].slice(0, 4) - 1,
+              startDate: 2013,
             }}
             id='app.sante.update.date'
             defaultMessage=''

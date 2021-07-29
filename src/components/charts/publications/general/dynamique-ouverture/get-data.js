@@ -42,7 +42,6 @@ function useGetData(observationDates) {
       discipline150,
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
-
     const dataGraph2 = [];
     allData.forEach((observationDateData, i) => {
       const serie = {};
@@ -85,7 +84,6 @@ function useGetData(observationDates) {
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
-        setError(true);
         setLoading(false);
       }
     }

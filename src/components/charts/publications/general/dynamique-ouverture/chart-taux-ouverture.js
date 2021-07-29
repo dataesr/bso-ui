@@ -26,15 +26,15 @@ const Chart = ({ graphFooter, graphComments }) => {
   const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture';
   const { observationDates, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationDates);
+  const { dataGraph1 } = data;
 
-  if (isLoading) {
+  if (isLoading || !dataGraph1) {
     return <Loader />;
   }
   if (isError) {
     return <>Error</>;
   }
 
-  const { dataGraph1 } = data;
   const optionsGraph1 = getGraphOptions(graphId, intl);
   optionsGraph1.chart.type = 'bar';
   optionsGraph1.colors = [discipline100];
