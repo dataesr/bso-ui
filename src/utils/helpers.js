@@ -46,12 +46,12 @@ export function getValueByPath(path, object) {
  */
 export function sortByPath(array, path) {
   return [...array].sort((a, b) => {
-    const nameA = a ? getValueByPath(path, a).toLowerCase() : 0;
-    const nameB = b ? getValueByPath(path, b).toLowerCase() : 0;
-    if (nameA < nameB) {
+    const valueA = a ? getValueByPath(path, a).toLowerCase() : 0;
+    const valueB = b ? getValueByPath(path, b).toLowerCase() : 0;
+    if (valueA < valueB) {
       return -1;
     }
-    if (nameA > nameB) {
+    if (valueA > valueB) {
       return 1;
     }
     return 0;
