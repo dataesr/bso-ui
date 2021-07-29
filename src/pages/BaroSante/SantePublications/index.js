@@ -4,7 +4,12 @@ import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
+import ChartEvolutionProportion from '../../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
+import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
+import ChartRepartitionDeclarations from '../../../components/charts/publications/general/impact-financement/chart-repartition-declarations';
+import ChartTauxOuvertureFinancement from '../../../components/charts/publications/general/impact-financement/chart-taux-ouverture';
+import ChartLanguesOuverture from '../../../components/charts/publications/general/langues-ouverture/langues-ouverture';
 import ChartEvolutionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-evolution-taux';
 import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
 import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
@@ -17,7 +22,7 @@ import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
-import { bluesoft50 } from '../../../style/colours.module.scss';
+import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../../utils/Hooks/useGetPublicationRateFrom';
@@ -153,18 +158,41 @@ function SantePublications() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.sante-publi.general.voies-ouverture'
+                  intlKey='app.sante-publi.general.dynamique-ouverture'
                   backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuverture />
+                  <ChartEvolutionProportion />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.general.voies-ouverture'
+                  backgroundColor={bluesoft25}
                 >
                   <ChartRepartitionTaux />
                   <ChartEvolutionTaux />
                   <ChartRepartitionPublications />
                 </QuestionSection>
+
                 <QuestionSection
                   intlKey='app.sante-publi.general.genres-ouverture'
                   backgroundColor={bluesoft50}
                 >
                   <ChartGenreOuverture />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.general.langues-ouverture'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartLanguesOuverture />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.sante-publi.general.impact-financement'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuvertureFinancement />
+                  <ChartRepartitionDeclarations />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

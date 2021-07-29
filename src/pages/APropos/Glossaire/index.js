@@ -49,10 +49,13 @@ function Glossaire() {
     'y',
     'z',
   ];
-  const options = alphabet.map((letter) => ({ label: letter, value: letter }));
-  options.push({
+  const options = alphabet.map((letter) => ({
+    label: letter.toUpperCase(),
+    value: letter,
+  }));
+  options.unshift({
     value: '',
-    label: 'Selectionner une lettre',
+    label: intl.formatMessage({ id: 'app.glossary.select-letter' }),
     disabled: false,
     hidden: false,
   });
@@ -75,19 +78,21 @@ function Glossaire() {
     </AccordionItem>
   );
   const renderItems = () => {
-    let r = null;
+    let r;
+    const firstGlossaryEntry = GlossaryEntries[0];
     if (!activeLetter) {
-      r = Object.keys(GlossaryEntries[0]).map((key) => getItem(GlossaryEntries[0][key]));
+      r = Object.keys(firstGlossaryEntry).map((key) => getItem(firstGlossaryEntry[key]));
     } else {
-      r = Object.keys(GlossaryEntries[0]).map((key) => {
+      r = Object.keys(firstGlossaryEntry).map((key) => {
         const firstLetterEntry = intl.formatMessage({
-          id: GlossaryEntries[0][key].intlEntry,
+          id: firstGlossaryEntry[key].intlEntry,
         })[0];
         return activeLetter && firstLetterEntry.toLowerCase() === activeLetter
-          ? getItem(GlossaryEntries[0][key])
+          ? getItem(firstGlossaryEntry[key])
           : null;
       });
     }
+    r.sort((a, b) => b.props.title < a.props.title);
     return r;
   };
   const renderIcons = (
@@ -143,7 +148,6 @@ function Glossaire() {
           )}
           {mobile && (
             <Select
-              label='Selectionner une lettre'
               onChange={(e) => {
                 setActiveLetter(e.target.value);
               }}

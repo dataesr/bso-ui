@@ -29,15 +29,14 @@ const Chart = () => {
     observationDates[0] || 2020,
     isOa,
   );
+  const { dataGraph } = allData;
 
-  if (isLoading) {
+  if (isLoading || !dataGraph) {
     return <Loader />;
   }
   if (isError) {
     return <>Error</>;
   }
-
-  const { dataGraph } = allData;
 
   const optionsGraph = getGraphOptions(graphId, intl);
   optionsGraph.series = [

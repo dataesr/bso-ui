@@ -20,7 +20,6 @@ function useGetData(observationDate, isOa) {
   async function getDataForLastObservationDate(lastObservationDate) {
     let query = '';
     if (!isOa) {
-      // TODO move options to helpers
       query = {
         size: 0,
         query: {
@@ -37,7 +36,7 @@ function useGetData(observationDate, isOa) {
             aggs: {
               by_publication_genre: {
                 terms: {
-                  field: 'genre.keyword',
+                  field: 'lang.keyword',
                 },
               },
             },
@@ -45,7 +44,6 @@ function useGetData(observationDate, isOa) {
         },
       };
     } else {
-      // TODO move options to helpers
       query = {
         size: 0,
         aggs: {
@@ -57,7 +55,7 @@ function useGetData(observationDate, isOa) {
             aggs: {
               by_publication_genre: {
                 terms: {
-                  field: 'genre.keyword',
+                  field: 'lang.keyword',
                 },
               },
             },
@@ -89,7 +87,7 @@ function useGetData(observationDate, isOa) {
         .find((el) => el.key === 0)
         .by_publication_genre.buckets.forEach((el) => {
           dataGraph.push({
-            name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+            name: intl.formatMessage({ id: `app.lang.${el.key}` }),
             key: el.key,
             parent: 'closed',
             value: el.doc_count,
@@ -101,7 +99,7 @@ function useGetData(observationDate, isOa) {
         .find((el) => el.key === 1)
         .by_publication_genre.buckets.forEach((el) => {
           dataGraph.push({
-            name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+            name: intl.formatMessage({ id: `app.lang.${el.key}` }),
             key: el.key,
             parent: 'opened',
             value: el.doc_count,
@@ -127,7 +125,7 @@ function useGetData(observationDate, isOa) {
         el.by_publication_genre.buckets.forEach((item) => {
           dataGraph.push({
             name: intl.formatMessage({
-              id: `app.type-hebergement.${item.key}`,
+              id: `app.lang.${item.key}`,
             }),
             key: item.key,
             parent: el.key,
