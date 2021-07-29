@@ -211,13 +211,13 @@ function Header() {
           <NavSubItem
             current={path === urls.glossaire[lang]}
             title={intl.formatMessage({
-              id: 'app.header.nav.a-propos-gloassaire',
+              id: 'app.header.nav.a-propos-glossaire',
               defaultMessage: 'Glossaire',
             })}
             asLink={(
               <RouterLink to={urls.glossaire[lang]}>
                 {intl.formatMessage({
-                  id: 'app.header.nav.a-propos-gloassaire',
+                  id: 'app.header.nav.a-propos-glossaire',
                   defaultMessage: 'Glossaire',
                 })}
               </RouterLink>
