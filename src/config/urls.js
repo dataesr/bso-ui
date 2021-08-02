@@ -1,15 +1,11 @@
 export default {
-  home: {
+  national: {
     fr: '/',
     en: '/',
   },
-  national: {
-    fr: '/national',
-    en: '/national',
-  },
   nationalPublications: {
-    fr: '/national/publications',
-    en: '/national/publications',
+    fr: '/publications',
+    en: '/publications',
   },
   sante: {
     fr: '/sante',
@@ -22,8 +18,8 @@ export default {
         en: '/health/publications/general',
       },
       {
-        fr: '/sante/publications/dynamique',
-        en: '/health/publications/dynamic',
+        fr: '/sante/publications/discipline',
+        en: '/health/publications/discipline',
       },
     ],
     fr: '/sante/publications/general',
@@ -46,7 +42,7 @@ export default {
     en: '/theme-1',
   },
   methodologie: {
-    fr: '/a-propos/metodologie',
+    fr: '/a-propos/methodologie',
     en: '/about/methodology',
   },
   faq: {
@@ -54,7 +50,7 @@ export default {
     en: '/about/questions',
   },
   glossaire: {
-    fr: '/a-propos/gloassaire',
+    fr: '/a-propos/glossaire',
     en: '/about/glossary',
   },
   flash: {

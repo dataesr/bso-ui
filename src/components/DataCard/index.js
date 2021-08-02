@@ -9,13 +9,21 @@ function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
   return (
     <Card
       hasArrow={false}
-      href='/test'
+      href='/'
       className='bso-datacard text-center'
       bodyClassName={background}
     >
-      <CardDescription>
-        {topData && <p className='top-data marianne-extra-bold'>{topData}</p>}
-        {percentage ? <Gauge percentage={percentage} /> : <Loader />}
+      <CardDescription as='div'>
+        {topData || percentage ? (
+          <>
+            {topData && (
+              <p className='top-data marianne-extra-bold'>{topData}</p>
+            )}
+            {percentage && <Gauge percentage={percentage} />}
+          </>
+        ) : (
+          <Loader />
+        )}
         <p className='sentence'>{sentence}</p>
         {buttonLabel && (
           <Button

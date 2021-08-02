@@ -7,6 +7,7 @@ import {
   discipline125,
   discipline150,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDates) {
   const [data, setData] = useState({});
@@ -17,23 +18,7 @@ function useGetData(observationDates) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = {
-        size: 0,
-        aggs: {
-          by_publication_year: {
-            terms: {
-              field: 'publication_year',
-            },
-            aggs: {
-              by_is_oa: {
-                terms: {
-                  field: `oa_details.${oneDate}.is_oa`,
-                },
-              },
-            },
-          },
-        },
-      };
+      const query = getFetchOptions('publicationRate', oneDate);
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 
@@ -57,7 +42,6 @@ function useGetData(observationDates) {
       discipline150,
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
-
     const dataGraph2 = [];
     allData.forEach((observationDateData, i) => {
       const serie = {};
@@ -78,7 +62,7 @@ function useGetData(observationDates) {
       serie.dashStyle = lineStyle[i];
       serie.data = filtered.map((el) => Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count));
       serie.ratios = filtered.map(
-        (el) => `(${el.by_is_oa.buckets[0].doc_count * 100}/${el.doc_count})`,
+        (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
       );
       serie.publicationDate = filtered[filtered.length - 1].key;
       dataGraph2.push(serie);
@@ -100,7 +84,6 @@ function useGetData(observationDates) {
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
-        setError(true);
         setLoading(false);
       }
     }

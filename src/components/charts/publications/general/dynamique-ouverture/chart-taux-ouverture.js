@@ -4,6 +4,7 @@ import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -13,26 +14,27 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
+import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = () => {
+const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture';
   const { observationDates, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationDates);
+  const { dataGraph1 } = data;
 
-  if (isLoading) {
+  if (isLoading || !dataGraph1) {
     return <Loader />;
   }
   if (isError) {
     return <>Error</>;
   }
 
-  const { dataGraph1 } = data;
   const optionsGraph1 = getGraphOptions(graphId, intl);
   optionsGraph1.chart.type = 'bar';
   optionsGraph1.colors = [discipline100];
@@ -81,16 +83,17 @@ const Chart = () => {
   const chartComments = intl.formatMessage(
     { id: `${graphId}.comments` },
     {
-      a: dataGraph1[0].y,
-      b: dataGraph1[0].publicationDate,
-      c: dataGraph1[0].publicationDate + 1,
-      d: dataGraph1[0].name,
+      a: dataGraph1[0] ? dataGraph1[0].y : '',
+      b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
+      c: dataGraph1[0] ? dataGraph1[0].publicationDate + 1 : '',
+      d: dataGraph1[0] ? dataGraph1[0].name : '',
     },
   );
 
   return (
     <>
-      <div fluid className='graph-container'>
+      <div className='graph-container'>
+        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
         {/* <GraphFilters /> */}
         <HighchartsReact
           highcharts={Highcharts}
@@ -98,17 +101,27 @@ const Chart = () => {
           ref={chartRef}
           iid={graphId}
         />
-        <GraphComments comments={chartComments} />
+        {graphComments && <GraphComments comments={chartComments} />}
       </div>
-      <GraphFooter
-        date={updateDate}
-        source={intl.formatMessage({ id: `${graphId}.source` })}
-        graphId={graphId}
-        onPngButtonClick={exportChartPng}
-        onCsvButtonClick={exportChartCsv}
-      />
+      {graphFooter && (
+        <GraphFooter
+          date={updateDate}
+          source={intl.formatMessage({ id: `${graphId}.source` })}
+          graphId={graphId}
+          onPngButtonClick={exportChartPng}
+          onCsvButtonClick={exportChartCsv}
+        />
+      )}
     </>
   );
 };
 
+Chart.defaultProps = {
+  graphFooter: true,
+  graphComments: true,
+};
+Chart.propTypes = {
+  graphFooter: PropTypes.bool,
+  graphComments: PropTypes.bool,
+};
 export default Chart;

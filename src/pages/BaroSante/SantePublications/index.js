@@ -1,72 +1,57 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
-import Axios from 'axios';
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
-import ChartsDynamiqueOuverture from '../../../components/charts/publications/general/dynamique-ouverture';
-import ChartsVoiesOuverture from '../../../components/charts/publications/general/voies-ouverture';
+import ChartEvolutionProportion from '../../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
+import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
+import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
+import ChartRepartitionDeclarations from '../../../components/charts/publications/general/impact-financement/chart-repartition-declarations';
+import ChartTauxOuvertureFinancement from '../../../components/charts/publications/general/impact-financement/chart-taux-ouverture';
+import ChartLanguesOuverture from '../../../components/charts/publications/general/langues-ouverture/langues-ouverture';
+import ChartEvolutionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-evolution-taux';
+import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
+import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
 import Chip from '../../../components/Chip';
 import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
-import GraphNavigation from '../../../components/GraphNavigaton';
-import Content from '../../../components/GraphNavigaton/Content';
-import HeaderItem from '../../../components/GraphNavigaton/HeaderItem';
+import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
+import GraphSection from '../../../components/GraphNavigation';
+import GraphContent from '../../../components/GraphNavigation/GraphContent';
+import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
-import { ES_API_URL, HEADERS } from '../../../config/config';
-import GlossaryWords from '../../../translations/glossary.json';
+import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
+import GlossaryEntries from '../../../translations/glossary.json';
+import useGlobals from '../../../utils/Hooks/useGetGlobals';
+import useGetPublicationRateFrom from '../../../utils/Hooks/useGetPublicationRateFrom';
+import useLang from '../../../utils/Hooks/useLang';
 
-const objLocation = {
-  '/sante/publications/dynamique': 'La dynamique d’ouverture en santé',
-  '/sante/publications/general': 'Général',
+const objButtonLabel = {
+  fr: {
+    '/sante/publications/discipline': 'app.sante-publi.disciplines',
+    '/sante/publications/general': 'app.sante-publi.general',
+  },
+  en: {
+    '/health/publications/discipline': 'app.sante-publi.disciplines',
+    '/health/publications/general': 'app.sante-publi.general',
+  },
 };
+
 function SantePublications() {
+  const { lang } = useLang();
   const [rate, setRate] = useState(null);
   const location = useLocation();
+  const { observationDates } = useGlobals();
 
-  const getOpenPublicationRate = async (mill) => {
-    const publicationsSearch = await Axios.post(
-      ES_API_URL,
-      {
-        size: 0,
-        aggs: {
-          by_publication_year: {
-            terms: {
-              field: 'publication_year',
-            },
-            aggs: {
-              by_is_oa: {
-                terms: {
-                  field: `oa_details.${mill}.is_oa`,
-                },
-              },
-            },
-          },
-        },
-      },
-      HEADERS,
-    );
-    const sortedData = publicationsSearch?.data?.aggregations.by_publication_year.buckets
-      .sort((a, b) => a.key - b.key)
-      .filter(
-        (el) => el.key < parseInt(mill.substring(0, 4), 10)
-            && el.by_is_oa.buckets.length > 0
-            && el.doc_count
-            && el.key > 2012,
-      );
-
-    const truncatedData = sortedData.map((elm) => Math.trunc((elm.by_is_oa.buckets[0].doc_count * 100) / elm.doc_count));
+  useGetPublicationRateFrom(observationDates[1] || '2021Q1').then((resp) => {
+    const { rate: rateByYear } = resp;
     if (!rate) {
-      setTimeout(() => {
-        setRate(truncatedData[truncatedData.length - 1]);
-      }, 2000);
+      setRate(rateByYear);
     }
-  };
-  getOpenPublicationRate('2020');
-  const renderChip = (
-    <Chip label='Site mis à jour le 2 février 2021 avec les données 2013 à 2020' />
-  );
+  });
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -82,16 +67,16 @@ function SantePublications() {
     <Container fluid className='page'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle='baromètre de la Science ouverte en Santé'
-        title='Les publications en santé'
-        chip={renderChip}
+        supTitle={<FormattedMessage id='app.baro-sante.sub-title' />}
+        title={<FormattedMessage id='app.baro-sante.title' />}
+        chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
           title: 'Navigation par objet de recherche',
           onChange: () => {},
           options: [
             { label: 'Label', value: 'value1' },
-            { label: 'Label', value: 'value1' },
+            { label: 'Label', value: 'value2' },
           ],
         }}
       />
@@ -101,26 +86,18 @@ function SantePublications() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  Publications en santé
+                  <FormattedMessage id='app.baro-sante.main-title' />
                 </h1>
-              </Col>
-              <Col n='12 md-6'>
                 <p>
-                  Lorem ipsum dolor sit amet,
-                  {' '}
-                  <span className='glossary-entry' data-glossary-key='essais'>
-                    Essais cliniques déclarés
-                  </span>
-                  {' '}
-                  consectetur adipisicing elit. Adipisci dignissimos dolorem ex
-                  ipsum libero! Ad asperiores at dicta ducimus laboriosam magni,
-                  maiores minima natus neque odit quibusdam rem voluptatum.
-                  Officiis.
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-sante.intro'
+                    glossaryKey='acces-ouvert'
+                  />
                 </p>
               </Col>
             </Row>
           </Container>
-          <Glossary words={GlossaryWords} />
+          <Glossary entries={GlossaryEntries} />
           <Container>
             <section className='pb-32'>
               <Row gutters>
@@ -159,53 +136,83 @@ function SantePublications() {
           </Container>
         </Row>
         <Row>
-          <GraphNavigation buttonLabel={objLocation[location.pathname]}>
-            <HeaderItem
+          <GraphSection buttonLabel={objButtonLabel[lang][location.pathname]}>
+            <GraphItem
+              mainLabel='Général'
               paths={[
                 '/sante/publications/general',
                 '/health/publications/general',
               ]}
-              mainLabel='Général'
               links={[
                 {
+                  anchor: 'general',
                   label: 'Les publications en santé',
-                  href: '/sante/publications/general',
+                  href: '/sante/publications/general#general',
+                },
+                {
+                  anchor: 'dynamic',
+                  label: 'La dynamique d’ouverture en santé',
+                  href: '/sante/publications/general#dynamic',
                 },
               ]}
             >
-              <Content>
+              <GraphContent>
                 <QuestionSection
-                  title="Quelles sont les voies d'ouverture choisies pour les publications en santé ?"
-                  info='info text'
-                  description='description text'
-                  backgroundColor='#D5DBEF'
+                  intlKey='app.sante-publi.general.dynamique-ouverture'
+                  backgroundColor={bluesoft50}
                 >
-                  <ChartsVoiesOuverture />
+                  <ChartTauxOuverture />
+                  <ChartEvolutionProportion />
                 </QuestionSection>
-              </Content>
-            </HeaderItem>
-            <HeaderItem
-              paths={['/sante/publications/dynamique']}
-              mainLabel='La dynamique d’ouverture en santé'
+
+                <QuestionSection
+                  intlKey='app.sante-publi.general.voies-ouverture'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartRepartitionTaux />
+                  <ChartEvolutionTaux />
+                  <ChartRepartitionPublications />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.general.genres-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartGenreOuverture />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.general.langues-ouverture'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartLanguesOuverture />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.sante-publi.general.impact-financement'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuvertureFinancement />
+                  <ChartRepartitionDeclarations />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+            <GraphItem
+              paths={['/sante/publications/discipline']}
+              mainLabel='Les disciplines'
               links={[
                 {
-                  label: 'La dynamique d’ouverture en santé',
-                  href: '/sante/publications/dynamique',
+                  href: '/sante/publications/discipline',
+                  label: 'Les disciplines',
                 },
               ]}
             >
-              <Content>
-                <QuestionSection
-                  title='Quelle est la dynamique d’ouverture de la santé en France ?'
-                  info='info text'
-                  description='description text'
-                  backgroundColor='#D5DBEF'
-                >
-                  <ChartsDynamiqueOuverture />
-                </QuestionSection>
-              </Content>
-            </HeaderItem>
-          </GraphNavigation>
+              <GraphContent>
+                <div id='#discipline'>
+                  <p>Disciplines</p>
+                </div>
+              </GraphContent>
+            </GraphItem>
+          </GraphSection>
         </Row>
       </section>
     </Container>

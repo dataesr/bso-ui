@@ -1,7 +1,8 @@
-import { Button, Col, Container, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
@@ -18,6 +19,7 @@ function Banner({
   icons,
   sticky,
   selectNavigation,
+  children,
 }) {
   setCSSProperty(
     '--bannerBackgroundColor',
@@ -47,41 +49,52 @@ function Banner({
 
   return (
     <section
-      className={classNames('bso-banner z-200 text-left-m', {
+      className={classNames('bso-banner z-200 text-left-l text-center mb-60', {
         sticky: sticky && sticked,
-        'mb-60': selectNavigation,
+        'mb-100': selectNavigation,
       })}
     >
       <Container>
         <Row
-          justifyContent={!sticked ? 'center' : 'start'}
+          justifyContent={!sticked ? 'center' : 'left'}
           alignItems='middle'
           gutters={!sticked}
         >
-          <Col n={sticked ? '12 sm-7' : '12 sm-9'}>
+          <Col
+            n={classNames('12', {
+              'md-8': chip && sticked,
+              'md-9': chip && !sticked,
+            })}
+          >
             <small className='sup-title'>{supTitle}</small>
             <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
-            <h3
-              className={classNames('sub-title pt-16 ', {
-                'mb-m-60': selectNavigation,
-              })}
-            >
-              {subTitle}
-            </h3>
+            {subTitle && (
+              <h3
+                className={classNames('sub-title pt-16 ', {
+                  'mb-l-60': selectNavigation,
+                })}
+              >
+                {subTitle}
+              </h3>
+            )}
             {link && (
-              <Button
+              <DSLink
+                display='middle'
+                className='bso-link'
                 icon='ri-arrow-right-line'
-                iconPosition='right'
-                size='md'
-                title='title'
+                iconSize='lg'
+                as={<Link to={link.url} />}
               >
                 {link.label}
-              </Button>
+              </DSLink>
             )}
           </Col>
           {selectNavigation && sticked && (
-            <Col n='12 md-4' className='relative'>
+            <Col
+              n={classNames('12', { 'md-4': sticked, 'md-3': !sticked })}
+              className='relative'
+            >
               <SelectNavigation
                 sticked={sticked}
                 title={selectNavigation.title}
@@ -90,13 +103,18 @@ function Banner({
               />
             </Col>
           )}
-          <div
-            className={classNames({
-              'mb-60 mb-m-0': selectNavigation,
-            })}
-          >
-            {!sticked && chip && <Col n='sm-3'>{chip}</Col>}
-          </div>
+          {children && <Col n='12'>{children}</Col>}
+          {!sticked && chip && (
+            <Col n='12 md-3'>
+              <div
+                className={classNames({
+                  'mb-60 mb-l-0': selectNavigation,
+                })}
+              >
+                {chip}
+              </div>
+            </Col>
+          )}
         </Row>
         {selectNavigation && !sticked && (
           <Row>
@@ -117,21 +135,23 @@ function Banner({
 
 Banner.defaultProps = {
   textColor: '#fff',
-  supTitle: '',
-  subTitle: '',
+  supTitle: null,
+  subTitle: null,
   link: null,
   chip: null,
   icons: null,
+  children: null,
   selectNavigation: null,
   sticky: true,
 };
 
 Banner.propTypes = {
   sticky: PropTypes.bool,
+  children: PropTypes.node,
   backgroundColor: PropTypes.string.isRequired,
   textColor: PropTypes.string,
-  supTitle: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  supTitle: PropTypes.element,
+  title: PropTypes.element.isRequired,
   icons: PropTypes.element,
   chip: PropTypes.element,
   selectNavigation: PropTypes.exact({
@@ -144,7 +164,7 @@ Banner.propTypes = {
       }),
     ).isRequired,
   }),
-  subTitle: PropTypes.string,
+  subTitle: PropTypes.element,
   link: PropTypes.exact({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

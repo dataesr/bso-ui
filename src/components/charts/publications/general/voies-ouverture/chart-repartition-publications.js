@@ -11,6 +11,7 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
+import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 treemapModule(Highcharts);
@@ -25,15 +26,14 @@ const Chart = () => {
   const { allData, isLoading, isError } = useGetData(
     observationDates[0] || 2020,
   );
+  const { dataGraph3 } = allData;
 
-  if (isLoading) {
+  if (isLoading || !dataGraph3) {
     return <Loader />;
   }
   if (isError) {
     return <>Error</>;
   }
-
-  const { dataGraph3 } = allData;
 
   const optionsGraph = getGraphOptions(graphId, intl);
   optionsGraph.series = [
@@ -70,15 +70,18 @@ const Chart = () => {
 
   return (
     <>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={optionsGraph}
-        ref={chartRef}
-        id={graphId}
-      />
-      <GraphComments
-        comments={intl.formatMessage({ id: `${graphId}.comments` })}
-      />
+      <div className='graph-container'>
+        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={optionsGraph}
+          ref={chartRef}
+          id={graphId}
+        />
+        <GraphComments
+          comments={intl.formatMessage({ id: `${graphId}.comments` })}
+        />
+      </div>
       <GraphFooter
         date={updateDate}
         source={intl.formatMessage({ id: `${graphId}.source` })}

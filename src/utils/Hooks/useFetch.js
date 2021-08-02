@@ -1,33 +1,37 @@
-import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useRef, useState } from 'react';
 
-export default function useFetch({
-  api,
-  method,
-  url,
-  data = null,
-  config = null,
-}) {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+import { HEADERS } from '../../config/config';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        api[method](url, JSON.parse(config), JSON.parse(data))
-          .then((res) => {
-            setResponse(res.data);
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      } catch (err) {
-        setError(err);
+export default function useFetch({ method, url, options }) {
+  const isMounted = useRef();
+  const [response, setResponse] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+  return {
+    response,
+    loading,
+    isMounted,
+    error,
+    reset: () => setResponse(),
+    fetch: async (reload = false) => {
+      setLoading(true);
+      isMounted.current = true;
+      if (!response || reload) {
+        setLoading(true);
       }
-    };
-
-    fetchData();
-  }, [api, method, url, data, config]);
-
-  return { response, error, isLoading };
+      axios[method](url, options, HEADERS)
+        .then((res) => {
+          if (isMounted.current) {
+            if (res) {
+              setResponse(res.data);
+            }
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          setError({ error: true, message: err });
+        });
+    },
+  };
 }

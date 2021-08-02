@@ -7,6 +7,7 @@ import {
   NavSubItem,
   Service,
   Tool,
+  ToolItem,
   ToolItemGroup,
 } from '@dataesr/react-dsfr';
 import { useEffect, useState } from 'react';
@@ -45,24 +46,28 @@ function Header() {
         />
         <Tool>
           <ToolItemGroup>
-            <SwitchThemeButton />
-            <SwitchLangButton />
+            <ToolItem as='div'>
+              <SwitchThemeButton />
+            </ToolItem>
+            <ToolItem as='div'>
+              <SwitchLangButton />
+            </ToolItem>
           </ToolItemGroup>
         </Tool>
       </HeaderBody>
       <HeaderNav path={path}>
         <NavItem
-          current={path === urls.home[lang]}
+          current={path === urls.national[lang]}
           title={intl.formatMessage({
             id: 'app.header.nav.baro-national',
             defaultMessage: 'Le Baromètre national',
           })}
         >
           <NavSubItem
-            current={path === urls.home[lang]}
+            current={path === urls.national[lang]}
             title='Accueil baromètre national'
             asLink={(
-              <RouterLink to={urls.home[lang]}>
+              <RouterLink to={urls.national[lang]}>
                 Accueil baromètre national
               </RouterLink>
             )}
@@ -206,13 +211,13 @@ function Header() {
           <NavSubItem
             current={path === urls.glossaire[lang]}
             title={intl.formatMessage({
-              id: 'app.header.nav.a-propos-gloassaire',
+              id: 'app.header.nav.a-propos-glossaire',
               defaultMessage: 'Glossaire',
             })}
             asLink={(
               <RouterLink to={urls.glossaire[lang]}>
                 {intl.formatMessage({
-                  id: 'app.header.nav.a-propos-gloassaire',
+                  id: 'app.header.nav.a-propos-glossaire',
                   defaultMessage: 'Glossaire',
                 })}
               </RouterLink>

@@ -1,59 +1,105 @@
 .marianne {
   font-family: 'Marianne Regular', sans-serif;
+  font-weight: 400;
 }
 
 .marianne-italic {
   font-family: 'Marianne Regular Italic', sans-serif;
+  font-weight: 400;
 }
 
 .marianne-bold {
   font-family: 'Marianne Bold', sans-serif;
+  font-weight: 700;
 }
 
 .marianne-bold-italic {
   font-family: 'Marianne Bold Italic', sans-serif;
+  font-weight: 700;
 }
 
 .marianne-extra-bold {
   font-family: 'Marianne Extra Bold', sans-serif;
+  font-weight: 900;
 }
 
 .marianne-extra-bold-italic {
   font-family: 'Marianne Extra Bold Italic', sans-serif;
+  font-weight: 900;
 }
 
 .marianne-light {
   font-family: 'Marianne Light', sans-serif;
+  font-weight: 200;
 }
 
 .marianne-light-italic {
   font-family: 'Marianne Light Italic', sans-serif;
+  font-weight: 200;
 }
 
 .marianne-medium {
   font-family: 'Marianne Medium', sans-serif;
+  font-weight: 500;
 }
 
 .marianne-medium-italic {
   font-family: 'Marianne Medium Italic', sans-serif;
+  font-weight: 500;
 }
 
 .marianne-thin {
   font-family: 'Marianne Thin', sans-serif;
+  font-weight: 100;
 }
 
 .marianne-thin-italic {
   font-family: 'Marianne Thin Italic', sans-serif;
+  font-weight: 100;
 }
 
-.fs-20-20 {
-  @include font-size(20,20);
+.fs-14-24 {
+  @include font-size(14,24);
 }
 
 .fs-16-24 {
   @include font-size(16,24);
 }
 
-.fs-14-24 {
-  @include font-size(14,24);
+.fs-16-28 {
+  @include font-size(16,28);
+}
+
+.fs-20-20 {
+  @include font-size(20,20);
+}
+
+.fs-20-26 {
+  @include font-size(20,26);
+}
+
+.fs-24-32 {
+  @include font-size(24,32);
+}
+
+.fs-28-32 {
+  @include font-size(28,32);
+}
+
+.fs-32-40 {
+  @include font-size(32, 40);
+}
+
+.fs-48-48 {
+  @include font-size(48,48);
+}
+
+@media screen and(min-width: 992px) {
+  .fs-32-40-xl {
+    @include font-size(32, 40);
+  }
+
+  .fs-40-48-xl {
+    @include font-size(40, 48);
+  }
 }

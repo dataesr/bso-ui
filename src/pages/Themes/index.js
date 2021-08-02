@@ -6,12 +6,9 @@ import Chip from '../../components/Chip';
 import DataCard from '../../components/DataCard';
 import Glossary from '../../components/Glossary';
 import Icon from '../../components/Icon';
-import GlossaryWords from '../../translations/glossary.json';
+import GlossaryEntries from '../../translations/glossary.json';
 
 function Theme() {
-  const renderChip = (
-    <Chip label='Site mis à jour le 2 février 2021 avec les données 2013 à 2020' />
-  );
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -59,7 +56,7 @@ function Theme() {
         title="Par thèmes d'actualité"
         subTitle='Il mesure l’évolution de l’accès ouvert de la recherche
 en France à partir de données fiables, ouvertes et maîtrisées.'
-        chip={renderChip}
+        chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
           title: 'Title',
@@ -71,11 +68,11 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
         }}
       />
       <Container>
-        <Glossary words={GlossaryWords} />
+        <Glossary entries={GlossaryEntries} />
         <p>
           Lorem ipsum dolor sit amet,
-          <span className='glossary-entry' data-glossary-key='essais'>
-            Essais cliniques déclarés
+          <span className='glossary-entry' data-glossary-key='hal'>
+            Archive HAL
           </span>
           adipisicing elit. Alias, facere illum laborum maxime quo reiciendis
           tenetur vel. Aut blanditiis consectetur delectus, ducimus et eveniet
@@ -83,17 +80,17 @@ en France à partir de données fiables, ouvertes et maîtrisées.'
         </p>
         <p>
           Lorem
-          <span className='glossary-entry' data-glossary-key='test0'>
-            test 0
+          <span className='glossary-entry' data-glossary-key='apc'>
+            Frais de publications
           </span>
           ipsum dolor sit amet, consectetur adipisicing elit. Ad
-          <span className='glossary-entry' data-glossary-key='test1'>
-            test 1
+          <span className='glossary-entry' data-glossary-key='unpaywall'>
+            unpaywall
           </span>
           delectus ea ex fugiat hic, illum quibusdam repudiandae? Aut distinctio
           dolor dolorem eveniet id itaque iusto, sed ullam
-          <span className='glossary-entry' data-glossary-key='test2'>
-            test 2
+          <span className='glossary-entry' data-glossary-key='doi'>
+            les dois
           </span>
           vitae.
         </p>

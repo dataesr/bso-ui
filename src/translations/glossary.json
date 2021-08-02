@@ -1,24 +1,86 @@
 [
   {
-    "essais": {
-      "word": "Essais cliniques déclarés",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "acces-ouvert": {
+      "category": "1",
+      "intlDefinition": "app.glossary.acces-ouvert.definition",
+      "intlEntry": "app.glossary.acces-ouvert"
     },
-    "test0": {
-      "word": "Test0",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "apc": {
+      "category": "2",
+      "intlDefinition": "app.glossary.apc.definition",
+      "intlEntry": "app.glossary.apc"
     },
-    "test1": {
-      "word": "Test1",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "archive-ouverte": {
+      "intlDefinition": "app.glossary.archive-ouverte.definition",
+      "intlEntry": "app.glossary.archive-ouverte"
     },
-    "test2": {
-      "word": "Test2",
-      "fr": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
-      "en": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…"
+    "clinicaltrials-gov": {
+      "intlDefinition": "app.glossary.clinicaltrials-gov.definition",
+      "intlEntry": "app.glossary.clinicaltrials-gov"
+    },
+    "diamond": {
+      "intlDefinition": "app.glossary.diamond.definition",
+      "intlEntry": "app.glossary.diamond"
+    },
+    "doaj": {
+      "intlDefinition": "app.glossary.doaj.definition",
+      "intlEntry": "app.glossary.doaj"
+    },
+    "doi": {
+      "intlDefinition": "app.glossary.doi.definition",
+      "intlEntry": "app.glossary.doi"
+    },
+    "essai-clinique": {
+      "intlDefinition": "app.glossary.essai-clinique.definition",
+      "intlEntry": "app.glossary.essai-clinique"
+    },
+    "etude-observationelle": {
+      "intlDefinition": "app.glossary.etude-observationelle.definition",
+      "intlEntry": "app.glossary.etude-observationelle"
+    },
+    "eudract": {
+      "intlDefinition": "app.glossary.eudract.definition",
+      "intlEntry": "app.glossary.eudract"
+    },
+    "full-apc": {
+      "intlDefinition": "app.glossary.full-apc.definition",
+      "intlEntry": "app.glossary.full-apc"
+    },
+    "hal": {
+      "intlDefinition": "app.glossary.hal.definition",
+      "intlEntry": "app.glossary.hal"
+    },
+    "pgo": {
+      "intlDefinition": "app.glossary.pgo.definition",
+      "intlEntry": "app.glossary.pgo"
+    },
+    "promoteur": {
+      "intlDefinition": "app.glossary.promoteur.definition",
+      "intlEntry": "app.glossary.promoteur"
+    },
+    "publication": {
+      "intlDefinition": "app.glossary.publication.definition",
+      "intlEntry": "app.glossary.publication"
+    },
+    "publication-fr": {
+      "intlDefinition": "app.glossary.publication-fr.definition",
+      "intlEntry": "app.glossary.publication-fr"
+    },
+    "resultat-essai-clinique": {
+      "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
+      "intlEntry": "app.glossary.resultat-essai-clinique"
+    },
+    "revue-hybrid": {
+      "intlDefinition": "app.glossary.revue-hybrid.definition",
+      "intlEntry": "app.glossary.revue-hybrid"
+    },
+    "type-hebergement-oa": {
+      "intlDefinition": "app.glossary.type-hebergement-oa.definition",
+      "intlEntry": "app.glossary.type-hebergement-oa"
+    },
+    "unpaywall": {
+      "intlDefinition": "app.glossary.unpaywall.definition",
+      "intlEntry": "app.glossary.unpaywall"
     }
   }
 ]

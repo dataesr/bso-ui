@@ -41,6 +41,13 @@
   }
 }
 
+.bso-link {
+  @include font-size(14, 12);
+  color: var(--blue-dark-125);
+  background: #fff;
+  padding: 10px;
+}
+
 @media screen and(min-width: 576px) {
   .bso-banner-image {
     .wrap-titles {
