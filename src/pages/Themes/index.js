@@ -54,9 +54,8 @@ function Theme() {
       <Banner
         backgroundColor='blue-soft-100'
         supTitle={<FormattedMessage id='app.header.title' />}
-        title='Par thèmes d’actualité'
-        subTitle='Il mesure l’évolution de l’accès ouvert de la recherche
-en France à partir de données fiables, ouvertes et maîtrisées.'
+        title={<FormattedMessage id='app.topic' />}
+        subTitle={<FormattedMessage id='app.header.subtitle' />}
         chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{

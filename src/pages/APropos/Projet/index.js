@@ -24,7 +24,7 @@ function Projet() {
         backgroundColor='blue-soft-50'
         textColor='blue-dark-125'
         supTitle={<FormattedMessage id='app.header.title' />}
-        title='Le projet'
+        title={<FormattedMessage id='app.project' />}
         icons={renderIcons}
       />
     </div>
