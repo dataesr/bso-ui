@@ -83,6 +83,7 @@
   "app.glossary.type-hebergement-oa.definition": "There are a number of variants for making publications open access. A publication can be open access in one or more of these variants. Some variants are based on the business model of the publisher or publishing platform that itself makes the publication open access: this is hosting by the publisher; another variant is based on deposit in one or more open archives: this is open repository hosting.",
   "app.glossary.unpaywall": "Unpaywall",
   "app.glossary.unpaywall.definition": "Worldwide, open database, listing more than 100 million DOIs with their available metadata (title, author, publisher ...) and their access type.",
+  "app.graph.data-updated": "Data updated",
   "app.graph.download": "Download",
   "app.graph.download.csv": "csv",
   "app.graph.download.png": "png",

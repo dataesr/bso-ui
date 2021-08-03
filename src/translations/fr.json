@@ -86,6 +86,7 @@
   "app.glossary.type-hebergement-oa.definition": "Il existe un certain nombre de variantes pour la mise en accès ouvert des publications. Une publication peut être en accès ouvert selon une ou plusieurs de ces variantes. Certaines variantes reposent sur le modèle économique de l'éditeur ou plateforme d'édition qui met elle-même la publication en accès ouvert : il s'agit d'un hébergement chez l'éditeur ; une autre variante repose sur le dépôt sur une ou plusieurs archives ouvertes : c'est alors un hébergement sur archive ouverte.",
   "app.glossary.unpaywall": "Unpaywall",
   "app.glossary.unpaywall.definition": "Base de données mondiale, ouverte, recensant plus de 100 millions de DOIs avec leur méta-données disponibles (titre, auteur, éditeur …) et leur type d’accès.",
+  "app.graph.data-updated": "Données mises à jour le",
   "app.graph.download": "Télécharger",
   "app.graph.download.csv": "csv",
   "app.graph.download.png": "png",
