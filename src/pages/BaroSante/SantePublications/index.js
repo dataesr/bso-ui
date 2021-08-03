@@ -67,7 +67,7 @@ function SantePublications() {
     <Container fluid className='page'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle={<FormattedMessage id='app.baro-sante.sub-title' />}
+        supTitle={<FormattedMessage id='app.header.title-health' />}
         title={<FormattedMessage id='app.baro-sante.title' />}
         chip={<Chip />}
         icons={renderIcons}

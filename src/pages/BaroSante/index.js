@@ -126,7 +126,7 @@ function BaroSante() {
     <div className='baro-sante page home'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle={<FormattedMessage id='app.baro.science-ouverte' />}
+        supTitle={<FormattedMessage id='app.header.title' />}
         title={<FormattedMessage id='app.commons.health' />}
         subTitle={<FormattedMessage id='app.baro-sante.intro-banner' />}
         chip={<Chip backgroundColor='blue-soft-125' />}

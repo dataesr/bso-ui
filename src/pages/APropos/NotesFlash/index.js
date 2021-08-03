@@ -31,7 +31,7 @@ function NotesFlash() {
       <Banner
         backgroundColor='yellow-medium-50'
         textColor='blue-dark-125'
-        supTitle={<FormattedMessage id='app.baro.science-ouverte' />}
+        supTitle={<FormattedMessage id='app.header.title' />}
         title={<FormattedMessage id='app.header.nav.a-propos-notes-flash' />}
         icons={renderIcons}
       />

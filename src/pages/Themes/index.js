@@ -1,5 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../components/Banner';
 import Chip from '../../components/Chip';
@@ -52,8 +53,8 @@ function Theme() {
     <section className='themes'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle='Baromètre français de la Science ouverte'
-        title="Par thèmes d'actualité"
+        supTitle={<FormattedMessage id='app.header.title' />}
+        title='Par thèmes d’actualité'
         subTitle='Il mesure l’évolution de l’accès ouvert de la recherche
 en France à partir de données fiables, ouvertes et maîtrisées.'
         chip={<Chip />}

@@ -41,7 +41,7 @@ function Header() {
           className='main-title'
           title={intl.formatMessage({
             id: 'app.header.title',
-            defaultMessage: 'Baromêtre français de la science ouverte',
+            defaultMessage: 'Baromètre français de la Science Ouverte',
           })}
         />
         <Tool>

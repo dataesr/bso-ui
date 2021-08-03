@@ -49,10 +49,9 @@ function BaroNational() {
     <div className='BaroNational'>
       <Banner
         backgroundColor='blue-dark-125'
-        supTitle='Bienvenue sur'
-        title='le Baromètre français de la sciences Ouverte'
-        subTitle='Il mesure l’évolution de l’accès ouvert de la recherche en France
-à partir de données fiables, ouvertes et maîtrisées.'
+        supTitle={<FormattedMessage id='app.header.welcome-on' />}
+        title={<FormattedMessage id='app.header.title-bis' />}
+        subTitle={<FormattedMessage id='app.header.subtitle' />}
         link={{
           label: <FormattedMessage id='app.notes.flash.see' />,
           url: <FormattedMessage id='url.about.flash' />,
