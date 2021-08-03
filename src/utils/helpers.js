@@ -116,6 +116,7 @@ export function getGraphOptions(graphId, intl) {
           text: intl.formatMessage({ id: `${graphId}.source` }),
         },
       },
+      enabled: false,
       filename: intl.formatMessage({ id: `${graphId}.title` }),
     },
   };
