@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
