@@ -60,6 +60,31 @@ export function sortByPath(array, path) {
 
 /**
  *
+ * @param num
+ * @returns {string}
+ */
+export function cleanBigNumber(num) {
+  const units = ['M', 'B', 'T', 'Q'];
+  const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
+  const r = unit % 3;
+  const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`).toFixed(2);
+  return `${x.toFixed(2)}${units[Math.floor(unit / 3) - 2]}`;
+}
+
+/**
+ *
+ * @param num
+ * @param lang
+ * @param options
+ * @returns {*}
+ */
+export function formatNumberByLang(num, lang, options = {}) {
+  return Intl.NumberFormat(`${lang}-${lang.toUpperCase()}`, options).format(
+    num,
+  );
+}
+/**
+ *
  * @param graphId
  * @param intl
  * @returns {{exporting:
@@ -227,6 +252,19 @@ export function getFetchOptions(key, parameter) {
         },
       },
     },
+    observationDates: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        observation_dates: {
+          terms: { field: 'observation_dates.keyword', size: 100 },
+        },
+      },
+    },
     interventional: {
       size: 0,
       aggs: {
@@ -240,6 +278,57 @@ export function getFetchOptions(key, parameter) {
       aggs: {
         study_type: {
           terms: { field: 'study_type.keyword' },
+        },
+      },
+    },
+    publiSanteData: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { 'domains.keyword': 'health' } },
+            { exists: { field: 'oa_details.2020' } },
+          ],
+        },
+      },
+      aggs: {
+        count_publications: {
+          cardinality: {
+            field: 'doi.keyword',
+            precision_threshold: 100,
+          },
+        },
+        by_is_oa: {
+          terms: {
+            field: 'oa_details.2020.is_oa',
+          },
+        },
+        sum_apc: {
+          sum: {
+            field: 'amount_apc_EUR',
+          },
+        },
+        by_oa_colors: {
+          terms: {
+            field: 'oa_details.2020.oa_colors.keyword',
+          },
+        },
+        by_repositories: {
+          terms: {
+            field: 'oa_details.2020.repositories.keyword',
+            size: 1,
+          },
+        },
+        by_lang: {
+          terms: {
+            field: 'lang.keyword',
+          },
+        },
+        by_author_useful_rank: {
+          terms: {
+            field: 'author_useful_rank_countries.keyword',
+            size: 2,
+          },
         },
       },
     },
