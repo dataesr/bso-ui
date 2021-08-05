@@ -34,7 +34,6 @@ import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFr
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
-  // TODO init observationDates [2020, 2021]
   const { updateDate } = useGlobals();
   const [progression, setProgression] = useState({});
   const [obsDates, setObsDates] = useState([]);
@@ -42,6 +41,7 @@ function BaroSante() {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
 
+  // TODO refacto observation dates
   const { fetch: fetchObsDates, response: obsDatesResp } = useFetch({
     url: ES_API_URL,
     method: 'post',
