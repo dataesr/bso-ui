@@ -1,7 +1,7 @@
 import { Col, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import DataCard from '../../../components/DataCard';
 import { ES_API_URL } from '../../../config/config';
@@ -14,6 +14,7 @@ import {
 import useFetch from '../../../utils/Hooks/useFetch';
 
 export default function DataCardSection({ lang }) {
+  const intl = useIntl();
   const [publicationsNumber, setPublicationsNumber] = useState(null);
   const [openPublicationRate, setOpenPublicationRate] = useState(null);
   const [frenchPublicationsRate, setFrenchPublicationRate] = useState(null);
@@ -158,15 +159,17 @@ export default function DataCardSection({ lang }) {
     <section className='pb-32'>
       <Row gutters>
         {Object.keys(dataObj).map((cardKey) => (
-          <Col n='12 md-4'>
+          <Col n='12 md-4' key={cardKey}>
             <DataCard
               percentage={
-                dataObj[cardKey].percentage ? dataObj[cardKey].get : null
+                dataObj[cardKey].percentage
+                  ? parseFloat(dataObj[cardKey].get)
+                  : null
               }
               topData={
                 dataObj[cardKey].percentage ? null : dataObj[cardKey].get
               }
-              buttonLabel={<FormattedMessage id='app.see-details' />}
+              buttonLabel={intl.formatMessage({ id: 'app.see-details' })}
               background={dataObj[cardKey].color}
               sentence={(
                 <FormattedMessage

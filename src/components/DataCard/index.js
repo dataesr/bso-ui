@@ -50,11 +50,18 @@ DataCard.defaultProps = {
 };
 
 DataCard.propTypes = {
-  sentence: PropTypes.string,
-  background: PropTypes.oneOf(['yellow', 'pink', 'aqua', 'green', 'brown']),
+  sentence: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  background: PropTypes.oneOf([
+    'yellow',
+    'pink',
+    'aqua',
+    'green',
+    'brown',
+    'blue',
+  ]),
   percentage: PropTypes.number,
-  topData: PropTypes.string,
-  buttonLabel: PropTypes.string,
+  topData: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  buttonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 export default DataCard;

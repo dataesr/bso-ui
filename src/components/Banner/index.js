@@ -156,7 +156,8 @@ Banner.propTypes = {
   chip: PropTypes.element,
   selectNavigation: PropTypes.exact({
     onChange: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+      .isRequired,
     options: PropTypes.arrayOf(
       PropTypes.exact({
         value: PropTypes.string.isRequired,
