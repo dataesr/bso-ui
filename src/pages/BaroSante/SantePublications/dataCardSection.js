@@ -1,6 +1,6 @@
 import { Col, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import DataCard from '../../../components/DataCard';
@@ -9,6 +9,7 @@ import {
   cleanBigNumber,
   formatNumberByLang,
   getFetchOptions,
+  getValueByPath,
 } from '../../../utils/helpers';
 import useFetch from '../../../utils/Hooks/useFetch';
 
@@ -18,86 +19,132 @@ export default function DataCardSection({ lang }) {
   const [frenchPublicationsRate, setFrenchPublicationRate] = useState(null);
   const [bestCollabCountry, setBestCollabCountry] = useState('');
   const [diamondPublicationRate, setDiamonPublicationRate] = useState(null);
-  const [hostedDocuments, setHostedDocuments] = useState({
-    val: null,
-    total: null,
-  });
+  const [hostedDocuments, setHostedDocuments] = useState(null);
+  const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
   const [apcCostSum, setApcCostSum] = useState(null);
   const { fetch, response, isMounted } = useFetch({
     url: ES_API_URL,
     method: 'post',
     options: getFetchOptions('publiSanteData'),
   });
-  const updateData = useCallback(
-    (aggregations) => {
-      if (!publicationsNumber || !aggregations) return;
-      if (!openPublicationRate) {
-        const x = Math.round(
-          (aggregations.by_is_oa.buckets.find(
-            (countObj) => countObj.key === 1,
-          ).doc_count
+
+  const dataObj = useMemo(
+    () => ({
+      openPublicationRate: {
+        fetch: (buckets) => Math.round(
+          (buckets.find((countObj) => countObj.key === 1).doc_count
               / publicationsNumber)
               * 100
               * 10,
-        ) / 10;
-        setOpenPublicationRate(x);
-      }
-      if (!apcCostSum) {
-        const x = Math.round(aggregations.sum_apc.value);
-        setApcCostSum(`${cleanBigNumber(x)} €`);
-      }
-      if (!diamondPublicationRate) {
-        const x = (
-          (aggregations.by_oa_colors.buckets.find(
-            (countObj) => countObj.key === 'diamond',
-          ).doc_count
-            / publicationsNumber)
-          * 100
-        ).toFixed(1);
-        setDiamonPublicationRate(x);
-      }
-      if (!hostedDocuments.val) {
-        const total = aggregations.by_repositories.sum_other_doc_count;
-        const val = aggregations.by_repositories.buckets.find(
-          (countObj) => countObj.key === 'www.ncbi.nlm.nih.gov',
-        ).doc_count;
-        setHostedDocuments({ val: formatNumberByLang(val, lang), total });
-      }
-      if (!frenchPublicationsRate) {
-        const x = (
-          (aggregations.by_lang.buckets.find(
-            (countObj) => countObj.key === 'fr',
-          ).doc_count
-            / publicationsNumber)
-          * 100
-        ).toFixed(1);
-        setFrenchPublicationRate(x);
-      }
-      if (!bestCollabCountry) {
-        const x = aggregations.by_author_useful_rank.buckets[1].key;
-        setBestCollabCountry(`app.country.${x}`);
-      }
-    },
+        ) / 10,
+        get: openPublicationRate,
+        set: (data) => setOpenPublicationRate(data),
+        pathToValue: 'by_is_oa.buckets',
+        percentage: true,
+        color: 'pink',
+        intlKey: 'app.sante-publi.data.publications',
+      },
+      apcCostSum: {
+        fetch: (sum) => `${cleanBigNumber(Math.round(sum))} €`,
+        get: apcCostSum,
+        set: (data) => setApcCostSum(data),
+        pathToValue: 'sum_apc.value',
+        percentage: false,
+        color: 'brown',
+        intlKey: 'app.sante-publi.data.costs',
+      },
+      diamondPublicationRate: {
+        fetch: (buckets) => (
+          (buckets.find((countObj) => countObj.key === 'diamond').doc_count
+              / publicationsNumber)
+            * 100
+        ).toFixed(1),
+        get: diamondPublicationRate,
+        set: (data) => setDiamonPublicationRate(data),
+        pathToValue: 'by_oa_colors.buckets',
+        percentage: true,
+        color: 'aqua',
+        intlKey: 'app.sante-publi.data.publi-diamond',
+      },
+      hostedDocument: {
+        fetch: (buckets) => formatNumberByLang(
+          buckets.find((countObj) => countObj.key === 'www.ncbi.nlm.nih.gov')
+            .doc_count,
+          lang,
+        ),
+        get: hostedDocuments,
+        set: (data) => setHostedDocuments(data),
+        pathToValue: 'by_repositories.buckets',
+        percentage: false,
+        color: 'green',
+        intlKey: 'app.sante.data.hosted.documents',
+        intlValues: { total: totalHostedDocuments },
+      },
+      frenchPublicationsRate: {
+        fetch: (buckets) => (
+          (buckets.find((countObj) => countObj.key === 'fr').doc_count
+              / publicationsNumber)
+            * 100
+        ).toFixed(1),
+        get: frenchPublicationsRate,
+        set: (data) => setFrenchPublicationRate(data),
+        pathToValue: 'by_lang.buckets',
+        percentage: true,
+        color: 'blue',
+        intlKey: 'app.sante-publi.data.french-lang',
+      },
+      bestCollabCountry: {
+        fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
+        get: bestCollabCountry,
+        set: (data) => setBestCollabCountry(data),
+        pathToValue: 'by_author_useful_rank.buckets.1.key',
+        percentage: false,
+        color: 'yellow',
+        intlKey: 'app.sante-publi.data.collab-country',
+      },
+    }),
     [
-      publicationsNumber,
-      openPublicationRate,
       apcCostSum,
-      diamondPublicationRate,
-      hostedDocuments.val,
-      frenchPublicationsRate,
       bestCollabCountry,
+      diamondPublicationRate,
+      frenchPublicationsRate,
+      hostedDocuments,
       lang,
+      openPublicationRate,
+      publicationsNumber,
+      totalHostedDocuments,
     ],
+  );
+
+  const updateData = useCallback(
+    (aggregations) => {
+      if (!publicationsNumber || !aggregations) return;
+
+      Object.keys(dataObj).forEach((k) => {
+        const card = dataObj[k];
+        if (!card.get) {
+          card.set(card.fetch(getValueByPath(card.pathToValue, aggregations)));
+        }
+      });
+    },
+    [dataObj, publicationsNumber],
   );
 
   useEffect(() => {
     if (response) {
+      const { aggregations } = response;
       if (!publicationsNumber) {
-        setPublicationsNumber(response.aggregations.count_publications.value);
+        setPublicationsNumber(aggregations.count_publications.value);
+        setTotalHostedDocuments(
+          formatNumberByLang(
+            aggregations.by_repositories.sum_other_doc_count,
+            lang,
+          ),
+        );
       }
-      updateData(response.aggregations);
+      updateData(aggregations);
     }
-  }, [response, publicationsNumber, updateData]);
+  }, [response, publicationsNumber, updateData, lang]);
 
   useEffect(() => {
     if (!response) {
@@ -110,74 +157,26 @@ export default function DataCardSection({ lang }) {
   return (
     <section className='pb-32'>
       <Row gutters>
-        <Col n='12 md-4'>
-          <DataCard
-            percentage={openPublicationRate}
-            buttonLabel={<FormattedMessage id='app.see-details' />}
-            sentence={
-              <FormattedMessage id='app.sante-publi.data.publications' />
-            }
-            background='pink'
-          />
-        </Col>
-        <Col n='12 md-4'>
-          <DataCard
-            topData={apcCostSum}
-            buttonLabel={<FormattedMessage id='app.see-details' />}
-            background='brown'
-            sentence={<FormattedMessage id='app.sante-publi.data.costs' />}
-          />
-        </Col>
-        <Col n='12 md-4'>
-          <DataCard
-            background='aqua'
-            percentage={diamondPublicationRate}
-            buttonLabel={<FormattedMessage id='app.see-details' />}
-            sentence={
-              <FormattedMessage id='app.sante-publi.data.publi-diamond' />
-            }
-          />
-        </Col>
-      </Row>
-      <Row gutters>
-        <Col n='12 md-4'>
-          <DataCard
-            background='green'
-            topData={hostedDocuments.val}
-            buttonLabel={<FormattedMessage id='app.see-details' />}
-            sentence={(
-              <FormattedMessage
-                values={{
-                  total: formatNumberByLang(hostedDocuments.total, lang),
-                }}
-                id='app.sante.data.hosted.documents'
-                defaultMessage=''
-              />
-            )}
-          />
-        </Col>
-        <Col n='12 md-4'>
-          <DataCard
-            background='blue'
-            percentage={frenchPublicationsRate}
-            buttonLabel={<FormattedMessage id='app.see-details' />}
-            sentence={
-              <FormattedMessage id='app.sante-publi.data.french-lang' />
-            }
-          />
-        </Col>
-        <Col n='12 md-4'>
-          {bestCollabCountry && (
+        {Object.keys(dataObj).map((cardKey) => (
+          <Col n='12 md-4'>
             <DataCard
-              background='yellow'
-              topData={<FormattedMessage id={bestCollabCountry} />}
-              buttonLabel={<FormattedMessage id='app.see-details' />}
-              sentence={
-                <FormattedMessage id='app.sante-publi.data.collab-country' />
+              percentage={
+                dataObj[cardKey].percentage ? dataObj[cardKey].get : null
               }
+              topData={
+                dataObj[cardKey].percentage ? null : dataObj[cardKey].get
+              }
+              buttonLabel={<FormattedMessage id='app.see-details' />}
+              background={dataObj[cardKey].color}
+              sentence={(
+                <FormattedMessage
+                  values={dataObj[cardKey].intlValues}
+                  id={dataObj[cardKey].intlKey}
+                />
+              )}
             />
-          )}
-        </Col>
+          </Col>
+        ))}
       </Row>
     </section>
   );
