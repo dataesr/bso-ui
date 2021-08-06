@@ -1,52 +1,64 @@
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
+import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
-import SimpleSelect from '../../../../SimpleSelect';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import GraphTitle from '../../../graph-title';
-import useGetData from './get-data-taux-ouverture';
+import useGetData from './get-data-evolution-repartition';
 
+treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
 const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.general.impact-financement.chart-taux-ouverture';
-  const [agency, setAgency] = useState();
+  const graphId = 'app.sante-publi.publishers.type-ouverture.chart-repartition-modeles';
   const { observationDates, updateDate } = useGlobals();
-  const { allData, isLoading, agencies } = useGetData(
-    observationDates[0],
-    agency,
+  const { allData, isLoading, isError } = useGetData(
+    observationDates[0] || 2020,
   );
-  const { dataGraph, categories } = allData;
+  const { dataGraphTreemap } = allData;
 
-  if (isLoading || !dataGraph || !categories) {
+  if (isLoading || !dataGraphTreemap) {
     return <Loader />;
+  }
+  if (isError) {
+    return <>Error</>;
   }
 
   const optionsGraph = getGraphOptions(graphId, intl);
-  optionsGraph.chart.type = 'column';
-  optionsGraph.xAxis = {
-    categories,
-  };
-  optionsGraph.plotOptions = {
-    column: {
-      dataLabels: {
-        enabled: true,
-      },
+  optionsGraph.series = [
+    {
+      type: 'treemap',
+      layoutAlgorithm: 'stripes',
+      alternateStartingDirection: true,
+      levels: [
+        {
+          level: 1,
+          layoutAlgorithm: 'sliceAndDice',
+          dataLabels: {
+            enabled: true,
+            align: 'left',
+            verticalAlign: 'top',
+            style: {
+              fontSize: '15px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      ],
+      data: dataGraphTreemap,
     },
-  };
-  optionsGraph.series = dataGraph;
-
+  ];
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
       type: 'image/png',
@@ -58,18 +70,8 @@ const Chart = () => {
 
   return (
     <>
-      <div fluid className='graph-container'>
+      <div className='graph-container'>
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
-
-        <SimpleSelect
-          label={intl.formatMessage({ id: 'app.agencies-filter-label' })}
-          onChange={(e) => setAgency(e.target.value)}
-          options={agencies || []}
-          selected={agency}
-          firstValue=''
-          firstLabel={intl.formatMessage({ id: 'app.all-agencies' })}
-        />
-
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}

@@ -167,9 +167,19 @@ function useGetData(observationDate, agency) {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataForLastObservationDate(observationDate);
         const allAgencies = await GetAllAgencies();
         setAgencies(allAgencies.map((el) => el.key));
+      } catch (error) {
+        setLoading(false);
+      }
+    }
+    getData();
+  }, []);
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const dataGraph = await getDataForLastObservationDate(observationDate);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {

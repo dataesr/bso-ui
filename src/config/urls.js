@@ -21,6 +21,18 @@ export default {
         fr: '/sante/publications/discipline',
         en: '/health/publications/discipline',
       },
+      {
+        fr: '/sante/publications/editeurs',
+        en: '/health/publications/editeurs',
+      },
+      {
+        fr: '/sante/publications/archives',
+        en: '/health/publications/archives',
+      },
+      {
+        fr: '/sante/publications/affiliations',
+        en: '/health/publications/affiliations',
+      },
     ],
     fr: '/sante/publications/general',
     en: '/health/publications/general',

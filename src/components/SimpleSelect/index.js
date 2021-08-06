@@ -2,11 +2,16 @@ import './style.scss';
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
-const SimpleSelect = ({ label, onChange, options, selected }) => {
-  const intl = useIntl();
+const SimpleSelect = ({
+  label,
+  onChange,
+  options,
+  selected,
+  firstValue,
+  firstLabel,
+}) => {
   const selectId = uuidv4();
   return (
     <div className='simple-select'>
@@ -18,9 +23,7 @@ const SimpleSelect = ({ label, onChange, options, selected }) => {
           onChange={onChange}
           value={selected}
         >
-          <option value=''>
-            {intl.formatMessage({ id: 'app.all-agencies' })}
-          </option>
+          <option value={firstValue}>{firstLabel}</option>
           {options.map((el) => (
             <option key={uuidv4()} value={el}>
               {el}
@@ -37,6 +40,8 @@ SimpleSelect.propTypes = {
   onChange: PropTypes.string.isRequired,
   options: PropTypes.element.isRequired,
   selected: PropTypes.string.isRequired,
+  firstValue: PropTypes.string.isRequired,
+  firstLabel: PropTypes.string.isRequired,
 };
 
 export default SimpleSelect;
