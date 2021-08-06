@@ -41,7 +41,6 @@
       text {
         @include font-size(40, 40);
         fill: var(--blue-dark-125);
-        font-family: "Marianne Extra Bold", serif;
       }
     }
   }
@@ -55,6 +54,7 @@
   }
 
   .top-data {
-    @include font-size(36, 36);
+    @include font-size(48, 40);
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 2px 2px #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 0 2px 0 #fff;
   }
 }

@@ -17,7 +17,7 @@ function Gauge({ percentage }) {
           viewBox='0 0 200 200'
           xmlSpace='preserve'
         >
-          <title>{`${percentage} %`}</title>
+          <title>{`${percentage}%`}</title>
           <g>
             <path
               strokeDasharray='340'
@@ -34,13 +34,14 @@ function Gauge({ percentage }) {
               strokeDashoffset={b.toString()}
               d='M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0 Z'
               strokeLinecap='round'
-              strokeWidth='10px'
+              strokeWidth='8px'
               fill='none'
               stroke='currentColor'
             />
           </g>
           <text x='60' y='180' className='marianne-extra-bold'>
-            {`${percentage}%`}
+            {`${percentage}`}
+            <tspan className='marianne-bold fs-24-32'>%</tspan>
           </text>
         </svg>
       </div>
