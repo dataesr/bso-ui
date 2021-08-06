@@ -24,14 +24,11 @@ function GraphItem({ links, mainLabel, paths }) {
     const { hash } = location;
     if (hash) {
       const element = document.getElementById(hash.slice(1));
-      const position = element.getBoundingClientRect();
+      const { left, top } = element.getBoundingClientRect();
       if (!desktop) {
         viewPort.current = mobile ? 'mobile' : 'tablet';
       }
-      window.scrollTo(
-        position.left,
-        position.top + window.scrollY + objMargin[viewPort.current],
-      );
+      window.scrollTo(left, top + window.scrollY + objMargin[viewPort.current]);
     }
   }, [desktop, location, mobile, tablet]);
 

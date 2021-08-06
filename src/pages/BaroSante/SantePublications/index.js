@@ -131,27 +131,22 @@ function SantePublications() {
               ]}
               links={[
                 {
-                  anchor: 'dynamique',
                   label: 'La dynamique d’ouverture en santé',
                   href: '/sante/publications/general#dynamique',
                 },
                 {
-                  anchor: 'voies',
                   label: "Les voies d'ouverture",
                   href: '/sante/publications/general#voies',
                 },
                 {
-                  anchor: 'genres',
                   label: 'Les genres les plus ouverts',
                   href: '/sante/publications/general#genres',
                 },
                 {
-                  anchor: 'langues',
                   label: 'Les langues des productions',
                   href: '/sante/publications/general#langues',
                 },
                 {
-                  anchor: 'financement',
                   label: 'Le financement',
                   href: '/sante/publications/general#financement',
                 },
@@ -161,7 +156,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.dynamique-ouverture'
                   backgroundColor={bluesoft50}
-                  id='dynamique'
+                  anchorId='dynamique'
                 >
                   <ChartTauxOuverture />
                   <ChartEvolutionProportion />
@@ -170,7 +165,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.voies-ouverture'
                   backgroundColor={bluesoft25}
-                  id='voies'
+                  anchorId='voies'
                 >
                   <ChartRepartitionTaux />
                   <ChartEvolutionTaux />
@@ -180,7 +175,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.genres-ouverture'
                   backgroundColor={bluesoft50}
-                  id='genres'
+                  anchorId='genres'
                 >
                   <ChartGenreOuverture />
                 </QuestionSection>
@@ -188,14 +183,14 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.langues-ouverture'
                   backgroundColor={bluesoft25}
-                  id='langues'
+                  anchorId='langues'
                 >
                   <ChartLanguesOuverture />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.sante-publi.general.impact-financement'
                   backgroundColor={bluesoft50}
-                  id='financement'
+                  anchorId='financement'
                 >
                   <ChartTauxOuvertureFinancement />
                   <ChartRepartitionDeclarations />
