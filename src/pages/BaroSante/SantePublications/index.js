@@ -21,6 +21,7 @@ import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
+import ScrollTop from '../../../components/ScrollTop';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
@@ -95,6 +96,7 @@ function SantePublications() {
           ],
         }}
       />
+      <ScrollTop />
       <section className='content'>
         <Row>
           <Container>
