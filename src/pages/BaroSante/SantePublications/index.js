@@ -1,6 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
@@ -32,6 +32,7 @@ const objButtonLabel = {
   fr: {
     '/sante/publications/discipline': 'app.sante-publi.disciplines',
     '/sante/publications/general': 'app.sante-publi.general',
+    '/sante/essais-cliniques': 'app.sante-publi.general',
   },
   en: {
     '/health/publications/discipline': 'app.sante-publi.disciplines',
@@ -44,6 +45,7 @@ function SantePublications() {
   const [rate, setRate] = useState(null);
   const location = useLocation();
   const { observationDates } = useGlobals();
+  const intl = useIntl();
 
   useGetPublicationRateFrom(observationDates[1] || '2021Q1').then((resp) => {
     const { rate: rateByYear } = resp;
@@ -71,11 +73,27 @@ function SantePublications() {
         chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
-          title: 'Navigation par objet de recherche',
-          onChange: () => {},
+          title: <FormattedMessage id='app.navigation.objet-recherche' />,
+          selected: intl.formatMessage({
+            id: 'url.sante.publications.general',
+          }),
           options: [
-            { label: 'Label', value: 'value1' },
-            { label: 'Label', value: 'value2' },
+            {
+              label: intl.formatMessage({ id: 'app.baro-sante.title' }),
+              value: intl.formatMessage({
+                id: 'url.sante.publications.general',
+              }),
+            },
+            {
+              label: intl.formatMessage({
+                id: 'app.header.nav.baro-sante-essais',
+              }),
+              value: intl.formatMessage({ id: 'url.sante.essais' }),
+            },
+            {
+              label: intl.formatMessage({ id: 'app.baro-sante.etudes.title' }),
+              value: intl.formatMessage({ id: 'url.sante.etudes' }),
+            },
           ],
         }}
       />
