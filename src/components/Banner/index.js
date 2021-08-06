@@ -2,7 +2,7 @@ import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
@@ -21,6 +21,13 @@ function Banner({
   selectNavigation,
   children,
 }) {
+  const [navSelected, setNavSelected] = useState(
+    selectNavigation ? selectNavigation.selected : '',
+  );
+  const [sticked, setSticked] = useState(false);
+  const { scrollTop, scrollingDown } = useScroll();
+  const location = useLocation();
+  const history = useHistory();
   setCSSProperty(
     '--bannerBackgroundColor',
     getCSSProperty(`--${backgroundColor}`) || backgroundColor,
@@ -29,9 +36,6 @@ function Banner({
     '--bannerTextColor',
     getCSSProperty(`--${textColor}`) || textColor,
   );
-
-  const [sticked, setSticked] = useState(false);
-  const { scrollTop, scrollingDown } = useScroll();
 
   useEffect(() => {
     if (sticky) {
@@ -46,6 +50,11 @@ function Banner({
       }
     }
   }, [scrollTop, scrollingDown, sticky]);
+
+  const onNavigationChange = (e) => {
+    setNavSelected(e.target.value);
+    history.push(e.target.value);
+  };
 
   return (
     <section
@@ -99,7 +108,8 @@ function Banner({
                 sticked={sticked}
                 title={selectNavigation.title}
                 options={selectNavigation.options}
-                onChange={selectNavigation.onChange}
+                selected={navSelected}
+                onChange={(e) => onNavigationChange(e)}
               />
             </Col>
           )}
@@ -123,7 +133,8 @@ function Banner({
                 sticked={sticked}
                 title={selectNavigation.title}
                 options={selectNavigation.options}
-                onChange={selectNavigation.onChange}
+                selected={navSelected}
+                onChange={(e) => onNavigationChange(e)}
               />
             </Col>
           </Row>
