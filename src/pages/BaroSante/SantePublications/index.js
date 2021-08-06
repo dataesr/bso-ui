@@ -14,7 +14,6 @@ import ChartEvolutionTaux from '../../../components/charts/publications/general/
 import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
 import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
 import Chip from '../../../components/Chip';
-import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphSection from '../../../components/GraphNavigation';
@@ -27,6 +26,7 @@ import GlossaryEntries from '../../../translations/glossary.json';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../../utils/Hooks/useLang';
+import DataCardSection from './dataCardSection';
 
 const objButtonLabel = {
   fr: {
@@ -51,7 +51,6 @@ function SantePublications() {
       setRate(rateByYear);
     }
   });
-
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -99,40 +98,7 @@ function SantePublications() {
           </Container>
           <Glossary entries={GlossaryEntries} />
           <Container>
-            <section className='pb-32'>
-              <Row gutters>
-                <Col n='12 md-4'>
-                  <DataCard
-                    percentage={rate}
-                    buttonLabel='Voir en détail'
-                    sentence={
-                      "Taux d'ouverture des publications françaises dans le domaine de la santé millésime 2020"
-                    }
-                    background='yellow'
-                  />
-                </Col>
-                <Col n='12 md-4'>
-                  <DataCard
-                    percentage={rate}
-                    buttonLabel='Voir en détail'
-                    background='aqua'
-                    sentence={
-                      "Taux d'ouverture des publications françaises dans le domaine de la santé millésime 2020"
-                    }
-                  />
-                </Col>
-                <Col n='12 md-4'>
-                  <DataCard
-                    background='pink'
-                    percentage={rate}
-                    buttonLabel='Voir en détail'
-                    sentence={
-                      "Taux d'ouverture des publications françaises dans le domaine de la santé millésime 2020"
-                    }
-                  />
-                </Col>
-              </Row>
-            </section>
+            <DataCardSection lang={lang} />
           </Container>
         </Row>
         <Row>
