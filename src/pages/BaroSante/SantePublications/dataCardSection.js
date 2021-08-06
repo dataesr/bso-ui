@@ -159,7 +159,7 @@ export default function DataCardSection({ lang }) {
     <section className='pb-32'>
       <Row gutters>
         {Object.keys(dataObj).map((cardKey) => (
-          <Col n='12 md-4' key={cardKey}>
+          <Col n='12 md-6 lg-4' key={cardKey}>
             <DataCard
               percentage={
                 dataObj[cardKey].percentage

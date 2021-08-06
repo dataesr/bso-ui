@@ -44,7 +44,13 @@
     position: relative;
     width: 120px;
     left: -136px;
-    top: 20vh;
+    top: 55px;
+    transition: top 0.4s ease-in-out;
+
+    .banner-sticked & {
+      transition: top 0.4s ease-in-out;
+      top: 10px;
+    }
   }
 
   .to-glossary-page {
@@ -94,6 +100,17 @@
 
     .fr-btn {
       left: -144px;
+      top: 52vh;
+    }
+  }
+}
+
+@media screen and(min-width: 768px) {
+  .banner-sticked {
+    .bso-glossary {
+      .fr-btn {
+        top: 10px;
+      }
     }
   }
 }

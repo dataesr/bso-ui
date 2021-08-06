@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-const QuestionSection = ({ intlKey, backgroundColor, children }) => {
+const QuestionSection = ({ intlKey, backgroundColor, children, id }) => {
   const intl = useIntl();
   return (
-    <section style={{ backgroundColor, paddingTop: '28px' }} className='w-100'>
+    <section
+      style={{ backgroundColor, paddingTop: '28px' }}
+      className='w-100'
+      id={id}
+    >
       <Container>
         <h2>
           {intl.formatMessage({ id: `${intlKey}.title` })}
