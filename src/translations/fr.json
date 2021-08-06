@@ -215,6 +215,7 @@
   "app.sante-publi.progression": "Progression <div>{startYear}-{endYear}</div>",
   "app.sante.data.hosted.documents": "documents en santé hébergés sur {total}, en tête des archives ouvertes en nombre de publications hébergées",
   "app.sante.update.date": "Site mis à jour le {date} avec les données de {startDate} à {endDate}",
+  "app.scroll-to-top": "scroll to top",
   "app.see-details": "Voir en détail",
   "app.text.test": "<glossary>app.glossary.essai_clinique</glossary>",
   "app.theme.change": "Changer le thème",

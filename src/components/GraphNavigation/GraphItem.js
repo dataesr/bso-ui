@@ -4,7 +4,7 @@ import {
   SideMenuLink,
 } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -14,7 +14,24 @@ import GraphTabSubItem from './GraphTabSubItem';
 function GraphItem({ links, mainLabel, paths }) {
   const location = useLocation();
   const { mobile, tablet, desktop } = useViewport();
-  // TODO scrollTo
+  const viewPort = useRef('desktop');
+  useEffect(() => {
+    const objMargin = {
+      mobile: 220,
+      tablet: -90,
+      desktop: -130,
+    };
+    const { hash } = location;
+    if (hash) {
+      const element = document.getElementById(hash.slice(1));
+      const { left, top } = element.getBoundingClientRect();
+      if (!desktop) {
+        viewPort.current = mobile ? 'mobile' : 'tablet';
+      }
+      window.scrollTo(left, top + window.scrollY + objMargin[viewPort.current]);
+    }
+  }, [desktop, location, mobile, tablet]);
+
   return (
     <>
       {mobile && (

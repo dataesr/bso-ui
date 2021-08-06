@@ -2,7 +2,7 @@ import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
@@ -26,8 +26,8 @@ function Banner({
   );
   const [sticked, setSticked] = useState(false);
   const { scrollTop, scrollingDown } = useScroll();
-  const location = useLocation();
   const history = useHistory();
+
   setCSSProperty(
     '--bannerBackgroundColor',
     getCSSProperty(`--${backgroundColor}`) || backgroundColor,
@@ -45,7 +45,11 @@ function Banner({
 
       if (scrollTop > banner.offsetTop + heightBanner && scrollingDown) {
         setSticked(true);
+        // For Glossaire button
+        document.querySelector('html').classList.add('banner-sticked');
       } else if (scrollTop < banner.offsetTop && !scrollingDown) {
+        // For Glossaire button
+        document.querySelector('html').classList.remove('banner-sticked');
         setSticked(false);
       }
     }
@@ -71,7 +75,7 @@ function Banner({
         >
           <Col
             n={classNames('12', {
-              'md-8': chip && sticked,
+              'md-6': chip && sticked,
               'md-9': chip && !sticked,
             })}
           >
@@ -166,7 +170,8 @@ Banner.propTypes = {
   icons: PropTypes.element,
   chip: PropTypes.element,
   selectNavigation: PropTypes.exact({
-    onChange: PropTypes.func.isRequired,
+    selected: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+      .isRequired,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
       .isRequired,
     options: PropTypes.arrayOf(

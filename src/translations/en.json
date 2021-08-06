@@ -214,6 +214,7 @@
   "app.sante-publi.progression": "Progression {startYear} {endYear}",
   "app.sante.data.hosted.documents": "documents en santé hébergés sur {total}, en tête des archives ouvertes en nombre de publications hébergées",
   "app.sante.update.date": "Site updated on {date} with datas from {startDate} to {endDate}",
+  "app.scroll-to-top": "scroll to top",
   "app.see-details": "Voir en détail",
   "app.theme.change": "Change the theme",
   "app.theme.dark": "Dark theme",

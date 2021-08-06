@@ -22,6 +22,7 @@ import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
 import InfoCard from '../../components/InfoCard';
 import LinkCard from '../../components/LinkCard';
+import ScrollTop from '../../components/ScrollTop';
 import TodaySection from '../../components/TodaySection';
 import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
 import { ES_API_URL } from '../../config/config';
@@ -154,10 +155,11 @@ function BaroSante() {
         chip={<Chip backgroundColor='blue-soft-125' />}
         icons={renderIcons}
       />
+      <ScrollTop />
       <Container fluid>
         <section className='content'>
           <Row>
-            <Col n='8 md-12 xl-9' className='px-20 px-md-64' offset='xl-3'>
+            <Col n='12 md-12 xl-10' className='px-20 px-md-64' offset='xl-2'>
               <section className='py-28'>
                 <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
                   <FormattedMessage id='app.sante-home.numbers' />
@@ -165,7 +167,7 @@ function BaroSante() {
                 <p className='fs-14-24 blue m-0'>{renderUpdateDate()}</p>
               </section>
             </Col>
-            <Col n='12 xl-9' offset='xl-3'>
+            <Col n='12 xl-10' offset='xl-2'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
                 link={{
@@ -221,7 +223,7 @@ function BaroSante() {
                 </Container>
               </HomeSection>
             </Col>
-            <Col n='12 xl-9' offset='xl-3'>
+            <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
                   href: '/sante/essais-cliniques',
@@ -235,7 +237,7 @@ function BaroSante() {
                 }
               />
             </Col>
-            <Col n='12 xl-9' offset='xl-3'>
+            <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
                   href: '/sante/etudes-observationelles',

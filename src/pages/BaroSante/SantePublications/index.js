@@ -16,11 +16,12 @@ import ChartRepartitionTaux from '../../../components/charts/publications/genera
 import Chip from '../../../components/Chip';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
-import GraphSection from '../../../components/GraphNavigation';
+import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
+import ScrollTop from '../../../components/ScrollTop';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
@@ -74,9 +75,7 @@ function SantePublications() {
         icons={renderIcons}
         selectNavigation={{
           title: <FormattedMessage id='app.navigation.objet-recherche' />,
-          selected: intl.formatMessage({
-            id: 'url.sante.publications.general',
-          }),
+          selected: <FormattedMessage id='url.sante.publications.general' />,
           options: [
             {
               label: intl.formatMessage({ id: 'app.baro-sante.title' }),
@@ -97,6 +96,7 @@ function SantePublications() {
           ],
         }}
       />
+      <ScrollTop />
       <section className='content'>
         <Row>
           <Container>
@@ -120,7 +120,9 @@ function SantePublications() {
           </Container>
         </Row>
         <Row>
-          <GraphSection buttonLabel={objButtonLabel[lang][location.pathname]}>
+          <GraphNavigation
+            buttonLabel={objButtonLabel[lang][location.pathname]}
+          >
             <GraphItem
               mainLabel='Général'
               paths={[
@@ -129,14 +131,24 @@ function SantePublications() {
               ]}
               links={[
                 {
-                  anchor: 'general',
-                  label: 'Les publications en santé',
-                  href: '/sante/publications/general#general',
+                  label: 'La dynamique d’ouverture en santé',
+                  href: '/sante/publications/general#dynamique',
                 },
                 {
-                  anchor: 'dynamic',
-                  label: 'La dynamique d’ouverture en santé',
-                  href: '/sante/publications/general#dynamic',
+                  label: "Les voies d'ouverture",
+                  href: '/sante/publications/general#voies',
+                },
+                {
+                  label: 'Les genres les plus ouverts',
+                  href: '/sante/publications/general#genres',
+                },
+                {
+                  label: 'Les langues des productions',
+                  href: '/sante/publications/general#langues',
+                },
+                {
+                  label: 'Le financement',
+                  href: '/sante/publications/general#financement',
                 },
               ]}
             >
@@ -144,6 +156,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.dynamique-ouverture'
                   backgroundColor={bluesoft50}
+                  anchorId='dynamique'
                 >
                   <ChartTauxOuverture />
                   <ChartEvolutionProportion />
@@ -152,6 +165,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.voies-ouverture'
                   backgroundColor={bluesoft25}
+                  anchorId='voies'
                 >
                   <ChartRepartitionTaux />
                   <ChartEvolutionTaux />
@@ -161,6 +175,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.genres-ouverture'
                   backgroundColor={bluesoft50}
+                  anchorId='genres'
                 >
                   <ChartGenreOuverture />
                 </QuestionSection>
@@ -168,12 +183,14 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.langues-ouverture'
                   backgroundColor={bluesoft25}
+                  anchorId='langues'
                 >
                   <ChartLanguesOuverture />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.sante-publi.general.impact-financement'
                   backgroundColor={bluesoft50}
+                  anchorId='financement'
                 >
                   <ChartTauxOuvertureFinancement />
                   <ChartRepartitionDeclarations />
@@ -196,7 +213,7 @@ function SantePublications() {
                 </div>
               </GraphContent>
             </GraphItem>
-          </GraphSection>
+          </GraphNavigation>
         </Row>
       </section>
     </Container>

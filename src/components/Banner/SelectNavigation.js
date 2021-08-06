@@ -28,7 +28,7 @@ SelectNavigation.defaultProps = {
 };
 
 SelectNavigation.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   sticked: PropTypes.bool,
   options: PropTypes.arrayOf(
     PropTypes.exact({
@@ -36,6 +36,8 @@ SelectNavigation.propTypes = {
       label: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  selected: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

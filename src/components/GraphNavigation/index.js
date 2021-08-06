@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import useScroll from '../../utils/Hooks/useScroll';
 import useViewport from '../../utils/Hooks/useViewport';
 
-function GraphSection({ buttonLabel, children }) {
+function GraphNavigation({ buttonLabel, children }) {
   const [sticky, setSticky] = useState(false);
   const [offsetTop, setOffsetTop] = useState(null);
   const [initOffsetTop, setInitOffsetTop] = useState(null);
@@ -125,9 +125,9 @@ function GraphSection({ buttonLabel, children }) {
   );
 }
 
-GraphSection.propTypes = {
+GraphNavigation.propTypes = {
   children: PropTypes.node.isRequired,
   buttonLabel: PropTypes.string.isRequired,
 };
 
-export default GraphSection;
+export default GraphNavigation;
