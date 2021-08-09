@@ -1,4 +1,11 @@
 /**
+  Général
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+/**
   Textes
  */
 .text-center {
@@ -107,9 +114,22 @@
   background: var(--blue-soft-50);
 }
 
-.bg-medium-blue,
-.fr-btn.bg-medium-blue {
+.bg-medium-blue {
   background: var(--blue-soft-100);
+}
+
+.fr-btn {
+  &.btn-blue {
+    background-color: var(--blue-dark-125);
+  }
+
+  &.bg-medium-blue {
+    background: var(--blue-soft-100);
+  }
+
+  &:hover {
+    background-color: var(--blue-dark-100);
+  }
 }
 
 .text-white {

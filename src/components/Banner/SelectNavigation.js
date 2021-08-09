@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function SelectNavigation({ title, onChange, options, sticked }) {
+function SelectNavigation({ title, onChange, selected, options, sticked }) {
   return (
     <section
       className={classNames('bso-select-navigation', {
@@ -14,9 +14,8 @@ function SelectNavigation({ title, onChange, options, sticked }) {
       <div className='text-left title marianne-bold pb-16'>{title}</div>
       <div className={classNames({ 'pt-16': !sticked })}>
         <Select
-          onChange={() => {
-            onChange();
-          }}
+          selected={selected}
+          onChange={(e) => onChange(e)}
           options={options}
         />
       </div>
@@ -29,7 +28,7 @@ SelectNavigation.defaultProps = {
 };
 
 SelectNavigation.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   sticked: PropTypes.bool,
   options: PropTypes.arrayOf(
     PropTypes.exact({
@@ -37,6 +36,8 @@ SelectNavigation.propTypes = {
       label: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  selected: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

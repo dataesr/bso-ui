@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import Footer from './components/Footer';
 import Header from './components/Header';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
@@ -119,6 +119,7 @@ function App() {
             <div>Not Found</div>
           </Route>
         </Switch>
+        <Footer />
       </IntlProvider>
     </BrowserRouter>
   );

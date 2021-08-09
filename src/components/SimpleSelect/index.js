@@ -35,11 +35,15 @@ const SimpleSelect = ({
   );
 };
 
+SimpleSelect.defaultProps = {
+  selected: '',
+};
+
 SimpleSelect.propTypes = {
   label: PropTypes.string.isRequired,
-  onChange: PropTypes.string.isRequired,
-  options: PropTypes.element.isRequired,
-  selected: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selected: PropTypes.string,
   firstValue: PropTypes.string.isRequired,
   firstLabel: PropTypes.string.isRequired,
 };

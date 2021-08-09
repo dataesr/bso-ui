@@ -75,7 +75,7 @@ function TodaySectionItem({
     }
   }, [response, todayData, setTodayData, itemKey]);
   return (
-    <Col n='6 sm-4 md-6'>
+    <Col n='12 sm-6 md-6'>
       <span ref={ref}>
         <InfoCard
           cardClassNames='text-left-l'

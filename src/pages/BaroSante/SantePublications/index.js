@@ -1,6 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
@@ -35,25 +35,27 @@ import ChartEvolutionTaux from '../../../components/charts/publications/general/
 import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
 import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
 import Chip from '../../../components/Chip';
-import DataCard from '../../../components/DataCard';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
-import GraphSection from '../../../components/GraphNavigation';
+import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
+import ScrollTop from '../../../components/ScrollTop';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../../utils/Hooks/useLang';
+import DataCardSection from './dataCardSection';
 
 const objButtonLabel = {
   fr: {
     '/sante/publications/discipline': 'app.sante-publi.disciplines',
     '/sante/publications/editeurs': 'app.sante-publi.editeurs',
     '/sante/publications/general': 'app.sante-publi.general',
+    '/sante/essais-cliniques': 'app.sante-publi.general',
   },
   en: {
     '/health/publications/discipline': 'app.sante-publi.disciplines',
@@ -67,6 +69,7 @@ function SantePublications() {
   const [rate, setRate] = useState(null);
   const location = useLocation();
   const { observationDates } = useGlobals();
+  const intl = useIntl();
 
   useGetPublicationRateFrom(observationDates[1] || '2021Q2').then((resp) => {
     const { rate: rateByYear } = resp;
@@ -74,7 +77,6 @@ function SantePublications() {
       setRate(rateByYear);
     }
   });
-
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -95,14 +97,29 @@ function SantePublications() {
         chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
-          title: 'Navigation par objet de recherche',
-          onChange: () => {},
+          title: <FormattedMessage id='app.navigation.objet-recherche' />,
+          selected: <FormattedMessage id='url.sante.publications.general' />,
           options: [
-            { label: 'Label', value: 'value1' },
-            { label: 'Label', value: 'value2' },
+            {
+              label: intl.formatMessage({ id: 'app.baro-sante.title' }),
+              value: intl.formatMessage({
+                id: 'url.sante.publications.general',
+              }),
+            },
+            {
+              label: intl.formatMessage({
+                id: 'app.header.nav.baro-sante-essais',
+              }),
+              value: intl.formatMessage({ id: 'url.sante.essais' }),
+            },
+            {
+              label: intl.formatMessage({ id: 'app.baro-sante.etudes.title' }),
+              value: intl.formatMessage({ id: 'url.sante.etudes' }),
+            },
           ],
         }}
       />
+      <ScrollTop />
       <section className='content'>
         <Row>
           <Container>
@@ -122,44 +139,13 @@ function SantePublications() {
           </Container>
           <Glossary entries={GlossaryEntries} />
           <Container>
-            <section className='pb-32'>
-              <Row gutters>
-                <Col n='12 md-4'>
-                  <DataCard
-                    percentage={rate}
-                    buttonLabel='Voir en détail'
-                    sentence={
-                      "Taux d'ouverture des publications françaises dans le domaine de la santé millésime 2020"
-                    }
-                    background='yellow'
-                  />
-                </Col>
-                <Col n='12 md-4'>
-                  <DataCard
-                    percentage={rate}
-                    buttonLabel='Voir en détail'
-                    background='aqua'
-                    sentence={
-                      "Taux d'ouverture des publications françaises dans le domaine de la santé millésime 2020"
-                    }
-                  />
-                </Col>
-                <Col n='12 md-4'>
-                  <DataCard
-                    background='pink'
-                    percentage={rate}
-                    buttonLabel='Voir en détail'
-                    sentence={
-                      "Taux d'ouverture des publications françaises dans le domaine de la santé millésime 2020"
-                    }
-                  />
-                </Col>
-              </Row>
-            </section>
+            <DataCardSection lang={lang} />
           </Container>
         </Row>
         <Row>
-          <GraphSection buttonLabel={objButtonLabel[lang][location.pathname]}>
+          <GraphNavigation
+            buttonLabel={objButtonLabel[lang][location.pathname]}
+          >
             <GraphItem
               mainLabel='Général'
               paths={[
@@ -168,14 +154,24 @@ function SantePublications() {
               ]}
               links={[
                 {
-                  anchor: 'general',
-                  label: 'Les publications en santé',
-                  href: '/sante/publications/general#general',
+                  label: 'La dynamique d’ouverture en santé',
+                  href: '/sante/publications/general#dynamique',
                 },
                 {
-                  anchor: 'dynamic',
-                  label: 'La dynamique d’ouverture en santé',
-                  href: '/sante/publications/general#dynamic',
+                  label: "Les voies d'ouverture",
+                  href: '/sante/publications/general#voies',
+                },
+                {
+                  label: 'Les genres les plus ouverts',
+                  href: '/sante/publications/general#genres',
+                },
+                {
+                  label: 'Les langues des productions',
+                  href: '/sante/publications/general#langues',
+                },
+                {
+                  label: 'Le financement',
+                  href: '/sante/publications/general#financement',
                 },
               ]}
             >
@@ -183,6 +179,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.dynamique-ouverture'
                   backgroundColor={bluesoft50}
+                  anchorId='dynamique'
                 >
                   <ChartTauxOuverture />
                   <ChartEvolutionProportion />
@@ -191,6 +188,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.voies-ouverture'
                   backgroundColor={bluesoft25}
+                  anchorId='voies'
                 >
                   <ChartRepartitionTaux />
                   <ChartEvolutionTaux />
@@ -200,6 +198,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.genres-ouverture'
                   backgroundColor={bluesoft50}
+                  anchorId='genres'
                 >
                   <ChartGenreOuverture />
                 </QuestionSection>
@@ -207,6 +206,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.langues-ouverture'
                   backgroundColor={bluesoft25}
+                  anchorId='langues'
                 >
                   <ChartLanguesOuverture />
                 </QuestionSection>
@@ -214,6 +214,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.impact-financement'
                   backgroundColor={bluesoft50}
+                  anchorId='financement'
                 >
                   <ChartTauxOuvertureFinancement />
                   <ChartRepartitionDeclarations />
@@ -369,7 +370,7 @@ function SantePublications() {
                 </div>
               </GraphContent>
             </GraphItem>
-          </GraphSection>
+          </GraphNavigation>
         </Row>
       </section>
     </Container>

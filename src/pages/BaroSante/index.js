@@ -22,29 +22,39 @@ import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
 import InfoCard from '../../components/InfoCard';
 import LinkCard from '../../components/LinkCard';
+import ScrollTop from '../../components/ScrollTop';
 import TodaySection from '../../components/TodaySection';
 import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
+import { ES_API_URL } from '../../config/config';
 import logoBso from '../../images/logo-bso.png';
 import GlossaryEntries from '../../translations/glossary.json';
-import { getDateFormated } from '../../utils/helpers';
+import { getDateFormated, getFetchOptions } from '../../utils/helpers';
+import useFetch from '../../utils/Hooks/useFetch';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
-  // TODO init observationDates [2020, 2021]
-  const { updateDate, observationDates } = useGlobals();
+  const { updateDate } = useGlobals();
   const [progression, setProgression] = useState({});
+  const [obsDates, setObsDates] = useState([]);
   const { lang } = useLang();
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
+
+  // TODO refacto observation dates
+  const { fetch: fetchObsDates, response: obsDatesResp } = useFetch({
+    url: ES_API_URL,
+    method: 'post',
+    options: getFetchOptions('observationDates'),
+  });
 
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
         date: getDateFormated(updateDate, lang),
         endDate: end,
-        startDate: observationDates[observationDates.length - 1],
+        startDate: '2013',
       }}
       id='app.sante.update.date'
       defaultMessage=''
@@ -68,24 +78,37 @@ function BaroSante() {
 
   useGetPublicationRateFrom(end).then((res) => {
     if (end) {
-      updateProgression(res, end.substring(0, 4));
+      updateProgression(res, end);
     }
   });
 
   useEffect(() => {
-    if (observationDates.length > 0) {
-      setStart(observationDates[1]);
-      setEnd(observationDates[0]);
+    if (obsDatesResp && !start && !end) {
+      const { buckets } = obsDatesResp.aggregations.observation_dates;
+      const obsDatesFetched = buckets.map((el, i) => {
+        if (i === 0) {
+          setEnd(el.key);
+        }
+        if (i === 2) {
+          setStart(el.key);
+        }
+        return el.key;
+      });
+      setObsDates((prev) => [...prev, obsDatesFetched]);
     }
-  }, [observationDates]);
+  }, [end, obsDates, obsDatesResp, setObsDates, start]);
+  useEffect(() => {
+    if (!obsDates.length) {
+      fetchObsDates();
+    }
+  }, [fetchObsDates, obsDates.length]);
 
   const progressionPoints = () => {
     let progPoints = '';
     if (end && start) {
-      const cleanEnd = end.substring(0, 4);
-      const rhesus = progression[cleanEnd] >= progression[start] ? '+' : '';
-      const endNumber = progression[cleanEnd]
-        ? parseInt(progression[cleanEnd], 10)
+      const rhesus = progression[end] >= progression[start] ? '+' : '';
+      const endNumber = progression[end]
+        ? parseInt(progression[end], 10)
         : null;
       const startNumber = progression[start]
         ? parseInt(progression[start], 10)
@@ -132,10 +155,11 @@ function BaroSante() {
         chip={<Chip backgroundColor='blue-soft-125' />}
         icons={renderIcons}
       />
+      <ScrollTop />
       <Container fluid>
         <section className='content'>
           <Row>
-            <Col n='8 md-12 xl-9' className='px-20 px-md-64' offset='xl-3'>
+            <Col n='12 md-12 xl-10' className='px-20 px-md-64' offset='xl-2'>
               <section className='py-28'>
                 <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
                   <FormattedMessage id='app.sante-home.numbers' />
@@ -143,7 +167,7 @@ function BaroSante() {
                 <p className='fs-14-24 blue m-0'>{renderUpdateDate()}</p>
               </section>
             </Col>
-            <Col n='12 xl-9' offset='xl-3'>
+            <Col n='12 xl-10' offset='xl-2'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
                 link={{
@@ -199,7 +223,7 @@ function BaroSante() {
                 </Container>
               </HomeSection>
             </Col>
-            <Col n='12 xl-9' offset='xl-3'>
+            <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
                   href: '/sante/essais-cliniques',
@@ -213,7 +237,7 @@ function BaroSante() {
                 }
               />
             </Col>
-            <Col n='12 xl-9' offset='xl-3'>
+            <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
                   href: '/sante/etudes-observationelles',

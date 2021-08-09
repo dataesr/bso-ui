@@ -24,6 +24,7 @@ To create a new release, use `npm version patch|minor|major`.
 * `npm run test`
 * `npm run prepare`
 * `npm run eject`
+* `npm version patch|minor|major`
 
 ## Ajouter une nouvelle icône BSSO
 

@@ -2,7 +2,7 @@ import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
@@ -21,6 +21,13 @@ function Banner({
   selectNavigation,
   children,
 }) {
+  const [navSelected, setNavSelected] = useState(
+    selectNavigation ? selectNavigation.selected : '',
+  );
+  const [sticked, setSticked] = useState(false);
+  const { scrollTop, scrollingDown } = useScroll();
+  const history = useHistory();
+
   setCSSProperty(
     '--bannerBackgroundColor',
     getCSSProperty(`--${backgroundColor}`) || backgroundColor,
@@ -30,9 +37,6 @@ function Banner({
     getCSSProperty(`--${textColor}`) || textColor,
   );
 
-  const [sticked, setSticked] = useState(false);
-  const { scrollTop, scrollingDown } = useScroll();
-
   useEffect(() => {
     if (sticky) {
       // TODO use useRef
@@ -41,11 +45,20 @@ function Banner({
 
       if (scrollTop > banner.offsetTop + heightBanner && scrollingDown) {
         setSticked(true);
+        // For Glossaire button
+        document.querySelector('html').classList.add('banner-sticked');
       } else if (scrollTop < banner.offsetTop && !scrollingDown) {
+        // For Glossaire button
+        document.querySelector('html').classList.remove('banner-sticked');
         setSticked(false);
       }
     }
   }, [scrollTop, scrollingDown, sticky]);
+
+  const onNavigationChange = (e) => {
+    setNavSelected(e.target.value);
+    history.push(e.target.value);
+  };
 
   return (
     <section
@@ -62,7 +75,7 @@ function Banner({
         >
           <Col
             n={classNames('12', {
-              'md-8': chip && sticked,
+              'md-6': chip && sticked,
               'md-9': chip && !sticked,
             })}
           >
@@ -99,7 +112,8 @@ function Banner({
                 sticked={sticked}
                 title={selectNavigation.title}
                 options={selectNavigation.options}
-                onChange={selectNavigation.onChange}
+                selected={navSelected}
+                onChange={(e) => onNavigationChange(e)}
               />
             </Col>
           )}
@@ -123,7 +137,8 @@ function Banner({
                 sticked={sticked}
                 title={selectNavigation.title}
                 options={selectNavigation.options}
-                onChange={selectNavigation.onChange}
+                selected={navSelected}
+                onChange={(e) => onNavigationChange(e)}
               />
             </Col>
           </Row>
@@ -155,8 +170,10 @@ Banner.propTypes = {
   icons: PropTypes.element,
   chip: PropTypes.element,
   selectNavigation: PropTypes.exact({
-    onChange: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
+    selected: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+      .isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+      .isRequired,
     options: PropTypes.arrayOf(
       PropTypes.exact({
         value: PropTypes.string.isRequired,
