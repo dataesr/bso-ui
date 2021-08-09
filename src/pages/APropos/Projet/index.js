@@ -1,5 +1,6 @@
 import { Col, Row } from '@dataesr/react-dsfr';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
@@ -22,8 +23,8 @@ function Projet() {
       <Banner
         backgroundColor='blue-soft-50'
         textColor='blue-dark-125'
-        supTitle='Baromètre français de la Science ouverte'
-        title='Le projet'
+        supTitle={<FormattedMessage id='app.header.title' />}
+        title={<FormattedMessage id='app.project' />}
         icons={renderIcons}
       />
     </div>

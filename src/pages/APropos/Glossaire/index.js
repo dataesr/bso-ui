@@ -114,7 +114,7 @@ function Glossaire() {
       <Banner
         backgroundColor='green-soft-25'
         textColor='blue-dark-125'
-        supTitle={<FormattedMessage id='app.baro.science-ouverte' />}
+        supTitle={<FormattedMessage id='app.header.title' />}
         title={<FormattedMessage id='app.glossary' />}
         icons={renderIcons}
       >
