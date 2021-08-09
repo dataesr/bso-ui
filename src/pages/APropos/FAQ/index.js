@@ -63,7 +63,7 @@ function FAQ() {
     </Row>
   );
   return (
-    <div className='faq'>
+    <div className='page faq'>
       <Banner
         backgroundColor='pink-light-50'
         textColor='blue-dark-125'
@@ -72,7 +72,7 @@ function FAQ() {
         icons={renderIcons}
       />
       <Container>
-        <section>
+        <section className='content'>
           <Row>
             <Col className='fs-16-28'>
               <Accordion>{renderItems()}</Accordion>
