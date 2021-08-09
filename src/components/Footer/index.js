@@ -124,7 +124,7 @@ export default function Footer() {
         <FooterLink href='/a-propos/foire-aux-questions'>FAQ</FooterLink>
         <FooterCopy>
           <p>
-            <FormattedMessage id='app.footer.link.scanr' />
+            <FormattedMessage id='app.footer.licence' />
             {' '}
             <a
               href='https://github.com/etalab/licence-ouverte/blob/master/LO.md'
