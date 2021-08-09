@@ -3,6 +3,7 @@ import {
   FooterBody,
   FooterBodyItem,
   FooterBottom,
+  FooterCopy,
   FooterLink,
   FooterTop,
   FooterTopCategory,
@@ -11,6 +12,7 @@ import {
   Logo,
 } from '@dataesr/react-dsfr';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 export default function Footer() {
   return (
@@ -24,13 +26,13 @@ export default function Footer() {
             target='_blank'
             href='https://hal.archives-ouvertes.fr/hal-02141819v1'
           >
-            Méthodologie
+            <FormattedMessage id='app.header.nav.a-propos-methodologie' />
           </FooterLink>
           <FooterLink
             target='_blank'
             href='https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monitor-france/information/?disjunctive.oa_host_type&disjunctive.year'
           >
-            Données ouvertes
+            <FormattedMessage id='app.footer.link.open-data' />
           </FooterLink>
         </FooterTopCategory>
         <FooterTopCategory title='Voir aussi'>
@@ -38,7 +40,7 @@ export default function Footer() {
             target='_blank'
             href='https://www.ouvrirlascience.fr/open-science/'
           >
-            Ouvrir la science
+            <FormattedMessage id='app.footer.link.open-science' />
           </FooterLink>
           <FooterLink target='_blank' href='https://data.esr.gouv.fr/FR/'>
             #dataESR
@@ -47,13 +49,13 @@ export default function Footer() {
             target='_blank'
             href='https://scanr.enseignementsup-recherche.gouv.fr/'
           >
-            scanR, le moteur de la recherche et de l'innovation
+            <FormattedMessage id='app.footer.link.scanr' />
           </FooterLink>
           <FooterLink
             target='_blank'
             href='https://data.enseignementsup-recherche.gouv.fr/pages/home/'
           >
-            Plateforme Open Data
+            <FormattedMessage id='app.footer.link.platform-open-data' />
           </FooterLink>
         </FooterTopCategory>
         <FooterTopCategory title='Nos sources'>
@@ -95,9 +97,7 @@ export default function Footer() {
         </FooterTopCategory>
       </FooterTop>
       <FooterBody
-        description={
-          "Le Baromètre français de la Science Ouverte. Mesurer l'évolution de l'accès ouvert aux publications en France à partir de données fiables, ouvertes et maîtrisées"
-        }
+        description={<FormattedMessage id='app.footer.description' />}
       >
         <Logo>Ministère de l'enseignement supérieur et de la recherche</Logo>
         <FooterBodyItem>
@@ -122,6 +122,19 @@ export default function Footer() {
           Gouvernement Ouvert (PGO)
         </FooterLink>
         <FooterLink href='/a-propos/foire-aux-questions'>FAQ</FooterLink>
+        <FooterCopy>
+          <p>
+            <FormattedMessage id='app.footer.link.scanr' />
+            {' '}
+            <a
+              href='https://github.com/etalab/licence-ouverte/blob/master/LO.md'
+              target='_blank'
+              rel='noreferrer'
+            >
+              licence etalab-2.0
+            </a>
+          </p>
+        </FooterCopy>
       </FooterBottom>
     </DSFooter>
   );
