@@ -69,7 +69,7 @@ export default function DataCardSection({ lang }) {
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
-          buckets.find((countObj) => countObj.key === 'www.ncbi.nlm.nih.gov')
+          buckets.find((countObj) => countObj.key === 'HAL')
             .doc_count,
           lang,
         ),

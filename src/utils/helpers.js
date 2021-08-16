@@ -316,7 +316,7 @@ export function getFetchOptions(key, parameter) {
         by_repositories: {
           terms: {
             field: 'oa_details.2020.repositories.keyword',
-            size: 1,
+            size: 15,
           },
         },
         by_lang: {
