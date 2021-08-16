@@ -308,6 +308,11 @@ export function getFetchOptions(key, parameter) {
             field: 'amount_apc_EUR',
           },
         },
+        by_oa_colors_with_priority_to_publisher: {
+          terms: {
+            field: `oa_details.${millesime}.oa_colors_with_priority_to_publisher.keyword`,
+          },
+        },
         by_oa_colors: {
           terms: {
             field: `oa_details.${millesime}.oa_colors.keyword`,

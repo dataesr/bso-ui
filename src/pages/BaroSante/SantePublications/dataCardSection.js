@@ -57,13 +57,15 @@ export default function DataCardSection({ lang }) {
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
-          (buckets.find((countObj) => countObj.key === 'diamond').doc_count
-              / publicationsNumber)
+          ((buckets.find((countObj) => countObj.key === 'diamond').doc_count)
+            / (buckets.find((countObj) => countObj.key === 'green_only').doc_count + buckets.find((countObj) => countObj.key === 'hybrid').doc_count
+            + buckets.find((countObj) => countObj.key === 'diamond').doc_count + buckets.find((countObj) => countObj.key === 'gold').doc_count
+            ))
             * 100
         ).toFixed(1),
         get: diamondPublicationRate,
         set: (data) => setDiamonPublicationRate(data),
-        pathToValue: 'by_oa_colors.buckets',
+        pathToValue: 'by_oa_colors_with_priority_to_publisher.buckets',
         percentage: true,
         color: 'aqua',
         intlKey: 'app.sante-publi.data.publi-diamond',
@@ -139,7 +141,7 @@ export default function DataCardSection({ lang }) {
         setPublicationsNumber(aggregations.count_publications.value);
         setTotalHostedDocuments(
           formatNumberByLang(
-            aggregations.by_repositories.sum_other_doc_count,
+            aggregations.by_oa_colors.buckets.find((c) => c.key === 'green').doc_count,
             lang,
           ),
         );
