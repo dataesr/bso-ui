@@ -281,13 +281,13 @@ export function getFetchOptions(key, parameter) {
         },
       },
     },
-    publiSanteData: {
+    publiSanteData: (millesime) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             { term: { 'domains.keyword': 'health' } },
-            { exists: { field: 'oa_details.2020' } },
+            { exists: { field: `oa_details.${millesime}` } },
           ],
         },
       },
@@ -300,7 +300,7 @@ export function getFetchOptions(key, parameter) {
         },
         by_is_oa: {
           terms: {
-            field: 'oa_details.2020.is_oa',
+            field: `oa_details.${millesime}.is_oa`,
           },
         },
         sum_apc: {
@@ -310,12 +310,12 @@ export function getFetchOptions(key, parameter) {
         },
         by_oa_colors: {
           terms: {
-            field: 'oa_details.2020.oa_colors.keyword',
+            field: `oa_details.${millesime}.oa_colors.keyword`,
           },
         },
         by_repositories: {
           terms: {
-            field: 'oa_details.2020.repositories.keyword',
+            field: `oa_details.${millesime}.repositories.keyword`,
             size: 15,
           },
         },
@@ -331,7 +331,7 @@ export function getFetchOptions(key, parameter) {
           },
         },
       },
-    },
+    }),
   };
   return (parameter ? allOptions[key](parameter) : allOptions[key]) || {};
 }

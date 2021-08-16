@@ -26,7 +26,8 @@ export default function DataCardSection({ lang }) {
   const { fetch, response, isMounted } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publiSanteData'),
+    // TODO: use last observation dates dynamically
+    options: getFetchOptions('publiSanteData', '2021Q2'),
   });
 
   const dataObj = useMemo(
