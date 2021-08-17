@@ -155,17 +155,22 @@ export function getGraphOptions(graphId, intl) {
  */
 export function getFetchOptions(key, parameter) {
   const allOptions = {
-    publicationRate: (year) => ({
+    publicationRate: (millesime) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
       aggs: {
         by_publication_year: {
           terms: {
-            field: 'publication_year',
+            field: 'year',
           },
           aggs: {
             by_is_oa: {
               terms: {
-                field: `oa_details.${year}.is_oa`,
+                field: `oa_details.${millesime}.is_oa`,
               },
             },
           },

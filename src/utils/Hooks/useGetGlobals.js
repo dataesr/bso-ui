@@ -22,11 +22,6 @@ export const GlobalsContextProvider = ({ children }) => {
     // Récupération de toutes les dates d'observation
     const query = {
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         observation_dates: {
           terms: { field: 'observation_dates.keyword', size: 100 },
@@ -34,10 +29,12 @@ export const GlobalsContextProvider = ({ children }) => {
       },
     };
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    return res?.data?.aggregations?.observation_dates?.buckets
+    const allObservations = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort()
       .reverse();
+    return allObservations
+      .filter((el) => (el <= 2020) || el === allObservations[0] || el.includes('Q4'));
   }
 
   async function getUpdateDate(lastDate) {
