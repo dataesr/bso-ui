@@ -19,71 +19,39 @@ function useGetData(observationDate, agency) {
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
       let query = '';
-      if (!agency) {
-        query = {
-          size: 0,
-          query: {
-            bool: {
-              filter: [{ term: { 'domains.keyword': 'health' } }],
-            },
-          },
-          aggs: {
-            by_publication_year: {
-              terms: {
-                field: 'year',
-              },
-              aggs: {
-                by_publication_year: {
-                  terms: {
-                    field: 'year',
-                  },
-                  aggs: {
-                    by_has_grant: {
-                      terms: {
-                        field: 'has_grant',
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        };
-      } else {
-        query = {
-          size: 0,
-          query: {
-            bool: {
-              filter: [
-                { term: { 'domains.keyword': 'health' } },
-                { wildcard: { 'grants.agency.keyword': agency } },
-              ],
-            },
-          },
-          aggs: {
-            by_publication_year: {
-              terms: {
-                field: 'year',
-              },
-              aggs: {
-                by_publication_year: {
-                  terms: {
-                    field: 'year',
-                  },
-                  aggs: {
-                    by_has_grant: {
-                      terms: {
-                        field: 'has_grant',
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        };
+      const queryFilter = [{ term: { 'domains.keyword': 'health' } }];
+      if (agency) {
+        queryFilter.push({ term: { 'grants.agency.keyword': agency } });
       }
-
+      query = {
+        size: 0,
+        query: {
+          bool: {
+            filter: queryFilter,
+          },
+        },
+        aggs: {
+          by_publication_year: {
+            terms: {
+              field: 'year',
+            },
+            aggs: {
+              by_has_grant: {
+                terms: {
+                  field: 'has_grant',
+                },
+                aggs: {
+                  by_is_oa: {
+                    terms: {
+                      field: `oa_details.${lastObservationDate}.is_oa`,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      };
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 
@@ -105,16 +73,20 @@ function useGetData(observationDate, agency) {
           categories.push(el.key);
 
           all.push(el.doc_count);
-          withDeclaration.push(
-            el.by_publication_year.buckets[0].by_has_grant.buckets.find(
-              (item) => item.key === 1,
-            )?.doc_count || 0,
+          const withDeclarationElements = el.by_has_grant.buckets.find(
+            (item) => item.key === 1,
           );
-          withoutDeclaration.push(
-            el.by_publication_year.buckets[0].by_has_grant.buckets.find(
-              (item) => item.key === 0,
-            )?.doc_count || 0,
+          const withDeclarationOa = withDeclarationElements.by_is_oa.buckets.find(
+            (item) => item.key === 1,
+          )?.doc_count || 0;
+          withDeclaration.push(Math.round((100 * withDeclarationOa) / withDeclarationElements.doc_count));
+          const withoutDeclarationElements = el.by_has_grant.buckets.find(
+            (item) => item.key === 0,
           );
+          const withoutDeclarationOa = withoutDeclarationElements.by_is_oa.buckets.find(
+            (item) => item.key === 1,
+          )?.doc_count || 0;
+          withoutDeclaration.push(((100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count));
         });
 
       const dataGraph = [
