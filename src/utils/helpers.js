@@ -287,6 +287,8 @@ export function getFetchOptions(key, parameter) {
         bool: {
           filter: [
             { term: { 'domains.keyword': 'health' } },
+            // TODO : compute from millesime
+            { term: { year: 2020 } },
             { exists: { field: `oa_details.${millesime}` } },
           ],
         },

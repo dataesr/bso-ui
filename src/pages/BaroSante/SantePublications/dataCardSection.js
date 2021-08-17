@@ -34,8 +34,8 @@ export default function DataCardSection({ lang }) {
     () => ({
       openPublicationRate: {
         fetch: (buckets) => Math.round(
-          (buckets.find((countObj) => countObj.key === 1).doc_count
-              / publicationsNumber)
+          ((buckets.find((countObj) => countObj.key === 1).doc_count)
+              / (publicationsNumber))
               * 100
               * 10,
         ) / 10,
@@ -45,6 +45,8 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'pink',
         intlKey: 'app.sante-publi.data.publications',
+        // TODO : does not work, add year
+        intlValues: { publicationsNumber },
       },
       apcCostSum: {
         fetch: (sum) => `${cleanBigNumber(Math.round(sum))} €`,
@@ -58,7 +60,7 @@ export default function DataCardSection({ lang }) {
       diamondPublicationRate: {
         fetch: (buckets) => (
           ((buckets.find((countObj) => countObj.key === 'diamond').doc_count)
-            / (buckets.find((countObj) => countObj.key === 'green_only').doc_count + buckets.find((countObj) => countObj.key === 'hybrid').doc_count
+            / (buckets.find((countObj) => countObj.key === 'hybrid').doc_count
             + buckets.find((countObj) => countObj.key === 'diamond').doc_count + buckets.find((countObj) => countObj.key === 'gold').doc_count
             ))
             * 100
@@ -138,7 +140,7 @@ export default function DataCardSection({ lang }) {
     if (response) {
       const { aggregations } = response;
       if (!publicationsNumber) {
-        setPublicationsNumber(aggregations.count_publications.value);
+        setPublicationsNumber(aggregations.by_is_oa.buckets[0].doc_count + aggregations.by_is_oa.buckets[1].doc_count);
         setTotalHostedDocuments(
           formatNumberByLang(
             aggregations.by_oa_colors.buckets.find((c) => c.key === 'green').doc_count,
