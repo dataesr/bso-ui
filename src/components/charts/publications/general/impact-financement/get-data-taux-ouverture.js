@@ -48,6 +48,11 @@ function useGetData(observationDate, agency) {
                   },
                 },
               },
+              by_is_oa: {
+                terms: {
+                  field: `oa_details.${lastObservationDate}.is_oa`,
+                },
+              },
             },
           },
         },
@@ -72,7 +77,12 @@ function useGetData(observationDate, agency) {
         .forEach((el) => {
           categories.push(el.key);
 
-          all.push(el.doc_count);
+          // avec ou sans declaration
+          const Oa = el.by_is_oa.buckets.find(
+            (item) => item.key === 1,
+          )?.doc_count || 0;
+          all.push(Math.round((100 * Oa) / el.doc_count));
+          // avec declaration
           const withDeclarationElements = el.by_has_grant.buckets.find(
             (item) => item.key === 1,
           );
@@ -80,6 +90,7 @@ function useGetData(observationDate, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withDeclaration.push(Math.round((100 * withDeclarationOa) / withDeclarationElements.doc_count));
+          // sans declaration
           const withoutDeclarationElements = el.by_has_grant.buckets.find(
             (item) => item.key === 0,
           );
@@ -87,6 +98,8 @@ function useGetData(observationDate, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withoutDeclaration.push(((100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count));
+          // si une agence en particulier est sélectionnée
+          // TODO : ajouter une 4e barre
         });
 
       const dataGraph = [
@@ -151,7 +164,6 @@ function useGetData(observationDate, agency) {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationDate, agency]);
-
   return { allData, isLoading, agencies };
 }
 export default useGetData;
