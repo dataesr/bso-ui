@@ -45,8 +45,8 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'pink',
         intlKey: 'app.sante-publi.data.publications',
-        // TODO : does not work, add year
-        intlValues: { publicationsNumber },
+        // TODO : compute year from millesime
+        intlValues: { totalPublications: publicationsNumber, year: 2020 },
       },
       apcCostSum: {
         fetch: (sum) => `${cleanBigNumber(Math.round(sum))} €`,
