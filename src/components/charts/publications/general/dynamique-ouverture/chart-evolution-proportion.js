@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/helpers';
+import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -35,7 +35,9 @@ const Chart = ({ graphFooter, graphComments }) => {
 
   const optionsGraph2 = getGraphOptions(graphId, intl);
   optionsGraph2.chart.type = 'spline';
+  // TODO : translation
   optionsGraph2.xAxis = { title: { text: 'Années de publication' } };
+  optionsGraph2.yAxis = getPercentageYAxis();
   optionsGraph2.legend = { verticalAlign: 'top' };
   optionsGraph2.plotOptions = { series: { pointStart: 2013 } };
   optionsGraph2.series = dataGraph2;

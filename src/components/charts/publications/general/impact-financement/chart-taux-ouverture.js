@@ -5,7 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/helpers';
+import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
@@ -38,6 +38,7 @@ const Chart = () => {
   optionsGraph.xAxis = {
     categories,
   };
+  optionsGraph.yAxis = getPercentageYAxis();
   optionsGraph.plotOptions = {
     column: {
       dataLabels: {

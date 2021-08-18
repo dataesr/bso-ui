@@ -5,7 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/helpers';
+import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -42,29 +42,7 @@ const Chart = () => {
       enabled: false,
     },
   };
-  optionsGraph.yAxis = {
-    min: 0,
-    max: 100,
-    title: '',
-    stackLabels: {
-      enabled: true,
-      // eslint-disable-next-line
-      formatter: function () {
-      // eslint-disable-next-line
-        return (this.total) ? this.total.toFixed(1).concat(' %'):'';
-      },
-      style: {
-        fontWeight: 'bold',
-      },
-    },
-    labels: {
-      // eslint-disable-next-line
-      formatter: function () {
-        // eslint-disable-next-line
-        return this.axis.defaultLabelFormatter.call(this).concat(' %');
-      },
-    },
-  };
+  optionsGraph.yAxis = getPercentageYAxis();
   optionsGraph.legend = {
     title: {
     // TODO: translation

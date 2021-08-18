@@ -147,6 +147,32 @@ export function getGraphOptions(graphId, intl) {
   };
 }
 
+export function getPercentageYAxis() {
+  return {
+    min: 0,
+    max: 100,
+    title: '',
+    stackLabels: {
+      enabled: true,
+      // eslint-disable-next-line
+      formatter: function () {
+      // eslint-disable-next-line
+        return (this.total) ? this.total.toFixed(1).concat(' %'):'';
+      },
+      style: {
+        fontWeight: 'bold',
+      },
+    },
+    labels: {
+      // eslint-disable-next-line
+      formatter: function () {
+        // eslint-disable-next-line
+        return this.axis.defaultLabelFormatter.call(this).concat(' %');
+      },
+    },
+  };
+}
+
 /**
  *
  * @param key
