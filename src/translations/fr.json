@@ -199,7 +199,7 @@
   "app.sante-publi.general.impact-financement.chart-taux-ouverture.list-label": "Préciser une agence de financement",
   "app.sante-publi.general.impact-financement.chart-taux-ouverture.source": "Source 1.1.5-1",
   "app.sante-publi.general.impact-financement.chart-taux-ouverture.title": "Taux d'ouverture des publications en santé par déclaration de financement par projet ",
-  "app.sante-publi.general.impact-financement.chart-taux-ouverture.tooltip": "tooltip 1.1.5-1",
+  "app.sante-publi.general.impact-financement.chart-taux-ouverture.tooltip": "<b>{series.name}</b> <br> {point.y:.2f} % des publications publiées en {point.publicationDate} en accès ouvert ({point.y_abs} / {point.y_tot})",
   "app.sante-publi.general.impact-financement.description": "Description 1.1.5",
   "app.sante-publi.general.impact-financement.title": "Quel impact le financement a-t-il sur l'ouverture des publications en santé ?",
   "app.sante-publi.general.langues-ouverture.chart-repartition-publications.comments": "Comment 1.1.4",

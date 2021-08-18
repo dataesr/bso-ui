@@ -43,6 +43,11 @@ const Chart = () => {
     column: {
       dataLabels: {
         enabled: true,
+        // eslint-disable-next-line
+        formatter: function () {
+        // eslint-disable-next-line
+          return this.y.toFixed(0).concat(' %');
+        },
       },
     },
   };

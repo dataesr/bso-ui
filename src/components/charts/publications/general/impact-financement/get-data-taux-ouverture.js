@@ -81,7 +81,12 @@ function useGetData(observationDate, agency) {
           const Oa = el.by_is_oa.buckets.find(
             (item) => item.key === 1,
           )?.doc_count || 0;
-          all.push(Math.round((100 * Oa) / el.doc_count));
+          all.push({
+            y: Math.round((100 * Oa) / el.doc_count),
+            y_abs: Oa,
+            y_tot: el.doc_count,
+            publicationDate: el.key,
+          });
           // avec declaration
           const withDeclarationElements = el.by_has_grant.buckets.find(
             (item) => item.key === 1,
@@ -89,7 +94,12 @@ function useGetData(observationDate, agency) {
           const withDeclarationOa = withDeclarationElements.by_is_oa.buckets.find(
             (item) => item.key === 1,
           )?.doc_count || 0;
-          withDeclaration.push(Math.round((100 * withDeclarationOa) / withDeclarationElements.doc_count));
+          withDeclaration.push({
+            y: Math.round((100 * withDeclarationOa) / withDeclarationElements.doc_count),
+            y_abs: withDeclarationOa,
+            y_tot: withDeclarationElements.doc_count,
+            publicationDate: el.key,
+          });
           // sans declaration
           const withoutDeclarationElements = el.by_has_grant.buckets.find(
             (item) => item.key === 0,
@@ -97,7 +107,12 @@ function useGetData(observationDate, agency) {
           const withoutDeclarationOa = withoutDeclarationElements.by_is_oa.buckets.find(
             (item) => item.key === 1,
           )?.doc_count || 0;
-          withoutDeclaration.push(((100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count));
+          withoutDeclaration.push({
+            y: Math.round((100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count),
+            y_abs: withoutDeclarationOa,
+            y_tot: withoutDeclarationElements.doc_count,
+            publicationDate: el.key,
+          });
           // si une agence en particulier est sélectionnée
           // TODO : ajouter une 4e barre
         });
