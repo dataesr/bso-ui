@@ -40,11 +40,6 @@ const Chart = () => {
       text: "Type d'hébergement",
     },
   };
-  optionsGraph.tooltip = {
-    headerFormat: '<b>{point.x}</b><br/>',
-    // TODO: translation
-    pointFormat: "• Taux d'accès ouvert <br> avec hébergement {series.name} :<br> {point.y:.2f} % ({point.y_abs} / {point.y_tot}) <br/> • Taux d'accès ouvert total :<br> {point.stackTotal:.2f} %",
-  };
   optionsGraph.plotOptions = {
     column: {
       stacking: 'normal',

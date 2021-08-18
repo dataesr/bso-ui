@@ -77,10 +77,10 @@ function useGetData(observationDate) {
           )?.doc_count || 0;
           const totalCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent + closedCurrent;
           const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
-          oa.push({ y: (100 * oaCurrent) / totalCurrent, y_abs: oaCurrent, y_tot: totalCurrent });
-          repository.push({ y: (100 * repositoryCurrent) / totalCurrent, y_abs: repositoryCurrent, y_tot: totalCurrent });
-          publisher.push({ y: (100 * publisherCurrent) / totalCurrent, y_abs: publisherCurrent, y_tot: totalCurrent });
-          publisherRepository.push({ y: (100 * publisherRepositoryCurrent) / totalCurrent, y_abs: publisherRepositoryCurrent, y_tot: totalCurrent });
+          oa.push({ y: (100 * oaCurrent) / totalCurrent, y_abs: oaCurrent, y_tot: totalCurrent, x: el.key });
+          repository.push({ y: (100 * repositoryCurrent) / totalCurrent, y_abs: repositoryCurrent, y_tot: totalCurrent, x: el.key });
+          publisher.push({ y: (100 * publisherCurrent) / totalCurrent, y_abs: publisherCurrent, y_tot: totalCurrent, x: el.key });
+          publisherRepository.push({ y: (100 * publisherRepositoryCurrent) / totalCurrent, y_abs: publisherRepositoryCurrent, y_tot: totalCurrent, x: el.key });
         });
 
       const dataGraph = [
