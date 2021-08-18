@@ -53,6 +53,7 @@ function useGetData(observationDate) {
       const publisher = []; // éditeur
       const publisherRepository = []; // les 2
       const oa = []; // oa
+      const closed = []; // closed
 
       data
         .filter(
@@ -77,6 +78,7 @@ function useGetData(observationDate) {
           )?.doc_count || 0;
           const totalCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent + closedCurrent;
           const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
+          closed.push({ y: (100 * closedCurrent) / totalCurrent, y_abs: closedCurrent, y_tot: totalCurrent, x: el.key });
           oa.push({ y: (100 * oaCurrent) / totalCurrent, y_abs: oaCurrent, y_tot: totalCurrent, x: el.key });
           repository.push({ y: (100 * repositoryCurrent) / totalCurrent, y_abs: repositoryCurrent, y_tot: totalCurrent, x: el.key });
           publisher.push({ y: (100 * publisherCurrent) / totalCurrent, y_abs: publisherCurrent, y_tot: totalCurrent, x: el.key });
@@ -106,32 +108,32 @@ function useGetData(observationDate) {
       const dataGraph3 = [
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          value: data[data.length - 1].by_oa_host_type.buckets.find(
-            (item) => item.key === 'publisher',
-          ).doc_count,
+          value: publisher[publisher.length - 1].y_abs,
+          percentage: publisher[publisher.length - 1].y,
+          publicationDate: categories[categories.length - 1],
           color: editeurplateforme100,
         },
         {
           name: intl.formatMessage({
             id: 'app.type-hebergement.publisher-repository',
           }),
-          value: data[data.length - 1].by_oa_host_type.buckets.find(
-            (item) => item.key === 'publisher;repository',
-          ).doc_count,
+          value: publisherRepository[publisherRepository.length - 1].y_abs,
+          percentage: publisherRepository[publisherRepository.length - 1].y,
+          publicationDate: categories[categories.length - 1],
           color: editeurarchive,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
-          value: data[data.length - 1].by_oa_host_type.buckets.find(
-            (item) => item.key === 'repository',
-          ).doc_count,
+          value: repository[repository.length - 1].y_abs,
+          percentage: repository[repository.length - 1].y,
+          publicationDate: categories[categories.length - 1],
           color: archiveouverte100,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          value: data[data.length - 1].by_oa_host_type.buckets.find(
-            (item) => item.key === 'closed',
-          ).doc_count,
+          value: closed[closed.length - 1].y_abs,
+          percentage: closed[closed.length - 1].y,
+          publicationDate: categories[categories.length - 1],
           color: accesferme,
         },
       ];

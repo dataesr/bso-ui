@@ -18,6 +18,8 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
+    // TODO: compute from lastObservationDate
+    const publicationDate = 2020;
     let query = '';
     if (!isOa) {
       // TODO move options to helpers
@@ -25,7 +27,10 @@ function useGetData(observationDate, isOa) {
         size: 0,
         query: {
           bool: {
-            filter: [{ term: { 'domains.keyword': 'health' } }],
+            filter: [
+              { term: { 'domains.keyword': 'health' } },
+              { term: { year: publicationDate } },
+            ],
           },
         },
         aggs: {
@@ -48,6 +53,14 @@ function useGetData(observationDate, isOa) {
       // TODO move options to helpers
       query = {
         size: 0,
+        query: {
+          bool: {
+            filter: [
+              { term: { 'domains.keyword': 'health' } },
+              { term: { year: publicationDate } },
+            ],
+          },
+        },
         aggs: {
           by_is_oa: {
             terms: {
@@ -70,6 +83,7 @@ function useGetData(observationDate, isOa) {
     const data = res.data.aggregations.by_is_oa.buckets;
 
     let dataGraph = [];
+    const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
     if (!isOa) {
       dataGraph = [
         {
@@ -90,9 +104,13 @@ function useGetData(observationDate, isOa) {
         .by_publication_genre.buckets.forEach((el) => {
           dataGraph.push({
             name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
             key: el.key,
             parent: 'closed',
             value: el.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
 
@@ -102,9 +120,13 @@ function useGetData(observationDate, isOa) {
         .by_publication_genre.buckets.forEach((el) => {
           dataGraph.push({
             name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
             key: el.key,
             parent: 'opened',
             value: el.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
     } else {
@@ -122,6 +144,7 @@ function useGetData(observationDate, isOa) {
         dataGraph.push({
           id: el.key,
           name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+          oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
           color,
         });
         el.by_publication_genre.buckets.forEach((item) => {
@@ -129,14 +152,17 @@ function useGetData(observationDate, isOa) {
             name: intl.formatMessage({
               id: `app.type-hebergement.${item.key}`,
             }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
             key: item.key,
             parent: el.key,
             value: item.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
       });
     }
-
     return { dataGraph };
   }
 
