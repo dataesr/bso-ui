@@ -52,6 +52,7 @@ function useGetData(observationDate) {
       const repository = []; // archive ouverte
       const publisher = []; // éditeur
       const publisherRepository = []; // les 2
+      const oa = []; // oa
 
       data
         .filter(
@@ -62,20 +63,24 @@ function useGetData(observationDate) {
         .forEach((el) => {
           categories.push(el.key);
 
-          let temp = el.by_oa_host_type.buckets.find(
+          const closedCurrent = el.by_oa_host_type.buckets.find(
+            (item) => item.key === 'closed',
+          )?.doc_count || 0;
+          const repositoryCurrent = el.by_oa_host_type.buckets.find(
             (item) => item.key === 'repository',
-          );
-          repository.push(temp?.doc_count || 0);
-
-          temp = el.by_oa_host_type.buckets.find(
+          )?.doc_count || 0;
+          const publisherCurrent = el.by_oa_host_type.buckets.find(
             (item) => item.key === 'publisher',
-          );
-          publisher.push(temp?.doc_count || 0);
-
-          temp = el.by_oa_host_type.buckets.find(
+          )?.doc_count || 0;
+          const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
             (item) => item.key === 'publisher;repository',
-          );
-          publisherRepository.push(temp?.doc_count || 0);
+          )?.doc_count || 0;
+          const totalCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent + closedCurrent;
+          const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
+          oa.push({ y: (100 * oaCurrent) / totalCurrent, y_abs: oaCurrent, y_tot: totalCurrent });
+          repository.push({ y: (100 * repositoryCurrent) / totalCurrent, y_abs: repositoryCurrent, y_tot: totalCurrent });
+          publisher.push({ y: (100 * publisherCurrent) / totalCurrent, y_abs: publisherCurrent, y_tot: totalCurrent });
+          publisherRepository.push({ y: (100 * publisherRepositoryCurrent) / totalCurrent, y_abs: publisherRepositoryCurrent, y_tot: totalCurrent });
         });
 
       const dataGraph = [

@@ -42,6 +42,40 @@ const Chart = () => {
       enabled: false,
     },
   };
+  optionsGraph.yAxis = {
+    min: 0,
+    max: 100,
+    title: '',
+    stackLabels: {
+      enabled: true,
+      // eslint-disable-next-line
+      formatter: function () {
+      // eslint-disable-next-line
+        return (this.total) ? this.total.toFixed(1).concat(' %'):'';
+      },
+      style: {
+        fontWeight: 'bold',
+      },
+    },
+    labels: {
+      // eslint-disable-next-line
+      formatter: function () {
+        // eslint-disable-next-line
+        return this.axis.defaultLabelFormatter.call(this).concat(' %');
+      },
+    },
+  };
+  optionsGraph.legend = {
+    title: {
+    // TODO: translation
+      text: "Type d'hébergement",
+    },
+  };
+  optionsGraph.tooltip = {
+    headerFormat: '<b>{point.x}</b><br/>',
+    // TODO: translation
+    pointFormat: "• Taux d'accès ouvert <br> avec hébergement {series.name} :<br> {point.y:.2f} % ({point.y_abs} / {point.y_tot}) <br/> • Taux d'accès ouvert total :<br> {point.stackTotal:.2f} %",
+  };
   optionsGraph.plotOptions = {
     area: {
       stacking: 'normal',
