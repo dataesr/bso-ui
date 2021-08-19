@@ -22,7 +22,7 @@ export function setCSSProperty(property, value) {
  * @param lang
  * @returns {string}
  */
-export function getDateFormated(date, lang) {
+export function getFormattedDate(date, lang) {
   const dateFormat = { fr: 'fr-fr', en: 'en-en' };
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
   return new Date(date).toLocaleDateString(dateFormat[lang], options);
@@ -146,6 +146,16 @@ export function getGraphOptions(graphId, intl) {
       filename: intl.formatMessage({ id: `${graphId}.title` }),
     },
   };
+}
+
+/**
+ *
+ * @param keys
+ */
+export function clearLocalStorage(keys) {
+  for (let i = 0; i < keys.length; i += 1) {
+    localStorage.removeItem(keys[i]);
+  }
 }
 
 /**

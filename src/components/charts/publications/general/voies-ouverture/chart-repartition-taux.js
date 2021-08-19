@@ -5,8 +5,12 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/helpers';
+import {
+  getFormattedDate,
+  getGraphOptions,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
@@ -19,6 +23,7 @@ HCExportingData(Highcharts);
 const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
+  const { lang } = useLang();
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-taux';
   const { observationDates, updateDate } = useGlobals();
   const { allData, isLoading } = useGetData(
@@ -69,7 +74,7 @@ const Chart = () => {
         />
       </div>
       <GraphFooter
-        date={updateDate}
+        date={getFormattedDate(updateDate, lang)}
         source={intl.formatMessage({ id: `${graphId}.source` })}
         graphId={graphId}
         onPngButtonClick={exportChartPng}

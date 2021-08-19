@@ -27,7 +27,7 @@ import TodaySection from '../../components/TodaySection';
 import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
 import logoBso from '../../images/logo-bso.png';
 import GlossaryEntries from '../../translations/glossary.json';
-import { getDateFormated } from '../../utils/helpers';
+import { getFormattedDate } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
@@ -50,7 +50,7 @@ function BaroSante() {
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
-        date: getDateFormated(updateDate, lang),
+        date: getFormattedDate(updateDate, lang),
         endDate: end,
         startDate: '2013',
       }}
