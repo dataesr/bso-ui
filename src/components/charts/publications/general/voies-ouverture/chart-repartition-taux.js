@@ -25,10 +25,8 @@ const Chart = () => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-taux';
-  const { observationDates, updateDate } = useGlobals();
-  const { allData, isLoading } = useGetData(
-    observationDates ? observationDates[0] : null,
-  );
+  const { lastObservationYear, updateDate } = useGlobals();
+  const { allData, isLoading } = useGetData(lastObservationYear);
   const { dataGraph, categories } = allData;
 
   if (isLoading || !dataGraph || !categories) {

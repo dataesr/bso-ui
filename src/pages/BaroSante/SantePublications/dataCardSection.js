@@ -10,8 +10,10 @@ import {
   formatNumberByLang,
   getFetchOptions,
   getValueByPath,
+  getYear,
 } from '../../../utils/helpers';
 import useFetch from '../../../utils/Hooks/useFetch';
+import useGlobals from '../../../utils/Hooks/useGetGlobals';
 
 export default function DataCardSection({ lang }) {
   const intl = useIntl();
@@ -23,11 +25,11 @@ export default function DataCardSection({ lang }) {
   const [hostedDocuments, setHostedDocuments] = useState(null);
   const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
   const [apcCostSum, setApcCostSum] = useState(null);
+  const { lastObservationYear } = useGlobals();
   const { fetch, response, isMounted } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    // TODO: use last observation dates dynamically
-    options: getFetchOptions('publiSanteData', '2021Q2'),
+    options: getFetchOptions('publiSanteData', lastObservationYear),
   });
 
   const dataObj = useMemo(
@@ -45,10 +47,9 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'pink',
         intlKey: 'app.sante-publi.data.publications',
-        // TODO : compute year from millesime
         intlValues: {
           totalPublications: formatNumberByLang(publicationsNumber, lang),
-          year: 2020,
+          year: getYear(lastObservationYear),
         },
       },
       apcCostSum: {

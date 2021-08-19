@@ -27,9 +27,9 @@ const Chart = () => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.impact-financement.chart-repartition-financements';
-  const { observationDates, updateDate } = useGlobals();
+  const { lastObservationYear, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    observationDates[0] || 2020,
+    lastObservationYear || '2020',
   );
   const { dataGraph } = allData;
 

@@ -27,6 +27,10 @@ export const GlobalsContextProvider = ({ children }) => {
   const [observationDates, setObservationDates] = useState(
     JSON.parse(storedObservationDates),
   );
+  const storedLastObservationDate = localStorage.getItem('__lastObservationYear__') || '';
+  const [lastObservationYear, setlastObservationYear] = useState(
+    storedLastObservationDate,
+  );
 
   const storedUpdateDate = localStorage.getItem('__updateDate__');
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
@@ -74,12 +78,15 @@ export const GlobalsContextProvider = ({ children }) => {
   useEffect(() => {
     async function getData() {
       const responseObsDates = await getObservationDates();
-      if (responseObsDates) {
+      if (responseObsDates && responseObsDates.length > 0) {
         setObservationDates(responseObsDates);
         localStorage.setItem(
           '__observationDates__',
           JSON.stringify(responseObsDates),
         );
+
+        setlastObservationYear(responseObsDates[0]);
+        localStorage.setItem('__lastObservationYear__', responseObsDates[0]);
 
         const responseUpdateDate = await getUpdateDate(responseObsDates[0]);
         setUpdateDate(responseUpdateDate);
@@ -94,7 +101,9 @@ export const GlobalsContextProvider = ({ children }) => {
   }, [lang, observationDates]);
 
   return (
-    <GlobalsContext.Provider value={{ observationDates, updateDate }}>
+    <GlobalsContext.Provider
+      value={{ observationDates, updateDate, lastObservationYear }}
+    >
       {children}
     </GlobalsContext.Provider>
   );

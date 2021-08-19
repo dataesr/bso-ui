@@ -160,11 +160,19 @@ export function clearLocalStorage(keys) {
 
 /**
  *
- * @param millesim
- * @returns {number}
+ * @param vintage
+ * @returns {string}
  */
-export function getYear(millesim) {
-  return millesim - 1;
+export function getYear(vintage) {
+  let year = '';
+
+  if (vintage.length > 4) {
+    year = parseFloat(vintage.substring(0, 4)) - 1;
+  } else {
+    year = vintage - 1;
+  }
+
+  return year.toString();
 }
 
 /**
@@ -307,8 +315,7 @@ export function getFetchOptions(key, parameter) {
         bool: {
           filter: [
             { term: { 'domains.keyword': 'health' } },
-            // TODO : compute from millesime
-            { term: { year: 2020 } },
+            { term: { year: getYear(millesime) } },
             { exists: { field: `oa_details.${millesime}` } },
           ],
         },

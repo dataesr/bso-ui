@@ -27,9 +27,9 @@ const Chart = () => {
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.impact-financement.chart-taux-ouverture';
   const [agency, setAgency] = useState();
-  const { observationDates, updateDate } = useGlobals();
+  const { lastObservationYear, updateDate } = useGlobals();
   const { allData, isLoading, agencies } = useGetData(
-    observationDates ? observationDates[0] : null,
+    lastObservationYear,
     agency,
   );
   const { dataGraph, categories } = allData;

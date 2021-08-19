@@ -26,10 +26,9 @@ const Chart = () => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-evolution-taux';
-  const { observationDates, updateDate } = useGlobals();
-  // TODO millesime fn
+  const { updateDate, lastObservationYear } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    observationDates ? observationDates[0] : today.getFullYear() - 1,
+    lastObservationYear || today.getFullYear() - 1,
   );
   const { dataGraph, categories } = allData;
 
