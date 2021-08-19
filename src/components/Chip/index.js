@@ -8,6 +8,7 @@ import useLang from '../../utils/Hooks/useLang';
 
 export default function Chip() {
   const { lang } = useLang();
+  const today = new Date();
   const { updateDate, observationDates } = useGlobals();
 
   return (
@@ -17,7 +18,7 @@ export default function Chip() {
           <FormattedMessage
             values={{
               date: getDateFormated(updateDate, lang),
-              endDate: observationDates[0].slice(0, 4) - 1,
+              endDate: '2021',
               startDate: 2013,
             }}
             id='app.sante.update.date'

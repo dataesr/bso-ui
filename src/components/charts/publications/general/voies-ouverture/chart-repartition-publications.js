@@ -24,7 +24,7 @@ const Chart = () => {
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-publications';
   const { observationDates, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    observationDates[0] || 2020,
+    observationDates ? observationDates[0] : '2020',
   );
   const { dataGraph3 } = allData;
 

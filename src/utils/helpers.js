@@ -83,6 +83,7 @@ export function formatNumberByLang(num, lang, options = {}) {
     num,
   );
 }
+
 /**
  *
  * @param graphId
@@ -145,6 +146,15 @@ export function getGraphOptions(graphId, intl) {
       filename: intl.formatMessage({ id: `${graphId}.title` }),
     },
   };
+}
+
+/**
+ *
+ * @param millesim
+ * @returns {number}
+ */
+export function getYear(millesim) {
+  return millesim - 1;
 }
 
 /**

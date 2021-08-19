@@ -7,11 +7,9 @@ import { ES_API_URL, HEADERS } from '../../config/config';
 export const GlobalsContext = createContext();
 
 export const GlobalsContextProvider = ({ children }) => {
-  const storedObservationDates = localStorage.getItem(
-    '__observationDates__',
-  ) || ['2021'];
+  const storedObservationDates = localStorage.getItem('__observationDates__');
   const [observationDates, setObservationDates] = useState(
-    storedObservationDates,
+    JSON.parse(storedObservationDates),
   );
 
   const storedUpdateDate = localStorage.getItem('__updateDate__') || null;
@@ -60,11 +58,18 @@ export const GlobalsContextProvider = ({ children }) => {
   useEffect(() => {
     async function getData() {
       const obDates = await getObservationDates();
-      setObservationDates(obDates);
+      if (obDates) {
+        const today = new Date();
+        today.getFullYear();
+        setObservationDates(obDates);
+        localStorage.setItem('__observationDates__', JSON.stringify(obDates));
+      }
       setUpdateDate(await getUpdateDate(obDates[0]));
     }
-    getData();
-  }, []);
+    if (!observationDates) {
+      getData();
+    }
+  }, [observationDates]);
 
   return (
     <GlobalsContext.Provider value={{ observationDates, updateDate }}>

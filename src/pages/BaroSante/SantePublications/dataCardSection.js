@@ -34,8 +34,8 @@ export default function DataCardSection({ lang }) {
     () => ({
       openPublicationRate: {
         fetch: (buckets) => Math.round(
-          ((buckets.find((countObj) => countObj.key === 1).doc_count)
-              / (publicationsNumber))
+          (buckets.find((countObj) => countObj.key === 1).doc_count
+              / publicationsNumber)
               * 100
               * 10,
         ) / 10,
@@ -46,7 +46,10 @@ export default function DataCardSection({ lang }) {
         color: 'pink',
         intlKey: 'app.sante-publi.data.publications',
         // TODO : compute year from millesime
-        intlValues: { totalPublications: publicationsNumber, year: 2020 },
+        intlValues: {
+          totalPublications: formatNumberByLang(publicationsNumber, lang),
+          year: 2020,
+        },
       },
       apcCostSum: {
         fetch: (sum) => `${cleanBigNumber(Math.round(sum))} €`,
@@ -59,10 +62,12 @@ export default function DataCardSection({ lang }) {
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
-          ((buckets.find((countObj) => countObj.key === 'diamond').doc_count)
-            / (buckets.find((countObj) => countObj.key === 'hybrid').doc_count
-            + buckets.find((countObj) => countObj.key === 'diamond').doc_count + buckets.find((countObj) => countObj.key === 'gold').doc_count
-            ))
+          (buckets.find((countObj) => countObj.key === 'diamond').doc_count
+              / (buckets.find((countObj) => countObj.key === 'hybrid').doc_count
+                + buckets.find((countObj) => countObj.key === 'diamond')
+                  .doc_count
+                + buckets.find((countObj) => countObj.key === 'gold')
+                  .doc_count))
             * 100
         ).toFixed(1),
         get: diamondPublicationRate,
@@ -74,8 +79,7 @@ export default function DataCardSection({ lang }) {
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
-          buckets.find((countObj) => countObj.key === 'HAL')
-            .doc_count,
+          buckets.find((countObj) => countObj.key === 'HAL').doc_count,
           lang,
         ),
         get: hostedDocuments,
@@ -140,10 +144,14 @@ export default function DataCardSection({ lang }) {
     if (response) {
       const { aggregations } = response;
       if (!publicationsNumber) {
-        setPublicationsNumber(aggregations.by_is_oa.buckets[0].doc_count + aggregations.by_is_oa.buckets[1].doc_count);
+        setPublicationsNumber(
+          aggregations.by_is_oa.buckets[0].doc_count
+            + aggregations.by_is_oa.buckets[1].doc_count,
+        );
         setTotalHostedDocuments(
           formatNumberByLang(
-            aggregations.by_oa_colors.buckets.find((c) => c.key === 'green').doc_count,
+            aggregations.by_oa_colors.buckets.find((c) => c.key === 'green')
+              .doc_count,
             lang,
           ),
         );
