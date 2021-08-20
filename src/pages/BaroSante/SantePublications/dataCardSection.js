@@ -77,6 +77,7 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'aqua',
         intlKey: 'app.sante-publi.data.publi-diamond',
+        intlValues: { year: getYear(lastObservationYear) },
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -103,6 +104,7 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'blue',
         intlKey: 'app.sante-publi.data.french-lang',
+        intlValues: { year: getYear(lastObservationYear) },
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
@@ -121,6 +123,7 @@ export default function DataCardSection({ lang }) {
       frenchPublicationsRate,
       hostedDocuments,
       lang,
+      lastObservationYear,
       openPublicationRate,
       publicationsNumber,
       totalHostedDocuments,
