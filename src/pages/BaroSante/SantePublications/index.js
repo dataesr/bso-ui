@@ -48,12 +48,15 @@ function SantePublications() {
   const { observationDates } = useGlobals();
   const intl = useIntl();
 
-  useGetPublicationRateFrom(observationDates[1] || '2021Q1').then((resp) => {
+  useGetPublicationRateFrom(
+    observationDates ? observationDates[1] : '2021Q1',
+  ).then((resp) => {
     const { rate: rateByYear } = resp;
     if (!rate) {
       setRate(rateByYear);
     }
   });
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>

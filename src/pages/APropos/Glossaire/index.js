@@ -110,7 +110,7 @@ function Glossaire() {
   );
 
   return (
-    <section className='bso-glossaire'>
+    <section className='page bso-glossaire'>
       <Banner
         backgroundColor='green-soft-25'
         textColor='blue-dark-125'
@@ -161,7 +161,7 @@ function Glossaire() {
         </section>
       </Banner>
       <Container>
-        <Row>
+        <Row className='content'>
           <Col>
             <Accordion>{renderItems()}</Accordion>
           </Col>

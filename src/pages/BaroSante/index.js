@@ -25,34 +25,32 @@ import LinkCard from '../../components/LinkCard';
 import ScrollTop from '../../components/ScrollTop';
 import TodaySection from '../../components/TodaySection';
 import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
-import { ES_API_URL } from '../../config/config';
 import logoBso from '../../images/logo-bso.png';
 import GlossaryEntries from '../../translations/glossary.json';
-import { getDateFormated, getFetchOptions } from '../../utils/helpers';
-import useFetch from '../../utils/Hooks/useFetch';
+import { getFormattedDate } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
 
+const endProgression = 0;
+const startProgression = 2;
+
 function BaroSante() {
   const { updateDate } = useGlobals();
   const [progression, setProgression] = useState({});
-  const [obsDates, setObsDates] = useState([]);
+  const { observationDates } = useGlobals();
   const { lang } = useLang();
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
-
-  // TODO refacto observation dates
-  const { fetch: fetchObsDates, response: obsDatesResp } = useFetch({
-    url: ES_API_URL,
-    method: 'post',
-    options: getFetchOptions('observationDates'),
-  });
+  const [start, setStart] = useState(
+    observationDates ? observationDates[startProgression] : '',
+  );
+  const [end, setEnd] = useState(
+    observationDates ? observationDates[endProgression] : '',
+  );
 
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
-        date: getDateFormated(updateDate, lang),
+        date: getFormattedDate(updateDate, lang),
         endDate: end,
         startDate: '2013',
       }}
@@ -83,25 +81,11 @@ function BaroSante() {
   });
 
   useEffect(() => {
-    if (obsDatesResp && !start && !end) {
-      const { buckets } = obsDatesResp.aggregations.observation_dates;
-      const obsDatesFetched = buckets.map((el, i) => {
-        if (i === 0) {
-          setEnd(el.key);
-        }
-        if (i === 2) {
-          setStart(el.key);
-        }
-        return el.key;
-      });
-      setObsDates((prev) => [...prev, obsDatesFetched]);
+    if (observationDates && !start && !end) {
+      setStart(observationDates[endProgression]);
+      setEnd(observationDates[startProgression]);
     }
-  }, [end, obsDates, obsDatesResp, setObsDates, start]);
-  useEffect(() => {
-    if (!obsDates.length) {
-      fetchObsDates();
-    }
-  }, [fetchObsDates, obsDates.length]);
+  }, [end, observationDates, start]);
 
   const progressionPoints = () => {
     let progPoints = '';
@@ -202,7 +186,7 @@ function BaroSante() {
                           />
                         )}
                         data1={progressionPoints()}
-                        data2='pts'
+                        data2={progressionPoints() > 1 ? 'pts' : 'pt'}
                         title={(
                           <FormattedMessage
                             values={{

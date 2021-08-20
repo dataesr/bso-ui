@@ -22,7 +22,7 @@ export function setCSSProperty(property, value) {
  * @param lang
  * @returns {string}
  */
-export function getDateFormated(date, lang) {
+export function getFormattedDate(date, lang) {
   const dateFormat = { fr: 'fr-fr', en: 'en-en' };
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
   return new Date(date).toLocaleDateString(dateFormat[lang], options);
@@ -83,6 +83,7 @@ export function formatNumberByLang(num, lang, options = {}) {
     num,
   );
 }
+
 /**
  *
  * @param graphId
@@ -145,6 +146,33 @@ export function getGraphOptions(graphId, intl) {
       filename: intl.formatMessage({ id: `${graphId}.title` }),
     },
   };
+}
+
+/**
+ *
+ * @param keys
+ */
+export function clearLocalStorage(keys) {
+  for (let i = 0; i < keys.length; i += 1) {
+    localStorage.removeItem(keys[i]);
+  }
+}
+
+/**
+ *
+ * @param vintage
+ * @returns {string}
+ */
+export function getYear(vintage) {
+  let year = '';
+
+  if (vintage.length > 4) {
+    year = parseFloat(vintage.substring(0, 4)) - 1;
+  } else {
+    year = vintage - 1;
+  }
+
+  return year.toString();
 }
 
 /**
@@ -287,6 +315,7 @@ export function getFetchOptions(key, parameter) {
         bool: {
           filter: [
             { term: { 'domains.keyword': 'health' } },
+            { term: { year: getYear(millesime) } },
             { exists: { field: `oa_details.${millesime}` } },
           ],
         },
