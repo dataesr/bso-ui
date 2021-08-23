@@ -453,7 +453,7 @@ export function getFetchOptions(key, ...parameters) {
         },
       },
     }),
-    allAgencies: () => ({
+    allAgencies: {
       size: 0,
       query: {
         bool: {
@@ -468,7 +468,7 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    }),
+    },
     openingType: (publicationDate, lastObservationDate, field) => ({
       size: 0,
       query: {
@@ -496,5 +496,7 @@ export function getFetchOptions(key, ...parameters) {
       },
     }),
   };
-  return (parameters ? allOptions[key](parameters) : allOptions[key]) || {};
+  return (
+    (parameters.length ? allOptions[key](parameters) : allOptions[key]) || {}
+  );
 }
