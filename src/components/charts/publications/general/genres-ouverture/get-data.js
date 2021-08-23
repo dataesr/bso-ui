@@ -18,8 +18,7 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
-    // TODO: compute from lastObservationDate
-    const publicationDate = 2020;
+    const publicationDate = Number(lastObservationDate.slice(0, 4));
     let query = '';
     if (!isOa) {
       // TODO move options to helpers

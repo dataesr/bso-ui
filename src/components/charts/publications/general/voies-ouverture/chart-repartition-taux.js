@@ -5,7 +5,10 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
+import {
+  getGraphOptions,
+  getPercentageYAxis,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -36,8 +39,7 @@ const Chart = () => {
   optionsGraph.yAxis = getPercentageYAxis();
   optionsGraph.legend = {
     title: {
-    // TODO: translation
-      text: "Type d'hébergement",
+      text: intl.formatMessage({ id: `${graphId}.legend` }),
     },
   };
   optionsGraph.plotOptions = {
@@ -47,7 +49,7 @@ const Chart = () => {
         enabled: true,
         // eslint-disable-next-line
         formatter: function () {
-        // eslint-disable-next-line
+          // eslint-disable-next-line
           return this.y.toFixed(1).concat(' %');
         },
       },
