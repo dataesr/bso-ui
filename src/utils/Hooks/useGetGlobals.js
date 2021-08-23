@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../config/config';
+import { getFetchOptions } from '../helpers';
 
 export const GlobalsContext = createContext();
 
@@ -18,23 +19,15 @@ export const GlobalsContextProvider = ({ children }) => {
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
   async function getObservationDates() {
-    // TODO move options to helpers
-    // Récupération de toutes les dates d'observation
-    const query = {
-      size: 0,
-      aggs: {
-        observation_dates: {
-          terms: { field: 'observation_dates.keyword', size: 100 },
-        },
-      },
-    };
+    const query = getFetchOptions('observationDates');
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const allObservations = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort()
       .reverse();
-    return allObservations
-      .filter((el) => (el <= 2020) || el === allObservations[0] || el.includes('Q4'));
+    return allObservations.filter(
+      (el) => el <= 2020 || el === allObservations[0] || el.includes('Q4'),
+    );
   }
 
   async function getUpdateDate(lastDate) {

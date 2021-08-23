@@ -10,6 +10,7 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDate) {
   const intl = useIntl();
@@ -18,34 +19,11 @@ function useGetData(observationDate) {
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
-      // TODO move options to helpers
-      const query = {
-        size: 0,
-        query: {
-          bool: {
-            filter: [{ term: { 'domains.keyword': 'health' } }],
-          },
-        },
-        aggs: {
-          by_publication_year: {
-            terms: {
-              field: 'year',
-            },
-            aggs: {
-              by_oa_host_type: {
-                terms: {
-                  field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
-                },
-              },
-            },
-          },
-        },
-      };
-
+      const query = getFetchOptions('oaHostType', lastObservationDate);
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 
-      // Tri pour avoir les années dans l'ordre d'affichage du graph
+      // Tri pour avoir les années dans l'ordre d'affichage du graphe
       data.sort((a, b) => a.key - b.key);
 
       const categories = []; // Elements d'abscisse
@@ -64,25 +42,50 @@ function useGetData(observationDate) {
         .forEach((el) => {
           categories.push(el.key);
 
-          const closedCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'closed',
-          )?.doc_count || 0;
-          const repositoryCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'repository',
-          )?.doc_count || 0;
-          const publisherCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'publisher',
-          )?.doc_count || 0;
+          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+            ?.doc_count || 0;
+          const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
+            ?.doc_count || 0;
+          const publisherCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
+            ?.doc_count || 0;
           const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
             (item) => item.key === 'publisher;repository',
           )?.doc_count || 0;
-          const totalCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent + closedCurrent;
+          const totalCurrent = repositoryCurrent
+            + publisherCurrent
+            + publisherRepositoryCurrent
+            + closedCurrent;
           const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
-          closed.push({ y: (100 * closedCurrent) / totalCurrent, y_abs: closedCurrent, y_tot: totalCurrent, x: el.key });
-          oa.push({ y: (100 * oaCurrent) / totalCurrent, y_abs: oaCurrent, y_tot: totalCurrent, x: el.key });
-          repository.push({ y: (100 * repositoryCurrent) / totalCurrent, y_abs: repositoryCurrent, y_tot: totalCurrent, x: el.key });
-          publisher.push({ y: (100 * publisherCurrent) / totalCurrent, y_abs: publisherCurrent, y_tot: totalCurrent, x: el.key });
-          publisherRepository.push({ y: (100 * publisherRepositoryCurrent) / totalCurrent, y_abs: publisherRepositoryCurrent, y_tot: totalCurrent, x: el.key });
+          closed.push({
+            y: (100 * closedCurrent) / totalCurrent,
+            y_abs: closedCurrent,
+            y_tot: totalCurrent,
+            x: el.key,
+          });
+          oa.push({
+            y: (100 * oaCurrent) / totalCurrent,
+            y_abs: oaCurrent,
+            y_tot: totalCurrent,
+            x: el.key,
+          });
+          repository.push({
+            y: (100 * repositoryCurrent) / totalCurrent,
+            y_abs: repositoryCurrent,
+            y_tot: totalCurrent,
+            x: el.key,
+          });
+          publisher.push({
+            y: (100 * publisherCurrent) / totalCurrent,
+            y_abs: publisherCurrent,
+            y_tot: totalCurrent,
+            x: el.key,
+          });
+          publisherRepository.push({
+            y: (100 * publisherRepositoryCurrent) / totalCurrent,
+            y_abs: publisherRepositoryCurrent,
+            y_tot: totalCurrent,
+            x: el.key,
+          });
         });
 
       const dataGraph = [

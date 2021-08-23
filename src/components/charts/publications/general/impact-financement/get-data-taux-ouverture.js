@@ -9,6 +9,7 @@ import {
   discipline150,
   nonconnu,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDate, agency) {
   const intl = useIntl();
@@ -18,49 +19,19 @@ function useGetData(observationDate, agency) {
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
-      let query = '';
       const queryFilter = [{ term: { 'domains.keyword': 'health' } }];
       if (agency) {
         queryFilter.push({ term: { 'grants.agency.keyword': agency } });
       }
-      query = {
-        size: 0,
-        query: {
-          bool: {
-            filter: queryFilter,
-          },
-        },
-        aggs: {
-          by_publication_year: {
-            terms: {
-              field: 'year',
-            },
-            aggs: {
-              by_has_grant: {
-                terms: {
-                  field: 'has_grant',
-                },
-                aggs: {
-                  by_is_oa: {
-                    terms: {
-                      field: `oa_details.${lastObservationDate}.is_oa`,
-                    },
-                  },
-                },
-              },
-              by_is_oa: {
-                terms: {
-                  field: `oa_details.${lastObservationDate}.is_oa`,
-                },
-              },
-            },
-          },
-        },
-      };
+      const query = getFetchOptions(
+        'openingRate',
+        lastObservationDate,
+        queryFilter,
+      );
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 
-      // Tri pour avoir les années dans l'ordre d'affichage du graph
+      // Tri pour avoir les années dans l'ordre d'affichage du graphe
       data.sort((a, b) => a.key - b.key);
 
       const categories = []; // Elements d'abscisse
@@ -78,9 +49,7 @@ function useGetData(observationDate, agency) {
           categories.push(el.key);
 
           // avec ou sans declaration
-          const Oa = el.by_is_oa.buckets.find(
-            (item) => item.key === 1,
-          )?.doc_count || 0;
+          const Oa = el.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
           all.push({
             y: Math.round((100 * Oa) / el.doc_count),
             y_abs: Oa,
@@ -95,7 +64,9 @@ function useGetData(observationDate, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withDeclaration.push({
-            y: Math.round((100 * withDeclarationOa) / withDeclarationElements.doc_count),
+            y: Math.round(
+              (100 * withDeclarationOa) / withDeclarationElements.doc_count,
+            ),
             y_abs: withDeclarationOa,
             y_tot: withDeclarationElements.doc_count,
             publicationDate: el.key,
@@ -108,7 +79,10 @@ function useGetData(observationDate, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withoutDeclaration.push({
-            y: Math.round((100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count),
+            y: Math.round(
+              (100 * withoutDeclarationOa)
+                / withoutDeclarationElements.doc_count,
+            ),
             y_abs: withoutDeclarationOa,
             y_tot: withoutDeclarationElements.doc_count,
             publicationDate: el.key,
@@ -119,9 +93,7 @@ function useGetData(observationDate, agency) {
 
       const dataGraph = [
         {
-          name: intl.formatMessage({
-            id: 'app.all-publications',
-          }),
+          name: intl.formatMessage({ id: 'app.all-publications' }),
           data: all,
           color: discipline100,
         },
@@ -143,22 +115,7 @@ function useGetData(observationDate, agency) {
   );
 
   async function GetAllAgencies() {
-    const query = {
-      size: 0,
-      query: {
-        bool: {
-          filter: { term: { 'domains.keyword': 'health' } },
-          must: { match: { has_grant: 'true' } },
-        },
-      },
-      aggs: {
-        by_agency: {
-          terms: {
-            field: 'grants.agency.keyword',
-          },
-        },
-      },
-    };
+    const query = getFetchOptions('allAgencies');
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_agency.buckets;
     return data;

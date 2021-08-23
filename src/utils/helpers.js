@@ -156,8 +156,8 @@ export function getPercentageYAxis() {
       enabled: true,
       // eslint-disable-next-line
       formatter: function () {
-      // eslint-disable-next-line
-        return (this.total) ? this.total.toFixed(1).concat(' %'):'';
+        // eslint-disable-next-line
+        return this.total ? this.total.toFixed(1).concat(' %') : '';
       },
       style: {
         fontWeight: 'bold',
@@ -176,10 +176,10 @@ export function getPercentageYAxis() {
 /**
  *
  * @param key
- * @param parameter
+ * @param parameters
  * @returns {*|{}}
  */
-export function getFetchOptions(key, parameter) {
+export function getFetchOptions(key, ...parameters) {
   const allOptions = {
     publicationRate: (millesime) => ({
       size: 0,
@@ -368,6 +368,133 @@ export function getFetchOptions(key, parameter) {
         },
       },
     }),
+    oaHostType: (lastObservationDate) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_host_type: {
+              terms: {
+                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    declarationRate: (lastObservationDate) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_is_oa: {
+          terms: {
+            field: `oa_details.${lastObservationDate}.is_oa`,
+          },
+          aggs: {
+            by_oa_host_type: {
+              terms: {
+                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+              },
+              aggs: {
+                by_grant_agency: {
+                  terms: {
+                    field: 'grants.agency.keyword',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    openingRate: (lastObservationDate, queryFilter) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: queryFilter,
+        },
+      },
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_has_grant: {
+              terms: {
+                field: 'has_grant',
+              },
+              aggs: {
+                by_is_oa: {
+                  terms: {
+                    field: `oa_details.${lastObservationDate}.is_oa`,
+                  },
+                },
+              },
+            },
+            by_is_oa: {
+              terms: {
+                field: `oa_details.${lastObservationDate}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    allAgencies: () => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: { term: { 'domains.keyword': 'health' } },
+          must: { match: { has_grant: 'true' } },
+        },
+      },
+      aggs: {
+        by_agency: {
+          terms: {
+            field: 'grants.agency.keyword',
+          },
+        },
+      },
+    }),
+    openingType: (publicationDate, lastObservationDate, field) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { 'domains.keyword': 'health' } },
+            { term: { year: publicationDate } },
+          ],
+        },
+      },
+      aggs: {
+        by_is_oa: {
+          terms: {
+            field: `oa_details.${lastObservationDate}.${field}`,
+            order: { _key: 'asc' },
+          },
+          aggs: {
+            by_publication_genre: {
+              terms: {
+                field: 'genre.keyword',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
-  return (parameter ? allOptions[key](parameter) : allOptions[key]) || {};
+  return (parameters ? allOptions[key](parameters) : allOptions[key]) || {};
 }
