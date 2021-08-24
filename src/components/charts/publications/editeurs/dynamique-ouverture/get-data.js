@@ -105,7 +105,7 @@ function useGetData(observationDates, needle = '*') {
       serie.name = observationDateData.observationDate;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
-      serie.data = observationDateData.data.oaHostType.map((value, index) => Math.round((value * 100) / observationDateData.data.all[index]));
+      serie.data = observationDateData.data.oaHostType.map((value, index) => (value * 100) / observationDateData.data.all[index]);
       serie.ratios = observationDateData.data.oaHostType.map(
         (value, index) => `(${value}/${observationDateData.data.all[index]})`,
       );
