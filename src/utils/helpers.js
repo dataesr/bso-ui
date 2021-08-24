@@ -614,6 +614,6 @@ export function getFetchOptions(key, parameters) {
     }),
   };
   return (
-    (parameters.length ? allOptions[key](parameters) : allOptions[key]) || {}
+    (parameters && parameters.length ? allOptions[key](parameters) : allOptions[key]) || {}
   );
 }
