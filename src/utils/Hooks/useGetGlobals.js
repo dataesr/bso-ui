@@ -52,10 +52,18 @@ export const GlobalsContextProvider = ({ children }) => {
       },
     };
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    return res?.data?.aggregations?.observation_dates?.buckets
+    const newObservationDates = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort()
       .reverse();
+
+    const toReturn = [];
+    newObservationDates.forEach((date, i) => {
+      if ((i > 0 && date.indexOf('Q') === -1) || i === 0) {
+        toReturn.push(date);
+      }
+    });
+    return toReturn;
   }
 
   async function getUpdateDate(lastDate) {

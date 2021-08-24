@@ -181,19 +181,74 @@ export function getYear(vintage) {
  * @param parameter
  * @returns {*|{}}
  */
-export function getFetchOptions(key, parameter) {
+export function getFetchOptions(key, observationDate) {
   const allOptions = {
     publicationRate: (year) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
       aggs: {
         by_publication_year: {
           terms: {
-            field: 'publication_year',
+            field: 'year',
           },
           aggs: {
             by_is_oa: {
               terms: {
                 field: `oa_details.${year}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    repositoriesHisto: (year) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_repository: {
+          terms: {
+            field: `oa_details.${year}.repositories.keyword`,
+            missing: 'N/A',
+            size: 13,
+          },
+          aggs: {
+            by_year: { terms: { field: 'year' } },
+          },
+        },
+      },
+    }),
+    disciplinesHisto: (year) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: 'bsso_classification.field.keyword',
+          },
+          aggs: {
+            by_observation_year: {
+              terms: {
+                field: `oa_details.${year}.observation_date.keyword`,
+                size: 10000,
+              },
+              aggs: {
+                by_year: {
+                  terms: {
+                    field: 'year',
+                  },
+                },
               },
             },
           },
@@ -232,6 +287,44 @@ export function getFetchOptions(key, parameter) {
         },
       },
     },
+    publishersList: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+            size: 10000,
+          },
+        },
+      },
+    },
+    publishersTypesHisto: (year) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${year}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     journal: {
       size: 0,
       query: {
@@ -258,7 +351,7 @@ export function getFetchOptions(key, parameter) {
       aggs: {
         repositories_count: {
           cardinality: {
-            field: 'oa_details.2021Q1.repositories.keyword',
+            field: 'oa_details.2021Q2.repositories.keyword',
             precision_threshold: 10,
           },
         },
@@ -367,5 +460,7 @@ export function getFetchOptions(key, parameter) {
       },
     }),
   };
-  return (parameter ? allOptions[key](parameter) : allOptions[key]) || {};
+  return (
+    (observationDate ? allOptions[key](observationDate) : allOptions[key]) || {}
+  );
 }

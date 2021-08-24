@@ -4,6 +4,27 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
+import ChartNombreDocumentsDepotsRepositories from '../../../components/charts/publications/archives/dynamique-depot/chart-nombre-documents-depots';
+import ChartTauxExhaustiviteRepositories from '../../../components/charts/publications/archives/dynamique-hal/chart-taux exhaustivite';
+import ChartTauxOuvertureArchives from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-ouverture';
+import ChartTauxPresenceRepositories from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-presence';
+import ChartNombreDocumentsRepositories from '../../../components/charts/publications/archives/plus-utilisees/chart-nombre-documents';
+import ChartEvolutionTauxOuvertureDisciplines from '../../../components/charts/publications/disciplines/dynamique-ouverture/chart-evolution-taux-ouverture';
+import ChartTauxOuvertureDisciplines from '../../../components/charts/publications/disciplines/dynamique-ouverture/chart-taux-ouverture';
+import ChartEvolutionComparaisonTypesHebergementDisciplines from '../../../components/charts/publications/disciplines/voies-ouverture/chart-evolution-comparaison-types-hebergement';
+import ChartRepartitionPublicationsDisciplines from '../../../components/charts/publications/disciplines/voies-ouverture/chart-repartition-publications';
+import ChartDepensesEstimeesPublishers from '../../../components/charts/publications/editeurs/couts-publication/chart-depenses-estimees';
+import ChartDistributionPublishers from '../../../components/charts/publications/editeurs/couts-publication/chart-distribution';
+import ChartDistributionParAnnee from '../../../components/charts/publications/editeurs/couts-publication/chart-distribution-par-annee';
+import ChartEvolutionProportionPublishers from '../../../components/charts/publications/editeurs/dynamique-ouverture/chart-evolution-proportion';
+import ChartTauxOuverturePublishers from '../../../components/charts/publications/editeurs/dynamique-ouverture/chart-taux-ouverture';
+import ChartRepartitionPublishers from '../../../components/charts/publications/editeurs/poids-revues/chart-repartition';
+import ChartClassementPublishers from '../../../components/charts/publications/editeurs/politiques-ouverture/chart-classement';
+import ChartComparaisonPublishers from '../../../components/charts/publications/editeurs/politiques-ouverture/chart-comparaison';
+import ChartClassementLicencesPublishers from '../../../components/charts/publications/editeurs/repartition-licences/chart-classement';
+import ChartRepartitionLicencesPublishers from '../../../components/charts/publications/editeurs/repartition-licences/chart-repartition';
+import ChartEvolutionRepartitionPublishers from '../../../components/charts/publications/editeurs/type-ouverture/chart-evolution-repartition';
+import ChartRepartitionModelesPublishers from '../../../components/charts/publications/editeurs/type-ouverture/chart-repartition-modeles';
 import ChartEvolutionProportion from '../../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
@@ -32,11 +53,13 @@ import DataCardSection from './dataCardSection';
 const objButtonLabel = {
   fr: {
     '/sante/publications/discipline': 'app.sante-publi.disciplines',
+    '/sante/publications/editeurs': 'app.sante-publi.editeurs',
     '/sante/publications/general': 'app.sante-publi.general',
     '/sante/essais-cliniques': 'app.sante-publi.general',
   },
   en: {
     '/health/publications/discipline': 'app.sante-publi.disciplines',
+    '/health/publications/editeurs': 'app.sante-publi.editeurs',
     '/health/publications/general': 'app.sante-publi.general',
   },
 };
@@ -48,9 +71,7 @@ function SantePublications() {
   const { observationDates } = useGlobals();
   const intl = useIntl();
 
-  useGetPublicationRateFrom(
-    observationDates ? observationDates[1] : '2021Q1',
-  ).then((resp) => {
+  useGetPublicationRateFrom(observationDates[1] || '2021Q2').then((resp) => {
     const { rate: rateByYear } = resp;
     if (!rate) {
       setRate(rateByYear);
@@ -190,6 +211,7 @@ function SantePublications() {
                 >
                   <ChartLanguesOuverture />
                 </QuestionSection>
+
                 <QuestionSection
                   intlKey='app.sante-publi.general.impact-financement'
                   backgroundColor={bluesoft50}
@@ -200,6 +222,7 @@ function SantePublications() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+
             <GraphItem
               paths={['/sante/publications/discipline']}
               mainLabel='Les disciplines'
@@ -211,8 +234,140 @@ function SantePublications() {
               ]}
             >
               <GraphContent>
-                <div id='#discipline'>
-                  <p>Disciplines</p>
+                <QuestionSection
+                  intlKey='app.sante-publi.disciplines.dynamique-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuvertureDisciplines />
+                  <ChartEvolutionTauxOuvertureDisciplines />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.disciplines.voies-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartRepartitionPublicationsDisciplines />
+                  <ChartEvolutionComparaisonTypesHebergementDisciplines />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+
+            <GraphItem
+              paths={['/sante/publications/editeurs']}
+              mainLabel='Editeurs/Plateformes'
+              links={[
+                {
+                  href: '/sante/publications/editeurs',
+                  label: 'Les éditeurs/plateformes',
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  intlKey='app.sante-publi.publishers.dynamique-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuverturePublishers />
+                  <ChartEvolutionProportionPublishers />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.publishers.type-ouverture'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartEvolutionRepartitionPublishers />
+                  <ChartRepartitionModelesPublishers />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.publishers.politiques-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartClassementPublishers />
+                  <ChartComparaisonPublishers />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.publishers.poids-revues'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartRepartitionPublishers />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.publishers.repartition-licences'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartRepartitionLicencesPublishers />
+                  <ChartClassementLicencesPublishers />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.publishers.couts-publication'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartDepensesEstimeesPublishers />
+                  <ChartDistributionPublishers />
+                  <ChartDistributionParAnnee />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+
+            <GraphItem
+              paths={['/sante/publications/archives']}
+              mainLabel='Archives'
+              links={[
+                {
+                  href: '/sante/publications/archives',
+                  label: 'Les archives',
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  intlKey='app.sante-publi.repositories.dynamique-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuvertureArchives />
+                  <ChartTauxPresenceRepositories />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.repositories.plus-utilisees'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartNombreDocumentsRepositories />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.repositories.dynamique-depot'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartNombreDocumentsDepotsRepositories />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.repositories.dynamique-hal'
+                  backgroundColor={bluesoft25}
+                >
+                  <ChartTauxExhaustiviteRepositories />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+
+            <GraphItem
+              paths={['/sante/publications/affiliations']}
+              mainLabel='Affiliations'
+              links={[
+                {
+                  href: '/sante/publications/affiliations',
+                  label: 'Les affiliations',
+                },
+              ]}
+            >
+              <GraphContent>
+                <div id='#affiliations'>
+                  <p>Les affiliations</p>
                 </div>
               </GraphContent>
             </GraphItem>

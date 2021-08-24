@@ -378,14 +378,14 @@ function BaroSante() {
                   itemKey='publisher'
                   iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
-                  intlSubTitle='app.publishers'
+                  intlSubTitle='app.sante-publi.publishers'
                   backgroundColorClass='bg-yellow'
                 />
                 <TodaySectionItem
                   itemKey='repository'
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
-                  intlSubTitle='app.repositories'
+                  intlSubTitle='app.sante-publi.repositories'
                   backgroundColorClass='bg-medium-green'
                 />
                 <TodaySectionItem
