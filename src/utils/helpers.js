@@ -148,7 +148,7 @@ export function getGraphOptions(graphId, intl) {
   };
 }
 
-export function getPercentageYAxis() {
+export function getPercentageYAxis(showTotal = true) {
   return {
     min: 0,
     max: 100,
@@ -158,7 +158,7 @@ export function getPercentageYAxis() {
       // eslint-disable-next-line
       formatter: function () {
         // eslint-disable-next-line
-        return this.total ? this.total.toFixed(1).concat(' %') : '';
+        return (showTotal && this.total) ? this.total.toFixed(1).concat(' %') : '';
       },
       style: {
         fontWeight: 'bold',
