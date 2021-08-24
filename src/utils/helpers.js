@@ -198,7 +198,7 @@ export function getYear(vintage) {
     year = vintage - 1;
   }
 
-  return year.toString();
+  return year || 2020;
 }
 
 /**
@@ -207,7 +207,7 @@ export function getYear(vintage) {
  * @param parameters
  * @returns {*|{}}
  */
-export function getFetchOptions(key, observationDate) {
+export function getFetchOptions(key, parameters) {
   const allOptions = {
     publicationRate: (millesime) => ({
       size: 0,
@@ -586,13 +586,13 @@ export function getFetchOptions(key, observationDate) {
         },
       },
     },
-    openingType: (publicationDate, lastObservationDate, field) => ({
+    openingType: (lastObservationDate, field) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             { term: { 'domains.keyword': 'health' } },
-            { term: { year: publicationDate } },
+            { term: { year: getYear(lastObservationDate) } },
           ],
         },
       },
@@ -614,6 +614,6 @@ export function getFetchOptions(key, observationDate) {
     }),
   };
   return (
-    (observationDate ? allOptions[key](observationDate) : allOptions[key]) || {}
+    (parameters.length ? allOptions[key](parameters) : allOptions[key]) || {}
   );
 }

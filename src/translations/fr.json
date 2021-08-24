@@ -397,7 +397,7 @@
   "app.type-hebergement.journal-article": "journal article",
   "app.type-hebergement.journal-issue": "app.type-hebergement.journal-issue",
   "app.type-hebergement.monograph": "monograph",
-  "app.type-hebergement.opened": "Accès ouvert",
+  "app.type-hebergement.open": "Accès ouvert",
   "app.type-hebergement.other": "other",
   "app.type-hebergement.peer-review": "peer-review",
   "app.type-hebergement.posted-content": "posted-content",

@@ -19,11 +19,10 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
-    const publicationDate = Number(lastObservationDate.slice(0, 4));
+    const publicationDate = Number(lastObservationDate.slice(0, 4)) - 1;
     const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
     const query = getFetchOptions(
       'openingType',
-      publicationDate,
       lastObservationDate,
       field,
     );
@@ -40,8 +39,8 @@ function useGetData(observationDate, isOa) {
           color: accesferme,
         },
         {
-          id: 'opened',
-          name: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+          id: 'open',
+          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color: accesouvert,
         },
       ];
@@ -68,9 +67,9 @@ function useGetData(observationDate, isOa) {
         .by_publication_genre.buckets.forEach((el) => {
           dataGraph.push({
             name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
-            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
             key: el.key,
-            parent: 'opened',
+            parent: 'open',
             value: el.doc_count,
             total: totalPublications,
             publicationDate,
@@ -92,7 +91,7 @@ function useGetData(observationDate, isOa) {
         dataGraph.push({
           id: el.key,
           name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
-          oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+          oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color,
         });
         el.by_publication_genre.buckets.forEach((item) => {
@@ -100,7 +99,7 @@ function useGetData(observationDate, isOa) {
             name: intl.formatMessage({
               id: `app.type-hebergement.${item.key}`,
             }),
-            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
             key: item.key,
             parent: el.key,
             value: item.doc_count,
