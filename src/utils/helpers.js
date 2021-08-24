@@ -22,7 +22,7 @@ export function setCSSProperty(property, value) {
  * @param lang
  * @returns {string}
  */
-export function getDateFormated(date, lang) {
+export function getFormattedDate(date, lang) {
   const dateFormat = { fr: 'fr-fr', en: 'en-en' };
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
   return new Date(date).toLocaleDateString(dateFormat[lang], options);
@@ -83,6 +83,7 @@ export function formatNumberByLang(num, lang, options = {}) {
     num,
   );
 }
+
 /**
  *
  * @param graphId
@@ -175,11 +176,38 @@ export function getPercentageYAxis() {
 
 /**
  *
+ * @param keys
+ */
+export function clearLocalStorage(keys) {
+  for (let i = 0; i < keys.length; i += 1) {
+    localStorage.removeItem(keys[i]);
+  }
+}
+
+/**
+ *
+ * @param vintage
+ * @returns {string}
+ */
+export function getYear(vintage) {
+  let year = '';
+
+  if (vintage.length > 4) {
+    year = parseFloat(vintage.substring(0, 4)) - 1;
+  } else {
+    year = vintage - 1;
+  }
+
+  return year.toString();
+}
+
+/**
+ *
  * @param key
  * @param parameters
  * @returns {*|{}}
  */
-export function getFetchOptions(key, ...parameters) {
+export function getFetchOptions(key, observationDate) {
   const allOptions = {
     publicationRate: (millesime) => ({
       size: 0,
@@ -197,6 +225,56 @@ export function getFetchOptions(key, ...parameters) {
             by_is_oa: {
               terms: {
                 field: `oa_details.${millesime}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    repositoriesHisto: (year) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_repository: {
+          terms: {
+            field: `oa_details.${year}.repositories.keyword`,
+            missing: 'N/A',
+            size: 13,
+          },
+          aggs: {
+            by_year: { terms: { field: 'year' } },
+          },
+        },
+      },
+    }),
+    disciplinesHisto: (year) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: 'bsso_classification.field.keyword',
+          },
+          aggs: {
+            by_observation_year: {
+              terms: {
+                field: `oa_details.${year}.observation_date.keyword`,
+                size: 10000,
+              },
+              aggs: {
+                by_year: {
+                  terms: {
+                    field: 'year',
+                  },
+                },
               },
             },
           },
@@ -235,6 +313,44 @@ export function getFetchOptions(key, ...parameters) {
         },
       },
     },
+    publishersList: {
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+            size: 10000,
+          },
+        },
+      },
+    },
+    publishersTypesHisto: (year) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${year}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     journal: {
       size: 0,
       query: {
@@ -261,7 +377,7 @@ export function getFetchOptions(key, ...parameters) {
       aggs: {
         repositories_count: {
           cardinality: {
-            field: 'oa_details.2021Q1.repositories.keyword',
+            field: 'oa_details.2021Q2.repositories.keyword',
             precision_threshold: 10,
           },
         },
@@ -318,6 +434,7 @@ export function getFetchOptions(key, ...parameters) {
         bool: {
           filter: [
             { term: { 'domains.keyword': 'health' } },
+            { term: { year: getYear(millesime) } },
             { exists: { field: `oa_details.${millesime}` } },
           ],
         },
@@ -497,6 +614,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
   };
   return (
-    (parameters.length ? allOptions[key](parameters) : allOptions[key]) || {}
+    (observationDate ? allOptions[key](observationDate) : allOptions[key]) || {}
   );
 }

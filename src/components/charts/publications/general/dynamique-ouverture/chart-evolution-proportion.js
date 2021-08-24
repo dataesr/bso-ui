@@ -10,8 +10,10 @@ import { useIntl } from 'react-intl';
 import {
   getGraphOptions,
   getPercentageYAxis,
+  getFormattedDate,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
@@ -24,6 +26,7 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const { lang } = useLang();
   const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion';
   const { observationDates, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationDates);
@@ -89,7 +92,7 @@ const Chart = ({ graphFooter, graphComments }) => {
       </div>
       {graphFooter && (
         <GraphFooter
-          date={updateDate}
+          date={getFormattedDate(updateDate, lang)}
           source={intl.formatMessage({ id: `${graphId}.source` })}
           graphId={graphId}
           onPngButtonClick={exportChartPng}

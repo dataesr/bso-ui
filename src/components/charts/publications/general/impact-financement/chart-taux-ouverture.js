@@ -5,8 +5,13 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
+import {
+  getFormattedDate,
+  getPercentageYAxis
+  getGraphOptions,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import GraphComments from '../../../graph-comments';
@@ -20,11 +25,12 @@ HCExportingData(Highcharts);
 const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
+  const { lang } = useLang();
   const graphId = 'app.sante-publi.general.impact-financement.chart-taux-ouverture';
   const [agency, setAgency] = useState();
-  const { observationDates, updateDate } = useGlobals();
+  const { lastObservationYear, updateDate } = useGlobals();
   const { allData, isLoading, agencies } = useGetData(
-    observationDates[0],
+    lastObservationYear,
     agency,
   );
   const { dataGraph, categories } = allData;
@@ -68,10 +74,12 @@ const Chart = () => {
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
 
         <SimpleSelect
-          label={intl.formatMessage({ id: 'app.agencies-label' })}
+          label={intl.formatMessage({ id: 'app.agencies-filter-label' })}
           onChange={(e) => setAgency(e.target.value)}
           options={agencies || []}
           selected={agency}
+          firstValue=''
+          firstLabel={intl.formatMessage({ id: 'app.all-agencies' })}
         />
 
         <HighchartsReact
@@ -85,7 +93,7 @@ const Chart = () => {
         />
       </div>
       <GraphFooter
-        date={updateDate}
+        date={getFormattedDate(updateDate, lang)}
         source={intl.formatMessage({ id: `${graphId}.source` })}
         graphId={graphId}
         onPngButtonClick={exportChartPng}

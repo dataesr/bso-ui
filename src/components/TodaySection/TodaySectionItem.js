@@ -16,7 +16,10 @@ const fetchInfos = {
     path: 'aggregations.publication_count.value',
     url: ES_API_URL,
   },
-  publisher: { path: 'aggregations.publisher_count.value', url: ES_API_URL },
+  publisher: {
+    path: 'aggregations.publisher_count.value',
+    url: ES_API_URL,
+  },
   repository: {
     path: 'aggregations.repositories_count.value',
     url: ES_API_URL,
@@ -25,7 +28,10 @@ const fetchInfos = {
     path: 'aggregations.observation_dates_count.value',
     url: ES_API_URL,
   },
-  journal: { path: 'aggregations.journal_count.value', url: ES_API_URL },
+  journal: {
+    path: 'aggregations.journal_count.value',
+    url: ES_API_URL,
+  },
   interventional: {
     path: 'aggregations.study_type.buckets.0.doc_count',
     url: CLINICAL_TRIALS_API_URL,

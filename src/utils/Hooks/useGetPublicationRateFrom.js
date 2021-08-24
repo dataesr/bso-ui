@@ -18,7 +18,7 @@ export default async function useGetPublicationRateFrom(year) {
         fetch();
       }
     } else if (!loading && response && year && !Object.keys(result).length) {
-      const currentYear = year.substring(0, 4);
+      const currentYear = year ? year.substring(0, 4) : null;
       const sortedData = response?.aggregations.by_publication_year.buckets
         .sort((a, b) => a.key - b.key)
         .filter(

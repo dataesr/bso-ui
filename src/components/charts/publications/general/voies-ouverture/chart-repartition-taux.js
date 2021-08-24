@@ -8,8 +8,10 @@ import { useIntl } from 'react-intl';
 import {
   getGraphOptions,
   getPercentageYAxis,
+  getFormattedDate,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
@@ -22,9 +24,10 @@ HCExportingData(Highcharts);
 const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
+  const { lang } = useLang();
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-taux';
-  const { observationDates, updateDate } = useGlobals();
-  const { allData, isLoading } = useGetData(observationDates[0]);
+  const { lastObservationYear, updateDate } = useGlobals();
+  const { allData, isLoading } = useGetData(lastObservationYear);
   const { dataGraph, categories } = allData;
 
   if (isLoading || !dataGraph || !categories) {
@@ -81,7 +84,7 @@ const Chart = () => {
         />
       </div>
       <GraphFooter
-        date={updateDate}
+        date={getFormattedDate(updateDate, lang)}
         source={intl.formatMessage({ id: `${graphId}.source` })}
         graphId={graphId}
         onPngButtonClick={exportChartPng}
