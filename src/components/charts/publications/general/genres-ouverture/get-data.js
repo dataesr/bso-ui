@@ -11,6 +11,7 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDate, isOa) {
   const intl = useIntl();
@@ -18,58 +19,19 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
-    let query = '';
-    if (!isOa) {
-      // TODO move options to helpers
-      query = {
-        size: 0,
-        query: {
-          bool: {
-            filter: [{ term: { 'domains.keyword': 'health' } }],
-          },
-        },
-        aggs: {
-          by_is_oa: {
-            terms: {
-              field: `oa_details.${lastObservationDate}.is_oa`,
-              order: { _key: 'asc' },
-            },
-            aggs: {
-              by_publication_genre: {
-                terms: {
-                  field: 'genre.keyword',
-                },
-              },
-            },
-          },
-        },
-      };
-    } else {
-      // TODO move options to helpers
-      query = {
-        size: 0,
-        aggs: {
-          by_is_oa: {
-            terms: {
-              field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
-              order: { _key: 'asc' },
-            },
-            aggs: {
-              by_publication_genre: {
-                terms: {
-                  field: 'genre.keyword',
-                },
-              },
-            },
-          },
-        },
-      };
-    }
-
+    const publicationDate = Number(lastObservationDate.slice(0, 4));
+    const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
+    const query = getFetchOptions(
+      'openingType',
+      publicationDate,
+      lastObservationDate,
+      field,
+    );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
 
     let dataGraph = [];
+    const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
     if (!isOa) {
       dataGraph = [
         {
@@ -90,9 +52,13 @@ function useGetData(observationDate, isOa) {
         .by_publication_genre.buckets.forEach((el) => {
           dataGraph.push({
             name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
             key: el.key,
             parent: 'closed',
             value: el.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
 
@@ -102,9 +68,13 @@ function useGetData(observationDate, isOa) {
         .by_publication_genre.buckets.forEach((el) => {
           dataGraph.push({
             name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
             key: el.key,
             parent: 'opened',
             value: el.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
     } else {
@@ -122,6 +92,7 @@ function useGetData(observationDate, isOa) {
         dataGraph.push({
           id: el.key,
           name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+          oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
           color,
         });
         el.by_publication_genre.buckets.forEach((item) => {
@@ -129,14 +100,17 @@ function useGetData(observationDate, isOa) {
             name: intl.formatMessage({
               id: `app.type-hebergement.${item.key}`,
             }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
             key: item.key,
             parent: el.key,
             value: item.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
       });
     }
-
     return { dataGraph };
   }
 

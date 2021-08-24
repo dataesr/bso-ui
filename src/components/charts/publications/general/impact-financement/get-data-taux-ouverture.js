@@ -9,6 +9,7 @@ import {
   discipline150,
   nonconnu,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDate, agency) {
   const intl = useIntl();
@@ -18,76 +19,19 @@ function useGetData(observationDate, agency) {
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
-      let query = '';
-      if (!agency) {
-        query = {
-          size: 0,
-          query: {
-            bool: {
-              filter: [{ term: { 'domains.keyword': 'health' } }],
-            },
-          },
-          aggs: {
-            by_publication_year: {
-              terms: {
-                field: 'year',
-              },
-              aggs: {
-                by_publication_year: {
-                  terms: {
-                    field: 'year',
-                  },
-                  aggs: {
-                    by_has_grant: {
-                      terms: {
-                        field: 'has_grant',
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        };
-      } else {
-        query = {
-          size: 0,
-          query: {
-            bool: {
-              filter: [
-                { term: { 'domains.keyword': 'health' } },
-                { wildcard: { 'grants.agency.keyword': agency } },
-              ],
-            },
-          },
-          aggs: {
-            by_publication_year: {
-              terms: {
-                field: 'year',
-              },
-              aggs: {
-                by_publication_year: {
-                  terms: {
-                    field: 'year',
-                  },
-                  aggs: {
-                    by_has_grant: {
-                      terms: {
-                        field: 'has_grant',
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        };
+      const queryFilter = [{ term: { 'domains.keyword': 'health' } }];
+      if (agency) {
+        queryFilter.push({ term: { 'grants.agency.keyword': agency } });
       }
-
+      const query = getFetchOptions(
+        'openingRate',
+        lastObservationDate,
+        queryFilter,
+      );
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 
-      // Tri pour avoir les années dans l'ordre d'affichage du graph
+      // Tri pour avoir les années dans l'ordre d'affichage du graphe
       data.sort((a, b) => a.key - b.key);
 
       const categories = []; // Elements d'abscisse
@@ -104,24 +48,52 @@ function useGetData(observationDate, agency) {
         .forEach((el) => {
           categories.push(el.key);
 
-          all.push(el.doc_count);
-          withDeclaration.push(
-            el.by_publication_year.buckets[0].by_has_grant.buckets.find(
-              (item) => item.key === 1,
-            )?.doc_count || 0,
+          // avec ou sans declaration
+          const Oa = el.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
+          all.push({
+            y: Math.round((100 * Oa) / el.doc_count),
+            y_abs: Oa,
+            y_tot: el.doc_count,
+            publicationDate: el.key,
+          });
+          // avec declaration
+          const withDeclarationElements = el.by_has_grant.buckets.find(
+            (item) => item.key === 1,
           );
-          withoutDeclaration.push(
-            el.by_publication_year.buckets[0].by_has_grant.buckets.find(
-              (item) => item.key === 0,
-            )?.doc_count || 0,
+          const withDeclarationOa = withDeclarationElements.by_is_oa.buckets.find(
+            (item) => item.key === 1,
+          )?.doc_count || 0;
+          withDeclaration.push({
+            y: Math.round(
+              (100 * withDeclarationOa) / withDeclarationElements.doc_count,
+            ),
+            y_abs: withDeclarationOa,
+            y_tot: withDeclarationElements.doc_count,
+            publicationDate: el.key,
+          });
+          // sans declaration
+          const withoutDeclarationElements = el.by_has_grant.buckets.find(
+            (item) => item.key === 0,
           );
+          const withoutDeclarationOa = withoutDeclarationElements.by_is_oa.buckets.find(
+            (item) => item.key === 1,
+          )?.doc_count || 0;
+          withoutDeclaration.push({
+            y: Math.round(
+              (100 * withoutDeclarationOa)
+                / withoutDeclarationElements.doc_count,
+            ),
+            y_abs: withoutDeclarationOa,
+            y_tot: withoutDeclarationElements.doc_count,
+            publicationDate: el.key,
+          });
+          // si une agence en particulier est sélectionnée
+          // TODO : ajouter une 4e barre
         });
 
       const dataGraph = [
         {
-          name: intl.formatMessage({
-            id: 'app.all-publications',
-          }),
+          name: intl.formatMessage({ id: 'app.all-publications' }),
           data: all,
           color: discipline100,
         },
@@ -143,22 +115,7 @@ function useGetData(observationDate, agency) {
   );
 
   async function GetAllAgencies() {
-    const query = {
-      size: 0,
-      query: {
-        bool: {
-          filter: { term: { 'domains.keyword': 'health' } },
-          must: { match: { has_grant: 'true' } },
-        },
-      },
-      aggs: {
-        by_agency: {
-          terms: {
-            field: 'grants.agency.keyword',
-          },
-        },
-      },
-    };
+    const query = getFetchOptions('allAgencies');
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_agency.buckets;
     return data;
@@ -189,7 +146,6 @@ function useGetData(observationDate, agency) {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationDate, agency]);
-
   return { allData, isLoading, agencies };
 }
 export default useGetData;

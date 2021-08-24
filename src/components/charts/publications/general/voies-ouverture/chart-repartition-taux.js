@@ -6,8 +6,9 @@ import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import {
-  getFormattedDate,
   getGraphOptions,
+  getPercentageYAxis,
+  getFormattedDate,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import useLang from '../../../../../utils/Hooks/useLang';
@@ -38,11 +39,22 @@ const Chart = () => {
   optionsGraph.xAxis = {
     categories,
   };
+  optionsGraph.yAxis = getPercentageYAxis();
+  optionsGraph.legend = {
+    title: {
+      text: intl.formatMessage({ id: `${graphId}.legend` }),
+    },
+  };
   optionsGraph.plotOptions = {
     column: {
       stacking: 'normal',
       dataLabels: {
         enabled: true,
+        // eslint-disable-next-line
+        formatter: function () {
+          // eslint-disable-next-line
+          return this.y.toFixed(1).concat(' %');
+        },
       },
     },
   };

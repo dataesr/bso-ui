@@ -10,6 +10,7 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDate, isOa) {
   const intl = useIntl();
@@ -17,37 +18,7 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
-    // TODO move options to helpers
-    const query = {
-      size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
-      aggs: {
-        by_is_oa: {
-          terms: {
-            field: `oa_details.${lastObservationDate}.is_oa`,
-          },
-          aggs: {
-            by_oa_host_type: {
-              terms: {
-                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
-              },
-              aggs: {
-                by_grant_agency: {
-                  terms: {
-                    field: 'grants.agency.keyword',
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    };
-
+    const query = getFetchOptions('declarationRate', lastObservationDate);
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
 

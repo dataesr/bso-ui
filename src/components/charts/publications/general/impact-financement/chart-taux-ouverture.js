@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl';
 
 import {
   getFormattedDate,
+  getPercentageYAxis
   getGraphOptions,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
@@ -43,10 +44,16 @@ const Chart = () => {
   optionsGraph.xAxis = {
     categories,
   };
+  optionsGraph.yAxis = getPercentageYAxis();
   optionsGraph.plotOptions = {
     column: {
       dataLabels: {
         enabled: true,
+        // eslint-disable-next-line
+        formatter: function () {
+        // eslint-disable-next-line
+          return this.y.toFixed(0).concat(' %');
+        },
       },
     },
   };

@@ -148,6 +148,32 @@ export function getGraphOptions(graphId, intl) {
   };
 }
 
+export function getPercentageYAxis() {
+  return {
+    min: 0,
+    max: 100,
+    title: '',
+    stackLabels: {
+      enabled: true,
+      // eslint-disable-next-line
+      formatter: function () {
+        // eslint-disable-next-line
+        return this.total ? this.total.toFixed(1).concat(' %') : '';
+      },
+      style: {
+        fontWeight: 'bold',
+      },
+    },
+    labels: {
+      // eslint-disable-next-line
+      formatter: function () {
+        // eslint-disable-next-line
+        return this.axis.defaultLabelFormatter.call(this).concat(' %');
+      },
+    },
+  };
+}
+
 /**
  *
  * @param keys
@@ -178,12 +204,12 @@ export function getYear(vintage) {
 /**
  *
  * @param key
- * @param parameter
+ * @param parameters
  * @returns {*|{}}
  */
 export function getFetchOptions(key, observationDate) {
   const allOptions = {
-    publicationRate: (year) => ({
+    publicationRate: (millesime) => ({
       size: 0,
       query: {
         bool: {
@@ -198,7 +224,7 @@ export function getFetchOptions(key, observationDate) {
           aggs: {
             by_is_oa: {
               terms: {
-                field: `oa_details.${year}.is_oa`,
+                field: `oa_details.${millesime}.is_oa`,
               },
             },
           },
@@ -455,6 +481,133 @@ export function getFetchOptions(key, observationDate) {
           terms: {
             field: 'author_useful_rank_countries.keyword',
             size: 2,
+          },
+        },
+      },
+    }),
+    oaHostType: (lastObservationDate) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_host_type: {
+              terms: {
+                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    declarationRate: (lastObservationDate) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [{ term: { 'domains.keyword': 'health' } }],
+        },
+      },
+      aggs: {
+        by_is_oa: {
+          terms: {
+            field: `oa_details.${lastObservationDate}.is_oa`,
+          },
+          aggs: {
+            by_oa_host_type: {
+              terms: {
+                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+              },
+              aggs: {
+                by_grant_agency: {
+                  terms: {
+                    field: 'grants.agency.keyword',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    openingRate: (lastObservationDate, queryFilter) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: queryFilter,
+        },
+      },
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_has_grant: {
+              terms: {
+                field: 'has_grant',
+              },
+              aggs: {
+                by_is_oa: {
+                  terms: {
+                    field: `oa_details.${lastObservationDate}.is_oa`,
+                  },
+                },
+              },
+            },
+            by_is_oa: {
+              terms: {
+                field: `oa_details.${lastObservationDate}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    allAgencies: {
+      size: 0,
+      query: {
+        bool: {
+          filter: { term: { 'domains.keyword': 'health' } },
+          must: { match: { has_grant: 'true' } },
+        },
+      },
+      aggs: {
+        by_agency: {
+          terms: {
+            field: 'grants.agency.keyword',
+          },
+        },
+      },
+    },
+    openingType: (publicationDate, lastObservationDate, field) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { 'domains.keyword': 'health' } },
+            { term: { year: publicationDate } },
+          ],
+        },
+      },
+      aggs: {
+        by_is_oa: {
+          terms: {
+            field: `oa_details.${lastObservationDate}.${field}`,
+            order: { _key: 'asc' },
+          },
+          aggs: {
+            by_publication_genre: {
+              terms: {
+                field: 'genre.keyword',
+              },
+            },
           },
         },
       },
