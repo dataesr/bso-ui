@@ -6,9 +6,9 @@ import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import {
+  getFormattedDate,
   getGraphOptions,
   getPercentageYAxis,
-  getFormattedDate,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import useLang from '../../../../../utils/Hooks/useLang';

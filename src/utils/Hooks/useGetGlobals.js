@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../config/config';
-import { clearLocalStorage } from '../helpers';
+import { clearLocalStorage, getFetchOptions } from '../helpers';
 import useLang from './useLang';
 
 export const GlobalsContext = createContext();
@@ -36,10 +36,7 @@ export const GlobalsContextProvider = ({ children }) => {
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
   async function getObservationDates() {
-    const query = 
-          
-          
-          chOptions('observationDates');
+    const query = getFetchOptions('observationDates');
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const newObservationDates = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
