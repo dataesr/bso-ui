@@ -32,7 +32,6 @@ function useGetData(observationDate) {
     const goldData = [];
     const hybridData = [];
     const diamondData = [];
-    console.log('t1', data);
     data.forEach((dataYear) => {
       goldData.push({
         publicationDate: dataYear.key,
