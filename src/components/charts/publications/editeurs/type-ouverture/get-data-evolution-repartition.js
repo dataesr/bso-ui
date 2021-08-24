@@ -31,20 +31,26 @@ function useGetData(observationDate) {
     const categories = data.map((dataYear) => dataYear.key);
     const goldData = [];
     const hybridData = [];
-    const diamongData = [];
-
+    const diamondData = [];
     data.forEach((dataYear) => {
-      goldData.push(
-        dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold').doc_count,
-      );
-      hybridData.push(
-        dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
-          .doc_count,
-      );
-      diamongData.push(
-        dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond')
-          .doc_count,
-      );
+      goldData.push({
+        publicationDate: dataYear.key,
+        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold').doc_count,
+        y_tot: dataYear.doc_count,
+        y: (100 * dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold').doc_count) / dataYear.doc_count,
+      });
+      hybridData.push({
+        publicationDate: dataYear.key,
+        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid').doc_count,
+        y_tot: dataYear.doc_count,
+        y: (100 * dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid').doc_count) / dataYear.doc_count,
+      });
+      diamondData.push({
+        publicationDate: dataYear.key,
+        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond').doc_count,
+        y_tot: dataYear.doc_count,
+        y: (100 * dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond').doc_count) / dataYear.doc_count,
+      });
     });
     const dataGraph = [
       {
@@ -59,7 +65,7 @@ function useGetData(observationDate) {
       },
       {
         name: 'diamond',
-        data: diamongData,
+        data: diamondData,
         color: diamond,
       },
     ];
@@ -67,23 +73,26 @@ function useGetData(observationDate) {
     const dataGraphTreemap = [
       {
         name: 'gold',
-        value: data[data.length - 1].by_oa_colors.buckets.find(
-          (item) => item.key === 'gold',
-        ).doc_count,
+        publicationDate: goldData[goldData.length - 1].publicationDate,
+        y_tot: goldData[goldData.length - 1].y_tot,
+        y_abs: goldData[goldData.length - 1].y_abs,
+        value: goldData[goldData.length - 1].y,
         color: goldapc,
       },
       {
         name: 'hybrid',
-        value: data[data.length - 1].by_oa_colors.buckets.find(
-          (item) => item.key === 'hybrid',
-        ).doc_count,
+        publicationDate: hybridData[hybridData.length - 1].publicationDate,
+        y_tot: hybridData[hybridData.length - 1].y_tot,
+        y_abs: hybridData[hybridData.length - 1].y_abs,
+        value: hybridData[hybridData.length - 1].y,
         color: hybrid,
       },
       {
         name: 'diamond',
-        value: data[data.length - 1].by_oa_colors.buckets.find(
-          (item) => item.key === 'diamond',
-        ).doc_count,
+        publicationDate: diamondData[diamondData.length - 1].publicationDate,
+        y_tot: diamondData[diamondData.length - 1].y_tot,
+        y_abs: diamondData[diamondData.length - 1].y_abs,
+        value: diamondData[diamondData.length - 1].y,
         color: diamond,
       },
     ];
