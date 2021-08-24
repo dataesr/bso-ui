@@ -5,7 +5,11 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getFormattedDate, getPercentageYAxis, getGraphOptions } from '../../../../../utils/helpers';
+import {
+  getFormattedDate,
+  getGraphOptions,
+  getPercentageYAxis,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
@@ -47,7 +51,7 @@ const Chart = () => {
         enabled: true,
         // eslint-disable-next-line
         formatter: function () {
-        // eslint-disable-next-line
+          // eslint-disable-next-line
           return this.y.toFixed(0).concat(' %');
         },
       },
