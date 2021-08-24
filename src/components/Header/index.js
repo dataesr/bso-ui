@@ -41,7 +41,7 @@ function Header() {
           className='main-title'
           title={intl.formatMessage({
             id: 'app.header.title',
-            defaultMessage: 'Baromêtre français de la science ouverte',
+            defaultMessage: 'Baromètre français de la Science Ouverte',
           })}
         />
         <Tool>
@@ -56,38 +56,6 @@ function Header() {
         </Tool>
       </HeaderBody>
       <HeaderNav path={path}>
-        <NavItem
-          current={path === urls.national[lang]}
-          title={intl.formatMessage({
-            id: 'app.header.nav.baro-national',
-            defaultMessage: 'Le Baromètre national',
-          })}
-        >
-          <NavSubItem
-            current={path === urls.national[lang]}
-            title='Accueil baromètre national'
-            asLink={(
-              <RouterLink to={urls.national[lang]}>
-                Accueil baromètre national
-              </RouterLink>
-            )}
-          />
-          <NavSubItem
-            current={path === urls.nationalPublications[lang]}
-            title={intl.formatMessage({
-              id: 'app.header.nav.baro-national-publications',
-              defaultMessage: 'Les publications',
-            })}
-            asLink={(
-              <RouterLink to={urls.nationalPublications[lang]}>
-                {intl.formatMessage({
-                  id: 'app.header.nav.baro-national-publications',
-                  defaultMessage: 'Les publications',
-                })}
-              </RouterLink>
-            )}
-          />
-        </NavItem>
         <NavItem
           current={path.startsWith(urls.sante[lang])}
           title={intl.formatMessage({

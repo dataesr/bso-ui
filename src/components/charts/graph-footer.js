@@ -33,7 +33,13 @@ const GraphFooter = ({
           <Row>
             <Col>
               {date ? (
-                <Text size='xs'>{`Données mise à jour le ${date}`}</Text>
+                <Text size='xs'>
+                  <FormattedMessage
+                    id='app.graph.data-updated'
+                    defaultMessage='Data updated'
+                  />
+                  {` ${date}`}
+                </Text>
               ) : null}
               {date && source ? <hr /> : null}
               {source ? (

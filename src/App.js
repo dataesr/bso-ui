@@ -10,8 +10,6 @@ import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
 import NotesFlash from './pages/APropos/NotesFlash';
 import Projet from './pages/APropos/Projet';
-import BaroNational from './pages/BaroNational';
-import NationalPublications from './pages/BaroNational/NationalPublications';
 import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
@@ -38,17 +36,21 @@ function App() {
           <Route
             exact
             path={Object.keys(urls.national).map((l) => urls.national[l])}
-          >
-            <BaroNational />
-          </Route>
+            component={() => {
+              window.location = '/sante';
+              return null;
+            }}
+          />
           <Route
             exact
             path={Object.keys(urls.nationalPublications).map(
               (l) => urls.nationalPublications[l],
             )}
-          >
-            <NationalPublications />
-          </Route>
+            component={() => {
+              window.location = '/sante/publications/general';
+              return null;
+            }}
+          />
           <Route exact path={Object.keys(urls.sante).map((l) => urls.sante[l])}>
             <BaroSante />
           </Route>

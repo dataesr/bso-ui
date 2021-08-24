@@ -22,7 +22,7 @@ export function setCSSProperty(property, value) {
  * @param lang
  * @returns {string}
  */
-export function getDateFormated(date, lang) {
+export function getFormattedDate(date, lang) {
   const dateFormat = { fr: 'fr-fr', en: 'en-en' };
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
   return new Date(date).toLocaleDateString(dateFormat[lang], options);
@@ -83,6 +83,7 @@ export function formatNumberByLang(num, lang, options = {}) {
     num,
   );
 }
+
 /**
  *
  * @param graphId
@@ -145,6 +146,33 @@ export function getGraphOptions(graphId, intl) {
       filename: intl.formatMessage({ id: `${graphId}.title` }),
     },
   };
+}
+
+/**
+ *
+ * @param keys
+ */
+export function clearLocalStorage(keys) {
+  for (let i = 0; i < keys.length; i += 1) {
+    localStorage.removeItem(keys[i]);
+  }
+}
+
+/**
+ *
+ * @param vintage
+ * @returns {string}
+ */
+export function getYear(vintage) {
+  let year = '';
+
+  if (vintage.length > 4) {
+    year = parseFloat(vintage.substring(0, 4)) - 1;
+  } else {
+    year = vintage - 1;
+  }
+
+  return year.toString();
 }
 
 /**
@@ -374,13 +402,14 @@ export function getFetchOptions(key, observationDate) {
         },
       },
     },
-    publiSanteData: {
+    publiSanteData: (millesime) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             { term: { 'domains.keyword': 'health' } },
-            { exists: { field: 'oa_details.2020' } },
+            { term: { year: getYear(millesime) } },
+            { exists: { field: `oa_details.${millesime}` } },
           ],
         },
       },
@@ -393,7 +422,7 @@ export function getFetchOptions(key, observationDate) {
         },
         by_is_oa: {
           terms: {
-            field: 'oa_details.2020.is_oa',
+            field: `oa_details.${millesime}.is_oa`,
           },
         },
         sum_apc: {
@@ -401,15 +430,20 @@ export function getFetchOptions(key, observationDate) {
             field: 'amount_apc_EUR',
           },
         },
+        by_oa_colors_with_priority_to_publisher: {
+          terms: {
+            field: `oa_details.${millesime}.oa_colors_with_priority_to_publisher.keyword`,
+          },
+        },
         by_oa_colors: {
           terms: {
-            field: 'oa_details.2020.oa_colors.keyword',
+            field: `oa_details.${millesime}.oa_colors.keyword`,
           },
         },
         by_repositories: {
           terms: {
-            field: 'oa_details.2020.repositories.keyword',
-            size: 1,
+            field: `oa_details.${millesime}.repositories.keyword`,
+            size: 15,
           },
         },
         by_lang: {
@@ -424,7 +458,7 @@ export function getFetchOptions(key, observationDate) {
           },
         },
       },
-    },
+    }),
   };
   return (
     (observationDate ? allOptions[key](observationDate) : allOptions[key]) || {}

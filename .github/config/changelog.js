@@ -1,6 +1,6 @@
 module.exports = {
   types: [
-    { types: ['feat', 'feature'], label: '🎉 Nouvelle fonctionalités' },
+    { types: ['feat', 'feature'], label: '🎉 Nouvelle fonctionalité' },
     { types: ['fix', 'bugfix'], label: '🐛 Réparation de Bug' },
     { types: ['improvements', 'enhancement'], label: '🔨 Amélioration' },
     { types: ['build', 'ci'], label: '🏗️ Déploiement' },

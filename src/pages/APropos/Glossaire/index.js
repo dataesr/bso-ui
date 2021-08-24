@@ -110,11 +110,11 @@ function Glossaire() {
   );
 
   return (
-    <section className='bso-glossaire'>
+    <section className='page bso-glossaire'>
       <Banner
         backgroundColor='green-soft-25'
         textColor='blue-dark-125'
-        supTitle={<FormattedMessage id='app.baro.science-ouverte' />}
+        supTitle={<FormattedMessage id='app.header.title' />}
         title={<FormattedMessage id='app.glossary' />}
         icons={renderIcons}
       >
@@ -161,7 +161,7 @@ function Glossaire() {
         </section>
       </Banner>
       <Container>
-        <Row>
+        <Row className='content'>
           <Col>
             <Accordion>{renderItems()}</Accordion>
           </Col>

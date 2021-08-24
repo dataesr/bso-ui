@@ -3,18 +3,36 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../config/config';
+import { clearLocalStorage } from '../helpers';
+import useLang from './useLang';
 
 export const GlobalsContext = createContext();
 
 export const GlobalsContextProvider = ({ children }) => {
-  const storedObservationDates = localStorage.getItem(
-    '__observationDates__',
-  ) || ['2021'];
+  const { lang } = useLang();
+  const hours = 2;
+  const storedTimer = localStorage.getItem('storedTimer');
+
+  if (
+    storedTimer
+    && new Date().getTime() - storedTimer > hours * 60 * 60 * 1000
+  ) {
+    clearLocalStorage([
+      '__observationDates__',
+      '__updateDate__',
+      'storedTimer',
+    ]);
+  }
+  const storedObservationDates = localStorage.getItem('__observationDates__');
   const [observationDates, setObservationDates] = useState(
-    storedObservationDates,
+    JSON.parse(storedObservationDates),
+  );
+  const storedLastObservationDate = localStorage.getItem('__lastObservationYear__') || '';
+  const [lastObservationYear, setlastObservationYear] = useState(
+    storedLastObservationDate,
   );
 
-  const storedUpdateDate = localStorage.getItem('__updateDate__') || null;
+  const storedUpdateDate = localStorage.getItem('__updateDate__');
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
   async function getObservationDates() {
@@ -67,15 +85,33 @@ export const GlobalsContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getData() {
-      const obDates = await getObservationDates();
-      setObservationDates(obDates);
-      setUpdateDate(await getUpdateDate(obDates[0]));
+      const responseObsDates = await getObservationDates();
+      if (responseObsDates && responseObsDates.length > 0) {
+        setObservationDates(responseObsDates);
+        localStorage.setItem(
+          '__observationDates__',
+          JSON.stringify(responseObsDates),
+        );
+
+        setlastObservationYear(responseObsDates[0]);
+        localStorage.setItem('__lastObservationYear__', responseObsDates[0]);
+
+        const responseUpdateDate = await getUpdateDate(responseObsDates[0]);
+        setUpdateDate(responseUpdateDate);
+        localStorage.setItem('__updateDate__', responseUpdateDate);
+
+        localStorage.setItem('storedTimer', new Date().getTime());
+      }
     }
-    getData();
-  }, []);
+    if (!observationDates) {
+      getData();
+    }
+  }, [lang, observationDates]);
 
   return (
-    <GlobalsContext.Provider value={{ observationDates, updateDate }}>
+    <GlobalsContext.Provider
+      value={{ observationDates, updateDate, lastObservationYear }}
+    >
       {children}
     </GlobalsContext.Provider>
   );

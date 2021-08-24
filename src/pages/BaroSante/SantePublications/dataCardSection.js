@@ -10,8 +10,10 @@ import {
   formatNumberByLang,
   getFetchOptions,
   getValueByPath,
+  getYear,
 } from '../../../utils/helpers';
 import useFetch from '../../../utils/Hooks/useFetch';
+import useGlobals from '../../../utils/Hooks/useGetGlobals';
 
 export default function DataCardSection({ lang }) {
   const intl = useIntl();
@@ -23,10 +25,11 @@ export default function DataCardSection({ lang }) {
   const [hostedDocuments, setHostedDocuments] = useState(null);
   const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
   const [apcCostSum, setApcCostSum] = useState(null);
+  const { lastObservationYear } = useGlobals();
   const { fetch, response, isMounted } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publiSanteData'),
+    options: getFetchOptions('publiSanteData', lastObservationYear),
   });
 
   const dataObj = useMemo(
@@ -44,6 +47,10 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'pink',
         intlKey: 'app.sante-publi.data.publications',
+        intlValues: {
+          totalPublications: formatNumberByLang(publicationsNumber, lang),
+          year: getYear(lastObservationYear),
+        },
       },
       apcCostSum: {
         fetch: (sum) => `${cleanBigNumber(Math.round(sum))} €`,
@@ -57,20 +64,24 @@ export default function DataCardSection({ lang }) {
       diamondPublicationRate: {
         fetch: (buckets) => (
           (buckets.find((countObj) => countObj.key === 'diamond').doc_count
-              / publicationsNumber)
+              / (buckets.find((countObj) => countObj.key === 'hybrid').doc_count
+                + buckets.find((countObj) => countObj.key === 'diamond')
+                  .doc_count
+                + buckets.find((countObj) => countObj.key === 'gold')
+                  .doc_count))
             * 100
         ).toFixed(1),
         get: diamondPublicationRate,
         set: (data) => setDiamonPublicationRate(data),
-        pathToValue: 'by_oa_colors.buckets',
+        pathToValue: 'by_oa_colors_with_priority_to_publisher.buckets',
         percentage: true,
         color: 'aqua',
         intlKey: 'app.sante-publi.data.publi-diamond',
+        intlValues: { year: getYear(lastObservationYear) },
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
-          buckets.find((countObj) => countObj.key === 'www.ncbi.nlm.nih.gov')
-            .doc_count,
+          buckets.find((countObj) => countObj.key === 'HAL').doc_count,
           lang,
         ),
         get: hostedDocuments,
@@ -93,6 +104,7 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'blue',
         intlKey: 'app.sante-publi.data.french-lang',
+        intlValues: { year: getYear(lastObservationYear) },
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
@@ -111,6 +123,7 @@ export default function DataCardSection({ lang }) {
       frenchPublicationsRate,
       hostedDocuments,
       lang,
+      lastObservationYear,
       openPublicationRate,
       publicationsNumber,
       totalHostedDocuments,
@@ -135,10 +148,14 @@ export default function DataCardSection({ lang }) {
     if (response) {
       const { aggregations } = response;
       if (!publicationsNumber) {
-        setPublicationsNumber(aggregations.count_publications.value);
+        setPublicationsNumber(
+          aggregations.by_is_oa.buckets[0].doc_count
+            + aggregations.by_is_oa.buckets[1].doc_count,
+        );
         setTotalHostedDocuments(
           formatNumberByLang(
-            aggregations.by_repositories.sum_other_doc_count,
+            aggregations.by_oa_colors.buckets.find((c) => c.key === 'green')
+              .doc_count,
             lang,
           ),
         );
