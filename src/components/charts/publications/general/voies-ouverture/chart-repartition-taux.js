@@ -59,7 +59,7 @@ const Chart = () => {
     },
   };
   optionsGraph.series = dataGraph;
-
+  console.log('tttww', dataGraph);
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
       type: 'image/png',

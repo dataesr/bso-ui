@@ -243,6 +243,16 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    couvertureHAL: () => ({
+      size: 0,
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+        },
+      },
+    }),
     disciplinesHisto: ([year]) => ({
       size: 0,
       aggs: {

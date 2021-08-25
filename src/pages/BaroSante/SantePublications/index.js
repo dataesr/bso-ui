@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
 import ChartNombreDocumentsDepotsRepositories from '../../../components/charts/publications/archives/dynamique-depot/chart-nombre-documents-depots';
-import ChartTauxExhaustiviteRepositories from '../../../components/charts/publications/archives/dynamique-hal/chart-taux exhaustivite';
+import ChartTauxExhaustiviteRepositories from '../../../components/charts/publications/archives/dynamique-hal/chart-couverture-hal';
 import ChartTauxOuvertureArchives from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-ouverture';
 import ChartTauxPresenceRepositories from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-presence';
 import ChartNombreDocumentsRepositories from '../../../components/charts/publications/archives/plus-utilisees/chart-nombre-documents';
