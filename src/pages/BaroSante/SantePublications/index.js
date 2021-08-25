@@ -4,6 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
+import ChartEvolutionProportionAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion';
+import ChartTauxOuvertureAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture';
 import ChartNombreDocumentsDepotsRepositories from '../../../components/charts/publications/archives/dynamique-depot/chart-nombre-documents-depots';
 import ChartTauxExhaustiviteRepositories from '../../../components/charts/publications/archives/dynamique-hal/chart-taux exhaustivite';
 import ChartTauxOuvertureArchives from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-ouverture';
@@ -366,9 +368,13 @@ function SantePublications() {
               ]}
             >
               <GraphContent>
-                <div id='#affiliations'>
-                  <p>Les affiliations</p>
-                </div>
+                <QuestionSection
+                  intlKey='app.sante-publi.repositories.dynamique-ouverture'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartTauxOuvertureAffiliations />
+                  <ChartEvolutionProportionAffiliations />
+                </QuestionSection>
               </GraphContent>
             </GraphItem>
           </GraphNavigation>
