@@ -10,7 +10,7 @@ function useGetData(observationDate) {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('disciplinesHisto', observationDate);
+    const query = getFetchOptions('disciplinesHisto', 'health', observationDate);
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     return res.data.aggregations.by_discipline.buckets.map((discipline) => ({
       name: discipline.key,
@@ -20,7 +20,10 @@ function useGetData(observationDate) {
         .sort((a, b) => a.key - b.key)
         .map((el) => ({
           name: el.key,
-          y: el.doc_count,
+          y:
+            (el.by_is_oa.buckets.find((item) => item.key === 1).doc_count
+              / el.doc_count)
+            * 100,
         })),
     }));
   }

@@ -10,7 +10,7 @@ export default async function useGetPublicationRateFrom(year) {
   const { fetch, response, isMounted, loading } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publicationRate', year),
+    options: getFetchOptions('publicationRate', 'health', year),
   });
   useEffect(() => {
     if (!response && isMounted.current) {

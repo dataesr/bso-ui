@@ -19,13 +19,14 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
-    const publicationDate = Number(lastObservationDate.slice(0, 4));
+    const publicationDate = Number(lastObservationDate.slice(0, 4)) - 1;
     const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
     const query = getFetchOptions(
       'openingType',
-      publicationDate,
+      'health',
       lastObservationDate,
       field,
+      'genre.keyword',
     );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
@@ -40,8 +41,8 @@ function useGetData(observationDate, isOa) {
           color: accesferme,
         },
         {
-          id: 'opened',
-          name: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+          id: 'open',
+          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color: accesouvert,
         },
       ];
@@ -49,9 +50,9 @@ function useGetData(observationDate, isOa) {
       // Ajout des "fermés"
       data
         .find((el) => el.key === 0)
-        .by_publication_genre.buckets.forEach((el) => {
+        .by_publication_split.buckets.forEach((el) => {
           dataGraph.push({
-            name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+            name: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
             oaType: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
             key: el.key,
             parent: 'closed',
@@ -65,12 +66,12 @@ function useGetData(observationDate, isOa) {
       // Ajout des "ouverts"
       data
         .find((el) => el.key === 1)
-        .by_publication_genre.buckets.forEach((el) => {
+        .by_publication_split.buckets.forEach((el) => {
           dataGraph.push({
-            name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
-            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+            name: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
             key: el.key,
-            parent: 'opened',
+            parent: 'open',
             value: el.doc_count,
             total: totalPublications,
             publicationDate,
@@ -92,15 +93,15 @@ function useGetData(observationDate, isOa) {
         dataGraph.push({
           id: el.key,
           name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
-          oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+          oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color,
         });
-        el.by_publication_genre.buckets.forEach((item) => {
+        el.by_publication_split.buckets.forEach((item) => {
           dataGraph.push({
             name: intl.formatMessage({
-              id: `app.type-hebergement.${item.key}`,
+              id: `app.publication-genre.${item.key}`,
             }),
-            oaType: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
             key: item.key,
             parent: el.key,
             value: item.doc_count,

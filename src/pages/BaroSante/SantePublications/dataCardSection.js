@@ -33,7 +33,7 @@ export default function DataCardSection({ lang }) {
   } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publiSanteData', lastObservationYear),
+    options: getFetchOptions('publiCardData', 'health', lastObservationYear),
   });
 
   const dataObj = useMemo(

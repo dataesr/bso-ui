@@ -19,6 +19,7 @@ import Themes from './pages/Themes';
 import Theme1 from './pages/Themes/Theme-1';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
+import TranslationPage from './translations/translations-page';
 import useLang from './utils/Hooks/useLang';
 
 const messages = {
@@ -33,6 +34,9 @@ function App() {
       <IntlProvider locale={lang} messages={messages[lang]}>
         <Header />
         <Switch>
+          <Route path='/translations'>
+            <TranslationPage />
+          </Route>
           <Route
             exact
             path={Object.keys(urls.national).map((l) => urls.national[l])}

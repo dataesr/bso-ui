@@ -13,7 +13,7 @@ function useGetData(observationDate) {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('repositoriesHisto', observationDate);
+    const query = getFetchOptions('repositoriesHisto', 'health', observationDate);
     const term = {};
     term[`oa_details.${observationDate}.oa_host_type`] = 'repository';
     query.query.bool.filter.push({ term });
