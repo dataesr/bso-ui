@@ -13,7 +13,7 @@ export default async function useGetPublicationRateFrom(year) {
     options: getFetchOptions('publicationRate', year),
   });
   useEffect(() => {
-    if (!response) {
+    if (!response && isMounted.current) {
       if (year) {
         fetch();
       }

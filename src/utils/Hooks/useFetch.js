@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { HEADERS } from '../../config/config';
 
 export default function useFetch({ method, url, options }) {
-  const isMounted = useRef();
+  const isMounted = useRef(true);
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
@@ -22,12 +22,10 @@ export default function useFetch({ method, url, options }) {
       }
       axios[method](url, options, HEADERS)
         .then((res) => {
-          if (isMounted.current) {
-            if (res) {
-              setResponse(res.data);
-            }
-            setLoading(false);
+          if (res) {
+            setResponse(res.data);
           }
+          setLoading(false);
         })
         .catch((err) => {
           setError({ error: true, message: err });

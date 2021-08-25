@@ -26,7 +26,11 @@ export default function DataCardSection({ lang }) {
   const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
   const [apcCostSum, setApcCostSum] = useState(null);
   const { lastObservationYear } = useGlobals();
-  const { fetch, response, isMounted } = useFetch({
+  const {
+    fetch: fetchData,
+    response,
+    isMounted,
+  } = useFetch({
     url: ES_API_URL,
     method: 'post',
     options: getFetchOptions('publiSanteData', lastObservationYear),
@@ -165,13 +169,13 @@ export default function DataCardSection({ lang }) {
   }, [response, publicationsNumber, updateData, lang]);
 
   useEffect(() => {
-    if (!response) {
-      fetch();
+    if (!response && isMounted.current) {
+      fetchData();
     }
     return () => {
       isMounted.current = false;
     };
-  }, [fetch, isMounted, response]);
+  }, [fetchData, isMounted, response]);
   return (
     <section className='pb-32'>
       <Row gutters>

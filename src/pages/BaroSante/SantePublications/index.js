@@ -1,5 +1,5 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
-import React, { useState } from 'react';
+import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
@@ -45,8 +45,6 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
-import useGlobals from '../../../utils/Hooks/useGetGlobals';
-import useGetPublicationRateFrom from '../../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../../utils/Hooks/useLang';
 import DataCardSection from './dataCardSection';
 
@@ -66,17 +64,8 @@ const objButtonLabel = {
 
 function SantePublications() {
   const { lang } = useLang();
-  const [rate, setRate] = useState(null);
   const location = useLocation();
-  const { observationDates } = useGlobals();
   const intl = useIntl();
-
-  useGetPublicationRateFrom(observationDates[1] || '2021Q2').then((resp) => {
-    const { rate: rateByYear } = resp;
-    if (!rate) {
-      setRate(rateByYear);
-    }
-  });
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
