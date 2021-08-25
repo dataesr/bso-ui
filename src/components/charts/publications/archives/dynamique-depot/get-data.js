@@ -14,9 +14,6 @@ function useGetData(observationDate) {
 
   async function GetData() {
     const query = getFetchOptions('repositoriesHisto', 'health', observationDate);
-    const term = {};
-    term[`oa_details.${observationDate}.oa_host_type`] = 'repository';
-    query.query.bool.filter.push({ term });
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 
@@ -31,6 +28,7 @@ function useGetData(observationDate) {
             .sort((a, b) => a.key - b.key)
             .map((el) => ({
               name: el.key,
+              year: el.key,
               y: el.doc_count,
             })),
         };

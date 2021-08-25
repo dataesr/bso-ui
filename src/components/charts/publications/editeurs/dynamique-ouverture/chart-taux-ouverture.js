@@ -35,10 +35,10 @@ const Chart = ({ graphFooter, graphComments }) => {
   const { observationDates, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationDates, publisher);
   const { dataGraph1 } = data;
-
-  const query = getFetchOptions('publishersList', 'health');
+  const millesime = observationDates[0];
+  const query = getFetchOptions('publishersList', 'health', millesime);
   const term = {};
-  term[`oa_details.${observationDates[0]}.oa_host_type`] = 'publisher';
+  term[`oa_details.${millesime}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {

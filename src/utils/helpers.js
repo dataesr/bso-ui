@@ -228,12 +228,12 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    repositoriesHisto: ([year]) => ({
+    repositoriesHisto: ([millesime]) => ({
       size: 0,
       aggs: {
         by_repository: {
           terms: {
-            field: `oa_details.${year}.repositories.keyword`,
+            field: `oa_details.${millesime}.repositories.keyword`,
             missing: 'N/A',
             size: 13,
           },
@@ -290,8 +290,16 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publishersList: () => ({
+    publishersList: ([millesime]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getYear(millesime) } },
+            { exists: { field: `oa_details.${millesime}` } },
+          ],
+        },
+      },
       aggs: {
         by_publisher: {
           terms: {
@@ -336,6 +344,25 @@ export function getFetchOptions(key, domain, ...parameters) {
           cardinality: {
             field: 'oa_details.2021Q2.repositories.keyword',
             precision_threshold: 10,
+          },
+        },
+      },
+    }),
+    repositoriesList: ([millesime]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getYear(millesime) } },
+            { exists: { field: `oa_details.${millesime}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_repository: {
+          terms: {
+            field: `oa_details.${millesime}.repositories.keyword`,
+            size: 10000,
           },
         },
       },

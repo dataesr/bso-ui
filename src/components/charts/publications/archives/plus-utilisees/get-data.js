@@ -3,26 +3,23 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions, getYear } from '../../../../../utils/helpers';
 
 function useGetData(observationDate) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('publishersList', 'health');
-    const term = {};
-    term[`oa_details.${observationDate}.oa_host_type`] = 'repository';
-    query.query.bool.filter.push({ term });
+    const query = getFetchOptions('repositoriesList', 'health', observationDate);
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 
-    const dataGraph = res.data.aggregations.by_publisher.buckets.map((el) => ({
+    const dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
       name: el.key,
       y: el.doc_count,
+      publicationDate: getYear(observationDate),
     }));
-
-    return dataGraph.slice(0, 20);
+    return dataGraph.slice(0, 15);
   }
 
   useEffect(() => {
