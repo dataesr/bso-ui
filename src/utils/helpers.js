@@ -188,19 +188,19 @@ export function clearLocalStorage(keys) {
 
 /**
  *
- * @param vintage
+ * @param observationDate
  * @returns {string}
  */
-export function getYear(vintage) {
-  let year = '';
+export function getPublicationYearFromObservationDate(observationDate) {
+  let publicationYear = '';
 
-  if (vintage.length > 4) {
-    year = parseFloat(vintage.substring(0, 4)) - 1;
+  if (observationDate.length > 4) {
+    publicationYear = parseFloat(observationDate.substring(0, 4)) - 1;
   } else {
-    year = vintage - 1;
+    publicationYear = observationDate - 1;
   }
 
-  return year || 2020;
+  return publicationYear || 2020;
 }
 
 /**
@@ -211,7 +211,7 @@ export function getYear(vintage) {
  */
 export function getFetchOptions(key, domain, ...parameters) {
   const allOptions = {
-    publicationRate: ([millesime]) => ({
+    publicationRate: ([observationDate]) => ({
       size: 0,
       aggs: {
         by_publication_year: {
@@ -221,19 +221,19 @@ export function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             by_is_oa: {
               terms: {
-                field: `oa_details.${millesime}.is_oa`,
+                field: `oa_details.${observationDate}.is_oa`,
               },
             },
           },
         },
       },
     }),
-    repositoriesHisto: ([year]) => ({
+    repositoriesHisto: ([observationDate]) => ({
       size: 0,
       aggs: {
         by_repository: {
           terms: {
-            field: `oa_details.${year}.repositories.keyword`,
+            field: `oa_details.${observationDate}.repositories.keyword`,
             missing: 'N/A',
             size: 13,
           },
@@ -243,7 +243,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    disciplinesHisto: ([year]) => ({
+    disciplinesHisto: ([observationDate]) => ({
       size: 0,
       aggs: {
         by_discipline: {
@@ -253,7 +253,7 @@ export function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             by_observation_year: {
               terms: {
-                field: `oa_details.${year}.observation_date.keyword`,
+                field: `oa_details.${observationDate}.observation_date.keyword`,
                 size: 10000,
               },
               aggs: {
@@ -264,7 +264,7 @@ export function getFetchOptions(key, domain, ...parameters) {
                   aggs: {
                     by_is_oa: {
                       terms: {
-                        field: `oa_details.${year}.is_oa`,
+                        field: `oa_details.${observationDate}.is_oa`,
                       },
                     },
                   },
@@ -308,7 +308,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publishersTypesHisto: ([year]) => ({
+    publishersTypesHisto: ([observationDate]) => ({
       size: 0,
       aggs: {
         by_year: {
@@ -318,7 +318,7 @@ export function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             by_oa_colors: {
               terms: {
-                field: `oa_details.${year}.oa_colors_with_priority_to_publisher.keyword`,
+                field: `oa_details.${observationDate}.oa_colors_with_priority_to_publisher.keyword`,
               },
             },
           },
@@ -382,13 +382,13 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publiCardData: ([millesime]) => ({
+    publiCardData: ([observationDate]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            { term: { year: getYear(millesime) } },
-            { exists: { field: `oa_details.${millesime}` } },
+            { term: { year: getPublicationYearFromObservationDate(observationDate) } },
+            { exists: { field: `oa_details.${observationDate}` } },
           ],
         },
       },
@@ -401,7 +401,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
         by_is_oa: {
           terms: {
-            field: `oa_details.${millesime}.is_oa`,
+            field: `oa_details.${observationDate}.is_oa`,
           },
         },
         sum_apc: {
@@ -411,17 +411,17 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
         by_oa_colors_with_priority_to_publisher: {
           terms: {
-            field: `oa_details.${millesime}.oa_colors_with_priority_to_publisher.keyword`,
+            field: `oa_details.${observationDate}.oa_colors_with_priority_to_publisher.keyword`,
           },
         },
         by_oa_colors: {
           terms: {
-            field: `oa_details.${millesime}.oa_colors.keyword`,
+            field: `oa_details.${observationDate}.oa_colors.keyword`,
           },
         },
         by_repositories: {
           terms: {
-            field: `oa_details.${millesime}.repositories.keyword`,
+            field: `oa_details.${observationDate}.repositories.keyword`,
             size: 15,
           },
         },
@@ -479,7 +479,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    openingRate: ([lastObservationDate, queryFilter]) => ({
+    openingRate: ([observationDate, queryFilter]) => ({
       size: 0,
       query: {
         bool: {
@@ -499,14 +499,14 @@ export function getFetchOptions(key, domain, ...parameters) {
               aggs: {
                 by_is_oa: {
                   terms: {
-                    field: `oa_details.${lastObservationDate}.is_oa`,
+                    field: `oa_details.${observationDate}.is_oa`,
                   },
                 },
               },
             },
             by_is_oa: {
               terms: {
-                field: `oa_details.${lastObservationDate}.is_oa`,
+                field: `oa_details.${observationDate}.is_oa`,
               },
             },
           },
@@ -533,7 +533,7 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getYear(lastObservationDate) } },
+            { term: { year: getPublicationYearFromObservationDate(lastObservationDate) } },
           ],
         },
       },
