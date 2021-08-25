@@ -158,7 +158,9 @@ export function getPercentageYAxis(showTotal = true) {
       // eslint-disable-next-line
       formatter: function () {
         // eslint-disable-next-line
-        return (showTotal && this.total) ? this.total.toFixed(1).concat(' %') : '';
+        return showTotal && this.total
+          ? this.total.toFixed(1).concat(' %')
+          : '';
       },
       style: {
         fontWeight: 'bold',
@@ -207,9 +209,9 @@ export function getYear(vintage) {
  * @param parameters
  * @returns {*|{}}
  */
-export function getFetchOptions(key, parameters) {
+export function getFetchOptions(key, ...parameters) {
   const allOptions = {
-    publicationRate: (millesime) => ({
+    publicationRate: ([millesime]) => ({
       size: 0,
       query: {
         bool: {
@@ -231,7 +233,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     }),
-    repositoriesHisto: (year) => ({
+    repositoriesHisto: ([year]) => ({
       size: 0,
       query: {
         bool: {
@@ -251,7 +253,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     }),
-    disciplinesHisto: (year) => ({
+    disciplinesHisto: ([year]) => ({
       size: 0,
       query: {
         bool: {
@@ -329,7 +331,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     },
-    publishersTypesHisto: (year) => ({
+    publishersTypesHisto: ([year]) => ({
       size: 0,
       query: {
         bool: {
@@ -428,7 +430,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     },
-    publiSanteData: (millesime) => ({
+    publiSanteData: ([millesime]) => ({
       size: 0,
       query: {
         bool: {
@@ -485,7 +487,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     }),
-    oaHostType: (lastObservationDate) => ({
+    oaHostType: ([lastObservationDate]) => ({
       size: 0,
       query: {
         bool: {
@@ -507,7 +509,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     }),
-    declarationRate: (lastObservationDate) => ({
+    declarationRate: ([lastObservationDate]) => ({
       size: 0,
       query: {
         bool: {
@@ -536,7 +538,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     }),
-    openingRate: (lastObservationDate, queryFilter) => ({
+    openingRate: ([lastObservationDate, queryFilter]) => ({
       size: 0,
       query: {
         bool: {
@@ -586,7 +588,7 @@ export function getFetchOptions(key, parameters) {
         },
       },
     },
-    openingType: (lastObservationDate, field) => ({
+    openingType: ([lastObservationDate, field]) => ({
       size: 0,
       query: {
         bool: {
@@ -614,6 +616,8 @@ export function getFetchOptions(key, parameters) {
     }),
   };
   return (
-    (parameters && parameters.length ? allOptions[key](parameters) : allOptions[key]) || {}
+    (parameters && parameters.length
+      ? allOptions[key](parameters)
+      : allOptions[key]) || {}
   );
 }
