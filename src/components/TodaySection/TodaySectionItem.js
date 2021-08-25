@@ -15,30 +15,37 @@ const fetchInfos = {
   publication: {
     path: 'aggregations.publication_count.value',
     url: ES_API_URL,
+    domain: 'health',
   },
   publisher: {
     path: 'aggregations.publisher_count.value',
     url: ES_API_URL,
+    domain: 'health',
   },
   repository: {
     path: 'aggregations.repositories_count.value',
     url: ES_API_URL,
+    domain: 'health',
   },
   obsDates: {
     path: 'aggregations.observation_dates_count.value',
     url: ES_API_URL,
+    domain: 'health',
   },
   journal: {
     path: 'aggregations.journal_count.value',
     url: ES_API_URL,
+    domain: 'health',
   },
   interventional: {
     path: 'aggregations.study_type.buckets.0.doc_count',
     url: CLINICAL_TRIALS_API_URL,
+    domain: false,
   },
   observational: {
     path: 'aggregations.study_type.buckets.1.doc_count',
     url: CLINICAL_TRIALS_API_URL,
+    domain: false,
   },
 };
 
@@ -53,7 +60,7 @@ function TodaySectionItem({
   const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
-    options: getFetchOptions(itemKey, 'health'),
+    options: getFetchOptions(itemKey, fetchInfos[itemKey].domain),
   });
   const { ref, inView } = useInView();
 

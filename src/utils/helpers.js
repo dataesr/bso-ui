@@ -551,8 +551,8 @@ export function getFetchOptions(key, domain, ...parameters) {
   if (!queryResponse.query?.bool?.filter) {
     queryResponse.query = { bool: { filter: [] } };
   }
-  if (domain === 'health') {
-    queryResponse.query.bool.filter.push({ term: { 'domains.keyword': 'health' } });
+  if (domain) {
+    queryResponse.query.bool.filter.push({ term: { 'domains.keyword': domain } });
   }
   return queryResponse;
 }
