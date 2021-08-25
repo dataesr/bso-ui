@@ -27,6 +27,18 @@
   "app.country.de": "Allemagne",
   "app.country.us": "États-Unis",
   "app.definition": "My Toutouyoutou definition <cta>my-link</cta>",
+
+  "app.discipline.Clinical Sciences": "FR Clinical Sciences",
+  "app.discipline.Chemical Sciences": "FR Chemical Sciences",
+  "app.discipline.Engineering": "FR Engineering",
+  "app.discipline.Multidisciplinary": "FR Multidisciplinary",
+  "app.discipline.Psychology and Cognitive Sciences": "FR Psychology and Cognitive Sciences",
+  "app.discipline.Public Health and Health Services": "FR Public Health and Health Services",
+  "app.discipline.Oncology and Carcinogenesis": "FR Oncology and Carcinogenesis",
+  "app.discipline.Biochemistry and Cell Biology": "FR Biochemistry and Cell Biology",
+  "app.discipline.Other Medical and Health Sciences": "FR Other Medical and Health Sciences",
+  "app.discipline.Microbiology": "FR Microbiology",
+
   "app.entry": "Entry in glossary",
   "app.faq": "Foire aux questions",
   "app.faq.access-to-publications": "Comment sont déterminés les types d'accès aux publications ?",
