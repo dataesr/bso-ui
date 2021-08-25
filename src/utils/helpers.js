@@ -283,7 +283,7 @@ export function getFetchOptions(key, ...parameters) {
         },
       },
     }),
-    publication: {
+    publication: () => ({
       size: 0,
       query: {
         bool: {
@@ -298,8 +298,8 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    },
-    publisher: {
+    }),
+    publisher: () => ({
       size: 0,
       query: {
         bool: {
@@ -314,8 +314,8 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    },
-    publishersList: {
+    }),
+    publishersList: () => ({
       size: 0,
       query: {
         bool: {
@@ -330,7 +330,7 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    },
+    }),
     publishersTypesHisto: ([year]) => ({
       size: 0,
       query: {
@@ -353,7 +353,7 @@ export function getFetchOptions(key, ...parameters) {
         },
       },
     }),
-    journal: {
+    journal: () => ({
       size: 0,
       query: {
         bool: {
@@ -368,8 +368,8 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    },
-    repository: {
+    }),
+    repository: () => ({
       size: 0,
       query: {
         bool: {
@@ -384,8 +384,8 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    },
-    obsDates: {
+    }),
+    obsDates: () => ({
       size: 0,
       query: {
         bool: {
@@ -400,8 +400,8 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    },
-    observationDates: {
+    }),
+    observationDates: () => ({
       size: 0,
       query: {
         bool: {
@@ -413,23 +413,23 @@ export function getFetchOptions(key, ...parameters) {
           terms: { field: 'observation_dates.keyword', size: 100 },
         },
       },
-    },
-    interventional: {
+    }),
+    interventional: () => ({
       size: 0,
       aggs: {
         study_type: {
           terms: { field: 'study_type.keyword' },
         },
       },
-    },
-    observational: {
+    }),
+    observational: () => ({
       size: 0,
       aggs: {
         study_type: {
           terms: { field: 'study_type.keyword' },
         },
       },
-    },
+    }),
     publiSanteData: ([millesime]) => ({
       size: 0,
       query: {
@@ -572,7 +572,7 @@ export function getFetchOptions(key, ...parameters) {
         },
       },
     }),
-    allAgencies: {
+    allAgencies: () => ({
       size: 0,
       query: {
         bool: {
@@ -587,7 +587,7 @@ export function getFetchOptions(key, ...parameters) {
           },
         },
       },
-    },
+    }),
     openingType: ([lastObservationDate, field]) => ({
       size: 0,
       query: {
@@ -615,9 +615,5 @@ export function getFetchOptions(key, ...parameters) {
       },
     }),
   };
-  return (
-    (parameters && parameters.length
-      ? allOptions[key](parameters)
-      : allOptions[key]) || {}
-  );
+  return allOptions[key](parameters) || {};
 }
