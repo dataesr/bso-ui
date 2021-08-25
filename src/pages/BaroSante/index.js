@@ -33,7 +33,7 @@ import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFr
 import useLang from '../../utils/Hooks/useLang';
 
 const endProgression = 0;
-const startProgression = 2;
+const startProgression = 1;
 
 function BaroSante() {
   const { updateDate } = useGlobals();
@@ -68,13 +68,13 @@ function BaroSante() {
     }
   };
 
-  useGetPublicationRateFrom(start).then((res) => {
+  useGetPublicationRateFrom('health', start).then((res) => {
     if (start) {
       updateProgression(res, start);
     }
   });
 
-  useGetPublicationRateFrom(end).then((res) => {
+  useGetPublicationRateFrom('health', end).then((res) => {
     if (end) {
       updateProgression(res, end);
     }
@@ -92,13 +92,14 @@ function BaroSante() {
     if (end && start) {
       const rhesus = progression[end] >= progression[start] ? '+' : '';
       const endNumber = progression[end]
-        ? parseInt(progression[end], 10)
+        ? progression[end]
         : null;
       const startNumber = progression[start]
-        ? parseInt(progression[start], 10)
+        ? progression[start]
         : null;
       if (startNumber && endNumber) {
-        progPoints = `${rhesus}${endNumber - startNumber}`;
+        const evolution = Math.round(endNumber - startNumber);
+        progPoints = `${rhesus}${evolution}`;
       }
     }
     return progPoints;
@@ -186,7 +187,7 @@ function BaroSante() {
                           />
                         )}
                         data1={progressionPoints()}
-                        data2={progressionPoints() > 1 ? 'pts' : 'pt'}
+                        data2={progressionPoints() > 1 ? ' pts' : ' pt'}
                         title={(
                           <FormattedMessage
                             values={{
