@@ -5,7 +5,7 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/helpers';
+import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -35,6 +35,7 @@ const Chart = () => {
 
   const optionsGraph = getGraphOptions(graphId, intl);
   optionsGraph.chart.type = 'area';
+  optionsGraph.yAxis = getPercentageYAxis(false);
   optionsGraph.xAxis = {
     categories,
     tickmarkPlacement: 'on',

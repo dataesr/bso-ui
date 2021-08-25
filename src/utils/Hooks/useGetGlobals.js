@@ -36,7 +36,7 @@ export const GlobalsContextProvider = ({ children }) => {
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
   async function getObservationDates() {
-    const query = getFetchOptions('observationDates');
+    const query = getFetchOptions('observationDates', false);
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const newObservationDates = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)

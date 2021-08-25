@@ -19,12 +19,13 @@ function useGetData(observationDate, agency) {
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
-      const queryFilter = [{ term: { 'domains.keyword': 'health' } }];
+      const queryFilter = [];
       if (agency) {
         queryFilter.push({ term: { 'grants.agency.keyword': agency } });
       }
       const query = getFetchOptions(
         'openingRate',
+        'health',
         lastObservationDate,
         queryFilter,
       );
@@ -51,7 +52,7 @@ function useGetData(observationDate, agency) {
           // avec ou sans declaration
           const Oa = el.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
           all.push({
-            y: Math.round((100 * Oa) / el.doc_count),
+            y: (100 * Oa) / el.doc_count,
             y_abs: Oa,
             y_tot: el.doc_count,
             publicationDate: el.key,
@@ -64,9 +65,7 @@ function useGetData(observationDate, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withDeclaration.push({
-            y: Math.round(
-              (100 * withDeclarationOa) / withDeclarationElements.doc_count,
-            ),
+            y: (100 * withDeclarationOa) / withDeclarationElements.doc_count,
             y_abs: withDeclarationOa,
             y_tot: withDeclarationElements.doc_count,
             publicationDate: el.key,
@@ -79,10 +78,8 @@ function useGetData(observationDate, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withoutDeclaration.push({
-            y: Math.round(
-              (100 * withoutDeclarationOa)
+            y: (100 * withoutDeclarationOa)
                 / withoutDeclarationElements.doc_count,
-            ),
             y_abs: withoutDeclarationOa,
             y_tot: withoutDeclarationElements.doc_count,
             publicationDate: el.key,
