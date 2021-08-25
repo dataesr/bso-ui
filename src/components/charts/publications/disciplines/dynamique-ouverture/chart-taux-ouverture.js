@@ -56,7 +56,7 @@ const Chart = ({ graphComments }) => {
     optionsGraph.series = [
       {
         data: oneGraph.data.map((el) => el.y),
-        name: oneGraph.name,
+        name: intl.formatMessage({ id: `app.discipline.${oneGraph.name}` }),
         color: discipline100,
       },
     ];

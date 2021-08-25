@@ -274,6 +274,13 @@ export function getFetchOptions(key, observationDate) {
                   terms: {
                     field: 'year',
                   },
+                  aggs: {
+                    by_is_oa: {
+                      terms: {
+                        field: `oa_details.${year}.is_oa`,
+                      },
+                    },
+                  },
                 },
               },
             },
