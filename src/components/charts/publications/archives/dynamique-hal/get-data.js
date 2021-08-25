@@ -34,12 +34,16 @@ function useGetData(observationDate) {
     let dataHAL = res[0].data.aggregations.by_publication_year.buckets;
     dataHAL = dataHAL.sort((a, b) => a.key - b.key)
       .filter(
-        (el) => el.key > 2012,
+        (el) => el.key > 2012
+          && parseInt(el.key, 10)
+            < parseInt(observationDate[0].substring(0, 4), 10),
       );
     let dataArchive = res[1].data.aggregations.by_publication_year.buckets;
     dataArchive = dataArchive.sort((a, b) => a.key - b.key)
       .filter(
-        (el) => el.key > 2012,
+        (el) => el.key > 2012
+          && parseInt(el.key, 10)
+            < parseInt(observationDate[0].substring(0, 4), 10),
       );
     const publicationYears = [];
     const hal = [];
@@ -48,10 +52,14 @@ function useGetData(observationDate) {
       publicationYears.push(el.key);
       hal.push({
         y: el.doc_count,
+        y_percHAL: (100 * el.doc_count) / (el.doc_count + dataArchive[index].doc_count),
+        y_tot: el.doc_count + dataArchive[index].doc_count,
         x: el.key,
       });
       notHal.push({
         y: dataArchive[index].doc_count - el.doc_count,
+        y_percHAL: (100 * el.doc_count) / (el.doc_count + dataArchive[index].doc_count),
+        y_tot: el.doc_count + dataArchive[index].doc_count,
         x: el.key,
       });
     });
