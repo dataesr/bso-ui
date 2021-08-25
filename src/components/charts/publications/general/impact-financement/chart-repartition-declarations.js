@@ -28,10 +28,11 @@ const Chart = () => {
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.impact-financement.chart-repartition-financements';
   const { lastObservationYear, updateDate } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
-    lastObservationYear || '2020',
-  );
-  const { dataGraph } = allData;
+  const {
+    allData: { dataGraph },
+    isLoading,
+    isError,
+  } = useGetData(lastObservationYear || '2020');
 
   if (isLoading || !dataGraph) {
     return <Loader />;
