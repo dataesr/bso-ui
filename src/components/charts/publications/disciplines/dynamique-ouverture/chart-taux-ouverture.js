@@ -9,7 +9,10 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { discipline100 } from '../../../../../style/colours.module.scss';
-import { getGraphOptions } from '../../../../../utils/helpers';
+import {
+  getGraphOptions,
+  getPercentageYAxis,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -48,11 +51,7 @@ const Chart = ({ graphComments }) => {
         },
       },
     };
-    optionsGraph.yAxis = {
-      title: {
-        enabled: false,
-      },
-    };
+    optionsGraph.yAxis = getPercentageYAxis();
     optionsGraph.series = [
       {
         data: oneGraph.data.map((el) => el.y),
