@@ -18,7 +18,7 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
-    const query = getFetchOptions('declarationRate', lastObservationDate);
+    const query = getFetchOptions('declarationRate', 'health', lastObservationDate);
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
 

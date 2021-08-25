@@ -18,8 +18,8 @@ function useGetData(observationDates, needle = '*') {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', oneDate);
-      const queryFiltered = getFetchOptions('publicationRate', oneDate);
+      const query = getFetchOptions('publicationRate', 'health', oneDate);
+      const queryFiltered = getFetchOptions('publicationRate', 'health', oneDate);
       const term = {};
       term[`oa_details.${oneDate}.oa_host_type`] = 'publisher';
       queryFiltered.query.bool.filter.push({ term });
@@ -105,7 +105,7 @@ function useGetData(observationDates, needle = '*') {
       serie.name = observationDateData.observationDate;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
-      serie.data = observationDateData.data.oaHostType.map((value, index) => Math.round((value * 100) / observationDateData.data.all[index]));
+      serie.data = observationDateData.data.oaHostType.map((value, index) => (value * 100) / observationDateData.data.all[index]);
       serie.ratios = observationDateData.data.oaHostType.map(
         (value, index) => `(${value}/${observationDateData.data.all[index]})`,
       );

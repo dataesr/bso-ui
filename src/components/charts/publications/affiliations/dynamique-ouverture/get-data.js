@@ -18,7 +18,7 @@ function useGetData(observationDates) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', oneDate);
+      const query = getFetchOptions('publicationRate', 'health', oneDate);
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 

@@ -10,7 +10,7 @@ function useGetData(observationDate) {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('disciplinesHisto', observationDate);
+    const query = getFetchOptions('disciplinesHisto', 'health', observationDate);
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     return res.data.aggregations.by_discipline.buckets.map((discipline) => ({
       name: discipline.key,

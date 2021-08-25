@@ -36,7 +36,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   const { data, isLoading, isError } = useGetData(observationDates, publisher);
   const { dataGraph1 } = data;
 
-  const query = getFetchOptions('publishersList');
+  const query = getFetchOptions('publishersList', 'health');
   const term = {};
   term[`oa_details.${observationDates[0]}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
@@ -66,7 +66,7 @@ const Chart = ({ graphFooter, graphComments }) => {
     bar: {
       dataLabels: {
         enabled: true,
-        format: '{point.y}%',
+        format: '{point.y:.0f} %',
         style: {
           color: g800,
           fontSize: '20px',
