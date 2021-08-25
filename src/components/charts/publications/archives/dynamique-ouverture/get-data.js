@@ -18,8 +18,8 @@ function useGetData(observationDates, needle = '*') {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', oneDate);
-      const queryFiltered = getFetchOptions('publicationRate', oneDate);
+      const query = getFetchOptions('publicationRate', 'health', oneDate);
+      const queryFiltered = getFetchOptions('publicationRate', 'health', oneDate);
       const term = {};
       term[`oa_details.${oneDate}.oa_host_type`] = 'repository';
       queryFiltered.query.bool.filter.push({ term });

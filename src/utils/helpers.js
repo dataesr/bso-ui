@@ -209,15 +209,10 @@ export function getYear(vintage) {
  * @param parameters
  * @returns {*|{}}
  */
-export function getFetchOptions(key, ...parameters) {
+export function getFetchOptions(key, domain, ...parameters) {
   const allOptions = {
     publicationRate: ([millesime]) => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         by_publication_year: {
           terms: {
@@ -235,11 +230,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     repositoriesHisto: ([year]) => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         by_repository: {
           terms: {
@@ -255,11 +245,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     disciplinesHisto: ([year]) => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         by_discipline: {
           terms: {
@@ -285,11 +270,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     publication: () => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         publication_count: {
           cardinality: {
@@ -301,11 +281,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     publisher: () => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         publisher_count: {
           cardinality: {
@@ -317,11 +292,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     publishersList: () => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         by_publisher: {
           terms: {
@@ -333,11 +303,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     publishersTypesHisto: ([year]) => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         by_year: {
           terms: {
@@ -355,11 +320,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     journal: () => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         journal_count: {
           cardinality: {
@@ -371,11 +331,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     repository: () => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         repositories_count: {
           cardinality: {
@@ -387,11 +342,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     obsDates: () => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         observation_dates_count: {
           cardinality: {
@@ -403,11 +353,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     observationDates: () => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         observation_dates: {
           terms: { field: 'observation_dates.keyword', size: 100 },
@@ -430,12 +375,11 @@ export function getFetchOptions(key, ...parameters) {
         },
       },
     }),
-    publiSanteData: ([millesime]) => ({
+    publiCardData: ([millesime]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            { term: { 'domains.keyword': 'health' } },
             { term: { year: getYear(millesime) } },
             { exists: { field: `oa_details.${millesime}` } },
           ],
@@ -489,11 +433,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     oaHostType: ([lastObservationDate]) => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         by_publication_year: {
           terms: {
@@ -511,11 +450,6 @@ export function getFetchOptions(key, ...parameters) {
     }),
     declarationRate: ([lastObservationDate]) => ({
       size: 0,
-      query: {
-        bool: {
-          filter: [{ term: { 'domains.keyword': 'health' } }],
-        },
-      },
       aggs: {
         by_is_oa: {
           terms: {
@@ -576,7 +510,6 @@ export function getFetchOptions(key, ...parameters) {
       size: 0,
       query: {
         bool: {
-          filter: { term: { 'domains.keyword': 'health' } },
           must: { match: { has_grant: 'true' } },
         },
       },
@@ -588,12 +521,11 @@ export function getFetchOptions(key, ...parameters) {
         },
       },
     }),
-    openingType: ([lastObservationDate, field]) => ({
+    openingType: ([lastObservationDate, field, splitField]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            { term: { 'domains.keyword': 'health' } },
             { term: { year: getYear(lastObservationDate) } },
           ],
         },
@@ -605,9 +537,9 @@ export function getFetchOptions(key, ...parameters) {
             order: { _key: 'asc' },
           },
           aggs: {
-            by_publication_genre: {
+            by_publication_split: {
               terms: {
-                field: 'genre.keyword',
+                field: `${splitField}`,
               },
             },
           },
@@ -615,5 +547,12 @@ export function getFetchOptions(key, ...parameters) {
       },
     }),
   };
-  return allOptions[key](parameters) || {};
+  const queryResponse = allOptions[key](parameters) || {};
+  if (!queryResponse.query?.bool?.filter) {
+    queryResponse.query = { bool: { filter: [] } };
+  }
+  if (domain === 'health') {
+    queryResponse.query.bool.filter.push({ term: { 'domains.keyword': 'health' } });
+  }
+  return queryResponse;
 }

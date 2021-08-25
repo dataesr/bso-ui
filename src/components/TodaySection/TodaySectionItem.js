@@ -53,7 +53,7 @@ function TodaySectionItem({
   const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
-    options: getFetchOptions(itemKey),
+    options: getFetchOptions(itemKey, 'health'),
   });
   const { ref, inView } = useInView();
 

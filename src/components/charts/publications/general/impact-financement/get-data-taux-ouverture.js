@@ -19,12 +19,13 @@ function useGetData(observationDate, agency) {
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
-      const queryFilter = [{ term: { 'domains.keyword': 'health' } }];
+      const queryFilter = [];
       if (agency) {
         queryFilter.push({ term: { 'grants.agency.keyword': agency } });
       }
       const query = getFetchOptions(
         'openingRate',
+        'health',
         lastObservationDate,
         queryFilter,
       );

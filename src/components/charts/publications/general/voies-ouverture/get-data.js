@@ -19,7 +19,7 @@ function useGetData(observationDate) {
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationDate) => {
-      const query = getFetchOptions('oaHostType', lastObservationDate);
+      const query = getFetchOptions('oaHostType', 'health', lastObservationDate);
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 

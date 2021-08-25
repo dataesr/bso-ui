@@ -11,6 +11,7 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationDate, isOa) {
   const intl = useIntl();
@@ -18,56 +19,20 @@ function useGetData(observationDate, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationDate(lastObservationDate) {
-    let query = '';
-    if (!isOa) {
-      query = {
-        size: 0,
-        query: {
-          bool: {
-            filter: [{ term: { 'domains.keyword': 'health' } }],
-          },
-        },
-        aggs: {
-          by_is_oa: {
-            terms: {
-              field: `oa_details.${lastObservationDate}.is_oa`,
-              order: { _key: 'asc' },
-            },
-            aggs: {
-              by_publication_genre: {
-                terms: {
-                  field: 'lang.keyword',
-                },
-              },
-            },
-          },
-        },
-      };
-    } else {
-      query = {
-        size: 0,
-        aggs: {
-          by_is_oa: {
-            terms: {
-              field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
-              order: { _key: 'asc' },
-            },
-            aggs: {
-              by_publication_genre: {
-                terms: {
-                  field: 'lang.keyword',
-                },
-              },
-            },
-          },
-        },
-      };
-    }
-
+    const publicationDate = Number(lastObservationDate.slice(0, 4)) - 1;
+    const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
+    const query = getFetchOptions(
+      'openingType',
+      'health',
+      lastObservationDate,
+      field,
+      'lang.keyword',
+    );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
 
     let dataGraph = [];
+    const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
     if (!isOa) {
       dataGraph = [
         {
@@ -76,8 +41,8 @@ function useGetData(observationDate, isOa) {
           color: accesferme,
         },
         {
-          id: 'opened',
-          name: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+          id: 'open',
+          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color: accesouvert,
         },
       ];
@@ -85,24 +50,32 @@ function useGetData(observationDate, isOa) {
       // Ajout des "fermés"
       data
         .find((el) => el.key === 0)
-        .by_publication_genre.buckets.forEach((el) => {
+        .by_publication_split.buckets.forEach((el) => {
           dataGraph.push({
             name: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
             key: el.key,
             parent: 'closed',
             value: el.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
 
       // Ajout des "ouverts"
       data
         .find((el) => el.key === 1)
-        .by_publication_genre.buckets.forEach((el) => {
+        .by_publication_split.buckets.forEach((el) => {
           dataGraph.push({
             name: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
             key: el.key,
-            parent: 'opened',
+            parent: 'open',
             value: el.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
     } else {
@@ -120,21 +93,25 @@ function useGetData(observationDate, isOa) {
         dataGraph.push({
           id: el.key,
           name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
+          oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color,
         });
-        el.by_publication_genre.buckets.forEach((item) => {
+        el.by_publication_split.buckets.forEach((item) => {
           dataGraph.push({
             name: intl.formatMessage({
               id: `app.lang.${item.key}`,
             }),
+            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
             key: item.key,
             parent: el.key,
             value: item.doc_count,
+            total: totalPublications,
+            publicationDate,
+            percentage: (100 * el.doc_count) / totalPublications,
           });
         });
       });
     }
-
     return { dataGraph };
   }
 

@@ -15,7 +15,7 @@ function useGetData(observationDate) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataGraph() {
-    const query = getFetchOptions('publishersTypesHisto', observationDate);
+    const query = getFetchOptions('publishersTypesHisto', 'health', observationDate);
     const term = {};
     term[`oa_details.${observationDate}.oa_host_type`] = 'publisher';
     query.query.bool.filter.push({ term });
