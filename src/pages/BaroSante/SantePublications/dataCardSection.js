@@ -26,7 +26,11 @@ export default function DataCardSection({ lang }) {
   const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
   const [apcCostSum, setApcCostSum] = useState(null);
   const { lastObservationSnap } = useGlobals();
-  const { fetch, response, isMounted } = useFetch({
+  const {
+    fetch: fetchData,
+    response,
+    isMounted,
+  } = useFetch({
     url: ES_API_URL,
     method: 'post',
   });
@@ -171,15 +175,22 @@ export default function DataCardSection({ lang }) {
   }, [response, publicationsNumber, updateData, lang]);
 
   useEffect(() => {
-    if (!response && lastObservationSnap) {
-      fetch({
-        opt: getFetchOptions('publiCardData', 'health', lastObservationSnap),
+    if (!response && isMounted.current && lastObservationSnap) {
+      fetchData({
+        options: getFetchOptions(
+          'publiCardData',
+          'health',
+          lastObservationSnap,
+        ),
       });
     }
     return () => {
-      isMounted.current = false;
+      if (lastObservationSnap) {
+        isMounted.current = false;
+      }
     };
-  }, [fetch, isMounted, response, lastObservationSnap]);
+  }, [fetchData, isMounted, lastObservationSnap, response]);
+
   return (
     <section className='pb-32'>
       <Row gutters>

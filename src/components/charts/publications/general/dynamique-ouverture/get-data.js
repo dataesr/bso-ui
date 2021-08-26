@@ -60,7 +60,10 @@ function useGetData(observationSnaps) {
       serie.name = observationSnapData.observationSnap;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
-      serie.data = filtered.map((el) => (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100) / (el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count));
+      serie.data = filtered.map(
+        (el) => (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
+          / (el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count),
+      );
       serie.ratios = filtered.map(
         (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
       );

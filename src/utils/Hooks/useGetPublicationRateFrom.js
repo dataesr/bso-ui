@@ -4,21 +4,31 @@ import { ES_API_URL } from '../../config/config';
 import { getFetchOptions } from '../helpers';
 import useFetch from './useFetch';
 
-export default async function useGetPublicationRateFrom(domain, observationSnap) {
+export default async function useGetPublicationRateFrom(
+  domain,
+  observationSnap,
+) {
   const [result, setResult] = useState({});
 
   const { fetch, response, isMounted, loading } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publicationRate', domain, observationSnap),
   });
+
   useEffect(() => {
-    if (!response) {
-      if (observationSnap) {
-        fetch();
-      }
-    } else if (!loading && response && observationSnap && !Object.keys(result).length) {
-      const observationYear = observationSnap ? observationSnap.substring(0, 4) : null;
+    if (!response && isMounted.current && observationSnap) {
+      fetch({
+        options: getFetchOptions('publicationRate', domain, observationSnap),
+      });
+    } else if (
+      !loading
+      && response
+      && observationSnap
+      && !Object.keys(result).length
+    ) {
+      const observationYear = observationSnap
+        ? observationSnap.substring(0, 4)
+        : null;
       const sortedData = response?.aggregations.by_publication_year.buckets
         .sort((a, b) => a.key - b.key)
         .filter(
@@ -27,15 +37,19 @@ export default async function useGetPublicationRateFrom(domain, observationSnap)
             && el.doc_count
             && el.key > 2012,
         );
-      const data = sortedData.map((elm) => (elm.by_is_oa.buckets[0].doc_count * 100) / elm.doc_count);
+      const data = sortedData.map(
+        (elm) => (elm.by_is_oa.buckets[0].doc_count * 100) / elm.doc_count,
+      );
       setResult(() => ({
         rate: data[data.length - 1],
         observationSnap,
       }));
     }
     return () => {
-      isMounted.current = false;
+      if (observationSnap) {
+        isMounted.current = false;
+      }
     };
-  }, [fetch, isMounted, loading, observationSnap, response, result]);
+  }, [domain, fetch, isMounted, loading, observationSnap, response, result]);
   return result;
 }

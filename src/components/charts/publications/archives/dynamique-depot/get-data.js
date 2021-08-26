@@ -13,7 +13,11 @@ function useGetData(observationSnap) {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('repositoriesHisto', 'health', observationSnap);
+    const query = getFetchOptions(
+      'repositoriesHisto',
+      'health',
+      observationSnap,
+    );
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 

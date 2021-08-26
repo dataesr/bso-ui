@@ -15,7 +15,11 @@ function useGetData(observationSnap) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataGraph() {
-    const query = getFetchOptions('publishersTypesHisto', 'health', observationSnap);
+    const query = getFetchOptions(
+      'publishersTypesHisto',
+      'health',
+      observationSnap,
+    );
     const term = {};
     term[`oa_details.${observationSnap}.oa_host_type`] = 'publisher';
     query.query.bool.filter.push({ term });
@@ -35,21 +39,36 @@ function useGetData(observationSnap) {
     data.forEach((dataYear) => {
       goldData.push({
         publicationDate: dataYear.key,
-        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold').doc_count,
+        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold')
+          .doc_count,
         y_tot: dataYear.doc_count,
-        y: (100 * dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold').doc_count) / dataYear.doc_count,
+        y:
+          (100
+            * dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold')
+              .doc_count)
+          / dataYear.doc_count,
       });
       hybridData.push({
         publicationDate: dataYear.key,
-        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid').doc_count,
+        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
+          .doc_count,
         y_tot: dataYear.doc_count,
-        y: (100 * dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid').doc_count) / dataYear.doc_count,
+        y:
+          (100
+            * dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
+              .doc_count)
+          / dataYear.doc_count,
       });
       diamondData.push({
         publicationDate: dataYear.key,
-        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond').doc_count,
+        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond')
+          .doc_count,
         y_tot: dataYear.doc_count,
-        y: (100 * dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond').doc_count) / dataYear.doc_count,
+        y:
+          (100
+            * dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond')
+              .doc_count)
+          / dataYear.doc_count,
       });
     });
     const dataGraph = [

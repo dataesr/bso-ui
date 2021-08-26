@@ -19,7 +19,11 @@ function useGetData(observationSnap) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions('oaHostType', 'health', lastObservationSnap);
+      const query = getFetchOptions(
+        'oaHostType',
+        'health',
+        lastObservationSnap,
+      );
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 
