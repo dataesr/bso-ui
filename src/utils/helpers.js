@@ -266,6 +266,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         by_country: {
           terms: {
             field: 'detected_countries.keyword',
+            size: 21,
           },
           aggs: {
             by_is_oa: {

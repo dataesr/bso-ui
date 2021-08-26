@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import Banner from '../../../components/Banner';
 import ChartEvolutionProportionAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuvertureAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture';
-// import ChartClassementPays from '../../../components/charts/publications/affiliations/pays/chart-classement';
+import ChartClassementPays from '../../../components/charts/publications/affiliations/pays/chart-classement-pays';
 import ChartEvolutionTauxOuvertureRangUtile from '../../../components/charts/publications/affiliations/pays/chart-taux-rang-utile';
 import ChartNombreDocumentsDepotsRepositories from '../../../components/charts/publications/archives/dynamique-depot/chart-nombre-documents-depots';
 import ChartTauxCouvertureHAL from '../../../components/charts/publications/archives/dynamique-hal/chart-couverture-hal';
@@ -372,6 +372,7 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                 >
                   <ChartEvolutionTauxOuvertureRangUtile />
+                  <ChartClassementPays />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

@@ -25,20 +25,17 @@ const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lang } = useLang();
-  const graphId = 'app.sante-publi.affiliations.pays.chart-taux-rang-utile';
+  const graphId = 'app.sante-publi.affiliations.pays.chart-classement-pays';
   const { lastObservationSnap, updateDate } = useGlobals();
   const { allData, isLoading } = useGetData(lastObservationSnap);
-  const { dataGraph, categories } = allData;
+  const { categories2, dataGraph2 } = allData;
 
-  if (isLoading || !dataGraph || !categories) {
+  if (isLoading || !dataGraph2 || !categories2) {
     return <Loader />;
   }
-
   const optionsGraph = getGraphOptions(graphId, intl);
-  optionsGraph.chart.type = 'column';
-  optionsGraph.xAxis = {
-    categories,
-  };
+  optionsGraph.chart.type = 'bar';
+  optionsGraph.xAxis = { categories: categories2 };
   optionsGraph.yAxis = getPercentageYAxis();
   optionsGraph.legend = {
     title: {
@@ -46,18 +43,18 @@ const Chart = () => {
     },
   };
   optionsGraph.plotOptions = {
-    column: {
+    bar: {
       dataLabels: {
         enabled: true,
         // eslint-disable-next-line
         formatter: function () {
           // eslint-disable-next-line
-          return this.y.toFixed(0).concat(' %');
+          return this.y.toFixed(1).concat(' %');
         },
       },
     },
   };
-  optionsGraph.series = dataGraph;
+  optionsGraph.series = dataGraph2;
 
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
