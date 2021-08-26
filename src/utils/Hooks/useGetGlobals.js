@@ -28,7 +28,7 @@ export const GlobalsContextProvider = ({ children }) => {
     JSON.parse(storedObservationSnaps),
   );
   const storedLastObservationSnap = localStorage.getItem('__lastObservationYear__') || '';
-  const [lastObservationYear, setlastObservationYear] = useState(
+  const [lastObservationSnap, setlastObservationSnap] = useState(
     storedLastObservationSnap,
   );
 
@@ -66,18 +66,18 @@ export const GlobalsContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getData() {
-      const responseObsDates = await getObservationSnaps();
-      if (responseObsDates && responseObsDates.length > 0) {
-        setObservationSnaps(responseObsDates);
+      const responseObservationSnaps = await getObservationSnaps();
+      if (responseObservationSnaps && responseObservationSnaps.length > 0) {
+        setObservationSnaps(responseObservationSnaps);
         localStorage.setItem(
           '__observationSnaps__',
-          JSON.stringify(responseObsDates),
+          JSON.stringify(responseObservationSnaps),
         );
 
-        setlastObservationYear(responseObsDates[0]);
-        localStorage.setItem('__lastObservationYear__', responseObsDates[0]);
+        setlastObservationSnap(responseObservationSnaps[0]);
+        localStorage.setItem('__lastObservationYear__', responseObservationSnaps[0]);
 
-        const responseUpdateDate = await getUpdateDate(responseObsDates[0]);
+        const responseUpdateDate = await getUpdateDate(responseObservationSnaps[0]);
         setUpdateDate(responseUpdateDate);
         localStorage.setItem('__updateDate__', responseUpdateDate);
 
@@ -91,7 +91,7 @@ export const GlobalsContextProvider = ({ children }) => {
 
   return (
     <GlobalsContext.Provider
-      value={{ observationSnaps, updateDate, lastObservationYear }}
+      value={{ observationSnaps, updateDate, lastObservationSnap }}
     >
       {children}
     </GlobalsContext.Provider>
