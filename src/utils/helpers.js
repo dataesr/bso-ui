@@ -188,19 +188,19 @@ export function clearLocalStorage(keys) {
 
 /**
  *
- * @param vintage
+ * @param observationSnap
  * @returns {string}
  */
-export function getYear(vintage) {
-  let year = '';
+export function getPublicationYearFromObservationSnap(observationSnap) {
+  let publicationYear = '';
 
-  if (vintage.length > 4) {
-    year = parseFloat(vintage.substring(0, 4)) - 1;
+  if (observationSnap.length > 4) {
+    publicationYear = parseFloat(observationSnap.substring(0, 4)) - 1;
   } else {
-    year = vintage - 1;
+    publicationYear = observationSnap - 1;
   }
 
-  return year || 2020;
+  return publicationYear || 2020;
 }
 
 /**
@@ -211,7 +211,7 @@ export function getYear(vintage) {
  */
 export function getFetchOptions(key, domain, ...parameters) {
   const allOptions = {
-    publicationRate: ([millesime]) => ({
+    publicationRate: ([observationSnap]) => ({
       size: 0,
       aggs: {
         by_publication_year: {
@@ -221,7 +221,7 @@ export function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             by_is_oa: {
               terms: {
-                field: `oa_details.${millesime}.is_oa`,
+                field: `oa_details.${observationSnap}.is_oa`,
               },
             },
           },
@@ -277,12 +277,12 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    repositoriesHisto: ([year]) => ({
+    repositoriesHisto: ([observationSnap]) => ({
       size: 0,
       aggs: {
         by_repository: {
           terms: {
-            field: `oa_details.${year}.repositories.keyword`,
+            field: `oa_details.${observationSnap}.repositories.keyword`,
             missing: 'N/A',
             size: 13,
           },
@@ -292,7 +292,17 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    disciplinesHisto: ([year]) => ({
+    couvertureHAL: () => ({
+      size: 0,
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+        },
+      },
+    }),
+    disciplinesHisto: ([observationSnap]) => ({
       size: 0,
       aggs: {
         by_discipline: {
@@ -302,7 +312,7 @@ export function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             by_observation_year: {
               terms: {
-                field: `oa_details.${year}.observation_date.keyword`,
+                field: `oa_details.${observationSnap}.observation_date.keyword`,
                 size: 10000,
               },
               aggs: {
@@ -313,7 +323,7 @@ export function getFetchOptions(key, domain, ...parameters) {
                   aggs: {
                     by_is_oa: {
                       terms: {
-                        field: `oa_details.${year}.is_oa`,
+                        field: `oa_details.${observationSnap}.is_oa`,
                       },
                     },
                   },
@@ -346,8 +356,16 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publishersList: () => ({
+    publishersList: ([observationSnap]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
       aggs: {
         by_publisher: {
           terms: {
@@ -357,7 +375,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publishersTypesHisto: ([year]) => ({
+    publishersTypesHisto: ([observationSnap]) => ({
       size: 0,
       aggs: {
         by_year: {
@@ -367,7 +385,7 @@ export function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             by_oa_colors: {
               terms: {
-                field: `oa_details.${year}.oa_colors_with_priority_to_publisher.keyword`,
+                field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
               },
             },
           },
@@ -396,6 +414,25 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    repositoriesList: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_repository: {
+          terms: {
+            field: `oa_details.${observationSnap}.repositories.keyword`,
+            size: 10000,
+          },
+        },
+      },
+    }),
     obsDates: () => ({
       size: 0,
       aggs: {
@@ -407,7 +444,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    observationDates: () => ({
+    observationSnaps: () => ({
       size: 0,
       aggs: {
         observation_dates: {
@@ -431,13 +468,17 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publiCardData: ([millesime]) => ({
+    publiCardData: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            { term: { year: getYear(millesime) } },
-            { exists: { field: `oa_details.${millesime}` } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+            { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
       },
@@ -450,7 +491,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
         by_is_oa: {
           terms: {
-            field: `oa_details.${millesime}.is_oa`,
+            field: `oa_details.${observationSnap}.is_oa`,
           },
         },
         sum_apc: {
@@ -460,17 +501,17 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
         by_oa_colors_with_priority_to_publisher: {
           terms: {
-            field: `oa_details.${millesime}.oa_colors_with_priority_to_publisher.keyword`,
+            field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
           },
         },
         by_oa_colors: {
           terms: {
-            field: `oa_details.${millesime}.oa_colors.keyword`,
+            field: `oa_details.${observationSnap}.oa_colors.keyword`,
           },
         },
         by_repositories: {
           terms: {
-            field: `oa_details.${millesime}.repositories.keyword`,
+            field: `oa_details.${observationSnap}.repositories.keyword`,
             size: 15,
           },
         },
@@ -487,7 +528,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    oaHostType: ([lastObservationDate]) => ({
+    oaHostType: ([lastObservationSnap]) => ({
       size: 0,
       aggs: {
         by_publication_year: {
@@ -497,24 +538,24 @@ export function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             by_oa_host_type: {
               terms: {
-                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+                field: `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
               },
             },
           },
         },
       },
     }),
-    declarationRate: ([lastObservationDate]) => ({
+    declarationRate: ([lastObservationSnap]) => ({
       size: 0,
       aggs: {
         by_is_oa: {
           terms: {
-            field: `oa_details.${lastObservationDate}.is_oa`,
+            field: `oa_details.${lastObservationSnap}.is_oa`,
           },
           aggs: {
             by_oa_host_type: {
               terms: {
-                field: `oa_details.${lastObservationDate}.oa_host_type.keyword`,
+                field: `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
               },
               aggs: {
                 by_grant_agency: {
@@ -528,7 +569,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    openingRate: ([lastObservationDate, queryFilter]) => ({
+    openingRate: ([observationSnap, queryFilter]) => ({
       size: 0,
       query: {
         bool: {
@@ -548,14 +589,14 @@ export function getFetchOptions(key, domain, ...parameters) {
               aggs: {
                 by_is_oa: {
                   terms: {
-                    field: `oa_details.${lastObservationDate}.is_oa`,
+                    field: `oa_details.${observationSnap}.is_oa`,
                   },
                 },
               },
             },
             by_is_oa: {
               terms: {
-                field: `oa_details.${lastObservationDate}.is_oa`,
+                field: `oa_details.${observationSnap}.is_oa`,
               },
             },
           },
@@ -577,19 +618,25 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    openingType: ([lastObservationDate, field, splitField]) => ({
+    openingType: ([lastObservationSnap, field, splitField]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            { term: { year: getYear(lastObservationDate) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(
+                  lastObservationSnap,
+                ),
+              },
+            },
           ],
         },
       },
       aggs: {
         by_is_oa: {
           terms: {
-            field: `oa_details.${lastObservationDate}.${field}`,
+            field: `oa_details.${lastObservationSnap}.${field}`,
             order: { _key: 'asc' },
           },
           aggs: {
@@ -608,7 +655,9 @@ export function getFetchOptions(key, domain, ...parameters) {
     queryResponse.query = { bool: { filter: [] } };
   }
   if (domain) {
-    queryResponse.query.bool.filter.push({ term: { 'domains.keyword': domain } });
+    queryResponse.query.bool.filter.push({
+      term: { 'domains.keyword': domain },
+    });
   }
   return queryResponse;
 }

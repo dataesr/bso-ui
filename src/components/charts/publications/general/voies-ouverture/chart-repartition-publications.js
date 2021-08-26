@@ -27,9 +27,9 @@ const Chart = () => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-publications';
-  const { lastObservationYear, updateDate } = useGlobals();
+  const { lastObservationSnap, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    lastObservationYear || '2020',
+    lastObservationSnap || '2020',
   );
   const { dataGraph3 } = allData;
 

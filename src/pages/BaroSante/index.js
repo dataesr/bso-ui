@@ -32,26 +32,26 @@ import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
 
-const endProgression = 0;
-const startProgression = 1;
+const lastObservationSnapIndex = 0;
+const previousObservationSnapIndex = 1;
 
 function BaroSante() {
   const { updateDate } = useGlobals();
   const [progression, setProgression] = useState({});
-  const { observationDates } = useGlobals();
+  const { observationSnaps } = useGlobals();
   const { lang } = useLang();
-  const [start, setStart] = useState(
-    observationDates ? observationDates[startProgression] : '',
+  const [previousObservationSnap, setPreviousObservationSnap] = useState(
+    observationSnaps ? observationSnaps[previousObservationSnapIndex] : '',
   );
-  const [end, setEnd] = useState(
-    observationDates ? observationDates[endProgression] : '',
+  const [lastObservationSnap, setLastObservationSnap] = useState(
+    observationSnaps ? observationSnaps[lastObservationSnapIndex] : '',
   );
 
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
         date: getFormattedDate(updateDate, lang),
-        endDate: end,
+        endDate: lastObservationSnap,
         startDate: '2013',
       }}
       id='app.sante.update.date'
@@ -68,37 +68,39 @@ function BaroSante() {
     }
   };
 
-  useGetPublicationRateFrom('health', start).then((res) => {
-    if (start) {
-      updateProgression(res, start);
+  useGetPublicationRateFrom('health', previousObservationSnap).then((res) => {
+    if (previousObservationSnap && Object.keys(res).length > 0) {
+      updateProgression(res, previousObservationSnap);
     }
   });
 
-  useGetPublicationRateFrom('health', end).then((res) => {
-    if (end) {
-      updateProgression(res, end);
+  useGetPublicationRateFrom('health', lastObservationSnap).then((res) => {
+    if (lastObservationSnap) {
+      updateProgression(res, lastObservationSnap);
     }
   });
 
   useEffect(() => {
-    if (observationDates && !start && !end) {
-      setStart(observationDates[endProgression]);
-      setEnd(observationDates[startProgression]);
+    if (observationSnaps && !previousObservationSnap && !lastObservationSnap) {
+      setPreviousObservationSnap(observationSnaps[lastObservationSnapIndex]);
+      setLastObservationSnap(observationSnaps[previousObservationSnapIndex]);
     }
-  }, [end, observationDates, start]);
+  }, [lastObservationSnap, observationSnaps, previousObservationSnap]);
 
   const progressionPoints = () => {
     let progPoints = '';
-    if (end && start) {
-      const rhesus = progression[end] >= progression[start] ? '+' : '';
-      const endNumber = progression[end]
-        ? progression[end]
+    if (lastObservationSnap && previousObservationSnap) {
+      const rhesus = progression[lastObservationSnap] >= progression[previousObservationSnap]
+        ? '+'
+        : '';
+      const lastOaRate = progression[lastObservationSnap]
+        ? progression[lastObservationSnap]
         : null;
-      const startNumber = progression[start]
-        ? progression[start]
+      const previousOaRate = progression[previousObservationSnap]
+        ? progression[previousObservationSnap]
         : null;
-      if (startNumber && endNumber) {
-        const evolution = Math.round(endNumber - startNumber);
+      if (previousOaRate && lastOaRate) {
+        const evolution = Math.round(lastOaRate - previousOaRate);
         progPoints = `${rhesus}${evolution}`;
       }
     }
@@ -191,8 +193,8 @@ function BaroSante() {
                         title={(
                           <FormattedMessage
                             values={{
-                              startYear: start,
-                              endYear: end,
+                              startYear: previousObservationSnap,
+                              endYear: lastObservationSnap,
                               div: (chunks) => <div>{chunks}</div>,
                             }}
                             id='app.sante-publi.progression'

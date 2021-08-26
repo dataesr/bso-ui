@@ -28,8 +28,8 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion';
-  const { observationDates, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationDates);
+  const { observationSnaps, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps);
   const { dataGraph2 } = data;
 
   if (isLoading || !dataGraph2) {

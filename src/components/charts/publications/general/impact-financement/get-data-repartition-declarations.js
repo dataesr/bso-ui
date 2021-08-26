@@ -12,13 +12,17 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDate, isOa) {
+function useGetData(observationSnap, isOa) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  async function getDataForLastObservationDate(lastObservationDate) {
-    const query = getFetchOptions('declarationRate', 'health', lastObservationDate);
+  async function getDataForLastObservationSnap(lastObservationSnap) {
+    const query = getFetchOptions(
+      'declarationRate',
+      'health',
+      lastObservationSnap,
+    );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
 
@@ -85,7 +89,7 @@ function useGetData(observationDate, isOa) {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataForLastObservationDate(observationDate);
+        const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
@@ -94,7 +98,7 @@ function useGetData(observationDate, isOa) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate, isOa]);
+  }, [observationSnap, isOa]);
 
   return { allData, isLoading };
 }

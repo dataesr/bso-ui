@@ -13,18 +13,18 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDate, isOa) {
+function useGetData(observationSnap, isOa) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  async function getDataForLastObservationDate(lastObservationDate) {
-    const publicationDate = Number(lastObservationDate.slice(0, 4)) - 1;
+  async function getDataForLastObservationSnap(lastObservationSnap) {
+    const publicationDate = Number(lastObservationSnap.slice(0, 4)) - 1;
     const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
     const query = getFetchOptions(
       'openingType',
       'health',
-      lastObservationDate,
+      lastObservationSnap,
       field,
       'genre.keyword',
     );
@@ -118,7 +118,7 @@ function useGetData(observationDate, isOa) {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataForLastObservationDate(observationDate);
+        const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
@@ -127,7 +127,7 @@ function useGetData(observationDate, isOa) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate, isOa]);
+  }, [observationSnap, isOa]);
 
   return { allData, isLoading };
 }

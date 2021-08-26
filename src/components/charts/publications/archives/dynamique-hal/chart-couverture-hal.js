@@ -7,13 +7,13 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { getGraphOptions } from '../../../../../utils/helpers';
+import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-// import Loader from '../../../../Loader';
+import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import GraphTitle from '../../../graph-title';
-// import useGetData from './get-data';
+import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -21,19 +21,38 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.publishers.politiques-ouverture.chart-classement';
+  const graphId = 'app.sante-publi.repositories.dynamique-hal.chart-couverture-hal';
 
-  // const { observationSnaps, updateDate } = useGlobals();
-  const { updateDate } = useGlobals();
-  // const { data, isLoading, isError } = useGetData(observationSnaps);
-  // const { dataGraph2 } = data;
+  const { observationSnaps, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps);
+  const { publicationYears, dataGraph2 } = data;
 
-  // if (isLoading || !dataGraph2) {
-  //   return <Loader />;
-  // }
-  // if (isError) {
-  //   return <>Error</>;
-  // }
+  if (isLoading || !dataGraph2) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <>Error</>;
+  }
+
+  const optionsGraph = getGraphOptions(graphId, intl);
+  optionsGraph.chart.type = 'column';
+  optionsGraph.xAxis = {
+    publicationYears,
+  };
+  optionsGraph.legend = {
+    title: {
+      text: intl.formatMessage({ id: `${graphId}.legend` }),
+    },
+  };
+  optionsGraph.plotOptions = {
+    column: {
+      stacking: 'normal',
+      dataLabels: {
+        enabled: true,
+      },
+    },
+  };
+  optionsGraph.series = dataGraph2;
 
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
@@ -50,7 +69,7 @@ const Chart = ({ graphFooter, graphComments }) => {
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
-          options={{}}
+          options={optionsGraph}
           ref={chartRef}
           id={graphId}
         />

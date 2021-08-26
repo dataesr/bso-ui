@@ -11,14 +11,14 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDate, agency) {
+function useGetData(observationSnap, agency) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [agencies, setAgencies] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  const getDataForLastObservationDate = useCallback(
-    async (lastObservationDate) => {
+  const getDataForLastObservationSnap = useCallback(
+    async (lastObservationSnap) => {
       const queryFilter = [];
       if (agency) {
         queryFilter.push({ term: { 'grants.agency.keyword': agency } });
@@ -26,7 +26,7 @@ function useGetData(observationDate, agency) {
       const query = getFetchOptions(
         'openingRate',
         'health',
-        lastObservationDate,
+        lastObservationSnap,
         queryFilter,
       );
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
@@ -44,7 +44,7 @@ function useGetData(observationDate, agency) {
         .filter(
           (el) => el.key > 2012
             && parseInt(el.key, 10)
-              < parseInt(lastObservationDate.substring(0, 4), 10),
+              < parseInt(lastObservationSnap.substring(0, 4), 10),
         )
         .forEach((el) => {
           categories.push(el.key);
@@ -78,8 +78,9 @@ function useGetData(observationDate, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withoutDeclaration.push({
-            y: (100 * withoutDeclarationOa)
-                / withoutDeclarationElements.doc_count,
+            y:
+              (100 * withoutDeclarationOa)
+              / withoutDeclarationElements.doc_count,
             y_abs: withoutDeclarationOa,
             y_tot: withoutDeclarationElements.doc_count,
             publicationDate: el.key,
@@ -133,7 +134,7 @@ function useGetData(observationDate, agency) {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataForLastObservationDate(observationDate);
+        const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
@@ -142,7 +143,7 @@ function useGetData(observationDate, agency) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate, agency]);
+  }, [observationSnap, agency]);
   return { allData, isLoading, agencies };
 }
 export default useGetData;

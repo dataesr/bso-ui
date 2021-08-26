@@ -63,32 +63,29 @@ function GraphNavigation({ buttonLabel, children }) {
     handleScroll();
   }, [offsetTop, handleScroll]);
 
-  useEffect(
-    () => () => {
-      const content = [];
-      const headers = [];
-      if (!headerItems && contents.length === 0) {
-        for (let i = 0; i < Children.toArray(children).length; i += 1) {
-          const section = Children.toArray(children)[i];
-          // eslint-disable-next-line no-underscore-dangle
-          if (section.props.__TYPE === 'GraphItem') {
-            headers.push(section);
-          }
-
-          content.push(
-            cloneElement(section.props.children, {
-              ...section.props.children.props,
-              key: uuidv4(),
-              paths: section.props.paths,
-            }),
-          );
+  useEffect(() => {
+    const content = [];
+    const headers = [];
+    if (!headerItems && contents.length === 0) {
+      for (let i = 0; i < Children.toArray(children).length; i += 1) {
+        const section = Children.toArray(children)[i];
+        // eslint-disable-next-line no-underscore-dangle
+        if (section.props.__TYPE === 'GraphItem') {
+          headers.push(section);
         }
-        setHeaderItems(headers);
-        setContents(content);
+
+        content.push(
+          cloneElement(section.props.children, {
+            ...section.props.children.props,
+            key: uuidv4(),
+            paths: section.props.paths,
+          }),
+        );
       }
-    },
-    [children, setContents, contents, headerItems, setHeaderItems],
-  );
+      setHeaderItems(headers);
+      setContents(content);
+    }
+  }, [children, setContents, contents, headerItems, setHeaderItems]);
   return (
     <>
       <section

@@ -26,8 +26,8 @@ const Chart = ({ graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture';
 
-  const { observationDates } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationDates[0]);
+  const { lastObservationSnap } = useGlobals();
+  const { data, isLoading, isError } = useGetData(lastObservationSnap);
 
   if (isLoading || !data || data.length <= 0) {
     return <Loader />;

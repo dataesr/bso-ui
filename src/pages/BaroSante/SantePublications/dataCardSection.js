@@ -9,8 +9,8 @@ import {
   cleanBigNumber,
   formatNumberByLang,
   getFetchOptions,
+  getPublicationYearFromObservationSnap,
   getValueByPath,
-  getYear,
 } from '../../../utils/helpers';
 import useFetch from '../../../utils/Hooks/useFetch';
 import useGlobals from '../../../utils/Hooks/useGetGlobals';
@@ -25,11 +25,14 @@ export default function DataCardSection({ lang }) {
   const [hostedDocuments, setHostedDocuments] = useState(null);
   const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
   const [apcCostSum, setApcCostSum] = useState(null);
-  const { lastObservationYear } = useGlobals();
-  const { fetch, response, isMounted } = useFetch({
+  const { lastObservationSnap } = useGlobals();
+  const {
+    fetch: fetchData,
+    response,
+    isMounted,
+  } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publiCardData', 'health', lastObservationYear),
   });
 
   const dataObj = useMemo(
@@ -49,7 +52,8 @@ export default function DataCardSection({ lang }) {
         intlKey: 'app.sante-publi.data.publications',
         intlValues: {
           totalPublications: formatNumberByLang(publicationsNumber, lang),
-          year: getYear(lastObservationYear),
+          publicationYear:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
         },
       },
       apcCostSum: {
@@ -77,7 +81,10 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'aqua',
         intlKey: 'app.sante-publi.data.publi-diamond',
-        intlValues: { year: getYear(lastObservationYear) },
+        intlValues: {
+          publicationYear:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
+        },
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -104,7 +111,10 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'blue',
         intlKey: 'app.sante-publi.data.french-lang',
-        intlValues: { year: getYear(lastObservationYear) },
+        intlValues: {
+          publicationYear:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
+        },
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
@@ -123,7 +133,7 @@ export default function DataCardSection({ lang }) {
       frenchPublicationsRate,
       hostedDocuments,
       lang,
-      lastObservationYear,
+      lastObservationSnap,
       openPublicationRate,
       publicationsNumber,
       totalHostedDocuments,
@@ -165,13 +175,22 @@ export default function DataCardSection({ lang }) {
   }, [response, publicationsNumber, updateData, lang]);
 
   useEffect(() => {
-    if (!response) {
-      fetch();
+    if (!response && isMounted.current && lastObservationSnap) {
+      fetchData({
+        options: getFetchOptions(
+          'publiCardData',
+          'health',
+          lastObservationSnap,
+        ),
+      });
     }
     return () => {
-      isMounted.current = false;
+      if (lastObservationSnap) {
+        isMounted.current = false;
+      }
     };
-  }, [fetch, isMounted, response]);
+  }, [fetchData, isMounted, lastObservationSnap, response]);
+
   return (
     <section className='pb-32'>
       <Row gutters>
