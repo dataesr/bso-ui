@@ -3,26 +3,23 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('publishersList', 'health');
-    const term = {};
-    term[`oa_details.${observationSnap}.oa_host_type`] = 'repository';
-    query.query.bool.filter.push({ term });
+    const query = getFetchOptions('repositoriesList', 'health', observationSnap);
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 
-    const dataGraph = res.data.aggregations.by_publisher.buckets.map((el) => ({
+    const dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
       name: el.key,
       y: el.doc_count,
+      publicationDate: getPublicationYearFromObservationSnap(observationSnap),
     }));
-
-    return dataGraph.slice(0, 20);
+    return dataGraph.slice(0, 15);
   }
 
   useEffect(() => {

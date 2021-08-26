@@ -35,8 +35,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   const { observationSnaps, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, archive);
   const { dataGraph1 } = data;
-
-  const query = getFetchOptions('publishersList', 'health');
+  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
   const term = {};
   term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'repository';
   query.query.bool.filter.push({ term });

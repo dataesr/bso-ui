@@ -56,7 +56,7 @@ const Chart = ({ graphComments }) => {
     };
     optionsGraph.series = [
       {
-        data: oneGraph.data.map((el) => el.y),
+        data: oneGraph.data,
         name: oneGraph.name,
       },
     ];

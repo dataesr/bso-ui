@@ -297,8 +297,16 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publishersList: () => ({
+    publishersList: ([observationSnap]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
       aggs: {
         by_publisher: {
           terms: {
@@ -343,6 +351,25 @@ export function getFetchOptions(key, domain, ...parameters) {
           cardinality: {
             field: 'oa_details.2021Q2.repositories.keyword',
             precision_threshold: 10,
+          },
+        },
+      },
+    }),
+    repositoriesList: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_repository: {
+          terms: {
+            field: `oa_details.${observationSnap}.repositories.keyword`,
+            size: 10000,
           },
         },
       },
