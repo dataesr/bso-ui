@@ -27,9 +27,9 @@ const Chart = () => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.voies-ouverture.chart-evolution-taux';
-  const { updateDate, lastObservationYear } = useGlobals();
+  const { updateDate, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    lastObservationYear || today.getFullYear() - 1,
+    lastObservationSnap || today.getFullYear() - 1,
   );
   const { dataGraph, categories } = allData;
 

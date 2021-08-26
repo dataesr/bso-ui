@@ -22,9 +22,9 @@ const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.type-ouverture.chart-repartition-modeles';
-  const { observationDates, updateDate } = useGlobals();
+  const { observationSnaps, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    observationDates[0] || 2020,
+    observationSnaps[0] || 2020,
   );
   const { dataGraphTreemap } = allData;
 

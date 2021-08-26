@@ -9,12 +9,12 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDates) {
+function useGetData(observationSnaps) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
-  async function getDataByObservationDates(datesObservation) {
+  async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
@@ -28,7 +28,7 @@ function useGetData(observationDates) {
     });
 
     const allData = res.map((d, i) => ({
-      observationDate: datesObservation[i],
+      observationSnap: datesObservation[i],
       data: d.data.aggregations.by_publication_year.buckets,
     }));
 
@@ -43,21 +43,21 @@ function useGetData(observationDates) {
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
     const dataGraph2 = [];
-    allData.forEach((observationDateData, i) => {
+    allData.forEach((observationSnapData, i) => {
       const serie = {};
-      const filtered = observationDateData.data
+      const filtered = observationSnapData.data
         .sort((a, b) => a.key - b.key)
         .filter(
           (el) => el.key
               < parseInt(
-                observationDateData.observationDate.substring(0, 4),
+                observationSnapData.observationSnap.substring(0, 4),
                 10,
               )
             && el.by_is_oa.buckets.length > 0
             && el.doc_count
             && el.key > 2012,
         );
-      serie.name = observationDateData.observationDate;
+      serie.name = observationSnapData.observationSnap;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       serie.data = filtered.map((el) => Math.trunc((el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count));
@@ -80,7 +80,7 @@ function useGetData(observationDates) {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataByObservationDates(observationDates);
+        const dataGraph = await getDataByObservationSnaps(observationSnaps);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
@@ -88,7 +88,7 @@ function useGetData(observationDates) {
       }
     }
     getData();
-  }, [observationDates]);
+  }, [observationSnaps]);
 
   return { data, isLoading, isError };
 }

@@ -18,32 +18,36 @@ export const GlobalsContextProvider = ({ children }) => {
     && new Date().getTime() - storedTimer > hours * 60 * 60 * 1000
   ) {
     clearLocalStorage([
-      '__observationDates__',
+      '__observationSnaps__',
       '__updateDate__',
       'storedTimer',
     ]);
   }
-  const storedObservationDates = localStorage.getItem('__observationDates__');
-  const [observationDates, setObservationDates] = useState(
-    JSON.parse(storedObservationDates),
+  const storedObservationSnaps = localStorage.getItem('__observationSnaps__');
+  const [observationSnaps, setObservationSnaps] = useState(
+    JSON.parse(storedObservationSnaps),
   );
-  const storedLastObservationDate = localStorage.getItem('__lastObservationYear__') || '';
-  const [lastObservationYear, setlastObservationYear] = useState(
-    storedLastObservationDate,
+  const storedLastObservationSnap = localStorage.getItem('__lastObservationSnap__') || '';
+  const [lastObservationSnap, setLastObservationSnap] = useState(
+    storedLastObservationSnap,
+  );
+  const storedBeforeLastObservationSnap = localStorage.getItem('__beforeLastObservationSnap__') || '';
+  const [beforeLastObservationSnap, setBeforeLastObservationSnap] = useState(
+    storedBeforeLastObservationSnap,
   );
 
   const storedUpdateDate = localStorage.getItem('__updateDate__');
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
-  async function getObservationDates() {
-    const query = getFetchOptions('observationDates', false);
+  async function getObservationSnaps() {
+    const query = getFetchOptions('observationSnaps', false);
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const newObservationDates = res?.data?.aggregations?.observation_dates?.buckets
+    const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort()
       .reverse();
-    return newObservationDates.filter(
-      (el) => el <= 2020 || el === newObservationDates[0] || el.includes('Q4'),
+    return newObservationSnaps.filter(
+      (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );
   }
 
@@ -66,32 +70,48 @@ export const GlobalsContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getData() {
-      const responseObsDates = await getObservationDates();
-      if (responseObsDates && responseObsDates.length > 0) {
-        setObservationDates(responseObsDates);
+      const responseObservationSnaps = await getObservationSnaps();
+      if (responseObservationSnaps && responseObservationSnaps.length > 0) {
+        setObservationSnaps(responseObservationSnaps);
         localStorage.setItem(
-          '__observationDates__',
-          JSON.stringify(responseObsDates),
+          '__observationSnaps__',
+          JSON.stringify(responseObservationSnaps),
         );
 
-        setlastObservationYear(responseObsDates[0]);
-        localStorage.setItem('__lastObservationYear__', responseObsDates[0]);
+        setLastObservationSnap(responseObservationSnaps[0]);
+        localStorage.setItem(
+          '__lastObservationSnap__',
+          responseObservationSnaps[0],
+        );
 
-        const responseUpdateDate = await getUpdateDate(responseObsDates[0]);
+        setBeforeLastObservationSnap(responseObservationSnaps[1]);
+        localStorage.setItem(
+          '__beforeLastObservationSnap__',
+          responseObservationSnaps[1],
+        );
+
+        const responseUpdateDate = await getUpdateDate(
+          responseObservationSnaps[0],
+        );
         setUpdateDate(responseUpdateDate);
         localStorage.setItem('__updateDate__', responseUpdateDate);
 
         localStorage.setItem('storedTimer', new Date().getTime());
       }
     }
-    if (!observationDates) {
+    if (!observationSnaps) {
       getData();
     }
-  }, [lang, observationDates]);
+  }, [lang, observationSnaps]);
 
   return (
     <GlobalsContext.Provider
-      value={{ observationDates, updateDate, lastObservationYear }}
+      value={{
+        observationSnaps,
+        updateDate,
+        lastObservationSnap,
+        beforeLastObservationSnap,
+      }}
     >
       {children}
     </GlobalsContext.Provider>

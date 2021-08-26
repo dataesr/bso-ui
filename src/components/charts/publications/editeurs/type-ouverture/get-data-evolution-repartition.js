@@ -10,14 +10,14 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDate) {
+function useGetData(observationSnap) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function getDataGraph() {
-    const query = getFetchOptions('publishersTypesHisto', 'health', observationDate);
+    const query = getFetchOptions('publishersTypesHisto', 'health', observationSnap);
     const term = {};
-    term[`oa_details.${observationDate}.oa_host_type`] = 'publisher';
+    term[`oa_details.${observationSnap}.oa_host_type`] = 'publisher';
     query.query.bool.filter.push({ term });
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
@@ -25,7 +25,7 @@ function useGetData(observationDate) {
       .sort((a, b) => a.key - b.key)
       .filter(
         (el) => el.key >= 2013
-          && parseInt(el.key, 10) < parseInt(observationDate.substring(0, 4), 10),
+          && parseInt(el.key, 10) < parseInt(observationSnap.substring(0, 4), 10),
       );
 
     const categories = data.map((dataYear) => dataYear.key);
@@ -112,7 +112,7 @@ function useGetData(observationDate) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate]);
+  }, [observationSnap]);
 
   return { allData, isLoading };
 }

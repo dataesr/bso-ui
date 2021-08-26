@@ -9,7 +9,7 @@ import useLang from '../../utils/Hooks/useLang';
 export default function Chip() {
   const { lang } = useLang();
   const today = new Date();
-  const { updateDate, lastObservationYear } = useGlobals();
+  const { updateDate, lastObservationSnap } = useGlobals();
 
   return (
     <div className='bso-chip marianne-bold text-center'>
@@ -19,7 +19,7 @@ export default function Chip() {
             values={{
               date: getFormattedDate(updateDate, lang),
               endDate:
-                lastObservationYear.slice(0, 4) - 1 || today.getFullYear(),
+                lastObservationSnap.slice(0, 4) - 1 || today.getFullYear(),
               startDate: 2013,
             }}
             id='app.sante.update.date'

@@ -4,25 +4,25 @@ import { ES_API_URL } from '../../config/config';
 import { getFetchOptions } from '../helpers';
 import useFetch from './useFetch';
 
-export default async function useGetPublicationRateFrom(domain, millesime) {
+export default async function useGetPublicationRateFrom(domain, observationSnap) {
   const [result, setResult] = useState({});
 
   const { fetch, response, isMounted, loading } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publicationRate', domain, millesime),
+    options: getFetchOptions('publicationRate', domain, observationSnap),
   });
   useEffect(() => {
     if (!response) {
-      if (millesime) {
+      if (observationSnap) {
         fetch();
       }
-    } else if (!loading && response && millesime && !Object.keys(result).length) {
-      const currentYear = millesime ? millesime.substring(0, 4) : null;
+    } else if (!loading && response && observationSnap && !Object.keys(result).length) {
+      const observationYear = observationSnap ? observationSnap.substring(0, 4) : null;
       const sortedData = response?.aggregations.by_publication_year.buckets
         .sort((a, b) => a.key - b.key)
         .filter(
-          (el) => el.key < parseInt(currentYear, 10) // publicationYear = millesimeYear - 1
+          (el) => el.key < parseInt(observationYear, 10) // publicationYear < observationYear
             && el.by_is_oa.buckets.length > 0
             && el.doc_count
             && el.key > 2012,
@@ -30,12 +30,12 @@ export default async function useGetPublicationRateFrom(domain, millesime) {
       const data = sortedData.map((elm) => (elm.by_is_oa.buckets[0].doc_count * 100) / elm.doc_count);
       setResult(() => ({
         rate: data[data.length - 1],
-        millesime,
+        observationSnap,
       }));
     }
     return () => {
       isMounted.current = false;
     };
-  }, [fetch, isMounted, loading, millesime, response, result]);
+  }, [fetch, isMounted, loading, observationSnap, response, result]);
   return result;
 }
