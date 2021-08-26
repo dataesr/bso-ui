@@ -8,7 +8,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { discipline100 } from '../../../../../style/colours.module.scss';
+import {
+  discipline100,
+  discipline125,
+} from '../../../../../style/colours.module.scss';
 import {
   getGraphOptions,
   getPercentageYAxis,
@@ -25,7 +28,6 @@ HCExportingData(Highcharts);
 const Chart = ({ graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture';
-
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap);
 
@@ -40,7 +42,7 @@ const Chart = ({ graphComments }) => {
   data.forEach((oneGraph) => {
     const optionsGraph = getGraphOptions(graphId, intl);
     optionsGraph.chart.type = 'column';
-    optionsGraph.colors = [discipline100];
+
     optionsGraph.xAxis = {
       type: 'category',
       categories: oneGraph.data.map((el) => el.name),
@@ -52,14 +54,18 @@ const Chart = ({ graphComments }) => {
       },
     };
     optionsGraph.yAxis = getPercentageYAxis();
+
     optionsGraph.series = [
       {
-        data: oneGraph.data.map((el) => el.y),
         name: intl.formatMessage({ id: `app.discipline.${oneGraph.name}` }),
-        color: discipline100,
+        colorByPoint: true,
+        data: oneGraph.data.map((el, i) => ({
+          name: el.name,
+          y: el.y,
+          color: i === oneGraph.data.length - 1 ? discipline100 : discipline125,
+        })),
       },
     ];
-
     graphs.push(optionsGraph);
   });
 
