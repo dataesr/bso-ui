@@ -12,14 +12,14 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDate) {
+function useGetData(observationSnap) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  const getDataForLastObservationDate = useCallback(
-    async (lastObservationDate) => {
-      const query = getFetchOptions('oaHostType', 'health', lastObservationDate);
+  const getDataForLastObservationSnap = useCallback(
+    async (lastObservationSnap) => {
+      const query = getFetchOptions('oaHostType', 'health', lastObservationSnap);
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 
@@ -37,7 +37,7 @@ function useGetData(observationDate) {
         .filter(
           (el) => el.key > 2012
             && parseInt(el.key, 10)
-              < parseInt(lastObservationDate.substring(0, 4), 10),
+              < parseInt(lastObservationSnap.substring(0, 4), 10),
         )
         .forEach((el) => {
           categories.push(el.key);
@@ -149,7 +149,7 @@ function useGetData(observationDate) {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataForLastObservationDate(observationDate);
+        const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
@@ -158,7 +158,7 @@ function useGetData(observationDate) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate]);
+  }, [observationSnap]);
 
   return { allData, isLoading };
 }

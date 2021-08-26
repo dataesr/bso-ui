@@ -18,32 +18,32 @@ export const GlobalsContextProvider = ({ children }) => {
     && new Date().getTime() - storedTimer > hours * 60 * 60 * 1000
   ) {
     clearLocalStorage([
-      '__observationDates__',
+      '__observationSnaps__',
       '__updateDate__',
       'storedTimer',
     ]);
   }
-  const storedObservationDates = localStorage.getItem('__observationDates__');
-  const [observationDates, setObservationDates] = useState(
-    JSON.parse(storedObservationDates),
+  const storedObservationSnaps = localStorage.getItem('__observationSnaps__');
+  const [observationSnaps, setObservationSnaps] = useState(
+    JSON.parse(storedObservationSnaps),
   );
-  const storedLastObservationDate = localStorage.getItem('__lastObservationYear__') || '';
+  const storedLastObservationSnap = localStorage.getItem('__lastObservationYear__') || '';
   const [lastObservationYear, setlastObservationYear] = useState(
-    storedLastObservationDate,
+    storedLastObservationSnap,
   );
 
   const storedUpdateDate = localStorage.getItem('__updateDate__');
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
-  async function getObservationDates() {
-    const query = getFetchOptions('observationDates', false);
+  async function getObservationSnaps() {
+    const query = getFetchOptions('observationSnaps', false);
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const newObservationDates = res?.data?.aggregations?.observation_dates?.buckets
+    const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort()
       .reverse();
-    return newObservationDates.filter(
-      (el) => el <= 2020 || el === newObservationDates[0] || el.includes('Q4'),
+    return newObservationSnaps.filter(
+      (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );
   }
 
@@ -66,11 +66,11 @@ export const GlobalsContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getData() {
-      const responseObsDates = await getObservationDates();
+      const responseObsDates = await getObservationSnaps();
       if (responseObsDates && responseObsDates.length > 0) {
-        setObservationDates(responseObsDates);
+        setObservationSnaps(responseObsDates);
         localStorage.setItem(
-          '__observationDates__',
+          '__observationSnaps__',
           JSON.stringify(responseObsDates),
         );
 
@@ -84,14 +84,14 @@ export const GlobalsContextProvider = ({ children }) => {
         localStorage.setItem('storedTimer', new Date().getTime());
       }
     }
-    if (!observationDates) {
+    if (!observationSnaps) {
       getData();
     }
-  }, [lang, observationDates]);
+  }, [lang, observationSnaps]);
 
   return (
     <GlobalsContext.Provider
-      value={{ observationDates, updateDate, lastObservationYear }}
+      value={{ observationSnaps, updateDate, lastObservationYear }}
     >
       {children}
     </GlobalsContext.Provider>

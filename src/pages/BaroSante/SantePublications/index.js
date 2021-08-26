@@ -68,10 +68,10 @@ function SantePublications() {
   const { lang } = useLang();
   const [rate, setRate] = useState(null);
   const location = useLocation();
-  const { observationDates } = useGlobals();
+  const { observationSnaps } = useGlobals();
   const intl = useIntl();
 
-  useGetPublicationRateFrom(observationDates[1] || '2021Q2').then((resp) => {
+  useGetPublicationRateFrom(observationSnaps[1] || '2021Q2').then((resp) => {
     const { rate: rateByYear } = resp;
     if (!rate) {
       setRate(rateByYear);

@@ -32,26 +32,26 @@ import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
 
-const lastObservationDateIndex = 0;
-const previousObservationDateIndex = 1;
+const lastObservationSnapIndex = 0;
+const previousObservationSnapIndex = 1;
 
 function BaroSante() {
   const { updateDate } = useGlobals();
   const [progression, setProgression] = useState({});
-  const { observationDates } = useGlobals();
+  const { observationSnaps } = useGlobals();
   const { lang } = useLang();
-  const [previousObservationDate, setPreviousObservationDate] = useState(
-    observationDates ? observationDates[previousObservationDateIndex] : '',
+  const [previousObservationSnap, setPreviousObservationSnap] = useState(
+    observationSnaps ? observationSnaps[previousObservationSnapIndex] : '',
   );
-  const [lastObservationDate, setLastObservationDate] = useState(
-    observationDates ? observationDates[lastObservationDateIndex] : '',
+  const [lastObservationSnap, setLastObservationSnap] = useState(
+    observationSnaps ? observationSnaps[lastObservationSnapIndex] : '',
   );
 
   const renderUpdateDate = () => (
     <FormattedMessage
       values={{
         date: getFormattedDate(updateDate, lang),
-        endDate: lastObservationDate,
+        endDate: lastObservationSnap,
         startDate: '2013',
       }}
       id='app.sante.update.date'
@@ -68,34 +68,34 @@ function BaroSante() {
     }
   };
 
-  useGetPublicationRateFrom('health', previousObservationDate).then((res) => {
-    if (previousObservationDate) {
-      updateProgression(res, previousObservationDate);
+  useGetPublicationRateFrom('health', previousObservationSnap).then((res) => {
+    if (previousObservationSnap) {
+      updateProgression(res, previousObservationSnap);
     }
   });
 
-  useGetPublicationRateFrom('health', lastObservationDate).then((res) => {
-    if (lastObservationDate) {
-      updateProgression(res, lastObservationDate);
+  useGetPublicationRateFrom('health', lastObservationSnap).then((res) => {
+    if (lastObservationSnap) {
+      updateProgression(res, lastObservationSnap);
     }
   });
 
   useEffect(() => {
-    if (observationDates && !previousObservationDate && !lastObservationDate) {
-      setPreviousObservationDate(observationDates[lastObservationDateIndex]);
-      setLastObservationDate(observationDates[previousObservationDateIndex]);
+    if (observationSnaps && !previousObservationSnap && !lastObservationSnap) {
+      setPreviousObservationSnap(observationSnaps[lastObservationSnapIndex]);
+      setLastObservationSnap(observationSnaps[previousObservationSnapIndex]);
     }
-  }, [lastObservationDate, observationDates, previousObservationDate]);
+  }, [lastObservationSnap, observationSnaps, previousObservationSnap]);
 
   const progressionPoints = () => {
     let progPoints = '';
-    if (lastObservationDate && previousObservationDate) {
-      const rhesus = progression[lastObservationDate] >= progression[previousObservationDate] ? '+' : '';
-      const lastOaRate = progression[lastObservationDate]
-        ? progression[lastObservationDate]
+    if (lastObservationSnap && previousObservationSnap) {
+      const rhesus = progression[lastObservationSnap] >= progression[previousObservationSnap] ? '+' : '';
+      const lastOaRate = progression[lastObservationSnap]
+        ? progression[lastObservationSnap]
         : null;
-      const previousOaRate = progression[previousObservationDate]
-        ? progression[previousObservationDate]
+      const previousOaRate = progression[previousObservationSnap]
+        ? progression[previousObservationSnap]
         : null;
       if (previousOaRate && lastOaRate) {
         const evolution = Math.round(lastOaRate - previousOaRate);
@@ -191,8 +191,8 @@ function BaroSante() {
                         title={(
                           <FormattedMessage
                             values={{
-                              startYear: previousObservationDate,
-                              endYear: lastObservationDate,
+                              startYear: previousObservationSnap,
+                              endYear: lastObservationSnap,
                               div: (chunks) => <div>{chunks}</div>,
                             }}
                             id='app.sante-publi.progression'

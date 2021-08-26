@@ -5,14 +5,14 @@ import { useEffect, useState } from 'react';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDate) {
+function useGetData(observationSnap) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
     const query = getFetchOptions('publishersList', 'health');
     const term = {};
-    term[`oa_details.${observationDate}.oa_host_type`] = 'repository';
+    term[`oa_details.${observationSnap}.oa_host_type`] = 'repository';
     query.query.bool.filter.push({ term });
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
@@ -37,7 +37,7 @@ function useGetData(observationDate) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate]);
+  }, [observationSnap]);
 
   return { data, isLoading };
 }

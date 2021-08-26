@@ -22,8 +22,8 @@ const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.dynamique-ouverture.chart-evolution-proportion';
-  const { observationDates, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationDates);
+  const { observationSnaps, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps);
   const { dataGraph2 } = data;
 
   if (isLoading || !dataGraph2) {

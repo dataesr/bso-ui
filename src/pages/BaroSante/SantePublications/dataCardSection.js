@@ -9,7 +9,7 @@ import {
   cleanBigNumber,
   formatNumberByLang,
   getFetchOptions,
-  getPublicationYearFromObservationDate,
+  getPublicationYearFromObservationSnap,
   getValueByPath,
 } from '../../../utils/helpers';
 import useFetch from '../../../utils/Hooks/useFetch';
@@ -49,7 +49,7 @@ export default function DataCardSection({ lang }) {
         intlKey: 'app.sante-publi.data.publications',
         intlValues: {
           totalPublications: formatNumberByLang(publicationsNumber, lang),
-          publicationYear: getPublicationYearFromObservationDate(lastObservationYear),
+          publicationYear: getPublicationYearFromObservationSnap(lastObservationYear),
         },
       },
       apcCostSum: {
@@ -77,7 +77,7 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'aqua',
         intlKey: 'app.sante-publi.data.publi-diamond',
-        intlValues: { publicationYear: getPublicationYearFromObservationDate(lastObservationYear) },
+        intlValues: { publicationYear: getPublicationYearFromObservationSnap(lastObservationYear) },
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -104,7 +104,7 @@ export default function DataCardSection({ lang }) {
         percentage: true,
         color: 'blue',
         intlKey: 'app.sante-publi.data.french-lang',
-        intlValues: { publicationYear: getPublicationYearFromObservationDate(lastObservationYear) },
+        intlValues: { publicationYear: getPublicationYearFromObservationSnap(lastObservationYear) },
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
