@@ -27,7 +27,7 @@ export const GlobalsContextProvider = ({ children }) => {
   const [observationSnaps, setObservationSnaps] = useState(
     JSON.parse(storedObservationSnaps),
   );
-  const storedLastObservationSnap = localStorage.getItem('__lastObservationYear__') || '';
+  const storedLastObservationSnap = localStorage.getItem('__lastObservationSnap__') || '';
   const [lastObservationSnap, setlastObservationSnap] = useState(
     storedLastObservationSnap,
   );
@@ -75,7 +75,7 @@ export const GlobalsContextProvider = ({ children }) => {
         );
 
         setlastObservationSnap(responseObservationSnaps[0]);
-        localStorage.setItem('__lastObservationYear__', responseObservationSnaps[0]);
+        localStorage.setItem('__lastObservationSnap__', responseObservationSnaps[0]);
 
         const responseUpdateDate = await getUpdateDate(responseObservationSnaps[0]);
         setUpdateDate(responseUpdateDate);
