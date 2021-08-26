@@ -32,13 +32,13 @@ const Chart = ({ graphFooter, graphComments }) => {
   const graphId = 'app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture';
   const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
-  const { observationDates, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationDates, archive);
+  const { observationSnaps, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps, archive);
   const { dataGraph1 } = data;
 
   const query = getFetchOptions('publishersList', 'health');
   const term = {};
-  term[`oa_details.${observationDates[0]}.oa_host_type`] = 'repository';
+  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'repository';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {

@@ -5,7 +5,10 @@ import HighchartsReact from 'highcharts-react-official';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
+import {
+  getGraphOptions,
+  getPercentageYAxis,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -20,9 +23,9 @@ const Chart = () => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.type-ouverture.chart-evolution-repartition';
-  const { observationDates, updateDate } = useGlobals();
+  const { observationSnaps, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    observationDates[0] || '2020',
+    observationSnaps[0] || '2020',
   );
   const { categories, dataGraph } = allData;
 

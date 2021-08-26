@@ -9,17 +9,21 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDates, needle = '*') {
+function useGetData(observationSnaps, needle = '*') {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
-  async function getDataByObservationDates(datesObservation) {
+  async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
       const query = getFetchOptions('publicationRate', 'health', oneDate);
-      const queryFiltered = getFetchOptions('publicationRate', 'health', oneDate);
+      const queryFiltered = getFetchOptions(
+        'publicationRate',
+        'health',
+        oneDate,
+      );
       const term = {};
       term[`oa_details.${oneDate}.oa_host_type`] = 'repository';
       queryFiltered.query.bool.filter.push({ term });
@@ -40,16 +44,14 @@ function useGetData(observationDates, needle = '*') {
     for (let i = 0; i < res.length; i += 1) {
       const newData = {};
       if (i % 2 === 1) {
-        newData.observationDate = datesObservation[(i - 1) / 2];
+        newData.observationSnap = datesObservation[(i - 1) / 2];
         newData.data = {};
-        newData.data.oaHostType = res[i - 1].data.aggregations.by_publication_year.buckets
+        newData.data.oaHostType = res[
+          i - 1
+        ].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
           .filter(
-            (el) => el.key
-                < parseInt(
-                  newData.observationDate.substring(0, 4),
-                  10,
-                )
+            (el) => el.key < parseInt(newData.observationSnap.substring(0, 4), 10)
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
               && el.key > 2012,
@@ -58,24 +60,18 @@ function useGetData(observationDates, needle = '*') {
         newData.data.all = res[i].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
           .filter(
-            (el) => el.key
-                < parseInt(
-                  newData.observationDate.substring(0, 4),
-                  10,
-                )
+            (el) => el.key < parseInt(newData.observationSnap.substring(0, 4), 10)
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
               && el.key > 2012,
           )
           .map((el) => el.doc_count);
-        newData.data.publicationDates = res[i].data.aggregations.by_publication_year.buckets
+        newData.data.publicationDates = res[
+          i
+        ].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
           .filter(
-            (el) => el.key
-                < parseInt(
-                  newData.observationDate.substring(0, 4),
-                  10,
-                )
+            (el) => el.key < parseInt(newData.observationSnap.substring(0, 4), 10)
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
               && el.key > 2012,
@@ -96,16 +92,20 @@ function useGetData(observationDates, needle = '*') {
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
     const dataGraph2 = [];
-    allData.forEach((observationDateData, i) => {
+    allData.forEach((observationSnapData, i) => {
       const serie = {};
-      serie.name = observationDateData.observationDate;
+      serie.name = observationSnapData.observationSnap;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
-      serie.data = observationDateData.data.oaHostType.map((value, index) => (value * 100) / observationDateData.data.all[index]);
-      serie.ratios = observationDateData.data.oaHostType.map(
-        (value, index) => `(${value}/${observationDateData.data.all[index]})`,
+      serie.data = observationSnapData.data.oaHostType.map(
+        (value, index) => (value * 100) / observationSnapData.data.all[index],
       );
-      serie.publicationDate = observationDateData.data.publicationDates[observationDateData.data.publicationDates.length - 1];
+      serie.ratios = observationSnapData.data.oaHostType.map(
+        (value, index) => `(${value}/${observationSnapData.data.all[index]})`,
+      );
+      serie.publicationDate = observationSnapData.data.publicationDates[
+        observationSnapData.data.publicationDates.length - 1
+      ];
       dataGraph2.push(serie);
     });
     const dataGraph1 = dataGraph2.map((el) => ({
@@ -121,7 +121,7 @@ function useGetData(observationDates, needle = '*') {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataByObservationDates(observationDates);
+        const dataGraph = await getDataByObservationSnaps(observationSnaps);
         setData(dataGraph);
         setLoading(false);
       } catch (error) {
@@ -130,7 +130,7 @@ function useGetData(observationDates, needle = '*') {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDates, needle]);
+  }, [observationSnaps, needle]);
 
   return { data, isLoading, isError };
 }

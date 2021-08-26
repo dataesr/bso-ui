@@ -29,12 +29,12 @@ const Chart = () => {
   const { lang } = useLang();
   const [isOa, setIsOa] = useState(false);
   const graphId = 'app.sante-publi.general.langues-ouverture.chart-repartition-publications';
-  const { updateDate, lastObservationYear } = useGlobals();
+  const { updateDate, lastObservationSnap } = useGlobals();
   const {
     allData: { dataGraph },
     isLoading,
     isError,
-  } = useGetData(lastObservationYear || '2020', isOa);
+  } = useGetData(lastObservationSnap || '2020', isOa);
 
   if (isLoading || !dataGraph) {
     return <Loader />;
@@ -96,7 +96,7 @@ const Chart = () => {
     chartComments = intl.formatMessage(
       { id: `${graphId}.comments` },
       {
-        a: lastObservationYear,
+        a: lastObservationSnap,
         b: journalArticleOpened,
         c: journalArticleClosed,
         d: Math.floor(ratio1 * 100),
