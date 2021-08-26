@@ -390,6 +390,7 @@
   "url.integration": "/integration/:graphId",
   "url.national": "/",
   "url.national.publications": "/publications",
+  "url.sante": "/sante",
   "url.sante.essais": "/sante/essais-cliniques",
   "url.sante.etudes": "/sante/etudes-observationelles",
   "url.sante.publications.general": "/sante/publications/general",

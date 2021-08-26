@@ -20,6 +20,7 @@ function Banner({
   sticky,
   selectNavigation,
   children,
+  homeLink,
 }) {
   const [navSelected, setNavSelected] = useState(
     selectNavigation ? selectNavigation.selected : '',
@@ -80,7 +81,17 @@ function Banner({
             })}
           >
             <small className='sup-title'>{supTitle}</small>
-            <h2 className='main-title marianne-extra-bold'>{title}</h2>
+            <h2 className='main-title marianne-extra-bold'>
+              {selectNavigation && sticked ? (
+                <>
+                  <Link to={homeLink} className='home'>
+                    <i className='ri-home-2-line' />
+                  </Link>
+                  /&nbsp;
+                </>
+              ) : null}
+              {title}
+            </h2>
             <section className='icons'>{icons || ''}</section>
             {subTitle && (
               <h3
@@ -158,6 +169,7 @@ Banner.defaultProps = {
   children: null,
   selectNavigation: null,
   sticky: true,
+  homeLink: '/',
 };
 
 Banner.propTypes = {
@@ -182,6 +194,7 @@ Banner.propTypes = {
     ).isRequired,
   }),
   subTitle: PropTypes.element,
+  homeLink: PropTypes.string,
   link: PropTypes.exact({
     label: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
