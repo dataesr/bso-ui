@@ -43,7 +43,7 @@ const Chart = ({ graphFooter, graphComments }) => {
     bar: {
       dataLabels: {
         enabled: true,
-        format: '{point.y}%',
+        format: '{point.y:.0f}%',
         style: {
           color: g800,
           fontSize: '20px',
