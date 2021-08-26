@@ -26,8 +26,8 @@ const Chart = () => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.affiliations.pays.chart-taux-rang-utile';
-  const { lastObservationYear, updateDate } = useGlobals();
-  const { allData, isLoading } = useGetData(lastObservationYear);
+  const { lastObservationSnap, updateDate } = useGlobals();
+  const { allData, isLoading } = useGetData(lastObservationSnap);
   const { dataGraph, categories } = allData;
 
   if (isLoading || !dataGraph || !categories) {

@@ -257,7 +257,7 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getYear(observationSnap) } },
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
             { term: { author_useful_rank_fr: true } },
           ],
         },
