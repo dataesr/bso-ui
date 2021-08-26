@@ -23,9 +23,9 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.politiques-ouverture.chart-classement';
 
-  // const { observationDates, updateDate } = useGlobals();
+  // const { observationSnaps, updateDate } = useGlobals();
   const { updateDate } = useGlobals();
-  // const { data, isLoading, isError } = useGetData(observationDates);
+  // const { data, isLoading, isError } = useGetData(observationSnaps);
   // const { dataGraph2 } = data;
 
   // if (isLoading || !dataGraph2) {

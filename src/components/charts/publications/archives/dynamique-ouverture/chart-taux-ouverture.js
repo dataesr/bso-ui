@@ -30,15 +30,14 @@ const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture';
-  const [archives, setArchives] = useState([]);
+  const [archives, setArives] = useState([]);
   const [archive, setArchive] = useState('*');
-  const { observationDates, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationDates, archive);
+  const { observationSnaps, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps, archive);
   const { dataGraph1 } = data;
-  const millesime = observationDates[0];
-  const query = getFetchOptions('publishersList', 'health', millesime);
+  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
   const term = {};
-  term[`oa_details.${millesime}.oa_host_type`] = 'repository';
+  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'repository';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {

@@ -29,9 +29,9 @@ const Chart = () => {
   const { lang } = useLang();
   const [isOa, setIsOa] = useState(false);
   const graphId = 'app.sante-publi.general.genres-ouverture.chart-repartition-genres';
-  const { updateDate, lastObservationYear } = useGlobals();
+  const { updateDate, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    lastObservationYear || '2020',
+    lastObservationSnap || '2020',
     isOa,
   );
   const { dataGraph } = allData;
@@ -96,7 +96,7 @@ const Chart = () => {
     chartComments = intl.formatMessage(
       { id: `${graphId}.comments` },
       {
-        a: lastObservationYear,
+        a: lastObservationSnap,
         b: journalArticleOpened,
         c: journalArticleClosed,
         d: Math.floor(ratio1 * 100),

@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationDate) {
+function useGetData(observationSnap) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('disciplinesHisto', 'health', observationDate);
+    const query = getFetchOptions('disciplinesHisto', 'health', observationSnap);
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     return res.data.aggregations.by_discipline.buckets.map((discipline) => ({
       name: discipline.key,
@@ -20,7 +20,10 @@ function useGetData(observationDate) {
         .sort((a, b) => a.key - b.key)
         .map((el) => ({
           name: el.key,
-          y: el.doc_count,
+          y:
+            (el.by_is_oa.buckets.find((item) => item.key === 1).doc_count
+              / el.doc_count)
+            * 100,
         })),
     }));
   }
@@ -37,7 +40,7 @@ function useGetData(observationDate) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate]);
+  }, [observationSnap]);
 
   return { data, isLoading };
 }

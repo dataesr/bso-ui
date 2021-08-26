@@ -9,7 +9,10 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { discipline100 } from '../../../../../style/colours.module.scss';
-import { getGraphOptions } from '../../../../../utils/helpers';
+import {
+  getGraphOptions,
+  getPercentageYAxis,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -23,8 +26,8 @@ const Chart = ({ graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture';
 
-  const { observationDates } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationDates[0]);
+  const { lastObservationSnap } = useGlobals();
+  const { data, isLoading, isError } = useGetData(lastObservationSnap);
 
   if (isLoading || !data || data.length <= 0) {
     return <Loader />;
@@ -48,15 +51,11 @@ const Chart = ({ graphComments }) => {
         },
       },
     };
-    optionsGraph.yAxis = {
-      title: {
-        enabled: false,
-      },
-    };
+    optionsGraph.yAxis = getPercentageYAxis();
     optionsGraph.series = [
       {
         data: oneGraph.data.map((el) => el.y),
-        name: oneGraph.name,
+        name: intl.formatMessage({ id: `app.discipline.${oneGraph.name}` }),
         color: discipline100,
       },
     ];

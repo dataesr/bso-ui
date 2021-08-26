@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { getFetchOptions, getYear } from '../../../../../utils/helpers';
 
-function useGetData(observationDate) {
+function useGetData(observationSnap) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('repositoriesList', 'health', observationDate);
+    const query = getFetchOptions('repositoriesList', 'health', observationSnap);
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 
@@ -34,7 +34,7 @@ function useGetData(observationDate) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationDate]);
+  }, [observationSnap]);
 
   return { data, isLoading };
 }
