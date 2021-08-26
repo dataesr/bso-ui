@@ -177,13 +177,20 @@ export default function DataCardSection({ lang }) {
   useEffect(() => {
     if (!response && isMounted.current && lastObservationSnap) {
       fetchData({
-        opt: getFetchOptions('publiCardData', 'health', lastObservationSnap),
+        options: getFetchOptions(
+          'publiCardData',
+          'health',
+          lastObservationSnap,
+        ),
       });
     }
     return () => {
-      isMounted.current = false;
+      if (lastObservationSnap) {
+        isMounted.current = false;
+      }
     };
-  }, [fetchData, isMounted, response, lastObservationSnap]);
+  }, [fetchData, isMounted, lastObservationSnap, response]);
+
   return (
     <section className='pb-32'>
       <Row gutters>

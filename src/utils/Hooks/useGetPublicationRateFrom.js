@@ -13,13 +13,13 @@ export default async function useGetPublicationRateFrom(
   const { fetch, response, isMounted, loading } = useFetch({
     url: ES_API_URL,
     method: 'post',
-    options: getFetchOptions('publicationRate', domain, observationSnap),
   });
+
   useEffect(() => {
-    if (!response && isMounted.current) {
-      if (observationSnap) {
-        fetch();
-      }
+    if (!response && isMounted.current && observationSnap) {
+      fetch({
+        options: getFetchOptions('publicationRate', domain, observationSnap),
+      });
     } else if (
       !loading
       && response
@@ -46,8 +46,10 @@ export default async function useGetPublicationRateFrom(
       }));
     }
     return () => {
-      isMounted.current = false;
+      if (observationSnap) {
+        isMounted.current = false;
+      }
     };
-  }, [fetch, isMounted, loading, observationSnap, response, result]);
+  }, [domain, fetch, isMounted, loading, observationSnap, response, result]);
   return result;
 }

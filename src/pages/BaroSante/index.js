@@ -69,7 +69,7 @@ function BaroSante() {
   };
 
   useGetPublicationRateFrom('health', previousObservationSnap).then((res) => {
-    if (previousObservationSnap) {
+    if (previousObservationSnap && Object.keys(res).length > 0) {
       updateProgression(res, previousObservationSnap);
     }
   });

@@ -15,12 +15,14 @@ export default function useFetch({ method, url, options }) {
     error,
     reset: () => setResponse(),
     fetch: async (params = {}) => {
+      const { options: fetchOptions, reload } = params;
+
       setLoading(true);
       isMounted.current = true;
-      if (!response || params.reload) {
+      if (!response || reload) {
         setLoading(true);
       }
-      axios[method](url, options || params.opt, HEADERS)
+      axios[method](url, fetchOptions || options, HEADERS)
         .then((res) => {
           if (res) {
             setResponse(res.data);
