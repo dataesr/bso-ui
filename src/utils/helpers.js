@@ -297,13 +297,13 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publishersList: ([millesime]) => ({
+    publishersList: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            { term: { year: getYear(millesime) } },
-            { exists: { field: `oa_details.${millesime}` } },
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
       },
@@ -355,20 +355,20 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    repositoriesList: ([millesime]) => ({
+    repositoriesList: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            { term: { year: getYear(millesime) } },
-            { exists: { field: `oa_details.${millesime}` } },
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
       },
       aggs: {
         by_repository: {
           terms: {
-            field: `oa_details.${millesime}.repositories.keyword`,
+            field: `oa_details.${observationSnap}.repositories.keyword`,
             size: 10000,
           },
         },

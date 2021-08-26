@@ -30,7 +30,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture';
-  const [archives, setArives] = useState([]);
+  const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
   const { observationSnaps, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, archive);

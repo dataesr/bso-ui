@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { getFetchOptions, getYear } from '../../../../../utils/helpers';
+import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap) {
   const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ function useGetData(observationSnap) {
     const dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
       name: el.key,
       y: el.doc_count,
-      publicationDate: getYear(observationDate),
+      publicationDate: getPublicationYearFromObservationSnap(observationSnap),
     }));
     return dataGraph.slice(0, 15);
   }
