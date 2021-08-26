@@ -28,8 +28,12 @@ export const GlobalsContextProvider = ({ children }) => {
     JSON.parse(storedObservationSnaps),
   );
   const storedLastObservationSnap = localStorage.getItem('__lastObservationSnap__') || '';
-  const [lastObservationSnap, setlastObservationSnap] = useState(
+  const [lastObservationSnap, setLastObservationSnap] = useState(
     storedLastObservationSnap,
+  );
+  const storedBeforeLastObservationSnap = localStorage.getItem('__beforeLastObservationSnap__') || '';
+  const [beforeLastObservationSnap, setBeforeLastObservationSnap] = useState(
+    storedBeforeLastObservationSnap,
   );
 
   const storedUpdateDate = localStorage.getItem('__updateDate__');
@@ -74,10 +78,21 @@ export const GlobalsContextProvider = ({ children }) => {
           JSON.stringify(responseObservationSnaps),
         );
 
-        setlastObservationSnap(responseObservationSnaps[0]);
-        localStorage.setItem('__lastObservationSnap__', responseObservationSnaps[0]);
+        setLastObservationSnap(responseObservationSnaps[0]);
+        localStorage.setItem(
+          '__lastObservationSnap__',
+          responseObservationSnaps[0],
+        );
 
-        const responseUpdateDate = await getUpdateDate(responseObservationSnaps[0]);
+        setBeforeLastObservationSnap(responseObservationSnaps[1]);
+        localStorage.setItem(
+          '__beforeLastObservationSnap__',
+          responseObservationSnaps[1],
+        );
+
+        const responseUpdateDate = await getUpdateDate(
+          responseObservationSnaps[0],
+        );
         setUpdateDate(responseUpdateDate);
         localStorage.setItem('__updateDate__', responseUpdateDate);
 
@@ -91,7 +106,12 @@ export const GlobalsContextProvider = ({ children }) => {
 
   return (
     <GlobalsContext.Provider
-      value={{ observationSnaps, updateDate, lastObservationSnap }}
+      value={{
+        observationSnaps,
+        updateDate,
+        lastObservationSnap,
+        beforeLastObservationSnap,
+      }}
     >
       {children}
     </GlobalsContext.Provider>

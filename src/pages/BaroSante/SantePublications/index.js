@@ -68,15 +68,18 @@ function SantePublications() {
   const { lang } = useLang();
   const [rate, setRate] = useState(null);
   const location = useLocation();
-  const { observationSnaps } = useGlobals();
+  const { beforeLastObservationSnap } = useGlobals();
   const intl = useIntl();
 
-  useGetPublicationRateFrom(observationSnaps[1] || '2021Q2').then((resp) => {
-    const { rate: rateByYear } = resp;
-    if (!rate) {
-      setRate(rateByYear);
-    }
-  });
+  // TODO to remove 2021Q2
+  useGetPublicationRateFrom(beforeLastObservationSnap || '2021Q2').then(
+    (resp) => {
+      const { rate: rateByYear } = resp;
+      if (!rate) {
+        setRate(rateByYear);
+      }
+    },
+  );
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
