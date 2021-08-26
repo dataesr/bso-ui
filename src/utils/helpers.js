@@ -285,7 +285,7 @@ export function getFetchOptions(key, domain, ...parameters) {
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
             missing: 'N/A',
-            size: 13,
+            size: 12,
           },
           aggs: {
             by_year: { terms: { field: 'year' } },
@@ -309,6 +309,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         by_discipline: {
           terms: {
             field: 'bsso_classification.field.keyword',
+            size: 25,
           },
           aggs: {
             by_observation_year: {

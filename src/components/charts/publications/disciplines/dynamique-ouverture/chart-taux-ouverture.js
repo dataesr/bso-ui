@@ -58,10 +58,12 @@ const Chart = ({ graphComments }) => {
     optionsGraph.series = [
       {
         name: intl.formatMessage({ id: `app.discipline.${oneGraph.name}` }),
-        colorByPoint: true,
+        color: discipline125,
         data: oneGraph.data.map((el, i) => ({
           name: el.name,
           y: el.y,
+          y_abs: el.y_abs,
+          y_tot: el.y_tot,
           color: i === oneGraph.data.length - 1 ? discipline100 : discipline125,
         })),
       },

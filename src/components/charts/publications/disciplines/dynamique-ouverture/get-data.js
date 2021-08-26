@@ -24,8 +24,9 @@ function useGetData(observationSnap) {
         .sort((a, b) => a.key - b.key)
         .map((el) => ({
           name: el.key,
-          y:
-            (el.by_is_oa.buckets.find((item) => item.key === 1).doc_count
+          y_tot: el.doc_count,
+          y_abs: el.by_is_oa.buckets.find((item) => item.key === 1).doc_count,
+          y: (el.by_is_oa.buckets.find((item) => item.key === 1).doc_count
               / el.doc_count)
             * 100,
         })),

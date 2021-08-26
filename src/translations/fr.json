@@ -190,7 +190,7 @@
   "app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture.comments": "comments",
   "app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture.source": "source",
   "app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture.title": "Taux d'accès ouvert des publications en santé par discipline et par date d'observation (disciplines présentées dans l'ordre du taux d'accès décroissant)",
-  "app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip": "",
+  "app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip": "<b>Publications de {point.name} en {series.name}</b><br> {point.y:.2f} % en accès ouvert ({point.y_abs} / {point.y_tot})",
   "app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.comments": "comments",
   "app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.source": "source",
   "app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.title": "Evolution du taux d'ouverture des publications en santé par discipline entre date d'observations",
