@@ -228,6 +228,55 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    publicationRateRangUtile: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_author_useful_rank_fr: {
+              terms: {
+                field: 'author_useful_rank_fr',
+              },
+              aggs: {
+                by_is_oa: {
+                  terms: {
+                    field: `oa_details.${observationSnap}.is_oa`,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    publicationRatePays: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getYear(observationSnap) } },
+            { term: { author_useful_rank_fr: true } },
+          ],
+        },
+      },
+      aggs: {
+        by_country: {
+          terms: {
+            field: 'detected_countries.keyword',
+          },
+          aggs: {
+            by_is_oa: {
+              terms: {
+                field: `oa_details.${observationSnap}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
     repositoriesHisto: ([year]) => ({
       size: 0,
       aggs: {

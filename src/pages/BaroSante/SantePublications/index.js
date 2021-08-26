@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import Banner from '../../../components/Banner';
 import ChartEvolutionProportionAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuvertureAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture';
+// import ChartClassementPays from '../../../components/charts/publications/affiliations/pays/chart-classement';
+import ChartEvolutionTauxOuvertureRangUtile from '../../../components/charts/publications/affiliations/pays/chart-taux-rang-utile';
 import ChartNombreDocumentsDepotsRepositories from '../../../components/charts/publications/archives/dynamique-depot/chart-nombre-documents-depots';
 import ChartTauxExhaustiviteRepositories from '../../../components/charts/publications/archives/dynamique-hal/chart-taux exhaustivite';
 import ChartTauxOuvertureArchives from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-ouverture';
@@ -369,11 +371,18 @@ function SantePublications() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.sante-publi.repositories.dynamique-ouverture'
+                  intlKey='app.sante-publi.affiliations.dynamique-ouverture'
                   backgroundColor={bluesoft50}
                 >
                   <ChartTauxOuvertureAffiliations />
                   <ChartEvolutionProportionAffiliations />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.sante-publi.affiliations.pays'
+                  backgroundColor={bluesoft50}
+                >
+                  <ChartEvolutionTauxOuvertureRangUtile />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
