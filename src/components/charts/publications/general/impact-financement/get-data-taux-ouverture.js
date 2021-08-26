@@ -78,8 +78,9 @@ function useGetData(observationSnap, agency) {
             (item) => item.key === 1,
           )?.doc_count || 0;
           withoutDeclaration.push({
-            y: (100 * withoutDeclarationOa)
-                / withoutDeclarationElements.doc_count,
+            y:
+              (100 * withoutDeclarationOa)
+              / withoutDeclarationElements.doc_count,
             y_abs: withoutDeclarationOa,
             y_tot: withoutDeclarationElements.doc_count,
             publicationDate: el.key,

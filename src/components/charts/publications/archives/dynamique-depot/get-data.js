@@ -13,7 +13,11 @@ function useGetData(observationSnap) {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('repositoriesHisto', 'health', observationSnap);
+    const query = getFetchOptions(
+      'repositoriesHisto',
+      'health',
+      observationSnap,
+    );
     const term = {};
     term[`oa_details.${observationSnap}.oa_host_type`] = 'repository';
     query.query.bool.filter.push({ term });

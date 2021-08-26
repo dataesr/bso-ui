@@ -10,7 +10,11 @@ function useGetData(observationSnap) {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('disciplinesHisto', 'health', observationSnap);
+    const query = getFetchOptions(
+      'disciplinesHisto',
+      'health',
+      observationSnap,
+    );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     return res.data.aggregations.by_discipline.buckets.map((discipline) => ({
       name: discipline.key,

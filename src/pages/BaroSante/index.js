@@ -69,7 +69,7 @@ function BaroSante() {
   };
 
   useGetPublicationRateFrom('health', previousObservationSnap).then((res) => {
-    if (previousObservationSnap) {
+    if (previousObservationSnap && Object.keys(res).length > 0) {
       updateProgression(res, previousObservationSnap);
     }
   });
@@ -90,7 +90,9 @@ function BaroSante() {
   const progressionPoints = () => {
     let progPoints = '';
     if (lastObservationSnap && previousObservationSnap) {
-      const rhesus = progression[lastObservationSnap] >= progression[previousObservationSnap] ? '+' : '';
+      const rhesus = progression[lastObservationSnap] >= progression[previousObservationSnap]
+        ? '+'
+        : '';
       const lastOaRate = progression[lastObservationSnap]
         ? progression[lastObservationSnap]
         : null;

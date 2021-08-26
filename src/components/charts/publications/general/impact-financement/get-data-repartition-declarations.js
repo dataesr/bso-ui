@@ -18,7 +18,11 @@ function useGetData(observationSnap, isOa) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
-    const query = getFetchOptions('declarationRate', 'health', lastObservationSnap);
+    const query = getFetchOptions(
+      'declarationRate',
+      'health',
+      lastObservationSnap,
+    );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
 

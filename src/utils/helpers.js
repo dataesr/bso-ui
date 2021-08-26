@@ -387,7 +387,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
@@ -533,7 +537,13 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(lastObservationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(
+                  lastObservationSnap,
+                ),
+              },
+            },
           ],
         },
       },
@@ -559,7 +569,9 @@ export function getFetchOptions(key, domain, ...parameters) {
     queryResponse.query = { bool: { filter: [] } };
   }
   if (domain) {
-    queryResponse.query.bool.filter.push({ term: { 'domains.keyword': domain } });
+    queryResponse.query.bool.filter.push({
+      term: { 'domains.keyword': domain },
+    });
   }
   return queryResponse;
 }

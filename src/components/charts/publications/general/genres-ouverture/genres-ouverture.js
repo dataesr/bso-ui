@@ -30,11 +30,11 @@ const Chart = () => {
   const [isOa, setIsOa] = useState(false);
   const graphId = 'app.sante-publi.general.genres-ouverture.chart-repartition-genres';
   const { updateDate, lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
-    lastObservationSnap || '2020',
-    isOa,
-  );
-  const { dataGraph } = allData;
+  const {
+    allData: { dataGraph },
+    isLoading,
+    isError,
+  } = useGetData(lastObservationSnap || '2020', isOa);
 
   if (isLoading || !dataGraph) {
     return <Loader />;
