@@ -38,7 +38,7 @@ const Chart = ({ graphComments }) => {
     return <>Error</>;
   }
 
-  const graphs = [];
+  let graphs = [];
   data.forEach((oneGraph) => {
     const optionsGraph = getGraphOptions(graphId, intl);
     optionsGraph.chart.type = 'column';
@@ -70,6 +70,9 @@ const Chart = ({ graphComments }) => {
     ];
     graphs.push(optionsGraph);
   });
+  const serieLength = graphs[0].series[0].data.length - 1;
+  // classement par ordre décroissant (en taux d'oa) des disciplines
+  graphs = graphs.sort((a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y);
 
   return (
     <>
