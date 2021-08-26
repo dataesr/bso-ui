@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
-  discipline100,
-  discipline125,
-  discipline150,
+  affiliationsetablissements50,
+  affiliationsetablissements75,
+  affiliationsetablissements100,
+  affiliationsetablissements125,
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
@@ -33,13 +34,10 @@ function useGetData(observationSnaps) {
     }));
 
     const colors = [
-      discipline100,
-      discipline125,
-      discipline125,
-      discipline125,
-      discipline150,
-      discipline150,
-      discipline150,
+      affiliationsetablissements100,
+      affiliationsetablissements125,
+      affiliationsetablissements50,
+      affiliationsetablissements75,
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
     const dataGraph2 = [];
@@ -72,6 +70,7 @@ function useGetData(observationSnaps) {
       y: el.data[el.data.length - 1],
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
+      color: affiliationsetablissements100,
     }));
 
     return { dataGraph1, dataGraph2 };
