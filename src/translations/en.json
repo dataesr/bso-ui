@@ -278,6 +278,7 @@
   "url.integration": "/integration/:graphId",
   "url.national": "/national",
   "url.national.publications": "/publications",
+  "url.sante": "/health",
   "url.sante.essais": "/health/clinical-trials",
   "url.sante.etudes": "/health/obstervational-studies",
   "url.sante.general": "/health",

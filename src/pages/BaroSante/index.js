@@ -141,6 +141,7 @@ function BaroSante() {
         subTitle={<FormattedMessage id='app.baro-sante.intro-banner' />}
         chip={<Chip backgroundColor='blue-soft-125' />}
         icons={renderIcons}
+        homeLink={<FormattedMessage id='url.sante' />}
       />
       <ScrollTop />
       <Container fluid>
