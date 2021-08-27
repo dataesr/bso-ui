@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { archiveouverte100 } from '../../../../../style/colours.module.scss';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -38,7 +37,6 @@ const Chart = ({ graphComments }) => {
   data.forEach((oneGraph) => {
     const optionsGraph = getGraphOptions(graphId, intl);
     optionsGraph.chart.type = 'column';
-    optionsGraph.colors = [archiveouverte100];
     optionsGraph.xAxis = {
       type: 'category',
       categories: oneGraph.data.map((el) => el.name),
@@ -57,10 +55,10 @@ const Chart = ({ graphComments }) => {
     optionsGraph.series = [
       {
         data: oneGraph.data,
+        color: oneGraph.color,
         name: oneGraph.name,
       },
     ];
-
     graphs.push(optionsGraph);
   });
 
