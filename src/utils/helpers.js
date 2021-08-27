@@ -651,6 +651,25 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    affiliationsList: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_affiliation: {
+          terms: {
+            field: 'french_affiliations_types.keyword',
+            size: 10000,
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
