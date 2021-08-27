@@ -7,7 +7,7 @@ import {
   archiveouverte100,
   archiveouverte125,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap) {
   const [data, setData] = useState({});
@@ -21,17 +21,16 @@ function useGetData(observationSnap) {
     );
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
-
     const tab = [];
     const nbHisto = 4;
+    const lastPublicationYear = getPublicationYearFromObservationSnap(observationSnap);
     res.data.aggregations.by_repository.buckets.forEach((archive) => {
       if (archive.key !== 'N/A') {
         const obj = {
           name: archive.key,
           color: archiveouverte125,
           data: archive.by_year.buckets
-            .sort((a, b) => b.key - a.key)
-            .slice(1, nbHisto + 1)
+            .filter((el) => (el.key > lastPublicationYear - nbHisto) && (el.key <= lastPublicationYear))
             .sort((a, b) => a.key - b.key)
             .map((el, index) => ({
               name: el.key,
