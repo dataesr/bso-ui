@@ -275,6 +275,7 @@
   "app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture.source": "source",
   "app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture.title": "Contribution des archives ouvertes dans le taux d'ouverture des publications françaises, dans le domaine de la santé, par date d'observation",
   "app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture.tooltip": "<strong>Contribution de {point.archive} au taux d'accès ouvert observé en {point.name}</strong><br /><strong>{point.y:.2f} %</strong> des publications françaises publiées en {point.publicationDate}<br />sont en accès ouvert {point.ratio} sur {point.archive}",
+  "app.sante-publi.repositories.dynamique-ouverture.chart-evolution-proportion.title": "Evolution de la contribution des archives ouvertes dans le taux d'ouverture des publications françaises, dans le domaine de la santé, par date d'observation",
   "app.sante-publi.repositories.dynamique-ouverture.chart-evolution-proportion.tooltip": "<strong>Contribution de {point.archive} au taux d'accès ouvert observé en {point.name}</strong><br /><strong>{point.y:.2f} %</strong> des publications françaises publiées en {point.publicationDate}<br />sont en accès ouvert {point.ratio} sur {point.archive}",
   "app.sante-publi.repositories.dynamique-ouverture.chart-taux-presence.comments": "comments",
   "app.sante-publi.repositories.dynamique-ouverture.chart-taux-presence.source": "source",
