@@ -284,7 +284,7 @@ export function getFetchOptions(key, domain, ...parameters) {
         by_repository: {
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
-            missing: 'N/A',
+            exclude: 'pdfs.semanticscholar.org',
             size: 12,
           },
           aggs: {

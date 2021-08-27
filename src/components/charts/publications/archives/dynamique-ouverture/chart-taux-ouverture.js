@@ -35,16 +35,15 @@ const Chart = ({ graphFooter, graphComments }) => {
   const { observationSnaps, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, archive);
   const { dataGraph1 } = data;
-  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
+  const query = getFetchOptions('repositoriesList', 'health', observationSnaps[0]);
   const term = {};
   term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'repository';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setArchives(
-        response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key)
-          .sort(),
+        response.data.aggregations.by_repository.buckets
+          .map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -117,12 +116,12 @@ const Chart = ({ graphFooter, graphComments }) => {
       <div className='graph-container'>
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
         <SimpleSelect
-          label={intl.formatMessage({ id: 'app.archives-filter-label' })}
+          label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
           onChange={(e) => setArchive(e.target.value)}
           options={archives}
           selected={archive}
           firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-archives' })}
+          firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
         />
         <HighchartsReact
           highcharts={Highcharts}

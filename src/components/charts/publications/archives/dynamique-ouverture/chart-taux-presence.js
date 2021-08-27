@@ -1,18 +1,20 @@
 /* eslint-disable react/no-this-in-sfc */
+import '../../../graph.scss';
+
+import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { getFetchOptions, getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
+import SimpleSelect from '../../../../SimpleSelect';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import GraphTitle from '../../../graph-title';
@@ -25,9 +27,24 @@ const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.repositories.dynamique-ouverture.chart-evolution-proportion';
+  const [archives, setArchives] = useState([]);
+  const [archive, setArchive] = useState('*');
   const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps);
+  const { data, isLoading, isError } = useGetData(observationSnaps, archive);
   const { dataGraph2 } = data;
+  const query = getFetchOptions('repositoriesList', 'health', observationSnaps[0]);
+  const term = {};
+  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'repository';
+  query.query.bool.filter.push({ term });
+  useEffect(() => {
+    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
+      setArchives(
+        response.data.aggregations.by_repository.buckets
+          .map((item) => item.key),
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isLoading || !dataGraph2) {
     return <Loader />;
@@ -77,6 +94,14 @@ const Chart = ({ graphFooter, graphComments }) => {
     <>
       <div className='graph-container'>
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <SimpleSelect
+          label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
+          onChange={(e) => setArchive(e.target.value)}
+          options={archives}
+          selected={archive}
+          firstValue='*'
+          firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
+        />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph2}
