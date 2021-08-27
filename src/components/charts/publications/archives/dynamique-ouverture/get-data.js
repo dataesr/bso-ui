@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
@@ -13,6 +14,7 @@ function useGetData(observationSnaps, needle = '*') {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const intl = useIntl();
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -111,6 +113,7 @@ function useGetData(observationSnaps, needle = '*') {
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
       y: el.data[el.data.length - 1],
+      archive: (needle === '*') ? intl.formatMessage({ id: 'app.all-repositories' }) : needle,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
     }));
