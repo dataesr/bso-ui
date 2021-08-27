@@ -354,7 +354,7 @@
   "app.sante-publi.general.langues-ouverture.chart-repartition-publications.source": "Source 1.1.4",
   "app.sante-publi.general.langues-ouverture.chart-repartition-publications.title": "Répartition des langues des publications ouvertes en santé par type d'hébergement",
   "app.sante-publi.general.langues-ouverture.chart-repartition-publications.toggle-label": "Voir le détail de l'accès ouvert",
-  "app.sante-publi.general.langues-ouverture.chart-repartition-publications.tooltip": "tooltip 1.1.4",
+  "app.sante-publi.general.langues-ouverture.chart-repartition-publications.tooltip": "<b>Publications en {point.name} publiées en {point.publicationDate} </b> <br> {point.value} en {point.oaType} <br> soit {point.percentage:.2f} % du total des publications de {point.publicationDate}",
   "app.sante-publi.general.impact-financement.title": "Quel impact le financement a-t-il sur l'ouverture des publications en santé ?",
   "app.sante-publi.general.impact-financement.description": "Description 1.1.5",
   "app.sante-publi.general.impact-financement.chart-repartition-financements.comments": "Comment 1.1.5-2",
