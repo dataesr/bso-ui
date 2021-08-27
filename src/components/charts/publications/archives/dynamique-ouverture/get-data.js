@@ -100,7 +100,12 @@ function useGetData(observationSnaps, needle = '*') {
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       serie.data = observationSnapData.data.oaHostType.map(
-        (value, index) => (value * 100) / observationSnapData.data.all[index],
+        (value, index) => ({
+          y: (value * 100) / observationSnapData.data.all[index],
+          archive: (needle === '*') ? intl.formatMessage({ id: 'app.all-repositories' }) : needle,
+          name: observationSnapData.observationSnap, // observation date
+          publicationDate: observationSnapData.data.publicationDates[index],
+        }),
       );
       serie.ratios = observationSnapData.data.oaHostType.map(
         (value, index) => `(${value}/${observationSnapData.data.all[index]})`,
@@ -112,7 +117,7 @@ function useGetData(observationSnaps, needle = '*') {
     });
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
-      y: el.data[el.data.length - 1],
+      y: el.data[el.data.length - 1].y,
       archive: (needle === '*') ? intl.formatMessage({ id: 'app.all-repositories' }) : needle,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
