@@ -38,7 +38,7 @@ const Chart = ({ graphComments }) => {
     return <>Error</>;
   }
 
-  const graphs = [];
+  let graphs = [];
   data.forEach((oneGraph) => {
     const optionsGraph = getGraphOptions(graphId, intl);
     optionsGraph.chart.type = 'column';
@@ -58,16 +58,21 @@ const Chart = ({ graphComments }) => {
     optionsGraph.series = [
       {
         name: intl.formatMessage({ id: `app.discipline.${oneGraph.name}` }),
-        colorByPoint: true,
+        color: discipline125,
         data: oneGraph.data.map((el, i) => ({
           name: el.name,
           y: el.y,
+          y_abs: el.y_abs,
+          y_tot: el.y_tot,
           color: i === oneGraph.data.length - 1 ? discipline100 : discipline125,
         })),
       },
     ];
     graphs.push(optionsGraph);
   });
+  const serieLength = graphs[0].series[0].data.length - 1;
+  // classement par ordre décroissant (en taux d'oa) des disciplines
+  graphs = graphs.sort((a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y);
 
   return (
     <>
