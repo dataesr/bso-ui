@@ -159,7 +159,7 @@ function BaroSante() {
               <Glossary entries={GlossaryEntries} />
               <HomeSection
                 link={{
-                  href: '/sante/publications/general#dynamique',
+                  href: '/sante/publications/general',
                   label: <FormattedMessage id='app.baro-sante.detail-publi' />,
                 }}
                 title={
