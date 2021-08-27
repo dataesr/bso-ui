@@ -59,7 +59,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   const optionsGraph1 = getGraphOptions(graphId, intl);
   optionsGraph1.chart.type = 'bar';
   optionsGraph1.colors = [archiveouverte100];
-  optionsGraph1.yAxis = { visible: false };
+  optionsGraph1.yAxis = { visible: false, min: 0, max: 100 };
   optionsGraph1.plotOptions = {
     bar: {
       dataLabels: {
