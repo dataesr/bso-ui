@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
@@ -10,16 +11,20 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps) {
+function useGetData(observationSnaps, needle = '*') {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const intl = useIntl();
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
       const query = getFetchOptions('publicationRate', 'health', oneDate);
+      query.query.bool.filter.push({
+        wildcard: { 'french_affiliations_types.keyword': needle },
+      });
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 
@@ -58,7 +63,12 @@ function useGetData(observationSnaps) {
       serie.name = observationSnapData.observationSnap;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
-      serie.data = filtered.map((el) => (el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count);
+      serie.data = filtered.map((el, index) => ({
+        y: (el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count,
+        affiliation: (needle === '*') ? intl.formatMessage({ id: 'app.all-affiliations' }) : needle,
+        name: filtered[index].key,
+        publicationDate: filtered[index].key,
+      }));
       serie.ratios = filtered.map(
         (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
       );
@@ -67,7 +77,8 @@ function useGetData(observationSnaps) {
     });
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
-      y: el.data[el.data.length - 1],
+      y: el.data[el.data.length - 1].y,
+      affiliation: el.data[el.data.length - 1].affiliation,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
       color: affiliationsetablissements100,
@@ -87,7 +98,8 @@ function useGetData(observationSnaps) {
       }
     }
     getData();
-  }, [observationSnaps]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [observationSnaps, needle]);
 
   return { data, isLoading, isError };
 }
