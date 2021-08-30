@@ -394,6 +394,31 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    publishersPolitiqueHisto: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     journal: () => ({
       size: 0,
       aggs: {
