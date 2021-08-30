@@ -16,13 +16,25 @@ function useGetData(observationSnap) {
   const intl = useIntl();
 
   async function getDataGraph() {
+    const queries = [];
     const query = getFetchOptions(
       'publishersPolitiqueHisto',
       'health',
       observationSnap[0],
     );
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
-    const data = res.data.aggregations.by_publisher.buckets;
+    queries.push(Axios.post(ES_API_URL, query, HEADERS));
+    const queryBulle = getFetchOptions(
+      'publishersPolitiqueBulle',
+      'health',
+      observationSnap[0],
+    );
+    queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));
+    const res = await Axios.all(queries).catch(() => {
+      setLoading(false);
+    });
+    console.log('ttt', res);
+    // 1er graphe (bar)
+    const data = res[0].data.aggregations.by_publisher.buckets;
     const categories = data.map((el) => el.key);
     const openByPublishers = [];
     const greenOnly = [];
@@ -64,7 +76,33 @@ function useGetData(observationSnap) {
         color: editeurplateforme100,
       },
     ];
-    return { categories, dataGraph };
+    // 2e graph
+    console.log('ttt', res[1]);
+    const dataBubbles = res[1].data.aggregations.by_publisher.buckets;
+    console.log('ttt', dataBubbles);
+    const bubbles = [];
+    dataBubbles.forEach((elem) => {
+      bubbles.push({
+        publicationDate: getPublicationYearFromObservationSnap(observationSnap[0]),
+        publisher: elem.key,
+        x: 100 * (elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count
+          / elem.doc_count),
+        x_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count,
+        y: 100 * (elem.by_oa_colors.buckets.find((el) => (el.key === 'green')).doc_count
+          / elem.doc_count),
+        y_abs: elem.by_oa_colors.buckets.find((el) => (el.key === 'green')).doc_count,
+        z: elem.doc_count,
+      });
+    });
+
+    const bubbleGraph = [
+      {
+        name: intl.formatMessage({ id: 'app.publishers' }),
+        data: bubbles,
+        color: editeurplateforme100,
+      },
+    ];
+    return { categories, dataGraph, bubbleGraph };
   }
 
   useEffect(() => {

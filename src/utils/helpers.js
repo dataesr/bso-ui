@@ -419,6 +419,31 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    publishersPolitiqueBulle: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     journal: () => ({
       size: 0,
       aggs: {
