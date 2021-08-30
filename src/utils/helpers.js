@@ -200,7 +200,7 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
     publicationYear = observationSnap - 1;
   }
 
-  return publicationYear || 2020;
+  return publicationYear || '2020';
 }
 
 /**
@@ -257,7 +257,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { term: { author_useful_rank_fr: true } },
           ],
         },
@@ -363,7 +367,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
@@ -421,7 +429,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
@@ -610,7 +622,13 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(lastObservationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(
+                  lastObservationSnap,
+                ),
+              },
+            },
             { exists: { field: `oa_details.${lastObservationSnap}` } },
           ],
         },
@@ -659,7 +677,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },

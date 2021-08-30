@@ -47,6 +47,7 @@ import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
+import urls from '../../../config/urls';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import useLang from '../../../utils/Hooks/useLang';
@@ -86,13 +87,16 @@ function SantePublications() {
     <Container fluid className='page'>
       <Banner
         backgroundColor='blue-soft-100'
+        homeLink={urls.sante[lang]}
         supTitle={<FormattedMessage id='app.header.title-health' />}
         title={<FormattedMessage id='app.baro-sante.title' />}
         chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
-          title: <FormattedMessage id='app.navigation.objet-recherche' />,
-          selected: <FormattedMessage id='url.sante.publications.general' />,
+          title: intl.formatMessage({ id: 'app.navigation.objet-recherche' }),
+          selected: intl.formatMessage({
+            id: 'url.sante.publications.general',
+          }),
           options: [
             {
               label: intl.formatMessage({ id: 'app.baro-sante.title' }),
@@ -175,7 +179,10 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='dynamique'
                 >
-                  <ChartTauxOuverture />
+                  <ChartTauxOuverture
+                    domain='health'
+                    id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
+                  />
                   <ChartEvolutionProportion />
                 </QuestionSection>
 

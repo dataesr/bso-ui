@@ -47,9 +47,9 @@ function App() {
           </Route>
           <Route
             exact
-            path={Object.keys(urls.nationalPublications).map(
-              (l) => urls.nationalPublications[l],
-            )}
+            path={urls.nationalPublications.tabs
+              .map((tab) => Object.keys(tab).map((l) => tab[l]))
+              .flat(1)}
           >
             <NationalPublications />
           </Route>

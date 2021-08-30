@@ -1,4 +1,10 @@
-import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
+import {
+  Col,
+  Container,
+  Icon as DSIcon,
+  Link as DSLink,
+  Row,
+} from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -80,18 +86,21 @@ function Banner({
               'md-9': chip && !sticked,
             })}
           >
-            <small className='sup-title'>{supTitle}</small>
-            <h2 className='main-title marianne-extra-bold'>
-              {selectNavigation && sticked ? (
-                <>
-                  <Link to={homeLink} className='home'>
-                    <i className='ri-home-2-line' />
-                  </Link>
-                  /&nbsp;
-                </>
-              ) : null}
-              {title}
-            </h2>
+            {sticked && homeLink ? (
+              <DSIcon
+                name='ri-home-2-line'
+                size='sm'
+                as='span'
+                className='ds-fr--v-middle'
+              >
+                <DSLink as={<Link to={homeLink} />} className='home'>
+                  <small className='sup-title'>{supTitle}</small>
+                </DSLink>
+              </DSIcon>
+            ) : (
+              <small className='sup-title'>{supTitle}</small>
+            )}
+            <h2 className='main-title marianne-extra-bold'>{title}</h2>
             <section className='icons'>{icons || ''}</section>
             {subTitle && (
               <h3
@@ -102,9 +111,8 @@ function Banner({
                 {subTitle}
               </h3>
             )}
-            {link && (
+            {link && !sticked && (
               <DSLink
-                display='middle'
                 className='bso-link'
                 icon='ri-arrow-right-line'
                 iconSize='lg'
@@ -169,7 +177,7 @@ Banner.defaultProps = {
   children: null,
   selectNavigation: null,
   sticky: true,
-  homeLink: '/',
+  homeLink: '',
 };
 
 Banner.propTypes = {
@@ -196,8 +204,8 @@ Banner.propTypes = {
   subTitle: PropTypes.element,
   homeLink: PropTypes.string,
   link: PropTypes.exact({
-    label: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
+    label: PropTypes.element.isRequired,
+    url: PropTypes.element.isRequired,
   }),
 };
 export default Banner;

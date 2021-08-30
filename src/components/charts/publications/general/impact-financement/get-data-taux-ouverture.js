@@ -52,8 +52,8 @@ function useGetData(observationSnap, agency = '*') {
     dataAgency
       .filter(
         (el) => el.key > 2012
-            && parseInt(el.key, 10)
-              < parseInt(lastObservationSnap.substring(0, 4), 10),
+          && parseInt(el.key, 10)
+            < parseInt(lastObservationSnap.substring(0, 4), 10),
       )
       .forEach((el) => {
         // avec declaration
@@ -68,15 +68,18 @@ function useGetData(observationSnap, agency = '*') {
           y_abs: withDeclarationOa,
           y_tot: withDeclarationElements.doc_count,
           publicationDate: el.key,
-          agency: (agency === '*' ? intl.formatMessage({ id: 'app.all-agencies' }) : agency),
+          agency:
+            agency === '*'
+              ? intl.formatMessage({ id: 'app.all-agencies' })
+              : agency,
         });
       });
 
     data
       .filter(
         (el) => el.key > 2012
-            && parseInt(el.key, 10)
-              < parseInt(lastObservationSnap.substring(0, 4), 10),
+          && parseInt(el.key, 10)
+            < parseInt(lastObservationSnap.substring(0, 4), 10),
       )
       .forEach((el, index) => {
         categories.push(el.key);
@@ -103,8 +106,7 @@ function useGetData(observationSnap, agency = '*') {
         )?.doc_count || 0;
         withoutDeclaration.push({
           y:
-              (100 * withoutDeclarationOa)
-              / withoutDeclarationElements.doc_count,
+            (100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count,
           y_abs: withoutDeclarationOa,
           y_tot: withoutDeclarationElements.doc_count,
           publicationDate: el.key,
