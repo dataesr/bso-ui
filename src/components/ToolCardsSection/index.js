@@ -22,7 +22,7 @@ export default function ToolCardsSection() {
         <Row gutters>
           <Col n='12'>
             <h4 className='marianne fs-28-32 text-left-m text-center m-0 mb-32'>
-              Outils, conseils… comment contribuer à la Science ouverte
+              <FormattedMessage id='app.commons.contribute.title' />
             </h4>
           </Col>
           <Col n='12 md-4' className='mb-20'>

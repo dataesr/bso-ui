@@ -23,7 +23,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.repositories.dynamique-hal.chart-taux exhaustivite';
 
-  // const { observationSnaps, UpdateDate } = useGlobals();
+  // const { observationSnaps, updateDate } = useGlobals();
   const { updateDate } = useGlobals();
   // const { data, isLoading, isError } = useGetData(observationSnaps);
   // const { dataGraph2 } = data;

@@ -68,7 +68,7 @@ function Header() {
           <NavSubItem
             current={path === urls.national[lang]}
             title={intl.formatMessage({
-              id: 'app.header.nav.baro-national-acceuil',
+              id: 'app.header.nav.baro-national-accueill',
               defaultMessage: 'Accueil baromètre national',
             })}
             asLink={(
