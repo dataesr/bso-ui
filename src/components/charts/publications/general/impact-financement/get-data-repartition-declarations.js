@@ -50,7 +50,7 @@ function useGetData(observationSnap, isOa) {
         // access ouvert
         dataGraph.push({
           id: 'opened',
-          name: intl.formatMessage({ id: 'app.type-hebergement.opened' }),
+          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
         });
         el.by_oa_host_type.buckets.forEach((hostType) => {
           dataGraph.push({

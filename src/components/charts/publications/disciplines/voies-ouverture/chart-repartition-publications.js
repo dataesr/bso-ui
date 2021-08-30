@@ -23,7 +23,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications';
 
-  // const { observationSnaps, updateDate } = useGlobals();
+  // const { observationSnaps, UpdateDate } = useGlobals();
   const { updateDate } = useGlobals();
   // const { data, isLoading, isError } = useGetData(observationSnaps);
   // const { dataGraph2 } = data;

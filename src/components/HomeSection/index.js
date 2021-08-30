@@ -20,16 +20,18 @@ function HomeSection({ title, introText, link, children }) {
             </h3>
             <p className='fs-16-28'>{introText}</p>
             {children}
-            <div className='button-link marianne-bold relative'>
-              <DSIcon
-                className='ds-fr--v-middle'
-                size='xl'
-                name='ri-arrow-right-line'
-                iconPosition='right'
-              >
-                <DSLink as={<Link to={link.href} />}>{link.label}</DSLink>
-              </DSIcon>
-            </div>
+            <Col offset='2 md-4'>
+              <div className='button-link marianne-bold relative'>
+                <DSIcon
+                  className='ds-fr--v-middle'
+                  size='xl'
+                  name='ri-arrow-right-line'
+                  iconPosition='right'
+                >
+                  <DSLink as={<Link to={link.href} />}>{link.label}</DSLink>
+                </DSIcon>
+              </div>
+            </Col>
           </Col>
         </Row>
       </Container>

@@ -69,7 +69,7 @@ function Header() {
             current={path === urls.national[lang]}
             title={intl.formatMessage({
               id: 'app.header.nav.baro-national-acceuil',
-              defaultMessage: 'Accueil baromètre santé',
+              defaultMessage: 'Accueil baromètre national',
             })}
             asLink={(
               <RouterLink to={urls.national[lang]}>
