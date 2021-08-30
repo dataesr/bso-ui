@@ -4,8 +4,14 @@ export default {
     en: '/',
   },
   nationalPublications: {
-    fr: '/publications',
-    en: '/publications',
+    tabs: [
+      {
+        fr: '/publications/general',
+        en: '/publications/general',
+      },
+    ],
+    fr: '/publications/general',
+    en: '/publications/general',
   },
   sante: {
     fr: '/sante',

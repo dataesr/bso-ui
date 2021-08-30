@@ -8,7 +8,7 @@ import {
   Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
@@ -20,8 +20,8 @@ import Glossary from '../../components/Glossary';
 import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
 import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
-import InfoCard from '../../components/InfoCard';
 import LinkCard from '../../components/LinkCard';
+import ProgressionCard from '../../components/ProgressionCard';
 import ScrollTop from '../../components/ScrollTop';
 import TodaySection from '../../components/TodaySection';
 import TodaySectionItem from '../../components/TodaySection/TodaySectionItem';
@@ -29,23 +29,13 @@ import logoBso from '../../images/logo-bso.png';
 import GlossaryEntries from '../../translations/glossary.json';
 import { getFormattedDate } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
-import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import useLang from '../../utils/Hooks/useLang';
-
-const lastObservationSnapIndex = 0;
-const previousObservationSnapIndex = 1;
 
 function BaroSante() {
   const { updateDate } = useGlobals();
-  const [progression, setProgression] = useState({});
-  const { observationSnaps } = useGlobals();
+
+  const { lastObservationSnap } = useGlobals();
   const { lang } = useLang();
-  const [previousObservationSnap, setPreviousObservationSnap] = useState(
-    observationSnaps ? observationSnaps[previousObservationSnapIndex] : '',
-  );
-  const [lastObservationSnap, setLastObservationSnap] = useState(
-    observationSnaps ? observationSnaps[lastObservationSnapIndex] : '',
-  );
 
   const renderUpdateDate = () => (
     <FormattedMessage
@@ -58,56 +48,6 @@ function BaroSante() {
       defaultMessage=''
     />
   );
-  const updateProgression = (res, year) => {
-    const { rate } = res;
-    if (
-      (Object.keys(progression).indexOf(year) < 0 && rate)
-      || (progression[year] !== rate && rate)
-    ) {
-      setProgression((prev) => ({ ...prev, [year]: rate }));
-    }
-  };
-
-  useGetPublicationRateFrom('health', previousObservationSnap).then((res) => {
-    if (previousObservationSnap && Object.keys(res).length > 0) {
-      updateProgression(res, previousObservationSnap);
-    }
-  });
-
-  useGetPublicationRateFrom('health', lastObservationSnap).then((res) => {
-    if (lastObservationSnap) {
-      updateProgression(res, lastObservationSnap);
-    }
-  });
-
-  useEffect(() => {
-    if (observationSnaps && !previousObservationSnap && !lastObservationSnap) {
-      setPreviousObservationSnap(
-        observationSnaps[previousObservationSnapIndex],
-      );
-      setLastObservationSnap(observationSnaps[lastObservationSnapIndex]);
-    }
-  }, [lastObservationSnap, observationSnaps, previousObservationSnap]);
-
-  const progressionPoints = () => {
-    let progPoints = '';
-    if (lastObservationSnap && previousObservationSnap) {
-      const rhesus = progression[lastObservationSnap] >= progression[previousObservationSnap]
-        ? '+'
-        : '';
-      const lastOaRate = progression[lastObservationSnap]
-        ? progression[lastObservationSnap]
-        : null;
-      const previousOaRate = progression[previousObservationSnap]
-        ? progression[previousObservationSnap]
-        : null;
-      if (previousOaRate && lastOaRate) {
-        const evolution = Math.round(lastOaRate - previousOaRate);
-        progPoints = `${rhesus}${evolution}`;
-      }
-    }
-    return progPoints;
-  };
 
   const renderIcons = (
     <Row alignItems='middle' gutters>
@@ -183,28 +123,7 @@ function BaroSante() {
                       />
                     </Col>
                     <Col n='12 md-4'>
-                      <InfoCard
-                        icon={(
-                          <Icon
-                            name='icon-bsso-33'
-                            color1='blue-dark-125'
-                            color2='orange-soft-50'
-                          />
-                        )}
-                        data1={progressionPoints()}
-                        data2={progressionPoints() > 1 ? ' pts' : ' pt'}
-                        title={(
-                          <FormattedMessage
-                            values={{
-                              startYear: previousObservationSnap,
-                              endYear: lastObservationSnap,
-                              div: (chunks) => <div>{chunks}</div>,
-                            }}
-                            id='app.sante-publi.progression'
-                            defaultMessage='Progression'
-                          />
-                        )}
-                      />
+                      <ProgressionCard domain='health' />
                     </Col>
                     <Col n='12'>
                       <ChartEvolutionProportion graphComments={false} />
