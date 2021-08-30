@@ -43,8 +43,7 @@ const Chart = ({ graphFooter, graphComments }) => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
         response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key)
-          .sort(),
+          .map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
