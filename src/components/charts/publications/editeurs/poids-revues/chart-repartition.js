@@ -7,13 +7,13 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { getGraphOptions } from '../../../../../utils/helpers';
+import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-// import Loader from '../../../../Loader';
+import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
 import GraphFooter from '../../../graph-footer';
 import GraphTitle from '../../../graph-title';
-// import useGetData from './get-data';
+import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -23,17 +23,38 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.poids-revues.chart-repartition';
 
-  // const { observationSnaps, updateDate } = useGlobals();
-  const { updateDate } = useGlobals();
-  // const { data, isLoading, isError } = useGetData(observationSnaps);
-  // const { dataGraph2 } = data;
+  const { observationSnaps, updateDate } = useGlobals();
+  const { allData, isLoading, isError } = useGetData(observationSnaps);
+  const { categories, dataGraph } = allData;
 
-  // if (isLoading || !dataGraph2) {
-  //   return <Loader />;
-  // }
-  // if (isError) {
-  //   return <>Error</>;
-  // }
+  if (isLoading || !dataGraph) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <>Error</>;
+  }
+
+  const optionsGraph = getGraphOptions(graphId, intl);
+  optionsGraph.series = dataGraph;
+  optionsGraph.chart.type = 'column';
+  optionsGraph.plotOptions = {
+    column: {
+      stacking: 'normal',
+      dataLabels: {
+        enabled: true,
+        // eslint-disable-next-line
+        formatter: function () {
+          // eslint-disable-next-line
+          return this.y.toFixed(1).concat(' %');
+        },
+      },
+    },
+  };
+  optionsGraph.xAxis = {
+    categories,
+  };
+  optionsGraph.yAxis = getPercentageYAxis(false, 3);
+  optionsGraph.legend = { enabled: false };
 
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
@@ -50,7 +71,7 @@ const Chart = ({ graphFooter, graphComments }) => {
         <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
-          options={{}}
+          options={optionsGraph}
           ref={chartRef}
           id={graphId}
         />

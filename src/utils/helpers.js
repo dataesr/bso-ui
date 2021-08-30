@@ -148,10 +148,10 @@ export function getGraphOptions(graphId, intl) {
   };
 }
 
-export function getPercentageYAxis(showTotal = true) {
+export function getPercentageYAxis(showTotal = true, max = 100) {
   return {
     min: 0,
-    max: 100,
+    max,
     title: '',
     stackLabels: {
       enabled: true,
@@ -438,6 +438,23 @@ export function getFetchOptions(key, domain, ...parameters) {
             by_oa_colors: {
               terms: {
                 field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    predatory: () => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_predatory: {
+              terms: {
+                field: 'predatory_journal',
               },
             },
           },

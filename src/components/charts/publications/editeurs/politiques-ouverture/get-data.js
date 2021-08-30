@@ -32,7 +32,6 @@ function useGetData(observationSnap) {
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
-    console.log('ttt', res);
     // 1er graphe (bar)
     const data = res[0].data.aggregations.by_publisher.buckets;
     const categories = data.map((el) => el.key);
@@ -77,9 +76,7 @@ function useGetData(observationSnap) {
       },
     ];
     // 2e graph
-    console.log('ttt', res[1]);
     const dataBubbles = res[1].data.aggregations.by_publisher.buckets;
-    console.log('ttt', dataBubbles);
     const bubbles = [];
     dataBubbles.forEach((elem) => {
       bubbles.push({
