@@ -617,11 +617,20 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    allAgencies: () => ({
+    allAgencies: ([lastObservationSnap]) => ({
       size: 0,
       query: {
         bool: {
-          must: { match: { has_grant: 'true' } },
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(
+                  lastObservationSnap,
+                ),
+              },
+            },
+            { exists: { field: `oa_details.${lastObservationSnap}` } },
+          ],
         },
       },
       aggs: {

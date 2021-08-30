@@ -1,11 +1,14 @@
+import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
+  getFetchOptions,
   getFormattedDate,
   getGraphOptions,
   getPercentageYAxis,
@@ -27,18 +30,24 @@ const Chart = () => {
   const intl = useIntl();
   const { lang } = useLang();
   const graphId = 'app.sante-publi.general.impact-financement.chart-taux-ouverture';
-  const [agency, setAgency] = useState();
+  const [agencies, setAgencies] = useState([]);
+  const [agency, setAgency] = useState('*');
   const { lastObservationSnap, updateDate } = useGlobals();
-  const { allData, isLoading, agencies } = useGetData(
-    lastObservationSnap,
-    agency,
-  );
+  const { allData, isLoading } = useGetData(lastObservationSnap, agency);
   const { dataGraph, categories } = allData;
+  const query = getFetchOptions('allAgencies', 'health', lastObservationSnap);
+  useEffect(() => {
+    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
+      setAgencies(
+        response.data.aggregations.by_agency.buckets.map((item) => item.key),
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isLoading || !dataGraph || !categories) {
     return <Loader />;
   }
-
   const optionsGraph = getGraphOptions(graphId, intl);
   optionsGraph.chart.type = 'column';
   optionsGraph.xAxis = {
@@ -76,9 +85,9 @@ const Chart = () => {
         <SimpleSelect
           label={intl.formatMessage({ id: 'app.agencies-filter-label' })}
           onChange={(e) => setAgency(e.target.value)}
-          options={agencies || []}
+          options={agencies}
           selected={agency}
-          firstValue=''
+          firstValue='*'
           firstLabel={intl.formatMessage({ id: 'app.all-agencies' })}
         />
 
