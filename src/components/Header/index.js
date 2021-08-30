@@ -74,7 +74,7 @@ function Header() {
             asLink={(
               <RouterLink to={urls.national[lang]}>
                 {intl.formatMessage({
-                  id: 'app.header.nav.baro-sante-acceuil',
+                  id: 'app.header.nav.baro-sante-acueil',
                   defaultMessage: 'Accueil baromètre santé',
                 })}
               </RouterLink>
@@ -106,13 +106,13 @@ function Header() {
           <NavSubItem
             current={path === urls.sante[lang]}
             title={intl.formatMessage({
-              id: 'app.header.nav.baro-sante-acceuil',
+              id: 'app.header.nav.baro-sante-acueil',
               defaultMessage: 'Accueil baromètre santé',
             })}
             asLink={(
               <RouterLink to={urls.sante[lang]}>
                 {intl.formatMessage({
-                  id: 'app.header.nav.baro-sante-acceuil',
+                  id: 'app.header.nav.baro-sante-acueil',
                   defaultMessage: 'Accueil baromètre santé',
                 })}
               </RouterLink>
