@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
@@ -13,6 +14,7 @@ import { getFetchOptions } from '../../../../../utils/helpers';
 function useGetData(observationSnap) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const intl = useIntl();
 
   async function getDataGraph() {
     const query = getFetchOptions(
@@ -73,17 +75,17 @@ function useGetData(observationSnap) {
     });
     const dataGraph = [
       {
-        name: 'gold',
+        name: intl.formatMessage({ id: 'app.publishers.gold' }),
         data: goldData,
         color: goldapc,
       },
       {
-        name: 'hybrid',
+        name: intl.formatMessage({ id: 'app.publishers.hybrid' }),
         data: hybridData,
         color: hybrid,
       },
       {
-        name: 'diamond',
+        name: intl.formatMessage({ id: 'app.publishers.diamond' }),
         data: diamondData,
         color: diamond,
       },
@@ -91,7 +93,7 @@ function useGetData(observationSnap) {
 
     const dataGraphTreemap = [
       {
-        name: 'gold',
+        name: intl.formatMessage({ id: 'app.publishers.gold' }),
         publicationDate: goldData[goldData.length - 1].publicationDate,
         y_tot: goldData[goldData.length - 1].y_tot,
         y_abs: goldData[goldData.length - 1].y_abs,
@@ -99,7 +101,7 @@ function useGetData(observationSnap) {
         color: goldapc,
       },
       {
-        name: 'hybrid',
+        name: intl.formatMessage({ id: 'app.publishers.hybrid' }),
         publicationDate: hybridData[hybridData.length - 1].publicationDate,
         y_tot: hybridData[hybridData.length - 1].y_tot,
         y_abs: hybridData[hybridData.length - 1].y_abs,
@@ -107,7 +109,7 @@ function useGetData(observationSnap) {
         color: hybrid,
       },
       {
-        name: 'diamond',
+        name: intl.formatMessage({ id: 'app.publishers.diamond' }),
         publicationDate: diamondData[diamondData.length - 1].publicationDate,
         y_tot: diamondData[diamondData.length - 1].y_tot,
         y_abs: diamondData[diamondData.length - 1].y_abs,

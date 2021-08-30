@@ -56,6 +56,15 @@ const Chart = () => {
           },
         },
       ],
+      dataLabels: {
+        format: '{point.name}<br>{point.value:.0f} %',
+        rotationMode: 'auto',
+        filter: {
+          property: 'value',
+          operator: '>',
+          value: '0.1',
+        },
+      },
       data: dataGraphTreemap,
     },
   ];
