@@ -82,8 +82,10 @@ function BaroSante() {
 
   useEffect(() => {
     if (observationSnaps && !previousObservationSnap && !lastObservationSnap) {
-      setPreviousObservationSnap(observationSnaps[lastObservationSnapIndex]);
-      setLastObservationSnap(observationSnaps[previousObservationSnapIndex]);
+      setPreviousObservationSnap(
+        observationSnaps[previousObservationSnapIndex],
+      );
+      setLastObservationSnap(observationSnaps[lastObservationSnapIndex]);
     }
   }, [lastObservationSnap, observationSnaps, previousObservationSnap]);
 
