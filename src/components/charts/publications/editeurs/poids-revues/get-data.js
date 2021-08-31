@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
@@ -12,7 +11,6 @@ import { getFetchOptions } from '../../../../../utils/helpers';
 function useGetData(observationSnap) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const intl = useIntl();
 
   async function getDataGraph() {
     const query = getFetchOptions(

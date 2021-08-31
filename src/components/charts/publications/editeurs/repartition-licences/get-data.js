@@ -58,8 +58,8 @@ function useGetData(observationSnaps, isDetailed, needle = '*') {
         y_perc: (100 * nbLicenceOpen) / nbTotal,
         publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
       });
-      const nbNoLicence = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets
-        .find((el) => el.key === 'no license').doc_count;
+      const noLicenceElem = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.find((el) => el.key === 'no license');
+      const nbNoLicence = noLicenceElem ? noLicenceElem.doc_count : 0;
       dataGraphTreemap.push({
         name: intl.formatMessage({ id: 'app.licenses.no license' }),
         publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
@@ -70,7 +70,41 @@ function useGetData(observationSnaps, isDetailed, needle = '*') {
         publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
       });
     }
-    return { dataGraphTreemap };
+
+    const openLicence = [];
+    const noLicence = [];
+    const categories = [];
+    res[0].data.aggregations.by_publisher.buckets.forEach((elem) => {
+      categories.push(elem.key);
+      const noLicenceElem = elem.by_licence.buckets.find((el) => el.key === 'no license');
+      noLicence.push({
+        publisher: elem.key,
+        y_tot: elem.doc_count,
+        y_abs: noLicenceElem ? noLicenceElem.doc_count : 0,
+        y: (100 * (noLicenceElem ? noLicenceElem.doc_count : 0)) / elem.doc_count,
+        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+      });
+      openLicence.push({
+        publisher: elem.key,
+        y_tot: elem.doc_count,
+        y_abs: elem.by_licence.buckets.filter((el) => el.key !== 'no license').reduce((a, b) => a + b.doc_count, 0),
+        y: (100 * elem.by_licence.buckets.filter((el) => el.key !== 'no license').reduce((a, b) => a + b.doc_count, 0)) / elem.doc_count,
+        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+      });
+    });
+    const dataGraphBar = [
+      {
+        name: intl.formatMessage({ id: 'app.licenses.no license' }),
+        data: noLicence,
+        color: nonconnu,
+      },
+      {
+        name: intl.formatMessage({ id: 'app.licenses.open-license' }),
+        data: openLicence,
+        color: accesouvert,
+      },
+    ];
+    return { dataGraphTreemap, dataGraphBar, categories };
   }
 
   useEffect(() => {
