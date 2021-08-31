@@ -46,7 +46,7 @@ function useGetData(observationSnaps, needle = '*') {
         const hybridCount = hybridElem ? hybridElem.doc_count : 0;
         const goldElem = el.by_oa_colors.buckets.find((b) => b.key === 'gold');
         const goldAPC = goldElem ? goldElem.apc.value : 0;
-        const goldCount = hybridElem ? goldElem.doc_count : 0;
+        const goldCount = goldElem ? goldElem.doc_count : 0;
         goldData.push({
           publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
           y: goldAPC,
