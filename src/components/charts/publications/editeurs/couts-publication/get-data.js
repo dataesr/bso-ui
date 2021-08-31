@@ -7,7 +7,7 @@ import {
   goldapc,
   hybrid,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*') {
   const [data, setData] = useState({});
@@ -42,11 +42,11 @@ function useGetData(observationSnaps, needle = '*') {
       ).forEach((el) => {
         categoriesYear.push(el.key);
         const hybridElem = el.by_oa_colors.buckets.find((b) => b.key === 'hybrid');
-        const hybridAPC = hybridElem ? hybridElem.apc.value : 0;
-        const hybridCount = hybridElem ? hybridElem.doc_count : 0;
+        const hybridAPC = hybridElem?.apc?.value || 0;
+        const hybridCount = hybridElem?.doc_count || 0;
         const goldElem = el.by_oa_colors.buckets.find((b) => b.key === 'gold');
-        const goldAPC = goldElem ? goldElem.apc.value : 0;
-        const goldCount = goldElem ? goldElem.doc_count : 0;
+        const goldAPC = goldElem?.apc?.value || 0;
+        const goldCount = goldElem?.doc_count || 0;
         goldData.push({
           publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
           y: goldAPC,

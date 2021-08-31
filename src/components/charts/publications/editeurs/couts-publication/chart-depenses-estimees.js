@@ -62,7 +62,7 @@ const Chart = ({ graphFooter, graphComments }) => {
       // eslint-disable-next-line
       formatter: function () {
         // eslint-disable-next-line
-        return cleanBigNumber(this.total).concat(' €');
+        return `${cleanBigNumber(this.total)} €`;
       },
       style: {
         fontWeight: 'bold',
