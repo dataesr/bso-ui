@@ -401,7 +401,7 @@
   "app.sante-publi.publishers.couts-publication.chart-depenses-estimees.source": "source",
   "app.sante-publi.publishers.couts-publication.chart-depenses-estimees.legend": " ",
   "app.sante-publi.publishers.couts-publication.chart-depenses-estimees.title": "Dépenses estimées pour la communauté scientifique, en APC pour la production française en santé",
-  "app.sante-publi.publishers.couts-publication.chart-depenses-estimees.tooltip": "{point.publicationDate} {point.publisher} {point.y:.0f} euros {point.count}",
+  "app.sante-publi.publishers.couts-publication.chart-depenses-estimees.tooltip": "<b>Dépenses estimées en APC en {point.publicationDate} pour {point.publisher}</b><br> {point.y:.0f} euros pour {point.count} publications en accès ouvert {series.name}",
   "app.sante-publi.publishers.couts-publication.chart-distribution.comments": "comments",
   "app.sante-publi.publishers.couts-publication.chart-distribution.source": "source",
   "app.sante-publi.publishers.couts-publication.chart-distribution.title": "Distribution des tarifs unitaires des frais de publication par article dans le domaine de la santé",
