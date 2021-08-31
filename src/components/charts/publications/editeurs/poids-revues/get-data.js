@@ -31,7 +31,6 @@ function useGetData(observationSnap) {
     const categories = data.map((dataYear) => dataYear.key);
     const predatory = [];
     data.forEach((dataYear) => {
-      console.log('ttt111', dataYear);
       predatory.push({
         publicationDate: dataYear.key,
         y_abs: dataYear.by_predatory.buckets.find((el) => el.key === 1)

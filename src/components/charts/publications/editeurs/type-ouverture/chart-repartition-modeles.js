@@ -47,6 +47,7 @@ const Chart = () => {
           layoutAlgorithm: 'sliceAndDice',
           dataLabels: {
             enabled: true,
+            format: '<b>{point.name}</b><br>{point.value:.0f} %',
             align: 'left',
             verticalAlign: 'top',
             style: {

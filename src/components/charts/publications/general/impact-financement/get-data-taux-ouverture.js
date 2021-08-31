@@ -39,7 +39,6 @@ function useGetData(observationSnap, agency = '*') {
     });
     let dataAgency = res[0].data.aggregations.by_publication_year.buckets;
     let data = res[1].data.aggregations.by_publication_year.buckets;
-    console.log('ttt2', dataAgency);
 
     // Tri pour avoir les années dans l'ordre d'affichage du graphe
     data = data.sort((a, b) => a.key - b.key);

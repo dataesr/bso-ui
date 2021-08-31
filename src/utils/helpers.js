@@ -444,6 +444,43 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    publishersLicence: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_is_oa: {
+          terms: {
+            field: `oa_details.${observationSnap}.is_oa`,
+          },
+          aggs: {
+            by_licence: {
+              terms: {
+                field: `oa_details.${observationSnap}.licence_publisher.keyword`,
+              },
+            },
+          },
+        },
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+          },
+          aggs: {
+            by_licence: {
+              terms: {
+                field: `oa_details.${observationSnap}.licence_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     predatory: () => ({
       size: 0,
       aggs: {
