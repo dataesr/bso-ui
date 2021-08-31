@@ -81,7 +81,7 @@ function useGetData(observationDate) {
           y: (100 * el.by_is_oa.buckets.find((item) => item.key === 1).doc_count) / el.doc_count,
           y_abs: el.by_is_oa.buckets.find((item) => item.key === 1).doc_count,
           y_tot: el.doc_count,
-          country: el.key,
+          country: intl.formatMessage({ id: `app.country.${el.key}` }),
           publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
           color: (el.key === 'fr') ? national100 : accesouvert,
         });

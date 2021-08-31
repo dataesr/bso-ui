@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import useScroll from '../../utils/Hooks/useScroll';
 import useViewport from '../../utils/Hooks/useViewport';
 
-function GraphNavigation({ buttonLabel, children }) {
+function GraphNavigation({ mobileTitleIntl, children }) {
   const [sticky, setSticky] = useState(false);
   const [offsetTop, setOffsetTop] = useState(null);
   const [initOffsetTop, setInitOffsetTop] = useState(null);
@@ -101,9 +101,7 @@ function GraphNavigation({ buttonLabel, children }) {
             <SideMenu
               title=''
               className='navigation-mobile'
-              buttonLabel={
-                <FormattedMessage id={buttonLabel} defaultMessage='General' />
-              }
+              buttonLabel={<FormattedMessage id={mobileTitleIntl} />}
             >
               {headerItems}
             </SideMenu>
@@ -124,7 +122,7 @@ function GraphNavigation({ buttonLabel, children }) {
 
 GraphNavigation.propTypes = {
   children: PropTypes.node.isRequired,
-  buttonLabel: PropTypes.string.isRequired,
+  mobileTitleIntl: PropTypes.string.isRequired,
 };
 
 export default GraphNavigation;

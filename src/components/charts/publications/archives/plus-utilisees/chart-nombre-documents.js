@@ -24,8 +24,8 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.repositories.plus-utilisees.chart-nombre-documents';
 
-  const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps[0]);
+  const { lastObservationSnap, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(lastObservationSnap);
 
   if (isLoading || !data) {
     return <Loader />;
