@@ -57,10 +57,12 @@ export default function DataCardSection({ lang }) {
         },
       },
       apcCostSum: {
-        fetch: (sum) => `${cleanBigNumber(Math.round(sum))} €`,
+        fetch: (buckets) => (
+          `${cleanBigNumber(Math.round(buckets.find((el) => el.key === 'hybrid').apc.value + buckets.find((el) => el.key === 'gold').apc.value))} €`
+        ),
         get: apcCostSum,
         set: (data) => setApcCostSum(data),
-        pathToValue: 'sum_apc.value',
+        pathToValue: 'by_oa_colors.buckets',
         percentage: false,
         color: 'brown',
         intlKey: 'app.sante-publi.data.costs',

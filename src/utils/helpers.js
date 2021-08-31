@@ -64,11 +64,14 @@ export function sortByPath(array, path) {
  * @returns {string}
  */
 export function cleanBigNumber(num) {
-  const units = ['M', 'B', 'T', 'Q'];
+  if (num < 1000) {
+    return num.toFixed(0);
+  }
+  const units = ['k', 'M', 'B', 'T', 'Q'];
   const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
   const r = unit % 3;
   const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`).toFixed(2);
-  return `${x.toFixed(2)}${units[Math.floor(unit / 3) - 2]}`;
+  return `${x.toFixed(2)}${units[Math.floor(unit / 3) - 1]}`;
 }
 
 /**
@@ -481,6 +484,30 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    apcYear: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+              aggs: {
+                apc: {
+                  sum: {
+                    field: 'amount_apc_EUR',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     predatory: () => ({
       size: 0,
       aggs: {
@@ -600,19 +627,21 @@ export function getFetchOptions(key, domain, ...parameters) {
             field: `oa_details.${observationSnap}.is_oa`,
           },
         },
-        sum_apc: {
-          sum: {
-            field: 'amount_apc_EUR',
+        by_oa_colors: {
+          terms: {
+            field: `oa_details.${observationSnap}.oa_colors.keyword`,
+          },
+          aggs: {
+            apc: {
+              sum: {
+                field: 'amount_apc_EUR',
+              },
+            },
           },
         },
         by_oa_colors_with_priority_to_publisher: {
           terms: {
             field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
-          },
-        },
-        by_oa_colors: {
-          terms: {
-            field: `oa_details.${observationSnap}.oa_colors.keyword`,
           },
         },
         by_repositories: {
