@@ -9,7 +9,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { cleanBigNumber, getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
+import { cleanNumber, getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
@@ -62,7 +62,7 @@ const Chart = ({ graphFooter, graphComments }) => {
       // eslint-disable-next-line
       formatter: function () {
         // eslint-disable-next-line
-        return `${cleanBigNumber(this.total)} €`;
+        return `${cleanNumber(this.total)} €`;
       },
       style: {
         fontWeight: 'bold',
@@ -90,7 +90,7 @@ const Chart = ({ graphFooter, graphComments }) => {
         // eslint-disable-next-line
         formatter: function () {
           // eslint-disable-next-line
-          return cleanBigNumber(this.y).concat(' €');
+          return cleanNumber(this.y).concat(' €');
         },
       },
     },
