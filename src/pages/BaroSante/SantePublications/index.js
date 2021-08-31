@@ -55,13 +55,17 @@ import DataCardSection from './dataCardSection';
 
 const objButtonLabel = {
   fr: {
-    '/sante/publications/discipline': 'app.sante-publi.disciplines',
+    '/sante/publications/disciplines': 'app.sante-publi.disciplines',
+    '/sante/publications/affiliations': 'app.sante-publi.affiliations',
     '/sante/publications/editeurs': 'app.sante-publi.editeurs',
     '/sante/publications/general': 'app.sante-publi.general',
+    '/sante/publications/archives': 'app.sante-publi.archives',
     '/sante/essais-cliniques': 'app.sante-publi.general',
   },
   en: {
-    '/health/publications/discipline': 'app.sante-publi.disciplines',
+    '/health/publications/disciplines': 'app.sante-publi.disciplines',
+    '/health/publications/affiliations': 'app.sante-publi.affiliations',
+    '/health/publications/archives': 'app.sante-publi.archives',
     '/health/publications/editeurs': 'app.sante-publi.editeurs',
     '/health/publications/general': 'app.sante-publi.general',
   },
@@ -142,10 +146,10 @@ function SantePublications() {
         </Row>
         <Row>
           <GraphNavigation
-            buttonLabel={objButtonLabel[lang][location.pathname]}
+            mobileTitleIntl={objButtonLabel[lang][location.pathname]}
           >
             <GraphItem
-              mainLabel='Général'
+              mainLabel={intl.formatMessage({ id: 'app.sante-publi.general' })}
               paths={[
                 '/sante/publications/general',
                 '/health/publications/general',
@@ -224,15 +228,17 @@ function SantePublications() {
             </GraphItem>
 
             <GraphItem
-              paths={['/sante/publications/discipline']}
-              mainLabel='Les disciplines'
+              paths={['/sante/publications/disciplines']}
+              mainLabel={intl.formatMessage({
+                id: 'app.sante-publi.disciplines',
+              })}
               links={[
                 {
-                  href: '/sante/publications/discipline#dynamique',
+                  href: '/sante/publications/disciplines#dynamique',
                   label: "La dynamique d'ouverture par discipline",
                 },
                 {
-                  href: '/sante/publications/discipline#voies',
+                  href: '/sante/publications/disciplines#voies',
                   label: "Les voies d'ouverture par discipline",
                 },
               ]}
@@ -260,7 +266,7 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/editeurs']}
-              mainLabel='Editeurs/Plateformes'
+              mainLabel={intl.formatMessage({ id: 'app.sante-publi.editeurs' })}
               links={[
                 {
                   href: '/sante/publications/editeurs#dynamique',
@@ -347,7 +353,7 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/archives']}
-              mainLabel='Archives'
+              mainLabel={intl.formatMessage({ id: 'app.sante-publi.archives' })}
               links={[
                 {
                   href: '/sante/publications/archives#dynamique',
@@ -405,7 +411,9 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/affiliations']}
-              mainLabel='Affiliations'
+              mainLabel={intl.formatMessage({
+                id: 'app.sante-publi.affiliations',
+              })}
               links={[
                 {
                   href: '/sante/publications/affiliations#dynamique',
