@@ -22,8 +22,8 @@ const Chart = ({ graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.repositories.dynamique-depot.chart-nombre-documents-depots';
 
-  const { observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps[0]);
+  const { lastObservationSnap } = useGlobals();
+  const { data, isLoading, isError } = useGetData(lastObservationSnap);
 
   if (isLoading || !data) {
     return <Loader />;

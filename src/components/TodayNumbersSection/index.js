@@ -14,18 +14,16 @@ import useViewport from '../../utils/Hooks/useViewport';
 import Icon from '../Icon';
 import WrapperCol from '../WrapperCol';
 
-function TodaySection({ updateDate, children }) {
+function TodayNumbersSection({ updateDate, title, children }) {
   const { mobile, tablet, desktop } = useViewport();
 
   return (
-    <Container fluid>
+    <Container fluid className='bg-white'>
       <section className='py-48 px-20 px-md-64 max-996'>
         <Row gutters>
           <WrapperCol columns='12 md-4' container={mobile} gutters={false}>
             <section className='w-100 text-center text-left-l pb-32'>
-              <div className='fs-28-32 px-24 pb-16 px-l-0'>
-                <FormattedMessage id='app.baro-sante.today-title' />
-              </div>
+              <div className='fs-28-32 px-24 pb-16 px-l-0'>{title}</div>
               {updateDate}
             </section>
             <section className='w-100 h-50'>
@@ -57,8 +55,9 @@ function TodaySection({ updateDate, children }) {
   );
 }
 
-TodaySection.propTypes = {
+TodayNumbersSection.propTypes = {
   updateDate: PropTypes.element.isRequired,
+  title: PropTypes.element.isRequired,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
-export default TodaySection;
+export default TodayNumbersSection;

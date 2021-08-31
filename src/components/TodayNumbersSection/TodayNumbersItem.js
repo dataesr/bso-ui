@@ -15,52 +15,46 @@ const fetchInfos = {
   publication: {
     path: 'aggregations.publication_count.value',
     url: ES_API_URL,
-    domain: 'health',
   },
   publisher: {
     path: 'aggregations.publisher_count.value',
     url: ES_API_URL,
-    domain: 'health',
   },
   repository: {
     path: 'aggregations.repositories_count.value',
     url: ES_API_URL,
-    domain: 'health',
   },
   obsDates: {
     path: 'aggregations.observation_dates_count.value',
     url: ES_API_URL,
-    domain: 'health',
   },
   journal: {
     path: 'aggregations.journal_count.value',
     url: ES_API_URL,
-    domain: 'health',
   },
   interventional: {
     path: 'aggregations.study_type.buckets.0.doc_count',
     url: CLINICAL_TRIALS_API_URL,
-    domain: false,
   },
   observational: {
     path: 'aggregations.study_type.buckets.1.doc_count',
     url: CLINICAL_TRIALS_API_URL,
-    domain: false,
   },
 };
 
-function TodaySectionItem({
+function TodayNumbersItem({
   iconName,
   iconColor,
   intlSubTitle,
   backgroundColorClass,
   itemKey,
+  domain,
 }) {
   const [todayData, setTodayData] = useState({});
   const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
-    options: getFetchOptions(itemKey, fetchInfos[itemKey].domain),
+    options: getFetchOptions(itemKey, domain),
   });
   const { ref, inView } = useInView();
 
@@ -105,16 +99,18 @@ function TodaySectionItem({
   );
 }
 
-TodaySectionItem.defaultProps = {
+TodayNumbersItem.defaultProps = {
   todayData: { publicationCount: '' },
+  domain: '',
 };
 
-TodaySectionItem.propTypes = {
+TodayNumbersItem.propTypes = {
   backgroundColorClass: PropTypes.string.isRequired,
   todayData: PropTypes.shape({ publicationCount: PropTypes.string }),
   intlSubTitle: PropTypes.string.isRequired,
+  domain: PropTypes.oneOf(['health', '']),
   iconColor: PropTypes.string.isRequired,
   itemKey: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
 };
-export default TodaySectionItem;
+export default TodayNumbersItem;

@@ -47,6 +47,7 @@ import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
+import urls from '../../../config/urls';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import useLang from '../../../utils/Hooks/useLang';
@@ -54,13 +55,17 @@ import DataCardSection from './dataCardSection';
 
 const objButtonLabel = {
   fr: {
-    '/sante/publications/discipline': 'app.sante-publi.disciplines',
+    '/sante/publications/disciplines': 'app.sante-publi.disciplines',
+    '/sante/publications/affiliations': 'app.sante-publi.affiliations',
     '/sante/publications/editeurs': 'app.sante-publi.editeurs',
     '/sante/publications/general': 'app.sante-publi.general',
+    '/sante/publications/archives': 'app.sante-publi.archives',
     '/sante/essais-cliniques': 'app.sante-publi.general',
   },
   en: {
-    '/health/publications/discipline': 'app.sante-publi.disciplines',
+    '/health/publications/disciplines': 'app.sante-publi.disciplines',
+    '/health/publications/affiliations': 'app.sante-publi.affiliations',
+    '/health/publications/archives': 'app.sante-publi.archives',
     '/health/publications/editeurs': 'app.sante-publi.editeurs',
     '/health/publications/general': 'app.sante-publi.general',
   },
@@ -86,13 +91,16 @@ function SantePublications() {
     <Container fluid className='page'>
       <Banner
         backgroundColor='blue-soft-100'
+        homeLink={urls.sante[lang]}
         supTitle={<FormattedMessage id='app.header.title-health' />}
         title={<FormattedMessage id='app.baro-sante.title' />}
         chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
-          title: <FormattedMessage id='app.navigation.objet-recherche' />,
-          selected: <FormattedMessage id='url.sante.publications.general' />,
+          title: intl.formatMessage({ id: 'app.navigation.objet-recherche' }),
+          selected: intl.formatMessage({
+            id: 'url.sante.publications.general',
+          }),
           options: [
             {
               label: intl.formatMessage({ id: 'app.baro-sante.title' }),
@@ -138,10 +146,10 @@ function SantePublications() {
         </Row>
         <Row>
           <GraphNavigation
-            buttonLabel={objButtonLabel[lang][location.pathname]}
+            mobileTitleIntl={objButtonLabel[lang][location.pathname]}
           >
             <GraphItem
-              mainLabel='Général'
+              mainLabel={intl.formatMessage({ id: 'app.sante-publi.general' })}
               paths={[
                 '/sante/publications/general',
                 '/health/publications/general',
@@ -175,7 +183,10 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='dynamique'
                 >
-                  <ChartTauxOuverture />
+                  <ChartTauxOuverture
+                    domain='health'
+                    id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
+                  />
                   <ChartEvolutionProportion />
                 </QuestionSection>
 
@@ -217,15 +228,17 @@ function SantePublications() {
             </GraphItem>
 
             <GraphItem
-              paths={['/sante/publications/discipline']}
-              mainLabel='Les disciplines'
+              paths={['/sante/publications/disciplines']}
+              mainLabel={intl.formatMessage({
+                id: 'app.sante-publi.disciplines',
+              })}
               links={[
                 {
-                  href: '/sante/publications/discipline#dynamique',
+                  href: '/sante/publications/disciplines#dynamique',
                   label: "La dynamique d'ouverture par discipline",
                 },
                 {
-                  href: '/sante/publications/discipline#voies',
+                  href: '/sante/publications/disciplines#voies',
                   label: "Les voies d'ouverture par discipline",
                 },
               ]}
@@ -253,7 +266,7 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/editeurs']}
-              mainLabel='Editeurs/Plateformes'
+              mainLabel={intl.formatMessage({ id: 'app.sante-publi.editeurs' })}
               links={[
                 {
                   href: '/sante/publications/editeurs#dynamique',
@@ -340,7 +353,7 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/archives']}
-              mainLabel='Archives'
+              mainLabel={intl.formatMessage({ id: 'app.sante-publi.archives' })}
               links={[
                 {
                   href: '/sante/publications/archives#dynamique',
@@ -398,7 +411,9 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/affiliations']}
-              mainLabel='Affiliations'
+              mainLabel={intl.formatMessage({
+                id: 'app.sante-publi.affiliations',
+              })}
               links={[
                 {
                   href: '/sante/publications/affiliations#dynamique',

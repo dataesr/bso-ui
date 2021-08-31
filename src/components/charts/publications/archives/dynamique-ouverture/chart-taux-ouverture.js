@@ -32,18 +32,24 @@ const Chart = ({ graphFooter, graphComments }) => {
   const graphId = 'app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture';
   const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
-  const { observationSnaps, updateDate } = useGlobals();
+  const { observationSnaps, lastObservationSnap, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, archive);
   const { dataGraph1 } = data;
-  const query = getFetchOptions('repositoriesList', 'health', observationSnaps[0]);
+  const query = getFetchOptions(
+    'repositoriesList',
+    'health',
+    lastObservationSnap,
+  );
   const term = {};
-  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'repository';
+  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'repository';
   query.query.bool.filter.push({ term });
+
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setArchives(
-        response.data.aggregations.by_repository.buckets
-          .map((item) => item.key),
+        response.data.aggregations.by_repository.buckets.map(
+          (item) => item.key,
+        ),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -33,17 +33,13 @@ const Chart = () => {
   const [agencies, setAgencies] = useState([]);
   const [agency, setAgency] = useState('*');
   const { lastObservationSnap, updateDate } = useGlobals();
-  const { allData, isLoading } = useGetData(
-    lastObservationSnap,
-    agency,
-  );
+  const { allData, isLoading } = useGetData(lastObservationSnap, agency);
   const { dataGraph, categories } = allData;
   const query = getFetchOptions('allAgencies', 'health', lastObservationSnap);
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setAgencies(
-        response.data.aggregations.by_agency.buckets
-          .map((item) => item.key),
+        response.data.aggregations.by_agency.buckets.map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
