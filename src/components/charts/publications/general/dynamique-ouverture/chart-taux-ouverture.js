@@ -9,6 +9,7 @@ import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { discipline100, g800 } from '../../../../../style/colours.module.scss';
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFormattedDate,
   getGraphOptions,
@@ -129,11 +130,8 @@ Chart.defaultProps = {
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
-  id: PropTypes.oneOf([
-    'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture',
-    'app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture',
-  ]),
-  domain: PropTypes.oneOf(['health', '']),
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFetchOptions,
   getFormattedDate,
@@ -121,11 +122,8 @@ Chart.defaultProps = {
   id: 'app.national-publi.general.impact-financement.chart-taux-ouverture',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf([
-    'app.national-publi.general.impact-financement.chart-taux-ouverture',
-    'app.sante-publi.general.genres-ouverture.chart-repartition-genres',
-  ]),
-  domain: PropTypes.oneOf(['health', '']),
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

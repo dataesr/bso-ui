@@ -142,7 +142,7 @@ Chart.defaultProps = {
 Chart.propTypes = {
   domain: PropTypes.oneOf(['health', '']),
   id: PropTypes.oneOf([
-    'app.nationalpubli.general.langues-ouverture.chart-repartition-publications',
+    'app.national-publi.general.langues-ouverture.chart-repartition-publications',
     'app.sante-publi.general.langues-ouverture.chart-repartition-publications',
   ]),
 };

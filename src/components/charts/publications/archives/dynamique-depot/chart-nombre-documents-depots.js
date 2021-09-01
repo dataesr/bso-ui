@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -18,12 +19,11 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphComments }) => {
+const Chart = ({ graphComments, id, domain }) => {
   const intl = useIntl();
-  const graphId = 'app.sante-publi.repositories.dynamique-depot.chart-nombre-documents-depots';
 
   const { lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap);
+  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
 
   if (isLoading || !data) {
     return <Loader />;
@@ -35,7 +35,7 @@ const Chart = ({ graphComments }) => {
   const graphs = [];
 
   data.forEach((oneGraph) => {
-    const optionsGraph = getGraphOptions(graphId, intl);
+    const optionsGraph = getGraphOptions(id, intl);
     optionsGraph.chart.type = 'column';
     optionsGraph.xAxis = {
       type: 'category',
@@ -65,7 +65,7 @@ const Chart = ({ graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <Container>
           <Row>
             {graphs.map((graphOptions, i) => (
@@ -73,7 +73,7 @@ const Chart = ({ graphComments }) => {
                 <HighchartsReact
                   highcharts={Highcharts}
                   options={graphOptions}
-                  id={`${graphId}-${i}`}
+                  id={`${id}-${i}`}
                 />
               </Col>
             ))}
@@ -82,7 +82,7 @@ const Chart = ({ graphComments }) => {
 
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
+            comments={intl.formatMessage({ id: `${id}.comments` })}
           />
         )}
       </div>
@@ -92,9 +92,13 @@ const Chart = ({ graphComments }) => {
 
 Chart.defaultProps = {
   graphComments: true,
+  id: 'app.national-publi.repositories.dynamique-depot.chart-nombre-documents-depots',
+  domain: '',
 };
 Chart.propTypes = {
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

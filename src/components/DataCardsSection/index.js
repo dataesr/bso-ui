@@ -1,9 +1,10 @@
-import { Col, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { ES_API_URL } from '../../config/config';
+import { domains } from '../../utils/constants';
 import {
   cleanBigNumber,
   formatNumberByLang,
@@ -189,34 +190,44 @@ export default function DataCardSection({ lang, domain }) {
     };
   }, [domain, fetchData, isMounted, lastObservationSnap, response]);
   return (
-    <section className='pb-32'>
-      <Row gutters>
-        {Object.keys(dataObj).map((cardKey) => {
-          const {
-            get: cardValue,
-            percentage,
-            color,
-            intlKey,
-            intlValues,
-          } = dataObj[cardKey];
+    <Container fluid className='bg-ultra-light-blue pt-32 mb-20 px-20'>
+      <Row justifyContent='center'>
+        <Col n='12 md-11 xl-9' spacing='p-4w'>
+          <section className='pb-32'>
+            <Row gutters>
+              {Object.keys(dataObj).map((cardKey) => {
+                const {
+                  get: cardValue,
+                  percentage,
+                  color,
+                  intlKey,
+                  intlValues,
+                } = dataObj[cardKey];
 
-          return (
-            <Col n='12 md-6 lg-4' key={cardKey}>
-              <DataCard
-                percentage={percentage ? parseFloat(cardValue) : null}
-                topData={percentage ? null : cardValue}
-                nbGaugePosition={
-                  cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
-                }
-                buttonLabel={intl.formatMessage({ id: 'app.see-details' })}
-                background={color}
-                sentence={<FormattedMessage values={intlValues} id={intlKey} />}
-              />
-            </Col>
-          );
-        })}
+                return (
+                  <Col n='12 md-6 lg-4' key={cardKey}>
+                    <DataCard
+                      percentage={percentage ? parseFloat(cardValue) : null}
+                      topData={percentage ? null : cardValue}
+                      nbGaugePosition={
+                        cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
+                      }
+                      buttonLabel={intl.formatMessage({
+                        id: 'app.see-details',
+                      })}
+                      background={color}
+                      sentence={
+                        <FormattedMessage values={intlValues} id={intlKey} />
+                      }
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+          </section>
+        </Col>
       </Row>
-    </section>
+    </Container>
   );
 }
 
@@ -226,5 +237,5 @@ DataCardSection.defaultProps = {
 
 DataCardSection.propTypes = {
   lang: PropTypes.string.isRequired,
-  domain: PropTypes.oneOf(['health', '']),
+  domain: PropTypes.oneOf(domains),
 };

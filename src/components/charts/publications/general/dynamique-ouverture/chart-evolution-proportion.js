@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFormattedDate,
   getGraphOptions,
@@ -111,8 +112,8 @@ Chart.defaultProps = {
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
-  domain: PropTypes.oneOf(['health', '']),
-  id: PropTypes.string,
+  domain: PropTypes.oneOf(domains),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

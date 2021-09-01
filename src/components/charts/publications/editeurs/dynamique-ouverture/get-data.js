@@ -9,7 +9,7 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, needle = '*') {
+function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -19,11 +19,7 @@ function useGetData(observationSnaps, needle = '*') {
     const queries = [];
     datesObservation?.forEach((oneDate) => {
       const query = getFetchOptions('publicationRate', 'health', oneDate);
-      const queryFiltered = getFetchOptions(
-        'publicationRate',
-        'health',
-        oneDate,
-      );
+      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate);
       const term = {};
       term[`oa_details.${oneDate}.oa_host_type`] = 'publisher';
       queryFiltered.query.bool.filter.push({ term });

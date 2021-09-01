@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { FormattedMessage } from 'react-intl';
 
 import { CLINICAL_TRIALS_API_URL, ES_API_URL } from '../../config/config';
+import { domains } from '../../utils/constants';
 import { getFetchOptions, getValueByPath } from '../../utils/helpers';
 import useFetch from '../../utils/Hooks/useFetch';
 import Icon from '../Icon';
@@ -108,7 +109,7 @@ TodayNumbersItem.propTypes = {
   backgroundColorClass: PropTypes.string.isRequired,
   todayData: PropTypes.shape({ publicationCount: PropTypes.string }),
   intlSubTitle: PropTypes.string.isRequired,
-  domain: PropTypes.oneOf(['health', '']),
+  domain: PropTypes.oneOf(domains),
   iconColor: PropTypes.string.isRequired,
   itemKey: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,

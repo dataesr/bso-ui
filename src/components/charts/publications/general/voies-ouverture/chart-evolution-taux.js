@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFormattedDate,
   getGraphOptions,
@@ -108,11 +109,8 @@ Chart.defaultProps = {
   id: 'app.national-publi.general.voies-ouverture.chart-evolution-taux',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf([
-    'app.national-publi.general.voies-ouverture.chart-evolution-taux',
-    'app.sante-publi.general.voies-ouverture.chart-evolution-taux',
-  ]),
-  domain: PropTypes.oneOf(['health', '']),
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

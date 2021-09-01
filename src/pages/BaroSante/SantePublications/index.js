@@ -140,13 +140,7 @@ function SantePublications() {
             </Row>
           </Container>
           <Glossary entries={GlossaryEntries} />
-          <Container fluid className='bg-ultra-light-blue pt-32 mb-20 px-20'>
-            <Row justifyContent='center'>
-              <Col n='12 md-11 xl-9' spacing='p-4w'>
-                <DataCardSection lang={lang} domain='health' />
-              </Col>
-            </Row>
-          </Container>
+          <DataCardSection lang={lang} domain='health' />
         </Row>
         <Row>
           <GraphNavigation
@@ -188,12 +182,12 @@ function SantePublications() {
                   anchorId='dynamique'
                 >
                   <ChartTauxOuverture
-                    domain='health'
                     id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
                   />
                   <ChartEvolutionProportion
-                    domain='health'
                     id='app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
                   />
                 </QuestionSection>
 
@@ -203,16 +197,16 @@ function SantePublications() {
                   anchorId='voies'
                 >
                   <ChartRepartitionTaux
-                    domain='health'
                     id='app.sante-publi.general.voies-ouverture.chart-repartition-taux'
+                    domain='health'
                   />
                   <ChartEvolutionTaux
-                    domain='health'
                     id='app.sante-publi.general.voies-ouverture.chart-evolution-taux'
+                    domain='health'
                   />
                   <ChartRepartitionPublications
-                    domain='health'
                     id='app.sante-publi.general.voies-ouverture.chart-repartition-publications'
+                    domain='health'
                   />
                 </QuestionSection>
 
@@ -222,8 +216,8 @@ function SantePublications() {
                   anchorId='genres'
                 >
                   <ChartGenreOuverture
-                    domain='health'
                     id='app.sante-publi.general.genres-ouverture.chart-repartition-genres'
+                    domain='health'
                   />
                 </QuestionSection>
 
@@ -233,8 +227,8 @@ function SantePublications() {
                   anchorId='langues'
                 >
                   <ChartLanguesOuverture
-                    domain='health'
                     id='app.sante-publi.general.langues-ouverture.chart-repartition-publications'
+                    domain='health'
                   />
                 </QuestionSection>
 
@@ -244,12 +238,12 @@ function SantePublications() {
                   anchorId='financement'
                 >
                   <ChartTauxOuvertureFinancement
-                    domain='health'
                     id='app.sante-publi.general.impact-financement.chart-taux-ouverture'
+                    domain='health'
                   />
                   <ChartRepartitionDeclarations
-                    domain='health'
                     id='app.sante-publi.general.impact-financement.chart-repartition-financements'
+                    domain='health'
                   />
                 </QuestionSection>
               </GraphContent>
@@ -286,8 +280,8 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='voies'
                 >
-                  <ChartRepartitionPublicationsDisciplines />
-                  <ChartEvolutionComparaisonTypesHebergementDisciplines />
+                  <ChartRepartitionPublicationsDisciplines id='app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications' />
+                  <ChartEvolutionComparaisonTypesHebergementDisciplines id='app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -328,8 +322,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='dynamique'
                 >
-                  <ChartTauxOuverturePublishers />
-                  <ChartEvolutionProportionPublishers />
+                  <ChartTauxOuverturePublishers
+                    id='app.sante-publi.publishers.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <ChartEvolutionProportionPublishers
+                    id='app.sante-publi.publishers.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -337,8 +337,14 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='type'
                 >
-                  <ChartEvolutionRepartitionPublishers />
-                  <ChartRepartitionModelesPublishers />
+                  <ChartEvolutionRepartitionPublishers
+                    id='app.sante-publi.publishers.type-ouverture.chart-evolution-repartition'
+                    domain='health'
+                  />
+                  <ChartRepartitionModelesPublishers
+                    id='app.sante-publi.publishers.type-ouverture.chart-repartition-modeles'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -346,8 +352,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='politique'
                 >
-                  <ChartClassementPublishers />
-                  <ChartComparaisonPublishers />
+                  <ChartClassementPublishers
+                    id='app.sante-publi.publishers.politiques-ouverture.chart-classement'
+                    domain='health'
+                  />
+                  <ChartComparaisonPublishers
+                    id='app.sante-publi.publishers.politiques-ouverture.chart-classement'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -363,8 +375,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='licences'
                 >
-                  <ChartRepartitionLicencesPublishers />
-                  <ChartClassementLicencesPublishers />
+                  <ChartRepartitionLicencesPublishers
+                    domain='health'
+                    id='app.sante-publi.publishers.repartition-licences.chart-repartition'
+                  />
+                  <ChartClassementLicencesPublishers
+                    domain='health'
+                    id='app.sante-publi.publishers.repartition-licences.chart-classement'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -372,9 +390,18 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='apc'
                 >
-                  <ChartDepensesEstimeesPublishers />
-                  <ChartDistributionPublishers />
-                  <ChartDistributionParAnnee />
+                  <ChartDepensesEstimeesPublishers
+                    id='app.sante-publi.publishers.couts-publication.chart-depenses-estimees'
+                    domain='health'
+                  />
+                  <ChartDistributionPublishers
+                    id='app.sante-publi.publishers.couts-publication.chart-distribution'
+                    domain='health'
+                  />
+                  <ChartDistributionParAnnee
+                    id='app.sante-publi.publishers.couts-publication.chart-distribution-par-annee'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -407,8 +434,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='dynamique'
                 >
-                  <ChartTauxOuvertureArchives />
-                  <ChartTauxPresenceRepositories />
+                  <ChartTauxOuvertureArchives
+                    id='app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <ChartTauxPresenceRepositories
+                    id='app.sante-publi.repositories.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -416,7 +449,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='plus-utilisees'
                 >
-                  <ChartNombreDocumentsRepositories />
+                  <ChartNombreDocumentsRepositories
+                    id='app.sante-publi.repositories.plus-utilisees.chart-nombre-documents'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -424,7 +460,10 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='depots'
                 >
-                  <ChartNombreDocumentsDepotsRepositories />
+                  <ChartNombreDocumentsDepotsRepositories
+                    id='app.sante-publi.repositories.dynamique-depot.chart-nombre-documents-depots'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -432,7 +471,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='hal'
                 >
-                  <ChartTauxCouvertureHAL />
+                  <ChartTauxCouvertureHAL
+                    id='app.sante-publi.repositories.dynamique-hal.chart-couverture-hal'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

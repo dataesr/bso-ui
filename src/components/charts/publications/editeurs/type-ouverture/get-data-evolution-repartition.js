@@ -10,14 +10,14 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap) {
+function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function getDataGraph() {
     const query = getFetchOptions(
       'publishersTypesHisto',
-      'health',
+      domain,
       observationSnap,
     );
     const term = {};

@@ -8,6 +8,7 @@ import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { archiveouverte100 } from '../../../../../style/colours.module.scss';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -19,13 +20,11 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.repositories.plus-utilisees.chart-nombre-documents';
-
   const { lastObservationSnap, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap);
+  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
 
   if (isLoading || !data) {
     return <Loader />;
@@ -42,7 +41,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   const exportChartCsv = () => {
     chartRef.current.chart.downloadCSV();
   };
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'bar';
   optionsGraph.chart.height = '700px';
   optionsGraph.colors = [archiveouverte100];
@@ -69,24 +68,24 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
+            comments={intl.formatMessage({ id: `${id}.comments` })}
           />
         )}
       </div>
       {graphFooter && (
         <GraphFooter
           date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -98,10 +97,14 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.repositories.plus-utilisees.chart-nombre-documents',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

@@ -7,18 +7,17 @@ import {
   archiveouverte100,
   archiveouverte125,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getFetchOptions,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
-function useGetData(observationSnap) {
+function useGetData(observationSnap, domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions(
-      'repositoriesHisto',
-      'health',
-      observationSnap,
-    );
+    const query = getFetchOptions('repositoriesHisto', domain, observationSnap);
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const tab = [];
@@ -30,13 +29,17 @@ function useGetData(observationSnap) {
           name: archive.key,
           color: archiveouverte125,
           data: archive.by_year.buckets
-            .filter((el) => (el.key > lastPublicationYear - nbHisto) && (el.key <= lastPublicationYear))
+            .filter(
+              (el) => el.key > lastPublicationYear - nbHisto
+                && el.key <= lastPublicationYear,
+            )
             .sort((a, b) => a.key - b.key)
             .map((el, index) => ({
               name: el.key,
               year: el.key,
               y: el.doc_count,
-              color: (index === nbHisto - 1) ? archiveouverte100 : archiveouverte125,
+              color:
+                index === nbHisto - 1 ? archiveouverte100 : archiveouverte125,
             })),
         };
         tab.push(obj);
