@@ -57,4 +57,11 @@
     @include font-size(48, 40);
     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 2px 2px #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 0 2px 0 #fff;
   }
+
+  .btn-bottom {
+    position: absolute;
+    bottom: 20px;
+    width: 160px;
+    left: calc(50% - 80px);
+  }
 }

@@ -27,7 +27,7 @@ function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
         <p className='sentence'>{sentence}</p>
         {buttonLabel && (
           <Button
-            className='btn-blue text-white'
+            className='btn-bottom btn-blue text-white'
             icon='ri-arrow-down-line'
             iconPosition='right'
             size='sm'
