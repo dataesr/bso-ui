@@ -63,12 +63,16 @@ export function sortByPath(array, path) {
  * @param num
  * @returns {string}
  */
-export function cleanBigNumber(num) {
-  const units = ['M', 'B', 'T', 'Q'];
-  const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
-  const r = unit % 3;
-  const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`).toFixed(2);
-  return `${x.toFixed(2)}${units[Math.floor(unit / 3) - 2]}`;
+export function cleanNumber(num) {
+  let myCleanedNumber = '';
+  if (num < 1000) { myCleanedNumber = num.toFixed(0); } else {
+    const units = ['k', 'M', 'B', 'T', 'Q'];
+    const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
+    const r = unit % 3;
+    const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`).toFixed(2);
+    myCleanedNumber = `${x.toFixed(2)}${units[Math.floor(unit / 3) - 1]}`;
+  }
+  return myCleanedNumber;
 }
 
 /**
@@ -148,10 +152,10 @@ export function getGraphOptions(graphId, intl) {
   };
 }
 
-export function getPercentageYAxis(showTotal = true) {
+export function getPercentageYAxis(showTotal = true, max = 100) {
   return {
     min: 0,
-    max: 100,
+    max,
     title: '',
     stackLabels: {
       enabled: true,
@@ -402,6 +406,134 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    publishersPolitiqueHisto: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    publishersPolitiqueBulle: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    publishersLicence: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { exists: { field: `oa_details.${observationSnap}` } },
+          ],
+        },
+      },
+      aggs: {
+        by_is_oa: {
+          terms: {
+            field: `oa_details.${observationSnap}.is_oa`,
+          },
+          aggs: {
+            by_licence: {
+              terms: {
+                field: `oa_details.${observationSnap}.licence_publisher.keyword`,
+              },
+            },
+          },
+        },
+        by_publisher: {
+          terms: {
+            field: 'publisher.keyword',
+          },
+          aggs: {
+            by_licence: {
+              terms: {
+                field: `oa_details.${observationSnap}.licence_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    apcYear: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+              aggs: {
+                apc: {
+                  sum: {
+                    field: 'amount_apc_EUR',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    predatory: () => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_predatory: {
+              terms: {
+                field: 'predatory_journal',
+              },
+            },
+          },
+        },
+      },
+    }),
     journal: () => ({
       size: 0,
       aggs: {
@@ -508,19 +640,21 @@ export function getFetchOptions(key, domain, ...parameters) {
             field: `oa_details.${observationSnap}.is_oa`,
           },
         },
-        sum_apc: {
-          sum: {
-            field: 'amount_apc_EUR',
+        by_oa_colors: {
+          terms: {
+            field: `oa_details.${observationSnap}.oa_colors.keyword`,
+          },
+          aggs: {
+            apc: {
+              sum: {
+                field: 'amount_apc_EUR',
+              },
+            },
           },
         },
         by_oa_colors_with_priority_to_publisher: {
           terms: {
             field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
-          },
-        },
-        by_oa_colors: {
-          terms: {
-            field: `oa_details.${observationSnap}.oa_colors.keyword`,
           },
         },
         by_repositories: {

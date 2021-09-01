@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
@@ -13,6 +14,7 @@ function useGetData(observationSnaps, needle = '*') {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const intl = useIntl();
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -102,7 +104,12 @@ function useGetData(observationSnaps, needle = '*') {
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       serie.data = observationSnapData.data.oaHostType.map(
-        (value, index) => (value * 100) / observationSnapData.data.all[index],
+        (value, index) => ({
+          y: (value * 100) / observationSnapData.data.all[index],
+          publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
+          name: observationSnapData.observationSnap, // observation date
+          publicationDate: observationSnapData.data.publicationDates[index],
+        }),
       );
       serie.ratios = observationSnapData.data.oaHostType.map(
         (value, index) => `(${value}/${observationSnapData.data.all[index]})`,
@@ -114,7 +121,8 @@ function useGetData(observationSnaps, needle = '*') {
     });
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
-      y: el.data[el.data.length - 1],
+      y: el.data[el.data.length - 1].y,
+      publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
     }));
