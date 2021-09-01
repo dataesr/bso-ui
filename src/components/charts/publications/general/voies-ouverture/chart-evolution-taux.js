@@ -2,6 +2,7 @@ import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -21,15 +22,15 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = () => {
+const Chart = ({ id, domain }) => {
   const today = new Date();
   const chartRef = useRef();
   const intl = useIntl();
   const { lang } = useLang();
-  const graphId = 'app.sante-publi.general.voies-ouverture.chart-evolution-taux';
   const { updateDate, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap || today.getFullYear() - 1,
+    domain,
   );
   const { dataGraph, categories } = allData;
 
@@ -40,7 +41,7 @@ const Chart = () => {
     return <>Error</>;
   }
 
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'area';
   optionsGraph.xAxis = {
     categories,
@@ -52,7 +53,7 @@ const Chart = () => {
   optionsGraph.yAxis = getPercentageYAxis();
   optionsGraph.legend = {
     title: {
-      text: intl.formatMessage({ id: `${graphId}.legend` }),
+      text: intl.formatMessage({ id: `${id}.legend` }),
     },
   };
   optionsGraph.plotOptions = {
@@ -80,26 +81,38 @@ const Chart = () => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         <GraphComments
-          comments={intl.formatMessage({ id: `${graphId}.comments` })}
+          comments={intl.formatMessage({ id: `${id}.comments` })}
         />
       </div>
       <GraphFooter
         date={getFormattedDate(updateDate, lang)}
-        source={intl.formatMessage({ id: `${graphId}.source` })}
-        graphId={graphId}
+        source={intl.formatMessage({ id: `${id}.source` })}
+        graphId={id}
         onPngButtonClick={exportChartPng}
         onCsvButtonClick={exportChartCsv}
       />
     </>
   );
+};
+
+Chart.defaultProps = {
+  domain: '',
+  id: 'app.national-publi.general.voies-ouverture.chart-evolution-taux',
+};
+Chart.propTypes = {
+  id: PropTypes.oneOf([
+    'app.national-publi.general.voies-ouverture.chart-evolution-taux',
+    'app.sante-publi.general.voies-ouverture.chart-evolution-taux',
+  ]),
+  domain: PropTypes.oneOf(['health', '']),
 };
 
 export default Chart;

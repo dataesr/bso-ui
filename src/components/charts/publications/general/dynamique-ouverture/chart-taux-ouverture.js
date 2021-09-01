@@ -124,12 +124,16 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   domain: '',
-  id: 'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture.title',
+  id: 'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
-  id: PropTypes.string,
+  id: PropTypes.oneOf([
+    'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture',
+    'app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture',
+  ]),
   domain: PropTypes.oneOf(['health', '']),
 };
+
 export default Chart;

@@ -13,7 +13,7 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, isOa) {
+function useGetData(observationSnap, isOa, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ function useGetData(observationSnap, isOa) {
     const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
     const query = getFetchOptions(
       'openingType',
-      'health',
+      domain,
       lastObservationSnap,
       field,
       'genre.keyword',

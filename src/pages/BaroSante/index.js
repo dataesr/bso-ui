@@ -113,7 +113,11 @@ function BaroSante() {
                       <ProgressionCard domain='health' />
                     </Col>
                     <Col n='12'>
-                      <ChartEvolutionProportion graphComments={false} />
+                      <ChartEvolutionProportion
+                        domain='health'
+                        id='app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion'
+                        graphComments={false}
+                      />
                     </Col>
                   </Row>
                 </Container>

@@ -3,6 +3,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -22,14 +23,14 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = () => {
+const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lang } = useLang();
-  const graphId = 'app.sante-publi.general.voies-ouverture.chart-repartition-publications';
   const { lastObservationSnap, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap || '2020',
+    domain,
   );
   const { dataGraph3 } = allData;
 
@@ -40,7 +41,7 @@ const Chart = () => {
     return <>Error</>;
   }
 
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -76,26 +77,38 @@ const Chart = () => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         <GraphComments
-          comments={intl.formatMessage({ id: `${graphId}.comments` })}
+          comments={intl.formatMessage({ id: `${id}.comments` })}
         />
       </div>
       <GraphFooter
         date={getFormattedDate(updateDate, lang)}
-        source={intl.formatMessage({ id: `${graphId}.source` })}
-        graphId={graphId}
+        source={intl.formatMessage({ id: `${id}.source` })}
+        graphId={id}
         onPngButtonClick={exportChartPng}
         onCsvButtonClick={exportChartCsv}
       />
     </>
   );
+};
+
+Chart.defaultProps = {
+  domain: '',
+  id: 'app.national-publi.general.voies-ouverture.chart-repartition-publications',
+};
+Chart.propTypes = {
+  domain: PropTypes.oneOf(['health', '']),
+  id: PropTypes.oneOf([
+    'app.national-publi.general.voies-ouverture.chart-repartition-publications',
+    'app.sante-publi.general.voies-ouverture.chart-repartition-publications',
+  ]),
 };
 
 export default Chart;

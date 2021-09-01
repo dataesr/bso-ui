@@ -55,19 +55,19 @@ import useLang from '../../../utils/Hooks/useLang';
 
 const objButtonLabel = {
   fr: {
-    '/sante/publications/disciplines': 'app.sante-publi.disciplines',
-    '/sante/publications/affiliations': 'app.sante-publi.affiliations',
-    '/sante/publications/editeurs': 'app.sante-publi.editeurs',
-    '/sante/publications/general': 'app.sante-publi.general',
-    '/sante/publications/archives': 'app.sante-publi.archives',
-    '/sante/essais-cliniques': 'app.sante-publi.general',
+    '/sante/publications/disciplines': 'app.publi.disciplines',
+    '/sante/publications/affiliations': 'app.publi.affiliations',
+    '/sante/publications/editeurs': 'app.publi.editeurs',
+    '/sante/publications/general': 'app.publi.general',
+    '/sante/publications/archives': 'app.publi.archives',
+    '/sante/essais-cliniques': 'app.publi.general',
   },
   en: {
-    '/health/publications/disciplines': 'app.sante-publi.disciplines',
-    '/health/publications/affiliations': 'app.sante-publi.affiliations',
-    '/health/publications/archives': 'app.sante-publi.archives',
-    '/health/publications/editeurs': 'app.sante-publi.editeurs',
-    '/health/publications/general': 'app.sante-publi.general',
+    '/health/publications/disciplines': 'app.publi.disciplines',
+    '/health/publications/affiliations': 'app.publi.affiliations',
+    '/health/publications/archives': 'app.publi.archives',
+    '/health/publications/editeurs': 'app.publi.editeurs',
+    '/health/publications/general': 'app.publi.general',
   },
 };
 
@@ -149,7 +149,7 @@ function SantePublications() {
             mobileTitleIntl={objButtonLabel[lang][location.pathname]}
           >
             <GraphItem
-              mainLabel={intl.formatMessage({ id: 'app.sante-publi.general' })}
+              mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
               paths={[
                 '/sante/publications/general',
                 '/health/publications/general',
@@ -187,7 +187,10 @@ function SantePublications() {
                     domain='health'
                     id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
                   />
-                  <ChartEvolutionProportion />
+                  <ChartEvolutionProportion
+                    domain='health'
+                    id='app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -195,9 +198,18 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='voies'
                 >
-                  <ChartRepartitionTaux />
-                  <ChartEvolutionTaux />
-                  <ChartRepartitionPublications />
+                  <ChartRepartitionTaux
+                    domain='health'
+                    id='app.sante-publi.general.voies-ouverture.chart-repartition-taux'
+                  />
+                  <ChartEvolutionTaux
+                    domain='health'
+                    id='app.sante-publi.general.voies-ouverture.chart-evolution-taux'
+                  />
+                  <ChartRepartitionPublications
+                    domain='health'
+                    id='app.sante-publi.general.voies-ouverture.chart-repartition-publications'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -205,7 +217,10 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='genres'
                 >
-                  <ChartGenreOuverture />
+                  <ChartGenreOuverture
+                    domain='health'
+                    id='app.sante-publi.general.genres-ouverture.chart-repartition-genres'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -213,7 +228,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='langues'
                 >
-                  <ChartLanguesOuverture />
+                  <ChartLanguesOuverture
+                    domain='health'
+                    id='app.sante-publi.general.langues-ouverture.chart-repartition-publications'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -221,8 +239,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='financement'
                 >
-                  <ChartTauxOuvertureFinancement />
-                  <ChartRepartitionDeclarations />
+                  <ChartTauxOuvertureFinancement
+                    domain='health'
+                    id='app.sante-publi.general.impact-financement.chart-taux-ouverture'
+                  />
+                  <ChartRepartitionDeclarations
+                    domain='health'
+                    id='app.sante-publi.general.impact-financement.chart-repartition-financements'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -230,7 +254,7 @@ function SantePublications() {
             <GraphItem
               paths={['/sante/publications/disciplines']}
               mainLabel={intl.formatMessage({
-                id: 'app.sante-publi.disciplines',
+                id: 'app.publi.disciplines',
               })}
               links={[
                 {
@@ -266,7 +290,7 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/editeurs']}
-              mainLabel={intl.formatMessage({ id: 'app.sante-publi.editeurs' })}
+              mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
               links={[
                 {
                   href: '/sante/publications/editeurs#dynamique',
@@ -353,7 +377,7 @@ function SantePublications() {
 
             <GraphItem
               paths={['/sante/publications/archives']}
-              mainLabel={intl.formatMessage({ id: 'app.sante-publi.archives' })}
+              mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}
               links={[
                 {
                   href: '/sante/publications/archives#dynamique',
@@ -412,7 +436,7 @@ function SantePublications() {
             <GraphItem
               paths={['/sante/publications/affiliations']}
               mainLabel={intl.formatMessage({
-                id: 'app.sante-publi.affiliations',
+                id: 'app.publi.affiliations',
               })}
               links={[
                 {
