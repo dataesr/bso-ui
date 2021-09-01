@@ -519,6 +519,8 @@
   "url.about.methodologie": "/a-propos/methodologie",
   "url.about.projet": "/a-propos/projet",
   "url.integration": "/integration/:graphId",
+  "app.grant.withAndWithout": "app.grant.withAndWithout",
+  "app.no-grant": "app.no-grant",
   "url.national": "/",
   "url.national.publications": "/publications",
   "url.sante": "/sante",
