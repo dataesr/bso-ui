@@ -25,8 +25,8 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.politiques-ouverture.chart-comparaison';
 
-  const { observationSnaps, updateDate } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(observationSnaps);
+  const { lastObservationSnap, updateDate } = useGlobals();
+  const { allData, isLoading, isError } = useGetData(lastObservationSnap);
   const { bubbleGraph } = allData;
 
   if (isLoading || !bubbleGraph) {
@@ -47,7 +47,6 @@ const Chart = ({ graphFooter, graphComments }) => {
     labels: {
       // eslint-disable-next-line
       formatter: function () {
-        // eslint-disable-next-line
         return this.axis.defaultLabelFormatter.call(this).concat(' %');
       },
     },
@@ -59,7 +58,6 @@ const Chart = ({ graphFooter, graphComments }) => {
     labels: {
       // eslint-disable-next-line
       formatter: function () {
-        // eslint-disable-next-line
         return this.axis.defaultLabelFormatter.call(this).concat(' %');
       },
     },

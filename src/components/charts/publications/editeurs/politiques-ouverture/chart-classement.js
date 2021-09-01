@@ -23,8 +23,8 @@ const Chart = ({ graphFooter, graphComments }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.politiques-ouverture.chart-classement';
 
-  const { observationSnaps, updateDate } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(observationSnaps);
+  const { lastObservationSnap, updateDate } = useGlobals();
+  const { allData, isLoading, isError } = useGetData(lastObservationSnap);
   const { categories, dataGraph } = allData;
 
   if (isLoading || !dataGraph || !categories) {
