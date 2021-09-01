@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import DataCard from '../../../components/DataCard';
-import { ES_API_URL } from '../../../config/config';
+import { ES_API_URL } from '../../config/config';
 import {
   cleanBigNumber,
   formatNumberByLang,
   getFetchOptions,
   getPublicationYearFromObservationSnap,
   getValueByPath,
-} from '../../../utils/helpers';
-import useFetch from '../../../utils/Hooks/useFetch';
-import useGlobals from '../../../utils/Hooks/useGetGlobals';
+} from '../../utils/helpers';
+import useFetch from '../../utils/Hooks/useFetch';
+import useGlobals from '../../utils/Hooks/useGetGlobals';
+import DataCard from '../DataCard';
 
-export default function DataCardSection({ lang }) {
+export default function DataCardSection({ lang, domain }) {
   const intl = useIntl();
   const [publicationsNumber, setPublicationsNumber] = useState(null);
   const [openPublicationRate, setOpenPublicationRate] = useState(null);
@@ -38,18 +38,20 @@ export default function DataCardSection({ lang }) {
   const dataObj = useMemo(
     () => ({
       openPublicationRate: {
-        fetch: (buckets) => Math.round(
-          (buckets.find((countObj) => countObj.key === 1).doc_count
-              / publicationsNumber)
-              * 100
-              * 10,
-        ) / 10,
+        fetch: (buckets) => (
+          Math.round(
+            (buckets.find((countObj) => countObj.key === 1).doc_count
+                / publicationsNumber)
+                * 100
+                * 10,
+          ) / 10
+        ).toFixed(0),
         get: openPublicationRate,
         set: (data) => setOpenPublicationRate(data),
         pathToValue: 'by_is_oa.buckets',
         percentage: true,
         color: 'pink',
-        intlKey: 'app.sante-publi.data.publications',
+        intlKey: 'app.national-publi.data.publications',
         intlValues: {
           totalPublications: formatNumberByLang(publicationsNumber, lang),
           publicationYear:
@@ -63,7 +65,7 @@ export default function DataCardSection({ lang }) {
         pathToValue: 'sum_apc.value',
         percentage: false,
         color: 'brown',
-        intlKey: 'app.sante-publi.data.costs',
+        intlKey: 'app.national-publi.data.costs',
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
@@ -80,7 +82,7 @@ export default function DataCardSection({ lang }) {
         pathToValue: 'by_oa_colors_with_priority_to_publisher.buckets',
         percentage: true,
         color: 'aqua',
-        intlKey: 'app.sante-publi.data.publi-diamond',
+        intlKey: 'app.national-publi.data.publi-diamond',
         intlValues: {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
@@ -96,7 +98,7 @@ export default function DataCardSection({ lang }) {
         pathToValue: 'by_repositories.buckets',
         percentage: false,
         color: 'green',
-        intlKey: 'app.sante.data.hosted.documents',
+        intlKey: 'app.national.data.hosted.documents',
         intlValues: { total: totalHostedDocuments },
       },
       frenchPublicationsRate: {
@@ -110,7 +112,7 @@ export default function DataCardSection({ lang }) {
         pathToValue: 'by_lang.buckets',
         percentage: true,
         color: 'blue',
-        intlKey: 'app.sante-publi.data.french-lang',
+        intlKey: 'app.national-publi.data.french-lang',
         intlValues: {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
@@ -123,7 +125,7 @@ export default function DataCardSection({ lang }) {
         pathToValue: 'by_author_useful_rank.buckets.1.key',
         percentage: false,
         color: 'yellow',
-        intlKey: 'app.sante-publi.data.collab-country',
+        intlKey: 'app.publi.data.collab-country',
       },
     }),
     [
@@ -177,11 +179,7 @@ export default function DataCardSection({ lang }) {
   useEffect(() => {
     if (!response && isMounted.current && lastObservationSnap) {
       fetchData({
-        options: getFetchOptions(
-          'publiCardData',
-          'health',
-          lastObservationSnap,
-        ),
+        options: getFetchOptions('publiCardData', domain, lastObservationSnap),
       });
     }
     return () => {
@@ -189,37 +187,44 @@ export default function DataCardSection({ lang }) {
         isMounted.current = false;
       }
     };
-  }, [fetchData, isMounted, lastObservationSnap, response]);
-
+  }, [domain, fetchData, isMounted, lastObservationSnap, response]);
   return (
     <section className='pb-32'>
       <Row gutters>
-        {Object.keys(dataObj).map((cardKey) => (
-          <Col n='12 md-6 lg-4' key={cardKey}>
-            <DataCard
-              percentage={
-                dataObj[cardKey].percentage
-                  ? parseFloat(dataObj[cardKey].get)
-                  : null
-              }
-              topData={
-                dataObj[cardKey].percentage ? null : dataObj[cardKey].get
-              }
-              buttonLabel={intl.formatMessage({ id: 'app.see-details' })}
-              background={dataObj[cardKey].color}
-              sentence={(
-                <FormattedMessage
-                  values={dataObj[cardKey].intlValues}
-                  id={dataObj[cardKey].intlKey}
-                />
-              )}
-            />
-          </Col>
-        ))}
+        {Object.keys(dataObj).map((cardKey) => {
+          const {
+            get: cardValue,
+            percentage,
+            color,
+            intlKey,
+            intlValues,
+          } = dataObj[cardKey];
+
+          return (
+            <Col n='12 md-6 lg-4' key={cardKey}>
+              <DataCard
+                percentage={percentage ? parseFloat(cardValue) : null}
+                topData={percentage ? null : cardValue}
+                nbGaugePosition={
+                  cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
+                }
+                buttonLabel={intl.formatMessage({ id: 'app.see-details' })}
+                background={color}
+                sentence={<FormattedMessage values={intlValues} id={intlKey} />}
+              />
+            </Col>
+          );
+        })}
       </Row>
     </section>
   );
 }
+
+DataCardSection.defaultProps = {
+  domain: '',
+};
+
 DataCardSection.propTypes = {
   lang: PropTypes.string.isRequired,
+  domain: PropTypes.oneOf(['health', '']),
 };

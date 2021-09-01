@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function Gauge({ percentage }) {
+function Gauge({ percentage, nbPosition }) {
   const a = 340 * (percentage / 100);
   const b = 500 - a;
 
@@ -39,7 +39,7 @@ function Gauge({ percentage }) {
               stroke='currentColor'
             />
           </g>
-          <text x='60' y='180' className='marianne-extra-bold'>
+          <text x={nbPosition} y='180' className='marianne-extra-bold'>
             {`${percentage}`}
             <tspan className='marianne-bold fs-24-32'>%</tspan>
           </text>
@@ -51,6 +51,7 @@ function Gauge({ percentage }) {
 
 Gauge.propTypes = {
   percentage: PropTypes.number.isRequired,
+  nbPosition: PropTypes.string.isRequired,
 };
 
 export default Gauge;

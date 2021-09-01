@@ -39,6 +39,7 @@ import ChartEvolutionTaux from '../../../components/charts/publications/general/
 import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
 import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
 import Chip from '../../../components/Chip';
+import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
@@ -51,7 +52,6 @@ import urls from '../../../config/urls';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import useLang from '../../../utils/Hooks/useLang';
-import DataCardSection from './dataCardSection';
 
 const objButtonLabel = {
   fr: {
@@ -141,7 +141,7 @@ function SantePublications() {
           </Container>
           <Glossary entries={GlossaryEntries} />
           <Container>
-            <DataCardSection lang={lang} />
+            <DataCardSection lang={lang} domain='health' />
           </Container>
         </Row>
         <Row>
