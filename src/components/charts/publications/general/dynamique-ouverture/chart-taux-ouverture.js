@@ -104,7 +104,7 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
           highcharts={Highcharts}
           options={optionsGraph1}
           ref={chartRef}
-          iid={id}
+          id={id}
         />
         {graphComments && <GraphComments comments={chartComments} />}
       </div>

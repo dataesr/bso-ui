@@ -21,10 +21,6 @@ export default {
         fr: '/publications/archives',
         en: '/publications/archives',
       },
-      {
-        fr: '/publications/affiliations',
-        en: '/publications/affiliations',
-      },
     ],
     fr: '/publications/general',
     en: '/publications/general',

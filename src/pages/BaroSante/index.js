@@ -135,7 +135,9 @@ function BaroSante() {
                 introText={
                   <FormattedMessage id='app.baro-sante.essays-intro' />
                 }
-              />
+              >
+                <p>essais-cliniques</p>
+              </HomeSection>
             </Col>
             <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
@@ -151,7 +153,9 @@ function BaroSante() {
                 introText={
                   <FormattedMessage id='app.baro-sante.studies-intro' />
                 }
-              />
+              >
+                <p>etudes-observationelles</p>
+              </HomeSection>
             </Col>
             <Col n='12'>
               <Container fluid>

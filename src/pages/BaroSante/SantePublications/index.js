@@ -51,25 +51,8 @@ import ScrollTop from '../../../components/ScrollTop';
 import urls from '../../../config/urls';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
+import { mobileButtonLabel } from '../../../utils/constants';
 import useLang from '../../../utils/Hooks/useLang';
-
-const objButtonLabel = {
-  fr: {
-    '/sante/publications/disciplines': 'app.publi.disciplines',
-    '/sante/publications/affiliations': 'app.publi.affiliations',
-    '/sante/publications/editeurs': 'app.publi.editeurs',
-    '/sante/publications/general': 'app.publi.general',
-    '/sante/publications/archives': 'app.publi.archives',
-    '/sante/essais-cliniques': 'app.publi.general',
-  },
-  en: {
-    '/health/publications/disciplines': 'app.publi.disciplines',
-    '/health/publications/affiliations': 'app.publi.affiliations',
-    '/health/publications/archives': 'app.publi.archives',
-    '/health/publications/editeurs': 'app.publi.editeurs',
-    '/health/publications/general': 'app.publi.general',
-  },
-};
 
 function SantePublications() {
   const { lang } = useLang();
@@ -144,7 +127,7 @@ function SantePublications() {
         </Row>
         <Row>
           <GraphNavigation
-            mobileTitleIntl={objButtonLabel[lang][location.pathname]}
+            mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
           >
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publi.general' })}

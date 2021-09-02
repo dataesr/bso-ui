@@ -47,22 +47,8 @@ import ScrollTop from '../../../components/ScrollTop';
 import urls from '../../../config/urls';
 import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
+import { mobileButtonLabel } from '../../../utils/constants';
 import useLang from '../../../utils/Hooks/useLang';
-
-const objButtonLabel = {
-  fr: {
-    '/publications/disciplines': 'app.publi.disciplines',
-    '/publications/editeurs': 'app.publi.editeurs',
-    '/publications/general': 'app.publi.general',
-    '/publications/archives': 'app.publi.archives',
-  },
-  en: {
-    '/publications/disciplines': 'app.publi.disciplines',
-    '/publications/archives': 'app.publi.archives',
-    '/publications/editeurs': 'app.publi.editeurs',
-    '/publications/general': 'app.publi.general',
-  },
-};
 
 export default function NationalPublications() {
   const { lang } = useLang();
@@ -114,7 +100,7 @@ export default function NationalPublications() {
         </Row>
         <Row>
           <GraphNavigation
-            mobileTitleIntl={objButtonLabel[lang][location.pathname]}
+            mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
           >
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
