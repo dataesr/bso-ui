@@ -34,10 +34,17 @@ const Chart = ({ graphFooter, graphComments }) => {
   const graphId = 'app.sante-publi.affiliations.dynamique-ouverture.chart-evolution-proportion';
   const [affiliations, setAffiliations] = useState([]);
   const [affiliation, setAffiliation] = useState('*');
-  const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, affiliation);
+  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    affiliation,
+  );
   const { dataGraph2 } = data;
-  const query = getFetchOptions('affiliationsList', 'health', observationSnaps[0]);
+  const query = getFetchOptions(
+    'affiliationsList',
+    'health',
+    lastObservationSnap,
+  );
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setAffiliations(

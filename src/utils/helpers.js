@@ -65,7 +65,9 @@ export function sortByPath(array, path) {
  */
 export function cleanNumber(num) {
   let myCleanedNumber = '';
-  if (num < 1000) { myCleanedNumber = num.toFixed(0); } else {
+  if (num < 1000) {
+    myCleanedNumber = num.toFixed(0);
+  } else {
     const units = ['k', 'M', 'B', 'T', 'Q'];
     const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
     const r = unit % 3;
@@ -411,7 +413,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
@@ -436,7 +442,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },
@@ -461,7 +471,11 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
             { exists: { field: `oa_details.${observationSnap}` } },
           ],
         },

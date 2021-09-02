@@ -3,10 +3,7 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  goldapc,
-  hybrid,
-} from '../../../../../style/colours.module.scss';
+import { goldapc, hybrid } from '../../../../../style/colours.module.scss';
 import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*') {
@@ -42,16 +39,20 @@ function useGetData(observationSnaps, needle = '*') {
     dataTotal
       .filter(
         (el) => el.key > 2012
-            && parseInt(el.key, 10)
-              < parseInt(datesObservation[0].substring(0, 4), 10),
-      ).forEach((el) => {
+          && parseInt(el.key, 10)
+            < parseInt(datesObservation[0].substring(0, 4), 10),
+      )
+      .forEach((el) => {
         categoriesYear.push(el.key);
-        const hybridElem = el.by_oa_colors.buckets.find((b) => b.key === 'hybrid');
+        const hybridElem = el.by_oa_colors.buckets.find(
+          (b) => b.key === 'hybrid',
+        );
         const hybridAPC = hybridElem?.apc?.value || 0;
         const hybridCount = hybridElem?.doc_count || 0;
         const goldElem = el.by_oa_colors.buckets.find((b) => b.key === 'gold');
         const goldAPC = goldElem?.apc?.value || 0;
         const goldCount = goldElem?.doc_count || 0;
+
         goldDataYear.push({
           publisher: publisherName,
           y: goldAPC,

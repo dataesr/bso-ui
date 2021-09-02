@@ -10,7 +10,7 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, needle = '*') {
+function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -20,12 +20,8 @@ function useGetData(observationSnaps, needle = '*') {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', 'health', oneDate);
-      const queryFiltered = getFetchOptions(
-        'publicationRate',
-        'health',
-        oneDate,
-      );
+      const query = getFetchOptions('publicationRate', domain, oneDate);
+      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate);
       const term = {};
       term[`oa_details.${oneDate}.oa_host_type`] = 'publisher';
       queryFiltered.query.bool.filter.push({ term });
@@ -103,14 +99,15 @@ function useGetData(observationSnaps, needle = '*') {
       serie.name = observationSnapData.observationSnap;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
-      serie.data = observationSnapData.data.oaHostType.map(
-        (value, index) => ({
-          y: (value * 100) / observationSnapData.data.all[index],
-          publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
-          name: observationSnapData.observationSnap, // observation date
-          publicationDate: observationSnapData.data.publicationDates[index],
-        }),
-      );
+      serie.data = observationSnapData.data.oaHostType.map((value, index) => ({
+        y: (value * 100) / observationSnapData.data.all[index],
+        publisher:
+          needle === '*'
+            ? intl.formatMessage({ id: 'app.all-publishers' })
+            : needle,
+        name: observationSnapData.observationSnap, // observation date
+        publicationDate: observationSnapData.data.publicationDates[index],
+      }));
       serie.ratios = observationSnapData.data.oaHostType.map(
         (value, index) => `(${value}/${observationSnapData.data.all[index]})`,
       );
@@ -122,7 +119,10 @@ function useGetData(observationSnaps, needle = '*') {
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
       y: el.data[el.data.length - 1].y,
-      publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
+      publisher:
+        needle === '*'
+          ? intl.formatMessage({ id: 'app.all-publishers' })
+          : needle,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
     }));

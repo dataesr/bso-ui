@@ -3,9 +3,11 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFormattedDate,
   getGraphOptions,
@@ -22,17 +24,16 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = () => {
+const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lang } = useLang();
-  const graphId = 'app.sante-publi.general.impact-financement.chart-repartition-financements';
   const { lastObservationSnap, updateDate } = useGlobals();
   const {
     allData: { dataGraph },
     isLoading,
     isError,
-  } = useGetData(lastObservationSnap || '2020');
+  } = useGetData(lastObservationSnap || '2020', domain);
 
   if (isLoading || !dataGraph) {
     return <Loader />;
@@ -41,7 +42,7 @@ const Chart = () => {
     return <>Error</>;
   }
 
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -79,24 +80,33 @@ const Chart = () => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         <GraphComments comments={chartComments} />
       </div>
       <GraphFooter
         date={getFormattedDate(updateDate, lang)}
-        source={intl.formatMessage({ id: `${graphId}.source` })}
-        graphId={graphId}
+        source={intl.formatMessage({ id: `${id}.source` })}
+        graphId={id}
         onPngButtonClick={exportChartPng}
         onCsvButtonClick={exportChartCsv}
       />
     </>
   );
+};
+
+Chart.defaultProps = {
+  domain: '',
+  id: 'app.national-publi.general.impact-financement.chart-repartition-financements',
+};
+Chart.propTypes = {
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

@@ -1,4 +1,4 @@
-import { Container } from '@dataesr/react-dsfr';
+import { Container, Icon as DSIcon } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -12,10 +12,17 @@ const QuestionSection = ({ intlKey, backgroundColor, children, anchorId }) => {
       id={anchorId}
     >
       <Container>
-        <h2>
-          {intl.formatMessage({ id: `${intlKey}.title` })}
-          <span>i</span>
-        </h2>
+        <DSIcon
+          name='ri-information-fill'
+          size='lg'
+          as='span'
+          iconPosition='right'
+          className='ds-fr--v-middle'
+        >
+          <h2 className='marianne-extra-bold fs-20-26'>
+            {intl.formatMessage({ id: `${intlKey}.title` })}
+          </h2>
+        </DSIcon>
         <p>{intl.formatMessage({ id: `${intlKey}.description` })}</p>
         {children}
       </Container>

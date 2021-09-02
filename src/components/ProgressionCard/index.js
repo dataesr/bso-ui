@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { domains } from '../../utils/constants';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import Icon from '../Icon';
@@ -103,5 +104,5 @@ ProgressionCard.defaultProps = {
 };
 
 ProgressionCard.propTypes = {
-  domain: PropTypes.oneOf(['health', '']),
+  domain: PropTypes.oneOf(domains),
 };

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
 import { Toggle } from '@dataesr/react-dsfr';
 import Axios from 'axios';
 import Highcharts from 'highcharts';
@@ -11,6 +10,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -24,7 +24,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isDetailed, setIsDetailed] = useState(false);
@@ -32,18 +32,21 @@ const Chart = ({ graphFooter, graphComments }) => {
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
 
-  const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, isDetailed, publisher);
+  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    isDetailed,
+    publisher,
+  );
   const { dataGraphTreemap } = data;
-  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   const term = {};
-  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'publisher';
+  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key),
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,7 +96,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <SimpleSelect
           label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
           onChange={(e) => setPublisher(e.target.value)}
@@ -111,19 +114,19 @@ const Chart = ({ graphFooter, graphComments }) => {
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
+            comments={intl.formatMessage({ id: `${id}.comments` })}
           />
         )}
       </div>
       {graphFooter && (
         <GraphFooter
           date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -135,10 +138,14 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.publishers.repartition-licences.chart-repartition',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

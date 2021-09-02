@@ -12,18 +12,14 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap) {
+function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions(
-        'oaHostType',
-        'health',
-        lastObservationSnap,
-      );
+      const query = getFetchOptions('oaHostType', domain, lastObservationSnap);
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
 
@@ -147,7 +143,7 @@ function useGetData(observationSnap) {
 
       return { categories, dataGraph, dataGraph3 };
     },
-    [intl],
+    [domain, intl],
   );
 
   useEffect(() => {

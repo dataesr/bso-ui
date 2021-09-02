@@ -9,6 +9,18 @@ export default {
         fr: '/publications/general',
         en: '/publications/general',
       },
+      {
+        fr: '/publications/disciplines',
+        en: '/publications/disciplines',
+      },
+      {
+        fr: '/publications/editeurs',
+        en: '/publications/editeurs',
+      },
+      {
+        fr: '/publications/archives',
+        en: '/publications/archives',
+      },
     ],
     fr: '/publications/general',
     en: '/publications/general',

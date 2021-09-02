@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
 import useScroll from '../../utils/Hooks/useScroll';
@@ -20,6 +20,7 @@ function GraphNavigation({ mobileTitleIntl, children }) {
   const [offsetTop, setOffsetTop] = useState(null);
   const [initOffsetTop, setInitOffsetTop] = useState(null);
   const [bannerHeight, setBannerHeight] = useState(0);
+  const intl = useIntl();
 
   const { scrollTop, scrollingDown } = useScroll();
   const { mobile, tablet, desktop } = useViewport();
@@ -97,11 +98,11 @@ function GraphNavigation({ mobileTitleIntl, children }) {
         })}
       >
         <Container>
-          {mobile && (
+          {mobile && headerItems && (
             <SideMenu
               title=''
               className='navigation-mobile'
-              buttonLabel={<FormattedMessage id={mobileTitleIntl} />}
+              buttonLabel={intl.formatMessage({ id: mobileTitleIntl })}
             >
               {headerItems}
             </SideMenu>

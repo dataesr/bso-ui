@@ -113,7 +113,11 @@ function BaroSante() {
                       <ProgressionCard domain='health' />
                     </Col>
                     <Col n='12'>
-                      <ChartEvolutionProportion graphComments={false} />
+                      <ChartEvolutionProportion
+                        domain='health'
+                        id='app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion'
+                        graphComments={false}
+                      />
                     </Col>
                   </Row>
                 </Container>
@@ -131,7 +135,9 @@ function BaroSante() {
                 introText={
                   <FormattedMessage id='app.baro-sante.essays-intro' />
                 }
-              />
+              >
+                <p>essais-cliniques</p>
+              </HomeSection>
             </Col>
             <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
@@ -147,7 +153,9 @@ function BaroSante() {
                 introText={
                   <FormattedMessage id='app.baro-sante.studies-intro' />
                 }
-              />
+              >
+                <p>etudes-observationelles</p>
+              </HomeSection>
             </Col>
             <Col n='12'>
               <Container fluid>
