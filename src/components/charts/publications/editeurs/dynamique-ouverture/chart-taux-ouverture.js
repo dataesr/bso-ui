@@ -32,7 +32,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const intl = useIntl();
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
-  const { observationSnaps, updateDate } = useGlobals();
+  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     publisher,
@@ -42,17 +42,15 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const query = getFetchOptions(
     'publishersList',
     'health',
-    observationSnaps[0],
+    lastObservationSnap,
   );
   const term = {};
-  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'publisher';
+  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key)
-          .sort(),
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

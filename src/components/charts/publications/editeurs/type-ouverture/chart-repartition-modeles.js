@@ -23,9 +23,9 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { observationSnaps, updateDate } = useGlobals();
+  const { lastObservationSnap, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    observationSnaps[0] || 2020,
+    lastObservationSnap || 2020,
     domain,
   );
   const { dataGraphTreemap } = allData;
@@ -49,6 +49,7 @@ const Chart = ({ id, domain }) => {
           layoutAlgorithm: 'sliceAndDice',
           dataLabels: {
             enabled: true,
+            format: '<b>{point.name}</b><br>{point.value:.0f} %',
             align: 'left',
             verticalAlign: 'top',
             style: {
@@ -58,6 +59,15 @@ const Chart = ({ id, domain }) => {
           },
         },
       ],
+      dataLabels: {
+        format: '{point.name}<br>{point.value:.0f} %',
+        rotationMode: 'auto',
+        filter: {
+          property: 'value',
+          operator: '>',
+          value: '0.1',
+        },
+      },
       data: dataGraphTreemap,
     },
   ];
