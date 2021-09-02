@@ -1,4 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
 import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -9,7 +8,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { cleanNumber, getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
+import { graphIds } from '../../../../../utils/constants';
+import {
+  cleanNumber,
+  getFetchOptions,
+  getGraphOptions,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
@@ -21,25 +25,28 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const graphId = 'app.sante-publi.publishers.couts-publication.chart-depenses-estimees';
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
 
-  const { observationSnaps, updateDate } = useGlobals();
+  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, publisher);
   const { dataGraphTotal, categoriesYear } = data;
-  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
+  const query = getFetchOptions(
+    'publishersList',
+    'health',
+    lastObservationSnap,
+  );
   const term = {};
-  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'publisher';
+  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key),
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,7 +58,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   if (isError) {
     return <>Error</>;
   }
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'column';
   optionsGraph.xAxis = {
     categories: categoriesYear,
@@ -108,7 +115,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <SimpleSelect
           label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
           onChange={(e) => setPublisher(e.target.value)}
@@ -121,19 +128,19 @@ const Chart = ({ graphFooter, graphComments }) => {
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
+            comments={intl.formatMessage({ id: `${id}.comments` })}
           />
         )}
       </div>
       {graphFooter && (
         <GraphFooter
           date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -145,10 +152,12 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.publishers.couts-publication.chart-depenses-estimees',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

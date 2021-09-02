@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -20,10 +21,9 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 HCMore(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.publishers.politiques-ouverture.chart-comparaison';
 
   const { lastObservationSnap, updateDate } = useGlobals();
   const { allData, isLoading, isError } = useGetData(lastObservationSnap);
@@ -36,14 +36,14 @@ const Chart = ({ graphFooter, graphComments }) => {
     return <>Error</>;
   }
 
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'bubble';
   optionsGraph.chart.zoomType = 'xy';
   optionsGraph.series = bubbleGraph;
   optionsGraph.xAxis = {
     min: 0,
     max: 110,
-    title: { text: intl.formatMessage({ id: `${graphId}.xAxis` }) },
+    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
     labels: {
       // eslint-disable-next-line
       formatter: function () {
@@ -54,7 +54,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   optionsGraph.yAxis = {
     min: 0,
     max: 110,
-    title: { text: intl.formatMessage({ id: `${graphId}.yAxis` }) },
+    title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
     labels: {
       // eslint-disable-next-line
       formatter: function () {
@@ -91,24 +91,24 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
+            comments={intl.formatMessage({ id: `${id}.comments` })}
           />
         )}
       </div>
       {graphFooter && (
         <GraphFooter
           date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -120,10 +120,12 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.publishers.politiques-ouverture.chart-comparaison',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

@@ -9,6 +9,7 @@ import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { discipline100, g800 } from '../../../../../style/colours.module.scss';
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFormattedDate,
   getGraphOptions,
@@ -103,7 +104,7 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
           highcharts={Highcharts}
           options={optionsGraph1}
           ref={chartRef}
-          iid={id}
+          id={id}
         />
         {graphComments && <GraphComments comments={chartComments} />}
       </div>
@@ -124,12 +125,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   domain: '',
-  id: 'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture.title',
+  id: 'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
-  id: PropTypes.string,
-  domain: PropTypes.oneOf(['health', '']),
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
+
 export default Chart;

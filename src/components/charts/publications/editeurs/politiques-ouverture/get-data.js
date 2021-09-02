@@ -7,7 +7,10 @@ import {
   archiveouverte100,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getFetchOptions,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(lastObservationSnap) {
   const [allData, setAllData] = useState([]);
@@ -38,19 +41,19 @@ function useGetData(lastObservationSnap) {
     const greenOnly = [];
     data.forEach((elem) => {
       openByPublishers.push({
-        publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+        publicationDate:
+          getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
-        y_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
-          .doc_count,
+        y_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count,
         y_tot: elem.doc_count,
         y:
           (100
-            * elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
-              .doc_count)
+            * elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count)
           / elem.doc_count,
       });
       greenOnly.push({
-        publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+        publicationDate:
+          getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
         y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green_only')
           .doc_count,
@@ -79,14 +82,21 @@ function useGetData(lastObservationSnap) {
     const bubbles = [];
     dataBubbles.forEach((elem) => {
       bubbles.push({
-        publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+        publicationDate:
+          getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
-        x: 100 * (elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count
-          / elem.doc_count),
+        x:
+          100
+          * (elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count
+            / elem.doc_count),
         x_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count,
-        y: 100 * (elem.by_oa_colors.buckets.find((el) => (el.key === 'green')).doc_count
-          / elem.doc_count),
-        y_abs: elem.by_oa_colors.buckets.find((el) => (el.key === 'green')).doc_count,
+        y:
+          100
+          * (elem.by_oa_colors.buckets.find((el) => el.key === 'green')
+            .doc_count
+            / elem.doc_count),
+        y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green')
+          .doc_count,
         z: elem.doc_count,
       });
     });

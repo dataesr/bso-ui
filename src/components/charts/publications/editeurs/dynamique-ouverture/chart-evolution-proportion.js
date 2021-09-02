@@ -1,4 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
 import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -9,6 +8,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFetchOptions,
   getGraphOptions,
@@ -25,24 +25,22 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.publishers.dynamique-ouverture.chart-evolution-proportion';
-  const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
-  const { observationSnaps, updateDate } = useGlobals();
+  const [publishers, setPublishers] = useState([]);
+  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, publisher);
   const { dataGraph2 } = data;
-  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   const term = {};
-  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'publisher';
+  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key),
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +53,7 @@ const Chart = ({ graphFooter, graphComments }) => {
     return <>Error</>;
   }
 
-  const optionsGraph2 = getGraphOptions(graphId, intl);
+  const optionsGraph2 = getGraphOptions(id, intl);
   optionsGraph2.chart.type = 'spline';
   optionsGraph2.yAxis = getPercentageYAxis();
   optionsGraph2.xAxis = { title: { text: 'Années de publication' } };
@@ -74,7 +72,7 @@ const Chart = ({ graphFooter, graphComments }) => {
 
   const indMax = dataGraph2[1]?.data.length - 1;
   const chartComments = intl.formatMessage(
-    { id: `${graphId}.comments` },
+    { id: `${id}.comments` },
     {
       a: dataGraph2[1]?.name,
       b: dataGraph2[0]?.name,
@@ -95,7 +93,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <SimpleSelect
           label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
           onChange={(e) => setPublisher(e.target.value)}
@@ -108,15 +106,15 @@ const Chart = ({ graphFooter, graphComments }) => {
           highcharts={Highcharts}
           options={optionsGraph2}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && <GraphComments comments={chartComments} />}
       </div>
       {graphFooter && (
         <GraphFooter
           date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -128,10 +126,14 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.publishers.dynamique-ouverture.chart-evolution-proportion',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

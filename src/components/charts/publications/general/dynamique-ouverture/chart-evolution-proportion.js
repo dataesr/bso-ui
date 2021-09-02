@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFormattedDate,
   getGraphOptions,
@@ -23,13 +24,12 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lang } = useLang();
-  const graphId = 'app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion';
   const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps);
+  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const { dataGraph2 } = data;
 
   if (isLoading || !dataGraph2) {
@@ -39,10 +39,10 @@ const Chart = ({ graphFooter, graphComments }) => {
     return <>Error</>;
   }
 
-  const optionsGraph2 = getGraphOptions(graphId, intl);
+  const optionsGraph2 = getGraphOptions(id, intl);
   optionsGraph2.chart.type = 'spline';
   optionsGraph2.xAxis = {
-    title: { text: intl.formatMessage({ id: `${graphId}.xAxis` }) },
+    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
   };
   optionsGraph2.yAxis = getPercentageYAxis();
   optionsGraph2.legend = { verticalAlign: 'top' };
@@ -60,7 +60,7 @@ const Chart = ({ graphFooter, graphComments }) => {
 
   const indMax = dataGraph2[1]?.data.length - 1;
   const chartComments = intl.formatMessage(
-    { id: `${graphId}.comments` },
+    { id: `${id}.comments` },
     {
       a: dataGraph2[1]?.name,
       b: dataGraph2[0]?.name,
@@ -81,20 +81,20 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph2}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && <GraphComments comments={chartComments} />}
       </div>
       {graphFooter && (
         <GraphFooter
           date={getFormattedDate(updateDate, lang)}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -106,10 +106,14 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  domain: '',
+  id: 'app.national-publi.general.dynamique-ouverture.chart-evolution-proportion',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  domain: PropTypes.oneOf(domains),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

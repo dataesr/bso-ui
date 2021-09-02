@@ -5,7 +5,14 @@ import React from 'react';
 import Loader from '../Loader';
 import Gauge from './Gauge';
 
-function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
+function DataCard({
+  background,
+  sentence,
+  buttonLabel,
+  topData,
+  percentage,
+  nbGaugePosition,
+}) {
   return (
     <Card
       hasArrow={false}
@@ -19,7 +26,9 @@ function DataCard({ background, sentence, buttonLabel, topData, percentage }) {
             {topData && (
               <p className='top-data marianne-extra-bold'>{topData}</p>
             )}
-            {percentage && <Gauge percentage={percentage} />}
+            {percentage && (
+              <Gauge percentage={percentage} nbPosition={nbGaugePosition} />
+            )}
           </>
         ) : (
           <Loader />
@@ -47,6 +56,7 @@ DataCard.defaultProps = {
   sentence: '',
   percentage: null,
   background: 'green',
+  nbGaugePosition: '66',
 };
 
 DataCard.propTypes = {
@@ -60,6 +70,7 @@ DataCard.propTypes = {
     'blue',
   ]),
   percentage: PropTypes.number,
+  nbGaugePosition: PropTypes.string,
   topData: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   buttonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };

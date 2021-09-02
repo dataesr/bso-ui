@@ -1,8 +1,4 @@
-import {
-  Link as DSLink,
-  SideMenuItem,
-  SideMenuLink,
-} from '@dataesr/react-dsfr';
+import { Link as DSLink, SideMenuItem } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -37,9 +33,13 @@ function GraphItem({ links, mainLabel, paths }) {
       {mobile && (
         <SideMenuItem key={uuidv4()} title={mainLabel}>
           {links.map((link) => (
-            <SideMenuLink key={uuidv4()} className='no-border'>
-              <DSLink as={<Link to={link.href} />}>{link.label}</DSLink>
-            </SideMenuLink>
+            <DSLink
+              key={uuidv4()}
+              className='no-border'
+              as={<Link to={link.href} />}
+            >
+              <div className='text-white fs-14-24 pb-8'>{link.label}</div>
+            </DSLink>
           ))}
         </SideMenuItem>
       )}

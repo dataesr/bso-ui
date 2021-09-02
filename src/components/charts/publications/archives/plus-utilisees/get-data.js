@@ -3,14 +3,17 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getFetchOptions,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
-function useGetData(observationSnap) {
+function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const query = getFetchOptions('repositoriesList', 'health', observationSnap);
+    const query = getFetchOptions('repositoriesList', domain, observationSnap);
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 

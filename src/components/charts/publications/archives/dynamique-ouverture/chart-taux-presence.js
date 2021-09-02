@@ -11,6 +11,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFetchOptions,
   getGraphOptions,
@@ -27,18 +28,21 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.repositories.dynamique-ouverture.chart-evolution-proportion';
   const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
   const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, archive);
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    archive,
+    domain,
+  );
   const { dataGraph2 } = data;
   const query = getFetchOptions(
     'repositoriesList',
-    'health',
+    domain,
     lastObservationSnap,
   );
   const term = {};
@@ -62,7 +66,7 @@ const Chart = ({ graphFooter, graphComments }) => {
     return <>Error</>;
   }
 
-  const optionsGraph2 = getGraphOptions(graphId, intl);
+  const optionsGraph2 = getGraphOptions(id, intl);
   optionsGraph2.chart.type = 'spline';
   optionsGraph2.yAxis = getPercentageYAxis();
   optionsGraph2.xAxis = { title: { text: 'Années de publication' } };
@@ -81,7 +85,7 @@ const Chart = ({ graphFooter, graphComments }) => {
 
   const indMax = dataGraph2[1]?.data.length - 1;
   const chartComments = intl.formatMessage(
-    { id: `${graphId}.comments` },
+    { id: `${id}.comments` },
     {
       a: dataGraph2[1]?.name,
       b: dataGraph2[0]?.name,
@@ -102,7 +106,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <SimpleSelect
           label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
           onChange={(e) => setArchive(e.target.value)}
@@ -115,15 +119,15 @@ const Chart = ({ graphFooter, graphComments }) => {
           highcharts={Highcharts}
           options={optionsGraph2}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && <GraphComments comments={chartComments} />}
       </div>
       {graphFooter && (
         <GraphFooter
           date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -135,10 +139,14 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.repositories.dynamique-ouverture.chart-evolution-proportion',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

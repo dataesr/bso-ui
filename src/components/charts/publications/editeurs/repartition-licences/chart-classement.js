@@ -1,4 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -7,7 +6,11 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions, getPercentageYAxis } from '../../../../../utils/helpers';
+import { graphIds } from '../../../../../utils/constants';
+import {
+  getGraphOptions,
+  getPercentageYAxis,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import GraphComments from '../../../graph-comments';
@@ -18,10 +21,9 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.publishers.repartition-licences.chart-classement';
 
   const { observationSnaps, updateDate } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, false);
@@ -33,7 +35,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   if (isError) {
     return <>Error</>;
   }
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'bar';
   optionsGraph.xAxis = {
     categories,
@@ -41,7 +43,7 @@ const Chart = ({ graphFooter, graphComments }) => {
   optionsGraph.yAxis = getPercentageYAxis(false);
   optionsGraph.legend = {
     title: {
-      text: intl.formatMessage({ id: `${graphId}.legend` }),
+      text: intl.formatMessage({ id: `${id}.legend` }),
     },
   };
   optionsGraph.plotOptions = {
@@ -70,24 +72,24 @@ const Chart = ({ graphFooter, graphComments }) => {
   return (
     <>
       <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
+        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
         <HighchartsReact
           highcharts={Highcharts}
           options={optionsGraph}
           ref={chartRef}
-          id={graphId}
+          id={id}
         />
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
+            comments={intl.formatMessage({ id: `${id}.comments` })}
           />
         )}
       </div>
       {graphFooter && (
         <GraphFooter
           date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
+          source={intl.formatMessage({ id: `${id}.source` })}
+          graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -99,10 +101,12 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.publishers.repartition-licences.chart-classement',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

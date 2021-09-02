@@ -7,7 +7,10 @@ import {
   accesouvert,
   nonconnu,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getFetchOptions,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, isDetailed, needle = '*') {
   const [data, setData] = useState({});
@@ -18,7 +21,11 @@ function useGetData(observationSnaps, isDetailed, needle = '*') {
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    const query = getFetchOptions('publishersLicence', 'health', datesObservation[0]);
+    const query = getFetchOptions(
+      'publishersLicence',
+      'health',
+      datesObservation[0],
+    );
     const term = {};
     term[`oa_details.${datesObservation[0]}.oa_host_type`] = 'publisher';
     query.query.bool.filter.push({ term });
@@ -34,40 +41,59 @@ function useGetData(observationSnaps, isDetailed, needle = '*') {
     const nbTotal = res[0].data.aggregations.by_is_oa.buckets[0].doc_count;
     const dataGraphTreemap = [];
     if (isDetailed) {
-      res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.forEach((el) => {
-        dataGraphTreemap.push({
-          name: intl.formatMessage({ id: `app.licenses.${el.key}` }),
-          publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
-          value: el.doc_count,
-          y_tot: nbTotal,
-          y_perc: (100 * el.doc_count) / nbTotal,
-          publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
-          color: (el.key === 'no license') ? nonconnu : accesouvert,
-        });
-      });
+      res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.forEach(
+        (el) => {
+          dataGraphTreemap.push({
+            name: intl.formatMessage({ id: `app.licenses.${el.key}` }),
+            publisher:
+              needle === '*'
+                ? intl.formatMessage({ id: 'app.all-publishers' })
+                : needle,
+            value: el.doc_count,
+            y_tot: nbTotal,
+            y_perc: (100 * el.doc_count) / nbTotal,
+            publicationDate: getPublicationYearFromObservationSnap(
+              datesObservation[0],
+            ),
+            color: el.key === 'no license' ? nonconnu : accesouvert,
+          });
+        },
+      );
     } else {
       const nbLicenceOpen = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets
         .filter((el) => el.key !== 'no license')
         .reduce((a, b) => a + b.doc_count, 0);
       dataGraphTreemap.push({
         name: intl.formatMessage({ id: 'app.licenses.open-license' }),
-        publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
+        publisher:
+          needle === '*'
+            ? intl.formatMessage({ id: 'app.all-publishers' })
+            : needle,
         color: accesouvert,
         value: nbLicenceOpen,
         y_tot: nbTotal,
         y_perc: (100 * nbLicenceOpen) / nbTotal,
-        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+        publicationDate: getPublicationYearFromObservationSnap(
+          datesObservation[0],
+        ),
       });
-      const noLicenceElem = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.find((el) => el.key === 'no license');
+      const noLicenceElem = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.find(
+        (el) => el.key === 'no license',
+      );
       const nbNoLicence = noLicenceElem ? noLicenceElem.doc_count : 0;
       dataGraphTreemap.push({
         name: intl.formatMessage({ id: 'app.licenses.no license' }),
-        publisher: (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle,
+        publisher:
+          needle === '*'
+            ? intl.formatMessage({ id: 'app.all-publishers' })
+            : needle,
         color: nonconnu,
         value: nbNoLicence,
         y_tot: nbTotal,
         y_perc: (100 * nbNoLicence) / nbTotal,
-        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+        publicationDate: getPublicationYearFromObservationSnap(
+          datesObservation[0],
+        ),
       });
     }
 
@@ -76,20 +102,35 @@ function useGetData(observationSnaps, isDetailed, needle = '*') {
     const categories = [];
     res[0].data.aggregations.by_publisher.buckets.forEach((elem) => {
       categories.push(elem.key);
-      const noLicenceElem = elem.by_licence.buckets.find((el) => el.key === 'no license');
+      const noLicenceElem = elem.by_licence.buckets.find(
+        (el) => el.key === 'no license',
+      );
       noLicence.push({
         publisher: elem.key,
         y_tot: elem.doc_count,
         y_abs: noLicenceElem ? noLicenceElem.doc_count : 0,
-        y: (100 * (noLicenceElem ? noLicenceElem.doc_count : 0)) / elem.doc_count,
-        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+        y:
+          (100 * (noLicenceElem ? noLicenceElem.doc_count : 0))
+          / elem.doc_count,
+        publicationDate: getPublicationYearFromObservationSnap(
+          datesObservation[0],
+        ),
       });
       openLicence.push({
         publisher: elem.key,
         y_tot: elem.doc_count,
-        y_abs: elem.by_licence.buckets.filter((el) => el.key !== 'no license').reduce((a, b) => a + b.doc_count, 0),
-        y: (100 * elem.by_licence.buckets.filter((el) => el.key !== 'no license').reduce((a, b) => a + b.doc_count, 0)) / elem.doc_count,
-        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+        y_abs: elem.by_licence.buckets
+          .filter((el) => el.key !== 'no license')
+          .reduce((a, b) => a + b.doc_count, 0),
+        y:
+          (100
+            * elem.by_licence.buckets
+              .filter((el) => el.key !== 'no license')
+              .reduce((a, b) => a + b.doc_count, 0))
+          / elem.doc_count,
+        publicationDate: getPublicationYearFromObservationSnap(
+          datesObservation[0],
+        ),
       });
     });
     const dataGraphBar = [
