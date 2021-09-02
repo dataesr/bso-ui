@@ -41,7 +41,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { dataGraph1 } = data;
   const query = getFetchOptions(
     'publishersList',
-    'health',
+    domain,
     lastObservationSnap,
   );
   const term = {};
