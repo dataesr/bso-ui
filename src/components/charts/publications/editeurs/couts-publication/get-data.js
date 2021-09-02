@@ -44,7 +44,7 @@ function useGetData(observationSnaps, needle = '*') {
         (el) => el.key > 2012
             && parseInt(el.key, 10)
               < parseInt(datesObservation[0].substring(0, 4), 10),
-      ).forEach((el, index) => {
+      ).forEach((el) => {
         categoriesYear.push(el.key);
         const hybridElem = el.by_oa_colors.buckets.find((b) => b.key === 'hybrid');
         const hybridAPC = hybridElem?.apc?.value || 0;

@@ -86,8 +86,6 @@ const Chart = ({ graphFooter, graphComments }) => {
       },
     },
   };
-  console.log('ttttt', optionsGraph);
-
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
       type: 'image/png',
