@@ -9,8 +9,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import { graphIds } from '../../../../../utils/constants';
+import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
