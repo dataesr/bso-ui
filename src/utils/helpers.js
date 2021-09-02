@@ -517,6 +517,42 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    apcHistogram: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_oa_colors: {
+          terms: {
+            field: `oa_details.${observationSnap}.oa_colors.keyword`,
+          },
+          aggs: {
+            apc: {
+              histogram: {
+                field: 'amount_apc_EUR',
+                interval: 250,
+                hard_bounds: {
+                  min: 0,
+                  max: 6000,
+                },
+                extended_bounds: {
+                  min: 0,
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     predatory: () => ({
       size: 0,
       aggs: {
