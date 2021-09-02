@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -31,7 +32,11 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const [publisher, setPublisher] = useState('*');
   const [publishers, setPublishers] = useState([]);
   const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, publisher);
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    publisher,
+    domain,
+  );
   const { dataGraph2 } = data;
   const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   const term = {};

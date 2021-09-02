@@ -20,7 +20,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', 'health', oneDate);
+      const query = getFetchOptions('publicationRate', domain, oneDate);
       const queryFiltered = getFetchOptions('publicationRate', domain, oneDate);
       const term = {};
       term[`oa_details.${oneDate}.oa_host_type`] = 'publisher';
