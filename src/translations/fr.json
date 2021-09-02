@@ -362,7 +362,7 @@
   "app.sante-publi.publishers.type-ouverture.chart-repartition-modeles.comments": "comments",
   "app.sante-publi.publishers.type-ouverture.chart-repartition-modeles.source": "source",
   "app.sante-publi.publishers.type-ouverture.chart-repartition-modeles.title": "Répartition des modèles économiques en santé chez les éditeurs/plateforme",
-  "app.sante-publi.publishers.type-ouverture.chart-repartition-modeles.tooltip": "<b>{point.name}</b> <br> {point.y_abs} des {point.y_tot} publications en accès ouvert chez l'éditeur <br> et publiées en {point.publicationDate} le sont en {series.name} (soit {point.value:.2f} %)",
+  "app.sante-publi.publishers.type-ouverture.chart-repartition-modeles.tooltip": "<b>{point.name}</b> <br> {point.y_abs} des {point.y_tot} publications en accès ouvert chez l'éditeur <br> et publiées en {point.publicationDate} le sont en {point.name} (soit {point.value:.2f} %)",
   "app.sante-publi.publishers.politiques-ouverture.title": "Quelles sont les politiques d'ouverture des éditeurs/plateforme en santé ?",
   "app.sante-publi.publishers.politiques-ouverture.description": "1.3.3",
   "app.sante-publi.publishers.politiques-ouverture.chart-classement.comments": "comments",
