@@ -12,6 +12,7 @@ import {
   discipline100,
   discipline125,
 } from '../../../../../style/colours.module.scss';
+import { domains } from '../../../../../utils/constants';
 import {
   getGraphOptions,
   getPercentageYAxis,
@@ -25,11 +26,11 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphComments }) => {
+const Chart = ({ graphComments, domain }) => {
   const intl = useIntl();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture';
   const { lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap);
+  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
 
   if (isLoading || !data || data.length <= 0) {
     return <Loader />;
@@ -104,9 +105,11 @@ const Chart = ({ graphComments }) => {
 
 Chart.defaultProps = {
   graphComments: true,
+  domain: '',
 };
 Chart.propTypes = {
   graphComments: PropTypes.bool,
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

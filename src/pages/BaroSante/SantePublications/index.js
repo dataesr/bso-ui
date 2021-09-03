@@ -254,7 +254,9 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='dynamique'
                 >
-                  <ChartTauxOuvertureDisciplines />
+                  <ChartTauxOuvertureDisciplines
+                    domain='health'
+                  />
                   <ChartEvolutionTauxOuvertureDisciplines />
                 </QuestionSection>
 
