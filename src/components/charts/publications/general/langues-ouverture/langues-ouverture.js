@@ -8,16 +8,12 @@ import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  getFormattedDate,
-  getGraphOptions,
-} from '../../../../../utils/helpers';
+import { domains } from '../../../../../utils/constants';
+import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
+import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 treemapModule(Highcharts);
@@ -27,9 +23,8 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang } = useLang();
   const [isOa, setIsOa] = useState(false);
-  const { updateDate, lastObservationSnap } = useGlobals();
+  const { lastObservationSnap } = useGlobals();
   const {
     allData: { dataGraph },
     isLoading,
@@ -67,14 +62,6 @@ const Chart = ({ id, domain }) => {
       data: dataGraph,
     },
   ];
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
 
   let chartComments = 'comment par defaut';
   if (!isOa) {
@@ -108,30 +95,20 @@ const Chart = ({ id, domain }) => {
   }
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <Toggle
-          isChecked={isOa}
-          onChange={() => setIsOa(!isOa)}
-          label={intl.formatMessage({ id: `${id}.toggle-label` })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        <GraphComments comments={chartComments} />
-      </div>
-      <GraphFooter
-        date={getFormattedDate(updateDate, lang)}
-        source={intl.formatMessage({ id: `${id}.source` })}
-        graphId={id}
-        onPngButtonClick={exportChartPng}
-        onCsvButtonClick={exportChartCsv}
+    <WrapperChart id={id} chartRef={chartRef} graphComments={false}>
+      <Toggle
+        isChecked={isOa}
+        onChange={() => setIsOa(!isOa)}
+        label={intl.formatMessage({ id: `${id}.toggle-label` })}
       />
-    </>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+      <GraphComments comments={chartComments} />
+    </WrapperChart>
   );
 };
 
@@ -140,7 +117,7 @@ Chart.defaultProps = {
   id: 'app.national-publi.general.langues-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
-  domain: PropTypes.oneOf(['health', '']),
+  domain: PropTypes.oneOf(domains),
   id: PropTypes.oneOf([
     'app.national-publi.general.langues-ouverture.chart-repartition-publications',
     'app.sante-publi.general.langues-ouverture.chart-repartition-publications',

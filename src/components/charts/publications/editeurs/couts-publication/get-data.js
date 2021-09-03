@@ -4,23 +4,30 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { goldapc, hybrid } from '../../../../../style/colours.module.scss';
-import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getFetchOptions,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, needle = '*') {
+function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
-  const publisherName = (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
+  const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    const query = getFetchOptions('apcYear', 'health', datesObservation[0]);
+    const query = getFetchOptions('apcYear', domain, datesObservation[0]);
     query.query.bool.filter.push({
       wildcard: { 'publisher.keyword': needle },
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const queryHistogram = getFetchOptions('apcHistogram', 'health', datesObservation[0]);
+    const queryHistogram = getFetchOptions(
+      'apcHistogram',
+      domain,
+      datesObservation[0],
+    );
     queryHistogram.query.bool.filter.push({
       wildcard: { 'publisher.keyword': needle },
     });
@@ -134,6 +141,7 @@ function useGetData(observationSnaps, needle = '*') {
       goldDataViolin.push(currentGoldDataViolin);
       hybridDataViolin.push(currentHybridDataViolin);
     });
+      
     const dataGraphHistogram = [
       {
         name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
@@ -146,6 +154,7 @@ function useGetData(observationSnaps, needle = '*') {
         color: goldapc,
       },
     ];
+
     const dataGraphViolin = [];
     categoriesViolin.forEach((y, i) => {
       dataGraphViolin.push(
@@ -170,7 +179,15 @@ function useGetData(observationSnaps, needle = '*') {
         color: '#1e1e1e',
       },
     );
-    return { dataGraphTotal, categoriesYear, dataGraphHistogram, categoriesHistogram, dataGraphViolin, categoriesViolin };
+    return {
+      dataGraphTotal,
+      categoriesYear,
+      dataGraphHistogram,
+      categoriesHistogram,
+      dataGraphViolin,
+      categoriesViolin,
+    };
+
   }
 
   useEffect(() => {

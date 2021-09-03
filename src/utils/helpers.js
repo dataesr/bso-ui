@@ -212,6 +212,7 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
 /**
  *
  * @param key
+ * @param domain
  * @param parameters
  * @returns {*|{}}
  */

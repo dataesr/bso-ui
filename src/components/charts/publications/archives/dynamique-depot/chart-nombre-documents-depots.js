@@ -12,8 +12,7 @@ import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -63,30 +62,21 @@ const Chart = ({ graphComments, id, domain }) => {
   });
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <Container>
-          <Row>
-            {graphs.map((graphOptions, i) => (
-              <Col n='3' key={graphOptions.series[0].name}>
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  options={graphOptions}
-                  id={`${id}-${i}`}
-                />
-              </Col>
-            ))}
-          </Row>
-        </Container>
-
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-    </>
+    <WrapperChart id={id} graphComments={graphComments}>
+      <Container>
+        <Row>
+          {graphs.map((graphOptions, i) => (
+            <Col n='3' key={graphOptions.series[0].name}>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={graphOptions}
+                id={`${id}-${i}`}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </WrapperChart>
   );
 };
 

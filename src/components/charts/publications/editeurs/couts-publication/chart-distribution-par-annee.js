@@ -10,14 +10,10 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { graphIds } from '../../../../../utils/constants';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../../WrapperChart';
 import Loader from '../../../../Loader';
-import SimpleSelect from '../../../../SimpleSelect';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
+
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -84,20 +80,14 @@ const Chart = ({ graphFooter, graphComments, id }) => {
   };
   optionsGraph.series = dataGraphViolin;
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <SimpleSelect
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphFooter={graphFooter}
+      graphComments={graphComments}
+    >
+      <SimpleSelect
           label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
           onChange={(e) => setPublisher(e.target.value)}
           options={publishers}
@@ -105,28 +95,14 @@ const Chart = ({ graphFooter, graphComments, id }) => {
           firstValue='*'
           firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
         />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
+
   );
 };
 

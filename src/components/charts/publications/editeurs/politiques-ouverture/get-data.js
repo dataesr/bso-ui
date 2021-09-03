@@ -12,7 +12,7 @@ import {
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(lastObservationSnap) {
+function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
@@ -21,19 +21,20 @@ function useGetData(lastObservationSnap) {
     const queries = [];
     const query = getFetchOptions(
       'publishersPolitiqueHisto',
-      'health',
+      domain,
       lastObservationSnap,
     );
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryBulle = getFetchOptions(
       'publishersPolitiqueBulle',
-      'health',
+      domain,
       lastObservationSnap,
     );
     queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
+
     // 1er graphe (bar)
     const data = res[0].data.aggregations.by_publisher.buckets;
     const categories = data.map((el) => el.key);

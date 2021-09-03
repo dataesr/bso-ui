@@ -5,26 +5,20 @@ import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
-import { useIntl } from 'react-intl';
 
+import { graphIds } from '../../../../../utils/constants';
 // import { getGraphOptions } from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../../WrapperChart';
 // import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 // import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id }) => {
   const chartRef = useRef();
-  const intl = useIntl();
-  const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture';
 
   // const { observationSnaps, updateDate } = useGlobals();
-  const { updateDate } = useGlobals();
   // const { data, isLoading, isError } = useGetData(observationSnaps);
   // const { dataGraph2 } = data;
 
@@ -35,51 +29,32 @@ const Chart = ({ graphFooter, graphComments }) => {
   //   return <>Error</>;
   // }
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={{}}
-          ref={chartRef}
-          id={graphId}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={graphComments}
+      graphFooter={graphFooter}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={{}}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;
