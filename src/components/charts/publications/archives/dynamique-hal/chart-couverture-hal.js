@@ -47,6 +47,9 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       stacking: 'normal',
       dataLabels: {
         enabled: true,
+        style: {
+          textOutline: 'none',
+        },
       },
     },
   };

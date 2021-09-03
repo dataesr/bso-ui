@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { domains } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -116,7 +117,7 @@ Chart.defaultProps = {
   id: 'app.national-publi.general.langues-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
-  domain: PropTypes.oneOf(['health', '']),
+  domain: PropTypes.oneOf(domains),
   id: PropTypes.oneOf([
     'app.national-publi.general.langues-ouverture.chart-repartition-publications',
     'app.sante-publi.general.langues-ouverture.chart-repartition-publications',

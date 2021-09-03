@@ -35,7 +35,7 @@ const Chart = ({ id, domain }) => {
     domain,
   );
   const { dataGraph, categories } = allData;
-  const query = getFetchOptions('allAgencies', 'health', lastObservationSnap);
+  const query = getFetchOptions('allAgencies', domain, lastObservationSnap);
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setAgencies(

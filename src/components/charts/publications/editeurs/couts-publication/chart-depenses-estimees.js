@@ -26,7 +26,6 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.publishers.couts-publication.chart-depenses-estimees';
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
 
@@ -84,13 +83,16 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   optionsGraph.series = dataGraphTotal;
   optionsGraph.legend = {
     title: {
-      text: intl.formatMessage({ id: `${graphId}.legend` }),
+      text: intl.formatMessage({ id: `${id}.legend` }),
     },
   };
   optionsGraph.plotOptions = {
     column: {
       stacking: 'normal',
       dataLabels: {
+        style: {
+          textOutline: 'none',
+        },
         enabled: true,
         // eslint-disable-next-line
         formatter: function () {

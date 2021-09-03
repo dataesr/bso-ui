@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { domains } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -79,10 +79,7 @@ Chart.defaultProps = {
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
-  id: PropTypes.oneOf([
-    'app.national-publi.general.voies-ouverture.chart-repartition-publications',
-    'app.sante-publi.general.voies-ouverture.chart-repartition-publications',
-  ]),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

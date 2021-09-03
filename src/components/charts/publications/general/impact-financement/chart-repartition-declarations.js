@@ -50,8 +50,10 @@ const Chart = ({ id, domain }) => {
             align: 'left',
             verticalAlign: 'top',
             style: {
+              textOutline: 'none',
               fontSize: '15px',
               fontWeight: 'bold',
+              color: '#fff',
             },
           },
         },

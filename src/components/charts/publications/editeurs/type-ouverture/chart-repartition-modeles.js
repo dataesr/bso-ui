@@ -58,6 +58,9 @@ const Chart = ({ id, domain }) => {
         },
       ],
       dataLabels: {
+        style: {
+          textOutline: 'none',
+        },
         format: '{point.name}<br>{point.value:.0f} %',
         rotationMode: 'auto',
         filter: {

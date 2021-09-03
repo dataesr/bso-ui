@@ -343,7 +343,7 @@ function SantePublications() {
                     domain='health'
                   />
                   <ChartComparaisonPublishers
-                    id='app.sante-publi.publishers.politiques-ouverture.chart-classement'
+                    id='app.sante-publi.publishers.politiques-ouverture.chart-comparaison'
                     domain='health'
                   />
                 </QuestionSection>

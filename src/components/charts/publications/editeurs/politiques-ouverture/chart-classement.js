@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { graphIds } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getGraphOptions,
   getPercentageYAxis,
@@ -19,12 +19,15 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
   const { lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(lastObservationSnap);
+  const { allData, isLoading, isError } = useGetData(
+    lastObservationSnap,
+    domain,
+  );
   const { categories, dataGraph } = allData;
 
   if (isLoading || !dataGraph || !categories) {
@@ -81,11 +84,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.publishers.politiques-ouverture.chart-classement',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

@@ -45,6 +45,9 @@ const Chart = ({ id, domain }) => {
     column: {
       stacking: 'normal',
       dataLabels: {
+        style: {
+          textOutline: 'none',
+        },
         enabled: true,
         // eslint-disable-next-line
         formatter: function () {

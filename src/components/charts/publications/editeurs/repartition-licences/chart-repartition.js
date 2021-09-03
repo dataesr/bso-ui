@@ -72,6 +72,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
             align: 'left',
             verticalAlign: 'top',
             style: {
+              textOutline: 'none',
               fontSize: '15px',
               fontWeight: 'bold',
             },

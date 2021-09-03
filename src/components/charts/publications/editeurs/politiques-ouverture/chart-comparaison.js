@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { graphIds } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -19,12 +19,15 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 HCMore(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
   const { lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(lastObservationSnap);
+  const { allData, isLoading, isError } = useGetData(
+    lastObservationSnap,
+    domain,
+  );
   const { bubbleGraph } = allData;
 
   if (isLoading || !bubbleGraph) {
@@ -98,11 +101,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.publishers.politiques-ouverture.chart-comparaison',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

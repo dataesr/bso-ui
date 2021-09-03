@@ -122,6 +122,7 @@ function useGetData(observationSnap, domain) {
           percentage: publisher[publisher.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: editeurplateforme100,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({
@@ -131,6 +132,7 @@ function useGetData(observationSnap, domain) {
           percentage: publisherRepository[publisherRepository.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: editeurarchive,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
@@ -138,6 +140,7 @@ function useGetData(observationSnap, domain) {
           percentage: repository[repository.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: archiveouverte100,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
@@ -145,6 +148,7 @@ function useGetData(observationSnap, domain) {
           percentage: closed[closed.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: accesferme,
+          dataLabels: noOutline,
         },
       ];
 
