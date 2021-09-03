@@ -314,12 +314,12 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    disciplinesHisto: ([observationSnap]) => ({
+    disciplinesHisto: ([observationSnap, disciplineField]) => ({
       size: 0,
       aggs: {
         by_discipline: {
           terms: {
-            field: 'bsso_classification.field.keyword',
+            field: `${disciplineField}.keyword`,
             size: 25,
           },
           aggs: {
