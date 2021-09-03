@@ -59,7 +59,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
         const goldElem = el.by_oa_colors.buckets.find((b) => b.key === 'gold');
         const goldAPC = goldElem?.apc?.value || 0;
         const goldCount = goldElem?.doc_count || 0;
-
         goldDataYear.push({
           publisher: publisherName,
           y: goldAPC,
@@ -116,8 +115,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
         let currentGoldY = 0;
         if (hybridElems && currentX === hybridElems?.apc?.buckets[j]?.key) { currentHybridY = hybridElems.apc.buckets[j].doc_count; }
         if (goldElems && currentX === goldElems?.apc?.buckets[j]?.key) { currentGoldY = goldElems.apc.buckets[j].doc_count; }
-        currentHybridDataViolin.push([currentX, 0 + yearIndex, yearIndex + currentHybridY / hybridElems.doc_count]);
-        currentGoldDataViolin.push([currentX, yearIndex - currentGoldY / goldElems.doc_count, 0 + yearIndex]);
+        currentHybridDataViolin.push([currentX, 0 + yearIndex, yearIndex + currentHybridY / (hybridElems?.doc_count || 1)]);
+        currentGoldDataViolin.push([currentX, yearIndex - currentGoldY / (goldElems?.doc_count || 1), 0 + yearIndex]);
         if (currentYear === publicationDate) {
           categoriesHistogram.push(currentX);
           hybridDataHistogram.push({
@@ -156,17 +155,22 @@ function useGetData(observationSnaps, needle = '*', domain) {
     ];
 
     const dataGraphViolin = [];
-    categoriesViolin.forEach((y, i) => {
+    [1, 1, 1, 1, 1, 1, 1, 1].forEach((y, i) => {
+      const showInLegend = (i === 0);
       dataGraphViolin.push(
         {
           name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
           color: hybrid,
           data: hybridDataViolin[i],
+          showInLegend,
         },
+      );
+      dataGraphViolin.push(
         {
           name: intl.formatMessage({ id: 'app.publishers.apc-gold' }),
           color: goldapc,
           data: goldDataViolin[i],
+          showInLegend,
         },
       );
     });
@@ -174,9 +178,19 @@ function useGetData(observationSnaps, needle = '*', domain) {
     dataGraphViolin.push(
       {
         type: 'scatter',
-        name: intl.formatMessage({ id: 'app.publishers.apc-median' }),
+        name: intl.formatMessage({ id: 'app.publishers.apc-hybrid-median' }),
         data: [{ x: 1000, y: 0 }, { x: 1202, y: 1 }, { x: 1202, y: 2 }, { x: 1202, y: 3 }, { x: 1202, y: 4 }, { x: 1202, y: 5 }, { x: 1202, y: 6 }, { x: 1202, y: 7 }],
-        color: '#1e1e1e',
+        color: hybrid,
+        marker: { lineColor: hybrid },
+      },
+    );
+    dataGraphViolin.push(
+      {
+        type: 'scatter',
+        name: intl.formatMessage({ id: 'app.publishers.apc-goldd-median' }),
+        data: [{ x: 1000, y: 0 }, { x: 1202, y: 1 }, { x: 1208, y: 2 }, { x: 2202, y: 3 }, { x: 1202, y: 4 }, { x: 1202, y: 5 }, { x: 1202, y: 6 }, { x: 1202, y: 7 }],
+        color: goldapc,
+        marker: { lineColor: goldapc },
       },
     );
     return { dataGraphTotal, categoriesYear, dataGraphHistogram, categoriesHistogram, dataGraphViolin, categoriesViolin };

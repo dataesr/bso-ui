@@ -68,6 +68,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   optionsGraph.yAxis = {
     categories: categoriesViolin,
     min: 0,
+    max: categoriesViolin.length - 1,
   };
   optionsGraph.plotOptions = {
     areasplinerange: {
@@ -78,6 +79,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     },
     scatter: {
       lineWidth: 1,
+      zIndex: 1,
+      marker: {
+        fillColor: 'white',
+        symbol: 'circle',
+        lineWidth: 2,
+        lineColor: '#1e1e1e',
+      },
     },
   };
   optionsGraph.series = dataGraphViolin;
