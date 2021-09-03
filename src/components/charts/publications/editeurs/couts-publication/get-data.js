@@ -36,6 +36,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       setError(true);
       setLoading(false);
     });
+    // 1er graphe : histogram total
     let dataTotal = res[0].data.aggregations.by_year.buckets;
     // Tri pour avoir les années dans l'ordre d'affichage du graphe
     dataTotal = dataTotal.sort((a, b) => a.key - b.key);

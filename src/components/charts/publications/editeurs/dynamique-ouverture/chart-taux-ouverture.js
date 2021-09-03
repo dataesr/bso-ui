@@ -38,11 +38,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
   );
   const { dataGraph1 } = data;
-  const query = getFetchOptions(
-    'publishersList',
-    'health',
-    lastObservationSnap,
-  );
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   const term = {};
   term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });

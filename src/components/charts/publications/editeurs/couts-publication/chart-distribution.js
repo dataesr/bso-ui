@@ -45,6 +45,12 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  if (isLoading || !dataGraphHistogram || !categoriesHistogram) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <>Error</>;
+  }
 
   if (isLoading || !dataGraphHistogram || !categoriesHistogram) {
     return <Loader />;
