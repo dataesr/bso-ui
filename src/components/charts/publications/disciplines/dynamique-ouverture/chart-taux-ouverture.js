@@ -12,7 +12,6 @@ import {
   discipline100,
   discipline125,
 } from '../../../../../style/colours.module.scss';
-
 import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getGraphOptions,
