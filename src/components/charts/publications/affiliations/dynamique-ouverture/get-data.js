@@ -11,7 +11,7 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, needle = '*') {
+function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -21,7 +21,7 @@ function useGetData(observationSnaps, needle = '*') {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', 'health', oneDate);
+      const query = getFetchOptions('publicationRate', domain, oneDate);
       query.query.bool.filter.push({
         wildcard: { 'french_affiliations_types.keyword': needle },
       });
@@ -65,7 +65,10 @@ function useGetData(observationSnaps, needle = '*') {
       serie.dashStyle = lineStyle[i];
       serie.data = filtered.map((el, index) => ({
         y: (el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count,
-        affiliation: (needle === '*') ? intl.formatMessage({ id: 'app.all-affiliations' }) : needle,
+        affiliation:
+          needle === '*'
+            ? intl.formatMessage({ id: 'app.all-affiliations' })
+            : needle,
         name: filtered[index].key,
         publicationDate: filtered[index].key,
       }));

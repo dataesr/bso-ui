@@ -55,50 +55,54 @@ const GraphFooter = ({
                     defaultMessage='Télécharger'
                   />
                 </Text>
-                <span
-                  className='icon-click'
-                  tabIndex={0}
-                  role='button'
-                  onClick={() => onCsvButtonClick()}
-                  onKeyPress={() => onCsvButtonClick()}
-                >
-                  <DSIcon
-                    name='ri-file-excel-fill'
-                    size='lg'
-                    as='span'
-                    iconPosition='right'
-                    className='ds-fr--v-middle'
+                {onCsvButtonClick && (
+                  <span
+                    className='icon-click'
+                    tabIndex={0}
+                    role='button'
+                    onClick={() => onCsvButtonClick()}
+                    onKeyPress={() => onCsvButtonClick()}
                   >
-                    <Text size='xs' as='span' className='download'>
-                      <FormattedMessage
-                        id='app.graph.download.csv'
-                        defaultMessage='csv'
-                      />
-                    </Text>
-                  </DSIcon>
-                </span>
-                <span
-                  className='icon-click'
-                  tabIndex={0}
-                  role='button'
-                  onClick={() => onPngButtonClick()}
-                  onKeyPress={() => onPngButtonClick()}
-                >
-                  <DSIcon
-                    name='ri-file-chart-fill '
-                    size='lg'
-                    as='span'
-                    iconPosition='right'
-                    className='ds-fr--v-middle icon-click'
+                    <DSIcon
+                      name='ri-file-excel-fill'
+                      size='lg'
+                      as='span'
+                      iconPosition='right'
+                      className='ds-fr--v-middle'
+                    >
+                      <Text size='xs' as='span' className='download'>
+                        <FormattedMessage
+                          id='app.graph.download.csv'
+                          defaultMessage='csv'
+                        />
+                      </Text>
+                    </DSIcon>
+                  </span>
+                )}
+                {onPngButtonClick && (
+                  <span
+                    className='icon-click'
+                    tabIndex={0}
+                    role='button'
+                    onClick={() => onPngButtonClick()}
+                    onKeyPress={() => onPngButtonClick()}
                   >
-                    <Text size='xs' as='span' className='download'>
-                      <FormattedMessage
-                        id='app.graph.download.png'
-                        defaultMessage='png'
-                      />
-                    </Text>
-                  </DSIcon>
-                </span>
+                    <DSIcon
+                      name='ri-file-chart-fill '
+                      size='lg'
+                      as='span'
+                      iconPosition='right'
+                      className='ds-fr--v-middle icon-click'
+                    >
+                      <Text size='xs' as='span' className='download'>
+                        <FormattedMessage
+                          id='app.graph.download.png'
+                          defaultMessage='png'
+                        />
+                      </Text>
+                    </DSIcon>
+                  </span>
+                )}
                 {graphId ? (
                   <span
                     className='icon-click'

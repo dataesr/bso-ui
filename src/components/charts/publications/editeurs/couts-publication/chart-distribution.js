@@ -9,43 +9,48 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { graphIds } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
-  const graphId = 'app.sante-publi.publishers.couts-publication.chart-distribution';
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
-
-  const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, publisher);
+  const { observationSnaps, lastObservationSnap } = useGlobals(domain);
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    publisher,
+    domain,
+  );
   const { dataGraphHistogram, categoriesHistogram } = data;
-  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   const term = {};
-  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'publisher';
+  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key),
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  if (isLoading || !dataGraphHistogram || !categoriesHistogram) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <>Error</>;
+  }
 
   if (isLoading || !dataGraphHistogram || !categoriesHistogram) {
     return <Loader />;
@@ -53,11 +58,12 @@ const Chart = ({ graphFooter, graphComments, id }) => {
   if (isError) {
     return <>Error</>;
   }
-  const optionsGraph = getGraphOptions(graphId, intl);
+
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'column';
   optionsGraph.xAxis = {
     categories: categoriesHistogram,
-    title: { text: intl.formatMessage({ id: `${graphId}.xAxis` }) },
+    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
     labels: {
       // eslint-disable-next-line
       formatter: function () {
@@ -66,12 +72,12 @@ const Chart = ({ graphFooter, graphComments, id }) => {
     },
   };
   optionsGraph.yAxis = {
-    title: { text: intl.formatMessage({ id: `${graphId}.yAxis` }) },
+    title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
   };
   optionsGraph.series = dataGraphHistogram;
   optionsGraph.legend = {
     title: {
-      text: intl.formatMessage({ id: `${graphId}.legend` }),
+      text: intl.formatMessage({ id: `${id}.legend` }),
     },
   };
   optionsGraph.plotOptions = {
@@ -88,49 +94,29 @@ const Chart = ({ graphFooter, graphComments, id }) => {
       },
     },
   };
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <SimpleSelect
-          label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-          onChange={(e) => setPublisher(e.target.value)}
-          options={publishers}
-          selected={publisher}
-          firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphFooter={graphFooter}
+      graphComments={graphComments}
+    >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
+        onChange={(e) => setPublisher(e.target.value)}
+        options={publishers}
+        selected={publisher}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 
@@ -138,11 +124,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.publishers.couts-publication.chart-distribution',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

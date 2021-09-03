@@ -10,15 +10,15 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap) {
+function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
     const queries = [];
-    const queryHAL = getFetchOptions('couvertureHAL', 'health');
-    const queryArchive = getFetchOptions('couvertureHAL', 'health');
+    const queryHAL = getFetchOptions('couvertureHAL', domain);
+    const queryArchive = getFetchOptions('couvertureHAL', domain);
     let term = {};
     term[`oa_details.${observationSnap[0]}.repositories.keyword`] = 'HAL';
     queryHAL.query.bool.filter.push({ term });
@@ -32,14 +32,16 @@ function useGetData(observationSnap) {
       setLoading(false);
     });
     let dataHAL = res[0].data.aggregations.by_publication_year.buckets;
-    dataHAL = dataHAL.sort((a, b) => a.key - b.key)
+    dataHAL = dataHAL
+      .sort((a, b) => a.key - b.key)
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
             < parseInt(observationSnap[0].substring(0, 4), 10),
       );
     let dataArchive = res[1].data.aggregations.by_publication_year.buckets;
-    dataArchive = dataArchive.sort((a, b) => a.key - b.key)
+    dataArchive = dataArchive
+      .sort((a, b) => a.key - b.key)
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
@@ -52,13 +54,13 @@ function useGetData(observationSnap) {
       publicationYears.push(el.key);
       hal.push({
         y: el.doc_count,
-        y_percHAL: (100 * el.doc_count) / (dataArchive[index].doc_count),
+        y_percHAL: (100 * el.doc_count) / dataArchive[index].doc_count,
         y_tot: dataArchive[index].doc_count,
         x: el.key,
       });
       notHal.push({
         y: dataArchive[index].doc_count - el.doc_count,
-        y_percHAL: (100 * el.doc_count) / (dataArchive[index].doc_count),
+        y_percHAL: (100 * el.doc_count) / dataArchive[index].doc_count,
         y_tot: dataArchive[index].doc_count,
         x: el.key,
       });

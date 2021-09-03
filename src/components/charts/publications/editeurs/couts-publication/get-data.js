@@ -4,23 +4,30 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { goldapc, hybrid } from '../../../../../style/colours.module.scss';
-import { getFetchOptions, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getFetchOptions,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, needle = '*') {
+function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
-  const publisherName = (needle === '*') ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
+  const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    const query = getFetchOptions('apcYear', 'health', datesObservation[0]);
+    const query = getFetchOptions('apcYear', domain, datesObservation[0]);
     query.query.bool.filter.push({
       wildcard: { 'publisher.keyword': needle },
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const queryHistogram = getFetchOptions('apcHistogram', 'health', datesObservation[0]);
+    const queryHistogram = getFetchOptions(
+      'apcHistogram',
+      domain,
+      datesObservation[0],
+    );
     queryHistogram.query.bool.filter.push({
       wildcard: { 'publisher.keyword': needle },
     });
@@ -83,19 +90,37 @@ function useGetData(observationSnaps, needle = '*') {
     const goldDataHistogram = [];
     const hybridDataHistogram = [];
     const categoriesHistogram = [];
-    const hybridElems = res[1].data.aggregations.by_oa_colors.buckets.find((b) => b.key === 'hybrid');
-    const goldElems = res[1].data.aggregations.by_oa_colors.buckets.find((b) => b.key === 'gold');
+    const hybridElems = res[1].data.aggregations.by_oa_colors.buckets.find(
+      (b) => b.key === 'hybrid',
+    );
+    const goldElems = res[1].data.aggregations.by_oa_colors.buckets.find(
+      (b) => b.key === 'gold',
+    );
     const histogramInterval = queryHistogram.aggs.by_oa_colors.aggs.apc.histogram.interval;
-    for (let j = 0; j < Math.max(goldElems?.apc?.buckets?.length || 0, hybridElems?.apc?.buckets?.length || 0); j += 1) {
+    for (
+      let j = 0;
+      j
+      < Math.max(
+        goldElems?.apc?.buckets?.length || 0,
+        hybridElems?.apc?.buckets?.length || 0,
+      );
+      j += 1
+    ) {
       const currentX = j * histogramInterval;
       categoriesHistogram.push(currentX);
       let currentHybridY = 0;
       let currentGoldY = 0;
-      if (hybridElems && currentX === hybridElems?.apc?.buckets[j]?.key) { currentHybridY = hybridElems.apc.buckets[j].doc_count; }
-      if (goldElems && currentX === goldElems?.apc?.buckets[j]?.key) { currentGoldY = goldElems.apc.buckets[j].doc_count; }
+      if (hybridElems && currentX === hybridElems?.apc?.buckets[j]?.key) {
+        currentHybridY = hybridElems.apc.buckets[j].doc_count;
+      }
+      if (goldElems && currentX === goldElems?.apc?.buckets[j]?.key) {
+        currentGoldY = goldElems.apc.buckets[j].doc_count;
+      }
       hybridDataHistogram.push({
         publisher: publisherName,
-        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+        publicationDate: getPublicationYearFromObservationSnap(
+          datesObservation[0],
+        ),
         y: currentHybridY,
         interval_lower: currentX,
         interval_upper: currentX + histogramInterval,
@@ -103,7 +128,9 @@ function useGetData(observationSnaps, needle = '*') {
       });
       goldDataHistogram.push({
         publisher: publisherName,
-        publicationDate: getPublicationYearFromObservationSnap(datesObservation[0]),
+        publicationDate: getPublicationYearFromObservationSnap(
+          datesObservation[0],
+        ),
         y: currentGoldY,
         interval_lower: currentX,
         interval_upper: currentX + histogramInterval,
@@ -122,7 +149,12 @@ function useGetData(observationSnaps, needle = '*') {
         color: goldapc,
       },
     ];
-    return { dataGraphTotal, categoriesYear, dataGraphHistogram, categoriesHistogram };
+    return {
+      dataGraphTotal,
+      categoriesYear,
+      dataGraphHistogram,
+      categoriesHistogram,
+    };
   }
 
   useEffect(() => {
