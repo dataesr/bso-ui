@@ -103,14 +103,9 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       d: dataGraph1[0] ? dataGraph1[0].name : '',
     },
   );
-
+  console.log('==== chartRef ==== ', chartRef);
   return (
-    <WrapperChart
-      id={id}
-      chartRef={chartRef}
-      graphFooter={graphFooter}
-      graphComments={false}
-    >
+    <WrapperChart id={id} graphFooter={graphFooter} graphComments={false}>
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => setPublisher(e.target.value)}

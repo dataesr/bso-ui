@@ -51,7 +51,7 @@ function WrapperChart({ graphFooter, graphComments, children, id, chartRef }) {
 WrapperChart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  chartRef: undefined,
+  chartRef: () => {},
 };
 
 WrapperChart.propTypes = {
@@ -62,6 +62,7 @@ WrapperChart.propTypes = {
   chartRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),
+    PropTypes.shape({ current: undefined }),
   ]),
 };
 

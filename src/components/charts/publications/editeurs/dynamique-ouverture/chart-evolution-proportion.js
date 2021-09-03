@@ -90,7 +90,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       id={id}
       chartRef={chartRef}
       graphFooter={graphFooter}
-      graphComments={graphComments}
+      graphComments={false}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
