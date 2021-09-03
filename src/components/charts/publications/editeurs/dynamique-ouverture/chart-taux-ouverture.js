@@ -103,7 +103,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       d: dataGraph1[0] ? dataGraph1[0].name : '',
     },
   );
-  console.log('==== chartRef ==== ', chartRef);
+
   return (
     <WrapperChart id={id} graphFooter={graphFooter} graphComments={false}>
       <SimpleSelect

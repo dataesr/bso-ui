@@ -1,4 +1,4 @@
-import { Container, Icon as DSIcon } from '@dataesr/react-dsfr';
+import { Container } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
