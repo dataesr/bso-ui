@@ -7,24 +7,22 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { graphIds } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
-  const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps);
+  const { observationSnaps } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const { publicationYears, dataGraph2 } = data;
 
   if (isLoading || !dataGraph2) {
@@ -54,41 +52,20 @@ const Chart = ({ graphFooter, graphComments, id }) => {
   };
   optionsGraph.series = dataGraph2;
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={graphComments}
+      graphFooter={graphFooter}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 
@@ -96,11 +73,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.repositories.dynamique-hal.chart-couverture-hal',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

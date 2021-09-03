@@ -254,8 +254,11 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='dynamique'
                 >
-                  <ChartTauxOuvertureDisciplines />
-                  <ChartEvolutionTauxOuvertureDisciplines />
+                  <ChartTauxOuvertureDisciplines
+                    id='app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <ChartEvolutionTauxOuvertureDisciplines id='app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' />
                 </QuestionSection>
 
                 <QuestionSection
@@ -350,7 +353,7 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='predatory'
                 >
-                  <ChartRepartitionPublishers />
+                  <ChartRepartitionPublishers id='app.national-publi.publishers.poids-revues.chart-repartition' />
                 </QuestionSection>
 
                 <QuestionSection
@@ -484,8 +487,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='dynamique'
                 >
-                  <ChartTauxOuvertureAffiliations />
-                  <ChartEvolutionProportionAffiliations />
+                  <ChartTauxOuvertureAffiliations
+                    id='app.sante-publi.affiliations.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <ChartEvolutionProportionAffiliations
+                    id='app.sante-publi.affiliations.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -493,8 +502,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='pays'
                 >
-                  <ChartEvolutionTauxOuvertureRangUtile />
-                  <ChartClassementPays />
+                  <ChartEvolutionTauxOuvertureRangUtile
+                    id='app.sante-publi.affiliations.pays.chart-taux-rang-utile'
+                    domain='health'
+                  />
+                  <ChartClassementPays
+                    id='app.sante-publi.affiliations.pays.chart-classement-pays'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

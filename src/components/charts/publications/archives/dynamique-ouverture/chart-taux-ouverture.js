@@ -19,9 +19,8 @@ import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
+import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -32,7 +31,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const intl = useIntl();
   const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
-  const { observationSnaps, lastObservationSnap, updateDate } = useGlobals();
+  const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     archive,
@@ -102,15 +101,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     },
   ];
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   const chartComments = intl.formatMessage(
     { id: `${id}.comments` },
     {
@@ -122,35 +112,28 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   );
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <SimpleSelect
-          label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
-          onChange={(e) => setArchive(e.target.value)}
-          options={archives}
-          selected={archive}
-          firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph1}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && <GraphComments comments={chartComments} />}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={false}
+      graphFooter={graphFooter}
+    >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
+        onChange={(e) => setArchive(e.target.value)}
+        options={archives}
+        selected={archive}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph1}
+        ref={chartRef}
+        id={id}
+      />
+      {graphComments && <GraphComments comments={chartComments} />}
+    </WrapperChart>
   );
 };
 

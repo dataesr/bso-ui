@@ -15,9 +15,7 @@ import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 treemapModule(Highcharts);
@@ -28,11 +26,10 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isDetailed, setIsDetailed] = useState(false);
-  const graphId = 'app.sante-publi.publishers.repartition-licences.chart-repartition';
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
 
-  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
+  const { lastObservationSnap, observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     isDetailed,
@@ -59,7 +56,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     return <>Error</>;
   }
 
-  const optionsGraph = getGraphOptions(graphId, intl);
+  const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -84,54 +81,34 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       data: dataGraphTreemap,
     },
   ];
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <SimpleSelect
-          label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-          onChange={(e) => setPublisher(e.target.value)}
-          options={publishers}
-          selected={publisher}
-          firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
-        />
-        <Toggle
-          isChecked={isDetailed}
-          onChange={() => setIsDetailed(!isDetailed)}
-          label={intl.formatMessage({ id: `${graphId}.toggle-label` })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef.current}
+      graphComments={graphComments}
+      graphFooter={graphFooter}
+    >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
+        onChange={(e) => setPublisher(e.target.value)}
+        options={publishers}
+        selected={publisher}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+      />
+      <Toggle
+        isChecked={isDetailed}
+        onChange={() => setIsDetailed(!isDetailed)}
+        label={intl.formatMessage({ id: `${id}.toggle-label` })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 

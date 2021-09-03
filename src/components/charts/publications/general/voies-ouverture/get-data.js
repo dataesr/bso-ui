@@ -32,7 +32,11 @@ function useGetData(observationSnap, domain) {
       const publisherRepository = []; // les 2
       const oa = []; // oa
       const closed = []; // closed
-
+      const noOutline = {
+        style: {
+          textOutline: 'none',
+        },
+      };
       data
         .filter(
           (el) => el.key > 2012
@@ -95,16 +99,19 @@ function useGetData(observationSnap, domain) {
           }),
           data: publisherRepository,
           color: editeurarchive,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
           color: archiveouverte100,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
           data: publisher,
           color: editeurplateforme100,
+          dataLabels: noOutline,
         },
       ];
 

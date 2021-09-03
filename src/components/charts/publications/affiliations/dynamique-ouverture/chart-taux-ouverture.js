@@ -11,33 +11,33 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { discipline100, g800 } from '../../../../../style/colours.module.scss';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
+import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.affiliations.dynamique-ouverture.chart-taux-ouverture';
   const [affiliations, setAffiliations] = useState([]);
   const [affiliation, setAffiliation] = useState('*');
-  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
+  const { lastObservationSnap, observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     affiliation,
+    domain,
   );
   const { dataGraph1 } = data;
   const query = getFetchOptions(
     'affiliationsList',
-    'health',
+    domain,
     lastObservationSnap,
   );
   useEffect(() => {
@@ -58,7 +58,7 @@ const Chart = ({ graphFooter, graphComments }) => {
     return <>Error</>;
   }
 
-  const optionsGraph1 = getGraphOptions(graphId, intl);
+  const optionsGraph1 = getGraphOptions(id, intl);
   optionsGraph1.chart.type = 'bar';
   optionsGraph1.colors = [discipline100];
   optionsGraph1.yAxis = { visible: false, min: 0, max: 100 };
@@ -94,17 +94,8 @@ const Chart = ({ graphFooter, graphComments }) => {
     },
   ];
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   const chartComments = intl.formatMessage(
-    { id: `${graphId}.comments` },
+    { id: `${id}.comments` },
     {
       a: dataGraph1[0] ? dataGraph1[0].y : '',
       b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
@@ -114,44 +105,41 @@ const Chart = ({ graphFooter, graphComments }) => {
   );
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
-        <SimpleSelect
-          label={intl.formatMessage({ id: 'app.affiliations-filter-label' })}
-          onChange={(e) => setAffiliation(e.target.value)}
-          options={affiliations}
-          selected={affiliation}
-          firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-affiliations' })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph1}
-          ref={chartRef}
-          iid={graphId}
-        />
-        {graphComments && <GraphComments comments={chartComments} />}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${graphId}.source` })}
-          graphId={graphId}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphFooter={graphFooter}
+      graphComments={false}
+    >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.affiliations-filter-label' })}
+        onChange={(e) => setAffiliation(e.target.value)}
+        options={affiliations}
+        selected={affiliation}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-affiliations' })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph1}
+        ref={chartRef}
+        id={id}
+      />
+      {graphComments && <GraphComments comments={chartComments} />}
+    </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.affiliations.dynamique-ouverture.chart-taux-ouverture',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 export default Chart;
