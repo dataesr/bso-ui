@@ -12,17 +12,9 @@ const QuestionSection = ({ intlKey, backgroundColor, children, anchorId }) => {
       id={anchorId}
     >
       <Container>
-        <DSIcon
-          name='ri-information-fill'
-          size='lg'
-          as='span'
-          iconPosition='right'
-          className='ds-fr--v-middle'
-        >
-          <h2 className='marianne-extra-bold fs-20-26'>
-            {intl.formatMessage({ id: `${intlKey}.title` })}
-          </h2>
-        </DSIcon>
+        <h2 className='marianne-extra-bold fs-20-26'>
+          {intl.formatMessage({ id: `${intlKey}.title` })}
+        </h2>
         <p>{intl.formatMessage({ id: `${intlKey}.description` })}</p>
         {children}
       </Container>
