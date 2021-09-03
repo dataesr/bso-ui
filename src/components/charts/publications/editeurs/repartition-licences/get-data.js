@@ -12,7 +12,7 @@ import {
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, isDetailed, needle = '*') {
+function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -23,7 +23,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*') {
     const queries = [];
     const query = getFetchOptions(
       'publishersLicence',
-      'health',
+      domain,
       datesObservation[0],
     );
     const term = {};

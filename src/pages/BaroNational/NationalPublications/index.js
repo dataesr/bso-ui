@@ -160,15 +160,6 @@ export default function NationalPublications() {
                 >
                   <ChartLanguesOuverture />
                 </QuestionSection>
-
-                <QuestionSection
-                  intlKey='app.national-publi.general.impact-financement'
-                  backgroundColor={bluesoft50}
-                  anchorId='financement'
-                >
-                  <ChartTauxOuvertureFinancement />
-                  <ChartRepartitionDeclarations />
-                </QuestionSection>
               </GraphContent>
             </GraphItem>
             <GraphItem

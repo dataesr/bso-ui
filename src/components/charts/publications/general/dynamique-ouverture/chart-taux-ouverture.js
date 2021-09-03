@@ -10,16 +10,11 @@ import { useIntl } from 'react-intl';
 
 import { discipline100, g800 } from '../../../../../style/colours.module.scss';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getFormattedDate,
-  getGraphOptions,
-} from '../../../../../utils/helpers';
+import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
+import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -28,8 +23,7 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments, domain, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang } = useLang();
-  const { observationSnaps, updateDate } = useGlobals();
+  const { observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const { dataGraph1 } = data;
 
@@ -76,15 +70,6 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
     },
   ];
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   const chartComments = intl.formatMessage(
     { id: `${id}.comments` },
     {
@@ -96,28 +81,20 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
   );
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        {/* <GraphFilters /> */}
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph1}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && <GraphComments comments={chartComments} />}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={getFormattedDate(updateDate, lang)}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphFooter={graphFooter}
+      graphComments={false}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph1}
+        ref={chartRef}
+        id={id}
+      />
+      {graphComments && <GraphComments comments={chartComments} />}
+    </WrapperChart>
   );
 };
 

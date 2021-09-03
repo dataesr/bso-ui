@@ -19,9 +19,8 @@ import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
+import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -32,18 +31,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const intl = useIntl();
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
-  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
+  const { lastObservationSnap, observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     publisher,
     domain,
   );
   const { dataGraph1 } = data;
-  const query = getFetchOptions(
-    'publishersList',
-    domain,
-    lastObservationSnap,
-  );
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   const term = {};
   term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
@@ -99,15 +94,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     },
   ];
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   const chartComments = intl.formatMessage(
     { id: `${id}.comments` },
     {
@@ -119,35 +105,23 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   );
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <SimpleSelect
-          label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-          onChange={(e) => setPublisher(e.target.value)}
-          options={publishers}
-          selected={publisher}
-          firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph1}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && <GraphComments comments={chartComments} />}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart id={id} graphFooter={graphFooter} graphComments={false}>
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
+        onChange={(e) => setPublisher(e.target.value)}
+        options={publishers}
+        selected={publisher}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph1}
+        ref={chartRef}
+        id={id}
+      />
+      {graphComments && <GraphComments comments={chartComments} />}
+    </WrapperChart>
   );
 };
 

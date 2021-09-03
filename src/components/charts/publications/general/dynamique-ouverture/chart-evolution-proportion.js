@@ -9,16 +9,13 @@ import { useIntl } from 'react-intl';
 
 import { domains, graphIds } from '../../../../../utils/constants';
 import {
-  getFormattedDate,
   getGraphOptions,
   getPercentageYAxis,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
+import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -27,8 +24,7 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang } = useLang();
-  const { observationSnaps, updateDate } = useGlobals();
+  const { observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const { dataGraph2 } = data;
 
@@ -48,15 +44,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   optionsGraph2.legend = { verticalAlign: 'top' };
   optionsGraph2.plotOptions = { series: { pointStart: 2013 } };
   optionsGraph2.series = dataGraph2;
-
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
 
   const indMax = dataGraph2[1]?.data.length - 1;
   const chartComments = intl.formatMessage(
@@ -79,27 +66,20 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   );
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph2}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && <GraphComments comments={chartComments} />}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={getFormattedDate(updateDate, lang)}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={false}
+      graphFooter={graphFooter}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph2}
+        ref={chartRef}
+        id={id}
+      />
+      {graphComments && <GraphComments comments={chartComments} />}
+    </WrapperChart>
   );
 };
 

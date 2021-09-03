@@ -7,17 +7,11 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { domains } from '../../../../../utils/constants';
-import {
-  getFormattedDate,
-  getGraphOptions,
-} from '../../../../../utils/helpers';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import useLang from '../../../../../utils/Hooks/useLang';
 import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 treemapModule(Highcharts);
@@ -27,8 +21,7 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang } = useLang();
-  const { lastObservationSnap, updateDate } = useGlobals();
+  const { lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap || '2020',
     domain,
@@ -67,37 +60,16 @@ const Chart = ({ id, domain }) => {
       data: dataGraph3,
     },
   ];
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        <GraphComments
-          comments={intl.formatMessage({ id: `${id}.comments` })}
-        />
-      </div>
-      <GraphFooter
-        date={getFormattedDate(updateDate, lang)}
-        source={intl.formatMessage({ id: `${id}.source` })}
-        graphId={id}
-        onPngButtonClick={exportChartPng}
-        onCsvButtonClick={exportChartCsv}
+    <WrapperChart id={id} chartRef={chartRef}>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
       />
-    </>
+    </WrapperChart>
   );
 };
 
@@ -107,10 +79,7 @@ Chart.defaultProps = {
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
-  id: PropTypes.oneOf([
-    'app.national-publi.general.voies-ouverture.chart-repartition-publications',
-    'app.sante-publi.general.voies-ouverture.chart-repartition-publications',
-  ]),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;
