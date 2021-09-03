@@ -141,7 +141,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       goldDataViolin.push(currentGoldDataViolin);
       hybridDataViolin.push(currentHybridDataViolin);
     });
-      
+
     const dataGraphHistogram = [
       {
         name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
@@ -179,15 +179,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         color: '#1e1e1e',
       },
     );
-    return {
-      dataGraphTotal,
-      categoriesYear,
-      dataGraphHistogram,
-      categoriesHistogram,
-      dataGraphViolin,
-      categoriesViolin,
-    };
-
+    return { dataGraphTotal, categoriesYear, dataGraphHistogram, categoriesHistogram, dataGraphViolin, categoriesViolin };
   }
 
   useEffect(() => {

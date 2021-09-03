@@ -9,25 +9,27 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { graphIds } from '../../../../../utils/constants';
-import WrapperChart from '../../../../WrapperChart';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
+import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
+import SimpleSelect from '../../../../SimpleSelect';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
-
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
 
-  const { observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, publisher);
+  const { observationSnaps } = useGlobals(domain);
+  const { data, isLoading, isError } = useGetData(observationSnaps, publisher, domain);
   const { dataGraphViolin, categoriesViolin } = data;
-  const query = getFetchOptions('publishersList', 'health', observationSnaps[0]);
+  const query = getFetchOptions('publishersList', domain, observationSnaps[0]);
   const term = {};
   term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
@@ -88,13 +90,13 @@ const Chart = ({ graphFooter, graphComments, id }) => {
       graphComments={graphComments}
     >
       <SimpleSelect
-          label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-          onChange={(e) => setPublisher(e.target.value)}
-          options={publishers}
-          selected={publisher}
-          firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
-        />
+        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
+        onChange={(e) => setPublisher(e.target.value)}
+        options={publishers}
+        selected={publisher}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}
@@ -110,11 +112,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.publishers.couts-publication.chart-distribution-par-annee',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;
