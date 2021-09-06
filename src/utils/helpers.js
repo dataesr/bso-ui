@@ -218,13 +218,12 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
  */
 export function getFetchOptions(key, domain, ...parameters) {
   const allOptions = {
-    publicationRate: ([observationSnap, needlePublisher = '*', needleAffiliation = '*', oaHostType = '*']) => ({
+    publicationRate: ([observationSnap, needlePublisher = '*', oaHostType = '*']) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             { wildcard: { 'publisher.keyword': needlePublisher } },
-            { wildcard: { 'french_affiliations_types.keyword': needleAffiliation } },
             { wildcard: { [`oa_details.${observationSnap}.oa_host_type`]: oaHostType } },
           ],
         },

@@ -23,7 +23,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
     datesObservation?.forEach((oneDate) => {
       const needlePublisher = '*';
       const allOaHostType = '*';
-      const query = getFetchOptions('publicationRate', domain, oneDate, needlePublisher, needle, allOaHostType);
+      const query = getFetchOptions('publicationRate', domain, oneDate, needlePublisher, allOaHostType);
+      query.query.bool.filter.push({
+        wildcard: { 'french_affiliations_types.keyword': needle },
+      });
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 

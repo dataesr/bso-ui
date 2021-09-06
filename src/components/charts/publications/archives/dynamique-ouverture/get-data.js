@@ -21,10 +21,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const queries = [];
     datesObservation?.forEach((oneDate) => {
       const publisherNeedle = '*';
-      const affiliationNeedle = '*';
       const allOaHostType = '*';
-      const query = getFetchOptions('publicationRate', domain, oneDate, publisherNeedle, affiliationNeedle, allOaHostType);
-      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate, publisherNeedle, affiliationNeedle, 'repository');
+      const query = getFetchOptions('publicationRate', domain, oneDate, publisherNeedle, allOaHostType);
+      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate, publisherNeedle, 'repository');
       const wildcard = {};
       wildcard[`oa_details.${oneDate}.repositories.keyword`] = needle;
       queryFiltered.query.bool.filter.push({ wildcard });
