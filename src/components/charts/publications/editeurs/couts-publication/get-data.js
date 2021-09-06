@@ -4,10 +4,8 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { goldapc, hybrid } from '../../../../../style/colours.module.scss';
-import {
-  getFetchOptions,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
+import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});

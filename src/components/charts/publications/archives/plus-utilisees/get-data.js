@@ -3,10 +3,8 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  getFetchOptions,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
+import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);

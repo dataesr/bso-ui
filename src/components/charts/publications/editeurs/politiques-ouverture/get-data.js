@@ -7,10 +7,8 @@ import {
   archiveouverte100,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
-import {
-  getFetchOptions,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
+import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);

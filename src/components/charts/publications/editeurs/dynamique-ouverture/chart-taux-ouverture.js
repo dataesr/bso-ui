@@ -14,12 +14,12 @@ import {
   editeurplateforme100,
   g800,
 } from '../../../../../style/colours.module.scss';
+import { simpleComments } from '../../../../../utils/chartComments';
 import {
+  getFetchOptions,
   getGraphOptions,
-  simpleComments,
-} from '../../../../../utils/chartHelpers';
+} from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getFetchOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';

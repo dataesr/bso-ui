@@ -8,7 +8,7 @@ import {
   archiveouverte125,
   archiveouverte150,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});

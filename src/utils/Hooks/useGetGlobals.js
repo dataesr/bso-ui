@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../config/config';
-import { clearLocalStorage, getFetchOptions } from '../helpers';
+import { getFetchOptions } from '../chartOptions';
+import { clearLocalStorage } from '../helpers';
 import useLang from './useLang';
 
 export const GlobalsContext = createContext();

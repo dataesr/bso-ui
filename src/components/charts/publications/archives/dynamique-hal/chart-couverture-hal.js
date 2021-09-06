@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartHelpers';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
@@ -20,8 +20,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
-  const { observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { lastObservationSnap } = useGlobals();
+  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
   const { publicationYears, dataGraph2 } = data;
   const optionsGraph = getGraphOptions(id, intl);
 

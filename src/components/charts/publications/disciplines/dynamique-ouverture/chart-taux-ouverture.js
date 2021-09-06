@@ -12,7 +12,7 @@ import {
   discipline100,
   discipline125,
 } from '../../../../../style/colours.module.scss';
-import { getGraphOptions } from '../../../../../utils/chartHelpers';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';

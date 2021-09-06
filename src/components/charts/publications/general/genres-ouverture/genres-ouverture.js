@@ -8,10 +8,8 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  complexComments,
-  getGraphOptions,
-} from '../../../../../utils/chartHelpers';
+import { complexComments } from '../../../../../utils/chartComments';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';

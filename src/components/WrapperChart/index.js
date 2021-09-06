@@ -11,7 +11,6 @@ import GraphFooter from '../charts/graph-footer';
 import GraphTitle from '../charts/graph-title';
 import Loader from '../Loader';
 
-// TODO add Loader in wrapper
 function WrapperChart({
   graphFooter,
   graphComments,

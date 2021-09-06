@@ -9,7 +9,7 @@ import {
   discipline150,
   nonconnu,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnap, agency = '*', domain) {
   const intl = useIntl();

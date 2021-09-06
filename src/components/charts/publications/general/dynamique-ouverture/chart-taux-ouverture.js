@@ -9,10 +9,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { discipline100, g800 } from '../../../../../style/colours.module.scss';
-import {
-  getGraphOptions,
-  simpleComments,
-} from '../../../../../utils/chartHelpers';
+import { simpleComments } from '../../../../../utils/chartComments';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';

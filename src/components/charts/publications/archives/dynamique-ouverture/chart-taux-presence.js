@@ -11,15 +11,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  getGraphOptions,
-  longComments,
-} from '../../../../../utils/chartHelpers';
-import { domains, graphIds } from '../../../../../utils/constants';
+import { longComments } from '../../../../../utils/chartComments';
 import {
   getFetchOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+  getGraphOptions,
+} from '../../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
