@@ -69,6 +69,10 @@
   .tab {
     margin: 0 5px;
 
+    &:first-child {
+      margin-left: 0;
+    }
+
     a {
       text-decoration: none;
       box-shadow: none;
