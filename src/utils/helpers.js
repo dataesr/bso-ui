@@ -507,8 +507,15 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    apcYear: ([observationSnap]) => ({
+    apcYear: ([observationSnap, needle]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { wildcard: { 'publisher.keyword': needle } },
+          ],
+        },
+      },
       aggs: {
         by_year: {
           terms: {
@@ -531,8 +538,15 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    apcHistogram: ([observationSnap]) => ({
+    apcHistogram: ([observationSnap, needle]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { wildcard: { 'publisher.keyword': needle } },
+          ],
+        },
+      },
       aggs: {
         by_year: {
           terms: {
@@ -555,6 +569,37 @@ export function getFetchOptions(key, domain, ...parameters) {
                     extended_bounds: {
                       min: 0,
                     },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    apcPercentile: ([observationSnap, needle]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            { wildcard: { 'publisher.keyword': needle } },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+              aggs: {
+                apc: {
+                  percentiles: {
+                    field: 'amount_apc_EUR',
                   },
                 },
               },

@@ -18,20 +18,12 @@ function useGetData(observationSnaps, needle = '*', domain) {
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    const query = getFetchOptions('apcYear', domain, datesObservation[0]);
-    query.query.bool.filter.push({
-      wildcard: { 'publisher.keyword': needle },
-    });
+    const query = getFetchOptions('apcYear', domain, datesObservation[0], needle);
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const queryHistogram = getFetchOptions(
-      'apcHistogram',
-      domain,
-      datesObservation[0],
-    );
-    queryHistogram.query.bool.filter.push({
-      wildcard: { 'publisher.keyword': needle },
-    });
+    const queryHistogram = getFetchOptions('apcHistogram', domain, datesObservation[0], needle);
     queries.push(Axios.post(ES_API_URL, queryHistogram, HEADERS));
+    const queryPercentile = getFetchOptions('apcPercentile', domain, datesObservation[0], needle);
+    queries.push(Axios.post(ES_API_URL, queryPercentile, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setError(true);
       setLoading(false);
@@ -110,29 +102,33 @@ function useGetData(observationSnaps, needle = '*', domain) {
       const hybridElems = elem.by_oa_colors.buckets.find((b) => b.key === 'hybrid');
       const goldElems = elem.by_oa_colors.buckets.find((b) => b.key === 'gold');
       for (let j = 0; j < Math.max(goldElems?.apc?.buckets?.length || 0, hybridElems?.apc?.buckets?.length || 0); j += 1) {
-        const currentX = j * histogramInterval;
+        const trancheAPC = j * histogramInterval;
         let currentHybridY = 0;
         let currentGoldY = 0;
-        if (hybridElems && currentX === hybridElems?.apc?.buckets[j]?.key) { currentHybridY = hybridElems.apc.buckets[j].doc_count; }
-        if (goldElems && currentX === goldElems?.apc?.buckets[j]?.key) { currentGoldY = goldElems.apc.buckets[j].doc_count; }
-        currentHybridDataViolin.push([currentX, 0 + yearIndex, yearIndex + currentHybridY / (hybridElems?.doc_count || 1)]);
-        currentGoldDataViolin.push([currentX, yearIndex - currentGoldY / (goldElems?.doc_count || 1), 0 + yearIndex]);
+        if (hybridElems && trancheAPC === hybridElems?.apc?.buckets[j]?.key) { currentHybridY = hybridElems.apc.buckets[j].doc_count; }
+        if (goldElems && trancheAPC === goldElems?.apc?.buckets[j]?.key) { currentGoldY = goldElems.apc.buckets[j].doc_count; }
+        // la distribution des hybrides est sur la partie droite du violin, donc les triplets de points seront de la forme [trancheAPC, 0, valeur]
+        // triplets qu'il faut ensuite translater en fonction de l'année ce qui donne au final [trancheAPC, yearIndex, valeur + yearIndex]
+        currentHybridDataViolin.push([trancheAPC, 0 + yearIndex, yearIndex + currentHybridY / (hybridElems?.doc_count || 1)]);
+        // la distribution des gold est sur la partie gauche du violin, donc les triplets de points seront de la forme [trancheAPC, - valeur , 0]
+        // triplets qu'il faut ensuite translater en fonction de l'année ce qui donne au final [trancheAPC, yearIndex - valeur , yearIndex]
+        currentGoldDataViolin.push([trancheAPC, yearIndex - currentGoldY / (goldElems?.doc_count || 1), 0 + yearIndex]);
         if (currentYear === publicationDate) {
-          categoriesHistogram.push(currentX);
+          categoriesHistogram.push(trancheAPC);
           hybridDataHistogram.push({
             publisher: publisherName,
             publicationDate,
             y: currentHybridY,
-            interval_lower: currentX,
-            interval_upper: currentX + histogramInterval,
+            interval_lower: trancheAPC,
+            interval_upper: trancheAPC + histogramInterval,
             y_tot: hybridElems?.doc_count || 0,
           });
           goldDataHistogram.push({
             publisher: publisherName,
             publicationDate,
             y: currentGoldY,
-            interval_lower: currentX,
-            interval_upper: currentX + histogramInterval,
+            interval_lower: trancheAPC,
+            interval_upper: trancheAPC + histogramInterval,
             y_tot: goldElems?.doc_count || 0,
           });
         }
@@ -155,7 +151,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     ];
 
     const dataGraphViolin = [];
-    [1, 1, 1, 1, 1, 1, 1, 1].forEach((y, i) => {
+    categoriesViolin.forEach((y, i) => {
       const showInLegend = (i === 0);
       dataGraphViolin.push(
         {
@@ -163,6 +159,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           color: hybrid,
           data: hybridDataViolin[i],
           showInLegend,
+          enableMouseTracking: false,
         },
       );
       dataGraphViolin.push(
@@ -171,15 +168,48 @@ function useGetData(observationSnaps, needle = '*', domain) {
           color: goldapc,
           data: goldDataViolin[i],
           showInLegend,
+          enableMouseTracking: false,
         },
       );
     });
-    // TODO : mediane
+    // calcul des medianes pour le violin
+    const goldDataYearMedian = [];
+    const hybridDataYearMedian = [];
+    res[2].data.aggregations.by_year.buckets
+      .filter(
+        (el) => el.key > 2012
+          && parseInt(el.key, 10)
+            < parseInt(datesObservation[0].substring(0, 4), 10),
+      )
+      .forEach((el, yearIndex) => {
+        const hybridElem = el.by_oa_colors.buckets.find(
+          (b) => b.key === 'hybrid',
+        );
+        const hybridMedian = hybridElem?.apc?.values['50.0'] || null;
+        const hybridCount = hybridElem?.doc_count || 0;
+        const goldElem = el.by_oa_colors.buckets.find((b) => b.key === 'gold');
+        const goldMedian = goldElem?.apc?.values['50.0'] || null;
+        const goldCount = goldElem?.doc_count || 0;
+        goldDataYearMedian.push({
+          publisher: publisherName,
+          x: goldMedian,
+          y: categoriesViolin.length - yearIndex - 1,
+          count: goldCount,
+          publicationDate: el.key,
+        });
+        hybridDataYearMedian.push({
+          publisher: publisherName,
+          x: hybridMedian,
+          y: categoriesViolin.length - yearIndex - 1,
+          count: hybridCount,
+          publicationDate: el.key,
+        });
+      });
     dataGraphViolin.push(
       {
         type: 'scatter',
         name: intl.formatMessage({ id: 'app.publishers.apc-hybrid-median' }),
-        data: [{ x: 1000, y: 0 }, { x: 1202, y: 1 }, { x: 1202, y: 2 }, { x: 1202, y: 3 }, { x: 1202, y: 4 }, { x: 1202, y: 5 }, { x: 1202, y: 6 }, { x: 1202, y: 7 }],
+        data: hybridDataYearMedian,
         color: hybrid,
         marker: { lineColor: hybrid },
       },
@@ -188,7 +218,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       {
         type: 'scatter',
         name: intl.formatMessage({ id: 'app.publishers.apc-gold-median' }),
-        data: [{ x: 1000, y: 0 }, { x: 1202, y: 1 }, { x: 1208, y: 2 }, { x: 2202, y: 3 }, { x: 1202, y: 4 }, { x: 1202, y: 5 }, { x: 1202, y: 6 }, { x: 1202, y: 7 }],
+        data: goldDataYearMedian,
         color: goldapc,
         marker: { lineColor: goldapc },
       },

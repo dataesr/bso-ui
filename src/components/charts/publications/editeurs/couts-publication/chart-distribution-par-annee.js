@@ -78,13 +78,12 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       // pointStart: xi[0]
     },
     scatter: {
-      lineWidth: 1,
+      lineWidth: 2,
       zIndex: 1,
       marker: {
         fillColor: 'white',
         symbol: 'circle',
-        lineWidth: 2,
-        lineColor: '#1e1e1e',
+        lineWidth: 3,
       },
     },
   };
