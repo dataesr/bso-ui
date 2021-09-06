@@ -14,7 +14,6 @@ import { discipline100, g800 } from '../../../../../style/colours.module.scss';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -50,13 +49,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (isLoading || !dataGraph1) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
 
   const optionsGraph1 = getGraphOptions(id, intl);
   optionsGraph1.chart.type = 'bar';
@@ -106,6 +98,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   return (
     <WrapperChart
+      isLoading={isLoading || !dataGraph1}
+      isError={isError}
       id={id}
       chartRef={chartRef}
       graphFooter={graphFooter}

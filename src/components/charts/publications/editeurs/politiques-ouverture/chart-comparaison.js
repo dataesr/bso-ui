@@ -11,7 +11,6 @@ import { useIntl } from 'react-intl';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -29,15 +28,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
   );
   const { bubbleGraph } = allData;
-
-  if (isLoading || !bubbleGraph) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.chart.type = 'bubble';
   optionsGraph.chart.zoomType = 'xy';
   optionsGraph.series = bubbleGraph;
@@ -86,6 +78,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
+      isLoading={isLoading || !bubbleGraph}
+      isError={isError}
     >
       <HighchartsReact
         highcharts={Highcharts}

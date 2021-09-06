@@ -12,7 +12,6 @@ import {
   getPercentageYAxis,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -25,15 +24,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { observationSnaps } = useGlobals();
   const { allData, isLoading, isError } = useGetData(observationSnaps, domain);
   const { categories, dataGraph } = allData;
-
-  if (isLoading || !dataGraph) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.series = dataGraph;
   optionsGraph.chart.type = 'column';
   optionsGraph.plotOptions = {
@@ -64,6 +56,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
+      isLoading={isLoading || !dataGraph}
+      isError={isError}
     >
       <HighchartsReact
         highcharts={Highcharts}

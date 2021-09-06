@@ -16,7 +16,6 @@ import {
   getPercentageYAxis,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -50,14 +49,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading || !dataGraph2) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph2 = getGraphOptions(id, intl);
+
   optionsGraph2.chart.type = 'spline';
   optionsGraph2.yAxis = getPercentageYAxis();
   optionsGraph2.xAxis = { title: { text: 'Années de publication' } };
@@ -91,6 +84,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={false}
+      isLoading={isLoading || !dataGraph2}
+      isError={isError}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}

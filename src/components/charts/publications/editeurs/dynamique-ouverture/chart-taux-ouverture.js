@@ -17,7 +17,6 @@ import {
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -51,14 +50,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading || !dataGraph1) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph1 = getGraphOptions(id, intl);
+
   optionsGraph1.chart.type = 'bar';
   optionsGraph1.colors = [editeurplateforme100];
   optionsGraph1.yAxis = { visible: false, min: 0, max: 100 };
@@ -105,7 +98,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   );
 
   return (
-    <WrapperChart id={id} graphFooter={graphFooter} graphComments={false}>
+    <WrapperChart
+      id={id}
+      graphFooter={graphFooter}
+      graphComments={false}
+      isLoading={isLoading || !dataGraph1}
+      isError={isError}
+    >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => setPublisher(e.target.value)}

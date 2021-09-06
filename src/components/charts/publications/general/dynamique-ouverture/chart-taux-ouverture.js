@@ -12,7 +12,6 @@ import { discipline100, g800 } from '../../../../../style/colours.module.scss';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -26,13 +25,6 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
   const { observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const { dataGraph1 } = data;
-
-  if (isLoading || !dataGraph1) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
 
   const optionsGraph1 = getGraphOptions(id, intl);
   optionsGraph1.chart.type = 'bar';
@@ -82,6 +74,8 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
 
   return (
     <WrapperChart
+      isLoading={isLoading || !dataGraph1}
+      isError={isError}
       id={id}
       chartRef={chartRef}
       graphFooter={graphFooter}

@@ -18,7 +18,6 @@ import {
   getPercentageYAxis,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -29,15 +28,8 @@ const Chart = ({ graphComments, id, domain }) => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
-
-  if (isLoading || !data || data.length <= 0) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   let graphs = [];
+
   data.forEach((oneGraph) => {
     const optionsGraph = getGraphOptions(id, intl);
     optionsGraph.chart.type = 'column';
@@ -76,7 +68,12 @@ const Chart = ({ graphComments, id, domain }) => {
   );
 
   return (
-    <WrapperChart id={id} graphComments={graphComments}>
+    <WrapperChart
+      id={id}
+      graphComments={graphComments}
+      isLoading={isLoading || !data || data.length <= 0}
+      isError={isError}
+    >
       <Container>
         <Row>
           {graphs.map((graphOptions, i) => (

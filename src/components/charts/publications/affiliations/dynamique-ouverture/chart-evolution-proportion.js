@@ -16,7 +16,6 @@ import {
   getPercentageYAxis,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -53,13 +52,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading || !dataGraph2) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph2 = getGraphOptions(id, intl);
   optionsGraph2.chart.type = 'spline';
   optionsGraph2.xAxis = {
@@ -92,6 +84,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   return (
     <WrapperChart
+      isLoading={isLoading || !dataGraph2}
+      isError={isError}
       id={id}
       chartRef={chartRef}
       graphFooter={graphFooter}

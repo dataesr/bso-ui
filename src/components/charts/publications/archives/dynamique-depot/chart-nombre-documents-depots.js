@@ -11,7 +11,6 @@ import { useIntl } from 'react-intl';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -23,14 +22,6 @@ const Chart = ({ graphComments, id, domain }) => {
 
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
-
-  if (isLoading || !data) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const graphs = [];
 
   data.forEach((oneGraph) => {
@@ -62,7 +53,12 @@ const Chart = ({ graphComments, id, domain }) => {
   });
 
   return (
-    <WrapperChart id={id} graphComments={graphComments}>
+    <WrapperChart
+      id={id}
+      graphComments={graphComments}
+      isLoading={isLoading || !data}
+      isError={isError}
+    >
       <Container>
         <Row>
           {graphs.map((graphOptions, i) => (

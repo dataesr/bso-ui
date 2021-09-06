@@ -53,7 +53,11 @@ const Chart = ({ id, domain }) => {
   optionsGraph.series = dataGraph2;
 
   return (
-    <WrapperChart id={id} chartRef={chartRef}>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      isLoading={isLoading || !dataGraph2 || !categories2}
+    >
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}

@@ -11,7 +11,6 @@ import { archiveouverte100 } from '../../../../../style/colours.module.scss';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -23,15 +22,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
-
-  if (isLoading || !data) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.chart.type = 'bar';
   optionsGraph.chart.height = '700px';
   optionsGraph.colors = [archiveouverte100];
@@ -61,6 +53,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       chartRef={chartRef}
       graphComments={graphComments}
       graphFooter={graphFooter}
+      isLoading={isLoading || !data}
+      isError={isError}
     >
       <HighchartsReact
         highcharts={Highcharts}

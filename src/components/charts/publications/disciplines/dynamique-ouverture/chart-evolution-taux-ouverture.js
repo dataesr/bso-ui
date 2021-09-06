@@ -9,7 +9,6 @@ import React, { useRef } from 'react';
 import { graphIds } from '../../../../../utils/constants';
 // import { getGraphOptions } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
-// import Loader from '../../../../Loader';
 // import useGetData from './get-data';
 
 HCExporting(Highcharts);

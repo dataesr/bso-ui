@@ -11,7 +11,6 @@ import { useIntl } from 'react-intl';
 import { domains } from '../../../../../utils/constants';
 import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -30,15 +29,8 @@ const Chart = ({ id, domain }) => {
     isLoading,
     isError,
   } = useGetData(lastObservationSnap || '2020', isOa, domain);
-
-  if (isLoading || !dataGraph) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -95,7 +87,13 @@ const Chart = ({ id, domain }) => {
   }
 
   return (
-    <WrapperChart id={id} chartRef={chartRef} graphComments={false}>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={false}
+      isLoading={isLoading || !dataGraph}
+      isError={isError}
+    >
       <Toggle
         isChecked={isOa}
         onChange={() => setIsOa(!isOa)}

@@ -13,7 +13,6 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -49,13 +48,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading || !dataGraphTreemap) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.series = [
     {
@@ -85,6 +77,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   return (
     <WrapperChart
+      isLoading={isLoading || !dataGraphTreemap}
+      isError={isError}
       id={id}
       chartRef={chartRef.current}
       graphComments={graphComments}
