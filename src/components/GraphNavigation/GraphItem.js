@@ -11,22 +11,32 @@ function GraphItem({ links, mainLabel, paths }) {
   const location = useLocation();
   const { mobile, tablet, desktop } = useViewport();
   const viewPort = useRef('desktop');
+
   useEffect(() => {
     const objMargin = {
       mobile: 220,
       tablet: -90,
       desktop: -130,
     };
-    const { hash } = location;
-    if (hash) {
-      const element = document.getElementById(hash.slice(1));
-      const { left, top } = element.getBoundingClientRect();
-      if (!desktop) {
-        viewPort.current = mobile ? 'mobile' : 'tablet';
+    const query = new URLSearchParams(location.search);
+    const queryId = query.get('id');
+    if (queryId) {
+      const element = document.getElementById(`${queryId}`);
+
+      if (element) {
+        setTimeout(() => {
+          const { left, top } = element.getBoundingClientRect();
+          if (!desktop) {
+            viewPort.current = mobile ? 'mobile' : 'tablet';
+          }
+          window.scrollTo(
+            left,
+            top + window.scrollY + objMargin[viewPort.current],
+          );
+        }, 200);
       }
-      window.scrollTo(left, top + window.scrollY + objMargin[viewPort.current]);
     }
-  }, [desktop, location, mobile, tablet]);
+  }, [desktop, location, mobile]);
 
   return (
     <>
