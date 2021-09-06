@@ -21,14 +21,12 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const queries = [];
     datesObservation?.forEach((oneDate) => {
       const publisherNeedle = '*';
-      const affiliationNeedle = '*';
       const allOaHostType = '*';
       const query = getFetchOptions(
         'publicationRate',
         domain,
         oneDate,
         publisherNeedle,
-        affiliationNeedle,
         allOaHostType,
       );
       const queryFiltered = getFetchOptions(
@@ -36,7 +34,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
         domain,
         oneDate,
         publisherNeedle,
-        affiliationNeedle,
         'repository',
       );
       const wildcard = {};

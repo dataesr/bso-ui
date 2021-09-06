@@ -28,9 +28,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
         domain,
         oneDate,
         needlePublisher,
-        needle,
         allOaHostType,
       );
+      query.query.bool.filter.push({
+        wildcard: { 'french_affiliations_types.keyword': needle },
+      });
       queries.push(Axios.post(ES_API_URL, query, HEADERS));
     });
 

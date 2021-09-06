@@ -20,14 +20,12 @@ function useGetData(observationSnaps, needle = '*', domain) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const affiliationNeedle = '*';
       const allOaHostType = '*';
       const query = getFetchOptions(
         'publicationRate',
         domain,
         oneDate,
         needle,
-        affiliationNeedle,
         allOaHostType,
       );
       const queryFiltered = getFetchOptions(
@@ -35,7 +33,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
         domain,
         oneDate,
         needle,
-        affiliationNeedle,
         'publisher',
       );
       // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
