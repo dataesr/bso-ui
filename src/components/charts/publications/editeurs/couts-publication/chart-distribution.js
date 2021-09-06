@@ -57,7 +57,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   }
 
   const optionsGraph = getGraphOptions(id, intl);
-  optionsGraph.chart.type = 'column';
+  optionsGraph.chart.type = 'areaspline'; // 'column' dans la maquette
   optionsGraph.xAxis = {
     categories: categoriesHistogram,
     title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
