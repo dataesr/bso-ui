@@ -9,10 +9,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import {
+  getFetchOptions,
+  getGraphOptions,
+} from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -27,26 +29,21 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const [publisher, setPublisher] = useState('*');
 
   const { observationSnaps } = useGlobals(domain);
-  const { data, isLoading, isError } = useGetData(observationSnaps, publisher, domain);
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    publisher,
+    domain,
+  );
   const { dataGraphViolin, categoriesViolin } = data;
   const query = getFetchOptions('publishersList', domain, observationSnaps[0]);
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets
-          .map((item) => item.key),
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (isLoading || !dataGraphViolin || !categoriesViolin) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart = {
     type: 'areasplinerange',
@@ -65,7 +62,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   optionsGraph.yAxis = {
     categories: categoriesViolin,
     min: 0,
-    max: categoriesViolin.length - 1,
+    max: categoriesViolin && categoriesViolin.length - 1,
   };
   optionsGraph.plotOptions = {
     areasplinerange: {
@@ -92,6 +89,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
+      isError={isError}
+      isLoading={isLoading || !dataGraphViolin || !categoriesViolin}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
@@ -108,7 +107,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         id={id}
       />
     </WrapperChart>
-
   );
 };
 

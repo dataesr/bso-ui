@@ -8,7 +8,7 @@ import {
   archiveouverte125,
   archiveouverte150,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -22,8 +22,20 @@ function useGetData(observationSnaps, needle = '*', domain) {
     datesObservation?.forEach((oneDate) => {
       const publisherNeedle = '*';
       const allOaHostType = '*';
-      const query = getFetchOptions('publicationRate', domain, oneDate, publisherNeedle, allOaHostType);
-      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate, publisherNeedle, 'repository');
+      const query = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        publisherNeedle,
+        allOaHostType,
+      );
+      const queryFiltered = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        publisherNeedle,
+        'repository',
+      );
       const wildcard = {};
       wildcard[`oa_details.${oneDate}.repositories.keyword`] = needle;
       queryFiltered.query.bool.filter.push({ wildcard });

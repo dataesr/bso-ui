@@ -7,10 +7,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -27,15 +26,8 @@ const Chart = ({ id, domain }) => {
     domain,
   );
   const { dataGraph3 } = allData;
-
-  if (isLoading || !dataGraph3) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -62,7 +54,12 @@ const Chart = ({ id, domain }) => {
   ];
 
   return (
-    <WrapperChart id={id} chartRef={chartRef}>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      isLoading={isLoading || !dataGraph3}
+      isError={isError}
+    >
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}

@@ -7,10 +7,8 @@ import {
   accesouvert,
   nonconnu,
 } from '../../../../../style/colours.module.scss';
-import {
-  getFetchOptions,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
+import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
   const [data, setData] = useState({});

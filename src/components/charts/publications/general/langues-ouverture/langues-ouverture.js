@@ -5,13 +5,13 @@ import HCExporting from 'highcharts/modules/exporting';
 import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { complexComments } from '../../../../../utils/chartComments';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains } from '../../../../../utils/constants';
-import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -24,21 +24,21 @@ const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isOa, setIsOa] = useState(false);
+  const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
   const {
     allData: { dataGraph },
     isLoading,
     isError,
   } = useGetData(lastObservationSnap || '2020', isOa, domain);
-
-  if (isLoading || !dataGraph) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+  useEffect(() => {
+    if (!isOa) {
+      setChartComments(
+        complexComments(dataGraph, lastObservationSnap, id, intl),
+      );
+    }
+  }, [dataGraph, id, intl, isOa, lastObservationSnap]);
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -63,39 +63,22 @@ const Chart = ({ id, domain }) => {
     },
   ];
 
-  let chartComments = 'comment par defaut';
-  if (!isOa) {
-    const journalArticleOpened = dataGraph.find(
-      (el) => el.key === 'journal-article' && el.parent === 'opened',
-    )?.value;
-    const journalArticleClosed = dataGraph.find(
-      (el) => el.key === 'journal-article' && el.parent === 'closed',
-    )?.value;
-    const ratio1 = journalArticleOpened / (journalArticleOpened + journalArticleClosed);
-    const bookChapterOpened = dataGraph.find(
-      (el) => el.key === 'book-chapter' && el.parent === 'opened',
-    )?.value;
-    const bookChapterClosed = dataGraph.find(
-      (el) => el.key === 'book-chapter' && el.parent === 'closed',
-    )?.value;
-    const ratio2 = bookChapterOpened / (bookChapterOpened + bookChapterClosed);
-
-    chartComments = intl.formatMessage(
-      { id: `${id}.comments` },
-      {
-        a: lastObservationSnap,
-        b: journalArticleOpened,
-        c: journalArticleClosed,
-        d: Math.floor(ratio1 * 100),
-        e: bookChapterOpened,
-        f: bookChapterClosed,
-        g: Math.floor(ratio2 * 100),
-      },
-    );
-  }
+  useEffect(() => {
+    if (!isOa && dataGraph && dataGraph.length > 0) {
+      setChartComments(
+        complexComments(dataGraph, lastObservationSnap, id, intl),
+      );
+    }
+  }, [dataGraph, id, intl, isOa, lastObservationSnap]);
 
   return (
-    <WrapperChart id={id} chartRef={chartRef} graphComments={false}>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={false}
+      isLoading={isLoading || !dataGraph}
+      isError={isError}
+    >
       <Toggle
         isChecked={isOa}
         onChange={() => setIsOa(!isOa)}

@@ -9,7 +9,7 @@ import {
   goldapc,
   hybrid,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);

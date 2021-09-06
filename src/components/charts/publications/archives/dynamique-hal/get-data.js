@@ -8,9 +8,9 @@ import {
   accesouvert,
   archiveouverte125,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
-function useGetData(observationSnap, domain) {
+function useGetData(lastObservationSnap, domain) {
   const intl = useIntl();
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -18,8 +18,18 @@ function useGetData(observationSnap, domain) {
   async function GetData() {
     const allRepositories = '*';
     const queries = [];
-    const queryHAL = getFetchOptions('couvertureHAL', domain, observationSnap[0], 'HAL');
-    const queryArchive = getFetchOptions('couvertureHAL', domain, observationSnap[0], allRepositories);
+    const queryHAL = getFetchOptions(
+      'couvertureHAL',
+      domain,
+      lastObservationSnap,
+      'HAL',
+    );
+    const queryArchive = getFetchOptions(
+      'couvertureHAL',
+      domain,
+      lastObservationSnap,
+      allRepositories,
+    );
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
     const res = await Axios.all(queries).catch(() => {
@@ -31,7 +41,7 @@ function useGetData(observationSnap, domain) {
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
-            < parseInt(observationSnap[0].substring(0, 4), 10),
+            < parseInt(lastObservationSnap.substring(0, 4), 10),
       );
     let dataArchive = res[1].data.aggregations.by_publication_year.buckets;
     dataArchive = dataArchive
@@ -39,7 +49,7 @@ function useGetData(observationSnap, domain) {
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
-            < parseInt(observationSnap[0].substring(0, 4), 10),
+            < parseInt(lastObservationSnap.substring(0, 4), 10),
       );
     const publicationYears = [];
     const hal = [];
@@ -90,7 +100,7 @@ function useGetData(observationSnap, domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap]);
+  }, [lastObservationSnap]);
 
   return { data, isLoading };
 }

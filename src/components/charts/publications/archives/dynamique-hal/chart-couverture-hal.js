@@ -7,10 +7,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -21,18 +20,11 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
-  const { observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { lastObservationSnap } = useGlobals();
+  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
   const { publicationYears, dataGraph2 } = data;
-
-  if (isLoading || !dataGraph2) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.chart.type = 'column';
   optionsGraph.xAxis = {
     publicationYears,
@@ -57,6 +49,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   return (
     <WrapperChart
+      isLoading={isLoading || !dataGraph2}
+      isError={isError}
       id={id}
       chartRef={chartRef}
       graphComments={graphComments}

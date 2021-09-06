@@ -14,10 +14,13 @@ import {
   editeurplateforme100,
   g800,
 } from '../../../../../style/colours.module.scss';
+import { simpleComments } from '../../../../../utils/chartComments';
+import {
+  getFetchOptions,
+  getGraphOptions,
+} from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -32,6 +35,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
   const { lastObservationSnap, observationSnaps } = useGlobals();
+  const [chartComments, setChartComments] = useState('');
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     publisher,
@@ -48,14 +52,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading || !dataGraph1) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph1 = getGraphOptions(id, intl);
+
   optionsGraph1.chart.type = 'bar';
   optionsGraph1.colors = [editeurplateforme100];
   optionsGraph1.yAxis = { visible: false, min: 0, max: 100 };
@@ -91,18 +89,18 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     },
   ];
 
-  const chartComments = intl.formatMessage(
-    { id: `${id}.comments` },
-    {
-      a: dataGraph1[0] ? dataGraph1[0].y : '',
-      b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
-      c: dataGraph1[0] ? dataGraph1[0].publicationDate + 1 : '',
-      d: dataGraph1[0] ? dataGraph1[0].name : '',
-    },
-  );
+  useEffect(() => {
+    setChartComments(simpleComments(dataGraph1, id, intl));
+  }, [dataGraph1, id, intl]);
 
   return (
-    <WrapperChart id={id} graphFooter={graphFooter} graphComments={false}>
+    <WrapperChart
+      id={id}
+      graphFooter={graphFooter}
+      graphComments={false}
+      isLoading={isLoading || !dataGraph1}
+      isError={isError}
+    >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => setPublisher(e.target.value)}

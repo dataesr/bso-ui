@@ -6,13 +6,10 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -29,15 +26,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
   );
   const { categories, dataGraph } = allData;
-
-  if (isLoading || !dataGraph || !categories) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.chart.type = 'bar';
   optionsGraph.xAxis = {
     categories,
@@ -69,6 +59,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
+      isLoading={isLoading || !dataGraph || !categories}
+      isError={isError}
     >
       <HighchartsReact
         highcharts={Highcharts}

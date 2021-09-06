@@ -14,10 +14,13 @@ import {
   archiveouverte100,
   g800,
 } from '../../../../../style/colours.module.scss';
+import { simpleComments } from '../../../../../utils/chartComments';
+import {
+  getFetchOptions,
+  getGraphOptions,
+} from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -32,6 +35,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
   const { observationSnaps, lastObservationSnap } = useGlobals();
+  const [chartComments, setChartComments] = useState('');
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     archive,
@@ -55,12 +59,9 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading || !dataGraph1) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
+  useEffect(() => {
+    setChartComments(simpleComments(dataGraph1, id, intl));
+  }, [dataGraph1, id, intl]);
 
   const optionsGraph1 = getGraphOptions(id, intl);
   optionsGraph1.chart.type = 'bar';
@@ -98,22 +99,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     },
   ];
 
-  const chartComments = intl.formatMessage(
-    { id: `${id}.comments` },
-    {
-      a: dataGraph1[0] ? dataGraph1[0].y : '',
-      b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
-      c: dataGraph1[0] ? dataGraph1[0].publicationDate + 1 : '',
-      d: dataGraph1[0] ? dataGraph1[0].name : '',
-    },
-  );
-
   return (
     <WrapperChart
       id={id}
       chartRef={chartRef}
       graphComments={false}
       graphFooter={graphFooter}
+      isLoading={isLoading || !dataGraph1}
+      isError={isError}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}

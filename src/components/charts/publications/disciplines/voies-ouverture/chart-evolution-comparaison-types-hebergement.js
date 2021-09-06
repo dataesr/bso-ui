@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 
 import { graphIds } from '../../../../../utils/constants';
-// import { getGraphOptions } from '../../../../../utils/helpers';
-// import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 // import useGetData from './get-data';
 

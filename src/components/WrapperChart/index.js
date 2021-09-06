@@ -9,9 +9,17 @@ import useLang from '../../utils/Hooks/useLang';
 import GraphComments from '../charts/graph-comments';
 import GraphFooter from '../charts/graph-footer';
 import GraphTitle from '../charts/graph-title';
+import Loader from '../Loader';
 
-// TODO add Loader in wrapper
-function WrapperChart({ graphFooter, graphComments, children, id, chartRef }) {
+function WrapperChart({
+  graphFooter,
+  graphComments,
+  children,
+  id,
+  chartRef,
+  isLoading,
+  isError,
+}) {
   const { lang } = useLang();
   const { updateDate } = useGlobals();
   const intl = useIntl();
@@ -24,6 +32,14 @@ function WrapperChart({ graphFooter, graphComments, children, id, chartRef }) {
   const exportChartCsv = () => {
     chartRef.current.chart.downloadCSV();
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <>Error</>;
+  }
 
   return (
     <>
@@ -51,11 +67,15 @@ function WrapperChart({ graphFooter, graphComments, children, id, chartRef }) {
 WrapperChart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  isLoading: false,
+  isError: false,
   chartRef: () => {},
 };
 
 WrapperChart.propTypes = {
   graphFooter: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  isError: PropTypes.bool,
   graphComments: PropTypes.bool,
   children: PropTypes.node.isRequired,
   id: PropTypes.oneOf(graphIds).isRequired,

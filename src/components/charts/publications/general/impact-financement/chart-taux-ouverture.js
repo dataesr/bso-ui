@@ -8,14 +8,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getFetchOptions,
   getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+} from '../../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data-taux-ouverture';
@@ -44,11 +43,8 @@ const Chart = ({ id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (isLoading || !dataGraph || !categories) {
-    return <Loader />;
-  }
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.chart.type = 'column';
   optionsGraph.xAxis = {
     categories,
@@ -69,7 +65,11 @@ const Chart = ({ id, domain }) => {
   optionsGraph.series = dataGraph;
 
   return (
-    <WrapperChart id={id} chartRef={chartRef}>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      isLoading={isLoading || !dataGraph || !categories}
+    >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.agencies-filter-label' })}
         onChange={(e) => setAgency(e.target.value)}

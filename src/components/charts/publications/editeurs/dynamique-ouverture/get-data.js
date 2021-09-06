@@ -8,7 +8,7 @@ import {
   editeurplateforme125,
   editeurplateforme150,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -21,8 +21,20 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const queries = [];
     datesObservation?.forEach((oneDate) => {
       const allOaHostType = '*';
-      const query = getFetchOptions('publicationRate', domain, oneDate, needle, allOaHostType);
-      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate, needle, 'publisher');
+      const query = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        needle,
+        allOaHostType,
+      );
+      const queryFiltered = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        needle,
+        'publisher',
+      );
       // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
       // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
       queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));

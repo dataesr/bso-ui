@@ -9,7 +9,7 @@ import {
   affiliationsetablissements100,
   affiliationsetablissements125,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -23,7 +23,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
     datesObservation?.forEach((oneDate) => {
       const needlePublisher = '*';
       const allOaHostType = '*';
-      const query = getFetchOptions('publicationRate', domain, oneDate, needlePublisher, allOaHostType);
+      const query = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        needlePublisher,
+        allOaHostType,
+      );
       query.query.bool.filter.push({
         wildcard: { 'french_affiliations_types.keyword': needle },
       });
