@@ -218,8 +218,17 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
  */
 export function getFetchOptions(key, domain, ...parameters) {
   const allOptions = {
-    publicationRate: ([observationSnap]) => ({
+    publicationRate: ([observationSnap, needlePublisher = '*', needleAffiliation = '*', oaHostType = '*']) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { wildcard: { 'publisher.keyword': needlePublisher } },
+            { wildcard: { 'french_affiliations_types.keyword': needleAffiliation } },
+            { wildcard: { [`oa_details.${observationSnap}.oa_host_type`]: oaHostType } },
+          ],
+        },
+      },
       aggs: {
         by_publication_year: {
           terms: {
@@ -304,8 +313,16 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    couvertureHAL: () => ({
+    couvertureHAL: ([observationSnap, needleRepository = '*']) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { [`oa_details.${observationSnap}.oa_host_type`]: 'repository' } },
+            { wildcard: { [`oa_details.${observationSnap}.repositories.keyword`]: needleRepository } },
+          ],
+        },
+      },
       aggs: {
         by_publication_year: {
           terms: {
@@ -374,11 +391,8 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            {
-              term: {
-                year: getPublicationYearFromObservationSnap(observationSnap),
-              },
-            },
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { term: { [`oa_details.${observationSnap}.oa_host_type`]: 'publisher' } },
           ],
         },
       },
@@ -393,6 +407,13 @@ export function getFetchOptions(key, domain, ...parameters) {
     }),
     publishersTypesHisto: ([observationSnap]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { term: { [`oa_details.${observationSnap}.oa_host_type`]: 'publisher' } },
+          ],
+        },
+      },
       aggs: {
         by_year: {
           terms: {
@@ -466,17 +487,14 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    publishersLicence: ([observationSnap]) => ({
+    publishersLicence: ([observationSnap, needlePublisher = '*']) => ({
       size: 0,
       query: {
         bool: {
           filter: [
-            {
-              term: {
-                year: getPublicationYearFromObservationSnap(observationSnap),
-              },
-            },
-            { exists: { field: `oa_details.${observationSnap}` } },
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { term: { [`oa_details.${observationSnap}.oa_host_type`]: 'publisher' } },
+            { wildcard: { 'publisher.keyword': needlePublisher } },
           ],
         },
       },
@@ -652,11 +670,8 @@ export function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            {
-              term: {
-                year: getPublicationYearFromObservationSnap(observationSnap),
-              },
-            },
+            { term: { year: getPublicationYearFromObservationSnap(observationSnap) } },
+            { term: { [`oa_details.${observationSnap}.oa_host_type`]: 'repository' } },
           ],
         },
       },

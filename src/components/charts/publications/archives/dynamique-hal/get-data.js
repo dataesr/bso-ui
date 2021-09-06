@@ -16,17 +16,11 @@ function useGetData(observationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
+    const allRepositories = '*';
     const queries = [];
-    const queryHAL = getFetchOptions('couvertureHAL', domain);
-    const queryArchive = getFetchOptions('couvertureHAL', domain);
-    let term = {};
-    term[`oa_details.${observationSnap[0]}.repositories.keyword`] = 'HAL';
-    queryHAL.query.bool.filter.push({ term });
-    term = {};
-    term[`oa_details.${observationSnap[0]}.oa_host_type`] = 'repository';
-    queryHAL.query.bool.filter.push({ term });
+    const queryHAL = getFetchOptions('couvertureHAL', domain, observationSnap[0], 'HAL');
+    const queryArchive = getFetchOptions('couvertureHAL', domain, observationSnap[0], allRepositories);
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
-    queryArchive.query.bool.filter.push({ term });
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);

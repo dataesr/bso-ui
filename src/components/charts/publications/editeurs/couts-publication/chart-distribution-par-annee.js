@@ -30,9 +30,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { data, isLoading, isError } = useGetData(observationSnaps, publisher, domain);
   const { dataGraphViolin, categoriesViolin } = data;
   const query = getFetchOptions('publishersList', domain, observationSnaps[0]);
-  const term = {};
-  term[`oa_details.${observationSnaps[0]}.oa_host_type`] = 'publisher';
-  query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
