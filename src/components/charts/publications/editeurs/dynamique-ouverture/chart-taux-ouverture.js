@@ -35,6 +35,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
   const { lastObservationSnap, observationSnaps } = useGlobals();
+  const [chartComments, setChartComments] = useState('');
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     publisher,
@@ -42,10 +43,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   );
   const { dataGraph1 } = data;
   const query = getFetchOptions('publishersList', domain, lastObservationSnap);
-  const term = {};
-  const [chartComments, setChartComments] = useState('');
-  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
-  query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(

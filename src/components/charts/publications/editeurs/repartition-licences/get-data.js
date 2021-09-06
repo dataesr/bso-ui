@@ -25,13 +25,8 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
       'publishersLicence',
       domain,
       datesObservation[0],
+      needle,
     );
-    const term = {};
-    term[`oa_details.${datesObservation[0]}.oa_host_type`] = 'publisher';
-    query.query.bool.filter.push({ term });
-    query.query.bool.filter.push({
-      wildcard: { 'publisher.keyword': needle },
-    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
 
     const res = await Axios.all(queries).catch(() => {

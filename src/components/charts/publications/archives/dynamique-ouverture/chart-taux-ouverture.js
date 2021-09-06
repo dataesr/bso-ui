@@ -47,9 +47,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
     lastObservationSnap,
   );
-  const term = {};
-  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'repository';
-  query.query.bool.filter.push({ term });
 
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {

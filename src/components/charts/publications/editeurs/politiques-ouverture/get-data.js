@@ -101,7 +101,6 @@ function useGetData(lastObservationSnap, domain) {
         z: elem.doc_count,
       });
     });
-
     const bubbleGraph = [
       {
         name: intl.formatMessage({ id: 'app.publishers' }),

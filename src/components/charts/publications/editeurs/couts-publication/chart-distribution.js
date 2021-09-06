@@ -34,9 +34,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   );
   const { dataGraphHistogram, categoriesHistogram } = data;
   const query = getFetchOptions('publishersList', domain, lastObservationSnap);
-  const term = {};
-  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
-  query.query.bool.filter.push({ term });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
@@ -48,6 +45,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const optionsGraph = getGraphOptions(id, intl);
 
   optionsGraph.chart.type = 'column';
+  optionsGraph.chart.type = 'areaspline'; // 'column' dans la maquette
   optionsGraph.xAxis = {
     categories: categoriesHistogram,
     title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
