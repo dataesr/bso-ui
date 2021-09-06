@@ -60,7 +60,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   optionsGraph.yAxis = {
     categories: categoriesViolin,
     min: 0,
-    max: categoriesViolin.length - 1,
+    max: categoriesViolin && categoriesViolin.length - 1,
   };
   optionsGraph.plotOptions = {
     areasplinerange: {
