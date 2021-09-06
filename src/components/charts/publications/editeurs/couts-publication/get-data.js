@@ -187,7 +187,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     dataGraphViolin.push(
       {
         type: 'scatter',
-        name: intl.formatMessage({ id: 'app.publishers.apc-goldd-median' }),
+        name: intl.formatMessage({ id: 'app.publishers.apc-gold-median' }),
         data: [{ x: 1000, y: 0 }, { x: 1202, y: 1 }, { x: 1208, y: 2 }, { x: 2202, y: 3 }, { x: 1202, y: 4 }, { x: 1202, y: 5 }, { x: 1202, y: 6 }, { x: 1202, y: 7 }],
         color: goldapc,
         marker: { lineColor: goldapc },
