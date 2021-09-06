@@ -11,8 +11,12 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { discipline100, g800 } from '../../../../../style/colours.module.scss';
+import {
+  getGraphOptions,
+  simpleComments,
+} from '../../../../../utils/chartHelpers';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -26,6 +30,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [affiliations, setAffiliations] = useState([]);
+  const [chartComments, setChartComments] = useState('');
   const [affiliation, setAffiliation] = useState('*');
   const { lastObservationSnap, observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(
@@ -39,6 +44,11 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
     lastObservationSnap,
   );
+
+  useEffect(() => {
+    setChartComments(simpleComments(dataGraph1, id, intl));
+  }, [dataGraph1, id, intl]);
+
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setAffiliations(
@@ -85,16 +95,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       showInLegend: false,
     },
   ];
-
-  const chartComments = intl.formatMessage(
-    { id: `${id}.comments` },
-    {
-      a: dataGraph1[0] ? dataGraph1[0].y : '',
-      b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
-      c: dataGraph1[0] ? dataGraph1[0].publicationDate + 1 : '',
-      d: dataGraph1[0] ? dataGraph1[0].name : '',
-    },
-  );
 
   return (
     <WrapperChart

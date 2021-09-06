@@ -14,8 +14,12 @@ import {
   editeurplateforme100,
   g800,
 } from '../../../../../style/colours.module.scss';
+import {
+  getGraphOptions,
+  simpleComments,
+} from '../../../../../utils/chartHelpers';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -39,6 +43,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { dataGraph1 } = data;
   const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   const term = {};
+  const [chartComments, setChartComments] = useState('');
   term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
   query.query.bool.filter.push({ term });
   useEffect(() => {
@@ -87,15 +92,9 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     },
   ];
 
-  const chartComments = intl.formatMessage(
-    { id: `${id}.comments` },
-    {
-      a: dataGraph1[0] ? dataGraph1[0].y : '',
-      b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
-      c: dataGraph1[0] ? dataGraph1[0].publicationDate + 1 : '',
-      d: dataGraph1[0] ? dataGraph1[0].name : '',
-    },
-  );
+  useEffect(() => {
+    setChartComments(simpleComments(dataGraph1, id, intl));
+  }, [dataGraph1, id, intl]);
 
   return (
     <WrapperChart

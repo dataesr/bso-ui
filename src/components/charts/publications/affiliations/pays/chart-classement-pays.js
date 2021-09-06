@@ -6,13 +6,10 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartHelpers';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
@@ -25,11 +22,8 @@ const Chart = ({ id, domain }) => {
   const { lastObservationSnap } = useGlobals();
   const { allData, isLoading } = useGetData(lastObservationSnap, domain);
   const { categories2, dataGraph2 } = allData;
-
-  if (isLoading || !dataGraph2 || !categories2) {
-    return <Loader />;
-  }
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.chart.type = 'bar';
   optionsGraph.xAxis = { categories: categories2 };
   optionsGraph.yAxis = getPercentageYAxis();

@@ -6,11 +6,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartHelpers';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';

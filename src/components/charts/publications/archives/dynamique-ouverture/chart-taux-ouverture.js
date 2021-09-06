@@ -14,8 +14,12 @@ import {
   archiveouverte100,
   g800,
 } from '../../../../../style/colours.module.scss';
+import {
+  getGraphOptions,
+  simpleComments,
+} from '../../../../../utils/chartHelpers';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getFetchOptions, getGraphOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -31,6 +35,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
   const { observationSnaps, lastObservationSnap } = useGlobals();
+  const [chartComments, setChartComments] = useState('');
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     archive,
@@ -56,6 +61,10 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setChartComments(simpleComments(dataGraph1, id, intl));
+  }, [dataGraph1, id, intl]);
 
   const optionsGraph1 = getGraphOptions(id, intl);
   optionsGraph1.chart.type = 'bar';
@@ -92,16 +101,6 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       showInLegend: false,
     },
   ];
-
-  const chartComments = intl.formatMessage(
-    { id: `${id}.comments` },
-    {
-      a: dataGraph1[0] ? dataGraph1[0].y : '',
-      b: dataGraph1[0] ? dataGraph1[0].publicationDate : '',
-      c: dataGraph1[0] ? dataGraph1[0].publicationDate + 1 : '',
-      d: dataGraph1[0] ? dataGraph1[0].name : '',
-    },
-  );
 
   return (
     <WrapperChart

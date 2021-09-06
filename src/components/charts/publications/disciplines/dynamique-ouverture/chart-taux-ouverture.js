@@ -12,11 +12,9 @@ import {
   discipline100,
   discipline125,
 } from '../../../../../style/colours.module.scss';
+import { getGraphOptions } from '../../../../../utils/chartHelpers';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -61,7 +59,7 @@ const Chart = ({ graphComments, id, domain }) => {
     ];
     graphs.push(optionsGraph);
   });
-  const serieLength = graphs[0].series[0].data.length - 1;
+  const serieLength = graphs[0]?.series[0].data.length - 1;
   // classement par ordre décroissant (en taux d'oa) des disciplines
   graphs = graphs.sort(
     (a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y,

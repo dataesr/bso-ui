@@ -6,7 +6,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 
-// import { getGraphOptions } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 // import useGetData from './get-data';
 

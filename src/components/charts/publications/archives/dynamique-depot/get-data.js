@@ -13,7 +13,7 @@ import {
 } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {

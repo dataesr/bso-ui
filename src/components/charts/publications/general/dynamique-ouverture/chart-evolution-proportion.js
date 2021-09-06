@@ -4,16 +4,16 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { domains, graphIds } from '../../../../../utils/constants';
 import {
   getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+  longComments,
+} from '../../../../../utils/chartHelpers';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -26,15 +26,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const [chartComments, setChartComments] = useState('');
   const { dataGraph2 } = data;
-
-  if (isLoading || !dataGraph2) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph2 = getGraphOptions(id, intl);
   optionsGraph2.chart.type = 'spline';
   optionsGraph2.xAxis = {
@@ -45,25 +38,9 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   optionsGraph2.plotOptions = { series: { pointStart: 2013 } };
   optionsGraph2.series = dataGraph2;
 
-  const indMax = dataGraph2[1]?.data.length - 1;
-  const chartComments = intl.formatMessage(
-    { id: `${id}.comments` },
-    {
-      a: dataGraph2[1]?.name,
-      b: dataGraph2[0]?.name,
-      c: 2013 + indMax,
-      d: dataGraph2[0]?.data[indMax] - dataGraph2[1]?.data[indMax],
-      e: dataGraph2[1]?.data[indMax],
-      f: dataGraph2[0]?.data[indMax],
-      g: 2013 + indMax - 1,
-      h: dataGraph2[0]?.data[indMax - 1] - dataGraph2[1]?.data[indMax - 1],
-      i: dataGraph2[1]?.data[indMax - 1],
-      j: dataGraph2[0]?.data[indMax - 1],
-      k: dataGraph2[1]?.data[indMax - 1] - dataGraph2[2]?.data[indMax - 1],
-      l: dataGraph2[2]?.name,
-      m: dataGraph2[1]?.name,
-    },
-  );
+  useEffect(() => {
+    setChartComments(longComments(dataGraph2, id, intl));
+  }, [dataGraph2, id, intl]);
 
   return (
     <WrapperChart
@@ -71,6 +48,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       chartRef={chartRef}
       graphComments={false}
       graphFooter={graphFooter}
+      isLoading={isLoading || !dataGraph2}
+      isError={isError}
     >
       <HighchartsReact
         highcharts={Highcharts}
