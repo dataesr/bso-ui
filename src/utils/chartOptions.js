@@ -1,5 +1,6 @@
 import {
   archiveouverte100,
+  bluedark75,
   discipline100,
   discipline125,
   editeurplateforme100,
@@ -240,6 +241,49 @@ export function getFetchOptions(key, domain, ...parameters) {
                     },
                   },
                 },
+              },
+            },
+          },
+        },
+      },
+    }),
+    disciplinesVoies: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_host_type: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_host_type.keyword`,
+              },
+              aggs: {
+                by_discipline: {
+                  terms: {
+                    field: 'bsso_classification.field.keyword',
+                    size: 25,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    disciplinesVoiesEvolutions: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: 'bsso_classification.field.keyword',
+            size: 25,
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
               },
             },
           },
@@ -928,9 +972,105 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.disciplines.voies-ouverture.chart-repartition-publications': {},
+  'publi.disciplines.voies-ouverture.chart-repartition-publications': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.chart = {
+        type: 'bar',
+        height: '600px',
+      };
+
+      options.xAxis = {
+        categories,
+      };
+
+      options.legend = {
+        title: {
+          text: intl.formatMessage({ id: `${id}.legend` }),
+        },
+      };
+
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+        },
+      };
+      options.series = data;
+
+      return options;
+    },
+  },
   'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
-    {},
+    {
+      getOptions: (id, intl, data) => {
+        const options = getGraphOptions(id, intl);
+
+        options.chart.type = 'bubble';
+        options.chart.zoomType = 'xy';
+        options.series = data;
+        options.xAxis = {
+          min: 0,
+          max: 110,
+          title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
+          labels: {
+            // eslint-disable-next-line
+            formatter: function () {
+              return this.axis.defaultLabelFormatter.call(this).concat(' %');
+            },
+          },
+        };
+        options.yAxis = {
+          min: 0,
+          max: 110,
+          title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
+          labels: {
+            // eslint-disable-next-line
+            formatter: function () {
+              return this.axis.defaultLabelFormatter.call(this).concat(' %');
+            },
+          },
+        };
+        options.legend = {
+          enabled: false,
+        };
+        options.plotOptions = {
+          series: {
+            dataLabels: {
+              enabled: true,
+              format: '{point.discipline}',
+              filter: {
+                property: 'z',
+                operator: '>',
+                value: '0.1',
+              },
+            },
+          },
+        };
+
+        options.annotations = [
+          {
+            labels: [
+              {
+                point: {
+                  x: 100,
+                  y: 100,
+                  xAxis: 0,
+                  yAxis: 0,
+                },
+                text: intl.formatMessage({ id: `${id}.goal` }),
+              },
+            ],
+            labelOptions: {
+              borderRadius: 0,
+              backgroundColor: 'var(--blue-soft-100)',
+            },
+          },
+        ];
+
+        return options;
+      },
+    },
   'publi.affiliations.pays.chart-classement-pays': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
@@ -1883,5 +2023,58 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture': {},
+  'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.chart = {
+        type: 'dumbbell',
+        inverted: true,
+        zoomType: 'x',
+        height: '600px',
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.gridLineColor = 'var(--g500)';
+      options.yAxis.gridLineDashStyle = 'dot';
+      options.xAxis = {
+        type: 'category',
+        categories: data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name}` })),
+        labels: {
+          style: {
+            color: 'var(--g800)',
+            fontSize: '14px',
+          },
+        },
+      };
+      options.plotOptions = {
+        dumbbell: {
+          grouping: false,
+        },
+        series: {
+          marker: {
+            lineWidth: 2,
+            fillColor: '#000',
+          },
+        },
+      };
+      options.legend = {
+        verticalAlign: 'top',
+        align: 'left',
+        title: {
+          text: intl.formatMessage({ id: `${id}.legend` }),
+          style: {
+            color: bluedark75,
+            fontSize: '14px',
+          },
+        },
+      };
+      options.series = data;
+
+      options.tooltip = {
+        shared: true,
+      };
+
+      return options;
+    },
+  },
 };

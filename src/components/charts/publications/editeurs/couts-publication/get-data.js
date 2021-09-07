@@ -210,6 +210,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const goldDataYearMedian = [];
     const hybridDataYearMedian = [];
     res[2].data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
@@ -227,14 +228,14 @@ function useGetData(observationSnaps, needle = '*', domain) {
         goldDataYearMedian.push({
           publisher: publisherName,
           x: goldMedian,
-          y: categoriesViolin.length - yearIndex - 1,
+          y: yearIndex,
           count: goldCount,
           publicationDate: el.key,
         });
         hybridDataYearMedian.push({
           publisher: publisherName,
           x: hybridMedian,
-          y: categoriesViolin.length - yearIndex - 1,
+          y: yearIndex,
           count: hybridCount,
           publicationDate: el.key,
         });

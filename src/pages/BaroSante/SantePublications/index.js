@@ -250,8 +250,8 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='disciplines.voies-ouverture'
                 >
-                  <ChartRepartitionPublicationsDisciplines />
-                  <ChartEvolutionComparaisonTypesHebergementDisciplines />
+                  <ChartRepartitionPublicationsDisciplines domain='health' />
+                  <ChartEvolutionComparaisonTypesHebergementDisciplines domain='health' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
