@@ -235,6 +235,49 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    disciplinesVoies: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_oa_host_type: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_host_type.keyword`,
+              },
+              aggs: {
+                by_discipline: {
+                  terms: {
+                    field: 'bsso_classification.field.keyword',
+                    size: 25,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    disciplinesVoiesEvolutions: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: 'bsso_classification.field.keyword',
+            size: 25,
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     publication: () => ({
       size: 0,
       aggs: {

@@ -1,31 +1,98 @@
 /* eslint-disable react/no-this-in-sfc */
 import Highcharts from 'highcharts';
+import highchartsMore from 'highcharts/highcharts-more';
+import HighchartsAnnotations from 'highcharts/modules/annotations';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
+import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { graphIds } from '../../../../../utils/constants';
+import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
-// import useGetData from './get-data';
+import useGetData from './get-data-evolution';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
+highchartsMore(Highcharts);
+HighchartsAnnotations(Highcharts);
 
 const Chart = ({ graphFooter, graphComments, id }) => {
   const chartRef = useRef();
+  const intl = useIntl();
+  const { lastObservationSnap } = useGlobals();
+  const { data, isLoading } = useGetData(lastObservationSnap);
 
-  // const { observationSnaps, updateDate } = useGlobals();
-  // const { data, isLoading, isError } = useGetData(observationSnaps);
-  // const { dataGraph2 } = data;
+  if (isLoading || !data.bubbleGraph) {
+    return <Loader />;
+  }
 
-  // if (isLoading || !dataGraph2) {
-  //   return <Loader />;
-  // }
-  // if (isError) {
-  //   return <>Error</>;
-  // }
+  const optionsGraph = getGraphOptions(id, intl);
+  optionsGraph.chart.type = 'bubble';
+  optionsGraph.chart.zoomType = 'xy';
+  optionsGraph.series = data.bubbleGraph;
+  optionsGraph.xAxis = {
+    min: 0,
+    max: 110,
+    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
+    labels: {
+      // eslint-disable-next-line
+      formatter: function () {
+        return this.axis.defaultLabelFormatter.call(this).concat(' %');
+      },
+    },
+  };
+  optionsGraph.yAxis = {
+    min: 0,
+    max: 110,
+    title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
+    labels: {
+      // eslint-disable-next-line
+      formatter: function () {
+        return this.axis.defaultLabelFormatter.call(this).concat(' %');
+      },
+    },
+  };
+  optionsGraph.legend = {
+    enabled: false,
+  };
+  optionsGraph.plotOptions = {
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.discipline}',
+        filter: {
+          property: 'z',
+          operator: '>',
+          value: '0.1',
+        },
+      },
+    },
+  };
+
+  optionsGraph.annotations = [
+    {
+      labels: [
+        {
+          point: {
+            x: 100,
+            y: 100,
+            xAxis: 0,
+            yAxis: 0,
+          },
+          text: intl.formatMessage({ id: `${id}.goal` }),
+        },
+      ],
+      labelOptions: {
+        borderRadius: 0,
+        backgroundColor: 'var(--blue-soft-100)',
+      },
+    },
+  ];
 
   return (
     <WrapperChart
@@ -36,7 +103,7 @@ const Chart = ({ graphFooter, graphComments, id }) => {
     >
       <HighchartsReact
         highcharts={Highcharts}
-        options={{}}
+        options={optionsGraph}
         ref={chartRef}
         id={id}
       />
