@@ -43,11 +43,14 @@ function useGetData(lastObservationSnap, domain) {
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
-        y_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count,
+        y_abs: elem.by_oa_colors.buckets
+          .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+          .reduce((a, b) => a + b.doc_count, 0),
         y_tot: elem.doc_count,
-        y:
-          (100
-            * elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count)
+        y: (100
+          * elem.by_oa_colors.buckets
+            .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+            .reduce((a, b) => a + b.doc_count, 0))
           / elem.doc_count,
       });
       greenOnly.push({
@@ -84,11 +87,14 @@ function useGetData(lastObservationSnap, domain) {
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
-        x:
-          100
-          * (elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count
-            / elem.doc_count),
-        x_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count,
+        x: (100
+          * elem.by_oa_colors.buckets
+            .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+            .reduce((a, b) => a + b.doc_count, 0))
+          / elem.doc_count,
+        x_abs: elem.by_oa_colors.buckets
+          .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+          .reduce((a, b) => a + b.doc_count, 0),
         y:
           100
           * (elem.by_oa_colors.buckets.find((el) => el.key === 'green')
