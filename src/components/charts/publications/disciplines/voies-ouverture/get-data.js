@@ -5,15 +5,17 @@ import { useEffect, useState } from 'react';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { getFetchOptions } from '../../../../../utils/chartOptions';
 
-function useGetData(observationSnap) {
+function useGetData(observationSnap, domain = '') {
+  const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
     const query = getFetchOptions(
       'disciplinesVoies',
-      'health',
+      domain,
       observationSnap,
+      disciplineField,
     );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 

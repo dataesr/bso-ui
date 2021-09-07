@@ -59,9 +59,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     enabled: false,
   };
   optionsGraph.plotOptions = {
+    bubble: {
+      minSize: 10,
+      maxSize: 80,
+    },
     series: {
       dataLabels: {
         enabled: true,
+        allowOverlap: true,
         format: '{point.publisher}',
         filter: {
           property: 'z',

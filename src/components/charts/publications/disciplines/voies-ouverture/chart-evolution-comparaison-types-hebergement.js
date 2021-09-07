@@ -61,6 +61,10 @@ const Chart = ({ graphFooter, graphComments, id }) => {
     enabled: false,
   };
   optionsGraph.plotOptions = {
+    bubble: {
+      minSize: 10,
+      maxSize: 80,
+    },
     series: {
       dataLabels: {
         enabled: true,

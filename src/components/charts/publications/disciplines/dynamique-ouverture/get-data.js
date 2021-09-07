@@ -22,7 +22,7 @@ function useGetData(observationSnap, domain = '') {
       .filter((discipline) => discipline.key !== 'unknown')
       .map((discipline) => ({
         name: discipline.key,
-        data: discipline.by_observation_year.buckets[0].by_year.buckets
+        data: discipline.by_year.buckets
           .sort((a, b) => b.key - a.key)
           .slice(1, 5)
           .sort((a, b) => a.key - b.key)

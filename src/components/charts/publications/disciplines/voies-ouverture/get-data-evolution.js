@@ -8,7 +8,8 @@ import { editeurplateforme100 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/chartOptions';
 import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
-function useGetData(lastObservationSnap) {
+function useGetData(lastObservationSnap, domain = '') {
+  const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
@@ -16,8 +17,9 @@ function useGetData(lastObservationSnap) {
   async function GetData() {
     const query = getFetchOptions(
       'disciplinesVoiesEvolutions',
-      'health',
+      domain,
       lastObservationSnap,
+      disciplineField,
     );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 

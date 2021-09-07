@@ -12,9 +12,10 @@ import { useIntl } from 'react-intl';
 
 import {
   bluedark75,
-  discipline100,
-  discipline125,
-  discipline150,
+  orangesoft75,
+  orangesoft100,
+  orangesoft125,
+  orangesoft175,
 } from '../../../../../style/colours.module.scss';
 import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { graphIds } from '../../../../../utils/constants';
@@ -110,45 +111,48 @@ const Chart = ({ graphFooter, graphComments, id }) => {
   };
 
   const series = [];
-  for (let index = 1; index < dates.length; index += 1) {
+  for (let index = 1; index <= dates.length; index += 1) {
     let lowColor = '';
-    let lineColor = '';
+    let lineColor = 'white';
+    let fillColor = '';
     // eslint-disable-next-line default-case
     switch (index) {
     case 1:
-      lowColor = discipline100;
-      lineColor = '#fff';
+      lowColor = orangesoft75;
+      fillColor = lowColor;
       break;
     case 2:
-      lowColor = discipline125;
-      lineColor = '#fff';
+      lowColor = orangesoft125;
+      fillColor = lowColor;
       break;
     case 3:
-      lowColor = discipline150;
-      lineColor = '#fff';
+      lowColor = orangesoft175;
+      lineColor = lowColor;
+      break;
+    case 4:
+      lowColor = orangesoft100;
+      lineColor = lowColor;
+      fillColor = 'white';
       break;
     }
     series.push({
       name: dates[index],
       data: data.map((item) => ({
         name: item.name,
-        low: item.data.find((el) => el.name === dates[index - 1]).y,
-        high: item.data.find((el) => el.name === dates[index]).y,
+        low: item.data.find((el) => el.name === dates[index - 1])?.y || 70,
+        high: item.data.find((el) => el.name === dates[index])?.y || 70,
       })),
       lowColor,
       marker: {
         symbol: 'circle',
         radius: 8,
         lineColor,
+        fillColor,
       },
       dashStyle: 'ShortDot',
       color: lowColor,
     });
   }
-  series.push({
-    name: lastObservationSnap,
-    color: '#000',
-  });
   graphOptions.series = series;
 
   graphOptions.tooltip = {
