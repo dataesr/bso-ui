@@ -371,6 +371,24 @@ export function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    disciplinesVoiesEvolutions: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: 'bsso_classification.field.keyword',
+            size: 25,
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     publication: () => ({
       size: 0,
       aggs: {

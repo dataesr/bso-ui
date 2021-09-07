@@ -108,6 +108,7 @@ function useGetData(lastObservationSnap) {
         color: editeurplateforme100,
       },
     ];
+
     return { categories, dataGraph, bubbleGraph };
   }
 

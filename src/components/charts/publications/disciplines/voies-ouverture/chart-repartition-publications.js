@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { getGraphOptions } from '../../../../../utils/helpers';
 import {
   accesferme,
   archiveouverte100,
