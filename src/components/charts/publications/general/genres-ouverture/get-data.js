@@ -11,7 +11,7 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnap, isOa, domain) {
   const intl = useIntl();
@@ -30,6 +30,11 @@ function useGetData(observationSnap, isOa, domain) {
     );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
+    const noOutline = {
+      style: {
+        textOutline: 'none',
+      },
+    };
 
     let dataGraph = [];
     const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
@@ -39,11 +44,13 @@ function useGetData(observationSnap, isOa, domain) {
           id: 'closed',
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
           color: accesferme,
+          dataLabels: noOutline,
         },
         {
           id: 'open',
           name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color: accesouvert,
+          dataLabels: noOutline,
         },
       ];
 
@@ -76,6 +83,7 @@ function useGetData(observationSnap, isOa, domain) {
             total: totalPublications,
             publicationDate,
             percentage: (100 * el.doc_count) / totalPublications,
+            dataLabels: noOutline,
           });
         });
     } else {

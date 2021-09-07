@@ -7,7 +7,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import {
@@ -16,14 +16,12 @@ import {
   discipline125,
   discipline150,
 } from '../../../../../style/colours.module.scss';
-import {
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { graphIds } from '../../../../../utils/constants';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 highchartsMore(Highcharts);
@@ -31,8 +29,9 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id }) => {
   const intl = useIntl();
+  const chartRef = useRef();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture';
   const [isActive, setIsActive] = useState(false);
   const { lastObservationSnap } = useGlobals();
@@ -157,35 +156,36 @@ const Chart = ({ graphComments }) => {
   };
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
-        <Toggle
-          isChecked={isActive}
-          onChange={() => setIsActive(!isActive)}
-          label={intl.formatMessage({ id: `${graphId}.toggle-label` })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={graphOptions}
-          id={graphId}
-        />
-
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
-          />
-        )}
-      </div>
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={graphComments}
+      graphFooter={graphFooter}
+    >
+      <Toggle
+        isChecked={isActive}
+        onChange={() => setIsActive(!isActive)}
+        label={intl.formatMessage({ id: `${graphId}.toggle-label` })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={graphOptions}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
+  graphFooter: true,
   graphComments: true,
+  id: 'app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
 };
 Chart.propTypes = {
+  graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

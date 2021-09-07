@@ -12,35 +12,24 @@ import {
   discipline100,
   discipline125,
 } from '../../../../../style/colours.module.scss';
-import {
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphComments }) => {
+const Chart = ({ graphComments, id, domain }) => {
   const intl = useIntl();
-  const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture';
   const { lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap);
-
-  if (isLoading || !data || data.length <= 0) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
+  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
   let graphs = [];
+
   data.forEach((oneGraph) => {
-    const optionsGraph = getGraphOptions(graphId, intl);
+    const optionsGraph = getGraphOptions(id, intl);
     optionsGraph.chart.type = 'column';
 
     optionsGraph.xAxis = {
@@ -70,43 +59,45 @@ const Chart = ({ graphComments }) => {
     ];
     graphs.push(optionsGraph);
   });
-  const serieLength = graphs[0].series[0].data.length - 1;
+  const serieLength = graphs[0]?.series[0].data.length - 1;
   // classement par ordre décroissant (en taux d'oa) des disciplines
-  graphs = graphs.sort((a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y);
+  graphs = graphs.sort(
+    (a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y,
+  );
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${graphId}.title` })} />
-        <Container>
-          <Row>
-            {graphs.map((graphOptions, i) => (
-              <Col n='3' key={graphOptions.series[0].name}>
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  options={graphOptions}
-                  id={`${graphId}-${i}`}
-                />
-              </Col>
-            ))}
-          </Row>
-        </Container>
-
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${graphId}.comments` })}
-          />
-        )}
-      </div>
-    </>
+    <WrapperChart
+      id={id}
+      graphComments={graphComments}
+      isLoading={isLoading || !data || data.length <= 0}
+      isError={isError}
+    >
+      <Container>
+        <Row>
+          {graphs.map((graphOptions, i) => (
+            <Col n='3' key={graphOptions.series[0].name}>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={graphOptions}
+                id={`${id}-${i}`}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   graphComments: true,
+  id: 'app.national-publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
+  domain: '',
 };
 Chart.propTypes = {
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

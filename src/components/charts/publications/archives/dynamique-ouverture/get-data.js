@@ -8,7 +8,7 @@ import {
   archiveouverte125,
   archiveouverte150,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -20,11 +20,22 @@ function useGetData(observationSnaps, needle = '*', domain) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', domain, oneDate);
-      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate);
-      const term = {};
-      term[`oa_details.${oneDate}.oa_host_type`] = 'repository';
-      queryFiltered.query.bool.filter.push({ term });
+      const publisherNeedle = '*';
+      const allOaHostType = '*';
+      const query = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        publisherNeedle,
+        allOaHostType,
+      );
+      const queryFiltered = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        publisherNeedle,
+        'repository',
+      );
       const wildcard = {};
       wildcard[`oa_details.${oneDate}.repositories.keyword`] = needle;
       queryFiltered.query.bool.filter.push({ wildcard });
@@ -114,7 +125,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     });
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
-      y: el.data[el.data.length - 1].y,
+      y: el.data[el.data.length - 1]?.y || 0,
       archive:
         needle === '*'
           ? intl.formatMessage({ id: 'app.all-repositories' })

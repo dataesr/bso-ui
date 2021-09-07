@@ -10,7 +10,7 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -32,7 +32,11 @@ function useGetData(observationSnap, domain) {
       const publisherRepository = []; // les 2
       const oa = []; // oa
       const closed = []; // closed
-
+      const noOutline = {
+        style: {
+          textOutline: 'none',
+        },
+      };
       data
         .filter(
           (el) => el.key > 2012
@@ -95,16 +99,19 @@ function useGetData(observationSnap, domain) {
           }),
           data: publisherRepository,
           color: editeurarchive,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
           color: archiveouverte100,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
           data: publisher,
           color: editeurplateforme100,
+          dataLabels: noOutline,
         },
       ];
 
@@ -115,6 +122,7 @@ function useGetData(observationSnap, domain) {
           percentage: publisher[publisher.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: editeurplateforme100,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({
@@ -124,6 +132,7 @@ function useGetData(observationSnap, domain) {
           percentage: publisherRepository[publisherRepository.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: editeurarchive,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
@@ -131,6 +140,7 @@ function useGetData(observationSnap, domain) {
           percentage: repository[repository.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: archiveouverte100,
+          dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
@@ -138,6 +148,7 @@ function useGetData(observationSnap, domain) {
           percentage: closed[closed.length - 1].y,
           publicationDate: categories[categories.length - 1],
           color: accesferme,
+          dataLabels: noOutline,
         },
       ];
 

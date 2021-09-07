@@ -8,41 +8,34 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { graphIds } from '../../../../../utils/constants';
 import {
-  cleanNumber,
   getFetchOptions,
   getGraphOptions,
-} from '../../../../../utils/helpers';
+} from '../../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { cleanNumber } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import SimpleSelect from '../../../../SimpleSelect';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const graphId = 'app.sante-publi.publishers.couts-publication.chart-depenses-estimees';
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
 
-  const { lastObservationSnap, observationSnaps, updateDate } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, publisher);
-  const { dataGraphTotal, categoriesYear } = data;
-  const query = getFetchOptions(
-    'publishersList',
-    'health',
-    lastObservationSnap,
+  const { lastObservationSnap, observationSnaps } = useGlobals();
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    publisher,
+    domain,
   );
-  const term = {};
-  term[`oa_details.${lastObservationSnap}.oa_host_type`] = 'publisher';
-  query.query.bool.filter.push({ term });
+  const { dataGraphTotal, categoriesYear } = data;
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
@@ -52,12 +45,6 @@ const Chart = ({ graphFooter, graphComments, id }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (isLoading || !dataGraphTotal || !categoriesYear) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
   const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'column';
   optionsGraph.xAxis = {
@@ -86,13 +73,16 @@ const Chart = ({ graphFooter, graphComments, id }) => {
   optionsGraph.series = dataGraphTotal;
   optionsGraph.legend = {
     title: {
-      text: intl.formatMessage({ id: `${graphId}.legend` }),
+      text: intl.formatMessage({ id: `${id}.legend` }),
     },
   };
   optionsGraph.plotOptions = {
     column: {
       stacking: 'normal',
       dataLabels: {
+        style: {
+          textOutline: 'none',
+        },
         enabled: true,
         // eslint-disable-next-line
         formatter: function () {
@@ -103,49 +93,30 @@ const Chart = ({ graphFooter, graphComments, id }) => {
     },
   };
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <SimpleSelect
-          label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-          onChange={(e) => setPublisher(e.target.value)}
-          options={publishers}
-          selected={publisher}
-          firstValue='*'
-          firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
-        />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphFooter={graphFooter}
+      graphComments={graphComments}
+      isLoading={isLoading || !dataGraphTotal || !categoriesYear}
+      isError={isError}
+    >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
+        onChange={(e) => setPublisher(e.target.value)}
+        options={publishers}
+        selected={publisher}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 
@@ -153,11 +124,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.publishers.couts-publication.chart-depenses-estimees',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

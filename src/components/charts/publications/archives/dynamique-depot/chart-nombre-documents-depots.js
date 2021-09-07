@@ -8,12 +8,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -24,14 +22,6 @@ const Chart = ({ graphComments, id, domain }) => {
 
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
-
-  if (isLoading || !data) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const graphs = [];
 
   data.forEach((oneGraph) => {
@@ -63,30 +53,26 @@ const Chart = ({ graphComments, id, domain }) => {
   });
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <Container>
-          <Row>
-            {graphs.map((graphOptions, i) => (
-              <Col n='3' key={graphOptions.series[0].name}>
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  options={graphOptions}
-                  id={`${id}-${i}`}
-                />
-              </Col>
-            ))}
-          </Row>
-        </Container>
-
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-    </>
+    <WrapperChart
+      id={id}
+      graphComments={graphComments}
+      isLoading={isLoading || !data}
+      isError={isError}
+    >
+      <Container>
+        <Row>
+          {graphs.map((graphOptions, i) => (
+            <Col n='3' key={graphOptions.series[0].name}>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={graphOptions}
+                id={`${id}-${i}`}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </WrapperChart>
   );
 };
 

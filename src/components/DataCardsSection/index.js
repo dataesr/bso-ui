@@ -4,11 +4,11 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { ES_API_URL } from '../../config/config';
+import { getFetchOptions } from '../../utils/chartOptions';
 import { domains } from '../../utils/constants';
 import {
   cleanNumber,
   formatNumberByLang,
-  getFetchOptions,
   getPublicationYearFromObservationSnap,
   getValueByPath,
 } from '../../utils/helpers';

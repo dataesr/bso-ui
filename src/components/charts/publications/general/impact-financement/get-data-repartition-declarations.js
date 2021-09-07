@@ -10,9 +10,9 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
-function useGetData(observationSnap, isOa) {
+function useGetData(observationSnap, domain, isOa) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ function useGetData(observationSnap, isOa) {
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const query = getFetchOptions(
       'declarationRate',
-      'health',
+      domain,
       lastObservationSnap,
     );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
@@ -77,6 +77,11 @@ function useGetData(observationSnap, isOa) {
               parent: hostType.key,
               value: agency.doc_count,
               color,
+              dataLabels: {
+                style: {
+                  textOutline: 'none',
+                },
+              },
             });
           });
         });

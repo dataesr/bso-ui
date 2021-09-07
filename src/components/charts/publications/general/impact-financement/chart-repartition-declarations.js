@@ -7,17 +7,10 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getFormattedDate,
-  getGraphOptions,
-} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import useLang from '../../../../../utils/Hooks/useLang';
-import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data-repartition-declarations';
 
 treemapModule(Highcharts);
@@ -27,22 +20,14 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang } = useLang();
-  const { lastObservationSnap, updateDate } = useGlobals();
+  const { lastObservationSnap } = useGlobals();
   const {
     allData: { dataGraph },
     isLoading,
     isError,
   } = useGetData(lastObservationSnap || '2020', domain);
-
-  if (isLoading || !dataGraph) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -57,8 +42,10 @@ const Chart = ({ id, domain }) => {
             align: 'left',
             verticalAlign: 'top',
             style: {
+              textOutline: 'none',
               fontSize: '15px',
               fontWeight: 'bold',
+              color: '#fff',
             },
           },
         },
@@ -66,37 +53,21 @@ const Chart = ({ id, domain }) => {
       data: dataGraph,
     },
   ];
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
-  const chartComments = 'comment par defaut';
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        <GraphComments comments={chartComments} />
-      </div>
-      <GraphFooter
-        date={getFormattedDate(updateDate, lang)}
-        source={intl.formatMessage({ id: `${id}.source` })}
-        graphId={id}
-        onPngButtonClick={exportChartPng}
-        onCsvButtonClick={exportChartCsv}
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      isLoading={isLoading || !dataGraph}
+      isError={isError}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
       />
-    </>
+    </WrapperChart>
   );
 };
 

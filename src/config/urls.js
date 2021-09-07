@@ -22,8 +22,8 @@ export default {
         en: '/publications/archives',
       },
     ],
-    fr: '/publications/general',
-    en: '/publications/general',
+    fr: '/publications',
+    en: '/publications',
   },
   sante: {
     fr: '/sante',
@@ -52,8 +52,8 @@ export default {
         en: '/health/publications/affiliations',
       },
     ],
-    fr: '/sante/publications/general',
-    en: '/health/publications/general',
+    fr: '/sante/publications',
+    en: '/health/publications',
   },
   santeEssais: {
     fr: '/sante/essais-cliniques',

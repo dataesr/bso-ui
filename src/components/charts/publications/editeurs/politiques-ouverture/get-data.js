@@ -7,12 +7,10 @@ import {
   archiveouverte100,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
-import {
-  getFetchOptions,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
+import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
-function useGetData(lastObservationSnap) {
+function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
@@ -21,19 +19,20 @@ function useGetData(lastObservationSnap) {
     const queries = [];
     const query = getFetchOptions(
       'publishersPolitiqueHisto',
-      'health',
+      domain,
       lastObservationSnap,
     );
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryBulle = getFetchOptions(
       'publishersPolitiqueBulle',
-      'health',
+      domain,
       lastObservationSnap,
     );
     queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
+
     // 1er graphe (bar)
     const data = res[0].data.aggregations.by_publisher.buckets;
     const categories = data.map((el) => el.key);
@@ -44,11 +43,15 @@ function useGetData(lastObservationSnap) {
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
-        y_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count,
+        y_abs: elem.by_oa_colors.buckets
+          .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+          .reduce((a, b) => a + b.doc_count, 0),
         y_tot: elem.doc_count,
         y:
           (100
-            * elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count)
+            * elem.by_oa_colors.buckets
+              .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+              .reduce((a, b) => a + b.doc_count, 0))
           / elem.doc_count,
       });
       greenOnly.push({
@@ -86,10 +89,14 @@ function useGetData(lastObservationSnap) {
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
         x:
-          100
-          * (elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count
-            / elem.doc_count),
-        x_abs: elem.by_oa_colors.buckets.find((el) => ['gold', 'hybrid', 'diamond'].includes(el.key)).doc_count,
+          (100
+            * elem.by_oa_colors.buckets
+              .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+              .reduce((a, b) => a + b.doc_count, 0))
+          / elem.doc_count,
+        x_abs: elem.by_oa_colors.buckets
+          .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+          .reduce((a, b) => a + b.doc_count, 0),
         y:
           100
           * (elem.by_oa_colors.buckets.find((el) => el.key === 'green')
@@ -100,7 +107,6 @@ function useGetData(lastObservationSnap) {
         z: elem.doc_count,
       });
     });
-
     const bubbleGraph = [
       {
         name: intl.formatMessage({ id: 'app.publishers' }),

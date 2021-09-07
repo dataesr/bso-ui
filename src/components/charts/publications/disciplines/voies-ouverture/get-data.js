@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnap) {
   const [data, setData] = useState([]);

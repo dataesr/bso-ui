@@ -11,7 +11,7 @@ import {
   editeurarchive,
   editeurplateforme100,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnap, isOa, domain) {
   const intl = useIntl();
@@ -33,17 +33,24 @@ function useGetData(observationSnap, isOa, domain) {
 
     let dataGraph = [];
     const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
+    const noOutline = {
+      style: {
+        textOutline: 'none',
+      },
+    };
     if (!isOa) {
       dataGraph = [
         {
           id: 'closed',
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
           color: accesferme,
+          dataLabels: noOutline,
         },
         {
           id: 'open',
           name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color: accesouvert,
+          dataLabels: noOutline,
         },
       ];
 
@@ -60,6 +67,7 @@ function useGetData(observationSnap, isOa, domain) {
             total: totalPublications,
             publicationDate,
             percentage: (100 * el.doc_count) / totalPublications,
+            dataLabels: noOutline,
           });
         });
 
@@ -76,6 +84,7 @@ function useGetData(observationSnap, isOa, domain) {
             total: totalPublications,
             publicationDate,
             percentage: (100 * el.doc_count) / totalPublications,
+            dataLabels: noOutline,
           });
         });
     } else {

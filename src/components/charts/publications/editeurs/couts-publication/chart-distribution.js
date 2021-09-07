@@ -1,75 +1,111 @@
 /* eslint-disable react/no-this-in-sfc */
+import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { graphIds } from '../../../../../utils/constants';
-// import { getGraphOptions } from '../../../../../utils/helpers';
+import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import {
+  getFetchOptions,
+  getGraphOptions,
+} from '../../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../../utils/constants';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-// import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
-// import useGetData from './get-data';
+import SimpleSelect from '../../../../SimpleSelect';
+import WrapperChart from '../../../../WrapperChart';
+import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
-  // const { observationSnaps, updateDate } = useGlobals();
-  const { updateDate } = useGlobals();
-  // const { data, isLoading, isError } = useGetData(observationSnaps);
-  // const { dataGraph2 } = data;
-
-  // if (isLoading || !dataGraph2) {
-  //   return <Loader />;
-  // }
-  // if (isError) {
-  //   return <>Error</>;
-  // }
-
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
+  const [publishers, setPublishers] = useState([]);
+  const [publisher, setPublisher] = useState('*');
+  const { observationSnaps, lastObservationSnap } = useGlobals(domain);
+  const { data, isLoading, isError } = useGetData(
+    observationSnaps,
+    publisher,
+    domain,
+  );
+  const { dataGraphHistogram, categoriesHistogram } = data;
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
+  useEffect(() => {
+    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
+      setPublishers(
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
+      );
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const optionsGraph = getGraphOptions(id, intl);
+
+  optionsGraph.chart.type = 'column';
+  optionsGraph.chart.type = 'areaspline'; // 'column' dans la maquette
+  optionsGraph.xAxis = {
+    categories: categoriesHistogram,
+    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
+    labels: {
+      // eslint-disable-next-line
+      formatter: function () {
+        return this.axis.defaultLabelFormatter.call(this).concat(' €');
+      },
+    },
   };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
+  optionsGraph.yAxis = {
+    title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
+  };
+  optionsGraph.series = dataGraphHistogram;
+  optionsGraph.legend = {
+    title: {
+      text: intl.formatMessage({ id: `${id}.legend` }),
+    },
+  };
+  optionsGraph.plotOptions = {
+    series: {
+      pointPadding: 0,
+      groupPadding: 0,
+      borderWidth: 0,
+      shadow: false,
+    },
+    column: {
+      stacking: false,
+      dataLabels: {
+        enabled: false,
+      },
+    },
   };
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={{}}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphFooter={graphFooter}
+      graphComments={graphComments}
+      isLoading={isLoading || !dataGraphHistogram || !categoriesHistogram}
+      isError={isError}
+    >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
+        onChange={(e) => setPublisher(e.target.value)}
+        options={publishers}
+        selected={publisher}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 
@@ -77,11 +113,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.publishers.couts-publication.chart-distribution',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

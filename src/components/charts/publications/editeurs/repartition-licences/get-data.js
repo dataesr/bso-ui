@@ -7,12 +7,10 @@ import {
   accesouvert,
   nonconnu,
 } from '../../../../../style/colours.module.scss';
-import {
-  getFetchOptions,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
+import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, isDetailed, needle = '*') {
+function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -23,15 +21,10 @@ function useGetData(observationSnaps, isDetailed, needle = '*') {
     const queries = [];
     const query = getFetchOptions(
       'publishersLicence',
-      'health',
+      domain,
       datesObservation[0],
+      needle,
     );
-    const term = {};
-    term[`oa_details.${datesObservation[0]}.oa_host_type`] = 'publisher';
-    query.query.bool.filter.push({ term });
-    query.query.bool.filter.push({
-      wildcard: { 'publisher.keyword': needle },
-    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
 
     const res = await Axios.all(queries).catch(() => {

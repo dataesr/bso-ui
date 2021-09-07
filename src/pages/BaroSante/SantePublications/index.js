@@ -137,24 +137,34 @@ function SantePublications() {
               ]}
               links={[
                 {
-                  label: 'La dynamique d’ouverture en santé',
-                  href: '/sante/publications/general#dynamique',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.disciplines.dynamique',
+                  }),
+                  href: '/sante/publications/general?id=general.dynamique-ouverture',
                 },
                 {
-                  label: "Les voies d'ouverture",
-                  href: '/sante/publications/general#voies',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.disciplines.voies',
+                  }),
+                  href: '/sante/publications/general?id=general.voies-ouverture',
                 },
                 {
-                  label: 'Les genres les plus ouverts',
-                  href: '/sante/publications/general#genres',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.genres',
+                  }),
+                  href: '/sante/publications/general?id=general.genres-ouverture',
                 },
                 {
-                  label: 'Les langues des productions',
-                  href: '/sante/publications/general#langues',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.langues',
+                  }),
+                  href: '/sante/publications/general?id=general.langues-ouverture',
                 },
                 {
-                  label: 'Le financement',
-                  href: '/sante/publications/general#financement',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.financement',
+                  }),
+                  href: '/sante/publications/general?id=general.impact-financement',
                 },
               ]}
             >
@@ -162,7 +172,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.dynamique-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='dynamique'
+                  anchorId='general.dynamique-ouverture'
                 >
                   <ChartTauxOuverture
                     id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
@@ -177,7 +187,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.voies-ouverture'
                   backgroundColor={bluesoft25}
-                  anchorId='voies'
+                  anchorId='general.voies-ouverture'
                 >
                   <ChartRepartitionTaux
                     id='app.sante-publi.general.voies-ouverture.chart-repartition-taux'
@@ -196,7 +206,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.genres-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='genres'
+                  anchorId='general.genres-ouverture'
                 >
                   <ChartGenreOuverture
                     id='app.sante-publi.general.genres-ouverture.chart-repartition-genres'
@@ -207,7 +217,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.langues-ouverture'
                   backgroundColor={bluesoft25}
-                  anchorId='langues'
+                  anchorId='general.langues-ouverture'
                 >
                   <ChartLanguesOuverture
                     id='app.sante-publi.general.langues-ouverture.chart-repartition-publications'
@@ -218,7 +228,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.general.impact-financement'
                   backgroundColor={bluesoft50}
-                  anchorId='financement'
+                  anchorId='general.impact-financement'
                 >
                   <ChartTauxOuvertureFinancement
                     id='app.sante-publi.general.impact-financement.chart-taux-ouverture'
@@ -239,12 +249,16 @@ function SantePublications() {
               })}
               links={[
                 {
-                  href: '/sante/publications/disciplines#dynamique',
-                  label: "La dynamique d'ouverture par discipline",
+                  href: '/sante/publications/disciplines?id=disciplines.dynamique-ouverture',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.disciplines.dynamique',
+                  }),
                 },
                 {
-                  href: '/sante/publications/disciplines#voies',
-                  label: "Les voies d'ouverture par discipline",
+                  href: '/sante/publications/disciplines?id=disciplines.voies-ouverture',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.disciplines.voies',
+                  }),
                 },
               ]}
             >
@@ -252,16 +266,19 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.disciplines.dynamique-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='dynamique'
+                  anchorId='disciplines.dynamique-ouverture'
                 >
-                  <ChartTauxOuvertureDisciplines />
-                  <ChartEvolutionTauxOuvertureDisciplines />
+                  <ChartTauxOuvertureDisciplines
+                    id='app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <ChartEvolutionTauxOuvertureDisciplines id='app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' />
                 </QuestionSection>
 
                 <QuestionSection
                   intlKey='app.sante-publi.disciplines.voies-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='voies'
+                  anchorId='disciplines.voies-ouverture'
                 >
                   <ChartRepartitionPublicationsDisciplines id='app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications' />
                   <ChartEvolutionComparaisonTypesHebergementDisciplines id='app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
@@ -274,28 +291,40 @@ function SantePublications() {
               mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
               links={[
                 {
-                  href: '/sante/publications/editeurs#dynamique',
-                  label: "La dynamique d'ouverture des éditeurs et plateformes",
+                  href: '/sante/publications/editeurs?id=publishers.dynamique-ouverture',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.editeurs.dynamique',
+                  }),
                 },
                 {
-                  href: '/sante/publications/editeurs#type',
-                  label: 'Les modèles économiques',
+                  href: '/sante/publications/editeurs?id=publishers.type-ouverture',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.editeurs.modele',
+                  }),
                 },
                 {
-                  href: '/sante/publications/editeurs#politique',
-                  label: "Les politiques d'ouverture",
+                  href: '/sante/publications/editeurs?id=publishers.politiques-ouverture',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.editeurs.politique',
+                  }),
                 },
                 {
-                  href: '/sante/publications/editeurs#predatory',
-                  label: 'Les revues prédatrices',
+                  href: '/sante/publications/editeurs?id=publishers.poids-revues',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.editeurs.revues',
+                  }),
                 },
                 {
-                  href: '/sante/publications/editeurs#licences',
-                  label: 'Les licences ouvertes',
+                  href: '/sante/publications/editeurs?id=publishers.repartition-licences',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.editeurs.licences',
+                  }),
                 },
                 {
-                  href: '/sante/publications/editeurs#apc',
-                  label: 'Les frais de publication',
+                  href: '/sante/publications/editeurs?id=publishers.couts-publication',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.editeurs.frais',
+                  }),
                 },
               ]}
             >
@@ -303,7 +332,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.publishers.dynamique-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='dynamique'
+                  anchorId='publishers.dynamique-ouverture'
                 >
                   <ChartTauxOuverturePublishers
                     id='app.sante-publi.publishers.dynamique-ouverture.chart-taux-ouverture'
@@ -318,7 +347,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.publishers.type-ouverture'
                   backgroundColor={bluesoft25}
-                  anchorId='type'
+                  anchorId='publishers.type-ouverture'
                 >
                   <ChartEvolutionRepartitionPublishers
                     id='app.sante-publi.publishers.type-ouverture.chart-evolution-repartition'
@@ -333,14 +362,14 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.publishers.politiques-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='politique'
+                  anchorId='publishers.politiques-ouverture'
                 >
                   <ChartClassementPublishers
                     id='app.sante-publi.publishers.politiques-ouverture.chart-classement'
                     domain='health'
                   />
                   <ChartComparaisonPublishers
-                    id='app.sante-publi.publishers.politiques-ouverture.chart-classement'
+                    id='app.sante-publi.publishers.politiques-ouverture.chart-comparaison'
                     domain='health'
                   />
                 </QuestionSection>
@@ -348,15 +377,15 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.publishers.poids-revues'
                   backgroundColor={bluesoft25}
-                  anchorId='predatory'
+                  anchorId='publishers.poids-revues'
                 >
-                  <ChartRepartitionPublishers />
+                  <ChartRepartitionPublishers id='app.national-publi.publishers.poids-revues.chart-repartition' />
                 </QuestionSection>
 
                 <QuestionSection
                   intlKey='app.sante-publi.publishers.repartition-licences'
                   backgroundColor={bluesoft50}
-                  anchorId='licences'
+                  anchorId='publishers.repartition-licences'
                 >
                   <ChartRepartitionLicencesPublishers
                     domain='health'
@@ -371,7 +400,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.publishers.couts-publication'
                   backgroundColor={bluesoft25}
-                  anchorId='apc'
+                  anchorId='publishers.couts-publication'
                 >
                   <ChartDepensesEstimeesPublishers
                     id='app.sante-publi.publishers.couts-publication.chart-depenses-estimees'
@@ -394,20 +423,28 @@ function SantePublications() {
               mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}
               links={[
                 {
-                  href: '/sante/publications/archives#dynamique',
-                  label: "La dynamique d'ouverture sur archives ouvertes",
+                  href: '/sante/publications/archives?id=repositories.dynamique-ouverture',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.archives.dynamique',
+                  }),
                 },
                 {
-                  href: '/sante/publications/archives#plus-utilisees',
-                  label: 'Les archives ouvertes les plus utilisées',
+                  href: '/sante/publications/archives?id=repositories.plus-utilisees',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.archives.utilisees',
+                  }),
                 },
                 {
-                  href: '/sante/publications/archives#depots',
-                  label: 'La dynamique de dépôts par archive',
+                  href: '/sante/publications/archives?id=repositories.dynamique-depot',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.archives.depot',
+                  }),
                 },
                 {
-                  href: '/sante/publications/archives#hal',
-                  label: 'La place de HAL',
+                  href: '/sante/publications/archives?id=repositories.dynamique-hal',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.archives.hal',
+                  }),
                 },
               ]}
             >
@@ -415,7 +452,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.repositories.dynamique-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='dynamique'
+                  anchorId='repositories.dynamique-ouverture'
                 >
                   <ChartTauxOuvertureArchives
                     id='app.sante-publi.repositories.dynamique-ouverture.chart-taux-ouverture'
@@ -430,7 +467,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.repositories.plus-utilisees'
                   backgroundColor={bluesoft25}
-                  anchorId='plus-utilisees'
+                  anchorId='repositories.plus-utilisees'
                 >
                   <ChartNombreDocumentsRepositories
                     id='app.sante-publi.repositories.plus-utilisees.chart-nombre-documents'
@@ -441,7 +478,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.repositories.dynamique-depot'
                   backgroundColor={bluesoft50}
-                  anchorId='depots'
+                  anchorId='repositories.dynamique-depot'
                 >
                   <ChartNombreDocumentsDepotsRepositories
                     id='app.sante-publi.repositories.dynamique-depot.chart-nombre-documents-depots'
@@ -452,7 +489,7 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.repositories.dynamique-hal'
                   backgroundColor={bluesoft25}
-                  anchorId='hal'
+                  anchorId='repositories.dynamique-hal'
                 >
                   <ChartTauxCouvertureHAL
                     id='app.sante-publi.repositories.dynamique-hal.chart-couverture-hal'
@@ -469,12 +506,16 @@ function SantePublications() {
               })}
               links={[
                 {
-                  href: '/sante/publications/affiliations#dynamique',
-                  label: "La dynamique d'ouverture par type d'affiliation",
+                  href: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.affiliation.dynamique',
+                  }),
                 },
                 {
-                  href: '/sante/publications/affiliations#pays',
-                  label: "Impact des pays d'affiliation",
+                  href: '/sante/publications/affiliations?id=affiliations.pays',
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.affiliation.impact',
+                  }),
                 },
               ]}
             >
@@ -482,19 +523,31 @@ function SantePublications() {
                 <QuestionSection
                   intlKey='app.sante-publi.affiliations.dynamique-ouverture'
                   backgroundColor={bluesoft50}
-                  anchorId='dynamique'
+                  anchorId='affiliations.dynamique-ouverture'
                 >
-                  <ChartTauxOuvertureAffiliations />
-                  <ChartEvolutionProportionAffiliations />
+                  <ChartTauxOuvertureAffiliations
+                    id='app.sante-publi.affiliations.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <ChartEvolutionProportionAffiliations
+                    id='app.sante-publi.affiliations.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
                   intlKey='app.sante-publi.affiliations.pays'
                   backgroundColor={bluesoft50}
-                  anchorId='pays'
+                  anchorId='affiliations.pays'
                 >
-                  <ChartEvolutionTauxOuvertureRangUtile />
-                  <ChartClassementPays />
+                  <ChartEvolutionTauxOuvertureRangUtile
+                    id='app.sante-publi.affiliations.pays.chart-taux-rang-utile'
+                    domain='health'
+                  />
+                  <ChartClassementPays
+                    id='app.sante-publi.affiliations.pays.chart-classement-pays'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

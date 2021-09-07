@@ -6,18 +6,11 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getFormattedDate,
-  getGraphOptions,
-  getPercentageYAxis,
-} from '../../../../../utils/helpers';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import useLang from '../../../../../utils/Hooks/useLang';
-import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -26,15 +19,9 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang } = useLang();
-  const { lastObservationSnap, updateDate } = useGlobals();
+  const { lastObservationSnap } = useGlobals();
   const { allData, isLoading } = useGetData(lastObservationSnap, domain);
   const { dataGraph, categories } = allData;
-
-  if (isLoading || !dataGraph || !categories) {
-    return <Loader />;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
   optionsGraph.chart.type = 'column';
   optionsGraph.xAxis = {
@@ -50,6 +37,9 @@ const Chart = ({ id, domain }) => {
     column: {
       stacking: 'normal',
       dataLabels: {
+        style: {
+          textOutline: 'none',
+        },
         enabled: true,
         // eslint-disable-next-line
         formatter: function () {
@@ -61,37 +51,19 @@ const Chart = ({ id, domain }) => {
   };
   optionsGraph.series = dataGraph;
 
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
-
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        <GraphComments
-          comments={intl.formatMessage({ id: `${id}.comments` })}
-        />
-      </div>
-      <GraphFooter
-        date={getFormattedDate(updateDate, lang)}
-        source={intl.formatMessage({ id: `${id}.source` })}
-        graphId={id}
-        onPngButtonClick={exportChartPng}
-        onCsvButtonClick={exportChartCsv}
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      isLoading={isLoading || !dataGraph || !categories}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
       />
-    </>
+    </WrapperChart>
   );
 };
 

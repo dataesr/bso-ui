@@ -9,7 +9,7 @@ import {
   goldapc,
   hybrid,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);
@@ -22,9 +22,6 @@ function useGetData(observationSnap, domain) {
       domain,
       observationSnap,
     );
-    const term = {};
-    term[`oa_details.${observationSnap}.oa_host_type`] = 'publisher';
-    query.query.bool.filter.push({ term });
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_year.buckets

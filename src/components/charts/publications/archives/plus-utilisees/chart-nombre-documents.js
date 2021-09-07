@@ -8,13 +8,10 @@ import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { archiveouverte100 } from '../../../../../style/colours.module.scss';
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -23,25 +20,10 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lastObservationSnap, updateDate } = useGlobals();
+  const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
-
-  if (isLoading || !data) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.chart.type = 'bar';
   optionsGraph.chart.height = '700px';
   optionsGraph.colors = [archiveouverte100];
@@ -66,31 +48,21 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   ];
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        {graphComments && (
-          <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
-          />
-        )}
-      </div>
-      {graphFooter && (
-        <GraphFooter
-          date={updateDate}
-          source={intl.formatMessage({ id: `${id}.source` })}
-          graphId={id}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
-        />
-      )}
-    </>
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      graphComments={graphComments}
+      graphFooter={graphFooter}
+      isLoading={isLoading || !data}
+      isError={isError}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
+      />
+    </WrapperChart>
   );
 };
 

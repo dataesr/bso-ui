@@ -7,13 +7,10 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
+import { getGraphOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getGraphOptions } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
-import GraphComments from '../../../graph-comments';
-import GraphFooter from '../../../graph-footer';
-import GraphTitle from '../../../graph-title';
+import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data-evolution-repartition';
 
 treemapModule(Highcharts);
@@ -23,21 +20,14 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lastObservationSnap, updateDate } = useGlobals();
+  const { lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap || 2020,
     domain,
   );
   const { dataGraphTreemap } = allData;
-
-  if (isLoading || !dataGraphTreemap) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <>Error</>;
-  }
-
   const optionsGraph = getGraphOptions(id, intl);
+
   optionsGraph.series = [
     {
       type: 'treemap',
@@ -60,6 +50,9 @@ const Chart = ({ id, domain }) => {
         },
       ],
       dataLabels: {
+        style: {
+          textOutline: 'none',
+        },
         format: '{point.name}<br>{point.value:.0f} %',
         rotationMode: 'auto',
         filter: {
@@ -71,37 +64,21 @@ const Chart = ({ id, domain }) => {
       data: dataGraphTreemap,
     },
   ];
-  const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
-  };
-  const exportChartCsv = () => {
-    chartRef.current.chart.downloadCSV();
-  };
 
   return (
-    <>
-      <div className='graph-container'>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={optionsGraph}
-          ref={chartRef}
-          id={id}
-        />
-        <GraphComments
-          comments={intl.formatMessage({ id: `${id}.comments` })}
-        />
-      </div>
-      <GraphFooter
-        date={updateDate}
-        source={intl.formatMessage({ id: `${id}.source` })}
-        graphId={id}
-        onPngButtonClick={exportChartPng}
-        onCsvButtonClick={exportChartCsv}
+    <WrapperChart
+      id={id}
+      chartRef={chartRef}
+      isLoading={isLoading || !dataGraphTreemap}
+      isError={isError}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={id}
       />
-    </>
+    </WrapperChart>
   );
 };
 

@@ -9,9 +9,9 @@ import {
   discipline150,
   nonconnu,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
-function useGetData(observationSnap, agency = '*') {
+function useGetData(observationSnap, agency = '*', domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -22,13 +22,13 @@ function useGetData(observationSnap, agency = '*') {
     queryFilter.push({ wildcard: { 'grants.agency.keyword': agency } });
     const queryFiltered = getFetchOptions(
       'openingRate',
-      'health',
+      domain,
       lastObservationSnap,
       queryFilter,
     );
     const query = getFetchOptions(
       'openingRate',
-      'health',
+      domain,
       lastObservationSnap,
       [],
     );

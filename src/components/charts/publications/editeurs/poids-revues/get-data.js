@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { redmedium150 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
-function useGetData(observationSnap) {
+function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   async function getDataGraph() {
-    const query = getFetchOptions('predatory', 'health');
+    const query = getFetchOptions('predatory', domain);
 
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_year.buckets

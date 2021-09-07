@@ -5,10 +5,8 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { editeurplateforme100 } from '../../../../../style/colours.module.scss';
-import {
-  getFetchOptions,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
+import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(lastObservationSnap) {
   const [data, setData] = useState([]);

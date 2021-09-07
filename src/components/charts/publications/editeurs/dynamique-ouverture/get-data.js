@@ -8,7 +8,7 @@ import {
   editeurplateforme125,
   editeurplateforme150,
 } from '../../../../../style/colours.module.scss';
-import { getFetchOptions } from '../../../../../utils/helpers';
+import { getFetchOptions } from '../../../../../utils/chartOptions';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -20,17 +20,21 @@ function useGetData(observationSnaps, needle = '*', domain) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRate', domain, oneDate);
-      const queryFiltered = getFetchOptions('publicationRate', domain, oneDate);
-      const term = {};
-      term[`oa_details.${oneDate}.oa_host_type`] = 'publisher';
-      queryFiltered.query.bool.filter.push({ term });
-      query.query.bool.filter.push({
-        wildcard: { 'publisher.keyword': needle },
-      });
-      queryFiltered.query.bool.filter.push({
-        wildcard: { 'publisher.keyword': needle },
-      });
+      const allOaHostType = '*';
+      const query = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        needle,
+        allOaHostType,
+      );
+      const queryFiltered = getFetchOptions(
+        'publicationRate',
+        domain,
+        oneDate,
+        needle,
+        'publisher',
+      );
       // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
       // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
       queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
