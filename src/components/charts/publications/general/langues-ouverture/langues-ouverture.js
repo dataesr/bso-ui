@@ -9,8 +9,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { complexComments } from '../../../../../utils/chartComments';
-import { getGraphOptions } from '../../../../../utils/chartOptions';
-import { domains } from '../../../../../utils/constants';
+import { chartOptions } from '../../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -31,49 +32,33 @@ const Chart = ({ id, domain }) => {
     isLoading,
     isError,
   } = useGetData(lastObservationSnap || '2020', isOa, domain);
-  const optionsGraph = getGraphOptions(id, intl);
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph,
+  );
+
   useEffect(() => {
     if (!isOa) {
       setChartComments(
-        complexComments(dataGraph, lastObservationSnap, id, intl),
+        complexComments(dataGraph, lastObservationSnap, idWithDomain, intl),
       );
     }
-  }, [dataGraph, id, intl, isOa, lastObservationSnap]);
-  optionsGraph.series = [
-    {
-      type: 'treemap',
-      layoutAlgorithm: 'stripes',
-      alternateStartingDirection: true,
-      levels: [
-        {
-          level: 1,
-          layoutAlgorithm: 'sliceAndDice',
-          dataLabels: {
-            enabled: true,
-            align: 'left',
-            verticalAlign: 'top',
-            style: {
-              fontSize: '15px',
-              fontWeight: 'bold',
-            },
-          },
-        },
-      ],
-      data: dataGraph,
-    },
-  ];
+  }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
       setChartComments(
-        complexComments(dataGraph, lastObservationSnap, id, intl),
+        complexComments(dataGraph, lastObservationSnap, idWithDomain, intl),
       );
     }
-  }, [dataGraph, id, intl, isOa, lastObservationSnap]);
+  }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphComments={false}
       isLoading={isLoading || !dataGraph}
@@ -82,13 +67,13 @@ const Chart = ({ id, domain }) => {
       <Toggle
         isChecked={isOa}
         onChange={() => setIsOa(!isOa)}
-        label={intl.formatMessage({ id: `${id}.toggle-label` })}
+        label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
       <GraphComments comments={chartComments} />
     </WrapperChart>
@@ -97,14 +82,11 @@ const Chart = ({ id, domain }) => {
 
 Chart.defaultProps = {
   domain: '',
-  id: 'app.national-publi.general.langues-ouverture.chart-repartition-publications',
+  id: 'publi.general.langues-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
-  id: PropTypes.oneOf([
-    'app.national-publi.general.langues-ouverture.chart-repartition-publications',
-    'app.sante-publi.general.langues-ouverture.chart-repartition-publications',
-  ]),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

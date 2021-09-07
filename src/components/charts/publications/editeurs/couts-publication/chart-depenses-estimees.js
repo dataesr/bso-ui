@@ -9,11 +9,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
+  chartOptions,
   getFetchOptions,
-  getGraphOptions,
 } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { cleanNumber } from '../../../../../utils/helpers';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -45,57 +45,18 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const optionsGraph = getGraphOptions(id, intl);
-  optionsGraph.chart.type = 'column';
-  optionsGraph.xAxis = {
-    categories: categoriesYear,
-  };
-  optionsGraph.yAxis = {
-    stackLabels: {
-      enabled: true,
-      // eslint-disable-next-line
-      formatter: function () {
-        // eslint-disable-next-line
-        return `${cleanNumber(this.total)} €`;
-      },
-      style: {
-        fontWeight: 'bold',
-      },
-    },
-    labels: {
-      // eslint-disable-next-line
-      formatter: function () {
-        // eslint-disable-next-line
-        return this.axis.defaultLabelFormatter.call(this).concat(' €');
-      },
-    },
-  };
-  optionsGraph.series = dataGraphTotal;
-  optionsGraph.legend = {
-    title: {
-      text: intl.formatMessage({ id: `${id}.legend` }),
-    },
-  };
-  optionsGraph.plotOptions = {
-    column: {
-      stacking: 'normal',
-      dataLabels: {
-        style: {
-          textOutline: 'none',
-        },
-        enabled: true,
-        // eslint-disable-next-line
-        formatter: function () {
-          // eslint-disable-next-line
-          return cleanNumber(this.y).concat(' €');
-        },
-      },
-    },
-  };
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    categoriesYear,
+    dataGraphTotal,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
@@ -114,7 +75,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -123,7 +84,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.publishers.couts-publication.chart-depenses-estimees',
+  id: 'publi.publishers.couts-publication.chart-depenses-estimees',
   domain: '',
 };
 Chart.propTypes = {

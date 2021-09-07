@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getPercentageYAxis } from '../../../../../utils/helpers';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -22,38 +22,18 @@ const Chart = ({ id, domain }) => {
   const { lastObservationSnap } = useGlobals();
   const { allData, isLoading } = useGetData(lastObservationSnap, domain);
   const { dataGraph, categories } = allData;
-  const optionsGraph = getGraphOptions(id, intl);
-  optionsGraph.chart.type = 'column';
-  optionsGraph.xAxis = {
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
     categories,
-  };
-  optionsGraph.yAxis = getPercentageYAxis();
-  optionsGraph.legend = {
-    title: {
-      text: intl.formatMessage({ id: `${id}.legend` }),
-    },
-  };
-  optionsGraph.plotOptions = {
-    column: {
-      stacking: 'normal',
-      dataLabels: {
-        style: {
-          textOutline: 'none',
-        },
-        enabled: true,
-        // eslint-disable-next-line
-        formatter: function () {
-          // eslint-disable-next-line
-          return this.y.toFixed(1).concat(' %');
-        },
-      },
-    },
-  };
-  optionsGraph.series = dataGraph;
+    dataGraph,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       isLoading={isLoading || !dataGraph || !categories}
     >
@@ -61,7 +41,7 @@ const Chart = ({ id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -69,7 +49,7 @@ const Chart = ({ id, domain }) => {
 
 Chart.defaultProps = {
   domain: '',
-  id: 'app.national-publi.general.voies-ouverture.chart-repartition-taux',
+  id: 'publi.general.voies-ouverture.chart-repartition-taux',
 };
 Chart.propTypes = {
   id: PropTypes.oneOf(graphIds),

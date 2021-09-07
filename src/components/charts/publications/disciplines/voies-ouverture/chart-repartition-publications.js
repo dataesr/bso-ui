@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 
 import { graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 // import useGetData from './get-data';
 
@@ -15,21 +16,16 @@ HCExportingData(Highcharts);
 
 const Chart = ({ graphFooter, graphComments, id }) => {
   const chartRef = useRef();
+  const idWithDomain = withDomain(id);
 
   // const { observationSnaps, updateDate } = useGlobals();
   // const { data, isLoading, isError } = useGetData(observationSnaps);
   // const { dataGraph2 } = data;
 
-  // if (isLoading || !dataGraph2) {
-  //   return <Loader />;
-  // }
-  // if (isError) {
-  //   return <>Error</>;
-  // }
-
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
@@ -38,7 +34,7 @@ const Chart = ({ graphFooter, graphComments, id }) => {
         highcharts={Highcharts}
         options={{}}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -47,7 +43,7 @@ const Chart = ({ graphFooter, graphComments, id }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.disciplines.voies-ouverture.chart-repartition-publications',
+  id: 'publi.disciplines.voies-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,

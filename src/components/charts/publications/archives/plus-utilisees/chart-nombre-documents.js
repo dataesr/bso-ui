@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { archiveouverte100 } from '../../../../../style/colours.module.scss';
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -22,34 +22,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
-  const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.chart.type = 'bar';
-  optionsGraph.chart.height = '700px';
-  optionsGraph.colors = [archiveouverte100];
-  optionsGraph.yAxis = { visible: false };
-  optionsGraph.xAxis = {
-    type: 'category',
-    lineWidth: 0,
-    tickWidth: 0,
-    labels: {
-      style: {
-        color: 'var(--g800)',
-        fontSize: '12px',
-        fontWeight: 'bold',
-      },
-    },
-  };
-  optionsGraph.series = [
-    {
-      data,
-      showInLegend: false,
-    },
-  ];
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(idWithDomain, intl, data);
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphComments={graphComments}
       graphFooter={graphFooter}
@@ -60,7 +39,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -69,7 +48,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.repositories.plus-utilisees.chart-nombre-documents',
+  id: 'publi.repositories.plus-utilisees.chart-nombre-documents',
   domain: '',
 };
 Chart.propTypes = {

@@ -11,10 +11,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
+  chartOptions,
   getFetchOptions,
-  getGraphOptions,
 } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -47,39 +48,19 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const optionsGraph = getGraphOptions(id, intl);
-  optionsGraph.series = [
-    {
-      type: 'treemap',
-      layoutAlgorithm: 'stripes',
-      alternateStartingDirection: true,
-      levels: [
-        {
-          level: 1,
-          layoutAlgorithm: 'sliceAndDice',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b><br>{point.y_perc:.0f} %',
-            align: 'left',
-            verticalAlign: 'top',
-            style: {
-              textOutline: 'none',
-              fontSize: '15px',
-              fontWeight: 'bold',
-            },
-          },
-        },
-      ],
-      data: dataGraphTreemap,
-    },
-  ];
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraphTreemap,
+  );
 
   return (
     <WrapperChart
       isLoading={isLoading || !dataGraphTreemap}
       isError={isError}
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef.current}
       graphComments={graphComments}
       graphFooter={graphFooter}
@@ -95,13 +76,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       <Toggle
         isChecked={isDetailed}
         onChange={() => setIsDetailed(!isDetailed)}
-        label={intl.formatMessage({ id: `${id}.toggle-label` })}
+        label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -110,7 +91,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.publishers.repartition-licences.chart-repartition',
+  id: 'publi.publishers.repartition-licences.chart-repartition',
   domain: '',
 };
 Chart.propTypes = {

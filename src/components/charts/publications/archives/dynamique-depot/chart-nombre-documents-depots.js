@@ -8,8 +8,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -19,42 +20,24 @@ HCExportingData(Highcharts);
 
 const Chart = ({ graphComments, id, domain }) => {
   const intl = useIntl();
-
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
+  const idWithDomain = withDomain(id, domain);
   const graphs = [];
 
   data.forEach((oneGraph) => {
-    const optionsGraph = getGraphOptions(id, intl);
-    optionsGraph.chart.type = 'column';
-    optionsGraph.xAxis = {
-      type: 'category',
-      categories: oneGraph.data.map((el) => el.name),
-      labels: {
-        style: {
-          color: 'var(--g800)',
-          fontSize: '14px',
-        },
-      },
-    };
-    optionsGraph.yAxis = {
-      title: {
-        enabled: false,
-      },
-    };
-    optionsGraph.series = [
-      {
-        data: oneGraph.data,
-        color: oneGraph.color,
-        name: oneGraph.name,
-      },
-    ];
+    const optionsGraph = chartOptions[id].getOptions(
+      idWithDomain,
+      intl,
+      oneGraph,
+    );
     graphs.push(optionsGraph);
   });
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       graphComments={graphComments}
       isLoading={isLoading || !data}
       isError={isError}
@@ -66,7 +49,7 @@ const Chart = ({ graphComments, id, domain }) => {
               <HighchartsReact
                 highcharts={Highcharts}
                 options={graphOptions}
-                id={`${id}-${i}`}
+                id={`${idWithDomain}-${i}`}
               />
             </Col>
           ))}
@@ -78,7 +61,7 @@ const Chart = ({ graphComments, id, domain }) => {
 
 Chart.defaultProps = {
   graphComments: true,
-  id: 'app.national-publi.repositories.dynamique-depot.chart-nombre-documents-depots',
+  id: 'publi.repositories.dynamique-depot.chart-nombre-documents-depots',
   domain: '',
 };
 Chart.propTypes = {

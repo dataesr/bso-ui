@@ -8,8 +8,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -28,53 +29,17 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
   );
   const { bubbleGraph } = allData;
-  const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.chart.type = 'bubble';
-  optionsGraph.chart.zoomType = 'xy';
-  optionsGraph.series = bubbleGraph;
-  optionsGraph.xAxis = {
-    min: 0,
-    max: 110,
-    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
-    labels: {
-      // eslint-disable-next-line
-      formatter: function () {
-        return this.axis.defaultLabelFormatter.call(this).concat(' %');
-      },
-    },
-  };
-  optionsGraph.yAxis = {
-    min: 0,
-    max: 110,
-    title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
-    labels: {
-      // eslint-disable-next-line
-      formatter: function () {
-        return this.axis.defaultLabelFormatter.call(this).concat(' %');
-      },
-    },
-  };
-  optionsGraph.legend = {
-    enabled: false,
-  };
-  optionsGraph.plotOptions = {
-    series: {
-      dataLabels: {
-        enabled: true,
-        format: '{point.publisher}',
-        filter: {
-          property: 'z',
-          operator: '>',
-          value: '0.1',
-        },
-      },
-    },
-  };
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    bubbleGraph,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
@@ -85,7 +50,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -94,7 +59,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.publishers.politiques-ouverture.chart-comparaison',
+  id: 'publi.publishers.politiques-ouverture.chart-comparaison',
   domain: '',
 };
 Chart.propTypes = {

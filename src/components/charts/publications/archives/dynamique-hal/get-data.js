@@ -72,14 +72,14 @@ function useGetData(lastObservationSnap, domain) {
     const dataGraph2 = [
       {
         name: intl.formatMessage({
-          id: 'app.sante-publi.repositories.dynamique-hal.hal',
+          id: 'app.health-publi.repositories.dynamique-hal.hal',
         }),
         data: hal,
         color: accesouvert,
       },
       {
         name: intl.formatMessage({
-          id: 'app.sante-publi.repositories.dynamique-hal.notHal',
+          id: 'app.health-publi.repositories.dynamique-hal.notHal',
         }),
         data: notHal,
         color: archiveouverte125,

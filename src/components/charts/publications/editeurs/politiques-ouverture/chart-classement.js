@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getPercentageYAxis } from '../../../../../utils/helpers';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -26,36 +26,18 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
   );
   const { categories, dataGraph } = allData;
-  const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.chart.type = 'bar';
-  optionsGraph.xAxis = {
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
     categories,
-  };
-  optionsGraph.yAxis = getPercentageYAxis();
-  optionsGraph.legend = {
-    title: {
-      text: intl.formatMessage({ id: `${id}.legend` }),
-    },
-  };
-  optionsGraph.plotOptions = {
-    series: {
-      stacking: 'normal',
-      dataLabels: {
-        enabled: false,
-        // eslint-disable-next-line
-        formatter: function () {
-          // eslint-disable-next-line
-          return this.y.toFixed(1).concat(' %');
-        },
-      },
-    },
-  };
-  optionsGraph.series = dataGraph;
+    dataGraph,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
@@ -66,7 +48,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -75,7 +57,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.publishers.politiques-ouverture.chart-classement',
+  id: 'publi.publishers.politiques-ouverture.chart-classement',
   domain: '',
 };
 Chart.propTypes = {

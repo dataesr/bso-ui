@@ -16,6 +16,7 @@ function WrapperChart({
   graphComments,
   children,
   id,
+  idWithDomain,
   chartRef,
   isLoading,
   isError,
@@ -44,18 +45,20 @@ function WrapperChart({
   return (
     <>
       <div className='graph-container' data-id={id}>
-        <GraphTitle title={intl.formatMessage({ id: `${id}.title` })} />
+        <GraphTitle
+          title={intl.formatMessage({ id: `${idWithDomain}.title` })}
+        />
         {children}
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${id}.comments` })}
+            comments={intl.formatMessage({ id: `${idWithDomain}.comments` })}
           />
         )}
       </div>
       {graphFooter && (
         <GraphFooter
           date={getFormattedDate(updateDate, lang)}
-          source={intl.formatMessage({ id: `${id}.source` })}
+          source={intl.formatMessage({ id: `${idWithDomain}.source` })}
           graphId={id}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
@@ -79,6 +82,7 @@ WrapperChart.propTypes = {
   graphComments: PropTypes.bool,
   children: PropTypes.node.isRequired,
   id: PropTypes.oneOf(graphIds).isRequired,
+  idWithDomain: PropTypes.string.isRequired,
   chartRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),

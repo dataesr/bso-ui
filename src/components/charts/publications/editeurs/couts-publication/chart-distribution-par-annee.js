@@ -10,10 +10,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
+  chartOptions,
   getFetchOptions,
-  getGraphOptions,
 } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -28,14 +29,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
 
-  const { observationSnaps } = useGlobals(domain);
+  const { observationSnaps, lastObservationSnap } = useGlobals(domain);
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     publisher,
     domain,
   );
   const { dataGraphViolin, categoriesViolin } = data;
-  const query = getFetchOptions('publishersList', domain, observationSnaps[0]);
+  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
@@ -44,48 +45,19 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const optionsGraph = getGraphOptions(id, intl);
-  optionsGraph.chart = {
-    type: 'areasplinerange',
-    inverted: true,
-  };
-  optionsGraph.xAxis = {
-    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
-    reversed: false,
-    labels: {
-      // eslint-disable-next-line
-      formatter: function () {
-        return this.axis.defaultLabelFormatter.call(this).concat(' €');
-      },
-    },
-  };
-  optionsGraph.yAxis = {
-    categories: categoriesViolin,
-    min: 0,
-    max: categoriesViolin && categoriesViolin.length - 1,
-  };
-  optionsGraph.plotOptions = {
-    areasplinerange: {
-      marker: {
-        enabled: false,
-      },
-      // pointStart: xi[0]
-    },
-    scatter: {
-      lineWidth: 2,
-      zIndex: 1,
-      marker: {
-        fillColor: 'white',
-        symbol: 'circle',
-        lineWidth: 3,
-      },
-    },
-  };
-  optionsGraph.series = dataGraphViolin;
+
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    categoriesViolin,
+    dataGraphViolin,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
@@ -104,7 +76,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -113,7 +85,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.publishers.couts-publication.chart-distribution-par-annee',
+  id: 'publi.publishers.couts-publication.chart-distribution-par-annee',
   domain: '',
 };
 Chart.propTypes = {

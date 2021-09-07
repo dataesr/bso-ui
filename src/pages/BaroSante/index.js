@@ -75,7 +75,7 @@ function BaroSante() {
             <Col n='12 md-12 xl-10' className='px-20 px-md-64' offset='xl-2'>
               <section className='py-28'>
                 <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
-                  <FormattedMessage id='app.sante-home.numbers' />
+                  <FormattedMessage id='app.health-home.numbers' />
                 </h2>
                 <p className='fs-14-24 blue m-0'>
                   <UpdateDate />
@@ -103,7 +103,7 @@ function BaroSante() {
                   <Row gutters alignItems='top'>
                     <Col n='12 md-8'>
                       <ChartTauxOuverture
-                        id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
+                        id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                         domain='health'
                         graphComments={false}
                         graphFooter={false}
@@ -115,7 +115,7 @@ function BaroSante() {
                     <Col n='12'>
                       <ChartEvolutionProportion
                         domain='health'
-                        id='app.sante-publi.general.dynamique-ouverture.chart-evolution-proportion'
+                        id='publi.general.dynamique-ouverture.chart-evolution-proportion'
                         graphComments={false}
                       />
                     </Col>
@@ -230,7 +230,7 @@ function BaroSante() {
                   itemKey='publisher'
                   iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
-                  intlSubTitle='app.sante-publi.publishers'
+                  intlSubTitle='app.health-publi.publishers'
                   backgroundColorClass='bg-yellow'
                   domain='health'
                 />
@@ -238,7 +238,7 @@ function BaroSante() {
                   itemKey='repository'
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
-                  intlSubTitle='app.sante-publi.repositories'
+                  intlSubTitle='app.health-publi.repositories'
                   backgroundColorClass='bg-medium-green'
                   domain='health'
                 />

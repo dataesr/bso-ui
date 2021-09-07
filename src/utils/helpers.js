@@ -144,3 +144,35 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
 
   return publicationYear || '2020';
 }
+
+/**
+ *
+ * @param id
+ * @returns {*}
+ */
+export function noDomain(id) {
+  return id.replace(/^[^-]*-/, '');
+}
+
+/**
+ *
+ * @param id
+ * @param domain
+ * @returns {string}
+ */
+export function withDomain(id, domain = 'national') {
+  return `app.${domain || 'national'}-${id}`;
+}
+
+/**
+ *
+ * @param domain
+ * @returns {string}
+ */
+export function getDomain(domain) {
+  const obj = {
+    sante: 'health',
+  };
+
+  return obj[domain] || '';
+}

@@ -7,8 +7,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -23,35 +24,20 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
   const { publicationYears, dataGraph2 } = data;
-  const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.chart.type = 'column';
-  optionsGraph.xAxis = {
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
     publicationYears,
-  };
-  optionsGraph.legend = {
-    title: {
-      text: intl.formatMessage({ id: `${id}.legend` }),
-    },
-  };
-  optionsGraph.plotOptions = {
-    column: {
-      stacking: 'normal',
-      dataLabels: {
-        enabled: true,
-        style: {
-          textOutline: 'none',
-        },
-      },
-    },
-  };
-  optionsGraph.series = dataGraph2;
+    dataGraph2,
+  );
 
   return (
     <WrapperChart
       isLoading={isLoading || !dataGraph2}
       isError={isError}
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphComments={graphComments}
       graphFooter={graphFooter}
@@ -60,7 +46,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -69,7 +55,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.repositories.dynamique-hal.chart-couverture-hal',
+  id: 'publi.repositories.dynamique-hal.chart-couverture-hal',
   domain: '',
 };
 Chart.propTypes = {

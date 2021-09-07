@@ -10,16 +10,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  archiveouverte100,
-  g800,
-} from '../../../../../style/colours.module.scss';
 import { simpleComments } from '../../../../../utils/chartComments';
 import {
+  chartOptions,
   getFetchOptions,
-  getGraphOptions,
 } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -47,6 +44,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     domain,
     lastObservationSnap,
   );
+  const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
@@ -60,48 +58,19 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   }, []);
 
   useEffect(() => {
-    setChartComments(simpleComments(dataGraph1, id, intl));
-  }, [dataGraph1, id, intl]);
+    setChartComments(simpleComments(dataGraph1, idWithDomain, intl));
+  }, [dataGraph1, idWithDomain, intl]);
 
-  const optionsGraph1 = getGraphOptions(id, intl);
-  optionsGraph1.chart.type = 'bar';
-  optionsGraph1.colors = [archiveouverte100];
-  optionsGraph1.yAxis = { visible: false, min: 0, max: 100 };
-  optionsGraph1.plotOptions = {
-    bar: {
-      dataLabels: {
-        enabled: true,
-        format: '{point.y:.0f} %',
-        style: {
-          color: g800,
-          fontSize: '20px',
-          fontWeight: 'bold',
-        },
-      },
-    },
-  };
-  optionsGraph1.xAxis = {
-    type: 'category',
-    lineWidth: 0,
-    tickWidth: 0,
-    labels: {
-      style: {
-        color: 'var(--g800)',
-        fontSize: '12px',
-        fontWeight: 'bold',
-      },
-    },
-  };
-  optionsGraph1.series = [
-    {
-      data: dataGraph1,
-      showInLegend: false,
-    },
-  ];
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph1,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphComments={false}
       graphFooter={graphFooter}
@@ -118,9 +87,9 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       />
       <HighchartsReact
         highcharts={Highcharts}
-        options={optionsGraph1}
+        options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
       {graphComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
@@ -130,7 +99,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.repositories.dynamique-ouverture.chart-taux-ouverture',
+  id: 'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
   domain: '',
 };
 Chart.propTypes = {

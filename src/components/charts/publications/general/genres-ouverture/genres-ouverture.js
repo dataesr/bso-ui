@@ -9,8 +9,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { complexComments } from '../../../../../utils/chartComments';
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -31,43 +32,25 @@ const Chart = ({ id, domain }) => {
     isLoading,
     isError,
   } = useGetData(lastObservationSnap || '2020', isOa, domain);
-  const optionsGraph = getGraphOptions(id, intl);
+  const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
       setChartComments(
-        complexComments(dataGraph, lastObservationSnap, id, intl),
+        complexComments(dataGraph, lastObservationSnap, idWithDomain, intl),
       );
     }
-  }, [dataGraph, id, intl, isOa, lastObservationSnap]);
-
-  optionsGraph.series = [
-    {
-      type: 'treemap',
-      layoutAlgorithm: 'stripes',
-      alternateStartingDirection: true,
-      levels: [
-        {
-          level: 1,
-          layoutAlgorithm: 'sliceAndDice',
-          dataLabels: {
-            enabled: true,
-            align: 'left',
-            verticalAlign: 'top',
-            style: {
-              fontSize: '15px',
-              fontWeight: 'bold',
-            },
-          },
-        },
-      ],
-      data: dataGraph,
-    },
-  ];
+  }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphComments={false}
       isLoading={isLoading || !dataGraph}
@@ -76,7 +59,7 @@ const Chart = ({ id, domain }) => {
       <Toggle
         isChecked={isOa}
         onChange={() => setIsOa(!isOa)}
-        label={intl.formatMessage({ id: `${id}.toggle-label` })}
+        label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />
       <HighchartsReact
         highcharts={Highcharts}
@@ -91,7 +74,7 @@ const Chart = ({ id, domain }) => {
 
 Chart.defaultProps = {
   domain: '',
-  id: 'app.national-publi.general.genres-ouverture.chart-repartition-genres',
+  id: 'publi.general.genres-ouverture.chart-repartition-genres',
 };
 Chart.propTypes = {
   id: PropTypes.oneOf(graphIds),

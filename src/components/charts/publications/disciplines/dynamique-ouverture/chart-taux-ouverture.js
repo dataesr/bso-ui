@@ -8,13 +8,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  discipline100,
-  discipline125,
-} from '../../../../../style/colours.module.scss';
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getPercentageYAxis } from '../../../../../utils/helpers';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -26,39 +22,18 @@ const Chart = ({ graphComments, id, domain }) => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
+  const idWithDomain = withDomain(id, domain);
   let graphs = [];
 
   data.forEach((oneGraph) => {
-    const optionsGraph = getGraphOptions(id, intl);
-    optionsGraph.chart.type = 'column';
-
-    optionsGraph.xAxis = {
-      type: 'category',
-      categories: oneGraph.data.map((el) => el.name),
-      labels: {
-        style: {
-          color: 'var(--g800)',
-          fontSize: '14px',
-        },
-      },
-    };
-    optionsGraph.yAxis = getPercentageYAxis();
-
-    optionsGraph.series = [
-      {
-        name: intl.formatMessage({ id: `app.discipline.${oneGraph.name}` }),
-        color: discipline125,
-        data: oneGraph.data.map((el, i) => ({
-          name: el.name,
-          y: el.y,
-          y_abs: el.y_abs,
-          y_tot: el.y_tot,
-          color: i === oneGraph.data.length - 1 ? discipline100 : discipline125,
-        })),
-      },
-    ];
+    const optionsGraph = chartOptions[id].getOptions(
+      idWithDomain,
+      intl,
+      oneGraph,
+    );
     graphs.push(optionsGraph);
   });
+
   const serieLength = graphs[0]?.series[0].data.length - 1;
   // classement par ordre décroissant (en taux d'oa) des disciplines
   graphs = graphs.sort(
@@ -68,6 +43,7 @@ const Chart = ({ graphComments, id, domain }) => {
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       graphComments={graphComments}
       isLoading={isLoading || !data || data.length <= 0}
       isError={isError}
@@ -79,7 +55,7 @@ const Chart = ({ graphComments, id, domain }) => {
               <HighchartsReact
                 highcharts={Highcharts}
                 options={graphOptions}
-                id={`${id}-${i}`}
+                id={`${idWithDomain}-${i}`}
               />
             </Col>
           ))}
@@ -91,7 +67,7 @@ const Chart = ({ graphComments, id, domain }) => {
 
 Chart.defaultProps = {
   graphComments: true,
-  id: 'app.national-publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
+  id: 'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
   domain: '',
 };
 Chart.propTypes = {

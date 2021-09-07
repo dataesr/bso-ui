@@ -10,10 +10,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
+  chartOptions,
   getFetchOptions,
-  getGraphOptions,
 } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -44,47 +45,18 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.chart.type = 'column';
-  optionsGraph.chart.type = 'areaspline'; // 'column' dans la maquette
-  optionsGraph.xAxis = {
-    categories: categoriesHistogram,
-    title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
-    labels: {
-      // eslint-disable-next-line
-      formatter: function () {
-        return this.axis.defaultLabelFormatter.call(this).concat(' €');
-      },
-    },
-  };
-  optionsGraph.yAxis = {
-    title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
-  };
-  optionsGraph.series = dataGraphHistogram;
-  optionsGraph.legend = {
-    title: {
-      text: intl.formatMessage({ id: `${id}.legend` }),
-    },
-  };
-  optionsGraph.plotOptions = {
-    series: {
-      pointPadding: 0,
-      groupPadding: 0,
-      borderWidth: 0,
-      shadow: false,
-    },
-    column: {
-      stacking: false,
-      dataLabels: {
-        enabled: false,
-      },
-    },
-  };
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    categoriesHistogram,
+    dataGraphHistogram,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
@@ -103,7 +75,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -112,7 +84,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
-  id: 'app.national-publi.publishers.couts-publication.chart-distribution',
+  id: 'publi.publishers.couts-publication.chart-distribution',
   domain: '',
 };
 Chart.propTypes = {

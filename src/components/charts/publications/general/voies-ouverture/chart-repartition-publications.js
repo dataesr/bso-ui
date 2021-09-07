@@ -7,8 +7,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -26,36 +27,17 @@ const Chart = ({ id, domain }) => {
     domain,
   );
   const { dataGraph3 } = allData;
-  const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.series = [
-    {
-      type: 'treemap',
-      layoutAlgorithm: 'stripes',
-      alternateStartingDirection: true,
-      levels: [
-        {
-          level: 1,
-          layoutAlgorithm: 'sliceAndDice',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b><br>{point.percentage:.0f} %',
-            align: 'left',
-            verticalAlign: 'top',
-            style: {
-              fontSize: '15px',
-              fontWeight: 'bold',
-            },
-          },
-        },
-      ],
-      data: dataGraph3,
-    },
-  ];
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph3,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       isLoading={isLoading || !dataGraph3}
       isError={isError}
@@ -64,7 +46,7 @@ const Chart = ({ id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -72,7 +54,7 @@ const Chart = ({ id, domain }) => {
 
 Chart.defaultProps = {
   domain: '',
-  id: 'app.national-publi.general.voies-ouverture.chart-repartition-publications',
+  id: 'publi.general.voies-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

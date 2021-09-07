@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import { getGraphOptions } from '../../../../../utils/chartOptions';
+import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getPercentageYAxis } from '../../../../../utils/helpers';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -26,38 +26,18 @@ const Chart = ({ id, domain }) => {
     domain,
   );
   const { dataGraph, categories } = allData;
-  const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.chart.type = 'area';
-  optionsGraph.xAxis = {
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
     categories,
-    tickmarkPlacement: 'on',
-    title: {
-      enabled: false,
-    },
-  };
-  optionsGraph.yAxis = getPercentageYAxis();
-  optionsGraph.legend = {
-    title: {
-      text: intl.formatMessage({ id: `${id}.legend` }),
-    },
-  };
-  optionsGraph.plotOptions = {
-    area: {
-      stacking: 'normal',
-      lineColor: '#fff',
-      lineWidth: 3,
-      marker: {
-        lineWidth: 1,
-        lineColor: '#fff',
-      },
-    },
-  };
-  optionsGraph.series = dataGraph;
+    dataGraph,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       isLoading={isLoading || !dataGraph || !categories}
       isError={isError}
@@ -66,7 +46,7 @@ const Chart = ({ id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -74,7 +54,7 @@ const Chart = ({ id, domain }) => {
 
 Chart.defaultProps = {
   domain: '',
-  id: 'app.national-publi.general.voies-ouverture.chart-evolution-taux',
+  id: 'publi.general.voies-ouverture.chart-evolution-taux',
 };
 Chart.propTypes = {
   id: PropTypes.oneOf(graphIds),

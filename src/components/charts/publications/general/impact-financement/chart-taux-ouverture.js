@@ -9,11 +9,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import {
+  chartOptions,
   getFetchOptions,
-  getGraphOptions,
 } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getPercentageYAxis } from '../../../../../utils/helpers';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -43,30 +43,19 @@ const Chart = ({ id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const optionsGraph = getGraphOptions(id, intl);
 
-  optionsGraph.chart.type = 'column';
-  optionsGraph.xAxis = {
+  const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
     categories,
-  };
-  optionsGraph.yAxis = getPercentageYAxis();
-  optionsGraph.plotOptions = {
-    column: {
-      dataLabels: {
-        enabled: true,
-        // eslint-disable-next-line
-        formatter: function () {
-          // eslint-disable-next-line
-          return this.y.toFixed(0).concat(' %');
-        },
-      },
-    },
-  };
-  optionsGraph.series = dataGraph;
+    dataGraph,
+  );
 
   return (
     <WrapperChart
       id={id}
+      idWithDomain={idWithDomain}
       chartRef={chartRef}
       isLoading={isLoading || !dataGraph || !categories}
     >
@@ -90,7 +79,7 @@ const Chart = ({ id, domain }) => {
 
 Chart.defaultProps = {
   domain: '',
-  id: 'app.national-publi.general.impact-financement.chart-taux-ouverture',
+  id: 'publi.general.impact-financement.chart-taux-ouverture',
 };
 Chart.propTypes = {
   id: PropTypes.oneOf(graphIds),
