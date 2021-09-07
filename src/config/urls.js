@@ -56,6 +56,12 @@ export default {
     en: '/health/publications',
   },
   santeEssais: {
+    tabs: [
+      {
+        fr: '/sante/essais-cliniques/general',
+        en: '/health/clinical-trials/general',
+      },
+    ],
     fr: '/sante/essais-cliniques',
     en: '/health/clinical-trials',
   },
