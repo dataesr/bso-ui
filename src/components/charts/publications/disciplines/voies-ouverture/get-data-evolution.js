@@ -55,6 +55,14 @@ function useGetData(lastObservationSnap) {
         data: bubbles,
         color: editeurplateforme100,
       },
+      {
+        data: [{ y: 100, x: 100 }],
+        type: 'scatter',
+        enableMouseTracking: false,
+        marker: {
+          symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)',
+        },
+      },
     ];
 
     return { bubbleGraph };

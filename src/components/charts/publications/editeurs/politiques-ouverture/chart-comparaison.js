@@ -71,6 +71,28 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       },
     },
   };
+  optionsGraph.annotations = [
+    {
+      labels: [
+        {
+          point: {
+            x: 100,
+            y: 100,
+            xAxis: 0,
+            yAxis: 0,
+          },
+          text: intl.formatMessage({ id: 'app.publishers.objectif-science-ouverte' }),
+        },
+      ],
+      draggable: '',
+      labelOptions: {
+        useHTML: true,
+        borderRadius: 0,
+        borderWidth: 0,
+        backgroundColor: 'var(--blue-soft-100)',
+      },
+    },
+  ];
 
   return (
     <WrapperChart
