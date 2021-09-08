@@ -1,4 +1,5 @@
 {
+  "app.publishers.objectif-science-ouverte": "Objectif national de<br>la science ouverte",
   "app.affiliations-filter-label": "Sélectionner un type d'affiliation française",
   "app.affiliations.rang-utile-etranger": "Premier ou dernier auteur sans affiliation française",
   "app.affiliations.rang-utile-fr": "Premier ou dernier auteur avec affiliation française",
@@ -508,7 +509,6 @@
   "app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.tooltip": "<b>Publications {point.publisher} de {point.publicationDate} </b><br>Part hébergée chez l'éditeur / plateforme : {point.x:.2f} % ({point.x_abs} / {point.z})<br>Part hébergée sur une archive : {point.y:.2f} % ({point.y_abs} / {point.z})",
   "app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.xAxis": "Part de publications ouvertes hébergées chez les éditeurs/plateformes",
   "app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.yAxis": "Part de publications ouvertes hébergées chez les archives",
-  "app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.goal": "Objectif national de<br>la science ouverte: 100%",
   "app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications.comments": "comments",
   "app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications.source": "source",
   "app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications.title": "Répartition des publications ouvertes des types d'hébergement par discipline",

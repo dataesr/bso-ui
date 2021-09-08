@@ -6,97 +6,55 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  accesferme,
-  archiveouverte100,
-  editeurarchive,
-  editeurplateforme100,
-} from '../../../../../style/colours.module.scss';
 import { getGraphOptions } from '../../../../../utils/chartOptions';
-import { graphIds } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import Loader from '../../../../Loader';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
-  const { data, isLoading } = useGetData(lastObservationSnap);
-
-  if (isLoading || !data) {
-    return <Loader />;
-  }
-
-  const colors = [
-    {
-      hostType: 'publisher;repository',
-      color: editeurarchive,
-    },
-    {
-      hostType: 'publisher',
-      color: editeurplateforme100,
-    },
-    {
-      hostType: 'repository',
-      color: archiveouverte100,
-    },
-    {
-      hostType: 'closed',
-      color: accesferme,
-    },
-  ];
-
-  const categories = data[
-    data.length - 1
-  ].by_oa_host_type.buckets[0].by_discipline.buckets
-    .sort((a, b) => b.key - a.key)
-    .map((item) => item.key);
-  const series = data[data.length - 1].by_oa_host_type.buckets
-    .filter((el) => el.key !== 'closed')
-    .sort((a, b) => a.doc_count - b.doc_count)
-    .map((el) => ({
-      name: el.key,
-      data: el.by_discipline.buckets
-        .sort((a, b) => b.key - a.key)
-        .map((item) => item.doc_count),
-      color: colors.find((item) => item.hostType === el.key).color,
-    }));
-
+  const { allData, isLoading } = useGetData(lastObservationSnap, domain);
+  const { dataGraph, categories } = allData;
   const optionsGraph = getGraphOptions(id, intl);
-
-  optionsGraph.chart = {
-    type: 'bar',
-    height: '600px',
-  };
-
+  optionsGraph.chart.type = 'bar';
   optionsGraph.xAxis = {
     categories,
   };
-
+  optionsGraph.yAxis = getPercentageYAxis();
   optionsGraph.legend = {
     title: {
       text: intl.formatMessage({ id: `${id}.legend` }),
     },
   };
-
   optionsGraph.plotOptions = {
     series: {
       stacking: 'normal',
+      dataLabels: {
+        style: {
+          textOutline: 'none',
+        },
+        enabled: true,
+        // eslint-disable-next-line
+        formatter: function () {
+          // eslint-disable-next-line
+          return this.y.toFixed(1).concat(' %');
+        },
+      },
     },
   };
-  optionsGraph.series = series;
-
+  optionsGraph.series = dataGraph;
   return (
     <WrapperChart
       id={id}
       chartRef={chartRef}
-      graphFooter={graphFooter}
-      graphComments={graphComments}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -109,14 +67,12 @@ const Chart = ({ graphFooter, graphComments, id }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
-  graphComments: true,
-  id: 'app.national-publi.disciplines.voies-ouverture.chart-repartition-publications',
+  domain: '',
+  id: 'app.national-publi.general.voies-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

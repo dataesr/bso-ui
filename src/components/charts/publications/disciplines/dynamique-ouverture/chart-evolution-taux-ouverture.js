@@ -12,12 +12,13 @@ import { useIntl } from 'react-intl';
 
 import {
   bluedark75,
-  discipline100,
-  discipline125,
-  discipline150,
+  orangesoft75,
+  orangesoft100,
+  orangesoft125,
+  orangesoft175,
 } from '../../../../../style/colours.module.scss';
 import { getGraphOptions } from '../../../../../utils/chartOptions';
-import { graphIds } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -29,13 +30,13 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, domain, id }) => {
   const intl = useIntl();
   const chartRef = useRef();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture';
   const [isActive, setIsActive] = useState(false);
-  const { lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap);
+  const { observationSnaps, lastObservationSnap } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
 
   if (isLoading || !data || data.length <= 0) {
     return <Loader />;
@@ -110,45 +111,52 @@ const Chart = ({ graphFooter, graphComments, id }) => {
   };
 
   const series = [];
-  for (let index = 1; index < dates.length; index += 1) {
+  for (let index = 1; index < dates.length + 1; index += 1) {
     let lowColor = '';
     let lineColor = '';
+    let fillColor = '';
+    const delta = parseInt(lastObservationSnap.substr(0, 4), 10) - parseInt(dates[index - 1].substr(0, 4), 10);
     // eslint-disable-next-line default-case
-    switch (index) {
-    case 1:
-      lowColor = discipline100;
-      lineColor = '#fff';
+    switch (delta) {
+    case 3:
+      lowColor = orangesoft75;
+      fillColor = lowColor;
+      lineColor = 'white';
       break;
     case 2:
-      lowColor = discipline125;
-      lineColor = '#fff';
+      lowColor = orangesoft125;
+      fillColor = lowColor;
+      lineColor = 'white';
       break;
-    case 3:
-      lowColor = discipline150;
-      lineColor = '#fff';
+    case 1:
+      lowColor = orangesoft175;
+      lineColor = lowColor;
+      lineColor = 'white';
+      break;
+    case 0:
+      lowColor = orangesoft100;
+      lineColor = lowColor;
+      fillColor = 'white';
       break;
     }
     series.push({
-      name: dates[index],
+      name: dates[index - 1],
       data: data.map((item) => ({
         name: item.name,
-        low: item.data.find((el) => el.name === dates[index - 1]).y,
-        high: item.data.find((el) => el.name === dates[index]).y,
+        low: item.data.find((el) => el.name === dates[index - 1])?.y,
+        high: item.data.find((el) => el.name === dates[index])?.y || item.data.find((el) => el.name === dates[index - 1])?.y,
       })),
       lowColor,
       marker: {
         symbol: 'circle',
         radius: 8,
         lineColor,
+        fillColor,
       },
       dashStyle: 'ShortDot',
       color: lowColor,
     });
   }
-  series.push({
-    name: lastObservationSnap,
-    color: '#000',
-  });
   graphOptions.series = series;
 
   graphOptions.tooltip = {
@@ -181,11 +189,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

@@ -36,8 +36,11 @@ const Chart = ({ graphFooter, graphComments, id }) => {
   optionsGraph.chart.zoomType = 'xy';
   optionsGraph.series = data.bubbleGraph;
   optionsGraph.xAxis = {
+    gridLineDashStyle: 'dash',
+    gridLineWidth: 1,
+    endOnTick: false,
     min: 0,
-    max: 110,
+    max: 109,
     title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
     labels: {
       // eslint-disable-next-line
@@ -47,8 +50,11 @@ const Chart = ({ graphFooter, graphComments, id }) => {
     },
   };
   optionsGraph.yAxis = {
+    gridLineDashStyle: 'dash',
+    gridLineWidth: 1,
+    endOnTick: false,
     min: 0,
-    max: 110,
+    max: 120,
     title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
     labels: {
       // eslint-disable-next-line
@@ -61,6 +67,10 @@ const Chart = ({ graphFooter, graphComments, id }) => {
     enabled: false,
   };
   optionsGraph.plotOptions = {
+    bubble: {
+      minSize: 10,
+      maxSize: 80,
+    },
     series: {
       dataLabels: {
         enabled: true,
@@ -84,16 +94,18 @@ const Chart = ({ graphFooter, graphComments, id }) => {
             xAxis: 0,
             yAxis: 0,
           },
-          text: intl.formatMessage({ id: `${id}.goal` }),
+          text: intl.formatMessage({ id: 'app.publishers.objectif-science-ouverte' }),
         },
       ],
+      draggable: '',
       labelOptions: {
+        useHTML: true,
         borderRadius: 0,
+        borderWidth: 0,
         backgroundColor: 'var(--blue-soft-100)',
       },
     },
   ];
-
   return (
     <WrapperChart
       id={id}
