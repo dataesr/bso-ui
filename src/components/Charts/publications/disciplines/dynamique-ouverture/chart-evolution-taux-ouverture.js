@@ -112,7 +112,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
           dashStyle: 'ShortDot',
           marker: {
             symbol: 'circle',
-            radius: 8,
+            radius,
             lineColor,
             fillColor,
           },
