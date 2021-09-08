@@ -27,30 +27,32 @@ function useGetData(lastObservationSnap, domain = '') {
     const dataBubbles = res.data.aggregations.by_discipline.buckets;
 
     const bubbles = [];
-    dataBubbles.forEach((elem) => {
-      bubbles.push({
-        publicationDate:
+    dataBubbles
+      .filter((elem) => elem.key !== 'unknown')
+      .forEach((elem) => {
+        bubbles.push({
+          publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
-        discipline: intl.formatMessage({ id: `app.discipline.${elem.key}` }),
-        x:
+          discipline: intl.formatMessage({ id: `app.discipline.${elem.key}` }),
+          x:
           (100
             * elem.by_oa_colors.buckets
               .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
               .reduce((a, b) => a + b.doc_count, 0))
           / elem.doc_count,
-        x_abs: elem.by_oa_colors.buckets
-          .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
-          .reduce((a, b) => a + b.doc_count, 0),
-        y:
+          x_abs: elem.by_oa_colors.buckets
+            .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+            .reduce((a, b) => a + b.doc_count, 0),
+          y:
           100
           * (elem.by_oa_colors.buckets.find((el) => el.key === 'green')
             .doc_count
             / elem.doc_count),
-        y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green')
-          .doc_count,
-        z: elem.doc_count,
+          y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green')
+            .doc_count,
+          z: elem.doc_count,
+        });
       });
-    });
 
     const bubbleGraph = [
       {
