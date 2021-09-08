@@ -47,7 +47,7 @@ function useGetData(observationSnap, domain) {
         .sort((a, b) => ((a.closed / a.total) - (b.closed / b.total)));
       data
         .forEach((el, catIndex) => {
-          categories.push(el.key);
+          categories.push(intl.formatMessage({ id: `app.discipline.${el.key}` }));
 
           const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
             ?.doc_count || 0;
