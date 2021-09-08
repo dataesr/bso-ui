@@ -35,7 +35,7 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
   const chartRef = useRef();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture';
   const [isActive, setIsActive] = useState(false);
-  const { observationSnaps } = useGlobals();
+  const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
 
   if (isLoading || !data || data.length <= 0) {
@@ -111,36 +111,40 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
   };
 
   const series = [];
-  for (let index = 1; index <= dates.length; index += 1) {
+  for (let index = 1; index < dates.length + 1; index += 1) {
     let lowColor = '';
-    let lineColor = 'white';
+    let lineColor = '';
     let fillColor = '';
+    const delta = parseInt(lastObservationSnap.substr(0, 4), 10) - parseInt(dates[index - 1].substr(0, 4), 10);
     // eslint-disable-next-line default-case
-    switch (index) {
-    case 1:
+    switch (delta) {
+    case 3:
       lowColor = orangesoft75;
       fillColor = lowColor;
+      lineColor = 'white';
       break;
     case 2:
       lowColor = orangesoft125;
       fillColor = lowColor;
+      lineColor = 'white';
       break;
-    case 3:
+    case 1:
       lowColor = orangesoft175;
       lineColor = lowColor;
+      lineColor = 'white';
       break;
-    case 4:
+    case 0:
       lowColor = orangesoft100;
       lineColor = lowColor;
       fillColor = 'white';
       break;
     }
     series.push({
-      name: dates[index],
+      name: dates[index - 1],
       data: data.map((item) => ({
         name: item.name,
-        low: item.data.find((el) => el.name === dates[index - 1])?.y || 70,
-        high: item.data.find((el) => el.name === dates[index])?.y || 70,
+        low: item.data.find((el) => el.name === dates[index - 1])?.y,
+        high: item.data.find((el) => el.name === dates[index])?.y || item.data.find((el) => el.name === dates[index - 1])?.y,
       })),
       lowColor,
       marker: {
