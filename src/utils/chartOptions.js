@@ -226,12 +226,13 @@ export const chartOptions = {
         };
         options.plotOptions = {
           bubble: {
-            minSize: 10,
+            minSize: 30,
             maxSize: 80,
           },
           series: {
             dataLabels: {
               enabled: true,
+              allowOverlap: true,
               format: '{point.discipline}',
               filter: {
                 property: 'z',
