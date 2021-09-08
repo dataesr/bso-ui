@@ -27,18 +27,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading } = useGetData(lastObservationSnap);
   const idWithDomain = withDomain(id, domain);
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    data.bubbleGraph,
-  );
+  const optionsGraph = chartOptions[id].getOptions(idWithDomain, intl, data);
 
   return (
     <WrapperChart
-      id={id}
       idWithDomain={idWithDomain}
-      chartRef={chartRef}
+      id={id}
       isLoading={isLoading || !data.bubbleGraph}
+      chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={graphComments}
     >
@@ -46,7 +42,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
+        id={id}
       />
     </WrapperChart>
   );

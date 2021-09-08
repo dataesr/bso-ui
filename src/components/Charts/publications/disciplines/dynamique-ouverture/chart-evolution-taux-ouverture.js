@@ -11,9 +11,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import {
-  discipline100,
-  discipline125,
-  discipline150,
+  orangesoft75,
+  orangesoft100,
+  orangesoft125,
+  orangesoft175,
 } from '../../../../../style/colours.module.scss';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -32,8 +33,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const [isActive, setIsActive] = useState(false);
   const [optionsGraph, setOptionsGraph] = useState(null);
-  const { lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap);
+  const { observationSnaps, lastObservationSnap } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {
@@ -57,36 +58,50 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
             - a.data[data[0].data.length - 1].y,
         );
       }
-      for (let index = 1; index < dates.length; index += 1) {
+      for (let index = 1; index < dates.length + 1; index += 1) {
         let lowColor = '';
         let lineColor = '';
+        let fillColor = '';
+        const delta = parseInt(lastObservationSnap.substr(0, 4), 10)
+          - parseInt(dates[index - 1].substr(0, 4), 10);
         // eslint-disable-next-line default-case
-        switch (index) {
-        case 1:
-          lowColor = discipline100;
-          lineColor = '#fff';
+        switch (delta) {
+        case 3:
+          lowColor = orangesoft75;
+          fillColor = lowColor;
+          lineColor = 'white';
           break;
         case 2:
-          lowColor = discipline125;
-          lineColor = '#fff';
+          lowColor = orangesoft125;
+          fillColor = lowColor;
+          lineColor = 'white';
           break;
-        case 3:
-          lowColor = discipline150;
-          lineColor = '#fff';
+        case 1:
+          lowColor = orangesoft175;
+          lineColor = lowColor;
+          lineColor = 'white';
+          break;
+        case 0:
+          lowColor = orangesoft100;
+          lineColor = lowColor;
+          fillColor = 'white';
           break;
         }
         series.push({
-          name: dates[index],
+          name: dates[index - 1],
           data: data.map((item) => ({
             name: item.name,
-            low: item.data.find((el) => el.name === dates[index - 1]).y,
-            high: item.data.find((el) => el.name === dates[index]).y,
+            low: item.data.find((el) => el.name === dates[index - 1])?.y,
+            high:
+              item.data.find((el) => el.name === dates[index])?.y
+              || item.data.find((el) => el.name === dates[index - 1])?.y,
           })),
           lowColor,
           marker: {
             symbol: 'circle',
             radius: 8,
             lineColor,
+            fillColor,
           },
           dashStyle: 'ShortDot',
           color: lowColor,

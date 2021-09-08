@@ -154,24 +154,30 @@ export const chartOptions = {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
 
-      options.chart = {
-        type: 'bar',
-        height: '600px',
-      };
-
+      options.chart.type = 'bar';
       options.xAxis = {
         categories,
       };
-
+      options.yAxis = getPercentageYAxis();
       options.legend = {
         title: {
           text: intl.formatMessage({ id: `${id}.legend` }),
         },
       };
-
       options.plotOptions = {
         series: {
           stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            // eslint-disable-next-line
+            formatter: function () {
+              // eslint-disable-next-line
+              return this.y.toFixed(1).concat(' %');
+            },
+          },
         },
       };
       options.series = data;
@@ -186,10 +192,13 @@ export const chartOptions = {
 
         options.chart.type = 'bubble';
         options.chart.zoomType = 'xy';
-        options.series = data;
+        options.series = data.bubbleGraph;
         options.xAxis = {
+          gridLineDashStyle: 'dash',
+          gridLineWidth: 1,
+          endOnTick: false,
           min: 0,
-          max: 110,
+          max: 109,
           title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
           labels: {
             // eslint-disable-next-line
@@ -199,8 +208,11 @@ export const chartOptions = {
           },
         };
         options.yAxis = {
+          gridLineDashStyle: 'dash',
+          gridLineWidth: 1,
+          endOnTick: false,
           min: 0,
-          max: 110,
+          max: 120,
           title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
           labels: {
             // eslint-disable-next-line
@@ -213,6 +225,10 @@ export const chartOptions = {
           enabled: false,
         };
         options.plotOptions = {
+          bubble: {
+            minSize: 10,
+            maxSize: 80,
+          },
           series: {
             dataLabels: {
               enabled: true,
@@ -236,11 +252,16 @@ export const chartOptions = {
                   xAxis: 0,
                   yAxis: 0,
                 },
-                text: intl.formatMessage({ id: `${id}.goal` }),
+                text: intl.formatMessage({
+                  id: 'app.publishers.objectif-science-ouverte',
+                }),
               },
             ],
+            draggable: '',
             labelOptions: {
+              useHTML: true,
               borderRadius: 0,
+              borderWidth: 0,
               backgroundColor: 'var(--blue-soft-100)',
             },
           },
@@ -1242,11 +1263,9 @@ export const chartOptions = {
         zoomType: 'x',
         height: '600px',
       };
-
       options.yAxis = getPercentageYAxis();
       options.yAxis.gridLineColor = 'var(--g500)';
       options.yAxis.gridLineDashStyle = 'dot';
-
       options.xAxis = {
         type: 'category',
         categories: data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name}` })),
@@ -1281,6 +1300,7 @@ export const chartOptions = {
           },
         },
       };
+
       options.series = data;
 
       options.tooltip = {

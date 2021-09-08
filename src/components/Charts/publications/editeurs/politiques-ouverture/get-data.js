@@ -9,6 +9,7 @@ import {
 } from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import target from '../../../../Images/asset-target.png';
 
 function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
@@ -112,6 +113,14 @@ function useGetData(lastObservationSnap, domain) {
         name: intl.formatMessage({ id: 'app.publishers' }),
         data: bubbles,
         color: editeurplateforme100,
+      },
+      {
+        data: [{ y: 100, x: 100 }],
+        type: 'scatter',
+        enableMouseTracking: false,
+        marker: {
+          symbol: `url(${target})`,
+        },
       },
     ];
 

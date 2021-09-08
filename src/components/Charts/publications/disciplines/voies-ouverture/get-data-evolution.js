@@ -7,8 +7,10 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { editeurplateforme100 } from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import target from '../../../../Images/asset-target.png';
 
-function useGetData(lastObservationSnap) {
+function useGetData(lastObservationSnap, domain = '') {
+  const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
@@ -16,8 +18,9 @@ function useGetData(lastObservationSnap) {
   async function GetData() {
     const query = getFetchOptions(
       'disciplinesVoiesEvolutions',
-      'health',
+      domain,
       lastObservationSnap,
+      disciplineField,
     );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
 
@@ -54,6 +57,14 @@ function useGetData(lastObservationSnap) {
         name: intl.formatMessage({ id: 'app.discipline' }),
         data: bubbles,
         color: editeurplateforme100,
+      },
+      {
+        data: [{ y: 100, x: 100 }],
+        type: 'scatter',
+        enableMouseTracking: false,
+        marker: {
+          symbol: `url(${target})`,
+        },
       },
     ];
 

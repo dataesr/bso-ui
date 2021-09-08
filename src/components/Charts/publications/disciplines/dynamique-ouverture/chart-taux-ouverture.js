@@ -20,8 +20,8 @@ HCExportingData(Highcharts);
 
 const Chart = ({ graphComments, id, domain }) => {
   const intl = useIntl();
-  const { lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
+  const { observationSnaps } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   let graphs = [];
 

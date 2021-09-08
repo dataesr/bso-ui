@@ -12,7 +12,7 @@ import {
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
-function useGetData(observationDate) {
+function useGetData(observationDate, domain = '') {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -22,13 +22,13 @@ function useGetData(observationDate) {
       const queries = [];
       const query1 = getFetchOptions(
         'publicationRateRangUtile',
-        'health',
+        domain,
         lastObservationSnap,
       );
       queries.push(Axios.post(ES_API_URL, query1, HEADERS));
       const query2 = getFetchOptions(
         'publicationRatePays',
-        'health',
+        domain,
         lastObservationSnap,
       );
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
@@ -130,7 +130,7 @@ function useGetData(observationDate) {
 
       return { categories, categories2, dataGraph, dataGraph2 };
     },
-    [intl],
+    [intl, domain],
   );
 
   useEffect(() => {
