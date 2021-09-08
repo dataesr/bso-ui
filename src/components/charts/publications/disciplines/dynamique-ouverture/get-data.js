@@ -13,10 +13,11 @@ function useGetData(observationSnaps, domain = '') {
     const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    observationSnaps?.forEach((oneDate) => {
-      const query = getFetchOptions('publicationRateDiscipline', domain, oneDate, disciplineField);
-      queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    });
+    observationSnaps?.sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
+      .forEach((oneDate) => {
+        const query = getFetchOptions('publicationRateDiscipline', domain, oneDate, disciplineField);
+        queries.push(Axios.post(ES_API_URL, query, HEADERS));
+      });
 
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
