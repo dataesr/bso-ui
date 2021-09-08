@@ -226,6 +226,11 @@ export const chartOptions = {
         };
         options.plotOptions = {
           bubble: {
+            dataLabels: {
+              style: {
+                textOutline: 'none',
+              },
+            },
             minSize: 30,
             maxSize: 80,
           },
@@ -864,6 +869,9 @@ export const chartOptions = {
       options.plotOptions = {
         series: {
           dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
             enabled: true,
             format: '{point.publisher}',
             filter: {
