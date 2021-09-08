@@ -115,6 +115,8 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
     let lowColor = '';
     let lineColor = '';
     let fillColor = '';
+    let radius = 7;
+    let showInLegend = true;
     const delta = parseInt(lastObservationSnap.substr(0, 4), 10) - parseInt(dates[index - 1].substr(0, 4), 10);
     // eslint-disable-next-line default-case
     switch (delta) {
@@ -122,21 +124,29 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
       lowColor = orangesoft75;
       fillColor = lowColor;
       lineColor = 'white';
+      radius = 7;
+      showInLegend = true;
       break;
     case 2:
       lowColor = orangesoft125;
       fillColor = lowColor;
       lineColor = 'white';
+      radius = 7;
+      showInLegend = true;
       break;
     case 1:
       lowColor = orangesoft175;
       lineColor = lowColor;
       lineColor = 'white';
+      radius = 7;
+      showInLegend = true;
       break;
     case 0:
       lowColor = orangesoft100;
       lineColor = lowColor;
       fillColor = 'white';
+      radius = 8;
+      showInLegend = false;
       break;
     }
     series.push({
@@ -147,16 +157,27 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
         high: item.data.find((el) => el.name === dates[index])?.y || item.data.find((el) => el.name === dates[index - 1])?.y,
       })),
       lowColor,
+      showInLegend,
+      color: lowColor,
       marker: {
-        symbol: 'circle',
-        radius: 8,
         lineColor,
+        radius,
+        symbol: 'circle',
         fillColor,
       },
       dashStyle: 'ShortDot',
-      color: lowColor,
     });
   }
+  series.push({
+    type: 'scatter',
+    name: lastObservationSnap,
+    marker: {
+      radius: 8,
+      fillColor: 'white',
+      symbol: 'circle',
+      lineColor: orangesoft100,
+    },
+  });
   graphOptions.series = series;
 
   graphOptions.tooltip = {

@@ -130,7 +130,7 @@ function useGetData(observationDate, domain = '') {
 
       return { categories, categories2, dataGraph, dataGraph2 };
     },
-    [intl],
+    [intl, domain],
   );
 
   useEffect(() => {
