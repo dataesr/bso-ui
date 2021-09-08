@@ -8,7 +8,6 @@ import React, { useRef } from 'react';
 
 import { withDomain } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
-// import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -17,9 +16,6 @@ const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const graphId = 'publi.repositories.dynamique-hal.chart-taux exhaustivite';
   const idWithDomain = withDomain(graphId);
-  // const { observationSnaps, updateDate } = useGlobals();
-  // const { data, isLoading, isError } = useGetData(observationSnaps);
-  // const { dataGraph2 } = data;
 
   return (
     <WrapperChart
