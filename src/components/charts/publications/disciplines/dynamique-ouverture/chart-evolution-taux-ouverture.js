@@ -18,7 +18,7 @@ import {
   orangesoft175,
 } from '../../../../../style/colours.module.scss';
 import { getGraphOptions } from '../../../../../utils/chartOptions';
-import { graphIds } from '../../../../../utils/constants';
+import { domains, graphIds } from '../../../../../utils/constants';
 import { getPercentageYAxis } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import Loader from '../../../../Loader';
@@ -30,13 +30,13 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id }) => {
+const Chart = ({ graphFooter, graphComments, domain, id }) => {
   const intl = useIntl();
   const chartRef = useRef();
   const graphId = 'app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture';
   const [isActive, setIsActive] = useState(false);
-  const { lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(lastObservationSnap);
+  const { observationSnaps } = useGlobals();
+  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
 
   if (isLoading || !data || data.length <= 0) {
     return <Loader />;
@@ -185,11 +185,13 @@ Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
   id: 'app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
+  domain: '',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

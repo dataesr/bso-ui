@@ -7,6 +7,7 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { editeurplateforme100 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/chartOptions';
 import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import target from '../../../../Images/asset-target.png';
 
 function useGetData(lastObservationSnap, domain = '') {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
@@ -62,7 +63,7 @@ function useGetData(lastObservationSnap, domain = '') {
         type: 'scatter',
         enableMouseTracking: false,
         marker: {
-          symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)',
+          symbol: `url(${target})`,
         },
       },
     ];

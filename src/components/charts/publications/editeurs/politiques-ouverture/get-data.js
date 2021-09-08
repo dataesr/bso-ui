@@ -9,6 +9,7 @@ import {
 } from '../../../../../style/colours.module.scss';
 import { getFetchOptions } from '../../../../../utils/chartOptions';
 import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import target from '../../../../Images/asset-target.png';
 
 function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
@@ -118,7 +119,7 @@ function useGetData(lastObservationSnap, domain) {
         type: 'scatter',
         enableMouseTracking: false,
         marker: {
-          symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)',
+          symbol: `url(${target})`,
         },
       },
     ];

@@ -34,8 +34,11 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   optionsGraph.chart.zoomType = 'xy';
   optionsGraph.series = bubbleGraph;
   optionsGraph.xAxis = {
+    gridLineDashStyle: 'dash',
+    gridLineWidth: 1,
+    endOnTick: false,
     min: 0,
-    max: 110,
+    max: 109,
     title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
     labels: {
       // eslint-disable-next-line
@@ -45,8 +48,11 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     },
   };
   optionsGraph.yAxis = {
+    gridLineDashStyle: 'dash',
+    gridLineWidth: 1,
+    endOnTick: false,
     min: 0,
-    max: 110,
+    max: 120,
     title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
     labels: {
       // eslint-disable-next-line
