@@ -4,41 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
-import BSOChart from '../../../components/BSOChart';
-import ChartEvolutionProportionAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion';
-import ChartTauxOuvertureAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture';
-import ChartClassementPays from '../../../components/charts/publications/affiliations/pays/chart-classement-pays';
-import ChartEvolutionTauxOuvertureRangUtile from '../../../components/charts/publications/affiliations/pays/chart-taux-rang-utile';
-import ChartNombreDocumentsDepotsRepositories from '../../../components/charts/publications/archives/dynamique-depot/chart-nombre-documents-depots';
-import ChartTauxCouvertureHAL from '../../../components/charts/publications/archives/dynamique-hal/chart-couverture-hal';
-import ChartTauxOuvertureArchives from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-ouverture';
-import ChartTauxPresenceRepositories from '../../../components/charts/publications/archives/dynamique-ouverture/chart-taux-presence';
-import ChartNombreDocumentsRepositories from '../../../components/charts/publications/archives/plus-utilisees/chart-nombre-documents';
-import ChartEvolutionTauxOuvertureDisciplines from '../../../components/charts/publications/disciplines/dynamique-ouverture/chart-evolution-taux-ouverture';
-import ChartTauxOuvertureDisciplines from '../../../components/charts/publications/disciplines/dynamique-ouverture/chart-taux-ouverture';
-import ChartEvolutionComparaisonTypesHebergementDisciplines from '../../../components/charts/publications/disciplines/voies-ouverture/chart-evolution-comparaison-types-hebergement';
-import ChartRepartitionPublicationsDisciplines from '../../../components/charts/publications/disciplines/voies-ouverture/chart-repartition-publications';
-import ChartDepensesEstimeesPublishers from '../../../components/charts/publications/editeurs/couts-publication/chart-depenses-estimees';
-import ChartDistributionPublishers from '../../../components/charts/publications/editeurs/couts-publication/chart-distribution';
-import ChartDistributionParAnnee from '../../../components/charts/publications/editeurs/couts-publication/chart-distribution-par-annee';
-import ChartEvolutionProportionPublishers from '../../../components/charts/publications/editeurs/dynamique-ouverture/chart-evolution-proportion';
-import ChartTauxOuverturePublishers from '../../../components/charts/publications/editeurs/dynamique-ouverture/chart-taux-ouverture';
-import ChartRepartitionPublishers from '../../../components/charts/publications/editeurs/poids-revues/chart-repartition';
-import ChartClassementPublishers from '../../../components/charts/publications/editeurs/politiques-ouverture/chart-classement';
-import ChartComparaisonPublishers from '../../../components/charts/publications/editeurs/politiques-ouverture/chart-comparaison';
-import ChartClassementLicencesPublishers from '../../../components/charts/publications/editeurs/repartition-licences/chart-classement';
-import ChartRepartitionLicencesPublishers from '../../../components/charts/publications/editeurs/repartition-licences/chart-repartition';
-import ChartEvolutionRepartitionPublishers from '../../../components/charts/publications/editeurs/type-ouverture/chart-evolution-repartition';
-import ChartRepartitionModelesPublishers from '../../../components/charts/publications/editeurs/type-ouverture/chart-repartition-modeles';
-import ChartEvolutionProportion from '../../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
-import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
-import ChartGenreOuverture from '../../../components/charts/publications/general/genres-ouverture/genres-ouverture';
-import ChartRepartitionDeclarations from '../../../components/charts/publications/general/impact-financement/chart-repartition-declarations';
-import ChartTauxOuvertureFinancement from '../../../components/charts/publications/general/impact-financement/chart-taux-ouverture';
-import ChartLanguesOuverture from '../../../components/charts/publications/general/langues-ouverture/langues-ouverture';
-import ChartEvolutionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-evolution-taux';
-import ChartRepartitionPublications from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-publications';
-import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
+import BSOChart from '../../../components/Charts';
 import Chip from '../../../components/Chip';
 import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
@@ -175,8 +141,10 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='general.dynamique-ouverture'
                 >
-                  <ChartTauxOuverture domain='health' />
-                  {/* <ChartEvolutionProportion domain='health' /> */}
+                  <BSOChart
+                    id='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
                   <BSOChart
                     id='publi.general.dynamique-ouverture.chart-evolution-proportion'
                     domain='health'
@@ -189,9 +157,18 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='general.voies-ouverture'
                 >
-                  <ChartRepartitionTaux domain='health' />
-                  <ChartEvolutionTaux domain='health' />
-                  <ChartRepartitionPublications domain='health' />
+                  <BSOChart
+                    id='publi.general.voies-ouverture.chart-repartition-taux'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.general.voies-ouverture.chart-evolution-taux'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.general.voies-ouverture.chart-repartition-publications'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -199,7 +176,10 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='general.genres-ouverture'
                 >
-                  <ChartGenreOuverture domain='health' />
+                  <BSOChart
+                    id='publi.general.genres-ouverture.chart-repartition-genres'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -207,7 +187,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='general.langues-ouverture'
                 >
-                  <ChartLanguesOuverture domain='health' />
+                  <BSOChart
+                    id='publi.general.langues-ouverture.chart-repartition-publications'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -215,8 +198,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='general.impact-financement'
                 >
-                  <ChartTauxOuvertureFinancement domain='health' />
-                  <ChartRepartitionDeclarations domain='health' />
+                  <BSOChart
+                    id='publi.general.impact-financement.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.general.impact-financement.chart-repartition-financements'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -247,8 +236,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='disciplines.dynamique-ouverture'
                 >
-                  <ChartTauxOuvertureDisciplines domain='health' />
-                  <ChartEvolutionTauxOuvertureDisciplines />
+                  <BSOChart
+                    id='publi.disciplines.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -256,8 +251,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='disciplines.voies-ouverture'
                 >
-                  <ChartRepartitionPublicationsDisciplines domain='health' />
-                  <ChartEvolutionComparaisonTypesHebergementDisciplines domain='health' />
+                  <BSOChart
+                    id='publi.disciplines.voies-ouverture.chart-repartition-publications'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -310,8 +311,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='publishers.dynamique-ouverture'
                 >
-                  <ChartTauxOuverturePublishers domain='health' />
-                  <ChartEvolutionProportionPublishers domain='health' />
+                  <BSOChart
+                    id='publi.publishers.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.publishers.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -319,8 +326,14 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='publishers.type-ouverture'
                 >
-                  <ChartEvolutionRepartitionPublishers domain='health' />
-                  <ChartRepartitionModelesPublishers domain='health' />
+                  <BSOChart
+                    id='publi.publishers.type-ouverture.chart-evolution-repartition'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.publishers.type-ouverture.chart-repartition-modeles'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -328,8 +341,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='publishers.politiques-ouverture'
                 >
-                  <ChartClassementPublishers domain='health' />
-                  <ChartComparaisonPublishers domain='health' />
+                  <BSOChart
+                    id='publi.publishers.politiques-ouverture.chart-classement'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.publishers.politiques-ouverture.chart-comparaison'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -337,7 +356,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='publishers.poids-revues'
                 >
-                  <ChartRepartitionPublishers domain='health' />
+                  <BSOChart
+                    id='publi.publishers.poids-revues.chart-repartition'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -345,8 +367,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='publishers.repartition-licences'
                 >
-                  <ChartRepartitionLicencesPublishers domain='health' />
-                  <ChartClassementLicencesPublishers domain='health' />
+                  <BSOChart
+                    id='publi.publishers.repartition-licences.chart-repartition'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.publishers.repartition-licences.chart-classement'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -354,9 +382,18 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='publishers.couts-publication'
                 >
-                  <ChartDepensesEstimeesPublishers domain='health' />
-                  <ChartDistributionPublishers domain='health' />
-                  <ChartDistributionParAnnee domain='health' />
+                  <BSOChart
+                    id='publi.publishers.couts-publication.chart-depenses-estimees'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.publishers.couts-publication.chart-distribution'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.publishers.couts-publication.chart-distribution-par-annee'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -397,8 +434,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='repositories.dynamique-ouverture'
                 >
-                  <ChartTauxOuvertureArchives domain='health' />
-                  <ChartTauxPresenceRepositories domain='health' />
+                  <BSOChart
+                    id='publi.repositories.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.repositories.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -406,7 +449,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='repositories.plus-utilisees'
                 >
-                  <ChartNombreDocumentsRepositories domain='health' />
+                  <BSOChart
+                    id='publi.repositories.plus-utilisees.chart-nombre-documents'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -414,7 +460,10 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='repositories.dynamique-depot'
                 >
-                  <ChartNombreDocumentsDepotsRepositories domain='health' />
+                  <BSOChart
+                    id='publi.repositories.dynamique-depot.chart-nombre-documents-depots'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -422,7 +471,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='repositories.dynamique-hal'
                 >
-                  <ChartTauxCouvertureHAL domain='health' />
+                  <BSOChart
+                    id='publi.repositories.dynamique-hal.chart-couverture-hal'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -453,8 +505,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='affiliations.dynamique-ouverture'
                 >
-                  <ChartTauxOuvertureAffiliations domain='health' />
-                  <ChartEvolutionProportionAffiliations domain='health' />
+                  <BSOChart
+                    id='publi.affiliations.dynamique-ouverture.chart-taux-ouverture'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.affiliations.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -462,8 +520,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='affiliations.pays'
                 >
-                  <ChartEvolutionTauxOuvertureRangUtile domain='health' />
-                  <ChartClassementPays domain='health' />
+                  <BSOChart
+                    id='publi.affiliations.pays.chart-taux-rang-utile'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.affiliations.pays.chart-classement-pays'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

@@ -1,5 +1,6 @@
 {
   "app.agencies-filter-label": "EN Préciser une agence de financement",
+  "app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.toggle-label": "Trier par meilleure progession",
   "app.all-agencies": "All",
   "app.all-publications": "EN Toutes les publications",
   "app.all-publishers": "All",
@@ -7,6 +8,7 @@
   "app.baro-national.detail-publi": "Voir le détail des publications",
   "app.baro-national.intro": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
   "app.baro-national.title": "Les publications",
+  "app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.legend": "Legend",
   "app.baro-sante.detail-essays": "Voir le détail des essais cliniques",
   "app.baro-sante.detail-publi": "Voir le détail des publications",
   "app.baro-sante.detail-studies": "Voir le détail des études observationnelles",

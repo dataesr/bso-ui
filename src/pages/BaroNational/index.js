@@ -3,7 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../components/Banner';
-import ChartTauxOuverture from '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
+import BSOChart from '../../components/Charts';
 import Chip from '../../components/Chip';
 import Glossary from '../../components/Glossary';
 import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
@@ -111,7 +111,7 @@ function BaroNational() {
                 <Container fluid>
                   <Row gutters alignItems='top'>
                     <Col n='12 md-8'>
-                      <ChartTauxOuverture
+                      <BSOChart
                         id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                         graphComments={false}
                         graphFooter={false}

@@ -9,27 +9,27 @@ const Integration = () => {
   switch (graphid) {
   case 'app.health-publi.general.dynamique-ouverture.chart-taux-ouverture':
     GraphComponent = loadable(() => import(
-      '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture'
+      '../../components/Charts/publications/general/dynamique-ouverture/chart-taux-ouverture'
     ));
     break;
   case 'app.health-publi.general.dynamique-ouverture.chart-evolution-proportion':
     GraphComponent = loadable(() => import(
-      '../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion'
+      '../../components/Charts/publications/general/dynamique-ouverture/chart-evolution-proportion'
     ));
     break;
   case 'app.health-publi.general.voies-ouverture.chart-evolution-taux':
     GraphComponent = loadable(() => import(
-      '../../components/charts/publications/general/voies-ouverture/chart-evolution-taux'
+      '../../components/Charts/publications/general/voies-ouverture/chart-evolution-taux'
     ));
     break;
   case 'app.health-publi.general.voies-ouverture.chart-repartition-taux':
     GraphComponent = loadable(() => import(
-      '../../components/charts/publications/general/voies-ouverture/chart-repartition-taux'
+      '../../components/Charts/publications/general/voies-ouverture/chart-repartition-taux'
     ));
     break;
   case 'app.health-publi.general.voies-ouverture.chart-repartition-publications':
     GraphComponent = loadable(() => import(
-      '../../components/charts/publications/general/voies-ouverture/chart-repartition-publications'
+      '../../components/Charts/publications/general/voies-ouverture/chart-repartition-publications'
     ));
     break;
   default:

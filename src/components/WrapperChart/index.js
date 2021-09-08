@@ -6,9 +6,9 @@ import { graphIds } from '../../utils/constants';
 import { getFormattedDate } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
-import GraphComments from '../charts/graph-comments';
-import GraphFooter from '../charts/graph-footer';
-import GraphTitle from '../charts/graph-title';
+import GraphComments from '../Charts/graph-comments';
+import GraphFooter from '../Charts/graph-footer';
+import GraphTitle from '../Charts/graph-title';
 import Loader from '../Loader';
 
 function WrapperChart({

@@ -12,9 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
-import BSOChart from '../../components/BSOChart';
-import ChartEvolutionProportion from '../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
-import ChartTauxOuverture from '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
+import BSOChart from '../../components/Charts';
 import Chip from '../../components/Chip';
 import Glossary from '../../components/Glossary';
 import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
@@ -103,7 +101,7 @@ function BaroSante() {
                 <Container fluid>
                   <Row gutters alignItems='top'>
                     <Col n='12 md-8'>
-                      <ChartTauxOuverture
+                      <BSOChart
                         id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                         domain='health'
                         graphComments={false}
@@ -114,8 +112,9 @@ function BaroSante() {
                       <ProgressionCard domain='health' />
                     </Col>
                     <Col n='12'>
-                      <ChartEvolutionProportion
+                      <BSOChart
                         domain='health'
+                        id='publi.general.dynamique-ouverture.chart-evolution-proportion'
                         graphComments={false}
                       />
                     </Col>
