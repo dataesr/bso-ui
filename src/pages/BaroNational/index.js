@@ -3,7 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../components/Banner';
-import ChartTauxOuverture from '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
+import BSOChart from '../../components/Charts';
 import Chip from '../../components/Chip';
 import Glossary from '../../components/Glossary';
 import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
@@ -111,8 +111,8 @@ function BaroNational() {
                 <Container fluid>
                   <Row gutters alignItems='top'>
                     <Col n='12 md-8'>
-                      <ChartTauxOuverture
-                        id='app.national-publi.general.dynamique-ouverture.chart-taux-ouverture'
+                      <BSOChart
+                        id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                         graphComments={false}
                         graphFooter={false}
                       />
@@ -150,14 +150,14 @@ function BaroNational() {
                   itemKey='publisher'
                   iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
-                  intlSubTitle='app.sante-publi.publishers'
+                  intlSubTitle='app.health-publi.publishers'
                   backgroundColorClass='bg-yellow'
                 />
                 <TodayNumbersItem
                   itemKey='repository'
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
-                  intlSubTitle='app.sante-publi.repositories'
+                  intlSubTitle='app.health-publi.repositories'
                   backgroundColorClass='bg-medium-green'
                 />
                 <TodayNumbersItem

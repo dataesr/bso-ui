@@ -91,7 +91,7 @@ export default function ProgressionCard({ domain }) {
             endYear: lastObservationSnap,
             div: (chunks) => <div>{chunks}</div>,
           }}
-          id='app.sante-publi.progression'
+          id='app.health-publi.progression'
           defaultMessage='Progression'
         />
       )}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL } from '../../config/config';
-import { getFetchOptions } from '../chartOptions';
+import getFetchOptions from '../chartFetchOptions';
 import useFetch from './useFetch';
 
 export default async function useGetPublicationRateFrom(
