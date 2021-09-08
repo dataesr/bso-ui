@@ -1394,6 +1394,37 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.disciplines.langues-ouverture.chart-repartition-publications': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.series = [
+        {
+          type: 'treemap',
+          layoutAlgorithm: 'stripes',
+          alternateStartingDirection: true,
+          levels: [
+            {
+              level: 1,
+              layoutAlgorithm: 'sliceAndDice',
+              dataLabels: {
+                enabled: true,
+                align: 'left',
+                verticalAlign: 'top',
+                style: {
+                  fontSize: '15px',
+                  fontWeight: 'bold',
+                },
+              },
+            },
+          ],
+          data,
+        },
+      ];
+
+      return options;
+    },
+  },
   'publi.general.impact-financement.chart-taux-ouverture': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
@@ -2033,9 +2064,11 @@ export const chartOptions = {
         zoomType: 'x',
         height: '600px',
       };
+
       options.yAxis = getPercentageYAxis();
       options.yAxis.gridLineColor = 'var(--g500)';
       options.yAxis.gridLineDashStyle = 'dot';
+
       options.xAxis = {
         type: 'category',
         categories: data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name}` })),
@@ -2046,6 +2079,7 @@ export const chartOptions = {
           },
         },
       };
+
       options.plotOptions = {
         dumbbell: {
           grouping: false,
@@ -2057,6 +2091,7 @@ export const chartOptions = {
           },
         },
       };
+
       options.legend = {
         verticalAlign: 'top',
         align: 'left',

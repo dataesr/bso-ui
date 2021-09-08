@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
+import BSOChart from '../../../components/BSOChart';
 import ChartEvolutionProportionAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuvertureAffiliations from '../../../components/charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture';
 import ChartClassementPays from '../../../components/charts/publications/affiliations/pays/chart-classement-pays';
@@ -175,7 +176,12 @@ function SantePublications() {
                   anchorId='general.dynamique-ouverture'
                 >
                   <ChartTauxOuverture domain='health' />
-                  <ChartEvolutionProportion domain='health' />
+                  {/* <ChartEvolutionProportion domain='health' /> */}
+                  <BSOChart
+                    id='publi.general.dynamique-ouverture.chart-evolution-proportion'
+                    domain='health'
+                    graphComments={false}
+                  />
                 </QuestionSection>
 
                 <QuestionSection

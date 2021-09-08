@@ -35,7 +35,11 @@ function WrapperChart({
   };
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className='graph-container' data-id={id}>
+        <Loader />
+      </div>
+    );
   }
 
   if (isError) {

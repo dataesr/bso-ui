@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
+import BSOChart from '../../components/BSOChart';
 import ChartEvolutionProportion from '../../components/charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
 import ChartTauxOuverture from '../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
 import Chip from '../../components/Chip';
@@ -115,7 +116,6 @@ function BaroSante() {
                     <Col n='12'>
                       <ChartEvolutionProportion
                         domain='health'
-                        id='publi.general.dynamique-ouverture.chart-evolution-proportion'
                         graphComments={false}
                       />
                     </Col>

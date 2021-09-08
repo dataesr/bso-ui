@@ -34,6 +34,7 @@ export const graphIds = [
   'publi.repositories.dynamique-hal.chart-couverture-hal',
   'publi.publishers.poids-revues.chart-repartition',
   'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
+  'publi.disciplines.langues-ouverture.chart-repartition-publications',
 ];
 
 export const domains = ['health', ''];

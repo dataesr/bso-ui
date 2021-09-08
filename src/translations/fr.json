@@ -726,6 +726,8 @@
   "app.type-hebergement.report": "report",
   "app.type-hebergement.repository": "archive ouverte",
   "app.with-declaration": "Avec déclaration de financement par projet",
+  "app.lang.hu": "app.lang.hu",
+  "app.lang.is": "app.lang.is",
   "app.without-declaration": "Sans déclaration de financement par projet",
   "url.about.faq": "/a-propos/faq",
   "url.about.flash": "/a-propos/notes-flash",
