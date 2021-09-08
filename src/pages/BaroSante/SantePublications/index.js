@@ -272,7 +272,10 @@ function SantePublications() {
                     id='app.sante-publi.disciplines.dynamique-ouverture.chart-taux-ouverture'
                     domain='health'
                   />
-                  <ChartEvolutionTauxOuvertureDisciplines id='app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' />
+                  <ChartEvolutionTauxOuvertureDisciplines
+                    id='app.sante-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -280,8 +283,14 @@ function SantePublications() {
                   backgroundColor={bluesoft50}
                   anchorId='disciplines.voies-ouverture'
                 >
-                  <ChartRepartitionPublicationsDisciplines id='app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications' />
-                  <ChartEvolutionComparaisonTypesHebergementDisciplines id='app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
+                  <ChartRepartitionPublicationsDisciplines
+                    id='app.sante-publi.disciplines.voies-ouverture.chart-repartition-publications'
+                    domain='health'
+                  />
+                  <ChartEvolutionComparaisonTypesHebergementDisciplines
+                    id='app.sante-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement'
+                    domain='health'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -379,7 +388,10 @@ function SantePublications() {
                   backgroundColor={bluesoft25}
                   anchorId='publishers.poids-revues'
                 >
-                  <ChartRepartitionPublishers id='app.national-publi.publishers.poids-revues.chart-repartition' />
+                  <ChartRepartitionPublishers
+                    id='app.sante-publi.publishers.poids-revues.chart-repartition'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
