@@ -1277,7 +1277,7 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name}` })),
+        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name}` })),
         labels: {
           style: {
             color: 'var(--g800)',
