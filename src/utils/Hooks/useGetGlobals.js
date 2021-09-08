@@ -78,21 +78,20 @@ export const GlobalsContextProvider = ({ children }) => {
           '__observationSnaps__',
           JSON.stringify(responseObservationSnaps),
         );
-
-        setLastObservationSnap(responseObservationSnaps[0]);
+        setLastObservationSnap(responseObservationSnaps.sort().reverse()[0]);
         localStorage.setItem(
           '__lastObservationSnap__',
-          responseObservationSnaps[0],
+          responseObservationSnaps.sort().reverse()[0],
         );
 
-        setBeforeLastObservationSnap(responseObservationSnaps[1]);
+        setBeforeLastObservationSnap(responseObservationSnaps.sort().reverse()[1]);
         localStorage.setItem(
           '__beforeLastObservationSnap__',
-          responseObservationSnaps[1],
+          responseObservationSnaps.sort().reverse()[1],
         );
 
         const responseUpdateDate = await getUpdateDate(
-          responseObservationSnaps[0],
+          responseObservationSnaps.sort().reverse()[0],
         );
         setUpdateDate(responseUpdateDate);
         localStorage.setItem('__updateDate__', responseUpdateDate);
