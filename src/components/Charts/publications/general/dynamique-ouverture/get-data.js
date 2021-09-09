@@ -29,7 +29,6 @@ function useGetData(observationSnaps, domain = '') {
         setError(true);
         setLoading(false);
       });
-
       const allData = res.map((d, i) => ({
         observationSnap: datesObservation[i],
         data: d.data.aggregations.by_publication_year.buckets,
@@ -63,6 +62,9 @@ function useGetData(observationSnaps, domain = '') {
         serie.name = observationSnapData.observationSnap;
         serie.color = colors[i];
         serie.dashStyle = lineStyle[i];
+        if (i === 0) {
+          serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
+        }
         serie.data = filtered.map(
           (el) => (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
