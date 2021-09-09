@@ -93,6 +93,6 @@ export default {
   },
   integration: {
     fr: '/integration/:graphId/:domain',
-    en: '/integration/:graphId',
+    en: '/integration/:graphId/:domain',
   },
 };

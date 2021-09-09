@@ -37,7 +37,7 @@ function Banner({
 
   setCSSProperty(
     '--bannerBackgroundColor',
-    getCSSProperty(`--${backgroundColor}`),
+    getCSSProperty(`--${backgroundColor}`) || backgroundColor,
   );
   setCSSProperty(
     '--bannerTextColor',
