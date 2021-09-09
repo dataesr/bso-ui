@@ -705,6 +705,63 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.affiliations.dynamique-ouverture.chart-evolution-taux': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.chart = {
+        type: 'dumbbell',
+        inverted: true,
+        zoomType: 'x',
+        height: '600px',
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.gridLineColor = 'var(--g500)';
+      options.yAxis.gridLineDashStyle = 'dot';
+      options.xAxis = {
+        type: 'category',
+        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.affiliations.${el.name}` })),
+        labels: {
+          style: {
+            color: 'var(--g800)',
+            fontSize: '14px',
+          },
+        },
+      };
+
+      options.plotOptions = {
+        dumbbell: {
+          grouping: false,
+        },
+        series: {
+          marker: {
+            lineWidth: 2,
+            fillColor: '#000',
+          },
+        },
+      };
+
+      options.legend = {
+        verticalAlign: 'top',
+        align: 'left',
+        title: {
+          text: intl.formatMessage({ id: `${id}.legend` }),
+          style: {
+            color: bluedark75,
+            fontSize: '14px',
+          },
+        },
+      };
+
+      options.series = data;
+
+      options.tooltip = {
+        shared: true,
+      };
+
+      return options;
+    },
+  },
   'publi.affiliations.pays.chart-taux-rang-utile': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);

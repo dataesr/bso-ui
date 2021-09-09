@@ -19,31 +19,33 @@ function useGetData(observationSnaps, needle = '*', domain) {
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    datesObservation?.forEach((oneDate) => {
-      const publisherNeedle = '*';
-      const allOaHostType = '*';
-      const query = getFetchOptions(
-        'publicationRate',
-        domain,
-        oneDate,
-        publisherNeedle,
-        allOaHostType,
-      );
-      const queryFiltered = getFetchOptions(
-        'publicationRate',
-        domain,
-        oneDate,
-        publisherNeedle,
-        'repository',
-      );
-      const wildcard = {};
-      wildcard[`oa_details.${oneDate}.repositories.keyword`] = needle;
-      queryFiltered.query.bool.filter.push({ wildcard });
-      // on veut calculer le ratio (open access avec oaHostType=repository) / (toutes les publications)
-      // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
-      queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
-      queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    });
+    datesObservation
+      ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+      .forEach((oneDate) => {
+        const publisherNeedle = '*';
+        const allOaHostType = '*';
+        const query = getFetchOptions(
+          'publicationRate',
+          domain,
+          oneDate,
+          publisherNeedle,
+          allOaHostType,
+        );
+        const queryFiltered = getFetchOptions(
+          'publicationRate',
+          domain,
+          oneDate,
+          publisherNeedle,
+          'repository',
+        );
+        const wildcard = {};
+        wildcard[`oa_details.${oneDate}.repositories.keyword`] = needle;
+        queryFiltered.query.bool.filter.push({ wildcard });
+        // on veut calculer le ratio (open access avec oaHostType=repository) / (toutes les publications)
+        // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
+        queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
+        queries.push(Axios.post(ES_API_URL, query, HEADERS));
+      });
 
     const res = await Axios.all(queries).catch(() => {
       setError(true);
@@ -106,6 +108,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
       serie.name = observationSnapData.observationSnap;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
+      if (i === 0) {
+        serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
+      }
       serie.data = observationSnapData.data.oaHostType.map((value, index) => ({
         y: (value * 100) / observationSnapData.data.all[index],
         archive:

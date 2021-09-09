@@ -10,17 +10,16 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
 
   async function GetData() {
-    const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     observationSnaps
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
       .forEach((oneDate) => {
         const query = getFetchOptions(
-          'publicationRateDiscipline',
+          'publicationRateAffiliation',
           domain,
           oneDate,
-          disciplineField,
+          'french_affiliations_types',
         );
         queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });
@@ -29,15 +28,15 @@ function useGetData(observationSnaps, domain = '') {
       setLoading(false);
     });
     const dataGraph = {};
-    const disciplines = [];
+    const affiliations = [];
     res.forEach((el, idx) => {
       const currentSnap = observationSnaps[idx];
-      el.data.aggregations.by_discipline.buckets
+      el.data.aggregations.by_affiliation.buckets
         .filter((b) => b.key !== 'unknown')
         .forEach((item) => {
           if (!dataGraph[item.key]) {
             dataGraph[item.key] = [];
-            disciplines.push(item.key);
+            affiliations.push(item.key);
           }
           dataGraph[item.key].push({
             x: idx,
@@ -52,19 +51,19 @@ function useGetData(observationSnaps, domain = '') {
         });
     });
     const dataHist = [];
-    disciplines.forEach((discipline) => {
+    affiliations.forEach((affiliation) => {
       dataHist.push({
-        name: discipline,
+        name: affiliation,
         data: observationSnaps.slice(0) // make a copy before sorting in ascending order !
           .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
           .map((obs) => ({
             name: obs,
-            y_tot: dataGraph[discipline].find((x) => x.observation_date === obs)
+            y_tot: dataGraph[affiliation].find((x) => x.observation_date === obs)
               .y_tot,
-            y_abs: dataGraph[discipline].find((x) => x.observation_date === obs)
+            y_abs: dataGraph[affiliation].find((x) => x.observation_date === obs)
               .y_abs,
-            y: dataGraph[discipline].find((x) => x.observation_date === obs).y,
-            x: dataGraph[discipline].find((x) => x.observation_date === obs).x,
+            y: dataGraph[affiliation].find((x) => x.observation_date === obs).y,
+            x: dataGraph[affiliation].find((x) => x.observation_date === obs).x,
           })),
       });
     });

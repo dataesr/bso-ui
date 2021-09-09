@@ -513,6 +513,10 @@ function SantePublications() {
                     id='publi.affiliations.dynamique-ouverture.chart-evolution-proportion'
                     domain='health'
                   />
+                  <BSOChart
+                    id='publi.affiliations.dynamique-ouverture.chart-evolution-taux'
+                    domain='health'
+                  />
                 </QuestionSection>
 
                 <QuestionSection

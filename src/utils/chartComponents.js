@@ -102,6 +102,9 @@ const ChartTauxOuvertureAffiliations = lazy(() => import(
 const ChartEvolutionProportionAffiliations = lazy(() => import(
   '../components/Charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion'
 ));
+const ChartEvolutionTauxAffiliations = lazy(() => import(
+  '../components/Charts/publications/affiliations/dynamique-ouverture/chart-evolution-taux'
+));
 const chartComponents = {
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture':
     ChartTauxOuvertureAffiliations,
@@ -128,6 +131,8 @@ const chartComponents = {
     ChartEvolutionTauxOuvertureDisciplines,
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion':
     ChartEvolutionProportionAffiliations,
+  'publi.affiliations.dynamique-ouverture.chart-evolution-taux':
+    ChartEvolutionTauxAffiliations,
   'publi.general.voies-ouverture.chart-repartition-taux': ChartRepartitionTaux,
   'publi.general.voies-ouverture.chart-repartition-publications':
     ChartRepartitionPublications,

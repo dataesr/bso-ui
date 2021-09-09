@@ -20,21 +20,23 @@ function useGetData(observationSnaps, needle = '*', domain) {
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    datesObservation?.forEach((oneDate) => {
-      const needlePublisher = '*';
-      const allOaHostType = '*';
-      const query = getFetchOptions(
-        'publicationRate',
-        domain,
-        oneDate,
-        needlePublisher,
-        allOaHostType,
-      );
-      query.query.bool.filter.push({
-        wildcard: { 'french_affiliations_types.keyword': needle },
+    datesObservation
+      ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+      .forEach((oneDate) => {
+        const needlePublisher = '*';
+        const allOaHostType = '*';
+        const query = getFetchOptions(
+          'publicationRate',
+          domain,
+          oneDate,
+          needlePublisher,
+          allOaHostType,
+        );
+        query.query.bool.filter.push({
+          wildcard: { 'french_affiliations_types.keyword': needle },
+        });
+        queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });
-      queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    });
 
     const res = await Axios.all(queries).catch(() => {
       setError(true);
@@ -71,6 +73,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
       serie.name = observationSnapData.observationSnap;
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
+      if (i === 0) {
+        serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
+      }
       serie.data = filtered.map((el, index) => ({
         y: (el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count,
         affiliation:

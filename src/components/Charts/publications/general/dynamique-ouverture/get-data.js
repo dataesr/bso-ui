@@ -18,16 +18,17 @@ function useGetData(observationSnaps, domain = '') {
     async (datesObservation) => {
       // Pour chaque date d'observation, récupération des données associées
       const queries = [];
-      datesObservation?.forEach((oneDate) => {
-        const query = getFetchOptions('publicationRate', domain, oneDate);
-        queries.push(Axios.post(ES_API_URL, query, HEADERS));
-      });
+      datesObservation
+        ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+        .forEach((oneDate) => {
+          const query = getFetchOptions('publicationRate', domain, oneDate);
+          queries.push(Axios.post(ES_API_URL, query, HEADERS));
+        });
 
       const res = await Axios.all(queries).catch(() => {
         setError(true);
         setLoading(false);
       });
-
       const allData = res.map((d, i) => ({
         observationSnap: datesObservation[i],
         data: d.data.aggregations.by_publication_year.buckets,
@@ -61,6 +62,9 @@ function useGetData(observationSnaps, domain = '') {
         serie.name = observationSnapData.observationSnap;
         serie.color = colors[i];
         serie.dashStyle = lineStyle[i];
+        if (i === 0) {
+          serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
+        }
         serie.data = filtered.map(
           (el) => (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
