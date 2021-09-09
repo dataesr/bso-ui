@@ -58,7 +58,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       isLoading={isLoading || !dataGraphTreemap}
       isError={isError}
       id={id}
-      idWithDomain={idWithDomain}
+      domain={domain}
       chartRef={chartRef.current}
       graphComments={graphComments}
       graphFooter={graphFooter}
@@ -72,7 +72,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
       />
       <Toggle
-        isChecked={isDetailed}
+        checked={isDetailed}
         onChange={() => setIsDetailed(!isDetailed)}
         label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />

@@ -1,42 +1,6 @@
-// TODO dynamic domain
-export const graphIds = [
-  'publi.publishers.politiques-ouverture.chart-classement',
-  'publi.disciplines.voies-ouverture.chart-repartition-publications',
-  'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
-  'publi.affiliations.pays.chart-classement-pays',
-  'publi.publishers.type-ouverture.chart-evolution-repartition',
-  'publi.publishers.type-ouverture.chart-repartition-modeles',
-  'publi.general.dynamique-ouverture.chart-taux-ouverture',
-  'publi.general.dynamique-ouverture.chart-evolution-proportion',
-  'publi.general.voies-ouverture.chart-repartition-taux',
-  'publi.general.voies-ouverture.chart-evolution-taux',
-  'publi.general.voies-ouverture.chart-repartition-publications',
-  'publi.general.genres-ouverture.chart-repartition-genres',
-  'publi.general.langues-ouverture.chart-repartition-publications',
-  'publi.general.impact-financement.chart-taux-ouverture',
-  'publi.general.impact-financement.chart-repartition-financements',
-  'publi.affiliations.dynamique-ouverture.chart-evolution-proportion',
-  'publi.affiliations.dynamique-ouverture.chart-evolution-taux',
-  'publi.affiliations.pays.chart-taux-rang-utile',
-  'publi.publishers.dynamique-ouverture.chart-taux-ouverture',
-  'publi.publishers.dynamique-ouverture.chart-evolution-proportion',
-  'publi.affiliations.dynamique-ouverture.chart-taux-ouverture',
-  'publi.publishers.politiques-ouverture.chart-comparaison',
-  'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
-  'publi.publishers.repartition-licences.chart-repartition',
-  'publi.publishers.repartition-licences.chart-classement',
-  'publi.publishers.couts-publication.chart-depenses-estimees',
-  'publi.publishers.couts-publication.chart-distribution',
-  'publi.publishers.couts-publication.chart-distribution-par-annee',
-  'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
-  'publi.repositories.dynamique-ouverture.chart-evolution-proportion',
-  'publi.repositories.plus-utilisees.chart-nombre-documents',
-  'publi.repositories.dynamique-depot.chart-nombre-documents-depots',
-  'publi.repositories.dynamique-hal.chart-couverture-hal',
-  'publi.publishers.poids-revues.chart-repartition',
-  'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
-  'publi.disciplines.langues-ouverture.chart-repartition-publications',
-];
+import { chartOptions } from './chartOptions';
+
+export const graphIds = Object.keys(chartOptions);
 
 export const domains = ['health', ''];
 

@@ -65,7 +65,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   return (
     <WrapperChart
-      idWithDomain={idWithDomain}
+      domain={domain}
       isLoading={isLoading || !dataGraph2}
       isError={isError}
       id={id}

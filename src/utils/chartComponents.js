@@ -1,39 +1,107 @@
-import ChartEvolutionProportionAffiliations from '../components/Charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion';
-import ChartEvolutionTauxAffiliations from '../components/Charts/publications/affiliations/dynamique-ouverture/chart-evolution-taux';
-import ChartTauxOuvertureAffiliations from '../components/Charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture';
-import ChartClassementPays from '../components/Charts/publications/affiliations/pays/chart-classement-pays';
-import ChartEvolutionTauxOuvertureRangUtile from '../components/Charts/publications/affiliations/pays/chart-taux-rang-utile';
-import ChartNombreDocumentsDepotsRepositories from '../components/Charts/publications/archives/dynamique-depot/chart-nombre-documents-depots';
-import ChartTauxCouvertureHAL from '../components/Charts/publications/archives/dynamique-hal/chart-couverture-hal';
-import ChartTauxOuvertureArchives from '../components/Charts/publications/archives/dynamique-ouverture/chart-taux-ouverture';
-import ChartTauxPresenceRepositories from '../components/Charts/publications/archives/dynamique-ouverture/chart-taux-presence';
-import ChartNombreDocumentsRepositories from '../components/Charts/publications/archives/plus-utilisees/chart-nombre-documents';
-import ChartEvolutionTauxOuvertureDisciplines from '../components/Charts/publications/disciplines/dynamique-ouverture/chart-evolution-taux-ouverture';
-import ChartTauxOuvertureDisciplines from '../components/Charts/publications/disciplines/dynamique-ouverture/chart-taux-ouverture';
-import ChartEvolutionComparaisonTypesHebergementDisciplines from '../components/Charts/publications/disciplines/voies-ouverture/chart-evolution-comparaison-types-hebergement';
-import ChartRepartitionPublicationsDisciplines from '../components/Charts/publications/disciplines/voies-ouverture/chart-repartition-publications';
-import ChartDepensesEstimeesPublishers from '../components/Charts/publications/editeurs/couts-publication/chart-depenses-estimees';
-import ChartDistributionPublishers from '../components/Charts/publications/editeurs/couts-publication/chart-distribution';
-import ChartDistributionParAnnee from '../components/Charts/publications/editeurs/couts-publication/chart-distribution-par-annee';
-import ChartEvolutionProportionPublishers from '../components/Charts/publications/editeurs/dynamique-ouverture/chart-evolution-proportion';
-import ChartTauxOuverturePublishers from '../components/Charts/publications/editeurs/dynamique-ouverture/chart-taux-ouverture';
-import ChartRepartitionPublishers from '../components/Charts/publications/editeurs/poids-revues/chart-repartition';
-import ChartClassementPublishers from '../components/Charts/publications/editeurs/politiques-ouverture/chart-classement';
-import ChartComparaisonPublishers from '../components/Charts/publications/editeurs/politiques-ouverture/chart-comparaison';
-import ChartClassementLicencesPublishers from '../components/Charts/publications/editeurs/repartition-licences/chart-classement';
-import ChartRepartitionLicencesPublishers from '../components/Charts/publications/editeurs/repartition-licences/chart-repartition';
-import ChartEvolutionRepartitionPublishers from '../components/Charts/publications/editeurs/type-ouverture/chart-evolution-repartition';
-import ChartRepartitionModelesPublishers from '../components/Charts/publications/editeurs/type-ouverture/chart-repartition-modeles';
-import ChartEvolutionProportion from '../components/Charts/publications/general/dynamique-ouverture/chart-evolution-proportion';
-import ChartTauxOuverture from '../components/Charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
-import ChartGenreOuverture from '../components/Charts/publications/general/genres-ouverture/genres-ouverture';
-import ChartRepartitionDeclarations from '../components/Charts/publications/general/impact-financement/chart-repartition-declarations';
-import ChartTauxOuvertureFinancement from '../components/Charts/publications/general/impact-financement/chart-taux-ouverture';
-import ChartLanguesOuverture from '../components/Charts/publications/general/langues-ouverture/langues-ouverture';
-import ChartEvolutionTaux from '../components/Charts/publications/general/voies-ouverture/chart-evolution-taux';
-import ChartRepartitionPublications from '../components/Charts/publications/general/voies-ouverture/chart-repartition-publications';
-import ChartRepartitionTaux from '../components/Charts/publications/general/voies-ouverture/chart-repartition-taux';
+import { lazy } from 'react';
 
+const ChartClassementPays = lazy(() => import(
+  '../components/Charts/publications/affiliations/pays/chart-classement-pays'
+));
+const ChartEvolutionTauxOuvertureRangUtile = lazy(() => import(
+  '../components/Charts/publications/affiliations/pays/chart-taux-rang-utile'
+));
+const ChartNombreDocumentsDepotsRepositories = lazy(() => import(
+  '../components/Charts/publications/archives/dynamique-depot/chart-nombre-documents-depots'
+));
+const ChartTauxCouvertureHAL = lazy(() => import(
+  '../components/Charts/publications/archives/dynamique-hal/chart-couverture-hal'
+));
+const ChartTauxOuvertureArchives = lazy(() => import(
+  '../components/Charts/publications/archives/dynamique-ouverture/chart-taux-ouverture'
+));
+const ChartTauxPresenceRepositories = lazy(() => import(
+  '../components/Charts/publications/archives/dynamique-ouverture/chart-taux-presence'
+));
+const ChartNombreDocumentsRepositories = lazy(() => import(
+  '../components/Charts/publications/archives/plus-utilisees/chart-nombre-documents'
+));
+const ChartEvolutionTauxOuvertureDisciplines = lazy(() => import(
+  '../components/Charts/publications/disciplines/dynamique-ouverture/chart-evolution-taux-ouverture'
+));
+const ChartTauxOuvertureDisciplines = lazy(() => import(
+  '../components/Charts/publications/disciplines/dynamique-ouverture/chart-taux-ouverture'
+));
+const ChartEvolutionComparaisonTypesHebergementDisciplines = lazy(() => import(
+  '../components/Charts/publications/disciplines/voies-ouverture/chart-evolution-comparaison-types-hebergement'
+));
+const ChartRepartitionPublicationsDisciplines = lazy(() => import(
+  '../components/Charts/publications/disciplines/voies-ouverture/chart-repartition-publications'
+));
+const ChartDepensesEstimeesPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/couts-publication/chart-depenses-estimees'
+));
+const ChartDistributionPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/couts-publication/chart-distribution'
+));
+const ChartDistributionParAnnee = lazy(() => import(
+  '../components/Charts/publications/editeurs/couts-publication/chart-distribution-par-annee'
+));
+const ChartEvolutionProportionPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/dynamique-ouverture/chart-evolution-proportion'
+));
+const ChartTauxOuverturePublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/dynamique-ouverture/chart-taux-ouverture'
+));
+const ChartRepartitionPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/poids-revues/chart-repartition'
+));
+const ChartClassementPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/politiques-ouverture/chart-classement'
+));
+const ChartComparaisonPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/politiques-ouverture/chart-comparaison'
+));
+const ChartClassementLicencesPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/repartition-licences/chart-classement'
+));
+const ChartRepartitionLicencesPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/repartition-licences/chart-repartition'
+));
+const ChartEvolutionRepartitionPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/type-ouverture/chart-evolution-repartition'
+));
+const ChartRepartitionModelesPublishers = lazy(() => import(
+  '../components/Charts/publications/editeurs/type-ouverture/chart-repartition-modeles'
+));
+const ChartEvolutionProportion = lazy(() => import(
+  '../components/Charts/publications/general/dynamique-ouverture/chart-evolution-proportion'
+));
+const ChartTauxOuverture = lazy(() => import(
+  '../components/Charts/publications/general/dynamique-ouverture/chart-taux-ouverture'
+));
+const ChartGenreOuverture = lazy(() => import(
+  '../components/Charts/publications/general/genres-ouverture/genres-ouverture'
+));
+const ChartRepartitionDeclarations = lazy(() => import(
+  '../components/Charts/publications/general/impact-financement/chart-repartition-declarations'
+));
+const ChartTauxOuvertureFinancement = lazy(() => import(
+  '../components/Charts/publications/general/impact-financement/chart-taux-ouverture'
+));
+const ChartLanguesOuverture = lazy(() => import(
+  '../components/Charts/publications/general/langues-ouverture/langues-ouverture'
+));
+const ChartEvolutionTaux = lazy(() => import(
+  '../components/Charts/publications/general/voies-ouverture/chart-evolution-taux'
+));
+const ChartRepartitionPublications = lazy(() => import(
+  '../components/Charts/publications/general/voies-ouverture/chart-repartition-publications'
+));
+const ChartRepartitionTaux = lazy(() => import(
+  '../components/Charts/publications/general/voies-ouverture/chart-repartition-taux'
+));
+const ChartTauxOuvertureAffiliations = lazy(() => import(
+  '../components/Charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture'
+));
+const ChartEvolutionProportionAffiliations = lazy(() => import(
+  '../components/Charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion'
+));
 const chartComponents = {
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture':
     ChartTauxOuvertureAffiliations,
