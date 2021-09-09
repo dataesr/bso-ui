@@ -71,6 +71,35 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    publicationRateAffiliation: ([observationSnap, affiliationField]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_affiliation: {
+          terms: {
+            field: `${affiliationField}.keyword`,
+            size: 25,
+          },
+          aggs: {
+            by_is_oa: {
+              terms: {
+                field: `oa_details.${observationSnap}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
     publicationRateRangUtile: ([observationSnap]) => ({
       size: 0,
       aggs: {

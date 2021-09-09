@@ -18,10 +18,12 @@ function useGetData(observationSnaps, domain = '') {
     async (datesObservation) => {
       // Pour chaque date d'observation, récupération des données associées
       const queries = [];
-      datesObservation?.forEach((oneDate) => {
-        const query = getFetchOptions('publicationRate', domain, oneDate);
-        queries.push(Axios.post(ES_API_URL, query, HEADERS));
-      });
+      datesObservation
+        ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+        .forEach((oneDate) => {
+          const query = getFetchOptions('publicationRate', domain, oneDate);
+          queries.push(Axios.post(ES_API_URL, query, HEADERS));
+        });
 
       const res = await Axios.all(queries).catch(() => {
         setError(true);

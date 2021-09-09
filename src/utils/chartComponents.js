@@ -1,4 +1,5 @@
 import ChartEvolutionProportionAffiliations from '../components/Charts/publications/affiliations/dynamique-ouverture/chart-evolution-proportion';
+import ChartEvolutionTauxAffiliations from '../components/Charts/publications/affiliations/dynamique-ouverture/chart-evolution-taux';
 import ChartTauxOuvertureAffiliations from '../components/Charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture';
 import ChartClassementPays from '../components/Charts/publications/affiliations/pays/chart-classement-pays';
 import ChartEvolutionTauxOuvertureRangUtile from '../components/Charts/publications/affiliations/pays/chart-taux-rang-utile';
@@ -59,6 +60,8 @@ const chartComponents = {
     ChartEvolutionTauxOuvertureDisciplines,
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion':
     ChartEvolutionProportionAffiliations,
+  'publi.affiliations.dynamique-ouverture.chart-evolution-taux':
+    ChartEvolutionTauxAffiliations,
   'publi.general.voies-ouverture.chart-repartition-taux': ChartRepartitionTaux,
   'publi.general.voies-ouverture.chart-repartition-publications':
     ChartRepartitionPublications,

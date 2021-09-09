@@ -16,6 +16,7 @@ export const graphIds = [
   'publi.general.impact-financement.chart-taux-ouverture',
   'publi.general.impact-financement.chart-repartition-financements',
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion',
+  'publi.affiliations.dynamique-ouverture.chart-evolution-taux',
   'publi.affiliations.pays.chart-taux-rang-utile',
   'publi.publishers.dynamique-ouverture.chart-taux-ouverture',
   'publi.publishers.dynamique-ouverture.chart-evolution-proportion',
