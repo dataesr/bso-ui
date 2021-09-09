@@ -13,8 +13,15 @@ import {
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 export default function Footer() {
+  const { pathname } = useLocation();
+
+  if (pathname.startsWith('/integration')) {
+    return null;
+  }
+
   return (
     <DSFooter>
       <FooterTop>

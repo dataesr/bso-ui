@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { graphIds } from '../../utils/constants';
-import { getFormattedDate } from '../../utils/helpers';
+import { domains, graphIds } from '../../utils/constants';
+import { getFormattedDate, withDomain } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
 import GraphComments from '../Charts/graph-comments';
@@ -16,7 +16,7 @@ function WrapperChart({
   graphComments,
   children,
   id,
-  idWithDomain,
+  domain,
   chartRef,
   isLoading,
   isError,
@@ -24,6 +24,7 @@ function WrapperChart({
   const { lang } = useLang();
   const { updateDate } = useGlobals();
   const intl = useIntl();
+  const idWithDomain = withDomain(id, domain);
 
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
@@ -63,7 +64,7 @@ function WrapperChart({
         <GraphFooter
           date={getFormattedDate(updateDate, lang)}
           source={intl.formatMessage({ id: `${idWithDomain}.source` })}
-          graphId={id}
+          srcPath={`${id}${domain ? '/' : ''}${domain}`}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}
         />
@@ -86,7 +87,7 @@ WrapperChart.propTypes = {
   graphComments: PropTypes.bool,
   children: PropTypes.node.isRequired,
   id: PropTypes.oneOf(graphIds).isRequired,
-  idWithDomain: PropTypes.string.isRequired,
+  domain: PropTypes.oneOf(domains).isRequired,
   chartRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),

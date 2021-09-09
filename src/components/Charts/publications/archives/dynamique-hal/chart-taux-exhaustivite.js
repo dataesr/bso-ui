@@ -6,7 +6,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 
-import { withDomain } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 
 HCExporting(Highcharts);
@@ -15,12 +14,11 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments }) => {
   const chartRef = useRef();
   const graphId = 'publi.repositories.dynamique-hal.chart-taux exhaustivite';
-  const idWithDomain = withDomain(graphId);
 
   return (
     <WrapperChart
       id={graphId}
-      idWithDomain={idWithDomain}
+      domain=''
       chartRef={chartRef}
       graphComments={graphComments}
       graphFooter={graphFooter}

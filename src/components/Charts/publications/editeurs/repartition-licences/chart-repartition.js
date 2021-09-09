@@ -58,7 +58,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       isLoading={isLoading || !dataGraphTreemap}
       isError={isError}
       id={id}
-      idWithDomain={idWithDomain}
+      domain={domain}
       chartRef={chartRef.current}
       graphComments={graphComments}
       graphFooter={graphFooter}

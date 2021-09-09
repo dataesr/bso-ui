@@ -30,6 +30,10 @@ function Header() {
     }
   }, [path, setPath, location]);
 
+  if (path.startsWith('/integration')) {
+    return null;
+  }
+
   return (
     <DSHeader closeButtonLabel='fermer' className='bso-header'>
       <HeaderBody>

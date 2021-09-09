@@ -34,7 +34,7 @@ const Chart = ({ id, domain }) => {
     <WrapperChart
       isLoading={isLoading || !dataGraph || !categories}
       id={id}
-      idWithDomain={idWithDomain}
+      domain={domain}
       chartRef={chartRef}
       graphComments={false}
     >

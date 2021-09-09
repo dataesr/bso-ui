@@ -31,7 +31,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   return (
     <WrapperChart
-      idWithDomain={idWithDomain}
+      domain={domain}
       id={id}
       isLoading={isLoading || !data.bubbleGraph}
       chartRef={chartRef}

@@ -1,4 +1,3 @@
-// TODO dynamic domain
 export const graphIds = [
   'publi.publishers.politiques-ouverture.chart-classement',
   'publi.disciplines.voies-ouverture.chart-repartition-publications',
