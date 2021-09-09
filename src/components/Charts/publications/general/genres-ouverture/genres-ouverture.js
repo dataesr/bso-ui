@@ -57,7 +57,7 @@ const Chart = ({ id, domain }) => {
       isError={isError}
     >
       <Toggle
-        isChecked={isOa}
+        checked={isOa}
         onChange={() => setIsOa(!isOa)}
         label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />

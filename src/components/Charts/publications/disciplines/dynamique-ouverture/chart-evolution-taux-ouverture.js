@@ -165,7 +165,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       graphFooter={graphFooter}
     >
       <Toggle
-        isChecked={isActive}
+        checked={isActive}
         onChange={() => setIsActive(!isActive)}
         label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />

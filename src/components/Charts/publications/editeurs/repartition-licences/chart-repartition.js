@@ -72,7 +72,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
       />
       <Toggle
-        isChecked={isDetailed}
+        checked={isDetailed}
         onChange={() => setIsDetailed(!isDetailed)}
         label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />
