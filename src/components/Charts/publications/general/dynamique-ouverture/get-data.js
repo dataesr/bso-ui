@@ -66,9 +66,13 @@ function useGetData(observationSnaps, domain = '') {
           serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
         }
         serie.data = filtered.map(
-          (el) => (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
+          (el) => ({
+            y_tot: 7,
+            y_abs: 1,
+            y: (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
               + el.by_is_oa.buckets[1].doc_count),
+          }),
         );
         serie.ratios = filtered.map(
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
