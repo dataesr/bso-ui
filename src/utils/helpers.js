@@ -144,3 +144,13 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
 
   return publicationYear || '2020';
 }
+
+/**
+ *
+ * @param id
+ * @param domain
+ * @returns {string}
+ */
+export function withDomain(id, domain = 'national') {
+  return `app.${domain || 'national'}-${id}`;
+}

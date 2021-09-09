@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { FormattedMessage } from 'react-intl';
 
 import { CLINICAL_TRIALS_API_URL, ES_API_URL } from '../../config/config';
-import { getFetchOptions } from '../../utils/chartOptions';
+import getFetchOptions from '../../utils/chartFetchOptions';
 import { domains } from '../../utils/constants';
 import { getValueByPath } from '../../utils/helpers';
 import useFetch from '../../utils/Hooks/useFetch';
