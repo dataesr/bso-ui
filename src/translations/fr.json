@@ -191,7 +191,7 @@
   "app.health-publi.affiliations.dynamique-ouverture.chart-evolution-proportion.title": "Evolution du taux d'ouverture des publications françaises, dans le domaine de la santé, par date d'observation",
   "app.health-publi.affiliations.dynamique-ouverture.chart-evolution-proportion.tooltip": "<strong>Taux d'accès ouvert observé en {point.name} pour {point.affiliation}</strong><br /><strong>{point.y:.2f} %</strong> des publications françaises publiées en {point.publicationDate}<br />sont en accès ouvert {point.ratio} pour {point.affiliation}",
   "app.health-publi.affiliations.dynamique-ouverture.chart-evolution-proportion.xAxis": "Années de publication",
-  "app.health-publi.affiliations.dynamique-ouverture.chart-taux-ouverture.comments": "app.health-publi.affiliations.dynamique-ouverture.chart-taux-ouverture.comments",
+  "app.health-publi.affiliations.dynamique-ouverture.chart-taux-ouverture.comments": "comments",
   "app.health-publi.affiliations.dynamique-ouverture.chart-taux-ouverture.source": "app.health-publi.affiliations.dynamique-ouverture.chart-taux-ouverture.source",
   "app.health-publi.affiliations.dynamique-ouverture.chart-taux-ouverture.title": "Taux d'ouverture des publications françaises, dans le domaine de la santé, par date d'observation",
   "app.health-publi.affiliations.dynamique-ouverture.chart-taux-ouverture.tooltip": "<strong>Taux d'accès ouvert observé en {point.name} pour {point.affiliation}</strong><br /><strong>{point.y:.2f} %</strong> des publications françaises publiées en {point.publicationDate}<br />sont en accès ouvert {point.ratio} pour {point.affiliation}",

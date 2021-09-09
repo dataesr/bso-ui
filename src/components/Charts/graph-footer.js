@@ -20,7 +20,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 const GraphFooter = ({
   source,
   date,
-  graphId,
+  srcPath,
   onCsvButtonClick,
   onPngButtonClick,
 }) => {
@@ -47,7 +47,7 @@ const GraphFooter = ({
                   {`Source : ${source}`}
                 </Text>
               ) : null}
-              {source && graphId ? <hr /> : null}
+              {source && srcPath ? <hr /> : null}
               <p>
                 <Text size='xs' as='span' className='download'>
                   <FormattedMessage
@@ -103,7 +103,7 @@ const GraphFooter = ({
                     </DSIcon>
                   </span>
                 )}
-                {graphId ? (
+                {srcPath ? (
                   <span
                     className='icon-click'
                     tabIndex={0}
@@ -202,7 +202,7 @@ const GraphFooter = ({
           <br />
           <span style={{ paddingLeft: '18px' }} />
           src=
-          {`/integration/${graphId}`}
+          {`/integration/${srcPath}`}
           /&#62;
         </ModalContent>
       </Modal>
@@ -215,14 +215,14 @@ export default GraphFooter;
 GraphFooter.defaultProps = {
   source: '',
   date: '',
-  graphId: '',
+  srcPath: '',
   onCsvButtonClick: null,
   onPngButtonClick: null,
 };
 GraphFooter.propTypes = {
   source: PropTypes.string,
   date: PropTypes.string,
-  graphId: PropTypes.string, // pour lien intégration
+  srcPath: PropTypes.string, // pour lien intégration
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,
 };

@@ -50,14 +50,14 @@ const Chart = ({ id, domain }) => {
   return (
     <WrapperChart
       id={id}
-      idWithDomain={idWithDomain}
+      domain={domain}
       chartRef={chartRef}
       graphComments={false}
       isLoading={isLoading || !dataGraph}
       isError={isError}
     >
       <Toggle
-        isChecked={isOa}
+        checked={isOa}
         onChange={() => setIsOa(!isOa)}
         label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />

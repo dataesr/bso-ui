@@ -43,7 +43,7 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
       isLoading={isLoading || !dataGraph1}
       isError={isError}
       id={id}
-      idWithDomain={idWithDomain}
+      domain={domain}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={false}

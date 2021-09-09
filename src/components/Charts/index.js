@@ -1,17 +1,21 @@
 import PropTypes from 'prop-types';
+import React, { Suspense } from 'react';
 
 import chartComponents from '../../utils/chartComponents';
 import { domains, graphIds } from '../../utils/constants';
+import Loader from '../Loader';
 
 function BSOChart({ id, domain, graphComments, graphFooter }) {
   const Chart = chartComponents[id];
   return (
-    <Chart
-      id={id}
-      domain={domain}
-      graphComments={graphComments}
-      graphFooter={graphFooter}
-    />
+    <Suspense fallback={<Loader />}>
+      <Chart
+        id={id}
+        domain={domain}
+        graphComments={graphComments}
+        graphFooter={graphFooter}
+      />
+    </Suspense>
   );
 }
 

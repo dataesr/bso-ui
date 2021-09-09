@@ -41,7 +41,7 @@ export default function NationalPublications() {
   return (
     <Container fluid className='page'>
       <Banner
-        backgroundColor='blue-dark-100'
+        backgroundColor='blue-dark-500'
         homeLink={urls.national[lang]}
         supTitle={<FormattedMessage id='app.header.title-national' />}
         title={<FormattedMessage id='app.baro-national.title' />}
