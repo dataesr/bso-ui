@@ -25,7 +25,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
-  const { data, isLoading } = useGetData(lastObservationSnap);
+  const { data, isLoading } = useGetData(lastObservationSnap, domain);
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(idWithDomain, intl, data);
 
