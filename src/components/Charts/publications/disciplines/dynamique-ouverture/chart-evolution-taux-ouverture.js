@@ -33,18 +33,21 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const [isActive, setIsActive] = useState(false);
   const [optionsGraph, setOptionsGraph] = useState(null);
+  const [activeData, setActiveData] = useState([]);
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {
+    let newData = null;
     const series = [];
 
     if (data && data.length > 0) {
       const dates = data[0].data.map((item) => item.name);
       // tri par progression si isActive
+
       if (isActive) {
-        data.sort((a, b) => {
+        newData = [...data].sort((a, b) => {
           const minA = a.data[0].y;
           const maxA = a.data[data[0].data.length - 1].y;
           const minB = b.data[0].y;
@@ -53,11 +56,12 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         });
       } else {
         // sinon, tri par valeur max de la dernière année
-        data.sort(
+        newData = [...data].sort(
           (a, b) => b.data[data[0].data.length - 1].y
             - a.data[data[0].data.length - 1].y,
         );
       }
+
       for (let index = 1; index < dates.length + 1; index += 1) {
         let lowColor = '';
         let lineColor = '';
@@ -99,7 +103,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         }
         series.push({
           name: dates[index - 1],
-          data: data.map((item) => ({
+          data: newData.map((item) => ({
             name: item.name,
             low: item.data.find((el) => el.name === dates[index - 1])?.y,
             high:
@@ -129,13 +133,18 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         },
       });
 
-      if (!optionsGraph) {
+      const newDataCheck = newData.map((obj) => obj.name).join();
+      const activeDataCheck = activeData.map((obj) => obj.name).join();
+
+      if (activeDataCheck !== newDataCheck) {
+        setActiveData(newData);
         setOptionsGraph(
           chartOptions[id].getOptions(idWithDomain, intl, series),
         );
       }
     }
   }, [
+    activeData,
     data,
     id,
     idWithDomain,
