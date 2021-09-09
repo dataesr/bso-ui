@@ -61,6 +61,18 @@ export default {
         fr: '/sante/essais-cliniques/general',
         en: '/health/clinical-trials/general',
       },
+      {
+        fr: '/sante/essais-cliniques/phases',
+        en: '/health/clinical-trials/phasis',
+      },
+      {
+        fr: '/sante/essais-cliniques/lead-sponsors',
+        en: '/health/clinical-trials/lead-sponsors',
+      },
+      {
+        fr: '/sante/essais-cliniques/resultats',
+        en: '/health/clinical-trials/results',
+      },
     ],
     fr: '/sante/essais-cliniques',
     en: '/health/clinical-trials',

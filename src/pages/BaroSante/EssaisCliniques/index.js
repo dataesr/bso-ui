@@ -4,8 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
-import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
-import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
+import ChartGeneralEvolution from '../../../components/charts/essais-cliniques/general/dynamique-ouverture/chart-evolution';
+import ChartGeneralRepartition from '../../../components/charts/essais-cliniques/general/principales-trajectoires/chart-repartition';
 import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
@@ -52,14 +52,10 @@ function EssaisCliniques() {
           options: [
             {
               label: intl.formatMessage({ id: 'app.baro-sante.title' }),
-              value: intl.formatMessage({
-                id: 'url.sante.publications.general',
-              }),
+              value: intl.formatMessage({ id: 'url.sante.publications.general' }),
             },
             {
-              label: intl.formatMessage({
-                id: 'app.header.nav.baro-sante-essais',
-              }),
+              label: intl.formatMessage({ id: 'app.baro-sante.essays.main-title' }),
               value: intl.formatMessage({ id: 'url.sante.essais' }),
             },
             {
@@ -76,11 +72,11 @@ function EssaisCliniques() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  <FormattedMessage id='app.baro-sante.main-title' />
+                  <FormattedMessage id='app.baro-sante.essays.main-title' />
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
-                    intlKey='app.baro-sante.intro'
+                    intlKey='app.baro-sante.essays-intro'
                     glossaryKey='acces-ouvert'
                   />
                 </p>
@@ -101,32 +97,34 @@ function EssaisCliniques() {
             ]}
             links={[
               {
-                label: intl.formatMessage({
-                  id: 'app.publi.navigation.disciplines.dynamique',
-                }),
+                label: intl.formatMessage({ id: 'app.publi.navigation.essays.dynamique' }),
                 href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.publi.navigation.essays.directions' }),
+                href: '/sante/essais-cliniques/general?id=general.directions',
               },
             ]}
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.sante-publi.general.dynamique-ouverture'
+                intlKey='app.sante-essays.general.dynamique-ouverture'
                 backgroundColor={bluesoft50}
                 anchorId='general.dynamique-ouverture'
               >
-                <ChartTauxOuverture
-                  id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
+                <ChartGeneralEvolution
+                  id='app.sante-essays.general.dynamique-ouverture.chart-evolution'
                   domain='health'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.sante-publi.general.voies-ouverture'
+                intlKey='app.sante-essays.general.directions'
                 backgroundColor={bluesoft25}
-                anchorId='general.voies-ouverture'
+                anchorId='general.directions'
               >
-                <ChartRepartitionTaux
-                  id='app.sante-publi.general.voies-ouverture.chart-repartition-taux'
+                <ChartGeneralRepartition
+                  id='app.sante-essays.general.directions.chart-repartition'
                   domain='health'
                 />
               </QuestionSection>
