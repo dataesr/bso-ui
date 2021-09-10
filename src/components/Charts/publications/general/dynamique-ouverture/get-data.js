@@ -69,6 +69,7 @@ function useGetData(observationSnaps, domain = '') {
           (el) => ({
             y_tot: 7,
             y_abs: 1,
+            publicationDate: el.key,
             y: (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
               + el.by_is_oa.buckets[1].doc_count),
@@ -77,15 +78,26 @@ function useGetData(observationSnaps, domain = '') {
         serie.ratios = filtered.map(
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
         );
-        serie.publicationDate = filtered[filtered.length - 1].key;
+        serie.lastPublicationDate = filtered[filtered.length - 1].key;
         dataGraph2.push(serie);
       });
+      dataGraph2.comments = {
+        observationDate: dataGraph2[0]?.name,
+        previousObservationDate: dataGraph2[1]?.name,
+        minPublicationDate: dataGraph2[0]?.data[0].publicationDate,
+        previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
+        oaYMinusOnePrevious: dataGraph2[1].data.slice(-1)[0].y.toFixed(2),
+        oaYMinusOne: dataGraph2[0].data.slice(-2)[0].y.toFixed(2),
+        oaEvolution: (dataGraph2[0].data.slice(-2)[0].y - dataGraph2[1].data.slice(-1)[0].y).toFixed(2),
+        maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
+      };
       const dataGraph1 = dataGraph2.map((el) => ({
         name: el.name, // observation date
-        y: el.data[el.data.length - 1],
+        y: el.data[el.data.length - 1].y,
         ratio: el.ratios[el.data.length - 1],
-        publicationDate: el.publicationDate,
+        publicationDate: el.lastPublicationDate,
       }));
+      dataGraph1.comments = {};
 
       return { dataGraph1, dataGraph2 };
     },
