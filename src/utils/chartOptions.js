@@ -970,10 +970,10 @@ export const chartOptions = {
         },
       };
       options.yAxis = getPercentageYAxis();
-
+      const nameClean = name.replace(/\n/g, '').replace('  ', ' ');
       options.series = [
         {
-          name: intl.formatMessage({ id: `app.discipline.${name}` }),
+          name: intl.formatMessage({ id: `app.discipline.${nameClean}` }),
           color: discipline125,
           data: data.map((el, i) => ({
             name: el.name,
@@ -1344,7 +1344,7 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name}` })),
+        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name.replace(/\n/g, '').replace('  ', ' ')}` })),
         labels: {
           style: {
             color: 'var(--g800)',

@@ -33,7 +33,7 @@ function useGetData(lastObservationSnap, domain = '') {
         bubbles.push({
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: intl.formatMessage({ id: `app.discipline.${elem.key}` }),
+          discipline: intl.formatMessage({ id: `app.discipline.${elem.key.replace(/\n/g, '').replace('  ', ' ')}` }),
           x:
             (100
               * elem.by_oa_colors.buckets
