@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { simpleComments } from '../../../../../utils/chartComments';
+import { customComments } from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
@@ -30,7 +30,7 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
   const { dataGraph1 } = data;
 
   useEffect(() => {
-    setChartComments(simpleComments(dataGraph1, idWithDomain, intl));
+    setChartComments(customComments(dataGraph1, idWithDomain, intl));
   }, [dataGraph1, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
