@@ -67,8 +67,8 @@ function useGetData(observationSnaps, domain = '') {
         }
         serie.data = filtered.map(
           (el) => ({
-            y_tot: 7,
-            y_abs: 1,
+            y_tot: (el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count),
+            y_abs: el.by_is_oa.buckets.find((b) => b.key === 1).doc_count,
             publicationDate: el.key,
             y: (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
