@@ -2,12 +2,8 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  discipline100,
-  discipline125,
-  discipline150,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSProperty } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
   const [data, setData] = useState({});
@@ -35,13 +31,13 @@ function useGetData(observationSnaps, domain = '') {
       }));
 
       const colors = [
-        discipline100,
-        discipline125,
-        discipline125,
-        discipline125,
-        discipline150,
-        discipline150,
-        discipline150,
+        getCSSProperty('--orange-soft-100'),
+        getCSSProperty('--orange-soft-125'),
+        getCSSProperty('--orange-soft-125'),
+        getCSSProperty('--orange-soft-125'),
+        getCSSProperty('--orange-soft-175'),
+        getCSSProperty('--orange-soft-175'),
+        getCSSProperty('--orange-soft-175'),
       ];
       const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
       const dataGraph2 = [];
@@ -63,18 +59,24 @@ function useGetData(observationSnaps, domain = '') {
         serie.color = colors[i];
         serie.dashStyle = lineStyle[i];
         if (i === 0) {
-          serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
+          serie.marker = {
+            fillColor: 'white',
+            lineColor: colors[i],
+            symbol: 'circle',
+            lineWidth: 2,
+            radius: 5,
+          };
         }
-        serie.data = filtered.map(
-          (el) => ({
-            y_tot: (el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count),
-            y_abs: el.by_is_oa.buckets.find((b) => b.key === 1).doc_count,
-            publicationDate: el.key,
-            y: (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
+        serie.data = filtered.map((el) => ({
+          y_tot:
+            el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count,
+          y_abs: el.by_is_oa.buckets.find((b) => b.key === 1).doc_count,
+          publicationDate: el.key,
+          y:
+            (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
               + el.by_is_oa.buckets[1].doc_count),
-          }),
-        );
+        }));
         serie.ratios = filtered.map(
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
         );
@@ -88,7 +90,9 @@ function useGetData(observationSnaps, domain = '') {
         previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
         oaYMinusOnePrevious: dataGraph2[1].data.slice(-1)[0].y.toFixed(2),
         oaYMinusOne: dataGraph2[0].data.slice(-2)[0].y.toFixed(2),
-        oaEvolution: (dataGraph2[0].data.slice(-2)[0].y - dataGraph2[1].data.slice(-1)[0].y).toFixed(2),
+        oaEvolution: (
+          dataGraph2[0].data.slice(-2)[0].y - dataGraph2[1].data.slice(-1)[0].y
+        ).toFixed(2),
         maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
       };
       const dataGraph1 = dataGraph2.map((el) => ({

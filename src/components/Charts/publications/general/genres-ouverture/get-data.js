@@ -4,14 +4,8 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  accesferme,
-  accesouvert,
-  archiveouverte100,
-  editeurarchive,
-  editeurplateforme100,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSProperty } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, isOa, domain) {
   const intl = useIntl();
@@ -43,13 +37,13 @@ function useGetData(observationSnap, isOa, domain) {
         {
           id: 'closed',
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          color: accesferme,
+          color: getCSSProperty('--blue-soft-175'),
           dataLabels: noOutline,
         },
         {
           id: 'open',
           name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
-          color: accesouvert,
+          color: getCSSProperty('--acces-ouvert'),
           dataLabels: noOutline,
         },
       ];
@@ -88,15 +82,15 @@ function useGetData(observationSnap, isOa, domain) {
         });
     } else {
       data.forEach((el) => {
-        let color = accesferme;
+        let color = getCSSProperty('--blue-soft-175');
         if (el.key === 'repository') {
-          color = archiveouverte100;
+          color = getCSSProperty('--green-medium-125');
         }
         if (el.key === 'publisher') {
-          color = editeurplateforme100;
+          color = getCSSProperty('--yellow-medium-125');
         }
         if (el.key === 'publisher;repository') {
-          color = editeurarchive;
+          color = getCSSProperty('--green-light-100');
         }
         dataGraph.push({
           id: el.key,

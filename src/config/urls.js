@@ -92,7 +92,7 @@ export default {
     en: '/about/the-project',
   },
   integration: {
-    fr: '/integration/:graphId/:domain',
+    fr: '/integration/:graphId/:domain?',
     en: '/integration/:graphId/:domain',
   },
 };

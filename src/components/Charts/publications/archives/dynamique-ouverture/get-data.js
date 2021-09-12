@@ -3,12 +3,8 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  archiveouverte100,
-  archiveouverte125,
-  archiveouverte150,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSProperty } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -93,13 +89,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
     }
 
     const colors = [
-      archiveouverte100,
-      archiveouverte125,
-      archiveouverte125,
-      archiveouverte125,
-      archiveouverte150,
-      archiveouverte150,
-      archiveouverte150,
+      getCSSProperty('--green-medium-125'),
+      getCSSProperty('--green-medium-150'),
+      getCSSProperty('--green-medium-150'),
+      getCSSProperty('--green-medium-150'),
+      getCSSProperty('--green-medium-75'),
+      getCSSProperty('--green-medium-75'),
+      getCSSProperty('--green-medium-75'),
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
     const dataGraph2 = [];
@@ -109,7 +105,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       if (i === 0) {
-        serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
+        serie.marker = {
+          fillColor: 'white',
+          lineColor: colors[i],
+          symbol: 'circle',
+          lineWidth: 2,
+          radius: 5,
+        };
       }
       serie.data = observationSnapData.data.oaHostType.map((value, index) => ({
         y: (value * 100) / observationSnapData.data.all[index],

@@ -10,15 +10,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  affiliationsetablissements50,
-  affiliationsetablissements75,
-  affiliationsetablissements100,
-  affiliationsetablissements125,
-} from '../../../../../style/colours.module.scss';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getCSSProperty, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data-dumbbell';
@@ -72,28 +66,28 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         // eslint-disable-next-line default-case
         switch (delta) {
         case 3:
-          lowColor = affiliationsetablissements50;
+          lowColor = getCSSProperty('--affiliations-etablissements-50');
           fillColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 2:
-          lowColor = affiliationsetablissements75;
+          lowColor = getCSSProperty('--affiliations-etablissements-75');
           fillColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 1:
-          lowColor = affiliationsetablissements125;
+          lowColor = getCSSProperty('--affiliations-etablissements-125');
           lineColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 0:
-          lowColor = affiliationsetablissements100;
+          lowColor = getCSSProperty('--affiliations-etablissements-100');
           lineColor = lowColor;
           fillColor = 'white';
           radius = 8;
@@ -128,7 +122,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
           radius: 8,
           fillColor: 'white',
           symbol: 'circle',
-          lineColor: affiliationsetablissements100,
+          lineColor: getCSSProperty('--affiliations-etablissements-100'),
         },
       });
 

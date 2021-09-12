@@ -10,15 +10,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  orangesoft75,
-  orangesoft100,
-  orangesoft125,
-  orangesoft175,
-} from '../../../../../style/colours.module.scss';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getCSSProperty, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -37,6 +31,10 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
+  const orangeSoft75 = getCSSProperty('--orange-soft-175');
+  const orangeSoft100 = getCSSProperty('--orange-soft-100');
+  const orangeSoft125 = getCSSProperty('--orange-soft-125');
+  const orangeSoft175 = getCSSProperty('--orange-soft-175');
 
   useEffect(() => {
     let newData = null;
@@ -73,28 +71,28 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         // eslint-disable-next-line default-case
         switch (delta) {
         case 3:
-          lowColor = orangesoft75;
+          lowColor = orangeSoft75;
           fillColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 2:
-          lowColor = orangesoft125;
+          lowColor = orangeSoft125;
           fillColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 1:
-          lowColor = orangesoft175;
+          lowColor = orangeSoft175;
           lineColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 0:
-          lowColor = orangesoft100;
+          lowColor = orangeSoft100;
           lineColor = lowColor;
           fillColor = 'white';
           radius = 8;
@@ -129,7 +127,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
           radius: 8,
           fillColor: 'white',
           symbol: 'circle',
-          lineColor: orangesoft100,
+          lineColor: orangeSoft100,
         },
       });
 
@@ -151,7 +149,10 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     intl,
     isActive,
     lastObservationSnap,
-    optionsGraph,
+    orangeSoft100,
+    orangeSoft125,
+    orangeSoft175,
+    orangeSoft75,
   ]);
 
   return (

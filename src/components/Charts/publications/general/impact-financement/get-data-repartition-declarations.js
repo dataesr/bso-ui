@@ -4,13 +4,8 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  accesferme,
-  archiveouverte100,
-  editeurarchive,
-  editeurplateforme100,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSProperty } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain, isOa) {
   const intl = useIntl();
@@ -42,7 +37,7 @@ function useGetData(observationSnap, domain, isOa) {
               key: agency.key,
               parent: 'closed',
               value: agency.doc_count,
-              color: accesferme,
+              color: getCSSProperty('--blue-soft-175'),
             });
           },
         );
@@ -61,15 +56,15 @@ function useGetData(observationSnap, domain, isOa) {
             parent: 'opened',
           });
           hostType.by_grant_agency.buckets.forEach((agency) => {
-            let color = accesferme;
+            let color = getCSSProperty('--blue-soft-175');
             if (hostType.key === 'repository') {
-              color = archiveouverte100;
+              color = getCSSProperty('--green-medium-125');
             }
             if (hostType.key === 'publisher') {
-              color = editeurplateforme100;
+              color = getCSSProperty('--yellow-medium-125');
             }
             if (hostType.key === 'publisher;repository') {
-              color = editeurarchive;
+              color = getCSSProperty('--green-light-100');
             }
             dataGraph.push({
               name: agency.key,

@@ -4,12 +4,8 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  discipline100,
-  discipline150,
-  nonconnu,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSProperty } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, agency = '*', domain) {
   const intl = useIntl();
@@ -118,17 +114,17 @@ function useGetData(observationSnap, agency = '*', domain) {
       {
         name: intl.formatMessage({ id: 'app.all-publications' }),
         data: all,
-        color: discipline100,
+        color: getCSSProperty('--orange-soft-100'),
       },
       {
         name: intl.formatMessage({ id: 'app.with-declaration' }),
         data: withDeclaration,
-        color: discipline150,
+        color: getCSSProperty('--orange-soft-175'),
       },
       {
         name: intl.formatMessage({ id: 'app.without-declaration' }),
         data: withoutDeclaration,
-        color: nonconnu,
+        color: getCSSProperty('--g-400'),
       },
     ];
 

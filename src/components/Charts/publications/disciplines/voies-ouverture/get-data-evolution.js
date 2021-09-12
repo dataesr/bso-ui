@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { editeurplateforme100 } from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getCSSProperty,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 import target from '../../../../Images/asset-target.png';
 
 function useGetData(lastObservationSnap, domain = '') {
@@ -58,7 +60,7 @@ function useGetData(lastObservationSnap, domain = '') {
       {
         name: intl.formatMessage({ id: 'app.discipline' }),
         data: bubbles,
-        color: editeurplateforme100,
+        color: getCSSProperty('--yellow-medium-125'),
       },
       {
         data: [{ y: 100, x: 100 }],

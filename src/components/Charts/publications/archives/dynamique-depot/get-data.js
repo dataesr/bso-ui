@@ -3,16 +3,16 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  archiveouverte100,
-  archiveouverte125,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getCSSProperty,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const greenMedium150 = getCSSProperty('--green-medium-150');
 
   async function GetData() {
     const query = getFetchOptions('repositoriesHisto', domain, observationSnap);
@@ -25,7 +25,7 @@ function useGetData(observationSnap, domain) {
       if (archive.key !== 'N/A') {
         const obj = {
           name: archive.key,
-          color: archiveouverte125,
+          color: greenMedium150,
           data: archive.by_year.buckets
             .filter(
               (el) => el.key > lastPublicationYear - nbHisto
@@ -37,7 +37,9 @@ function useGetData(observationSnap, domain) {
               year: el.key,
               y: el.doc_count,
               color:
-                index === nbHisto - 1 ? archiveouverte100 : archiveouverte125,
+                index === nbHisto - 1
+                  ? getCSSProperty('--green-medium-125')
+                  : greenMedium150,
             })),
         };
         tab.push(obj);

@@ -16,15 +16,17 @@ import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import urls from '../../../config/urls';
-import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
+import { getCSSProperty } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalPublications() {
   const { lang } = useLang();
   const location = useLocation();
   const intl = useIntl();
+  const blueSoft25 = getCSSProperty('--blue-soft-25');
+  const blueSoft50 = getCSSProperty('--blue-soft-50');
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -41,7 +43,7 @@ export default function NationalPublications() {
   return (
     <Container fluid className='page'>
       <Banner
-        backgroundColor='blue-dark-500'
+        backgroundColor='blue-soft-150'
         homeLink={urls.national[lang]}
         supTitle={<FormattedMessage id='app.header.title-national' />}
         title={<FormattedMessage id='app.baro-national.title' />}
@@ -106,7 +108,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.general.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='general.dynamique-ouverture'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture' />
@@ -114,7 +116,7 @@ export default function NationalPublications() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.voies-ouverture'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='general.voies-ouverture'
                 >
                   <BSOChart id='publi.general.voies-ouverture.chart-repartition-taux' />
@@ -123,14 +125,14 @@ export default function NationalPublications() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.genres-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='general.genres-ouverture'
                 >
                   <BSOChart id='publi.general.genres-ouverture.chart-repartition-genres' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.langues-ouverture'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='general.langues-ouverture'
                 >
                   <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
@@ -160,7 +162,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.disciplines.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='disciplines.dynamique-ouverture'
                 >
                   <BSOChart id='publi.disciplines.dynamique-ouverture.chart-taux-ouverture' />
@@ -169,7 +171,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.disciplines.voies-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='disciplines.voies-ouverture'
                 >
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-repartition-publications' />
@@ -223,7 +225,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.publishers.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='publishers.dynamique-ouverture'
                 >
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-taux-ouverture' />
@@ -232,7 +234,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.type-ouverture'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='publishers.type-ouverture'
                 >
                   <BSOChart id='publi.publishers.type-ouverture.chart-evolution-repartition' />
@@ -241,7 +243,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.politiques-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='publishers.politiques-ouverture'
                 >
                   <BSOChart id='publi.publishers.politiques-ouverture.chart-classement' />
@@ -250,7 +252,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.poids-revues'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='publishers.poids-revues'
                 >
                   <BSOChart id='publi.publishers.poids-revues.chart-repartition' />
@@ -258,7 +260,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.repartition-licences'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='publishers.repartition-licences'
                 >
                   <BSOChart id='publi.publishers.repartition-licences.chart-repartition' />
@@ -267,7 +269,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.couts-publication'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='publishers.couts-publication'
                 >
                   <BSOChart id='publi.publishers.couts-publication.chart-depenses-estimees' />
@@ -310,7 +312,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-ouverture'
                 >
                   <BSOChart id='publi.repositories.dynamique-ouverture.chart-taux-ouverture' />
@@ -319,7 +321,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.plus-utilisees'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='repositories.plus-utilisees'
                 >
                   <BSOChart id='publi.repositories.plus-utilisees.chart-nombre-documents' />
@@ -327,7 +329,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-depot'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-depot'
                 >
                   <BSOChart id='publi.repositories.dynamique-depot.chart-nombre-documents-depots' />
@@ -335,7 +337,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-hal'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='repositories.dynamique-hal'
                 >
                   <BSOChart id='publi.repositories.dynamique-hal.chart-couverture-hal' />

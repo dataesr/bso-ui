@@ -4,13 +4,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  accesouvert,
-  internationale100,
-  national100,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getCSSProperty,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationDate, domain = '') {
   const intl = useIntl();
@@ -88,14 +86,14 @@ function useGetData(observationDate, domain = '') {
             id: 'app.affiliations.rang-utile-fr',
           }),
           data: fr,
-          color: national100,
+          color: getCSSProperty('--blue-soft-125'),
         },
         {
           name: intl.formatMessage({
             id: 'app.affiliations.rang-utile-etranger',
           }),
           data: foreign,
-          color: internationale100,
+          color: getCSSProperty('--green-warm-100'),
         },
       ];
       // 2e graphe
@@ -113,7 +111,10 @@ function useGetData(observationDate, domain = '') {
           country: intl.formatMessage({ id: `app.country.${el.key}` }),
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          color: el.key === 'fr' ? national100 : accesouvert,
+          color:
+            el.key === 'fr'
+              ? getCSSProperty('--blue-soft-125')
+              : getCSSProperty('--acces-ouvert'),
         });
       });
       oaCountry = oaCountry.sort((a, b) => a.y - b.y);
@@ -124,7 +125,7 @@ function useGetData(observationDate, domain = '') {
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           data: oaCountry,
-          color: accesouvert,
+          color: getCSSProperty('--acces-ouvert'),
         },
       ];
 

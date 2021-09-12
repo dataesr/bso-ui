@@ -4,18 +4,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  accesferme,
-  archiveouverte100,
-  editeurarchive,
-  editeurplateforme100,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSProperty } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const yellowMedium125 = getCSSProperty('--yellow-medium-125');
+  const greenLight100 = getCSSProperty('--green-light-100');
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -98,19 +95,19 @@ function useGetData(observationSnap, domain) {
             id: 'app.type-hebergement.publisher-repository',
           }),
           data: publisherRepository,
-          color: editeurarchive,
+          color: greenLight100,
           dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
-          color: archiveouverte100,
+          color: getCSSProperty('--green-medium-125'),
           dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
           data: publisher,
-          color: editeurplateforme100,
+          color: yellowMedium125,
           dataLabels: noOutline,
         },
       ];
@@ -121,7 +118,7 @@ function useGetData(observationSnap, domain) {
           value: publisher[publisher.length - 1].y_abs,
           percentage: publisher[publisher.length - 1].y,
           publicationDate: categories[categories.length - 1],
-          color: editeurplateforme100,
+          color: yellowMedium125,
           dataLabels: noOutline,
         },
         {
@@ -131,7 +128,7 @@ function useGetData(observationSnap, domain) {
           value: publisherRepository[publisherRepository.length - 1].y_abs,
           percentage: publisherRepository[publisherRepository.length - 1].y,
           publicationDate: categories[categories.length - 1],
-          color: editeurarchive,
+          color: greenLight100,
           dataLabels: noOutline,
         },
         {
@@ -139,7 +136,7 @@ function useGetData(observationSnap, domain) {
           value: repository[repository.length - 1].y_abs,
           percentage: repository[repository.length - 1].y,
           publicationDate: categories[categories.length - 1],
-          color: archiveouverte100,
+          color: getCSSProperty('--green-medium-125'),
           dataLabels: noOutline,
         },
         {
@@ -147,14 +144,14 @@ function useGetData(observationSnap, domain) {
           value: closed[closed.length - 1].y_abs,
           percentage: closed[closed.length - 1].y,
           publicationDate: categories[categories.length - 1],
-          color: accesferme,
+          color: getCSSProperty('--blue-soft-175'),
           dataLabels: noOutline,
         },
       ];
 
       return { categories, dataGraph, dataGraph3 };
     },
-    [domain, intl],
+    [domain, greenLight100, intl, yellowMedium125],
   );
 
   useEffect(() => {
