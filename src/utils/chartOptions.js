@@ -1,16 +1,9 @@
-import {
-  archiveouverte100,
-  bluedark75,
-  discipline100,
-  discipline125,
-  editeurplateforme100,
-  g800,
-} from '../style/colours.module.scss';
-import { cleanNumber, getPercentageYAxis } from './helpers';
+import { cleanNumber, getCSSValue, getPercentageYAxis } from './helpers';
 
 /**
  *
- * @param graphId
+ * @param id
+ * @param data
  * @param intl
  * @returns {{exporting:
  * {chartOptions: {legend: {enabled: boolean}, subtitle: {text: *}, title: {text: *}},
@@ -25,17 +18,14 @@ import { cleanNumber, getPercentageYAxis } from './helpers';
 export function customComments(data, id, intl) {
   let comments = '';
   if (data && data.length > 0) {
-    comments = intl.formatMessage(
-      { id: `${id}.comments` },
-      data.comments,
-    );
+    comments = intl.formatMessage({ id: `${id}.comments` }, data.comments);
   }
   return comments;
 }
 export function getGraphOptions(graphId, intl) {
   return {
     chart: {
-      backgroundColor: 'var(--w-g750)',
+      backgroundColor: getCSSValue('--white'),
     },
     title: { text: '' },
     tooltip: {
@@ -238,6 +228,7 @@ export const chartOptions = {
           bubble: {
             dataLabels: {
               style: {
+                color: getCSSValue('--g-800'),
                 textOutline: 'none',
               },
             },
@@ -278,7 +269,7 @@ export const chartOptions = {
               useHTML: true,
               borderRadius: 0,
               borderWidth: 0,
-              backgroundColor: 'var(--blue-soft-100)',
+              backgroundColor: getCSSValue('--blue-soft-100'),
             },
           },
         ];
@@ -393,15 +384,20 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'bar';
-      options.colors = [discipline100];
+      options.colors = [getCSSValue('--orange-soft-100')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
+          states: {
+            hover: {
+              color: getCSSValue('--orange-soft-75'),
+            },
+          },
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
             style: {
-              color: g800,
+              color: getCSSValue('--g-800'),
               fontSize: '20px',
               fontWeight: 'bold',
             },
@@ -414,7 +410,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -726,14 +722,14 @@ export const chartOptions = {
         height: '600px',
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.gridLineColor = 'var(--g500)';
+      options.yAxis.gridLineColor = getCSSValue('--g-500');
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
         categories: data[0].data.map((el) => intl.formatMessage({ id: `app.affiliations.${el.name}` })),
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-!00'),
             fontSize: '14px',
           },
         },
@@ -757,7 +753,7 @@ export const chartOptions = {
         title: {
           text: intl.formatMessage({ id: `${id}.legend` }),
           style: {
-            color: bluedark75,
+            color: getCSSValue('--blue-dark-75'),
             fontSize: '14px',
           },
         },
@@ -808,15 +804,20 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'bar';
-      options.colors = [editeurplateforme100];
+      options.colors = [getCSSValue('--yellow-medium-125')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
+          states: {
+            hover: {
+              color: getCSSValue('--yellow-medium-75'),
+            },
+          },
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
             style: {
-              color: g800,
+              color: getCSSValue('--g-800'),
               fontSize: '20px',
               fontWeight: 'bold',
             },
@@ -829,7 +830,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -864,7 +865,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'bar';
-      options.colors = [discipline100];
+      options.colors = [getCSSValue('--orange-soft-100')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
@@ -872,7 +873,7 @@ export const chartOptions = {
             enabled: true,
             format: '{point.y:.0f}%',
             style: {
-              color: g800,
+              color: getCSSValue('--g-800'),
               fontSize: '20px',
               fontWeight: 'bold',
             },
@@ -885,7 +886,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -938,6 +939,7 @@ export const chartOptions = {
           dataLabels: {
             style: {
               textOutline: 'none',
+              color: getCSSValue('--g-800'),
             },
             enabled: true,
             format: '{point.publisher}',
@@ -964,7 +966,7 @@ export const chartOptions = {
         categories: data.map((el) => el.name),
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '14px',
           },
         },
@@ -974,13 +976,16 @@ export const chartOptions = {
       options.series = [
         {
           name: intl.formatMessage({ id: `app.discipline.${nameClean}` }),
-          color: discipline125,
+          color: getCSSValue('--orange-soft-125'),
           data: data.map((el, i) => ({
             name: el.name,
             y: el.y,
             y_abs: el.y_abs,
             y_tot: el.y_tot,
-            color: i === data.length - 1 ? discipline100 : discipline125,
+            color:
+              i === data.length - 1
+                ? getCSSValue('--orange-soft-100')
+                : getCSSValue('--orange-soft-125'),
           })),
         },
       ];
@@ -1172,15 +1177,20 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'bar';
-      options.colors = [archiveouverte100];
+      options.colors = [getCSSValue('--green-medium-125')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
+          states: {
+            hover: {
+              color: getCSSValue('--green-medium-75'),
+            },
+          },
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
             style: {
-              color: g800,
+              color: getCSSValue('--g-800'),
               fontSize: '20px',
               fontWeight: 'bold',
             },
@@ -1193,7 +1203,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -1215,7 +1225,7 @@ export const chartOptions = {
 
       options.chart.type = 'bar';
       options.chart.height = '700px';
-      options.colors = [archiveouverte100];
+      options.colors = [getCSSValue('--green-medium-125')];
       options.yAxis = { visible: false };
       options.xAxis = {
         type: 'category',
@@ -1223,7 +1233,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -1249,7 +1259,7 @@ export const chartOptions = {
         categories: graph.data.map((el) => el.name),
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '14px',
           },
         },
@@ -1340,14 +1350,18 @@ export const chartOptions = {
         height: '600px',
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.gridLineColor = 'var(--g500)';
+      options.yAxis.gridLineColor = getCSSValue('--g-500');
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.discipline.${el.name.replace(/\n/g, '').replace('  ', ' ')}` })),
+        categories: data[0].data.map((el) => intl.formatMessage({
+          id: `app.discipline.${el.name
+            .replace(/\n/g, '')
+            .replace('  ', ' ')}`,
+        })),
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '14px',
           },
         },
@@ -1371,7 +1385,7 @@ export const chartOptions = {
         title: {
           text: intl.formatMessage({ id: `${id}.legend` }),
           style: {
-            color: bluedark75,
+            color: getCSSValue('--blue-dark-75'),
             fontSize: '14px',
           },
         },

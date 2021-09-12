@@ -4,11 +4,8 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  accesouvert,
-  archiveouverte125,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(lastObservationSnap, domain) {
   const intl = useIntl();
@@ -75,14 +72,14 @@ function useGetData(lastObservationSnap, domain) {
           id: 'app.health-publi.repositories.dynamique-hal.hal',
         }),
         data: hal,
-        color: accesouvert,
+        color: getCSSValue('--acces-ouvert'),
       },
       {
         name: intl.formatMessage({
           id: 'app.health-publi.repositories.dynamique-hal.notHal',
         }),
         data: notHal,
-        color: archiveouverte125,
+        color: getCSSValue('--green-medium-150'),
       },
     ];
     return { publicationYears, dataGraph2 };

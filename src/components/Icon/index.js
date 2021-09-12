@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
+import { getCSSValue, setCSSProperty } from '../../utils/helpers';
 
 /**
  *
@@ -29,15 +29,9 @@ const Icon = ({ name, color1, color2, ...rest }) => {
   const renderIcon = () => {
     if (!iconModule) return null;
 
-    setCSSProperty(
-      `--${name}-color-1`,
-      getCSSProperty(`--${color1}`) || color1,
-    );
+    setCSSProperty(`--${name}-color-1`, getCSSValue(`--${color1}`) || color1);
 
-    setCSSProperty(
-      `--${name}-color-2`,
-      getCSSProperty(`--${color2}`) || color2,
-    );
+    setCSSProperty(`--${name}-color-2`, getCSSValue(`--${color2}`) || color2);
 
     /**
      * Equal to:

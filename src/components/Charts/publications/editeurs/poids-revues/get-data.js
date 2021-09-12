@@ -3,8 +3,8 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { redmedium150 } from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);
@@ -41,7 +41,7 @@ function useGetData(observationSnap, domain) {
       {
         name: 'predatory',
         data: predatory,
-        color: redmedium150,
+        color: getCSSValue('--red-medium-150'),
       },
     ];
 

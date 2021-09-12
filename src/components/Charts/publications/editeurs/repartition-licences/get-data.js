@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  accesouvert,
-  nonconnu,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getCSSValue,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -48,7 +47,10 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
             publicationDate: getPublicationYearFromObservationSnap(
               datesObservation[0],
             ),
-            color: el.key === 'no license' ? nonconnu : accesouvert,
+            color:
+              el.key === 'no license'
+                ? getCSSValue('--g-400')
+                : getCSSValue('--acces-ouvert'),
           });
         },
       );
@@ -62,7 +64,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
-        color: accesouvert,
+        color: getCSSValue('--acces-ouvert'),
         value: nbLicenceOpen,
         y_tot: nbTotal,
         y_perc: (100 * nbLicenceOpen) / nbTotal,
@@ -80,7 +82,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
-        color: nonconnu,
+        color: getCSSValue('--g-400'),
         value: nbNoLicence,
         y_tot: nbTotal,
         y_perc: (100 * nbNoLicence) / nbTotal,
@@ -130,12 +132,12 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
       {
         name: intl.formatMessage({ id: 'app.licenses.no license' }),
         data: noLicence,
-        color: nonconnu,
+        color: getCSSValue('--g-400'),
       },
       {
         name: intl.formatMessage({ id: 'app.licenses.open-license' }),
         data: openLicence,
-        color: accesouvert,
+        color: getCSSValue('--acces-ouvert'),
       },
     ];
     return { dataGraphTreemap, dataGraphBar, categories };

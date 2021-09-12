@@ -3,13 +3,8 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  affiliationsetablissements50,
-  affiliationsetablissements75,
-  affiliationsetablissements100,
-  affiliationsetablissements125,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -49,10 +44,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
     }));
 
     const colors = [
-      affiliationsetablissements100,
-      affiliationsetablissements125,
-      affiliationsetablissements50,
-      affiliationsetablissements75,
+      getCSSValue('--affiliations-etablissements-100'),
+      getCSSValue('--affiliations-etablissements-125'),
+      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-75'),
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
     const dataGraph2 = [];
@@ -74,7 +69,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       if (i === 0) {
-        serie.marker = { fillColor: 'white', lineColor: colors[i], symbol: 'circle', lineWidth: 2, radius: 5 };
+        serie.marker = {
+          fillColor: 'white',
+          lineColor: colors[i],
+          symbol: 'circle',
+          lineWidth: 2,
+          radius: 5,
+        };
       }
       serie.data = filtered.map((el, index) => ({
         y: (el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count,
@@ -97,7 +98,12 @@ function useGetData(observationSnaps, needle = '*', domain) {
       affiliation: el.data[el.data.length - 1].affiliation,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
-      color: affiliationsetablissements100,
+      color: getCSSValue('--affiliations-etablissements-100'),
+      states: {
+        hover: {
+          color: getCSSValue('--affiliations-etablissements-125'),
+        },
+      },
     }));
 
     return { dataGraph1, dataGraph2 };

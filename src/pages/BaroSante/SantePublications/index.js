@@ -16,15 +16,17 @@ import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import urls from '../../../config/urls';
-import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
+import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 function SantePublications() {
   const { lang } = useLang();
   const location = useLocation();
   const intl = useIntl();
+  const blueSoft25 = getCSSValue('--blue-soft-25');
+  const blueSoft50 = getCSSValue('--blue-soft-50');
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -138,7 +140,7 @@ function SantePublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.health-publi.general.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='general.dynamique-ouverture'
                 >
                   <BSOChart
@@ -154,7 +156,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.general.voies-ouverture'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='general.voies-ouverture'
                 >
                   <BSOChart
@@ -173,7 +175,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.general.genres-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='general.genres-ouverture'
                 >
                   <BSOChart
@@ -184,7 +186,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.general.langues-ouverture'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='general.langues-ouverture'
                 >
                   <BSOChart
@@ -195,7 +197,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.general.impact-financement'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='general.impact-financement'
                 >
                   <BSOChart
@@ -233,7 +235,7 @@ function SantePublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.health-publi.disciplines.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='disciplines.dynamique-ouverture'
                 >
                   <BSOChart
@@ -248,7 +250,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.disciplines.voies-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='disciplines.voies-ouverture'
                 >
                   <BSOChart
@@ -308,7 +310,7 @@ function SantePublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.health-publi.publishers.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='publishers.dynamique-ouverture'
                 >
                   <BSOChart
@@ -323,7 +325,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.type-ouverture'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='publishers.type-ouverture'
                 >
                   <BSOChart
@@ -338,7 +340,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.politiques-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='publishers.politiques-ouverture'
                 >
                   <BSOChart
@@ -353,7 +355,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.poids-revues'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='publishers.poids-revues'
                 >
                   <BSOChart
@@ -364,7 +366,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.repartition-licences'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='publishers.repartition-licences'
                 >
                   <BSOChart
@@ -379,7 +381,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.couts-publication'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='publishers.couts-publication'
                 >
                   <BSOChart
@@ -431,7 +433,7 @@ function SantePublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.health-publi.repositories.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-ouverture'
                 >
                   <BSOChart
@@ -446,7 +448,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.repositories.plus-utilisees'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='repositories.plus-utilisees'
                 >
                   <BSOChart
@@ -457,7 +459,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.repositories.dynamique-depot'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-depot'
                 >
                   <BSOChart
@@ -468,7 +470,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.repositories.dynamique-hal'
-                  backgroundColor={bluesoft25}
+                  backgroundColor={blueSoft25}
                   anchorId='repositories.dynamique-hal'
                 >
                   <BSOChart
@@ -502,7 +504,7 @@ function SantePublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.health-publi.affiliations.dynamique-ouverture'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='affiliations.dynamique-ouverture'
                 >
                   <BSOChart
@@ -521,7 +523,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.affiliations.pays'
-                  backgroundColor={bluesoft50}
+                  backgroundColor={blueSoft50}
                   anchorId='affiliations.pays'
                 >
                   <BSOChart

@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  archiveouverte100,
-  editeurplateforme100,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getCSSValue,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 import target from '../../../../Images/asset-target.png';
 
 function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
+  const yellowMedium125 = getCSSValue('--yellow-medium-125');
 
   async function getDataGraph() {
     const queries = [];
@@ -73,12 +73,12 @@ function useGetData(lastObservationSnap, domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers.green-only' }),
         data: greenOnly,
-        color: archiveouverte100,
+        color: getCSSValue('--green-medium-125'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.open-by-publisher' }),
         data: openByPublishers,
-        color: editeurplateforme100,
+        color: yellowMedium125,
       },
     ];
     // 2e graph (graphe à bulles)
@@ -112,7 +112,7 @@ function useGetData(lastObservationSnap, domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers' }),
         data: bubbles,
-        color: editeurplateforme100,
+        color: yellowMedium125,
       },
       {
         data: [{ y: 100, x: 100 }],

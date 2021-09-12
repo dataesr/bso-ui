@@ -4,18 +4,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  archiveouverte100,
-  editeurarchive,
-  editeurplateforme100,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const yellowMedium125 = getCSSValue('--yellow-medium-125');
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -115,25 +112,28 @@ function useGetData(observationSnap, domain) {
             id: 'app.type-hebergement.publisher-repository',
           }),
           data: publisherRepository,
-          color: editeurarchive,
+          color: getCSSValue('--green-light-100'),
           dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
-          color: archiveouverte100,
+          color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
           data: publisher,
-          color: editeurplateforme100,
-          dataLabels: noOutline,
+          color: yellowMedium125,
+          dataLabels: {
+            ...noOutline,
+            style: { color: getCSSValue('--g-800') },
+          },
         },
       ];
       return { categories, dataGraph };
     },
-    [domain, intl, disciplineField],
+    [domain, disciplineField, intl, yellowMedium125],
   );
 
   useEffect(() => {
