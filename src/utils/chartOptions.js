@@ -25,7 +25,7 @@ export function customComments(data, id, intl) {
 export function getGraphOptions(graphId, intl) {
   return {
     chart: {
-      backgroundColor: 'var(--white)',
+      backgroundColor: getCSSProperty('--white'),
     },
     title: { text: '' },
     tooltip: {
@@ -269,7 +269,7 @@ export const chartOptions = {
               useHTML: true,
               borderRadius: 0,
               borderWidth: 0,
-              backgroundColor: 'var(--blue-soft-100)',
+              backgroundColor: getCSSProperty('--blue-soft-100'),
             },
           },
         ];
@@ -410,7 +410,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -722,14 +722,14 @@ export const chartOptions = {
         height: '600px',
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.gridLineColor = 'var(--g-500)';
+      options.yAxis.gridLineColor = getCSSProperty('--g-500');
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
         categories: data[0].data.map((el) => intl.formatMessage({ id: `app.affiliations.${el.name}` })),
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-!00'),
             fontSize: '14px',
           },
         },
@@ -830,7 +830,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -886,7 +886,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -966,7 +966,7 @@ export const chartOptions = {
         categories: data.map((el) => el.name),
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '14px',
           },
         },
@@ -1203,7 +1203,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -1233,7 +1233,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -1259,7 +1259,7 @@ export const chartOptions = {
         categories: graph.data.map((el) => el.name),
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '14px',
           },
         },
@@ -1350,7 +1350,7 @@ export const chartOptions = {
         height: '600px',
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.gridLineColor = 'var(--g-500)';
+      options.yAxis.gridLineColor = getCSSProperty('--g-500');
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
@@ -1361,7 +1361,7 @@ export const chartOptions = {
         })),
         labels: {
           style: {
-            color: 'var(--g-800)',
+            color: getCSSProperty('--g-800'),
             fontSize: '14px',
           },
         },
