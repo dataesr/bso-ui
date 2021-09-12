@@ -32,13 +32,82 @@ import ChartLanguesOuverture from '../components/Charts/publications/general/lan
 import ChartEvolutionTaux from '../components/Charts/publications/general/voies-ouverture/chart-evolution-taux';
 import ChartRepartitionPublications from '../components/Charts/publications/general/voies-ouverture/chart-repartition-publications';
 import ChartRepartitionTaux from '../components/Charts/publications/general/voies-ouverture/chart-repartition-taux';
+// Essais cliniques + études observationnelles
+import ChartGroupesPatientsStudies from '../components/Charts/studies/caracteristiques/combien/chart-groupes-patients';
+import ChartProportionModesRepartitionStudies from '../components/Charts/studies/caracteristiques/combien/chart-proportion-modes-repartition';
+import ChartNombreStudies from '../components/Charts/studies/caracteristiques/duree/chart-nombre';
+import ChartDistributionDeclarationsStudies from '../components/Charts/studies/caracteristiques/quand/chart-distribution-declarations';
+import ChartEvolutionTemporalitesStudies from '../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites';
+import ChartRepartitionAvantApresStudies from '../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres';
+import ChartEevolutionNombreStudies from '../components/Charts/studies/caracteristiques/types/chart-evolution-nombre';
+import ChartEvolutionStudies from '../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
+import ChartRepartitionStudies from '../components/Charts/studies/general/trajectoires/chart-repartition';
+import ChartEvolutionNombreStudies from '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-evolution-nombre';
+import ChartPartStudies from '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-part';
+import ChartClassementPaysStudies from '../components/Charts/studies/promoteurs/impact/chart-classement-pays';
+import ChartPromoteursRepartitionStudies from '../components/Charts/studies/promoteurs/impact/chart-repartition';
+import ChartDistributionStudies from '../components/Charts/studies/resultats/delai-diffusion/chart-distribution';
+import ChartDelaiDiffusionRepartitionStudies from '../components/Charts/studies/resultats/delai-diffusion/chart-repartition';
+import ChartPlanPartageRepartitionStudies from '../components/Charts/studies/resultats/plan-partage/chart-repartition';
+import ChartResultatsRepartitionStudies from '../components/Charts/studies/resultats/publication/chart-repartition';
+import ChartResultatsRepartitionIcmjeStudies from '../components/Charts/studies/resultats/publication/chart-repartition-icmje';
+import ChartTypeDiffusionRepartitionStudies from '../components/Charts/studies/resultats/type-diffusion/chart-repartition';
+import ChartRepartitionParTypeStudies from '../components/Charts/studies/resultats/type-diffusion/chart-repartition-par-type';
 
 const chartComponents = {
+  'publi.affiliations.dynamique-ouverture.chart-evolution-proportion':
+    ChartEvolutionProportionAffiliations,
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture':
     ChartTauxOuvertureAffiliations,
   'publi.affiliations.pays.chart-classement-pays': ChartClassementPays,
   'publi.affiliations.pays.chart-taux-rang-utile':
     ChartEvolutionTauxOuvertureRangUtile,
+  'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture':
+    ChartEvolutionTauxOuvertureDisciplines,
+  'publi.disciplines.dynamique-ouverture.chart-taux-ouverture':
+    ChartTauxOuvertureDisciplines,
+  'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
+    ChartEvolutionComparaisonTypesHebergementDisciplines,
+  'publi.disciplines.voies-ouverture.chart-repartition-publications':
+    ChartRepartitionPublicationsDisciplines,
+  'publi.general.dynamique-ouverture.chart-evolution-proportion':
+    ChartEvolutionProportion,
+  'publi.general.dynamique-ouverture.chart-taux-ouverture': ChartTauxOuverture,
+  'publi.general.genres-ouverture.chart-repartition-genres':
+    ChartGenreOuverture,
+  'publi.general.impact-financement.chart-repartition-financements':
+    ChartRepartitionDeclarations,
+  'publi.general.impact-financement.chart-taux-ouverture':
+    ChartTauxOuvertureFinancement,
+  'publi.general.langues-ouverture.chart-repartition-publications':
+    ChartLanguesOuverture,
+  'publi.general.voies-ouverture.chart-evolution-taux': ChartEvolutionTaux,
+  'publi.general.voies-ouverture.chart-repartition-publications':
+    ChartRepartitionPublications,
+  'publi.general.voies-ouverture.chart-repartition-taux': ChartRepartitionTaux,
+  'publi.publishers.couts-publication.chart-depenses-estimees':
+    ChartDepensesEstimeesPublishers,
+  'publi.publishers.couts-publication.chart-distribution-par-annee':
+    ChartDistributionParAnnee,
+  'publi.publishers.couts-publication.chart-distribution':
+    ChartDistributionPublishers,
+  'publi.publishers.dynamique-ouverture.chart-evolution-proportion':
+    ChartEvolutionProportionPublishers,
+  'publi.publishers.dynamique-ouverture.chart-taux-ouverture':
+    ChartTauxOuverturePublishers,
+  'publi.publishers.poids-revues.chart-repartition': ChartRepartitionPublishers,
+  'publi.publishers.politiques-ouverture.chart-classement':
+    ChartClassementPublishers,
+  'publi.publishers.politiques-ouverture.chart-comparaison':
+    ChartComparaisonPublishers,
+  'publi.publishers.repartition-licences.chart-classement':
+    ChartClassementLicencesPublishers,
+  'publi.publishers.repartition-licences.chart-repartition':
+    ChartRepartitionLicencesPublishers,
+  'publi.publishers.type-ouverture.chart-evolution-repartition':
+    ChartEvolutionRepartitionPublishers,
+  'publi.publishers.type-ouverture.chart-repartition-modeles':
+    ChartRepartitionModelesPublishers,
   'publi.repositories.dynamique-depot.chart-nombre-documents-depots':
     ChartNombreDocumentsDepotsRepositories,
   'publi.repositories.dynamique-hal.chart-couverture-hal':
@@ -47,56 +116,46 @@ const chartComponents = {
     ChartTauxPresenceRepositories,
   'publi.repositories.dynamique-ouverture.chart-taux-ouverture':
     ChartTauxOuvertureArchives,
-  'publi.general.dynamique-ouverture.chart-evolution-proportion':
-    ChartEvolutionProportion,
-  'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
-    ChartEvolutionComparaisonTypesHebergementDisciplines,
-  'publi.disciplines.dynamique-ouverture.chart-taux-ouverture':
-    ChartTauxOuvertureDisciplines,
   'publi.repositories.plus-utilisees.chart-nombre-documents':
     ChartNombreDocumentsRepositories,
-  'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture':
-    ChartEvolutionTauxOuvertureDisciplines,
-  'publi.affiliations.dynamique-ouverture.chart-evolution-proportion':
-    ChartEvolutionProportionAffiliations,
-  'publi.general.voies-ouverture.chart-repartition-taux': ChartRepartitionTaux,
-  'publi.general.voies-ouverture.chart-repartition-publications':
-    ChartRepartitionPublications,
-  'publi.general.voies-ouverture.chart-evolution-taux': ChartEvolutionTaux,
-  'publi.general.langues-ouverture.chart-repartition-publications':
-    ChartLanguesOuverture,
-  'publi.general.impact-financement.chart-taux-ouverture':
-    ChartTauxOuvertureFinancement,
-  'publi.general.impact-financement.chart-repartition-financements':
-    ChartRepartitionDeclarations,
-  'publi.general.genres-ouverture.chart-repartition-genres':
-    ChartGenreOuverture,
-  'publi.general.dynamique-ouverture.chart-taux-ouverture': ChartTauxOuverture,
-  'publi.publishers.type-ouverture.chart-repartition-modeles':
-    ChartRepartitionModelesPublishers,
-  'publi.publishers.type-ouverture.chart-evolution-repartition':
-    ChartEvolutionRepartitionPublishers,
-  'publi.publishers.repartition-licences.chart-repartition':
-    ChartRepartitionLicencesPublishers,
-  'publi.publishers.repartition-licences.chart-classement':
-    ChartClassementLicencesPublishers,
-  'publi.publishers.politiques-ouverture.chart-comparaison':
-    ChartComparaisonPublishers,
-  'publi.publishers.politiques-ouverture.chart-classement':
-    ChartClassementPublishers,
-  'publi.publishers.poids-revues.chart-repartition': ChartRepartitionPublishers,
-  'publi.publishers.dynamique-ouverture.chart-taux-ouverture':
-    ChartTauxOuverturePublishers,
-  'publi.publishers.dynamique-ouverture.chart-evolution-proportion':
-    ChartEvolutionProportionPublishers,
-  'publi.publishers.couts-publication.chart-distribution-par-annee':
-    ChartDistributionParAnnee,
-  'publi.publishers.couts-publication.chart-distribution':
-    ChartDistributionPublishers,
-  'publi.publishers.couts-publication.chart-depenses-estimees':
-    ChartDepensesEstimeesPublishers,
-  'publi.disciplines.voies-ouverture.chart-repartition-publications':
-    ChartRepartitionPublicationsDisciplines,
+  'studies.general.dynamique-ouverture.chart-evolution-studies':
+    ChartEvolutionStudies,
+  'studies.general.trajectoires.chart-repartition-studies':
+    ChartRepartitionStudies,
+  'studies.caracteristiques.quand.chart-evolution-temporalites-studies':
+    ChartEvolutionTemporalitesStudies,
+  'studies.caracteristiques.quand.chart-repartition-avant-apres-studies':
+    ChartRepartitionAvantApresStudies,
+  'studies.caracteristiques.quand.chart-distribution-declarations-studies':
+    ChartDistributionDeclarationsStudies,
+  'studies.caracteristiques.duree.chart-nombre-studies': ChartNombreStudies,
+  'studies.caracteristiques.combien.chart-groupes-patients-studies':
+    ChartGroupesPatientsStudies,
+  'studies.caracteristiques.combien.chart-proportion-modes-repartition-studies':
+    ChartProportionModesRepartitionStudies,
+  'studies.caracteristiques.types.chart-evolution-nombre-studies':
+    ChartEevolutionNombreStudies,
+  'studies.promoteurs.dynamique-ouverture.chart-part-studies': ChartPartStudies,
+  'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre-studies':
+    ChartEvolutionNombreStudies,
+  'studies.promoteurs.impact.chart-repartition-studies':
+    ChartPromoteursRepartitionStudies,
+  'studies.promoteurs.impact.chart-classement-pays-studies':
+    ChartClassementPaysStudies,
+  'studies.resultats.type-diffusion.chart-repartition-studies':
+    ChartTypeDiffusionRepartitionStudies,
+  'studies.resultats.type-diffusion.chart-repartition-par-type-studies':
+    ChartRepartitionParTypeStudies,
+  'studies.resultats.plan-partage.chart-repartition-studies':
+    ChartPlanPartageRepartitionStudies,
+  'studies.resultats.delai-diffusion.chart-repartition-studies':
+    ChartDelaiDiffusionRepartitionStudies,
+  'studies.resultats.delai-diffusion.chart-distribution-studies':
+    ChartDistributionStudies,
+  'studies.resultats.publication.chart-repartition-studies':
+    ChartResultatsRepartitionStudies,
+  'studies.resultats.publication.chart-repartition-icmje-studies':
+    ChartResultatsRepartitionIcmjeStudies,
 };
 
 export default chartComponents;

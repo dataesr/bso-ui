@@ -32,6 +32,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     intl,
     dataGraph2,
   );
+
   useEffect(() => {
     setChartComments(longComments(dataGraph2, idWithDomain, intl));
   }, [dataGraph2, idWithDomain, intl]);

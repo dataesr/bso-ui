@@ -64,7 +64,6 @@ function App() {
           >
             <SantePublications />
           </Route>
-
           <Route
             exact
             path={urls.santeEssais.tabs

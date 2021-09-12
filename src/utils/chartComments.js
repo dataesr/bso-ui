@@ -22,23 +22,21 @@ export function longComments(data, id, intl) {
     const first = data[0];
     const second = data[1];
     const third = data[2];
-
     const indMax = second?.data.length - 1;
-
     comments = intl.formatMessage(
       { id: `${id}.comments` },
       {
         a: second?.name,
         b: first?.name,
         c: 2013 + indMax,
-        d: first?.data[indMax] - second?.data[indMax],
-        e: second?.data[indMax],
-        f: first?.data[indMax],
+        d: first?.data[indMax].y - second?.data[indMax].y,
+        e: second?.data[indMax].y,
+        f: first?.data[indMax].y,
         g: 2013 + indMax - 1,
-        h: first?.data[indMax - 1] - second?.data[indMax - 1],
-        i: second?.data[indMax - 1],
-        j: first?.data[indMax - 1],
-        k: second?.data[indMax - 1] - third?.data[indMax - 1],
+        h: first?.data[indMax - 1].y - second?.data[indMax - 1].y,
+        i: second?.data[indMax - 1].y,
+        j: first?.data[indMax - 1].y,
+        k: second?.data[indMax - 1].y - third?.data[indMax - 1].y,
         l: third?.name,
         m: second?.name,
       },

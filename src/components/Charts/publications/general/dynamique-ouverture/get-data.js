@@ -61,24 +61,27 @@ function useGetData(observationSnaps, domain = '') {
         serie.name = observationSnapData.observationSnap;
         serie.color = colors[i];
         serie.dashStyle = lineStyle[i];
-        serie.data = filtered.map(
-          (el) => (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
+        serie.data = filtered.map((el) => ({
+          y_tot: 7,
+          y_abs: 1,
+          y:
+            (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
               + el.by_is_oa.buckets[1].doc_count),
-        );
+        }));
         serie.ratios = filtered.map(
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
         );
         serie.publicationDate = filtered[filtered.length - 1].key;
         dataGraph2.push(serie);
       });
+
       const dataGraph1 = dataGraph2.map((el) => ({
         name: el.name, // observation date
-        y: el.data[el.data.length - 1],
+        y: el.data[el.data.length - 1].y,
         ratio: el.ratios[el.data.length - 1],
         publicationDate: el.publicationDate,
       }));
-
       return { dataGraph1, dataGraph2 };
     },
     [domain],

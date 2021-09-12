@@ -4,8 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
-import ChartTauxOuverture from '../../../components/charts/publications/general/dynamique-ouverture/chart-taux-ouverture';
-import ChartRepartitionTaux from '../../../components/charts/publications/general/voies-ouverture/chart-repartition-taux';
+import ChartEvolutionStudies from '../../../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
+import ChartRepartitionStudies from '../../../components/Charts/studies/general/trajectoires/chart-repartition';
 import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
@@ -102,7 +102,13 @@ function EssaisCliniques() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.publi.navigation.disciplines.dynamique',
+                  id: 'app.trials.navigation.general.dynamique',
+                }),
+                href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
+              },
+              {
+                label: intl.formatMessage({
+                  id: 'app.trials.navigation.general.trajectoires',
                 }),
                 href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
               },
@@ -110,13 +116,13 @@ function EssaisCliniques() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.sante-publi.general.dynamique-ouverture'
+                intlKey='app.sante-trials.general.dynamique-ouverture'
                 backgroundColor={bluesoft50}
                 anchorId='general.dynamique-ouverture'
               >
-                <ChartTauxOuverture
-                  id='app.sante-publi.general.dynamique-ouverture.chart-taux-ouverture'
-                  domain='health'
+                <ChartEvolutionStudies
+                  id='studies.general.dynamique-ouverture.chart-evolution-studies'
+                  studyType='Interventional'
                 />
               </QuestionSection>
 
@@ -125,9 +131,10 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft25}
                 anchorId='general.voies-ouverture'
               >
-                <ChartRepartitionTaux
-                  id='app.sante-publi.general.voies-ouverture.chart-repartition-taux'
-                  domain='health'
+                vide
+                <ChartRepartitionStudies
+                  id='studies.general.trajectoires.chart-repartition-studies'
+                  studyType='Interventional'
                 />
               </QuestionSection>
             </GraphContent>
