@@ -5,14 +5,14 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const yellowMedium125 = getCSSProperty('--yellow-medium-125');
-  const greenLight100 = getCSSProperty('--green-light-100');
+  const yellowMedium125 = getCSSValue('--yellow-medium-125');
+  const greenLight100 = getCSSValue('--green-light-100');
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -101,7 +101,7 @@ function useGetData(observationSnap, domain) {
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
-          color: getCSSProperty('--green-medium-125'),
+          color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
         },
         {
@@ -136,7 +136,7 @@ function useGetData(observationSnap, domain) {
           value: repository[repository.length - 1].y_abs,
           percentage: repository[repository.length - 1].y,
           publicationDate: categories[categories.length - 1],
-          color: getCSSProperty('--green-medium-125'),
+          color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
         },
         {
@@ -144,7 +144,7 @@ function useGetData(observationSnap, domain) {
           value: closed[closed.length - 1].y_abs,
           percentage: closed[closed.length - 1].y,
           publicationDate: categories[categories.length - 1],
-          color: getCSSProperty('--blue-soft-175'),
+          color: getCSSValue('--blue-soft-175'),
           dataLabels: noOutline,
         },
       ];

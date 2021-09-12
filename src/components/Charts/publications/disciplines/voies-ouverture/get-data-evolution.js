@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
-  getCSSProperty,
+  getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 import target from '../../../../Images/asset-target.png';
@@ -64,7 +64,7 @@ function useGetData(lastObservationSnap, domain = '') {
       {
         name: intl.formatMessage({ id: 'app.discipline' }),
         data: bubbles,
-        color: getCSSProperty('--yellow-medium-125'),
+        color: getCSSValue('--yellow-medium-125'),
       },
       {
         data: [{ y: 100, x: 100 }],

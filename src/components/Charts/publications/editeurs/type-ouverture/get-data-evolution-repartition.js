@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);
@@ -70,17 +70,17 @@ function useGetData(observationSnap, domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers.gold' }),
         data: goldData,
-        color: getCSSProperty('--yellow-medium-100'),
+        color: getCSSValue('--yellow-medium-100'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.hybrid' }),
         data: hybridData,
-        color: getCSSProperty('--hybrid'),
+        color: getCSSValue('--hybrid'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.diamond' }),
         data: diamondData,
-        color: getCSSProperty('--diamond'),
+        color: getCSSValue('--diamond'),
       },
     ];
 
@@ -91,7 +91,7 @@ function useGetData(observationSnap, domain) {
         y_tot: goldData[goldData.length - 1].y_tot,
         y_abs: goldData[goldData.length - 1].y_abs,
         value: goldData[goldData.length - 1].y,
-        color: getCSSProperty('--yellow-medium-100'),
+        color: getCSSValue('--yellow-medium-100'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.hybrid' }),
@@ -99,7 +99,7 @@ function useGetData(observationSnap, domain) {
         y_tot: hybridData[hybridData.length - 1].y_tot,
         y_abs: hybridData[hybridData.length - 1].y_abs,
         value: hybridData[hybridData.length - 1].y,
-        color: getCSSProperty('--hybrid'),
+        color: getCSSValue('--hybrid'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.diamond' }),
@@ -107,7 +107,7 @@ function useGetData(observationSnap, domain) {
         y_tot: diamondData[diamondData.length - 1].y_tot,
         y_abs: diamondData[diamondData.length - 1].y_abs,
         value: diamondData[diamondData.length - 1].y,
-        color: getCSSProperty('--diamond'),
+        color: getCSSValue('--diamond'),
       },
     ];
 

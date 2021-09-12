@@ -5,14 +5,14 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const yellowMedium125 = getCSSProperty('--yellow-medium-125');
+  const yellowMedium125 = getCSSValue('--yellow-medium-125');
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -112,13 +112,13 @@ function useGetData(observationSnap, domain) {
             id: 'app.type-hebergement.publisher-repository',
           }),
           data: publisherRepository,
-          color: getCSSProperty('--green-light-100'),
+          color: getCSSValue('--green-light-100'),
           dataLabels: noOutline,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
-          color: getCSSProperty('--green-medium-125'),
+          color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
         },
         {
@@ -127,7 +127,7 @@ function useGetData(observationSnap, domain) {
           color: yellowMedium125,
           dataLabels: {
             ...noOutline,
-            style: { color: getCSSProperty('--g-800') },
+            style: { color: getCSSValue('--g-800') },
           },
         },
       ];

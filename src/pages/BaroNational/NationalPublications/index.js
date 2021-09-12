@@ -18,15 +18,15 @@ import ScrollTop from '../../../components/ScrollTop';
 import urls from '../../../config/urls';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSProperty } from '../../../utils/helpers';
+import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalPublications() {
   const { lang } = useLang();
   const location = useLocation();
   const intl = useIntl();
-  const blueSoft25 = getCSSProperty('--blue-soft-25');
-  const blueSoft50 = getCSSProperty('--blue-soft-50');
+  const blueSoft25 = getCSSValue('--blue-soft-25');
+  const blueSoft50 = getCSSValue('--blue-soft-50');
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>

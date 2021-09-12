@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
-  getCSSProperty,
+  getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
@@ -86,14 +86,14 @@ function useGetData(observationDate, domain = '') {
             id: 'app.affiliations.rang-utile-fr',
           }),
           data: fr,
-          color: getCSSProperty('--blue-soft-125'),
+          color: getCSSValue('--blue-soft-125'),
         },
         {
           name: intl.formatMessage({
             id: 'app.affiliations.rang-utile-etranger',
           }),
           data: foreign,
-          color: getCSSProperty('--green-warm-100'),
+          color: getCSSValue('--green-warm-100'),
         },
       ];
       // 2e graphe
@@ -113,8 +113,8 @@ function useGetData(observationDate, domain = '') {
             getPublicationYearFromObservationSnap(lastObservationSnap),
           color:
             el.key === 'fr'
-              ? getCSSProperty('--blue-soft-125')
-              : getCSSProperty('--acces-ouvert'),
+              ? getCSSValue('--blue-soft-125')
+              : getCSSValue('--acces-ouvert'),
         });
       });
       oaCountry = oaCountry.sort((a, b) => a.y - b.y);
@@ -125,7 +125,7 @@ function useGetData(observationDate, domain = '') {
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           data: oaCountry,
-          color: getCSSProperty('--acces-ouvert'),
+          color: getCSSValue('--acces-ouvert'),
         },
       ];
 

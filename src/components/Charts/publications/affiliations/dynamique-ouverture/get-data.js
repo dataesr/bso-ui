@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -44,10 +44,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
     }));
 
     const colors = [
-      getCSSProperty('--affiliations-etablissements-100'),
-      getCSSProperty('--affiliations-etablissements-125'),
-      getCSSProperty('--affiliations-etablissements-50'),
-      getCSSProperty('--affiliations-etablissements-75'),
+      getCSSValue('--affiliations-etablissements-100'),
+      getCSSValue('--affiliations-etablissements-125'),
+      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-75'),
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
     const dataGraph2 = [];
@@ -98,10 +98,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
       affiliation: el.data[el.data.length - 1].affiliation,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
-      color: getCSSProperty('--affiliations-etablissements-100'),
+      color: getCSSValue('--affiliations-etablissements-100'),
       states: {
         hover: {
-          color: getCSSProperty('--affiliations-etablissements-125'),
+          color: getCSSValue('--affiliations-etablissements-125'),
         },
       },
     }));

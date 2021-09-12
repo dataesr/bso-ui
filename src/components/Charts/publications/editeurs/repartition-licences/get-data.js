@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
-  getCSSProperty,
+  getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
@@ -49,8 +49,8 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
             ),
             color:
               el.key === 'no license'
-                ? getCSSProperty('--g-400')
-                : getCSSProperty('--acces-ouvert'),
+                ? getCSSValue('--g-400')
+                : getCSSValue('--acces-ouvert'),
           });
         },
       );
@@ -64,7 +64,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
-        color: getCSSProperty('--acces-ouvert'),
+        color: getCSSValue('--acces-ouvert'),
         value: nbLicenceOpen,
         y_tot: nbTotal,
         y_perc: (100 * nbLicenceOpen) / nbTotal,
@@ -82,7 +82,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
-        color: getCSSProperty('--g-400'),
+        color: getCSSValue('--g-400'),
         value: nbNoLicence,
         y_tot: nbTotal,
         y_perc: (100 * nbNoLicence) / nbTotal,
@@ -132,12 +132,12 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
       {
         name: intl.formatMessage({ id: 'app.licenses.no license' }),
         data: noLicence,
-        color: getCSSProperty('--g-400'),
+        color: getCSSValue('--g-400'),
       },
       {
         name: intl.formatMessage({ id: 'app.licenses.open-license' }),
         data: openLicence,
-        color: getCSSProperty('--acces-ouvert'),
+        color: getCSSValue('--acces-ouvert'),
       },
     ];
     return { dataGraphTreemap, dataGraphBar, categories };

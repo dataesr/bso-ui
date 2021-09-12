@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getCSSProperty, withDomain } from '../../../../../utils/helpers';
+import { getCSSValue, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data-dumbbell';
@@ -66,28 +66,28 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
         // eslint-disable-next-line default-case
         switch (delta) {
         case 3:
-          lowColor = getCSSProperty('--affiliations-etablissements-50');
+          lowColor = getCSSValue('--affiliations-etablissements-50');
           fillColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 2:
-          lowColor = getCSSProperty('--affiliations-etablissements-75');
+          lowColor = getCSSValue('--affiliations-etablissements-75');
           fillColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 1:
-          lowColor = getCSSProperty('--affiliations-etablissements-125');
+          lowColor = getCSSValue('--affiliations-etablissements-125');
           lineColor = lowColor;
           lineColor = 'white';
           radius = 7;
           showInLegend = true;
           break;
         case 0:
-          lowColor = getCSSProperty('--affiliations-etablissements-100');
+          lowColor = getCSSValue('--affiliations-etablissements-100');
           lineColor = lowColor;
           fillColor = 'white';
           radius = 8;
@@ -122,7 +122,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
           radius: 8,
           fillColor: 'white',
           symbol: 'circle',
-          lineColor: getCSSProperty('--affiliations-etablissements-100'),
+          lineColor: getCSSValue('--affiliations-etablissements-100'),
         },
       });
 

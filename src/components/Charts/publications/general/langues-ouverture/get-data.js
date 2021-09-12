@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, isOa, domain) {
   const intl = useIntl();
@@ -37,13 +37,13 @@ function useGetData(observationSnap, isOa, domain) {
         {
           id: 'closed',
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          color: getCSSProperty('--blue-soft-175'),
+          color: getCSSValue('--blue-soft-175'),
           dataLabels: noOutline,
         },
         {
           id: 'open',
           name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
-          color: getCSSProperty('--acces-ouvert'),
+          color: getCSSValue('--acces-ouvert'),
           dataLabels: noOutline,
         },
       ];
@@ -83,15 +83,15 @@ function useGetData(observationSnap, isOa, domain) {
         });
     } else {
       data.forEach((el) => {
-        let color = getCSSProperty('--blue-soft-175');
+        let color = getCSSValue('--blue-soft-175');
         if (el.key === 'repository') {
-          color = getCSSProperty('--green-medium-125');
+          color = getCSSValue('--green-medium-125');
         }
         if (el.key === 'publisher') {
-          color = getCSSProperty('--yellow-medium-125');
+          color = getCSSValue('--yellow-medium-125');
         }
         if (el.key === 'publisher;repository') {
-          color = getCSSProperty('--green-light-100');
+          color = getCSSValue('--green-light-100');
         }
         dataGraph.push({
           id: el.key,

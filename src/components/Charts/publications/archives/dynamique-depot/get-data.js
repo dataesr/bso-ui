@@ -5,14 +5,14 @@ import { useEffect, useState } from 'react';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
-  getCSSProperty,
+  getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const greenMedium150 = getCSSProperty('--green-medium-150');
+  const greenMedium150 = getCSSValue('--green-medium-150');
 
   async function GetData() {
     const query = getFetchOptions('repositoriesHisto', domain, observationSnap);
@@ -38,7 +38,7 @@ function useGetData(observationSnap, domain) {
               y: el.doc_count,
               color:
                 index === nbHisto - 1
-                  ? getCSSProperty('--green-medium-125')
+                  ? getCSSValue('--green-medium-125')
                   : greenMedium150,
             })),
         };

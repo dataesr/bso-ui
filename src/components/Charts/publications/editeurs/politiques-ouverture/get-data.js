@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
-  getCSSProperty,
+  getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 import target from '../../../../Images/asset-target.png';
@@ -14,7 +14,7 @@ function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
-  const yellowMedium125 = getCSSProperty('--yellow-medium-125');
+  const yellowMedium125 = getCSSValue('--yellow-medium-125');
 
   async function getDataGraph() {
     const queries = [];
@@ -73,7 +73,7 @@ function useGetData(lastObservationSnap, domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers.green-only' }),
         data: greenOnly,
-        color: getCSSProperty('--green-medium-125'),
+        color: getCSSValue('--green-medium-125'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.open-by-publisher' }),

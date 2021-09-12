@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
   const [data, setData] = useState({});
@@ -31,13 +31,13 @@ function useGetData(observationSnaps, domain = '') {
       }));
 
       const colors = [
-        getCSSProperty('--orange-soft-100'),
-        getCSSProperty('--orange-soft-125'),
-        getCSSProperty('--orange-soft-125'),
-        getCSSProperty('--orange-soft-125'),
-        getCSSProperty('--orange-soft-175'),
-        getCSSProperty('--orange-soft-175'),
-        getCSSProperty('--orange-soft-175'),
+        getCSSValue('--orange-soft-100'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-175'),
+        getCSSValue('--orange-soft-175'),
+        getCSSValue('--orange-soft-175'),
       ];
       const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
       const dataGraph2 = [];

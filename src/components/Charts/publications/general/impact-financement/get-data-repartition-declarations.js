@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain, isOa) {
   const intl = useIntl();
@@ -37,7 +37,7 @@ function useGetData(observationSnap, domain, isOa) {
               key: agency.key,
               parent: 'closed',
               value: agency.doc_count,
-              color: getCSSProperty('--blue-soft-175'),
+              color: getCSSValue('--blue-soft-175'),
             });
           },
         );
@@ -56,15 +56,15 @@ function useGetData(observationSnap, domain, isOa) {
             parent: 'opened',
           });
           hostType.by_grant_agency.buckets.forEach((agency) => {
-            let color = getCSSProperty('--blue-soft-175');
+            let color = getCSSValue('--blue-soft-175');
             if (hostType.key === 'repository') {
-              color = getCSSProperty('--green-medium-125');
+              color = getCSSValue('--green-medium-125');
             }
             if (hostType.key === 'publisher') {
-              color = getCSSProperty('--yellow-medium-125');
+              color = getCSSValue('--yellow-medium-125');
             }
             if (hostType.key === 'publisher;repository') {
-              color = getCSSProperty('--green-light-100');
+              color = getCSSValue('--green-light-100');
             }
             dataGraph.push({
               name: agency.key,

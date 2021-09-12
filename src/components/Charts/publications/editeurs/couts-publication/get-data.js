@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
-  getCSSProperty,
+  getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
@@ -83,12 +83,12 @@ function useGetData(observationSnaps, needle = '*', domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
         data: hybridDataYear,
-        color: getCSSProperty('--hybrid'),
+        color: getCSSValue('--hybrid'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.apc-gold' }),
         data: goldDataYear,
-        color: getCSSProperty('--yellow-medium-100'),
+        color: getCSSValue('--yellow-medium-100'),
       },
     ];
 
@@ -181,12 +181,12 @@ function useGetData(observationSnaps, needle = '*', domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
         data: hybridDataHistogram,
-        color: getCSSProperty('--hybrid'),
+        color: getCSSValue('--hybrid'),
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.apc-gold' }),
         data: goldDataHistogram,
-        color: getCSSProperty('--yellow-medium-100'),
+        color: getCSSValue('--yellow-medium-100'),
       },
     ];
 
@@ -195,14 +195,14 @@ function useGetData(observationSnaps, needle = '*', domain) {
       const showInLegend = i === 0;
       dataGraphViolin.push({
         name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
-        color: getCSSProperty('--hybrid'),
+        color: getCSSValue('--hybrid'),
         data: hybridDataViolin[i],
         showInLegend,
         enableMouseTracking: false,
       });
       dataGraphViolin.push({
         name: intl.formatMessage({ id: 'app.publishers.apc-gold' }),
-        color: getCSSProperty('--yellow-medium-100'),
+        color: getCSSValue('--yellow-medium-100'),
         data: goldDataViolin[i],
         showInLegend,
         enableMouseTracking: false,
@@ -246,15 +246,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
       type: 'scatter',
       name: intl.formatMessage({ id: 'app.publishers.apc-hybrid-median' }),
       data: hybridDataYearMedian,
-      color: getCSSProperty('--hybrid'),
-      marker: { lineColor: getCSSProperty('--hybrid') },
+      color: getCSSValue('--hybrid'),
+      marker: { lineColor: getCSSValue('--hybrid') },
     });
     dataGraphViolin.push({
       type: 'scatter',
       name: intl.formatMessage({ id: 'app.publishers.apc-gold-median' }),
       data: goldDataYearMedian,
-      color: getCSSProperty('--yellow-medium-100'),
-      marker: { lineColor: getCSSProperty('--yellow-medium-100') },
+      color: getCSSValue('--yellow-medium-100'),
+      marker: { lineColor: getCSSValue('--yellow-medium-100') },
     });
     return {
       dataGraphTotal,

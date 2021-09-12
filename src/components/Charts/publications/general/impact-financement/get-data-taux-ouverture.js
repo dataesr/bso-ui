@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSProperty } from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, agency = '*', domain) {
   const intl = useIntl();
@@ -114,17 +114,17 @@ function useGetData(observationSnap, agency = '*', domain) {
       {
         name: intl.formatMessage({ id: 'app.all-publications' }),
         data: all,
-        color: getCSSProperty('--orange-soft-100'),
+        color: getCSSValue('--orange-soft-100'),
       },
       {
         name: intl.formatMessage({ id: 'app.with-declaration' }),
         data: withDeclaration,
-        color: getCSSProperty('--orange-soft-175'),
+        color: getCSSValue('--orange-soft-175'),
       },
       {
         name: intl.formatMessage({ id: 'app.without-declaration' }),
         data: withoutDeclaration,
-        color: getCSSProperty('--g-400'),
+        color: getCSSValue('--g-400'),
       },
     ];
 

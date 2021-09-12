@@ -3,7 +3,7 @@
  * @param property
  * @returns {string}
  */
-export function getCSSProperty(property) {
+export function getCSSValue(property) {
   return getComputedStyle(document.documentElement).getPropertyValue(property);
 }
 

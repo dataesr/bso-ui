@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getCSSProperty, withDomain } from '../../../../../utils/helpers';
+import { getCSSValue, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -31,10 +31,10 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
-  const orangeSoft75 = getCSSProperty('--orange-soft-175');
-  const orangeSoft100 = getCSSProperty('--orange-soft-100');
-  const orangeSoft125 = getCSSProperty('--orange-soft-125');
-  const orangeSoft175 = getCSSProperty('--orange-soft-175');
+  const orangeSoft75 = getCSSValue('--orange-soft-175');
+  const orangeSoft100 = getCSSValue('--orange-soft-100');
+  const orangeSoft125 = getCSSValue('--orange-soft-125');
+  const orangeSoft175 = getCSSValue('--orange-soft-175');
 
   useEffect(() => {
     let newData = null;
