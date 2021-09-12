@@ -101,7 +101,7 @@ function useGetData(observationSnaps, domain = '') {
         ratio: el.ratios[el.data.length - 1],
         publicationDate: el.lastPublicationDate,
       }));
-      dataGraph1.comments = {};
+      dataGraph1.comments = null;
 
       return { dataGraph1, dataGraph2 };
     },

@@ -151,6 +151,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     <WrapperChart
       id={id}
       idWithDomain={idWithDomain}
+      domain={domain}
       isLoading={isLoading || !data || data.length <= 0}
       isError={isError}
       chartRef={chartRef}
@@ -158,7 +159,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       graphFooter={graphFooter}
     >
       <Toggle
-        isChecked={isActive}
+        checked={isActive}
         onChange={() => setIsActive(!isActive)}
         label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
       />
