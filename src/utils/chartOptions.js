@@ -192,6 +192,7 @@ export const chartOptions = {
 
         options.chart.type = 'bubble';
         options.chart.zoomType = 'xy';
+        options.chart.height = '600px';
         options.series = data.bubbleGraph;
         options.xAxis = {
           gridLineDashStyle: 'dash',
@@ -212,7 +213,7 @@ export const chartOptions = {
           gridLineWidth: 1,
           endOnTick: false,
           min: 0,
-          max: 120,
+          max: 119,
           title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
           labels: {
             // eslint-disable-next-line
@@ -222,7 +223,19 @@ export const chartOptions = {
           },
         };
         options.legend = {
-          enabled: false,
+          enabled: true,
+          floating: true,
+          align: 'right',
+          y: -60,
+          useHTML: true,
+          title: { text: intl.formatMessage({ id: 'app.discipline.bubbleSize' }) },
+          bubbleLegend: {
+            enabled: true,
+            borderWidth: 3,
+            borderColor: getCSSValue('--orange-soft-100'),
+            color: getCSSValue('--orange-soft-25'),
+            connectColor: getCSSValue('--orange-soft-100'),
+          },
         };
         options.plotOptions = {
           bubble: {
@@ -232,8 +245,6 @@ export const chartOptions = {
                 textOutline: 'none',
               },
             },
-            minSize: 30,
-            maxSize: 80,
           },
           series: {
             dataLabels: {
@@ -960,7 +971,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
       const { data, name } = graph;
       options.chart.type = 'column';
-
+      // options.legend = { width: '99%', align: 'right' };
       options.xAxis = {
         type: 'category',
         categories: data.map((el) => el.name),

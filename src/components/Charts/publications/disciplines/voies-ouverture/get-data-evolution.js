@@ -64,11 +64,18 @@ function useGetData(lastObservationSnap, domain = '') {
       {
         name: intl.formatMessage({ id: 'app.discipline' }),
         data: bubbles,
-        color: getCSSValue('--yellow-medium-125'),
+        showInLegend: false,
+        marker: {
+          fillColor: getCSSValue('--orange-soft-25'),
+          lineWidth: 3,
+          lineColor: getCSSValue('--orange-soft-100'),
+        },
+        color: getCSSValue('--orange-soft-100'),
       },
       {
         data: [{ y: 100, x: 100 }],
         type: 'scatter',
+        showInLegend: false,
         enableMouseTracking: false,
         marker: {
           symbol: `url(${target})`,
