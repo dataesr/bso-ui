@@ -1,4 +1,6 @@
 {
+  "app.publications.health": "publications françaises en santé",
+  "app.publications.global": "toutes les publications françaises",
   "app.affiliations-filter-label": "Sélectionner un type d'affiliation française",
   "app.affiliations.rang-utile-etranger": "Premier ou dernier auteur sans affiliation française",
   "app.affiliations.rang-utile-fr": "Premier ou dernier auteur avec affiliation française",

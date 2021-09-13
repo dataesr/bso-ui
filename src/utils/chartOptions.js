@@ -418,7 +418,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'bar';
-      options.colors = [getCSSValue('--orange-soft-100'), 'grey'];
+      options.colors = [getCSSValue('--orange-soft-100'), getCSSValue('--orange-soft-175')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         series: {
@@ -468,7 +468,21 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.legend = { verticalAlign: 'top' };
-      options.plotOptions = { series: { pointStart: 2013 } };
+      options.plotOptions = { series: { pointStart: 2013 },
+        spline: {
+          dataLabels: {
+            enabled: true,
+            // eslint-disable-next-line
+              formatter: function() {
+              const last = this.series.data[this.series.data.length - 1];
+              if ((this.point.category === last.category && this.point.y === last.y)) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
       options.series = data;
 
       return options;
