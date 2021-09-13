@@ -255,6 +255,12 @@ export const chartOptions = {
         };
         options.plotOptions = {
           bubble: {
+            minSize: 30,
+            maxSize: 90,
+            jitter: {
+              x: 5,
+              y: 5,
+            },
             dataLabels: {
               enabled: 'true',
               format: '{point.discipline}',
@@ -998,12 +1004,17 @@ export const chartOptions = {
         },
       };
       options.plotOptions = {
-        bubbles: {
-          minSize: 3,
-          maxSize: 50,
+        bubble: {
+          minSize: 30,
+          maxSize: 90,
+          jitter: {
+            x: 5,
+            y: 5,
+          },
         },
         series: {
           dataLabels: {
+            allowOverlap: true,
             style: {
               textOutline: 'none',
               color: getCSSValue('--g-800'),
