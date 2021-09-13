@@ -418,9 +418,12 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'bar';
-      options.colors = [getCSSValue('--orange-soft-100')];
+      options.colors = [getCSSValue('--orange-soft-100'), 'grey'];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
+        series: {
+          grouping: false,
+        },
         bar: {
           states: {
             hover: {
@@ -450,12 +453,7 @@ export const chartOptions = {
           },
         },
       };
-      options.series = [
-        {
-          data,
-          showInLegend: false,
-        },
-      ];
+      options.series = data?.series;
 
       return options;
     },

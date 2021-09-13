@@ -20,13 +20,21 @@ function useGetData(observationSnaps, domain = '') {
           const query = getFetchOptions('publicationRate', domain, oneDate);
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
+      if (domain !== '') {
+        datesObservation
+          ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+          .forEach((oneDate) => {
+            const query = getFetchOptions('publicationRate', '', oneDate);
+            queries.push(Axios.post(ES_API_URL, query, HEADERS));
+          });
+      }
 
       const res = await Axios.all(queries).catch(() => {
         setError(true);
         setLoading(false);
       });
       const allData = res.map((d, i) => ({
-        observationSnap: datesObservation[i],
+        observationSnap: datesObservation[i % datesObservation.length],
         data: d.data.aggregations.by_publication_year.buckets,
       }));
 
@@ -41,6 +49,7 @@ function useGetData(observationSnaps, domain = '') {
       ];
       const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
       const dataGraph2 = [];
+      const dataGraphGlobal = [];
       allData.forEach((observationSnapData, i) => {
         const serie = {};
         const filtered = observationSnapData.data
@@ -81,7 +90,11 @@ function useGetData(observationSnaps, domain = '') {
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
         );
         serie.lastPublicationDate = filtered[filtered.length - 1].key;
-        dataGraph2.push(serie);
+        if (i < datesObservation.length) {
+          dataGraph2.push(serie);
+        } else {
+          dataGraphGlobal.push(serie);
+        }
       });
       dataGraph2.comments = {
         observationDate: dataGraph2[0]?.name,
@@ -95,14 +108,31 @@ function useGetData(observationSnaps, domain = '') {
         ).toFixed(2),
         maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
       };
-      const dataGraph1 = dataGraph2.map((el) => ({
-        name: el.name, // observation date
-        y: el.data[el.data.length - 1].y,
-        ratio: el.ratios[el.data.length - 1],
-        publicationDate: el.lastPublicationDate,
-      }));
+      const dataGraph1 = { series: [] };
+      const serie1 = [];
+      const serieGlobal = [];
+      dataGraph2.forEach((el) => {
+        serie1.push({
+          name: el.name, // observation date
+          y: el.data[el.data.length - 1].y,
+          ratio: el.ratios[el.data.length - 1],
+          publicationDate: el.lastPublicationDate,
+        });
+      });
+      dataGraphGlobal.forEach((el) => {
+        serieGlobal.push({
+          name: el.name, // observation date
+          y: el.data[el.data.length - 1].y,
+          ratio: el.ratios[el.data.length - 1],
+          publicationDate: el.lastPublicationDate,
+        });
+      });
       dataGraph1.comments = null;
-
+      const showInLegend = (domain !== '');
+      dataGraph1.series.push({ data: serie1, showInLegend, name: domain });
+      if (domain !== '') {
+        dataGraph1.series.push({ data: serieGlobal, showInLegend, name: 'global', pointPlacement: -0.2 });
+      }
       return { dataGraph1, dataGraph2 };
     },
     [domain],
