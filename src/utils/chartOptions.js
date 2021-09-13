@@ -200,6 +200,14 @@ export const chartOptions = {
           endOnTick: false,
           min: 0,
           max: 109,
+          plotBands: [{
+            color: 'white',
+            zIndex: 1,
+            dashStyle: 'dash',
+            width: 2,
+            from: 100,
+            to: 1000,
+          }],
           title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
           labels: {
             // eslint-disable-next-line
@@ -214,6 +222,14 @@ export const chartOptions = {
           endOnTick: false,
           min: 0,
           max: 119,
+          plotBands: [{
+            color: 'white',
+            zIndex: 1,
+            dashStyle: 'dash',
+            width: 2,
+            from: 100,
+            to: 1000,
+          }],
           title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
           labels: {
             // eslint-disable-next-line
@@ -240,17 +256,18 @@ export const chartOptions = {
         options.plotOptions = {
           bubble: {
             dataLabels: {
+              enabled: 'true',
+              format: '{point.discipline}',
+              allowOverlap: true,
               style: {
                 color: getCSSValue('--g-800'),
-                textOutline: 'none',
+                textOverflow: 'clip',
               },
             },
           },
           series: {
             dataLabels: {
               enabled: true,
-              allowOverlap: true,
-              format: '{point.discipline}',
               filter: {
                 property: 'z',
                 operator: '>',
@@ -919,11 +936,23 @@ export const chartOptions = {
 
       options.chart.type = 'bubble';
       options.chart.zoomType = 'xy';
+      options.chart.height = '600px';
       options.series = data;
       options.xAxis = {
         min: 0,
-        max: 110,
+        max: 109,
+        gridLineDashStyle: 'dash',
+        gridLineWidth: 1,
+        endOnTick: false,
         title: { text: intl.formatMessage({ id: `${id}.xAxis` }) },
+        plotBands: [{
+          color: 'white',
+          zIndex: 1,
+          dashStyle: 'dash',
+          width: 2,
+          from: 100,
+          to: 1000,
+        }],
         labels: {
           // eslint-disable-next-line
           formatter: function () {
@@ -933,8 +962,19 @@ export const chartOptions = {
       };
       options.yAxis = {
         min: 0,
-        max: 110,
+        max: 119,
+        gridLineDashStyle: 'dash',
+        gridLineWidth: 1,
+        endOnTick: false,
         title: { text: intl.formatMessage({ id: `${id}.yAxis` }) },
+        plotBands: [{
+          color: 'white',
+          zIndex: 1,
+          dashStyle: 'dash',
+          width: 2,
+          from: 100,
+          to: 1000,
+        }],
         labels: {
           // eslint-disable-next-line
           formatter: function () {
@@ -943,9 +983,25 @@ export const chartOptions = {
         },
       };
       options.legend = {
-        enabled: false,
+        enabled: true,
+        floating: true,
+        align: 'right',
+        y: -60,
+        useHTML: true,
+        title: { text: intl.formatMessage({ id: 'app.discipline.bubbleSize' }) },
+        bubbleLegend: {
+          enabled: true,
+          borderWidth: 3,
+          borderColor: getCSSValue('--yellow-medium-100'),
+          color: getCSSValue('--yellow-medium-25'),
+          connectColor: getCSSValue('--yellow-medium-100'),
+        },
       };
       options.plotOptions = {
+        bubbles: {
+          minSize: 3,
+          maxSize: 50,
+        },
         series: {
           dataLabels: {
             style: {
@@ -962,6 +1018,30 @@ export const chartOptions = {
           },
         },
       };
+      options.annotations = [
+        {
+          labels: [
+            {
+              point: {
+                x: 100,
+                y: 100,
+                xAxis: 0,
+                yAxis: 0,
+              },
+              text: intl.formatMessage({
+                id: 'app.publishers.objectif-science-ouverte',
+              }),
+            },
+          ],
+          draggable: '',
+          labelOptions: {
+            useHTML: true,
+            borderRadius: 0,
+            borderWidth: 0,
+            backgroundColor: getCSSValue('--blue-soft-100'),
+          },
+        },
+      ];
 
       return options;
     },

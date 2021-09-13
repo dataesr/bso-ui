@@ -15,6 +15,8 @@ function useGetData(lastObservationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
+  const yellowMedium100 = getCSSValue('--yellow-medium-100');
+  const yellowMedium25 = getCSSValue('--yellow-medium-25');
 
   async function getDataGraph() {
     const queries = [];
@@ -112,7 +114,13 @@ function useGetData(lastObservationSnap, domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers' }),
         data: bubbles,
-        color: yellowMedium125,
+        color: yellowMedium100,
+        marker: {
+          fillColor: yellowMedium25,
+          lineWidth: 3,
+          lineColor: yellowMedium100,
+        },
+        showInLegend: false,
       },
       {
         data: [{ y: 100, x: 100 }],
@@ -121,6 +129,7 @@ function useGetData(lastObservationSnap, domain) {
         marker: {
           symbol: `url(${target})`,
         },
+        showInLegend: false,
       },
     ];
 

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-this-in-sfc */
 import Highcharts from 'highcharts';
 import HCMore from 'highcharts/highcharts-more';
+import HighchartsAnnotations from 'highcharts/modules/annotations';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
@@ -18,6 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 HCMore(Highcharts);
+HighchartsAnnotations(Highcharts);
 
 const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
