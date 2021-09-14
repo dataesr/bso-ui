@@ -161,7 +161,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       <Toggle
         checked={isActive}
         onChange={() => setIsActive(!isActive)}
-        label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
+        label={intl.formatMessage({ id: 'app.publi.tri-progression' })}
       />
       <HighchartsReact
         highcharts={Highcharts}

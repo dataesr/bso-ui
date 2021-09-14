@@ -74,7 +74,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       <Toggle
         checked={isDetailed}
         onChange={() => setIsDetailed(!isDetailed)}
-        label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
+        label={intl.formatMessage({ id: 'app.details' })}
       />
       <HighchartsReact
         highcharts={Highcharts}

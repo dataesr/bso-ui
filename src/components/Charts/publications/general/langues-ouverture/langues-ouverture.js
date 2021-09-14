@@ -58,7 +58,7 @@ const Chart = ({ id, domain }) => {
       <Toggle
         checked={isOa}
         onChange={() => setIsOa(!isOa)}
-        label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
+        label={intl.formatMessage({ id: 'app.details' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
