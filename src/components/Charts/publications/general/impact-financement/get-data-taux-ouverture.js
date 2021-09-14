@@ -86,7 +86,7 @@ function useGetData(observationSnap, agency = '*', domain) {
           y_abs: Oa,
           y_tot: el.doc_count,
           publicationDate: el.key,
-          agency: intl.formatMessage({ id: 'app.grant.withAndWithout' }),
+          agency: 'withAndWithoutGrant',
         });
         // avec declaration, on s'assure qu'il y a bien toutes années, sinon on complète par un null
         if (withDeclaration[index].publicationDate > el.key) {
@@ -105,10 +105,8 @@ function useGetData(observationSnap, agency = '*', domain) {
           y_abs: withoutDeclarationOa,
           y_tot: withoutDeclarationElements.doc_count,
           publicationDate: el.key,
-          agency: intl.formatMessage({ id: 'app.no-grant' }),
+          agency: 'no-grant',
         });
-        // si une agence en particulier est sélectionnée
-        // TODO : ajouter une 4e barre
       });
     const dataGraph = [
       {

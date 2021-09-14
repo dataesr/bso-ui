@@ -322,6 +322,7 @@ export const chartOptions = {
   'publi.affiliations.pays.chart-classement-pays': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.affiliations.pays.chart-classement-pays.tooltip' });
       options.legend = { enabled: false };
       options.chart.type = 'bar';
       options.xAxis = { categories };
@@ -748,7 +749,7 @@ export const chartOptions = {
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.affiliations.dynamique-ouverture.chart-evolution-proportion.tooltip' });
       options.chart.type = 'spline';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -814,7 +815,7 @@ export const chartOptions = {
   'publi.affiliations.pays.chart-taux-rang-utile': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.affiliations.pays.chart-taux-rang-utile.tooltip' });
       options.chart.type = 'column';
       options.xAxis = {
         categories,
@@ -906,6 +907,7 @@ export const chartOptions = {
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.affiliations.dynamique-ouverture.chart-taux-ouverture.tooltip' });
       options.legend = {};
       options.chart.type = 'bar';
       options.colors = [getCSSValue('--orange-soft-100')];

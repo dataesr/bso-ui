@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 
 const QuestionSection = ({ intlKey, backgroundColor, children, anchorId }) => {
   const intl = useIntl();
+  const description = intl.messages[`${intlKey}.description`] ? intl.formatMessage({ id: `${intlKey}.description` }) : 'desciption non rédigée';
   return (
     <section
       style={{ backgroundColor, paddingTop: '28px' }}
@@ -15,7 +16,7 @@ const QuestionSection = ({ intlKey, backgroundColor, children, anchorId }) => {
         <h2 className='marianne-extra-bold fs-20-26'>
           {intl.formatMessage({ id: `${intlKey}.title` })}
         </h2>
-        <p>{intl.formatMessage({ id: `${intlKey}.description` })}</p>
+        <p>{description}</p>
         {children}
       </Container>
     </section>
