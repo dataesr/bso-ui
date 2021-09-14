@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { complexComments } from '../../../../../utils/chartComments';
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
@@ -36,9 +36,7 @@ const Chart = ({ id, domain }) => {
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
-      setChartComments(
-        complexComments(dataGraph, lastObservationSnap, idWithDomain, intl),
-      );
+      setChartComments(customComments(dataGraph, idWithDomain, intl));
     }
   }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
   const optionsGraph = chartOptions[id].getOptions(
@@ -50,16 +48,16 @@ const Chart = ({ id, domain }) => {
   return (
     <WrapperChart
       id={id}
-      idWithDomain={idWithDomain}
+      domain={domain}
       chartRef={chartRef}
       graphComments={false}
       isLoading={isLoading || !dataGraph}
       isError={isError}
     >
       <Toggle
-        isChecked={isOa}
+        checked={isOa}
         onChange={() => setIsOa(!isOa)}
-        label={intl.formatMessage({ id: `${idWithDomain}.toggle-label` })}
+        label={intl.formatMessage({ id: 'app.details' })}
       />
       <HighchartsReact
         highcharts={Highcharts}

@@ -66,7 +66,7 @@ export default {
         en: '/health/clinical-trials/specifications',
       },
       {
-        fr: '/sante/essais-cliniques/promoteurs',
+        fr: '/sante/essais-cliniques/lead-sponsors',
         en: '/health/clinical-trials/lead-sponsors',
       },
       {
@@ -78,7 +78,25 @@ export default {
     en: '/health/clinical-trials',
   },
   santeEtudes: {
-    fr: '/sante/etudes-observationelles',
+    tabs: [
+      {
+        fr: '/sante/etudes-observationnelles/general',
+        en: '/health/observational-studies/general',
+      },
+      {
+        fr: '/sante/etudes-observationnelles/phases',
+        en: '/health/observational-studies/phasis',
+      },
+      {
+        fr: '/sante/etudes-observationnelles/lead-sponsors',
+        en: '/health/observational-studies/lead-sponsors',
+      },
+      {
+        fr: '/sante/etudes-observationnelles/resultats',
+        en: '/health/observational-studies/results',
+      },
+    ],
+    fr: '/sante/etudes-observationnelles',
     en: '/health/obstervational-studies',
   },
   themes: {

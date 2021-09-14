@@ -10,7 +10,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import { simpleComments } from '../../../../../utils/chartComments';
+import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -54,13 +54,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   );
 
   useEffect(() => {
-    setChartComments(simpleComments(dataGraph1, idWithDomain, intl));
+    setChartComments(customComments(dataGraph1, idWithDomain, intl));
   }, [dataGraph1, idWithDomain, intl]);
 
   return (
     <WrapperChart
       id={id}
-      idWithDomain={idWithDomain}
+      domain={domain}
       graphFooter={graphFooter}
       graphComments={false}
       isLoading={isLoading || !dataGraph1}

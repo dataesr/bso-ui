@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { getCSSProperty, setCSSProperty } from '../../utils/helpers';
+import { getCSSValue, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
 import SelectNavigation from './SelectNavigation';
 
@@ -37,11 +37,11 @@ function Banner({
 
   setCSSProperty(
     '--bannerBackgroundColor',
-    getCSSProperty(`--${backgroundColor}`) || backgroundColor,
+    getCSSValue(`--${backgroundColor}`) || backgroundColor,
   );
   setCSSProperty(
     '--bannerTextColor',
-    getCSSProperty(`--${textColor}`) || textColor,
+    getCSSValue(`--${textColor}`) || textColor,
   );
 
   useEffect(() => {

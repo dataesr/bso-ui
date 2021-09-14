@@ -1,15 +1,13 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import {
-  discipline100,
-  discipline125,
-  discipline150,
-} from '../../../../../style/colours.module.scss';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
+  const intl = useIntl();
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -18,32 +16,42 @@ function useGetData(observationSnaps, domain = '') {
     async (datesObservation) => {
       // Pour chaque date d'observation, récupération des données associées
       const queries = [];
-      datesObservation?.forEach((oneDate) => {
-        const query = getFetchOptions('publicationRate', domain, oneDate);
-        queries.push(Axios.post(ES_API_URL, query, HEADERS));
-      });
+      datesObservation
+        ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+        .forEach((oneDate) => {
+          const query = getFetchOptions('publicationRate', domain, oneDate);
+          queries.push(Axios.post(ES_API_URL, query, HEADERS));
+        });
+      if (domain !== '') {
+        datesObservation
+          ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+          .forEach((oneDate) => {
+            const query = getFetchOptions('publicationRate', '', oneDate);
+            queries.push(Axios.post(ES_API_URL, query, HEADERS));
+          });
+      }
 
       const res = await Axios.all(queries).catch(() => {
         setError(true);
         setLoading(false);
       });
-
       const allData = res.map((d, i) => ({
-        observationSnap: datesObservation[i],
+        observationSnap: datesObservation[i % datesObservation.length],
         data: d.data.aggregations.by_publication_year.buckets,
       }));
 
       const colors = [
-        discipline100,
-        discipline125,
-        discipline125,
-        discipline125,
-        discipline150,
-        discipline150,
-        discipline150,
+        getCSSValue('--orange-soft-100'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-175'),
+        getCSSValue('--orange-soft-175'),
+        getCSSValue('--orange-soft-175'),
       ];
       const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
       const dataGraph2 = [];
+      const dataGraphGlobal = [];
       allData.forEach((observationSnapData, i) => {
         const serie = {};
         const filtered = observationSnapData.data
@@ -61,9 +69,20 @@ function useGetData(observationSnaps, domain = '') {
         serie.name = observationSnapData.observationSnap;
         serie.color = colors[i];
         serie.dashStyle = lineStyle[i];
+        if (i === 0) {
+          serie.marker = {
+            fillColor: 'white',
+            lineColor: colors[i],
+            symbol: 'circle',
+            lineWidth: 2,
+            radius: 5,
+          };
+        }
         serie.data = filtered.map((el) => ({
-          y_tot: 7,
-          y_abs: 1,
+          y_tot:
+            el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count,
+          y_abs: el.by_is_oa.buckets.find((b) => b.key === 1).doc_count,
+          publicationDate: el.key,
           y:
             (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
@@ -72,19 +91,61 @@ function useGetData(observationSnaps, domain = '') {
         serie.ratios = filtered.map(
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
         );
-        serie.publicationDate = filtered[filtered.length - 1].key;
-        dataGraph2.push(serie);
+        serie.lastPublicationDate = filtered[filtered.length - 1].key;
+        if (i < datesObservation.length) {
+          dataGraph2.push(serie);
+        } else {
+          dataGraphGlobal.push(serie);
+        }
       });
-
-      const dataGraph1 = dataGraph2.map((el) => ({
-        name: el.name, // observation date
-        y: el.data[el.data.length - 1].y,
-        ratio: el.ratios[el.data.length - 1],
-        publicationDate: el.publicationDate,
-      }));
+      dataGraph2.comments = {
+        observationDate: dataGraph2[0]?.name,
+        previousObservationDate: dataGraph2[1]?.name,
+        minPublicationDate: dataGraph2[0]?.data[0].publicationDate,
+        previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
+        oaYMinusOnePrevious: dataGraph2[1].data.slice(-1)[0].y.toFixed(2),
+        oaYMinusOne: dataGraph2[0].data.slice(-2)[0].y.toFixed(2),
+        oaEvolution: (
+          dataGraph2[0].data.slice(-2)[0].y - dataGraph2[1].data.slice(-1)[0].y
+        ).toFixed(2),
+        maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
+      };
+      const dataGraph1 = { series: [] };
+      const serie1 = [];
+      const serieGlobal = [];
+      dataGraph2.forEach((el) => {
+        serie1.push({
+          name: el.name, // observation date
+          y: el.data[el.data.length - 1].y,
+          ratio: el.ratios[el.data.length - 1],
+          publicationDate: el.lastPublicationDate,
+        });
+      });
+      dataGraphGlobal.forEach((el) => {
+        serieGlobal.push({
+          name: el.name, // observation date
+          y: el.data[el.data.length - 1].y,
+          ratio: el.ratios[el.data.length - 1],
+          publicationDate: el.lastPublicationDate,
+        });
+      });
+      dataGraph1.comments = null;
+      const showInLegend = domain !== '';
+      const currentName = domain !== ''
+        ? intl.formatMessage({ id: `app.publications.${domain}` })
+        : intl.formatMessage({ id: 'app.publications.global' });
+      dataGraph1.series.push({ data: serie1, showInLegend, name: currentName });
+      if (domain !== '') {
+        dataGraph1.series.push({
+          data: serieGlobal,
+          showInLegend,
+          name: intl.formatMessage({ id: 'app.publications.global' }),
+          pointPlacement: -0.2,
+        });
+      }
       return { dataGraph1, dataGraph2 };
     },
-    [domain],
+    [domain, intl],
   );
 
   useEffect(() => {

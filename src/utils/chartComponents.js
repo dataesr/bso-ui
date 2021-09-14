@@ -118,43 +118,41 @@ const chartComponents = {
     ChartTauxOuvertureArchives,
   'publi.repositories.plus-utilisees.chart-nombre-documents':
     ChartNombreDocumentsRepositories,
-  'studies.general.dynamique-ouverture.chart-evolution-studies':
-    ChartEvolutionStudies,
-  'studies.general.trajectoires.chart-repartition-studies':
-    ChartRepartitionStudies,
-  'studies.caracteristiques.quand.chart-evolution-temporalites-studies':
+
+  'studies.general.dynamique.chart-evolution': ChartEvolutionStudies,
+  'studies.general.trajectoires.chart-repartition': ChartRepartitionStudies,
+  'studies.caracteristiques.quand.chart-evolution-temporalites':
     ChartEvolutionTemporalitesStudies,
-  'studies.caracteristiques.quand.chart-repartition-avant-apres-studies':
+  'studies.caracteristiques.quand.chart-repartition-avant-apres':
     ChartRepartitionAvantApresStudies,
-  'studies.caracteristiques.quand.chart-distribution-declarations-studies':
+  'studies.caracteristiques.quand.chart-distribution-declarations':
     ChartDistributionDeclarationsStudies,
-  'studies.caracteristiques.duree.chart-nombre-studies': ChartNombreStudies,
-  'studies.caracteristiques.combien.chart-groupes-patients-studies':
+  'studies.caracteristiques.duree.chart-nombre': ChartNombreStudies,
+  'studies.caracteristiques.combien.chart-groupes-patients':
     ChartGroupesPatientsStudies,
-  'studies.caracteristiques.combien.chart-proportion-modes-repartition-studies':
+  'studies.caracteristiques.combien.chart-proportion-modes-repartition':
     ChartProportionModesRepartitionStudies,
-  'studies.caracteristiques.types.chart-evolution-nombre-studies':
+  'studies.caracteristiques.types.chart-evolution-nombre':
     ChartEevolutionNombreStudies,
-  'studies.promoteurs.dynamique-ouverture.chart-part-studies': ChartPartStudies,
-  'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre-studies':
+  'studies.promoteurs.dynamique-ouverture.chart-part': ChartPartStudies,
+  'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre':
     ChartEvolutionNombreStudies,
-  'studies.promoteurs.impact.chart-repartition-studies':
+  'studies.promoteurs.impact.chart-repartition':
     ChartPromoteursRepartitionStudies,
-  'studies.promoteurs.impact.chart-classement-pays-studies':
-    ChartClassementPaysStudies,
-  'studies.resultats.type-diffusion.chart-repartition-studies':
+  'studies.promoteurs.impact.chart-classement-pays': ChartClassementPaysStudies,
+  'studies.resultats.type-diffusion.chart-repartition':
     ChartTypeDiffusionRepartitionStudies,
-  'studies.resultats.type-diffusion.chart-repartition-par-type-studies':
+  'studies.resultats.type-diffusion.chart-repartition-par-type':
     ChartRepartitionParTypeStudies,
-  'studies.resultats.plan-partage.chart-repartition-studies':
+  'studies.resultats.plan-partage.chart-repartition':
     ChartPlanPartageRepartitionStudies,
-  'studies.resultats.delai-diffusion.chart-repartition-studies':
+  'studies.resultats.delai-diffusion.chart-repartition':
     ChartDelaiDiffusionRepartitionStudies,
-  'studies.resultats.delai-diffusion.chart-distribution-studies':
+  'studies.resultats.delai-diffusion.chart-distribution':
     ChartDistributionStudies,
-  'studies.resultats.publication.chart-repartition-studies':
+  'studies.resultats.publication.chart-repartition':
     ChartResultatsRepartitionStudies,
-  'studies.resultats.publication.chart-repartition-icmje-studies':
+  'studies.resultats.publication.chart-repartition-icmje':
     ChartResultatsRepartitionIcmjeStudies,
 };
 
