@@ -79,6 +79,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
       }
       serie.data = filtered.map((el, index) => ({
         y: (el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count,
+        y_tot: el.doc_count,
+        y_abs: el.by_is_oa.buckets[0].doc_count,
         affiliation:
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-affiliations' })

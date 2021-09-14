@@ -115,6 +115,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
       }
       serie.data = observationSnapData.data.oaHostType.map((value, index) => ({
         y: (value * 100) / observationSnapData.data.all[index],
+        y_tot: observationSnapData.data.all[index],
+        y_abs: value,
         archive:
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-repositories' })

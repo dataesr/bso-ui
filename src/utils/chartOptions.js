@@ -461,7 +461,7 @@ export const chartOptions = {
         },
       };
       options.series = data?.series;
-      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.baro-national.general.dynamique-ouverture.chart-taux-ouverture.tooltip' });
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.dynamique-ouverture.chart-taux-ouverture.tooltip' });
 
       return options;
     },
@@ -476,11 +476,12 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({ id: 'app.observation-dates' });
-      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.national-publi.general.dynamique-ouverture.chart-evolution-proportion.tooltip' });
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.dynamique-ouverture.chart-evolution-proportion.tooltip' });
       options.plotOptions = { series: { pointStart: 2013 },
         spline: {
           dataLabels: {
             enabled: true,
+            allowOverlap: true,
             // eslint-disable-next-line
               formatter: function() {
               const last = this.series.data[this.series.data.length - 1];
@@ -500,7 +501,7 @@ export const chartOptions = {
   'publi.general.voies-ouverture.chart-repartition-taux': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.national-publi.general.voies-ouverture.chart-repartition-taux.tooltip' });
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.voies-ouverture.chart-repartition-taux.tooltip' });
       options.chart.type = 'column';
       options.xAxis = {
         categories,
@@ -535,7 +536,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'area';
-      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.national-publi.general.voies-ouverture.chart-evolution-taux.tooltip' });
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.voies-ouverture.chart-evolution-taux.tooltip' });
       options.xAxis = {
         categories,
         tickmarkPlacement: 'on',
@@ -563,6 +564,7 @@ export const chartOptions = {
   'publi.general.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.voies-ouverture.chart-repartition-publications.tooltip' });
       options.legend = {};
       options.series = [
         {
@@ -595,6 +597,7 @@ export const chartOptions = {
   'publi.general.genres-ouverture.chart-repartition-genres': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.genres-ouverture.chart-repartition-genres.tooltip' });
       options.legend = {};
       options.series = [
         {
@@ -626,6 +629,7 @@ export const chartOptions = {
   'publi.general.langues-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.langues-ouverture.chart-repartition-publications.tooltip' });
       options.legend = {};
       options.series = [
         {
@@ -758,7 +762,23 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({ id: 'app.observation-dates' });
-      options.plotOptions = { series: { pointStart: 2013 } };
+      options.plotOptions = {
+        series: { pointStart: 2013 },
+        spline: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            // eslint-disable-next-line
+              formatter: function() {
+              const last = this.series.data[this.series.data.length - 1];
+              if ((this.point.category === last.category && this.point.y === last.y)) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
       options.series = data;
 
       return options;
@@ -892,13 +912,30 @@ export const chartOptions = {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
 
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.dynamique-ouverture.chart-evolution-proportion.tooltip' });
       options.chart.type = 'spline';
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.xAxis.title.text = intl.formatMessage({ id: 'app.publication-year' });
       options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({ id: 'app.observation-dates' });
-      options.plotOptions = { series: { pointStart: 2013 } };
+      options.plotOptions = {
+        series: { pointStart: 2013 },
+        spline: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            // eslint-disable-next-line
+              formatter: function() {
+              const last = this.series.data[this.series.data.length - 1];
+              if ((this.point.category === last.category && this.point.y === last.y)) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
       options.series = data;
 
       return options;
@@ -1267,14 +1304,30 @@ export const chartOptions = {
   'publi.repositories.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.repositories.dynamique-ouverture.chart-evolution-proportion.tooltip' });
       options.chart.type = 'spline';
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.xAxis.title.text = intl.formatMessage({ id: 'app.publication-year' });
       options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({ id: 'app.observation-dates' });
-      options.plotOptions = { series: { pointStart: 2013 } };
+      options.plotOptions = {
+        series: { pointStart: 2013 },
+        spline: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            // eslint-disable-next-line
+              formatter: function() {
+              const last = this.series.data[this.series.data.length - 1];
+              if ((this.point.category === last.category && this.point.y === last.y)) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
       options.series = data;
 
       return options;
