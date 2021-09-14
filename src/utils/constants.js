@@ -74,6 +74,7 @@ export const graphIds = [
 ];
 
 export const domains = ['health', ''];
+export const studiesTypes = ['interventional', 'observational'];
 
 export const mobileButtonLabel = {
   fr: {

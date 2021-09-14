@@ -97,6 +97,135 @@ function EssaisCliniques() {
             ]}
             links={[
               {
+                label: intl.formatMessage({ id: 'app.navigation.sante-trials.general.dynamique' }),
+                href: '/sante/essais-cliniques/general?id=general.dynamique',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.navigation.sante-trials.general.directions' }),
+                href: '/sante/essais-cliniques/general?id=general.directions',
+              },
+            ]}
+          >
+            <GraphContent>
+              <QuestionSection
+                intlKey='app.sante-trials.general.dynamique'
+                backgroundColor={bluesoft50}
+                anchorId='general.dynamique'
+              >
+                <ChartGeneralEvolution
+                  id='app.sante-trials.general.dynamique.chart-evolution'
+                  domain='health'
+                />
+              </QuestionSection>
+
+              <QuestionSection
+                intlKey='app.sante-trials.general.directions'
+                backgroundColor={bluesoft25}
+                anchorId='general.directions'
+              >
+                <ChartGeneralRepartition
+                  id='app.sante-trials.general.directions.chart-repartition'
+                  domain='health'
+                />
+              </QuestionSection>
+            </GraphContent>
+          </GraphItem>
+
+          {/* Leurs caractéristiques */}
+          <GraphItem
+            mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
+            paths={[
+              '/sante/essais-cliniques/general',
+              '/health/clinical-trials/general',
+            ]}
+            links={[
+              {
+                label: intl.formatMessage({ id: 'app.publi.navigation.essays.dynamique' }),
+                href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.publi.navigation.essays.directions' }),
+                href: '/sante/essais-cliniques/general?id=general.directions',
+              },
+            ]}
+          >
+            <GraphContent>
+              <QuestionSection
+                intlKey='app.sante-essays.general.dynamique-ouverture'
+                backgroundColor={bluesoft50}
+                anchorId='general.dynamique-ouverture'
+              >
+                <ChartGeneralEvolution
+                  id='app.sante-essays.general.dynamique-ouverture.chart-evolution'
+                  domain='health'
+                />
+              </QuestionSection>
+
+              <QuestionSection
+                intlKey='app.sante-essays.general.directions'
+                backgroundColor={bluesoft25}
+                anchorId='general.directions'
+              >
+                <ChartGeneralRepartition
+                  id='app.sante-essays.general.directions.chart-repartition'
+                  domain='health'
+                />
+              </QuestionSection>
+            </GraphContent>
+          </GraphItem>
+
+          {/* Les lead sponsors */}
+          <GraphItem
+            mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
+            paths={[
+              '/sante/essais-cliniques/general',
+              '/health/clinical-trials/general',
+            ]}
+            links={[
+              {
+                label: intl.formatMessage({ id: 'app.publi.navigation.essays.dynamique' }),
+                href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.publi.navigation.essays.directions' }),
+                href: '/sante/essais-cliniques/general?id=general.directions',
+              },
+            ]}
+          >
+            <GraphContent>
+              <QuestionSection
+                intlKey='app.sante-essays.general.dynamique-ouverture'
+                backgroundColor={bluesoft50}
+                anchorId='general.dynamique-ouverture'
+              >
+                <ChartGeneralEvolution
+                  id='app.sante-essays.general.dynamique-ouverture.chart-evolution'
+                  domain='health'
+                />
+              </QuestionSection>
+
+              <QuestionSection
+                intlKey='app.sante-essays.general.directions'
+                backgroundColor={bluesoft25}
+                anchorId='general.directions'
+              >
+                <ChartGeneralRepartition
+                  id='app.sante-essays.general.directions.chart-repartition'
+                  domain='health'
+                />
+              </QuestionSection>
+            </GraphContent>
+          </GraphItem>
+
+          {/* Les resultats/publications */}
+          <GraphItem
+            mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
+            paths={[
+              '/sante/essais-cliniques/general',
+              '/health/clinical-trials/general',
+            ]}
+            links={[
+              {
                 label: intl.formatMessage({ id: 'app.publi.navigation.essays.dynamique' }),
                 href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
               },
