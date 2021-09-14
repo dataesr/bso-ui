@@ -94,14 +94,14 @@ export function getPercentageYAxis(showTotal = true, max = 100) {
   return {
     min: 0,
     max,
-    title: '',
+    title: { text: '' },
     stackLabels: {
       enabled: true,
       // eslint-disable-next-line
       formatter: function () {
         // eslint-disable-next-line
         return showTotal && this.total
-          ? this.total.toFixed(1).concat(' %')
+          ? this.total.toFixed(0).concat(' %')
           : '';
       },
       style: {

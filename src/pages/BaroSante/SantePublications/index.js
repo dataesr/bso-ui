@@ -204,10 +204,6 @@ function SantePublications() {
                     id='publi.general.impact-financement.chart-taux-ouverture'
                     domain='health'
                   />
-                  <BSOChart
-                    id='publi.general.impact-financement.chart-repartition-financements'
-                    domain='health'
-                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

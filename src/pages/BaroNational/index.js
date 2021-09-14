@@ -120,6 +120,12 @@ function BaroNational() {
                     <Col n='12 md-4'>
                       <ProgressionCard />
                     </Col>
+                    <Col n='12'>
+                      <BSOChart
+                        id='publi.general.dynamique-ouverture.chart-evolution-proportion'
+                        graphComments={false}
+                      />
+                    </Col>
                   </Row>
                 </Container>
               </HomeSection>
