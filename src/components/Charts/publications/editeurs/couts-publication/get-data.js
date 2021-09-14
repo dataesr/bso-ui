@@ -176,7 +176,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       goldDataViolin.push(currentGoldDataViolin);
       hybridDataViolin.push(currentHybridDataViolin);
     });
-
+    categoriesHistogram[0] = '< '.concat(histogramInterval);
     const dataGraphHistogram = [
       {
         name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),

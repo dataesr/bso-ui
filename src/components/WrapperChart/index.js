@@ -46,7 +46,8 @@ function WrapperChart({
   if (isError) {
     return <>Error</>;
   }
-
+  const comments = intl.messages[`${idWithDomain}.comments`] ? intl.formatMessage({ id: `${idWithDomain}.comments` }) : 'commentaire non rédigé';
+  const source = intl.messages[`${idWithDomain}.source`] ? intl.formatMessage({ id: `${idWithDomain}.source` }) : 'source';
   return (
     <>
       <div className='graph-container' data-id={id}>
@@ -56,14 +57,14 @@ function WrapperChart({
         {children}
         {graphComments && (
           <GraphComments
-            comments={intl.formatMessage({ id: `${idWithDomain}.comments` })}
+            comments={comments}
           />
         )}
       </div>
       {graphFooter && (
         <GraphFooter
           date={getFormattedDate(updateDate, lang)}
-          source={intl.formatMessage({ id: `${idWithDomain}.source` })}
+          source={source}
           srcPath={`${id}${domain ? '/' : ''}${domain}`}
           onPngButtonClick={exportChartPng}
           onCsvButtonClick={exportChartCsv}

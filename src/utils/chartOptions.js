@@ -15,18 +15,12 @@ import { cleanNumber, getCSSValue, getPercentageYAxis } from './helpers';
  * chart: {backgroundColor: string}
  * }}
  */
-export function customComments(data, id, intl) {
-  let comments = '';
-  if (data && data.length > 0) {
-    comments = intl.formatMessage({ id: `${id}.comments` }, data.comments);
-  }
-  return comments;
-}
 export function getGraphOptions(graphId, intl) {
   const legend = intl.messages[`${graphId}.legend`] ? intl.formatMessage({ id: `${graphId}.legend` }) : '';
   const tooltip = intl.messages[`${graphId}.tooltip`] ? intl.formatMessage({ id: `${graphId}.tooltip` }) : '';
   const xAxis = intl.messages[`${graphId}.xAxis`] ? intl.formatMessage({ id: `${graphId}.xAxis` }) : '';
   const yAxis = intl.messages[`${graphId}.yAxis`] ? intl.formatMessage({ id: `${graphId}.yAxis` }) : '';
+  const source = intl.messages[`${graphId}.source`] ? intl.formatMessage({ id: `${graphId}.source` }) : 'source';
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
@@ -82,7 +76,7 @@ export function getGraphOptions(graphId, intl) {
           text: intl.formatMessage({ id: `${graphId}.title` }),
         },
         subtitle: {
-          text: intl.formatMessage({ id: `${graphId}.source` }),
+          text: source,
         },
       },
       enabled: false,
@@ -481,6 +475,7 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({ id: 'app.observation-dates' });
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.national-publi.general.dynamique-ouverture.chart-evolution-proportion.tooltip' });
       options.plotOptions = { series: { pointStart: 2013 },
         spline: {
           dataLabels: {
@@ -504,7 +499,7 @@ export const chartOptions = {
   'publi.general.voies-ouverture.chart-repartition-taux': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.national-publi.general.voies-ouverture.chart-repartition-taux.tooltip' });
       options.chart.type = 'column';
       options.xAxis = {
         categories,
@@ -539,6 +534,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
 
       options.chart.type = 'area';
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.national-publi.general.voies-ouverture.chart-evolution-taux.tooltip' });
       options.xAxis = {
         categories,
         tickmarkPlacement: 'on',
