@@ -96,24 +96,18 @@ function EssaisCliniques() {
           mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
         >
           <GraphItem
-            mainLabel={intl.formatMessage({
-              id: 'app.health-trials.studies.general',
-            })}
+            mainLabel={intl.formatMessage({ id: 'app.health-trials.studies.general' })}
             paths={[
               '/sante/essais-cliniques/general',
               '/health/clinical-trials/general',
             ]}
             links={[
               {
-                label: intl.formatMessage({
-                  id: 'app.health-trials.studies.navigation.general.dynamique',
-                }),
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.general.dynamique' }),
                 href: '/sante/essais-cliniques/general?id=general.dynamique',
               },
               {
-                label: intl.formatMessage({
-                  id: 'app.health-trials.studies.navigation.general.trajectoires',
-                }),
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.general.trajectoires' }),
                 href: '/sante/essais-cliniques/general?id=general.directions',
               },
             ]}
@@ -128,7 +122,9 @@ function EssaisCliniques() {
                   id='app.sante-trials.general.dynamique.chart-evolution'
                   domain='health'
                 /> */}
-                vide ---------
+                app.health-trials.studies.general.dynamique.chart-evolution
+                <br />
+                app.health-trials.studies.general.trajectoires.chart-repartition
               </QuestionSection>
 
               <QuestionSection
@@ -136,159 +132,182 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft25}
                 anchorId='general.directions'
               >
-                {/* <ChartGeneralRepartition
-                  id='app.sante-trials.general.directions.chart-repartition'
-                  domain='health'
-                /> */}
-                vide
+                app.health-trials.studies.general.trajectoires.chart-repartition
               </QuestionSection>
             </GraphContent>
           </GraphItem>
 
           {/* Leurs caractéristiques */}
           <GraphItem
-            mainLabel={intl.formatMessage({
-              id: 'app.health-trials.studies.caracteristiques',
-            })}
+            mainLabel={intl.formatMessage({ id: 'app.health-trials.studies.caracteristiques' })}
             paths={[
               '/sante/essais-cliniques/caracteristiques',
               '/health/clinical-trials/specifications',
             ]}
             links={[
               {
-                label: intl.formatMessage({
-                  id: 'app.health-trials.studies.navigation.caracteristiques.quand',
-                }),
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.caracteristiques.quand' }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
               },
               {
-                label: intl.formatMessage({
-                  id: 'app.health-trials.studies.navigation.caracteristiques.quand',
-                }),
-                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.caracteristiques.duree' }),
+                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.duree',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.caracteristiques.combien' }),
+                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.combien',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.caracteristiques.types' }),
+                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.types',
               },
             ]}
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.sante-essays.general.dynamique-ouverture'
+                intlKey='app.health-trials.studies.caracteristiques.quand'
                 backgroundColor={bluesoft50}
-                anchorId='general.dynamique-ouverture'
+                anchorId='caracteristiques.quand'
               >
-                {/* <ChartGeneralEvolution
-                  id='app.sante-essays.general.dynamique-ouverture.chart-evolution'
-                  domain='health'
-                /> */}
-                vide
+                app.health-trials.studies.caracteristiques.quand.chart-evolution-temporalites
+                <br />
+                app.health-trials.studies.caracteristiques.quand.chart-repartition-avant-apres
+                <br />
+                app.health-trials.studies.caracteristiques.quand.chart-distribution-declarations
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.sante-essays.general.directions'
+                intlKey='app.health-trials.studies.caracteristiques.duree'
                 backgroundColor={bluesoft25}
-                anchorId='general.directions'
+                anchorId='caracteristiques.duree'
               >
-                {/* <ChartGeneralRepartition
-                  id='app.sante-essays.general.directions.chart-repartition'
-                  domain='health'
-                /> */}
-                vide
+                app.health-trials.studies.caracteristiques.duree.chart-nombre
+              </QuestionSection>
+
+              <QuestionSection
+                intlKey='app.health-trials.studies.caracteristiques.combien'
+                backgroundColor={bluesoft50}
+                anchorId='caracteristiques.combien'
+              >
+                app.health-trials.studies.caracteristiques.combien.chart-groupes-patients
+                <br />
+                app.health-trials.studies.caracteristiques.combien.chart-proportion-modes-repartition
+              </QuestionSection>
+
+              <QuestionSection
+                intlKey='app.health-trials.studies.caracteristiques.types'
+                backgroundColor={bluesoft25}
+                anchorId='caracteristiques.types'
+              >
+                app.health-trials.studies.caracteristiques.types.chart-evolution-nombre
               </QuestionSection>
             </GraphContent>
           </GraphItem>
 
-          {/* Les lead sponsors */}
+          {/* Les promoteurs */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
+            mainLabel={intl.formatMessage({ id: 'app.health-trials.studies.promoteurs' })}
             paths={[
-              '/sante/essais-cliniques/general',
-              '/health/clinical-trials/general',
+              '/sante/essais-cliniques/promoteurs',
+              '/health/clinical-trials/lead-sponsors',
             ]}
             links={[
               {
-                label: intl.formatMessage({
-                  id: 'app.publi.navigation.essays.dynamique',
-                }),
-                href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.promoteurs.dynamique-ouverture' }),
+                href: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
               },
               {
-                label: intl.formatMessage({
-                  id: 'app.publi.navigation.essays.directions',
-                }),
-                href: '/sante/essais-cliniques/general?id=general.directions',
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.promoteurs.impact' }),
+                href: '/sante/essais-cliniques/promoteurs?id=promoteurs.impact',
               },
             ]}
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.sante-essays.general.dynamique-ouverture'
+                intlKey='app.health-trials.studies.promoteurs.dynamique-ouverture'
                 backgroundColor={bluesoft50}
-                anchorId='general.dynamique-ouverture'
+                anchorId='promoteurs.dynamique-ouverture'
               >
-                {/* <ChartGeneralEvolution
-                  id='app.sante-essays.general.dynamique-ouverture.chart-evolution'
-                  domain='health'
-                /> */}
-                vide
+                app.health-trials.studies.promoteurs.dynamique-ouverture.chart-part
+                <br />
+                app.health-trials.studies.promoteurs.dynamique-ouverture.chart-evolution-nombre
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.sante-essays.general.directions'
+                intlKey='app.health-trials.studies.promoteurs.impact'
                 backgroundColor={bluesoft25}
-                anchorId='general.directions'
+                anchorId='promoteurs.impact'
               >
-                {/* <ChartGeneralRepartition
-                  id='app.sante-essays.general.directions.chart-repartition'
-                  domain='health'
-                /> */}
-                vide
+                app.health-trials.studies.promoteurs.impact.chart-repartition
+                <br />
+                app.health-trials.studies.promoteurs.impact.chart-classement-pays
               </QuestionSection>
             </GraphContent>
           </GraphItem>
 
           {/* Les resultats/publications */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
+            mainLabel={intl.formatMessage({ id: 'app.health-trials.studies.resultats' })}
             paths={[
-              '/sante/essais-cliniques/general',
-              '/health/clinical-trials/general',
+              '/sante/essais-cliniques/resultats',
+              '/health/clinical-trials/results',
             ]}
             links={[
               {
-                label: intl.formatMessage({
-                  id: 'app.publi.navigation.essays.dynamique',
-                }),
-                href: '/sante/essais-cliniques/general?id=general.dynamique-ouverture',
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.resultats.type-diffusion' }),
+                href: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
               },
               {
-                label: intl.formatMessage({
-                  id: 'app.publi.navigation.essays.directions',
-                }),
-                href: '/sante/essais-cliniques/general?id=general.directions',
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.resultats.plan-partage' }),
+                href: '/sante/essais-cliniques/resultats?id=resultats.plan-partage',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.resultats.delai-diffusion' }),
+                href: '/sante/essais-cliniques/resultats?id=resultats.delai-diffusion',
+              },
+              {
+                label: intl.formatMessage({ id: 'app.health-trials.studies.navigation.resultats.publication' }),
+                href: '/sante/essais-cliniques/resultats?id=resultats.publication',
               },
             ]}
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.sante-trials.general.dynamique-ouverture'
+                intlKey='app.health-trials.studies.resultats.type-diffusion'
                 backgroundColor={bluesoft50}
-                anchorId='general.dynamique-ouverture'
+                anchorId='resultats.type-diffusion'
               >
-                {/* <ChartEvolutionStudies
-                  id='studies.general.dynamique-ouverture.chart-evolution-studies'
-                  studyType='Interventional'
-                /> */}
+                app.health-trials.studies.resultats.type-diffusion.chart-repartition
+                <br />
+                app.health-trials.studies.resultats.type-diffusion.chart-repartition-par-type
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.sante-essays.general.directions'
+                intlKey='app.health-trials.studies.resultats.plan-partage'
                 backgroundColor={bluesoft25}
-                anchorId='general.directions'
+                anchorId='resultats.plan-partage'
               >
-                vide
-                {/* <ChartRepartitionStudies
-                  id='studies.general.trajectoires.chart-repartition-studies'
-                  studyType='Interventional'
-                /> */}
+                app.health-trials.studies.resultats.plan-partage.chart-repartition
+              </QuestionSection>
+
+              <QuestionSection
+                intlKey='app.health-trials.studies.resultats.delai-diffusion'
+                backgroundColor={bluesoft50}
+                anchorId='resultats.delai-diffusion'
+              >
+                app.health-trials.studies.resultats.delai-diffusion.chart-repartition
+                <br />
+                app.health-trials.studies.resultats.delai-diffusion.chart-distribution
+              </QuestionSection>
+
+              <QuestionSection
+                intlKey='app.health-trials.studies.resultats.publication'
+                backgroundColor={bluesoft25}
+                anchorId='resultats.publication'
+              >
+                app.health-trials.studies.resultats.publication.chart-repartition
+                <br />
+                app.health-trials.studies.resultats.publication.chart-repartition-icmje
               </QuestionSection>
             </GraphContent>
           </GraphItem>

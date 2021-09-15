@@ -66,7 +66,7 @@ export default {
         en: '/health/clinical-trials/specifications',
       },
       {
-        fr: '/sante/essais-cliniques/lead-sponsors',
+        fr: '/sante/essais-cliniques/promoteurs',
         en: '/health/clinical-trials/lead-sponsors',
       },
       {
