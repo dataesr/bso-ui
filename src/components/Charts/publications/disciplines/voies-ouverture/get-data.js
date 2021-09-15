@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { getCSSValue, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
@@ -79,30 +79,40 @@ function useGetData(observationSnap, domain) {
           y_abs: closedCurrent,
           y_tot: totalCurrent,
           x: catIndex,
+          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          discipline: categories[catIndex],
         });
         oa.push({
           y: (100 * oaCurrent) / totalCurrent,
           y_abs: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
+          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          discipline: categories[catIndex],
         });
         repository.push({
           y: (100 * repositoryCurrent) / totalCurrent,
           y_abs: repositoryCurrent,
           y_tot: totalCurrent,
           x: catIndex,
+          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          discipline: categories[catIndex],
         });
         publisher.push({
           y: (100 * publisherCurrent) / totalCurrent,
           y_abs: publisherCurrent,
           y_tot: totalCurrent,
           x: catIndex,
+          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          discipline: categories[catIndex],
         });
         publisherRepository.push({
           y: (100 * publisherRepositoryCurrent) / totalCurrent,
           y_abs: publisherRepositoryCurrent,
           y_tot: totalCurrent,
           x: catIndex,
+          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          discipline: categories[catIndex],
         });
       });
 

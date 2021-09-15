@@ -165,6 +165,7 @@ export const chartOptions = {
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip' });
       options.chart.type = 'bar';
       options.xAxis = {
         categories,
