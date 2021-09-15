@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FormattedMessage } from 'react-intl';
 
-import { CLINICAL_TRIALS_API_URL, ES_API_URL } from '../../config/config';
+import { ES_API_URL, ES_STUDIES_API_URL } from '../../config/config';
 import getFetchOptions from '../../utils/chartFetchOptions';
 import { domains } from '../../utils/constants';
 import { getValueByPath } from '../../utils/helpers';
@@ -36,11 +36,11 @@ const fetchInfos = {
   },
   interventional: {
     path: 'aggregations.study_type.buckets.0.doc_count',
-    url: CLINICAL_TRIALS_API_URL,
+    url: ES_STUDIES_API_URL,
   },
   observational: {
     path: 'aggregations.study_type.buckets.1.doc_count',
-    url: CLINICAL_TRIALS_API_URL,
+    url: ES_STUDIES_API_URL,
   },
 };
 
