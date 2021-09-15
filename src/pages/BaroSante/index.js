@@ -126,13 +126,13 @@ function BaroSante() {
               <HomeSection
                 link={{
                   href: '/sante/essais-cliniques',
-                  label: <FormattedMessage id='app.baro-sante.detail-essays' />,
+                  label: <FormattedMessage id='app.baro-sante.detail-trials' />,
                 }}
                 title={
                   <FormattedMessage id='app.header.nav.baro-sante-essais' />
                 }
                 introText={
-                  <FormattedMessage id='app.baro-sante.essays-intro' />
+                  <FormattedMessage id='app.baro-sante.trials-intro' />
                 }
               >
                 <p>essais-cliniques</p>

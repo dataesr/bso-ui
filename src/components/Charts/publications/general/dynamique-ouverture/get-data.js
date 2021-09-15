@@ -130,11 +130,18 @@ function useGetData(observationSnaps, domain = '') {
         });
       });
       dataGraph1.comments = null;
-      const showInLegend = (domain !== '');
-      const currentName = (domain !== '') ? intl.formatMessage({ id: `app.publications.${domain}` }) : intl.formatMessage({ id: 'app.publications.global' });
+      const showInLegend = domain !== '';
+      const currentName = domain !== ''
+        ? intl.formatMessage({ id: `app.publications.${domain}` })
+        : intl.formatMessage({ id: 'app.publications.global' });
       dataGraph1.series.push({ data: serie1, showInLegend, name: currentName });
       if (domain !== '') {
-        dataGraph1.series.push({ data: serieGlobal, showInLegend, name: intl.formatMessage({ id: 'app.publications.global' }), pointPlacement: -0.2 });
+        dataGraph1.series.push({
+          data: serieGlobal,
+          showInLegend,
+          name: intl.formatMessage({ id: 'app.publications.global' }),
+          pointPlacement: -0.2,
+        });
       }
       return { dataGraph1, dataGraph2 };
     },

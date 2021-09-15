@@ -1,4 +1,10 @@
 export default function customComments(data, id, intl) {
-  const comments = intl.messages[`${id}.comments`] ? intl.formatMessage({ id: `${id}.comments` }, data?.comments || []) : 'commentaire non rédigé';
+  let comments = 'commentaire non rédigé';
+  if (data && data.length > 0) {
+    comments = intl.formatMessage(
+      { id: `${id}.comments` },
+      data.comments || 'commentaire non rédigé',
+    );
+  }
   return comments;
 }
