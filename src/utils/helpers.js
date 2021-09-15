@@ -154,3 +154,14 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
 export function withDomain(id, domain = 'national') {
   return `app.${domain || 'national'}-${id}`;
 }
+
+/**
+ *
+ * @param id
+ * @param domain
+ * @param studyType
+ * @returns {string}
+ */
+ export function withDomainAndStudyType(id, domain = 'health', studyType = 'interventional') {
+  return `app.${domain || 'health'}-${studyType || 'interventional'}.${id}`;
+}

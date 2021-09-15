@@ -72,12 +72,16 @@ function App() {
           >
             <EssaisCliniques />
           </Route>
+
           <Route
             exact
-            path={Object.keys(urls.santeEtudes).map((l) => urls.santeEtudes[l])}
+            path={urls.santeEtudes.tabs
+              .map((tab) => Object.keys(tab).map((l) => tab[l]))
+              .flat(1)}
           >
             <Etudes />
           </Route>
+
           <Route
             exact
             path={Object.keys(urls.themes).map((l) => urls.themes[l])}

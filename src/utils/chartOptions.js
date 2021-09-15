@@ -1,3 +1,8 @@
+import {
+  g800,
+  leadsponsorprivee,
+  leadsponsorpublic,
+} from '../style/colours.module.scss';
 import { cleanNumber, getCSSValue, getPercentageYAxis } from './helpers';
 
 /**
@@ -1552,6 +1557,43 @@ export const chartOptions = {
       options.tooltip = {
         shared: true,
       };
+
+      return options;
+    },
+  },
+  'studies.general.dynamique.chart-evolution': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.chart.type = 'bar';
+      options.colors = [leadsponsorprivee, leadsponsorpublic];
+      options.yAxis = { visible: false, min: 0, max: 100 };
+      options.plotOptions = {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+            style: {
+              color: g800,
+              fontSize: '20px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      };
+      options.xAxis = {
+        type: 'category',
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: 'var(--g800)',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data;
 
       return options;
     },
