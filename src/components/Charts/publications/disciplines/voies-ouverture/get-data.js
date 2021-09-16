@@ -10,6 +10,7 @@ import { getCSSValue, getPublicationYearFromObservationSnap } from '../../../../
 function useGetData(observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
@@ -81,6 +82,7 @@ function useGetData(observationSnap, domain) {
           x: catIndex,
           publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
+          bsoDomain,
         });
         oa.push({
           y: (100 * oaCurrent) / totalCurrent,
@@ -89,6 +91,7 @@ function useGetData(observationSnap, domain) {
           x: catIndex,
           publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
+          bsoDomain,
         });
         repository.push({
           y: (100 * repositoryCurrent) / totalCurrent,
@@ -97,6 +100,7 @@ function useGetData(observationSnap, domain) {
           x: catIndex,
           publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
+          bsoDomain,
         });
         publisher.push({
           y: (100 * publisherCurrent) / totalCurrent,
@@ -105,6 +109,7 @@ function useGetData(observationSnap, domain) {
           x: catIndex,
           publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
+          bsoDomain,
         });
         publisherRepository.push({
           y: (100 * publisherRepositoryCurrent) / totalCurrent,
@@ -113,6 +118,7 @@ function useGetData(observationSnap, domain) {
           x: catIndex,
           publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
+          bsoDomain,
         });
       });
 

@@ -199,6 +199,7 @@ export const chartOptions = {
       getOptions: (id, intl, data) => {
         const options = getGraphOptions(id, intl);
 
+        options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.tooltip' });
         options.chart.type = 'bubble';
         options.chart.zoomType = 'xy';
         options.chart.height = '600px';
@@ -423,7 +424,7 @@ export const chartOptions = {
   'publi.general.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.dynamique-ouverture.chart-taux-ouverture.tooltip' });
       options.chart.type = 'bar';
       options.legend.title.text = '';
       options.colors = [getCSSValue('--orange-soft-100'), getCSSValue('--orange-soft-175')];
@@ -462,7 +463,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.series;
-      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.dynamique-ouverture.chart-taux-ouverture.tooltip' });
 
       return options;
     },
@@ -632,37 +632,6 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
       options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.langues-ouverture.chart-repartition-publications.tooltip' });
       options.legend = {};
-      options.series = [
-        {
-          type: 'treemap',
-          layoutAlgorithm: 'stripes',
-          alternateStartingDirection: true,
-          levels: [
-            {
-              level: 1,
-              layoutAlgorithm: 'sliceAndDice',
-              dataLabels: {
-                enabled: true,
-                align: 'left',
-                verticalAlign: 'top',
-                style: {
-                  fontSize: '15px',
-                  fontWeight: 'bold',
-                },
-              },
-            },
-          ],
-          data,
-        },
-      ];
-
-      return options;
-    },
-  },
-  'publi.disciplines.langues-ouverture.chart-repartition-publications': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
-
       options.series = [
         {
           type: 'treemap',
@@ -1111,6 +1080,7 @@ export const chartOptions = {
     getOptions: (id, intl, graph) => {
       const options = getGraphOptions(id, intl);
       options.legend = {};
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip' });
       options.credits = { enabled: false };
       const { data, name } = graph;
       options.chart.type = 'column';

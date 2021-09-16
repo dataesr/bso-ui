@@ -16,6 +16,7 @@ function useGetData(lastObservationSnap, domain = '') {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function GetData() {
     const query = getFetchOptions(
@@ -40,6 +41,7 @@ function useGetData(lastObservationSnap, domain = '') {
               .replace(/\n/g, '')
               .replace('  ', ' ')}`,
           }),
+          bsoDomain,
           x:
             (100
               * elem.by_oa_colors.buckets
