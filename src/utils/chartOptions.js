@@ -694,6 +694,7 @@ export const chartOptions = {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
       options.legend.title.text = intl.formatMessage({ id: 'app.publi.general.impact-financement.chart-taux-ouverture.legend' });
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.general.impact-financement.chart-taux-ouverture.tooltip' });
       options.chart.type = 'column';
       options.xAxis = {
         categories,

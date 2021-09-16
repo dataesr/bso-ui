@@ -33,6 +33,7 @@ function useGetData(observationSnap, agency = '*', domain) {
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
+    const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
     let dataAgency = res[0].data.aggregations.by_publication_year.buckets;
     let data = res[1].data.aggregations.by_publication_year.buckets;
 
@@ -63,6 +64,7 @@ function useGetData(observationSnap, agency = '*', domain) {
           y_abs: withDeclarationOa,
           y_tot: withDeclarationElements.doc_count,
           publicationDate: el.key,
+          bsoDomain,
           agency:
             agency === '*'
               ? intl.formatMessage({ id: 'app.all-agencies' })
@@ -86,6 +88,7 @@ function useGetData(observationSnap, agency = '*', domain) {
           y_abs: Oa,
           y_tot: el.doc_count,
           publicationDate: el.key,
+          bsoDomain,
           agency: 'withAndWithoutGrant',
         });
         // avec declaration, on s'assure qu'il y a bien toutes années, sinon on complète par un null
@@ -105,6 +108,7 @@ function useGetData(observationSnap, agency = '*', domain) {
           y_abs: withoutDeclarationOa,
           y_tot: withoutDeclarationElements.doc_count,
           publicationDate: el.key,
+          bsoDomain,
           agency: 'no-grant',
         });
       });

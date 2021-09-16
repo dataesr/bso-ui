@@ -29,6 +29,7 @@ function useGetData(observationSnap, isOa, domain) {
         textOutline: 'none',
       },
     };
+    const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
     let dataGraph = [];
     const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
@@ -60,6 +61,7 @@ function useGetData(observationSnap, isOa, domain) {
             value: el.doc_count,
             total: totalPublications,
             publicationDate,
+            bsoDomain,
             percentage: (100 * el.doc_count) / totalPublications,
           });
         });
@@ -77,6 +79,7 @@ function useGetData(observationSnap, isOa, domain) {
             total: totalPublications,
             publicationDate,
             percentage: (100 * el.doc_count) / totalPublications,
+            bsoDomain,
             dataLabels: noOutline,
           });
         });
@@ -97,6 +100,7 @@ function useGetData(observationSnap, isOa, domain) {
           name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
           oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color,
+          bsoDomain,
         });
         el.by_publication_split.buckets.forEach((item) => {
           dataGraph.push({
@@ -109,6 +113,7 @@ function useGetData(observationSnap, isOa, domain) {
             value: item.doc_count,
             total: totalPublications,
             publicationDate,
+            bsoDomain,
             percentage: (100 * el.doc_count) / totalPublications,
           });
         });

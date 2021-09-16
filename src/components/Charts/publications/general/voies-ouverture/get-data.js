@@ -19,6 +19,7 @@ function useGetData(observationSnap, domain) {
       const query = getFetchOptions('oaHostType', domain, lastObservationSnap);
       const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
       const data = res.data.aggregations.by_publication_year.buckets;
+      const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
       // Tri pour avoir les années dans l'ordre d'affichage du graphe
       data.sort((a, b) => a.key - b.key);
@@ -62,30 +63,35 @@ function useGetData(observationSnap, domain) {
             y_abs: closedCurrent,
             y_tot: totalCurrent,
             x: el.key,
+            bsoDomain,
           });
           oa.push({
             y: (100 * oaCurrent) / totalCurrent,
             y_abs: oaCurrent,
             y_tot: totalCurrent,
             x: el.key,
+            bsoDomain,
           });
           repository.push({
             y: (100 * repositoryCurrent) / totalCurrent,
             y_abs: repositoryCurrent,
             y_tot: totalCurrent,
             x: el.key,
+            bsoDomain,
           });
           publisher.push({
             y: (100 * publisherCurrent) / totalCurrent,
             y_abs: publisherCurrent,
             y_tot: totalCurrent,
             x: el.key,
+            bsoDomain,
           });
           publisherRepository.push({
             y: (100 * publisherRepositoryCurrent) / totalCurrent,
             y_abs: publisherRepositoryCurrent,
             y_tot: totalCurrent,
             x: el.key,
+            bsoDomain,
           });
         });
 
@@ -120,6 +126,7 @@ function useGetData(observationSnap, domain) {
           publicationDate: categories[categories.length - 1],
           color: yellowMedium125,
           dataLabels: noOutline,
+          bsoDomain,
         },
         {
           name: intl.formatMessage({
@@ -130,6 +137,7 @@ function useGetData(observationSnap, domain) {
           publicationDate: categories[categories.length - 1],
           color: greenLight100,
           dataLabels: noOutline,
+          bsoDomain,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
@@ -138,6 +146,7 @@ function useGetData(observationSnap, domain) {
           publicationDate: categories[categories.length - 1],
           color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
+          bsoDomain,
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
@@ -146,6 +155,7 @@ function useGetData(observationSnap, domain) {
           publicationDate: categories[categories.length - 1],
           color: getCSSValue('--blue-soft-175'),
           dataLabels: noOutline,
+          bsoDomain,
         },
       ];
 

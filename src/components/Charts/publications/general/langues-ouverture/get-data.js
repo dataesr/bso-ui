@@ -24,6 +24,7 @@ function useGetData(observationSnap, isOa, domain) {
     );
     const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
     const data = res.data.aggregations.by_is_oa.buckets;
+    const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
     let dataGraph = [];
     const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
@@ -39,12 +40,14 @@ function useGetData(observationSnap, isOa, domain) {
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
           color: getCSSValue('--blue-soft-175'),
           dataLabels: noOutline,
+          bsoDomain,
         },
         {
           id: 'open',
           name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color: getCSSValue('--acces-ouvert'),
           dataLabels: noOutline,
+          bsoDomain,
         },
       ];
 
@@ -61,6 +64,7 @@ function useGetData(observationSnap, isOa, domain) {
             total: totalPublications,
             publicationDate,
             percentage: (100 * el.doc_count) / totalPublications,
+            bsoDomain,
             dataLabels: noOutline,
           });
         });
@@ -77,6 +81,7 @@ function useGetData(observationSnap, isOa, domain) {
             value: el.doc_count,
             total: totalPublications,
             publicationDate,
+            bsoDomain,
             percentage: (100 * el.doc_count) / totalPublications,
             dataLabels: noOutline,
           });
@@ -98,6 +103,7 @@ function useGetData(observationSnap, isOa, domain) {
           name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
           oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
           color,
+          bsoDomain,
         });
         el.by_publication_split.buckets.forEach((item) => {
           dataGraph.push({
@@ -111,6 +117,7 @@ function useGetData(observationSnap, isOa, domain) {
             total: totalPublications,
             publicationDate,
             percentage: (100 * el.doc_count) / totalPublications,
+            bsoDomain,
           });
         });
       });

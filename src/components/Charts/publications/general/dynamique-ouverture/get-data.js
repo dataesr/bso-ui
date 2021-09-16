@@ -39,7 +39,8 @@ function useGetData(observationSnaps, domain = '') {
         observationSnap: datesObservation[i % datesObservation.length],
         data: d.data.aggregations.by_publication_year.buckets,
       }));
-
+      const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
+      const bsoDomainGlobal = intl.formatMessage({ id: 'app.bsoDomain.' });
       const colors = [
         getCSSValue('--orange-soft-100'),
         getCSSValue('--orange-soft-125'),
@@ -83,6 +84,7 @@ function useGetData(observationSnaps, domain = '') {
             el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count,
           y_abs: el.by_is_oa.buckets.find((b) => b.key === 1).doc_count,
           publicationDate: el.key,
+          bsoDomain,
           y:
             (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
             / (el.by_is_oa.buckets[0].doc_count
@@ -115,6 +117,7 @@ function useGetData(observationSnaps, domain = '') {
       const serieGlobal = [];
       dataGraph2.forEach((el) => {
         serie1.push({
+          bsoDomain,
           name: el.name, // observation date
           y: el.data[el.data.length - 1].y,
           ratio: el.ratios[el.data.length - 1],
@@ -123,6 +126,7 @@ function useGetData(observationSnaps, domain = '') {
       });
       dataGraphGlobal.forEach((el) => {
         serieGlobal.push({
+          bsoDomain: bsoDomainGlobal,
           name: el.name, // observation date
           y: el.data[el.data.length - 1].y,
           ratio: el.ratios[el.data.length - 1],
