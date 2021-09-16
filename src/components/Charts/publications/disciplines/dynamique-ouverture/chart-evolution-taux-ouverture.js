@@ -31,7 +31,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
-  const orangeSoft75 = getCSSValue('--orange-soft-175');
+  const orangeSoft75 = getCSSValue('--orange-soft-75');
   const orangeSoft100 = getCSSValue('--orange-soft-100');
   const orangeSoft125 = getCSSValue('--orange-soft-125');
   const orangeSoft175 = getCSSValue('--orange-soft-175');

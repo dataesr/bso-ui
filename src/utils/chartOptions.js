@@ -791,6 +791,7 @@ export const chartOptions = {
         },
         series: {
           marker: {
+            enabled: true,
             lineWidth: 2,
             fillColor: '#000',
           },
@@ -1519,6 +1520,7 @@ export const chartOptions = {
         },
         series: {
           marker: {
+            enabled: true,
             lineWidth: 2,
             fillColor: '#000',
           },
