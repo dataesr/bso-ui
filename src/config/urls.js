@@ -84,11 +84,11 @@ export default {
         en: '/health/observational-studies/general',
       },
       {
-        fr: '/sante/etudes-observationnelles/phases',
-        en: '/health/observational-studies/phasis',
+        fr: '/sante/etudes-observationnelles/caracteristiques',
+        en: '/health/observational-studies/specifications',
       },
       {
-        fr: '/sante/etudes-observationnelles/lead-sponsors',
+        fr: '/sante/etudes-observationnelles/promoteurs',
         en: '/health/observational-studies/lead-sponsors',
       },
       {
