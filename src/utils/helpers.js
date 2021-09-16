@@ -162,6 +162,10 @@ export function withDomain(id, domain = 'national') {
  * @param studyType
  * @returns {string}
  */
- export function withDomainAndStudyType(id, domain = 'health', studyType = 'interventional') {
+export function withDomainAndStudyType(
+  id,
+  domain = 'health',
+  studyType = 'interventional',
+) {
   return `app.${domain || 'health'}-${studyType || 'interventional'}.${id}`;
 }

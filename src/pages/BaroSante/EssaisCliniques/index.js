@@ -95,18 +95,24 @@ function EssaisCliniques() {
           mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
         >
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-interventional.studies.general' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-interventional.studies.general',
+            })}
             paths={[
               '/sante/essais-cliniques/general',
               '/health/clinical-trials/general',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.general.dynamique' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.general.dynamique',
+                }),
                 href: '/sante/essais-cliniques/general?id=general.dynamique',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.general.trajectoires' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.general.trajectoires',
+                }),
                 href: '/sante/essais-cliniques/general?id=general.directions',
               },
             ]}
@@ -120,9 +126,8 @@ function EssaisCliniques() {
                 <ChartDynamiqueEvolution
                   id='studies.general.dynamique.chart-evolution'
                   domain='health'
-                  studyType='interventional'
+                  studyType='Interventional'
                 />
-
                 app.health-interventional.studies.general.trajectoires.chart-repartition
               </QuestionSection>
 
@@ -138,26 +143,36 @@ function EssaisCliniques() {
 
           {/* Leurs caractéristiques */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-interventional.studies.caracteristiques' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-interventional.studies.caracteristiques',
+            })}
             paths={[
               '/sante/essais-cliniques/caracteristiques',
               '/health/clinical-trials/specifications',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.caracteristiques.quand' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.caracteristiques.quand',
+                }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.caracteristiques.duree' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.caracteristiques.duree',
+                }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.duree',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.caracteristiques.combien' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.caracteristiques.combien',
+                }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.combien',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.caracteristiques.types' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.caracteristiques.types',
+                }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.types',
               },
             ]}
@@ -205,18 +220,24 @@ function EssaisCliniques() {
 
           {/* Les promoteurs */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-interventional.studies.promoteurs' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-interventional.studies.promoteurs',
+            })}
             paths={[
               '/sante/essais-cliniques/promoteurs',
               '/health/clinical-trials/lead-sponsors',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.promoteurs.dynamique-ouverture' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.promoteurs.dynamique-ouverture',
+                }),
                 href: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.promoteurs.impact' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.promoteurs.impact',
+                }),
                 href: '/sante/essais-cliniques/promoteurs?id=promoteurs.impact',
               },
             ]}
@@ -246,26 +267,36 @@ function EssaisCliniques() {
 
           {/* Les resultats/publications */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-interventional.studies.resultats' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-interventional.studies.resultats',
+            })}
             paths={[
               '/sante/essais-cliniques/resultats',
               '/health/clinical-trials/results',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.resultats.type-diffusion' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.resultats.type-diffusion',
+                }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.resultats.plan-partage' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.resultats.plan-partage',
+                }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.plan-partage',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.resultats.delai-diffusion' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.resultats.delai-diffusion',
+                }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.delai-diffusion',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-interventional.studies.navigation.resultats.publication' }),
+                label: intl.formatMessage({
+                  id: 'app.health-interventional.studies.navigation.resultats.publication',
+                }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.publication',
               },
             ]}
