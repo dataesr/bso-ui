@@ -760,6 +760,7 @@ export const chartOptions = {
   'publi.affiliations.dynamique-ouverture.chart-evolution-taux': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.affiliations.dynamique-ouverture.chart-evolution-taux.tooltip' });
       options.legend.title.text = intl.formatMessage({ id: 'app.observation-dates' });
       options.legend.verticalAlign = 'top';
       options.legend.align = 'left';
@@ -797,10 +798,6 @@ export const chartOptions = {
       };
 
       options.series = data;
-
-      options.tooltip = {
-        shared: true,
-      };
 
       return options;
     },
@@ -1107,6 +1104,7 @@ export const chartOptions = {
           color: getCSSValue('--orange-soft-125'),
           data: data.map((el, i) => ({
             name: el.name,
+            bsoDomain: el.bsoDomain,
             y: el.y,
             y_abs: el.y_abs,
             y_tot: el.y_tot,
@@ -1486,6 +1484,7 @@ export const chartOptions = {
   'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.tooltip' });
       options.legend.title.text = intl.formatMessage({ id: 'app.observation-dates' });
       options.legend.verticalAlign = 'top';
       options.legend.align = 'left';
@@ -1527,11 +1526,6 @@ export const chartOptions = {
       };
 
       options.series = data;
-
-      options.tooltip = {
-        shared: true,
-      };
-
       return options;
     },
   },

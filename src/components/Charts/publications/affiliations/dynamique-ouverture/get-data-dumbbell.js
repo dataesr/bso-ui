@@ -10,7 +10,6 @@ function useGetData(observationSnaps, domain = '') {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
-  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function GetData() {
     // Pour chaque date d'observation, récupération des données associées
@@ -32,6 +31,7 @@ function useGetData(observationSnaps, domain = '') {
     });
     const dataGraph = {};
     const affiliations = [];
+    const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
     res.forEach((el, idx) => {
       const currentSnap = observationSnaps[idx];
       el.data.aggregations.by_affiliation.buckets
@@ -58,6 +58,7 @@ function useGetData(observationSnaps, domain = '') {
     affiliations.forEach((affiliation) => {
       dataHist.push({
         name: affiliation,
+        bsoDomain,
         data: observationSnaps.slice(0) // make a copy before sorting in ascending order !
           .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
           .map((obs) => ({
@@ -72,6 +73,7 @@ function useGetData(observationSnaps, domain = '') {
           })),
       });
     });
+    console.log('ttt', dataHist);
     return dataHist;
   }
 

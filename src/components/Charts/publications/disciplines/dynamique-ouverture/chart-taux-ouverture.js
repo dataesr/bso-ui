@@ -40,6 +40,7 @@ const Chart = ({ graphComments, id, domain }) => {
     (a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y,
   );
 
+  console.log('tttt', data);
   return (
     <WrapperChart
       id={id}

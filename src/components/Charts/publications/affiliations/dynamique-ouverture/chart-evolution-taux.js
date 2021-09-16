@@ -98,7 +98,10 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
           name: dates[index - 1],
           data: newData.map((item) => ({
             name: item.name,
+            bsoDomain: item.bsoDomain,
             low: item.data.find((el) => el.name === dates[index - 1])?.y,
+            y_abs: item.data.find((el) => el.name === dates[index - 1])?.y_abs,
+            y_tot: item.data.find((el) => el.name === dates[index - 1])?.y_tot,
             high:
               item.data.find((el) => el.name === dates[index])?.y
               || item.data.find((el) => el.name === dates[index - 1])?.y,
