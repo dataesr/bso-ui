@@ -11,6 +11,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -78,6 +79,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         };
       }
       serie.data = filtered.map((el, index) => ({
+        bsoDomain,
         y: (el.by_is_oa.buckets[0].doc_count * 100) / el.doc_count,
         y_tot: el.doc_count,
         y_abs: el.by_is_oa.buckets[0].doc_count,
@@ -96,6 +98,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     });
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
+      bsoDomain,
       y: el.data[el.data.length - 1].y,
       affiliation: el.data[el.data.length - 1].affiliation,
       ratio: el.ratios[el.data.length - 1],

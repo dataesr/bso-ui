@@ -12,6 +12,7 @@ import {
 
 function useGetData(observationDate, domain = '') {
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
@@ -57,6 +58,7 @@ function useGetData(observationDate, domain = '') {
           (item) => item.key === 0,
         );
         fr.push({
+          bsoDomain,
           y:
             (100
               * frCurrent.by_is_oa.buckets.find((item) => item.key === 1)
@@ -68,6 +70,7 @@ function useGetData(observationDate, domain = '') {
           x: el.key,
         });
         foreign.push({
+          bsoDomain,
           y:
             (100
               * foreignCurrent.by_is_oa.buckets.find((item) => item.key === 1)
@@ -102,6 +105,7 @@ function useGetData(observationDate, domain = '') {
       let oaCountry = [];
       data2.forEach((el) => {
         oaCountry.push({
+          bsoDomain,
           y:
             (100
               * el.by_is_oa.buckets.find((item) => item.key === 1).doc_count)
@@ -131,7 +135,7 @@ function useGetData(observationDate, domain = '') {
 
       return { categories, categories2, dataGraph, dataGraph2 };
     },
-    [intl, domain],
+    [intl, domain, bsoDomain],
   );
 
   useEffect(() => {
