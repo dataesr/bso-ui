@@ -30,6 +30,7 @@ function useGetData(observationSnap, domain) {
     data.forEach((dataYear) => {
       predatory.push({
         publicationDate: dataYear.key,
+        bsoDomain,
         y_abs: dataYear.by_predatory.buckets.find((el) => el.key === 1)
           .doc_count,
         y_tot: dataYear.doc_count,
