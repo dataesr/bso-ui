@@ -14,6 +14,7 @@ function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const yellowMedium100 = getCSSValue('--yellow-medium-100');
   const yellowMedium25 = getCSSValue('--yellow-medium-25');
@@ -43,6 +44,7 @@ function useGetData(lastObservationSnap, domain) {
     const greenOnly = [];
     data.forEach((elem) => {
       openByPublishers.push({
+        bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
@@ -58,6 +60,7 @@ function useGetData(lastObservationSnap, domain) {
           / elem.doc_count,
       });
       greenOnly.push({
+        bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
@@ -88,6 +91,7 @@ function useGetData(lastObservationSnap, domain) {
     const bubbles = [];
     dataBubbles.forEach((elem) => {
       bubbles.push({
+        bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,

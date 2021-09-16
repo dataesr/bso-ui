@@ -11,6 +11,7 @@ function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function getDataGraph() {
     const query = getFetchOptions(
@@ -34,6 +35,7 @@ function useGetData(observationSnap, domain) {
     data.forEach((dataYear) => {
       goldData.push({
         publicationDate: dataYear.key,
+        bsoDomain,
         y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold')
           .doc_count,
         y_tot: dataYear.doc_count,
@@ -44,6 +46,7 @@ function useGetData(observationSnap, domain) {
           / dataYear.doc_count,
       });
       hybridData.push({
+        bsoDomain,
         publicationDate: dataYear.key,
         y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
           .doc_count,
@@ -55,6 +58,7 @@ function useGetData(observationSnap, domain) {
           / dataYear.doc_count,
       });
       diamondData.push({
+        bsoDomain,
         publicationDate: dataYear.key,
         y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond')
           .doc_count,
@@ -88,6 +92,7 @@ function useGetData(observationSnap, domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers.gold' }),
         publicationDate: goldData[goldData.length - 1].publicationDate,
+        bsoDomain,
         y_tot: goldData[goldData.length - 1].y_tot,
         y_abs: goldData[goldData.length - 1].y_abs,
         value: goldData[goldData.length - 1].y,
@@ -95,6 +100,7 @@ function useGetData(observationSnap, domain) {
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.hybrid' }),
+        bsoDomain,
         publicationDate: hybridData[hybridData.length - 1].publicationDate,
         y_tot: hybridData[hybridData.length - 1].y_tot,
         y_abs: hybridData[hybridData.length - 1].y_abs,
@@ -103,6 +109,7 @@ function useGetData(observationSnap, domain) {
       },
       {
         name: intl.formatMessage({ id: 'app.publishers.diamond' }),
+        bsoDomain,
         publicationDate: diamondData[diamondData.length - 1].publicationDate,
         y_tot: diamondData[diamondData.length - 1].y_tot,
         y_abs: diamondData[diamondData.length - 1].y_abs,

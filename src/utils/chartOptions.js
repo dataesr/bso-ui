@@ -89,7 +89,7 @@ export const chartOptions = {
   'publi.publishers.couts-publication.chart-distribution-par-annee': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.couts-publication.chart-distribution-par-annee.tooltip' });
       options.chart = {
         type: 'areasplinerange',
         inverted: true,
@@ -136,7 +136,7 @@ export const chartOptions = {
   'publi.publishers.politiques-ouverture.chart-classement': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.politiques-ouverture.chart-classement.tooltip' });
       options.chart.type = 'bar';
       options.xAxis = {
         categories,
@@ -350,6 +350,7 @@ export const chartOptions = {
   'publi.publishers.type-ouverture.chart-evolution-repartition': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.type-ouverture.chart-evolution-repartition.tooltip' });
       options.legend.title.text = intl.formatMessage({ id: 'app.publi.type-oa-publisher' });
       options.chart.type = 'area';
       options.yAxis = getPercentageYAxis(false);
@@ -381,6 +382,7 @@ export const chartOptions = {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
       options.legend = {};
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.type-ouverture.chart-repartition-modeles.tooltip' });
       options.series = [
         {
           type: 'treemap',
@@ -835,6 +837,7 @@ export const chartOptions = {
   'publi.publishers.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.dynamique-ouverture.chart-taux-ouverture.tooltip' });
       options.legend = {};
       options.chart.type = 'bar';
       options.colors = [getCSSValue('--yellow-medium-125')];
@@ -882,7 +885,6 @@ export const chartOptions = {
   'publi.publishers.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
       options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.dynamique-ouverture.chart-evolution-proportion.tooltip' });
       options.chart.type = 'spline';
       options.yAxis = getPercentageYAxis();
@@ -958,7 +960,7 @@ export const chartOptions = {
   'publi.publishers.politiques-ouverture.chart-comparaison': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.politiques-ouverture.chart-comparaison.tooltip' });
       options.chart.type = 'bubble';
       options.chart.zoomType = 'xy';
       options.chart.height = '600px';
@@ -1122,6 +1124,7 @@ export const chartOptions = {
   'publi.publishers.repartition-licences.chart-repartition': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.repartition-licences.chart-repartition.tooltip' });
       options.legend = {};
       options.series = [
         {
@@ -1155,7 +1158,7 @@ export const chartOptions = {
   'publi.publishers.repartition-licences.chart-classement': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.repartition-licences.chart-classement.tooltip' });
       options.chart.type = 'bar';
       options.xAxis = {
         categories,
@@ -1187,6 +1190,7 @@ export const chartOptions = {
   'publi.publishers.couts-publication.chart-depenses-estimees': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.couts-publication.chart-depenses-estimees.tooltip' });
       options.legend.title.text = intl.formatMessage({ id: 'app.publi.type-apc' });
       options.chart.type = 'column';
       options.xAxis = {
@@ -1238,6 +1242,7 @@ export const chartOptions = {
   'publi.publishers.couts-publication.chart-distribution': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.couts-publication.chart-distribution.tooltip' });
       options.legend.title.text = intl.formatMessage({ id: 'app.publi.type-apc' });
       options.chart.type = 'column';
       options.chart.type = 'areaspline'; // 'column' dans la maquette
@@ -1445,7 +1450,7 @@ export const chartOptions = {
   'publi.publishers.poids-revues.chart-repartition': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.publishers.poids-revues.chart-repartition.tooltip' });
       options.series = data;
       options.chart.type = 'column';
       options.plotOptions = {

@@ -14,6 +14,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -68,11 +69,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
         const goldCount = goldElem?.doc_count || 0;
         goldDataYear.push({
           publisher: publisherName,
+          bsoDomain,
           y: goldAPC,
           count: goldCount,
           publicationDate: el.key,
         });
         hybridDataYear.push({
+          bsoDomain,
           publisher: publisherName,
           y: hybridAPC,
           count: hybridCount,
@@ -162,6 +165,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
             interval_lower: trancheAPC,
             interval_upper: trancheAPC + histogramInterval,
             y_tot: hybridElems?.doc_count || 0,
+            bsoDomain,
           });
           goldDataHistogram.push({
             publisher: publisherName,
@@ -170,6 +174,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
             interval_lower: trancheAPC,
             interval_upper: trancheAPC + histogramInterval,
             y_tot: goldElems?.doc_count || 0,
+            bsoDomain,
           });
         }
       }
@@ -233,6 +238,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           y: yearIndex,
           count: goldCount,
           publicationDate: el.key,
+          bsoDomain,
         });
         hybridDataYearMedian.push({
           publisher: publisherName,
@@ -240,6 +246,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           y: yearIndex,
           count: hybridCount,
           publicationDate: el.key,
+          bsoDomain,
         });
       });
     dataGraphViolin.push({

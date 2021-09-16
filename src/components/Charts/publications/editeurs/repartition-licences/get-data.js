@@ -9,11 +9,12 @@ import {
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
+function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -43,6 +44,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
                 : needle,
             value: el.doc_count,
             y_tot: nbTotal,
+            bsoDomain,
             y_perc: (100 * el.doc_count) / nbTotal,
             publicationDate: getPublicationYearFromObservationSnap(
               datesObservation[0],
@@ -67,6 +69,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
         color: getCSSValue('--acces-ouvert'),
         value: nbLicenceOpen,
         y_tot: nbTotal,
+        bsoDomain,
         y_perc: (100 * nbLicenceOpen) / nbTotal,
         publicationDate: getPublicationYearFromObservationSnap(
           datesObservation[0],
@@ -85,6 +88,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
         color: getCSSValue('--g-400'),
         value: nbNoLicence,
         y_tot: nbTotal,
+        bsoDomain,
         y_perc: (100 * nbNoLicence) / nbTotal,
         publicationDate: getPublicationYearFromObservationSnap(
           datesObservation[0],
@@ -102,6 +106,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
       );
       noLicence.push({
         publisher: elem.key,
+        bsoDomain,
         y_tot: elem.doc_count,
         y_abs: noLicenceElem ? noLicenceElem.doc_count : 0,
         y:
@@ -113,6 +118,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain) {
       });
       openLicence.push({
         publisher: elem.key,
+        bsoDomain,
         y_tot: elem.doc_count,
         y_abs: elem.by_licence.buckets
           .filter((el) => el.key !== 'no license')

@@ -35,6 +35,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     observationSnaps,
     isDetailed,
     publisher,
+    domain,
   );
   const { dataGraphTreemap } = data;
   const query = getFetchOptions('publishersList', domain, lastObservationSnap);
