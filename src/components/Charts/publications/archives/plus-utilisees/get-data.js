@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -9,6 +10,8 @@ import { getPublicationYearFromObservationSnap } from '../../../../../utils/help
 function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function GetData() {
     const query = getFetchOptions('repositoriesList', domain, observationSnap);
@@ -17,6 +20,7 @@ function useGetData(observationSnap, domain) {
 
     const dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
       name: el.key,
+      bsoDomain,
       y: el.doc_count,
       publicationDate: getPublicationYearFromObservationSnap(observationSnap),
     }));

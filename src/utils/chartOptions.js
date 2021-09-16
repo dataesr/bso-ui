@@ -1313,6 +1313,7 @@ export const chartOptions = {
   'publi.repositories.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.repositories.dynamique-ouverture.chart-taux-ouverture.tooltip' });
       options.legend = {};
       options.chart.type = 'bar';
       options.colors = [getCSSValue('--green-medium-125')];
@@ -1360,6 +1361,7 @@ export const chartOptions = {
   'publi.repositories.plus-utilisees.chart-nombre-documents': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.repositories.plus-utilisees.chart-nombre-documents.tooltip' });
       options.legend = {};
       options.chart.type = 'bar';
       options.chart.height = '700px';
@@ -1390,6 +1392,7 @@ export const chartOptions = {
   'publi.repositories.dynamique-depot.chart-nombre-documents-depots': {
     getOptions: (id, intl, graph) => {
       const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.repositories.dynamique-depot.chart-nombre-documents-depots.tooltip' });
       const { data, color, name } = graph;
       options.legend = {};
       options.credits = { enabled: false };
@@ -1423,7 +1426,7 @@ export const chartOptions = {
   'publi.repositories.dynamique-hal.chart-couverture-hal': {
     getOptions: (id, intl, publicationYears, data) => {
       const options = getGraphOptions(id, intl);
-
+      options.tooltip.pointFormat = intl.formatMessage({ id: 'app.publi.repositories.dynamique-hal.chart-couverture-hal.tooltip' });
       options.chart.type = 'column';
       options.xAxis = {
         publicationYears,

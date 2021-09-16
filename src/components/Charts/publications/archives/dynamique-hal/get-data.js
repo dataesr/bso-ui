@@ -11,6 +11,7 @@ function useGetData(lastObservationSnap, domain) {
   const intl = useIntl();
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function GetData() {
     const allRepositories = '*';
@@ -55,12 +56,14 @@ function useGetData(lastObservationSnap, domain) {
       publicationYears.push(el.key);
       hal.push({
         y: el.doc_count,
+        bsoDomain,
         y_percHAL: (100 * el.doc_count) / dataArchive[index].doc_count,
         y_tot: dataArchive[index].doc_count,
         x: el.key,
       });
       notHal.push({
         y: dataArchive[index].doc_count - el.doc_count,
+        bsoDomain,
         y_percHAL: (100 * el.doc_count) / dataArchive[index].doc_count,
         y_tot: dataArchive[index].doc_count,
         x: el.key,

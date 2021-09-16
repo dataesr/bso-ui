@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -13,6 +14,8 @@ function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const greenMedium150 = getCSSValue('--green-medium-150');
+  const intl = useIntl();
+  const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function GetData() {
     const query = getFetchOptions('repositoriesHisto', domain, observationSnap);
@@ -34,6 +37,7 @@ function useGetData(observationSnap, domain) {
             .sort((a, b) => a.key - b.key)
             .map((el, index) => ({
               name: el.key,
+              bsoDomain,
               year: el.key,
               y: el.doc_count,
               color:
