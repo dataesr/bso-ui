@@ -165,7 +165,7 @@ export function withDomain(id, domain = 'national') {
 export function withDomainAndStudyType(
   id,
   domain = 'health',
-  studyType = 'interventional',
+  studyType = 'Interventional',
 ) {
-  return `app.${domain || 'health'}-${studyType || 'interventional'}.${id}`;
+  return `app.${domain || 'health'}-${studyType || 'Interventional'}.${id}`;
 }

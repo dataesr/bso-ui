@@ -29,9 +29,9 @@ function EtudesObservationnelles() {
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
         <Icon
-          name='icon-bsso-15'
+          name='icon-bsso-17'
           color1='blue-soft-125'
-          color2='green-soft-50'
+          color2='orange-medium-75'
         />
       </Col>
     </Row>
@@ -42,12 +42,12 @@ function EtudesObservationnelles() {
       <Banner
         backgroundColor='blue-soft-100'
         supTitle={<FormattedMessage id='app.baro-sante.sub-title' />}
-        title={<FormattedMessage id='app.header.nav.baro-sante-essais' />}
+        title={<FormattedMessage id='app.header.nav.baro-sante-etudes' />}
         chip={<Chip />}
         icons={renderIcons}
         selectNavigation={{
           title: <FormattedMessage id='app.navigation.objet-recherche' />,
-          selected: intl.formatMessage({ id: 'url.sante.essais' }),
+          selected: intl.formatMessage({ id: 'url.sante.etudes' }),
           options: [
             {
               label: intl.formatMessage({ id: 'app.baro-sante.title' }),
@@ -77,11 +77,11 @@ function EtudesObservationnelles() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  <FormattedMessage id='app.baro-sante.trials.main-title' />
+                  <FormattedMessage id='app.baro-sante.studies.main-title' />
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
-                    intlKey='app.baro-sante.trials-intro'
+                    intlKey='app.baro-sante.studies-intro'
                     glossaryKey='acces-ouvert'
                   />
                 </p>
@@ -95,18 +95,24 @@ function EtudesObservationnelles() {
           mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
         >
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-observational.studies.general' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-observational.studies.general',
+            })}
             paths={[
               '/sante/etudes-observationnelles/general',
-              '/health/clinical-trials/general',
+              '/health/observational-studies/general',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.general.dynamique' }),
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.general.dynamique',
+                }),
                 href: '/sante/etudes-observationnelles/general?id=general.dynamique',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.general.trajectoires' }),
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.general.trajectoires',
+                }),
                 href: '/sante/etudes-observationnelles/general?id=general.directions',
               },
             ]}
@@ -120,9 +126,8 @@ function EtudesObservationnelles() {
                 <ChartDynamiqueEvolution
                   id='studies.general.dynamique.chart-evolution'
                   domain='health'
-                  studyType='interventional'
+                  studyType='Observational'
                 />
-
                 app.health-observational.studies.general.trajectoires.chart-repartition
               </QuestionSection>
 
@@ -138,27 +143,37 @@ function EtudesObservationnelles() {
 
           {/* Leurs caractéristiques */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-observational.studies.caracteristiques' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-observational.studies.caracteristiques',
+            })}
             paths={[
-              '/sante/essais-cliniques/caracteristiques',
-              '/health/clinical-trials/specifications',
+              '/sante/etudes-observationnelles/caracteristiques',
+              '/health/observational-studies/specifications',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.caracteristiques.quand' }),
-                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.caracteristiques.quand',
+                }),
+                href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.caracteristiques.duree' }),
-                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.duree',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.caracteristiques.duree',
+                }),
+                href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.duree',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.caracteristiques.combien' }),
-                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.combien',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.caracteristiques.combien',
+                }),
+                href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.combien',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.caracteristiques.types' }),
-                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.types',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.caracteristiques.types',
+                }),
+                href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.types',
               },
             ]}
           >
@@ -205,19 +220,25 @@ function EtudesObservationnelles() {
 
           {/* Les promoteurs */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-observational.studies.promoteurs' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-observational.studies.promoteurs',
+            })}
             paths={[
-              '/sante/essais-cliniques/promoteurs',
-              '/health/clinical-trials/lead-sponsors',
+              '/sante/etudes-observationnelles/promoteurs',
+              '/health/observational-studies/lead-sponsors',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.promoteurs.dynamique-ouverture' }),
-                href: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.promoteurs.dynamique-ouverture',
+                }),
+                href: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.promoteurs.impact' }),
-                href: '/sante/essais-cliniques/promoteurs?id=promoteurs.impact',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.promoteurs.impact',
+                }),
+                href: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.impact',
               },
             ]}
           >
@@ -246,27 +267,37 @@ function EtudesObservationnelles() {
 
           {/* Les resultats/publications */}
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-observational.studies.resultats' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-observational.studies.resultats',
+            })}
             paths={[
-              '/sante/essais-cliniques/resultats',
-              '/health/clinical-trials/results',
+              '/sante/etudes-observationnelles/resultats',
+              '/health/observational-studies/results',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.resultats.type-diffusion' }),
-                href: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.resultats.type-diffusion',
+                }),
+                href: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.resultats.plan-partage' }),
-                href: '/sante/essais-cliniques/resultats?id=resultats.plan-partage',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.resultats.plan-partage',
+                }),
+                href: '/sante/etudes-observationnelles/resultats?id=resultats.plan-partage',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.resultats.delai-diffusion' }),
-                href: '/sante/essais-cliniques/resultats?id=resultats.delai-diffusion',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.resultats.delai-diffusion',
+                }),
+                href: '/sante/etudes-observationnelles/resultats?id=resultats.delai-diffusion',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.resultats.publication' }),
-                href: '/sante/essais-cliniques/resultats?id=resultats.publication',
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.resultats.publication',
+                }),
+                href: '/sante/etudes-observationnelles/resultats?id=resultats.publication',
               },
             ]}
           >

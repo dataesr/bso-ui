@@ -141,7 +141,7 @@ function BaroSante() {
             <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
-                  href: '/sante/etudes-observationelles',
+                  href: '/sante/etudes-observationnelles',
                   label: (
                     <FormattedMessage id='app.baro-sante.detail-studies' />
                   ),
@@ -153,7 +153,7 @@ function BaroSante() {
                   <FormattedMessage id='app.baro-sante.studies-intro' />
                 }
               >
-                <p>etudes-observationelles</p>
+                <p>etudes-observationnelles</p>
               </HomeSection>
             </Col>
             <Col n='12'>
