@@ -1,30 +1,33 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType) {
+function useGetData(studyType, sponsorType = '*') {
+  const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
   async function getDataAxios() {
-    const query = getFetchOptions('studiesResultsTypeDiffusion', '', studyType);
-
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
-      (e) => console.log(e),
-    );
-    const dataSortedByYear = res.data.aggregations.by_year.buckets.sort(
+    const queries = [];
+    const query1 = getFetchOptions('studiesResultsTypeDiffusion', '', studyType, sponsorType);
+    queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
+    const res = await Axios.all(queries).catch(() => {
+      setLoading(false);
+    });
+    const data1SortedByYear = res[0].data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
     );
     const dataGraph1 = {
-      categories: dataSortedByYear.map((el) => el.key),
+      categories: data1SortedByYear.map((el) => el.key),
       series: [
         {
-          name: 'results_only',
-          data: dataSortedByYear.map((el) => ({
+          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          data: data1SortedByYear.map((el) => ({
             y: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count,
             y_tot: el.doc_count,
             year: el.key,
@@ -32,8 +35,8 @@ function useGetData(studyType) {
           color: getCSSValue('--resultat-100'),
         },
         {
-          name: 'publications_only',
-          data: dataSortedByYear.map((el) => ({
+          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
+          data: data1SortedByYear.map((el) => ({
             y: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count,
             y_tot: el.doc_count,
             year: el.key,
@@ -41,8 +44,8 @@ function useGetData(studyType) {
           color: getCSSValue('--publication-100'),
         },
         {
-          name: 'results_and_publications',
-          data: dataSortedByYear.map((el) => ({
+          name: intl.formatMessage({ id: 'app.studies.results-and-publications' }),
+          data: data1SortedByYear.map((el) => ({
             y: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count,
             y_tot: el.doc_count,
             year: el.key,
@@ -50,8 +53,8 @@ function useGetData(studyType) {
           color: getCSSValue('--resultat-et-publication'),
         },
         {
-          name: 'no_results_publications',
-          data: dataSortedByYear.map((el) => ({
+          name: intl.formatMessage({ id: 'app.studies.no-results-publications' }),
+          data: data1SortedByYear.map((el) => ({
             y: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count,
             y_tot: el.doc_count,
             year: el.key,
@@ -61,7 +64,7 @@ function useGetData(studyType) {
       ],
     };
 
-    return dataGraph1;
+    return { dataGraph1 };
   }
 
   useEffect(() => {
@@ -76,7 +79,7 @@ function useGetData(studyType) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType]);
+  }, [studyType, sponsorType]);
 
   return { allData, isLoading };
 }

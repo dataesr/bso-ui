@@ -290,6 +290,28 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    sponsorsTypesList: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor_type: {
+          terms: {
+            field: 'lead_sponsor_type.keyword',
+            size: 10000,
+          },
+        },
+      },
+    }),
     publisher: () => ({
       size: 0,
       aggs: {
@@ -691,7 +713,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesResultsTypeDiffusion: ([studyType]) => ({
+    studiesResultsTypeDiffusion: ([studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -699,6 +721,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
           ],
