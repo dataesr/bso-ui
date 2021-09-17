@@ -2,8 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { domains, graphIds } from '../../utils/constants';
-import { getFormattedDate, withDomain } from '../../utils/helpers';
+import { domains, graphIds, studiesTypes } from '../../utils/constants';
+import {
+  getFormattedDate,
+  withDomain,
+  withDomainAndStudyType,
+} from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
 import GraphComments from '../Charts/graph-comments';
@@ -20,6 +24,7 @@ function WrapperChart({
   chartRef,
   isLoading,
   isError,
+  studyType,
 }) {
   const { lang } = useLang();
   const { updateDate } = useGlobals();
@@ -46,20 +51,27 @@ function WrapperChart({
   if (isError) {
     return <>Error</>;
   }
-  const comments = intl.messages[`${idWithDomain}.comments`] ? intl.formatMessage({ id: `${idWithDomain}.comments` }) : 'commentaire non rédigé';
-  const source = intl.messages[`${idWithDomain}.source`] ? intl.formatMessage({ id: `${idWithDomain}.source` }) : 'source';
+  const comments = intl.messages[`${idWithDomain}.comments`]
+    ? intl.formatMessage({ id: `${idWithDomain}.comments` })
+    : 'commentaire non rédigé';
+  const source = intl.messages[`${idWithDomain}.source`]
+    ? intl.formatMessage({ id: `${idWithDomain}.source` })
+    : 'source';
+  const title = !studyType
+    ? intl.formatMessage({ id: `${idWithDomain}.title1` })
+    : intl.formatMessage({
+      id: `${withDomainAndStudyType(
+        id,
+        domain,
+        studyType.toLowerCase(),
+      )}.title`,
+    });
   return (
     <>
       <div className='graph-container' data-id={id}>
-        <GraphTitle
-          title={intl.formatMessage({ id: `${idWithDomain}.title` })}
-        />
+        <GraphTitle title={title} />
         {children}
-        {graphComments && (
-          <GraphComments
-            comments={comments}
-          />
-        )}
+        {graphComments && <GraphComments comments={comments} />}
       </div>
       {graphFooter && (
         <GraphFooter
@@ -79,6 +91,7 @@ WrapperChart.defaultProps = {
   isLoading: false,
   isError: false,
   chartRef: () => {},
+  studyType: '',
 };
 
 WrapperChart.propTypes = {
@@ -94,6 +107,7 @@ WrapperChart.propTypes = {
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),
     PropTypes.shape({ current: undefined }),
   ]),
+  studyType: PropTypes.oneOf(studiesTypes),
 };
 
 export default WrapperChart;

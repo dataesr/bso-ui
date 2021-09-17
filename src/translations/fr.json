@@ -306,7 +306,7 @@
   "app.health-interventional.studies.navigation.general.dynamique": "La dynamique",
   "app.health-interventional.studies.navigation.general.trajectoires": "Les trajectoires",
 
-  "app.health-interventional.studies.general.dynamique.title": "Quelle est la dynamique des essais cliniques déclarés depuis 2010 ?",
+  "app.health-interventional.studies.general.dynamique.title": "Quelle est la dynamique des essais cliniques déclarés depuis 2011 ?",
   "app.health-interventional.studies.general.dynamique.description": "2.1.1",
   "app.health-interventional.studies.general.dynamique.chart-evolution.title": "Evolution de la part d'essais cliniques déclarés ayant produit des résultats et/ou publications",
   "app.health-interventional.studies.general.dynamique.chart-evolution.comments": "comments",
@@ -450,7 +450,7 @@
   "app.health-observational.studies.navigation.general.dynamique": "La dynamique des études observationnelles",
   "app.health-observational.studies.navigation.general.trajectoires": "Les principales trajectoires de ces études observationnelles",
 
-  "app.health-observational.studies.general.dynamique.title": "Quelle est la dynamique des études observationnelles rendues publiques depuis 2010 ?",
+  "app.health-observational.studies.general.dynamique.title": "Quelle est la dynamique des études observationnelles rendues publiques depuis 2012 ?",
   "app.health-observational.studies.general.dynamique.description": "2.1.1",
   "app.health-observational.studies.general.dynamique.chart-evolution.title": "Evolution de la part des études observationnelles déclarées ayant produit des résultats et/ou publications",
   "app.health-observational.studies.general.dynamique.chart-evolution.comments": "comments",
