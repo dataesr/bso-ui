@@ -905,6 +905,34 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesCharacteristicWhenEvolution: () => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': 'Interventional',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_submission_temporality: {
+              terms: {
+                field: 'submission_temporality.keyword',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

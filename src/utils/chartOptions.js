@@ -1743,7 +1743,30 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-
+      return options;
+    },
+  },
+  'studies.caracteristiques.quand.chart-evolution-temporalites': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories: data?.categories || [],
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'percent',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+        },
+      };
+      options.series = data?.series || [];
       return options;
     },
   },

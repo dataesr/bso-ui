@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
+import ChartEvolutionTemporalite from '../../../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites';
 import ChartDynamiqueEvolution from '../../../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
 import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
@@ -183,7 +184,11 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft50}
                 anchorId='caracteristiques.quand'
               >
-                app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites
+                <ChartEvolutionTemporalite
+                  id='studies.caracteristiques.quand.chart-evolution-temporalites'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
                 app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres
                 <br />
