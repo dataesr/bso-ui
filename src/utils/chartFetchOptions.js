@@ -753,6 +753,46 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesResultsTypeDiffusionTypeIntervention: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_intervention_type: {
+          terms: {
+            field: 'intervention_type.keyword',
+          },
+          aggs: {
+            by_has_result: {
+              terms: {
+                field: 'has_results',
+              },
+              aggs: {
+                by_has_publications_result: {
+                  terms: {
+                    field: 'has_publications_result',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     publiCardData: ([observationSnap]) => ({
       size: 0,
       query: {

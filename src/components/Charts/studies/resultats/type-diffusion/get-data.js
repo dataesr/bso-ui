@@ -16,6 +16,8 @@ function useGetData(studyType, sponsorType = '*') {
     const queries = [];
     const query1 = getFetchOptions('studiesResultsTypeDiffusion', '', studyType, sponsorType);
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
+    const query2 = getFetchOptions('studiesResultsTypeDiffusionTypeIntervention', '', studyType, sponsorType);
+    queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
@@ -63,8 +65,49 @@ function useGetData(studyType, sponsorType = '*') {
         },
       ],
     };
-
-    return { dataGraph1 };
+    const data2 = res[1].data.aggregations.by_intervention_type.buckets;
+    const dataGraph2 = {
+      categories: data2.map((el) => intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` })),
+      series: [
+        {
+          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          data: data2.map((el) => ({
+            y: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0,
+            y_tot: el.doc_count,
+            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
+          })),
+          color: getCSSValue('--resultat-100'),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
+          data: data2.map((el) => ({
+            y: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
+            y_tot: el.doc_count,
+            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
+          })),
+          color: getCSSValue('--publication-100'),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.studies.results-and-publications' }),
+          data: data2.map((el) => ({
+            y: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
+            y_tot: el.doc_count,
+            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
+          })),
+          color: getCSSValue('--resultat-et-publication'),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.studies.no-results-publications' }),
+          data: data1SortedByYear.map((el) => ({
+            y: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0,
+            y_tot: el.doc_count,
+            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
+          })),
+          color: getCSSValue('--g-400'),
+        },
+      ],
+    };
+    return { dataGraph1, dataGraph2 };
   }
 
   useEffect(() => {

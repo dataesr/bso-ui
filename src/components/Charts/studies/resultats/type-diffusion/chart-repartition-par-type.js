@@ -1,5 +1,6 @@
 import '../../../graph.scss';
 
+import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -8,7 +9,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
+import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import {
   domains,
@@ -16,6 +19,7 @@ import {
   studiesTypes,
 } from '../../../../../utils/constants';
 import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -26,8 +30,20 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const [sponsorTypes, setSponsorTypes] = useState([]);
+  const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
-  const { allData, isLoading, isError } = useGetData(studyType);
+  const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
+  const { dataGraph2 } = allData;
+  const query = getFetchOptions('sponsorsTypesList', '', studyType);
+  useEffect(() => {
+    Axios.post(ES_STUDIES_API_URL, query, HEADERS).then((response) => {
+      setSponsorTypes(
+        response.data.aggregations.by_sponsor_type.buckets.map((item) => item.key),
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const idWithDomainAndStudyType = withDomainAndStudyType(
     id,
     domain,
@@ -38,7 +54,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, allData);
+  const optionsGraph = chartOptions[id].getOptions(id, intl, dataGraph2);
 
   return (
     <WrapperChart
@@ -50,6 +66,14 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       graphFooter={graphFooter}
       graphComments={false}
     >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
+        onChange={(e) => setSponsorType(e.target.value)}
+        options={sponsorTypes}
+        selected={sponsorType}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}
@@ -66,7 +90,7 @@ Chart.defaultProps = {
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
-  id: 'studies.general.dynamique.chart-evolution',
+  id: 'studies.resultats.type-diffusion.chart-repartition-par-type',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,

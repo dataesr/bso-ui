@@ -313,7 +313,11 @@ function EssaisCliniques() {
                   studyType='Interventional'
                 />
                 <br />
-                app.health-interventional.studies.resultats.type-diffusion.chart-repartition-par-type
+                <BSOChart
+                  id='studies.resultats.type-diffusion.chart-repartition-par-type'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
