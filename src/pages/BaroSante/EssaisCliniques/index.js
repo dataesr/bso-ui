@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
-import ChartDynamiqueEvolution from '../../../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
+import BSOChart from '../../../components/Charts';
 import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
@@ -123,7 +123,7 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft50}
                 anchorId='general.dynamique'
               >
-                <ChartDynamiqueEvolution
+                <BSOChart
                   id='studies.general.dynamique.chart-evolution'
                   domain='health'
                   studyType='Interventional'
