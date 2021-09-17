@@ -691,6 +691,41 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesResultsTypeDiffusion: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_has_result: {
+              terms: {
+                field: 'has_results',
+              },
+              aggs: {
+                by_has_publications_result: {
+                  terms: {
+                    field: 'has_publications_result',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     publiCardData: ([observationSnap]) => ({
       size: 0,
       query: {

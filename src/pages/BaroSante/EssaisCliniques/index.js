@@ -307,7 +307,11 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft50}
                 anchorId='resultats.type-diffusion'
               >
-                app.health-interventional.studies.resultats.type-diffusion.chart-repartition
+                <BSOChart
+                  id='studies.resultats.type-diffusion.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
                 app.health-interventional.studies.resultats.type-diffusion.chart-repartition-par-type
               </QuestionSection>
