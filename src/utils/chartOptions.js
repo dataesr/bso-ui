@@ -19,8 +19,8 @@ export function getGraphOptions(graphId, intl) {
   const legend = intl.messages[`${graphId}.legend`]
     ? intl.formatMessage({ id: `${graphId}.legend` })
     : '';
-  const tooltip = intl.messages[`${graphId}.tooltip`]
-    ? intl.formatMessage({ id: `${graphId}.tooltip` })
+  const tooltip = intl.messages[`app.${graphId}.tooltip`]
+    ? intl.formatMessage({ id: `app.${graphId}.tooltip` })
     : '';
   const xAxis = intl.messages[`${graphId}.xAxis`]
     ? intl.formatMessage({ id: `${graphId}.xAxis` })
