@@ -59,6 +59,7 @@ export default function DataCardSection({ lang, domain }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: '?id=general.dynamique-ouverture',
+        domainActive: ['health', ''],
       },
       apcCostSum: {
         fetch: (buckets) => `${cleanNumber(
@@ -73,7 +74,8 @@ export default function DataCardSection({ lang, domain }) {
         percentage: false,
         color: 'brown',
         intlKey: 'app.national-publi.data.costs',
-        buttonHref: '?id=general.dynamique-ouverture',
+        buttonHref: 'editeurs?id=publishers.couts-publication',
+        domainActive: ['health', ''],
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
@@ -95,6 +97,8 @@ export default function DataCardSection({ lang, domain }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
+        buttonHref: 'editeurs?id=publishers.repartition-licences',
+        domainActive: ['health', ''],
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -109,6 +113,7 @@ export default function DataCardSection({ lang, domain }) {
         intlKey: 'app.national.data.hosted.documents',
         intlValues: { total: totalHostedDocuments },
         buttonHref: 'archives?id=repositories.dynamique-hal',
+        domainActive: ['health', ''],
       },
       frenchPublicationsRate: {
         fetch: (buckets) => (
@@ -126,6 +131,8 @@ export default function DataCardSection({ lang, domain }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
+        buttonHref: 'general?id=general.langues-ouverture',
+        domainActive: ['health', ''],
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
@@ -135,6 +142,8 @@ export default function DataCardSection({ lang, domain }) {
         percentage: false,
         color: 'yellow',
         intlKey: 'app.publi.data.collab-country',
+        buttonHref: 'affiliations?id=affiliations.dynamique-ouverture',
+        domainActive: ['health'],
       },
     }),
     [
@@ -211,25 +220,28 @@ export default function DataCardSection({ lang, domain }) {
                   intlKey,
                   intlValues,
                   buttonHref,
+                  domainActive,
                 } = dataObj[cardKey];
 
                 return (
                   <Col n='12 md-6 lg-4' key={cardKey}>
-                    <DataCard
-                      percentage={percentage ? parseFloat(cardValue) : null}
-                      topData={percentage ? null : cardValue}
-                      nbGaugePosition={
-                        cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
-                      }
-                      buttonLabel={intl.formatMessage({
-                        id: 'app.see-details',
-                      })}
-                      buttonHref={buttonHref}
-                      background={color}
-                      sentence={
-                        <FormattedMessage values={intlValues} id={intlKey} />
-                      }
-                    />
+                    {domainActive.indexOf(domain) > -1 && (
+                      <DataCard
+                        percentage={percentage ? parseFloat(cardValue) : null}
+                        topData={percentage ? null : cardValue}
+                        nbGaugePosition={
+                          cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
+                        }
+                        buttonLabel={intl.formatMessage({
+                          id: 'app.see-details',
+                        })}
+                        buttonHref={buttonHref}
+                        background={color}
+                        sentence={
+                          <FormattedMessage values={intlValues} id={intlKey} />
+                        }
+                      />
+                    )}
                   </Col>
                 );
               })}
