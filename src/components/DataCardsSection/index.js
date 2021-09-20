@@ -58,6 +58,7 @@ export default function DataCardSection({ lang, domain }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
+        buttonHref: '?id=general.dynamique-ouverture',
       },
       apcCostSum: {
         fetch: (buckets) => `${cleanNumber(
@@ -72,6 +73,7 @@ export default function DataCardSection({ lang, domain }) {
         percentage: false,
         color: 'brown',
         intlKey: 'app.national-publi.data.costs',
+        buttonHref: '?id=general.dynamique-ouverture',
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
@@ -106,6 +108,7 @@ export default function DataCardSection({ lang, domain }) {
         color: 'green',
         intlKey: 'app.national.data.hosted.documents',
         intlValues: { total: totalHostedDocuments },
+        buttonHref: 'archives?id=repositories.dynamique-hal',
       },
       frenchPublicationsRate: {
         fetch: (buckets) => (
@@ -207,6 +210,7 @@ export default function DataCardSection({ lang, domain }) {
                   color,
                   intlKey,
                   intlValues,
+                  buttonHref,
                 } = dataObj[cardKey];
 
                 return (
@@ -220,6 +224,7 @@ export default function DataCardSection({ lang, domain }) {
                       buttonLabel={intl.formatMessage({
                         id: 'app.see-details',
                       })}
+                      buttonHref={buttonHref}
                       background={color}
                       sentence={
                         <FormattedMessage values={intlValues} id={intlKey} />
