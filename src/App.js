@@ -72,7 +72,9 @@ function App() {
               .map((tab) => Object.keys(tab).map((l) => tab[l]))
               .flat(1)}
           >
-            <EssaisCliniques />
+            <GraphNavigationContextProvider>
+              <EssaisCliniques />
+            </GraphNavigationContextProvider>
           </Route>
 
           <Route
