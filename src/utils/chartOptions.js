@@ -1749,4 +1749,40 @@ export const chartOptions = {
       return options;
     },
   },
+  'studies.general.trajectoires.chart-repartition': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.chart.type = 'column';
+      options.plotOptions = {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+            style: {
+              color: getCSSValue('--g-800'),
+              fontSize: '20px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      };
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: 'var(--g800)',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+
+      return options;
+    },
+  },
 };

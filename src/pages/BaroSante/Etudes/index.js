@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import Banner from '../../../components/Banner';
 // import DataCardSection from '../../../components/DataCardsSection';
 import BSOChart from '../../../components/Charts';
-import ChartDynamiqueEvolution from '../../../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
 import Chip from '../../../components/Chip';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
@@ -129,7 +128,12 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-                app.health-observational.studies.general.trajectoires.chart-repartition
+
+                <BSOChart
+                  id='studies.general.trajectoires.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
