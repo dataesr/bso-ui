@@ -31,7 +31,7 @@
   "app.baro-sante.detail-publi": "Voir le détail des publications",
   "app.baro-sante.detail-studies": "Voir le détail des études observationnelles",
   "app.baro-sante.discover-methodo": "Découvrez notre méthodologie pour le baromètre santé",
-  "app.baro-sante.trials-intro": "Les essais cliniques déclarés external-link-square-alt désignent nisl sit cursus id lacus. Morbi neque consequat nisl fermentum, massa tellus ut elementum. Ac elementum enim arcu suspendisse vestibulum.",
+  "app.baro-sante.trials-intro": "Les essais cliniques déclarés <glossary>app.commons.open-access</glossary> external-link-square-alt désignent nisl sit cursus id lacus. Morbi neque consequat nisl fermentum, massa tellus ut elementum. Ac elementum enim arcu suspendisse vestibulum.",
   "app.baro-sante.studies.main-title": "Les études observationnelles",
   "app.baro-sante.intro": "Les publications en <glossary>app.commons.open-access</glossary> désignent les publications de recherche mises à disposition librement sur l'internet public. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur)…",
   "app.baro-sante.intro-banner": "Publications, essais cliniques, études observationnelles : Découvrez l’évolution de l’accès ouvert de la recherche en santé en France à partir de données fiables, ouvertes et maîtrisées.",
