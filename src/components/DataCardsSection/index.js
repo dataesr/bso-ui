@@ -59,7 +59,7 @@ export default function DataCardSection({ lang, domain }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: '?id=general.dynamique-ouverture',
-        domainActive: ['health', ''],
+        activeDomains: ['health', ''],
       },
       apcCostSum: {
         fetch: (buckets) => `${cleanNumber(
@@ -75,7 +75,7 @@ export default function DataCardSection({ lang, domain }) {
         color: 'brown',
         intlKey: 'app.national-publi.data.costs',
         buttonHref: 'editeurs?id=publishers.couts-publication',
-        domainActive: ['health', ''],
+        activeDomains: ['health', ''],
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
@@ -98,7 +98,7 @@ export default function DataCardSection({ lang, domain }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: 'editeurs?id=publishers.repartition-licences',
-        domainActive: ['health', ''],
+        activeDomains: ['health', ''],
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -113,7 +113,7 @@ export default function DataCardSection({ lang, domain }) {
         intlKey: 'app.national.data.hosted.documents',
         intlValues: { total: totalHostedDocuments },
         buttonHref: 'archives?id=repositories.dynamique-hal',
-        domainActive: ['health', ''],
+        activeDomains: ['health', ''],
       },
       frenchPublicationsRate: {
         fetch: (buckets) => (
@@ -132,7 +132,7 @@ export default function DataCardSection({ lang, domain }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: 'general?id=general.langues-ouverture',
-        domainActive: ['health', ''],
+        activeDomains: ['health', ''],
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
@@ -143,7 +143,7 @@ export default function DataCardSection({ lang, domain }) {
         color: 'yellow',
         intlKey: 'app.publi.data.collab-country',
         buttonHref: 'affiliations?id=affiliations.dynamique-ouverture',
-        domainActive: ['health'],
+        activeDomains: ['health'],
       },
     }),
     [
@@ -220,12 +220,12 @@ export default function DataCardSection({ lang, domain }) {
                   intlKey,
                   intlValues,
                   buttonHref,
-                  domainActive,
+                  activeDomains,
                 } = dataObj[cardKey];
 
                 return (
                   <Col n='12 md-6 lg-4' key={cardKey}>
-                    {domainActive.indexOf(domain) > -1 && (
+                    {activeDomains.indexOf(domain) > -1 && (
                       <DataCard
                         percentage={percentage ? parseFloat(cardValue) : null}
                         topData={percentage ? null : cardValue}
