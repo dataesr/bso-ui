@@ -22,6 +22,7 @@ import Theme1 from './pages/Themes/Theme-1';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import TranslationPage from './translations/translations-page';
+import { GraphNavigationContextProvider } from './utils/Hooks/useGraphNavigation';
 import useLang from './utils/Hooks/useLang';
 
 const messages = {
@@ -51,7 +52,9 @@ function App() {
               .map((tab) => Object.keys(tab).map((l) => tab[l]))
               .flat(1)}
           >
-            <NationalPublications />
+            <GraphNavigationContextProvider>
+              <NationalPublications />
+            </GraphNavigationContextProvider>
           </Route>
           <Route exact path={Object.keys(urls.sante).map((l) => urls.sante[l])}>
             <BaroSante />
@@ -62,7 +65,9 @@ function App() {
               .map((tab) => Object.keys(tab).map((l) => tab[l]))
               .flat(1)}
           >
-            <SantePublications />
+            <GraphNavigationContextProvider>
+              <SantePublications />
+            </GraphNavigationContextProvider>
           </Route>
           <Route
             exact

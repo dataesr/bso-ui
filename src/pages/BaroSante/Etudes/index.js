@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import Banner from '../../../components/Banner';
 // import DataCardSection from '../../../components/DataCardsSection';
 import BSOChart from '../../../components/Charts';
-import ChartDynamiqueEvolution from '../../../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
 import Chip from '../../../components/Chip';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
@@ -16,15 +15,17 @@ import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
-import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
+import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 function EtudesObservationnelles() {
   const { lang } = useLang();
   const location = useLocation();
   const intl = useIntl();
+  const blueSoft25 = getCSSValue('--blue-soft-25');
+  const blueSoft50 = getCSSValue('--blue-soft-50');
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -121,7 +122,7 @@ function EtudesObservationnelles() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-observational.studies.general.dynamique'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='general.dynamique'
               >
                 <BSOChart
@@ -134,7 +135,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.general.trajectoires'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='general.directions'
               >
                 app.health-observational.studies.general.trajectoires.chart-repartition
@@ -181,7 +182,7 @@ function EtudesObservationnelles() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-observational.studies.caracteristiques.quand'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='caracteristiques.quand'
               >
                 app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites
@@ -193,7 +194,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.caracteristiques.duree'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='caracteristiques.duree'
               >
                 app.health-observational.studies.caracteristiques.duree.chart-nombre
@@ -201,7 +202,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.caracteristiques.combien'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='caracteristiques.combien'
               >
                 app.health-observational.studies.caracteristiques.combien.chart-groupes-patients
@@ -211,7 +212,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.caracteristiques.types'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='caracteristiques.types'
               >
                 app.health-observational.studies.caracteristiques.types.chart-evolution-nombre
@@ -246,7 +247,7 @@ function EtudesObservationnelles() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-observational.studies.promoteurs.dynamique-ouverture'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='promoteurs.dynamique-ouverture'
               >
                 app.health-observational.studies.promoteurs.dynamique-ouverture.chart-part
@@ -256,7 +257,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.promoteurs.impact'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
                 app.health-observational.studies.promoteurs.impact.chart-repartition
@@ -305,7 +306,7 @@ function EtudesObservationnelles() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-observational.studies.resultats.type-diffusion'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
                 app.health-observational.studies.resultats.type-diffusion.chart-repartition
@@ -315,7 +316,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.resultats.plan-partage'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='resultats.plan-partage'
               >
                 app.health-observational.studies.resultats.plan-partage.chart-repartition
@@ -323,7 +324,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.resultats.delai-diffusion'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='resultats.delai-diffusion'
               >
                 app.health-observational.studies.resultats.delai-diffusion.chart-repartition
@@ -333,7 +334,7 @@ function EtudesObservationnelles() {
 
               <QuestionSection
                 intlKey='app.health-observational.studies.resultats.publication'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
                 app.health-observational.studies.resultats.publication.chart-repartition

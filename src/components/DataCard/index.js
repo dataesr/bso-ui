@@ -1,6 +1,7 @@
 import { Button, Card, CardDescription } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Loader from '../Loader';
 import Gauge from './Gauge';
@@ -9,10 +10,13 @@ function DataCard({
   background,
   sentence,
   buttonLabel,
+  buttonHref,
   topData,
   percentage,
   nbGaugePosition,
 }) {
+  const history = useHistory();
+
   return (
     <Card
       hasArrow={false}
@@ -41,6 +45,7 @@ function DataCard({
             iconPosition='right'
             size='sm'
             title={buttonLabel}
+            onClick={() => buttonHref && history.push(buttonHref)}
           >
             {buttonLabel}
           </Button>
@@ -56,6 +61,7 @@ DataCard.defaultProps = {
   sentence: '',
   percentage: null,
   background: 'green',
+  buttonHref: '',
   nbGaugePosition: '66',
 };
 
@@ -70,6 +76,7 @@ DataCard.propTypes = {
     'blue',
   ]),
   percentage: PropTypes.number,
+  buttonHref: PropTypes.string,
   nbGaugePosition: PropTypes.string,
   topData: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   buttonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),

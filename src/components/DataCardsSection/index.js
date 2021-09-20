@@ -58,6 +58,8 @@ export default function DataCardSection({ lang, domain }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
+        buttonHref: '?id=general.dynamique-ouverture',
+        activeDomains: ['health', ''],
       },
       apcCostSum: {
         fetch: (buckets) => `${cleanNumber(
@@ -72,6 +74,8 @@ export default function DataCardSection({ lang, domain }) {
         percentage: false,
         color: 'brown',
         intlKey: 'app.national-publi.data.costs',
+        buttonHref: 'editeurs?id=publishers.couts-publication',
+        activeDomains: ['health', ''],
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
@@ -93,6 +97,8 @@ export default function DataCardSection({ lang, domain }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
+        buttonHref: 'editeurs?id=publishers.repartition-licences',
+        activeDomains: ['health', ''],
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -106,6 +112,8 @@ export default function DataCardSection({ lang, domain }) {
         color: 'green',
         intlKey: 'app.national.data.hosted.documents',
         intlValues: { total: totalHostedDocuments },
+        buttonHref: 'archives?id=repositories.dynamique-hal',
+        activeDomains: ['health', ''],
       },
       frenchPublicationsRate: {
         fetch: (buckets) => (
@@ -123,6 +131,8 @@ export default function DataCardSection({ lang, domain }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
+        buttonHref: 'general?id=general.langues-ouverture',
+        activeDomains: ['health', ''],
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
@@ -132,6 +142,8 @@ export default function DataCardSection({ lang, domain }) {
         percentage: false,
         color: 'yellow',
         intlKey: 'app.publi.data.collab-country',
+        buttonHref: 'affiliations?id=affiliations.dynamique-ouverture',
+        activeDomains: ['health'],
       },
     }),
     [
@@ -207,24 +219,29 @@ export default function DataCardSection({ lang, domain }) {
                   color,
                   intlKey,
                   intlValues,
+                  buttonHref,
+                  activeDomains,
                 } = dataObj[cardKey];
 
                 return (
                   <Col n='12 md-6 lg-4' key={cardKey}>
-                    <DataCard
-                      percentage={percentage ? parseFloat(cardValue) : null}
-                      topData={percentage ? null : cardValue}
-                      nbGaugePosition={
-                        cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
-                      }
-                      buttonLabel={intl.formatMessage({
-                        id: 'app.see-details',
-                      })}
-                      background={color}
-                      sentence={
-                        <FormattedMessage values={intlValues} id={intlKey} />
-                      }
-                    />
+                    {activeDomains.indexOf(domain) > -1 && (
+                      <DataCard
+                        percentage={percentage ? parseFloat(cardValue) : null}
+                        topData={percentage ? null : cardValue}
+                        nbGaugePosition={
+                          cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
+                        }
+                        buttonLabel={intl.formatMessage({
+                          id: 'app.see-details',
+                        })}
+                        buttonHref={buttonHref}
+                        background={color}
+                        sentence={
+                          <FormattedMessage values={intlValues} id={intlKey} />
+                        }
+                      />
+                    )}
                   </Col>
                 );
               })}

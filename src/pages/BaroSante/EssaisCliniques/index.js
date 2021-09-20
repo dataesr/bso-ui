@@ -15,15 +15,17 @@ import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
-import { bluesoft25, bluesoft50 } from '../../../style/colours.module.scss';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
+import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 function EssaisCliniques() {
   const { lang } = useLang();
   const location = useLocation();
   const intl = useIntl();
+  const blueSoft25 = getCSSValue('--blue-soft-25');
+  const blueSoft50 = getCSSValue('--blue-soft-50');
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -120,7 +122,7 @@ function EssaisCliniques() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-interventional.studies.general.dynamique'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='general.dynamique'
               >
                 <BSOChart
@@ -133,7 +135,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.general.trajectoires'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='general.directions'
               >
                 app.health-interventional.studies.general.trajectoires.chart-repartition
@@ -180,7 +182,7 @@ function EssaisCliniques() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-interventional.studies.caracteristiques.quand'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='caracteristiques.quand'
               >
                 app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites
@@ -192,7 +194,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.caracteristiques.duree'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='caracteristiques.duree'
               >
                 app.health-interventional.studies.caracteristiques.duree.chart-nombre
@@ -200,7 +202,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.caracteristiques.combien'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='caracteristiques.combien'
               >
                 app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients
@@ -210,7 +212,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.caracteristiques.types'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='caracteristiques.types'
               >
                 app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre
@@ -245,7 +247,7 @@ function EssaisCliniques() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-interventional.studies.promoteurs.dynamique-ouverture'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='promoteurs.dynamique-ouverture'
               >
                 app.health-interventional.studies.promoteurs.dynamique-ouverture.chart-part
@@ -255,7 +257,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.promoteurs.impact'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
                 app.health-interventional.studies.promoteurs.impact.chart-repartition
@@ -304,7 +306,7 @@ function EssaisCliniques() {
             <GraphContent>
               <QuestionSection
                 intlKey='app.health-interventional.studies.resultats.type-diffusion'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
                 app.health-interventional.studies.resultats.type-diffusion.chart-repartition
@@ -314,7 +316,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.resultats.plan-partage'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='resultats.plan-partage'
               >
                 app.health-interventional.studies.resultats.plan-partage.chart-repartition
@@ -322,7 +324,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.resultats.delai-diffusion'
-                backgroundColor={bluesoft50}
+                backgroundColor={blueSoft50}
                 anchorId='resultats.delai-diffusion'
               >
                 app.health-interventional.studies.resultats.delai-diffusion.chart-repartition
@@ -332,7 +334,7 @@ function EssaisCliniques() {
 
               <QuestionSection
                 intlKey='app.health-interventional.studies.resultats.publication'
-                backgroundColor={bluesoft25}
+                backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
                 app.health-interventional.studies.resultats.publication.chart-repartition
