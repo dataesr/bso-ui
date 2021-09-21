@@ -4,7 +4,8 @@ import '../../../graph.scss';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
-// import HighchartsReact from 'highcharts-react-official';
+import HCSankeyModule from 'highcharts/modules/sankey';
+import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -23,6 +24,7 @@ import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
+HCSankeyModule(Highcharts);
 
 const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const chartRef = useRef();
@@ -35,34 +37,28 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     studyType,
   );
 
-  return <>vide</>;
+  const optionsGraph = chartOptions[id].getOptions(id, intl, allData);
 
-  // useEffect(() => {
-  //   setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  // }, [allData, idWithDomainAndStudyType, intl]);
-
-  // const optionsGraph = chartOptions[id].getOptions(id, intl, allData);
-
-  // return (
-  //   <WrapperChart
-  //     isLoading={isLoading || !allData}
-  //     isError={isError}
-  //     id={id}
-  //     domain={domain}
-  //     studyType={studyType}
-  //     chartRef={chartRef}
-  //     graphFooter={graphFooter}
-  //     graphComments={false}
-  //   >
-  //     <HighchartsReact
-  //       highcharts={Highcharts}
-  //       options={optionsGraph}
-  //       ref={chartRef}
-  //       id={idWithDomainAndStudyType}
-  //     />
-  //     {graphComments && <GraphComments comments={chartComments} />}
-  //   </WrapperChart>
-  // );
+  return (
+    <WrapperChart
+      isLoading={isLoading || !allData}
+      isError={isError}
+      id={id}
+      domain={domain}
+      studyType={studyType}
+      chartRef={chartRef}
+      graphFooter={graphFooter}
+      graphComments={false}
+    >
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={idWithDomainAndStudyType}
+      />
+      {graphComments && <GraphComments comments={chartComments} />}
+    </WrapperChart>
+  );
 };
 
 Chart.defaultProps = {

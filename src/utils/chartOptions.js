@@ -1738,7 +1738,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -1752,35 +1752,24 @@ export const chartOptions = {
   'studies.general.trajectoires.chart-repartition': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
-      options.chart.type = 'column';
+      options.colors = [getCSSValue('--acces-ouvert'), getCSSValue('--g-500')];
+      options.chart.height = '800px';
       options.plotOptions = {
-        bar: {
+        sankey: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f} %',
-            style: {
-              color: getCSSValue('--g-800'),
-              fontSize: '20px',
-              fontWeight: 'bold',
-            },
+            format: '<b>{point.intl}</b>',
           },
         },
       };
-      options.xAxis = {
-        type: 'category',
-        categories: data?.categories || [],
-        lineWidth: 0,
-        tickWidth: 0,
-        labels: {
-          style: {
-            color: 'var(--g800)',
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
+
+      options.series = [
+        {
+          keys: ['from', 'to', 'weight', 'intl'],
+          data,
+          type: 'sankey',
         },
-      };
-      options.series = data?.series || [];
+      ];
 
       return options;
     },
