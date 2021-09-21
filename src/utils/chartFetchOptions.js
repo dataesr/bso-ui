@@ -840,6 +840,52 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesResultsPublicationsOa: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_has_publications: {
+              terms: {
+                field: 'has_publications_result',
+              },
+              aggs: {
+                by_oa: {
+                  terms: {
+                    field: 'publication_access',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     publiCardData: ([observationSnap]) => ({
       size: 0,
       query: {

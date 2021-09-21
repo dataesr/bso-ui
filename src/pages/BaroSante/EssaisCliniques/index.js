@@ -325,7 +325,11 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft25}
                 anchorId='resultats.plan-partage'
               >
-                app.health-interventional.studies.resultats.plan-partage.chart-repartition
+                <BSOChart
+                  id='studies.resultats.plan-partage.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -333,8 +337,18 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft50}
                 anchorId='resultats.delai-diffusion'
               >
+                <BSOChart
+                  id='studies.resultats.delai-diffusion.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 app.health-interventional.studies.resultats.delai-diffusion.chart-repartition
                 <br />
+                <BSOChart
+                  id='studies.resultats.delai-diffusion.chart-distribution'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 app.health-interventional.studies.resultats.delai-diffusion.chart-distribution
               </QuestionSection>
 
@@ -344,8 +358,11 @@ function EssaisCliniques() {
                 anchorId='resultats.publication'
               >
                 app.health-interventional.studies.resultats.publication.chart-repartition
-                <br />
-                app.health-interventional.studies.resultats.publication.chart-repartition-icmje
+                <BSOChart
+                  id='studies.resultats.publication.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>

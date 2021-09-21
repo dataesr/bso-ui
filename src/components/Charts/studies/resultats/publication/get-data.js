@@ -1,48 +1,73 @@
 /* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType) {
+function useGetData(studyType, sponsorType = '*') {
+  const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
 
   async function getDataAxios() {
-    const query = getFetchOptions('studiesDynamiqueOuverture', '', studyType);
-
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
-      (e) => console.log(e),
-    );
-    const dataSortedByYear = res.data.aggregations.by_year.buckets.sort(
+    const queries = [];
+    const query1 = getFetchOptions('studiesResultsPublicationsOa', '', studyType, sponsorType);
+    queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
+    const res = await Axios.all(queries).catch(() => {
+      setLoading(false);
+    });
+    const currentYear = new Date().getFullYear();
+    const data1SortedByYear = res[0].data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
-    );
-
-    const dataGraph1 = {
-      categories: dataSortedByYear.map((el) => el.key),
-      series: [
-        {
-          name: 'public',
-          data: dataSortedByYear.map(
-            (el) => el.by_sponsor_type.buckets.find((ele) => ele.key === 'academique')
-              .doc_count,
-          ),
-          color: getCSSValue('--lead-sponsor-public'),
-        },
-        {
-          name: 'privé',
-          data: dataSortedByYear.map(
-            (el) => el.by_sponsor_type.buckets.find((ele) => ele.key === 'industriel')
-              .doc_count,
-          ),
-          color: getCSSValue('--lead-sponsor-privee'),
-        },
-      ],
-    };
-
-    return dataGraph1;
+    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const categories = [];
+    const dataOa = [];
+    const dataClosed = [];
+    const dataNA = [];
+    data1SortedByYear.forEach((el) => {
+      categories.push(el.key);
+      const withPublications = el.by_has_publications.buckets.find((b) => b.key === 1);
+      const withPublicationsOA = withPublications?.by_oa.buckets.find((b) => b.key === 1);
+      const withPublicationsClosed = withPublications?.by_oa.buckets.find((b) => b.key === 0);
+      dataOa.push({
+        y_tot: withPublications?.doc_count || 0,
+        y_abs: withPublicationsOA?.doc_count || 0,
+        y: 100 * (withPublicationsOA?.doc_count / withPublications?.doc_count) || 0,
+      });
+      dataClosed.push({
+        y_tot: withPublications?.doc_count || 0,
+        y_abs: withPublicationsClosed?.doc_count || 0,
+        y: 100 * (withPublicationsClosed?.doc_count / withPublications?.doc_count) || 0,
+      });
+      dataNA.push({
+        y_tot: withPublications?.doc_count || 0,
+        y_abs: (withPublications?.doc_count || 0) - (withPublicationsClosed?.doc_count || 0) - (withPublicationsOA?.doc_count || 0),
+        y: (100 * ((withPublications?.doc_count || 0) - (withPublicationsClosed?.doc_count || 0) - (withPublicationsOA?.doc_count || 0)))
+          / withPublications?.doc_count,
+      });
+    });
+    const series = [
+      {
+        name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
+        data: dataOa,
+        color: getCSSValue('--acces-ouvert'),
+      },
+      {
+        name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
+        data: dataClosed,
+        color: getCSSValue('--blue-soft-175'),
+      },
+      {
+        name: intl.formatMessage({ id: 'app.na' }),
+        data: dataNA,
+        color: getCSSValue('--g-400'),
+      },
+    ];
+    const dataGraph1 = { categories, series };
+    return { dataGraph1 };
   }
 
   useEffect(() => {
@@ -57,7 +82,7 @@ function useGetData(studyType) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType]);
+  }, [studyType, sponsorType]);
 
   return { allData, isLoading };
 }
