@@ -26,50 +26,30 @@ function useGetData(studyType) {
       (a, b) => a.key - b.key,
     );
 
-    const series = [
-      {
-        name: intl
-          .formatMessage({
-            id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.after_completion',
-          })
-          .toLowerCase(),
-        data: dataSortedByYear.map((el) => ({
-          x: el.key,
-          y: el.by_submission_temporality.buckets.find(
-            (ele) => ele.key === 'after_completion',
-          ).doc_count,
-        })),
-        color: getCSSValue('--apres'),
+    const colors = {
+      after_completion: '--apres',
+      during_study: '--orange-medium-100',
+      before_start: '--orange-medium-75',
+    };
+    const series = ['after_completion', 'during_study', 'before_start'].map(
+      (temporality) => {
+        const data = dataSortedByYear.map((el) => {
+          const x = el.key;
+          const yValue = el.by_submission_temporality.buckets.find(
+            (ele) => ele.key === temporality,
+          ).doc_count;
+          const y = (yValue / el.doc_count) * 100;
+          const yLabel = Number(y).toFixed(0);
+          const yTotal = el.doc_count;
+          return { x, yValue, y, yLabel, yTotal };
+        });
+        const name = intl.formatMessage({
+          id: `app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.${temporality}`,
+        });
+        const color = getCSSValue(colors[temporality]);
+        return { name, data, color };
       },
-      {
-        name: intl
-          .formatMessage({
-            id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.during_study',
-          })
-          .toLowerCase(),
-        data: dataSortedByYear.map((el) => ({
-          x: el.key,
-          y: el.by_submission_temporality.buckets.find(
-            (ele) => ele.key === 'during_study',
-          ).doc_count,
-        })),
-        color: getCSSValue('--orange-medium-100'),
-      },
-      {
-        name: intl
-          .formatMessage({
-            id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.before_start',
-          })
-          .toLowerCase(),
-        data: dataSortedByYear.map((el) => ({
-          x: el.key,
-          y: el.by_submission_temporality.buckets.find(
-            (ele) => ele.key === 'before_start',
-          ).doc_count,
-        })),
-        color: getCSSValue('--orange-medium-75'),
-      },
-    ];
+    );
 
     const data = {
       categories: dataSortedByYear.map((el) => el.key),

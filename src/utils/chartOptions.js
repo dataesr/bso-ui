@@ -1754,15 +1754,21 @@ export const chartOptions = {
         categories: data?.categories || [],
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
+      options.yAxis.max = 100;
       options.legend.reversed = true;
       options.plotOptions = {
         column: {
-          stacking: 'percent',
+          stacking: 'normal',
           dataLabels: {
             style: {
               textOutline: 'none',
             },
-            enabled: false,
+            enabled: true,
+            // eslint-disable-next-line
+            formatter: function () {
+              // eslint-disable-next-line
+              return this.y.toFixed(0).concat(' %');
+            },
           },
         },
       };
