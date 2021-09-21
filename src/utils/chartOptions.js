@@ -1767,6 +1767,9 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.tooltip',
+      });
       return options;
     },
   },

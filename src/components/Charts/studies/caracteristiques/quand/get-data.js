@@ -26,47 +26,57 @@ function useGetData(studyType) {
       (a, b) => a.key - b.key,
     );
 
-    const dataGraph = {
-      categories: dataSortedByYear.map((el) => el.key),
-      series: [
-        {
-          name: intl.formatMessage({
+    const series = [
+      {
+        name: intl
+          .formatMessage({
             id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.after_completion',
-          }),
-          data: dataSortedByYear.map(
-            (el) => el.by_submission_temporality.buckets.find(
-              (ele) => ele.key === 'after_completion',
-            ).doc_count,
-          ),
-          color: getCSSValue('--apres'),
-          year: 12,
-        },
-        {
-          name: intl.formatMessage({
+          })
+          .toLowerCase(),
+        data: dataSortedByYear.map((el) => ({
+          x: el.key,
+          y: el.by_submission_temporality.buckets.find(
+            (ele) => ele.key === 'after_completion',
+          ).doc_count,
+        })),
+        color: getCSSValue('--apres'),
+      },
+      {
+        name: intl
+          .formatMessage({
             id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.during_study',
-          }),
-          data: dataSortedByYear.map(
-            (el) => el.by_submission_temporality.buckets.find(
-              (ele) => ele.key === 'during_study',
-            ).doc_count,
-          ),
-          color: getCSSValue('--orange-medium-100'),
-        },
-        {
-          name: intl.formatMessage({
+          })
+          .toLowerCase(),
+        data: dataSortedByYear.map((el) => ({
+          x: el.key,
+          y: el.by_submission_temporality.buckets.find(
+            (ele) => ele.key === 'during_study',
+          ).doc_count,
+        })),
+        color: getCSSValue('--orange-medium-100'),
+      },
+      {
+        name: intl
+          .formatMessage({
             id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.before_start',
-          }),
-          data: dataSortedByYear.map(
-            (el) => el.by_submission_temporality.buckets.find(
-              (ele) => ele.key === 'before_start',
-            ).doc_count,
-          ),
-          color: getCSSValue('--orange-medium-75'),
-        },
-      ],
+          })
+          .toLowerCase(),
+        data: dataSortedByYear.map((el) => ({
+          x: el.key,
+          y: el.by_submission_temporality.buckets.find(
+            (ele) => ele.key === 'before_start',
+          ).doc_count,
+        })),
+        color: getCSSValue('--orange-medium-75'),
+      },
+    ];
+
+    const data = {
+      categories: dataSortedByYear.map((el) => el.key),
+      series,
     };
 
-    return dataGraph;
+    return data;
   }
 
   useEffect(() => {
