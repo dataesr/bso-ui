@@ -36,17 +36,20 @@ function useGetData(studyType, sponsorType = '*') {
         y_tot: withPublications?.doc_count || 0,
         y_abs: withPublicationsOA?.doc_count || 0,
         y: 100 * (withPublicationsOA?.doc_count / withPublications?.doc_count) || 0,
+        year: el.key,
       });
       dataClosed.push({
         y_tot: withPublications?.doc_count || 0,
         y_abs: withPublicationsClosed?.doc_count || 0,
         y: 100 * (withPublicationsClosed?.doc_count / withPublications?.doc_count) || 0,
+        year: el.key,
       });
       dataNA.push({
         y_tot: withPublications?.doc_count || 0,
         y_abs: (withPublications?.doc_count || 0) - (withPublicationsClosed?.doc_count || 0) - (withPublicationsOA?.doc_count || 0),
         y: (100 * ((withPublications?.doc_count || 0) - (withPublicationsClosed?.doc_count || 0) - (withPublicationsOA?.doc_count || 0)))
           / withPublications?.doc_count,
+        year: el.key,
       });
     });
     const series = [
