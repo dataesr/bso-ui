@@ -805,6 +805,41 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesResultsPlanPartage: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_ipd: {
+              terms: {
+                field: 'ipd_sharing.keyword',
+                missing: 'NA',
+              },
+            },
+          },
+        },
+      },
+    }),
     publiCardData: ([observationSnap]) => ({
       size: 0,
       query: {

@@ -16,8 +16,9 @@ import { cleanNumber, getCSSValue, getPercentageYAxis } from './helpers';
  * }}
  */
 export function getGraphOptions(graphId, intl) {
-  const legend = intl.messages[`${graphId}.legend`]
-    ? intl.formatMessage({ id: `${graphId}.legend` })
+  console.log('ttt', graphId);
+  const legend = intl.messages[`app.${graphId}.legend`]
+    ? intl.formatMessage({ id: `app.${graphId}.legend` })
     : '';
   const tooltip = intl.messages[`app.${graphId}.tooltip`]
     ? intl.formatMessage({ id: `app.${graphId}.tooltip` })
@@ -1769,6 +1770,7 @@ export const chartOptions = {
           },
         },
       };
+      options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
@@ -1807,6 +1809,46 @@ export const chartOptions = {
           },
         },
       };
+      options.yAxis = getPercentageYAxis(false);
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: 'var(--g800)',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+
+      return options;
+    },
+  },
+  'studies.resultats.plan-partage.chart-repartition': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.chart.type = 'column';
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: false,
+            // eslint-disable-next-line
+          },
+        },
+        column: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
