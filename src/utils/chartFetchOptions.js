@@ -724,6 +724,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
               },
             },
             {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
               wildcard: {
                 'lead_sponsor_type.keyword': sponsorType,
               },
@@ -735,6 +740,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
+            size: 30,
           },
           aggs: {
             by_has_result: {
@@ -764,6 +770,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
               },
             },
             {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
               wildcard: {
                 'lead_sponsor_type.keyword': sponsorType,
               },
@@ -775,6 +786,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_intervention_type: {
           terms: {
             field: 'intervention_type.keyword',
+            size: 30,
           },
           aggs: {
             by_has_result: {

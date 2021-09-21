@@ -1765,7 +1765,7 @@ export const chartOptions = {
         column: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f}',
+            format: '{point.y:.0f} %',
           },
         },
       };
@@ -1803,7 +1803,7 @@ export const chartOptions = {
         bar: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f}',
+            format: '{point.y:.0f} %',
           },
         },
       };
