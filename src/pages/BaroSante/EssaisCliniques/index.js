@@ -309,9 +309,17 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
-                app.health-interventional.studies.resultats.type-diffusion.chart-repartition
+                <BSOChart
+                  id='studies.resultats.type-diffusion.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
-                app.health-interventional.studies.resultats.type-diffusion.chart-repartition-par-type
+                <BSOChart
+                  id='studies.resultats.type-diffusion.chart-repartition-par-type'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -319,7 +327,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.plan-partage'
               >
-                app.health-interventional.studies.resultats.plan-partage.chart-repartition
+                <BSOChart
+                  id='studies.resultats.plan-partage.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -338,8 +350,11 @@ function EssaisCliniques() {
                 anchorId='resultats.publication'
               >
                 app.health-interventional.studies.resultats.publication.chart-repartition
-                <br />
-                app.health-interventional.studies.resultats.publication.chart-repartition-icmje
+                <BSOChart
+                  id='studies.resultats.publication.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>

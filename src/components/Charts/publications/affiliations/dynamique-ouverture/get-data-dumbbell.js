@@ -73,7 +73,6 @@ function useGetData(observationSnaps, domain = '') {
           })),
       });
     });
-    console.log('ttt', dataHist);
     return dataHist;
   }
 
