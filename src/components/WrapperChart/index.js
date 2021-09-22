@@ -58,7 +58,7 @@ function WrapperChart({
     ? intl.formatMessage({ id: `${idWithDomain}.source` })
     : 'source';
   const title = !studyType
-    ? intl.formatMessage({ id: `${idWithDomain}.title1` })
+    ? intl.formatMessage({ id: `${idWithDomain}.title` })
     : intl.formatMessage({
       id: `${withDomainAndStudyType(
         id,

@@ -290,6 +290,28 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    sponsorsTypesList: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor_type: {
+          terms: {
+            field: 'lead_sponsor_type.keyword',
+            size: 10000,
+          },
+        },
+      },
+    }),
     publisher: () => ({
       size: 0,
       aggs: {
@@ -683,6 +705,179 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 by_has_result: {
                   terms: {
                     field: 'has_results_or_publications',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsTypeDiffusion: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_has_result: {
+              terms: {
+                field: 'has_results',
+              },
+              aggs: {
+                by_has_publications_result: {
+                  terms: {
+                    field: 'has_publications_result',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsTypeDiffusionTypeIntervention: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_intervention_type: {
+          terms: {
+            field: 'intervention_type.keyword',
+            size: 30,
+          },
+          aggs: {
+            by_has_result: {
+              terms: {
+                field: 'has_results',
+              },
+              aggs: {
+                by_has_publications_result: {
+                  terms: {
+                    field: 'has_publications_result',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsPlanPartage: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_ipd: {
+              terms: {
+                field: 'ipd_sharing.keyword',
+                missing: 'NA',
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsPublicationsOa: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_has_publications: {
+              terms: {
+                field: 'has_publications_result',
+              },
+              aggs: {
+                by_oa: {
+                  terms: {
+                    field: 'publication_access',
                   },
                 },
               },
