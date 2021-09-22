@@ -15,6 +15,7 @@
     "react-intl": "^5.20.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
