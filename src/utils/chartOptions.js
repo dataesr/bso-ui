@@ -1785,7 +1785,6 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categories2 || [],
       };
-      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           dataLabels: {

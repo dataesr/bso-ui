@@ -943,6 +943,14 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 'study_type.keyword': studyType,
               },
             },
+            {
+              range: {
+                delay_submission_start: {
+                  from: -720,
+                  to: 720,
+                },
+              },
+            },
           ],
         },
       },
