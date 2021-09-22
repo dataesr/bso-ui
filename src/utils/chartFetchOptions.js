@@ -905,14 +905,14 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCharacteristicWhenEvolution: () => ({
+    studiesCharacteristicWhenEvolution: ([studyType]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             {
               term: {
-                'study_type.keyword': 'Interventional',
+                'study_type.keyword': studyType,
               },
             },
           ],
@@ -929,6 +929,28 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 field: 'submission_temporality.keyword',
               },
             },
+          },
+        },
+      },
+    }),
+    studiesCharacteristicWhenRepartition: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        delay_submission_start: {
+          histogram: {
+            field: 'delay_submission_start',
+            interval: 30,
           },
         },
       },

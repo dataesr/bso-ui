@@ -1747,12 +1747,11 @@ export const chartOptions = {
     },
   },
   'studies.caracteristiques.quand.chart-evolution-temporalites': {
-    getOptions: (id, intl, data) => {
+    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
       const options = getGraphOptions(id, intl);
       options.chart.type = 'column';
       options.xAxis = {
-        categories: data?.categories || [],
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        categories: data?.categories1 || [],
       };
       options.yAxis.max = 100;
       options.legend.reversed = true;
@@ -1772,9 +1771,31 @@ export const chartOptions = {
           },
         },
       };
-      options.series = data?.series || [];
+      options.series = data?.dataGraph1 || [];
       options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.tooltip',
+        id: `${idWithDomainAndStudyType}.tooltip`,
+      });
+      return options;
+    },
+  },
+  'studies.caracteristiques.quand.chart-repartition-avant-apres': {
+    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories: data?.categories2 || [],
+      };
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: false,
+          },
+        },
+      };
+      options.series = data?.dataGraph2 || [];
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: `${idWithDomainAndStudyType}.tooltip`,
       });
       return options;
     },

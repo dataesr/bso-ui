@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
 import ChartEvolutionTemporalite from '../../../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites';
+import ChartRepartitionAvantApres from '../../../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres';
 import ChartDynamiqueEvolution from '../../../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
 import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
@@ -42,7 +43,7 @@ function EssaisCliniques() {
     <Container fluid className='page essais'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle={<FormattedMessage id='app.baro-sante.sub-title' />}
+        supTitle={<FormattedMessage id='app.header.title-health' />}
         title={<FormattedMessage id='app.header.nav.baro-sante-essais' />}
         chip={<Chip />}
         icons={renderIcons}
@@ -189,8 +190,11 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                <br />
-                app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres
+                <ChartRepartitionAvantApres
+                  id='studies.caracteristiques.quand.chart-repartition-avant-apres'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
                 app.health-interventional.studies.caracteristiques.quand.chart-distribution-declarations
               </QuestionSection>

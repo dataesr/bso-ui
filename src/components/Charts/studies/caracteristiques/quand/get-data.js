@@ -18,7 +18,6 @@ function useGetData(studyType) {
       '',
       studyType,
     );
-
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
       (e) => console.log(e),
     );
@@ -27,11 +26,11 @@ function useGetData(studyType) {
     );
 
     const colors = {
-      after_completion: '--apres',
-      during_study: '--orange-medium-100',
-      before_start: '--orange-medium-75',
+      after_completion: getCSSValue('--apres'),
+      during_study: getCSSValue('--orange-medium-100'),
+      before_start: getCSSValue('--orange-medium-75'),
     };
-    const series = ['after_completion', 'during_study', 'before_start'].map(
+    const dataGraph1 = ['after_completion', 'during_study', 'before_start'].map(
       (temporality) => {
         const data = dataSortedByYear.map((el) => {
           const x = el.key;
@@ -44,19 +43,64 @@ function useGetData(studyType) {
           return { x, yValue, y, yLabel, yTotal };
         });
         const name = intl.formatMessage({
-          id: `app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.${temporality}`,
+          id: `app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.${temporality}`,
         });
-        const color = getCSSValue(colors[temporality]);
+        const color = colors[temporality];
         return { name, data, color };
       },
     );
 
-    const data = {
-      categories: dataSortedByYear.map((el) => el.key),
-      series,
-    };
+    const query2 = getFetchOptions(
+      'studiesCharacteristicWhenRepartition',
+      '',
+      studyType,
+    );
+    const res2 = await Axios.post(ES_STUDIES_API_URL, query2, HEADERS).catch(
+      (e) => console.log(e),
+    );
+    const dataSortedByYear2 = res2.data.aggregations.delay_submission_start.buckets;
+    const dataNegative = [];
+    const dataPositive = [];
+    dataSortedByYear2.forEach((el) => {
+      if (el.key < 0) {
+        dataNegative.push(el.doc_count);
+        dataPositive.push(0);
+      } else {
+        dataNegative.push(0);
+        dataPositive.push(el.doc_count);
+      }
+    });
+    const dataGraph2 = [
+      {
+        data: dataPositive,
+        name: intl.formatMessage({
+          id: 'app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.after_completion',
+        }),
+        color: colors.after_completion,
+      },
+      {
+        data: dataNegative,
+        name: intl.formatMessage({
+          id: 'app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.before_start',
+        }),
+        color: colors.before_start,
+      },
+    ];
 
-    return data;
+    const categories2 = dataSortedByYear2.map((el) => Math.abs(el.key) / 30);
+    categories2[0] += ` ${intl.formatMessage({
+      id: 'app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after',
+    })}`;
+    categories2[categories2.length - 1] += ` ${intl.formatMessage({
+      id: 'app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after',
+    })}`;
+
+    return {
+      categories1: dataSortedByYear.map((el) => el.key),
+      dataGraph1,
+      categories2,
+      dataGraph2,
+    };
   }
 
   useEffect(() => {

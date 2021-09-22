@@ -38,7 +38,12 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, allData);
+  const optionsGraph = chartOptions[id].getOptions(
+    id,
+    intl,
+    allData,
+    idWithDomainAndStudyType,
+  );
 
   return (
     <WrapperChart
@@ -46,6 +51,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       isError={isError}
       id={id}
       domain={domain}
+      studyType={studyType}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={false}
