@@ -75,6 +75,8 @@ function WrapperChart({
       </div>
       {graphFooter && (
         <GraphFooter
+          title={title}
+          domain={domain}
           date={getFormattedDate(updateDate, lang)}
           source={source}
           srcPath={`${id}${domain ? '/' : ''}${domain}`}
