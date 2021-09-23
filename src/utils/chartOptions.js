@@ -1983,6 +1983,45 @@ export const chartOptions = {
       return options;
     },
   },
+  'studies.promoteurs.dynamique-ouverture.chart-part': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+
+      options.chart.type = 'column';
+      options.plotOptions = {
+        series: {
+          stacking: false,
+          dataLabels: {
+            enabled: false,
+            // eslint-disable-next-line
+          },
+        },
+        column: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: 'var(--g800)',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+
+      return options;
+    },
+  },
   'studies.promoteurs.impact.chart-repartition': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);

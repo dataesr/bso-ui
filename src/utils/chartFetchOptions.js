@@ -700,7 +700,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesDynamiqueOuverture: ([studyType]) => ({
+    studiesDynamiqueOuverture: ([studyType, sponsor]) => ({
       size: 0,
       query: {
         bool: {
@@ -729,6 +729,39 @@ export default function getFetchOptions(key, domain, ...parameters) {
                     field: 'has_results_or_publications',
                   },
                 },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesDynamiqueOuvertureSponsor: ([studyType, sponsor]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor.keyword': sponsor,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_has_result: {
+              terms: {
+                field: 'has_results_or_publications',
               },
             },
           },

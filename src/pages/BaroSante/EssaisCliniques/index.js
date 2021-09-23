@@ -248,7 +248,11 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft50}
                 anchorId='promoteurs.dynamique-ouverture'
               >
-                app.health-interventional.studies.promoteurs.dynamique-ouverture.chart-part
+                <BSOChart
+                  id='studies.promoteurs.dynamique-ouverture.chart-part'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
                 app.health-interventional.studies.promoteurs.dynamique-ouverture.chart-evolution-nombre
               </QuestionSection>
