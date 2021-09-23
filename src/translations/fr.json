@@ -238,6 +238,7 @@
   "app.health-publi.affiliations.dynamique-ouverture.chart-evolution-taux.title": "Evolution du taux d'ouverture des publications en santé par type d'établissement et date d'observation",
   "app.health-studies.promoteurs.dynamique-ouverture.chart-part.title": "Part d’essais cliniques déclarés ayant produit des résultats et/ou publications par statut du promoteur",
   "app.publi.affiliations.dynamique-ouverture.chart-evolution-taux.tooltip": "<b>Taux d'ouverture des publications ({point.bsoDomain})</b><br> Date d'observation {series.name} : {point.y:.2f} % ({point.y_abs} / {point.y_tot})",
+  "app.health-studies.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Evolution de la part des essais cliniques terminés ayant ouvert des résultat ou publication pour les 12 principaux promoteurs en France",
   "app.health-publi.affiliations.pays.chart-classement-pays.title": "Classement des 20 pays d'affiliation des auteurs de rang utile avec lesquels la France collabore le plus, selon le taux d’accès ouvert de leurs publications en santé ",
   "app.publi.affiliations.pays.chart-classement-pays.tooltip": "<b> Taux d'accès ouvert des publications de {point.publicationDate} ({point.bsoDomain})</b><br>Premier ou dernier auteur affilié {point.country}<br> {point.y:.0f} % en accès ouvert ({point.y_abs} / {point.y_tot})",
   "app.health-publi.affiliations.pays.chart-taux-rang-utile.title": "Evolution de la part des publications en accès ouvert selon le pays d'affiliation des premiers et derniers auteurs",

@@ -2022,6 +2022,53 @@ export const chartOptions = {
       return options;
     },
   },
+  'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre': {
+    getOptions: (id, intl, graph) => {
+      const options = getGraphOptions(id, intl);
+
+      const { data, color, name } = graph;
+      options.chart.type = 'column';
+      options.credits = { enabled: false };
+      options.plotOptions = {
+        series: {
+          stacking: false,
+          dataLabels: {
+            enabled: false,
+            // eslint-disable-next-line
+          },
+        },
+        column: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.xAxis = {
+        type: 'category',
+        categories: graph.data.map((el) => el.name),
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: 'var(--g800)',
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = [
+        {
+          data,
+          color,
+          name,
+        },
+      ];
+
+      return options;
+    },
+  },
   'studies.promoteurs.impact.chart-repartition': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
