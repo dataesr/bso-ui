@@ -963,6 +963,42 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesCharacteristicWhenDistribution: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              range: {
+                delay_submission_start: {
+                  from: -720,
+                  to: 720,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            delay_submission_start_perc: {
+              percentiles: {
+                field: 'delay_submission_start',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

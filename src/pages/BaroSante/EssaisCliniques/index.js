@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
+import ChartDistributionDeclarations from '../../../components/Charts/studies/caracteristiques/quand/chart-distribution-declarations';
 import ChartEvolutionTemporalite from '../../../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites';
 import ChartRepartitionAvantApres from '../../../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres';
 import ChartDynamiqueEvolution from '../../../components/Charts/studies/general/dynamique-ouverture/chart-evolution';
@@ -190,13 +191,18 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
+
                 <ChartRepartitionAvantApres
                   id='studies.caracteristiques.quand.chart-repartition-avant-apres'
                   domain='health'
                   studyType='Interventional'
                 />
-                <br />
-                app.health-interventional.studies.caracteristiques.quand.chart-distribution-declarations
+
+                <ChartDistributionDeclarations
+                  id='studies.caracteristiques.quand.chart-distribution-declarations'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection

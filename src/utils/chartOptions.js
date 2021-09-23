@@ -1799,4 +1799,29 @@ export const chartOptions = {
       return options;
     },
   },
+  'studies.caracteristiques.quand.chart-distribution-declarations': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+      options.chart = {
+        type: 'areasplinerange',
+        inverted: false,
+      };
+      options.yAxis = {
+        categories: data?.categories3 || [],
+        min: 0,
+        max: data?.categories3?.length - 1 || 10,
+        title: false,
+        reversed: true,
+      };
+      options.plotOptions = {
+        areasplinerange: {
+          marker: {
+            enabled: false,
+          },
+        },
+      };
+      options.series = data?.dataGraph3 || [];
+      return options;
+    },
+  },
 };

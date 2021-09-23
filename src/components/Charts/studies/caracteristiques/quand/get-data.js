@@ -95,11 +95,78 @@ function useGetData(studyType) {
       id: 'app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after',
     })}`;
 
+    const query3 = getFetchOptions(
+      'studiesCharacteristicWhenDistribution',
+      '',
+      studyType,
+    );
+    const res3 = await Axios.post(ES_STUDIES_API_URL, query3, HEADERS).catch(
+      (e) => console.log(e),
+    );
+    const dataSortedByYear3 = res3.data.aggregations.by_year.buckets.sort(
+      (a, b) => a.key - b.key,
+    );
+    const categories3 = dataSortedByYear3.map((el) => el.key);
+
+    const dataGraph3 = [];
+    dataSortedByYear3.forEach((year, index) => {
+      const violinData = {
+        before_start: [],
+        after_completion: [],
+      };
+      let total = 0;
+      Object.keys(year.delay_submission_start_perc.values).forEach((key) => {
+        const value = year.delay_submission_start_perc.values[key];
+        const percentageKey = parseInt(key, 10) / 100;
+        if (value < 0) {
+          violinData.before_start.push([
+            value,
+            index - (percentageKey - total),
+            index + (percentageKey - total),
+          ]);
+        } else {
+          violinData.after_completion.push([
+            value,
+            index - (percentageKey - total),
+            index + (percentageKey - total),
+          ]);
+        }
+        total = percentageKey;
+      });
+      // Extrapolate the limit between negative and positive data
+      const middleValue1 = (violinData.before_start[violinData.before_start.length - 1][1]
+          + violinData.after_completion[0][1])
+        / 2;
+      const middleValue2 = (violinData.before_start[violinData.before_start.length - 1][2]
+          + violinData.after_completion[0][2])
+        / 2;
+      violinData.before_start.push([0, middleValue1, middleValue2]);
+      violinData.after_completion.unshift([0, middleValue1, middleValue2]);
+      dataGraph3.push({
+        name: intl.formatMessage({
+          id: 'app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.before_start',
+        }),
+        color: colors.before_start,
+        data: violinData.before_start,
+        showInLegend: index === 0,
+      });
+      dataGraph3.push({
+        name: intl.formatMessage({
+          id: 'app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.after_completion',
+        }),
+        color: colors.after_completion,
+        data: violinData.after_completion,
+        showInLegend: index === 0,
+      });
+    });
+
     return {
       categories1: dataSortedByYear.map((el) => el.key),
       dataGraph1,
       categories2,
       dataGraph2,
+      categories3,
+      dataGraph3,
     };
   }
 
