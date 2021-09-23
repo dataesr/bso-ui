@@ -1752,24 +1752,21 @@ export const chartOptions = {
   'studies.general.trajectoires.chart-repartition': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-      options.colors = [getCSSValue('--acces-ouvert'), getCSSValue('--g-500')];
+      options.colors = [getCSSValue('--acces-ouvert')];
       options.chart.height = '800px';
-      options.plotOptions = {
-        sankey: {
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.intl}</b>',
-          },
-        },
-      };
 
       options.series = [
         {
-          keys: ['from', 'to', 'weight', 'intl'],
+          keys: ['from', 'to', 'weight'],
           data,
           type: 'sankey',
         },
       ];
+
+      options.nodes = [{
+        id: 'Completed',
+        name: 'toto',
+      }];
 
       return options;
     },

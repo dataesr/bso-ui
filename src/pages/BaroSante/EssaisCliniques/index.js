@@ -128,7 +128,13 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                app.health-interventional.studies.general.trajectoires.chart-repartition
+
+                <BSOChart
+                  id='studies.general.trajectoires.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
+
               </QuestionSection>
 
               <QuestionSection
