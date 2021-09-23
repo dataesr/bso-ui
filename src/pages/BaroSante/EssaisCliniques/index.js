@@ -7,7 +7,7 @@ import Banner from '../../../components/Banner';
 import BSOChart from '../../../components/Charts';
 import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
-import Glossary from '../../../components/Glossary';
+// import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
@@ -88,7 +88,7 @@ function EssaisCliniques() {
               </Col>
             </Row>
           </Container>
-          <Glossary entries={GlossaryEntries} />
+          {/* <Glossary entries={GlossaryEntries} /> */}
           {/* <DataCardSection lang={lang} domain='health' /> */}
         </Row>
         <GraphNavigation
