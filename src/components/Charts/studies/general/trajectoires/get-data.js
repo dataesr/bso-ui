@@ -106,31 +106,64 @@ function useGetData(studyType) {
     ];
 
     const intlKey = `app.health-${studyType.toLowerCase()}.studies.general.sankey`;
+    const color = {
+      linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+      stops: [
+        [0, 'rgba(98, 185, 58, 0.5)'],
+        [1, getCSSValue('--g-500')],
+      ],
+    };
 
     data.forEach((el) => {
       if (toShow.includes(el.key)) {
         // 1er niveau
-        dataGraph.push([intl.formatMessage({ id: `${intlKey}.start.label` }), el.key, el.doc_count]);
+        dataGraph.push({
+          from: intl.formatMessage({ id: `${intlKey}.start.label` }),
+          to: el.key,
+          weight: el.doc_count,
+          color,
+        });
 
         // by_has_results;
         el.by_has_results.buckets.forEach((elA) => {
-          const elAName = elA.key ? `${el.key}-has_result` : `${el.key}-no_result`;
+          const elAName = elA.key
+            ? `${el.key}-has_result`
+            : `${el.key}-no_result`;
 
           // by_has_publications_result
           if (toShow.includes(elAName)) {
-            dataGraph.push([el.key, elAName, elA.doc_count]);
+            dataGraph.push({
+              from: el.key,
+              to: elAName,
+              weight: elA.doc_count,
+              color,
+            });
 
             elA.by_has_publications_result.buckets.forEach((elB) => {
-              const elBName = elB.key ? `${elAName}-has_publications_result` : `${elAName}-no_publications_result`;
+              const elBName = elB.key
+                ? `${elAName}-has_publications_result`
+                : `${elAName}-no_publications_result`;
 
               if (toShow.includes(elBName)) {
-                dataGraph.push([elAName, elBName, elB.doc_count]);
+                dataGraph.push({
+                  from: elAName,
+                  to: elBName,
+                  weight: elB.doc_count,
+                  color,
+                });
 
                 // by_has_publication_oa
                 elB.by_has_publication_oa.buckets.forEach((elC) => {
-                  const elCName = elC.key ? `${elBName}-is_oa` : `${elBName}-closed`;
+                  const elCName = elC.key
+                    ? `${elBName}-is_oa`
+                    : `${elBName}-closed`;
                   if (toShow.includes(elCName)) {
-                    dataGraph.push([elBName, elCName, elC.doc_count]);
+                    dataGraph.push({
+                      from: elBName,
+                      to: elCName,
+                      weight: elC.doc_count,
+                      color,
+                    });
                   }
                 });
               }
@@ -139,7 +172,7 @@ function useGetData(studyType) {
         });
       }
     });
-console.log(dataGraph);
+    console.log(dataGraph);
     return dataGraph;
   }
 
