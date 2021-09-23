@@ -312,6 +312,28 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    sponsorsList: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor: {
+          terms: {
+            field: 'lead_sponsor.keyword',
+            size: 10000,
+          },
+        },
+      },
+    }),
     publisher: () => ({
       size: 0,
       aggs: {
@@ -678,7 +700,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesDynamiqueOuverture: ([studyType]) => ({
+    studiesDynamiqueOuverture: ([studyType, sponsor]) => ({
       size: 0,
       query: {
         bool: {
@@ -707,6 +729,39 @@ export default function getFetchOptions(key, domain, ...parameters) {
                     field: 'has_results_or_publications',
                   },
                 },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesDynamiqueOuvertureSponsor: ([studyType, sponsor]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor.keyword': sponsor,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_has_result: {
+              terms: {
+                field: 'has_results_or_publications',
               },
             },
           },
@@ -834,6 +889,93 @@ export default function getFetchOptions(key, domain, ...parameters) {
               terms: {
                 field: 'ipd_sharing.keyword',
                 missing: 'NA',
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesPromoteursImpactPaysLeadSponsor: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 20,
+          },
+          aggs: {
+            by_fr_only: {
+              terms: {
+                field: 'french_location_only',
+              },
+              aggs: {
+                by_sponsor_type: {
+                  terms: {
+                    field: 'lead_sponsor_type.keyword',
+                  },
+                  aggs: {
+                    by_has_result_or_publi: {
+                      terms: {
+                        field: 'has_results_or_publications',
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesPromoteursImpactPays: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_country: {
+          terms: {
+            field: 'location_country.keyword',
+            size: 11,
+          },
+          aggs: {
+            by_has_result_or_publi: {
+              terms: {
+                field: 'has_results_or_publications',
               },
             },
           },

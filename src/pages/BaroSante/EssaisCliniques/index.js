@@ -7,7 +7,7 @@ import Banner from '../../../components/Banner';
 import BSOChart from '../../../components/Charts';
 import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
-import Glossary from '../../../components/Glossary';
+// import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
@@ -90,7 +90,7 @@ function EssaisCliniques() {
               </Col>
             </Row>
           </Container>
-          <Glossary entries={GlossaryEntries} />
+          {/* <Glossary entries={GlossaryEntries} /> */}
           {/* <DataCardSection lang={lang} domain='health' /> */}
         </Row>
         <GraphNavigation
@@ -250,7 +250,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='promoteurs.dynamique-ouverture'
               >
-                app.health-interventional.studies.promoteurs.dynamique-ouverture.chart-part
+                <BSOChart
+                  id='studies.promoteurs.dynamique-ouverture.chart-part'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
                 app.health-interventional.studies.promoteurs.dynamique-ouverture.chart-evolution-nombre
               </QuestionSection>
@@ -260,9 +264,17 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
-                app.health-interventional.studies.promoteurs.impact.chart-repartition
+                <BSOChart
+                  id='studies.promoteurs.impact.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
-                app.health-interventional.studies.promoteurs.impact.chart-classement-pays
+                <BSOChart
+                  id='studies.promoteurs.impact.chart-classement-pays'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>
