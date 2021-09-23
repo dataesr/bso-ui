@@ -258,9 +258,17 @@ function EssaisCliniques() {
                 backgroundColor={bluesoft25}
                 anchorId='promoteurs.impact'
               >
-                app.health-interventional.studies.promoteurs.impact.chart-repartition
+                <BSOChart
+                  id='studies.promoteurs.impact.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
-                app.health-interventional.studies.promoteurs.impact.chart-classement-pays
+                <BSOChart
+                  id='studies.promoteurs.impact.chart-classement-pays'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>

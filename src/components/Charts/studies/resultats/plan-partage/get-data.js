@@ -68,7 +68,6 @@ function useGetData(studyType, sponsorType = '*') {
         },
       ],
     };
-    console.log('tttt', dataGraph1);
     return { dataGraph1 };
   }
 
