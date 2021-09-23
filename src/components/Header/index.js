@@ -221,21 +221,6 @@ function Header() {
               )}
             />
             <NavSubItem
-              current={path === urls.projet[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-projet',
-                defaultMessage: 'Le projet',
-              })}
-              asLink={(
-                <RouterLink to={urls.projet[lang]}>
-                  {intl.formatMessage({
-                    id: 'app.header.nav.a-propos-projet',
-                    defaultMessage: 'Le projet',
-                  })}
-                </RouterLink>
-              )}
-            />
-            <NavSubItem
               current={path === urls.flash[lang]}
               title={intl.formatMessage({
                 id: 'app.header.nav.a-propos-notes-flash',

@@ -2,7 +2,6 @@
 import './graph.scss';
 
 import {
-  Button as DSButton,
   Col,
   Container,
   Icon as DSIcon,
@@ -16,16 +15,31 @@ import {
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from 'react-share';
+
+import { getCSSValue } from '../../utils/helpers';
 
 const GraphFooter = ({
   source,
   date,
+  title,
   srcPath,
+  domain,
   onCsvButtonClick,
   onPngButtonClick,
 }) => {
   const intl = useIntl();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const urlToShare = `${window.location.origin}/integration/${srcPath}/${domain}`;
+  const shareFill = getCSSValue('--blue-soft-100');
+
   return (
     <>
       <div className='graph-footer'>
@@ -141,24 +155,32 @@ const GraphFooter = ({
                     defaultMessage='Partager ce graphique'
                   />
                 </div>
-                <DSButton
-                  title='twitter'
-                  icon='ri-twitter-fill'
-                  size='sm'
-                  className='bg-medium-blue'
-                />
-                <DSButton
-                  title='linkedin'
-                  icon='ri-linkedin-box-fill'
-                  size='sm'
-                  className='bg-medium-blue'
-                />
-                <DSButton
-                  title='facebook'
-                  icon='ri-facebook-box-fill'
-                  size='sm'
-                  className='bg-medium-blue'
-                />
+                <TwitterShareButton
+                  title={title}
+                  url={urlToShare}
+                  text={title}
+                  hashtags={['OpenAccess,ScienceOuverte', 'dataESR']}
+                  related={['sup_recherche', 'ouvrirlascience']}
+                  via='ouvrirlascience'
+                  className='share-btn'
+                >
+                  <TwitterIcon size={30} bgStyle={{ fill: shareFill }} />
+                </TwitterShareButton>
+                <LinkedinShareButton
+                  url={urlToShare}
+                  title={title}
+                  className='share-btn'
+                >
+                  <LinkedinIcon size={30} bgStyle={{ fill: shareFill }} />
+                </LinkedinShareButton>
+                <FacebookShareButton
+                  className='share-btn'
+                  quote={title}
+                  url={urlToShare}
+                  hashtag='ScienceOuverte'
+                >
+                  <FacebookIcon size={30} bgStyle={{ fill: shareFill }} />
+                </FacebookShareButton>
               </div>
             </Col>
           </Row>
@@ -214,13 +236,17 @@ export default GraphFooter;
 
 GraphFooter.defaultProps = {
   source: '',
+  domain: '',
   date: '',
+  title: '',
   srcPath: '',
   onCsvButtonClick: null,
   onPngButtonClick: null,
 };
 GraphFooter.propTypes = {
   source: PropTypes.string,
+  domain: PropTypes.string,
+  title: PropTypes.string,
   date: PropTypes.string,
   srcPath: PropTypes.string, // pour lien intégration
   onCsvButtonClick: PropTypes.func,

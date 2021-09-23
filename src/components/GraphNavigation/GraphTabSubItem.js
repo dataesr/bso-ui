@@ -1,10 +1,13 @@
 import { Icon } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
+
+import useGraphNavigation from '../../utils/Hooks/useGraphNavigation';
 
 function GraphTabSubItem({ label, activeTab, children }) {
-  const [open, setOpen] = useState(false);
+  const { openedTab, openTab } = useGraphNavigation();
+  const open = openedTab === label;
 
   return (
     <section className='tab marianne-light relative'>
@@ -14,7 +17,7 @@ function GraphTabSubItem({ label, activeTab, children }) {
           'marianne-bold activeTab': activeTab,
         })}
         type='button'
-        onClick={() => setOpen(!open)}
+        onClick={() => openTab(openedTab === label ? '' : label)}
       >
         <Icon
           name={open ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'}

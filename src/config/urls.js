@@ -99,14 +99,6 @@ export default {
     fr: '/sante/etudes-observationnelles',
     en: '/health/obstervational-studies',
   },
-  themes: {
-    fr: '/themes',
-    en: '/themes',
-  },
-  themes1: {
-    fr: '/theme-1',
-    en: '/theme-1',
-  },
   methodologie: {
     fr: '/a-propos/methodologie',
     en: '/about/methodology',
@@ -122,10 +114,6 @@ export default {
   flash: {
     fr: '/a-propos/notes-flash',
     en: '/about/flash-notes',
-  },
-  projet: {
-    fr: '/a-propos/le-projet',
-    en: '/about/the-project',
   },
   integration: {
     fr: '/integration/:graphId/:domain?',

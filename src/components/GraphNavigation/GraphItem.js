@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import useViewport from '../../utils/Hooks/useViewport';
+import GraphNavigationLink from './GraphNavigationLink';
 import GraphTabSubItem from './GraphTabSubItem';
 
 function GraphItem({ links, mainLabel, paths }) {
@@ -36,7 +37,7 @@ function GraphItem({ links, mainLabel, paths }) {
         }, 200);
       }
     }
-  }, [desktop, location, mobile]);
+  }, [desktop, location, mainLabel, mobile]);
 
   return (
     <>
@@ -60,9 +61,11 @@ function GraphItem({ links, mainLabel, paths }) {
           activeTab={paths.indexOf(`${location.pathname}`) > -1}
         >
           {links.map((link) => (
-            <li key={uuidv4()}>
-              <DSLink as={<Link to={link.href} />}>{link.label}</DSLink>
-            </li>
+            <GraphNavigationLink
+              key={uuidv4()}
+              href={link.href}
+              label={link.label}
+            />
           ))}
         </GraphTabSubItem>
       )}

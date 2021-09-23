@@ -290,6 +290,50 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    sponsorsTypesList: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor_type: {
+          terms: {
+            field: 'lead_sponsor_type.keyword',
+            size: 10000,
+          },
+        },
+      },
+    }),
+    sponsorsList: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor: {
+          terms: {
+            field: 'lead_sponsor.keyword',
+            size: 10000,
+          },
+        },
+      },
+    }),
     publisher: () => ({
       size: 0,
       aggs: {
@@ -691,7 +735,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesTrajectoires: ([studyType]) => ({
+    studiesDynamiqueOuvertureSponsor: ([studyType, sponsor]) => ({
       size: 0,
       query: {
         bool: {
@@ -701,33 +745,281 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 'study_type.keyword': studyType,
               },
             },
+            {
+              wildcard: {
+                'lead_sponsor.keyword': sponsor,
+              },
+            },
           ],
         },
       },
       aggs: {
-        by_status: {
+        by_year: {
           terms: {
-            field: 'status.keyword',
+            field: 'study_start_year',
           },
           aggs: {
-            by_has_results: {
+            by_has_result: {
+              terms: {
+                field: 'has_results_or_publications',
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsTypeDiffusion: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_has_result: {
               terms: {
                 field: 'has_results',
-                missing: false,
               },
               aggs: {
                 by_has_publications_result: {
                   terms: {
                     field: 'has_publications_result',
-                    missing: false,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsTypeDiffusionTypeIntervention: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_intervention_type: {
+          terms: {
+            field: 'intervention_type.keyword',
+            size: 30,
+          },
+          aggs: {
+            by_has_result: {
+              terms: {
+                field: 'has_results',
+              },
+              aggs: {
+                by_has_publications_result: {
+                  terms: {
+                    field: 'has_publications_result',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsPlanPartage: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_ipd: {
+              terms: {
+                field: 'ipd_sharing.keyword',
+                missing: 'NA',
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesPromoteursImpactPaysLeadSponsor: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 20,
+          },
+          aggs: {
+            by_fr_only: {
+              terms: {
+                field: 'french_location_only',
+              },
+              aggs: {
+                by_sponsor_type: {
+                  terms: {
+                    field: 'lead_sponsor_type.keyword',
                   },
                   aggs: {
-                    by_has_publication_oa: {
+                    by_has_result_or_publi: {
                       terms: {
-                        field: 'has_publication_oa',
-                        missing: false,
+                        field: 'has_results_or_publications',
                       },
                     },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesPromoteursImpactPays: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_country: {
+          terms: {
+            field: 'location_country.keyword',
+            size: 11,
+          },
+          aggs: {
+            by_has_result_or_publi: {
+              terms: {
+                field: 'has_results_or_publications',
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesResultsPublicationsOa: ([studyType, sponsorType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+            size: 30,
+          },
+          aggs: {
+            by_has_publications: {
+              terms: {
+                field: 'has_publications_result',
+              },
+              aggs: {
+                by_oa: {
+                  terms: {
+                    field: 'publication_access',
                   },
                 },
               },
@@ -922,6 +1214,51 @@ export default function getFetchOptions(key, domain, ...parameters) {
             by_publication_split: {
               terms: {
                 field: `${splitField}`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesTrajectoires: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_status: {
+          terms: {
+            field: 'status.keyword',
+          },
+          aggs: {
+            by_has_results: {
+              terms: {
+                field: 'has_results',
+                missing: false,
+              },
+              aggs: {
+                by_has_publications_result: {
+                  terms: {
+                    field: 'has_publications_result',
+                    missing: false,
+                  },
+                  aggs: {
+                    by_has_publication_oa: {
+                      terms: {
+                        field: 'has_publication_oa',
+                        missing: false,
+                      },
+                    },
+                  },
+                },
               },
             },
           },
