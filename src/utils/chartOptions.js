@@ -1738,7 +1738,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -1746,6 +1746,402 @@ export const chartOptions = {
       };
       options.series = data?.series || [];
 
+      return options;
+    },
+  },
+  'studies.general.trajectoires.chart-repartition': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+      options.colors = [getCSSValue('--acces-ouvert')];
+      options.chart.height = '800px';
+
+      options.series = [
+        {
+          keys: ['from', 'to', 'weight'],
+          data,
+          type: 'sankey',
+          nodes: [
+            {
+              id: 'Completed',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Completed.label',
+              }),
+            },
+            {
+              id: 'Completed-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Completed-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Completed-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Completed-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Completed-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Completed-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Recruiting',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Recruiting.label',
+              }),
+            },
+            {
+              id: 'Recruiting-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Recruiting-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Recruiting-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Recruiting-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Recruiting-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Recruiting-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Unknown status',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Unknown status.label',
+              }),
+            },
+            {
+              id: 'Unknown status-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Unknown status-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Unknown status-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Unknown status-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Unknown status-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Unknown status-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Not yet recruiting',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Not yet recruiting.label',
+              }),
+            },
+            {
+              id: 'Not yet recruiting-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Not yet recruiting-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Not yet recruiting-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Not yet recruiting-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Not yet recruiting-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Not yet recruiting-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Active, not recruiting',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Active, not recruiting.label',
+              }),
+            },
+            {
+              id: 'Active, not recruiting-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Active, not recruiting-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Active, not recruiting-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Active, not recruiting-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Active, not recruiting-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Active, not recruiting-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Terminated',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Terminated.label',
+              }),
+            },
+            {
+              id: 'Terminated-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Terminated-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Terminated-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Terminated-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Terminated-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Terminated-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Enrolling by invitation',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Enrolling by invitation.label',
+              }),
+            },
+            {
+              id: 'Enrolling by invitation-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Enrolling by invitation-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Enrolling by invitation-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Enrolling by invitation-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Enrolling by invitation-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Enrolling by invitation-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Withdrawn',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Withdrawn.label',
+              }),
+            },
+            {
+              id: 'Withdrawn-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Withdrawn-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Withdrawn-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Withdrawn-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Withdrawn-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Withdrawn-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+            {
+              id: 'Suspended',
+              name: intl.formatMessage({
+                id: 'app.health-observational.studies.general.sankey.Suspended.label',
+              }),
+            },
+            {
+              id: 'Suspended-has_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_result.label',
+              }),
+            },
+            {
+              id: 'Suspended-no_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_result.label',
+              }),
+            },
+            {
+              id: 'Suspended-has_result-has_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.has_publications_result.label',
+              }),
+            },
+            {
+              id: 'Suspended-has_result-has_publications_result-closed',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.closed.label',
+              }),
+            },
+            {
+              id: 'Suspended-has_result-has_publications_result-is_oa',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.is_oa.label',
+              }),
+            },
+            {
+              id: 'Suspended-has_result-no_publications_result',
+              name: intl.formatMessage({
+                id: 'app.studies.general.sankey.no_publications_result.label',
+              }),
+            },
+          ],
+        },
+      ];
       return options;
     },
   },
@@ -2095,7 +2491,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-
       return options;
     },
   },
