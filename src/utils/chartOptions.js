@@ -1806,6 +1806,7 @@ export const chartOptions = {
         type: 'areasplinerange',
         inverted: false,
       };
+      options.xAxis.gridLineWidth = 1;
       options.yAxis = {
         categories: data?.categories3 || [],
         min: 0,

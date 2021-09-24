@@ -109,14 +109,19 @@ function useGetData(studyType) {
     const categories3 = dataSortedByYear3.map((el) => el.key);
 
     const dataGraph3 = [];
+    const median = [];
     dataSortedByYear3.forEach((year, index) => {
       const violinData = {
         before_start: [],
         after_completion: [],
       };
+      median.push([
+        year.delay_submission_start_perc.values['50.0'] / 30,
+        index,
+      ]);
       let total = 0;
       Object.keys(year.delay_submission_start_perc.values).forEach((key) => {
-        const value = year.delay_submission_start_perc.values[key];
+        const value = year.delay_submission_start_perc.values[key] / 30;
         const percentageKey = parseInt(key, 10) / 100;
         if (value < 0) {
           violinData.before_start.push([
@@ -133,13 +138,15 @@ function useGetData(studyType) {
         }
         total = percentageKey;
       });
-      // Extrapolate the limit between negative and positive data
-      const middleValue1 = (violinData.before_start[violinData.before_start.length - 1][1]
-          + violinData.after_completion[0][1])
-        / 2;
-      const middleValue2 = (violinData.before_start[violinData.before_start.length - 1][2]
-          + violinData.after_completion[0][2])
-        / 2;
+      // Extrapolate the limit between negative and positive data, linear regression
+      const [x1, y1, y1b] = violinData.before_start[violinData.before_start.length - 1];
+      const [x3, y3, y3b] = violinData.after_completion[0];
+      let a = (y3 - y1) / (x3 - x1);
+      let b = y1 - a * x1;
+      const middleValue1 = b;
+      a = (y3b - y1b) / (x3 - x1);
+      b = y1b - a * x1;
+      const middleValue2 = b;
       violinData.before_start.push([0, middleValue1, middleValue2]);
       violinData.after_completion.unshift([0, middleValue1, middleValue2]);
       dataGraph3.push({
@@ -158,6 +165,31 @@ function useGetData(studyType) {
         data: violinData.after_completion,
         showInLegend: index === 0,
       });
+    });
+    // Add vertical line on x 0
+    dataGraph3.push({
+      type: 'line',
+      data: [
+        [0, -1],
+        [0, 10],
+      ],
+      color: getCSSValue('--g-800'),
+      lineWidth: 1,
+      showInLegend: false,
+    });
+    // Add median line
+    dataGraph3.push({
+      type: 'spline',
+      data: median,
+      name: 'Médiane',
+      color: '#000',
+      marker: {
+        enabled: true,
+        symbol: 'circle',
+        lineWidth: 2,
+        lineColor: '#000',
+        fillColor: getCSSValue('--white'),
+      },
     });
 
     return {
