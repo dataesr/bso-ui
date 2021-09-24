@@ -888,7 +888,7 @@ export const chartOptions = {
           marker: {
             enabled: true,
             lineWidth: 2,
-            fillColor: '#000',
+            fillColor: getCSSValue('--black'),
           },
         },
       };
@@ -1699,7 +1699,7 @@ export const chartOptions = {
           marker: {
             enabled: true,
             lineWidth: 2,
-            fillColor: '#000',
+            fillColor: getCSSValue('--black'),
           },
         },
       };
@@ -2263,6 +2263,28 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraph3 || [];
+      return options;
+    },
+  },
+  'studies.caracteristiques.duree.chart-nombre': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl);
+      options.title = {
+        text: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.duree.chart-nombre.chart-title`,
+        }),
+        verticalAlign: 'bottom',
+      };
+      options.legend = {
+        verticalAlign: 'top',
+        align: 'left',
+      };
+      options.chart.type = 'column';
+      options.yAxis = {
+        categories: data?.categories || [],
+        title: null,
+      };
+      options.series = data?.dataGraph || [];
       return options;
     },
   },

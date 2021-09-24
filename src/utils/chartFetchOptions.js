@@ -1442,6 +1442,33 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesCaracteristiquesDureeChartNombre: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        delay_start_completion: {
+          histogram: {
+            field: 'delay_start_completion',
+            interval: 365,
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

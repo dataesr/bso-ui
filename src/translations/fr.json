@@ -383,10 +383,12 @@
 
   "app.health-interventional.studies.caracteristiques.duree.title": "Combien de temps durent les essais ?",
   "app.health-interventional.studies.caracteristiques.duree.description": "2.2.2",
-  "app.health-interventional.studies.caracteristiques.duree.chart-nombre.title": "Nombre d'essais cliniques terminé déclarés selon leur durée moyenne",
+  "app.health-interventional.studies.caracteristiques.duree.chart-nombre.title": "Nombre d'essais cliniques terminés déclarés selon leur durée moyenne",
   "app.health-interventional.studies.caracteristiques.duree.chart-nombre.comments": "comments",
   "app.health-interventional.studies.caracteristiques.duree.chart-nombre.source": "source",
   "app.health-interventional.studies.caracteristiques.duree.chart-nombre.tooltip": "tooltip",
+  "app.health-interventional.studies.caracteristiques.duree.chart-nombre.legend": "Nombre d'essais déclarés",
+  "app.health-interventional.studies.caracteristiques.duree.chart-nombre.chart-title": "Durée moyenne de l'essai",
 
   "app.health-interventional.studies.caracteristiques.combien.title": "Combien de patients sont impliqué dans les essais cliniques ?",
   "app.health-interventional.studies.caracteristiques.combien.description": "2.2.3",

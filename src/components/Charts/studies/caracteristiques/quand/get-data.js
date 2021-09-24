@@ -179,12 +179,12 @@ function useGetData(studyType) {
       name: intl.formatMessage({
         id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.median`,
       }),
-      color: '#000',
+      color: getCSSValue('--black'),
       marker: {
         enabled: true,
         symbol: 'circle',
         lineWidth: 2,
-        lineColor: '#000',
+        lineColor: getCSSValue('--black'),
         fillColor: getCSSValue('--white'),
       },
     });

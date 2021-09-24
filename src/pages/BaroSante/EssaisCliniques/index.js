@@ -214,7 +214,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='caracteristiques.duree'
               >
-                app.health-interventional.studies.caracteristiques.duree.chart-nombre
+                <BSOChart
+                  id='studies.caracteristiques.duree.chart-nombre'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
