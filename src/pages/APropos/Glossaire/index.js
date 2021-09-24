@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import GlossaryEntries from '../../../translations/glossary.json';
+import { alphabet } from '../../../utils/constants';
 import { sortByPath } from '../../../utils/helpers';
 import useViewport from '../../../utils/Hooks/useViewport';
 
@@ -22,34 +23,7 @@ function Glossaire() {
   const intl = useIntl();
   const { mobile } = useViewport();
   const [activeLetter, setActiveLetter] = useState('');
-  const alphabet = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-  ];
+
   const options = alphabet.map((letter) => ({
     label: letter.toUpperCase(),
     value: letter,

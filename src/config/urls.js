@@ -22,8 +22,8 @@ export default {
         en: '/publications/archives',
       },
     ],
-    fr: '/publications',
-    en: '/publications',
+    fr: '/publications/general',
+    en: '/publications/general',
   },
   sante: {
     fr: '/sante',
@@ -52,8 +52,8 @@ export default {
         en: '/health/publications/affiliations',
       },
     ],
-    fr: '/sante/publications',
-    en: '/health/publications',
+    fr: '/sante/publications/general',
+    en: '/health/publications/general',
   },
   santeEssais: {
     tabs: [
@@ -74,8 +74,8 @@ export default {
         en: '/health/clinical-trials/results',
       },
     ],
-    fr: '/sante/essais-cliniques',
-    en: '/health/clinical-trials',
+    fr: '/sante/essais-cliniques/general',
+    en: '/health/clinical-trials/general',
   },
   santeEtudes: {
     tabs: [
@@ -96,8 +96,8 @@ export default {
         en: '/health/observational-studies/results',
       },
     ],
-    fr: '/sante/etudes-observationnelles',
-    en: '/health/obstervational-studies',
+    fr: '/sante/etudes-observationnelles/general',
+    en: '/health/obstervational-studies/general',
   },
   methodologie: {
     fr: '/a-propos/methodologie',
