@@ -1278,6 +1278,51 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesTrajectoires: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_status: {
+          terms: {
+            field: 'status.keyword',
+          },
+          aggs: {
+            by_has_results: {
+              terms: {
+                field: 'has_results',
+                missing: false,
+              },
+              aggs: {
+                by_has_publications_result: {
+                  terms: {
+                    field: 'has_publications_result',
+                    missing: false,
+                  },
+                  aggs: {
+                    by_has_publication_oa: {
+                      terms: {
+                        field: 'has_publication_oa',
+                        missing: false,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     affiliationsList: ([observationSnap]) => ({
       size: 0,
       query: {
