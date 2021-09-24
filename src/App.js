@@ -1,10 +1,11 @@
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
+import WebTracking from './components/WebTracking';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
@@ -29,94 +30,105 @@ const messages = {
 
 function App() {
   const { lang, urls } = useLang();
-  return (
-    <BrowserRouter>
-      <IntlProvider locale={lang} messages={messages[lang]}>
-        <Header />
-        <Switch>
-          <Route path='/translations'>
-            <TranslationPage />
-          </Route>
-          <Route
-            exact
-            path={Object.keys(urls.national).map((l) => urls.national[l])}
-          >
-            <BaroNational />
-          </Route>
-          <Route
-            exact
-            path={urls.nationalPublications.tabs
-              .map((tab) => Object.keys(tab).map((l) => tab[l]))
-              .flat(1)}
-          >
-            <GraphNavigationContextProvider>
-              <NationalPublications />
-            </GraphNavigationContextProvider>
-          </Route>
-          <Route exact path={Object.keys(urls.sante).map((l) => urls.sante[l])}>
-            <BaroSante />
-          </Route>
-          <Route
-            exact
-            path={urls.santePublications.tabs
-              .map((tab) => Object.keys(tab).map((l) => tab[l]))
-              .flat(1)}
-          >
-            <GraphNavigationContextProvider>
-              <SantePublications />
-            </GraphNavigationContextProvider>
-          </Route>
-          <Route
-            exact
-            path={urls.santeEssais.tabs
-              .map((tab) => Object.keys(tab).map((l) => tab[l]))
-              .flat(1)}
-          >
-            <GraphNavigationContextProvider>
-              <EssaisCliniques />
-            </GraphNavigationContextProvider>
-          </Route>
 
-          <Route
-            exact
-            path={urls.santeEtudes.tabs
-              .map((tab) => Object.keys(tab).map((l) => tab[l]))
-              .flat(1)}
-          >
-            <Etudes />
-          </Route>
-          <Route
-            exact
-            path={Object.keys(urls.methodologie).map(
-              (l) => urls.methodologie[l],
-            )}
-          >
-            <Methodologie />
-          </Route>
-          <Route exact path={Object.keys(urls.faq).map((l) => urls.faq[l])}>
-            <FAQ />
-          </Route>
-          <Route
-            exact
-            path={Object.keys(urls.glossaire).map((l) => urls.glossaire[l])}
-          >
-            <Glossaire />
-          </Route>
-          <Route exact path={Object.keys(urls.flash).map((l) => urls.flash[l])}>
-            <NotesFlash />
-          </Route>
-          <Route
-            path={Object.keys(urls.integration).map((l) => urls.integration[l])}
-          >
-            <Integration />
-          </Route>
-          <Route exact path='*'>
-            <div>Not Found</div>
-          </Route>
-        </Switch>
-        <Footer />
+  return (
+    <Router>
+      <IntlProvider locale={lang} messages={messages[lang]}>
+        <WebTracking>
+          <Header />
+          <Switch>
+            <Route path='/translations'>
+              <TranslationPage />
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.national).map((l) => urls.national[l])}
+            >
+              <BaroNational />
+            </Route>
+            <Route
+              exact
+              path={urls.nationalPublications.tabs
+                .map((tab) => Object.keys(tab).map((l) => tab[l]))
+                .flat(1)}
+            >
+              <GraphNavigationContextProvider>
+                <NationalPublications />
+              </GraphNavigationContextProvider>
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.sante).map((l) => urls.sante[l])}
+            >
+              <BaroSante />
+            </Route>
+            <Route
+              exact
+              path={urls.santePublications.tabs
+                .map((tab) => Object.keys(tab).map((l) => tab[l]))
+                .flat(1)}
+            >
+              <GraphNavigationContextProvider>
+                <SantePublications />
+              </GraphNavigationContextProvider>
+            </Route>
+            <Route
+              exact
+              path={urls.santeEssais.tabs
+                .map((tab) => Object.keys(tab).map((l) => tab[l]))
+                .flat(1)}
+            >
+              <GraphNavigationContextProvider>
+                <EssaisCliniques />
+              </GraphNavigationContextProvider>
+            </Route>
+
+            <Route
+              exact
+              path={urls.santeEtudes.tabs
+                .map((tab) => Object.keys(tab).map((l) => tab[l]))
+                .flat(1)}
+            >
+              <Etudes />
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.methodologie).map(
+                (l) => urls.methodologie[l],
+              )}
+            >
+              <Methodologie />
+            </Route>
+            <Route exact path={Object.keys(urls.faq).map((l) => urls.faq[l])}>
+              <FAQ />
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.glossaire).map((l) => urls.glossaire[l])}
+            >
+              <Glossaire />
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.flash).map((l) => urls.flash[l])}
+            >
+              <NotesFlash />
+            </Route>
+            <Route
+              path={Object.keys(urls.integration).map(
+                (l) => urls.integration[l],
+              )}
+            >
+              <Integration />
+            </Route>
+            <Route exact path='*'>
+              <div>Not Found</div>
+            </Route>
+          </Switch>
+          <Footer />
+        </WebTracking>
       </IntlProvider>
-    </BrowserRouter>
+    </Router>
   );
 }
 
