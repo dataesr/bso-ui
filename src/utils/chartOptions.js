@@ -1716,7 +1716,6 @@ export const chartOptions = {
   'studies.general.dynamique.chart-evolution': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
       options.chart.type = 'column';
       options.plotOptions = {
         bar: {
@@ -2180,7 +2179,90 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-
+      return options;
+    },
+  },
+  'studies.caracteristiques.quand.chart-evolution-temporalites': {
+    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories: data?.categories1 || [],
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.yAxis.max = 100;
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            // eslint-disable-next-line
+            formatter: function () {
+              // eslint-disable-next-line
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data?.dataGraph1 || [];
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: `${idWithDomainAndStudyType}.tooltip`,
+      });
+      return options;
+    },
+  },
+  'studies.caracteristiques.quand.chart-repartition-avant-apres': {
+    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories: data?.categories2 || [],
+      };
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: false,
+          },
+        },
+        series: {
+          pointWidth: 20,
+        },
+      };
+      options.series = data?.dataGraph2 || [];
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: `${idWithDomainAndStudyType}.tooltip`,
+      });
+      return options;
+    },
+  },
+  'studies.caracteristiques.quand.chart-distribution-declarations': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions(id, intl);
+      options.chart = {
+        type: 'areasplinerange',
+        inverted: false,
+        height: '600px',
+      };
+      options.xAxis.gridLineWidth = 1;
+      options.yAxis = {
+        categories: data?.categories3 || [],
+        min: 0,
+        max: data?.categories3?.length - 1 || 10,
+        title: false,
+        reversed: true,
+      };
+      options.plotOptions = {
+        areasplinerange: {
+          marker: {
+            enabled: false,
+          },
+        },
+      };
+      options.series = data?.dataGraph3 || [];
       return options;
     },
   },

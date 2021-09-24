@@ -359,16 +359,22 @@
   "app.health-interventional.studies.navigation.caracteristiques.types": "Quels types d'essais",
 
   "app.health-interventional.studies.caracteristiques.quand.title": "Quand a eu lieu la déclaration de l'essai clinique ?",
-  "app.health-interventional.studies.caracteristiques.quand.description": "2.2.1",
+  "app.health-interventional.studies.caracteristiques.quand.description": "Description 2.2.1",
   "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.title": "Evolution des temporalités des essais cliniques",
   "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.comments": "comments",
   "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.source": "source",
-  "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.tooltip": "tooltip",
+  "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.tooltip": "<strong>Année de publication {point.x}</strong> <br>• Essais cliniques déclarés <br> {series.name} : <br> {point.yLabel}% ({point.yValue} / {point.yTotal})",
+  "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.before_start": "Avant le début de l'essai",
+  "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.after_start": "Après le début de l'essai",
+  "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.during_study": "Pendant l'essai",
+  "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.after_completion": "Après la fin de l'essai",
+  "app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.median": "Médiane",
 
-  "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.title": "Répartition des déclarations réalisées avant ou parès la date de début de l'essai",
+  "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.title": "Répartition des déclarations réalisées avant ou après la date de début de l'essai",
   "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.comments": "comments",
   "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.source": "source",
-  "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "tooltip",
+  "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "{point.y} essais cliniques",
+  "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after": "mois après",
 
   "app.health-interventional.studies.caracteristiques.quand.chart-distribution-declarations.title": "Distribution des déclarations d'essais cliniques par année, selon la durée entre la déclaration et le début de l'essai",
   "app.health-interventional.studies.caracteristiques.quand.chart-distribution-declarations.comments": "comments",
@@ -509,7 +515,7 @@
   "app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.source": "source",
   "app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites.tooltip": "tooltip",
 
-  "app.health-observational.studies.caracteristiques.quand.chart-repartition-avant-apres.title": "Répartition des déclarations réalisées avant ou parès la date de début de l'étude",
+  "app.health-observational.studies.caracteristiques.quand.chart-repartition-avant-apres.title": "Répartition des déclarations réalisées avant ou après la date de début de l'étude",
   "app.health-observational.studies.caracteristiques.quand.chart-repartition-avant-apres.comments": "comments",
   "app.health-observational.studies.caracteristiques.quand.chart-repartition-avant-apres.source": "source",
   "app.health-observational.studies.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "tooltip",
@@ -628,7 +634,7 @@
   "app.studies.general.sankey.no_publications_result.label": "Sans publication",
   "app.studies.general.sankey.is_oa.label": "Accès ouvert",
   "app.studies.general.sankey.closed.label": "Accès fermé",
-  
+
   "app.health-observational.studies.general.sankey.start.label": "Etudes observationnelles déclarés publiquement",
   "app.health-observational.studies.general.sankey.Completed.label": "ComplèteXX",
   "app.health-observational.studies.general.sankey.Recruiting.label": "Recruiting",

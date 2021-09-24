@@ -167,5 +167,7 @@ export function withDomainAndStudyType(
   domain = 'health',
   studyType = 'Interventional',
 ) {
-  return `app.${domain || 'health'}-${studyType || 'Interventional'}.${id}`;
+  return `app.${domain || 'health'}-${
+    studyType.toLowerCase() || 'interventional'
+  }.${id}`;
 }

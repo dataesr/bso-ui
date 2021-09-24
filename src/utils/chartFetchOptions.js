@@ -872,7 +872,10 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesResultsTypeDiffusionTypeIntervention: ([studyType, sponsorType]) => ({
+    studiesResultsTypeDiffusionTypeIntervention: ([
+      studyType,
+      sponsorType,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1341,6 +1344,100 @@ export default function getFetchOptions(key, domain, ...parameters) {
           terms: {
             field: 'french_affiliations_types.keyword',
             size: 10000,
+          },
+        },
+      },
+    }),
+    studiesCaracteristiquesQuandEvolution: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_submission_temporality: {
+              terms: {
+                field: 'submission_temporality.keyword',
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesCaracteristiquesQuandRepartition: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              range: {
+                delay_submission_start: {
+                  from: -720,
+                  to: 720,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        delay_submission_start: {
+          histogram: {
+            field: 'delay_submission_start',
+            interval: 30,
+          },
+        },
+      },
+    }),
+    studiesCaracteristiquesQuandDistribution: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              range: {
+                delay_submission_start: {
+                  from: -720,
+                  to: 720,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            delay_submission_start_perc: {
+              percentiles: {
+                field: 'delay_submission_start',
+              },
+            },
           },
         },
       },

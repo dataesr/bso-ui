@@ -15,7 +15,7 @@ import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
-import GlossaryEntries from '../../../translations/glossary.json';
+// import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
@@ -43,7 +43,7 @@ function EssaisCliniques() {
     <Container fluid className='page essais'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle={<FormattedMessage id='app.baro-sante.sub-title' />}
+        supTitle={<FormattedMessage id='app.header.title-health' />}
         title={<FormattedMessage id='app.header.nav.baro-sante-essais' />}
         chip={<Chip />}
         icons={renderIcons}
@@ -136,7 +136,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-
               </QuestionSection>
 
               <QuestionSection
@@ -191,11 +190,23 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.quand'
               >
-                app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites
-                <br />
-                app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres
-                <br />
-                app.health-interventional.studies.caracteristiques.quand.chart-distribution-declarations
+                <BSOChart
+                  id='studies.caracteristiques.quand.chart-evolution-temporalites'
+                  domain='health'
+                  studyType='Interventional'
+                />
+
+                <BSOChart
+                  id='studies.caracteristiques.quand.chart-repartition-avant-apres'
+                  domain='health'
+                  studyType='Interventional'
+                />
+
+                <BSOChart
+                  id='studies.caracteristiques.quand.chart-distribution-declarations'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
