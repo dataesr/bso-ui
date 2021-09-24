@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -7,7 +8,7 @@ import Banner from '../../../components/Banner';
 // import DataCardSection from '../../../components/DataCardsSection';
 import BSOChart from '../../../components/Charts';
 import Chip from '../../../components/Chip';
-import Glossary from '../../../components/Glossary';
+// import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
@@ -90,7 +91,7 @@ function EtudesObservationnelles() {
               </Col>
             </Row>
           </Container>
-          <Glossary entries={GlossaryEntries} />
+          {/* <Glossary entries={GlossaryEntries} /> */}
           {/* <DataCardSection lang={lang} domain='health' /> */}
         </Row>
         <GraphNavigation
@@ -130,7 +131,12 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-                app.health-observational.studies.general.trajectoires.chart-repartition
+
+                <BSOChart
+                  id='studies.general.trajectoires.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
