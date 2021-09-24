@@ -18,7 +18,7 @@ function useGetData(studyType, sponsor = '*') {
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     const query2 = getFetchOptions('studiesDynamiqueOuvertureSponsor', '', studyType, sponsor);
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
-    const query3 = getFetchOptions('studiesResultsTypeDiffusionTypeIntervention', '', studyType, sponsor);
+    const query3 = getFetchOptions('studiesDynamiqueSponsor', '', studyType, sponsor);
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
@@ -94,52 +94,36 @@ function useGetData(studyType, sponsor = '*') {
     }
     const dataGraph1 = { categories, series };
 
-    const data2 = res[2].data.aggregations.by_intervention_type.buckets;
-    const dataGraph2 = {
-      categories: data2.map((el) => intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` })),
-      series: [
-        {
-          name: intl.formatMessage({ id: 'app.studies.results-only' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--resultat-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--publication-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.results-and-publications' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--resultat-et-publication'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.no-results-publications' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--g-400'),
-        },
-      ],
-    };
+    const data2 = res[2].data.aggregations.by_sponsor.buckets;
+    console.log('ttt', data2);
+    const tab = [];
+    const nbHisto = 10;
+    const lastYear = currentYear;
+    res[2].data.aggregations.by_sponsor.buckets.forEach((currentSponsor) => {
+      if (currentSponsor.key !== 'N/A') {
+        const bucket = currentSponsor.by_type.buckets[0];
+        const obj = {
+          name: currentSponsor.key,
+          sponsor_type: bucket.key,
+          color: (bucket.key === 'academique') ? getCSSValue('--lead-sponsor-public') : getCSSValue('--lead-sponsor-privee'),
+          data: bucket.by_year.buckets
+            .filter(
+              (el) => el.key > lastYear - nbHisto
+                && el.key <= lastYear,
+            )
+            .sort((a, b) => a.key - b.key)
+            .map((el) => ({
+              name: el.key,
+              year: el.key,
+              y_tot: el.doc_count,
+              y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
+              y: (100 * el.by_has_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0) / el?.doc_count,
+            })),
+        };
+        tab.push(obj);
+      }
+    });
+    const dataGraph2 = tab.slice(0, 12);
     return { dataGraph1, dataGraph2 };
   }
 

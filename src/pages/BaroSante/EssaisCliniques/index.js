@@ -262,7 +262,11 @@ function EssaisCliniques() {
                   studyType='Interventional'
                 />
                 <br />
-                app.health-interventional.studies.promoteurs.dynamique-ouverture.chart-evolution-nombre
+                <BSOChart
+                  id='studies.promoteurs.dynamique-ouverture.chart-evolution-nombre'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection

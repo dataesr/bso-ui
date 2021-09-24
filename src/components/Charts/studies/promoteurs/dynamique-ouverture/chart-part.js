@@ -90,7 +90,7 @@ Chart.defaultProps = {
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
-  id: 'studies.promoteurs.impact.chart-classement-pays',
+  id: 'studies.promoteurs.dynamique-ouverture.chart-part',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,

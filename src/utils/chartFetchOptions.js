@@ -700,6 +700,54 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesDynamiqueSponsor: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor: {
+          terms: {
+            field: 'lead_sponsor.keyword',
+            size: 12,
+          },
+          aggs: {
+            by_type: {
+              terms: {
+                field: 'lead_sponsor_type.keyword',
+              },
+              aggs: {
+                by_year: {
+                  terms: {
+                    field: 'study_start_year',
+                  },
+                  aggs: {
+                    by_has_result: {
+                      terms: {
+                        field: 'has_results_or_publications',
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     studiesDynamiqueOuverture: ([studyType]) => ({
       size: 0,
       query: {
@@ -708,6 +756,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
               },
             },
           ],
@@ -748,6 +801,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               wildcard: {
                 'lead_sponsor.keyword': sponsor,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
               },
             },
           ],
