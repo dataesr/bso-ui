@@ -14,7 +14,7 @@ function useGetData(studyType) {
 
   async function getDataAxios() {
     const query = getFetchOptions(
-      'studiesCharacteristicWhenEvolution',
+      'studiesCaracteristiquesQuandEvolution',
       '',
       studyType,
     );
@@ -26,12 +26,13 @@ function useGetData(studyType) {
     );
 
     const colors = {
-      after_completion: getCSSValue('--apres'),
-      during_study: getCSSValue('--orange-medium-100'),
       before_start: getCSSValue('--orange-medium-75'),
+      during_study: getCSSValue('--orange-medium-100'),
+      after_start: getCSSValue('--apres'),
+      after_completion: getCSSValue('--apres'),
     };
-    const steps = ['before_start', 'during_study', 'after_completion'];
-    const dataGraph1 = steps.map((step) => {
+    const steps1 = ['before_start', 'during_study', 'after_completion'];
+    const dataGraph1 = steps1.map((step) => {
       const data = dataSortedByYear.map((el) => {
         const x = el.key;
         const yValue = el.by_submission_temporality.buckets.find(
@@ -43,7 +44,7 @@ function useGetData(studyType) {
         return { x, yValue, y, yLabel, yTotal };
       });
       const name = intl.formatMessage({
-        id: `app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.${step}`,
+        id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.${step}`,
       });
       const color = colors[step];
       return { name, data, color };
@@ -51,7 +52,7 @@ function useGetData(studyType) {
     dataGraph1.reverse();
 
     const query2 = getFetchOptions(
-      'studiesCharacteristicWhenRepartition',
+      'studiesCaracteristiquesQuandRepartition',
       '',
       studyType,
     );
@@ -61,42 +62,36 @@ function useGetData(studyType) {
     const dataSortedByYear2 = res2.data.aggregations.delay_submission_start.buckets;
     const data = {
       before_start: [],
-      during_study: [],
-      after_completion: [],
+      after_start: [],
     };
     dataSortedByYear2.forEach((el) => {
-      if (el.key < 0) {
+      if (el.key <= 0) {
         data.before_start.push(el.doc_count);
-        data.during_study.push(0);
-        data.after_completion.push(0);
-      } else if (el.key === 0) {
-        data.before_start.push(0);
-        data.during_study.push(el.doc_count);
-        data.after_completion.push(0);
+        data.after_start.push(0);
       } else {
         data.before_start.push(0);
-        data.during_study.push(0);
-        data.after_completion.push(el.doc_count);
+        data.after_start.push(el.doc_count);
       }
     });
-    const dataGraph2 = steps.map((step) => ({
+    const steps2 = ['before_start', 'after_start'];
+    const dataGraph2 = steps2.map((step) => ({
       data: data[step],
       name: intl.formatMessage({
-        id: `app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.${step}`,
+        id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.${step}`,
       }),
       color: colors[step],
     }));
 
     const categories2 = dataSortedByYear2.map((el) => Math.abs(el.key) / 30);
     categories2[0] += ` ${intl.formatMessage({
-      id: 'app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after',
+      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
     })}`;
     categories2[categories2.length - 1] += ` ${intl.formatMessage({
-      id: 'app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after',
+      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
     })}`;
 
     const query3 = getFetchOptions(
-      'studiesCharacteristicWhenDistribution',
+      'studiesCaracteristiquesQuandDistribution',
       '',
       studyType,
     );
@@ -113,7 +108,7 @@ function useGetData(studyType) {
     dataSortedByYear3.forEach((year, index) => {
       const violinData = {
         before_start: [],
-        after_completion: [],
+        after_start: [],
       };
       median.push([
         year.delay_submission_start_perc.values['50.0'] / 30,
@@ -130,7 +125,7 @@ function useGetData(studyType) {
             index + (percentageKey - total),
           ]);
         } else {
-          violinData.after_completion.push([
+          violinData.after_start.push([
             value,
             index - (percentageKey - total),
             index + (percentageKey - total),
@@ -140,7 +135,7 @@ function useGetData(studyType) {
       });
       // Extrapolate the limit between negative and positive data, linear regression
       const [x1, y1, y1b] = violinData.before_start[violinData.before_start.length - 1];
-      const [x3, y3, y3b] = violinData.after_completion[0];
+      const [x3, y3, y3b] = violinData.after_start[0];
       let a = (y3 - y1) / (x3 - x1);
       let b = y1 - a * x1;
       const middleValue1 = b;
@@ -148,10 +143,10 @@ function useGetData(studyType) {
       b = y1b - a * x1;
       const middleValue2 = b;
       violinData.before_start.push([0, middleValue1, middleValue2]);
-      violinData.after_completion.unshift([0, middleValue1, middleValue2]);
+      violinData.after_start.unshift([0, middleValue1, middleValue2]);
       dataGraph3.push({
         name: intl.formatMessage({
-          id: 'app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.before_start',
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.before_start`,
         }),
         color: colors.before_start,
         data: violinData.before_start,
@@ -159,10 +154,10 @@ function useGetData(studyType) {
       });
       dataGraph3.push({
         name: intl.formatMessage({
-          id: 'app.health-interventional.studies.caracteristiques.quand.chart-evolution-temporalites.after_completion',
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.after_start`,
         }),
-        color: colors.after_completion,
-        data: violinData.after_completion,
+        color: colors.after_start,
+        data: violinData.after_start,
         showInLegend: index === 0,
       });
     });
@@ -181,7 +176,9 @@ function useGetData(studyType) {
     dataGraph3.push({
       type: 'spline',
       data: median,
-      name: 'Médiane',
+      name: intl.formatMessage({
+        id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.median`,
+      }),
       color: '#000',
       marker: {
         enabled: true,

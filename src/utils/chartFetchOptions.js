@@ -905,7 +905,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCharacteristicWhenEvolution: ([studyType]) => ({
+    studiesCaracteristiquesQuandEvolution: ([studyType]) => ({
       size: 0,
       query: {
         bool: {
@@ -933,7 +933,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCharacteristicWhenRepartition: ([studyType]) => ({
+    studiesCaracteristiquesQuandRepartition: ([studyType]) => ({
       size: 0,
       query: {
         bool: {
@@ -963,7 +963,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCharacteristicWhenDistribution: ([studyType]) => ({
+    studiesCaracteristiquesQuandDistribution: ([studyType]) => ({
       size: 0,
       query: {
         bool: {

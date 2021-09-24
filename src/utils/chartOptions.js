@@ -1714,7 +1714,6 @@ export const chartOptions = {
   'studies.general.dynamique.chart-evolution': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
       options.chart.type = 'column';
       options.plotOptions = {
         bar: {
@@ -1753,6 +1752,7 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categories1 || [],
       };
+      options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
       options.legend.reversed = true;
       options.plotOptions = {
@@ -1791,6 +1791,9 @@ export const chartOptions = {
             enabled: false,
           },
         },
+        series: {
+          pointWidth: 20,
+        },
       };
       options.series = data?.dataGraph2 || [];
       options.tooltip.pointFormat = intl.formatMessage({
@@ -1805,6 +1808,7 @@ export const chartOptions = {
       options.chart = {
         type: 'areasplinerange',
         inverted: false,
+        height: '600px',
       };
       options.xAxis.gridLineWidth = 1;
       options.yAxis = {
