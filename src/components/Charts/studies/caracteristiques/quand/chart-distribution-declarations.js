@@ -1,5 +1,6 @@
 import '../../../graph.scss';
 
+import Axios from 'axios';
 import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -9,7 +10,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
+import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import {
   domains,
@@ -17,6 +20,7 @@ import {
   studiesTypes,
 } from '../../../../../utils/constants';
 import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -28,8 +32,19 @@ highchartsMore(Highcharts);
 const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const [sponsorTypes, setSponsorTypes] = useState([]);
+  const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
-  const { allData, isLoading, isError } = useGetData(studyType);
+  const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
+  const query = getFetchOptions('sponsorsTypesList', '', studyType);
+  useEffect(() => {
+    Axios.post(ES_STUDIES_API_URL, query, HEADERS).then((response) => {
+      setSponsorTypes(
+        response.data.aggregations.by_sponsor_type.buckets.map((item) => item.key),
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const idWithDomainAndStudyType = withDomainAndStudyType(
     id,
     domain,
@@ -58,6 +73,14 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       graphFooter={graphFooter}
       graphComments={false}
     >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
+        onChange={(e) => setSponsorType(e.target.value)}
+        options={sponsorTypes}
+        selected={sponsorType}
+        firstValue='*'
+        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}

@@ -1348,7 +1348,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesQuandEvolution: ([studyType]) => ({
+    studiesCaracteristiquesQuandEvolution: ([studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1356,6 +1356,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
           ],
@@ -1376,7 +1381,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesQuandRepartition: ([studyType]) => ({
+    studiesCaracteristiquesQuandRepartition: ([studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1384,6 +1389,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
             {
@@ -1406,7 +1416,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesQuandDistribution: ([studyType]) => ({
+    studiesCaracteristiquesQuandDistribution: ([studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1414,6 +1424,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
             {

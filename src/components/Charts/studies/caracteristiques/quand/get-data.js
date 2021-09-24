@@ -7,7 +7,7 @@ import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType) {
+function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -17,6 +17,7 @@ function useGetData(studyType) {
       'studiesCaracteristiquesQuandEvolution',
       '',
       studyType,
+      sponsorType,
     );
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
       (e) => console.log(e),
@@ -55,6 +56,7 @@ function useGetData(studyType) {
       'studiesCaracteristiquesQuandRepartition',
       '',
       studyType,
+      sponsorType,
     );
     const res2 = await Axios.post(ES_STUDIES_API_URL, query2, HEADERS).catch(
       (e) => console.log(e),
@@ -94,6 +96,7 @@ function useGetData(studyType) {
       'studiesCaracteristiquesQuandDistribution',
       '',
       studyType,
+      sponsorType,
     );
     const res3 = await Axios.post(ES_STUDIES_API_URL, query3, HEADERS).catch(
       (e) => console.log(e),
