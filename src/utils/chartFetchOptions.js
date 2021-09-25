@@ -1370,6 +1370,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
+            size: 20,
           },
           aggs: {
             by_submission_temporality: {
@@ -1446,6 +1447,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
+            size: 20,
           },
           aggs: {
             delay_submission_start_perc: {

@@ -22,9 +22,10 @@ function useGetData(studyType, sponsorType = '*') {
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
       (e) => console.log(e),
     );
+    const currentYear = new Date().getFullYear();
     const dataSortedByYear = res.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
-    );
+    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
 
     const colors = {
       before_start: getCSSValue('--orange-medium-75'),
@@ -38,7 +39,7 @@ function useGetData(studyType, sponsorType = '*') {
         const x = el.key;
         const yValue = el.by_submission_temporality.buckets.find(
           (ele) => ele.key === step,
-        ).doc_count;
+        )?.doc_count;
         const y = (yValue / el.doc_count) * 100;
         const yLabel = Number(y).toFixed(0);
         const yTotal = el.doc_count;
@@ -103,7 +104,7 @@ function useGetData(studyType, sponsorType = '*') {
     );
     const dataSortedByYear3 = res3.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
-    );
+    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
     const categories3 = dataSortedByYear3.map((el) => el.key);
 
     const dataGraph3 = [];
@@ -177,7 +178,8 @@ function useGetData(studyType, sponsorType = '*') {
     });
     // Add median line
     dataGraph3.push({
-      type: 'spline',
+      type: 'scatter',
+      lineWidth: 2,
       data: median,
       name: intl.formatMessage({
         id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.median`,
@@ -214,7 +216,7 @@ function useGetData(studyType, sponsorType = '*') {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType]);
+  }, [studyType, sponsorType]);
 
   return { allData, isLoading };
 }

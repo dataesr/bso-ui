@@ -2248,6 +2248,8 @@ export const chartOptions = {
         height: '600px',
       };
       options.xAxis.gridLineWidth = 1;
+      options.xAxis.max = 24;
+      options.xAxis.min = -24;
       options.yAxis = {
         categories: data?.categories3 || [],
         min: 0,
