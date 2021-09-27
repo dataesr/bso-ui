@@ -97,7 +97,7 @@ export default {
       },
     ],
     fr: '/sante/etudes-observationnelles/general',
-    en: '/health/obstervational-studies/general',
+    en: '/health/observational-studies/general',
   },
   methodologie: {
     fr: '/a-propos/methodologie',

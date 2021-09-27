@@ -37,7 +37,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     studyType,
   );
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, allData);
+  const optionsGraph = chartOptions[id].getOptions(id, intl, allData, studyType);
 
   return (
     <WrapperChart
