@@ -226,7 +226,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.combien'
               >
-                app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients
+                <BSOChart
+                  id='studies.caracteristiques.combien.chart-groupes-patients'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
                 app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition
               </QuestionSection>

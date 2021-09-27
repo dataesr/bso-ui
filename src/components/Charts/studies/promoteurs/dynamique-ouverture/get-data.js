@@ -16,20 +16,30 @@ function useGetData(studyType, sponsor = '*') {
     const queries = [];
     const query1 = getFetchOptions('studiesDynamiqueOuverture', '', studyType);
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
-    const query2 = getFetchOptions('studiesDynamiqueOuvertureSponsor', '', studyType, sponsor);
+    const query2 = getFetchOptions(
+      'studiesDynamiqueOuvertureSponsor',
+      '',
+      studyType,
+      sponsor,
+    );
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
-    const query3 = getFetchOptions('studiesDynamiqueSponsor', '', studyType, sponsor);
+    const query3 = getFetchOptions(
+      'studiesDynamiqueSponsor',
+      '',
+      studyType,
+      sponsor,
+    );
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
     const currentYear = new Date().getFullYear();
-    const data1SortedByYear = res[0].data.aggregations.by_year.buckets.sort(
-      (a, b) => a.key - b.key,
-    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
-    const data2SortedByYear = res[1].data.aggregations.by_year.buckets.sort(
-      (a, b) => a.key - b.key,
-    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const data1SortedByYear = res[0].data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const data2SortedByYear = res[1].data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear);
     const categories = [];
     const dataAcademic = [];
     const dataIndus = [];
@@ -37,12 +47,22 @@ function useGetData(studyType, sponsor = '*') {
     const dataSponsor = [];
     data1SortedByYear.forEach((el) => {
       categories.push(el.key);
-      const academic = el.by_sponsor_type.buckets.find((ele) => ele.key === 'academique');
-      const academicWith = academic?.by_has_result.buckets.find((ele) => ele.key === 1);
-      const indus = el.by_sponsor_type.buckets.find((ele) => ele.key === 'industriel');
-      const indusWith = indus?.by_has_result.buckets.find((ele) => ele.key === 1);
+      const academic = el.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'academique',
+      );
+      const academicWith = academic?.by_has_result.buckets.find(
+        (ele) => ele.key === 1,
+      );
+      const indus = el.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'industriel',
+      );
+      const indusWith = indus?.by_has_result.buckets.find(
+        (ele) => ele.key === 1,
+      );
       const spons = data2SortedByYear.find((y) => y.key === el.key);
-      const sponsWith = spons?.by_has_result.buckets.find((ele) => ele.key === 1);
+      const sponsWith = spons?.by_has_result.buckets.find(
+        (ele) => ele.key === 1,
+      );
       dataAcademic.push({
         year: el.key,
         y_tot: academic?.doc_count || 0,
@@ -57,15 +77,18 @@ function useGetData(studyType, sponsor = '*') {
       });
       dataGlobal.push({
         year: el.key,
-        y_tot: (academic?.doc_count + indus?.doc_count) || 0,
-        y_abs: (academicWith?.doc_count + indusWith?.doc_count) || 0,
-        y: 100 * ((academicWith?.doc_count + indusWith?.doc_count) / (academic?.doc_count + indus?.doc_count)),
+        y_tot: academic?.doc_count + indus?.doc_count || 0,
+        y_abs: academicWith?.doc_count + indusWith?.doc_count || 0,
+        y:
+          100
+          * ((academicWith?.doc_count + indusWith?.doc_count)
+            / (academic?.doc_count + indus?.doc_count)),
       });
       dataSponsor.push({
         year: el.key,
         y_tot: spons?.doc_count || 0,
         y_abs: sponsWith?.doc_count || 0,
-        y: 100 * ((sponsWith?.doc_count / spons?.doc_count) || 0),
+        y: 100 * (sponsWith?.doc_count / spons?.doc_count || 0),
       });
     });
     const series = [
@@ -94,8 +117,6 @@ function useGetData(studyType, sponsor = '*') {
     }
     const dataGraph1 = { categories, series };
 
-    const data2 = res[2].data.aggregations.by_sponsor.buckets;
-    console.log('ttt', data2);
     const tab = [];
     const nbHisto = 10;
     const lastYear = currentYear;
@@ -105,19 +126,24 @@ function useGetData(studyType, sponsor = '*') {
         const obj = {
           name: currentSponsor.key,
           sponsor_type: bucket.key,
-          color: (bucket.key === 'academique') ? getCSSValue('--lead-sponsor-public') : getCSSValue('--lead-sponsor-privee'),
+          color:
+            bucket.key === 'academique'
+              ? getCSSValue('--lead-sponsor-public')
+              : getCSSValue('--lead-sponsor-privee'),
           data: bucket.by_year.buckets
-            .filter(
-              (el) => el.key > lastYear - nbHisto
-                && el.key <= lastYear,
-            )
+            .filter((el) => el.key > lastYear - nbHisto && el.key <= lastYear)
             .sort((a, b) => a.key - b.key)
             .map((el) => ({
               name: el.key,
               year: el.key,
               y_tot: el.doc_count,
-              y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
-              y: (100 * el.by_has_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0) / el?.doc_count,
+              y_abs:
+                el.by_has_result.buckets.find((ele) => ele.key === 1)
+                  ?.doc_count || 0,
+              y:
+                (100
+                  * el.by_has_result.buckets.find((ele) => ele.key === 1)
+                    ?.doc_count || 0) / el?.doc_count,
             })),
         };
         tab.push(obj);

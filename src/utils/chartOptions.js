@@ -2324,6 +2324,39 @@ export const chartOptions = {
       return options;
     },
   },
+  'studies.caracteristiques.combien.chart-groupes-patients': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.title = {
+        text: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.chart-title`,
+        }),
+        verticalAlign: 'bottom',
+      };
+      options.xAxis = {
+        categories: data?.categories || [],
+        format: '{this.value}',
+      };
+      options.yAxis = {
+        visible: false,
+        labels: {
+          enabled: false,
+        },
+      };
+      options.series = data?.dataGraph || [];
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+      };
+      options.plotOptions = {
+        series: {
+          pointWidth: 20,
+        },
+      };
+      return options;
+    },
+  },
   'studies.resultats.type-diffusion.chart-repartition-par-type': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
