@@ -110,8 +110,7 @@ export const chartOptions = {
         reversed: false,
         title: { text: intl.formatMessage({ id: 'app.publi.tarif-apc' }) },
         labels: {
-          // eslint-disable-next-line
-          formatter: function () {
+          formatter() {
             return this.axis.defaultLabelFormatter.call(this).concat(' €');
           },
         },
@@ -167,8 +166,7 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
@@ -203,8 +201,7 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
@@ -250,8 +247,7 @@ export const chartOptions = {
             }),
           },
           labels: {
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               return this.axis.defaultLabelFormatter.call(this).concat(' %');
             },
           },
@@ -278,8 +274,7 @@ export const chartOptions = {
             }),
           },
           labels: {
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               return this.axis.defaultLabelFormatter.call(this).concat(' %');
             },
           },
@@ -374,8 +369,7 @@ export const chartOptions = {
         bar: {
           dataLabels: {
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
@@ -548,8 +542,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             allowOverlap: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
                 this.point.category === last.category
@@ -591,8 +584,7 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
@@ -761,8 +753,7 @@ export const chartOptions = {
         column: {
           dataLabels: {
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
@@ -829,8 +820,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             allowOverlap: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
                 this.point.category === last.category
@@ -918,8 +908,7 @@ export const chartOptions = {
         column: {
           dataLabels: {
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
@@ -1003,8 +992,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             allowOverlap: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
                 this.point.category === last.category
@@ -1099,8 +1087,7 @@ export const chartOptions = {
           },
         ],
         labels: {
-          // eslint-disable-next-line
-          formatter: function () {
+          formatter() {
             return this.axis.defaultLabelFormatter.call(this).concat(' %');
           },
         },
@@ -1127,8 +1114,7 @@ export const chartOptions = {
           },
         ],
         labels: {
-          // eslint-disable-next-line
-          formatter: function () {
+          formatter() {
             return this.axis.defaultLabelFormatter.call(this).concat(' %');
           },
         },
@@ -1311,8 +1297,7 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
@@ -1342,8 +1327,7 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publi.sum-apc' }) },
         stackLabels: {
           enabled: true,
-          // eslint-disable-next-line
-          formatter: function () {
+          formatter() {
             // eslint-disable-next-line
             return `${cleanNumber(this.total)} €`;
           },
@@ -1352,8 +1336,7 @@ export const chartOptions = {
           },
         },
         labels: {
-          // eslint-disable-next-line
-          formatter: function () {
+          formatter() {
             // eslint-disable-next-line
             return this.axis.defaultLabelFormatter.call(this).concat(' €');
           },
@@ -1368,8 +1351,7 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return cleanNumber(this.y).concat(' €');
             },
@@ -1395,8 +1377,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publi.tarif-apc' }) },
         labels: {
-          // eslint-disable-next-line
-          formatter: function () {
+          formatter() {
             return this.axis.defaultLabelFormatter.call(this).concat(' €');
           },
         },
@@ -1447,8 +1428,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             allowOverlap: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
                 this.point.category === last.category
@@ -1634,8 +1614,7 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
@@ -2154,7 +2133,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2200,8 +2178,7 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
-            // eslint-disable-next-line
-            formatter: function () {
+            formatter() {
               // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
@@ -2222,6 +2199,17 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categories2 || [],
       };
+      options.xAxis.labels = {
+        formatter() {
+          const label = this.axis.defaultLabelFormatter.call(this);
+          if (label === '0') {
+            return intl.formatMessage({
+              id: 'app.studies.start',
+            });
+          }
+          return label;
+        },
+      };
       options.plotOptions = {
         column: {
           dataLabels: {
@@ -2229,7 +2217,7 @@ export const chartOptions = {
           },
         },
         series: {
-          pointWidth: 20,
+          pointWidth: 30,
         },
       };
       options.series = data?.dataGraph2 || [];
@@ -2250,6 +2238,17 @@ export const chartOptions = {
       options.xAxis.gridLineWidth = 1;
       options.xAxis.max = 24;
       options.xAxis.min = -24;
+      options.xAxis.labels = {
+        formatter() {
+          const label = this.axis.defaultLabelFormatter.call(this);
+          if (label === '0') {
+            return intl.formatMessage({
+              id: 'app.studies.start',
+            });
+          }
+          return label;
+        },
+      };
       options.yAxis = {
         categories: data?.categories3 || [],
         min: 0,
@@ -2278,7 +2277,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         bar: {
@@ -2317,7 +2315,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2356,7 +2353,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2395,7 +2391,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2434,7 +2429,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2473,7 +2467,6 @@ export const chartOptions = {
           stacking: false,
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2514,7 +2507,6 @@ export const chartOptions = {
           stacking: false,
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2559,7 +2551,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -2597,7 +2588,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         bar: {

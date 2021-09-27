@@ -67,7 +67,13 @@ function useGetData(studyType, sponsorType = '*') {
       before_start: [],
       after_start: [],
     };
-    dataSortedByYear2.forEach((el) => {
+    const minBoundary = -360;
+    const maxBoundary = 360;
+    const firstValue = dataSortedByYear2.filter((el) => el.key <= minBoundary).reduce((a, b) => a + b.doc_count, 0);
+    const lastValue = dataSortedByYear2.filter((el) => el.key >= maxBoundary).reduce((a, b) => a + b.doc_count, 0);
+    data.before_start.push(firstValue);
+    data.after_start.push(0);
+    dataSortedByYear2.filter((ele) => ele.key > minBoundary && ele.key < maxBoundary).forEach((el) => {
       if (el.key <= 0) {
         data.before_start.push(el.doc_count);
         data.after_start.push(0);
@@ -76,6 +82,8 @@ function useGetData(studyType, sponsorType = '*') {
         data.after_start.push(el.doc_count);
       }
     });
+    data.before_start.push(0);
+    data.after_start.push(lastValue);
     const steps2 = ['before_start', 'after_start'];
     const dataGraph2 = steps2.map((step) => ({
       data: data[step],
@@ -85,9 +93,9 @@ function useGetData(studyType, sponsorType = '*') {
       color: colors[step],
     }));
 
-    const categories2 = dataSortedByYear2.map((el) => Math.abs(el.key) / 30);
+    const categories2 = dataSortedByYear2.filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary).map((el) => Math.abs(el.key) / 30);
     categories2[0] += ` ${intl.formatMessage({
-      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
+      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_before`,
     })}`;
     categories2[categories2.length - 1] += ` ${intl.formatMessage({
       id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,

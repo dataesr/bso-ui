@@ -4,6 +4,7 @@
   "app.credit": "Baromètre français de la Science Ouverte",
   "app.details": "Voir le détail",
   "app.na": "Non connu",
+  "app.studies.start": "Début de l'essai clinique",
   "app.all-sponsor-types": "Tout type de promoteur",
   "app.sponsor.industriel": "Promoteur industriel",
   "app.sponsor.academique": "Promoteur académique",
@@ -374,6 +375,7 @@
   "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.comments": "comments",
   "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.source": "source",
   "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "{point.y} essais cliniques",
+  "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_before": "mois avant",
   "app.health-interventional.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after": "mois après",
 
   "app.health-interventional.studies.caracteristiques.quand.chart-distribution-declarations.title": "Distribution des déclarations d'essais cliniques par année, selon la durée entre la déclaration et le début de l'essai",

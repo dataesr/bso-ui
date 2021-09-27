@@ -1397,14 +1397,6 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 'lead_sponsor_type.keyword': sponsorType,
               },
             },
-            {
-              range: {
-                delay_submission_start: {
-                  from: -720,
-                  to: 720,
-                },
-              },
-            },
           ],
         },
       },
@@ -1430,14 +1422,6 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               wildcard: {
                 'lead_sponsor_type.keyword': sponsorType,
-              },
-            },
-            {
-              range: {
-                delay_submission_start: {
-                  from: -720,
-                  to: 720,
-                },
               },
             },
           ],
