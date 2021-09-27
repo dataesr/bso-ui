@@ -5,9 +5,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
-// import DataCardSection from '../../../components/DataCardsSection';
 import BSOChart from '../../../components/Charts';
 import Chip from '../../../components/Chip';
+// import DataCardSection from '../../../components/DataCardsSection';
 // import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
@@ -98,24 +98,18 @@ function EtudesObservationnelles() {
           mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
         >
           <GraphItem
-            mainLabel={intl.formatMessage({
-              id: 'app.health-observational.studies.general',
-            })}
+            mainLabel={intl.formatMessage({ id: 'app.health-observational.studies.general', default: 'mainLabel' })}
             paths={[
               '/sante/etudes-observationnelles/general',
               '/health/observational-studies/general',
             ]}
             links={[
               {
-                label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.general.dynamique',
-                }),
+                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.general.dynamique', default: 'dynamique' }),
                 href: '/sante/etudes-observationnelles/general?id=general.dynamique',
               },
               {
-                label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.general.trajectoires',
-                }),
+                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.general.trajectoires', default: 'trajectoires' }),
                 href: '/sante/etudes-observationnelles/general?id=general.directions',
               },
             ]}
@@ -131,12 +125,6 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-
-                <BSOChart
-                  id='studies.general.trajectoires.chart-repartition'
-                  domain='health'
-                  studyType='Observational'
-                />
               </QuestionSection>
 
               <QuestionSection
@@ -144,7 +132,11 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='general.directions'
               >
-                app.health-observational.studies.general.trajectoires.chart-repartition
+                <BSOChart
+                  id='studies.general.trajectoires.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>

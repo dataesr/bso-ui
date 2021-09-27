@@ -28,6 +28,8 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { allData, isLoading, isError } = useGetData(studyType);
+  const { dataGraph1 } = allData;
+
   const idWithDomainAndStudyType = withDomainAndStudyType(
     id,
     domain,
@@ -38,7 +40,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, allData);
+  const optionsGraph = chartOptions[id].getOptions(id, intl, dataGraph1, studyType);
 
   return (
     <WrapperChart

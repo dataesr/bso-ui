@@ -131,11 +131,6 @@ function EssaisCliniques() {
                   studyType='Interventional'
                 />
 
-                <BSOChart
-                  id='studies.general.trajectoires.chart-repartition'
-                  domain='health'
-                  studyType='Interventional'
-                />
               </QuestionSection>
 
               <QuestionSection
@@ -143,7 +138,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='general.directions'
               >
-                app.health-interventional.studies.general.trajectoires.chart-repartition
+                <BSOChart
+                  id='studies.general.trajectoires.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>
