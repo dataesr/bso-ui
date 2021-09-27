@@ -1802,6 +1802,8 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
       options.colors = [getCSSValue('--acces-ouvert')];
       options.chart.height = '800px';
+
+      delete options.tooltip.pointFormat;
       options.series = [
         {
           keys: ['from', 'to', 'weight'],

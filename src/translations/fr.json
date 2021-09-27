@@ -350,7 +350,6 @@
   "app.health-interventional.studies.general.trajectoires.chart-repartition.title": "Répartition des essais cliniques selon leurs avancées, toutes années confondues",
   "app.health-interventional.studies.general.trajectoires.chart-repartition.comments": "comments",
   "app.health-interventional.studies.general.trajectoires.chart-repartition.source": "source",
-  "app.health-interventional.studies.general.trajectoires.chart-repartition.tooltip": "tooltip",
 
   "app.health-interventional.studies.caracteristiques": "Caratéristiques",
   "app.health-interventional.studies.navigation.caracteristiques.quand": "Quand a lieu la déclaration?",
@@ -500,7 +499,6 @@
   "app.health-observational.studies.general.trajectoires.chart-repartition.title": "Répartition des études observationnelles déclarées selon leurs avancées, toutes années confondues",
   "app.health-observational.studies.general.trajectoires.chart-repartition.comments": "comments",
   "app.health-observational.studies.general.trajectoires.chart-repartition.source": "source",
-  "app.health-observational.studies.general.trajectoires.chart-repartition.tooltip": "tooltip",
 
   "app.health-observational.studies.caracteristiques": "Caratéristiques",
   "app.health-observational.studies.navigation.caracteristiques.quand": "Quand a lieu la déclaration ?",
