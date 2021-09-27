@@ -172,7 +172,6 @@ function useGetData(studyType) {
         });
       }
     });
-    console.log(dataGraph);
     return dataGraph;
   }
 

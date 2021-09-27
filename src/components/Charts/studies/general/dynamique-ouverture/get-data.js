@@ -97,8 +97,6 @@ function useGetData(studyType, sponsor = '*') {
     }
     const dataGraph1 = { categories, series };
 
-    const data2 = res[2].data.aggregations.by_sponsor.buckets;
-    console.log('ttt', data2);
     const tab = [];
     const nbHisto = 10;
     const lastYear = currentYear;
