@@ -1714,22 +1714,26 @@ export const chartOptions = {
     },
   },
   'studies.general.dynamique.chart-evolution': {
-    getOptions: (id, intl, data) => {
+    getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl);
+
       options.chart.type = 'column';
       options.plotOptions = {
-        bar: {
+        series: {
+          stacking: false,
+          dataLabels: {
+            enabled: false,
+            // eslint-disable-next-line
+          },
+        },
+        column: {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
-            style: {
-              color: getCSSValue('--g-800'),
-              fontSize: '20px',
-              fontWeight: 'bold',
-            },
           },
         },
       };
+      options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
@@ -1737,13 +1741,18 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g-800'),
+            color: 'var(--g800)',
             fontSize: '12px',
             fontWeight: 'bold',
           },
         },
       };
       options.series = data?.series || [];
+
+      options.tooltip = {
+        headerFormat: '',
+        pointFormat: intl.formatMessage({ id: `app.health-${studyType.toLowerCase()}.${id}.tooltip` }),
+      };
 
       return options;
     },

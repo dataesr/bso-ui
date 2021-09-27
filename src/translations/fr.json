@@ -343,7 +343,7 @@
   "app.health-interventional.studies.general.dynamique.chart-evolution.title": "Evolution de la part d'essais cliniques déclarés ayant produit des résultats et/ou publications",
   "app.health-interventional.studies.general.dynamique.chart-evolution.comments": "comments",
   "app.health-interventional.studies.general.dynamique.chart-evolution.source": "source",
-  "app.health-interventional.studies.general.dynamique.chart-evolution.tooltip": "tooltip",
+  "app.health-interventional.studies.general.dynamique.chart-evolution.tooltip": "<b>En {point.year}</b>,<br><b>{point.y:.2f} %</b> des essais cliniques déclarés<br>par <b>les promoteurs {point.name}</b> <br>ont produit des résultats et/ou publications <b>({point.y_abs} / {point.y_tot})</b>.",
 
   "app.health-interventional.studies.general.trajectoires.title": "Quelles sont les principales trajectoires de ces essais cliniques déclarés ?",
   "app.health-interventional.studies.general.trajectoires.description": "2.1.2",

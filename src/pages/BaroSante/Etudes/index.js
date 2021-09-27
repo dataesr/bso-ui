@@ -131,12 +131,6 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-
-                <BSOChart
-                  id='studies.general.trajectoires.chart-repartition'
-                  domain='health'
-                  studyType='Observational'
-                />
               </QuestionSection>
 
               <QuestionSection
@@ -144,7 +138,11 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='general.directions'
               >
-                app.health-observational.studies.general.trajectoires.chart-repartition
+                <BSOChart
+                  id='studies.general.trajectoires.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>
