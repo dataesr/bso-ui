@@ -83,10 +83,10 @@ function useGetData(studyType) {
     }));
 
     const categories2 = dataSortedByYear2.map((el) => Math.abs(el.key) / 30);
-    categories2[0] += ` ${intl.formatMessage({
-      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
+    categories2[0] += `<br>${intl.formatMessage({
+      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_before`,
     })}`;
-    categories2[categories2.length - 1] += ` ${intl.formatMessage({
+    categories2[categories2.length - 1] += `<br>${intl.formatMessage({
       id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
     })}`;
 
