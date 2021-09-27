@@ -89,7 +89,9 @@ function App() {
                 .map((tab) => Object.keys(tab).map((l) => tab[l]))
                 .flat(1)}
             >
-              <Etudes />
+              <GraphNavigationContextProvider>
+                <Etudes />
+              </GraphNavigationContextProvider>
             </Route>
             <Route
               exact
