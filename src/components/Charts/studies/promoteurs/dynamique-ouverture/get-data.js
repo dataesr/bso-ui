@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -14,25 +13,33 @@ function useGetData(studyType, sponsor = '*') {
 
   async function getDataAxios() {
     const queries = [];
-    const query1 = getFetchOptions('studiesDynamiqueOuverture', '', studyType);
-    queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
-    const query2 = getFetchOptions(
+    const queryDynamiqueOuverture = getFetchOptions(
+      'studiesDynamiqueOuverture',
+      '',
+      studyType,
+    );
+    queries.push(
+      Axios.post(ES_STUDIES_API_URL, queryDynamiqueOuverture, HEADERS),
+    );
+    const queryDynamiqueOuvertureSponsor = getFetchOptions(
       'studiesDynamiqueOuvertureSponsor',
       '',
       studyType,
       sponsor,
     );
-    queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
-    const query3 = getFetchOptions(
+    queries.push(
+      Axios.post(ES_STUDIES_API_URL, queryDynamiqueOuvertureSponsor, HEADERS),
+    );
+    const queryDynamiqueSponsor = getFetchOptions(
       'studiesDynamiqueSponsor',
       '',
       studyType,
       sponsor,
     );
-    queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
-    const res = await Axios.all(queries).catch(() => {
-      setLoading(false);
-    });
+    queries.push(
+      Axios.post(ES_STUDIES_API_URL, queryDynamiqueSponsor, HEADERS),
+    );
+    const res = await Axios.all(queries).catch(() => setLoading(false));
     const currentYear = new Date().getFullYear();
     const data1SortedByYear = res[0].data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)

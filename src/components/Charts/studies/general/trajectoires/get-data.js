@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -15,9 +14,7 @@ function useGetData(studyType) {
   async function getDataAxios() {
     const query = getFetchOptions('studiesTrajectoires', '', studyType);
 
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
-      (e) => console.log(e),
-    );
+    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(() => setLoading(false));
 
     const dataGraph = [];
     const data = res.data.aggregations.by_status.buckets;

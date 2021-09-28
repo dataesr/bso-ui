@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -22,7 +21,7 @@ function useGetData(studyType) {
       ES_STUDIES_API_URL,
       queryGroupes,
       HEADERS,
-    ).catch((e) => console.log(e));
+    ).catch(() => setLoading(false));
     const dataSortedByYearGroupes = resGroupes.data.aggregations.enrollment.buckets.sort(
       (a, b) => a.key - b.key,
     );
@@ -52,14 +51,13 @@ function useGetData(studyType) {
       ES_STUDIES_API_URL,
       queryRepartition,
       HEADERS,
-    ).catch((e) => console.log(e));
+    ).catch(() => setLoading(false));
     const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
     );
     const categoriesRepartition = dataSortedByYearRepartition.map(
       (el) => el.key,
     );
-    console.log(dataSortedByYearRepartition);
     const randomized = [];
     const na = [];
     const nonRandomized = [];
