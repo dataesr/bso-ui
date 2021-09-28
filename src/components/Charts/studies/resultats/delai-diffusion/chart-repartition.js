@@ -34,7 +34,6 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
   const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
-  const { dataGraph1 } = allData;
   const query = getFetchOptions('sponsorsTypesList', '', studyType);
   useEffect(() => {
     Axios.post(ES_STUDIES_API_URL, query, HEADERS).then((response) => {
@@ -54,7 +53,12 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, dataGraph1);
+  const optionsGraph = chartOptions[id].getOptions(
+    id,
+    intl,
+    allData,
+    idWithDomainAndStudyType,
+  );
 
   return (
     <WrapperChart
@@ -62,6 +66,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       isError={isError}
       id={id}
       domain={domain}
+      studyType={studyType}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={false}

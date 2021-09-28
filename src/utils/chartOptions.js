@@ -2145,78 +2145,77 @@ export const chartOptions = {
     },
   },
   'studies.resultats.delai-diffusion.chart-repartition': {
-    getOptions: (id, intl, data) => {
+    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
       const options = getGraphOptions(id, intl);
-
       options.chart.type = 'column';
+      options.xAxis = {
+        categories: data?.categories2 || [],
+      };
+      options.xAxis.labels = {
+        formatter() {
+          const label = this.axis.defaultLabelFormatter.call(this);
+          if (label === '0') {
+            return intl.formatMessage({
+              id: 'app.studies.end',
+            });
+          }
+          return label;
+        },
+      };
       options.plotOptions = {
-        series: {
-          stacking: 'normal',
+        column: {
           dataLabels: {
             enabled: false,
           },
         },
-        column: {
-          dataLabels: {
-            enabled: true,
-            format: '{point.y:.0f} %',
-          },
+        series: {
+          pointWidth: 10,
         },
       };
-      options.yAxis = getPercentageYAxis(false);
-      options.xAxis = {
-        type: 'category',
-        categories: data?.categories || [],
-        lineWidth: 0,
-        tickWidth: 0,
-        labels: {
-          style: {
-            color: 'var(--g800)',
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
-        },
-      };
-      options.series = data?.series || [];
-
+      options.series = data?.dataGraph2 || [];
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: `${idWithDomainAndStudyType}.tooltip`,
+      });
       return options;
     },
   },
   'studies.resultats.delai-diffusion.chart-distribution': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
-      options.chart.type = 'column';
+      options.chart = {
+        type: 'areasplinerange',
+        inverted: false,
+        height: '600px',
+      };
+      options.xAxis.gridLineWidth = 1;
+      options.xAxis.max = 60;
+      options.xAxis.min = -36;
+      options.xAxis.labels = {
+        formatter() {
+          const label = this.axis.defaultLabelFormatter.call(this);
+          if (label === '0') {
+            return intl.formatMessage({
+              id: 'app.studies.end',
+            });
+          }
+          return label;
+        },
+      };
+      options.yAxis = {
+        categories: data?.categories3 || [],
+        min: 0,
+        max: data?.categories3?.length - 1 || 10,
+        title: false,
+        reversed: true,
+      };
       options.plotOptions = {
-        series: {
-          stacking: 'normal',
-          dataLabels: {
+        areasplinerange: {
+          marker: {
             enabled: false,
           },
         },
-        column: {
-          dataLabels: {
-            enabled: true,
-            format: '{point.y:.0f} %',
-          },
-        },
       };
-      options.yAxis = getPercentageYAxis(false);
-      options.xAxis = {
-        type: 'category',
-        categories: data?.categories || [],
-        lineWidth: 0,
-        tickWidth: 0,
-        labels: {
-          style: {
-            color: 'var(--g800)',
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
-        },
-      };
-      options.series = data?.series || [];
-
+      options.series = data?.dataGraph3 || [];
       return options;
     },
   },

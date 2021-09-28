@@ -381,9 +381,17 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.delai-diffusion'
               >
-                app.health-interventional.studies.resultats.delai-diffusion.chart-repartition
+                <BSOChart
+                  id='studies.resultats.delai-diffusion.chart-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
                 <br />
-                app.health-interventional.studies.resultats.delai-diffusion.chart-distribution
+                <BSOChart
+                  id='studies.resultats.delai-diffusion.chart-distribution'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
