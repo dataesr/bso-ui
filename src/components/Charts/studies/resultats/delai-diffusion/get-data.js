@@ -68,10 +68,10 @@ function useGetData(studyType, sponsorType = '*') {
 
     const categories2 = dataSortedByYear2.filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary).map((el) => Math.abs(el.key) / 30);
     categories2[0] += ` ${intl.formatMessage({
-      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_before`,
+      id: 'app.studies.month_before',
     })}`;
     categories2[categories2.length - 1] += ` ${intl.formatMessage({
-      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
+      id: 'app.studies.month_before',
     })}`;
     const query3 = getFetchOptions(
       'studiesCaracteristiquesQuandDistribution',
