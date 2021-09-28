@@ -48,7 +48,7 @@ function useGetData(studyType, sponsorType = '*') {
         return { x, yValue, y, yLabel, yTotal };
       });
       const name = intl.formatMessage({
-        id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.${step}`,
+        id: `app.studies.${step}`,
       });
       const color = colors[step];
       return { name, data, color };
@@ -99,7 +99,7 @@ function useGetData(studyType, sponsorType = '*') {
     const dataGraphRepartition = stepsRepartition.map((step) => ({
       data: data[step],
       name: intl.formatMessage({
-        id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.${step}`,
+        id: `app.studies.${step}`,
       }),
       color: colors[step],
     }));
@@ -108,12 +108,12 @@ function useGetData(studyType, sponsorType = '*') {
       .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
       .map((el) => Math.abs(el.key) / 30);
     categoriesRepartition[0] += ` ${intl.formatMessage({
-      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_before`,
+      id: 'app.studies.month_before',
     })}`;
     categoriesRepartition[
       categoriesRepartition.length - 1
     ] += ` ${intl.formatMessage({
-      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
+      id: 'app.studies.month_after',
     })}`;
 
     const queryDistribution = getFetchOptions(
@@ -178,7 +178,7 @@ function useGetData(studyType, sponsorType = '*') {
       violinData.after_start.unshift([0, middleValue1, middleValue2]);
       dataGraphDistribution.push({
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.before_start`,
+          id: 'app.studies.before_start',
         }),
         color: colors.before_start,
         data: violinData.before_start,
@@ -186,7 +186,7 @@ function useGetData(studyType, sponsorType = '*') {
       });
       dataGraphDistribution.push({
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.after_start`,
+          id: 'app.studies.after_start',
         }),
         color: colors.after_start,
         data: violinData.after_start,
