@@ -13,15 +13,17 @@ function useGetData(studyType) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataAxios() {
-    const query = getFetchOptions(
+    const queryEvolution = getFetchOptions(
       'studiesCaracteristiquesQuandEvolution',
       '',
       studyType,
     );
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
-      (e) => console.log(e),
-    );
-    const dataSortedByYear = res.data.aggregations.by_year.buckets.sort(
+    const resEvolution = await Axios.post(
+      ES_STUDIES_API_URL,
+      queryEvolution,
+      HEADERS,
+    ).catch((e) => console.log(e));
+    const dataSortedByYearEvolution = resEvolution.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
     );
 
@@ -31,9 +33,9 @@ function useGetData(studyType) {
       after_start: getCSSValue('--apres'),
       after_completion: getCSSValue('--apres'),
     };
-    const steps1 = ['before_start', 'during_study', 'after_completion'];
-    const dataGraph1 = steps1.map((step) => {
-      const data = dataSortedByYear.map((el) => {
+    const stepsEvolution = ['before_start', 'during_study', 'after_completion'];
+    const dataGraphEvolution = stepsEvolution.map((step) => {
+      const data = dataSortedByYearEvolution.map((el) => {
         const x = el.key;
         const yValue = el.by_submission_temporality.buckets.find(
           (ele) => ele.key === step,
@@ -49,22 +51,24 @@ function useGetData(studyType) {
       const color = colors[step];
       return { name, data, color };
     });
-    dataGraph1.reverse();
+    dataGraphEvolution.reverse();
 
-    const query2 = getFetchOptions(
+    const queryRepartition = getFetchOptions(
       'studiesCaracteristiquesQuandRepartition',
       '',
       studyType,
     );
-    const res2 = await Axios.post(ES_STUDIES_API_URL, query2, HEADERS).catch(
-      (e) => console.log(e),
-    );
-    const dataSortedByYear2 = res2.data.aggregations.delay_submission_start.buckets;
+    const resRepartition = await Axios.post(
+      ES_STUDIES_API_URL,
+      queryRepartition,
+      HEADERS,
+    ).catch((e) => console.log(e));
+    const dataSortedByYearRepartition = resRepartition.data.aggregations.delay_submission_start.buckets;
     const data = {
       before_start: [],
       after_start: [],
     };
-    dataSortedByYear2.forEach((el) => {
+    dataSortedByYearRepartition.forEach((el) => {
       if (el.key <= 0) {
         data.before_start.push(el.doc_count);
         data.after_start.push(0);
@@ -73,8 +77,8 @@ function useGetData(studyType) {
         data.after_start.push(el.doc_count);
       }
     });
-    const steps2 = ['before_start', 'after_start'];
-    const dataGraph2 = steps2.map((step) => ({
+    const stepsRepartition = ['before_start', 'after_start'];
+    const dataGraphRepartition = stepsRepartition.map((step) => ({
       data: data[step],
       name: intl.formatMessage({
         id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.${step}`,
@@ -82,30 +86,38 @@ function useGetData(studyType) {
       color: colors[step],
     }));
 
-    const categories2 = dataSortedByYear2.map((el) => Math.abs(el.key) / 30);
-    categories2[0] += `<br>${intl.formatMessage({
+    const categoriesRepartition = dataSortedByYearRepartition.map(
+      (el) => Math.abs(el.key) / 30,
+    );
+    categoriesRepartition[0] += `<br>${intl.formatMessage({
       id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_before`,
     })}`;
-    categories2[categories2.length - 1] += `<br>${intl.formatMessage({
+    categoriesRepartition[
+      categoriesRepartition.length - 1
+    ] += `<br>${intl.formatMessage({
       id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
     })}`;
 
-    const query3 = getFetchOptions(
+    const queryDistribution = getFetchOptions(
       'studiesCaracteristiquesQuandDistribution',
       '',
       studyType,
     );
-    const res3 = await Axios.post(ES_STUDIES_API_URL, query3, HEADERS).catch(
-      (e) => console.log(e),
-    );
-    const dataSortedByYear3 = res3.data.aggregations.by_year.buckets.sort(
+    const resDistribution = await Axios.post(
+      ES_STUDIES_API_URL,
+      queryDistribution,
+      HEADERS,
+    ).catch((e) => console.log(e));
+    const dataSortedByYearDistribution = resDistribution.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
     );
-    const categories3 = dataSortedByYear3.map((el) => el.key);
+    const categoriesDistribution = dataSortedByYearDistribution.map(
+      (el) => el.key,
+    );
 
-    const dataGraph3 = [];
+    const dataGraphDistribution = [];
     const median = [];
-    dataSortedByYear3.forEach((year, index) => {
+    dataSortedByYearDistribution.forEach((year, index) => {
       const violinData = {
         before_start: [],
         after_start: [],
@@ -144,7 +156,7 @@ function useGetData(studyType) {
       const middleValue2 = b;
       violinData.before_start.push([0, middleValue1, middleValue2]);
       violinData.after_start.unshift([0, middleValue1, middleValue2]);
-      dataGraph3.push({
+      dataGraphDistribution.push({
         name: intl.formatMessage({
           id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.before_start`,
         }),
@@ -152,7 +164,7 @@ function useGetData(studyType) {
         data: violinData.before_start,
         showInLegend: index === 0,
       });
-      dataGraph3.push({
+      dataGraphDistribution.push({
         name: intl.formatMessage({
           id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.after_start`,
         }),
@@ -162,7 +174,7 @@ function useGetData(studyType) {
       });
     });
     // Add vertical line on x 0
-    dataGraph3.push({
+    dataGraphDistribution.push({
       type: 'line',
       data: [
         [0, -1],
@@ -173,7 +185,7 @@ function useGetData(studyType) {
       showInLegend: false,
     });
     // Add median line
-    dataGraph3.push({
+    dataGraphDistribution.push({
       type: 'spline',
       data: median,
       name: intl.formatMessage({
@@ -190,12 +202,12 @@ function useGetData(studyType) {
     });
 
     return {
-      categories1: dataSortedByYear.map((el) => el.key),
-      dataGraph1,
-      categories2,
-      dataGraph2,
-      categories3,
-      dataGraph3,
+      categories1: dataSortedByYearEvolution.map((el) => el.key),
+      dataGraph1: dataGraphEvolution,
+      categories2: categoriesRepartition,
+      dataGraph2: dataGraphRepartition,
+      categories3: categoriesDistribution,
+      dataGraph3: dataGraphDistribution,
     };
   }
 
