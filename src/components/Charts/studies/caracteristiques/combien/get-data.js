@@ -23,7 +23,9 @@ function useGetData(studyType) {
       queryGroupes,
       HEADERS,
     ).catch((e) => console.log(e));
-    const dataSortedByYearGroupes = resGroupes.data.aggregations.enrollment.buckets;
+    const dataSortedByYearGroupes = resGroupes.data.aggregations.enrollment.buckets.sort(
+      (a, b) => a.key - b.key,
+    );
 
     const categoriesGroupes = dataSortedByYearGroupes.map((el) => intl.formatMessage({
       id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.${
@@ -41,9 +43,69 @@ function useGetData(studyType) {
       },
     ];
 
+    const queryRepartition = getFetchOptions(
+      'studiesCaracteristiquesCombienChartProportionModesRepartition',
+      '',
+      studyType,
+    );
+    const resRepartition = await Axios.post(
+      ES_STUDIES_API_URL,
+      queryRepartition,
+      HEADERS,
+    ).catch((e) => console.log(e));
+    const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets.sort(
+      (a, b) => a.key - b.key,
+    );
+    const categoriesRepartition = dataSortedByYearRepartition.map(
+      (el) => el.key,
+    );
+    console.log(dataSortedByYearRepartition);
+    const randomized = [];
+    const na = [];
+    const nonRandomized = [];
+    dataSortedByYearRepartition.forEach((year) => {
+      const randomizedPoint = year.by_design_allocation.buckets.find(
+        (el) => el.key === 'Randomized',
+      ).doc_count;
+      randomized.push(randomizedPoint);
+      const naPoint = year.by_design_allocation.buckets.find(
+        (el) => el.key === 'N/A',
+      ).doc_count;
+      na.push(naPoint);
+      const nonRandomizedPoint = year.by_design_allocation.buckets.find(
+        (el) => el.key === 'Non-Randomized',
+      ).doc_count;
+      nonRandomized.push(nonRandomizedPoint);
+    });
+    const dataGraphRepartition = [
+      {
+        name: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-proportion-modes-repartition.na`,
+        }),
+        data: na,
+        color: getCSSValue('--g-400'),
+      },
+      {
+        name: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-proportion-modes-repartition.non-randomized`,
+        }),
+        data: nonRandomized,
+        color: getCSSValue('--patient-125'),
+      },
+      {
+        name: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-proportion-modes-repartition.randomized`,
+        }),
+        data: randomized,
+        color: getCSSValue('--patient-100'),
+      },
+    ];
+
     return {
       categoriesGroupes,
       dataGraphGroupes,
+      categoriesRepartition,
+      dataGraphRepartition,
     };
   }
 

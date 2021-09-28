@@ -410,6 +410,9 @@
   "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.comments": "comments",
   "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.source": "source",
   "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.tooltip": "tooltip",
+  "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.na": "N/A",
+  "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.non-randomized": "Non-Randomized",
+  "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.randomized": "Randomized",
 
   "app.health-interventional.studies.caracteristiques.types.title": "Quels sont les différents types d'essais cliniques déclarés ?",
   "app.health-interventional.studies.caracteristiques.types.description": "2.2.4",

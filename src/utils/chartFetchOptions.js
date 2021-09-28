@@ -1498,6 +1498,37 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesCaracteristiquesCombienChartProportionModesRepartition: ([
+      studyType,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_design_allocation: {
+              terms: {
+                field: 'design_allocation.keyword',
+                missing: 'N/A',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

@@ -231,8 +231,11 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                <br />
-                app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition
+                <BSOChart
+                  id='studies.caracteristiques.combien.chart-proportion-modes-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection

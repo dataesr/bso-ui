@@ -2357,6 +2357,27 @@ export const chartOptions = {
       return options;
     },
   },
+  'studies.caracteristiques.combien.chart-proportion-modes-repartition': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories: data?.categoriesRepartition || [],
+      };
+      options.series = data?.dataGraphRepartition || [];
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+        reversed: true,
+      };
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+        },
+      };
+      return options;
+    },
+  },
   'studies.resultats.type-diffusion.chart-repartition-par-type': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
