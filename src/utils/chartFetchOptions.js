@@ -1382,7 +1382,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesQuandRepartition: ([studyType, sponsorType]) => ({
+    studiesCaracteristiquesQuandRepartition: ([delayField, studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1403,13 +1403,13 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         delay_submission_start: {
           histogram: {
-            field: 'delay_submission_start',
+            field: delayField,
             interval: 30,
           },
         },
       },
     }),
-    studiesCaracteristiquesQuandDistribution: ([studyType, sponsorType]) => ({
+    studiesCaracteristiquesQuandDistribution: ([delayField, studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1436,7 +1436,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
           aggs: {
             delay_submission_start_perc: {
               percentiles: {
-                field: 'delay_submission_start',
+                field: delayField,
               },
             },
           },

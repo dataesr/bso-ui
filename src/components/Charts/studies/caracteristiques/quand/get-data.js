@@ -56,6 +56,7 @@ function useGetData(studyType, sponsorType = '*') {
     const query2 = getFetchOptions(
       'studiesCaracteristiquesQuandRepartition',
       '',
+      'delay_submission_start',
       studyType,
       sponsorType,
     );
@@ -104,6 +105,7 @@ function useGetData(studyType, sponsorType = '*') {
     const query3 = getFetchOptions(
       'studiesCaracteristiquesQuandDistribution',
       '',
+      'delay_submission_start',
       studyType,
       sponsorType,
     );

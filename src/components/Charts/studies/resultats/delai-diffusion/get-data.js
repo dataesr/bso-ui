@@ -13,110 +13,182 @@ function useGetData(studyType, sponsorType = '*') {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataAxios() {
-    const queries = [];
-    const query1 = getFetchOptions('studiesResultsTypeDiffusion', '', studyType, sponsorType);
-    queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
-    const query2 = getFetchOptions('studiesResultsTypeDiffusionTypeIntervention', '', studyType, sponsorType);
-    queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
-    const res = await Axios.all(queries).catch(() => {
-      setLoading(false);
+    const colors = {
+      before_completion: getCSSValue('--orange-medium-75'),
+      after_completion: getCSSValue('--apres'),
+    };
+
+    const query2 = getFetchOptions(
+      'studiesCaracteristiquesQuandRepartition',
+      '',
+      'delay_first_results_completion',
+      studyType,
+      sponsorType,
+    );
+    query2.query.bool.filter.push(
+      {
+        term: {
+          'status.keyword': 'Completed',
+        },
+      },
+    );
+    const res2 = await Axios.post(ES_STUDIES_API_URL, query2, HEADERS).catch(
+      (e) => console.log(e),
+    );
+    const dataSortedByYear2 = res2.data.aggregations.delay_submission_start.buckets;
+    const data = {
+      before_completion: [],
+      after_completion: [],
+    };
+    const minBoundary = -720;
+    const maxBoundary = 1800;
+    const firstValue = dataSortedByYear2.filter((el) => el.key <= minBoundary).reduce((a, b) => a + b.doc_count, 0);
+    const lastValue = dataSortedByYear2.filter((el) => el.key >= maxBoundary).reduce((a, b) => a + b.doc_count, 0);
+    data.before_completion.push(firstValue);
+    data.after_completion.push(0);
+    dataSortedByYear2.filter((ele) => ele.key > minBoundary && ele.key < maxBoundary).forEach((el) => {
+      if (el.key <= 0) {
+        data.before_completion.push(el.doc_count);
+        data.after_completion.push(0);
+      } else {
+        data.before_completion.push(0);
+        data.after_completion.push(el.doc_count);
+      }
     });
+    data.before_completion.push(0);
+    data.after_completion.push(lastValue);
+    const steps2 = ['before_completion', 'after_completion'];
+    const dataGraph2 = steps2.map((step) => ({
+      data: data[step],
+      name: intl.formatMessage({
+        id: `app.studies.${step}`,
+      }),
+      color: colors[step],
+    }));
+
+    const categories2 = dataSortedByYear2.filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary).map((el) => Math.abs(el.key) / 30);
+    categories2[0] += ` ${intl.formatMessage({
+      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_before`,
+    })}`;
+    categories2[categories2.length - 1] += ` ${intl.formatMessage({
+      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-repartition-avant-apres.month_after`,
+    })}`;
+    const query3 = getFetchOptions(
+      'studiesCaracteristiquesQuandDistribution',
+      '',
+      'delay_first_results_completion',
+      studyType,
+      sponsorType,
+    );
+    query3.query.bool.filter.push(
+      {
+        term: {
+          'status.keyword': 'Completed',
+        },
+      },
+    );
+    const res3 = await Axios.post(ES_STUDIES_API_URL, query3, HEADERS).catch(
+      (e) => console.log(e),
+    );
     const currentYear = new Date().getFullYear();
-    const data1SortedByYear = res[0].data.aggregations.by_year.buckets.sort(
+    const dataSortedByYear3 = res3.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
     ).filter((y) => y.key >= 2010 && y.key <= currentYear);
-    const dataGraph1 = {
-      categories: data1SortedByYear.map((el) => el.key),
-      series: [
-        {
-          name: intl.formatMessage({ id: 'app.studies.results-only' }),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--resultat-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--publication-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.results-and-publications' }),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--resultat-et-publication'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.no-results-publications' }),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--g-400'),
-        },
+    const categories3 = dataSortedByYear3.map((el) => el.key);
+
+    const dataGraph3 = [];
+    const median = [];
+    dataSortedByYear3.forEach((year, index) => {
+      const violinData = {
+        before_completion: [],
+        after_completion: [],
+      };
+      median.push([
+        year.delay_submission_start_perc.values['50.0'] / 30,
+        index,
+      ]);
+      let total = 0;
+      Object.keys(year.delay_submission_start_perc.values).forEach((key) => {
+        const value = year.delay_submission_start_perc.values[key] / 30;
+        const percentageKey = parseInt(key, 10) / 100;
+        if (value < 0) {
+          violinData.before_completion.push([
+            value,
+            index - (percentageKey - total),
+            index + (percentageKey - total),
+          ]);
+        } else {
+          violinData.after_completion.push([
+            value,
+            index - (percentageKey - total),
+            index + (percentageKey - total),
+          ]);
+        }
+        total = percentageKey;
+      });
+      // Extrapolate the limit between negative and positive data, linear regression
+      const [x1, y1, y1b] = violinData.before_completion[violinData.before_completion.length - 1] || [null, null, null];
+      const [x3, y3, y3b] = violinData.after_completion[0] || [null, null, null];
+      let a = (y3 - y1) / (x3 - x1);
+      let b = y1 - a * x1;
+      const middleValue1 = b;
+      a = (y3b - y1b) / (x3 - x1);
+      b = y1b - a * x1;
+      const middleValue2 = b;
+      violinData.before_completion.push([0, middleValue1, middleValue2]);
+      violinData.after_completion.unshift([0, middleValue1, middleValue2]);
+      dataGraph3.push({
+        name: intl.formatMessage({
+          id: 'app.studies.before_completion',
+        }),
+        color: colors.before_completion,
+        data: violinData.before_completion,
+        showInLegend: index === 0,
+      });
+      dataGraph3.push({
+        name: intl.formatMessage({
+          id: 'app.studies.after_completion',
+        }),
+        color: colors.after_completion,
+        data: violinData.after_completion,
+        showInLegend: index === 0,
+      });
+    });
+    // Add vertical line on x 0
+    dataGraph3.push({
+      type: 'line',
+      data: [
+        [0, -1],
+        [0, 10],
       ],
+      color: getCSSValue('--g-800'),
+      lineWidth: 1,
+      showInLegend: false,
+    });
+    // Add median line
+    dataGraph3.push({
+      type: 'scatter',
+      lineWidth: 2,
+      data: median,
+      name: intl.formatMessage({
+        id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.median`,
+      }),
+      color: '#000',
+      marker: {
+        enabled: true,
+        symbol: 'circle',
+        lineWidth: 2,
+        lineColor: '#000',
+        fillColor: getCSSValue('--white'),
+      },
+    });
+
+    return {
+      categories2,
+      dataGraph2,
+      categories3,
+      dataGraph3,
     };
-    const data2 = res[1].data.aggregations.by_intervention_type.buckets;
-    const dataGraph2 = {
-      categories: data2.map((el) => intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` })),
-      series: [
-        {
-          name: intl.formatMessage({ id: 'app.studies.results-only' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--resultat-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--publication-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.results-and-publications' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 1)?.by_has_publications_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--resultat-et-publication'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.no-results-publications' }),
-          data: data2.map((el) => ({
-            y_abs: el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0,
-            y: (100 * (el.by_has_result.buckets.find((ele) => ele.key === 0)?.by_has_publications_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0)) / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` }),
-          })),
-          color: getCSSValue('--g-400'),
-        },
-      ],
-    };
-    return { dataGraph1, dataGraph2 };
   }
 
   useEffect(() => {

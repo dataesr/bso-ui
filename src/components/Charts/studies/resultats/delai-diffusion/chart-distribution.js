@@ -2,6 +2,7 @@ import '../../../graph.scss';
 
 import Axios from 'axios';
 import Highcharts from 'highcharts';
+import highchartsMore from 'highcharts/highcharts-more';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
@@ -26,6 +27,7 @@ import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
+highchartsMore(Highcharts);
 
 const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const chartRef = useRef();
@@ -34,7 +36,6 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
   const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
-  const { dataGraph1 } = allData;
   const query = getFetchOptions('sponsorsTypesList', '', studyType);
   useEffect(() => {
     Axios.post(ES_STUDIES_API_URL, query, HEADERS).then((response) => {
@@ -54,7 +55,12 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, dataGraph1);
+  const optionsGraph = chartOptions[id].getOptions(
+    id,
+    intl,
+    allData,
+    idWithDomainAndStudyType,
+  );
 
   return (
     <WrapperChart
@@ -62,6 +68,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       isError={isError}
       id={id}
       domain={domain}
+      studyType={studyType}
       chartRef={chartRef}
       graphFooter={graphFooter}
       graphComments={false}
