@@ -13,35 +13,37 @@ function useGetData(studyType) {
   const [isLoading, setLoading] = useState(true);
 
   async function getDataAxios() {
-    const query = getFetchOptions(
+    const queryGroupes = getFetchOptions(
       'studiesCaracteristiquesCombienChartGroupesPatients',
       '',
       studyType,
     );
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
-      (e) => console.log(e),
-    );
-    const dataSortedByYear = res.data.aggregations.enrollment.buckets;
+    const resGroupes = await Axios.post(
+      ES_STUDIES_API_URL,
+      queryGroupes,
+      HEADERS,
+    ).catch((e) => console.log(e));
+    const dataSortedByYearGroupes = resGroupes.data.aggregations.enrollment.buckets;
 
-    const categories = dataSortedByYear.map((el) => intl.formatMessage({
+    const categoriesGroupes = dataSortedByYearGroupes.map((el) => intl.formatMessage({
       id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.${
           el.key
         }`,
     }));
 
-    const dataGraph = [
+    const dataGraphGroupes = [
       {
         name: intl.formatMessage({
           id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.legend`,
         }),
         color: getCSSValue('--patient-100'),
-        data: dataSortedByYear.map((el) => el.doc_count),
+        data: dataSortedByYearGroupes.map((el) => el.doc_count),
       },
     ];
 
     return {
-      categories,
-      dataGraph,
+      categoriesGroupes,
+      dataGraphGroupes,
     };
   }
 

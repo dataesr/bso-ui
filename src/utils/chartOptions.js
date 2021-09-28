@@ -2335,7 +2335,7 @@ export const chartOptions = {
         verticalAlign: 'bottom',
       };
       options.xAxis = {
-        categories: data?.categories || [],
+        categories: data?.categoriesGroupes || [],
         format: '{this.value}',
       };
       options.yAxis = {
@@ -2344,7 +2344,7 @@ export const chartOptions = {
           enabled: false,
         },
       };
-      options.series = data?.dataGraph || [];
+      options.series = data?.dataGraphGroupes || [];
       options.legend = {
         align: 'left',
         verticalAlign: 'top',
