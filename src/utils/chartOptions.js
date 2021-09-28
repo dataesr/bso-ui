@@ -2,8 +2,7 @@ import { cleanNumber, getCSSValue, getPercentageYAxis } from './helpers';
 
 /**
  *
- * @param id
- * @param data
+ * @param graphId
  * @param intl
  * @returns {{exporting:
  * {chartOptions: {legend: {enabled: boolean}, subtitle: {text: *}, title: {text: *}},
@@ -1730,7 +1729,9 @@ export const chartOptions = {
 
       options.tooltip = {
         headerFormat: '',
-        pointFormat: intl.formatMessage({ id: `app.health-${studyType.toLowerCase()}.${id}.tooltip` }),
+        pointFormat: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.${id}.tooltip`,
+        }),
       };
 
       return options;
@@ -1739,7 +1740,17 @@ export const chartOptions = {
   'studies.general.trajectoires.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const getNodes = () => {
-        const allNodes = ['Completed', 'Recruiting', 'Unknown status', 'Not yet recruiting', 'Active, not recruiting', 'Terminated', 'Enrolling by invitation', 'Withdrawn', 'Suspended'];
+        const allNodes = [
+          'Completed',
+          'Recruiting',
+          'Unknown status',
+          'Not yet recruiting',
+          'Active, not recruiting',
+          'Terminated',
+          'Enrolling by invitation',
+          'Withdrawn',
+          'Suspended',
+        ];
         const keysList = [
           {
             keyword: 'has_result',
@@ -1770,19 +1781,17 @@ export const chartOptions = {
         const nodes = [];
 
         allNodes.forEach((node) => {
-          nodes.push(
-            {
-              id: node,
-              name: intl.formatMessage({ id: `app.health-${studyType.toLowerCase()}.studies.general.sankey.${node}.label` }),
-            },
-          );
+          nodes.push({
+            id: node,
+            name: intl.formatMessage({
+              id: `app.health-${studyType.toLowerCase()}.studies.general.sankey.${node}.label`,
+            }),
+          });
           keysList.forEach((item) => {
-            nodes.push(
-              {
-                id: `${node}-${item.keyword}`,
-                name: intl.formatMessage({ id: item.intlKey }),
-              },
-            );
+            nodes.push({
+              id: `${node}-${item.keyword}`,
+              name: intl.formatMessage({ id: item.intlKey }),
+            });
           });
         });
         return nodes;
