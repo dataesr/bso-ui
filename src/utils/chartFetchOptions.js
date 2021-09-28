@@ -1443,6 +1443,35 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesCaracteristiquesTypes: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_intervention_type: {
+              terms: {
+                field: 'intervention_type.keyword',
+                missing: 'N/A',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

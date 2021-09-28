@@ -396,14 +396,14 @@
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.source": "source",
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.tooltip": "tooltip",
 
-  "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.title": "Proportiondes modes de répartition des groupes de patients dans les essais déclarés",
+  "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.title": "Proportion des modes de répartition des groupes de patients dans les essais déclarés",
   "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.comments": "comments",
   "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.source": "source",
   "app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition.tooltip": "tooltip",
 
   "app.health-interventional.studies.caracteristiques.types.title": "Quels sont les différents types d'essais cliniques déclarés ?",
   "app.health-interventional.studies.caracteristiques.types.description": "2.2.4",
-  "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.title": "Proportiondes modes de répartition des groupes de patients dans les essais déclarés",
+  "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.title": "Proportion des modes de répartition des groupes de patients dans les essais déclarés",
   "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.comments": "comments",
   "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.source": "source",
   "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.tooltip": "tooltip",

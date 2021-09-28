@@ -130,7 +130,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-
               </QuestionSection>
 
               <QuestionSection
@@ -231,7 +230,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='caracteristiques.types'
               >
-                app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre
+                <BSOChart
+                  id='studies.caracteristiques.types.chart-evolution-nombre'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>
