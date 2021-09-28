@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -59,15 +58,18 @@ function useGetData(observationSnaps, domain = '') {
       dataHist.push({
         name: affiliation,
         bsoDomain,
-        data: observationSnaps.slice(0) // make a copy before sorting in ascending order !
+        data: observationSnaps
+          .slice(0) // make a copy before sorting in ascending order !
           .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
           .map((obs) => ({
             name: obs,
             bsoDomain,
-            y_tot: dataGraph[affiliation].find((x) => x.observation_date === obs)
-              .y_tot,
-            y_abs: dataGraph[affiliation].find((x) => x.observation_date === obs)
-              .y_abs,
+            y_tot: dataGraph[affiliation].find(
+              (x) => x.observation_date === obs,
+            ).y_tot,
+            y_abs: dataGraph[affiliation].find(
+              (x) => x.observation_date === obs,
+            ).y_abs,
             y: dataGraph[affiliation].find((x) => x.observation_date === obs).y,
             x: dataGraph[affiliation].find((x) => x.observation_date === obs).x,
           })),

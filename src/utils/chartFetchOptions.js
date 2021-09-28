@@ -1443,6 +1443,93 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
+    studiesCaracteristiquesDureeChartNombre: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        delay_start_completion: {
+          histogram: {
+            field: 'delay_start_completion',
+            interval: 365,
+          },
+        },
+      },
+    }),
+    studiesCaracteristiquesCombienChartGroupesPatients: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        enrollment: {
+          range: {
+            field: 'enrollment_count',
+            ranges: [
+              { key: '50-less', to: 50 },
+              { key: '50-99', from: 50, to: 100 },
+              { key: '100-499', from: 100, to: 500 },
+              { key: '500-999', from: 500, to: 1000 },
+              { key: '1000-4999', from: 1000, to: 5000 },
+              { key: '5000-more', from: 5000 },
+            ],
+          },
+        },
+      },
+    }),
+    studiesCaracteristiquesCombienChartProportionModesRepartition: ([
+      studyType,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_design_allocation: {
+              terms: {
+                field: 'design_allocation.keyword',
+                missing: 'N/A',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

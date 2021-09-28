@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -14,7 +13,9 @@ function useGetData(observationSnaps, domain = '') {
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-      const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
+      const disciplineField = domain === 'health'
+        ? 'bsso_classification.field'
+        : 'bso_classification';
       // Pour chaque date d'observation, récupération des données associées
       const queries = [];
       datesObservation
@@ -50,9 +51,9 @@ function useGetData(observationSnaps, domain = '') {
               y_tot: item.doc_count,
               y_abs: item.by_is_oa.buckets.find((x) => x.key === 1).doc_count,
               y:
-              (item.by_is_oa.buckets.find((x) => x.key === 1).doc_count
-                / item.doc_count)
-              * 100,
+                (item.by_is_oa.buckets.find((x) => x.key === 1).doc_count
+                  / item.doc_count)
+                * 100,
             });
           });
       });
@@ -61,17 +62,22 @@ function useGetData(observationSnaps, domain = '') {
         dataHist.push({
           name: discipline,
           bsoDomain,
-          data: datesObservation.slice(0) // make a copy before sorting in ascending order !
+          data: datesObservation
+            .slice(0) // make a copy before sorting in ascending order !
             .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
             .map((obs) => ({
               name: obs,
               bsoDomain,
-              y_tot: dataGraph[discipline].find((x) => x.observation_date === obs)
-                .y_tot,
-              y_abs: dataGraph[discipline].find((x) => x.observation_date === obs)
-                .y_abs,
-              y: dataGraph[discipline].find((x) => x.observation_date === obs).y,
-              x: dataGraph[discipline].find((x) => x.observation_date === obs).x,
+              y_tot: dataGraph[discipline].find(
+                (x) => x.observation_date === obs,
+              ).y_tot,
+              y_abs: dataGraph[discipline].find(
+                (x) => x.observation_date === obs,
+              ).y_abs,
+              y: dataGraph[discipline].find((x) => x.observation_date === obs)
+                .y,
+              x: dataGraph[discipline].find((x) => x.observation_date === obs)
+                .x,
             })),
         });
       });
