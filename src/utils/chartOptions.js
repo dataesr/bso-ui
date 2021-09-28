@@ -877,7 +877,7 @@ export const chartOptions = {
           marker: {
             enabled: true,
             lineWidth: 2,
-            fillColor: '#000',
+            fillColor: getCSSValue('--black'),
           },
         },
       };
@@ -1677,7 +1677,7 @@ export const chartOptions = {
           marker: {
             enabled: true,
             lineWidth: 2,
-            fillColor: '#000',
+            fillColor: getCSSValue('--black'),
           },
         },
       };
@@ -1858,7 +1858,11 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
-      options.legend.reversed = true;
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+        reversed: true,
+      };
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -1887,6 +1891,11 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categories2 || [],
+        labels: {
+          rotation: 0,
+          useHTML: true,
+          overflow: 'allow',
+        },
       };
       options.xAxis.labels = {
         formatter() {
@@ -1910,6 +1919,10 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraph2 || [];
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+      };
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${idWithDomainAndStudyType}.tooltip`,
       });
@@ -1952,7 +1965,106 @@ export const chartOptions = {
           },
         },
       };
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+      };
       options.series = data?.dataGraph3 || [];
+      return options;
+    },
+  },
+  'studies.caracteristiques.duree.chart-nombre': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.title = {
+        text: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.duree.chart-nombre.chart-title`,
+        }),
+        verticalAlign: 'bottom',
+      };
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+      };
+      options.xAxis = {
+        tickInterval: 1,
+        labels: {
+          formatter() {
+            let label = '';
+            switch (this.value) {
+            case 0:
+              label = `${this.value} an`;
+              break;
+            case 22:
+              label = `${this.value} an<br>et plus`;
+              break;
+            default:
+              label = `${this.value}`;
+            }
+            return label;
+          },
+        },
+      };
+      options.yAxis = {
+        categories: data?.categories || [],
+        title: null,
+      };
+      options.series = data?.dataGraph || [];
+      return options;
+    },
+  },
+  'studies.caracteristiques.combien.chart-groupes-patients': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.title = {
+        text: intl.formatMessage({
+          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.chart-title`,
+        }),
+        verticalAlign: 'bottom',
+      };
+      options.xAxis = {
+        categories: data?.categoriesGroupes || [],
+        format: '{this.value}',
+      };
+      options.yAxis = {
+        visible: false,
+        labels: {
+          enabled: false,
+        },
+      };
+      options.series = data?.dataGraphGroupes || [];
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+      };
+      options.plotOptions = {
+        series: {
+          pointWidth: 20,
+        },
+      };
+      return options;
+    },
+  },
+  'studies.caracteristiques.combien.chart-proportion-modes-repartition': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl);
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories: data?.categoriesRepartition || [],
+      };
+      options.series = data?.dataGraphRepartition || [];
+      options.legend = {
+        align: 'left',
+        verticalAlign: 'top',
+        reversed: true,
+      };
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+        },
+      };
       return options;
     },
   },

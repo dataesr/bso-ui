@@ -130,7 +130,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-
               </QuestionSection>
 
               <QuestionSection
@@ -213,7 +212,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='caracteristiques.duree'
               >
-                app.health-interventional.studies.caracteristiques.duree.chart-nombre
+                <BSOChart
+                  id='studies.caracteristiques.duree.chart-nombre'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -221,9 +224,16 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.combien'
               >
-                app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients
-                <br />
-                app.health-interventional.studies.caracteristiques.combien.chart-proportion-modes-repartition
+                <BSOChart
+                  id='studies.caracteristiques.combien.chart-groupes-patients'
+                  domain='health'
+                  studyType='Interventional'
+                />
+                <BSOChart
+                  id='studies.caracteristiques.combien.chart-proportion-modes-repartition'
+                  domain='health'
+                  studyType='Interventional'
+                />
               </QuestionSection>
 
               <QuestionSection
