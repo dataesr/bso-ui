@@ -131,10 +131,10 @@ function useGetData(studyType, sponsorType = '*') {
       const [x3, y3, y3b] = violinData.after_completion[0] || [null, null, null];
       let a = (y3 - y1) / (x3 - x1);
       let b = y1 - a * x1;
-      const middleValue1 = b;
+      const middleValue1 = (b || y1);
       a = (y3b - y1b) / (x3 - x1);
       b = y1b - a * x1;
-      const middleValue2 = b;
+      const middleValue2 = (b || y1b);
       violinData.before_completion.push([0, middleValue1, middleValue2]);
       violinData.after_completion.unshift([0, middleValue1, middleValue2]);
       dataGraph3.push({
