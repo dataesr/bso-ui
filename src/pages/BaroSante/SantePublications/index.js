@@ -67,7 +67,9 @@ function SantePublications() {
               value: intl.formatMessage({ id: 'url.sante.essais' }),
             },
             {
-              label: intl.formatMessage({ id: 'app.baro-sante.etudes.title' }),
+              label: intl.formatMessage({
+                id: 'app.baro-sante.studies.main-title',
+              }),
               value: intl.formatMessage({ id: 'url.sante.etudes' }),
             },
           ],

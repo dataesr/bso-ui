@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -23,7 +22,7 @@ function useGetData(studyType, sponsorType = '*') {
       ES_STUDIES_API_URL,
       queryEvolution,
       HEADERS,
-    ).catch((e) => console.log(e));
+    ).catch(() => setLoading(false));
     const currentYear = new Date().getFullYear();
     const dataSortedByYearEvolution = resEvolution.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -66,7 +65,7 @@ function useGetData(studyType, sponsorType = '*') {
       ES_STUDIES_API_URL,
       queryRepartition,
       HEADERS,
-    ).catch((e) => console.log(e));
+    ).catch(() => setLoading(false));
     const dataSortedByYearRepartition = resRepartition.data.aggregations.delay_submission_start.buckets;
     const data = {
       before_start: [],
@@ -127,7 +126,7 @@ function useGetData(studyType, sponsorType = '*') {
       ES_STUDIES_API_URL,
       queryDistribution,
       HEADERS,
-    ).catch((e) => console.log(e));
+    ).catch(() => setLoading(false));
     const dataSortedByYearDistribution = resDistribution.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= currentYear);
@@ -198,7 +197,7 @@ function useGetData(studyType, sponsorType = '*') {
       type: 'line',
       data: [
         [0, -1],
-        [0, 10],
+        [0, 11],
       ],
       color: getCSSValue('--g-800'),
       lineWidth: 1,
@@ -223,12 +222,12 @@ function useGetData(studyType, sponsorType = '*') {
     });
 
     return {
-      categories1: dataSortedByYearEvolution.map((el) => el.key),
-      dataGraph1: dataGraphEvolution,
-      categories2: categoriesRepartition,
-      dataGraph2: dataGraphRepartition,
-      categories3: categoriesDistribution,
-      dataGraph3: dataGraphDistribution,
+      categoriesEvolution: dataSortedByYearEvolution.map((el) => el.key),
+      dataGraphEvolution,
+      categoriesRepartition,
+      dataGraphRepartition,
+      categoriesDistribution,
+      dataGraphDistribution,
     };
   }
 

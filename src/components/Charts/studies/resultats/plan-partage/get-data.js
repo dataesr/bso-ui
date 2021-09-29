@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -14,23 +13,32 @@ function useGetData(studyType, sponsorType = '*') {
 
   async function getDataAxios() {
     const queries = [];
-    const query1 = getFetchOptions('studiesResultsPlanPartage', '', studyType, sponsorType);
+    const query1 = getFetchOptions(
+      'studiesResultsPlanPartage',
+      '',
+      studyType,
+      sponsorType,
+    );
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
     const currentYear = new Date().getFullYear();
-    const data1SortedByYear = res[0].data.aggregations.by_year.buckets.sort(
-      (a, b) => a.key - b.key,
-    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const data1SortedByYear = res[0].data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear);
     const dataGraph1 = {
       categories: data1SortedByYear.map((el) => el.key),
       series: [
         {
           name: intl.formatMessage({ id: 'app.studies.plan-partage-yes' }),
           data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'Yes')?.doc_count,
-            y: (100 * el.by_ipd.buckets.find((ele) => ele.key === 'Yes')?.doc_count) / el.doc_count,
+            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'Yes')
+              ?.doc_count,
+            y:
+              (100
+                * el.by_ipd.buckets.find((ele) => ele.key === 'Yes')?.doc_count)
+              / el.doc_count,
             y_tot: el.doc_count,
             year: el.key,
           })),
@@ -40,17 +48,27 @@ function useGetData(studyType, sponsorType = '*') {
           name: intl.formatMessage({ id: 'app.studies.plan-partage-no' }),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'No')?.doc_count,
-            y: (100 * el.by_ipd.buckets.find((ele) => ele.key === 'No')?.doc_count) / el.doc_count,
+            y:
+              (100
+                * el.by_ipd.buckets.find((ele) => ele.key === 'No')?.doc_count)
+              / el.doc_count,
             y_tot: el.doc_count,
             year: el.key,
           })),
           color: getCSSValue('--g-600'),
         },
         {
-          name: intl.formatMessage({ id: 'app.studies.plan-partage-undecided' }),
+          name: intl.formatMessage({
+            id: 'app.studies.plan-partage-undecided',
+          }),
           data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'Undecided')?.doc_count,
-            y: (100 * el.by_ipd.buckets.find((ele) => ele.key === 'Undecided')?.doc_count) / el.doc_count,
+            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'Undecided')
+              ?.doc_count,
+            y:
+              (100
+                * el.by_ipd.buckets.find((ele) => ele.key === 'Undecided')
+                  ?.doc_count)
+              / el.doc_count,
             y_tot: el.doc_count,
             year: el.key,
           })),
@@ -60,7 +78,10 @@ function useGetData(studyType, sponsorType = '*') {
           name: intl.formatMessage({ id: 'app.studies.plan-partage-na' }),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'NA')?.doc_count,
-            y: (100 * el.by_ipd.buckets.find((ele) => ele.key === 'NA')?.doc_count) / el.doc_count,
+            y:
+              (100
+                * el.by_ipd.buckets.find((ele) => ele.key === 'NA')?.doc_count)
+              / el.doc_count,
             y_tot: el.doc_count,
             year: el.key,
           })),

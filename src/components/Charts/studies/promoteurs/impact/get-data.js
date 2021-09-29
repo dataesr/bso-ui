@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -14,17 +13,27 @@ function useGetData(studyType, sponsorType = '*') {
 
   async function getDataAxios() {
     const queries = [];
-    const query1 = getFetchOptions('studiesPromoteursImpactPaysLeadSponsor', '', studyType, sponsorType);
+    const query1 = getFetchOptions(
+      'studiesPromoteursImpactPaysLeadSponsor',
+      '',
+      studyType,
+      sponsorType,
+    );
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
-    const query2 = getFetchOptions('studiesPromoteursImpactPays', '', studyType, sponsorType);
+    const query2 = getFetchOptions(
+      'studiesPromoteursImpactPays',
+      '',
+      studyType,
+      sponsorType,
+    );
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
     const currentYear = new Date().getFullYear();
-    const data1SortedByYear = res[0].data.aggregations.by_year.buckets.sort(
-      (a, b) => a.key - b.key,
-    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const data1SortedByYear = res[0].data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear);
     const categories = [];
     const dataFrenchAcademic = [];
     const dataFrenchIndus = [];
@@ -33,16 +42,32 @@ function useGetData(studyType, sponsorType = '*') {
     data1SortedByYear.forEach((el) => {
       categories.push(el.key);
       const frOnly = el.by_fr_only.buckets.find((ele) => ele.key === 1);
-      const frAcademic = frOnly?.by_sponsor_type.buckets.find((ele) => ele.key === 'academique');
-      const frAcademicOpen = frAcademic?.by_has_result_or_publi.buckets.find((ele) => ele.key === 1);
-      const frIndus = frOnly?.by_sponsor_type.buckets.find((ele) => ele.key === 'industriel');
-      const frIndusOpen = frIndus?.by_has_result_or_publi.buckets.find((ele) => ele.key === 1);
+      const frAcademic = frOnly?.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'academique',
+      );
+      const frAcademicOpen = frAcademic?.by_has_result_or_publi.buckets.find(
+        (ele) => ele.key === 1,
+      );
+      const frIndus = frOnly?.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'industriel',
+      );
+      const frIndusOpen = frIndus?.by_has_result_or_publi.buckets.find(
+        (ele) => ele.key === 1,
+      );
 
       const notfrOnly = el.by_fr_only.buckets.find((ele) => ele.key === 0);
-      const notfrAcademic = notfrOnly?.by_sponsor_type.buckets.find((ele) => ele.key === 'academique');
-      const notfrAcademicOpen = notfrAcademic?.by_has_result_or_publi.buckets.find((ele) => ele.key === 1);
-      const notfrIndus = notfrOnly?.by_sponsor_type.buckets.find((ele) => ele.key === 'industriel');
-      const notfrIndusOpen = notfrIndus?.by_has_result_or_publi.buckets.find((ele) => ele.key === 1);
+      const notfrAcademic = notfrOnly?.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'academique',
+      );
+      const notfrAcademicOpen = notfrAcademic?.by_has_result_or_publi.buckets.find(
+        (ele) => ele.key === 1,
+      );
+      const notfrIndus = notfrOnly?.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'industriel',
+      );
+      const notfrIndusOpen = notfrIndus?.by_has_result_or_publi.buckets.find(
+        (ele) => ele.key === 1,
+      );
 
       dataFrenchAcademic.push({
         year: el.key,
@@ -97,8 +122,14 @@ function useGetData(studyType, sponsorType = '*') {
     ];
     const dataGraph1 = { categories, series };
     const data2 = res[1].data.aggregations.by_country.buckets;
-    data2.sort((a, b) => b.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)?.doc_count / b.doc_count
-      - a.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)?.doc_count / a.doc_count);
+    data2.sort(
+      (a, b) => b.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)
+        ?.doc_count
+          / b.doc_count
+        - a.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)
+          ?.doc_count
+          / a.doc_count,
+    );
     const dataGraph2 = {
       categories: data2.map((el) => intl.formatMessage({ id: `app.country.${el.key}` })),
       series: [
@@ -106,8 +137,13 @@ function useGetData(studyType, sponsorType = '*') {
           name: 'taux-ouverture',
           showInLegend: false,
           data: data2.map((el) => ({
-            y_abs: el.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)?.doc_count || 0,
-            y: (100 * el.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)?.doc_count || 0) / el.doc_count,
+            y_abs:
+              el.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)
+                ?.doc_count || 0,
+            y:
+              (100
+                * el.by_has_result_or_publi.buckets.find((ele) => ele.key === 1)
+                  ?.doc_count || 0) / el.doc_count,
             y_tot: el.doc_count,
             country: intl.formatMessage({ id: `app.country.${el.key}` }),
           })),
