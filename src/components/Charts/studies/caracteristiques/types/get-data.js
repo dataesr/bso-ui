@@ -22,7 +22,6 @@ function useGetData(studyType, sponsorType = '*') {
       (e) => console.log(e),
     );
 
-    console.log('res', res);
     const currentYear = new Date().getFullYear();
     const dataSortedByYear = res.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -43,26 +42,34 @@ function useGetData(studyType, sponsorType = '*') {
     };
 
     const dataGraph = [];
-    const categories = [];
-    console.log(dataSortedByYear);
-    dataSortedByYear.forEach((el) => {
-      categories.push(el.key);
-    });
-    // const dataGraph1 = dataSortedByYear.map((el) => {
-    //   const x = el.key;
-    //   const yValue = el.by_submission_temporality.buckets.find(
-    //     (ele) => ele.key === step,
-    //   )?.doc_count;
-    //   const y = (yValue / el.doc_count) * 100;
-    //   const yLabel = Number(y).toFixed(0);
-    //   const yTotal = el.doc_count;
-    //   return { x, yValue, y, yLabel, yTotal };
-    // });
 
+    const categoriesSet = new Set();
+
+    dataSortedByYear.forEach((el) => {
+      el.by_intervention_type.buckets.forEach((ele) => {
+        categoriesSet.add(ele.key);
+      });
+    });
+
+    Array.from(categoriesSet).forEach((cat) => {
+      dataGraph.push({
+        name: intl.formatMessage({ id: `app.studies.intervention-type.${cat}` }),
+        color: colors[cat.split(' ').join('')],
+        data: dataSortedByYear.map((el) => {
+          const x = el.key;
+          const yValue = el.by_intervention_type.buckets.find(
+            (ele) => ele.key === cat,
+          )?.doc_count;
+          const y = (yValue / el.doc_count) * 100;
+          const yLabel = Number(y).toFixed(0);
+          const yTotal = el.doc_count;
+          return { x, yValue, y, yLabel, yTotal };
+        }),
+      });
+    });
     dataGraph.reverse();
 
     return {
-      categories,
       dataGraph,
     };
   }

@@ -216,18 +216,6 @@ function EtudesObservationnelles() {
                 <br />
                 app.health-observational.studies.caracteristiques.combien.chart-proportion-modes-repartition
               </QuestionSection>
-
-              <QuestionSection
-                intlKey='app.health-observational.studies.caracteristiques.types'
-                backgroundColor={blueSoft25}
-                anchorId='caracteristiques.types'
-              >
-                <BSOChart
-                  id='studies.caracteristiques.types.chart-evolution-nombre'
-                  domain='health'
-                  studyType='Observational'
-                />
-              </QuestionSection>
             </GraphContent>
           </GraphItem>
 

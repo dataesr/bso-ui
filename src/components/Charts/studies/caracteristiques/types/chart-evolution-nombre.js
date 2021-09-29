@@ -1,6 +1,5 @@
 import '../../../graph.scss';
 
-import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';

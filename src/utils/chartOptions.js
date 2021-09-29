@@ -1960,9 +1960,6 @@ export const chartOptions = {
     getOptions: (id, intl, data, idWithDomainAndStudyType) => {
       const options = getGraphOptions(id, intl);
       options.chart.type = 'column';
-      options.xAxis = {
-        categories: data?.categories1 || [],
-      };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
       options.legend.reversed = true;
@@ -1981,7 +1978,7 @@ export const chartOptions = {
           },
         },
       };
-      options.series = data?.dataGraph1 || [];
+      options.series = data?.dataGraph || [];
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${idWithDomainAndStudyType}.tooltip`,
       });

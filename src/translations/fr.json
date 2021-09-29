@@ -406,7 +406,7 @@
   "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.title": "Proportion des modes de répartition des groupes de patients dans les essais déclarés",
   "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.comments": "comments",
   "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.source": "source",
-  "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.tooltip": "tooltip",
+  "app.health-interventional.studies.caracteristiques.types.chart-evolution-nombre.tooltip": "<strong>Année de publication {point.x}</strong> <br>• {series.name} : <br> {point.yLabel}% ({point.yValue} / {point.yTotal})",
 
   "app.health-interventional.studies.promoteurs": "Les promoteurs",
   "app.health-interventional.studies.navigation.promoteurs.dynamique-ouverture": "La dynamique d'ouverture",
@@ -543,13 +543,6 @@
   "app.health-observational.studies.caracteristiques.combien.chart-proportion-modes-repartition.comments": "comments",
   "app.health-observational.studies.caracteristiques.combien.chart-proportion-modes-repartition.source": "source",
   "app.health-observational.studies.caracteristiques.combien.chart-proportion-modes-repartition.tooltip": "tooltip",
-
-  "app.health-observational.studies.caracteristiques.types.title": "Quels sont les différents types d'études observationnelles déclarées ?",
-  "app.health-observational.studies.caracteristiques.types.description": "2.2.4",
-  "app.health-observational.studies.caracteristiques.types.chart-evolution-nombre.title": "Proportiondes modes de répartition des groupes de patients dans les études déclarées",
-  "app.health-observational.studies.caracteristiques.types.chart-evolution-nombre.comments": "comments",
-  "app.health-observational.studies.caracteristiques.types.chart-evolution-nombre.source": "source",
-  "app.health-observational.studies.caracteristiques.types.chart-evolution-nombre.tooltip": "tooltip",
 
   "app.health-observational.studies.promoteurs": "Les promoteurs",
   "app.health-observational.studies.navigation.promoteurs.dynamique-ouverture": "La dynamique d'ouverture",
