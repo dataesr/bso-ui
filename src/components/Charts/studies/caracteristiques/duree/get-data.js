@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -18,9 +17,7 @@ function useGetData(studyType) {
       '',
       studyType,
     );
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
-      (e) => console.log(e),
-    );
+    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(() => setLoading(false));
     const dataSortedByYear = res.data.aggregations.delay_start_completion.buckets.sort(
       (a, b) => a.key - b.key,
     );

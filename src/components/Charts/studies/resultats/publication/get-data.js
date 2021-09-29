@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -14,40 +13,63 @@ function useGetData(studyType, sponsorType = '*') {
 
   async function getDataAxios() {
     const queries = [];
-    const query1 = getFetchOptions('studiesResultsPublicationsOa', '', studyType, sponsorType);
+    const query1 = getFetchOptions(
+      'studiesResultsPublicationsOa',
+      '',
+      studyType,
+      sponsorType,
+    );
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     const res = await Axios.all(queries).catch(() => {
       setLoading(false);
     });
     const currentYear = new Date().getFullYear();
-    const data1SortedByYear = res[0].data.aggregations.by_year.buckets.sort(
-      (a, b) => a.key - b.key,
-    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const data1SortedByYear = res[0].data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear);
     const categories = [];
     const dataOa = [];
     const dataClosed = [];
     const dataNA = [];
     data1SortedByYear.forEach((el) => {
       categories.push(el.key);
-      const withPublications = el.by_has_publications.buckets.find((b) => b.key === 1);
-      const withPublicationsOA = withPublications?.by_oa.buckets.find((b) => b.key === 1);
-      const withPublicationsClosed = withPublications?.by_oa.buckets.find((b) => b.key === 0);
+      const withPublications = el.by_has_publications.buckets.find(
+        (b) => b.key === 1,
+      );
+      const withPublicationsOA = withPublications?.by_oa.buckets.find(
+        (b) => b.key === 1,
+      );
+      const withPublicationsClosed = withPublications?.by_oa.buckets.find(
+        (b) => b.key === 0,
+      );
       dataOa.push({
         y_tot: withPublications?.doc_count || 0,
         y_abs: withPublicationsOA?.doc_count || 0,
-        y: 100 * (withPublicationsOA?.doc_count / withPublications?.doc_count) || 0,
+        y:
+          100 * (withPublicationsOA?.doc_count / withPublications?.doc_count)
+          || 0,
         year: el.key,
       });
       dataClosed.push({
         y_tot: withPublications?.doc_count || 0,
         y_abs: withPublicationsClosed?.doc_count || 0,
-        y: 100 * (withPublicationsClosed?.doc_count / withPublications?.doc_count) || 0,
+        y:
+          100
+            * (withPublicationsClosed?.doc_count / withPublications?.doc_count)
+          || 0,
         year: el.key,
       });
       dataNA.push({
         y_tot: withPublications?.doc_count || 0,
-        y_abs: (withPublications?.doc_count || 0) - (withPublicationsClosed?.doc_count || 0) - (withPublicationsOA?.doc_count || 0),
-        y: (100 * ((withPublications?.doc_count || 0) - (withPublicationsClosed?.doc_count || 0) - (withPublicationsOA?.doc_count || 0)))
+        y_abs:
+          (withPublications?.doc_count || 0)
+          - (withPublicationsClosed?.doc_count || 0)
+          - (withPublicationsOA?.doc_count || 0),
+        y:
+          (100
+            * ((withPublications?.doc_count || 0)
+              - (withPublicationsClosed?.doc_count || 0)
+              - (withPublicationsOA?.doc_count || 0)))
           / withPublications?.doc_count,
         year: el.key,
       });

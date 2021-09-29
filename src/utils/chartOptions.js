@@ -1854,7 +1854,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
       options.chart.type = 'column';
       options.xAxis = {
-        categories: data?.categories1 || [],
+        categories: data?.categoriesEvolution || [],
       };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
@@ -1878,7 +1878,7 @@ export const chartOptions = {
           },
         },
       };
-      options.series = data?.dataGraph1 || [];
+      options.series = data?.dataGraphEvolution || [];
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${idWithDomainAndStudyType}.tooltip`,
       });
@@ -1890,22 +1890,20 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl);
       options.chart.type = 'column';
       options.xAxis = {
-        categories: data?.categories2 || [],
+        categories: data?.categoriesRepartition || [],
         labels: {
           rotation: 0,
           useHTML: true,
           overflow: 'allow',
-        },
-      };
-      options.xAxis.labels = {
-        formatter() {
-          const label = this.axis.defaultLabelFormatter.call(this);
-          if (label === '0') {
-            return intl.formatMessage({
-              id: 'app.studies.start',
-            });
-          }
-          return label;
+          formatter() {
+            const label = this.axis.defaultLabelFormatter.call(this);
+            if (label === '0') {
+              return intl.formatMessage({
+                id: 'app.studies.start',
+              });
+            }
+            return label;
+          },
         },
       };
       options.plotOptions = {
@@ -1918,7 +1916,7 @@ export const chartOptions = {
           pointWidth: 30,
         },
       };
-      options.series = data?.dataGraph2 || [];
+      options.series = data?.dataGraphRepartition || [];
       options.legend = {
         align: 'left',
         verticalAlign: 'top',
@@ -1952,7 +1950,7 @@ export const chartOptions = {
         },
       };
       options.yAxis = {
-        categories: data?.categories3 || [],
+        categories: data?.categoriesDistribution || [],
         min: 0,
         max: data?.categories3?.length - 1 || 10,
         title: false,
@@ -1969,7 +1967,7 @@ export const chartOptions = {
         align: 'left',
         verticalAlign: 'top',
       };
-      options.series = data?.dataGraph3 || [];
+      options.series = data?.dataGraphDistribution || [];
       return options;
     },
   },
@@ -2048,7 +2046,7 @@ export const chartOptions = {
     },
   },
   'studies.caracteristiques.combien.chart-proportion-modes-repartition': {
-    getOptions: (id, intl, data, studyType) => {
+    getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
       options.chart.type = 'column';
       options.xAxis = {
