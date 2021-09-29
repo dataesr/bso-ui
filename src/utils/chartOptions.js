@@ -1804,7 +1804,6 @@ export const chartOptions = {
   'studies.resultats.type-diffusion.chart-repartition': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -1857,7 +1856,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },
@@ -1952,12 +1950,6 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl);
       options.chart.type = 'column';
-      options.title = {
-        text: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.duree.chart-nombre.chart-title`,
-        }),
-        verticalAlign: 'bottom',
-      };
       options.xAxis = {
         tickInterval: 1,
         labels: {
@@ -1976,6 +1968,11 @@ export const chartOptions = {
             return label;
           },
         },
+        title: {
+          text: intl.formatMessage({
+            id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.duree.chart-nombre.xAxis`,
+          }),
+        },
       };
       options.yAxis = {
         categories: data?.categories || [],
@@ -1989,15 +1986,13 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl);
       options.chart.type = 'column';
-      options.title = {
-        text: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.chart-title`,
-        }),
-        verticalAlign: 'bottom',
-      };
       options.xAxis = {
         categories: data?.categoriesGroupes || [],
-        format: '{this.value}',
+        title: {
+          text: intl.formatMessage({
+            id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.xAxis`,
+          }),
+        },
       };
       options.yAxis = {
         visible: false,

@@ -391,7 +391,7 @@
   "app.health-interventional.studies.caracteristiques.duree.chart-nombre.source": "source",
   "app.health-interventional.studies.caracteristiques.duree.chart-nombre.tooltip": "tooltip",
   "app.health-interventional.studies.caracteristiques.duree.chart-nombre.legend": "Nombre d'essais déclarés",
-  "app.health-interventional.studies.caracteristiques.duree.chart-nombre.chart-title": "Durée moyenne de l'essai",
+  "app.health-interventional.studies.caracteristiques.duree.chart-nombre.xAxis": "Durée moyenne de l'essai",
 
   "app.health-interventional.studies.caracteristiques.combien.title": "Combien de patients sont impliqué dans les essais cliniques ?",
   "app.health-interventional.studies.caracteristiques.combien.description": "2.2.3",
@@ -400,7 +400,7 @@
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.legend": "Nombre d'essais déclarés",
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.source": "source",
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.tooltip": "tooltip",
-  "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.chart-title": "Nombre de patients",
+  "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.xAxis": "Nombre de patients",
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.50-less": "50 ou moins",
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.50-99": "50 à 99",
   "app.health-interventional.studies.caracteristiques.combien.chart-groupes-patients.100-499": "100 à 499",
