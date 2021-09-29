@@ -34,10 +34,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });
 
-    const res = await Axios.all(queries).catch(() => {
-      setError(true);
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
 
     const allData = res.map((d, i) => ({
       observationSnap: datesObservation[i],
@@ -119,8 +116,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
       try {
         const dataGraph = await getDataByObservationSnaps(observationSnaps);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        setError(true);
+      } finally {
         setLoading(false);
       }
     }

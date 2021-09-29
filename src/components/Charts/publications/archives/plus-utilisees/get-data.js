@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -16,7 +15,7 @@ function useGetData(observationSnap, domain) {
   async function GetData() {
     const query = getFetchOptions('repositoriesList', domain, observationSnap);
 
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+    const res = await Axios.post(ES_API_URL, query, HEADERS);
 
     const dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
       name: el.key,
@@ -32,8 +31,10 @@ function useGetData(observationSnap, domain) {
       try {
         const tempData = await GetData();
         setData(tempData);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

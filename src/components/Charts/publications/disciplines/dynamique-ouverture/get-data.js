@@ -30,9 +30,7 @@ function useGetData(observationSnaps, domain = '') {
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
 
-      const res = await Axios.all(queries).catch(() => {
-        setLoading(false);
-      });
+      const res = await Axios.all(queries);
       const dataGraph = {};
       const disciplines = [];
       res.forEach((el, idx) => {
@@ -91,8 +89,10 @@ function useGetData(observationSnaps, domain = '') {
       try {
         const dataGraph = await getDataByObservationSnaps(observationSnaps);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

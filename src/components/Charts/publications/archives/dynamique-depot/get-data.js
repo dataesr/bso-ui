@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -20,7 +19,7 @@ function useGetData(observationSnap, domain) {
   async function GetData() {
     const query = getFetchOptions('repositoriesHisto', domain, observationSnap);
 
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+    const res = await Axios.post(ES_API_URL, query, HEADERS);
     const tab = [];
     const nbHisto = 4;
     const lastPublicationYear = getPublicationYearFromObservationSnap(observationSnap);
@@ -58,8 +57,10 @@ function useGetData(observationSnap, domain) {
       try {
         const dataGraph = await GetData();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

@@ -22,7 +22,7 @@ function useGetData(studyType, sponsorType = '*') {
       ES_STUDIES_API_URL,
       queryEvolution,
       HEADERS,
-    ).catch(() => setLoading(false));
+    );
     const currentYear = new Date().getFullYear();
     const dataSortedByYearEvolution = resEvolution.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -65,7 +65,7 @@ function useGetData(studyType, sponsorType = '*') {
       ES_STUDIES_API_URL,
       queryRepartition,
       HEADERS,
-    ).catch(() => setLoading(false));
+    );
     const dataSortedByYearRepartition = resRepartition.data.aggregations.delay_submission_start.buckets;
     const data = {
       before_start: [],
@@ -126,7 +126,7 @@ function useGetData(studyType, sponsorType = '*') {
       ES_STUDIES_API_URL,
       queryDistribution,
       HEADERS,
-    ).catch(() => setLoading(false));
+    );
     const dataSortedByYearDistribution = resDistribution.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= currentYear);
@@ -236,8 +236,10 @@ function useGetData(studyType, sponsorType = '*') {
       try {
         const dataGraph = await getDataAxios();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

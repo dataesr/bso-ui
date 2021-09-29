@@ -1,11 +1,13 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  getCSSValue,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
@@ -23,7 +25,7 @@ function useGetData(observationSnap, domain) {
         lastObservationSnap,
         disciplineField,
       );
-      const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+      const res = await Axios.post(ES_API_URL, query, HEADERS);
       let data = res.data.aggregations.by_discipline.buckets;
 
       const categories = []; // Elements d'abscisse
@@ -80,7 +82,8 @@ function useGetData(observationSnap, domain) {
           y_abs: closedCurrent,
           y_tot: totalCurrent,
           x: catIndex,
-          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          publicationDate:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
           bsoDomain,
         });
@@ -89,7 +92,8 @@ function useGetData(observationSnap, domain) {
           y_abs: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
-          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          publicationDate:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
           bsoDomain,
         });
@@ -98,7 +102,8 @@ function useGetData(observationSnap, domain) {
           y_abs: repositoryCurrent,
           y_tot: totalCurrent,
           x: catIndex,
-          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          publicationDate:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
           bsoDomain,
         });
@@ -107,7 +112,8 @@ function useGetData(observationSnap, domain) {
           y_abs: publisherCurrent,
           y_tot: totalCurrent,
           x: catIndex,
-          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          publicationDate:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
           bsoDomain,
         });
@@ -116,7 +122,8 @@ function useGetData(observationSnap, domain) {
           y_abs: publisherRepositoryCurrent,
           y_tot: totalCurrent,
           x: catIndex,
-          publicationDate: getPublicationYearFromObservationSnap(lastObservationSnap),
+          publicationDate:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categories[catIndex],
           bsoDomain,
         });
@@ -157,8 +164,10 @@ function useGetData(observationSnap, domain) {
       try {
         const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

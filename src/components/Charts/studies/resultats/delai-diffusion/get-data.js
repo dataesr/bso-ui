@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -25,16 +24,12 @@ function useGetData(studyType, sponsorType = '*') {
       studyType,
       sponsorType,
     );
-    query2.query.bool.filter.push(
-      {
-        term: {
-          'status.keyword': 'Completed',
-        },
+    query2.query.bool.filter.push({
+      term: {
+        'status.keyword': 'Completed',
       },
-    );
-    const res2 = await Axios.post(ES_STUDIES_API_URL, query2, HEADERS).catch(
-      (e) => console.log(e),
-    );
+    });
+    const res2 = await Axios.post(ES_STUDIES_API_URL, query2, HEADERS);
     const dataSortedByYear2 = res2.data.aggregations.delay_submission_start.buckets;
     const data = {
       before_completion: [],
@@ -42,19 +37,25 @@ function useGetData(studyType, sponsorType = '*') {
     };
     const minBoundary = -720;
     const maxBoundary = 1800;
-    const firstValue = dataSortedByYear2.filter((el) => el.key <= minBoundary).reduce((a, b) => a + b.doc_count, 0);
-    const lastValue = dataSortedByYear2.filter((el) => el.key >= maxBoundary).reduce((a, b) => a + b.doc_count, 0);
+    const firstValue = dataSortedByYear2
+      .filter((el) => el.key <= minBoundary)
+      .reduce((a, b) => a + b.doc_count, 0);
+    const lastValue = dataSortedByYear2
+      .filter((el) => el.key >= maxBoundary)
+      .reduce((a, b) => a + b.doc_count, 0);
     data.before_completion.push(firstValue);
     data.after_completion.push(0);
-    dataSortedByYear2.filter((ele) => ele.key > minBoundary && ele.key < maxBoundary).forEach((el) => {
-      if (el.key <= 0) {
-        data.before_completion.push(el.doc_count);
-        data.after_completion.push(0);
-      } else {
-        data.before_completion.push(0);
-        data.after_completion.push(el.doc_count);
-      }
-    });
+    dataSortedByYear2
+      .filter((ele) => ele.key > minBoundary && ele.key < maxBoundary)
+      .forEach((el) => {
+        if (el.key <= 0) {
+          data.before_completion.push(el.doc_count);
+          data.after_completion.push(0);
+        } else {
+          data.before_completion.push(0);
+          data.after_completion.push(el.doc_count);
+        }
+      });
     data.before_completion.push(0);
     data.after_completion.push(lastValue);
     const steps2 = ['before_completion', 'after_completion'];
@@ -66,7 +67,9 @@ function useGetData(studyType, sponsorType = '*') {
       color: colors[step],
     }));
 
-    const categories2 = dataSortedByYear2.filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary).map((el) => Math.abs(el.key) / 30);
+    const categories2 = dataSortedByYear2
+      .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
+      .map((el) => Math.abs(el.key) / 30);
     categories2[0] += ` ${intl.formatMessage({
       id: 'app.studies.month_before',
     })}`;
@@ -80,20 +83,16 @@ function useGetData(studyType, sponsorType = '*') {
       studyType,
       sponsorType,
     );
-    query3.query.bool.filter.push(
-      {
-        term: {
-          'status.keyword': 'Completed',
-        },
+    query3.query.bool.filter.push({
+      term: {
+        'status.keyword': 'Completed',
       },
-    );
-    const res3 = await Axios.post(ES_STUDIES_API_URL, query3, HEADERS).catch(
-      (e) => console.log(e),
-    );
+    });
+    const res3 = await Axios.post(ES_STUDIES_API_URL, query3, HEADERS);
     const currentYear = new Date().getFullYear();
-    const dataSortedByYear3 = res3.data.aggregations.by_year.buckets.sort(
-      (a, b) => a.key - b.key,
-    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const dataSortedByYear3 = res3.data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear);
     const categories3 = dataSortedByYear3.map((el) => el.key);
 
     const dataGraph3 = [];
@@ -127,14 +126,20 @@ function useGetData(studyType, sponsorType = '*') {
         total = percentageKey;
       });
       // Extrapolate the limit between negative and positive data, linear regression
-      const [x1, y1, y1b] = violinData.before_completion[violinData.before_completion.length - 1] || [null, null, null];
-      const [x3, y3, y3b] = violinData.after_completion[0] || [null, null, null];
+      const [x1, y1, y1b] = violinData.before_completion[
+        violinData.before_completion.length - 1
+      ] || [null, null, null];
+      const [x3, y3, y3b] = violinData.after_completion[0] || [
+        null,
+        null,
+        null,
+      ];
       let a = (y3 - y1) / (x3 - x1);
       let b = y1 - a * x1;
-      const middleValue1 = (b || y1);
+      const middleValue1 = b || y1;
       a = (y3b - y1b) / (x3 - x1);
       b = y1b - a * x1;
-      const middleValue2 = (b || y1b);
+      const middleValue2 = b || y1b;
       violinData.before_completion.push([0, middleValue1, middleValue2]);
       violinData.after_completion.unshift([0, middleValue1, middleValue2]);
       dataGraph3.push({
@@ -196,8 +201,10 @@ function useGetData(studyType, sponsorType = '*') {
       try {
         const dataGraph = await getDataAxios();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

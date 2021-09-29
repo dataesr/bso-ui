@@ -29,9 +29,7 @@ function useGetData(lastObservationSnap, domain) {
     );
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
-    const res = await Axios.all(queries).catch(() => {
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
     let dataHAL = res[0].data.aggregations.by_publication_year.buckets;
     dataHAL = dataHAL
       .sort((a, b) => a.key - b.key)
@@ -92,8 +90,10 @@ function useGetData(lastObservationSnap, domain) {
       try {
         const tempData = await GetData();
         setData(tempData);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

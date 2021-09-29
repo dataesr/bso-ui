@@ -40,10 +40,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       needle,
     );
     queries.push(Axios.post(ES_API_URL, queryPercentile, HEADERS));
-    const res = await Axios.all(queries).catch(() => {
-      setError(true);
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
     // 1er graphe : histogram total
     let dataTotal = res[0].data.aggregations.by_year.buckets;
     // Tri pour avoir les années dans l'ordre d'affichage du graphe
@@ -278,8 +275,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
       try {
         const dataGraph = await getDataByObservationSnaps(observationSnaps);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -18,9 +17,7 @@ function useGetData(studyType, sponsorType = '*') {
       '',
       studyType,
     );
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(
-      (e) => console.log(e),
-    );
+    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
 
     const currentYear = new Date().getFullYear();
     const dataSortedByYear = res.data.aggregations.by_year.buckets
@@ -81,8 +78,10 @@ function useGetData(studyType, sponsorType = '*') {
       try {
         const dataGraph = await getDataAxios();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

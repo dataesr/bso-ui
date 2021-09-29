@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -22,7 +21,7 @@ function useGetData(observationSnap, isOa, domain) {
       field,
       'lang.keyword',
     );
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+    const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_is_oa.buckets;
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
@@ -130,8 +129,10 @@ function useGetData(observationSnap, isOa, domain) {
       try {
         const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

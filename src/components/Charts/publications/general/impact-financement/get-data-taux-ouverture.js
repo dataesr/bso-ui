@@ -29,9 +29,7 @@ function useGetData(observationSnap, agency = '*', domain) {
     );
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const res = await Axios.all(queries).catch(() => {
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
     let dataAgency = res[0].data.aggregations.by_publication_year.buckets;
     let data = res[1].data.aggregations.by_publication_year.buckets;
@@ -137,8 +135,10 @@ function useGetData(observationSnap, agency = '*', domain) {
       try {
         const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

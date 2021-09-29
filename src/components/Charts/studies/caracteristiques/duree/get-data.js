@@ -17,7 +17,7 @@ function useGetData(studyType) {
       '',
       studyType,
     );
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(() => setLoading(false));
+    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
     const dataSortedByYear = res.data.aggregations.delay_start_completion.buckets.sort(
       (a, b) => a.key - b.key,
     );
@@ -45,8 +45,10 @@ function useGetData(studyType) {
       try {
         const dataGraph = await getDataAxios();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

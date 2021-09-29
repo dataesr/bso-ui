@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -17,7 +16,7 @@ function useGetData(observationSnap, domain) {
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions('oaHostType', domain, lastObservationSnap);
-      const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+      const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
@@ -169,8 +168,10 @@ function useGetData(observationSnap, domain) {
       try {
         const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -15,8 +14,7 @@ function useGetData(observationSnap, domain) {
 
   async function getDataGraph() {
     const query = getFetchOptions('predatory', domain);
-
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+    const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
       .filter(
@@ -57,8 +55,10 @@ function useGetData(observationSnap, domain) {
       try {
         const obj = await getDataGraph();
         setAllData(obj);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

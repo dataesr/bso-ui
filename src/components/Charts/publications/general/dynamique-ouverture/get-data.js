@@ -31,10 +31,7 @@ function useGetData(observationSnaps, domain = '') {
           });
       }
 
-      const res = await Axios.all(queries).catch(() => {
-        setError(true);
-        setLoading(false);
-      });
+      const res = await Axios.all(queries);
       const allData = res.map((d, i) => ({
         observationSnap: datesObservation[i % datesObservation.length],
         data: d.data.aggregations.by_publication_year.buckets,
@@ -157,8 +154,10 @@ function useGetData(observationSnaps, domain = '') {
       try {
         const dataGraph = await getDataByObservationSnaps(observationSnaps);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

@@ -14,7 +14,7 @@ function useGetData(studyType) {
   async function getDataAxios() {
     const query = getFetchOptions('studiesTrajectoires', '', studyType);
 
-    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS).catch(() => setLoading(false));
+    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
 
     const dataGraph = [];
     const data = res.data.aggregations.by_status.buckets;
@@ -177,8 +177,10 @@ function useGetData(studyType) {
       try {
         const dataGraph = await getDataAxios();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

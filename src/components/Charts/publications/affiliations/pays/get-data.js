@@ -30,9 +30,7 @@ function useGetData(observationDate, domain = '') {
         lastObservationSnap,
       );
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
-      const res = await Axios.all(queries).catch(() => {
-        setLoading(false);
-      });
+      const res = await Axios.all(queries);
       // 1er graphe
       let data1 = res[0].data.aggregations.by_publication_year.buckets;
 
@@ -142,8 +140,10 @@ function useGetData(observationDate, domain = '') {
       try {
         const dataGraph = await getDataForLastObservationDate(observationDate);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

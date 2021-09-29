@@ -21,7 +21,7 @@ function useGetData(studyType) {
       ES_STUDIES_API_URL,
       queryGroupes,
       HEADERS,
-    ).catch(() => setLoading(false));
+    );
     const dataSortedByYearGroupes = resGroupes.data.aggregations.enrollment.buckets.sort(
       (a, b) => a.key - b.key,
     );
@@ -51,7 +51,7 @@ function useGetData(studyType) {
       ES_STUDIES_API_URL,
       queryRepartition,
       HEADERS,
-    ).catch(() => setLoading(false));
+    );
     const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
     );
@@ -112,8 +112,10 @@ function useGetData(studyType) {
       try {
         const dataGraph = await getDataAxios();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

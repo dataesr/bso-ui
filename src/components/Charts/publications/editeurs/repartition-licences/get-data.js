@@ -27,10 +27,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     );
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
 
-    const res = await Axios.all(queries).catch(() => {
-      setError(true);
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
     const nbTotal = res[0].data.aggregations.by_is_oa.buckets[0].doc_count;
     const dataGraphTreemap = [];
     if (isDetailed) {
@@ -154,8 +151,10 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       try {
         const dataGraph = await getDataByObservationSnaps(observationSnaps);
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

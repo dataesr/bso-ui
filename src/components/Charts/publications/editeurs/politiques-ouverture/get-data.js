@@ -33,9 +33,7 @@ function useGetData(lastObservationSnap, domain) {
       lastObservationSnap,
     );
     queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));
-    const res = await Axios.all(queries).catch(() => {
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
 
     // 1er graphe (bar)
     const data = res[0].data.aggregations.by_publisher.buckets;
@@ -145,8 +143,10 @@ function useGetData(lastObservationSnap, domain) {
       try {
         const obj = await getDataGraph();
         setAllData(obj);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

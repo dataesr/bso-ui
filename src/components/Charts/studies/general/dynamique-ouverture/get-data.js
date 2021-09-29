@@ -29,9 +29,7 @@ function useGetData(studyType, sponsor = '*') {
       sponsor,
     );
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
-    const res = await Axios.all(queries).catch(() => {
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
     const currentYear = new Date().getFullYear();
     const data1SortedByYear = res[0].data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -160,8 +158,10 @@ function useGetData(studyType, sponsor = '*') {
       try {
         const dataGraph = await getDataAxios();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }

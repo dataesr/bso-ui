@@ -8,6 +8,7 @@ import getFetchOptions from '../../../../../utils/chartFetchOptions';
 function useGetData(observationSnaps, domain = '') {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
   const intl = useIntl();
 
   async function GetData() {
@@ -25,9 +26,7 @@ function useGetData(observationSnaps, domain = '') {
         queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });
 
-    const res = await Axios.all(queries).catch(() => {
-      setLoading(false);
-    });
+    const res = await Axios.all(queries);
     const dataGraph = {};
     const affiliations = [];
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -83,8 +82,11 @@ function useGetData(observationSnaps, domain = '') {
       try {
         const dataGraph = await GetData();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        setError(true);
+      } finally {
         setLoading(false);
       }
     }
@@ -92,6 +94,6 @@ function useGetData(observationSnaps, domain = '') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps]);
 
-  return { data, isLoading };
+  return { data, isLoading, isError };
 }
 export default useGetData;

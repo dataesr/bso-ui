@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -25,7 +24,7 @@ function useGetData(lastObservationSnap, domain = '') {
       lastObservationSnap,
       disciplineField,
     );
-    const res = await Axios.post(ES_API_URL, query, HEADERS).catch((e) => console.log(e));
+    const res = await Axios.post(ES_API_URL, query, HEADERS);
 
     const dataBubbles = res.data.aggregations.by_discipline.buckets;
 
@@ -93,8 +92,10 @@ function useGetData(lastObservationSnap, domain = '') {
       try {
         const dataGraph = await GetData();
         setData(dataGraph);
-        setLoading(false);
-      } catch (error) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      } finally {
         setLoading(false);
       }
     }
