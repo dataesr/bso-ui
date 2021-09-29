@@ -47,6 +47,8 @@ export function getGraphOptions(graphId, intl) {
       title: { text: yAxis },
     },
     legend: {
+      verticalAlign: 'top',
+      align: 'left',
       title: {
         text: legend,
         style: {
@@ -141,7 +143,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -173,7 +174,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -208,7 +208,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -216,7 +215,6 @@ export const chartOptions = {
     {
       getOptions: (id, intl, data) => {
         const options = getGraphOptions(id, intl);
-
         options.tooltip.pointFormat = intl.formatMessage({
           id: 'app.publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.tooltip',
         });
@@ -528,7 +526,6 @@ export const chartOptions = {
       });
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
@@ -793,7 +790,6 @@ export const chartOptions = {
           data,
         },
       ];
-
       return options;
     },
   },
@@ -809,7 +805,6 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
@@ -846,8 +841,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
-      options.legend.verticalAlign = 'top';
-      options.legend.align = 'left';
       options.chart = {
         type: 'dumbbell',
         inverted: true,
@@ -981,7 +974,6 @@ export const chartOptions = {
       options.xAxis.title.text = intl.formatMessage({
         id: 'app.publication-year',
       });
-      options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
@@ -1417,7 +1409,6 @@ export const chartOptions = {
       options.xAxis.title.text = intl.formatMessage({
         id: 'app.publication-year',
       });
-      options.legend.verticalAlign = 'top';
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
@@ -1642,8 +1633,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
-      options.legend.verticalAlign = 'top';
-      options.legend.align = 'left';
       options.chart = {
         type: 'dumbbell',
         inverted: true,
@@ -1858,11 +1847,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
-      options.legend = {
-        align: 'left',
-        verticalAlign: 'top',
-        reversed: true,
-      };
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -1917,10 +1902,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraphRepartition || [];
-      options.legend = {
-        align: 'left',
-        verticalAlign: 'top',
-      };
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${idWithDomainAndStudyType}.tooltip`,
       });
@@ -1963,10 +1944,6 @@ export const chartOptions = {
           },
         },
       };
-      options.legend = {
-        align: 'left',
-        verticalAlign: 'top',
-      };
       options.series = data?.dataGraphDistribution || [];
       return options;
     },
@@ -1980,10 +1957,6 @@ export const chartOptions = {
           id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.duree.chart-nombre.chart-title`,
         }),
         verticalAlign: 'bottom',
-      };
-      options.legend = {
-        align: 'left',
-        verticalAlign: 'top',
       };
       options.xAxis = {
         tickInterval: 1,
@@ -2033,10 +2006,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraphGroupes || [];
-      options.legend = {
-        align: 'left',
-        verticalAlign: 'top',
-      };
       options.plotOptions = {
         series: {
           pointWidth: 20,
@@ -2053,11 +2022,7 @@ export const chartOptions = {
         categories: data?.categoriesRepartition || [],
       };
       options.series = data?.dataGraphRepartition || [];
-      options.legend = {
-        align: 'left',
-        verticalAlign: 'top',
-        reversed: true,
-      };
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
