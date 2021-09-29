@@ -98,18 +98,27 @@ function EtudesObservationnelles() {
           mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
         >
           <GraphItem
-            mainLabel={intl.formatMessage({ id: 'app.health-observational.studies.general', default: 'mainLabel' })}
+            mainLabel={intl.formatMessage({
+              id: 'app.health-observational.studies.general',
+              default: 'mainLabel',
+            })}
             paths={[
               '/sante/etudes-observationnelles/general',
               '/health/observational-studies/general',
             ]}
             links={[
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.general.dynamique', default: 'dynamique' }),
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.general.dynamique',
+                  default: 'dynamique',
+                }),
                 href: '/sante/etudes-observationnelles/general?id=general.dynamique',
               },
               {
-                label: intl.formatMessage({ id: 'app.health-observational.studies.navigation.general.trajectoires', default: 'trajectoires' }),
+                label: intl.formatMessage({
+                  id: 'app.health-observational.studies.navigation.general.trajectoires',
+                  default: 'trajectoires',
+                }),
                 href: '/sante/etudes-observationnelles/general?id=general.directions',
               },
             ]}
@@ -206,14 +215,6 @@ function EtudesObservationnelles() {
                 app.health-observational.studies.caracteristiques.combien.chart-groupes-patients
                 <br />
                 app.health-observational.studies.caracteristiques.combien.chart-proportion-modes-repartition
-              </QuestionSection>
-
-              <QuestionSection
-                intlKey='app.health-observational.studies.caracteristiques.types'
-                backgroundColor={blueSoft25}
-                anchorId='caracteristiques.types'
-              >
-                app.health-observational.studies.caracteristiques.types.chart-evolution-nombre
               </QuestionSection>
             </GraphContent>
           </GraphItem>

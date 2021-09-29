@@ -1382,7 +1382,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesQuandRepartition: ([delayField, studyType, sponsorType]) => ({
+    studiesCaracteristiquesQuandRepartition: ([
+      delayField,
+      studyType,
+      sponsorType,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1409,7 +1413,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesQuandDistribution: ([delayField, studyType, sponsorType]) => ({
+    studiesCaracteristiquesQuandDistribution: ([
+      delayField,
+      studyType,
+      sponsorType,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1523,6 +1531,35 @@ export default function getFetchOptions(key, domain, ...parameters) {
             by_design_allocation: {
               terms: {
                 field: 'design_allocation.keyword',
+                missing: 'N/A',
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesCaracteristiquesTypes: ([studyType]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_start_year',
+          },
+          aggs: {
+            by_intervention_type: {
+              terms: {
+                field: 'intervention_type.keyword',
                 missing: 'N/A',
               },
             },
