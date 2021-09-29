@@ -14,6 +14,7 @@ import {
 } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
   FacebookIcon,
@@ -39,6 +40,7 @@ const GraphFooter = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const urlToShare = `${window.location.origin}/integration/${srcPath}/${domain}`;
   const shareFill = getCSSValue('--blue-soft-100');
+  const clipboardContent = `<iframe id="yourID" width="800" height="600" src="/integration/${srcPath}"/>`;
 
   return (
     <>
@@ -192,6 +194,7 @@ const GraphFooter = ({
         hide={() => {
           setIsModalOpen(false);
         }}
+        className='graph-integration'
       >
         <ModalClose
           hide={() => {
@@ -205,27 +208,40 @@ const GraphFooter = ({
           <FormattedMessage id='app.commons.fermer' defaultMessage='fermer' />
         </ModalClose>
         <ModalTitle>
-          <FormattedMessage
-            id='app.graph.integration'
-            defaultMessage='Intégrer le graphique'
-          />
+          <Container>
+            <Row>
+              <Col>
+                <FormattedMessage
+                  id='app.graph.integration'
+                  defaultMessage='Intégrer le graphique'
+                />
+              </Col>
+              <Col className='text-right'>
+                <CopyToClipboard text={clipboardContent}>
+                  <i className='ri-clipboard-line bt-copy' />
+                </CopyToClipboard>
+              </Col>
+            </Row>
+          </Container>
         </ModalTitle>
         <ModalContent>
-          &#60;iframe
-          <br />
-          <span style={{ paddingLeft: '18px' }} />
-          id='yourID'
-          <br />
-          <span style={{ paddingLeft: '18px' }} />
-          width='800'
-          <br />
-          <span style={{ paddingLeft: '18px' }} />
-          height='600'
-          <br />
-          <span style={{ paddingLeft: '18px' }} />
-          src=
-          {`/integration/${srcPath}`}
-          /&#62;
+          <p className='code'>
+            &#60;iframe
+            <br />
+            <span style={{ paddingLeft: '18px' }} />
+            id='yourID'
+            <br />
+            <span style={{ paddingLeft: '18px' }} />
+            width='800'
+            <br />
+            <span style={{ paddingLeft: '18px' }} />
+            height='600'
+            <br />
+            <span style={{ paddingLeft: '18px' }} />
+            src=
+            {`/integration/${srcPath}`}
+            /&#62;
+          </p>
         </ModalContent>
       </Modal>
     </>
