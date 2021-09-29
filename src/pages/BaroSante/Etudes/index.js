@@ -192,11 +192,21 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.quand'
               >
-                app.health-observational.studies.caracteristiques.quand.chart-evolution-temporalites
-                <br />
-                app.health-observational.studies.caracteristiques.quand.chart-repartition-avant-apres
-                <br />
-                app.health-observational.studies.caracteristiques.quand.chart-distribution-declarations
+                <BSOChart
+                  id='studies.caracteristiques.quand.chart-evolution-temporalites'
+                  domain='health'
+                  studyType='Observational'
+                />
+                <BSOChart
+                  id='studies.caracteristiques.quand.chart-repartition-avant-apres'
+                  domain='health'
+                  studyType='Observational'
+                />
+                <BSOChart
+                  id='studies.caracteristiques.quand.chart-distribution-declarations'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -204,7 +214,11 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='caracteristiques.duree'
               >
-                app.health-observational.studies.caracteristiques.duree.chart-nombre
+                <BSOChart
+                  id='studies.caracteristiques.duree.chart-nombre'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -212,9 +226,16 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.combien'
               >
-                app.health-observational.studies.caracteristiques.combien.chart-groupes-patients
-                <br />
-                app.health-observational.studies.caracteristiques.combien.chart-proportion-modes-repartition
+                <BSOChart
+                  id='studies.caracteristiques.combien.chart-groupes-patients'
+                  domain='health'
+                  studyType='Observational'
+                />
+                <BSOChart
+                  id='studies.caracteristiques.combien.chart-proportion-modes-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>
@@ -249,9 +270,16 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft50}
                 anchorId='promoteurs.dynamique-ouverture'
               >
-                app.health-observational.studies.promoteurs.dynamique-ouverture.chart-part
-                <br />
-                app.health-observational.studies.promoteurs.dynamique-ouverture.chart-evolution-nombre
+                <BSOChart
+                  id='studies.promoteurs.dynamique-ouverture.chart-part'
+                  domain='health'
+                  studyType='Observational'
+                />
+                <BSOChart
+                  id='studies.promoteurs.dynamique-ouverture.chart-evolution-nombre'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -259,9 +287,16 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
-                app.health-observational.studies.promoteurs.impact.chart-repartition
-                <br />
-                app.health-observational.studies.promoteurs.impact.chart-classement-pays
+                <BSOChart
+                  id='studies.promoteurs.impact.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
+                <BSOChart
+                  id='studies.promoteurs.impact.chart-classement-pays'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>
@@ -308,9 +343,16 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
-                app.health-observational.studies.resultats.type-diffusion.chart-repartition
-                <br />
-                app.health-observational.studies.resultats.type-diffusion.chart-repartition-par-type
+                <BSOChart
+                  id='studies.resultats.type-diffusion.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
+                <BSOChart
+                  id='studies.resultats.type-diffusion.chart-repartition-par-type'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -318,7 +360,11 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.plan-partage'
               >
-                app.health-observational.studies.resultats.plan-partage.chart-repartition
+                <BSOChart
+                  id='studies.resultats.plan-partage.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -326,9 +372,16 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.delai-diffusion'
               >
-                app.health-observational.studies.resultats.delai-diffusion.chart-repartition
-                <br />
-                app.health-observational.studies.resultats.delai-diffusion.chart-distribution
+                <BSOChart
+                  id='studies.resultats.delai-diffusion.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
+                <BSOChart
+                  id='studies.resultats.delai-diffusion.chart-distribution'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
 
               <QuestionSection
@@ -336,9 +389,11 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
-                app.health-observational.studies.resultats.publication.chart-repartition
-                <br />
-                app.health-observational.studies.resultats.publication.chart-repartition-icmje
+                <BSOChart
+                  id='studies.resultats.publication.chart-repartition'
+                  domain='health'
+                  studyType='Observational'
+                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>

@@ -8,6 +8,7 @@
 ## Requirements
 
 * node > 12
+* npm > 7
 
 ## Boilerplate
 
