@@ -116,7 +116,7 @@ export default {
     en: '/about/flash-notes',
   },
   integration: {
-    fr: '/integration/:graphId/:domain?',
-    en: '/integration/:graphId/:domain',
+    fr: '/integration/:graphId/:domain/:studyType',
+    en: '/integration/:graphId/:domain/:studyType',
   },
 };
