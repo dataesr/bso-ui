@@ -4,19 +4,16 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import Banner from '../../../components/Banner';
+import BannerHealth from '../../../components/BannerHealth';
 import BSOChart from '../../../components/Charts';
-import Chip from '../../../components/Chip';
 // import DataCardSection from '../../../components/DataCardsSection';
 // import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
-import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
-import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
@@ -28,50 +25,11 @@ function EtudesObservationnelles() {
   const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
 
-  const renderIcons = (
-    <Row justifyContent='center' alignItems='middle' gutters>
-      <Col n='12'>
-        <Icon
-          name='icon-bsso-17'
-          color1='blue-soft-125'
-          color2='orange-medium-75'
-        />
-      </Col>
-    </Row>
-  );
-
   return (
     <Container fluid>
-      <Banner
-        backgroundColor='blue-soft-100'
-        supTitle={<FormattedMessage id='app.header.title-health' />}
-        title={<FormattedMessage id='app.header.nav.baro-sante-etudes' />}
-        chip={<Chip />}
-        icons={renderIcons}
-        selectNavigation={{
-          title: <FormattedMessage id='app.navigation.objet-recherche' />,
-          selected: intl.formatMessage({ id: 'url.sante.etudes' }),
-          options: [
-            {
-              label: intl.formatMessage({ id: 'app.baro-sante.title' }),
-              value: intl.formatMessage({
-                id: 'url.sante.publications.general',
-              }),
-            },
-            {
-              label: intl.formatMessage({
-                id: 'app.baro-sante.trials.main-title',
-              }),
-              value: intl.formatMessage({ id: 'url.sante.essais' }),
-            },
-            {
-              label: intl.formatMessage({
-                id: 'app.baro-sante.studies.main-title',
-              }),
-              value: intl.formatMessage({ id: 'url.sante.etudes' }),
-            },
-          ],
-        }}
+      <BannerHealth
+        selected='url.sante.etudes'
+        title='app.header.nav.baro-sante-etudes'
       />
       <ScrollTop />
       <section className='content'>

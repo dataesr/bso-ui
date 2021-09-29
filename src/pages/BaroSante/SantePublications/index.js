@@ -3,19 +3,16 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import Banner from '../../../components/Banner';
+import BannerHealth from '../../../components/BannerHealth';
 import BSOChart from '../../../components/Charts';
-import Chip from '../../../components/Chip';
 import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
-import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
-import urls from '../../../config/urls';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue } from '../../../utils/helpers';
@@ -28,52 +25,11 @@ function SantePublications() {
   const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
 
-  const renderIcons = (
-    <Row justifyContent='center' alignItems='middle' gutters>
-      <Col n='12'>
-        <Icon
-          name='icon-bsso-28'
-          color1='blue-soft-125'
-          color2='publication-25'
-        />
-      </Col>
-    </Row>
-  );
   return (
     <Container fluid className='page'>
-      <Banner
-        backgroundColor='blue-soft-100'
-        homeLink={urls.sante[lang]}
-        supTitle={<FormattedMessage id='app.header.title-health' />}
-        title={<FormattedMessage id='app.baro-sante.title' />}
-        chip={<Chip />}
-        icons={renderIcons}
-        selectNavigation={{
-          title: intl.formatMessage({ id: 'app.navigation.objet-recherche' }),
-          selected: intl.formatMessage({
-            id: 'url.sante.publications.general',
-          }),
-          options: [
-            {
-              label: intl.formatMessage({ id: 'app.baro-sante.title' }),
-              value: intl.formatMessage({
-                id: 'url.sante.publications.general',
-              }),
-            },
-            {
-              label: intl.formatMessage({
-                id: 'app.header.nav.baro-sante-essais',
-              }),
-              value: intl.formatMessage({ id: 'url.sante.essais' }),
-            },
-            {
-              label: intl.formatMessage({
-                id: 'app.baro-sante.studies.main-title',
-              }),
-              value: intl.formatMessage({ id: 'url.sante.etudes' }),
-            },
-          ],
-        }}
+      <BannerHealth
+        selected='url.sante.publications.general'
+        title='app.baro-sante.title'
       />
       <ScrollTop />
       <section className='content'>
