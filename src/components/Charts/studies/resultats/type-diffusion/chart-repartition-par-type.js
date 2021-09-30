@@ -54,7 +54,12 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, dataGraph2);
+  const optionsGraph = chartOptions[id].getOptions(
+    id,
+    intl,
+    dataGraph2,
+    studyType,
+  );
 
   return (
     <WrapperChart

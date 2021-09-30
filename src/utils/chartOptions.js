@@ -1,4 +1,4 @@
-import { cleanNumber, getCSSValue, getPercentageYAxis } from './helpers';
+import { cleanNumber, getCSSValue, getPercentageYAxis, withDomainAndStudyType } from './helpers';
 
 /**
  *
@@ -14,7 +14,7 @@ import { cleanNumber, getCSSValue, getPercentageYAxis } from './helpers';
  * chart: {backgroundColor: string}
  * }}
  */
-export function getGraphOptions(graphId, intl) {
+export function getGraphOptions(graphId, intl, studyType = '') {
   const legend = intl.messages[`app.${graphId}.legend`]
     ? intl.formatMessage({ id: `app.${graphId}.legend` })
     : '';
@@ -30,6 +30,15 @@ export function getGraphOptions(graphId, intl) {
   const source = intl.messages[`${graphId}.source`]
     ? intl.formatMessage({ id: `${graphId}.source` })
     : 'source';
+  const title = !studyType
+    ? intl.formatMessage({ id: `${graphId}.title` })
+    : intl.formatMessage({
+      id: `${withDomainAndStudyType(
+        graphId,
+        'health',
+        studyType.toLowerCase(),
+      )}.title`,
+    });
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
@@ -83,15 +92,13 @@ export function getGraphOptions(graphId, intl) {
         legend: {
           enabled: true,
         },
-        title: {
-          text: intl.formatMessage({ id: `${graphId}.title` }),
-        },
+        title,
         subtitle: {
           text: source,
         },
       },
       enabled: false,
-      filename: intl.formatMessage({ id: `${graphId}.title` }),
+      filename: title,
     },
   };
 }
@@ -1682,7 +1689,7 @@ export const chartOptions = {
   },
   'studies.general.dynamique.chart-evolution': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions(id, intl, studyType);
 
       options.chart.type = 'column';
       options.plotOptions = {
@@ -1785,7 +1792,7 @@ export const chartOptions = {
         });
         return nodes;
       };
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions(id, intl, studyType);
       options.colors = [getCSSValue('--acces-ouvert')];
       options.chart.height = '800px';
 
@@ -1802,8 +1809,8 @@ export const chartOptions = {
     },
   },
   'studies.resultats.type-diffusion.chart-repartition': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -1838,8 +1845,8 @@ export const chartOptions = {
     },
   },
   'studies.caracteristiques.quand.chart-evolution-temporalites': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesEvolution || [],
@@ -1869,8 +1876,8 @@ export const chartOptions = {
     },
   },
   'studies.caracteristiques.quand.chart-repartition-avant-apres': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
@@ -1907,8 +1914,8 @@ export const chartOptions = {
     },
   },
   'studies.caracteristiques.quand.chart-distribution-declarations': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart = {
         type: 'areasplinerange',
         inverted: false,
@@ -1948,7 +1955,7 @@ export const chartOptions = {
   },
   'studies.caracteristiques.duree.chart-nombre': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.xAxis = {
         tickInterval: 1,
@@ -1984,7 +1991,7 @@ export const chartOptions = {
   },
   'studies.caracteristiques.combien.chart-groupes-patients': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesGroupes || [],
@@ -2010,8 +2017,8 @@ export const chartOptions = {
     },
   },
   'studies.caracteristiques.combien.chart-proportion-modes-repartition': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
@@ -2027,8 +2034,8 @@ export const chartOptions = {
     },
   },
   'studies.caracteristiques.types.chart-evolution-nombre': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
@@ -2056,8 +2063,8 @@ export const chartOptions = {
     },
   },
   'studies.resultats.type-diffusion.chart-repartition-par-type': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
 
       options.chart.type = 'bar';
       options.plotOptions = {
@@ -2094,8 +2101,8 @@ export const chartOptions = {
     },
   },
   'studies.resultats.plan-partage.chart-repartition': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
 
       options.chart.type = 'column';
       options.plotOptions = {
@@ -2132,8 +2139,8 @@ export const chartOptions = {
     },
   },
   'studies.resultats.delai-diffusion.chart-repartition': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categories2 || [],
@@ -2167,8 +2174,8 @@ export const chartOptions = {
     },
   },
   'studies.resultats.delai-diffusion.chart-distribution': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart = {
         type: 'areasplinerange',
         inverted: false,
@@ -2207,8 +2214,8 @@ export const chartOptions = {
     },
   },
   'studies.resultats.publication.chart-repartition': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
 
       options.chart.type = 'column';
       options.plotOptions = {
@@ -2245,8 +2252,8 @@ export const chartOptions = {
     },
   },
   'studies.promoteurs.dynamique-ouverture.chart-part': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
 
       options.chart.type = 'column';
       options.plotOptions = {
@@ -2283,8 +2290,8 @@ export const chartOptions = {
     },
   },
   'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre': {
-    getOptions: (id, intl, graph) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, graph, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
 
       const { data, color, name } = graph;
       options.chart.type = 'column';
@@ -2329,8 +2336,8 @@ export const chartOptions = {
     },
   },
   'studies.promoteurs.impact.chart-repartition': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
 
       options.chart.type = 'column';
       options.plotOptions = {
@@ -2367,8 +2374,8 @@ export const chartOptions = {
     },
   },
   'studies.promoteurs.impact.chart-classement-pays': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {

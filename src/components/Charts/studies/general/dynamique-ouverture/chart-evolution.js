@@ -41,7 +41,6 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   }, [allData, idWithDomainAndStudyType, intl]);
 
   const optionsGraph = chartOptions[id].getOptions(id, intl, dataGraph1, studyType);
-
   return (
     <WrapperChart
       isLoading={isLoading || !allData}

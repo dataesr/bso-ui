@@ -47,6 +47,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       id,
       intl,
       oneGraph,
+      studyType,
     );
     graphs.push(optionsGraph);
   });

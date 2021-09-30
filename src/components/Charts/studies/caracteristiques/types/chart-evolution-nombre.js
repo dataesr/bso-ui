@@ -44,6 +44,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     intl,
     allData,
     idWithDomainAndStudyType,
+    studyType,
   );
 
   return (
