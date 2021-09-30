@@ -71,12 +71,11 @@ function Glossary({ entries }) {
   }, [onClickEntry, glossaryEntries]);
 
   useEffect(() => {
-    if (glossaryEntries.length === 0) {
-      setGlossaryEntries(
-        Array.from(document.querySelectorAll('.glossary-entry')),
-      );
+    const arrGlossayEntries = Array.from(document.querySelectorAll('.glossary-entry'));
+    if (glossaryEntries.length === 0 && arrGlossayEntries.length > 0) {
+      setGlossaryEntries(arrGlossayEntries);
     }
-  }, [glossaryEntries, setGlossaryEntries]);
+  }, [glossaryEntries]);
 
   useEffect(() => {
     document.body.style.overflow = openPanel ? 'hidden' : null;
