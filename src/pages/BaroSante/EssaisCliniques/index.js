@@ -6,14 +6,14 @@ import { useLocation } from 'react-router-dom';
 import BannerHealth from '../../../components/BannerHealth';
 import BSOChart from '../../../components/Charts';
 // import DataCardSection from '../../../components/DataCardsSection';
-// import Glossary from '../../../components/Glossary';
+import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
-// import GlossaryEntries from '../../../translations/glossary.json';
+import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
@@ -49,7 +49,7 @@ function EssaisCliniques() {
               </Col>
             </Row>
           </Container>
-          {/* <Glossary entries={GlossaryEntries} /> */}
+          <Glossary entries={GlossaryEntries} />
           {/* <DataCardSection lang={lang} domain='health' /> */}
         </Row>
         <GraphNavigation
