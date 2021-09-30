@@ -32,15 +32,15 @@ const GraphFooter = ({
   date,
   title,
   srcPath,
-  domain,
+  studyType,
   onCsvButtonClick,
   onPngButtonClick,
 }) => {
   const intl = useIntl();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const urlToShare = `${window.location.origin}/integration/${srcPath}/${domain}`;
+  const urlToShare = `${window.location.origin}/integration/${srcPath}${(studyType) ? '/' : ''}${studyType}`;
   const shareFill = getCSSValue('--blue-soft-100');
-  const clipboardContent = `<iframe id="yourID" width="800" height="600" src="/integration/${srcPath}"/>`;
+  const clipboardContent = `<iframe id="yourID" width="800" height="600" src=${urlToShare} />`;
 
   return (
     <>
@@ -211,10 +211,7 @@ const GraphFooter = ({
           <Container>
             <Row>
               <Col>
-                <FormattedMessage
-                  id='app.graph.integration'
-                  defaultMessage='Intégrer le graphique'
-                />
+                <FormattedMessage id='app.graph.integration' />
               </Col>
               <Col className='text-right'>
                 <CopyToClipboard text={clipboardContent}>
@@ -238,9 +235,9 @@ const GraphFooter = ({
             height='600'
             <br />
             <span style={{ paddingLeft: '18px' }} />
-            src=
-            {`/integration/${srcPath}`}
-            /&#62;
+            src='
+            {urlToShare}
+            '&nbsp;/&#62;
           </p>
         </ModalContent>
       </Modal>
@@ -252,19 +249,19 @@ export default GraphFooter;
 
 GraphFooter.defaultProps = {
   source: '',
-  domain: '',
   date: '',
   title: '',
   srcPath: '',
   onCsvButtonClick: null,
   onPngButtonClick: null,
+  studyType: '',
 };
 GraphFooter.propTypes = {
   source: PropTypes.string,
-  domain: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
   srcPath: PropTypes.string, // pour lien intégration
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,
+  studyType: PropTypes.string,
 };
