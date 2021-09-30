@@ -10,6 +10,7 @@ function useGetData(studyType) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   async function getDataAxios() {
     const query = getFetchOptions(
@@ -48,6 +49,7 @@ function useGetData(studyType) {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -56,6 +58,6 @@ function useGetData(studyType) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyType]);
 
-  return { allData, isLoading };
+  return { allData, isLoading, isError };
 }
 export default useGetData;

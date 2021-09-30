@@ -8,6 +8,7 @@ import getFetchOptions from '../../../../../utils/chartFetchOptions';
 function useGetData(observationSnaps, domain = '') {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
   const intl = useIntl();
 
   const getDataByObservationSnaps = useCallback(
@@ -92,6 +93,7 @@ function useGetData(observationSnaps, domain = '') {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -100,6 +102,6 @@ function useGetData(observationSnaps, domain = '') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps, getDataByObservationSnaps]);
 
-  return { data, isLoading };
+  return { data, isLoading, isError };
 }
 export default useGetData;

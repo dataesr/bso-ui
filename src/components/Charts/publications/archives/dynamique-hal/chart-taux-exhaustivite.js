@@ -6,28 +6,37 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 
+import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
+import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments }) => {
+const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
-  const graphId = 'publi.repositories.dynamique-hal.chart-taux exhaustivite';
+  const idWithDomain = withDomain(id, domain);
+
+  const { lastObservationSnap } = useGlobals();
+  const { _, isLoading, isError } = useGetData(lastObservationSnap, domain);
 
   return (
     <WrapperChart
-      id={graphId}
-      domain=''
+      id={id}
+      domain={domain}
       chartRef={chartRef}
       graphComments={graphComments}
       graphFooter={graphFooter}
+      isLoading={isLoading}
+      isError={isError}
     >
       <HighchartsReact
         highcharts={Highcharts}
         options={{}}
         ref={chartRef}
-        id={graphId}
+        id={idWithDomain}
       />
     </WrapperChart>
   );
@@ -36,10 +45,15 @@ const Chart = ({ graphFooter, graphComments }) => {
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,
+  id: 'publi.repositories.dynamique-hal.chart-taux exhaustivite',
+  domain: '',
 };
+
 Chart.propTypes = {
   graphFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
+  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

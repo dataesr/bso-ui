@@ -10,6 +10,7 @@ function useGetData(observationSnap, isOa, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const publicationDate = Number(lastObservationSnap.slice(0, 4)) - 1;
@@ -129,6 +130,7 @@ function useGetData(observationSnap, isOa, domain) {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -137,6 +139,6 @@ function useGetData(observationSnap, isOa, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap, isOa]);
 
-  return { allData, isLoading };
+  return { allData, isLoading, isError };
 }
 export default useGetData;

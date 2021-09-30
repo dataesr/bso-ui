@@ -10,6 +10,7 @@ function useGetData(observationSnap, agency = '*', domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
@@ -138,6 +139,7 @@ function useGetData(observationSnap, agency = '*', domain) {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -145,6 +147,6 @@ function useGetData(observationSnap, agency = '*', domain) {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap, agency]);
-  return { allData, isLoading };
+  return { allData, isLoading, isError };
 }
 export default useGetData;

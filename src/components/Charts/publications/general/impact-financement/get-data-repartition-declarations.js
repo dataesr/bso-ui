@@ -10,6 +10,7 @@ function useGetData(observationSnap, domain, isOa) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const query = getFetchOptions(
@@ -93,6 +94,7 @@ function useGetData(observationSnap, domain, isOa) {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -101,6 +103,6 @@ function useGetData(observationSnap, domain, isOa) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap, isOa]);
 
-  return { allData, isLoading };
+  return { allData, isLoading, isError };
 }
 export default useGetData;

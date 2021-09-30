@@ -20,7 +20,10 @@ const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
-  const { allData, isLoading } = useGetData(lastObservationSnap, domain);
+  const { allData, isLoading, isError } = useGetData(
+    lastObservationSnap,
+    domain,
+  );
   const { dataGraph, categories } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
@@ -36,6 +39,7 @@ const Chart = ({ id, domain }) => {
       domain={domain}
       chartRef={chartRef}
       isLoading={isLoading || !dataGraph || !categories}
+      isError={isError}
     >
       <HighchartsReact
         highcharts={Highcharts}

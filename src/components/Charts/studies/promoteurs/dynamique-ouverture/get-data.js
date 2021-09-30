@@ -10,6 +10,7 @@ function useGetData(studyType, sponsor = '*') {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   async function getDataAxios() {
     const queries = [];
@@ -174,6 +175,7 @@ function useGetData(studyType, sponsor = '*') {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -182,6 +184,6 @@ function useGetData(studyType, sponsor = '*') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyType, sponsor]);
 
-  return { allData, isLoading };
+  return { allData, isLoading, isError };
 }
 export default useGetData;

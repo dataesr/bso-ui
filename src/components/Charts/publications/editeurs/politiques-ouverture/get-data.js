@@ -13,6 +13,7 @@ import target from '../../../../Images/asset-target.png';
 function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
@@ -146,6 +147,7 @@ function useGetData(lastObservationSnap, domain) {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -154,6 +156,6 @@ function useGetData(lastObservationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastObservationSnap]);
 
-  return { allData, isLoading };
+  return { allData, isLoading, isError };
 }
 export default useGetData;

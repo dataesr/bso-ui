@@ -26,7 +26,7 @@ const Chart = ({ id, domain }) => {
   const [agencies, setAgencies] = useState([]);
   const [agency, setAgency] = useState('*');
   const { lastObservationSnap } = useGlobals();
-  const { allData, isLoading } = useGetData(
+  const { allData, isLoading, isError } = useGetData(
     lastObservationSnap,
     agency,
     domain,
@@ -56,6 +56,7 @@ const Chart = ({ id, domain }) => {
       domain={domain}
       chartRef={chartRef}
       isLoading={isLoading || !dataGraph || !categories}
+      isError={isError}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.agencies-filter-label' })}

@@ -10,6 +10,7 @@ function useGetData(observationSnaps, domain = '') {
   const intl = useIntl();
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -156,6 +157,7 @@ function useGetData(observationSnaps, domain = '') {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -163,6 +165,6 @@ function useGetData(observationSnaps, domain = '') {
     getData();
   }, [observationSnaps, getDataByObservationSnaps]);
 
-  return { data, isLoading };
+  return { data, isLoading, isError };
 }
 export default useGetData;

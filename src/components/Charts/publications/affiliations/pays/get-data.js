@@ -14,6 +14,7 @@ function useGetData(observationDate, domain = '') {
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationSnap) => {
@@ -143,6 +144,7 @@ function useGetData(observationDate, domain = '') {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -151,6 +153,6 @@ function useGetData(observationDate, domain = '') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationDate]);
 
-  return { allData, isLoading };
+  return { allData, isLoading, isError };
 }
 export default useGetData;

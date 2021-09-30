@@ -12,6 +12,7 @@ import {
 function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
   const greenMedium150 = getCSSValue('--green-medium-150');
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -60,6 +61,7 @@ function useGetData(observationSnap, domain) {
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -68,6 +70,6 @@ function useGetData(observationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap]);
 
-  return { data, isLoading };
+  return { data, isLoading, isError };
 }
 export default useGetData;
