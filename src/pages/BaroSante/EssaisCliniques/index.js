@@ -244,7 +244,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                <br />
                 <BSOChart
                   id='studies.promoteurs.dynamique-ouverture.chart-evolution-nombre'
                   domain='health'
@@ -262,7 +261,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                <br />
                 <BSOChart
                   id='studies.promoteurs.impact.chart-classement-pays'
                   domain='health'
@@ -319,7 +317,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                <br />
                 <BSOChart
                   id='studies.resultats.type-diffusion.chart-repartition-par-type'
                   domain='health'
@@ -349,7 +346,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                <br />
                 <BSOChart
                   id='studies.resultats.delai-diffusion.chart-distribution'
                   domain='health'
@@ -362,7 +358,6 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
-                app.health-interventional.studies.resultats.publication.chart-repartition
                 <BSOChart
                   id='studies.resultats.publication.chart-repartition'
                   domain='health'

@@ -47,6 +47,7 @@ function useGetData(studyType) {
       '',
       studyType,
     );
+
     const resRepartition = await Axios.post(
       ES_STUDIES_API_URL,
       queryRepartition,
@@ -55,26 +56,29 @@ function useGetData(studyType) {
     const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
     );
+
     const categoriesRepartition = dataSortedByYearRepartition.map(
       (el) => el.key,
     );
+
     const randomized = [];
     const na = [];
     const nonRandomized = [];
     dataSortedByYearRepartition.forEach((year) => {
       const randomizedPoint = year.by_design_allocation.buckets.find(
         (el) => el.key === 'Randomized',
-      ).doc_count;
+      )?.doc_count;
       randomized.push(randomizedPoint);
       const naPoint = year.by_design_allocation.buckets.find(
         (el) => el.key === 'N/A',
-      ).doc_count;
+      )?.doc_count;
       na.push(naPoint);
       const nonRandomizedPoint = year.by_design_allocation.buckets.find(
         (el) => el.key === 'Non-Randomized',
-      ).doc_count;
+      )?.doc_count;
       nonRandomized.push(nonRandomizedPoint);
     });
+
     const dataGraphRepartition = [
       {
         name: intl.formatMessage({
@@ -122,7 +126,6 @@ function useGetData(studyType) {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyType]);
-
   return { allData, isLoading };
 }
 export default useGetData;
