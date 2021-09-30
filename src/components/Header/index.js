@@ -15,8 +15,7 @@ import { useIntl } from 'react-intl';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import useLang from '../../utils/Hooks/useLang';
-import SwitchThemeButton from '../UI/SwitchLangButton';
-import SwitchLangButton from '../UI/SwitchThemeButton';
+import SwitchLangButton from '../UI/SwitchLangButton';
 import WrapperDisplay from '../WrapperDisplay';
 
 function Header() {
@@ -48,9 +47,6 @@ function Header() {
           />
           <Tool>
             <ToolItemGroup>
-              <ToolItem as='div'>
-                <SwitchThemeButton />
-              </ToolItem>
               <ToolItem as='div'>
                 <SwitchLangButton />
               </ToolItem>
