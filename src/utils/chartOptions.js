@@ -2306,7 +2306,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
-        categories: graph.data.map((el) => el.name),
+        categories: graph?.categories,
         lineWidth: 0,
         tickWidth: 0,
         labels: {

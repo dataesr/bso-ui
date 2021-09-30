@@ -125,8 +125,6 @@ function useGetData(studyType, sponsor = '*') {
     const dataGraph1 = { categories, series };
 
     const tab = [];
-    const nbHisto = 10;
-    const lastYear = currentYear;
     res[2].data.aggregations.by_sponsor.buckets.forEach((currentSponsor) => {
       if (currentSponsor.key !== 'N/A') {
         const bucket = currentSponsor.by_type.buckets[0];
@@ -137,21 +135,29 @@ function useGetData(studyType, sponsor = '*') {
             bucket.key === 'academique'
               ? getCSSValue('--lead-sponsor-public')
               : getCSSValue('--lead-sponsor-privee'),
-          data: bucket.by_year.buckets
-            .filter((el) => el.key > lastYear - nbHisto && el.key <= lastYear)
+          data: categories
             .sort((a, b) => a.key - b.key)
-            .map((el) => ({
-              name: el.key,
-              year: el.key,
-              y_tot: el.doc_count,
+            .map((year) => ({
+              name: year,
+              year,
+              y_tot:
+                bucket.by_year.buckets.find((el) => el.key === year)
+                  ?.doc_count || 0,
               y_abs:
-                el.by_has_result.buckets.find((ele) => ele.key === 1)
+                bucket.by_year.buckets
+                  .find((el) => el.key === year)
+                  ?.by_has_result.buckets.find((el) => el.key === 1)
                   ?.doc_count || 0,
               y:
                 (100
-                  * el.by_has_result.buckets.find((ele) => ele.key === 1)
-                    ?.doc_count || 0) / el?.doc_count,
+                  * bucket.by_year.buckets
+                    .find((el) => el.key === year)
+                    ?.by_has_result.buckets.find((el) => el.key === 1)
+                    ?.doc_count || 0)
+                  / bucket.by_year.buckets.find((el) => el.key === year)
+                    ?.doc_count || 1,
             })),
+          categories,
         };
         tab.push(obj);
       }
