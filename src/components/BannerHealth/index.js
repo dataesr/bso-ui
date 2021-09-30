@@ -62,8 +62,8 @@ function BannerHealth({ selected, title }) {
 }
 
 BannerHealth.propTypes = {
-  selected: PropTypes.element.isRequired,
-  title: PropTypes.element.isRequired,
+  selected: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default BannerHealth;
