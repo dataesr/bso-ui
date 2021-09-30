@@ -1,4 +1,9 @@
-import { cleanNumber, getCSSValue, getPercentageYAxis, withDomainAndStudyType } from './helpers';
+import {
+  cleanNumber,
+  getCSSValue,
+  getPercentageYAxis,
+  withDomainAndStudyType,
+} from './helpers';
 
 /**
  *
@@ -1715,7 +1720,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -1834,7 +1839,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2089,7 +2094,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2127,7 +2132,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2240,7 +2245,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2278,7 +2283,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2292,17 +2297,10 @@ export const chartOptions = {
   'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre': {
     getOptions: (id, intl, graph, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-
       const { data, color, name } = graph;
       options.chart.type = 'column';
       options.credits = { enabled: false };
       options.plotOptions = {
-        series: {
-          stacking: false,
-          dataLabels: {
-            enabled: false,
-          },
-        },
         column: {
           dataLabels: {
             enabled: true,
@@ -2311,17 +2309,19 @@ export const chartOptions = {
         },
       };
       options.yAxis = getPercentageYAxis(false);
+      options.yAxis.labels.enabled = false;
       options.xAxis = {
         type: 'category',
+        title: {
+          text: `<b>${name}</b>`,
+          align: 'left',
+          useHTML: true,
+        },
         categories: graph?.categories,
         lineWidth: 0,
         tickWidth: 0,
         labels: {
-          style: {
-            color: 'var(--g800)',
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
+          rotation: 0,
         },
       };
       options.series = [
@@ -2331,14 +2331,13 @@ export const chartOptions = {
           name,
         },
       ];
-
+      options.legend.enabled = false;
       return options;
     },
   },
   'studies.promoteurs.impact.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -2362,14 +2361,13 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
         },
       };
       options.series = data?.series || [];
-
       return options;
     },
   },
@@ -2399,7 +2397,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: 'var(--g800)',
+            color: getCSSValue('--g800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },

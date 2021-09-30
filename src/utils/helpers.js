@@ -97,9 +97,7 @@ export function getPercentageYAxis(showTotal = true, max = 100) {
     title: { text: '' },
     stackLabels: {
       enabled: true,
-      // eslint-disable-next-line
-      formatter: function () {
-        // eslint-disable-next-line
+      formatter() {
         return showTotal && this.total
           ? this.total.toFixed(0).concat(' %')
           : '';
@@ -109,9 +107,7 @@ export function getPercentageYAxis(showTotal = true, max = 100) {
       },
     },
     labels: {
-      // eslint-disable-next-line
-      formatter: function () {
-        // eslint-disable-next-line
+      formatter() {
         return this.axis.defaultLabelFormatter.call(this).concat(' %');
       },
     },

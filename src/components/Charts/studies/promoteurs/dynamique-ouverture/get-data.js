@@ -158,7 +158,7 @@ function useGetData(studyType, sponsor = '*') {
                   / bucket.by_year.buckets.find((el) => el.key === year)
                     ?.doc_count || 1,
             })),
-          categories,
+          categories: categories.map((el, index) => (index === 0 || index === categories.length - 1 ? el : '')),
         };
         tab.push(obj);
       }
