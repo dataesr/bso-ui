@@ -9,7 +9,6 @@ import { getCSSValue } from '../../../../../utils/helpers';
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
@@ -162,6 +161,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps, needle]);
 
-  return { data, isLoading, isError };
+  return { data, isLoading };
 }
 export default useGetData;

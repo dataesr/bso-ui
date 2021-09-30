@@ -10,7 +10,6 @@ function useGetData(observationSnaps, domain = '') {
   const intl = useIntl();
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -164,6 +163,6 @@ function useGetData(observationSnaps, domain = '') {
     getData();
   }, [observationSnaps, getDataByObservationSnaps]);
 
-  return { data, isLoading, isError };
+  return { data, isLoading };
 }
 export default useGetData;
