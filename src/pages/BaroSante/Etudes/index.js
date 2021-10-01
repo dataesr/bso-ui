@@ -190,11 +190,6 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-                <BSOChart
-                  id='studies.caracteristiques.combien.chart-proportion-modes-repartition'
-                  domain='health'
-                  studyType='Observational'
-                />
               </QuestionSection>
             </GraphContent>
           </GraphItem>

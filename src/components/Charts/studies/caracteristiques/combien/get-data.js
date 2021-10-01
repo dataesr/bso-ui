@@ -6,7 +6,7 @@ import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType) {
+function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -17,6 +17,7 @@ function useGetData(studyType) {
       'studiesCaracteristiquesCombienChartGroupesPatients',
       '',
       studyType,
+      sponsorType,
     );
     const resGroupes = await Axios.post(
       ES_STUDIES_API_URL,
@@ -47,6 +48,7 @@ function useGetData(studyType) {
       'studiesCaracteristiquesCombienChartProportionModesRepartition',
       '',
       studyType,
+      sponsorType,
     );
 
     const resRepartition = await Axios.post(
@@ -127,7 +129,7 @@ function useGetData(studyType) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType]);
+  }, [studyType, sponsorType]);
   return { allData, isLoading, isError };
 }
 export default useGetData;

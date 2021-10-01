@@ -17,13 +17,14 @@ function useGetData(studyType, sponsorType = '*') {
       'studiesCaracteristiquesTypes',
       '',
       studyType,
+      sponsorType,
     );
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
 
     const currentYear = new Date().getFullYear();
     const dataSortedByYear = res.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
-      .filter((y) => y.key >= 2010 && y.key <= currentYear);
+      .filter((y) => y.key >= 2012 && y.key <= currentYear);
 
     const colors = {
       Behavioral: getCSSValue('--yellow-medium-125'),

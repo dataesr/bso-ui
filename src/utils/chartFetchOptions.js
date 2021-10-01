@@ -1370,7 +1370,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
-            size: 20,
+            size: 25,
           },
           aggs: {
             by_submission_temporality: {
@@ -1451,7 +1451,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesDureeChartNombre: ([studyType]) => ({
+    studiesCaracteristiquesDureeChartNombre: ([studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1459,6 +1459,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
             {
@@ -1478,7 +1483,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesCombienChartGroupesPatients: ([studyType]) => ({
+    studiesCaracteristiquesCombienChartGroupesPatients: ([studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1486,6 +1491,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
           ],
@@ -1509,6 +1519,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
     }),
     studiesCaracteristiquesCombienChartProportionModesRepartition: ([
       studyType,
+      sponsorType,
     ]) => ({
       size: 0,
       query: {
@@ -1517,6 +1528,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
           ],
@@ -1538,7 +1554,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesTypes: ([studyType]) => ({
+    studiesCaracteristiquesTypes: ([studyType, sponsorType]) => ({
       size: 0,
       query: {
         bool: {
@@ -1546,6 +1562,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
           ],
