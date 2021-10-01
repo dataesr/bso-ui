@@ -25,12 +25,12 @@ function DataCard({
       bodyClassName={background}
     >
       <CardDescription as='div'>
-        {topData || percentage ? (
+        {topData || percentage === 0 || percentage ? (
           <>
             {topData && (
               <p className='top-data marianne-extra-bold'>{topData}</p>
             )}
-            {percentage && (
+            {(percentage === 0 || percentage) && (
               <Gauge percentage={percentage} nbPosition={nbGaugePosition} />
             )}
           </>

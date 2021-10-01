@@ -6,7 +6,7 @@ function Gauge({ percentage, nbPosition }) {
   const b = 500 - a;
 
   return (
-    percentage && (
+    (percentage === 0 || percentage) && (
       <div className='gauge'>
         <svg
           version='1.1'
