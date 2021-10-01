@@ -35,7 +35,9 @@ export function getFormattedDate(date, lang) {
  * @returns {*}
  */
 export function getValueByPath(path, object) {
-  return path.split('.').reduce((p, prop) => p[prop], object);
+  return path
+    .split('.')
+    .reduce((p, prop) => (prop in p ? p[prop] : {}), object);
 }
 
 /**
