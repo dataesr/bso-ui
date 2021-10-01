@@ -171,7 +171,10 @@ export default function DataCardSection({ lang, domain }) {
       Object.keys(dataObj).forEach((k) => {
         const card = dataObj[k];
         if (!card.get) {
-          card.set(card.fetch(getValueByPath(card.pathToValue, aggregations)));
+          const value = getValueByPath(card.pathToValue, aggregations);
+          if (value) {
+            card.set(card.fetch(value));
+          }
         }
       });
     },
@@ -229,7 +232,7 @@ export default function DataCardSection({ lang, domain }) {
 
                 return (
                   <Col n='12 md-6 lg-4' key={cardKey}>
-                    {activeDomains.indexOf(domain) > -1 && (
+                    {activeDomains.indexOf(domain) > -1 && cardValue && (
                       <DataCard
                         isPercentage={isPercentage}
                         value={isPercentage ? parseFloat(cardValue) : cardValue}

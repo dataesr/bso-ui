@@ -33,11 +33,12 @@ export function getFormattedDate(date, lang) {
  * @param path
  * @param object
  * @returns {*}
+ * Returns null if path does not exist in object
  */
 export function getValueByPath(path, object) {
   return path
     .split('.')
-    .reduce((p, prop) => (prop in p ? p[prop] : {}), object);
+    .reduce((p, prop) => (p && prop in p ? p[prop] : null), object);
 }
 
 /**
