@@ -93,7 +93,7 @@ WrapperChart.defaultProps = {
   isLoading: false,
   isError: false,
   chartRef: () => {},
-  studyType: '',
+  studyType: null,
 };
 
 WrapperChart.propTypes = {

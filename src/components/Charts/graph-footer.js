@@ -25,6 +25,7 @@ import {
   TwitterShareButton,
 } from 'react-share';
 
+import { studiesTypes } from '../../utils/constants';
 import { getCSSValue } from '../../utils/helpers';
 
 const GraphFooter = ({
@@ -38,7 +39,9 @@ const GraphFooter = ({
 }) => {
   const intl = useIntl();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const urlToShare = `${window.location.origin}/integration/${srcPath}${(studyType) ? '/' : ''}${studyType}`;
+  const urlToShare = `${window.location.origin}/integration/${srcPath}${
+    studyType ? '/' : ''
+  }${studyType}`;
   const shareFill = getCSSValue('--blue-soft-100');
   const clipboardContent = `<iframe id="yourID" width="800" height="600" src=${urlToShare} />`;
 
@@ -254,7 +257,7 @@ GraphFooter.defaultProps = {
   srcPath: '',
   onCsvButtonClick: null,
   onPngButtonClick: null,
-  studyType: '',
+  studyType: null,
 };
 GraphFooter.propTypes = {
   source: PropTypes.string,
@@ -263,5 +266,5 @@ GraphFooter.propTypes = {
   srcPath: PropTypes.string, // pour lien intégration
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,
-  studyType: PropTypes.string,
+  studyType: PropTypes.oneOf(studiesTypes),
 };

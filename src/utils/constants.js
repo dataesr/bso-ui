@@ -3,7 +3,7 @@ import { chartOptions } from './chartOptions';
 export const graphIds = Object.keys(chartOptions);
 
 export const domains = ['health', ''];
-export const studiesTypes = ['Interventional', 'Observational'];
+export const studiesTypes = ['Interventional', 'Observational', null];
 
 export const mobileButtonLabel = {
   fr: {

@@ -24,7 +24,7 @@ BSOChart.defaultProps = {
   domain: '',
   graphFooter: true,
   graphComments: true,
-  studyType: '',
+  studyType: null,
 };
 
 BSOChart.propTypes = {
