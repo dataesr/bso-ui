@@ -1297,7 +1297,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_status: {
           terms: {
-            field: 'status.keyword',
+            field: 'status_simplified.keyword',
           },
           aggs: {
             by_has_results: {

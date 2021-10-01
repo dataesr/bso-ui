@@ -656,6 +656,8 @@
 
   "app.health-interventional.studies.general.sankey.start.label": "Essais cliniques déclarés publiquement",
   "app.health-interventional.studies.general.sankey.Completed.label": "Terminés",
+  "app.health-interventional.studies.general.sankey.Ongoing.label": "En cours",
+  "app.health-interventional.studies.general.sankey.Unknown.label": "Autre",
   "app.health-interventional.studies.general.sankey.Recruiting.label": "En cours de recrutement",
   "app.health-interventional.studies.general.sankey.Unknown status.label": "Statut inconnu",
   "app.health-interventional.studies.general.sankey.Not yet recruiting.label": "Recrutement non démarré",
