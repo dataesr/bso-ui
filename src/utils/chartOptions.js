@@ -1201,6 +1201,24 @@ export const chartOptions = {
         id: 'app.publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
       options.credits = { enabled: false };
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            formatter() {
+              const last = this.series.data[this.series.data.length - 1];
+              if (
+                this.point.category === last.category
+                && this.point.y === last.y
+              ) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
       const { data, name } = graph;
       options.chart.type = 'column';
       // options.legend = { width: '99%', align: 'right' };
