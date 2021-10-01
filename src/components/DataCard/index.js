@@ -11,8 +11,8 @@ function DataCard({
   sentence,
   buttonLabel,
   buttonHref,
-  topData,
-  percentage,
+  value,
+  isPercentage,
   nbGaugePosition,
 }) {
   const history = useHistory();
@@ -25,12 +25,12 @@ function DataCard({
       bodyClassName={background}
     >
       <CardDescription as='div'>
-        {topData || percentage ? (
+        {value || isPercentage ? (
           <>
-            {percentage ? (
-              <Gauge percentage={topData} nbPosition={nbGaugePosition} />
+            {isPercentage ? (
+              <Gauge value={value} nbPosition={nbGaugePosition} />
             ) : (
-              <p className='top-data marianne-extra-bold'>{topData}</p>
+              <p className='top-data marianne-extra-bold'>{value}</p>
             )}
           </>
         ) : (
@@ -56,9 +56,9 @@ function DataCard({
 
 DataCard.defaultProps = {
   buttonLabel: '',
-  topData: '',
+  value: 0,
   sentence: '',
-  percentage: null,
+  isPercentage: false,
   background: 'green',
   buttonHref: '',
   nbGaugePosition: '66',
@@ -74,10 +74,10 @@ DataCard.propTypes = {
     'brown',
     'blue',
   ]),
-  percentage: PropTypes.number,
+  isPercentage: PropTypes.bool,
   buttonHref: PropTypes.string,
   nbGaugePosition: PropTypes.string,
-  topData: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   buttonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 

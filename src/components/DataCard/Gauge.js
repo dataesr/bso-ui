@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function Gauge({ percentage, nbPosition }) {
-  const a = 340 * (percentage / 100);
+function Gauge({ value, nbPosition }) {
+  const a = 340 * (value / 100);
   const b = 500 - a;
 
   return (
-    (percentage === 0 || percentage) && (
+    (value === 0 || value) && (
       <div className='gauge'>
         <svg
           version='1.1'
@@ -17,7 +17,7 @@ function Gauge({ percentage, nbPosition }) {
           viewBox='0 0 200 200'
           xmlSpace='preserve'
         >
-          <title>{`${percentage}%`}</title>
+          <title>{`${value}%`}</title>
           <g>
             <path
               strokeDasharray='340'
@@ -40,7 +40,7 @@ function Gauge({ percentage, nbPosition }) {
             />
           </g>
           <text x={nbPosition} y='180' className='marianne-extra-bold'>
-            {`${percentage}`}
+            {`${value}`}
             <tspan className='marianne-bold fs-24-32'>%</tspan>
           </text>
         </svg>
@@ -50,7 +50,7 @@ function Gauge({ percentage, nbPosition }) {
 }
 
 Gauge.propTypes = {
-  percentage: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
   nbPosition: PropTypes.string.isRequired,
 };
 
