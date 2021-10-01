@@ -849,7 +849,7 @@
   "app.publishers.open-by-publisher": "accès ouvert sur le site de l'éditeur / plateforme",
   "app.repositories-filter-label": "Sélectionner une archive ouverte",
   "app.sante.data.hosted.documents": "documents en santé hébergés sur HAL (sur un total {total} de publications en accès ouvert sur archive)",
-  "app.sante.update.date": "Site mis à jour le {date} avec les données de publication de {startDate} à {endDate}",
+  "app.sante.update.date": "Site mis à jour le {date} avec les données des publications publiées entre {startDate} et {endDate}",
   "app.scroll-to-top": "scroll to top",
   "app.see-details": "Voir en détail",
   "app.text.test": "<glossary>app.glossary.essai_clinique</glossary>",
