@@ -231,8 +231,8 @@ export default function DataCardSection({ lang, domain }) {
                   <Col n='12 md-6 lg-4' key={cardKey}>
                     {activeDomains.indexOf(domain) > -1 && (
                       <DataCard
-                        percentage={percentage ? parseFloat(cardValue) : null}
-                        topData={percentage ? null : cardValue}
+                        percentage={percentage}
+                        topData={percentage ? parseFloat(cardValue) : cardValue}
                         nbGaugePosition={
                           cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
                         }
