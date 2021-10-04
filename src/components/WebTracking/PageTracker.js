@@ -21,7 +21,7 @@ function PageTracker({ children }) {
 
   useEffect(() => {
     document.title = getDocumentTitle();
-    trackPageView({ documentTitle: getDocumentTitle() });
+    trackPageView({ documentTitle: `${document.title}` });
   }, [getDocumentTitle, trackPageView]);
 
   return <>{children}</>;
