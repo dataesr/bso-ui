@@ -1,3 +1,4 @@
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -30,14 +31,41 @@ function WrapperChart({
   const { updateDate } = useGlobals();
   const intl = useIntl();
   const idWithDomain = withDomain(id, domain);
+  const { trackEvent } = useMatomo();
+  const title = !studyType
+    ? intl.formatMessage({ id: `${idWithDomain}.title` })
+    : intl.formatMessage({
+      id: `${withDomainAndStudyType(
+        id,
+        domain,
+        studyType.toLowerCase(),
+      )}.title`,
+    });
+  const comments = intl.messages[`${idWithDomain}.comments`]
+    ? intl.formatMessage({ id: `${idWithDomain}.comments` })
+    : 'commentaire non rédigé';
+  const source = intl.messages[`${idWithDomain}.source`]
+    ? intl.formatMessage({ id: `${idWithDomain}.source` })
+    : 'source';
 
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
       type: 'image/png',
     });
+    trackEvent({
+      category: 'export',
+      action: 'export-graph-png',
+      name: `png_${title}`,
+    });
   };
   const exportChartCsv = () => {
     chartRef.current.chart.downloadCSV();
+
+    trackEvent({
+      category: 'export',
+      action: 'export-graph-csv',
+      name: `csv_${title}`,
+    });
   };
 
   if (isLoading) {
@@ -51,21 +79,7 @@ function WrapperChart({
   if (isError) {
     return <>Error</>;
   }
-  const comments = intl.messages[`${idWithDomain}.comments`]
-    ? intl.formatMessage({ id: `${idWithDomain}.comments` })
-    : 'commentaire non rédigé';
-  const source = intl.messages[`${idWithDomain}.source`]
-    ? intl.formatMessage({ id: `${idWithDomain}.source` })
-    : 'source';
-  const title = !studyType
-    ? intl.formatMessage({ id: `${idWithDomain}.title` })
-    : intl.formatMessage({
-      id: `${withDomainAndStudyType(
-        id,
-        domain,
-        studyType.toLowerCase(),
-      )}.title`,
-    });
+
   return (
     <>
       <div className='graph-container' data-id={id}>

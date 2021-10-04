@@ -12,11 +12,13 @@ export default function GraphNavigationLink({ href, label }) {
   const history = useHistory();
   const onClickLink = () => {
     openTab('');
+
     trackEvent({
       category: 'navigation',
       action: 'click-to-graph',
-      name: `click_${label}`,
+      name: `go_to_${label}`,
     });
+
     history.push(href);
   };
   return (

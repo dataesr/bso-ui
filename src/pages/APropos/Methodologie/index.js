@@ -23,7 +23,7 @@ function Methodologie() {
         backgroundColor='blue-soft-50'
         textColor='blue-dark-150'
         supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.methodology' />}
+        title={<FormattedMessage id='app.header.nav.a-propos-methodologie' />}
         icons={renderIcons}
       />
     </div>

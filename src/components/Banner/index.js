@@ -5,6 +5,7 @@ import {
   Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -34,6 +35,7 @@ function Banner({
   const [sticked, setSticked] = useState(false);
   const { scrollTop, scrollingDown } = useScroll();
   const history = useHistory();
+  const { trackEvent } = useMatomo();
 
   setCSSProperty(
     '--bannerBackgroundColor',
@@ -64,6 +66,13 @@ function Banner({
 
   const onNavigationChange = (e) => {
     setNavSelected(e.target.value);
+
+    trackEvent({
+      category: 'navigation',
+      action: 'change-to-search-object',
+      name: `go_to_${e.target.value}`,
+    });
+
     history.push(e.target.value);
   };
 

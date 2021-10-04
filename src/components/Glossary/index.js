@@ -71,7 +71,9 @@ function Glossary({ entries }) {
   }, [onClickEntry, glossaryEntries]);
 
   useEffect(() => {
-    const arrGlossayEntries = Array.from(document.querySelectorAll('.glossary-entry'));
+    const arrGlossayEntries = Array.from(
+      document.querySelectorAll('.glossary-entry'),
+    );
     if (glossaryEntries.length === 0 && arrGlossayEntries.length > 0) {
       setGlossaryEntries(arrGlossayEntries);
     }
@@ -90,7 +92,10 @@ function Glossary({ entries }) {
             onClick={() => glossaryPanel('', !openPanel)}
             className='btn-blue text-white'
           >
-            <FormattedMessage id='app.glossary' defaultMessage='Glossaire' />
+            <FormattedMessage
+              id='app.header.nav.a-propos-glossaire'
+              defaultMessage='Glossaire'
+            />
           </Button>
         </DSIcon>
         <Row>
