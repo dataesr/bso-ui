@@ -56,7 +56,9 @@ function useGetData(observationSnap, isOa, domain) {
         .find((el) => el.key === 0)
         .by_publication_split.buckets.forEach((el) => {
           dataGraph.push({
-            name: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            name: intl.formatMessage({
+              id: `app.lang.${el.key.toLowerCase()}`,
+            }),
             oaType: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
             key: el.key,
             parent: 'closed',
@@ -74,7 +76,9 @@ function useGetData(observationSnap, isOa, domain) {
         .find((el) => el.key === 1)
         .by_publication_split.buckets.forEach((el) => {
           dataGraph.push({
-            name: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            name: intl.formatMessage({
+              id: `app.lang.${el.key.toLowerCase()}`,
+            }),
             oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
             key: el.key,
             parent: 'open',
