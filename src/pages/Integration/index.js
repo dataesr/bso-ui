@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import BSOChart from '../../components/Charts';
 import Loader from '../../components/Loader';
+import PageTracker from '../../components/WebTracking/PageTracker';
 
 const Integration = () => {
   const { graphId, domain, studyType } = useParams();
@@ -17,24 +18,30 @@ const Integration = () => {
   }, [trackPageView]);
 
   return (
-    <Container fluid>
-      <Row justifyContent='center'>
-        <Col n='10'>
-          <Service
-            description=''
-            className='main-title'
-            title={intl.formatMessage({ id: 'app.header.title' })}
-          />
-        </Col>
-      </Row>
-      <Row justifyContent='center'>
-        <Col n='10'>
-          <Suspense fallback={<Loader />}>
-            <BSOChart id={graphId} domain={domain || ''} studyType={studyType || ''} />
-          </Suspense>
-        </Col>
-      </Row>
-    </Container>
+    <PageTracker>
+      <Container fluid>
+        <Row justifyContent='center'>
+          <Col n='10'>
+            <Service
+              description=''
+              className='main-title'
+              title={intl.formatMessage({ id: 'app.header.title' })}
+            />
+          </Col>
+        </Row>
+        <Row justifyContent='center'>
+          <Col n='10'>
+            <Suspense fallback={<Loader />}>
+              <BSOChart
+                id={graphId}
+                domain={domain || ''}
+                studyType={studyType || ''}
+              />
+            </Suspense>
+          </Col>
+        </Row>
+      </Container>
+    </PageTracker>
   );
 };
 

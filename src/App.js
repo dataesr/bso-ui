@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import WebTracking from './components/WebTracking';
+import PageTracker from './components/WebTracking/PageTracker';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
@@ -44,7 +45,9 @@ function App() {
               exact
               path={Object.keys(urls.national).map((l) => urls.national[l])}
             >
-              <BaroNational />
+              <PageTracker>
+                <BaroNational />
+              </PageTracker>
             </Route>
             <Route
               exact
@@ -52,15 +55,19 @@ function App() {
                 .map((tab) => Object.keys(tab).map((l) => tab[l]))
                 .flat(1)}
             >
-              <GraphNavigationContextProvider>
-                <NationalPublications />
-              </GraphNavigationContextProvider>
+              <PageTracker>
+                <GraphNavigationContextProvider>
+                  <NationalPublications />
+                </GraphNavigationContextProvider>
+              </PageTracker>
             </Route>
             <Route
               exact
               path={Object.keys(urls.sante).map((l) => urls.sante[l])}
             >
-              <BaroSante />
+              <PageTracker>
+                <BaroSante />
+              </PageTracker>
             </Route>
             <Route
               exact
@@ -68,9 +75,11 @@ function App() {
                 .map((tab) => Object.keys(tab).map((l) => tab[l]))
                 .flat(1)}
             >
-              <GraphNavigationContextProvider>
-                <SantePublications />
-              </GraphNavigationContextProvider>
+              <PageTracker>
+                <GraphNavigationContextProvider>
+                  <SantePublications />
+                </GraphNavigationContextProvider>
+              </PageTracker>
             </Route>
             <Route
               exact
