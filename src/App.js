@@ -87,9 +87,11 @@ function App() {
                 .map((tab) => Object.keys(tab).map((l) => tab[l]))
                 .flat(1)}
             >
-              <GraphNavigationContextProvider>
-                <EssaisCliniques />
-              </GraphNavigationContextProvider>
+              <PageTracker>
+                <GraphNavigationContextProvider>
+                  <EssaisCliniques />
+                </GraphNavigationContextProvider>
+              </PageTracker>
             </Route>
 
             <Route
@@ -98,9 +100,11 @@ function App() {
                 .map((tab) => Object.keys(tab).map((l) => tab[l]))
                 .flat(1)}
             >
-              <GraphNavigationContextProvider>
-                <Etudes />
-              </GraphNavigationContextProvider>
+              <PageTracker>
+                <GraphNavigationContextProvider>
+                  <Etudes />
+                </GraphNavigationContextProvider>
+              </PageTracker>
             </Route>
             <Route
               exact
@@ -108,7 +112,9 @@ function App() {
                 (l) => urls.methodologie[l],
               )}
             >
-              <Methodologie />
+              <PageTracker>
+                <Methodologie />
+              </PageTracker>
             </Route>
             <Route exact path={Object.keys(urls.faq).map((l) => urls.faq[l])}>
               <FAQ />
@@ -117,20 +123,26 @@ function App() {
               exact
               path={Object.keys(urls.glossaire).map((l) => urls.glossaire[l])}
             >
-              <Glossaire />
+              <PageTracker>
+                <Glossaire />
+              </PageTracker>
             </Route>
             <Route
               exact
               path={Object.keys(urls.flash).map((l) => urls.flash[l])}
             >
-              <NotesFlash />
+              <PageTracker>
+                <NotesFlash />
+              </PageTracker>
             </Route>
             <Route
               path={Object.keys(urls.integration).map(
                 (l) => urls.integration[l],
               )}
             >
-              <Integration />
+              <PageTracker>
+                <Integration />
+              </PageTracker>
             </Route>
             <Route exact path='*'>
               <div>Not Found</div>

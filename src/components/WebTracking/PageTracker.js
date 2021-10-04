@@ -20,6 +20,7 @@ function PageTracker({ children }) {
   );
 
   useEffect(() => {
+    document.title = getDocumentTitle();
     trackPageView({ documentTitle: getDocumentTitle() });
   }, [getDocumentTitle, trackPageView]);
 
