@@ -79,18 +79,15 @@ export default function DataCardSection({ lang, domain }) {
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
-          (buckets?.find((countObj) => countObj.key === 'diamond')
-            ?.doc_count
-              || 0
-                / (buckets?.find((countObj) => countObj.key === 'hybrid')
-                  ?.doc_count
-                  || 0
-                    + buckets?.find((countObj) => countObj.key === 'diamond')
-                      ?.doc_count
-                  || 0
-                    + buckets?.find((countObj) => countObj.key === 'gold')
-                      ?.doc_count
-                  || 0)) * 100
+          ((buckets?.find((countObj) => countObj.key === 'diamond')
+            ?.doc_count || 0)
+              / ((buckets?.find((countObj) => countObj.key === 'hybrid')
+                ?.doc_count || 0)
+                + (buckets?.find((countObj) => countObj.key === 'diamond')
+                  ?.doc_count || 0)
+                + (buckets?.find((countObj) => countObj.key === 'gold')
+                  ?.doc_count || 0)))
+            * 100
         ).toFixed(1),
         get: diamondPublicationRate,
         set: (data) => setDiamonPublicationRate(data),
@@ -122,8 +119,10 @@ export default function DataCardSection({ lang, domain }) {
       },
       frenchPublicationsRate: {
         fetch: (buckets) => (
-          (buckets?.find((countObj) => countObj.key === 'fr')?.doc_count
-              || 0 / publicationsNumber) * 100
+          ((buckets?.find((countObj) => countObj.key === 'fr')?.doc_count
+              || 0)
+              / publicationsNumber)
+            * 100
         ).toFixed(1),
         get: frenchPublicationsRate,
         set: (data) => setFrenchPublicationRate(data),
