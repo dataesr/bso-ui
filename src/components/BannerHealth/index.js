@@ -13,13 +13,31 @@ function BannerHealth({ selected, title }) {
   const intl = useIntl();
   const { lang } = useLang();
 
+  const icons = {
+    'url.sante.publications.general': {
+      name: 'icon-bsso-28',
+      color1: 'blue-soft-125',
+      color2: 'publication-25',
+    },
+    'url.sante.etudes': {
+      name: 'icon-bsso-17',
+      color1: 'blue-soft-125',
+      color2: 'orange-medium-50',
+    },
+    'url.sante.essais': {
+      name: 'icon-bsso-15',
+      color1: 'blue-soft-125',
+      color2: 'green-soft-50',
+    },
+  };
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
         <Icon
-          name='icon-bsso-15'
-          color1='blue-soft-125'
-          color2='green-soft-50'
+          name={icons[selected]?.name}
+          color1={icons[selected]?.color1}
+          color2={icons[selected]?.color2}
         />
       </Col>
     </Row>
