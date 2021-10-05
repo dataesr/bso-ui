@@ -25,6 +25,7 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
     </LangContext.Provider>
   );
 };
+
 LangContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
   supportedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,

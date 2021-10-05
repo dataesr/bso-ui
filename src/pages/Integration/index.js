@@ -2,15 +2,20 @@ import { Col, Container, Row, Service } from '@dataesr/react-dsfr';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import React, { Suspense, useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import BSOChart from '../../components/Charts';
 import Loader from '../../components/Loader';
+import useLang from '../../utils/Hooks/useLang';
 
 const Integration = () => {
-  const { graphId, domain, studyType } = useParams();
-  const { trackPageView } = useMatomo();
+  const { language, graphId, domain, studyType } = useParams();
+  const { pathname } = useLocation();
   const intl = useIntl();
+  const { switchLang } = useLang();
+  const { trackPageView } = useMatomo();
+
+  switchLang(language, pathname);
 
   useEffect(() => {
     trackPageView();
