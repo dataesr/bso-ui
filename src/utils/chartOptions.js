@@ -1771,11 +1771,7 @@ export const chartOptions = {
         start: getCSSValue('--patient-50'),
       };
       const getNodes = () => {
-        const allNodes = [
-          'Completed',
-          'Ongoing',
-          'Unknown',
-        ];
+        const allNodes = ['Completed', 'Ongoing', 'Unknown'];
         const keysList = [
           {
             keyword: 'has_result',
@@ -2325,7 +2321,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl, studyType);
       const { data, color, name } = graph;
       options.chart.type = 'column';
-      options.credits = { enabled: false };
+      options.credits.enabled = false;
       options.plotOptions = {
         column: {
           dataLabels: {
@@ -2346,14 +2342,11 @@ export const chartOptions = {
         categories: graph?.categories,
         lineWidth: 0,
         tickWidth: 0,
-        labels: {
-          rotation: 0,
-        },
       };
       options.series = [
         {
-          data,
           color,
+          data,
           name,
         },
       ];

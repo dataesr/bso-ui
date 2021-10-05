@@ -16,7 +16,10 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import {
+  getCSSValue,
+  withDomainAndStudyType,
+} from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -62,6 +65,43 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       graphFooter={graphFooter}
       graphComments={false}
     >
+      {/* Add home made legend */}
+      <div>
+        <span>
+          <span
+            style={{
+              backgroundColor: getCSSValue('--lead-sponsor-public'),
+              borderRadius: '6px',
+              display: 'inline-block',
+              height: '12px',
+              width: '12px',
+            }}
+          />
+          <span
+            className='px-7'
+            style={{ color: '#333333', fontSize: '12px', fontWeight: 'bold' }}
+          >
+            {intl.formatMessage({ id: 'app.sponsor.academique' })}
+          </span>
+        </span>
+        <span className='px-20'>
+          <span
+            style={{
+              backgroundColor: getCSSValue('--lead-sponsor-privee'),
+              borderRadius: '6px',
+              display: 'inline-block',
+              height: '12px',
+              width: '12px',
+            }}
+          />
+          <span
+            className='px-7'
+            style={{ color: '#333333', fontSize: '12px', fontWeight: 'bold' }}
+          >
+            {intl.formatMessage({ id: 'app.sponsor.industriel' })}
+          </span>
+        </span>
+      </div>
       <Container>
         <Row>
           {graphs.map((graphOptions, i) => (
