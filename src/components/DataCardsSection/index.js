@@ -50,7 +50,7 @@ export default function DataCardSection({ lang, domain }) {
         get: openPublicationRate,
         set: (data) => setOpenPublicationRate(data),
         pathToValue: 'by_is_oa.buckets',
-        percentage: true,
+        isPercentage: true,
         color: 'pink',
         intlKey: 'app.national-publi.data.publications',
         intlValues: {
@@ -71,7 +71,7 @@ export default function DataCardSection({ lang, domain }) {
         get: apcCostSum,
         set: (data) => setApcCostSum(data),
         pathToValue: 'by_oa_colors.buckets',
-        percentage: false,
+        isPercentage: false,
         color: 'brown',
         intlKey: 'app.national-publi.data.costs',
         buttonHref: 'editeurs?id=publishers.couts-publication',
@@ -79,18 +79,20 @@ export default function DataCardSection({ lang, domain }) {
       },
       diamondPublicationRate: {
         fetch: (buckets) => (
-          (buckets.find((countObj) => countObj.key === 'diamond').doc_count
-              / (buckets.find((countObj) => countObj.key === 'hybrid').doc_count
-                + buckets.find((countObj) => countObj.key === 'diamond')
-                  .doc_count
-                + buckets.find((countObj) => countObj.key === 'gold')
-                  .doc_count))
+          ((buckets?.find((countObj) => countObj.key === 'diamond')
+            ?.doc_count || 0)
+              / ((buckets?.find((countObj) => countObj.key === 'hybrid')
+                ?.doc_count || 0)
+                + (buckets?.find((countObj) => countObj.key === 'diamond')
+                  ?.doc_count || 0)
+                + (buckets?.find((countObj) => countObj.key === 'gold')
+                  ?.doc_count || 0)))
             * 100
         ).toFixed(1),
         get: diamondPublicationRate,
         set: (data) => setDiamonPublicationRate(data),
         pathToValue: 'by_oa_colors_with_priority_to_publisher.buckets',
-        percentage: true,
+        isPercentage: true,
         color: 'aqua',
         intlKey: 'app.national-publi.data.publi-diamond',
         intlValues: {
@@ -108,7 +110,7 @@ export default function DataCardSection({ lang, domain }) {
         get: hostedDocuments,
         set: (data) => setHostedDocuments(data),
         pathToValue: 'by_repositories.buckets',
-        percentage: false,
+        isPercentage: false,
         color: 'green',
         intlKey: 'app.national.data.hosted.documents',
         intlValues: { total: totalHostedDocuments },
@@ -117,14 +119,15 @@ export default function DataCardSection({ lang, domain }) {
       },
       frenchPublicationsRate: {
         fetch: (buckets) => (
-          (buckets.find((countObj) => countObj.key === 'fr').doc_count
+          ((buckets?.find((countObj) => countObj.key === 'fr')?.doc_count
+              || 0)
               / publicationsNumber)
             * 100
         ).toFixed(1),
         get: frenchPublicationsRate,
         set: (data) => setFrenchPublicationRate(data),
         pathToValue: 'by_lang.buckets',
-        percentage: true,
+        isPercentage: true,
         color: 'blue',
         intlKey: 'app.national-publi.data.french-lang',
         intlValues: {
@@ -139,7 +142,7 @@ export default function DataCardSection({ lang, domain }) {
         get: bestCollabCountry,
         set: (data) => setBestCollabCountry(data),
         pathToValue: 'by_author_useful_rank.buckets.1.key',
-        percentage: false,
+        isPercentage: false,
         color: 'yellow',
         intlKey: 'app.publi.data.collab-country',
         buttonHref: 'affiliations?id=affiliations.dynamique-ouverture',
@@ -167,7 +170,10 @@ export default function DataCardSection({ lang, domain }) {
       Object.keys(dataObj).forEach((k) => {
         const card = dataObj[k];
         if (!card.get) {
-          card.set(card.fetch(getValueByPath(card.pathToValue, aggregations)));
+          const value = getValueByPath(card.pathToValue, aggregations);
+          if (value) {
+            card.set(card.fetch(value));
+          }
         }
       });
     },
@@ -215,7 +221,7 @@ export default function DataCardSection({ lang, domain }) {
               {Object.keys(dataObj).map((cardKey) => {
                 const {
                   get: cardValue,
-                  percentage,
+                  isPercentage,
                   color,
                   intlKey,
                   intlValues,
@@ -225,10 +231,10 @@ export default function DataCardSection({ lang, domain }) {
 
                 return (
                   <Col n='12 md-6 lg-4' key={cardKey}>
-                    {activeDomains.indexOf(domain) > -1 && (
+                    {activeDomains.indexOf(domain) > -1 && cardValue && (
                       <DataCard
-                        percentage={percentage ? parseFloat(cardValue) : null}
-                        topData={percentage ? null : cardValue}
+                        isPercentage={isPercentage}
+                        value={isPercentage ? parseFloat(cardValue) : cardValue}
                         nbGaugePosition={
                           cardValue % 1 !== 0 && cardValue > 9 ? '58' : '70'
                         }

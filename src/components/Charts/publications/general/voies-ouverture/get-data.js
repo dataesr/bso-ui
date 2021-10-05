@@ -38,8 +38,9 @@ function useGetData(observationSnap, domain) {
       data
         .filter(
           (el) => el.key > 2012
+            && lastObservationSnap.length
             && parseInt(el.key, 10)
-              < parseInt(lastObservationSnap.substring(0, 4), 10),
+              < parseInt(lastObservationSnap?.substring(0, 4), 10),
         )
         .forEach((el) => {
           categories.push(el.key);
@@ -121,8 +122,8 @@ function useGetData(observationSnap, domain) {
       const dataGraph3 = [
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          value: publisher[publisher.length - 1].y_abs,
-          percentage: publisher[publisher.length - 1].y,
+          value: publisher[publisher.length - 1]?.y_abs,
+          percentage: publisher[publisher.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
           color: yellowMedium125,
           dataLabels: noOutline,
@@ -132,8 +133,8 @@ function useGetData(observationSnap, domain) {
           name: intl.formatMessage({
             id: 'app.type-hebergement.publisher-repository',
           }),
-          value: publisherRepository[publisherRepository.length - 1].y_abs,
-          percentage: publisherRepository[publisherRepository.length - 1].y,
+          value: publisherRepository[publisherRepository.length - 1]?.y_abs,
+          percentage: publisherRepository[publisherRepository.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
           color: greenLight100,
           dataLabels: noOutline,
@@ -141,8 +142,8 @@ function useGetData(observationSnap, domain) {
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
-          value: repository[repository.length - 1].y_abs,
-          percentage: repository[repository.length - 1].y,
+          value: repository[repository.length - 1]?.y_abs,
+          percentage: repository[repository.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
           color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
@@ -150,8 +151,8 @@ function useGetData(observationSnap, domain) {
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          value: closed[closed.length - 1].y_abs,
-          percentage: closed[closed.length - 1].y,
+          value: closed[closed.length - 1]?.y_abs,
+          percentage: closed[closed.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
           color: getCSSValue('--blue-soft-175'),
           dataLabels: noOutline,

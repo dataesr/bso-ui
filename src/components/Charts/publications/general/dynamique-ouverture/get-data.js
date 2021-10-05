@@ -100,12 +100,13 @@ function useGetData(observationSnaps, domain = '') {
       dataGraph2.comments = {
         observationDate: dataGraph2[0]?.name,
         previousObservationDate: dataGraph2[1]?.name,
-        minPublicationDate: dataGraph2[0]?.data[0].publicationDate,
+        minPublicationDate: dataGraph2[0]?.data[0]?.publicationDate,
         previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
-        oaYMinusOnePrevious: dataGraph2[1].data.slice(-1)[0].y.toFixed(2),
-        oaYMinusOne: dataGraph2[0].data.slice(-2)[0].y.toFixed(2),
+        oaYMinusOnePrevious: dataGraph2[1]?.data.slice(-1)[0].y.toFixed(2),
+        oaYMinusOne: dataGraph2[0]?.data.slice(-2)[0].y.toFixed(2),
         oaEvolution: (
-          dataGraph2[0].data.slice(-2)[0].y - dataGraph2[1].data.slice(-1)[0].y
+          dataGraph2[0]?.data.slice(-2)[0].y
+          - dataGraph2[1]?.data.slice(-1)[0].y
         ).toFixed(2),
         maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
       };

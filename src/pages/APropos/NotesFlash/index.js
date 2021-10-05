@@ -100,7 +100,7 @@ function NotesFlash() {
                         </div>
                       </Col>
                       <Col n='12 md-6'>
-                        <DSIcon name='ri-github-fill' size='8x'>
+                        <DSIcon name='ri-github-fill' size='10x'>
                           <div className='w-100 text-center' />
                         </DSIcon>
                       </Col>

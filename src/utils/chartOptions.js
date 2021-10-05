@@ -1201,6 +1201,24 @@ export const chartOptions = {
         id: 'app.publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
       options.credits = { enabled: false };
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            formatter() {
+              const last = this.series.data[this.series.data.length - 1];
+              if (
+                this.point.category === last.category
+                && this.point.y === last.y
+              ) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
       const { data, name } = graph;
       options.chart.type = 'column';
       // options.legend = { width: '99%', align: 'right' };
@@ -1740,17 +1758,23 @@ export const chartOptions = {
   },
   'studies.general.trajectoires.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
+      const nodeColor = {
+        Completed: getCSSValue('--patient-125'),
+        Unknown: getCSSValue('--patient-75'),
+        Ongoing: getCSSValue('--patient-100'),
+        closed: getCSSValue('--acces-ferme'),
+        is_oa: getCSSValue('--acces-ouvert'),
+        has_result: getCSSValue('--acces-ouvert'),
+        no_result: getCSSValue('--negatif'),
+        has_publications_result: getCSSValue('--publication-100'),
+        no_publications_result: getCSSValue('--g-600'),
+        start: getCSSValue('--patient-50'),
+      };
       const getNodes = () => {
         const allNodes = [
           'Completed',
-          'Recruiting',
-          'Unknown status',
-          'Not yet recruiting',
-          'Active, not recruiting',
-          'Terminated',
-          'Enrolling by invitation',
-          'Withdrawn',
-          'Suspended',
+          'Ongoing',
+          'Unknown',
         ];
         const keysList = [
           {
@@ -1784,6 +1808,7 @@ export const chartOptions = {
         allNodes.forEach((node) => {
           nodes.push({
             id: node,
+            color: nodeColor[node],
             name: intl.formatMessage({
               id: `app.health-${studyType.toLowerCase()}.studies.general.sankey.${node}.label`,
             }),
@@ -1792,13 +1817,14 @@ export const chartOptions = {
             nodes.push({
               id: `${node}-${item.keyword}`,
               name: intl.formatMessage({ id: item.intlKey }),
+              color: nodeColor[item.keyword?.split('-').slice(-1)],
             });
           });
         });
         return nodes;
       };
       const options = getGraphOptions(id, intl, studyType);
-      options.colors = [getCSSValue('--acces-ouvert')];
+      options.colors = [nodeColor.start];
       options.chart.height = '800px';
 
       delete options.tooltip.pointFormat;

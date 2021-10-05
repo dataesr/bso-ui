@@ -26,7 +26,7 @@ export default function SwitchLangButton() {
     <>
       <Button
         ref={langButtonRef}
-        icon='ri-volume-up-fill'
+        icon='ri-flag-fill'
         iconPosition='left'
         styleAsLink
         onClick={() => setIsLangModalOpen(!isLangModalOpen)}
@@ -52,7 +52,7 @@ export default function SwitchLangButton() {
             defaultMessage: 'Fermer la fenêtre modale',
           })}
         >
-          <FormattedMessage id='app.commons.fermer' defaultMessage='fermer' />
+          <FormattedMessage id='app.commons.fermer' defaultMessage='Fermer' />
         </ModalClose>
         <ModalTitle>
           <FormattedMessage

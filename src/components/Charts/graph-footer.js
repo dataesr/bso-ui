@@ -25,6 +25,7 @@ import {
   TwitterShareButton,
 } from 'react-share';
 
+import { studiesTypes } from '../../utils/constants';
 import { getCSSValue } from '../../utils/helpers';
 
 const GraphFooter = ({
@@ -254,7 +255,7 @@ GraphFooter.defaultProps = {
   srcPath: '',
   onCsvButtonClick: null,
   onPngButtonClick: null,
-  studyType: '',
+  studyType: null,
 };
 GraphFooter.propTypes = {
   source: PropTypes.string,
@@ -263,5 +264,5 @@ GraphFooter.propTypes = {
   srcPath: PropTypes.string, // pour lien intégration
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,
-  studyType: PropTypes.string,
+  studyType: PropTypes.oneOf(studiesTypes),
 };

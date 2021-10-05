@@ -6,7 +6,7 @@ import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType) {
+function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -17,6 +17,7 @@ function useGetData(studyType) {
       'studiesCaracteristiquesDureeChartNombre',
       '',
       studyType,
+      sponsorType,
     );
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
     const dataSortedByYear = res.data.aggregations.delay_start_completion.buckets.sort(
@@ -56,7 +57,7 @@ function useGetData(studyType) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType]);
+  }, [studyType, sponsorType]);
 
   return { allData, isLoading, isError };
 }

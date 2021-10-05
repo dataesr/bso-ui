@@ -3,7 +3,7 @@ import { chartOptions } from './chartOptions';
 export const graphIds = Object.keys(chartOptions);
 
 export const domains = ['health', ''];
-export const studiesTypes = ['Interventional', 'Observational'];
+export const studiesTypes = ['Interventional', 'Observational', null];
 
 export const mobileButtonLabel = {
   fr: {
@@ -32,52 +32,52 @@ export const mobileButtonLabel = {
 };
 
 export const documentTitles = {
-  '/a-propos/foire-aux-questions': 'url.about.faq.document.title',
-  '/about/questions': 'url.about.faq.document.title',
-  '/a-propos/notes-flash': 'url.about.flash.document.title',
-  '/about/flash-notes': 'url.about.flash.document.title',
-  '/publications/general': 'url.publications.document.title',
-  '/publications/disciplines': 'url.publications.document.title',
-  '/publications/editeurs': 'url.publications.document.title',
-  '/publications/archives': 'url.publications.document.title',
-  '/sante/publications/general': 'url.sante.publications.document.title',
-  '/health/publications/general': 'url.sante.publications.document.title',
-  '/sante/publications/disciplines': 'url.sante.publications.document.title',
-  '/health/publications/disciplines': 'url.sante.publications.document.title',
-  '/sante/publications/editeurs': 'url.sante.publications.document.title',
-  '/health/publications/editeurs': 'url.sante.publications.document.title',
-  '/sante/publications/archives': 'url.sante.publications.document.title',
-  '/health/publications/archives': 'url.sante.publications.document.title',
-  '/sante/publications/affiliations': 'url.sante.publications.document.title',
-  '/health/publications/affiliations': 'url.sante.publications.document.title',
-  '/sante/essais-cliniques/general': 'url.sante.essais.document.title',
-  '/health/clinical-trials/general': 'url.sante.essais.document.title',
-  '/sante/essais-cliniques/caracteristiques': 'url.sante.essais.document.title',
-  '/health/clinical-trials/specifications': 'url.sante.essais.document.title',
-  '/sante/essais-cliniques/promoteurs': 'url.sante.essais.document.title',
-  '/health/clinical-trials/lead-sponsors': 'url.sante.essais.document.title',
-  '/sante/essais-cliniques/resultats': 'url.sante.essais.document.title',
-  '/health/clinical-trials/results': 'url.sante.essais.document.title',
-  '/sante/etudes-observationnelles/general': 'url.sante.studies.document.title',
-  '/health/observational-studies/general': 'url.sante.studies.document.title',
+  '/a-propos/foire-aux-questions': 'app.faq',
+  '/about/questions': 'app.faq',
+  '/a-propos/notes-flash': 'app.header.nav.a-propos-notes-flash',
+  '/about/flash-notes': 'app.header.nav.a-propos-notes-flash',
+  '/publications/general': 'app.publications.document.title',
+  '/publications/disciplines': 'app.publications.document.title',
+  '/publications/editeurs': 'app.publications.document.title',
+  '/publications/archives': 'app.publications.document.title',
+  '/sante/publications/general': 'app.sante.publications.document.title',
+  '/health/publications/general': 'app.sante.publications.document.title',
+  '/sante/publications/disciplines': 'app.sante.publications.document.title',
+  '/health/publications/disciplines': 'app.sante.publications.document.title',
+  '/sante/publications/editeurs': 'app.sante.publications.document.title',
+  '/health/publications/editeurs': 'app.sante.publications.document.title',
+  '/sante/publications/archives': 'app.sante.publications.document.title',
+  '/health/publications/archives': 'app.sante.publications.document.title',
+  '/sante/publications/affiliations': 'app.sante.publications.document.title',
+  '/health/publications/affiliations': 'app.sante.publications.document.title',
+  '/sante/essais-cliniques/general': 'app.sante.essais.document.title',
+  '/health/clinical-trials/general': 'app.sante.essais.document.title',
+  '/sante/essais-cliniques/caracteristiques': 'app.sante.essais.document.title',
+  '/health/clinical-trials/specifications': 'app.sante.essais.document.title',
+  '/sante/essais-cliniques/promoteurs': 'app.sante.essais.document.title',
+  '/health/clinical-trials/lead-sponsors': 'app.sante.essais.document.title',
+  '/sante/essais-cliniques/resultats': 'app.sante.essais.document.title',
+  '/health/clinical-trials/results': 'app.sante.essais.document.title',
+  '/sante/etudes-observationnelles/general': 'app.sante.studies.document.title',
+  '/health/observational-studies/general': 'app.sante.studies.document.title',
   '/sante/etudes-observationnelles/caracteristiques':
-    'url.sante.studies.document.title',
+    'app.sante.studies.document.title',
   '/health/observational-studies/specifications':
-    'url.sante.studies.document.title',
+    'app.sante.studies.document.title',
   '/sante/etudes-observationnelles/promoteurs':
-    'url.sante.studies.document.title',
+    'app.sante.studies.document.title',
   '/health/observational-studies/lead-sponsors':
-    'url.sante.studies.document.title',
+    'app.sante.studies.document.title',
   '/sante/etudes-observationnelles/resultats':
-    'url.sante.studies.document.title',
-  '/health/observational-studies/results': 'url.sante.studies.document.title',
-  '/health/obstervational-studies/general': 'url.sante.studies.document.title',
-  '/a-propos/methodologie': 'url.about.methodology.document.title',
-  '/about/methodology': 'url.about.methodology.document.title',
-  '/about/glossary': 'url.about.glossary.document.title',
-  '/a-propos/glossaire': 'url.about.glossary.document.title',
-  '/sante': 'url.sante.document.title',
-  '/health': 'url.sante.document.title',
+    'app.sante.studies.document.title',
+  '/health/observational-studies/results': 'app.sante.studies.document.title',
+  '/health/obstervational-studies/general': 'app.sante.studies.document.title',
+  '/a-propos/methodologie': 'app.header.nav.a-propos-methodologie',
+  '/about/methodology': 'app.header.nav.a-propos-methodologie',
+  '/about/glossary': 'app.header.nav.a-propos-glossaire',
+  '/a-propos/glossaire': 'app.header.nav.a-propos-glossaire',
+  '/sante': 'app.sante.document.title',
+  '/health': 'app.sante.document.title',
 };
 
 export const alphabet = [
