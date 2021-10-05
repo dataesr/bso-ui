@@ -131,11 +131,24 @@ function BaroSante() {
                 title={
                   <FormattedMessage id='app.header.nav.baro-sante-essais' />
                 }
-                introText={
-                  <FormattedMessage id='app.baro-sante.trials-intro' />
-                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    glossaryKey='acces-ouvert'
+                    intlKey='app.baro-sante.trials-intro'
+                  />
+                )}
               >
-                <p>essais-cliniques</p>
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart
+                        id='studies.general.dynamique.chart-evolution'
+                        domain='health'
+                        studyType='Interventional'
+                      />
+                    </Col>
+                  </Row>
+                </Container>
               </HomeSection>
             </Col>
             <Col n='12 xl-10' offset='xl-2'>
@@ -149,9 +162,12 @@ function BaroSante() {
                 title={
                   <FormattedMessage id='app.header.nav.baro-sante-etudes' />
                 }
-                introText={
-                  <FormattedMessage id='app.baro-sante.studies-intro' />
-                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    glossaryKey='acces-ouvert'
+                    intlKey='app.baro-sante.studies-intro'
+                  />
+                )}
               >
                 <p>etudes-observationnelles</p>
               </HomeSection>
