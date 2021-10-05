@@ -15,7 +15,9 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
       const url = Object.keys(urls).find((key) => urls[key][lang] === pathname);
       localStorage.setItem('__bso_lang__', newLang);
       setLang(newLang);
-      window.location.replace(urls[url][newLang]);
+      if (url) {
+        window.location.replace(urls[url][newLang]);
+      }
     }
   };
 
@@ -25,6 +27,7 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
     </LangContext.Provider>
   );
 };
+
 LangContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
   supportedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
