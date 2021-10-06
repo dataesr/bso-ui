@@ -1868,6 +1868,7 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
+      options.legend.reversed = true;
       return options;
     },
   },
@@ -2092,7 +2093,6 @@ export const chartOptions = {
   'studies.resultats.type-diffusion.chart-repartition-par-type': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {
@@ -2123,7 +2123,7 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-
+      options.legend.reversed = true;
       return options;
     },
   },
