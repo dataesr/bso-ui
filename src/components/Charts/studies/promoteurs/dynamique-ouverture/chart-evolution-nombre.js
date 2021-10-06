@@ -1,3 +1,4 @@
+import './chart-evolution-nombre.scss';
 import '../../../graph.scss';
 
 import { Col, Container, Row } from '@dataesr/react-dsfr';
@@ -16,7 +17,10 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import {
+  getCSSValue,
+  withDomainAndStudyType,
+} from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -62,6 +66,21 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       graphFooter={graphFooter}
       graphComments={false}
     >
+      {/* Add home made legend */}
+      <div className='legend'>
+        <span>
+          <span className='legend-bullet legend-academique' />
+          <span className='px-7 legend-label'>
+            {intl.formatMessage({ id: 'app.sponsor.academique' })}
+          </span>
+        </span>
+        <span className='px-20'>
+          <span className='legend-bullet legend-industriel' />
+          <span className='px-7 legend-label'>
+            {intl.formatMessage({ id: 'app.sponsor.industriel' })}
+          </span>
+        </span>
+      </div>
       <Container>
         <Row>
           {graphs.map((graphOptions, i) => (
