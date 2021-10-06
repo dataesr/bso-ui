@@ -23,9 +23,9 @@ export function getGraphOptions(graphId, intl, studyType = '') {
   const legend = intl.messages[`app.${graphId}.legend`]
     ? intl.formatMessage({ id: `app.${graphId}.legend` })
     : '';
-  const tooltip = intl.messages[`app.${graphId}.tooltip`]
+  const tooltip = !studyType
     ? intl.formatMessage({ id: `app.${graphId}.tooltip` })
-    : '';
+    : intl.formatMessage({ id: `${withDomainAndStudyType(graphId, 'health', studyType.toLowerCase())}.tooltip` });
   const xAxis = intl.messages[`${graphId}.xAxis`]
     ? intl.formatMessage({ id: `${graphId}.xAxis` })
     : '';
@@ -37,13 +37,7 @@ export function getGraphOptions(graphId, intl, studyType = '') {
     : 'source';
   const title = !studyType
     ? intl.formatMessage({ id: `${graphId}.title` })
-    : intl.formatMessage({
-      id: `${withDomainAndStudyType(
-        graphId,
-        'health',
-        studyType.toLowerCase(),
-      )}.title`,
-    });
+    : intl.formatMessage({ id: `${withDomainAndStudyType(graphId, 'health', studyType.toLowerCase())}.title` });
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
@@ -2177,7 +2171,7 @@ export const chartOptions = {
           const label = this.axis.defaultLabelFormatter.call(this);
           if (label === '0') {
             return intl.formatMessage({
-              id: 'app.studies.end',
+              id: `app.studies.${studyType.toLowerCase()}.end`,
             });
           }
           return label;

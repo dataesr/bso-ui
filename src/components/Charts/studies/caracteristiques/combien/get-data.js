@@ -29,7 +29,7 @@ function useGetData(studyType, sponsorType = '*') {
     );
 
     const categoriesGroupes = dataSortedByYearGroupes.map((el) => intl.formatMessage({
-      id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.${
+      id: `app.studies.caracteristiques.combien.chart-groupes-patients.${
           el.key
         }`,
     }));
@@ -40,7 +40,12 @@ function useGetData(studyType, sponsorType = '*') {
           id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.legend`,
         }),
         color: getCSSValue('--patient-100'),
-        data: dataSortedByYearGroupes.map((el) => el.doc_count),
+        data: dataSortedByYearGroupes.map((el) => (
+          {
+            y: el.doc_count,
+            name: intl.formatMessage({ id: `app.studies.caracteristiques.combien.chart-groupes-patients.${el.key}` }),
+          }
+        )),
       },
     ];
 
