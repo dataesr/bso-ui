@@ -25,7 +25,13 @@ export function getGraphOptions(graphId, intl, studyType = '') {
     : '';
   const tooltip = intl.messages[`app.${graphId}.tooltip`]
     ? intl.formatMessage({ id: `app.${graphId}.tooltip` })
-    : '';
+    : intl.formatMessage({
+      id: `${withDomainAndStudyType(
+        graphId,
+        'health',
+        studyType.toLowerCase(),
+      )}.tooltip`,
+    });
   const xAxis = intl.messages[`${graphId}.xAxis`]
     ? intl.formatMessage({ id: `${graphId}.xAxis` })
     : '';
@@ -1771,11 +1777,7 @@ export const chartOptions = {
         start: getCSSValue('--patient-50'),
       };
       const getNodes = () => {
-        const allNodes = [
-          'Completed',
-          'Ongoing',
-          'Unknown',
-        ];
+        const allNodes = ['Completed', 'Ongoing', 'Unknown'];
         const keysList = [
           {
             keyword: 'has_result',
@@ -2054,6 +2056,9 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
       };
+      options.yAxis.stackLabels = {
+        enabled: true,
+      };
       options.series = data?.dataGraphRepartition || [];
       options.legend.reversed = true;
       options.plotOptions = {
@@ -2061,6 +2066,7 @@ export const chartOptions = {
           stacking: 'normal',
         },
       };
+      options.tooltip.useHTML = true;
       return options;
     },
   },
