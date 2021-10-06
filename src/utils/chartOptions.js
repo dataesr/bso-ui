@@ -25,7 +25,13 @@ export function getGraphOptions(graphId, intl, studyType = '') {
     : '';
   const tooltip = !studyType
     ? intl.formatMessage({ id: `app.${graphId}.tooltip` })
-    : intl.formatMessage({ id: `${withDomainAndStudyType(graphId, 'health', studyType.toLowerCase())}.tooltip` });
+    : intl.formatMessage({
+      id: `${withDomainAndStudyType(
+        graphId,
+        'health',
+        studyType.toLowerCase(),
+      )}.tooltip`,
+    });
   const xAxis = intl.messages[`${graphId}.xAxis`]
     ? intl.formatMessage({ id: `${graphId}.xAxis` })
     : '';
@@ -37,7 +43,13 @@ export function getGraphOptions(graphId, intl, studyType = '') {
     : 'source';
   const title = !studyType
     ? intl.formatMessage({ id: `${graphId}.title` })
-    : intl.formatMessage({ id: `${withDomainAndStudyType(graphId, 'health', studyType.toLowerCase())}.title` });
+    : intl.formatMessage({
+      id: `${withDomainAndStudyType(
+        graphId,
+        'health',
+        studyType.toLowerCase(),
+      )}.title`,
+    });
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
@@ -2045,6 +2057,9 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
       };
+      options.yAxis.stackLabels = {
+        enabled: true,
+      };
       options.series = data?.dataGraphRepartition || [];
       options.legend.reversed = true;
       options.plotOptions = {
@@ -2052,6 +2067,7 @@ export const chartOptions = {
           stacking: 'normal',
         },
       };
+      options.tooltip.useHTML = true;
       return options;
     },
   },

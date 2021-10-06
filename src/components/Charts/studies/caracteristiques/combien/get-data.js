@@ -29,9 +29,7 @@ function useGetData(studyType, sponsorType = '*') {
     );
 
     const categoriesGroupes = dataSortedByYearGroupes.map((el) => intl.formatMessage({
-      id: `app.studies.caracteristiques.combien.chart-groupes-patients.${
-          el.key
-        }`,
+      id: `app.studies.caracteristiques.combien.chart-groupes-patients.${el.key}`,
     }));
 
     const dataGraphGroupes = [
@@ -40,12 +38,12 @@ function useGetData(studyType, sponsorType = '*') {
           id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.legend`,
         }),
         color: getCSSValue('--patient-100'),
-        data: dataSortedByYearGroupes.map((el) => (
-          {
-            y: el.doc_count,
-            name: intl.formatMessage({ id: `app.studies.caracteristiques.combien.chart-groupes-patients.${el.key}` }),
-          }
-        )),
+        data: dataSortedByYearGroupes.map((el) => ({
+          y: el.doc_count,
+          name: intl.formatMessage({
+            id: `app.studies.caracteristiques.combien.chart-groupes-patients.${el.key}`,
+          }),
+        })),
       },
     ];
 
@@ -73,17 +71,25 @@ function useGetData(studyType, sponsorType = '*') {
     const na = [];
     const nonRandomized = [];
     dataSortedByYearRepartition.forEach((year) => {
-      const randomizedPoint = year.by_design_allocation.buckets.find(
-        (el) => el.key === 'Randomized',
-      )?.doc_count;
+      const randomizedPoint = {
+        x: year.key,
+        y: year.by_design_allocation.buckets.find(
+          (el) => el.key === 'Randomized',
+        )?.doc_count,
+      };
       randomized.push(randomizedPoint);
-      const naPoint = year.by_design_allocation.buckets.find(
-        (el) => el.key === 'N/A',
-      )?.doc_count;
+      const naPoint = {
+        x: year.key,
+        y: year.by_design_allocation.buckets.find((el) => el.key === 'N/A')
+          ?.doc_count,
+      };
       na.push(naPoint);
-      const nonRandomizedPoint = year.by_design_allocation.buckets.find(
-        (el) => el.key === 'Non-Randomized',
-      )?.doc_count;
+      const nonRandomizedPoint = {
+        x: year.key,
+        y: year.by_design_allocation.buckets.find(
+          (el) => el.key === 'Non-Randomized',
+        )?.doc_count,
+      };
       nonRandomized.push(nonRandomizedPoint);
     });
 
