@@ -98,23 +98,15 @@ function useGetData(studyType, sponsorType = '*') {
     const stepsRepartition = ['before_start', 'after_start'];
     const dataGraphRepartition = stepsRepartition.map((step) => ({
       data: data[step],
-      name: intl.formatMessage({
-        id: `app.studies.${step}`,
-      }),
+      name: intl.formatMessage({ id: `app.studies.${studyType.toLowerCase()}.${step}` }),
       color: colors[step],
     }));
 
     const categoriesRepartition = dataSortedByYearRepartition
       .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
       .map((el) => Math.abs(el.key) / 30);
-    categoriesRepartition[0] += ` ${intl.formatMessage({
-      id: 'app.studies.month_before',
-    })}`;
-    categoriesRepartition[
-      categoriesRepartition.length - 1
-    ] += ` ${intl.formatMessage({
-      id: 'app.studies.month_after',
-    })}`;
+    categoriesRepartition[0] += ` ${intl.formatMessage({ id: 'app.studies.month_before' })}`;
+    categoriesRepartition[categoriesRepartition.length - 1] += ` ${intl.formatMessage({ id: 'app.studies.month_after' })}`;
 
     const queryDistribution = getFetchOptions(
       'studiesCaracteristiquesQuandDistribution',
@@ -177,17 +169,13 @@ function useGetData(studyType, sponsorType = '*') {
       violinData.before_start.push([0, middleValue1, middleValue2]);
       violinData.after_start.unshift([0, middleValue1, middleValue2]);
       dataGraphDistribution.push({
-        name: intl.formatMessage({
-          id: 'app.studies.before_start',
-        }),
+        name: intl.formatMessage({ id: `app.studies.${studyType.toLowerCase()}.before_start` }),
         color: colors.before_start,
         data: violinData.before_start,
         showInLegend: index === 0,
       });
       dataGraphDistribution.push({
-        name: intl.formatMessage({
-          id: 'app.studies.after_start',
-        }),
+        name: intl.formatMessage({ id: `app.studies.${studyType.toLowerCase()}.after_start` }),
         color: colors.after_start,
         data: violinData.after_start,
         showInLegend: index === 0,
