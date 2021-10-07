@@ -156,7 +156,7 @@ function useGetData(studyType, sponsor = '*') {
                     ?.by_has_result.buckets.find((el) => el.key === 1)
                     ?.doc_count || 0)
                   / bucket.by_year.buckets.find((el) => el.key === year)
-                    ?.doc_count || 1,
+                    ?.doc_count,
             })),
           categories,
         };
