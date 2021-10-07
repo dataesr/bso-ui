@@ -79,16 +79,6 @@ function useGetData(studyType, sponsorType = '*') {
         data: dataOa,
         color: getCSSValue('--acces-ouvert'),
       },
-      {
-        name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-        data: dataClosed,
-        color: getCSSValue('--blue-soft-175'),
-      },
-      {
-        name: intl.formatMessage({ id: 'app.na' }),
-        data: dataNA,
-        color: getCSSValue('--g-400'),
-      },
     ];
     const dataGraph1 = { categories, series };
     return { dataGraph1 };
