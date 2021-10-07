@@ -143,12 +143,14 @@ function useGetData(studyType, sponsorType = '*') {
         color: colors.before_completion,
         data: violinData.before_completion,
         showInLegend: index === 0,
+        enableMouseTracking: false,
       });
       dataGraph3.push({
         name: intl.formatMessage({ id: `app.studies.${studyType.toLowerCase()}.after_completion` }),
         color: colors.after_completion,
         data: violinData.after_completion,
         showInLegend: index === 0,
+        enableMouseTracking: false,
       });
     });
     // Add vertical line on x 0

@@ -181,6 +181,7 @@ function useGetData(studyType, sponsorType = '*') {
         color: colors.before_start,
         data: violinData.before_start,
         showInLegend: index === 0,
+        enableMouseTracking: false,
       });
       dataGraphDistribution.push({
         name: intl.formatMessage({
@@ -189,6 +190,7 @@ function useGetData(studyType, sponsorType = '*') {
         color: colors.after_start,
         data: violinData.after_start,
         showInLegend: index === 0,
+        enableMouseTracking: false,
       });
     });
     // Add vertical line on x 0
