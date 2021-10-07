@@ -1681,11 +1681,6 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data[0].data.map((el) => intl.formatMessage({
-          id: `app.discipline.${el.name
-            .replace(/\n/g, '')
-            .replace('  ', ' ')}`,
-        })),
         labels: {
           style: {
             color: getCSSValue('--g-800'),
@@ -1693,7 +1688,6 @@ export const chartOptions = {
           },
         },
       };
-
       options.plotOptions = {
         dumbbell: {
           grouping: false,
@@ -1708,9 +1702,8 @@ export const chartOptions = {
       };
 
       options.series = data;
-
       options.tooltip = {
-        shared: true,
+        shared: false,
       };
 
       return options;
