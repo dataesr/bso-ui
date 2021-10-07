@@ -2,6 +2,7 @@ import {
   cleanNumber,
   getCSSValue,
   getPercentageYAxis,
+  getSource,
   withDomainAndStudyType,
 } from './helpers';
 
@@ -38,9 +39,7 @@ export function getGraphOptions(graphId, intl, studyType = '') {
   const yAxis = intl.messages[`${graphId}.yAxis`]
     ? intl.formatMessage({ id: `${graphId}.yAxis` })
     : '';
-  const source = intl.messages[`${graphId}.source`]
-    ? intl.formatMessage({ id: `${graphId}.source` })
-    : 'source';
+  const source = getSource(graphId);
   const title = !studyType
     ? intl.formatMessage({ id: `${graphId}.title` })
     : intl.formatMessage({
@@ -103,10 +102,8 @@ export function getGraphOptions(graphId, intl, studyType = '') {
         legend: {
           enabled: true,
         },
-        title,
-        subtitle: {
-          text: source,
-        },
+        credits: { enabled: true, text: intl.formatMessage({ id: 'app.credit' }).concat(', Sources : ').concat(source) },
+        title: { text: title },
       },
       enabled: false,
       filename: title,

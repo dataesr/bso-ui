@@ -170,3 +170,31 @@ export function withDomainAndStudyType(
     studyType.toLowerCase() || 'interventional'
   }.${id}`;
 }
+
+/**
+ *
+ * @param id
+ * @returns {string}
+ */
+export function getSource(
+  id,
+) {
+  let source = '';
+  if (id.includes('-publi') || id.includes('publication')) {
+    source += 'Unpaywall, ';
+  }
+  if (id.includes('studies.')) {
+    source += 'clinicaltrials.gov, EU Clinical Trial Register, ';
+  }
+  if (id.includes('health-publi')) {
+    source += 'Pubmed, ';
+  }
+  if (id.includes('couts-publi')) {
+    source += 'openAPC, DOAJ, ';
+  }
+  if (id.includes('publishers.poids-revue')) {
+    source += 'beallslist.net, ';
+  }
+  source += 'MESRI';
+  return source;
+}

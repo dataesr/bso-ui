@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 import { domains, graphIds, studiesTypes } from '../../utils/constants';
 import {
   getFormattedDate,
+  getSource,
   withDomain,
   withDomainAndStudyType,
 } from '../../utils/helpers';
@@ -44,9 +45,7 @@ function WrapperChart({
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
     : 'commentaire non rédigé';
-  const source = intl.messages[`${idWithDomain}.source`]
-    ? intl.formatMessage({ id: `${idWithDomain}.source` })
-    : 'source';
+  const source = getSource(idWithDomain);
 
   const exportChartPng = () => {
     chartRef.current.chart.exportChart({
