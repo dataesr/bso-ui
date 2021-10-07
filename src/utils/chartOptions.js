@@ -1988,18 +1988,13 @@ export const chartOptions = {
         tickInterval: 1,
         labels: {
           formatter() {
-            let label = '';
-            switch (this.value) {
-            case 0:
-              label = `${this.value} an`;
-              break;
-            case 22:
-              label = `${this.value} an<br>et plus`;
-              break;
-            default:
-              label = `${this.value}`;
+            if (this.isFirst) {
+              return `${this.value} an`;
             }
-            return label;
+            if (this.isLast) {
+              return `${this.value} an<br>et plus`;
+            }
+            return this.value;
           },
         },
         title: {

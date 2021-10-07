@@ -24,8 +24,8 @@ function useGetData(studyType, sponsorType = '*') {
       (a, b) => a.key - b.key,
     );
 
-    const categories = dataSortedByYear.map((el) => el.key / 365);
-    const data = dataSortedByYear.map((el) => el.doc_count);
+    const categories = dataSortedByYear.map((el) => el.key / 365).slice(0, 11);
+    const data = dataSortedByYear.map((el) => el.doc_count).slice(0, 11);
     const dataGraph = [
       {
         name: intl.formatMessage({
