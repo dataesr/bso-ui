@@ -102,7 +102,13 @@ export function getGraphOptions(graphId, intl, studyType = '') {
         legend: {
           enabled: true,
         },
-        credits: { enabled: true, text: intl.formatMessage({ id: 'app.credit' }).concat(', Sources : ').concat(source) },
+        credits: {
+          enabled: true,
+          text: intl
+            .formatMessage({ id: 'app.credit' })
+            .concat(', Sources : ')
+            .concat(source),
+        },
         title: { text: title },
       },
       enabled: false,
@@ -216,7 +222,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -2340,6 +2345,11 @@ export const chartOptions = {
         categories: graph?.categories,
         lineWidth: 0,
         tickWidth: 0,
+        labels: {
+          formatter() {
+            return this.isFirst || this.isLast ? this.value : null;
+          },
+        },
       };
       options.series = [
         {
