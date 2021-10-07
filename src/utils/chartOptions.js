@@ -1699,9 +1699,7 @@ export const chartOptions = {
       };
 
       options.series = data;
-      options.tooltip = {
-        shared: false,
-      };
+      options.tooltip.shared = false;
 
       return options;
     },
