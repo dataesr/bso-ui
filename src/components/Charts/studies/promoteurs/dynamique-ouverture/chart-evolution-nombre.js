@@ -17,10 +17,7 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import {
-  getCSSValue,
-  withDomainAndStudyType,
-} from '../../../../../utils/helpers';
+import { withDomainAndStudyType } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';

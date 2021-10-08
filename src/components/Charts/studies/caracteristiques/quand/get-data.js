@@ -198,7 +198,7 @@ function useGetData(studyType, sponsorType = '*') {
       type: 'line',
       data: [
         [0, -1],
-        [0, 11],
+        [0, 12],
       ],
       color: getCSSValue('--g-800'),
       lineWidth: 1,
