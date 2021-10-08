@@ -346,11 +346,6 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                <BSOChart
-                  id='studies.resultats.delai-diffusion.chart-distribution'
-                  domain='health'
-                  studyType='Interventional'
-                />
               </QuestionSection>
 
               <QuestionSection

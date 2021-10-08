@@ -331,11 +331,6 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-                <BSOChart
-                  id='studies.resultats.delai-diffusion.chart-distribution'
-                  domain='health'
-                  studyType='Observational'
-                />
               </QuestionSection>
 
               <QuestionSection
