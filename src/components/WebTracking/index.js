@@ -5,6 +5,11 @@ function WebTracking({ children }) {
   const instance = createInstance({
     urlBase: process.env.REACT_APP_PIWIK_URL,
     siteId: process.env.REACT_APP_PIWIK_SITE,
+    disabled: false,
+    configurations: {
+      disableCookies: true,
+      // setSecureCookie: true,
+    },
   });
 
   return <MatomoProvider value={instance}>{children}</MatomoProvider>;
