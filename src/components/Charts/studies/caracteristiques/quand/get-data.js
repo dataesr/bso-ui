@@ -48,7 +48,7 @@ function useGetData(studyType, sponsorType = '*') {
         return { x, yValue, y, yLabel, yTotal };
       });
       const name = intl.formatMessage({
-        id: `app.studies.${step}`,
+        id: `app.studies.${studyType.toLowerCase()}.${step}`,
       });
       const color = colors[step];
       return { name, data, color };
@@ -99,7 +99,7 @@ function useGetData(studyType, sponsorType = '*') {
     const dataGraphRepartition = stepsRepartition.map((step) => ({
       data: data[step],
       name: intl.formatMessage({
-        id: `app.studies.${step}`,
+        id: `app.studies.${studyType.toLowerCase()}.${step}`,
       }),
       color: colors[step],
     }));
@@ -112,9 +112,7 @@ function useGetData(studyType, sponsorType = '*') {
     })}`;
     categoriesRepartition[
       categoriesRepartition.length - 1
-    ] += ` ${intl.formatMessage({
-      id: 'app.studies.month_after',
-    })}`;
+    ] += ` ${intl.formatMessage({ id: 'app.studies.month_after' })}`;
 
     const queryDistribution = getFetchOptions(
       'studiesCaracteristiquesQuandDistribution',
@@ -178,19 +176,21 @@ function useGetData(studyType, sponsorType = '*') {
       violinData.after_start.unshift([0, middleValue1, middleValue2]);
       dataGraphDistribution.push({
         name: intl.formatMessage({
-          id: 'app.studies.before_start',
+          id: `app.studies.${studyType.toLowerCase()}.before_start`,
         }),
         color: colors.before_start,
         data: violinData.before_start,
         showInLegend: index === 0,
+        enableMouseTracking: false,
       });
       dataGraphDistribution.push({
         name: intl.formatMessage({
-          id: 'app.studies.after_start',
+          id: `app.studies.${studyType.toLowerCase()}.after_start`,
         }),
         color: colors.after_start,
         data: violinData.after_start,
         showInLegend: index === 0,
+        enableMouseTracking: false,
       });
     });
     // Add vertical line on x 0

@@ -2,6 +2,7 @@ import {
   cleanNumber,
   getCSSValue,
   getPercentageYAxis,
+  getSource,
   withDomainAndStudyType,
 } from './helpers';
 
@@ -23,18 +24,22 @@ export function getGraphOptions(graphId, intl, studyType = '') {
   const legend = intl.messages[`app.${graphId}.legend`]
     ? intl.formatMessage({ id: `app.${graphId}.legend` })
     : '';
-  const tooltip = intl.messages[`app.${graphId}.tooltip`]
+  const tooltip = !studyType
     ? intl.formatMessage({ id: `app.${graphId}.tooltip` })
-    : '';
+    : intl.formatMessage({
+      id: `${withDomainAndStudyType(
+        graphId,
+        'health',
+        studyType.toLowerCase(),
+      )}.tooltip`,
+    });
   const xAxis = intl.messages[`${graphId}.xAxis`]
     ? intl.formatMessage({ id: `${graphId}.xAxis` })
     : '';
   const yAxis = intl.messages[`${graphId}.yAxis`]
     ? intl.formatMessage({ id: `${graphId}.yAxis` })
     : '';
-  const source = intl.messages[`${graphId}.source`]
-    ? intl.formatMessage({ id: `${graphId}.source` })
-    : 'source';
+  const source = getSource(graphId);
   const title = !studyType
     ? intl.formatMessage({ id: `${graphId}.title` })
     : intl.formatMessage({
@@ -97,10 +102,14 @@ export function getGraphOptions(graphId, intl, studyType = '') {
         legend: {
           enabled: true,
         },
-        title,
-        subtitle: {
-          text: source,
+        credits: {
+          enabled: true,
+          text: intl
+            .formatMessage({ id: 'app.credit' })
+            .concat(', Sources : ')
+            .concat(source),
         },
+        title: { text: title },
       },
       enabled: false,
       filename: title,
@@ -213,7 +222,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -1675,11 +1683,6 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data[0].data.map((el) => intl.formatMessage({
-          id: `app.discipline.${el.name
-            .replace(/\n/g, '')
-            .replace('  ', ' ')}`,
-        })),
         labels: {
           style: {
             color: getCSSValue('--g-800'),
@@ -1687,7 +1690,6 @@ export const chartOptions = {
           },
         },
       };
-
       options.plotOptions = {
         dumbbell: {
           grouping: false,
@@ -1702,10 +1704,7 @@ export const chartOptions = {
       };
 
       options.series = data;
-
-      options.tooltip = {
-        shared: true,
-      };
+      options.tooltip.shared = false;
 
       return options;
     },
@@ -1771,11 +1770,7 @@ export const chartOptions = {
         start: getCSSValue('--patient-50'),
       };
       const getNodes = () => {
-        const allNodes = [
-          'Completed',
-          'Ongoing',
-          'Unknown',
-        ];
+        const allNodes = ['Completed', 'Ongoing', 'Unknown'];
         const keysList = [
           {
             keyword: 'has_result',
@@ -1872,6 +1867,7 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
+      options.legend.reversed = true;
       return options;
     },
   },
@@ -1992,18 +1988,17 @@ export const chartOptions = {
         tickInterval: 1,
         labels: {
           formatter() {
-            let label = '';
-            switch (this.value) {
-            case 0:
-              label = `${this.value} an`;
-              break;
-            case 22:
-              label = `${this.value} an<br>et plus`;
-              break;
-            default:
-              label = `${this.value}`;
+            if (this.isFirst) {
+              return `${this.value} ${intl.formatMessage({
+                id: 'app.health-interventional.studies.caracteristiques.duree.chart-nombre.year',
+              })}`;
             }
-            return label;
+            if (this.isLast) {
+              return `${this.value} ${intl.formatMessage({
+                id: 'app.health-interventional.studies.caracteristiques.duree.chart-nombre.year-and-more',
+              })}`;
+            }
+            return this.value;
           },
         },
         title: {
@@ -2054,6 +2049,9 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
       };
+      options.yAxis.stackLabels = {
+        enabled: true,
+      };
       options.series = data?.dataGraphRepartition || [];
       options.legend.reversed = true;
       options.plotOptions = {
@@ -2061,6 +2059,7 @@ export const chartOptions = {
           stacking: 'normal',
         },
       };
+      options.tooltip.useHTML = true;
       return options;
     },
   },
@@ -2096,7 +2095,6 @@ export const chartOptions = {
   'studies.resultats.type-diffusion.chart-repartition-par-type': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {
@@ -2127,7 +2125,7 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-
+      options.legend.reversed = true;
       return options;
     },
   },
@@ -2181,7 +2179,7 @@ export const chartOptions = {
           const label = this.axis.defaultLabelFormatter.call(this);
           if (label === '0') {
             return intl.formatMessage({
-              id: 'app.studies.end',
+              id: `app.studies.${studyType.toLowerCase()}.end`,
             });
           }
           return label;
@@ -2325,7 +2323,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl, studyType);
       const { data, color, name } = graph;
       options.chart.type = 'column';
-      options.credits = { enabled: false };
+      options.credits.enabled = false;
       options.plotOptions = {
         column: {
           dataLabels: {
@@ -2348,12 +2346,15 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           rotation: 0,
+          formatter() {
+            return this.isFirst || this.isLast ? this.value : null;
+          },
         },
       };
       options.series = [
         {
-          data,
           color,
+          data,
           name,
         },
       ];

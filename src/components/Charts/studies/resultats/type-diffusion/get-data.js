@@ -37,16 +37,18 @@ function useGetData(studyType, sponsorType = '*') {
       categories: data1SortedByYear.map((el) => el.key),
       series: [
         {
-          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          name: intl.formatMessage({
+            id: 'app.studies.no-results-publications',
+          }),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_has_result.buckets
-              .find((ele) => ele.key === 1)
+              .find((ele) => ele.key === 0)
               ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
               ?.doc_count,
             y:
               (100
                 * (el.by_has_result.buckets
-                  .find((ele) => ele.key === 1)
+                  .find((ele) => ele.key === 0)
                   ?.by_has_publications_result.buckets.find(
                     (ele) => ele.key === 0,
                   )?.doc_count || 0))
@@ -54,27 +56,7 @@ function useGetData(studyType, sponsorType = '*') {
             y_tot: el.doc_count,
             year: el.key,
           })),
-          color: getCSSValue('--resultat-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets
-              .find((ele) => ele.key === 0)
-              ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
-              ?.doc_count,
-            y:
-              (100
-                * (el.by_has_result.buckets
-                  .find((ele) => ele.key === 0)
-                  ?.by_has_publications_result.buckets.find(
-                    (ele) => ele.key === 1,
-                  )?.doc_count || 0))
-              / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--publication-100'),
+          color: getCSSValue('--g-400'),
         },
         {
           name: intl.formatMessage({
@@ -99,18 +81,36 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--resultat-et-publication'),
         },
         {
-          name: intl.formatMessage({
-            id: 'app.studies.no-results-publications',
-          }),
+          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_has_result.buckets
               .find((ele) => ele.key === 0)
-              ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
+              ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
               ?.doc_count,
             y:
               (100
                 * (el.by_has_result.buckets
                   .find((ele) => ele.key === 0)
+                  ?.by_has_publications_result.buckets.find(
+                    (ele) => ele.key === 1,
+                  )?.doc_count || 0))
+              / el.doc_count,
+            y_tot: el.doc_count,
+            year: el.key,
+          })),
+          color: getCSSValue('--publication-100'),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          data: data1SortedByYear.map((el) => ({
+            y_abs: el.by_has_result.buckets
+              .find((ele) => ele.key === 1)
+              ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
+              ?.doc_count,
+            y:
+              (100
+                * (el.by_has_result.buckets
+                  .find((ele) => ele.key === 1)
                   ?.by_has_publications_result.buckets.find(
                     (ele) => ele.key === 0,
                   )?.doc_count || 0))
@@ -118,7 +118,7 @@ function useGetData(studyType, sponsorType = '*') {
             y_tot: el.doc_count,
             year: el.key,
           })),
-          color: getCSSValue('--g-400'),
+          color: getCSSValue('--resultat-100'),
         },
       ],
     };
@@ -127,18 +127,20 @@ function useGetData(studyType, sponsorType = '*') {
       categories: data2.map((el) => intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` })),
       series: [
         {
-          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          name: intl.formatMessage({
+            id: 'app.studies.no-results-publications',
+          }),
           data: data2.map((el) => ({
             y_abs:
               el.by_has_result.buckets
-                .find((ele) => ele.key === 1)
+                .find((ele) => ele.key === 0)
                 ?.by_has_publications_result.buckets.find(
                   (ele) => ele.key === 0,
                 )?.doc_count || 0,
             y:
               (100
                 * (el.by_has_result.buckets
-                  .find((ele) => ele.key === 1)
+                  .find((ele) => ele.key === 0)
                   ?.by_has_publications_result.buckets.find(
                     (ele) => ele.key === 0,
                   )?.doc_count || 0))
@@ -148,31 +150,7 @@ function useGetData(studyType, sponsorType = '*') {
               id: `app.studies.intervention-type.${el.key}`,
             }),
           })),
-          color: getCSSValue('--resultat-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
-          data: data2.map((el) => ({
-            y_abs:
-              el.by_has_result.buckets
-                .find((ele) => ele.key === 0)
-                ?.by_has_publications_result.buckets.find(
-                  (ele) => ele.key === 1,
-                )?.doc_count || 0,
-            y:
-              (100
-                * (el.by_has_result.buckets
-                  .find((ele) => ele.key === 0)
-                  ?.by_has_publications_result.buckets.find(
-                    (ele) => ele.key === 1,
-                  )?.doc_count || 0))
-              / el.doc_count,
-            y_tot: el.doc_count,
-            intervention_type: intl.formatMessage({
-              id: `app.studies.intervention-type.${el.key}`,
-            }),
-          })),
-          color: getCSSValue('--publication-100'),
+          color: getCSSValue('--g-400'),
         },
         {
           name: intl.formatMessage({
@@ -201,20 +179,42 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--resultat-et-publication'),
         },
         {
-          name: intl.formatMessage({
-            id: 'app.studies.no-results-publications',
-          }),
+          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
           data: data2.map((el) => ({
             y_abs:
               el.by_has_result.buckets
                 .find((ele) => ele.key === 0)
+                ?.by_has_publications_result.buckets.find(
+                  (ele) => ele.key === 1,
+                )?.doc_count || 0,
+            y:
+              (100
+                * (el.by_has_result.buckets
+                  .find((ele) => ele.key === 0)
+                  ?.by_has_publications_result.buckets.find(
+                    (ele) => ele.key === 1,
+                  )?.doc_count || 0))
+              / el.doc_count,
+            y_tot: el.doc_count,
+            intervention_type: intl.formatMessage({
+              id: `app.studies.intervention-type.${el.key}`,
+            }),
+          })),
+          color: getCSSValue('--publication-100'),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          data: data2.map((el) => ({
+            y_abs:
+              el.by_has_result.buckets
+                .find((ele) => ele.key === 1)
                 ?.by_has_publications_result.buckets.find(
                   (ele) => ele.key === 0,
                 )?.doc_count || 0,
             y:
               (100
                 * (el.by_has_result.buckets
-                  .find((ele) => ele.key === 0)
+                  .find((ele) => ele.key === 1)
                   ?.by_has_publications_result.buckets.find(
                     (ele) => ele.key === 0,
                   )?.doc_count || 0))
@@ -224,7 +224,7 @@ function useGetData(studyType, sponsorType = '*') {
               id: `app.studies.intervention-type.${el.key}`,
             }),
           })),
-          color: getCSSValue('--g-400'),
+          color: getCSSValue('--resultat-100'),
         },
       ],
     };

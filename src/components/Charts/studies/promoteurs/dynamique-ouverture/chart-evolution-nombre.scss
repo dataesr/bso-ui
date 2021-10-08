@@ -1,0 +1,22 @@
+.legend {
+  .legend-bullet {
+    border-radius: 6px;
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+  }
+
+  .legend-academique {
+    background-color: var(--lead-sponsor-public);
+  }
+
+  .legend-industriel {
+    background-color: var(--lead-sponsor-privee);
+  }
+
+  .legend-label {
+    color: #333;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+}

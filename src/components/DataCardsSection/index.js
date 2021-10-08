@@ -113,7 +113,11 @@ export default function DataCardSection({ lang, domain }) {
         isPercentage: false,
         color: 'green',
         intlKey: 'app.national.data.hosted.documents',
-        intlValues: { total: totalHostedDocuments },
+        intlValues: {
+          total: totalHostedDocuments,
+          publicationYear:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
+        },
         buttonHref: 'archives?id=repositories.dynamique-hal',
         activeDomains: ['health', ''],
       },
