@@ -1989,10 +1989,14 @@ export const chartOptions = {
         labels: {
           formatter() {
             if (this.isFirst) {
-              return `${this.value} an`;
+              return `${this.value} ${intl.formatMessage({
+                id: 'app.health-interventional.studies.caracteristiques.duree.chart-nombre.year',
+              })}`;
             }
             if (this.isLast) {
-              return `${this.value} an<br>et plus`;
+              return `${this.value} ${intl.formatMessage({
+                id: 'app.health-interventional.studies.caracteristiques.duree.chart-nombre.year-and-more',
+              })}`;
             }
             return this.value;
           },
@@ -2341,6 +2345,7 @@ export const chartOptions = {
         lineWidth: 0,
         tickWidth: 0,
         labels: {
+          rotation: 0,
           formatter() {
             return this.isFirst || this.isLast ? this.value : null;
           },
