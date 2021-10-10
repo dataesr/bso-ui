@@ -67,6 +67,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       isLoading={isLoading || !allData}
       isError={isError}
       id={id}
+      studyType={studyType}
       domain={domain}
       chartRef={chartRef}
       graphFooter={graphFooter}
