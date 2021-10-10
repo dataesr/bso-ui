@@ -18,7 +18,7 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import { withDomain, withtStudyType } from '../../../../../utils/helpers';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -38,14 +38,15 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   useEffect(() => {
     Axios.post(ES_STUDIES_API_URL, query, HEADERS).then((response) => {
       setSponsorTypes(
-        response.data.aggregations.by_sponsor_type.buckets.map((item) => item.key),
+        response.data.aggregations.by_sponsor_type.buckets.map(
+          (item) => item.key,
+        ),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const idWithDomainAndStudyType = withDomainAndStudyType(
-    id,
-    domain,
+  const idWithDomainAndStudyType = withtStudyType(
+    withDomain(id, domain),
     studyType,
   );
 
@@ -53,7 +54,12 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(id, intl, allData, studyType);
+  const optionsGraph = chartOptions[id].getOptions(
+    withDomain(id, domain),
+    intl,
+    allData,
+    studyType,
+  );
 
   return (
     <WrapperChart
@@ -90,7 +96,7 @@ Chart.defaultProps = {
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
-  id: 'studies.caracteristiques.combien.chart-proportion-modes-repartition',
+  id: 'caracteristiques.combien.chart-proportion-modes-repartition',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,

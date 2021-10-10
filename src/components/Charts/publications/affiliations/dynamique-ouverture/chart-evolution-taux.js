@@ -135,13 +135,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       if (activeDataCheck !== newDataCheck) {
         setActiveData(newData);
         setOptionsGraph(
-          chartOptions[id].getOptions(idWithDomain, intl, series),
+          chartOptions[id].getOptions(withDomain(id, domain), intl, series),
         );
       }
     }
   }, [
     activeData,
     data,
+    domain,
     id,
     idWithDomain,
     intl,

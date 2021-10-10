@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
@@ -28,12 +27,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     dataGraph2,
   );
   useEffect(() => {
-    setChartComments(customComments(dataGraph2, idWithDomain, intl));
+    // TODO manage variables in comment
+    setChartComments('comments');
+    // setChartComments(customComments(dataGraph2, idWithDomain, intl));
   }, [dataGraph2, idWithDomain, intl]);
 
   return (
@@ -56,7 +57,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     </WrapperChart>
   );
 };
-
+// TODO remove publi studyType from id
 Chart.defaultProps = {
   graphFooter: true,
   graphComments: true,

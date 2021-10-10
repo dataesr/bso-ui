@@ -7,8 +7,8 @@ import { domains, graphIds, studiesTypes } from '../../utils/constants';
 import {
   getFormattedDate,
   getSource,
+  withContext,
   withDomain,
-  withDomainAndStudyType,
 } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
@@ -36,11 +36,7 @@ function WrapperChart({
   const title = !studyType
     ? intl.formatMessage({ id: `${idWithDomain}.title` })
     : intl.formatMessage({
-      id: `${withDomainAndStudyType(
-        id,
-        domain,
-        studyType.toLowerCase(),
-      )}.title`,
+      id: `${withContext(id, domain, studyType)}.title`,
     });
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
@@ -48,9 +44,11 @@ function WrapperChart({
   const source = getSource(idWithDomain);
 
   const exportChartPng = () => {
-    chartRef.current.chart.exportChart({
-      type: 'image/png',
-    });
+    if (chartRef.current) {
+      chartRef.current.chart.exportChart({
+        type: 'image/png',
+      });
+    }
     trackEvent({
       category: 'export',
       action: 'export-graph-png',
@@ -69,7 +67,10 @@ function WrapperChart({
 
   if (isLoading) {
     return (
-      <div className='graph-container' data-id={id}>
+      <div
+        className='graph-container'
+        data-id={withContext(id, domain, studyType)}
+      >
         <Loader />
       </div>
     );
@@ -81,7 +82,10 @@ function WrapperChart({
 
   return (
     <>
-      <div className='graph-container' data-id={id}>
+      <div
+        className='graph-container'
+        data-id={withContext(id, domain, studyType)}
+      >
         <GraphTitle title={title} />
         {children}
         {graphComments && <GraphComments comments={comments} />}
@@ -106,7 +110,7 @@ WrapperChart.defaultProps = {
   isLoading: false,
   isError: false,
   chartRef: () => {},
-  studyType: null,
+  studyType: '',
 };
 
 WrapperChart.propTypes = {

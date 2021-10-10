@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 
 import BannerHealth from '../../../components/BannerHealth';
 import BSOChart from '../../../components/Charts';
-// import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
@@ -51,14 +50,13 @@ function EtudesObservationnelles() {
             </Row>
           </Container>
           <Glossary entries={GlossaryEntries} />
-          {/* <DataCardSection lang={lang} domain='health' /> */}
         </Row>
         <GraphNavigation
           mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
         >
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-observational.studies.general',
+              id: 'app.health-observational.general',
               default: 'mainLabel',
             })}
             paths={[
@@ -68,14 +66,14 @@ function EtudesObservationnelles() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.general.dynamique',
+                  id: 'app.health-observational.navigation.general.dynamique',
                   default: 'dynamique',
                 }),
                 href: '/sante/etudes-observationnelles/general?id=general.dynamique',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.general.trajectoires',
+                  id: 'app.health-observational.navigation.general.trajectoires',
                   default: 'trajectoires',
                 }),
                 href: '/sante/etudes-observationnelles/general?id=general.directions',
@@ -84,24 +82,24 @@ function EtudesObservationnelles() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-observational.studies.general.dynamique'
+                intlKey='app.health-observational.general.dynamique'
                 backgroundColor={blueSoft50}
                 anchorId='general.dynamique'
               >
                 <BSOChart
-                  id='studies.general.dynamique.chart-evolution'
+                  id='general.dynamique.chart-evolution'
                   domain='health'
                   studyType='Observational'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-observational.studies.general.trajectoires'
+                intlKey='app.health-observational.general.trajectoires'
                 backgroundColor={blueSoft25}
                 anchorId='general.directions'
               >
                 <BSOChart
-                  id='studies.general.trajectoires.chart-repartition'
+                  id='general.trajectoires.chart-repartition'
                   domain='health'
                   studyType='Observational'
                 />
@@ -112,7 +110,7 @@ function EtudesObservationnelles() {
           {/* Leurs caractéristiques */}
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-observational.studies.caracteristiques',
+              id: 'app.health-observational.caracteristiques',
             })}
             paths={[
               '/sante/etudes-observationnelles/caracteristiques',
@@ -121,25 +119,25 @@ function EtudesObservationnelles() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.caracteristiques.quand',
+                  id: 'app.health-observational.navigation.caracteristiques.quand',
                 }),
                 href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.caracteristiques.duree',
+                  id: 'app.health-observational.navigation.caracteristiques.duree',
                 }),
                 href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.duree',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.caracteristiques.combien',
+                  id: 'app.health-observational.navigation.caracteristiques.combien',
                 }),
                 href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.combien',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.caracteristiques.types',
+                  id: 'app.health-observational.navigation.caracteristiques.types',
                 }),
                 href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.types',
               },
@@ -147,46 +145,46 @@ function EtudesObservationnelles() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-observational.studies.caracteristiques.quand'
+                intlKey='app.health-observational.caracteristiques.quand'
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.quand'
               >
                 <BSOChart
-                  id='studies.caracteristiques.quand.chart-evolution-temporalites'
+                  id='caracteristiques.quand.chart-evolution-temporalites'
                   domain='health'
                   studyType='Observational'
                 />
                 <BSOChart
-                  id='studies.caracteristiques.quand.chart-repartition-avant-apres'
+                  id='caracteristiques.quand.chart-repartition-avant-apres'
                   domain='health'
                   studyType='Observational'
                 />
                 <BSOChart
-                  id='studies.caracteristiques.quand.chart-distribution-declarations'
+                  id='caracteristiques.quand.chart-distribution-declarations'
                   domain='health'
                   studyType='Observational'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-observational.studies.caracteristiques.duree'
+                intlKey='app.health-observational.caracteristiques.duree'
                 backgroundColor={blueSoft25}
                 anchorId='caracteristiques.duree'
               >
                 <BSOChart
-                  id='studies.caracteristiques.duree.chart-nombre'
+                  id='caracteristiques.duree.chart-nombre'
                   domain='health'
                   studyType='Observational'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-observational.studies.caracteristiques.combien'
+                intlKey='app.health-observational.caracteristiques.combien'
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.combien'
               >
                 <BSOChart
-                  id='studies.caracteristiques.combien.chart-groupes-patients'
+                  id='caracteristiques.combien.chart-groupes-patients'
                   domain='health'
                   studyType='Observational'
                 />
@@ -197,7 +195,7 @@ function EtudesObservationnelles() {
           {/* Les promoteurs */}
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-observational.studies.promoteurs',
+              id: 'app.health-observational.promoteurs',
             })}
             paths={[
               '/sante/etudes-observationnelles/promoteurs',
@@ -206,13 +204,13 @@ function EtudesObservationnelles() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.promoteurs.dynamique-ouverture',
+                  id: 'app.health-observational.navigation.promoteurs.dynamique-ouverture',
                 }),
                 href: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.promoteurs.impact',
+                  id: 'app.health-observational.navigation.promoteurs.impact',
                 }),
                 href: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.impact',
               },
@@ -220,34 +218,34 @@ function EtudesObservationnelles() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-observational.studies.promoteurs.dynamique-ouverture'
+                intlKey='app.health-observational.promoteurs.dynamique-ouverture'
                 backgroundColor={blueSoft50}
                 anchorId='promoteurs.dynamique-ouverture'
               >
                 <BSOChart
-                  id='studies.promoteurs.dynamique-ouverture.chart-part'
+                  id='promoteurs.dynamique-ouverture.chart-part'
                   domain='health'
                   studyType='Observational'
                 />
                 <BSOChart
-                  id='studies.promoteurs.dynamique-ouverture.chart-evolution-nombre'
+                  id='promoteurs.dynamique-ouverture.chart-evolution-nombre'
                   domain='health'
                   studyType='Observational'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-observational.studies.promoteurs.impact'
+                intlKey='app.health-observational.promoteurs.impact'
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
                 <BSOChart
-                  id='studies.promoteurs.impact.chart-repartition'
+                  id='promoteurs.impact.chart-repartition'
                   domain='health'
                   studyType='Observational'
                 />
                 <BSOChart
-                  id='studies.promoteurs.impact.chart-classement-pays'
+                  id='promoteurs.impact.chart-classement-pays'
                   domain='health'
                   studyType='Observational'
                 />
@@ -258,7 +256,7 @@ function EtudesObservationnelles() {
           {/* Les resultats/publications */}
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-observational.studies.resultats',
+              id: 'app.health-observational.resultats',
             })}
             paths={[
               '/sante/etudes-observationnelles/resultats',
@@ -267,25 +265,25 @@ function EtudesObservationnelles() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.resultats.type-diffusion',
+                  id: 'app.health-observational.navigation.resultats.type-diffusion',
                 }),
                 href: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.resultats.plan-partage',
+                  id: 'app.health-observational.navigation.resultats.plan-partage',
                 }),
                 href: '/sante/etudes-observationnelles/resultats?id=resultats.plan-partage',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.resultats.delai-diffusion',
+                  id: 'app.health-observational.navigation.resultats.delai-diffusion',
                 }),
                 href: '/sante/etudes-observationnelles/resultats?id=resultats.delai-diffusion',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-observational.studies.navigation.resultats.publication',
+                  id: 'app.health-observational.navigation.resultats.publication',
                 }),
                 href: '/sante/etudes-observationnelles/resultats?id=resultats.publication',
               },
@@ -293,53 +291,53 @@ function EtudesObservationnelles() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-observational.studies.resultats.type-diffusion'
+                intlKey='app.health-observational.resultats.type-diffusion'
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
                 <BSOChart
-                  id='studies.resultats.type-diffusion.chart-repartition'
+                  id='resultats.type-diffusion.chart-repartition'
                   domain='health'
                   studyType='Observational'
                 />
                 <BSOChart
-                  id='studies.resultats.type-diffusion.chart-repartition-par-type'
+                  id='resultats.type-diffusion.chart-repartition-par-type'
                   domain='health'
                   studyType='Observational'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-observational.studies.resultats.plan-partage'
+                intlKey='app.health-observational.resultats.plan-partage'
                 backgroundColor={blueSoft25}
                 anchorId='resultats.plan-partage'
               >
                 <BSOChart
-                  id='studies.resultats.plan-partage.chart-repartition'
+                  id='resultats.plan-partage.chart-repartition'
                   domain='health'
                   studyType='Observational'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-observational.studies.resultats.delai-diffusion'
+                intlKey='app.health-observational.resultats.delai-diffusion'
                 backgroundColor={blueSoft50}
                 anchorId='resultats.delai-diffusion'
               >
                 <BSOChart
-                  id='studies.resultats.delai-diffusion.chart-repartition'
+                  id='resultats.delai-diffusion.chart-repartition'
                   domain='health'
                   studyType='Observational'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-observational.studies.resultats.publication'
+                intlKey='app.health-observational.resultats.publication'
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
                 <BSOChart
-                  id='studies.resultats.publication.chart-repartition'
+                  id='resultats.publication.chart-repartition'
                   domain='health'
                   studyType='Observational'
                 />

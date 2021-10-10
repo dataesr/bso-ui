@@ -59,7 +59,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     dataGraph1,
   );

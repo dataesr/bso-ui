@@ -3,13 +3,14 @@ import {
   getCSSValue,
   getPercentageYAxis,
   getSource,
-  withDomainAndStudyType,
+  withtStudyType,
 } from './helpers';
 
 /**
  *
  * @param graphId
  * @param intl
+ * @param studyType
  * @returns {{exporting:
  * {chartOptions: {legend: {enabled: boolean}, subtitle: {text: *}, title: {text: *}},
  * buttons: {contextButton: {enabled: boolean}}, filename: *},
@@ -21,17 +22,13 @@ import {
  * }}
  */
 export function getGraphOptions(graphId, intl, studyType = '') {
-  const legend = intl.messages[`app.${graphId}.legend`]
-    ? intl.formatMessage({ id: `app.${graphId}.legend` })
+  const legend = intl.messages[`${graphId}.legend`]
+    ? intl.formatMessage({ id: `${graphId}.legend` })
     : '';
   const tooltip = !studyType
-    ? intl.formatMessage({ id: `app.${graphId}.tooltip` })
+    ? intl.formatMessage({ id: `${graphId}.tooltip` })
     : intl.formatMessage({
-      id: `${withDomainAndStudyType(
-        graphId,
-        'health',
-        studyType.toLowerCase(),
-      )}.tooltip`,
+      id: `${withtStudyType(graphId, studyType.toLowerCase())}.tooltip`,
     });
   const xAxis = intl.messages[`${graphId}.xAxis`]
     ? intl.formatMessage({ id: `${graphId}.xAxis` })
@@ -43,11 +40,7 @@ export function getGraphOptions(graphId, intl, studyType = '') {
   const title = !studyType
     ? intl.formatMessage({ id: `${graphId}.title` })
     : intl.formatMessage({
-      id: `${withDomainAndStudyType(
-        graphId,
-        'health',
-        studyType.toLowerCase(),
-      )}.title`,
+      id: `${withtStudyType(graphId, studyType.toLowerCase())}.title`,
     });
   return {
     chart: {
@@ -549,8 +542,10 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
+      // TODO refacto
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.dynamique-ouverture.chart-evolution-proportion.tooltip',
+        defaultMessage: 'test',
       });
       options.plotOptions = {
         series: { pointStart: 2013 },
@@ -1709,7 +1704,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.general.dynamique.chart-evolution': {
+  'general.dynamique.chart-evolution': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
 
@@ -1748,14 +1743,14 @@ export const chartOptions = {
       options.tooltip = {
         headerFormat: '',
         pointFormat: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.${id}.tooltip`,
+          id: `${withtStudyType(id, studyType)}.tooltip`,
         }),
       };
 
       return options;
     },
   },
-  'studies.general.trajectoires.chart-repartition': {
+  'general.trajectoires.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const nodeColor = {
         Completed: getCSSValue('--patient-125'),
@@ -1800,12 +1795,13 @@ export const chartOptions = {
 
         const nodes = [];
 
+        // TODO refacto
         allNodes.forEach((node) => {
           nodes.push({
             id: node,
             color: nodeColor[node],
             name: intl.formatMessage({
-              id: `app.health-${studyType.toLowerCase()}.studies.general.sankey.${node}.label`,
+              id: `app.health-${studyType.toLowerCase()}.general.sankey.${node}.label`,
             }),
           });
           keysList.forEach((item) => {
@@ -1834,7 +1830,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.resultats.type-diffusion.chart-repartition': {
+  'resultats.type-diffusion.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
@@ -1871,7 +1867,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.caracteristiques.quand.chart-evolution-temporalites': {
+  'caracteristiques.quand.chart-evolution-temporalites': {
     getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
@@ -1902,7 +1898,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.caracteristiques.quand.chart-repartition-avant-apres': {
+  'caracteristiques.quand.chart-repartition-avant-apres': {
     getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
@@ -1940,7 +1936,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.caracteristiques.quand.chart-distribution-declarations': {
+  'caracteristiques.quand.chart-distribution-declarations': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart = {
@@ -1980,8 +1976,9 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.caracteristiques.duree.chart-nombre': {
+  'caracteristiques.duree.chart-nombre': {
     getOptions: (id, intl, data, studyType) => {
+      // TODO refacto
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.xAxis = {
@@ -1990,12 +1987,12 @@ export const chartOptions = {
           formatter() {
             if (this.isFirst) {
               return `${this.value} ${intl.formatMessage({
-                id: 'app.health-interventional.studies.caracteristiques.duree.chart-nombre.year',
+                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.year',
               })}`;
             }
             if (this.isLast) {
               return `${this.value} ${intl.formatMessage({
-                id: 'app.health-interventional.studies.caracteristiques.duree.chart-nombre.year-and-more',
+                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.year-and-more',
               })}`;
             }
             return this.value;
@@ -2003,7 +2000,7 @@ export const chartOptions = {
         },
         title: {
           text: intl.formatMessage({
-            id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.duree.chart-nombre.xAxis`,
+            id: `app.health-${studyType.toLowerCase()}.caracteristiques.duree.chart-nombre.xAxis`,
           }),
         },
       };
@@ -2015,15 +2012,16 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.caracteristiques.combien.chart-groupes-patients': {
+  'caracteristiques.combien.chart-groupes-patients': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
+      // TODO refacto
       options.xAxis = {
         categories: data?.categoriesGroupes || [],
         title: {
           text: intl.formatMessage({
-            id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.xAxis`,
+            id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-groupes-patients.xAxis`,
           }),
         },
       };
@@ -2042,7 +2040,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.caracteristiques.combien.chart-proportion-modes-repartition': {
+  'caracteristiques.combien.chart-proportion-modes-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
@@ -2063,8 +2061,9 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.caracteristiques.types.chart-evolution-nombre': {
+  'caracteristiques.types.chart-evolution-nombre': {
     getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
+      // TODO refacto
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.yAxis = getPercentageYAxis(false);
@@ -2092,7 +2091,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.resultats.type-diffusion.chart-repartition-par-type': {
+  'resultats.type-diffusion.chart-repartition-par-type': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'bar';
@@ -2129,7 +2128,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.resultats.plan-partage.chart-repartition': {
+  'resultats.plan-partage.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
 
@@ -2167,7 +2166,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.resultats.delai-diffusion.chart-repartition': {
+  'resultats.delai-diffusion.chart-repartition': {
     getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
@@ -2177,9 +2176,10 @@ export const chartOptions = {
       options.xAxis.labels = {
         formatter() {
           const label = this.axis.defaultLabelFormatter.call(this);
+          // TODO refacto
           if (label === '0') {
             return intl.formatMessage({
-              id: `app.studies.${studyType.toLowerCase()}.end`,
+              id: `app.${studyType.toLowerCase()}.end`,
             });
           }
           return label;
@@ -2242,7 +2242,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.resultats.publication.chart-repartition': {
+  'resultats.publication.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
 
@@ -2280,7 +2280,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.promoteurs.dynamique-ouverture.chart-part': {
+  'promoteurs.dynamique-ouverture.chart-part': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
 
@@ -2318,7 +2318,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre': {
+  'promoteurs.dynamique-ouverture.chart-evolution-nombre': {
     getOptions: (id, intl, graph, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       const { data, color, name } = graph;
@@ -2362,7 +2362,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.promoteurs.impact.chart-repartition': {
+  'promoteurs.impact.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
@@ -2398,9 +2398,10 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.promoteurs.impact.chart-classement-pays': {
+  'promoteurs.impact.chart-classement-pays': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
+
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {

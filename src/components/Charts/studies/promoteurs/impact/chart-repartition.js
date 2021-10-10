@@ -15,7 +15,7 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import { withDomain, withtStudyType } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -29,9 +29,8 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const [chartComments, setChartComments] = useState('');
   const { allData, isLoading, isError } = useGetData(studyType);
   const { dataGraph1 } = allData;
-  const idWithDomainAndStudyType = withDomainAndStudyType(
-    id,
-    domain,
+  const idWithDomainAndStudyType = withtStudyType(
+    withDomain(id, domain),
     studyType,
   );
 
@@ -40,7 +39,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   }, [allData, idWithDomainAndStudyType, intl]);
 
   const optionsGraph = chartOptions[id].getOptions(
-    id,
+    withDomain(id, domain),
     intl,
     dataGraph1,
     studyType,
@@ -50,6 +49,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     <WrapperChart
       isLoading={isLoading || !allData}
       isError={isError}
+      studyType={studyType}
       id={id}
       domain={domain}
       chartRef={chartRef}
@@ -72,7 +72,7 @@ Chart.defaultProps = {
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
-  id: 'studies.promoteurs.impact.chart-repartition',
+  id: 'promoteurs.impact.chart-repartition',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,

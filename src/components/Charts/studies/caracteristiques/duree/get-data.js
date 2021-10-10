@@ -29,7 +29,7 @@ function useGetData(studyType, sponsorType = '*') {
     const dataGraph = [
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.duree.chart-nombre.legend`,
+          id: `app.health-${studyType.toLowerCase()}.caracteristiques.duree.chart-nombre.legend`,
         }),
         color: getCSSValue('--duree'),
         data,

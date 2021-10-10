@@ -105,7 +105,8 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
             name: intl.formatMessage({
               id: `app.discipline.${item.name
                 .replace(/\n/g, '')
-                .replace('  ', ' ')}` }),
+                .replace('  ', ' ')}`,
+            }),
             bsoDomain: item.bsoDomain,
             low: item.data.find((el) => el.name === dates[index - 1])?.y,
             y_abs: item.data.find((el) => el.name === dates[index - 1])?.y_abs,
@@ -142,13 +143,14 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       if (activeDataCheck !== newDataCheck) {
         setActiveData(newData);
         setOptionsGraph(
-          chartOptions[id].getOptions(idWithDomain, intl, series),
+          chartOptions[id].getOptions(withDomain(id, domain), intl, series),
         );
       }
     }
   }, [
     activeData,
     data,
+    domain,
     id,
     idWithDomain,
     intl,

@@ -142,7 +142,7 @@ function BaroSante() {
                   <Row gutters alignItems='top'>
                     <Col n='12'>
                       <BSOChart
-                        id='studies.general.dynamique.chart-evolution'
+                        id='general.dynamique.chart-evolution'
                         domain='health'
                         studyType='Interventional'
                       />

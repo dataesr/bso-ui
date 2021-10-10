@@ -77,7 +77,7 @@ DataCard.propTypes = {
   isPercentage: PropTypes.bool,
   buttonHref: PropTypes.string,
   nbGaugePosition: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   buttonLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 

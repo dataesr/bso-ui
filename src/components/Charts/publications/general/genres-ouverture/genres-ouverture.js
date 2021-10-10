@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
@@ -36,11 +35,13 @@ const Chart = ({ id, domain }) => {
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
-      setChartComments(customComments(dataGraph, idWithDomain, intl));
+      // TODO Manage variables in comment
+      // setChartComments(customComments(dataGraph, idWithDomain, intl));
+      setChartComments('comments');
     }
   }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     dataGraph,
   );

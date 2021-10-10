@@ -25,9 +25,8 @@ const Chart = ({ id, domain }) => {
     domain,
   );
   const { dataGraph, categories } = allData;
-  const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     categories,
     dataGraph,

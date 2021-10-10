@@ -26,7 +26,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { publicationYears, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     publicationYears,
     dataGraph2,

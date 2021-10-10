@@ -9,7 +9,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -48,13 +47,15 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     dataGraph2,
   );
 
   useEffect(() => {
-    setChartComments(customComments(dataGraph2, idWithDomain, intl));
+    // TODO Manage variables in comments
+    setChartComments('comments');
+    // setChartComments(customComments(dataGraph2, idWithDomain, intl));
   }, [dataGraph2, idWithDomain, intl]);
 
   return (

@@ -34,7 +34,7 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
     setChartComments(customComments(dataGraph, idWithDomain, intl));
   }, [dataGraph, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     categories,
     dataGraph,

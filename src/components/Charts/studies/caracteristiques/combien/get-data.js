@@ -28,20 +28,22 @@ function useGetData(studyType, sponsorType = '*') {
       (a, b) => a.key - b.key,
     );
 
+    // TODO refacto
     const categoriesGroupes = dataSortedByYearGroupes.map((el) => intl.formatMessage({
-      id: `app.studies.caracteristiques.combien.chart-groupes-patients.${el.key}`,
+      id: `app.caracteristiques.combien.chart-groupes-patients.${el.key}`,
     }));
 
+    // TODO refacto
     const dataGraphGroupes = [
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-groupes-patients.legend`,
+          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-groupes-patients.legend`,
         }),
         color: getCSSValue('--patient-100'),
         data: dataSortedByYearGroupes.map((el) => ({
           y: el.doc_count,
           name: intl.formatMessage({
-            id: `app.studies.caracteristiques.combien.chart-groupes-patients.${el.key}`,
+            id: `app.caracteristiques.combien.chart-groupes-patients.${el.key}`,
           }),
         })),
       },
@@ -93,24 +95,25 @@ function useGetData(studyType, sponsorType = '*') {
       nonRandomized.push(nonRandomizedPoint);
     });
 
+    // TODO refacto
     const dataGraphRepartition = [
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-proportion-modes-repartition.na`,
+          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-proportion-modes-repartition.na`,
         }),
         data: na,
         color: getCSSValue('--g-400'),
       },
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-proportion-modes-repartition.non-randomized`,
+          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-proportion-modes-repartition.non-randomized`,
         }),
         data: nonRandomized,
         color: getCSSValue('--patient-125'),
       },
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.combien.chart-proportion-modes-repartition.randomized`,
+          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-proportion-modes-repartition.randomized`,
         }),
         data: randomized,
         color: getCSSValue('--patient-100'),

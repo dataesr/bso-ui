@@ -60,7 +60,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   }, [dataGraph1, idWithDomain, intl]);
 
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     dataGraph1,
   );

@@ -50,27 +50,40 @@ function useGetData(studyType, sponsorType = '*') {
       .filter((ele) => ele.key > minBoundary && ele.key < maxBoundary)
       .forEach((el) => {
         if (el.key <= 0) {
-          data.before_completion.push({ y: el.doc_count, name: Math.abs(el.key) / 30 });
+          data.before_completion.push({
+            y: el.doc_count,
+            name: Math.abs(el.key) / 30,
+          });
           data.after_completion.push(0);
         } else {
           data.before_completion.push(0);
-          data.after_completion.push({ y: el.doc_count, name: Math.abs(el.key) / 30 });
+          data.after_completion.push({
+            y: el.doc_count,
+            name: Math.abs(el.key) / 30,
+          });
         }
       });
     data.before_completion.push(0);
     data.after_completion.push(lastValue);
     const steps2 = ['before_completion', 'after_completion'];
+    // TODO refacto
     const dataGraph2 = steps2.map((step) => ({
       data: data[step],
-      name: intl.formatMessage({ id: `app.studies.${studyType.toLowerCase()}.${step}` }),
+      name: intl.formatMessage({
+        id: `app.${studyType.toLowerCase()}.${step}`,
+      }),
       color: colors[step],
     }));
 
     const categories2 = dataSortedByYear2
       .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
       .map((el) => Math.abs(el.key) / 30);
-    categories2[0] += ` ${intl.formatMessage({ id: 'app.studies.month_before' })}`;
-    categories2[categories2.length - 1] += ` ${intl.formatMessage({ id: 'app.studies.month_after' })}`;
+    categories2[0] += ` ${intl.formatMessage({
+      id: 'app.studies.month_before',
+    })}`;
+    categories2[categories2.length - 1] += ` ${intl.formatMessage({
+      id: 'app.studies.month_after',
+    })}`;
 
     const query3 = getFetchOptions(
       'studiesCaracteristiquesQuandDistribution',
@@ -138,15 +151,21 @@ function useGetData(studyType, sponsorType = '*') {
       const middleValue2 = b || y1b;
       violinData.before_completion.push([0, middleValue1, middleValue2]);
       violinData.after_completion.unshift([0, middleValue1, middleValue2]);
+      // TODO refacto
       dataGraph3.push({
-        name: intl.formatMessage({ id: `app.studies.${studyType.toLowerCase()}.before_completion` }),
+        name: intl.formatMessage({
+          id: `app.${studyType.toLowerCase()}.before_completion`,
+        }),
         color: colors.before_completion,
         data: violinData.before_completion,
         showInLegend: index === 0,
         enableMouseTracking: false,
       });
+      // TODO refacto
       dataGraph3.push({
-        name: intl.formatMessage({ id: `app.studies.${studyType.toLowerCase()}.after_completion` }),
+        name: intl.formatMessage({
+          id: `app.${studyType.toLowerCase()}.after_completion`,
+        }),
         color: colors.after_completion,
         data: violinData.after_completion,
         showInLegend: index === 0,
@@ -170,7 +189,7 @@ function useGetData(studyType, sponsorType = '*') {
       lineWidth: 2,
       data: median,
       name: intl.formatMessage({
-        id: `app.health-${studyType.toLowerCase()}.studies.caracteristiques.quand.chart-evolution-temporalites.median`,
+        id: `app.health-${studyType.toLowerCase()}.caracteristiques.quand.chart-evolution-temporalites.median`,
       }),
       color: '#000',
       marker: {

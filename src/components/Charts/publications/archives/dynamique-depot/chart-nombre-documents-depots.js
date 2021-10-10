@@ -27,7 +27,7 @@ const Chart = ({ graphComments, id, domain }) => {
 
   data.forEach((oneGraph) => {
     const optionsGraph = chartOptions[id].getOptions(
-      idWithDomain,
+      withDomain(id, domain),
       intl,
       oneGraph,
     );
