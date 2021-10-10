@@ -1961,7 +1961,7 @@ export const chartOptions = {
       options.yAxis = {
         categories: data?.categoriesDistribution || [],
         min: 0,
-        max: data?.categories3?.length - 1 || 10,
+        max: data?.categoriesDistribution?.length - 1 || 10,
         title: false,
         reversed: true,
       };
