@@ -18,7 +18,7 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import { withDomain, withtStudyType } from '../../../../../utils/helpers';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -44,9 +44,8 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const idWithDomainAndStudyType = withDomainAndStudyType(
-    id,
-    domain,
+  const idWithDomainAndStudyType = withtStudyType(
+    withDomain(id, domain),
     studyType,
   );
 
@@ -55,7 +54,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   }, [allData, idWithDomainAndStudyType, intl]);
 
   const optionsGraph = chartOptions[id].getOptions(
-    id,
+    withDomain(id, domain),
     intl,
     dataGraph1,
     studyType,
@@ -66,6 +65,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       isLoading={isLoading || !allData}
       isError={isError}
       id={id}
+      studyType={studyType}
       domain={domain}
       chartRef={chartRef}
       graphFooter={graphFooter}
@@ -95,7 +95,7 @@ Chart.defaultProps = {
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
-  id: 'studies.promoteurs.dynamique-ouverture.chart-part',
+  id: 'promoteurs.dynamique-ouverture.chart-part',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,

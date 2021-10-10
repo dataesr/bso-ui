@@ -33,7 +33,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { bubbleGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     bubbleGraph,
   );

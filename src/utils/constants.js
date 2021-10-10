@@ -3,7 +3,7 @@ import { chartOptions } from './chartOptions';
 export const graphIds = Object.keys(chartOptions);
 
 export const domains = ['health', ''];
-export const studiesTypes = ['Interventional', 'Observational', null];
+export const studiesTypes = ['Interventional', 'Observational', ''];
 
 export const mobileButtonLabel = {
   fr: {
@@ -17,6 +17,20 @@ export const mobileButtonLabel = {
     '/publications/editeurs': 'app.publi.editeurs',
     '/publications/general': 'app.publi.general',
     '/publications/archives': 'app.publi.archives',
+    '/sante/essais-cliniques/general': 'app.health-interventional.general',
+    '/sante/essais-cliniques/caracteristiques':
+      'app.health-interventional.caracteristiques',
+    '/sante/essais-cliniques/promoteurs':
+      'app.health-interventional.promoteurs',
+    '/sante/essais-cliniques/resultats': 'app.health-interventional.resultats',
+    '/sante/etudes-observationnelles/general':
+      'app.health-observational.general',
+    '/sante/etudes-observationnelles/caracteristiques':
+      'app.health-observational.caracteristiques',
+    '/sante/etudes-observationnelles/promoteurs':
+      'app.health-observational.promoteurs',
+    '/sante/etudes-observationnelles/resultats':
+      'app.health-observational.resultats',
   },
   en: {
     '/health/publications/disciplines': 'app.publi.disciplines',
@@ -28,6 +42,19 @@ export const mobileButtonLabel = {
     '/publications/archives': 'app.publi.archives',
     '/publications/editeurs': 'app.publi.editeurs',
     '/publications/general': 'app.publi.general',
+    '/health/clinical-trials/general': 'app.health-interventional.general',
+    '/health/clinical-trials/caracteristiques':
+      'app.health-interventional.caracteristiques',
+    '/health/clinical-trials/promoteurs':
+      'app.health-interventional.promoteurs',
+    '/health/clinical-trials/resultats': 'app.health-interventional.resultats',
+    '/health/observational-studies/general': 'app.health-observational.general',
+    '/health/observational-studies/caracteristiques':
+      'app.health-observational.caracteristiques',
+    '/health/observational-studies/promoteurs':
+      'app.health-observational.promoteurs',
+    '/health/observational-studies/resultats':
+      'app.health-observational.resultats',
   },
 };
 

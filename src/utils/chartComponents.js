@@ -123,14 +123,14 @@ const ChartEvolutionTemporalitesStudies = lazy(() => import(
 const ChartRepartitionAvantApresStudies = lazy(() => import(
   '../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres'
 ));
-const ChartEevolutionNombreStudies = lazy(() => import(
+const ChartEvolutionNombreStudies = lazy(() => import(
   '../components/Charts/studies/caracteristiques/types/chart-evolution-nombre'
 ));
 const ChartEvolutionStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
 ));
 const ChartRepartitionStudies = lazy(() => import('../components/Charts/studies/general/trajectoires/chart-repartition'));
-const ChartEvolutionNombreStudies = lazy(() => import(
+const ChartDynamiqueNombreStudies = lazy(() => import(
   '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-evolution-nombre'
 ));
 const ChartPartStudies = lazy(() => import(
@@ -228,40 +228,37 @@ const chartComponents = {
     ChartDistributionPublishers,
   'publi.publishers.couts-publication.chart-depenses-estimees':
     ChartDepensesEstimeesPublishers,
-  'studies.general.dynamique.chart-evolution': ChartEvolutionStudies,
-  'studies.general.trajectoires.chart-repartition': ChartRepartitionStudies,
-  'studies.caracteristiques.quand.chart-evolution-temporalites':
+  'general.dynamique.chart-evolution': ChartEvolutionStudies,
+  'general.trajectoires.chart-repartition': ChartRepartitionStudies,
+  'caracteristiques.quand.chart-evolution-temporalites':
     ChartEvolutionTemporalitesStudies,
-  'studies.caracteristiques.quand.chart-repartition-avant-apres':
+  'caracteristiques.quand.chart-repartition-avant-apres':
     ChartRepartitionAvantApresStudies,
-  'studies.caracteristiques.quand.chart-distribution-declarations':
+  'caracteristiques.quand.chart-distribution-declarations':
     ChartDistributionDeclarationsStudies,
-  'studies.caracteristiques.duree.chart-nombre': ChartNombreStudies,
-  'studies.caracteristiques.combien.chart-groupes-patients':
+  'caracteristiques.duree.chart-nombre': ChartNombreStudies,
+  'caracteristiques.combien.chart-groupes-patients':
     ChartGroupesPatientsStudies,
-  'studies.caracteristiques.combien.chart-proportion-modes-repartition':
+  'caracteristiques.combien.chart-proportion-modes-repartition':
     ChartProportionModesRepartitionStudies,
-  'studies.caracteristiques.types.chart-evolution-nombre':
-    ChartEevolutionNombreStudies,
-  'studies.promoteurs.dynamique-ouverture.chart-part': ChartPartStudies,
-  'studies.promoteurs.dynamique-ouverture.chart-evolution-nombre':
-    ChartEvolutionNombreStudies,
-  'studies.promoteurs.impact.chart-repartition':
-    ChartPromoteursRepartitionStudies,
-  'studies.promoteurs.impact.chart-classement-pays': ChartClassementPaysStudies,
-  'studies.resultats.type-diffusion.chart-repartition':
+  'caracteristiques.types.chart-evolution-nombre': ChartEvolutionNombreStudies,
+  'promoteurs.dynamique-ouverture.chart-part': ChartPartStudies,
+  'promoteurs.dynamique-ouverture.chart-evolution-nombre':
+    ChartDynamiqueNombreStudies,
+  'promoteurs.impact.chart-repartition': ChartPromoteursRepartitionStudies,
+  'promoteurs.impact.chart-classement-pays': ChartClassementPaysStudies,
+  'resultats.type-diffusion.chart-repartition':
     ChartTypeDiffusionRepartitionStudies,
-  'studies.resultats.type-diffusion.chart-repartition-par-type':
+  'resultats.type-diffusion.chart-repartition-par-type':
     ChartRepartitionParTypeStudies,
-  'studies.resultats.plan-partage.chart-repartition':
+  'resultats.plan-partage.chart-repartition':
     ChartPlanPartageRepartitionStudies,
-  'studies.resultats.delai-diffusion.chart-repartition':
+  'resultats.delai-diffusion.chart-repartition':
     ChartDelaiDiffusionRepartitionStudies,
   'studies.resultats.delai-diffusion.chart-distribution':
     ChartDistributionStudies,
-  'studies.resultats.publication.chart-repartition':
-    ChartResultatsRepartitionStudies,
-  'studies.resultats.publication.chart-repartition-icmje':
+  'resultats.publication.chart-repartition': ChartResultatsRepartitionStudies,
+  'resultats.publication.chart-repartition-icmje':
     ChartResultatsRepartitionIcmjeStudies,
 };
 

@@ -35,7 +35,7 @@ const Chart = ({ id, domain }) => {
   } = useGetData(lastObservationSnap || '2020', isOa, domain);
 
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     dataGraph,
   );

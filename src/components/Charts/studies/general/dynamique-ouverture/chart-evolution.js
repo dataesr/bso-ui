@@ -15,7 +15,7 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomainAndStudyType } from '../../../../../utils/helpers';
+import { withDomain, withtStudyType } from '../../../../../utils/helpers';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -30,17 +30,20 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const { allData, isLoading, isError } = useGetData(studyType);
   const { dataGraph1 } = allData;
 
-  const idWithDomainAndStudyType = withDomainAndStudyType(
-    id,
-    domain,
+  const idWithDomainAndStudyType = withtStudyType(
+    withDomain(id, domain),
     studyType,
   );
 
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
-
-  const optionsGraph = chartOptions[id].getOptions(id, intl, dataGraph1, studyType);
+  const optionsGraph = chartOptions[id].getOptions(
+    withDomain(id, domain),
+    intl,
+    dataGraph1,
+    studyType,
+  );
   return (
     <WrapperChart
       isLoading={isLoading || !allData}
@@ -68,7 +71,7 @@ Chart.defaultProps = {
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
-  id: 'studies.general.dynamique.chart-evolution',
+  id: 'general.dynamique.chart-evolution',
 };
 Chart.propTypes = {
   graphFooter: PropTypes.bool,

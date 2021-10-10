@@ -50,14 +50,13 @@ function EssaisCliniques() {
             </Row>
           </Container>
           <Glossary entries={GlossaryEntries} />
-          {/* <DataCardSection lang={lang} domain='health' /> */}
         </Row>
         <GraphNavigation
           mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
         >
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-interventional.studies.general',
+              id: 'app.health-interventional.general',
             })}
             paths={[
               '/sante/essais-cliniques/general',
@@ -66,13 +65,13 @@ function EssaisCliniques() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.general.dynamique',
+                  id: 'app.health-interventional.navigation.general.dynamique',
                 }),
                 href: '/sante/essais-cliniques/general?id=general.dynamique',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.general.trajectoires',
+                  id: 'app.health-interventional.navigation.general.trajectoires',
                 }),
                 href: '/sante/essais-cliniques/general?id=general.directions',
               },
@@ -80,24 +79,24 @@ function EssaisCliniques() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-interventional.studies.general.dynamique'
+                intlKey='app.health-interventional.general.dynamique'
                 backgroundColor={blueSoft50}
                 anchorId='general.dynamique'
               >
                 <BSOChart
-                  id='studies.general.dynamique.chart-evolution'
+                  id='general.dynamique.chart-evolution'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.general.trajectoires'
+                intlKey='app.health-interventional.general.trajectoires'
                 backgroundColor={blueSoft25}
                 anchorId='general.directions'
               >
                 <BSOChart
-                  id='studies.general.trajectoires.chart-repartition'
+                  id='general.trajectoires.chart-repartition'
                   domain='health'
                   studyType='Interventional'
                 />
@@ -108,7 +107,7 @@ function EssaisCliniques() {
           {/* Leurs caractéristiques */}
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-interventional.studies.caracteristiques',
+              id: 'app.health-interventional.caracteristiques',
             })}
             paths={[
               '/sante/essais-cliniques/caracteristiques',
@@ -117,25 +116,25 @@ function EssaisCliniques() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.caracteristiques.quand',
+                  id: 'app.health-interventional.navigation.caracteristiques.quand',
                 }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.caracteristiques.duree',
+                  id: 'app.health-interventional.navigation.caracteristiques.duree',
                 }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.duree',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.caracteristiques.combien',
+                  id: 'app.health-interventional.navigation.caracteristiques.combien',
                 }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.combien',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.caracteristiques.types',
+                  id: 'app.health-interventional.navigation.caracteristiques.types',
                 }),
                 href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.types',
               },
@@ -143,65 +142,65 @@ function EssaisCliniques() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-interventional.studies.caracteristiques.quand'
+                intlKey='app.health-interventional.caracteristiques.quand'
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.quand'
               >
                 <BSOChart
-                  id='studies.caracteristiques.quand.chart-evolution-temporalites'
+                  id='caracteristiques.quand.chart-evolution-temporalites'
                   domain='health'
                   studyType='Interventional'
                 />
 
                 <BSOChart
-                  id='studies.caracteristiques.quand.chart-repartition-avant-apres'
+                  id='caracteristiques.quand.chart-repartition-avant-apres'
                   domain='health'
                   studyType='Interventional'
                 />
 
                 <BSOChart
-                  id='studies.caracteristiques.quand.chart-distribution-declarations'
+                  id='caracteristiques.quand.chart-distribution-declarations'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.caracteristiques.duree'
+                intlKey='app.health-interventional.caracteristiques.duree'
                 backgroundColor={blueSoft25}
                 anchorId='caracteristiques.duree'
               >
                 <BSOChart
-                  id='studies.caracteristiques.duree.chart-nombre'
+                  id='caracteristiques.duree.chart-nombre'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.caracteristiques.combien'
+                intlKey='app.health-interventional.caracteristiques.combien'
                 backgroundColor={blueSoft50}
                 anchorId='caracteristiques.combien'
               >
                 <BSOChart
-                  id='studies.caracteristiques.combien.chart-groupes-patients'
+                  id='caracteristiques.combien.chart-groupes-patients'
                   domain='health'
                   studyType='Interventional'
                 />
                 <BSOChart
-                  id='studies.caracteristiques.combien.chart-proportion-modes-repartition'
+                  id='caracteristiques.combien.chart-proportion-modes-repartition'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.caracteristiques.types'
+                intlKey='app.health-interventional.caracteristiques.types'
                 backgroundColor={blueSoft25}
                 anchorId='caracteristiques.types'
               >
                 <BSOChart
-                  id='studies.caracteristiques.types.chart-evolution-nombre'
+                  id='caracteristiques.types.chart-evolution-nombre'
                   domain='health'
                   studyType='Interventional'
                 />
@@ -212,7 +211,7 @@ function EssaisCliniques() {
           {/* Les promoteurs */}
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-interventional.studies.promoteurs',
+              id: 'app.health-interventional.promoteurs',
             })}
             paths={[
               '/sante/essais-cliniques/promoteurs',
@@ -221,13 +220,13 @@ function EssaisCliniques() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.promoteurs.dynamique-ouverture',
+                  id: 'app.health-interventional.navigation.promoteurs.dynamique-ouverture',
                 }),
                 href: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.promoteurs.impact',
+                  id: 'app.health-interventional.navigation.promoteurs.impact',
                 }),
                 href: '/sante/essais-cliniques/promoteurs?id=promoteurs.impact',
               },
@@ -235,34 +234,34 @@ function EssaisCliniques() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-interventional.studies.promoteurs.dynamique-ouverture'
+                intlKey='app.health-interventional.promoteurs.dynamique-ouverture'
                 backgroundColor={blueSoft50}
                 anchorId='promoteurs.dynamique-ouverture'
               >
                 <BSOChart
-                  id='studies.promoteurs.dynamique-ouverture.chart-part'
+                  id='promoteurs.dynamique-ouverture.chart-part'
                   domain='health'
                   studyType='Interventional'
                 />
                 <BSOChart
-                  id='studies.promoteurs.dynamique-ouverture.chart-evolution-nombre'
+                  id='promoteurs.dynamique-ouverture.chart-evolution-nombre'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.promoteurs.impact'
+                intlKey='app.health-interventional.promoteurs.impact'
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
                 <BSOChart
-                  id='studies.promoteurs.impact.chart-repartition'
+                  id='promoteurs.impact.chart-repartition'
                   domain='health'
                   studyType='Interventional'
                 />
                 <BSOChart
-                  id='studies.promoteurs.impact.chart-classement-pays'
+                  id='promoteurs.impact.chart-classement-pays'
                   domain='health'
                   studyType='Interventional'
                 />
@@ -273,7 +272,7 @@ function EssaisCliniques() {
           {/* Les resultats/publications */}
           <GraphItem
             mainLabel={intl.formatMessage({
-              id: 'app.health-interventional.studies.resultats',
+              id: 'app.health-interventional.resultats',
             })}
             paths={[
               '/sante/essais-cliniques/resultats',
@@ -282,25 +281,25 @@ function EssaisCliniques() {
             links={[
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.resultats.type-diffusion',
+                  id: 'app.health-interventional.navigation.resultats.type-diffusion',
                 }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.resultats.plan-partage',
+                  id: 'app.health-interventional.navigation.resultats.plan-partage',
                 }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.plan-partage',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.resultats.delai-diffusion',
+                  id: 'app.health-interventional.navigation.resultats.delai-diffusion',
                 }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.delai-diffusion',
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.health-interventional.studies.navigation.resultats.publication',
+                  id: 'app.health-interventional.navigation.resultats.publication',
                 }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.publication',
               },
@@ -308,53 +307,53 @@ function EssaisCliniques() {
           >
             <GraphContent>
               <QuestionSection
-                intlKey='app.health-interventional.studies.resultats.type-diffusion'
+                intlKey='app.health-interventional.resultats.type-diffusion'
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
                 <BSOChart
-                  id='studies.resultats.type-diffusion.chart-repartition'
+                  id='resultats.type-diffusion.chart-repartition'
                   domain='health'
                   studyType='Interventional'
                 />
                 <BSOChart
-                  id='studies.resultats.type-diffusion.chart-repartition-par-type'
+                  id='resultats.type-diffusion.chart-repartition-par-type'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.resultats.plan-partage'
+                intlKey='app.health-interventional.resultats.plan-partage'
                 backgroundColor={blueSoft25}
                 anchorId='resultats.plan-partage'
               >
                 <BSOChart
-                  id='studies.resultats.plan-partage.chart-repartition'
+                  id='resultats.plan-partage.chart-repartition'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.resultats.delai-diffusion'
+                intlKey='app.health-interventional.resultats.delai-diffusion'
                 backgroundColor={blueSoft50}
                 anchorId='resultats.delai-diffusion'
               >
                 <BSOChart
-                  id='studies.resultats.delai-diffusion.chart-repartition'
+                  id='resultats.delai-diffusion.chart-repartition'
                   domain='health'
                   studyType='Interventional'
                 />
               </QuestionSection>
 
               <QuestionSection
-                intlKey='app.health-interventional.studies.resultats.publication'
+                intlKey='app.health-interventional.resultats.publication'
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
                 <BSOChart
-                  id='studies.resultats.publication.chart-repartition'
+                  id='resultats.publication.chart-repartition'
                   domain='health'
                   studyType='Interventional'
                 />

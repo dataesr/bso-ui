@@ -9,13 +9,15 @@ function BSOChart({ id, domain, graphComments, graphFooter, studyType }) {
   const Chart = chartComponents[id];
   return (
     <Suspense fallback={<Loader />}>
-      <Chart
-        id={id}
-        domain={domain}
-        graphComments={graphComments}
-        graphFooter={graphFooter}
-        studyType={studyType}
-      />
+      {Chart && (
+        <Chart
+          id={id}
+          domain={domain}
+          graphComments={graphComments}
+          graphFooter={graphFooter}
+          studyType={studyType}
+        />
+      )}
     </Suspense>
   );
 }

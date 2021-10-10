@@ -151,7 +151,22 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
  * @returns {string}
  */
 export function withDomain(id, domain = 'national') {
+  // TODO change graph id format
   return `app.${domain || 'national'}-${id}`;
+}
+
+/**
+ *
+ * @param id
+ * @param studyType
+ * @returns {string}
+ */
+export function withtStudyType(id, studyType = 'Interventional') {
+  let newId = id;
+  if (studyType) {
+    newId = id.replace('-', `-${studyType.toLowerCase() || 'interventional'}.`);
+  }
+  return newId;
 }
 
 /**
@@ -160,25 +175,17 @@ export function withDomain(id, domain = 'national') {
  * @param domain
  * @param studyType
  * @returns {string}
+ * Context includes domain and studyType infos
  */
-export function withDomainAndStudyType(
-  id,
-  domain = 'health',
-  studyType = 'Interventional',
-) {
-  return `app.${domain || 'health'}-${
-    studyType.toLowerCase() || 'interventional'
-  }.${id}`;
+export function withContext(id, domain, studyType) {
+  return withtStudyType(withDomain(id, domain), studyType);
 }
-
 /**
  *
  * @param id
  * @returns {string}
  */
-export function getSource(
-  id,
-) {
+export function getSource(id) {
   let source = '';
   if (id.includes('-publi') || id.includes('publication')) {
     source += 'Unpaywall, ';

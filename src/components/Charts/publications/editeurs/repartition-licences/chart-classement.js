@@ -30,7 +30,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
   const { dataGraphBar, categories } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     categories,
     dataGraphBar,

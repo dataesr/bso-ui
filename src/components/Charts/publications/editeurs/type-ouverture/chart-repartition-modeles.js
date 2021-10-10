@@ -29,7 +29,7 @@ const Chart = ({ id, domain }) => {
   const { dataGraphTreemap } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     dataGraphTreemap,
   );

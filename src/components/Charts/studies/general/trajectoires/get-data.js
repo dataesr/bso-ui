@@ -43,7 +43,7 @@ function useGetData(studyType) {
       'Unknown-has_result-no_publications_result',
     ];
 
-    const intlKey = `app.health-${studyType.toLowerCase()}.studies.general.sankey`;
+    const intlKey = `app.health-${studyType.toLowerCase()}.general.sankey`;
     const nodeColor = {
       Completed: getCSSValue('--patient-125'),
       Unknown: getCSSValue('--patient-75'),
@@ -108,7 +108,14 @@ function useGetData(studyType) {
                     linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
                     stops: [
                       [0, nodeColor[elA.key ? 'has_result' : 'no_result']],
-                      [1, nodeColor[elB.key ? 'has_publications_result' : 'no_publications_result']],
+                      [
+                        1,
+                        nodeColor[
+                          elB.key
+                            ? 'has_publications_result'
+                            : 'no_publications_result'
+                        ],
+                      ],
                     ],
                   },
                 });
@@ -126,7 +133,14 @@ function useGetData(studyType) {
                       color: {
                         linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
                         stops: [
-                          [0, nodeColor[elB.key ? 'has_publications_result' : 'no_publications_result']],
+                          [
+                            0,
+                            nodeColor[
+                              elB.key
+                                ? 'has_publications_result'
+                                : 'no_publications_result'
+                            ],
+                          ],
                           [1, nodeColor[elC.key ? 'is_oa' : 'closed']],
                         ],
                       },

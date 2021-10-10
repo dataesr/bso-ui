@@ -46,7 +46,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
+    withDomain(id, domain),
     intl,
     categoriesViolin,
     dataGraphViolin,

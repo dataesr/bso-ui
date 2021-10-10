@@ -30,6 +30,7 @@ function Header() {
     }
   }, [path, setPath, location]);
 
+  // TODO check current path active
   return (
     <WrapperDisplay display={!path.startsWith('/integration')}>
       <DSHeader closeButtonLabel='fermer' className='bso-header'>
