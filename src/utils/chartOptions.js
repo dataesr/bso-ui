@@ -144,7 +144,6 @@ export const chartOptions = {
           marker: {
             enabled: false,
           },
-          // pointStart: xi[0]
         },
         scatter: {
           lineWidth: 2,
@@ -181,7 +180,6 @@ export const chartOptions = {
           dataLabels: {
             enabled: false,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -380,7 +378,6 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -596,7 +593,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },
@@ -765,7 +761,6 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },
@@ -916,7 +911,6 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },
@@ -1224,7 +1218,6 @@ export const chartOptions = {
       };
       const { data, name } = graph;
       options.chart.type = 'column';
-      // options.legend = { width: '99%', align: 'right' };
       options.xAxis = {
         type: 'category',
         title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
@@ -1322,7 +1315,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -1352,7 +1344,6 @@ export const chartOptions = {
         stackLabels: {
           enabled: true,
           formatter() {
-            // eslint-disable-next-line
             return `${cleanNumber(this.total)} €`;
           },
           style: {
@@ -1361,7 +1352,6 @@ export const chartOptions = {
         },
         labels: {
           formatter() {
-            // eslint-disable-next-line
             return this.axis.defaultLabelFormatter.call(this).concat(' €');
           },
         },
@@ -1376,7 +1366,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return cleanNumber(this.y).concat(' €');
             },
           },
@@ -1395,8 +1384,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-apc',
       });
-      options.chart.type = 'column';
-      options.chart.type = 'areaspline'; // 'column' dans la maquette
+      options.chart.type = 'areaspline';
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publi.tarif-apc' }) },
@@ -1638,7 +1626,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -1714,7 +1701,6 @@ export const chartOptions = {
           stacking: false,
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -1794,7 +1780,6 @@ export const chartOptions = {
         ];
 
         const nodes = [];
-
         // TODO refacto
         allNodes.forEach((node) => {
           nodes.push({
@@ -2032,11 +2017,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraphGroupes || [];
-      options.plotOptions = {
-        series: {
-          pointWidth: 20,
-        },
-      };
       return options;
     },
   },
@@ -2078,7 +2058,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },

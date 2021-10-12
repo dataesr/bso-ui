@@ -13,6 +13,21 @@ function useGetData(studyType, sponsorType = '*') {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
+    const querySponsorTypes = getFetchOptions(
+      'sponsorsTypesList',
+      '',
+      studyType,
+    );
+
+    const responseSponsorTypes = await Axios.post(
+      ES_STUDIES_API_URL,
+      querySponsorTypes,
+      HEADERS,
+    );
+    const sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+      (item) => item.key,
+    );
+
     const queryGroupes = getFetchOptions(
       'studiesCaracteristiquesCombienChartGroupesPatients',
       '',
@@ -121,6 +136,7 @@ function useGetData(studyType, sponsorType = '*') {
     ];
 
     return {
+      sponsorTypes,
       categoriesGroupes,
       dataGraphGroupes,
       categoriesRepartition,
