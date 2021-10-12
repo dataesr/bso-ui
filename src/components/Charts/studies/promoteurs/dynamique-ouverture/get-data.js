@@ -13,6 +13,25 @@ function useGetData(studyType, sponsor = '*') {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
+    const querySponsorTypes = getFetchOptions(
+      'sponsorsTypesList',
+      '',
+      studyType,
+    );
+
+    const responseSponsorTypes = await Axios.post(
+      ES_STUDIES_API_URL,
+      querySponsorTypes,
+      HEADERS,
+    );
+    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+      (item) => item.key,
+    );
+    sponsorTypes = sponsorTypes.map((st) => ({
+      value: st,
+      label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+    }));
+
     const queries = [];
     const queryDynamiqueOuverture = getFetchOptions(
       'studiesDynamiqueOuverture',
@@ -155,8 +174,7 @@ function useGetData(studyType, sponsor = '*') {
                     .find((el) => el.key === year)
                     ?.by_has_result.buckets.find((el) => el.key === 1)
                     ?.doc_count || 0)
-                  / bucket.by_year.buckets.find((el) => el.key === year)
-                    ?.doc_count,
+                / bucket.by_year.buckets.find((el) => el.key === year)?.doc_count,
             })),
           categories,
         };
@@ -164,7 +182,7 @@ function useGetData(studyType, sponsor = '*') {
       }
     });
     const dataGraph2 = tab.slice(0, 12);
-    return { dataGraph1, dataGraph2 };
+    return { sponsorTypes, dataGraph1, dataGraph2 };
   }
 
   useEffect(() => {

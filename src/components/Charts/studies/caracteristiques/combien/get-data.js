@@ -24,9 +24,13 @@ function useGetData(studyType, sponsorType = '*') {
       querySponsorTypes,
       HEADERS,
     );
-    const sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
       (item) => item.key,
     );
+    sponsorTypes = sponsorTypes.map((st) => ({
+      value: st,
+      label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+    }));
 
     const queryGroupes = getFetchOptions(
       'studiesCaracteristiquesCombienChartGroupesPatients',
