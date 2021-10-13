@@ -603,40 +603,6 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.general.voies-ouverture.chart-evolution-taux': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
-
-      options.chart.type = 'area';
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.voies-ouverture.chart-evolution-taux.tooltip',
-      });
-      options.xAxis = {
-        categories,
-        tickmarkPlacement: 'on',
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
-      };
-      options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
-      });
-      options.plotOptions = {
-        area: {
-          stacking: 'normal',
-          lineColor: '#fff',
-          lineWidth: 3,
-          marker: {
-            lineWidth: 1,
-            lineColor: '#fff',
-          },
-        },
-      };
-      options.series = data;
-
-      return options;
-    },
-  },
   'publi.general.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
