@@ -38,6 +38,7 @@ function useGetData(studyType, sponsorType = '*') {
       studyType,
       sponsorType,
     );
+    const currentYear = new Date().getFullYear();
     const resGroupes = await Axios.post(
       ES_STUDIES_API_URL,
       queryGroupes,
@@ -82,7 +83,7 @@ function useGetData(studyType, sponsorType = '*') {
     );
     const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
-    );
+    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
 
     const categoriesRepartition = dataSortedByYearRepartition.map(
       (el) => el.key,

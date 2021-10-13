@@ -733,6 +733,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 by_year: {
                   terms: {
                     field: 'study_start_year',
+                    size: 30,
                   },
                   aggs: {
                     by_has_result: {
@@ -770,6 +771,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
+            size: 30,
           },
           aggs: {
             by_sponsor_type: {
@@ -815,6 +817,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
+            size: 30,
           },
           aggs: {
             by_has_result: {
@@ -978,7 +981,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
-            size: 20,
+            size: 30,
           },
           aggs: {
             by_fr_only: {
@@ -1556,6 +1559,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
+            size: 30,
           },
           aggs: {
             by_design_allocation: {
@@ -1590,6 +1594,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_year: {
           terms: {
             field: 'study_start_year',
+            size: 30,
           },
           aggs: {
             by_intervention_type: {
