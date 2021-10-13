@@ -125,7 +125,7 @@ function BaroSante() {
             <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
-                  href: '/sante/essais-cliniques',
+                  href: '/sante/essais-cliniques/general',
                   label: <FormattedMessage id='app.baro-sante.detail-trials' />,
                 }}
                 title={
@@ -154,7 +154,7 @@ function BaroSante() {
             <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
-                  href: '/sante/etudes-observationnelles',
+                  href: '/sante/etudes-observationnelles/general',
                   label: (
                     <FormattedMessage id='app.baro-sante.detail-studies' />
                   ),
