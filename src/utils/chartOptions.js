@@ -1680,6 +1680,7 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -1802,6 +1803,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
@@ -1824,6 +1826,7 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesEvolution || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
       };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
@@ -1992,6 +1995,7 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
       };
       options.yAxis.stackLabels = {
         enabled: true,
@@ -2013,6 +2017,7 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.yAxis = getPercentageYAxis(false);
+      options.xAxis.title = { text: intl.formatMessage({ id: 'app.study-start-year' }) };
       options.yAxis.max = 100;
       options.legend.reversed = true;
       options.plotOptions = {
@@ -2096,6 +2101,7 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -2210,6 +2216,7 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -2247,6 +2254,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
@@ -2277,15 +2285,12 @@ export const chartOptions = {
           },
         },
       };
+      options.subtitle = { text: name };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.labels.enabled = false;
       options.xAxis = {
         type: 'category',
-        title: {
-          text: `<b>${name}</b>`,
-          align: 'left',
-          useHTML: true,
-        },
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: graph?.categories,
         lineWidth: 0,
         tickWidth: 0,
@@ -2328,6 +2333,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
