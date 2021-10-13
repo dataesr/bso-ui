@@ -639,6 +639,41 @@ export const chartOptions = {
     },
   },
   'publi.general.genres-ouverture.chart-repartition-genres': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
+      });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-genre' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+
+      return options;
+    },
+  },
+  'publi.general.genres-ouverture.chart-repartition-genres-treemap': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
       options.tooltip.pointFormat = intl.formatMessage({
@@ -673,6 +708,41 @@ export const chartOptions = {
     },
   },
   'publi.general.langues-ouverture.chart-repartition-publications': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
+      });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-lang' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+
+      return options;
+    },
+  },
+  'publi.general.langues-ouverture.chart-repartition-publications-treemap': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
       options.tooltip.pointFormat = intl.formatMessage({

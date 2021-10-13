@@ -1151,12 +1151,26 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    oaHostType: ([lastObservationSnap]) => ({
+    oaHostType: ([lastObservationSnap, field, size]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: 2013,
+                },
+              },
+            },
+          ],
+        },
+      },
       aggs: {
         by_publication_year: {
           terms: {
-            field: 'year',
+            field: (field || 'year'),
+            size: (size || 10),
           },
           aggs: {
             by_oa_host_type: {
