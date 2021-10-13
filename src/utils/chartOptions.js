@@ -618,7 +618,7 @@ export const chartOptions = {
           levels: [
             {
               level: 1,
-              layoutAlgorithm: 'sliceAndDice',
+              layoutAlgorithm: 'squarified',
               dataLabels: {
                 enabled: true,
                 format: '<b>{point.name}</b><br>{point.percentage:.0f} %',
@@ -628,6 +628,14 @@ export const chartOptions = {
                   fontSize: '15px',
                   fontWeight: 'bold',
                 },
+              },
+            },
+            {
+              level: 2,
+              layoutAlgorithm: 'stripes',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.0f} %',
               },
             },
           ],
