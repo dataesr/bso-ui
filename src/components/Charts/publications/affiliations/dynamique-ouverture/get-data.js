@@ -6,7 +6,12 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, needle = '*', domain) {
+function useGetData(
+  observationSnaps,
+  lastObservationSnap,
+  needle = '*',
+  domain,
+) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -14,6 +19,20 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function getDataByObservationSnaps(datesObservation) {
+    const queryAffiliations = getFetchOptions(
+      'affiliationsList',
+      domain,
+      lastObservationSnap,
+    );
+    const response = await Axios.post(ES_API_URL, queryAffiliations, HEADERS);
+    let affiliations = response.data.aggregations.by_affiliation.buckets
+      .map((item) => item.key)
+      .sort();
+    affiliations = affiliations.map((affiliation) => ({
+      value: affiliation,
+      label: intl.formatMessage({ id: `app.affiliations.${affiliation}` }),
+    }));
+
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation
@@ -108,7 +127,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       },
     }));
 
-    return { dataGraph1, dataGraph2 };
+    return { affiliations, dataGraph1, dataGraph2 };
   }
 
   useEffect(() => {
