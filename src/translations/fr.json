@@ -408,7 +408,7 @@
   "app.health-observational.navigation.resultats.type-diffusion": "Les types de diffusion",
   "app.health-observational.promoteurs": "Les promoteurs",
   "app.health-observational.promoteurs.dynamique-ouverture.chart-evolution-nombre.comments": "comments",
-  "app.health-observational.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Evolution du nombre d'études cliiniques déclaré par promoteur",
+  "app.health-observational.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Evolution du nombre d'études cliniques déclaré par promoteur",
   "app.health-observational.promoteurs.dynamique-ouverture.chart-evolution-nombre.tooltip": "<b>{series.name}</b><br><b>{point.y:.2f}%</b> ({point.y_abs} / {point.y_tot}) en {point.year}",
   "app.health-observational.promoteurs.dynamique-ouverture.chart-part.comments": "comments",
   "app.health-observational.promoteurs.dynamique-ouverture.chart-part.title": "Part d'études déclarées ayant produit des résultats et/ou publications par statut du promoteur",
