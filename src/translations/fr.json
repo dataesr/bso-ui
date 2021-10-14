@@ -644,7 +644,7 @@
   "app.national-publi.general.voies-ouverture.chart-repartition-publications.title": "Répartition des publications ouvertes par types d'hébergement sur la dernière année de publication",
   "app.national-publi.general.voies-ouverture.chart-repartition-taux.title": "Répartition du taux d'accès ouvert des publications par année et par types d'hébergement",
   "app.national-publi.general.voies-ouverture.title": "Quelles sont les voies d'ouverture choisies pour les publications ?",
-  "app.national-publi.progression": "Progression <div>(tous domaines)</div> <div>{startYear}-{endYear}</div>",
+  "app.national-publi.progression": "Progression<div>(tous domaines)</div><div>{startYear}-{endYear}</div>",
   "app.national-publi.publishers.couts-publication.chart-depenses-estimees.title": "Dépenses estimées pour la communauté scientifique, en APC pour la production française",
   "app.national-publi.publishers.couts-publication.chart-distribution-par-annee.title": "Distribution des tarifs unitaires des frais de publication par article, par année de publication",
   "app.national-publi.publishers.couts-publication.chart-distribution.title": "Distribution des tarifs unitaires des frais de publication par article",

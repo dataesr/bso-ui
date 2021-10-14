@@ -50,12 +50,14 @@ export default function ProgressionCard({ domain }) {
       const rhesus = progression[lastObservationSnap] >= progression[previousObservationSnap]
         ? '+'
         : '';
-      const lastOaRate = progression[lastObservationSnap]
+      let lastOaRate = progression[lastObservationSnap]
         ? progression[lastObservationSnap]
         : null;
-      const previousOaRate = progression[previousObservationSnap]
+      lastOaRate = Math.round(lastOaRate);
+      let previousOaRate = progression[previousObservationSnap]
         ? progression[previousObservationSnap]
         : null;
+      previousOaRate = Math.round(previousOaRate);
       if (previousOaRate && lastOaRate) {
         const evolution = Math.round(lastOaRate - previousOaRate);
         progPoints = `${rhesus}${evolution}`;
@@ -91,7 +93,11 @@ export default function ProgressionCard({ domain }) {
             endYear: lastObservationSnap,
             div: (chunks) => <div>{chunks}</div>,
           }}
-          id={(domain === '') ? 'app.national-publi.progression' : 'app.health-publi.progression'}
+          id={
+            domain === ''
+              ? 'app.national-publi.progression'
+              : 'app.health-publi.progression'
+          }
           defaultMessage='Progression'
         />
       )}
