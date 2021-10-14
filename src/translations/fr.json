@@ -259,7 +259,7 @@
   "app.health-interventional.caracteristiques.types.title": "Quels sont les différents types d'essais cliniques déclarés ?",
   "app.health-interventional.general": "Général",
   "app.health-interventional.general.dynamique.chart-evolution.comments": "comments",
-  "app.health-interventional.general.dynamique.chart-evolution.title": "Evolution de la part d'essais cliniques déclarés ayant produit des résultats et/ou publications",
+  "app.health-interventional.general.dynamique.chart-evolution.title": "Evolution de la part d'essais cliniques terminés ayant produit des résultats et/ou publications",
   "app.health-interventional.general.dynamique.chart-evolution.tooltip": "<b>En {point.year}</b>,<br><b>{point.y:.2f} %</b> des essais cliniques déclarés<br>par <b>les promoteurs {point.name}</b> <br>ont produit des résultats et/ou publications <b>({point.y_abs} / {point.y_tot})</b>.",
   "app.health-interventional.general.dynamique.description": "2.1.1",
   "app.health-interventional.general.dynamique.title": "Quelle est la dynamique des essais cliniques déclarés depuis 2011 ?",
