@@ -174,6 +174,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         series: {
           stacking: 'normal',
@@ -204,6 +205,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         series: {
           stacking: 'normal',
@@ -584,6 +586,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -662,6 +665,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -731,6 +735,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -1350,6 +1355,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-licence',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         series: {
           stacking: 'normal',
@@ -1378,6 +1384,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-apc',
       });
+      options.legend.reversed = true;
       options.chart.type = 'column';
       options.xAxis = {
         categories,
@@ -1428,6 +1435,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-apc',
       });
+      options.legend.reversed = true;
       options.chart.type = 'areaspline';
       options.xAxis = {
         categories,
@@ -1637,6 +1645,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -1649,7 +1658,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -2095,7 +2103,9 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.yAxis = getPercentageYAxis(false);
-      options.xAxis.title = { text: intl.formatMessage({ id: 'app.study-start-year' }) };
+      options.xAxis.title = {
+        text: intl.formatMessage({ id: 'app.study-start-year' }),
+      };
       options.yAxis.max = 100;
       options.legend.reversed = true;
       options.plotOptions = {
