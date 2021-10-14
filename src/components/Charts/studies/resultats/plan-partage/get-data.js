@@ -49,31 +49,17 @@ function useGetData(studyType, sponsorType = '*') {
       categories: data1SortedByYear.map((el) => el.key),
       series: [
         {
-          name: intl.formatMessage({ id: 'app.studies.plan-partage-yes' }),
+          name: intl.formatMessage({ id: 'app.studies.plan-partage-na' }),
           data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'Yes')
-              ?.doc_count,
+            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'NA')?.doc_count,
             y:
               (100
-                * el.by_ipd.buckets.find((ele) => ele.key === 'Yes')?.doc_count)
+                * el.by_ipd.buckets.find((ele) => ele.key === 'NA')?.doc_count)
               / el.doc_count,
             y_tot: el.doc_count,
             year: el.key,
           })),
-          color: getCSSValue('--patient-100'),
-        },
-        {
-          name: intl.formatMessage({ id: 'app.studies.plan-partage-no' }),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'No')?.doc_count,
-            y:
-              (100
-                * el.by_ipd.buckets.find((ele) => ele.key === 'No')?.doc_count)
-              / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--g-600'),
+          color: getCSSValue('--g-400'),
         },
         {
           name: intl.formatMessage({
@@ -93,17 +79,31 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--patient-25'),
         },
         {
-          name: intl.formatMessage({ id: 'app.studies.plan-partage-na' }),
+          name: intl.formatMessage({ id: 'app.studies.plan-partage-no' }),
           data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'NA')?.doc_count,
+            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'No')?.doc_count,
             y:
               (100
-                * el.by_ipd.buckets.find((ele) => ele.key === 'NA')?.doc_count)
+                * el.by_ipd.buckets.find((ele) => ele.key === 'No')?.doc_count)
               / el.doc_count,
             y_tot: el.doc_count,
             year: el.key,
           })),
-          color: getCSSValue('--g-400'),
+          color: getCSSValue('--g-600'),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.studies.plan-partage-yes' }),
+          data: data1SortedByYear.map((el) => ({
+            y_abs: el.by_ipd.buckets.find((ele) => ele.key === 'Yes')
+              ?.doc_count,
+            y:
+              (100
+                * el.by_ipd.buckets.find((ele) => ele.key === 'Yes')?.doc_count)
+              / el.doc_count,
+            y_tot: el.doc_count,
+            year: el.key,
+          })),
+          color: getCSSValue('--patient-100'),
         },
       ],
     };

@@ -2169,7 +2169,6 @@ export const chartOptions = {
   'resultats.plan-partage.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -2200,8 +2199,8 @@ export const chartOptions = {
           },
         },
       };
+      options.legend.reversed = true;
       options.series = data?.series || [];
-
       return options;
     },
   },
