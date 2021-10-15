@@ -135,11 +135,13 @@ function Glossaire() {
         </section>
       </Banner>
       <Container>
-        <Row className='content'>
-          <Col>
-            <Accordion>{renderItems()}</Accordion>
-          </Col>
-        </Row>
+        <section className='content py-48'>
+          <Row>
+            <Col>
+              <Accordion>{renderItems()}</Accordion>
+            </Col>
+          </Row>
+        </section>
       </Container>
     </section>
   );
