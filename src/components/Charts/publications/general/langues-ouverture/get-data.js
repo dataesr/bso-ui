@@ -16,7 +16,13 @@ function useGetData(observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions('oaHostType', domain, lastObservationSnap, 'lang.keyword', 5);
+      const query = getFetchOptions(
+        'oaHostType',
+        domain,
+        lastObservationSnap,
+        'lang.keyword',
+        5,
+      );
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -92,6 +98,12 @@ function useGetData(observationSnap, domain) {
 
       const dataGraph = [
         {
+          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          data: publisher,
+          color: yellowMedium125,
+          dataLabels: noOutline,
+        },
+        {
           name: intl.formatMessage({
             id: 'app.type-hebergement.publisher-repository',
           }),
@@ -103,12 +115,6 @@ function useGetData(observationSnap, domain) {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
           color: getCSSValue('--green-medium-125'),
-          dataLabels: noOutline,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          data: publisher,
-          color: yellowMedium125,
           dataLabels: noOutline,
         },
       ];

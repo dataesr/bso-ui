@@ -63,7 +63,9 @@ function useGetData(observationSnap, domain) {
         .sort((a, b) => a.closed / a.total - b.closed / b.total);
       data.forEach((el, catIndex) => {
         const nameClean = el.key.replace(/\n/g, '').replace('  ', ' ');
-        categories.push(intl.formatMessage({ id: `app.discipline.${nameClean}` }));
+        categories.push(
+          intl.formatMessage({ id: `app.discipline.${nameClean}` }),
+        );
 
         const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
           ?.doc_count || 0;
@@ -133,6 +135,15 @@ function useGetData(observationSnap, domain) {
 
       const dataGraph = [
         {
+          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          data: publisher,
+          color: yellowMedium125,
+          dataLabels: {
+            ...noOutline,
+            style: { color: getCSSValue('--g-800') },
+          },
+        },
+        {
           name: intl.formatMessage({
             id: 'app.type-hebergement.publisher-repository',
           }),
@@ -145,15 +156,6 @@ function useGetData(observationSnap, domain) {
           data: repository,
           color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          data: publisher,
-          color: yellowMedium125,
-          dataLabels: {
-            ...noOutline,
-            style: { color: getCSSValue('--g-800') },
-          },
         },
       ];
       return { categories, dataGraph };

@@ -16,7 +16,12 @@ function useGetData(observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions('oaHostType', domain, lastObservationSnap, 'genre.keyword');
+      const query = getFetchOptions(
+        'oaHostType',
+        domain,
+        lastObservationSnap,
+        'genre.keyword',
+      );
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -37,7 +42,9 @@ function useGetData(observationSnap, domain) {
       data
         .filter((el) => el.doc_count >= 100)
         .forEach((el) => {
-          categories.push(intl.formatMessage({ id: `app.publication-genre.${el.key}` }));
+          categories.push(
+            intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+          );
 
           const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
             ?.doc_count || 0;
@@ -57,40 +64,56 @@ function useGetData(observationSnap, domain) {
             y: (100 * closedCurrent) / totalCurrent,
             y_abs: closedCurrent,
             y_tot: totalCurrent,
-            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            x_val: intl.formatMessage({
+              id: `app.publication-genre.${el.key}`,
+            }),
             bsoDomain,
           });
           oa.push({
             y: (100 * oaCurrent) / totalCurrent,
             y_abs: oaCurrent,
             y_tot: totalCurrent,
-            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            x_val: intl.formatMessage({
+              id: `app.publication-genre.${el.key}`,
+            }),
             bsoDomain,
           });
           repository.push({
             y: (100 * repositoryCurrent) / totalCurrent,
             y_abs: repositoryCurrent,
             y_tot: totalCurrent,
-            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            x_val: intl.formatMessage({
+              id: `app.publication-genre.${el.key}`,
+            }),
             bsoDomain,
           });
           publisher.push({
             y: (100 * publisherCurrent) / totalCurrent,
             y_abs: publisherCurrent,
             y_tot: totalCurrent,
-            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            x_val: intl.formatMessage({
+              id: `app.publication-genre.${el.key}`,
+            }),
             bsoDomain,
           });
           publisherRepository.push({
             y: (100 * publisherRepositoryCurrent) / totalCurrent,
             y_abs: publisherRepositoryCurrent,
             y_tot: totalCurrent,
-            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            x_val: intl.formatMessage({
+              id: `app.publication-genre.${el.key}`,
+            }),
             bsoDomain,
           });
         });
 
       const dataGraph = [
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          data: publisher,
+          color: yellowMedium125,
+          dataLabels: noOutline,
+        },
         {
           name: intl.formatMessage({
             id: 'app.type-hebergement.publisher-repository',
@@ -103,12 +126,6 @@ function useGetData(observationSnap, domain) {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
           data: repository,
           color: getCSSValue('--green-medium-125'),
-          dataLabels: noOutline,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          data: publisher,
-          color: yellowMedium125,
           dataLabels: noOutline,
         },
       ];

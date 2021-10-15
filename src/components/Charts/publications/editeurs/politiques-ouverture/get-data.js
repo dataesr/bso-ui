@@ -75,14 +75,14 @@ function useGetData(lastObservationSnap, domain) {
     });
     const dataGraph = [
       {
-        name: intl.formatMessage({ id: 'app.publishers.green-only' }),
-        data: greenOnly,
-        color: getCSSValue('--green-medium-125'),
-      },
-      {
         name: intl.formatMessage({ id: 'app.publishers.open-by-publisher' }),
         data: openByPublishers,
         color: yellowMedium125,
+      },
+      {
+        name: intl.formatMessage({ id: 'app.publishers.green-only' }),
+        data: greenOnly,
+        color: getCSSValue('--green-medium-125'),
       },
     ];
     // 2e graph (graphe à bulles)

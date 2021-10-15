@@ -236,8 +236,8 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft25}
                   anchorId='publishers.type-ouverture'
                 >
-                  <BSOChart id='publi.publishers.type-ouverture.chart-evolution-repartition' />
                   <BSOChart id='publi.publishers.type-ouverture.chart-repartition-modeles' />
+                  <BSOChart id='publi.publishers.type-ouverture.chart-evolution-repartition' />
                 </QuestionSection>
 
                 <QuestionSection

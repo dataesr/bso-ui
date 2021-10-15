@@ -193,6 +193,7 @@ export const chartOptions = {
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
+      options.chart.height = '800px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip',
       });
