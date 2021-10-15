@@ -93,10 +93,8 @@ export function formatNumberByLang(num, lang, options = {}) {
   );
 }
 
-export function getPercentageYAxis(showTotal = true, max = 100) {
-  return {
-    min: 0,
-    max,
+export function getPercentageYAxis(showTotal = true, max = null) {
+  const axis = {
     title: { text: '' },
     stackLabels: {
       enabled: true,
@@ -115,6 +113,10 @@ export function getPercentageYAxis(showTotal = true, max = 100) {
       },
     },
   };
+  if (max) {
+    axis.max = max;
+  }
+  return axis;
 }
 
 /**

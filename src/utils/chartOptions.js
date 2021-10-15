@@ -1685,7 +1685,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(false, 3);
+      options.yAxis = getPercentageYAxis(false, 5);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.publi.percentage-publi',
       });
