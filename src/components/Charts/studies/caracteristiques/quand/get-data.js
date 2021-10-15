@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
@@ -66,9 +66,11 @@ function useGetData(studyType, sponsorType = '*') {
         const yTotal = el.doc_count;
         return { x, yValue, y, yLabel, yTotal };
       });
-      const name = intl.formatMessage({
-        id: `app.${studyType.toLowerCase()}.${step}`,
-      });
+      const name = capitalize(
+        intl.formatMessage({
+          id: `app.${studyType.toLowerCase()}.${step}`,
+        }),
+      );
       const color = colors[step];
       return { name, data, color };
     });
@@ -117,9 +119,11 @@ function useGetData(studyType, sponsorType = '*') {
     const stepsRepartition = ['before_start', 'after_start'];
     const dataGraphRepartition = stepsRepartition.map((step) => ({
       data: data[step],
-      name: intl.formatMessage({
-        id: `app.${studyType.toLowerCase()}.${step}`,
-      }),
+      name: capitalize(
+        intl.formatMessage({
+          id: `app.${studyType.toLowerCase()}.${step}`,
+        }),
+      ),
       color: colors[step],
     }));
 
@@ -194,9 +198,11 @@ function useGetData(studyType, sponsorType = '*') {
       violinData.before_start.push([0, middleValue1, middleValue2]);
       violinData.after_start.unshift([0, middleValue1, middleValue2]);
       dataGraphDistribution.push({
-        name: intl.formatMessage({
-          id: `app.${studyType.toLowerCase()}.before_start`,
-        }),
+        name: capitalize(
+          intl.formatMessage({
+            id: `app.${studyType.toLowerCase()}.before_start`,
+          }),
+        ),
         color: colors.before_start,
         data: violinData.before_start,
         showInLegend: index === 0,

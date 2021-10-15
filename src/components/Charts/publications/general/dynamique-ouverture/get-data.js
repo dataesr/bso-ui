@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
   const intl = useIntl();
@@ -134,14 +134,16 @@ function useGetData(observationSnaps, domain = '') {
       dataGraph1.comments = null;
       const showInLegend = domain !== '';
       const currentName = domain !== ''
-        ? intl.formatMessage({ id: `app.publications.${domain}` })
-        : intl.formatMessage({ id: 'app.publications.global' });
+        ? capitalize(intl.formatMessage({ id: `app.publications.${domain}` }))
+        : capitalize(intl.formatMessage({ id: 'app.publications.global' }));
       dataGraph1.series.push({ data: serie1, showInLegend, name: currentName });
       if (domain !== '') {
         dataGraph1.series.push({
           data: serieGlobal,
           showInLegend,
-          name: intl.formatMessage({ id: 'app.publications.global' }),
+          name: capitalize(
+            intl.formatMessage({ id: 'app.publications.global' }),
+          ),
           pointPlacement: -0.2,
         });
       }

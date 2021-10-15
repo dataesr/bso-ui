@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -18,18 +18,17 @@ function useGetData(observationSnap, domain) {
     async (lastObservationSnap) => {
       const query = getFetchOptions('oaHostType', domain, lastObservationSnap);
       const res = await Axios.post(ES_API_URL, query, HEADERS);
-      const data = res.data.aggregations.by_publication_year.buckets;
+      const data = res.data.aggregations.by_publication_year.buckets.sort(
+        (a, b) => a.key - b.key,
+      );
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
-      // Tri pour avoir les années dans l'ordre d'affichage du graphe
-      data.sort((a, b) => a.key - b.key);
-
-      const categories = []; // Elements d'abscisse
-      const repository = []; // archive ouverte
-      const publisher = []; // éditeur
-      const publisherRepository = []; // les 2
-      const oa = []; // oa
-      const closed = []; // closed
+      const categories = [];
+      const repository = [];
+      const publisher = [];
+      const publisherRepository = [];
+      const oa = [];
+      const closed = [];
       const noOutline = {
         style: {
           textOutline: 'none',
@@ -98,21 +97,31 @@ function useGetData(observationSnap, domain) {
 
       const dataGraph = [
         {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.type-hebergement.publisher',
+            }),
+          ),
           data: publisher,
           color: yellowMedium125,
           dataLabels: noOutline,
         },
         {
-          name: intl.formatMessage({
-            id: 'app.type-hebergement.publisher-repository',
-          }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.type-hebergement.publisher-repository',
+            }),
+          ),
           data: publisherRepository,
           color: greenLight100,
           dataLabels: noOutline,
         },
         {
-          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.type-hebergement.repository',
+            }),
+          ),
           data: repository,
           color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,

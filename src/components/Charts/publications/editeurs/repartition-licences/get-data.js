@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
+  capitalize,
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
@@ -133,12 +134,14 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     });
     const dataGraphBar = [
       {
-        name: intl.formatMessage({ id: 'app.licenses.no license' }),
+        name: capitalize(intl.formatMessage({ id: 'app.licenses.no license' })),
         data: noLicence,
         color: getCSSValue('--g-400'),
       },
       {
-        name: intl.formatMessage({ id: 'app.licenses.open-license' }),
+        name: capitalize(
+          intl.formatMessage({ id: 'app.licenses.open-license' }),
+        ),
         data: openLicence,
         color: getCSSValue('--acces-ouvert'),
       },

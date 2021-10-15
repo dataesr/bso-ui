@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -98,21 +98,31 @@ function useGetData(observationSnap, domain) {
 
       const dataGraph = [
         {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.type-hebergement.publisher',
+            }),
+          ),
           data: publisher,
           color: yellowMedium125,
           dataLabels: noOutline,
         },
         {
-          name: intl.formatMessage({
-            id: 'app.type-hebergement.publisher-repository',
-          }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.type-hebergement.publisher-repository',
+            }),
+          ),
           data: publisherRepository,
           color: greenLight100,
           dataLabels: noOutline,
         },
         {
-          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.type-hebergement.repository',
+            }),
+          ),
           data: repository,
           color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,

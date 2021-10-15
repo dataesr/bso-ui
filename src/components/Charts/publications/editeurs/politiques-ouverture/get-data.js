@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
+  capitalize,
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
@@ -75,12 +76,16 @@ function useGetData(lastObservationSnap, domain) {
     });
     const dataGraph = [
       {
-        name: intl.formatMessage({ id: 'app.publishers.open-by-publisher' }),
+        name: capitalize(
+          intl.formatMessage({ id: 'app.publishers.open-by-publisher' }),
+        ),
         data: openByPublishers,
         color: yellowMedium125,
       },
       {
-        name: intl.formatMessage({ id: 'app.publishers.green-only' }),
+        name: capitalize(
+          intl.formatMessage({ id: 'app.publishers.green-only' }),
+        ),
         data: greenOnly,
         color: getCSSValue('--green-medium-125'),
       },

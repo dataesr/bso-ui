@@ -180,6 +180,7 @@ export function withtStudyType(id, studyType = 'Interventional') {
 export function withContext(id, domain, studyType) {
   return withtStudyType(withDomain(id, domain), studyType);
 }
+
 /**
  *
  * @param id
@@ -204,4 +205,14 @@ export function getSource(id) {
   }
   source += 'MESRI';
   return source;
+}
+
+/**
+ *
+ * @param str
+ * @returns {string}
+ * Capitalize the first letter of a word
+ */
+export function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
