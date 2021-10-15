@@ -43,7 +43,7 @@
   "app.caracteristiques.combien.chart-groupes-patients.500-999": "500 à 999",
   "app.caracteristiques.combien.chart-groupes-patients.5000-more": "5000 et plus",
   "app.commons.annuler": "Annuler",
-  "app.commons.contribute.title": "Outils, conseils… comment contribuer à la Science ouverte",
+  "app.commons.contribute.title": "Initiation, ressources… comment contribuer à la Science ouverte ?",
   "app.commons.discover": "Découvrez Ouvrir la science",
   "app.commons.explore-national": "Explorer aussi le Baromètre national de la science ouverte",
   "app.commons.fermer": "fermer",
@@ -904,5 +904,13 @@
   "url.sante": "/sante",
   "url.sante.essais": "/sante/essais-cliniques/general",
   "url.sante.etudes": "/sante/etudes-observationnelles/general",
-  "url.sante.publications.general": "/sante/publications/general"
+  "url.sante.publications.general": "/sante/publications/general",
+  "app.card.initiation.title": "Initiation",
+  "app.card.initiation.url": "/sante/outils",
+  "app.card.resources.title": "Ressources",
+  "app.card.resources.url": "/sante/tutoriels",
+  "app.card.national-politics.title": "Politique nationale",
+  "app.card.national-politics.url": "/sante/temoignages",
+  "app.card.footer.title": "Découvrir sur Ouvrir la Science",
+  "app.card.open-science.url": "https://www.ouvrirlascience.fr/"
 }

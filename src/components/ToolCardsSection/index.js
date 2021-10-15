@@ -9,13 +9,15 @@ import {
   Row,
 } from '@dataesr/react-dsfr';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import Icon from '../Icon';
 import LinkCard from '../LinkCard';
 
 export default function ToolCardsSection() {
+  const intl = useIntl();
+
   return (
     <Container fluid className='bg-blue'>
       <section className='py-48 px-20 px-md-64 max-996'>
@@ -27,8 +29,8 @@ export default function ToolCardsSection() {
           </Col>
           <Col n='12 md-4' className='mb-20'>
             <LinkCard
-              title='Les outils'
-              linkUrl='/sante/outils'
+              title={intl.formatMessage({ id: 'app.card.initiation.title' })}
+              linkUrl={intl.formatMessage({ id: 'app.card.initiation.url' })}
               icon={(
                 <Icon
                   name='icon-bsso-24'
@@ -40,8 +42,8 @@ export default function ToolCardsSection() {
           </Col>
           <Col n='12 md-4' className='mb-20'>
             <LinkCard
-              title='Tutoriels'
-              linkUrl='/sante/tutoriels'
+              title={intl.formatMessage({ id: 'app.card.resources.title' })}
+              linkUrl={intl.formatMessage({ id: 'app.card.resources.url' })}
               icon={(
                 <Icon
                   name='icon-bsso-26'
@@ -53,8 +55,12 @@ export default function ToolCardsSection() {
           </Col>
           <Col n='12 md-4' className='mb-20'>
             <LinkCard
-              title='Témoignages'
-              linkUrl='/sante/temoignages'
+              title={intl.formatMessage({
+                id: 'app.card.national-politics.title',
+              })}
+              linkUrl={intl.formatMessage({
+                id: 'app.card.national-politics.url',
+              })}
               icon={(
                 <Icon
                   name='icon-bsso-25'

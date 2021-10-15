@@ -6,6 +6,7 @@ import {
 } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 function LinkCard({ title, linkUrl, icon }) {
@@ -23,7 +24,7 @@ function LinkCard({ title, linkUrl, icon }) {
         >
           <div className='w-100 text-right pt-16'>
             <DSLink as={<Link to={linkUrl} />}>
-              Découvrir sur Ouvrir la Science
+              <FormattedMessage id='app.card.footer.title' />
             </DSLink>
           </div>
         </DSIcon>
