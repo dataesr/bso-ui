@@ -4,9 +4,9 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { getCSSValue, withContext } from '../../../../../utils/helpers';
 
-function useGetData(studyType, sponsorType = '*') {
+function useGetData(studyType, sponsorType = '*', id, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -48,22 +48,20 @@ function useGetData(studyType, sponsorType = '*') {
       (a, b) => a.key - b.key,
     );
 
-    // TODO refacto
     const categoriesGroupes = dataSortedByYearGroupes.map((el) => intl.formatMessage({
-      id: `app.caracteristiques.combien.chart-groupes-patients.${el.key}`,
+      id: `${id}.${el.key}`,
     }));
 
-    // TODO refacto
     const dataGraphGroupes = [
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-groupes-patients.legend`,
+          id: `${withContext(id, domain, studyType)}.legend`,
         }),
         color: getCSSValue('--patient-100'),
         data: dataSortedByYearGroupes.map((el) => ({
           y: el.doc_count,
           name: intl.formatMessage({
-            id: `app.caracteristiques.combien.chart-groupes-patients.${el.key}`,
+            id: `${id}.${el.key}`,
           }),
         })),
       },
@@ -81,9 +79,9 @@ function useGetData(studyType, sponsorType = '*') {
       queryRepartition,
       HEADERS,
     );
-    const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets.sort(
-      (a, b) => a.key - b.key,
-    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear);
 
     const categoriesRepartition = dataSortedByYearRepartition.map(
       (el) => el.key,
@@ -115,31 +113,29 @@ function useGetData(studyType, sponsorType = '*') {
       nonRandomized.push(nonRandomizedPoint);
     });
 
-    // TODO refacto
     const dataGraphRepartition = [
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-proportion-modes-repartition.na`,
+          id: `${withContext(id, domain, studyType)}.na`,
         }),
         data: na,
         color: getCSSValue('--g-400'),
       },
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-proportion-modes-repartition.non-randomized`,
+          id: `${withContext(id, domain, studyType)}.non-randomized`,
         }),
         data: nonRandomized,
         color: getCSSValue('--patient-125'),
       },
       {
         name: intl.formatMessage({
-          id: `app.health-${studyType.toLowerCase()}.caracteristiques.combien.chart-proportion-modes-repartition.randomized`,
+          id: `${withContext(id, domain, studyType)}.randomized`,
         }),
         data: randomized,
         color: getCSSValue('--patient-100'),
       },
     ];
-
     return {
       sponsorTypes,
       categoriesGroupes,
