@@ -144,7 +144,6 @@ export const chartOptions = {
           marker: {
             enabled: false,
           },
-          // pointStart: xi[0]
         },
         scatter: {
           lineWidth: 2,
@@ -175,13 +174,13 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         series: {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -206,6 +205,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         series: {
           stacking: 'normal',
@@ -380,7 +380,6 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -587,6 +586,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -596,43 +596,8 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
-          },
-        },
-      };
-      options.series = data;
-
-      return options;
-    },
-  },
-  'publi.general.voies-ouverture.chart-evolution-taux': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
-
-      options.chart.type = 'area';
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.voies-ouverture.chart-evolution-taux.tooltip',
-      });
-      options.xAxis = {
-        categories,
-        tickmarkPlacement: 'on',
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
-      };
-      options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
-      });
-      options.plotOptions = {
-        area: {
-          stacking: 'normal',
-          lineColor: '#fff',
-          lineWidth: 3,
-          marker: {
-            lineWidth: 1,
-            lineColor: '#fff',
           },
         },
       };
@@ -656,7 +621,7 @@ export const chartOptions = {
           levels: [
             {
               level: 1,
-              layoutAlgorithm: 'sliceAndDice',
+              layoutAlgorithm: 'squarified',
               dataLabels: {
                 enabled: true,
                 format: '<b>{point.name}</b><br>{point.percentage:.0f} %',
@@ -668,6 +633,14 @@ export const chartOptions = {
                 },
               },
             },
+            {
+              level: 2,
+              layoutAlgorithm: 'stripes',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.0f} %',
+              },
+            },
           ],
           data,
         },
@@ -677,6 +650,42 @@ export const chartOptions = {
     },
   },
   'publi.general.genres-ouverture.chart-repartition-genres': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
+      });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-genre' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+
+      return options;
+    },
+  },
+  'publi.general.genres-ouverture.chart-repartition-genres-treemap': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
       options.tooltip.pointFormat = intl.formatMessage({
@@ -711,6 +720,42 @@ export const chartOptions = {
     },
   },
   'publi.general.langues-ouverture.chart-repartition-publications': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions(id, intl);
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
+      });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-lang' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+
+      return options;
+    },
+  },
+  'publi.general.langues-ouverture.chart-repartition-publications-treemap': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
       options.tooltip.pointFormat = intl.formatMessage({
@@ -765,7 +810,6 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },
@@ -916,7 +960,6 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },
@@ -1224,7 +1267,6 @@ export const chartOptions = {
       };
       const { data, name } = graph;
       options.chart.type = 'column';
-      // options.legend = { width: '99%', align: 'right' };
       options.xAxis = {
         type: 'category',
         title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
@@ -1313,6 +1355,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-licence',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         series: {
           stacking: 'normal',
@@ -1322,7 +1365,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -1342,6 +1384,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-apc',
       });
+      options.legend.reversed = true;
       options.chart.type = 'column';
       options.xAxis = {
         categories,
@@ -1352,7 +1395,6 @@ export const chartOptions = {
         stackLabels: {
           enabled: true,
           formatter() {
-            // eslint-disable-next-line
             return `${cleanNumber(this.total)} €`;
           },
           style: {
@@ -1361,7 +1403,6 @@ export const chartOptions = {
         },
         labels: {
           formatter() {
-            // eslint-disable-next-line
             return this.axis.defaultLabelFormatter.call(this).concat(' €');
           },
         },
@@ -1376,7 +1417,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return cleanNumber(this.y).concat(' €');
             },
           },
@@ -1395,8 +1435,8 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-apc',
       });
-      options.chart.type = 'column';
-      options.chart.type = 'areaspline'; // 'column' dans la maquette
+      options.legend.reversed = true;
+      options.chart.type = 'areaspline';
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publi.tarif-apc' }) },
@@ -1605,6 +1645,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa',
       });
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -1617,7 +1658,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -1638,7 +1678,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(1).concat(' %');
             },
           },
@@ -1714,7 +1753,6 @@ export const chartOptions = {
           stacking: false,
           dataLabels: {
             enabled: false,
-            // eslint-disable-next-line
           },
         },
         column: {
@@ -1728,6 +1766,7 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -1794,7 +1833,6 @@ export const chartOptions = {
         ];
 
         const nodes = [];
-
         // TODO refacto
         allNodes.forEach((node) => {
           nodes.push({
@@ -1851,6 +1889,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
@@ -1873,6 +1912,7 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesEvolution || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
       };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
@@ -2032,11 +2072,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraphGroupes || [];
-      options.plotOptions = {
-        series: {
-          pointWidth: 20,
-        },
-      };
       return options;
     },
   },
@@ -2046,6 +2081,7 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
       };
       options.yAxis.stackLabels = {
         enabled: true,
@@ -2067,6 +2103,9 @@ export const chartOptions = {
       const options = getGraphOptions(id, intl, studyType);
       options.chart.type = 'column';
       options.yAxis = getPercentageYAxis(false);
+      options.xAxis.title = {
+        text: intl.formatMessage({ id: 'app.study-start-year' }),
+      };
       options.yAxis.max = 100;
       options.legend.reversed = true;
       options.plotOptions = {
@@ -2078,7 +2117,6 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              // eslint-disable-next-line
               return this.y.toFixed(0).concat(' %');
             },
           },
@@ -2131,7 +2169,6 @@ export const chartOptions = {
   'resultats.plan-partage.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -2151,6 +2188,7 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -2161,8 +2199,8 @@ export const chartOptions = {
           },
         },
       };
+      options.legend.reversed = true;
       options.series = data?.series || [];
-
       return options;
     },
   },
@@ -2265,6 +2303,7 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -2302,6 +2341,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
@@ -2332,15 +2372,12 @@ export const chartOptions = {
           },
         },
       };
+      options.subtitle = { text: name };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.labels.enabled = false;
       options.xAxis = {
         type: 'category',
-        title: {
-          text: `<b>${name}</b>`,
-          align: 'left',
-          useHTML: true,
-        },
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: graph?.categories,
         lineWidth: 0,
         tickWidth: 0,
@@ -2383,6 +2420,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
+        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,

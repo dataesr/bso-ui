@@ -1,8 +1,8 @@
-import '../../../graph.scss';
-
+import { Toggle } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
+import treemapModule from 'highcharts/modules/treemap';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
@@ -13,78 +13,71 @@ import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
+treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [chartComments, setChartComments] = useState('');
-  const [affiliation, setAffiliation] = useState('*');
-  const { lastObservationSnap, observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(
-    observationSnaps,
-    lastObservationSnap,
-    affiliation,
-    domain,
-  );
-  const { dataGraph1 } = data;
   const idWithDomain = withDomain(id, domain);
-
-  useEffect(() => {
-    setChartComments(customComments(dataGraph1, idWithDomain, intl));
-  }, [dataGraph1, idWithDomain, intl]);
+  const [isOa, setIsOa] = useState(false);
+  const [chartComments, setChartComments] = useState('');
+  const { lastObservationSnap } = useGlobals();
+  const {
+    allData: { dataGraph },
+    isLoading,
+    isError,
+  } = useGetData(lastObservationSnap || '2020', isOa, domain);
 
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
-    dataGraph1,
+    dataGraph,
   );
+
+  useEffect(() => {
+    if (!isOa && dataGraph && dataGraph.length > 0) {
+      setChartComments(customComments(dataGraph, idWithDomain, intl));
+    }
+  }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
 
   return (
     <WrapperChart
-      isLoading={isLoading || !dataGraph1}
-      isError={isError}
       id={id}
       domain={domain}
       chartRef={chartRef}
-      graphFooter={graphFooter}
       graphComments={false}
+      isLoading={isLoading || !dataGraph}
+      isError={isError}
     >
-      <SimpleSelect
-        label={intl.formatMessage({ id: 'app.affiliations-filter-label' })}
-        onChange={(e) => setAffiliation(e.target.value)}
-        options={data?.affiliations || []}
-        selected={affiliation}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-affiliations' })}
+      <Toggle
+        checked={isOa}
+        onChange={() => setIsOa(!isOa)}
+        label={intl.formatMessage({ id: 'app.details' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
+        id={id}
       />
-      {graphComments && <GraphComments comments={chartComments} />}
+      <GraphComments comments={chartComments} />
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
-  graphComments: true,
-  id: 'publi.affiliations.dynamique-ouverture.chart-taux-ouverture',
   domain: '',
+  id: 'publi.general.langues-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  id: PropTypes.oneOf(graphIds),
 };
+
 export default Chart;

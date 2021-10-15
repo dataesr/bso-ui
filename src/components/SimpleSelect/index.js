@@ -25,8 +25,8 @@ const SimpleSelect = ({
         >
           <option value={firstValue}>{firstLabel}</option>
           {options.map((el) => (
-            <option key={uuidv4()} value={el}>
-              {el}
+            <option key={uuidv4()} value={el?.value || el}>
+              {el?.label || el}
             </option>
           ))}
         </select>

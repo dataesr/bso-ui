@@ -1,126 +1,163 @@
 import Axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, isOa, domain) {
+function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const yellowMedium125 = getCSSValue('--yellow-medium-125');
+  const greenLight100 = getCSSValue('--green-light-100');
 
-  async function getDataForLastObservationSnap(lastObservationSnap) {
-    const publicationDate = Number(lastObservationSnap.slice(0, 4)) - 1;
-    const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
-    const query = getFetchOptions(
-      'openingType',
-      domain,
-      lastObservationSnap,
-      field,
-      'genre.keyword',
-    );
-    const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const data = res.data.aggregations.by_is_oa.buckets;
-    const noOutline = {
-      style: {
-        textOutline: 'none',
-      },
-    };
-    const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
+  const getDataForLastObservationSnap = useCallback(
+    async (lastObservationSnap) => {
+      const query = getFetchOptions('oaHostType', domain, lastObservationSnap, 'genre.keyword');
+      const res = await Axios.post(ES_API_URL, query, HEADERS);
+      const data = res.data.aggregations.by_publication_year.buckets;
+      const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
-    let dataGraph = [];
-    const totalPublications = data.reduce((a, b) => a + b.doc_count, 0);
-    if (!isOa) {
-      dataGraph = [
+      // Tri pour avoir les années dans l'ordre d'affichage du graphe
+      data.sort((a, b) => a.key - b.key);
+      const categories = []; // Elements d'abscisse
+      const repository = []; // archive ouverte
+      const publisher = []; // éditeur
+      const publisherRepository = []; // les 2
+      const oa = []; // oa
+      const closed = []; // closed
+      const noOutline = {
+        style: {
+          textOutline: 'none',
+        },
+      };
+      data
+        .filter((el) => el.doc_count >= 100)
+        .forEach((el) => {
+          categories.push(intl.formatMessage({ id: `app.publication-genre.${el.key}` }));
+
+          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+            ?.doc_count || 0;
+          const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
+            ?.doc_count || 0;
+          const publisherCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
+            ?.doc_count || 0;
+          const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
+            (item) => item.key === 'publisher;repository',
+          )?.doc_count || 0;
+          const totalCurrent = repositoryCurrent
+            + publisherCurrent
+            + publisherRepositoryCurrent
+            + closedCurrent;
+          const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
+          closed.push({
+            y: (100 * closedCurrent) / totalCurrent,
+            y_abs: closedCurrent,
+            y_tot: totalCurrent,
+            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            bsoDomain,
+          });
+          oa.push({
+            y: (100 * oaCurrent) / totalCurrent,
+            y_abs: oaCurrent,
+            y_tot: totalCurrent,
+            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            bsoDomain,
+          });
+          repository.push({
+            y: (100 * repositoryCurrent) / totalCurrent,
+            y_abs: repositoryCurrent,
+            y_tot: totalCurrent,
+            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            bsoDomain,
+          });
+          publisher.push({
+            y: (100 * publisherCurrent) / totalCurrent,
+            y_abs: publisherCurrent,
+            y_tot: totalCurrent,
+            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            bsoDomain,
+          });
+          publisherRepository.push({
+            y: (100 * publisherRepositoryCurrent) / totalCurrent,
+            y_abs: publisherRepositoryCurrent,
+            y_tot: totalCurrent,
+            x_val: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+            bsoDomain,
+          });
+        });
+
+      const dataGraph = [
         {
-          id: 'closed',
-          name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          color: getCSSValue('--blue-soft-175'),
+          name: intl.formatMessage({
+            id: 'app.type-hebergement.publisher-repository',
+          }),
+          data: publisherRepository,
+          color: greenLight100,
           dataLabels: noOutline,
         },
         {
-          id: 'open',
-          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
-          color: getCSSValue('--acces-ouvert'),
+          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
+          data: repository,
+          color: getCSSValue('--green-medium-125'),
+          dataLabels: noOutline,
+        },
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          data: publisher,
+          color: yellowMedium125,
           dataLabels: noOutline,
         },
       ];
 
-      // Ajout des "fermés"
-      data
-        .find((el) => el.key === 0)
-        .by_publication_split.buckets.forEach((el) => {
-          dataGraph.push({
-            name: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
-            oaType: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-            key: el.key,
-            parent: 'closed',
-            value: el.doc_count,
-            total: totalPublications,
-            publicationDate,
-            bsoDomain,
-            percentage: (100 * el.doc_count) / totalPublications,
-          });
-        });
-
-      // Ajout des "ouverts"
-      data
-        .find((el) => el.key === 1)
-        .by_publication_split.buckets.forEach((el) => {
-          dataGraph.push({
-            name: intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
-            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
-            key: el.key,
-            parent: 'open',
-            value: el.doc_count,
-            total: totalPublications,
-            publicationDate,
-            percentage: (100 * el.doc_count) / totalPublications,
-            bsoDomain,
-            dataLabels: noOutline,
-          });
-        });
-    } else {
-      data.forEach((el) => {
-        let color = getCSSValue('--blue-soft-175');
-        if (el.key === 'repository') {
-          color = getCSSValue('--green-medium-125');
-        }
-        if (el.key === 'publisher') {
-          color = getCSSValue('--yellow-medium-125');
-        }
-        if (el.key === 'publisher;repository') {
-          color = getCSSValue('--green-light-100');
-        }
-        dataGraph.push({
-          id: el.key,
-          name: intl.formatMessage({ id: `app.type-hebergement.${el.key}` }),
-          oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
-          color,
+      const dataGraph3 = [
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
+          value: publisher[publisher.length - 1]?.y_abs,
+          percentage: publisher[publisher.length - 1]?.y,
+          publicationDate: categories[categories.length - 1],
+          color: yellowMedium125,
+          dataLabels: noOutline,
           bsoDomain,
-        });
-        el.by_publication_split.buckets.forEach((item) => {
-          dataGraph.push({
-            name: intl.formatMessage({
-              id: `app.publication-genre.${item.key}`,
-            }),
-            oaType: intl.formatMessage({ id: 'app.type-hebergement.open' }),
-            key: item.key,
-            parent: el.key,
-            value: item.doc_count,
-            total: totalPublications,
-            publicationDate,
-            bsoDomain,
-            percentage: (100 * el.doc_count) / totalPublications,
-          });
-        });
-      });
-    }
-    return { dataGraph };
-  }
+        },
+        {
+          name: intl.formatMessage({
+            id: 'app.type-hebergement.publisher-repository',
+          }),
+          value: publisherRepository[publisherRepository.length - 1]?.y_abs,
+          percentage: publisherRepository[publisherRepository.length - 1]?.y,
+          publicationDate: categories[categories.length - 1],
+          color: greenLight100,
+          dataLabels: noOutline,
+          bsoDomain,
+        },
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
+          value: repository[repository.length - 1]?.y_abs,
+          percentage: repository[repository.length - 1]?.y,
+          publicationDate: categories[categories.length - 1],
+          color: getCSSValue('--green-medium-125'),
+          dataLabels: noOutline,
+          bsoDomain,
+        },
+        {
+          name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
+          value: closed[closed.length - 1]?.y_abs,
+          percentage: closed[closed.length - 1]?.y,
+          publicationDate: categories[categories.length - 1],
+          color: getCSSValue('--blue-soft-175'),
+          dataLabels: noOutline,
+          bsoDomain,
+        },
+      ];
+
+      return { categories, dataGraph, dataGraph3 };
+    },
+    [domain, greenLight100, intl, yellowMedium125],
+  );
 
   useEffect(() => {
     async function getData() {
@@ -137,7 +174,7 @@ function useGetData(observationSnap, isOa, domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap, isOa]);
+  }, [observationSnap]);
 
   return { allData, isLoading, isError };
 }

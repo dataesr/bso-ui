@@ -119,9 +119,8 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft25}
                   anchorId='general.voies-ouverture'
                 >
-                  <BSOChart id='publi.general.voies-ouverture.chart-repartition-taux' />
-                  <BSOChart id='publi.general.voies-ouverture.chart-evolution-taux' />
                   <BSOChart id='publi.general.voies-ouverture.chart-repartition-publications' />
+                  <BSOChart id='publi.general.voies-ouverture.chart-repartition-taux' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.genres-ouverture'

@@ -118,15 +118,11 @@ function SantePublications() {
                   anchorId='general.voies-ouverture'
                 >
                   <BSOChart
-                    id='publi.general.voies-ouverture.chart-repartition-taux'
-                    domain='health'
-                  />
-                  <BSOChart
-                    id='publi.general.voies-ouverture.chart-evolution-taux'
-                    domain='health'
-                  />
-                  <BSOChart
                     id='publi.general.voies-ouverture.chart-repartition-publications'
+                    domain='health'
+                  />
+                  <BSOChart
+                    id='publi.general.voies-ouverture.chart-repartition-taux'
                     domain='health'
                   />
                 </QuestionSection>

@@ -121,8 +121,19 @@ function useGetData(observationSnap, domain) {
 
       const dataGraph3 = [
         {
+          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
+          id: 'oa',
+          value: oa[oa.length - 1]?.y_abs,
+          percentage: oa[oa.length - 1]?.y,
+          publicationDate: categories[categories.length - 1],
+          color: yellowMedium125,
+          dataLabels: noOutline,
+          bsoDomain,
+        },
+        {
           name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
           value: publisher[publisher.length - 1]?.y_abs,
+          parent: 'oa',
           percentage: publisher[publisher.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
           color: yellowMedium125,
@@ -134,6 +145,7 @@ function useGetData(observationSnap, domain) {
             id: 'app.type-hebergement.publisher-repository',
           }),
           value: publisherRepository[publisherRepository.length - 1]?.y_abs,
+          parent: 'oa',
           percentage: publisherRepository[publisherRepository.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
           color: greenLight100,
@@ -142,6 +154,7 @@ function useGetData(observationSnap, domain) {
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
+          parent: 'oa',
           value: repository[repository.length - 1]?.y_abs,
           percentage: repository[repository.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
@@ -151,6 +164,7 @@ function useGetData(observationSnap, domain) {
         },
         {
           name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
+          id: 'closed',
           value: closed[closed.length - 1]?.y_abs,
           percentage: closed[closed.length - 1]?.y,
           publicationDate: categories[categories.length - 1],

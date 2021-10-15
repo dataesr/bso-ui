@@ -1,6 +1,5 @@
 import '../../../graph.scss';
 
-import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -9,9 +8,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import {
   domains,
@@ -30,21 +27,9 @@ HCExportingData(Highcharts);
 const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [sponsorTypes, setSponsorTypes] = useState([]);
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
   const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
-  const query = getFetchOptions('sponsorsTypesList', '', studyType);
-  useEffect(() => {
-    Axios.post(ES_STUDIES_API_URL, query, HEADERS).then((response) => {
-      setSponsorTypes(
-        response.data.aggregations.by_sponsor_type.buckets.map(
-          (item) => item.key,
-        ),
-      );
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const idWithDomainAndStudyType = withtStudyType(
     withDomain(id, domain),
     studyType,
@@ -75,7 +60,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
         onChange={(e) => setSponsorType(e.target.value)}
-        options={sponsorTypes}
+        options={allData.sponsorTypes}
         selected={sponsorType}
         firstValue='*'
         firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}

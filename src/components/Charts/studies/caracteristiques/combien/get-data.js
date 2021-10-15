@@ -13,12 +13,32 @@ function useGetData(studyType, sponsorType = '*') {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
+    const querySponsorTypes = getFetchOptions(
+      'sponsorsTypesList',
+      '',
+      studyType,
+    );
+
+    const responseSponsorTypes = await Axios.post(
+      ES_STUDIES_API_URL,
+      querySponsorTypes,
+      HEADERS,
+    );
+    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+      (item) => item.key,
+    );
+    sponsorTypes = sponsorTypes.map((st) => ({
+      value: st,
+      label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+    }));
+
     const queryGroupes = getFetchOptions(
       'studiesCaracteristiquesCombienChartGroupesPatients',
       '',
       studyType,
       sponsorType,
     );
+    const currentYear = new Date().getFullYear();
     const resGroupes = await Axios.post(
       ES_STUDIES_API_URL,
       queryGroupes,
@@ -63,7 +83,7 @@ function useGetData(studyType, sponsorType = '*') {
     );
     const dataSortedByYearRepartition = resRepartition.data.aggregations.by_year.buckets.sort(
       (a, b) => a.key - b.key,
-    );
+    ).filter((y) => y.key >= 2010 && y.key <= currentYear);
 
     const categoriesRepartition = dataSortedByYearRepartition.map(
       (el) => el.key,
@@ -121,6 +141,7 @@ function useGetData(studyType, sponsorType = '*') {
     ];
 
     return {
+      sponsorTypes,
       categoriesGroupes,
       dataGraphGroupes,
       categoriesRepartition,
