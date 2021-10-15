@@ -59,6 +59,7 @@ export const mobileButtonLabel = {
 };
 
 export const documentTitles = {
+  '/': 'app.header.title',
   '/a-propos/foire-aux-questions': 'app.faq',
   '/about/questions': 'app.faq',
   '/a-propos/notes-flash': 'app.header.nav.a-propos-notes-flash',

@@ -10,7 +10,6 @@ function PageTracker({ children }) {
   const location = useLocation();
   const intl = useIntl();
   const { trackPageView } = useMatomo();
-
   const getDocumentTitle = useCallback(
     () => intl.formatMessage({
       id: `${documentTitles[location.pathname]}`,
