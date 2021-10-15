@@ -20,6 +20,10 @@ html {
       display: block;
     }
   }
+
+  .no-content-after::after {
+    content: '';
+  }
 }
 
 /**

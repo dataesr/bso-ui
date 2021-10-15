@@ -10,7 +10,6 @@ import {
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Link } from 'react-router-dom';
 
 import Icon from '../Icon';
 import LinkCard from '../LinkCard';
@@ -85,7 +84,13 @@ export default function ToolCardsSection() {
                   <FormattedMessage id='app.commons.more-on-reference' />
                 </p>
                 <DSIcon name='ri-link' size='2x' as='div'>
-                  <DSLink className='w-100 text-right' as={<Link to='/' />} />
+                  <DSLink
+                    className='w-100 text-right no-content-after'
+                    href={intl.formatMessage({
+                      id: 'app.card.open-science.url',
+                    })}
+                    target='_blank'
+                  />
                 </DSIcon>
               </CardDescription>
             </Card>
