@@ -64,7 +64,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => setPublisher(e.target.value)}
-        options={publishers}
+        options={publishers || []}
         selected={publisher}
         firstValue='*'
         firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}

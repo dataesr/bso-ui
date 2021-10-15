@@ -373,7 +373,7 @@
   "app.national-publi.publishers.couts-publication.chart-distribution-par-annee.comments": "comments",
   "app.national-publi.publishers.couts-publication.chart-distribution-par-annee.source": "source",
   "app.national-publi.publishers.couts-publication.chart-distribution-par-annee.title": "Distribution des tarifs unitaires des frais de publication par article, par année de publication",
-  "app.national-publi.publishers.couts-publication.chart-distribution-par-annee.tooltip": "",
+  "app.national-publi.publishers.couts-publication.chart-distribution-par-annee.tooltip": "tooltip",
   "app.national-publi.publishers.couts-publication.chart-distribution.comments": "comments",
   "app.national-publi.publishers.couts-publication.chart-distribution.legend": "legend",
   "app.national-publi.publishers.couts-publication.chart-distribution.source": "source",

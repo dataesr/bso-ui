@@ -60,7 +60,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
         onChange={(e) => setSponsorType(e.target.value)}
-        options={allData.sponsorTypes}
+        options={allData?.sponsorTypes || []}
         selected={sponsorType}
         firstValue='*'
         firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}

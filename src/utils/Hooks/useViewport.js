@@ -4,31 +4,29 @@ const mediumBreakpoint = 767;
 const largeBreakpoint = 992;
 
 const useViewport = () => {
-  // TODO refacto
+  const { innerWidth } = window;
   const [size, setSize] = useState({
-    mobile: window ? window.innerWidth <= mediumBreakpoint : null,
+    mobile: window ? innerWidth <= mediumBreakpoint : null,
     tablet: window
-      ? window.innerWidth <= largeBreakpoint
-        && window.innerWidth > mediumBreakpoint
+      ? innerWidth <= largeBreakpoint && innerWidth > mediumBreakpoint
       : null,
-    desktop: window ? window.innerWidth > largeBreakpoint : null,
+    desktop: window ? innerWidth > largeBreakpoint : null,
   });
 
   useEffect(() => {
     const handleWindowResize = () => {
       setSize({
-        mobile: window ? window.innerWidth <= mediumBreakpoint : null,
+        mobile: window ? innerWidth <= mediumBreakpoint : null,
         tablet: window
-          ? window.innerWidth <= largeBreakpoint
-            && window.innerWidth > mediumBreakpoint
+          ? innerWidth <= largeBreakpoint && innerWidth > mediumBreakpoint
           : null,
-        desktop: window ? window.innerWidth > largeBreakpoint : null,
+        desktop: window ? innerWidth > largeBreakpoint : null,
       });
     };
 
     window.addEventListener('resize', handleWindowResize);
     return () => window.removeEventListener('resize', handleWindowResize);
-  }, []);
+  }, [innerWidth]);
 
   return size;
 };

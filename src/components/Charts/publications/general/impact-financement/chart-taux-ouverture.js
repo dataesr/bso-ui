@@ -60,7 +60,7 @@ const Chart = ({ id, domain }) => {
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.agencies-filter-label' })}
         onChange={(e) => setAgency(e.target.value)}
-        options={agencies}
+        options={agencies || []}
         selected={agency}
         firstValue='*'
         firstLabel={intl.formatMessage({ id: 'app.all-agencies' })}

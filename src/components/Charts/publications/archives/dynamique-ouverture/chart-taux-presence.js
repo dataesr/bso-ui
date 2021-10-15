@@ -78,7 +78,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
         onChange={(e) => setArchive(e.target.value)}
-        options={archives}
+        options={archives || []}
         selected={archive}
         firstValue='*'
         firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}

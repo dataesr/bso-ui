@@ -42,7 +42,9 @@ SimpleSelect.defaultProps = {
 SimpleSelect.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({ label: PropTypes.string, value: PropTypes.string }),
+  ).isRequired,
   selected: PropTypes.string,
   firstValue: PropTypes.string.isRequired,
   firstLabel: PropTypes.string.isRequired,

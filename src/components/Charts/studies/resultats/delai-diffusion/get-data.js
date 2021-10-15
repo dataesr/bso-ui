@@ -85,7 +85,6 @@ function useGetData(studyType, sponsorType = '*') {
     data.before_completion.push(0);
     data.after_completion.push(lastValue);
     const steps2 = ['before_completion', 'after_completion'];
-    // TODO refacto
     const dataGraph2 = steps2.map((step) => ({
       data: data[step],
       name: intl.formatMessage({
