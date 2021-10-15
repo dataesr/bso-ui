@@ -72,7 +72,7 @@ function FAQ() {
         icons={renderIcons}
       />
       <Container>
-        <section className='content'>
+        <section className='content py-48'>
           <Row>
             <Col className='fs-16-28'>
               <Accordion>{renderItems()}</Accordion>
