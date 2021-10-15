@@ -146,6 +146,7 @@ export default function Footer() {
           </FooterCopy>
         </FooterBottom>
       </DSFooter>
+      <div className='overlay z-3600' />
     </WrapperDisplay>
   );
 }

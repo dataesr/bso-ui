@@ -80,11 +80,17 @@ function Glossary({ entries }) {
   }, [glossaryEntries]);
 
   useEffect(() => {
-    document.body.style.overflow = openPanel ? 'hidden' : null;
+    if (openPanel) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('overlay-on');
+    } else {
+      document.body.style.overflow = openPanel ? 'hidden' : '';
+      document.documentElement.classList.remove('overlay-on');
+    }
   }, [openPanel]);
 
   return (
-    <section className={classNames('bso-glossary z-3000', { openPanel })}>
+    <section className={classNames('bso-glossary z-4000', { openPanel })}>
       <Container>
         <DSIcon name='ri-information-fill' size='1x' iconPosition='right'>
           <Button
