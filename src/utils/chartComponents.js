@@ -251,8 +251,7 @@ const chartComponents = {
     ChartPlanPartageRepartitionStudies,
   'resultats.delai-diffusion.chart-repartition':
     ChartDelaiDiffusionRepartitionStudies,
-  'studies.resultats.delai-diffusion.chart-distribution':
-    ChartDistributionStudies,
+  'resultats.delai-diffusion.chart-distribution': ChartDistributionStudies,
   'resultats.publication.chart-repartition': ChartResultatsRepartitionStudies,
   'resultats.publication.chart-repartition-icmje':
     ChartResultatsRepartitionIcmjeStudies,

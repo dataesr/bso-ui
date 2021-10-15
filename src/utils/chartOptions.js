@@ -541,10 +541,8 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
-      // TODO refacto
       options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.dynamique-ouverture.chart-evolution-proportion.tooltip',
-        defaultMessage: 'test',
+        id: `${id}.tooltip`,
       });
       options.plotOptions = {
         series: { pointStart: 2013 },
@@ -574,7 +572,7 @@ export const chartOptions = {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
       options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.voies-ouverture.chart-repartition-taux.tooltip',
+        id: `${id}.tooltip`,
       });
       options.chart.type = 'column';
       options.xAxis = {
@@ -610,7 +608,7 @@ export const chartOptions = {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
       options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.voies-ouverture.chart-repartition-publications.tooltip',
+        id: `${id}.tooltip`,
       });
       options.legend = {};
       options.series = [

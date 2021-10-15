@@ -36,7 +36,10 @@ const Chart = ({ id, domain }) => {
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setAgencies(
-        response.data.aggregations.by_agency.buckets.map((item) => item.key),
+        response.data.aggregations.by_agency.buckets.map((item) => ({
+          value: item.key,
+          label: item.key,
+        })),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

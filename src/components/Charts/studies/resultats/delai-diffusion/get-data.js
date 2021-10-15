@@ -4,9 +4,9 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { getCSSValue, withContext } from '../../../../../utils/helpers';
 
-function useGetData(studyType, sponsorType = '*') {
+function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -169,7 +169,7 @@ function useGetData(studyType, sponsorType = '*') {
       const middleValue2 = b || y1b;
       violinData.before_completion.push([0, middleValue1, middleValue2]);
       violinData.after_completion.unshift([0, middleValue1, middleValue2]);
-      // TODO refacto
+
       dataGraph3.push({
         name: intl.formatMessage({
           id: `app.${studyType.toLowerCase()}.before_completion`,
@@ -179,7 +179,7 @@ function useGetData(studyType, sponsorType = '*') {
         showInLegend: index === 0,
         enableMouseTracking: false,
       });
-      // TODO refacto
+
       dataGraph3.push({
         name: intl.formatMessage({
           id: `app.${studyType.toLowerCase()}.after_completion`,
@@ -207,7 +207,7 @@ function useGetData(studyType, sponsorType = '*') {
       lineWidth: 2,
       data: median,
       name: intl.formatMessage({
-        id: `app.health-${studyType.toLowerCase()}.caracteristiques.quand.chart-evolution-temporalites.median`,
+        id: `${withContext(id, domain, studyType)}`,
       }),
       color: '#000',
       marker: {

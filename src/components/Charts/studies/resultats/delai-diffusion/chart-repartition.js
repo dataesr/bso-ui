@@ -29,7 +29,11 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
   const intl = useIntl();
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
-  const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
+  const { allData, isLoading, isError } = useGetData(
+    studyType,
+    sponsorType,
+    id,
+  );
   const idWithDomainAndStudyType = withtStudyType(
     withDomain(id, domain),
     studyType,
