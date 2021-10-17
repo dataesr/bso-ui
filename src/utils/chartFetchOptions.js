@@ -382,6 +382,11 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 [`oa_details.${observationSnap}.oa_host_type`]: 'publisher',
               },
             },
+            {
+              term: {
+                'genre.keyword': 'journal-article',
+              },
+            },
           ],
         },
       },
@@ -1130,9 +1135,14 @@ export default function getFetchOptions(key, domain, ...parameters) {
             },
           },
         },
-        by_oa_colors_with_priority_to_publisher: {
-          terms: {
-            field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
+        by_journal_article: {
+          filter: { term: { 'genre.keyword': 'journal-article' } },
+          aggs: {
+            by_oa_colors_with_priority_to_publisher: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
           },
         },
         by_repositories: {

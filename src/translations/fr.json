@@ -621,7 +621,7 @@
   "app.national-home.numbers": "Les chiffres-clés",
   "app.national-publi.data.costs": "Dépenses estimées pour la communauté scientifique internationale, en APC pour la production avec au moins un affiliation française",
   "app.national-publi.data.french-lang": "des publications ouvertes sont en langue française",
-  "app.national-publi.data.publi-diamond": "des publications ouvertes sont en “diamond DOAJ”",
+  "app.national-publi.data.publi-diamond": "des articles ouverts et publiés en {publicationYear} sont en “diamond DOAJ”",
   "app.national-publi.data.publications": "des {totalPublications} publications françaises publiées en {publicationYear} sont ouvertes",
   "app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.title": "Evolution du taux d'ouverture des publications par discipline entre date d'observations",
   "app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.tooltip": "tooltip",

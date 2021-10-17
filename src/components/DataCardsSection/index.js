@@ -91,7 +91,7 @@ export default function DataCardSection({ lang, domain }) {
         ).toFixed(1),
         get: diamondPublicationRate,
         set: (data) => setDiamonPublicationRate(data),
-        pathToValue: 'by_oa_colors_with_priority_to_publisher.buckets',
+        pathToValue: 'by_journal_article.by_oa_colors_with_priority_to_publisher.buckets',
         isPercentage: true,
         color: 'aqua',
         intlKey: 'app.national-publi.data.publi-diamond',
