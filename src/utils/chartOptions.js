@@ -1410,6 +1410,7 @@ export const chartOptions = {
       options.plotOptions = {
         column: {
           stacking: 'normal',
+          minPointLength: 5,
           dataLabels: {
             style: {
               textOutline: 'none',
