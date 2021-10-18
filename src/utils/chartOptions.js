@@ -1245,7 +1245,7 @@ export const chartOptions = {
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
-      options.credits = { enabled: false };
+      options.credits.enabled = false;
       options.plotOptions = {
         column: {
           dataLabels: {
@@ -1268,17 +1268,18 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         type: 'category',
-        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
         categories: data.map((el) => el.name),
         labels: {
+          rotation: 0,
           style: {
             color: getCSSValue('--g-800'),
-            fontSize: '14px',
+          },
+          formatter() {
+            return this.isFirst || this.isLast ? this.value : null;
           },
         },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       const nameClean = name.replace(/\n/g, '').replace('  ', ' ');
       options.series = [
         {
@@ -1297,7 +1298,11 @@ export const chartOptions = {
           })),
         },
       ];
-
+      options.subtitle = {
+        text: intl.formatMessage({ id: `app.discipline.${nameClean}` }),
+        widthAdjust: 0,
+      };
+      options.legend.enabled = false;
       return options;
     },
   },
@@ -1599,17 +1604,22 @@ export const chartOptions = {
         id: 'app.publi.repositories.dynamique-depot.chart-nombre-documents-depots.tooltip',
       });
       const { data, color, name } = graph;
-      options.legend = {};
-      options.credits = { enabled: false };
+      options.legend.enabled = false;
+      options.credits.enabled = false;
       options.chart.type = 'column';
+      options.subtitle = {
+        text: name,
+      };
       options.xAxis = {
         type: 'category',
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
         categories: graph.data.map((el) => el.name),
         labels: {
           style: {
             color: getCSSValue('--g-800'),
             fontSize: '14px',
+          },
+          formatter() {
+            return this.isFirst || this.isLast ? this.value : null;
           },
         },
       };
@@ -2372,19 +2382,23 @@ export const chartOptions = {
           },
         },
       };
-      options.subtitle = { text: name };
+      options.subtitle = {
+        text: name,
+        widthAdjust: 0,
+      };
       options.yAxis = getPercentageYAxis(false);
-      options.yAxis.labels.enabled = false;
       options.xAxis = {
         type: 'category',
-        title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
-        categories: graph?.categories,
+        categories: graph?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
         labels: {
           rotation: 0,
           formatter() {
             return this.isFirst || this.isLast ? this.value : null;
+          },
+          style: {
+            textOverflow: 'none',
           },
         },
       };
