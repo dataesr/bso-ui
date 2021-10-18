@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
@@ -56,9 +56,11 @@ function useGetData(studyType, sponsorType = '*') {
       categories: data1SortedByYear.map((el) => el.key),
       series: [
         {
-          name: intl.formatMessage({
-            id: 'app.studies.no-results-publications',
-          }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.no-results-publications',
+            }),
+          ),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_has_result.buckets
               .find((ele) => ele.key === 0)
@@ -78,9 +80,11 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--g-400'),
         },
         {
-          name: intl.formatMessage({
-            id: 'app.studies.results-and-publications',
-          }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.results-and-publications',
+            }),
+          ),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_has_result.buckets
               .find((ele) => ele.key === 1)
@@ -100,7 +104,11 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--resultat-et-publication'),
         },
         {
-          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.publications-only',
+            }),
+          ),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_has_result.buckets
               .find((ele) => ele.key === 0)
@@ -120,7 +128,11 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--publication-100'),
         },
         {
-          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.results-only',
+            }),
+          ),
           data: data1SortedByYear.map((el) => ({
             y_abs: el.by_has_result.buckets
               .find((ele) => ele.key === 1)
@@ -146,9 +158,11 @@ function useGetData(studyType, sponsorType = '*') {
       categories: data2.map((el) => intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` })),
       series: [
         {
-          name: intl.formatMessage({
-            id: 'app.studies.no-results-publications',
-          }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.no-results-publications',
+            }),
+          ),
           data: data2.map((el) => ({
             y_abs:
               el.by_has_result.buckets
@@ -172,9 +186,11 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--g-400'),
         },
         {
-          name: intl.formatMessage({
-            id: 'app.studies.results-and-publications',
-          }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.results-and-publications',
+            }),
+          ),
           data: data2.map((el) => ({
             y_abs:
               el.by_has_result.buckets
@@ -198,7 +214,11 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--resultat-et-publication'),
         },
         {
-          name: intl.formatMessage({ id: 'app.studies.publications-only' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.publications-only',
+            }),
+          ),
           data: data2.map((el) => ({
             y_abs:
               el.by_has_result.buckets
@@ -222,7 +242,11 @@ function useGetData(studyType, sponsorType = '*') {
           color: getCSSValue('--publication-100'),
         },
         {
-          name: intl.formatMessage({ id: 'app.studies.results-only' }),
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.studies.results-only',
+            }),
+          ),
           data: data2.map((el) => ({
             y_abs:
               el.by_has_result.buckets

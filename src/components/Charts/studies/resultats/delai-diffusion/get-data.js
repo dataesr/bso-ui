@@ -4,7 +4,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue, withContext } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  getCSSValue,
+  withContext,
+} from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
   const intl = useIntl();
@@ -87,9 +91,11 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
     const steps2 = ['before_completion', 'after_completion'];
     const dataGraph2 = steps2.map((step) => ({
       data: data[step],
-      name: intl.formatMessage({
-        id: `app.${studyType.toLowerCase()}.${step}`,
-      }),
+      name: capitalize(
+        intl.formatMessage({
+          id: `app.${studyType.toLowerCase()}.${step}`,
+        }),
+      ),
       color: colors[step],
     }));
 
