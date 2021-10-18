@@ -399,6 +399,7 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa-publisher',
       });
+      options.legend.reversed = true;
       options.chart.type = 'area';
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.title.text = intl.formatMessage({

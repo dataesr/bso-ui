@@ -59,7 +59,11 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         .filter((el) => el.key !== 'no license')
         .reduce((a, b) => a + b.doc_count, 0);
       dataGraphTreemap.push({
-        name: intl.formatMessage({ id: 'app.licenses.open-license' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.licenses.open-license',
+          }),
+        ),
         publisher:
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
@@ -78,7 +82,11 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       );
       const nbNoLicence = noLicenceElem ? noLicenceElem.doc_count : 0;
       dataGraphTreemap.push({
-        name: intl.formatMessage({ id: 'app.licenses.no license' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.licenses.no license',
+          }),
+        ),
         publisher:
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })

@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const [allData, setAllData] = useState([]);
@@ -72,17 +72,29 @@ function useGetData(observationSnap, domain) {
     });
     const dataGraph = [
       {
-        name: intl.formatMessage({ id: 'app.publishers.gold' }),
-        data: goldData,
-        color: getCSSValue('--yellow-medium-100'),
-      },
-      {
-        name: intl.formatMessage({ id: 'app.publishers.hybrid' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.hybrid',
+          }),
+        ),
         data: hybridData,
         color: getCSSValue('--hybrid'),
       },
       {
-        name: intl.formatMessage({ id: 'app.publishers.diamond' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.gold',
+          }),
+        ),
+        data: goldData,
+        color: getCSSValue('--yellow-medium-100'),
+      },
+      {
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.diamond',
+          }),
+        ),
         data: diamondData,
         color: getCSSValue('--diamond'),
       },
@@ -90,7 +102,11 @@ function useGetData(observationSnap, domain) {
 
     const dataGraphTreemap = [
       {
-        name: intl.formatMessage({ id: 'app.publishers.gold' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.gold',
+          }),
+        ),
         publicationDate: goldData[goldData.length - 1].publicationDate,
         bsoDomain,
         y_tot: goldData[goldData.length - 1].y_tot,
@@ -99,7 +115,11 @@ function useGetData(observationSnap, domain) {
         color: getCSSValue('--yellow-medium-100'),
       },
       {
-        name: intl.formatMessage({ id: 'app.publishers.hybrid' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.hybrid',
+          }),
+        ),
         bsoDomain,
         publicationDate: hybridData[hybridData.length - 1].publicationDate,
         y_tot: hybridData[hybridData.length - 1].y_tot,
@@ -108,7 +128,11 @@ function useGetData(observationSnap, domain) {
         color: getCSSValue('--hybrid'),
       },
       {
-        name: intl.formatMessage({ id: 'app.publishers.diamond' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.diamond',
+          }),
+        ),
         bsoDomain,
         publicationDate: diamondData[diamondData.length - 1].publicationDate,
         y_tot: diamondData[diamondData.length - 1].y_tot,

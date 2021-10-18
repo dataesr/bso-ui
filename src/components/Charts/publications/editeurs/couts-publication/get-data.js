@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
+  capitalize,
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
@@ -48,6 +49,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const categoriesYear = [];
     const goldDataYear = [];
     const hybridDataYear = [];
+    const diamondDataYear = [];
     dataTotal
       .filter(
         (el) => el.key > 2012
@@ -61,6 +63,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
         );
         const hybridAPC = hybridElem?.apc?.value || 0;
         const hybridCount = hybridElem?.doc_count || 0;
+        hybridDataYear.push({
+          bsoDomain,
+          publisher: publisherName,
+          y: hybridAPC,
+          count: hybridCount,
+          publicationDate: el.key,
+        });
         const goldElem = el.by_oa_colors.buckets.find((b) => b.key === 'gold');
         const goldAPC = goldElem?.apc?.value || 0;
         const goldCount = goldElem?.doc_count || 0;
@@ -71,24 +80,46 @@ function useGetData(observationSnaps, needle = '*', domain) {
           count: goldCount,
           publicationDate: el.key,
         });
-        hybridDataYear.push({
-          bsoDomain,
+        const diamondElement = el.by_oa_colors.buckets.find(
+          (b) => b.key === 'diamond',
+        );
+        const diamondAPC = diamondElement?.apc?.value || 0;
+        const diamondCount = diamondElement?.doc_count || 0;
+        diamondDataYear.push({
           publisher: publisherName,
-          y: hybridAPC,
-          count: hybridCount,
+          bsoDomain,
+          y: diamondAPC,
+          count: diamondCount,
           publicationDate: el.key,
         });
       });
     const dataGraphTotal = [
       {
-        name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.apc-hybrid',
+          }),
+        ),
         data: hybridDataYear,
         color: getCSSValue('--hybrid'),
       },
       {
-        name: intl.formatMessage({ id: 'app.publishers.apc-gold' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.apc-gold',
+          }),
+        ),
         data: goldDataYear,
         color: getCSSValue('--yellow-medium-100'),
+      },
+      {
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.diamond',
+          }),
+        ),
+        data: diamondDataYear,
+        color: getCSSValue('--diamond'),
       },
     ];
 
@@ -104,6 +135,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       );
     const goldDataHistogram = [];
     const hybridDataHistogram = [];
+    const diamondDataHistogram = [];
     const categoriesHistogram = [];
     const categoriesViolin = [];
     const goldDataViolin = [];
@@ -121,6 +153,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
         (b) => b.key === 'hybrid',
       );
       const goldElems = elem.by_oa_colors.buckets.find((b) => b.key === 'gold');
+      const diamondElements = elem.by_oa_colors.buckets.find(
+        (b) => b.key === 'diamond',
+      );
       for (
         let j = 0;
         j
@@ -133,11 +168,18 @@ function useGetData(observationSnaps, needle = '*', domain) {
         const trancheAPC = j * histogramInterval;
         let currentHybridY = 0;
         let currentGoldY = 0;
+        let currentDiamondY = 0;
         if (hybridElems && trancheAPC === hybridElems?.apc?.buckets[j]?.key) {
           currentHybridY = hybridElems.apc.buckets[j].doc_count;
         }
         if (goldElems && trancheAPC === goldElems?.apc?.buckets[j]?.key) {
           currentGoldY = goldElems.apc.buckets[j].doc_count;
+        }
+        if (
+          diamondElements
+          && trancheAPC === diamondElements?.apc?.buckets[j]?.key
+        ) {
+          currentDiamondY = diamondElements.apc.buckets[j].doc_count;
         }
         // la distribution des hybrides est sur la partie droite du violin, donc les triplets de points seront de la forme [trancheAPC, 0, valeur]
         // triplets qu'il faut ensuite translater en fonction de l'année ce qui donne au final [trancheAPC, yearIndex, valeur + yearIndex]
@@ -173,6 +215,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
             y_tot: goldElems?.doc_count || 0,
             bsoDomain,
           });
+          diamondDataHistogram.push({
+            publisher: publisherName,
+            publicationDate,
+            y: currentDiamondY,
+            interval_lower: trancheAPC,
+            interval_upper: trancheAPC + histogramInterval,
+            y_tot: diamondElements?.doc_count || 0,
+            bsoDomain,
+          });
         }
       }
       goldDataViolin.push(currentGoldDataViolin);
@@ -181,14 +232,31 @@ function useGetData(observationSnaps, needle = '*', domain) {
     categoriesHistogram[0] = '< '.concat(histogramInterval);
     const dataGraphHistogram = [
       {
-        name: intl.formatMessage({ id: 'app.publishers.apc-hybrid' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.apc-hybrid',
+          }),
+        ),
         data: hybridDataHistogram,
         color: getCSSValue('--hybrid'),
       },
       {
-        name: intl.formatMessage({ id: 'app.publishers.apc-gold' }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.apc-gold',
+          }),
+        ),
         data: goldDataHistogram,
         color: getCSSValue('--yellow-medium-100'),
+      },
+      {
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.diamond',
+          }),
+        ),
+        data: diamondDataHistogram,
+        color: getCSSValue('--diamond'),
       },
     ];
 
