@@ -20,7 +20,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, domain, id }) => {
+const Chart = ({ hasFooter, graphComments, domain, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
@@ -45,7 +45,7 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
       id={id}
       domain={domain}
       chartRef={chartRef}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
       graphComments={false}
     >
       <HighchartsReact
@@ -60,13 +60,13 @@ const Chart = ({ graphFooter, graphComments, domain, id }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   domain: '',
   id: 'publi.general.dynamique-ouverture.chart-taux-ouverture',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

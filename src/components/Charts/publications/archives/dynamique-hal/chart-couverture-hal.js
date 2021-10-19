@@ -17,7 +17,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
@@ -40,7 +40,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       domain={domain}
       chartRef={chartRef}
       graphComments={graphComments}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -53,13 +53,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   id: 'publi.repositories.dynamique-hal.chart-couverture-hal',
   domain: '',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

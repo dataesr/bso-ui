@@ -24,7 +24,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
+const Chart = ({ hasFooter, graphComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [sponsorType, setSponsorType] = useState('*');
@@ -54,7 +54,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       domain={domain}
       studyType={studyType}
       chartRef={chartRef}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
       graphComments={false}
     >
       <SimpleSelect
@@ -77,14 +77,14 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
   id: 'caracteristiques.duree.chart-nombre',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

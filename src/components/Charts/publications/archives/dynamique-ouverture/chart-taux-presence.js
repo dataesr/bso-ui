@@ -25,7 +25,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [archives, setArchives] = useState([]);
@@ -73,7 +73,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       domain={domain}
       chartRef={chartRef}
       graphComments={false}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
@@ -95,13 +95,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   id: 'publi.repositories.dynamique-ouverture.chart-evolution-proportion',
   domain: '',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

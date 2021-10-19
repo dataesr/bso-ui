@@ -23,7 +23,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [publishers, setPublishers] = useState([]);
@@ -62,7 +62,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
     <WrapperChart
       id={id}
       domain={domain}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
       graphComments={false}
       isLoading={isLoading || !dataGraph1}
       isError={isError}
@@ -87,13 +87,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   id: 'publi.publishers.dynamique-ouverture.chart-taux-ouverture',
   domain: '',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

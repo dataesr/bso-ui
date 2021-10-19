@@ -21,7 +21,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [publishers, setPublishers] = useState([]);
@@ -57,7 +57,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       id={id}
       domain={domain}
       chartRef={chartRef}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
       graphComments={graphComments}
       isError={isError}
       isLoading={isLoading || !dataGraphViolin || !categoriesViolin}
@@ -81,13 +81,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   id: 'publi.publishers.couts-publication.chart-distribution-par-annee',
   domain: '',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

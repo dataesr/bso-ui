@@ -18,7 +18,7 @@ import GraphTitle from '../Charts/graph-title';
 import Loader from '../Loader';
 
 function WrapperChart({
-  graphFooter,
+  hasFooter,
   graphComments,
   children,
   id,
@@ -90,7 +90,7 @@ function WrapperChart({
         {children}
         {graphComments && <GraphComments comments={comments} />}
       </div>
-      {graphFooter && (
+      {hasFooter && (
         <GraphFooter
           title={title}
           studyType={studyType}
@@ -105,7 +105,7 @@ function WrapperChart({
   );
 }
 WrapperChart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   isLoading: false,
   isError: false,
@@ -114,7 +114,7 @@ WrapperChart.defaultProps = {
 };
 
 WrapperChart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   isLoading: PropTypes.bool,
   isError: PropTypes.bool,
   graphComments: PropTypes.bool,

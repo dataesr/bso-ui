@@ -23,7 +23,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isDetailed, setIsDetailed] = useState(false);
@@ -62,7 +62,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       domain={domain}
       chartRef={chartRef.current}
       graphComments={graphComments}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
@@ -88,13 +88,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   id: 'publi.publishers.repartition-licences.chart-repartition',
   domain: '',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

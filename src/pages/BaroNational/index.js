@@ -115,7 +115,7 @@ function BaroNational() {
                       <BSOChart
                         id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                         graphComments={false}
-                        graphFooter={false}
+                        hasFooter={false}
                       />
                     </Col>
                     <Col n='12 md-4'>

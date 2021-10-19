@@ -105,7 +105,7 @@ function BaroSante() {
                         id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                         domain='health'
                         graphComments={false}
-                        graphFooter={false}
+                        hasFooter={false}
                       />
                     </Col>
                     <Col n='12 md-4'>

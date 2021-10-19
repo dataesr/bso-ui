@@ -17,7 +17,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, graphComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
@@ -35,7 +35,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       domain={domain}
       chartRef={chartRef}
       graphComments={graphComments}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
       isLoading={isLoading || !data}
       isError={isError}
     >
@@ -50,13 +50,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   id: 'publi.repositories.plus-utilisees.chart-nombre-documents',
   domain: '',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

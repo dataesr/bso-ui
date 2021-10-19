@@ -25,7 +25,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
+const Chart = ({ hasFooter, graphComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -60,7 +60,7 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
       domain={domain}
       studyType={studyType}
       chartRef={chartRef}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
       graphComments={false}
     >
       {/* Add home made legend */}
@@ -97,14 +97,14 @@ const Chart = ({ graphFooter, graphComments, domain, id, studyType }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   domain: 'health',
   studyType: 'Interventional',
   id: 'promoteurs.dynamique-ouverture.chart-evolution-nombre',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),

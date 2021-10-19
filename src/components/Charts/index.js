@@ -5,7 +5,7 @@ import chartComponents from '../../utils/chartComponents';
 import { domains, graphIds, studiesTypes } from '../../utils/constants';
 import Loader from '../Loader';
 
-function BSOChart({ id, domain, graphComments, graphFooter, studyType }) {
+function BSOChart({ id, domain, graphComments, hasFooter, studyType }) {
   const Chart = chartComponents[id];
   return (
     <Suspense fallback={<Loader />}>
@@ -14,7 +14,7 @@ function BSOChart({ id, domain, graphComments, graphFooter, studyType }) {
           id={id}
           domain={domain}
           graphComments={graphComments}
-          graphFooter={graphFooter}
+          hasFooter={hasFooter}
           studyType={studyType}
         />
       )}
@@ -24,7 +24,7 @@ function BSOChart({ id, domain, graphComments, graphFooter, studyType }) {
 
 BSOChart.defaultProps = {
   domain: '',
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   studyType: null,
 };
@@ -32,7 +32,7 @@ BSOChart.defaultProps = {
 BSOChart.propTypes = {
   id: PropTypes.oneOf(graphIds).isRequired,
   domain: PropTypes.oneOf(domains),
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   studyType: PropTypes.oneOf(studiesTypes),
 };

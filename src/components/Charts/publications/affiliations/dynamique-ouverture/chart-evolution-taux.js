@@ -22,7 +22,7 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, graphComments, id, domain }) => {
   const intl = useIntl();
   const chartRef = useRef();
   const [isActive, setIsActive] = useState(false);
@@ -160,7 +160,7 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
       isError={isError}
       chartRef={chartRef}
       graphComments={graphComments}
-      graphFooter={graphFooter}
+      hasFooter={hasFooter}
     >
       <Toggle
         checked={isActive}
@@ -178,13 +178,13 @@ const Chart = ({ graphFooter, graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphFooter: true,
+  hasFooter: true,
   graphComments: true,
   id: 'publi.affiliations.dynamique-ouverture.chart-evolution-taux',
   domain: '',
 };
 Chart.propTypes = {
-  graphFooter: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   graphComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
