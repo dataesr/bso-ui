@@ -218,3 +218,14 @@ export function getSource(id) {
 export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+/**
+ *
+ * @param str
+ * @param key
+ * @param array
+ * @returns {*}
+ */
+export function stringIsIntTheKitchen(str, key, array) {
+  return array.filter((elm) => str.startsWith(elm[key]));
+}
