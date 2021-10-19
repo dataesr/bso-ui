@@ -36,10 +36,34 @@ function Header() {
   return (
     <WrapperDisplay display={!path.startsWith('/integration')}>
       <Skiplinks>
-        <SkiplinkItem href=''>
+        <SkiplinkItem href={urls.national[lang]}>
           {intl.formatMessage({
             id: 'app.header.title',
             defaultMessage: 'Baromètre français de la Science Ouverte',
+          })}
+        </SkiplinkItem>
+        <SkiplinkItem href={urls.nationalPublications.tabs[0][lang]}>
+          {intl.formatMessage({
+            id: 'app.header.nav.baro-national-publications',
+            defaultMessage: 'Les publications',
+          })}
+        </SkiplinkItem>
+        <SkiplinkItem href={urls.sante[lang]}>
+          {intl.formatMessage({
+            id: 'app.header.nav.baro-sante',
+            defaultMessage: 'Le baromètre santé',
+          })}
+        </SkiplinkItem>
+        <SkiplinkItem href={urls.santeEssais.tabs[0][lang]}>
+          {intl.formatMessage({
+            id: 'app.header.nav.baro-sante-essais',
+            defaultMessage: 'Les essais cliniques',
+          })}
+        </SkiplinkItem>
+        <SkiplinkItem href={urls.santeEtudes.tabs[0][lang]}>
+          {intl.formatMessage({
+            id: 'app.header.nav.baro-sante-etudes',
+            defaultMessage: 'Les études observationnelles',
           })}
         </SkiplinkItem>
       </Skiplinks>
