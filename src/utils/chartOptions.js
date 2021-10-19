@@ -51,7 +51,11 @@ export function getGraphOptions(graphId, intl, studyType = '') {
       headerFormat: '',
       pointFormat: tooltip,
     },
-    credits: { enabled: true, text: intl.formatMessage({ id: 'app.credit' }) },
+    credits: {
+      enabled: true,
+      text: intl.formatMessage({ id: 'app.credit' }),
+      href: 'https://bso.staging.dataesr.ovh/',
+    },
     xAxis: {
       title: { text: xAxis },
     },
