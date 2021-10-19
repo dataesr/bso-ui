@@ -1284,6 +1284,8 @@ export const chartOptions = {
         },
       };
       options.yAxis = getPercentageYAxis();
+      options.yAxis.min = 0;
+      options.yAxis.max = 100;
       const nameClean = name.replace(/\n/g, '').replace('  ', ' ');
       options.series = [
         {
@@ -1631,6 +1633,8 @@ export const chartOptions = {
         title: {
           enabled: false,
         },
+        min: 0,
+        max: 40000,
       };
       options.series = [
         {
@@ -2391,6 +2395,8 @@ export const chartOptions = {
         widthAdjust: 0,
       };
       options.yAxis = getPercentageYAxis(false);
+      options.yAxis.min = 0;
+      options.yAxis.max = 100;
       options.xAxis = {
         type: 'category',
         categories: graph?.categories || [],
