@@ -1,6 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import Banner from '../../components/Banner';
 import BSOChart from '../../components/Charts';
@@ -18,6 +18,7 @@ import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
 
 function BaroNational() {
+  const intl = useIntl();
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -70,7 +71,7 @@ function BaroNational() {
         subTitle={<FormattedMessage id='app.header.subtitle' />}
         link={{
           label: <FormattedMessage id='app.notes.flash.see' />,
-          url: <FormattedMessage id='url.about.flash' />,
+          url: intl.formatMessage({ id: 'url.about.flash' }),
         }}
         icons={renderIcons}
         chip={<Chip />}

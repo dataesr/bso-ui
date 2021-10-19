@@ -35,7 +35,11 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.forEach(
         (el) => {
           dataGraphTreemap.push({
-            name: intl.formatMessage({ id: `app.licenses.${el.key}` }),
+            name: capitalize(
+              intl.formatMessage({
+                id: `app.licenses.${el.key}`,
+              }),
+            ),
             publisher:
               needle === '*'
                 ? intl.formatMessage({ id: 'app.all-publishers' })
