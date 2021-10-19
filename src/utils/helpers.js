@@ -224,7 +224,7 @@ export function capitalize(str) {
  * @param str
  * @param key
  * @param array
- * @returns {*}
+ * @returns array
  */
 export function stringIsIntTheKitchen(str, key, array) {
   return array.filter((elm) => str.startsWith(elm[key]));
