@@ -104,7 +104,7 @@ function BaroSante() {
                       <BSOChart
                         id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                         domain='health'
-                        graphComments={false}
+                        hasComments={false}
                         hasFooter={false}
                       />
                     </Col>
@@ -115,7 +115,7 @@ function BaroSante() {
                       <BSOChart
                         domain='health'
                         id='publi.general.dynamique-ouverture.chart-evolution-proportion'
-                        graphComments={false}
+                        hasComments={false}
                       />
                     </Col>
                   </Row>

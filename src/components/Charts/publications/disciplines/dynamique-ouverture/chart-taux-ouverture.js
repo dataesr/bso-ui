@@ -18,7 +18,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphComments, id, domain }) => {
+const Chart = ({ hasComments, id, domain }) => {
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
@@ -44,7 +44,7 @@ const Chart = ({ graphComments, id, domain }) => {
     <WrapperChart
       id={id}
       domain={domain}
-      graphComments={graphComments}
+      hasComments={hasComments}
       isLoading={isLoading || !data || data.length <= 0}
       isError={isError}
     >
@@ -66,12 +66,12 @@ const Chart = ({ graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphComments: true,
+  hasComments: true,
   id: 'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
   domain: '',
 };
 Chart.propTypes = {
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
 };

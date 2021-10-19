@@ -20,7 +20,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain }) => {
+const Chart = ({ hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isOa, setIsOa] = useState(false);
@@ -51,7 +51,7 @@ const Chart = ({ id, domain }) => {
       id={id}
       domain={domain}
       chartRef={chartRef}
-      graphComments={false}
+      hasComments={false}
       isLoading={isLoading || !dataGraph}
       isError={isError}
     >
@@ -66,16 +66,18 @@ const Chart = ({ id, domain }) => {
         ref={chartRef}
         id={id}
       />
-      <GraphComments comments={chartComments} />
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
+  hasComments: true,
   domain: '',
   id: 'publi.general.genres-ouverture.chart-repartition-genres',
 };
 Chart.propTypes = {
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
 };

@@ -21,7 +21,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
@@ -57,7 +57,7 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
       domain={domain}
       chartRef={chartRef}
       hasFooter={hasFooter}
-      graphComments={graphComments}
+      hasComments={hasComments}
       isLoading={isLoading || !dataGraphHistogram || !categoriesHistogram}
       isError={isError}
     >
@@ -81,13 +81,13 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
 
 Chart.defaultProps = {
   hasFooter: true,
-  graphComments: true,
+  hasComments: true,
   id: 'publi.publishers.couts-publication.chart-distribution',
   domain: '',
 };
 Chart.propTypes = {
   hasFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
 };

@@ -18,7 +18,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ graphComments, id, domain }) => {
+const Chart = ({ hasComments, id, domain }) => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
@@ -38,7 +38,7 @@ const Chart = ({ graphComments, id, domain }) => {
     <WrapperChart
       id={id}
       domain={domain}
-      graphComments={graphComments}
+      hasComments={hasComments}
       isLoading={isLoading || !data}
       isError={isError}
     >
@@ -60,12 +60,12 @@ const Chart = ({ graphComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  graphComments: true,
+  hasComments: true,
   id: 'publi.repositories.dynamique-depot.chart-nombre-documents-depots',
   domain: '',
 };
 Chart.propTypes = {
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
 };

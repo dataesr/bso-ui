@@ -19,7 +19,7 @@ import Loader from '../Loader';
 
 function WrapperChart({
   hasFooter,
-  graphComments,
+  hasComments,
   children,
   id,
   domain,
@@ -88,7 +88,7 @@ function WrapperChart({
       >
         <GraphTitle title={title} />
         {children}
-        {graphComments && <GraphComments comments={comments} />}
+        {hasComments && <GraphComments comments={comments} />}
       </div>
       {hasFooter && (
         <GraphFooter
@@ -106,7 +106,7 @@ function WrapperChart({
 }
 WrapperChart.defaultProps = {
   hasFooter: true,
-  graphComments: true,
+  hasComments: true,
   isLoading: false,
   isError: false,
   chartRef: () => {},
@@ -117,7 +117,7 @@ WrapperChart.propTypes = {
   hasFooter: PropTypes.bool,
   isLoading: PropTypes.bool,
   isError: PropTypes.bool,
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   children: PropTypes.node.isRequired,
   id: PropTypes.oneOf(graphIds).isRequired,
   domain: PropTypes.oneOf(domains).isRequired,

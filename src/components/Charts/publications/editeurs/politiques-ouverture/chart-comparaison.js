@@ -21,7 +21,7 @@ HCExportingData(Highcharts);
 HCMore(Highcharts);
 HighchartsAnnotations(Highcharts);
 
-const Chart = ({ hasFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
@@ -44,7 +44,7 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
       domain={domain}
       chartRef={chartRef}
       hasFooter={hasFooter}
-      graphComments={graphComments}
+      hasComments={hasComments}
       isLoading={isLoading || !bubbleGraph}
       isError={isError}
     >
@@ -60,13 +60,13 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
 
 Chart.defaultProps = {
   hasFooter: true,
-  graphComments: true,
+  hasComments: true,
   id: 'publi.publishers.politiques-ouverture.chart-comparaison',
   domain: '',
 };
 Chart.propTypes = {
   hasFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
 };

@@ -21,7 +21,7 @@ HCExportingData(Highcharts);
 highchartsMore(Highcharts);
 HighchartsAnnotations(Highcharts);
 
-const Chart = ({ hasFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
@@ -40,7 +40,7 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
       isError={isError}
       chartRef={chartRef}
       hasFooter={hasFooter}
-      graphComments={graphComments}
+      hasComments={hasComments}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -54,13 +54,13 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
 
 Chart.defaultProps = {
   hasFooter: true,
-  graphComments: true,
+  hasComments: true,
   id: 'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
   domain: '',
 };
 Chart.propTypes = {
   hasFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
 };

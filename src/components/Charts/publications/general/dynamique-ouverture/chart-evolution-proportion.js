@@ -18,7 +18,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
@@ -42,7 +42,7 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
       id={id}
       domain={domain}
       chartRef={chartRef}
-      graphComments={false}
+      hasComments={false}
       hasFooter={hasFooter}
       isLoading={isLoading || !dataGraph2}
       isError={isError}
@@ -53,20 +53,20 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
         ref={chartRef}
         id={idWithDomain}
       />
-      {graphComments && <GraphComments comments={chartComments} />}
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 // TODO remove publi studyType from id
 Chart.defaultProps = {
   hasFooter: true,
-  graphComments: true,
+  hasComments: true,
   domain: '',
   id: 'publi.general.dynamique-ouverture.chart-evolution-proportion',
 };
 Chart.propTypes = {
   hasFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   domain: PropTypes.oneOf(domains),
   id: PropTypes.oneOf(graphIds),
 };

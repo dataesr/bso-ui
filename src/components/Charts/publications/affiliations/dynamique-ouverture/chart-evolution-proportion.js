@@ -20,7 +20,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, graphComments, id, domain }) => {
+const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [affiliation, setAffiliation] = useState('*');
@@ -52,7 +52,7 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
       id={id}
       chartRef={chartRef}
       hasFooter={hasFooter}
-      graphComments={false}
+      hasComments={false}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.affiliations-filter-label' })}
@@ -68,20 +68,20 @@ const Chart = ({ hasFooter, graphComments, id, domain }) => {
         ref={chartRef}
         id={idWithDomain}
       />
-      {graphComments && <GraphComments comments={chartComments} />}
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   hasFooter: true,
-  graphComments: true,
+  hasComments: true,
   id: 'publi.affiliations.dynamique-ouverture.chart-evolution-proportion',
   domain: '',
 };
 Chart.propTypes = {
   hasFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
 };

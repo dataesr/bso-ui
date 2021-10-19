@@ -23,7 +23,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, graphComments, domain, id, studyType }) => {
+const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -54,7 +54,7 @@ const Chart = ({ hasFooter, graphComments, domain, id, studyType }) => {
       domain={domain}
       chartRef={chartRef}
       hasFooter={hasFooter}
-      graphComments={false}
+      hasComments={false}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -62,21 +62,21 @@ const Chart = ({ hasFooter, graphComments, domain, id, studyType }) => {
         ref={chartRef}
         id={idWithDomainAndStudyType}
       />
-      {graphComments && <GraphComments comments={chartComments} />}
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   hasFooter: true,
-  graphComments: true,
+  hasComments: true,
   domain: 'health',
   studyType: 'Interventional',
   id: 'promoteurs.impact.chart-repartition',
 };
 Chart.propTypes = {
   hasFooter: PropTypes.bool,
-  graphComments: PropTypes.bool,
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
   studyType: PropTypes.oneOf(studiesTypes),

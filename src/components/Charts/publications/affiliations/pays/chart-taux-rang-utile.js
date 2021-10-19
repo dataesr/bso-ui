@@ -40,7 +40,7 @@ const Chart = ({ id, domain }) => {
       id={id}
       domain={domain}
       chartRef={chartRef}
-      graphComments={false}
+      hasComments={false}
     >
       <HighchartsReact
         highcharts={Highcharts}
