@@ -9,6 +9,7 @@ import getFetchOptions from '../../utils/chartFetchOptions';
 import { domains } from '../../utils/constants';
 import { getValueByPath } from '../../utils/helpers';
 import useFetch from '../../utils/Hooks/useFetch';
+import useGlobals from '../../utils/Hooks/useGetGlobals';
 import Icon from '../Icon';
 import InfoCard from '../InfoCard';
 import Loader from '../Loader';
@@ -53,10 +54,11 @@ function TodayNumbersItem({
   domain,
 }) {
   const [todayData, setTodayData] = useState({});
+  const { lastObservationSnap } = useGlobals();
   const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
-    options: getFetchOptions(itemKey, domain),
+    options: getFetchOptions(itemKey, domain, lastObservationSnap),
   });
   const { ref, inView } = useInView();
 

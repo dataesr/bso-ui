@@ -18,7 +18,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { wildcard: { 'publisher.keyword': needlePublisher } },
+            { wildcard: { 'publisher_group.keyword': needlePublisher } },
             {
               wildcard: {
                 [`oa_details.${observationSnap}.oa_host_type`]: oaHostType,
@@ -339,7 +339,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         publisher_count: {
           cardinality: {
-            field: 'publisher.keyword',
+            field: 'publisher_group.keyword',
             precision_threshold: 10,
           },
         },
@@ -366,7 +366,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_publisher: {
           terms: {
-            field: 'publisher.keyword',
+            field: 'publisher_group.keyword',
             size: 10000,
           },
         },
@@ -422,7 +422,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_publisher: {
           terms: {
-            field: 'publisher.keyword',
+            field: 'publisher_group.keyword',
           },
           aggs: {
             by_oa_colors: {
@@ -451,7 +451,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_publisher: {
           terms: {
-            field: 'publisher.keyword',
+            field: 'publisher_group.keyword',
           },
           aggs: {
             by_oa_colors: {
@@ -478,7 +478,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 [`oa_details.${observationSnap}.oa_host_type`]: 'publisher',
               },
             },
-            { wildcard: { 'publisher.keyword': needlePublisher } },
+            { wildcard: { 'publisher_group.keyword': needlePublisher } },
           ],
         },
       },
@@ -497,7 +497,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
         by_publisher: {
           terms: {
-            field: 'publisher.keyword',
+            field: 'publisher_group.keyword',
           },
           aggs: {
             by_licence: {
@@ -513,7 +513,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       size: 0,
       query: {
         bool: {
-          filter: [{ wildcard: { 'publisher.keyword': needle } }],
+          filter: [{ wildcard: { 'publisher_group.keyword': needle } }],
         },
       },
       aggs: {
@@ -542,7 +542,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       size: 0,
       query: {
         bool: {
-          filter: [{ wildcard: { 'publisher.keyword': needle } }],
+          filter: [{ wildcard: { 'publisher_group.keyword': needle } }],
         },
       },
       aggs: {
@@ -579,7 +579,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       size: 0,
       query: {
         bool: {
-          filter: [{ wildcard: { 'publisher.keyword': needle } }],
+          filter: [{ wildcard: { 'publisher_group.keyword': needle } }],
         },
       },
       aggs: {
@@ -632,12 +632,12 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    repository: () => ({
+    repository: ([observationSnap]) => ({
       size: 0,
       aggs: {
         repositories_count: {
           cardinality: {
-            field: 'oa_details.2021Q2.repositories.keyword',
+            field: `oa_details.${observationSnap}.repositories.keyword`,
             precision_threshold: 10,
           },
         },
