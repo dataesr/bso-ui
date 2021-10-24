@@ -40,72 +40,79 @@ function useGetData(observationSnap, domain) {
         },
       };
       data
-        .filter((el) => el.doc_count >= 100)
-        .forEach((el) => {
-          categories.push(
-            intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
-          );
+        .filter((el) => el.doc_count >= 100);
+      const newData = [];
+      ['journal-article', 'proceedings', 'book-chapter', 'book', 'preprint', 'dataset', 'other'].forEach((g) => {
+        const currentElem = data.filter((el) => el.key === g);
+        if (currentElem.length === 1) {
+          newData.push(currentElem[0]);
+        }
+      });
+      newData.forEach((el) => {
+        categories.push(
+          intl.formatMessage({ id: `app.publication-genre.${el.key}` }),
+        );
 
-          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
-            ?.doc_count || 0;
-          const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
-            ?.doc_count || 0;
-          const publisherCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
-            ?.doc_count || 0;
-          const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'publisher;repository',
-          )?.doc_count || 0;
-          const totalCurrent = repositoryCurrent
+        const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+          ?.doc_count || 0;
+        const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
+          ?.doc_count || 0;
+        const publisherCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
+          ?.doc_count || 0;
+        const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
+          (item) => item.key === 'publisher;repository',
+        )?.doc_count || 0;
+        const totalCurrent = repositoryCurrent
             + publisherCurrent
             + publisherRepositoryCurrent
             + closedCurrent;
-          const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
-          closed.push({
-            y: (100 * closedCurrent) / totalCurrent,
-            y_abs: closedCurrent,
-            y_tot: totalCurrent,
-            x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
-            }),
-            bsoDomain,
-          });
-          oa.push({
-            y: (100 * oaCurrent) / totalCurrent,
-            y_abs: oaCurrent,
-            y_tot: totalCurrent,
-            x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
-            }),
-            bsoDomain,
-          });
-          repository.push({
-            y: (100 * repositoryCurrent) / totalCurrent,
-            y_abs: repositoryCurrent,
-            y_tot: totalCurrent,
-            x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
-            }),
-            bsoDomain,
-          });
-          publisher.push({
-            y: (100 * publisherCurrent) / totalCurrent,
-            y_abs: publisherCurrent,
-            y_tot: totalCurrent,
-            x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
-            }),
-            bsoDomain,
-          });
-          publisherRepository.push({
-            y: (100 * publisherRepositoryCurrent) / totalCurrent,
-            y_abs: publisherRepositoryCurrent,
-            y_tot: totalCurrent,
-            x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
-            }),
-            bsoDomain,
-          });
+        const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
+        closed.push({
+          y: (100 * closedCurrent) / totalCurrent,
+          y_abs: closedCurrent,
+          y_tot: totalCurrent,
+          x_val: intl.formatMessage({
+            id: `app.publication-genre.${el.key}`,
+          }),
+          bsoDomain,
         });
+        oa.push({
+          y: (100 * oaCurrent) / totalCurrent,
+          y_abs: oaCurrent,
+          y_tot: totalCurrent,
+          x_val: intl.formatMessage({
+            id: `app.publication-genre.${el.key}`,
+          }),
+          bsoDomain,
+        });
+        repository.push({
+          y: (100 * repositoryCurrent) / totalCurrent,
+          y_abs: repositoryCurrent,
+          y_tot: totalCurrent,
+          x_val: intl.formatMessage({
+            id: `app.publication-genre.${el.key}`,
+          }),
+          bsoDomain,
+        });
+        publisher.push({
+          y: (100 * publisherCurrent) / totalCurrent,
+          y_abs: publisherCurrent,
+          y_tot: totalCurrent,
+          x_val: intl.formatMessage({
+            id: `app.publication-genre.${el.key}`,
+          }),
+          bsoDomain,
+        });
+        publisherRepository.push({
+          y: (100 * publisherRepositoryCurrent) / totalCurrent,
+          y_abs: publisherRepositoryCurrent,
+          y_tot: totalCurrent,
+          x_val: intl.formatMessage({
+            id: `app.publication-genre.${el.key}`,
+          }),
+          bsoDomain,
+        });
+      });
 
       const dataGraph = [
         {
