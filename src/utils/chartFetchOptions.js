@@ -711,7 +711,6 @@ export default function getFetchOptions(key, domain, ...parameters) {
         observation_dates_count: {
           cardinality: {
             field: 'observation_dates.keyword',
-            precision_threshold: 1,
           },
         },
       },
