@@ -156,6 +156,18 @@ export default function getFetchOptions(key, domain, ...parameters) {
     }),
     repositoriesHisto: ([observationSnap]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            { range: {
+              year: {
+                gte: getPublicationYearFromObservationSnap(observationSnap) - 4,
+              },
+            },
+            },
+          ],
+        },
+      },
       aggs: {
         by_repository: {
           terms: {
