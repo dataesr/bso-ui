@@ -181,20 +181,37 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    couvertureHAL: ([observationSnap, needleRepository = '*']) => ({
+    couvertureHAL: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             {
               term: {
-                [`oa_details.${observationSnap}.oa_host_type`]: 'repository',
+                [`oa_details.${observationSnap}.repositories.keyword`]:
+                  'HAL',
               },
             },
+          ],
+        },
+      },
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+          },
+        },
+      },
+    }),
+    couvertureAllRepo: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
             {
-              wildcard: {
-                [`oa_details.${observationSnap}.repositories.keyword`]:
-                  needleRepository,
+              term: {
+                [`oa_details.${observationSnap}.oa_host_type`]:
+                  'repository',
               },
             },
           ],

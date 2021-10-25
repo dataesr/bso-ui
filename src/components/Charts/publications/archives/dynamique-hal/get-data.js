@@ -14,19 +14,16 @@ function useGetData(lastObservationSnap, domain) {
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function GetData() {
-    const allRepositories = '*';
     const queries = [];
     const queryHAL = getFetchOptions(
       'couvertureHAL',
       domain,
       lastObservationSnap,
-      'HAL',
     );
     const queryArchive = getFetchOptions(
-      'couvertureHAL',
+      'couvertureAllRepo',
       domain,
       lastObservationSnap,
-      allRepositories,
     );
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
