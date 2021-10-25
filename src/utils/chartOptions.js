@@ -1691,14 +1691,19 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.plotOptions = {
         column: {
-          stacking: 'normal',
           dataLabels: {
             style: {
               textOutline: 'none',
             },
             enabled: true,
+            inside: false,
             formatter() {
-              return this.y.toFixed(1).concat(' %');
+              let label = this.y.toFixed(1).concat(' % soit ');
+              label = label.concat('<br/>');
+              // label = label.concat(intl.formatMessage({ id: 'app.effectif' }));
+              label = label.concat(this.point.y_abs).concat(' publications');
+              return label;
+              // return this.y.toFixed(1).concat(' %')
             },
           },
         },
@@ -1707,7 +1712,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(false, 5);
+      options.yAxis = getPercentageYAxis(false, 3);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.publi.percentage-publi',
       });
