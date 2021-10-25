@@ -105,6 +105,7 @@ export function getPercentageYAxis(showTotal = true, max = null) {
       },
       style: {
         fontWeight: 'bold',
+        fontSize: '15px',
       },
     },
     labels: {
