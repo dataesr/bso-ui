@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, cleanNumber, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -43,8 +43,6 @@ function useGetData(observationSnap, domain) {
       data
         .filter((el) => el.doc_count >= 100)
         .forEach((el) => {
-          categories.push(intl.formatMessage({ id: `app.lang.${el.key}` }));
-
           const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
             ?.doc_count || 0;
           const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
@@ -94,6 +92,12 @@ function useGetData(observationSnap, domain) {
             x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
             bsoDomain,
           });
+          categories.push(
+            intl.formatMessage({ id: `app.lang.${el.key}` })
+              .concat('</br>(')
+              .concat(intl.formatMessage({ id: 'app.effectif' })).concat(cleanNumber(totalCurrent))
+              .concat(')'),
+          );
         });
 
       const dataGraph = [
