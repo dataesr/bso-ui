@@ -425,6 +425,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
           terms: {
             field: 'publisher_group.keyword',
             exclude: 'Cold Spring Harbor Laboratory',
+            size: 20,
           },
           aggs: {
             by_oa_colors: {
@@ -455,6 +456,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
           terms: {
             field: 'publisher_group.keyword',
             exclude: 'Cold Spring Harbor Laboratory',
+            size: 20,
           },
           aggs: {
             by_oa_colors: {
@@ -501,6 +503,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_publisher: {
           terms: {
             field: 'publisher_group.keyword',
+            size: 20,
           },
           aggs: {
             by_licence: {
