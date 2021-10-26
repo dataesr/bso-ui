@@ -1,6 +1,7 @@
 /* eslint-disable react/no-this-in-sfc */
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
+import HighchartsAnnotations from 'highcharts/modules/annotations';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
@@ -17,6 +18,7 @@ import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
+HighchartsAnnotations(Highcharts);
 
 const Chart = ({ hasComments, id, domain }) => {
   const intl = useIntl();

@@ -24,10 +24,11 @@ function useGetData(observationSnap, domain) {
     const tab = [];
     const nbHisto = 4;
     const lastPublicationYear = getPublicationYearFromObservationSnap(observationSnap);
-    res.data.aggregations.by_repository.buckets.forEach((archive) => {
+    res.data.aggregations.by_repository.buckets.forEach((archive, archiveIndex) => {
       if (archive.key !== 'N/A') {
         const obj = {
           name: archive.key,
+          annotationVisible: (archiveIndex === 0),
           color: greenMedium150,
           data: archive.by_year.buckets
             .filter(
@@ -39,6 +40,7 @@ function useGetData(observationSnap, domain) {
               name: el.key,
               bsoDomain,
               year: el.key,
+              x: el.key,
               y: el.doc_count,
               color:
                 index === nbHisto - 1

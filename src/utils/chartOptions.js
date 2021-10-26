@@ -1611,7 +1611,7 @@ export const chartOptions = {
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-depot.chart-nombre-documents-depots.tooltip',
       });
-      const { data, color, name } = graph;
+      const { data, color, name, annotationVisible } = graph;
       options.legend.enabled = false;
       options.credits.enabled = false;
       options.chart.type = 'column';
@@ -1652,7 +1652,7 @@ export const chartOptions = {
           enabled: false,
         },
         min: 0,
-        max: 40000,
+        max: 42000,
       };
       options.series = [
         {
@@ -1661,6 +1661,35 @@ export const chartOptions = {
           name,
         },
       ];
+      options.annotations = [
+        {
+          visible: annotationVisible,
+          labels: [
+            {
+              point: {
+                x: data[2].x - 0.1,
+                y: data[2].y + (options.yAxis.max * 0.1),
+                yAxis: 0,
+                xAxis: 0,
+              },
+              text: intl.formatMessage({
+                id: 'app.yoy',
+              }),
+            },
+          ],
+          draggable: '',
+          markerEnd: 'arrow',
+          labelOptions: {
+            shape: 'connector',
+            distance: 40,
+            style: {
+              fontSize: '0.8em',
+              textOutline: '1px white',
+            },
+          },
+        },
+      ];
+
       return options;
     },
   },
