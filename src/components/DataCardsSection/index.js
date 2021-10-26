@@ -67,6 +67,7 @@ export default function DataCardSection({ lang, domain }) {
             buckets.find((el) => el.key === 'hybrid').apc.value
                 + buckets.find((el) => el.key === 'gold').apc.value,
           ),
+          0,
         )} €`,
         get: apcCostSum,
         set: (data) => setApcCostSum(data),
@@ -88,7 +89,7 @@ export default function DataCardSection({ lang, domain }) {
                 + (buckets?.find((countObj) => countObj.key === 'gold')
                   ?.doc_count || 0)))
             * 100
-        ).toFixed(1),
+        ).toFixed(0),
         get: diamondPublicationRate,
         set: (data) => setDiamonPublicationRate(data),
         pathToValue: 'by_journal_article.by_oa_colors_with_priority_to_publisher.buckets',
@@ -127,7 +128,7 @@ export default function DataCardSection({ lang, domain }) {
               || 0)
               / publicationsNumber)
             * 100
-        ).toFixed(1),
+        ).toFixed(0),
         get: frenchPublicationsRate,
         set: (data) => setFrenchPublicationRate(data),
         pathToValue: 'by_lang.buckets',

@@ -66,7 +66,7 @@ export function sortByPath(array, path) {
  * @param num
  * @returns {string}
  */
-export function cleanNumber(num) {
+export function cleanNumber(num, precision = 1) {
   let myCleanedNumber = '';
   if (num < 1000) {
     myCleanedNumber = num.toFixed(0);
@@ -74,8 +74,8 @@ export function cleanNumber(num) {
     const units = ['k', 'M', 'B', 'T', 'Q'];
     const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
     const r = unit % 3;
-    const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`).toFixed(2);
-    myCleanedNumber = `${x.toFixed(2)}${units[Math.floor(unit / 3) - 1]}`;
+    const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`);
+    myCleanedNumber = `${x.toFixed(precision)}${units[Math.floor(unit / 3) - 1]}`;
   }
   return myCleanedNumber;
 }
