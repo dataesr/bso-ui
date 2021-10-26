@@ -68,7 +68,7 @@ export default function DataCardSection({ lang, domain }) {
                 + buckets.find((el) => el.key === 'gold').apc.value,
           ),
           0,
-        )} €`,
+        )}€`,
         get: apcCostSum,
         set: (data) => setApcCostSum(data),
         pathToValue: 'by_oa_colors.buckets',

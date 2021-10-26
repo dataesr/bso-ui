@@ -41,7 +41,7 @@ function Gauge({ value, nbPosition }) {
           </g>
           <text x={nbPosition} y='180' className='marianne-extra-bold'>
             {`${value}`}
-            <tspan className='marianne-bold fs-24-32'>%</tspan>
+            <tspan className='marianne-bold fs-24-32'> %</tspan>
           </text>
         </svg>
       </div>
