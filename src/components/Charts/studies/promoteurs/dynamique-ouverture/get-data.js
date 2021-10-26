@@ -14,7 +14,7 @@ function useGetData(studyType, sponsor = '*') {
 
   async function getDataAxios() {
     const querySponsorTypes = getFetchOptions(
-      'sponsorsTypesList',
+      'sponsorsList',
       '',
       studyType,
     );
@@ -24,14 +24,13 @@ function useGetData(studyType, sponsor = '*') {
       querySponsorTypes,
       HEADERS,
     );
-    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor.buckets.map(
       (item) => item.key,
     );
     sponsorTypes = sponsorTypes.map((st) => ({
       value: st,
-      label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+      label: st,
     }));
-
     const queries = [];
     const queryDynamiqueOuverture = getFetchOptions(
       'studiesDynamiqueOuverture',
