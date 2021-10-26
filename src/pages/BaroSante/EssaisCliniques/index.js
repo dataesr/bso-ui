@@ -260,11 +260,13 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
+                { /*
                 <BSOChart
                   id='promoteurs.impact.chart-classement-pays'
                   domain='health'
                   studyType='Interventional'
                 />
+                */ }
               </QuestionSection>
             </GraphContent>
           </GraphItem>

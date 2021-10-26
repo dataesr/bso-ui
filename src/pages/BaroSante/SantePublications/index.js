@@ -480,10 +480,12 @@ function SantePublications() {
                     id='publi.affiliations.pays.chart-taux-rang-utile'
                     domain='health'
                   />
+                  { /*
                   <BSOChart
                     id='publi.affiliations.pays.chart-classement-pays'
                     domain='health'
                   />
+                  */ }
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

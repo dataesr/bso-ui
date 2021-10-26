@@ -244,11 +244,13 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
+                { /*
                 <BSOChart
                   id='promoteurs.impact.chart-classement-pays'
                   domain='health'
                   studyType='Observational'
                 />
+                */ }
               </QuestionSection>
             </GraphContent>
           </GraphItem>
