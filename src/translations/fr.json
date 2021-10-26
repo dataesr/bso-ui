@@ -10,6 +10,8 @@
   "app.agencies-label": "Préciser une agence de financement",
   "app.all-affiliations": "tous types d'affiliation française",
   "app.effectif":"effectif = ",
+  "app.fr-only":"FR slt.",
+  "app.fr-foreign":"autre",
   "app.yoy":"Croissance annuelle",
   "app.all-agencies": "Toutes",
   "app.all-publications": "Toutes les publications",

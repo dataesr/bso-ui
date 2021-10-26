@@ -2493,7 +2493,7 @@ export const chartOptions = {
           },
         },
       };
-      options.yAxis = getPercentageYAxis(false);
+      options.yAxis = getPercentageYAxis(true);
       options.xAxis = {
         type: 'category',
         title: { text: intl.formatMessage({ id: 'app.study-start-year' }) },
@@ -2501,6 +2501,18 @@ export const chartOptions = {
         lineWidth: 0,
         tickWidth: 0,
         labels: {
+          formatter() {
+            const label = '<small>'.concat(intl.formatMessage({ id: 'app.fr-only' }))
+              .concat('&nbsp; ')
+              .concat(intl.formatMessage({ id: 'app.fr-foreign' }))
+              .concat('<br />')
+              .concat('</small>')
+              .concat('<div style="text-align:center;">')
+              .concat(this.value)
+              .concat('</div>');
+            return label;
+          },
+          useHTML: true,
           style: {
             color: getCSSValue('--g800'),
             fontSize: '12px',
