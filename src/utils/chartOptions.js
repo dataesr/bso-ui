@@ -1618,6 +1618,22 @@ export const chartOptions = {
       options.subtitle = {
         text: name,
       };
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            inside: false,
+            formatter() {
+              const sign = (this.point.yoy > 0) ? '+' : '';
+              const label = this.point.yoy ? sign.concat(this.point.yoy.toFixed(0)).concat(' %') : null;
+              return label;
+            },
+          },
+        },
+      };
       options.xAxis = {
         type: 'category',
         categories: graph.data.map((el) => el.name),

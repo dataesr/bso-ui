@@ -46,10 +46,12 @@ function useGetData(observationSnap, domain) {
                   : greenMedium150,
             })),
         };
+        obj.data.forEach((el, index) => {
+          obj.data[index].yoy = (index > 0) ? (100 * (el.y - obj.data[index - 1].y)) / obj.data[index - 1].y : null;
+        });
         tab.push(obj);
       }
     });
-
     return tab.slice(0, 12);
   }
 
