@@ -1275,7 +1275,7 @@ export const chartOptions = {
         type: 'category',
         categories: data.map((el) => el.name),
         labels: {
-          rotation: 0,
+          rotation: -90,
           style: {
             color: getCSSValue('--g-800'),
           },

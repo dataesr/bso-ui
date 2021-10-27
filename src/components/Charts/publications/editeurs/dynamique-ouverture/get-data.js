@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
@@ -96,7 +96,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const dataGraph2 = [];
     allData.forEach((observationSnapData, i) => {
       const serie = {};
-      serie.name = observationSnapData.observationSnap;
+      serie.name = getObservationLabel(observationSnapData.observationSnap, intl);
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       if (i === 0) {

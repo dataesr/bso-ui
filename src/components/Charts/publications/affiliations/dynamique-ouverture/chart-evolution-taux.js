@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getCSSValue, withDomain } from '../../../../../utils/helpers';
+import { getCSSValue, getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data-dumbbell';
@@ -120,7 +120,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       }
       series.push({
         type: 'scatter',
-        name: lastObservationSnap,
+        name: getObservationLabel(lastObservationSnap, intl),
         marker: {
           radius: 8,
           fillColor: 'white',

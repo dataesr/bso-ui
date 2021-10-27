@@ -1,4 +1,7 @@
 {
+  "app.Q1": "1er trimestre",
+  "app.Q2": "2e trimestre",
+  "app.Q3": "3e trimestre",
   "app.affiliations-filter-label": "Sélectionner un type d'affiliation française",
   "app.affiliations.cnrs": "CNRS",
   "app.affiliations.hospital": "Hôpitaux",

@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
   const intl = useIntl();
@@ -64,7 +64,7 @@ function useGetData(observationSnaps, domain = '') {
               && el.doc_count
               && el.key > 2012,
           );
-        serie.name = observationSnapData.observationSnap;
+        serie.name = getObservationLabel(observationSnapData.observationSnap, intl);
         serie.color = colors[i];
         serie.dashStyle = lineStyle[i];
         if (i === 0) {
