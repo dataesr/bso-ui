@@ -210,7 +210,7 @@ export function getSource(id) {
     source += 'clinicaltrials.gov, EU Clinical Trial Register, ';
   }
   if (id.includes('health-publi')) {
-    source += 'Pubmed, ';
+    source += 'PubMed, ';
   }
   if (id.includes('couts-publi')) {
     source += 'openAPC, DOAJ, ';

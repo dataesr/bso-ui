@@ -100,10 +100,14 @@ function useGetData(observationSnaps, domain = '') {
       dataGraph2.comments = {
         observationDate: dataGraph2[0]?.name,
         previousObservationDate: dataGraph2[1]?.name,
+        observationDate4: dataGraph2[3]?.name,
+        oaYMinusOne4: dataGraph2[3]?.data.slice(-1)[0].y.toFixed(0),
+        oaYMinus4: dataGraph2[0]?.data.slice(-4)[0].y.toFixed(0),
+        publicationDate4: dataGraph2[3]?.data.slice(-1)[0].publicationDate,
         minPublicationDate: dataGraph2[0]?.data[0]?.publicationDate,
         previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
-        oaYMinusOnePrevious: dataGraph2[1]?.data.slice(-1)[0].y.toFixed(2),
-        oaYMinusOne: dataGraph2[0]?.data.slice(-2)[0].y.toFixed(2),
+        oaYMinusOnePrevious: dataGraph2[1]?.data.slice(-1)[0].y.toFixed(0),
+        oaYMinusOne: dataGraph2[0]?.data.slice(-2)[0].y.toFixed(0),
         oaEvolution: (
           dataGraph2[0]?.data.slice(-2)[0].y
           - dataGraph2[1]?.data.slice(-1)[0].y
@@ -131,7 +135,7 @@ function useGetData(observationSnaps, domain = '') {
           publicationDate: el.lastPublicationDate,
         });
       });
-      dataGraph1.comments = null;
+      dataGraph1.comments = dataGraph2.comments;
       const showInLegend = domain !== '';
       const currentName = domain !== ''
         ? capitalize(intl.formatMessage({ id: `app.publications.${domain}` }))

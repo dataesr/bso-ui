@@ -108,7 +108,6 @@ function SantePublications() {
                   <BSOChart
                     id='publi.general.dynamique-ouverture.chart-evolution-proportion'
                     domain='health'
-                    hasComments={false}
                   />
                 </QuestionSection>
 

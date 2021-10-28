@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
@@ -21,22 +22,19 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const [chartComments, setChartComments] = useState('');
   const { observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
-  const [chartComments, setChartComments] = useState('');
   const { dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
+  useEffect(() => {
+    setChartComments(customComments(dataGraph2, idWithDomain, intl));
+  }, [dataGraph2, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     dataGraph2,
   );
-  useEffect(() => {
-    // TODO manage variables in comment
-    setChartComments('comments');
-    // setChartComments(customComments(dataGraph2, idWithDomain, intl));
-  }, [dataGraph2, idWithDomain, intl]);
-
   return (
     <WrapperChart
       id={id}

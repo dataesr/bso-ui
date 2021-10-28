@@ -37,7 +37,6 @@ const Chart = ({ hasFooter, hasComments, domain, id }) => {
     intl,
     dataGraph1,
   );
-
   return (
     <WrapperChart
       isLoading={isLoading || !dataGraph1}
