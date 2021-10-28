@@ -48,7 +48,7 @@ function useGetData(observationSnap, domain) {
         }
       });
       newData
-        .filter((el) => el.doc_count >= 500)
+        .filter((el) => el.doc_count >= 100)
         .forEach((el) => {
           const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
             ?.doc_count || 0;

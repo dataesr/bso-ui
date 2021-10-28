@@ -396,7 +396,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_publisher: {
           terms: {
             field: 'publisher_group.keyword',
-            exclude: 'Cold Spring Harbor Laboratory',
+            exclude: ['Cold Spring Harbor Laboratory', 'Research Square'],
             size: 10000,
           },
         },
@@ -453,7 +453,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_publisher: {
           terms: {
             field: 'publisher_group.keyword',
-            exclude: 'Cold Spring Harbor Laboratory',
+            exclude: ['Cold Spring Harbor Laboratory', 'Research Square'],
             size: 25,
           },
           aggs: {
@@ -484,7 +484,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_publisher: {
           terms: {
             field: 'publisher_group.keyword',
-            exclude: 'Cold Spring Harbor Laboratory',
+            exclude: ['Cold Spring Harbor Laboratory', 'Research Square'],
             size: 20,
           },
           aggs: {
