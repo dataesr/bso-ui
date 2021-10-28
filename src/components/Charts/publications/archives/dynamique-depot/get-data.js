@@ -21,7 +21,7 @@ function useGetData(observationSnap, domain) {
     const query = getFetchOptions('repositoriesHisto', domain, observationSnap);
 
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const tab = [];
+    let tab = [];
     const nbHisto = 4;
     const lastPublicationYear = getPublicationYearFromObservationSnap(observationSnap);
     res.data.aggregations.by_repository.buckets.forEach((archive, archiveIndex) => {
@@ -54,6 +54,7 @@ function useGetData(observationSnap, domain) {
         tab.push(obj);
       }
     });
+    tab = tab.sort((a, b) => (b.data.find((el) => el.name === lastPublicationYear)?.y || 0) - (a.data.find((el) => el.name === lastPublicationYear)?.y || 0));
     return tab.slice(0, 12);
   }
 
