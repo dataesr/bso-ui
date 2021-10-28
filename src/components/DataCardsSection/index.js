@@ -61,23 +61,6 @@ export default function DataCardSection({ lang, domain }) {
         buttonHref: '?id=general.dynamique-ouverture',
         activeDomains: ['health', ''],
       },
-      apcCostSum: {
-        fetch: (buckets) => `${cleanNumber(
-          Math.round(
-            buckets.find((el) => el.key === 'hybrid').apc.value
-                + buckets.find((el) => el.key === 'gold').apc.value,
-          ),
-          0,
-        )}€`,
-        get: apcCostSum,
-        set: (data) => setApcCostSum(data),
-        pathToValue: 'by_oa_colors.buckets',
-        isPercentage: false,
-        color: 'brown',
-        intlKey: 'app.national-publi.data.costs',
-        buttonHref: 'editeurs?id=publishers.couts-publication',
-        activeDomains: ['health', ''],
-      },
       diamondPublicationRate: {
         fetch: (buckets) => (
           ((buckets?.find((countObj) => countObj.key === 'diamond')
@@ -122,6 +105,17 @@ export default function DataCardSection({ lang, domain }) {
         buttonHref: 'archives?id=repositories.dynamique-hal',
         activeDomains: ['health', ''],
       },
+      bestCollabCountry: {
+        fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
+        get: bestCollabCountry,
+        set: (data) => setBestCollabCountry(data),
+        pathToValue: 'by_author_useful_rank.buckets.1.key',
+        isPercentage: false,
+        color: 'yellow',
+        intlKey: 'app.publi.data.collab-country',
+        buttonHref: 'affiliations?id=affiliations.dynamique-ouverture',
+        activeDomains: ['health'],
+      },
       frenchPublicationsRate: {
         fetch: (buckets) => (
           ((buckets?.find((countObj) => countObj.key === 'fr')?.doc_count
@@ -140,18 +134,24 @@ export default function DataCardSection({ lang, domain }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: 'general?id=general.langues-ouverture',
-        activeDomains: ['health', ''],
+        activeDomains: [],
       },
-      bestCollabCountry: {
-        fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
-        get: bestCollabCountry,
-        set: (data) => setBestCollabCountry(data),
-        pathToValue: 'by_author_useful_rank.buckets.1.key',
+      apcCostSum: {
+        fetch: (buckets) => `${cleanNumber(
+          Math.round(
+            buckets.find((el) => el.key === 'hybrid').apc.value
+                + buckets.find((el) => el.key === 'gold').apc.value,
+          ),
+          0,
+        )}€`,
+        get: apcCostSum,
+        set: (data) => setApcCostSum(data),
+        pathToValue: 'by_oa_colors.buckets',
         isPercentage: false,
-        color: 'yellow',
-        intlKey: 'app.publi.data.collab-country',
-        buttonHref: 'affiliations?id=affiliations.dynamique-ouverture',
-        activeDomains: ['health'],
+        color: 'brown',
+        intlKey: 'app.national-publi.data.costs',
+        buttonHref: 'editeurs?id=publishers.couts-publication',
+        activeDomains: [],
       },
     }),
     [
