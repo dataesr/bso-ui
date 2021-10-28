@@ -761,7 +761,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         by_sponsor: {
           terms: {
             field: 'lead_sponsor.keyword',
-            size: 12,
+            size: 24,
           },
           aggs: {
             by_type: {

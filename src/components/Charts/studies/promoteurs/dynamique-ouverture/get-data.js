@@ -180,7 +180,7 @@ function useGetData(studyType, sponsor = '*') {
         tab.push(obj);
       }
     });
-    const dataGraph2 = tab.slice(0, 12);
+    const dataGraph2 = tab;
     return { sponsorTypes, dataGraph1, dataGraph2 };
   }
 
