@@ -166,7 +166,7 @@ export const chartOptions = {
   'publi.publishers.politiques-ouverture.chart-classement': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-      options.chart.height = '600px';
+      options.chart.height = '700px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.politiques-ouverture.chart-classement.tooltip',
       });
@@ -1352,7 +1352,7 @@ export const chartOptions = {
   'publi.publishers.repartition-licences.chart-classement': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions(id, intl);
-      options.chart.height = '600px';
+      options.chart.height = '700px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.repartition-licences.chart-classement.tooltip',
       });

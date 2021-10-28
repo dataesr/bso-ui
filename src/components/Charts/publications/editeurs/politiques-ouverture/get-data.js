@@ -65,12 +65,12 @@ function useGetData(lastObservationSnap, domain) {
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
         y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green_only')
-          .doc_count,
+          ?.doc_count,
         y_tot: elem.doc_count,
         y:
           (100
             * elem.by_oa_colors.buckets.find((el) => el.key === 'green_only')
-              .doc_count)
+              ?.doc_count)
           / elem.doc_count,
       });
     });
