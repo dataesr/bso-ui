@@ -158,6 +158,7 @@ function EssaisCliniques() {
                   studyType='Interventional'
                 />
 
+                [PRIVÉ]
                 <BSOChart
                   id='caracteristiques.quand.chart-distribution-declarations'
                   domain='health'
@@ -250,11 +251,14 @@ function EssaisCliniques() {
                 />
               </QuestionSection>
 
+              [PRIVÉ]
               <QuestionSection
                 intlKey='app.health-interventional.promoteurs.impact'
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
+                [PRIVÉ]
+                { /* seulement en staging pour le 1er graphe */ }
                 <BSOChart
                   id='promoteurs.impact.chart-repartition'
                   domain='health'
@@ -313,6 +317,7 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
+                [PRIVÉ]
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition'
                   domain='health'
@@ -354,6 +359,7 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
+                [PRIVÉ]
                 <BSOChart
                   id='resultats.publication.chart-repartition'
                   domain='health'

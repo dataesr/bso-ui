@@ -159,6 +159,7 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
+                [PRIVÉ]
                 <BSOChart
                   id='caracteristiques.quand.chart-distribution-declarations'
                   domain='health'
@@ -234,11 +235,13 @@ function EtudesObservationnelles() {
                 />
               </QuestionSection>
 
+              [PRIVÉ]
               <QuestionSection
                 intlKey='app.health-observational.promoteurs.impact'
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
+                [PRIVÉ]
                 <BSOChart
                   id='promoteurs.impact.chart-repartition'
                   domain='health'
@@ -297,6 +300,7 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
+                [PRIVÉ]
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition'
                   domain='health'
@@ -338,6 +342,7 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
+                [PRIVÉ]
                 <BSOChart
                   id='resultats.publication.chart-repartition'
                   domain='health'

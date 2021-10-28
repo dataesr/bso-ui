@@ -271,6 +271,8 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft25}
                   anchorId='publishers.couts-publication'
                 >
+                  [PRIVÉ]
+                  { /* seulement en staging pour le 1er graphe */ }
                   <BSOChart id='publi.publishers.couts-publication.chart-depenses-estimees' />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution-par-annee' />
