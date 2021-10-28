@@ -173,7 +173,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
             exclude: 'pdfs.semanticscholar.org',
-            size: 12,
+            size: 150,
           },
           aggs: {
             by_year: { terms: { field: 'year' } },

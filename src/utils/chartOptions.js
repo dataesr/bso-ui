@@ -1667,8 +1667,8 @@ export const chartOptions = {
           labels: [
             {
               point: {
-                x: data[2].x - 0.1,
-                y: data[2].y + (options.yAxis.max * 0.1),
+                x: (data[2]?.x - 0.1) || null,
+                y: (data[2]?.y + (options.yAxis.max * 0.1)) || null,
                 yAxis: 0,
                 xAxis: 0,
               },
