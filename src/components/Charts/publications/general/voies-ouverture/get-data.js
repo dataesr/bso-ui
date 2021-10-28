@@ -62,12 +62,14 @@ function useGetData(observationSnap, domain) {
             y: (100 * closedCurrent) / totalCurrent,
             y_abs: closedCurrent,
             y_tot: totalCurrent,
+            y_oa: oaCurrent,
             x: el.key,
             bsoDomain,
           });
           oa.push({
             y: (100 * oaCurrent) / totalCurrent,
             y_abs: oaCurrent,
+            y_oa: oaCurrent,
             y_tot: totalCurrent,
             x: el.key,
             bsoDomain,
@@ -75,12 +77,14 @@ function useGetData(observationSnap, domain) {
           repository.push({
             y: (100 * repositoryCurrent) / totalCurrent,
             y_abs: repositoryCurrent,
+            y_oa: oaCurrent,
             y_tot: totalCurrent,
             x: el.key,
             bsoDomain,
           });
           publisher.push({
             y: (100 * publisherCurrent) / totalCurrent,
+            y_oa: oaCurrent,
             y_abs: publisherCurrent,
             y_tot: totalCurrent,
             x: el.key,
@@ -88,6 +92,7 @@ function useGetData(observationSnap, domain) {
           });
           publisherRepository.push({
             y: (100 * publisherRepositoryCurrent) / totalCurrent,
+            y_oa: oaCurrent,
             y_abs: publisherRepositoryCurrent,
             y_tot: totalCurrent,
             x: el.key,

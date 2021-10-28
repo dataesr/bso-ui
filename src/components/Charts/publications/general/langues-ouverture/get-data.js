@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, cleanNumber, getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, cleanNumber, getCSSValue, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -21,6 +21,7 @@ function useGetData(observationSnap, domain) {
         domain,
         lastObservationSnap,
         'lang.keyword',
+        getPublicationYearFromObservationSnap(lastObservationSnap),
         5,
       );
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -61,6 +62,7 @@ function useGetData(observationSnap, domain) {
             y: (100 * closedCurrent) / totalCurrent,
             y_abs: closedCurrent,
             y_tot: totalCurrent,
+            y_oa: oaCurrent,
             x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
             bsoDomain,
           });
@@ -68,6 +70,7 @@ function useGetData(observationSnap, domain) {
             y: (100 * oaCurrent) / totalCurrent,
             y_abs: oaCurrent,
             y_tot: totalCurrent,
+            y_oa: oaCurrent,
             x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
             bsoDomain,
           });
@@ -75,6 +78,7 @@ function useGetData(observationSnap, domain) {
             y: (100 * repositoryCurrent) / totalCurrent,
             y_abs: repositoryCurrent,
             y_tot: totalCurrent,
+            y_oa: oaCurrent,
             x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
             bsoDomain,
           });
@@ -82,6 +86,7 @@ function useGetData(observationSnap, domain) {
             y: (100 * publisherCurrent) / totalCurrent,
             y_abs: publisherCurrent,
             y_tot: totalCurrent,
+            y_oa: oaCurrent,
             x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
             bsoDomain,
           });
@@ -89,6 +94,7 @@ function useGetData(observationSnap, domain) {
             y: (100 * publisherRepositoryCurrent) / totalCurrent,
             y_abs: publisherRepositoryCurrent,
             y_tot: totalCurrent,
+            y_oa: oaCurrent,
             x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
             bsoDomain,
           });

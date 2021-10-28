@@ -1198,7 +1198,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    oaHostType: ([lastObservationSnap, field, size]) => ({
+    oaHostType: ([lastObservationSnap, field = 'year', minPublicationDate = '2013', size = 10]) => ({
       size: 0,
       query: {
         bool: {
@@ -1206,7 +1206,8 @@ export default function getFetchOptions(key, domain, ...parameters) {
             {
               range: {
                 year: {
-                  gte: 2013,
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(lastObservationSnap),
                 },
               },
             },
@@ -1216,8 +1217,8 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_publication_year: {
           terms: {
-            field: (field || 'year'),
-            size: (size || 10),
+            field,
+            size,
           },
           aggs: {
             by_oa_host_type: {

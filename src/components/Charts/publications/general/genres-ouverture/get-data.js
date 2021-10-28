@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, cleanNumber, getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, cleanNumber, getCSSValue, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -21,6 +21,7 @@ function useGetData(observationSnap, domain) {
         domain,
         lastObservationSnap,
         'genre.keyword',
+        getPublicationYearFromObservationSnap(lastObservationSnap),
       );
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
@@ -66,6 +67,7 @@ function useGetData(observationSnap, domain) {
           closed.push({
             y: (100 * closedCurrent) / totalCurrent,
             y_abs: closedCurrent,
+            y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
               id: `app.publication-genre.${el.key}`,
@@ -75,6 +77,7 @@ function useGetData(observationSnap, domain) {
           oa.push({
             y: (100 * oaCurrent) / totalCurrent,
             y_abs: oaCurrent,
+            y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
               id: `app.publication-genre.${el.key}`,
@@ -84,6 +87,7 @@ function useGetData(observationSnap, domain) {
           repository.push({
             y: (100 * repositoryCurrent) / totalCurrent,
             y_abs: repositoryCurrent,
+            y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
               id: `app.publication-genre.${el.key}`,
@@ -93,6 +97,7 @@ function useGetData(observationSnap, domain) {
           publisher.push({
             y: (100 * publisherCurrent) / totalCurrent,
             y_abs: publisherCurrent,
+            y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
               id: `app.publication-genre.${el.key}`,
@@ -102,6 +107,7 @@ function useGetData(observationSnap, domain) {
           publisherRepository.push({
             y: (100 * publisherRepositoryCurrent) / totalCurrent,
             y_abs: publisherRepositoryCurrent,
+            y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
               id: `app.publication-genre.${el.key}`,
