@@ -1924,7 +1924,7 @@ export const chartOptions = {
       };
       const options = getGraphOptions(id, intl, studyType);
       options.colors = [nodeColor.start];
-      options.chart.height = '800px';
+      // options.chart.height = '800px';
 
       delete options.tooltip.pointFormat;
       options.series = [

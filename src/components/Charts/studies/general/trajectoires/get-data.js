@@ -27,21 +27,21 @@ function useGetData(studyType) {
       'Completed-has_result-has_publications_result-closed',
       'Completed-has_result-has_publications_result-is_oa',
       'Completed-has_result-no_publications_result',
-      'Ongoing',
-      'Ongoing-has_result',
-      'Ongoing-no_result',
-      'Ongoing-has_result-has_publications_result',
-      'Ongoing-has_result-has_publications_result-closed',
-      'Ongoing-has_result-has_publications_result-is_oa',
-      'Ongoing-has_result-no_publications_result',
-      'Unknown',
-      'Unknown-has_result',
-      'Unknowns-no_result',
-      'Unknown-has_result-has_publications_result',
-      'Unknown-has_result-has_publications_result-closed',
-      'Unknown-has_result-has_publications_result-is_oa',
-      'Unknown-has_result-no_publications_result',
     ];
+    //  'Ongoing',
+    //  'Ongoing-has_result',
+    //  'Ongoing-no_result',
+    //  'Ongoing-has_result-has_publications_result',
+    //  'Ongoing-has_result-has_publications_result-closed',
+    //  'Ongoing-has_result-has_publications_result-is_oa',
+    //  'Ongoing-has_result-no_publications_result',
+    //  'Unknown',
+    //  'Unknown-has_result',
+    //  'Unknowns-no_result',
+    //  'Unknown-has_result-has_publications_result',
+    //  'Unknown-has_result-has_publications_result-closed',
+    //  'Unknown-has_result-has_publications_result-is_oa',
+    //  'Unknown-has_result-no_publications_result',
 
     const intlKey = `app.health-${studyType.toLowerCase()}.general.sankey`;
     const nodeColor = {
@@ -56,22 +56,24 @@ function useGetData(studyType) {
       no_publications_result: getCSSValue('--g-600'),
       start: getCSSValue('--patient-50'),
     };
-
+    const fstLevel = false;
     data.forEach((el) => {
       if (toShow.includes(el.key)) {
         // 1er niveau
-        dataGraph.push({
-          from: intl.formatMessage({ id: `${intlKey}.start.label` }),
-          to: el.key,
-          weight: el.doc_count,
-          color: {
-            linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
-            stops: [
-              [0, nodeColor.start],
-              [1, nodeColor[el.key]],
-            ],
-          },
-        });
+        if (fstLevel) {
+          dataGraph.push({
+            from: intl.formatMessage({ id: `${intlKey}.start.label` }),
+            to: el.key,
+            weight: el.doc_count,
+            color: {
+              linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
+              stops: [
+                [0, nodeColor.start],
+                [1, nodeColor[el.key]],
+              ],
+            },
+          });
+        }
 
         // by_has_results;
         el.by_has_results.buckets.forEach((elA) => {
