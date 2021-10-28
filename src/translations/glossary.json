@@ -14,6 +14,10 @@
       "intlDefinition": "app.glossary.archive-ouverte.definition",
       "intlEntry": "app.glossary.archive-ouverte"
     },
+    "barriere-mobile": {
+      "intlDefinition": "app.glossary.barriere-mobile.definition",
+      "intlEntry": "app.glossary.barriere-mobile"
+    },
     "clinicaltrials-gov": {
       "intlDefinition": "app.glossary.clinicaltrials-gov.definition",
       "intlEntry": "app.glossary.clinicaltrials-gov"
