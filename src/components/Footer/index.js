@@ -27,7 +27,7 @@ export default function Footer() {
           <FooterTopCategory title='Liens'>
             <FooterLink
               target='_blank'
-              href='https://github.com/dataesr/bso-ui'
+              href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
             >
               Github
             </FooterLink>
@@ -51,14 +51,14 @@ export default function Footer() {
             >
               <FormattedMessage id='app.footer.link.open-science' />
             </FooterLink>
-            <FooterLink target='_blank' href='https://data.esr.gouv.fr/FR/'>
-              #dataESR
-            </FooterLink>
             <FooterLink
               target='_blank'
               href='https://scanr.enseignementsup-recherche.gouv.fr/'
             >
               <FormattedMessage id='app.footer.link.scanr' />
+            </FooterLink>
+            <FooterLink target='_blank' href='https://data.esr.gouv.fr/FR/'>
+              #dataESR
             </FooterLink>
             <FooterLink
               target='_blank'
@@ -69,7 +69,7 @@ export default function Footer() {
           </FooterTopCategory>
           <FooterTopCategory title='Nos sources'>
             <FooterLink target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/'>
-              Pubmed
+              PubMed
             </FooterLink>
             <FooterLink target='_blank' href='https://unpaywall.org/'>
               Unpaywall
@@ -119,13 +119,13 @@ export default function Footer() {
         <FooterBottom>
           <FooterLink
             target='_blank'
-            href='https://www.opengovpartnership.org/wp-content/uploads/2018/04/France_Action-Plan_2018-2020.pdf'
+            href='https://www.ouvrirlascience.fr/wp-content/uploads/2021/06/Deuxieme-Plan-National-Science-Ouverte_2021-2024.pdf'
           >
-            Plan National pour la Science Ouverte
+            Deuxième Plan National pour la Science Ouverte
           </FooterLink>
           <FooterLink
             target='_blank'
-            href='https://cache.media.enseignementsup-recherche.gouv.fr/file/Actus/67/2/PLAN_NATIONAL_SCIENCE_OUVERTE_978672.pdf'
+            href='https://www.modernisation.gouv.fr/actualites/ouvrir-laction-publique-construisons-ensemble-le-plan-daction-gouvernement-ouvert-2021'
           >
             Plan d’Action National de la France au sein du Partenariat pour un
             Gouvernement Ouvert (PGO)
