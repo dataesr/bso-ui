@@ -69,21 +69,21 @@ export default function SwitchLangButton() {
             value={lang}
           >
             <Radio
+              className='france-flag'
               label={intl.formatMessage({
                 id: 'app.lang.fr',
                 defaultMessage: 'Français',
               })}
-              imageURL='https://www.countryflags.io/fr/flat/64.png'
               value='fr'
               isExtended
               onChange={(e) => setSelectedLang(e.target.value)}
             />
             <Radio
+              className='great-britain-flag'
               label={intl.formatMessage({
                 id: 'app.lang.en',
                 defaultMessage: 'Anglais',
               })}
-              imageURL='https://www.countryflags.io/gb/flat/64.png'
               value='en'
               isExtended
               onChange={(e) => setSelectedLang(e.target.value)}

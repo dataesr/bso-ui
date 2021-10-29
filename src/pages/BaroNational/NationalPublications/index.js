@@ -62,7 +62,7 @@ export default function NationalPublications() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.intro'
-                    glossaryKeys={['acces-ouvert', 'publication']}
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 </p>
               </Col>

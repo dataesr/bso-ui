@@ -10,7 +10,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import GlossaryItem from './GlossaryItem';
@@ -169,7 +168,9 @@ function Glossary({ entries }) {
               className='to-glossary-page'
               icon='ri-arrow-right-line'
               iconSize='lg'
-              href='a-propos/glossaire'
+              href={intl.formatMessage({
+                id: 'url.about.glossaire',
+              })}
             >
               {intl.formatMessage({
                 id: 'app.glossary.complete',
