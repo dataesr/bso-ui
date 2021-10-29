@@ -87,13 +87,13 @@ import GlossaryEntries from 'glossary.json';
 
 * Ajouter les clefs nécéssaires dans les fichiers de langues `fr.json` et `en.json`
 
->  La balise `<glossary1>app.word</glossary1>` correspond au mot clickable du texte dans la page
+>  La balise `<glossary0>app.word</glossary0>` correspond au mot clickable du texte dans la page
 
 ```json
 {
   "app.entry": "Entry in glossary",
   "app.definition": "My definition <cta>my-link</cta>",
   "app.word": "word to click",
-  "app.text": "Lorem <glossary1>app.word-1</glossary1> ip <cta>my-link</cta> sum <glossary2>app.word-2</glossary2>."
+  "app.text": "Lorem <glossary0>app.word-1</glossary0> ip <cta>my-link</cta> sum <glossary1>app.word-2</glossary1>."
 }
 ```

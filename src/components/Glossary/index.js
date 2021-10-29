@@ -169,7 +169,7 @@ function Glossary({ entries }) {
               className='to-glossary-page'
               icon='ri-arrow-right-line'
               iconSize='lg'
-              as={<Link to='/a-propos/glossaire' />}
+              href='a-propos/glossaire'
             >
               {intl.formatMessage({
                 id: 'app.glossary.complete',

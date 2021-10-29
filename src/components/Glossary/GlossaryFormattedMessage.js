@@ -7,11 +7,10 @@ import GlossaryEntry from './GlossaryEntry';
 function GlossaryFormattedMessage({ intlKey, link, glossaryKeys }) {
   const values = {};
   glossaryKeys.forEach((g, i) => {
-    values[`glossary${i + 1}`] = (chunks) => (
+    values[`glossary${i}`] = (chunks) => (
       <GlossaryEntry link={link} intlKey={chunks} glossaryKey={g} />
     );
   });
-
   return (
     <FormattedMessage
       id={intlKey}

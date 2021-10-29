@@ -32,12 +32,12 @@
     max-height: calc(100vh - 120px);
     padding: 0 20px;
 
+    p::first-letter {
+      text-transform: uppercase;
+    }
+
     .glossary-item {
       border-bottom: 2px solid var(--blue-soft-125);
-
-      p::first-letter {
-        text-transform: uppercase;
-      }
 
       &.active p:first-child {
         color: var(--yellow-medium-100);
