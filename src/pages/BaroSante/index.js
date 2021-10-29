@@ -93,8 +93,8 @@ function BaroSante() {
                 }
                 introText={(
                   <GlossaryFormattedMessage
-                    glossaryKey='acces-ouvert'
                     intlKey='app.baro-sante.intro'
+                    glossaryKeys={['acces-ouvert']}
                   />
                 )}
               >
@@ -133,7 +133,7 @@ function BaroSante() {
                 }
                 introText={(
                   <GlossaryFormattedMessage
-                    glossaryKey='acces-ouvert'
+                    glossaryKeys={['acces-ouvert']}
                     intlKey='app.baro-sante.trials-intro'
                   />
                 )}
@@ -164,7 +164,7 @@ function BaroSante() {
                 }
                 introText={(
                   <GlossaryFormattedMessage
-                    glossaryKey='acces-ouvert'
+                    glossaryKeys={['acces-ouvert']}
                     intlKey='app.baro-sante.studies-intro'
                   />
                 )}

@@ -4,7 +4,13 @@ import { FormattedMessage } from 'react-intl';
 
 import GlossaryEntry from './GlossaryEntry';
 
-function GlossaryFormattedMessage({ intlKey, link, glossaryKey }) {
+function GlossaryFormattedMessage({ intlKey, link, glossaryKeys }) {
+  const values = {};
+  glossaryKeys.forEach((g, i) => {
+    values[`glossary${i}`] = (chunks) => (
+      <GlossaryEntry link={link} intlKey={chunks} glossaryKey={g} />
+    );
+  });
   return (
     <FormattedMessage
       id={intlKey}
@@ -14,13 +20,7 @@ function GlossaryFormattedMessage({ intlKey, link, glossaryKey }) {
             {chunks}
           </a>
         ),
-        glossary: (chunks) => (
-          <GlossaryEntry
-            link={link}
-            intlKey={chunks}
-            glossaryKey={glossaryKey}
-          />
-        ),
+        ...values,
       }}
     />
   );
@@ -30,7 +30,7 @@ GlossaryFormattedMessage.defaultProps = {
   link: () => {},
 };
 GlossaryFormattedMessage.propTypes = {
-  glossaryKey: PropTypes.string.isRequired,
+  glossaryKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   intlKey: PropTypes.string.isRequired,
   link: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

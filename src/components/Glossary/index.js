@@ -74,7 +74,12 @@ function Glossary({ entries }) {
     const arrGlossayEntries = Array.from(
       document.querySelectorAll('.glossary-entry'),
     );
-    if (glossaryEntries.length === 0 && arrGlossayEntries.length > 0) {
+    const glossaryLength = glossaryEntries.length;
+    const glossaryEntriesLength = arrGlossayEntries.length;
+    if (
+      (!glossaryLength && glossaryEntriesLength > 0)
+      || glossaryLength !== glossaryEntriesLength
+    ) {
       setGlossaryEntries(arrGlossayEntries);
     }
   }, [glossaryEntries]);
@@ -164,7 +169,7 @@ function Glossary({ entries }) {
               className='to-glossary-page'
               icon='ri-arrow-right-line'
               iconSize='lg'
-              as={<Link to='/a-propos/glossaire' />}
+              href='a-propos/glossaire'
             >
               {intl.formatMessage({
                 id: 'app.glossary.complete',

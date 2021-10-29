@@ -3,9 +3,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-const QuestionSection = ({ intlKey, backgroundColor, children, anchorId }) => {
+import GlossaryFormattedMessage from '../Glossary/GlossaryFormattedMessage';
+
+const QuestionSection = ({
+  intlKey,
+  backgroundColor,
+  children,
+  anchorId,
+  glossaryKeys,
+}) => {
   const intl = useIntl();
-  const description = intl.messages[`${intlKey}.description`] ? intl.formatMessage({ id: `${intlKey}.description` }) : 'desciption non rédigée';
+  const formatted = (
+    <GlossaryFormattedMessage
+      intlKey={`${intlKey}.description`}
+      glossaryKeys={glossaryKeys}
+    />
+  );
+  const description = intl.messages[`${intlKey}.description`]
+    ? formatted
+    : 'desciption non rédigée';
   return (
     <section
       style={{ backgroundColor, paddingTop: '28px' }}
@@ -29,8 +45,10 @@ QuestionSection.defaultProps = {
   backgroundColor: '',
   anchorId: '',
   children: null,
+  glossaryKeys: [],
 };
 QuestionSection.propTypes = {
+  glossaryKeys: PropTypes.arrayOf(PropTypes.string),
   intlKey: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string,
   children: PropTypes.node,

@@ -43,7 +43,7 @@ function EssaisCliniques() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.trials-intro'
-                    glossaryKey='acces-ouvert'
+                    glossaryKeys={['acces-ouvert']}
                   />
                 </p>
               </Col>
@@ -151,13 +151,11 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-
                 <BSOChart
                   id='caracteristiques.quand.chart-repartition-avant-apres'
                   domain='health'
                   studyType='Interventional'
                 />
-
                 [PRIVÉ]
                 <BSOChart
                   id='caracteristiques.quand.chart-distribution-declarations'
@@ -250,7 +248,6 @@ function EssaisCliniques() {
                   studyType='Interventional'
                 />
               </QuestionSection>
-
               [PRIVÉ]
               <QuestionSection
                 intlKey='app.health-interventional.promoteurs.impact'
@@ -258,19 +255,19 @@ function EssaisCliniques() {
                 anchorId='promoteurs.impact'
               >
                 [PRIVÉ]
-                { /* seulement en staging pour le 1er graphe */ }
+                {/* seulement en staging pour le 1er graphe */}
                 <BSOChart
                   id='promoteurs.impact.chart-repartition'
                   domain='health'
                   studyType='Interventional'
                 />
-                { /*
+                {/*
                 <BSOChart
                   id='promoteurs.impact.chart-classement-pays'
                   domain='health'
                   studyType='Interventional'
                 />
-                */ }
+                */}
               </QuestionSection>
             </GraphContent>
           </GraphItem>

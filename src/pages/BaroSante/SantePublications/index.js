@@ -43,7 +43,7 @@ function SantePublications() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.intro'
-                    glossaryKey='acces-ouvert'
+                    glossaryKeys={['acces-ouvert']}
                   />
                 </p>
               </Col>
@@ -334,7 +334,7 @@ function SantePublications() {
                   anchorId='publishers.couts-publication'
                 >
                   [PRIVÉ]
-                  { /* seulement en staging pour le 1er graphe */ }
+                  {/* seulement en staging pour le 1er graphe */}
                   <BSOChart
                     id='publi.publishers.couts-publication.chart-depenses-estimees'
                     domain='health'
@@ -481,12 +481,12 @@ function SantePublications() {
                     id='publi.affiliations.pays.chart-taux-rang-utile'
                     domain='health'
                   />
-                  { /*
+                  {/*
                   <BSOChart
                     id='publi.affiliations.pays.chart-classement-pays'
                     domain='health'
                   />
-                  */ }
+                  */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

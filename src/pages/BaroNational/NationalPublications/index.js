@@ -62,7 +62,7 @@ export default function NationalPublications() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.intro'
-                    glossaryKey='acces-ouvert'
+                    glossaryKeys={['acces-ouvert', 'publication']}
                   />
                 </p>
               </Col>
@@ -108,6 +108,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.general.dynamique-ouverture'
+                  glossaryKeys={['barriere-mobile']}
                   backgroundColor={blueSoft50}
                   anchorId='general.dynamique-ouverture'
                 >
@@ -272,7 +273,7 @@ export default function NationalPublications() {
                   anchorId='publishers.couts-publication'
                 >
                   [PRIVÉ]
-                  { /* seulement en staging pour le 1er graphe */ }
+                  {/* seulement en staging pour le 1er graphe */}
                   <BSOChart id='publi.publishers.couts-publication.chart-depenses-estimees' />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution-par-annee' />

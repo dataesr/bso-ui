@@ -32,6 +32,10 @@
     max-height: calc(100vh - 120px);
     padding: 0 20px;
 
+    p::first-letter {
+      text-transform: uppercase;
+    }
+
     .glossary-item {
       border-bottom: 2px solid var(--blue-soft-125);
 
@@ -55,7 +59,7 @@
   }
 
   .to-glossary-page {
-    @include font-size(12,12);
+    @include font-size(12, 12);
     box-shadow: none;
     padding: 6px 16px;
     background-color: var(--blue-soft-100);
@@ -75,7 +79,7 @@
   margin: 0 26px 0 4px;
 
   &::after {
-    @include font-size(14,19);
+    @include font-size(14, 19);
     content: 'i';
     font-family: 'dsfr-icons', serif;
     top: 4px;

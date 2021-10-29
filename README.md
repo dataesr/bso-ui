@@ -73,7 +73,7 @@ import GlossaryEntries from 'glossary.json';
 
 > La props `intlKey` correspond au texte dans lequel se trouve le mot clickable
 
-> La props `glossaryKey` correspond à la clef dans `glossary.json`
+> La props `glossaryKeys` correspond aux clefs dans `glossary.json` (dans l'ordre dans lequel elles apparaissent dans le texte)
 
 > La props `link` est optionnelle
 
@@ -81,19 +81,19 @@ import GlossaryEntries from 'glossary.json';
 <GlossaryFormattedMessage
   intlKey='app.text'
   link='http://www.link.fr'
-  glossaryKey='entry'
+  glossaryKeys={['entry1', 'entry2']}
 />
 ```
 
 * Ajouter les clefs nécéssaires dans les fichiers de langues `fr.json` et `en.json`
 
->  La balise `<glossary>app.word</glossary>` correspond au mot clickable du texte dans la page
+>  La balise `<glossary0>app.word</glossary0>` correspond au mot clickable du texte dans la page
 
 ```json
 {
   "app.entry": "Entry in glossary",
   "app.definition": "My definition <cta>my-link</cta>",
   "app.word": "word to click",
-  "app.text": "Lorem <glossary>app.word</glossary> ip <cta>my-link</cta> sum."
+  "app.text": "Lorem <glossary0>app.word-1</glossary0> ip <cta>my-link</cta> sum <glossary1>app.word-2</glossary1>."
 }
 ```

@@ -43,7 +43,7 @@ function EtudesObservationnelles() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.studies-intro'
-                    glossaryKey='acces-ouvert'
+                    glossaryKeys={['acces-ouvert']}
                   />
                 </p>
               </Col>
@@ -234,7 +234,6 @@ function EtudesObservationnelles() {
                   studyType='Observational'
                 />
               </QuestionSection>
-
               [PRIVÉ]
               <QuestionSection
                 intlKey='app.health-observational.promoteurs.impact'
@@ -247,13 +246,13 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-                { /*
+                {/*
                 <BSOChart
                   id='promoteurs.impact.chart-classement-pays'
                   domain='health'
                   studyType='Observational'
                 />
-                */ }
+                */}
               </QuestionSection>
             </GraphContent>
           </GraphItem>
