@@ -34,7 +34,7 @@ function GraphItem({ links, mainLabel, paths }) {
             left,
             top + window.scrollY + objMargin[viewPort.current],
           );
-        }, 200);
+        }, 800);
       }
     }
   }, [desktop, location, mainLabel, mobile]);

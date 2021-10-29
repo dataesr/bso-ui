@@ -74,7 +74,12 @@ function Glossary({ entries }) {
     const arrGlossayEntries = Array.from(
       document.querySelectorAll('.glossary-entry'),
     );
-    if (glossaryEntries.length === 0 && arrGlossayEntries.length > 0) {
+    const glossaryLength = glossaryEntries.length;
+    const glossaryEntriesLength = arrGlossayEntries.length;
+    if (
+      (!glossaryLength && glossaryEntriesLength > 0)
+      || glossaryLength !== glossaryEntriesLength
+    ) {
       setGlossaryEntries(arrGlossayEntries);
     }
   }, [glossaryEntries]);

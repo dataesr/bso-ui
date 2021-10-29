@@ -68,7 +68,8 @@ function WrapperChart({
   if (isLoading) {
     return (
       <div
-        className='graph-container'
+        className='graph-container text-center'
+        style={{ height: '400px' }}
         data-id={withContext(id, domain, studyType)}
       >
         <Loader />
@@ -104,6 +105,7 @@ function WrapperChart({
     </>
   );
 }
+
 WrapperChart.defaultProps = {
   hasFooter: true,
   hasComments: true,
