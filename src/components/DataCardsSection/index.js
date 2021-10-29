@@ -83,7 +83,7 @@ export default function DataCardSection({ lang, domain }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: 'editeurs?id=publishers.repartition-licences',
+        buttonHref: 'editeurs?id=publishers.type-ouverture',
         activeDomains: ['health', ''],
       },
       hostedDocument: {
@@ -113,7 +113,7 @@ export default function DataCardSection({ lang, domain }) {
         isPercentage: false,
         color: 'yellow',
         intlKey: 'app.publi.data.collab-country',
-        buttonHref: 'affiliations?id=affiliations.dynamique-ouverture',
+        buttonHref: 'affiliations?id=affiliations.pays',
         activeDomains: ['health'],
       },
       frenchPublicationsRate: {
