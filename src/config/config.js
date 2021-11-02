@@ -1,5 +1,5 @@
-export const ES_API_URL = 'https://cluster.elasticsearch.dataesr.ovh/bso-publications/_search';
-export const ES_STUDIES_API_URL = 'https://cluster.elasticsearch.dataesr.ovh/bso-clinical-trials/_search';
+export const ES_API_URL = process.env.REACT_APP_ES_API_URL_PUBLICATIONS;
+export const ES_STUDIES_API_URL = process.env.REACT_APP_ES_API_URL_STUDIES;
 
 export const HEADERS = {
   headers: {
