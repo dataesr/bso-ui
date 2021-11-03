@@ -3,7 +3,15 @@ export default function customComments(data, id, intl) {
   if (data) {
     comments = intl.formatMessage(
       { id: `${id}.comments` },
-      data.comments || 'commentaire non rédigé',
+      {
+        ...(data.comments || {}),
+        linebreak: (chunks) => (
+          <>
+            {chunks}
+            <br />
+          </>
+        ),
+      },
     );
   }
   return comments;

@@ -2,10 +2,13 @@ import './graph.scss';
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const GraphComments = ({ comments }) => (
   <div className='graph-comments'>
-    <div className='fs-14-24 marianne-bold'>Commentaire</div>
+    <div className='fs-14-24 marianne-bold'>
+      <FormattedMessage id='app.commons.graph-comment.label' />
+    </div>
     <p className='marianne fs-14-24'>{comments}</p>
   </div>
 );
