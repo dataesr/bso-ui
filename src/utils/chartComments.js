@@ -1,3 +1,5 @@
+import sanitizeHtml from 'sanitize-html';
+
 export default function customComments(data, id, intl) {
   let comments = 'commentaire non rédigé';
   if (data) {
@@ -7,7 +9,7 @@ export default function customComments(data, id, intl) {
         ...(data.comments || {}),
         linebreak: (chunks) => (
           <>
-            {chunks}
+            {sanitizeHtml(chunks)}
             <br />
           </>
         ),
