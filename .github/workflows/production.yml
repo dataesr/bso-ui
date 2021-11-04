@@ -6,9 +6,9 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
 env:
-  # Must match k8s deployment name
-  DEPLOYMENT: bso-ui
-  DEPLOYMENT_URL: barometredelascienceouverte.gouv.fr
+  DEPLOYMENT: bso-ui # Must match k8s deployment name
+  DEPLOYMENT_NAMESPACE: bso # Must match k8s deployment namespace
+  DEPLOYMENT_URL: https://bso.dataesr.ovh
   SLACK_NOTIFICATION_CHANNEL: '#bsso_bso2'
 
 jobs:
@@ -78,9 +78,10 @@ jobs:
         id: kubectl-deploy
         uses: dataesr/kubectl-deploy@v1.1
         env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DOAD }}
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DOAD_PROD }}
         with:
           restart: ${{ env.DEPLOYMENT }}
+          namespace: ${{ env.DEPLOYMENT_NAMESPACE }}
 
   notify:
     needs: deploy
