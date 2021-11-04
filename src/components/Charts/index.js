@@ -1,5 +1,7 @@
+import { Alert } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { Suspense } from 'react';
+import { useIntl } from 'react-intl';
 
 import chartComponents from '../../utils/chartComponents';
 import { domains, graphIds, studiesTypes } from '../../utils/constants';
@@ -13,10 +15,18 @@ function BSOChart({
   studyType,
   isDisplayed,
 }) {
+  const intl = useIntl();
   const Chart = chartComponents[id];
   return (
-    isDisplayed && (
+    (isDisplayed || isDisplayed == null) && (
       <Suspense fallback={<Loader />}>
+        {isDisplayed && (
+          <Alert
+            description={intl.formatMessage({
+              id: 'app.commons.graph-warning',
+            })}
+          />
+        )}
         {Chart && (
           <Chart
             id={id}
@@ -36,7 +46,7 @@ BSOChart.defaultProps = {
   hasFooter: true,
   hasComments: true,
   studyType: null,
-  isDisplayed: true,
+  isDisplayed: null,
 };
 
 BSOChart.propTypes = {
