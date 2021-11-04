@@ -15,7 +15,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue } from '../../../utils/helpers';
+import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 function EssaisCliniques() {
@@ -156,11 +156,11 @@ function EssaisCliniques() {
                   domain='health'
                   studyType='Interventional'
                 />
-                [PRIVÉ]
                 <BSOChart
                   id='caracteristiques.quand.chart-distribution-declarations'
                   domain='health'
                   studyType='Interventional'
+                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
 
@@ -248,18 +248,16 @@ function EssaisCliniques() {
                   studyType='Interventional'
                 />
               </QuestionSection>
-              [PRIVÉ]
               <QuestionSection
                 intlKey='app.health-interventional.promoteurs.impact'
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
-                [PRIVÉ]
-                {/* seulement en staging pour le 1er graphe */}
                 <BSOChart
                   id='promoteurs.impact.chart-repartition'
                   domain='health'
                   studyType='Interventional'
+                  isDisplayed={!isInProduction()}
                 />
                 {/*
                 <BSOChart
@@ -314,11 +312,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
-                [PRIVÉ]
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition'
                   domain='health'
                   studyType='Interventional'
+                  isDisplayed={!isInProduction()}
                 />
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition-par-type'
@@ -356,11 +354,11 @@ function EssaisCliniques() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
-                [PRIVÉ]
                 <BSOChart
                   id='resultats.publication.chart-repartition'
                   domain='health'
                   studyType='Interventional'
+                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
             </GraphContent>

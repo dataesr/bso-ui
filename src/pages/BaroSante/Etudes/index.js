@@ -15,7 +15,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue } from '../../../utils/helpers';
+import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 function EtudesObservationnelles() {
@@ -159,11 +159,11 @@ function EtudesObservationnelles() {
                   domain='health'
                   studyType='Observational'
                 />
-                [PRIVÉ]
                 <BSOChart
                   id='caracteristiques.quand.chart-distribution-declarations'
                   domain='health'
                   studyType='Observational'
+                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
 
@@ -234,17 +234,16 @@ function EtudesObservationnelles() {
                   studyType='Observational'
                 />
               </QuestionSection>
-              [PRIVÉ]
               <QuestionSection
                 intlKey='app.health-observational.promoteurs.impact'
                 backgroundColor={blueSoft25}
                 anchorId='promoteurs.impact'
               >
-                [PRIVÉ]
                 <BSOChart
                   id='promoteurs.impact.chart-repartition'
                   domain='health'
                   studyType='Observational'
+                  isDisplayed={!isInProduction()}
                 />
                 {/*
                 <BSOChart
@@ -299,11 +298,11 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft50}
                 anchorId='resultats.type-diffusion'
               >
-                [PRIVÉ]
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition'
                   domain='health'
                   studyType='Observational'
+                  isDisplayed={!isInProduction()}
                 />
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition-par-type'
@@ -341,11 +340,11 @@ function EtudesObservationnelles() {
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
               >
-                [PRIVÉ]
                 <BSOChart
                   id='resultats.publication.chart-repartition'
                   domain='health'
                   studyType='Observational'
+                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
             </GraphContent>
