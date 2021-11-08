@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import sanitizeHtml from 'sanitize-html';
 
 import GlossaryEntry from './GlossaryEntry';
 
@@ -19,6 +20,12 @@ function GlossaryFormattedMessage({ intlKey, link, glossaryKeys }) {
           <a target='_blank' href={`${link}`} rel='noreferrer'>
             {chunks}
           </a>
+        ),
+        linebreak: (chunks) => (
+          <>
+            {sanitizeHtml(chunks)}
+            <br />
+          </>
         ),
         ...values,
       }}
