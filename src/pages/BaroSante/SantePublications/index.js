@@ -15,7 +15,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue } from '../../../utils/helpers';
+import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 function SantePublications() {
@@ -333,11 +333,10 @@ function SantePublications() {
                   backgroundColor={blueSoft25}
                   anchorId='publishers.couts-publication'
                 >
-                  [PRIVÉ]
-                  {/* seulement en staging pour le 1er graphe */}
                   <BSOChart
                     id='publi.publishers.couts-publication.chart-depenses-estimees'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                   <BSOChart
                     id='publi.publishers.couts-publication.chart-distribution'

@@ -64,6 +64,7 @@ export function sortByPath(array, path) {
 /**
  *
  * @param num
+ * @param precision
  * @returns {string}
  */
 export function cleanNumber(num, precision = 1) {
@@ -75,7 +76,9 @@ export function cleanNumber(num, precision = 1) {
     const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
     const r = unit % 3;
     const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`);
-    myCleanedNumber = `${x.toFixed(precision)} ${units[Math.floor(unit / 3) - 1]}`;
+    myCleanedNumber = `${x.toFixed(precision)} ${
+      units[Math.floor(unit / 3) - 1]
+    }`;
   }
   return myCleanedNumber;
 }
@@ -153,7 +156,9 @@ export function getObservationLabel(observationSnap, intl, newline = false) {
     const quarter = observationSnap.substring(4, 6);
     const sep = newline ? '<br/>' : ' - ';
     if (intl.messages[`app.${quarter}`]) {
-      label = label.concat(sep).concat(intl.formatMessage({ id: `app.${quarter}` }));
+      label = label
+        .concat(sep)
+        .concat(intl.formatMessage({ id: `app.${quarter}` }));
     }
   }
   return label;
@@ -241,4 +246,12 @@ export function capitalize(str) {
  */
 export function stringIsIntTheKitchen(str, key, array) {
   return array.filter((elm) => str.startsWith(elm[key]));
+}
+
+/**
+ *
+ * @returns boolean
+ */
+export function isInProduction() {
+  return process.env.NODE_ENV === 'production';
 }

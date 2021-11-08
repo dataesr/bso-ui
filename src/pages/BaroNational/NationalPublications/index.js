@@ -18,7 +18,7 @@ import ScrollTop from '../../../components/ScrollTop';
 import urls from '../../../config/urls';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue } from '../../../utils/helpers';
+import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalPublications() {
@@ -272,9 +272,10 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft25}
                   anchorId='publishers.couts-publication'
                 >
-                  [PRIVÉ]
-                  {/* seulement en staging pour le 1er graphe */}
-                  <BSOChart id='publi.publishers.couts-publication.chart-depenses-estimees' />
+                  <BSOChart
+                    id='publi.publishers.couts-publication.chart-depenses-estimees'
+                    isDisplayed={!isInProduction()}
+                  />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution-par-annee' />
                 </QuestionSection>
