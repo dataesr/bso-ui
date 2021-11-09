@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import '../../../graph.scss';
 
 import Highcharts from 'highcharts';
@@ -7,10 +6,9 @@ import HCExporting from 'highcharts/modules/exporting';
 import HCSankeyModule from 'highcharts/modules/sankey';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import {
   domains,
@@ -29,7 +27,7 @@ HCSankeyModule(Highcharts);
 const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [chartComments, setChartComments] = useState('');
+  const [chartComments] = useState('');
   const { allData, isLoading, isError } = useGetData(studyType);
   const idWithDomainAndStudyType = withtStudyType(
     withDomain(id, domain),

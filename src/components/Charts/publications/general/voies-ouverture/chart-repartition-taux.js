@@ -19,9 +19,10 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lastObservationSnap } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
-    lastObservationSnap,
+    beforeLastObservationSnap || '2020',
+    lastObservationSnap || '2021',
     domain,
   );
   const { dataGraph, categories } = allData;

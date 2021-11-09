@@ -606,7 +606,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -649,7 +648,6 @@ export const chartOptions = {
           data,
         },
       ];
-
       return options;
     },
   },
@@ -1627,8 +1625,10 @@ export const chartOptions = {
             enabled: true,
             inside: false,
             formatter() {
-              const sign = (this.point.yoy > 0) ? '+' : '';
-              const label = this.point.yoy ? sign.concat(this.point.yoy.toFixed(0)).concat(' %') : null;
+              const sign = this.point.yoy > 0 ? '+' : '';
+              const label = this.point.yoy
+                ? sign.concat(this.point.yoy.toFixed(0)).concat(' %')
+                : null;
               return label;
             },
           },
@@ -1667,8 +1667,8 @@ export const chartOptions = {
           labels: [
             {
               point: {
-                x: (data[2]?.x - 0.1) || null,
-                y: (data[2]?.y + (options.yAxis.max * 0.1)) || null,
+                x: data[2]?.x - 0.1 || null,
+                y: data[2]?.y + options.yAxis.max * 0.1 || null,
                 yAxis: 0,
                 xAxis: 0,
               },
@@ -2502,7 +2502,8 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           formatter() {
-            const label = '<small>'.concat(intl.formatMessage({ id: 'app.fr-only' }))
+            const label = '<small>'
+              .concat(intl.formatMessage({ id: 'app.fr-only' }))
               .concat('&nbsp; ')
               .concat(intl.formatMessage({ id: 'app.fr-foreign' }))
               .concat('<br />')

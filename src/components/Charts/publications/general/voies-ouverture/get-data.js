@@ -6,7 +6,7 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, domain) {
+function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -188,7 +188,18 @@ function useGetData(observationSnap, domain) {
         },
       ];
 
-      return { categories, dataGraph, dataGraph3 };
+      const comments = {
+        lastObservationSnap,
+        beforeLastObservationSnap,
+        oa: oa[oa.length - 1]?.y.toFixed(0),
+        publisher: publisher[publisher.length - 1]?.y.toFixed(0),
+        publisherRepository:
+          publisherRepository[publisherRepository.length - 1]?.y.toFixed(0),
+        repository: repository[repository.length - 1]?.y.toFixed(0),
+        closed: closed[closed.length - 1]?.y.toFixed(0),
+      };
+
+      return { categories, dataGraph, dataGraph3, comments };
     },
     [domain, greenLight100, intl, yellowMedium125],
   );

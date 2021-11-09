@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';

@@ -32,12 +32,11 @@ function WrapperChart({
   const { updateDate } = useGlobals();
   const intl = useIntl();
   const idWithDomain = withDomain(id, domain);
+  const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
-  const title = !studyType
-    ? intl.formatMessage({ id: `${idWithDomain}.title` })
-    : intl.formatMessage({
-      id: `${withContext(id, domain, studyType)}.title`,
-    });
+  const title = intl.formatMessage({
+    id: `${!studyType ? idWithDomain : idWithContext}.title`,
+  });
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
     : 'commentaire non rédigé';
@@ -70,7 +69,7 @@ function WrapperChart({
       <div
         className='graph-container text-center'
         style={{ height: '400px' }}
-        data-id={withContext(id, domain, studyType)}
+        data-id={idWithContext}
       >
         <Loader />
       </div>
@@ -83,10 +82,7 @@ function WrapperChart({
 
   return (
     <>
-      <div
-        className='graph-container'
-        data-id={withContext(id, domain, studyType)}
-      >
+      <div className='graph-container' data-id={idWithContext}>
         <GraphTitle title={title} />
         {children}
         {hasComments && <GraphComments comments={comments} />}
