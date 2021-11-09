@@ -345,6 +345,7 @@ function SantePublications() {
                   <BSOChart
                     id='publi.publishers.couts-publication.chart-distribution-par-annee'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
               </GraphContent>
