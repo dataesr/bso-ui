@@ -20,11 +20,11 @@ To create a new release, use `npm version patch|minor|major`.
 
 ## Scripts disponibles
 
-* `npm run start`
-* `npm run build`
-* `npm run test`
-* `npm run prepare`
-* `npm run eject`
+* `npm start`
+* `npm build`
+* `npm test`
+* `npm prepare`
+* `npm eject`
 * `npm version patch|minor|major`
 
 ## Ajouter une nouvelle icône BSSO
@@ -32,7 +32,7 @@ To create a new release, use `npm version patch|minor|major`.
 * Ajouter le fichier `icon-bsso-[x].svg` dans `src/components/Icon/svg` en respectant ce format de nommage
 * Ajouter à la balise `<svg>` du fichier la class `icon-bsso-[x]`
 * Ajouter une balise `<title>` pour l'accessibilité
-* Ajouter aux balises `<path>` les class correspondantes `class="color-1"` `class="color-2"`
+* Ajouter aux balises `<path>` les classes correspondantes `class="color-1"` `class="color-2"`
 * Mettre à jour la variable `$icon-bsso-max` dans `src/style/variables.scss`
 
 ### Utilisation 
@@ -85,7 +85,7 @@ import GlossaryEntries from 'glossary.json';
 />
 ```
 
-* Ajouter les clefs nécéssaires dans les fichiers de langues `fr.json` et `en.json`
+* Ajouter les clefs nécessaires dans les fichiers de langues `fr.json` et `en.json`
 
 >  La balise `<glossary0>app.word</glossary0>` correspond au mot clickable du texte dans la page
 

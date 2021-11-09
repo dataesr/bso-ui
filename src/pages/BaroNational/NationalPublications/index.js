@@ -277,7 +277,10 @@ export default function NationalPublications() {
                     isDisplayed={!isInProduction()}
                   />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
-                  <BSOChart id='publi.publishers.couts-publication.chart-distribution-par-annee' />
+                  <BSOChart
+                    id='publi.publishers.couts-publication.chart-distribution-par-annee'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
