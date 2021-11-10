@@ -22,7 +22,7 @@ const Chart = ({ id, domain, hasComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { lastObservationSnap } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap,
     domain,
@@ -48,6 +48,7 @@ const Chart = ({ id, domain, hasComments }) => {
       isLoading={isLoading || !dataGraph || !categories}
       isError={isError}
       hasComments={false}
+      dataTitle={{ publicationYear: beforeLastObservationSnap }}
     >
       <HighchartsReact
         highcharts={Highcharts}

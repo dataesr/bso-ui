@@ -50,6 +50,7 @@ const Chart = ({ id, domain, hasComments }) => {
       isLoading={isLoading || !dataGraph3}
       isError={isError}
       hasComments={false}
+      dataTitle={{ publicationYear: beforeLastObservationSnap }}
     >
       <HighchartsReact
         highcharts={Highcharts}

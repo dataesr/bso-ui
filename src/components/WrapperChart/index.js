@@ -27,6 +27,7 @@ function WrapperChart({
   isLoading,
   isError,
   studyType,
+  dataTitle,
 }) {
   const { lang } = useLang();
   const { updateDate } = useGlobals();
@@ -34,9 +35,12 @@ function WrapperChart({
   const idWithDomain = withDomain(id, domain);
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
-  const title = intl.formatMessage({
-    id: `${!studyType ? idWithDomain : idWithContext}.title`,
-  });
+  const title = intl.formatMessage(
+    {
+      id: `${!studyType ? idWithDomain : idWithContext}.title`,
+    },
+    dataTitle,
+  );
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
     : 'commentaire non rédigé';
@@ -109,6 +113,7 @@ WrapperChart.defaultProps = {
   isError: false,
   chartRef: () => {},
   studyType: '',
+  dataTitle: {},
 };
 
 WrapperChart.propTypes = {
@@ -125,6 +130,8 @@ WrapperChart.propTypes = {
     PropTypes.shape({ current: undefined }),
   ]),
   studyType: PropTypes.oneOf(studiesTypes),
+  // eslint-disable-next-line react/forbid-prop-types
+  dataTitle: PropTypes.object,
 };
 
 export default WrapperChart;
