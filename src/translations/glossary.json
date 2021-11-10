@@ -58,6 +58,10 @@
       "intlDefinition": "app.glossary.pgo.definition",
       "intlEntry": "app.glossary.pgo"
     },
+    "preprint": {
+      "intlEntry": "app.glossary.preprint",
+      "intlDefinition": "app.glossary.preprint.definition"
+    },
     "promoteur": {
       "intlDefinition": "app.glossary.promoteur.definition",
       "intlEntry": "app.glossary.promoteur"

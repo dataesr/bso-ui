@@ -4,7 +4,12 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, cleanNumber, getCSSValue, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  cleanNumber,
+  getCSSValue,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -41,7 +46,15 @@ function useGetData(observationSnap, domain) {
         },
       };
       const newData = [];
-      ['journal-article', 'proceedings', 'book-chapter', 'book', 'preprint', 'dataset', 'other'].forEach((g) => {
+      [
+        'journal-article',
+        'proceedings',
+        'book-chapter',
+        'book',
+        'preprint',
+        'dataset',
+        'other',
+      ].forEach((g) => {
         const currentElem = data.filter((el) => el.key === g);
         if (currentElem.length === 1) {
           newData.push(currentElem[0]);
@@ -115,9 +128,11 @@ function useGetData(observationSnap, domain) {
             bsoDomain,
           });
           categories.push(
-            intl.formatMessage({ id: `app.publication-genre.${el.key}` })
+            intl
+              .formatMessage({ id: `app.publication-genre.${el.key}` })
               .concat('</br>(')
-              .concat(intl.formatMessage({ id: 'app.effectif' })).concat(cleanNumber(totalCurrent))
+              .concat(intl.formatMessage({ id: 'app.effectif' }))
+              .concat(cleanNumber(totalCurrent))
               .concat(')'),
           );
         });
@@ -196,7 +211,46 @@ function useGetData(observationSnap, domain) {
         },
       ];
 
-      return { categories, dataGraph, dataGraph3 };
+      const articles = newData.find((item) => item.key === 'journal-article');
+      const articlesTotal = articles.doc_count;
+      const openArticles = articles.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(item.key));
+      const openArticlesTotal = openArticles.reduce(
+        (previousValue, currentValue) => previousValue + currentValue.doc_count,
+        0,
+      );
+      const openArticlesPercentage = (
+        (openArticlesTotal / articlesTotal)
+        * 100
+      ).toFixed(2);
+      const closedArticles = articles.by_oa_host_type.buckets.find(
+        (item) => item.key === 'closed',
+      );
+      const closedArticlesTotal = closedArticles.doc_count;
+      const chapters = newData.find((item) => item.key === 'book-chapter');
+      const chaptersTotal = chapters.doc_count;
+      const openChapters = chapters.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(item.key));
+      const openChaptersTotal = openChapters.reduce(
+        (previousValue, currentValue) => previousValue + currentValue.doc_count,
+        0,
+      );
+      const openChaptersPercentage = (
+        (openChaptersTotal / chaptersTotal)
+        * 100
+      ).toFixed(2);
+      const closedChapters = chapters.by_oa_host_type.buckets.find(
+        (item) => item.key === 'closed',
+      );
+      const closedChaptersTotal = closedChapters.doc_count;
+      const comments = {
+        openArticlesTotal,
+        closedArticlesTotal,
+        openArticlesPercentage,
+        openChaptersTotal,
+        closedChaptersTotal,
+        openChaptersPercentage,
+      };
+
+      return { categories, dataGraph, dataGraph3, comments };
     },
     [domain, greenLight100, intl, yellowMedium125],
   );

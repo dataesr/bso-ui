@@ -23,14 +23,13 @@ HCExportingData(Highcharts);
 const Chart = ({ id, domain, hasComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     beforeLastObservationSnap || '2020',
     lastObservationSnap || '2021',
     domain,
   );
-
-  const [chartComments, setChartComments] = useState('');
   const { dataGraph3 } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
