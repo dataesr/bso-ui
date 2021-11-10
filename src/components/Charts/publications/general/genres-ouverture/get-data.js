@@ -221,33 +221,20 @@ function useGetData(observationSnap, domain) {
       const openArticlesPercentage = (
         (openArticlesTotal / articlesTotal)
         * 100
-      ).toFixed(2);
-      const closedArticles = articles.by_oa_host_type.buckets.find(
-        (item) => item.key === 'closed',
-      );
-      const closedArticlesTotal = closedArticles.doc_count;
-      const chapters = newData.find((item) => item.key === 'book-chapter');
-      const chaptersTotal = chapters.doc_count;
-      const openChapters = chapters.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(item.key));
-      const openChaptersTotal = openChapters.reduce(
+      ).toFixed(0);
+      const books = newData.find((item) => item.key === 'book');
+      const booksTotal = books.doc_count;
+      const openBooks = books.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(item.key));
+      const openBooksTotal = openBooks.reduce(
         (previousValue, currentValue) => previousValue + currentValue.doc_count,
         0,
       );
-      const openChaptersPercentage = (
-        (openChaptersTotal / chaptersTotal)
-        * 100
-      ).toFixed(2);
-      const closedChapters = chapters.by_oa_host_type.buckets.find(
-        (item) => item.key === 'closed',
+      const openBooksPercentage = ((openBooksTotal / booksTotal) * 100).toFixed(
+        0,
       );
-      const closedChaptersTotal = closedChapters.doc_count;
       const comments = {
-        openArticlesTotal,
-        closedArticlesTotal,
         openArticlesPercentage,
-        openChaptersTotal,
-        closedChaptersTotal,
-        openChaptersPercentage,
+        openBooksPercentage,
       };
 
       return { categories, dataGraph, dataGraph3, comments };
