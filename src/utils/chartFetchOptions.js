@@ -18,7 +18,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { wildcard: { 'publisher_group.keyword': needlePublisher } },
+            { wildcard: { 'publisher_dissemination.keyword': needlePublisher } },
             {
               wildcard: {
                 [`oa_details.${observationSnap}.oa_host_type`]: oaHostType,
@@ -368,7 +368,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         publisher_count: {
           cardinality: {
-            field: 'publisher_group.keyword',
+            field: 'publisher_dissemination.keyword',
             precision_threshold: 10,
           },
         },
@@ -395,7 +395,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_publisher: {
           terms: {
-            field: 'publisher_group.keyword',
+            field: 'publisher_dissemination.keyword',
             exclude: ['Cold Spring Harbor Laboratory', 'Research Square'],
             size: 10000,
           },
@@ -452,7 +452,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_publisher: {
           terms: {
-            field: 'publisher_group.keyword',
+            field: 'publisher_dissemination.keyword',
             exclude: ['Cold Spring Harbor Laboratory', 'Research Square'],
             size: 25,
           },
@@ -483,7 +483,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       aggs: {
         by_publisher: {
           terms: {
-            field: 'publisher_group.keyword',
+            field: 'publisher_dissemination.keyword',
             exclude: ['Cold Spring Harbor Laboratory', 'Research Square'],
             size: 20,
           },
@@ -512,7 +512,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 [`oa_details.${observationSnap}.oa_host_type`]: 'publisher',
               },
             },
-            { wildcard: { 'publisher_group.keyword': needlePublisher } },
+            { wildcard: { 'publisher_dissemination.keyword': needlePublisher } },
           ],
         },
       },
@@ -531,7 +531,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
         by_publisher: {
           terms: {
-            field: 'publisher_group.keyword',
+            field: 'publisher_dissemination.keyword',
             size: 25,
           },
           aggs: {
@@ -548,7 +548,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       size: 0,
       query: {
         bool: {
-          filter: [{ wildcard: { 'publisher_group.keyword': needle } }],
+          filter: [{ wildcard: { 'publisher_dissemination.keyword': needle } }],
         },
       },
       aggs: {
@@ -577,7 +577,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       size: 0,
       query: {
         bool: {
-          filter: [{ wildcard: { 'publisher_group.keyword': needle } }],
+          filter: [{ wildcard: { 'publisher_dissemination.keyword': needle } }],
         },
       },
       aggs: {
@@ -614,7 +614,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
       size: 0,
       query: {
         bool: {
-          filter: [{ wildcard: { 'publisher_group.keyword': needle } }],
+          filter: [{ wildcard: { 'publisher_dissemination.keyword': needle } }],
         },
       },
       aggs: {
