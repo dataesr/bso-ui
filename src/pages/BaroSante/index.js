@@ -169,7 +169,17 @@ function BaroSante() {
                   />
                 )}
               >
-                <p>etudes-observationnelles</p>
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart
+                        id='general.dynamique.chart-evolution'
+                        domain='health'
+                        studyType='Observational'
+                      />
+                    </Col>
+                  </Row>
+                </Container>
               </HomeSection>
             </Col>
             <Col n='12'>
