@@ -18,7 +18,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
-  const location = useLocation();
+  const location = useLocation().search;
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées

@@ -12,7 +12,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
-  const location = useLocation();
+  const location = useLocation().search;
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {

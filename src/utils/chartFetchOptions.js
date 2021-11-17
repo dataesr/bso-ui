@@ -1677,7 +1677,7 @@ export default function getFetchOptions(key, domain, location, ...parameters) {
       term: { 'domains.keyword': domain },
     });
   }
-  const urlSearchParams = new URLSearchParams(location.search);
+  const urlSearchParams = new URLSearchParams(location);
   const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
   if (bsoLocalAffiliations) {
     queryResponse.query.bool.filter.push({

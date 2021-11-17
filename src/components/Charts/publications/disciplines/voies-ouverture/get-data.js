@@ -19,7 +19,7 @@ function useGetData(observationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
-  const location = useLocation();
+  const location = useLocation().search;
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {

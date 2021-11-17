@@ -18,7 +18,7 @@ function useGetData(lastObservationSnap, domain = '') {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation();
+  const location = useLocation().search;
 
   async function GetData() {
     const query = getFetchOptions(

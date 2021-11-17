@@ -16,7 +16,7 @@ function useGetData(observationDate, domain = '') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation();
+  const location = useLocation().search;
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationSnap) => {

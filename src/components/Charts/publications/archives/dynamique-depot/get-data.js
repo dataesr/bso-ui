@@ -17,7 +17,7 @@ function useGetData(observationSnap, domain) {
   const greenMedium150 = getCSSValue('--green-medium-150');
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation();
+  const location = useLocation().search;
 
   async function GetData() {
     const query = getFetchOptions(

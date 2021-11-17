@@ -11,7 +11,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
-  const location = useLocation();
+  const location = useLocation().search;
 
   async function GetData() {
     // Pour chaque date d'observation, récupération des données associées

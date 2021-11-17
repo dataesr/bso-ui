@@ -21,7 +21,7 @@ function useGetData(lastObservationSnap, domain) {
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const yellowMedium100 = getCSSValue('--yellow-medium-100');
   const yellowMedium25 = getCSSValue('--yellow-medium-25');
-  const location = useLocation();
+  const location = useLocation().search;
 
   async function getDataGraph() {
     const queries = [];

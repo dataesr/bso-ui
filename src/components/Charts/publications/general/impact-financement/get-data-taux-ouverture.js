@@ -12,7 +12,7 @@ function useGetData(observationSnap, agency = '*', domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation();
+  const location = useLocation().search;
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
