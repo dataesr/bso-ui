@@ -4,10 +4,11 @@ import { getPublicationYearFromObservationSnap } from './helpers';
  *
  * @param key
  * @param domain
+ * @param location
  * @param parameters
  * @returns {*|{}}
  */
-export default function getFetchOptions(key, domain, ...parameters) {
+export default function getFetchOptions(key, domain, location, ...parameters) {
   const allOptions = {
     publicationRate: ([
       observationSnap,
@@ -18,7 +19,9 @@ export default function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { wildcard: { 'publisher_dissemination.keyword': needlePublisher } },
+            {
+              wildcard: { 'publisher_dissemination.keyword': needlePublisher },
+            },
             {
               wildcard: {
                 [`oa_details.${observationSnap}.oa_host_type`]: oaHostType,
@@ -159,11 +162,13 @@ export default function getFetchOptions(key, domain, ...parameters) {
       query: {
         bool: {
           filter: [
-            { range: {
-              year: {
-                gte: getPublicationYearFromObservationSnap(observationSnap) - 4,
+            {
+              range: {
+                year: {
+                  gte:
+                    getPublicationYearFromObservationSnap(observationSnap) - 4,
+                },
               },
-            },
             },
           ],
         },
@@ -188,8 +193,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
           filter: [
             {
               term: {
-                [`oa_details.${observationSnap}.repositories.keyword`]:
-                  'HAL',
+                [`oa_details.${observationSnap}.repositories.keyword`]: 'HAL',
               },
             },
           ],
@@ -210,8 +214,7 @@ export default function getFetchOptions(key, domain, ...parameters) {
           filter: [
             {
               term: {
-                [`oa_details.${observationSnap}.oa_host_type`]:
-                  'repository',
+                [`oa_details.${observationSnap}.oa_host_type`]: 'repository',
               },
             },
           ],
@@ -512,7 +515,9 @@ export default function getFetchOptions(key, domain, ...parameters) {
                 [`oa_details.${observationSnap}.oa_host_type`]: 'publisher',
               },
             },
-            { wildcard: { 'publisher_dissemination.keyword': needlePublisher } },
+            {
+              wildcard: { 'publisher_dissemination.keyword': needlePublisher },
+            },
           ],
         },
       },
@@ -1198,7 +1203,12 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    oaHostType: ([lastObservationSnap, field = 'year', minPublicationDate = '2013', size = 10]) => ({
+    oaHostType: ([
+      lastObservationSnap,
+      field = 'year',
+      minPublicationDate = '2013',
+      size = 10,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1207,7 +1217,9 @@ export default function getFetchOptions(key, domain, ...parameters) {
               range: {
                 year: {
                   gte: minPublicationDate,
-                  lte: getPublicationYearFromObservationSnap(lastObservationSnap),
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
                 },
               },
             },
@@ -1545,7 +1557,10 @@ export default function getFetchOptions(key, domain, ...parameters) {
         },
       },
     }),
-    studiesCaracteristiquesCombienChartGroupesPatients: ([studyType, sponsorType]) => ({
+    studiesCaracteristiquesCombienChartGroupesPatients: ([
+      studyType,
+      sponsorType,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1660,6 +1675,13 @@ export default function getFetchOptions(key, domain, ...parameters) {
   if (domain) {
     queryResponse.query.bool.filter.push({
       term: { 'domains.keyword': domain },
+    });
+  }
+  const urlSearchParams = new URLSearchParams(location.search);
+  const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
+  if (bsoLocalAffiliations) {
+    queryResponse.query.bool.filter.push({
+      term: { bso_local_affiliations: bsoLocalAffiliations },
     });
   }
   return queryResponse;

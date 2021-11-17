@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -20,18 +21,21 @@ function useGetData(lastObservationSnap, domain) {
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const yellowMedium100 = getCSSValue('--yellow-medium-100');
   const yellowMedium25 = getCSSValue('--yellow-medium-25');
+  const location = useLocation();
 
   async function getDataGraph() {
     const queries = [];
     const query = getFetchOptions(
       'publishersPolitiqueHisto',
       domain,
+      location,
       lastObservationSnap,
     );
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryBulle = getFetchOptions(
       'publishersPolitiqueBulle',
       domain,
+      location,
       lastObservationSnap,
     );
     queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));

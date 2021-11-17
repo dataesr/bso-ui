@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -11,11 +12,13 @@ function useGetData(studyType, sponsorType = '*') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const location = useLocation();
 
   async function getDataAxios() {
     const querySponsorTypes = getFetchOptions(
       'sponsorsTypesList',
       '',
+      location,
       studyType,
     );
 
@@ -36,6 +39,7 @@ function useGetData(studyType, sponsorType = '*') {
     const query1 = getFetchOptions(
       'studiesPromoteursImpactPaysLeadSponsor',
       '',
+      location,
       studyType,
       sponsorType,
     );
@@ -43,6 +47,7 @@ function useGetData(studyType, sponsorType = '*') {
     const query2 = getFetchOptions(
       'studiesPromoteursImpactPays',
       '',
+      location,
       studyType,
       sponsorType,
     );

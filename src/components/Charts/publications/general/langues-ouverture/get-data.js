@@ -1,10 +1,16 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, cleanNumber, getCSSValue, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  cleanNumber,
+  getCSSValue,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -13,12 +19,14 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const greenLight100 = getCSSValue('--green-light-100');
+  const location = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions(
         'oaHostType',
         domain,
+        location,
         lastObservationSnap,
         'lang.keyword',
         getPublicationYearFromObservationSnap(lastObservationSnap),
@@ -99,9 +107,11 @@ function useGetData(observationSnap, domain) {
             bsoDomain,
           });
           categories.push(
-            intl.formatMessage({ id: `app.lang.${el.key}` })
+            intl
+              .formatMessage({ id: `app.lang.${el.key}` })
               .concat('</br>(')
-              .concat(intl.formatMessage({ id: 'app.effectif' })).concat(cleanNumber(totalCurrent))
+              .concat(intl.formatMessage({ id: 'app.effectif' }))
+              .concat(cleanNumber(totalCurrent))
               .concat(')'),
           );
         });

@@ -1,16 +1,22 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  getCSSValue,
+  getObservationLabel,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
   const intl = useIntl();
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const location = useLocation();
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -19,14 +25,24 @@ function useGetData(observationSnaps, domain = '') {
       datesObservation
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
-          const query = getFetchOptions('publicationRate', domain, oneDate);
+          const query = getFetchOptions(
+            'publicationRate',
+            domain,
+            location,
+            oneDate,
+          );
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
       if (domain !== '') {
         datesObservation
           ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
           .forEach((oneDate) => {
-            const query = getFetchOptions('publicationRate', '', oneDate);
+            const query = getFetchOptions(
+              'publicationRate',
+              '',
+              location,
+              oneDate,
+            );
             queries.push(Axios.post(ES_API_URL, query, HEADERS));
           });
       }
@@ -64,7 +80,10 @@ function useGetData(observationSnaps, domain = '') {
               && el.doc_count
               && el.key > 2012,
           );
-        serie.name = getObservationLabel(observationSnapData.observationSnap, intl);
+        serie.name = getObservationLabel(
+          observationSnapData.observationSnap,
+          intl,
+        );
         serie.color = colors[i];
         serie.dashStyle = lineStyle[i];
         if (i === 0) {
@@ -78,19 +97,21 @@ function useGetData(observationSnaps, domain = '') {
         }
         serie.data = filtered.map((el) => ({
           y_tot:
-            el.by_is_oa.buckets[0].doc_count + el.by_is_oa.buckets[1].doc_count,
-          y_abs: el.by_is_oa.buckets.find((b) => b.key === 1).doc_count,
+            el.by_is_oa.buckets[0].doc_count
+            + (el.by_is_oa.buckets[1]?.doc_count || 0),
+          y_abs: el.by_is_oa.buckets.find((b) => b.key === 1)?.doc_count || 0,
           publicationDate: el.key,
           bsoDomain,
           y:
-            (el.by_is_oa.buckets.find((b) => b.key === 1).doc_count * 100)
+            ((el.by_is_oa.buckets.find((b) => b.key === 1)?.doc_count || 0)
+              * 100)
             / (el.by_is_oa.buckets[0].doc_count
-              + el.by_is_oa.buckets[1].doc_count),
+              + el.by_is_oa.buckets[1]?.doc_count),
         }));
         serie.ratios = filtered.map(
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
         );
-        serie.lastPublicationDate = filtered[filtered.length - 1].key;
+        serie.lastPublicationDate = filtered.length > 0 ? filtered[filtered.length - 1].key : 0;
         if (i < datesObservation.length) {
           dataGraph2.push(serie);
         } else {
@@ -120,18 +141,18 @@ function useGetData(observationSnaps, domain = '') {
       dataGraph2.forEach((el) => {
         serie1.push({
           bsoDomain,
-          name: el.name, // observation date
-          y: el.data[el.data.length - 1].y,
-          ratio: el.ratios[el.data.length - 1],
+          name: el.name,
+          y: el.data.length > 0 ? el.data[el.data.length - 1].y : 0,
+          ratio: el.data.length > 0 ? el.ratios[el.data.length - 1] : 0,
           publicationDate: el.lastPublicationDate,
         });
       });
       dataGraphGlobal.forEach((el) => {
         serieGlobal.push({
           bsoDomain: bsoDomainGlobal,
-          name: el.name, // observation date
-          y: el.data[el.data.length - 1].y,
-          ratio: el.ratios[el.data.length - 1],
+          name: el.name,
+          y: el.data.length > 0 ? el.data[el.data.length - 1].y : 0,
+          ratio: el.data.length > 0 ? el.ratios[el.data.length - 1] : 0,
           publicationDate: el.lastPublicationDate,
         });
       });

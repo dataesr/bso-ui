@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -16,45 +17,58 @@ function useGetData(observationSnap, domain) {
   const greenMedium150 = getCSSValue('--green-medium-150');
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
+  const location = useLocation();
 
   async function GetData() {
-    const query = getFetchOptions('repositoriesHisto', domain, observationSnap);
+    const query = getFetchOptions(
+      'repositoriesHisto',
+      domain,
+      location,
+      observationSnap,
+    );
 
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     let tab = [];
     const nbHisto = 4;
     const lastPublicationYear = getPublicationYearFromObservationSnap(observationSnap);
-    res.data.aggregations.by_repository.buckets.forEach((archive, archiveIndex) => {
-      if (archive.key !== 'N/A') {
-        const obj = {
-          name: archive.key,
-          annotationVisible: (archiveIndex === 0),
-          color: greenMedium150,
-          data: archive.by_year.buckets
-            .filter(
-              (el) => el.key > lastPublicationYear - nbHisto
-                && el.key <= lastPublicationYear,
-            )
-            .sort((a, b) => a.key - b.key)
-            .map((el, index) => ({
-              name: el.key,
-              bsoDomain,
-              year: el.key,
-              x: el.key,
-              y: el.doc_count,
-              color:
-                index === nbHisto - 1
-                  ? getCSSValue('--green-medium-125')
-                  : greenMedium150,
-            })),
-        };
-        obj.data.forEach((el, index) => {
-          obj.data[index].yoy = (index > 0) ? (100 * (el.y - obj.data[index - 1].y)) / obj.data[index - 1].y : null;
-        });
-        tab.push(obj);
-      }
-    });
-    tab = tab.sort((a, b) => (b.data.find((el) => el.name === lastPublicationYear)?.y || 0) - (a.data.find((el) => el.name === lastPublicationYear)?.y || 0));
+    res.data.aggregations.by_repository.buckets.forEach(
+      (archive, archiveIndex) => {
+        if (archive.key !== 'N/A') {
+          const obj = {
+            name: archive.key,
+            annotationVisible: archiveIndex === 0,
+            color: greenMedium150,
+            data: archive.by_year.buckets
+              .filter(
+                (el) => el.key > lastPublicationYear - nbHisto
+                  && el.key <= lastPublicationYear,
+              )
+              .sort((a, b) => a.key - b.key)
+              .map((el, index) => ({
+                name: el.key,
+                bsoDomain,
+                year: el.key,
+                x: el.key,
+                y: el.doc_count,
+                color:
+                  index === nbHisto - 1
+                    ? getCSSValue('--green-medium-125')
+                    : greenMedium150,
+              })),
+          };
+          obj.data.forEach((el, index) => {
+            obj.data[index].yoy = index > 0
+              ? (100 * (el.y - obj.data[index - 1].y)) / obj.data[index - 1].y
+              : null;
+          });
+          tab.push(obj);
+        }
+      },
+    );
+    tab = tab.sort(
+      (a, b) => (b.data.find((el) => el.name === lastPublicationYear)?.y || 0)
+        - (a.data.find((el) => el.name === lastPublicationYear)?.y || 0),
+    );
     return tab.slice(0, 12);
   }
 

@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -11,11 +12,13 @@ function useGetData(studyType, sponsor = '*') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const location = useLocation();
 
   async function getDataAxios() {
     const querySponsorTypes = getFetchOptions(
       'sponsorsList',
       '',
+      location,
       studyType,
     );
 
@@ -35,6 +38,7 @@ function useGetData(studyType, sponsor = '*') {
     const queryDynamiqueOuverture = getFetchOptions(
       'studiesDynamiqueOuverture',
       '',
+      location,
       studyType,
     );
     queries.push(
@@ -43,6 +47,7 @@ function useGetData(studyType, sponsor = '*') {
     const queryDynamiqueOuvertureSponsor = getFetchOptions(
       'studiesDynamiqueOuvertureSponsor',
       '',
+      location,
       studyType,
       sponsor,
     );
@@ -52,6 +57,7 @@ function useGetData(studyType, sponsor = '*') {
     const queryDynamiqueSponsor = getFetchOptions(
       'studiesDynamiqueSponsor',
       '',
+      location,
       studyType,
       sponsor,
     );

@@ -125,6 +125,7 @@ function BaroNational() {
                       <BSOChart
                         id='publi.general.dynamique-ouverture.chart-evolution-proportion'
                         hasComments={false}
+                        hasFooter={false}
                       />
                     </Col>
                   </Row>

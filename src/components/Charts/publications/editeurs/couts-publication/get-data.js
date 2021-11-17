@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -17,12 +18,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
+  const location = useLocation();
+
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     const query = getFetchOptions(
       'apcYear',
       domain,
+      location,
       datesObservation[0],
       needle,
     );
@@ -30,6 +34,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const queryHistogram = getFetchOptions(
       'apcHistogram',
       domain,
+      location,
       datesObservation[0],
       needle,
     );
@@ -37,6 +42,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const queryPercentile = getFetchOptions(
       'apcPercentile',
       domain,
+      location,
       datesObservation[0],
       needle,
     );

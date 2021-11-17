@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -10,6 +11,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
+  const location = useLocation();
 
   async function GetData() {
     // Pour chaque date d'observation, récupération des données associées
@@ -20,6 +22,7 @@ function useGetData(observationSnaps, domain = '') {
         const query = getFetchOptions(
           'publicationRateAffiliation',
           domain,
+          location,
           oneDate,
           'french_affiliations_types',
         );
