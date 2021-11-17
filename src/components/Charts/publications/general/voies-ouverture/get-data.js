@@ -208,7 +208,14 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
       return { categories, dataGraph, dataGraph3, comments };
     },
-    [domain, greenLight100, intl, yellowMedium125, beforeLastObservationSnap],
+    [
+      domain,
+      greenLight100,
+      intl,
+      yellowMedium125,
+      beforeLastObservationSnap,
+      location,
+    ],
   );
 
   useEffect(() => {

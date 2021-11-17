@@ -242,7 +242,7 @@ function useGetData(observationSnap, domain) {
 
       return { categories, dataGraph, dataGraph3, comments };
     },
-    [domain, greenLight100, intl, yellowMedium125],
+    [domain, greenLight100, intl, yellowMedium125, location],
   );
 
   useEffect(() => {

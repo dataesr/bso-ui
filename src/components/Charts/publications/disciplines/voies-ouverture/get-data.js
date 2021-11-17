@@ -174,7 +174,7 @@ function useGetData(observationSnap, domain) {
       ];
       return { categories, dataGraph };
     },
-    [domain, disciplineField, intl, yellowMedium125, bsoDomain],
+    [domain, disciplineField, intl, yellowMedium125, bsoDomain, location],
   );
 
   useEffect(() => {

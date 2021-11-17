@@ -86,7 +86,7 @@ function useGetData(observationSnaps, domain = '') {
       });
       return dataHist;
     },
-    [domain, intl],
+    [domain, intl, location],
   );
 
   useEffect(() => {
