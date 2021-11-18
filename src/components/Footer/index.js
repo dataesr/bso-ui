@@ -74,6 +74,18 @@ export default function Footer() {
             <FooterLink target='_blank' href='https://unpaywall.org/'>
               Unpaywall
             </FooterLink>
+            <FooterLink target='_blank' href='https://doaj.org/'>
+              DOAJ
+            </FooterLink>
+            <FooterLink target='_blank' href='https://github.com/OpenAPC/openapc-de'>
+              OpenAPC
+            </FooterLink>
+            <FooterLink target='_blank' href='https://clinicaltrials.gov/'>
+              ClinicalTrials.org
+            </FooterLink>
+            <FooterLink target='_blank' href='https://www.clinicaltrialsregister.eu/'>
+              EU Clinical Trials Register
+            </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory title='Nous suivre sur les réseaux'>
             <FooterLink href='https://twitter.com/sup_recherche'>

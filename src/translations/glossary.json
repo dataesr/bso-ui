@@ -42,21 +42,37 @@
       "intlDefinition": "app.glossary.etude-observationelle.definition",
       "intlEntry": "app.glossary.etude-observationelle"
     },
+    "euctr": {
+      "intlDefinition": "app.glossary.euctr.definition",
+      "intlEntry": "app.glossary.euctr"
+    },
     "eudract": {
       "intlDefinition": "app.glossary.eudract.definition",
       "intlEntry": "app.glossary.eudract"
     },
-    "full-apc": {
-      "intlDefinition": "app.glossary.full-apc.definition",
-      "intlEntry": "app.glossary.full-apc"
+    "gold-full-apc": {
+      "intlDefinition": "app.glossary.gold-full-apc.definition",
+      "intlEntry": "app.glossary.gold-full-apc"
     },
     "hal": {
       "intlDefinition": "app.glossary.hal.definition",
       "intlEntry": "app.glossary.hal"
     },
+    "hybrid": {
+      "intlDefinition": "app.glossary.hybrid.definition",
+      "intlEntry": "app.glossary.hybrid"
+    },
+    "openapc": {
+      "intlDefinition": "app.glossary.openapc.definition",
+      "intlEntry": "app.glossary.openapc"
+    },
     "pgo": {
       "intlDefinition": "app.glossary.pgo.definition",
       "intlEntry": "app.glossary.pgo"
+    },
+    "predatory": {
+      "intlDefinition": "app.glossary.predatory.definition",
+      "intlEntry": "app.glossary.predatory"
     },
     "preprint": {
       "intlEntry": "app.glossary.preprint",
@@ -77,10 +93,6 @@
     "resultat-essai-clinique": {
       "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
       "intlEntry": "app.glossary.resultat-essai-clinique"
-    },
-    "revue-hybrid": {
-      "intlDefinition": "app.glossary.revue-hybrid.definition",
-      "intlEntry": "app.glossary.revue-hybrid"
     },
     "type-hebergement-oa": {
       "intlDefinition": "app.glossary.type-hebergement-oa.definition",
