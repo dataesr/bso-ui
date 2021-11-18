@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL } from '../../config/config';
 import getFetchOptions from '../chartFetchOptions';
@@ -9,6 +10,7 @@ export default async function useGetPublicationRateFrom(
   observationSnap,
 ) {
   const [result, setResult] = useState({});
+  const location = useLocation().search;
 
   const { fetch, response, isMounted, loading } = useFetch({
     url: ES_API_URL,
@@ -18,7 +20,12 @@ export default async function useGetPublicationRateFrom(
   useEffect(() => {
     if (!response && isMounted.current && observationSnap) {
       fetch({
-        options: getFetchOptions('publicationRate', domain, observationSnap),
+        options: getFetchOptions({
+          key: 'publicationRate',
+          domain,
+          location,
+          parameters: [observationSnap],
+        }),
       });
     } else if (
       !loading
@@ -50,6 +57,15 @@ export default async function useGetPublicationRateFrom(
         isMounted.current = false;
       }
     };
-  }, [domain, fetch, isMounted, loading, observationSnap, response, result]);
+  }, [
+    domain,
+    fetch,
+    isMounted,
+    loading,
+    observationSnap,
+    response,
+    result,
+    location,
+  ]);
   return result;
 }

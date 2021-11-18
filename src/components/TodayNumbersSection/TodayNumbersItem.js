@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FormattedMessage } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, ES_STUDIES_API_URL } from '../../config/config';
 import getFetchOptions from '../../utils/chartFetchOptions';
@@ -55,10 +56,16 @@ function TodayNumbersItem({
 }) {
   const [todayData, setTodayData] = useState({});
   const { lastObservationSnap } = useGlobals();
+  const location = useLocation().search;
   const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
-    options: getFetchOptions(itemKey, domain, lastObservationSnap),
+    options: getFetchOptions({
+      key: itemKey,
+      domain,
+      location,
+      parameters: [lastObservationSnap],
+    }),
   });
   const { ref, inView } = useInView();
 

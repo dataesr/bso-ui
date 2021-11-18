@@ -7,6 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -35,11 +36,19 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     domain,
   );
   const { dataGraph2 } = data;
-  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
+  const location = useLocation().search;
+  const query = getFetchOptions({
+    key: 'publishersList',
+    domain,
+    location,
+    parameters: [lastObservationSnap],
+  });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets.filter((item) => item.key !== 'Cold Spring Harbor Laboratory').map((item) => item.key),
+        response.data.aggregations.by_publisher.buckets
+          .filter((item) => item.key !== 'Cold Spring Harbor Laboratory')
+          .map((item) => item.key),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -32,7 +33,13 @@ const Chart = ({ id, domain }) => {
     domain,
   );
   const { dataGraph, categories } = allData;
-  const query = getFetchOptions('allAgencies', domain, lastObservationSnap);
+  const location = useLocation().search;
+  const query = getFetchOptions({
+    key: 'allAgencies',
+    domain,
+    location,
+    parameters: [lastObservationSnap],
+  });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setAgencies(

@@ -228,8 +228,10 @@ function useGetData(observationSnap, domain) {
         * 100
       ).toFixed(0);
       const books = newData.find((item) => item.key === 'book');
-      const booksTotal = books.doc_count;
-      const openBooks = books.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(item.key));
+      const booksTotal = books?.doc_count || 0;
+      const openBooks = books?.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
+        item.key,
+      )) || [];
       const openBooksTotal = openBooks.reduce(
         (previousValue, currentValue) => previousValue + currentValue.doc_count,
         0,
