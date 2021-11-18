@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -16,12 +15,10 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation().search;
 
   async function getDataAxios() {
     const querySponsorTypes = getFetchOptions({
       key: 'sponsorsTypesList',
-      location,
       parameters: [studyType],
     });
     const responseSponsorTypes = await Axios.post(
@@ -44,7 +41,6 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
 
     const query2 = getFetchOptions({
       key: 'studiesCaracteristiquesQuandRepartition',
-      location,
       parameters: ['delay_first_results_completion', studyType, sponsorType],
     });
     query2.query.bool.filter.push({
@@ -110,7 +106,6 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
 
     const query3 = getFetchOptions({
       key: 'studiesCaracteristiquesQuandDistribution',
-      location,
       parameters: ['delay_first_results_completion', studyType, sponsorType],
     });
     query3.query.bool.filter.push({

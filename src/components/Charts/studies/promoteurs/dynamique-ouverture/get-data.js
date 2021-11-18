@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -12,12 +11,10 @@ function useGetData(studyType, sponsor = '*') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation().search;
 
   async function getDataAxios() {
     const querySponsorTypes = getFetchOptions({
       key: 'sponsorsList',
-      location,
       parameters: [studyType],
     });
     const responseSponsorTypes = await Axios.post(
@@ -35,7 +32,6 @@ function useGetData(studyType, sponsor = '*') {
     const queries = [];
     const queryDynamiqueOuverture = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
-      location,
       parameters: [studyType],
     });
     queries.push(
@@ -43,7 +39,6 @@ function useGetData(studyType, sponsor = '*') {
     );
     const queryDynamiqueOuvertureSponsor = getFetchOptions({
       key: 'studiesDynamiqueOuvertureSponsor',
-      location,
       parameters: [studyType, sponsor],
     });
     queries.push(
@@ -51,7 +46,6 @@ function useGetData(studyType, sponsor = '*') {
     );
     const queryDynamiqueSponsor = getFetchOptions({
       key: 'studiesDynamiqueSponsor',
-      location,
       parameters: [studyType, sponsor],
     });
     queries.push(
