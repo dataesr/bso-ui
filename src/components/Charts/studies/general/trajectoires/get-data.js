@@ -15,12 +15,11 @@ function useGetData(studyType) {
   const location = useLocation().search;
 
   async function getDataAxios() {
-    const query = getFetchOptions(
-      'studiesTrajectoires',
-      '',
+    const query = getFetchOptions({
+      key: 'studiesTrajectoires',
       location,
-      studyType,
-    );
+      parameters: [studyType],
+    });
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
     const dataGraph = [];
     const data = res.data.aggregations.by_status.buckets;

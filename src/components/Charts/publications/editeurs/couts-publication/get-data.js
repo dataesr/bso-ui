@@ -23,29 +23,26 @@ function useGetData(observationSnaps, needle = '*', domain) {
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    const query = getFetchOptions(
-      'apcYear',
+    const query = getFetchOptions({
+      key: 'apcYear',
       domain,
       location,
-      datesObservation[0],
-      needle,
-    );
+      parameters: [datesObservation[0], needle],
+    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const queryHistogram = getFetchOptions(
-      'apcHistogram',
+    const queryHistogram = getFetchOptions({
+      key: 'apcHistogram',
       domain,
       location,
-      datesObservation[0],
-      needle,
-    );
+      parameters: [datesObservation[0], needle],
+    });
     queries.push(Axios.post(ES_API_URL, queryHistogram, HEADERS));
-    const queryPercentile = getFetchOptions(
-      'apcPercentile',
+    const queryPercentile = getFetchOptions({
+      key: 'apcPercentile',
       domain,
       location,
-      datesObservation[0],
-      needle,
-    );
+      parameters: [datesObservation[0], needle],
+    });
     queries.push(Axios.post(ES_API_URL, queryPercentile, HEADERS));
     const res = await Axios.all(queries);
     // 1er graphe : histogram total

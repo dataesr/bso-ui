@@ -25,19 +25,19 @@ function useGetData(lastObservationSnap, domain) {
 
   async function getDataGraph() {
     const queries = [];
-    const query = getFetchOptions(
-      'publishersPolitiqueHisto',
+    const query = getFetchOptions({
+      key: 'publishersPolitiqueHisto',
       domain,
       location,
-      lastObservationSnap,
-    );
+      parameters: [lastObservationSnap],
+    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const queryBulle = getFetchOptions(
-      'publishersPolitiqueBulle',
+    const queryBulle = getFetchOptions({
+      key: 'publishersPolitiqueBulle',
       domain,
       location,
-      lastObservationSnap,
-    );
+      parameters: [lastObservationSnap],
+    });
     queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));
     const res = await Axios.all(queries);
 

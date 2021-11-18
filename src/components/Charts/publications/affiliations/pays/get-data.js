@@ -21,19 +21,19 @@ function useGetData(observationDate, domain = '') {
   const getDataForLastObservationDate = useCallback(
     async (lastObservationSnap) => {
       const queries = [];
-      const query1 = getFetchOptions(
-        'publicationRateRangUtile',
+      const query1 = getFetchOptions({
+        key: 'publicationRateRangUtile',
         domain,
         location,
-        lastObservationSnap,
-      );
+        parameters: [lastObservationSnap],
+      });
       queries.push(Axios.post(ES_API_URL, query1, HEADERS));
-      const query2 = getFetchOptions(
-        'publicationRatePays',
+      const query2 = getFetchOptions({
+        key: 'publicationRatePays',
         domain,
         location,
-        lastObservationSnap,
-      );
+        parameters: [lastObservationSnap],
+      });
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
       const res = await Axios.all(queries);
       // 1er graphe

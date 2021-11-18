@@ -15,13 +15,11 @@ function useGetData(studyType, sponsorType = '*') {
   const location = useLocation().search;
 
   async function getDataAxios() {
-    const querySponsorTypes = getFetchOptions(
-      'sponsorsTypesList',
-      '',
+    const querySponsorTypes = getFetchOptions({
+      key: 'sponsorsTypesList',
       location,
-      studyType,
-    );
-
+      parameters: [studyType],
+    });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
       querySponsorTypes,
@@ -36,13 +34,11 @@ function useGetData(studyType, sponsorType = '*') {
     }));
 
     const queries = [];
-    const query1 = getFetchOptions(
-      'studiesResultsPlanPartage',
-      '',
+    const query1 = getFetchOptions({
+      key: 'studiesResultsPlanPartage',
       location,
-      studyType,
-      sponsorType,
-    );
+      parameters: [studyType, sponsorType],
+    });
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     const res = await Axios.all(queries);
     const currentYear = new Date().getFullYear();

@@ -8,7 +8,12 @@ import { getPublicationYearFromObservationSnap } from './helpers';
  * @param parameters
  * @returns {*|{}}
  */
-export default function getFetchOptions(key, domain, location, ...parameters) {
+export default function getFetchOptions({
+  key,
+  domain = null,
+  location = null,
+  parameters = [],
+}) {
   const allOptions = {
     publicationRate: ([
       observationSnap,

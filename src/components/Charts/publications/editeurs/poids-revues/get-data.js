@@ -16,7 +16,11 @@ function useGetData(observationSnap, domain) {
   const location = useLocation().search;
 
   async function getDataGraph() {
-    const query = getFetchOptions('predatory', domain, location);
+    const query = getFetchOptions({
+      key: 'predatory',
+      domain,
+      location,
+    });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)

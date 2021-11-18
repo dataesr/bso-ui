@@ -17,14 +17,12 @@ function useGetData(observationSnap, isOa, domain) {
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const publicationDate = Number(lastObservationSnap.slice(0, 4)) - 1;
     const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
-    const query = getFetchOptions(
-      'openingType',
+    const query = getFetchOptions({
+      key: 'openingType',
       domain,
       location,
-      lastObservationSnap,
-      field,
-      'lang.keyword',
-    );
+      parameters: [lastObservationSnap, field, 'lang.keyword'],
+    });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_is_oa.buckets;
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });

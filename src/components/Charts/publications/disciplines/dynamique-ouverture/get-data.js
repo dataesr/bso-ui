@@ -25,13 +25,12 @@ function useGetData(observationSnaps, domain = '') {
       datesObservation
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
-          const query = getFetchOptions(
-            'publicationRateDiscipline',
+          const query = getFetchOptions({
+            key: 'publicationRateDiscipline',
             domain,
             location,
-            oneDate,
-            disciplineField,
-          );
+            parameters: [oneDate, disciplineField],
+          });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
 

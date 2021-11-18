@@ -21,13 +21,12 @@ function useGetData(lastObservationSnap, domain = '') {
   const location = useLocation().search;
 
   async function GetData() {
-    const query = getFetchOptions(
-      'disciplinesVoiesEvolutions',
+    const query = getFetchOptions({
+      key: 'disciplinesVoiesEvolutions',
       domain,
       location,
-      lastObservationSnap,
-      disciplineField,
-    );
+      parameters: [lastObservationSnap, disciplineField],
+    });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const dataBubbles = res.data.aggregations.by_discipline.buckets;
     const bubbles = [];

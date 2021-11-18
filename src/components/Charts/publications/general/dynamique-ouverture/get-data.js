@@ -25,24 +25,23 @@ function useGetData(observationSnaps, domain = '') {
       datesObservation
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
-          const query = getFetchOptions(
-            'publicationRate',
+          const query = getFetchOptions({
+            key: 'publicationRate',
             domain,
             location,
-            oneDate,
-          );
+            parameters: [oneDate],
+          });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
       if (domain !== '') {
         datesObservation
           ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
           .forEach((oneDate) => {
-            const query = getFetchOptions(
-              'publicationRate',
-              '',
+            const query = getFetchOptions({
+              key: 'publicationRate',
               location,
-              oneDate,
-            );
+              parameters: [oneDate],
+            });
             queries.push(Axios.post(ES_API_URL, query, HEADERS));
           });
       }

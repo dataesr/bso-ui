@@ -16,12 +16,12 @@ function useGetData(observationSnap, domain) {
   const location = useLocation().search;
 
   async function GetData() {
-    const query = getFetchOptions(
-      'repositoriesList',
+    const query = getFetchOptions({
+      key: 'repositoriesList',
       domain,
       location,
-      observationSnap,
-    );
+      parameters: [observationSnap],
+    });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
       name: el.key,

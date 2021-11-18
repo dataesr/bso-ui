@@ -18,12 +18,12 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions(
-        'oaHostType',
+      const query = getFetchOptions({
+        key: 'oaHostType',
         domain,
         location,
-        lastObservationSnap,
-      );
+        parameters: [lastObservationSnap],
+      });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets.sort(
         (a, b) => a.key - b.key,

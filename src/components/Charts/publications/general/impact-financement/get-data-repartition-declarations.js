@@ -15,15 +15,14 @@ function useGetData(observationSnap, domain, isOa) {
   const location = useLocation().search;
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
-    const query = getFetchOptions(
-      'declarationRate',
+    const query = getFetchOptions({
+      key: 'declarationRate',
       domain,
       location,
-      lastObservationSnap,
-    );
+      parameters: [lastObservationSnap],
+    });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_is_oa.buckets;
-
     const dataGraph = [];
 
     data.forEach((el) => {

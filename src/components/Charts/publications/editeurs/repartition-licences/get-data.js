@@ -22,13 +22,12 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    const query = getFetchOptions(
-      'publishersLicence',
+    const query = getFetchOptions({
+      key: 'publishersLicence',
       domain,
       location,
-      datesObservation[0],
-      needle,
-    );
+      parameters: [datesObservation[0], needle],
+    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
 
     const res = await Axios.all(queries);

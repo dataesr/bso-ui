@@ -18,21 +18,19 @@ function useGetData(observationSnap, agency = '*', domain) {
     const queries = [];
     const queryFilter = [];
     queryFilter.push({ wildcard: { 'grants.agency.keyword': agency } });
-    const queryFiltered = getFetchOptions(
-      'openingRate',
+    const queryFiltered = getFetchOptions({
+      key: 'openingRate',
       domain,
       location,
-      lastObservationSnap,
-      queryFilter,
-    );
+      parameters: [lastObservationSnap, queryFilter],
+    });
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
-    const query = getFetchOptions(
-      'openingRate',
+    const query = getFetchOptions({
+      key: 'openingRate',
       domain,
       location,
-      lastObservationSnap,
-      [],
-    );
+      parameters: [lastObservationSnap, []],
+    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });

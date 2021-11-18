@@ -19,13 +19,12 @@ function useGetData(observationSnaps, domain = '') {
     observationSnaps
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
       .forEach((oneDate) => {
-        const query = getFetchOptions(
-          'publicationRateAffiliation',
+        const query = getFetchOptions({
+          key: 'publicationRateAffiliation',
           domain,
           location,
-          oneDate,
-          'french_affiliations_types',
-        );
+          parameters: [oneDate, 'french_affiliations_types'],
+        });
         queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });
 

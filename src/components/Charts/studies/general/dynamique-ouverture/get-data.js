@@ -16,28 +16,23 @@ function useGetData(studyType, sponsor = '*') {
 
   async function getDataAxios() {
     const queries = [];
-    const query1 = getFetchOptions(
-      'studiesDynamiqueOuverture',
-      '',
+    const query1 = getFetchOptions({
+      key: 'studiesDynamiqueOuverture',
       location,
-      studyType,
-    );
+      parameters: [studyType],
+    });
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
-    const query2 = getFetchOptions(
-      'studiesDynamiqueOuvertureSponsor',
-      '',
+    const query2 = getFetchOptions({
+      key: 'studiesDynamiqueOuvertureSponsor',
       location,
-      studyType,
-      sponsor,
-    );
+      parameters: [studyType, sponsor],
+    });
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
-    const query3 = getFetchOptions(
-      'studiesDynamiqueSponsor',
-      '',
+    const query3 = getFetchOptions({
+      key: 'studiesDynamiqueSponsor',
       location,
-      studyType,
-      sponsor,
-    );
+      parameters: [studyType, sponsor],
+    });
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const res = await Axios.all(queries);
     const currentYear = new Date().getFullYear();

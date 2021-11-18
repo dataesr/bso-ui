@@ -21,12 +21,12 @@ function useGetData(
   const location = useLocation().search;
 
   async function getDataByObservationSnaps(datesObservation) {
-    const queryAffiliations = getFetchOptions(
-      'affiliationsList',
+    const queryAffiliations = getFetchOptions({
+      key: 'affiliationsList',
       domain,
       location,
-      lastObservationSnap,
-    );
+      parameters: [lastObservationSnap],
+    });
     const response = await Axios.post(ES_API_URL, queryAffiliations, HEADERS);
     let affiliations = response.data.aggregations.by_affiliation.buckets
       .map((item) => item.key)
@@ -43,14 +43,12 @@ function useGetData(
       .forEach((oneDate) => {
         const needlePublisher = '*';
         const allOaHostType = '*';
-        const query = getFetchOptions(
-          'publicationRate',
+        const query = getFetchOptions({
+          key: 'publicationRate',
           domain,
           location,
-          oneDate,
-          needlePublisher,
-          allOaHostType,
-        );
+          parameters: [oneDate, needlePublisher, allOaHostType],
+        });
         query.query.bool.filter.push({
           wildcard: { 'french_affiliations_types.keyword': needle },
         });

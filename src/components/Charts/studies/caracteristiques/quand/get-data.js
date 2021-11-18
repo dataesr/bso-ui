@@ -15,13 +15,11 @@ function useGetData(studyType, sponsorType = '*') {
   const location = useLocation().search;
 
   async function getDataAxios() {
-    const querySponsorTypes = getFetchOptions(
-      'sponsorsTypesList',
-      '',
+    const querySponsorTypes = getFetchOptions({
+      key: 'sponsorsTypesList',
       location,
-      studyType,
-    );
-
+      parameters: [studyType],
+    });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
       querySponsorTypes,
@@ -35,13 +33,11 @@ function useGetData(studyType, sponsorType = '*') {
       label: intl.formatMessage({ id: `app.sponsor.${st}` }),
     }));
 
-    const queryEvolution = getFetchOptions(
-      'studiesCaracteristiquesQuandEvolution',
-      '',
+    const queryEvolution = getFetchOptions({
+      key: 'studiesCaracteristiquesQuandEvolution',
       location,
-      studyType,
-      sponsorType,
-    );
+      parameters: [studyType, sponsorType],
+    });
     const resEvolution = await Axios.post(
       ES_STUDIES_API_URL,
       queryEvolution,
@@ -80,14 +76,11 @@ function useGetData(studyType, sponsorType = '*') {
     });
     dataGraphEvolution.reverse();
 
-    const queryRepartition = getFetchOptions(
-      'studiesCaracteristiquesQuandRepartition',
-      '',
+    const queryRepartition = getFetchOptions({
+      key: 'studiesCaracteristiquesQuandRepartition',
       location,
-      'delay_submission_start',
-      studyType,
-      sponsorType,
-    );
+      parameters: ['delay_submission_start', studyType, sponsorType],
+    });
     const resRepartition = await Axios.post(
       ES_STUDIES_API_URL,
       queryRepartition,
@@ -142,14 +135,11 @@ function useGetData(studyType, sponsorType = '*') {
       categoriesRepartition.length - 1
     ] += ` ${intl.formatMessage({ id: 'app.studies.month_after' })}`;
 
-    const queryDistribution = getFetchOptions(
-      'studiesCaracteristiquesQuandDistribution',
-      '',
+    const queryDistribution = getFetchOptions({
+      key: 'studiesCaracteristiquesQuandDistribution',
       location,
-      'delay_submission_start',
-      studyType,
-      sponsorType,
-    );
+      parameters: ['delay_submission_start', studyType, sponsorType],
+    });
     const resDistribution = await Axios.post(
       ES_STUDIES_API_URL,
       queryDistribution,

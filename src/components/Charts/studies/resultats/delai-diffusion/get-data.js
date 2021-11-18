@@ -19,13 +19,11 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
   const location = useLocation().search;
 
   async function getDataAxios() {
-    const querySponsorTypes = getFetchOptions(
-      'sponsorsTypesList',
-      '',
+    const querySponsorTypes = getFetchOptions({
+      key: 'sponsorsTypesList',
       location,
-      studyType,
-    );
-
+      parameters: [studyType],
+    });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
       querySponsorTypes,
@@ -44,14 +42,11 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
       after_completion: getCSSValue('--apres'),
     };
 
-    const query2 = getFetchOptions(
-      'studiesCaracteristiquesQuandRepartition',
-      '',
+    const query2 = getFetchOptions({
+      key: 'studiesCaracteristiquesQuandRepartition',
       location,
-      'delay_first_results_completion',
-      studyType,
-      sponsorType,
-    );
+      parameters: ['delay_first_results_completion', studyType, sponsorType],
+    });
     query2.query.bool.filter.push({
       term: {
         'status.keyword': 'Completed',
@@ -113,14 +108,11 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
       id: 'app.studies.month_after',
     })}`;
 
-    const query3 = getFetchOptions(
-      'studiesCaracteristiquesQuandDistribution',
-      '',
+    const query3 = getFetchOptions({
+      key: 'studiesCaracteristiquesQuandDistribution',
       location,
-      'delay_first_results_completion',
-      studyType,
-      sponsorType,
-    );
+      parameters: ['delay_first_results_completion', studyType, sponsorType],
+    });
     query3.query.bool.filter.push({
       term: {
         'status.keyword': 'Completed',

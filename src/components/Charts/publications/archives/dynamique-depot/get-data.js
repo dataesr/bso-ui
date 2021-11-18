@@ -20,12 +20,12 @@ function useGetData(observationSnap, domain) {
   const location = useLocation().search;
 
   async function GetData() {
-    const query = getFetchOptions(
-      'repositoriesHisto',
+    const query = getFetchOptions({
+      key: 'repositoriesHisto',
       domain,
       location,
-      observationSnap,
-    );
+      parameters: [observationSnap],
+    });
 
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     let tab = [];

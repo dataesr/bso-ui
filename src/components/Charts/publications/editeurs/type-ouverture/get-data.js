@@ -16,12 +16,12 @@ function useGetData(observationSnap, domain) {
   const location = useLocation().search;
 
   async function getDataGraph() {
-    const query = getFetchOptions(
-      'publishersTypesHisto',
+    const query = getFetchOptions({
+      key: 'publishersTypesHisto',
       domain,
       location,
-      observationSnap,
-    );
+      parameters: [observationSnap],
+    });
 
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_year.buckets

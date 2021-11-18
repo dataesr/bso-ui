@@ -22,22 +22,18 @@ function useGetData(observationSnaps, needle = '*', domain) {
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
       .forEach((oneDate) => {
         const allOaHostType = '*';
-        const query = getFetchOptions(
-          'publicationRate',
+        const query = getFetchOptions({
+          key: 'publicationRate',
           domain,
           location,
-          oneDate,
-          needle,
-          allOaHostType,
-        );
-        const queryFiltered = getFetchOptions(
-          'publicationRate',
+          parameters: [oneDate, needle, allOaHostType],
+        });
+        const queryFiltered = getFetchOptions({
+          key: 'publicationRate',
           domain,
           location,
-          oneDate,
-          needle,
-          'publisher',
-        );
+          parameters: [oneDate, needle, 'publisher'],
+        });
         // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
         // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
         queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));

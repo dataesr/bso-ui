@@ -23,15 +23,17 @@ function useGetData(observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions(
-        'oaHostType',
+      const query = getFetchOptions({
+        key: 'oaHostType',
         domain,
         location,
-        lastObservationSnap,
-        'lang.keyword',
-        getPublicationYearFromObservationSnap(lastObservationSnap),
-        5,
-      );
+        parameters: [
+          lastObservationSnap,
+          'lang.keyword',
+          getPublicationYearFromObservationSnap(lastObservationSnap),
+          5,
+        ],
+      });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });

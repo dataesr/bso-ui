@@ -23,13 +23,12 @@ function useGetData(observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions(
-        'disciplinesVoies',
+      const query = getFetchOptions({
+        key: 'disciplinesVoies',
         domain,
         location,
-        lastObservationSnap,
-        disciplineField,
-      );
+        parameters: [lastObservationSnap, disciplineField],
+      });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       let data = res.data.aggregations.by_discipline.buckets;
 

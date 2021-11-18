@@ -17,18 +17,18 @@ function useGetData(lastObservationSnap, domain) {
 
   async function GetData() {
     const queries = [];
-    const queryHAL = getFetchOptions(
-      'couvertureHAL',
+    const queryHAL = getFetchOptions({
+      key: 'couvertureHAL',
       domain,
       location,
-      lastObservationSnap,
-    );
-    const queryArchive = getFetchOptions(
-      'couvertureAllRepo',
+      parameters: [lastObservationSnap],
+    });
+    const queryArchive = getFetchOptions({
+      key: 'couvertureAllRepo',
       domain,
       location,
-      lastObservationSnap,
-    );
+      parameters: [lastObservationSnap],
+    });
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
     const res = await Axios.all(queries);
