@@ -41,7 +41,7 @@ export const GlobalsContextProvider = ({ children }) => {
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
   async function getObservationSnaps() {
-    const query = getFetchOptions('observationSnaps', false);
+    const query = getFetchOptions({ key: 'observationSnaps' });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
@@ -83,7 +83,9 @@ export const GlobalsContextProvider = ({ children }) => {
           responseObservationSnaps.sort().reverse()[0],
         );
 
-        setBeforeLastObservationSnap(responseObservationSnaps.sort().reverse()[1]);
+        setBeforeLastObservationSnap(
+          responseObservationSnaps.sort().reverse()[1],
+        );
         localStorage.setItem(
           '__beforeLastObservationSnap__',
           responseObservationSnaps.sort().reverse()[1],

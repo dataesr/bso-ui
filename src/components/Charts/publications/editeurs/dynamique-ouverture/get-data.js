@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -12,6 +13,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
+  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -20,20 +22,18 @@ function useGetData(observationSnaps, needle = '*', domain) {
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
       .forEach((oneDate) => {
         const allOaHostType = '*';
-        const query = getFetchOptions(
-          'publicationRate',
+        const query = getFetchOptions({
+          key: 'publicationRate',
           domain,
-          oneDate,
-          needle,
-          allOaHostType,
-        );
-        const queryFiltered = getFetchOptions(
-          'publicationRate',
+          search,
+          parameters: [oneDate, needle, allOaHostType],
+        });
+        const queryFiltered = getFetchOptions({
+          key: 'publicationRate',
           domain,
-          oneDate,
-          needle,
-          'publisher',
-        );
+          search,
+          parameters: [oneDate, needle, 'publisher'],
+        });
         // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
         // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
         queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
@@ -96,7 +96,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const dataGraph2 = [];
     allData.forEach((observationSnapData, i) => {
       const serie = {};
-      serie.name = getObservationLabel(observationSnapData.observationSnap, intl);
+      serie.name = getObservationLabel(
+        observationSnapData.observationSnap,
+        intl,
+      );
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       if (i === 0) {

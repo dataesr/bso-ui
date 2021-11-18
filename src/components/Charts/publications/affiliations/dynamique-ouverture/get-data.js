@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -17,13 +18,15 @@ function useGetData(
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
+  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
-    const queryAffiliations = getFetchOptions(
-      'affiliationsList',
+    const queryAffiliations = getFetchOptions({
+      key: 'affiliationsList',
       domain,
-      lastObservationSnap,
-    );
+      search,
+      parameters: [lastObservationSnap],
+    });
     const response = await Axios.post(ES_API_URL, queryAffiliations, HEADERS);
     let affiliations = response.data.aggregations.by_affiliation.buckets
       .map((item) => item.key)
@@ -40,13 +43,12 @@ function useGetData(
       .forEach((oneDate) => {
         const needlePublisher = '*';
         const allOaHostType = '*';
-        const query = getFetchOptions(
-          'publicationRate',
+        const query = getFetchOptions({
+          key: 'publicationRate',
           domain,
-          oneDate,
-          needlePublisher,
-          allOaHostType,
-        );
+          search,
+          parameters: [oneDate, needlePublisher, allOaHostType],
+        });
         query.query.bool.filter.push({
           wildcard: { 'french_affiliations_types.keyword': needle },
         });
@@ -82,7 +84,10 @@ function useGetData(
             && el.doc_count
             && el.key > 2012,
         );
-      serie.name = getObservationLabel(observationSnapData.observationSnap, intl);
+      serie.name = getObservationLabel(
+        observationSnapData.observationSnap,
+        intl,
+      );
       serie.color = colors[i];
       serie.dashStyle = lineStyle[i];
       if (i === 0) {

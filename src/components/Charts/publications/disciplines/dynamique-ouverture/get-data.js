@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -11,6 +12,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
+  const { search } = useLocation();
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -23,12 +25,12 @@ function useGetData(observationSnaps, domain = '') {
       datesObservation
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
-          const query = getFetchOptions(
-            'publicationRateDiscipline',
+          const query = getFetchOptions({
+            key: 'publicationRateDiscipline',
             domain,
-            oneDate,
-            disciplineField,
-          );
+            search,
+            parameters: [oneDate, disciplineField],
+          });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
 
@@ -83,7 +85,7 @@ function useGetData(observationSnaps, domain = '') {
       });
       return dataHist;
     },
-    [domain, intl],
+    [domain, intl, search],
   );
 
   useEffect(() => {

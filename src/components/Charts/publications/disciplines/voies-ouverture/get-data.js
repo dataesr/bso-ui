@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -18,15 +19,16 @@ function useGetData(observationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
+  const { search } = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions(
-        'disciplinesVoies',
+      const query = getFetchOptions({
+        key: 'disciplinesVoies',
         domain,
-        lastObservationSnap,
-        disciplineField,
-      );
+        search,
+        parameters: [lastObservationSnap, disciplineField],
+      });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       let data = res.data.aggregations.by_discipline.buckets;
 
@@ -171,7 +173,7 @@ function useGetData(observationSnap, domain) {
       ];
       return { categories, dataGraph };
     },
-    [domain, disciplineField, intl, yellowMedium125, bsoDomain],
+    [domain, disciplineField, intl, yellowMedium125, bsoDomain, search],
   );
 
   useEffect(() => {

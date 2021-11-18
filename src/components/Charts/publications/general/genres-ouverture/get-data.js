@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -18,16 +19,20 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const greenLight100 = getCSSValue('--green-light-100');
+  const { search } = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions(
-        'oaHostType',
+      const query = getFetchOptions({
+        key: 'oaHostType',
         domain,
-        lastObservationSnap,
-        'genre.keyword',
-        getPublicationYearFromObservationSnap(lastObservationSnap),
-      );
+        search,
+        parameters: [
+          lastObservationSnap,
+          'genre.keyword',
+          getPublicationYearFromObservationSnap(lastObservationSnap),
+        ],
+      });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -223,8 +228,10 @@ function useGetData(observationSnap, domain) {
         * 100
       ).toFixed(0);
       const books = newData.find((item) => item.key === 'book');
-      const booksTotal = books.doc_count;
-      const openBooks = books.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(item.key));
+      const booksTotal = books?.doc_count || 0;
+      const openBooks = books?.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
+        item.key,
+      )) || [];
       const openBooksTotal = openBooks.reduce(
         (previousValue, currentValue) => previousValue + currentValue.doc_count,
         0,
@@ -239,7 +246,7 @@ function useGetData(observationSnap, domain) {
 
       return { categories, dataGraph, dataGraph3, comments };
     },
-    [domain, greenLight100, intl, yellowMedium125],
+    [domain, greenLight100, intl, yellowMedium125, search],
   );
 
   useEffect(() => {

@@ -8,6 +8,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
@@ -37,11 +38,13 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     domain,
   );
   const { dataGraph1 } = data;
-  const query = getFetchOptions(
-    'repositoriesList',
+  const { search } = useLocation();
+  const query = getFetchOptions({
+    key: 'repositoriesList',
     domain,
-    lastObservationSnap,
-  );
+    search,
+    parameters: [lastObservationSnap],
+  });
   const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {

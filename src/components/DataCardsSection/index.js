@@ -2,6 +2,7 @@ import { Col, Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL } from '../../config/config';
 import getFetchOptions from '../../utils/chartFetchOptions';
@@ -35,6 +36,7 @@ export default function DataCardSection({ lang, domain }) {
     url: ES_API_URL,
     method: 'post',
   });
+  const location = useLocation().search;
 
   const dataObj = useMemo(
     () => ({
@@ -75,7 +77,8 @@ export default function DataCardSection({ lang, domain }) {
         ).toFixed(0),
         get: diamondPublicationRate,
         set: (data) => setDiamonPublicationRate(data),
-        pathToValue: 'by_journal_article.by_oa_colors_with_priority_to_publisher.buckets',
+        pathToValue:
+          'by_journal_article.by_oa_colors_with_priority_to_publisher.buckets',
         isPercentage: true,
         color: 'aqua',
         intlKey: 'app.national-publi.data.publi-diamond',
@@ -208,7 +211,12 @@ export default function DataCardSection({ lang, domain }) {
   useEffect(() => {
     if (!response && isMounted.current && lastObservationSnap) {
       fetchData({
-        options: getFetchOptions('publiCardData', domain, lastObservationSnap),
+        options: getFetchOptions({
+          key: 'publiCardData',
+          domain,
+          location,
+          parameters: [lastObservationSnap],
+        }),
       });
     }
     return () => {
@@ -216,7 +224,7 @@ export default function DataCardSection({ lang, domain }) {
         isMounted.current = false;
       }
     };
-  }, [domain, fetchData, isMounted, lastObservationSnap, response]);
+  }, [domain, fetchData, isMounted, lastObservationSnap, response, location]);
   return (
     <Container fluid className='bg-ultra-light-blue pt-32 mb-20 px-20'>
       <Row justifyContent='center'>

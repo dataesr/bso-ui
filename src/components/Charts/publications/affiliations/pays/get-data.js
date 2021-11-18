@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -15,21 +16,24 @@ function useGetData(observationDate, domain = '') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const { search } = useLocation();
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationSnap) => {
       const queries = [];
-      const query1 = getFetchOptions(
-        'publicationRateRangUtile',
+      const query1 = getFetchOptions({
+        key: 'publicationRateRangUtile',
         domain,
-        lastObservationSnap,
-      );
+        search,
+        parameters: [lastObservationSnap],
+      });
       queries.push(Axios.post(ES_API_URL, query1, HEADERS));
-      const query2 = getFetchOptions(
-        'publicationRatePays',
+      const query2 = getFetchOptions({
+        key: 'publicationRatePays',
         domain,
-        lastObservationSnap,
-      );
+        search,
+        parameters: [lastObservationSnap],
+      });
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
       const res = await Axios.all(queries);
       // 1er graphe
@@ -133,7 +137,7 @@ function useGetData(observationDate, domain = '') {
 
       return { categories, categories2, dataGraph, dataGraph2 };
     },
-    [intl, domain, bsoDomain],
+    [intl, domain, bsoDomain, search],
   );
 
   useEffect(() => {

@@ -1,10 +1,16 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, cleanNumber, getCSSValue, getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  cleanNumber,
+  getCSSValue,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -13,17 +19,21 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const greenLight100 = getCSSValue('--green-light-100');
+  const { search } = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions(
-        'oaHostType',
+      const query = getFetchOptions({
+        key: 'oaHostType',
         domain,
-        lastObservationSnap,
-        'lang.keyword',
-        getPublicationYearFromObservationSnap(lastObservationSnap),
-        5,
-      );
+        search,
+        parameters: [
+          lastObservationSnap,
+          'lang.keyword',
+          getPublicationYearFromObservationSnap(lastObservationSnap),
+          5,
+        ],
+      });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -99,9 +109,11 @@ function useGetData(observationSnap, domain) {
             bsoDomain,
           });
           categories.push(
-            intl.formatMessage({ id: `app.lang.${el.key}` })
+            intl
+              .formatMessage({ id: `app.lang.${el.key}` })
               .concat('</br>(')
-              .concat(intl.formatMessage({ id: 'app.effectif' })).concat(cleanNumber(totalCurrent))
+              .concat(intl.formatMessage({ id: 'app.effectif' }))
+              .concat(cleanNumber(totalCurrent))
               .concat(')'),
           );
         });
@@ -182,7 +194,7 @@ function useGetData(observationSnap, domain) {
 
       return { categories, dataGraph, dataGraph3 };
     },
-    [domain, greenLight100, intl, yellowMedium125],
+    [domain, greenLight100, intl, yellowMedium125, search],
   );
 
   useEffect(() => {

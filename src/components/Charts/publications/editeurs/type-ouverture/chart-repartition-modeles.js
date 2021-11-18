@@ -12,7 +12,7 @@ import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
-import useGetData from './get-data-evolution-repartition';
+import useGetData from './get-data';
 
 treemapModule(Highcharts);
 HCExporting(Highcharts);

@@ -13,12 +13,10 @@ function useGetData(studyType, sponsor = '*') {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
-    const querySponsorTypes = getFetchOptions(
-      'sponsorsList',
-      '',
-      studyType,
-    );
-
+    const querySponsorTypes = getFetchOptions({
+      key: 'sponsorsList',
+      parameters: [studyType],
+    });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
       querySponsorTypes,
@@ -32,29 +30,24 @@ function useGetData(studyType, sponsor = '*') {
       label: st,
     }));
     const queries = [];
-    const queryDynamiqueOuverture = getFetchOptions(
-      'studiesDynamiqueOuverture',
-      '',
-      studyType,
-    );
+    const queryDynamiqueOuverture = getFetchOptions({
+      key: 'studiesDynamiqueOuverture',
+      parameters: [studyType],
+    });
     queries.push(
       Axios.post(ES_STUDIES_API_URL, queryDynamiqueOuverture, HEADERS),
     );
-    const queryDynamiqueOuvertureSponsor = getFetchOptions(
-      'studiesDynamiqueOuvertureSponsor',
-      '',
-      studyType,
-      sponsor,
-    );
+    const queryDynamiqueOuvertureSponsor = getFetchOptions({
+      key: 'studiesDynamiqueOuvertureSponsor',
+      parameters: [studyType, sponsor],
+    });
     queries.push(
       Axios.post(ES_STUDIES_API_URL, queryDynamiqueOuvertureSponsor, HEADERS),
     );
-    const queryDynamiqueSponsor = getFetchOptions(
-      'studiesDynamiqueSponsor',
-      '',
-      studyType,
-      sponsor,
-    );
+    const queryDynamiqueSponsor = getFetchOptions({
+      key: 'studiesDynamiqueSponsor',
+      parameters: [studyType, sponsor],
+    });
     queries.push(
       Axios.post(ES_STUDIES_API_URL, queryDynamiqueSponsor, HEADERS),
     );

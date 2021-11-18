@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -11,17 +12,17 @@ function useGetData(observationSnap, isOa, domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const { search } = useLocation();
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const publicationDate = Number(lastObservationSnap.slice(0, 4)) - 1;
     const field = isOa ? 'oa_host_type.keyword' : 'is_oa';
-    const query = getFetchOptions(
-      'openingType',
+    const query = getFetchOptions({
+      key: 'openingType',
       domain,
-      lastObservationSnap,
-      field,
-      'lang.keyword',
-    );
+      search,
+      parameters: [lastObservationSnap, field, 'lang.keyword'],
+    });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_is_oa.buckets;
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });

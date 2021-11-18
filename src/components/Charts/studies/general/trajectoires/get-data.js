@@ -13,10 +13,11 @@ function useGetData(studyType) {
   const intl = useIntl();
 
   async function getDataAxios() {
-    const query = getFetchOptions('studiesTrajectoires', '', studyType);
-
+    const query = getFetchOptions({
+      key: 'studiesTrajectoires',
+      parameters: [studyType],
+    });
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
-
     const dataGraph = [];
     const data = res.data.aggregations.by_status.buckets;
     const toShow = [

@@ -13,12 +13,10 @@ function useGetData(studyType, sponsorType = '*') {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
-    const querySponsorTypes = getFetchOptions(
-      'sponsorsTypesList',
-      '',
-      studyType,
-    );
-
+    const querySponsorTypes = getFetchOptions({
+      key: 'sponsorsTypesList',
+      parameters: [studyType],
+    });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
       querySponsorTypes,
@@ -32,12 +30,10 @@ function useGetData(studyType, sponsorType = '*') {
       label: intl.formatMessage({ id: `app.sponsor.${st}` }),
     }));
 
-    const query = getFetchOptions(
-      'studiesCaracteristiquesTypes',
-      '',
-      studyType,
-      sponsorType,
-    );
+    const query = getFetchOptions({
+      key: 'studiesCaracteristiquesTypes',
+      parameters: [studyType, sponsorType],
+    });
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
 
     const currentYear = new Date().getFullYear();

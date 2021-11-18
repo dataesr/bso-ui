@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -17,29 +18,31 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
+  const { search } = useLocation();
+
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    const query = getFetchOptions(
-      'apcYear',
+    const query = getFetchOptions({
+      key: 'apcYear',
       domain,
-      datesObservation[0],
-      needle,
-    );
+      search,
+      parameters: [datesObservation[0], needle],
+    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const queryHistogram = getFetchOptions(
-      'apcHistogram',
+    const queryHistogram = getFetchOptions({
+      key: 'apcHistogram',
       domain,
-      datesObservation[0],
-      needle,
-    );
+      search,
+      parameters: [datesObservation[0], needle],
+    });
     queries.push(Axios.post(ES_API_URL, queryHistogram, HEADERS));
-    const queryPercentile = getFetchOptions(
-      'apcPercentile',
+    const queryPercentile = getFetchOptions({
+      key: 'apcPercentile',
       domain,
-      datesObservation[0],
-      needle,
-    );
+      search,
+      parameters: [datesObservation[0], needle],
+    });
     queries.push(Axios.post(ES_API_URL, queryPercentile, HEADERS));
     const res = await Axios.all(queries);
     // 1er graphe : histogram total

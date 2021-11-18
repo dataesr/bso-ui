@@ -8,6 +8,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -38,7 +39,13 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     domain,
   );
   const { dataGraphTreemap } = data;
-  const query = getFetchOptions('publishersList', domain, lastObservationSnap);
+  const { search } = useLocation();
+  const query = getFetchOptions({
+    key: 'publishersList',
+    domain,
+    search,
+    parameters: [lastObservationSnap],
+  });
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
