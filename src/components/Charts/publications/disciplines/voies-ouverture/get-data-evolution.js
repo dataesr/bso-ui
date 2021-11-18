@@ -18,13 +18,13 @@ function useGetData(lastObservationSnap, domain = '') {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function GetData() {
     const query = getFetchOptions({
       key: 'disciplinesVoiesEvolutions',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap, disciplineField],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);

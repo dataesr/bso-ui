@@ -16,7 +16,7 @@ function useGetData(observationDate, domain = '') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationSnap) => {
@@ -24,14 +24,14 @@ function useGetData(observationDate, domain = '') {
       const query1 = getFetchOptions({
         key: 'publicationRateRangUtile',
         domain,
-        location,
+        search,
         parameters: [lastObservationSnap],
       });
       queries.push(Axios.post(ES_API_URL, query1, HEADERS));
       const query2 = getFetchOptions({
         key: 'publicationRatePays',
         domain,
-        location,
+        search,
         parameters: [lastObservationSnap],
       });
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
@@ -137,7 +137,7 @@ function useGetData(observationDate, domain = '') {
 
       return { categories, categories2, dataGraph, dataGraph2 };
     },
-    [intl, domain, bsoDomain, location],
+    [intl, domain, bsoDomain, search],
   );
 
   useEffect(() => {

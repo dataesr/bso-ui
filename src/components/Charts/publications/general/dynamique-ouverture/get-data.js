@@ -16,7 +16,7 @@ function useGetData(observationSnaps, domain = '') {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -28,7 +28,7 @@ function useGetData(observationSnaps, domain = '') {
           const query = getFetchOptions({
             key: 'publicationRate',
             domain,
-            location,
+            search,
             parameters: [oneDate],
           });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
@@ -39,7 +39,7 @@ function useGetData(observationSnaps, domain = '') {
           .forEach((oneDate) => {
             const query = getFetchOptions({
               key: 'publicationRate',
-              location,
+              search,
               parameters: [oneDate],
             });
             queries.push(Axios.post(ES_API_URL, query, HEADERS));
@@ -173,7 +173,7 @@ function useGetData(observationSnaps, domain = '') {
       }
       return { dataGraph1, dataGraph2 };
     },
-    [domain, intl, location],
+    [domain, intl, search],
   );
 
   useEffect(() => {

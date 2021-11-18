@@ -35,11 +35,11 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     domain,
   );
   const { dataGraphHistogram, categoriesHistogram } = data;
-  const location = useLocation().search;
+  const { search } = useLocation();
   const query = getFetchOptions({
     key: 'publishersList',
     domain,
-    location,
+    search,
     parameters: [lastObservationSnap],
   });
   useEffect(() => {

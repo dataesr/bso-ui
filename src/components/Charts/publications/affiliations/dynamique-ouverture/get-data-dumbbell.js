@@ -11,7 +11,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function GetData() {
     // Pour chaque date d'observation, récupération des données associées
@@ -22,7 +22,7 @@ function useGetData(observationSnaps, domain = '') {
         const query = getFetchOptions({
           key: 'publicationRateAffiliation',
           domain,
-          location,
+          search,
           parameters: [oneDate, 'french_affiliations_types'],
         });
         queries.push(Axios.post(ES_API_URL, query, HEADERS));

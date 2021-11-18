@@ -19,14 +19,14 @@ function useGetData(observationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions({
         key: 'disciplinesVoies',
         domain,
-        location,
+        search,
         parameters: [lastObservationSnap, disciplineField],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -173,7 +173,7 @@ function useGetData(observationSnap, domain) {
       ];
       return { categories, dataGraph };
     },
-    [domain, disciplineField, intl, yellowMedium125, bsoDomain, location],
+    [domain, disciplineField, intl, yellowMedium125, bsoDomain, search],
   );
 
   useEffect(() => {

@@ -18,13 +18,13 @@ function useGetData(
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
     const queryAffiliations = getFetchOptions({
       key: 'affiliationsList',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap],
     });
     const response = await Axios.post(ES_API_URL, queryAffiliations, HEADERS);
@@ -46,7 +46,7 @@ function useGetData(
         const query = getFetchOptions({
           key: 'publicationRate',
           domain,
-          location,
+          search,
           parameters: [oneDate, needlePublisher, allOaHostType],
         });
         query.query.bool.filter.push({

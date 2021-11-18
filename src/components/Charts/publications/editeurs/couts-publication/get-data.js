@@ -18,7 +18,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -26,21 +26,21 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const query = getFetchOptions({
       key: 'apcYear',
       domain,
-      location,
+      search,
       parameters: [datesObservation[0], needle],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryHistogram = getFetchOptions({
       key: 'apcHistogram',
       domain,
-      location,
+      search,
       parameters: [datesObservation[0], needle],
     });
     queries.push(Axios.post(ES_API_URL, queryHistogram, HEADERS));
     const queryPercentile = getFetchOptions({
       key: 'apcPercentile',
       domain,
-      location,
+      search,
       parameters: [datesObservation[0], needle],
     });
     queries.push(Axios.post(ES_API_URL, queryPercentile, HEADERS));

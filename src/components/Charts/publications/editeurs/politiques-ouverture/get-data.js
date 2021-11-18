@@ -21,21 +21,21 @@ function useGetData(lastObservationSnap, domain) {
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const yellowMedium100 = getCSSValue('--yellow-medium-100');
   const yellowMedium25 = getCSSValue('--yellow-medium-25');
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataGraph() {
     const queries = [];
     const query = getFetchOptions({
       key: 'publishersPolitiqueHisto',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryBulle = getFetchOptions({
       key: 'publishersPolitiqueBulle',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap],
     });
     queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));

@@ -13,13 +13,13 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataGraph() {
     const query = getFetchOptions({
       key: 'publishersTypesHisto',
       domain,
-      location,
+      search,
       parameters: [observationSnap],
     });
 

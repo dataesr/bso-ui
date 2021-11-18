@@ -12,13 +12,13 @@ function useGetData(observationSnap, domain, isOa) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const query = getFetchOptions({
       key: 'declarationRate',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);

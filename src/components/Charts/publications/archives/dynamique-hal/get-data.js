@@ -13,20 +13,20 @@ function useGetData(lastObservationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function GetData() {
     const queries = [];
     const queryHAL = getFetchOptions({
       key: 'couvertureHAL',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap],
     });
     const queryArchive = getFetchOptions({
       key: 'couvertureAllRepo',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap],
     });
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));

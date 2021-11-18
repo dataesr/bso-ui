@@ -17,13 +17,13 @@ function useGetData(observationSnap, domain) {
   const greenMedium150 = getCSSValue('--green-medium-150');
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function GetData() {
     const query = getFetchOptions({
       key: 'repositoriesHisto',
       domain,
-      location,
+      search,
       parameters: [observationSnap],
     });
 

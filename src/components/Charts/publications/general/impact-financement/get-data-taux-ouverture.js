@@ -12,7 +12,7 @@ function useGetData(observationSnap, agency = '*', domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
@@ -21,14 +21,14 @@ function useGetData(observationSnap, agency = '*', domain) {
     const queryFiltered = getFetchOptions({
       key: 'openingRate',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap, queryFilter],
     });
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     const query = getFetchOptions({
       key: 'openingRate',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap, []],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));

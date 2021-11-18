@@ -33,11 +33,11 @@ const Chart = ({ id, domain }) => {
     domain,
   );
   const { dataGraph, categories } = allData;
-  const location = useLocation().search;
+  const { search } = useLocation();
   const query = getFetchOptions({
     key: 'allAgencies',
     domain,
-    location,
+    search,
     parameters: [lastObservationSnap],
   });
   useEffect(() => {

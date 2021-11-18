@@ -12,7 +12,7 @@ function useGetData(observationSnap, isOa, domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const publicationDate = Number(lastObservationSnap.slice(0, 4)) - 1;
@@ -20,7 +20,7 @@ function useGetData(observationSnap, isOa, domain) {
     const query = getFetchOptions({
       key: 'openingType',
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap, field, 'genre.keyword'],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);

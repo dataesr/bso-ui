@@ -38,11 +38,11 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     domain,
   );
   const { dataGraph1 } = data;
-  const location = useLocation().search;
+  const { search } = useLocation();
   const query = getFetchOptions({
     key: 'repositoriesList',
     domain,
-    location,
+    search,
     parameters: [lastObservationSnap],
   });
   const idWithDomain = withDomain(id, domain);

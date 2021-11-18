@@ -13,7 +13,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -25,13 +25,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
         const query = getFetchOptions({
           key: 'publicationRate',
           domain,
-          location,
+          search,
           parameters: [oneDate, needle, allOaHostType],
         });
         const queryFiltered = getFetchOptions({
           key: 'publicationRate',
           domain,
-          location,
+          search,
           parameters: [oneDate, needle, 'publisher'],
         });
         // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)

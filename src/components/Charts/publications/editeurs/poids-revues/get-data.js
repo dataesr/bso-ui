@@ -13,13 +13,13 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataGraph() {
     const query = getFetchOptions({
       key: 'predatory',
       domain,
-      location,
+      search,
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_year.buckets

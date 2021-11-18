@@ -12,7 +12,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const intl = useIntl();
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -28,7 +28,7 @@ function useGetData(observationSnaps, domain = '') {
           const query = getFetchOptions({
             key: 'publicationRateDiscipline',
             domain,
-            location,
+            search,
             parameters: [oneDate, disciplineField],
           });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
@@ -85,7 +85,7 @@ function useGetData(observationSnaps, domain = '') {
       });
       return dataHist;
     },
-    [domain, intl, location],
+    [domain, intl, search],
   );
 
   useEffect(() => {

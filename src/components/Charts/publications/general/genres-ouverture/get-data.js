@@ -19,14 +19,14 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const greenLight100 = getCSSValue('--green-light-100');
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions({
         key: 'oaHostType',
         domain,
-        location,
+        search,
         parameters: [
           lastObservationSnap,
           'genre.keyword',
@@ -246,7 +246,7 @@ function useGetData(observationSnap, domain) {
 
       return { categories, dataGraph, dataGraph3, comments };
     },
-    [domain, greenLight100, intl, yellowMedium125, location],
+    [domain, greenLight100, intl, yellowMedium125, search],
   );
 
   useEffect(() => {

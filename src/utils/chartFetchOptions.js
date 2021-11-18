@@ -4,14 +4,14 @@ import { getPublicationYearFromObservationSnap } from './helpers';
  *
  * @param key
  * @param domain
- * @param location
+ * @param search
  * @param parameters
  * @returns {*|{}}
  */
 export default function getFetchOptions({
   key,
   domain = null,
-  location = null,
+  search = null,
   parameters = [],
 }) {
   const allOptions = {
@@ -1682,7 +1682,7 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const urlSearchParams = new URLSearchParams(location);
+  const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
   if (bsoLocalAffiliations) {
     queryResponse.query.bool.filter.push({

@@ -14,14 +14,14 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const greenLight100 = getCSSValue('--green-light-100');
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions({
         key: 'oaHostType',
         domain,
-        location,
+        search,
         parameters: [lastObservationSnap],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -214,7 +214,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       intl,
       yellowMedium125,
       beforeLastObservationSnap,
-      location,
+      search,
     ],
   );
 

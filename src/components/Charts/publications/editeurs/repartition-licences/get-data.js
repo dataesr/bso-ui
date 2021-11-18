@@ -17,7 +17,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
     // Pour chaque date d'observation, récupération des données associées
@@ -25,7 +25,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     const query = getFetchOptions({
       key: 'publishersLicence',
       domain,
-      location,
+      search,
       parameters: [datesObservation[0], needle],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));

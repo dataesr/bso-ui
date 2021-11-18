@@ -10,7 +10,7 @@ export default async function useGetPublicationRateFrom(
   observationSnap,
 ) {
   const [result, setResult] = useState({});
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const { fetch, response, isMounted, loading } = useFetch({
     url: ES_API_URL,
@@ -23,7 +23,7 @@ export default async function useGetPublicationRateFrom(
         options: getFetchOptions({
           key: 'publicationRate',
           domain,
-          location,
+          search,
           parameters: [observationSnap],
         }),
       });
@@ -65,7 +65,7 @@ export default async function useGetPublicationRateFrom(
     observationSnap,
     response,
     result,
-    location,
+    search,
   ]);
   return result;
 }
