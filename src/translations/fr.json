@@ -775,6 +775,7 @@
   "app.publi.general.impact-financement.chart-taux-ouverture.legend": "Présence d'une déclaration de financement dans les métadonnées",
   "app.publi.general.impact-financement.chart-taux-ouverture.tooltip": "<b>{series.name} ({point.bsoDomain})</b><br>{point.y:.2f} % des publications publiées en {point.publicationDate} en accès ouvert ({point.y_abs} / {point.y_tot})",
   "app.publi.general.langues-ouverture.chart-repartition-publications.tooltip": "<b>{point.name} publiés en {point.publicationDate} ({point.bsoDomain})</b><br>{point.value} en {point.oaType}<br>soit {point.percentage:.2f} % du total des publications de {point.publicationDate}",
+  "app.publi.navigation.go-to-page": "Aller à la page",
   "app.publi.navigation.affiliation.dynamique": "La dynamique d'ouverture par type d'affiliation",
   "app.publi.navigation.affiliation.impact": "Impact des pays d'affiliation",
   "app.publi.navigation.archives.depot": "La dynamique de dépôts par archive",

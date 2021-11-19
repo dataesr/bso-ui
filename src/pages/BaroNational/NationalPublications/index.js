@@ -81,6 +81,12 @@ export default function NationalPublications() {
               links={[
                 {
                   label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/publications/general',
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.publi.navigation.dynamique',
                   }),
                   href: '/publications/general?id=general.dynamique-ouverture',
@@ -147,6 +153,12 @@ export default function NationalPublications() {
               })}
               links={[
                 {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/publications/disciplines',
+                },
+                {
                   href: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.dynamique',
@@ -185,6 +197,12 @@ export default function NationalPublications() {
               paths={['/publications/editeurs']}
               mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
               links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/publications/editeurs',
+                },
                 {
                   href: '/publications/editeurs?id=publishers.dynamique-ouverture',
                   label: intl.formatMessage({
@@ -290,6 +308,12 @@ export default function NationalPublications() {
               paths={['/publications/archives']}
               mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}
               links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/publications/archives',
+                },
                 {
                   href: '/publications/archives?id=repositories.dynamique-ouverture',
                   label: intl.formatMessage({

@@ -53,6 +53,10 @@ html {
   display: block;
 }
 
+.float-right {
+  float: right;
+}
+
 /**
   Position
  */
@@ -260,6 +264,10 @@ html {
 
 .mb-100 {
   margin-bottom: 100px;
+}
+
+.ml-n16 {
+  margin-left: -16px;
 }
 
 /**

@@ -60,11 +60,12 @@ function GraphItem({ links, mainLabel, paths }) {
           label={mainLabel}
           activeTab={paths.indexOf(`${location.pathname}`) > -1}
         >
-          {links.map((link) => (
+          {links.map((link, index) => (
             <GraphNavigationLink
               key={uuidv4()}
               href={link.href}
               label={link.label}
+              hasHr={index === 0}
             />
           ))}
         </GraphTabSubItem>

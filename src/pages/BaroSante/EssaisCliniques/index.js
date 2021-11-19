@@ -65,6 +65,12 @@ function EssaisCliniques() {
             links={[
               {
                 label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/essais-cliniques/general',
+              },
+              {
+                label: intl.formatMessage({
                   id: 'app.health-interventional.navigation.general.dynamique',
                 }),
                 href: '/sante/essais-cliniques/general?id=general.dynamique',
@@ -114,6 +120,12 @@ function EssaisCliniques() {
               '/health/clinical-trials/specifications',
             ]}
             links={[
+              {
+                label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/essais-cliniques/caracteristiques',
+              },
               {
                 label: intl.formatMessage({
                   id: 'app.health-interventional.navigation.caracteristiques.quand',
@@ -219,6 +231,12 @@ function EssaisCliniques() {
             links={[
               {
                 label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/essais-cliniques/promoteurs',
+              },
+              {
+                label: intl.formatMessage({
                   id: 'app.health-interventional.navigation.promoteurs.dynamique-ouverture',
                 }),
                 href: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
@@ -280,6 +298,12 @@ function EssaisCliniques() {
               '/health/clinical-trials/results',
             ]}
             links={[
+              {
+                label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/essais-cliniques/resultats',
+              },
               {
                 label: intl.formatMessage({
                   id: 'app.health-interventional.navigation.resultats.type-diffusion',

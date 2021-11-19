@@ -65,6 +65,12 @@ function SantePublications() {
               links={[
                 {
                   label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/sante/publications/general',
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.dynamique',
                   }),
                   href: '/sante/publications/general?id=general.dynamique-ouverture',
@@ -168,6 +174,12 @@ function SantePublications() {
               })}
               links={[
                 {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/sante/publications/disciplines',
+                },
+                {
                   href: '/sante/publications/disciplines?id=disciplines.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.dynamique',
@@ -218,6 +230,12 @@ function SantePublications() {
               paths={['/sante/publications/editeurs']}
               mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
               links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/sante/publications/editeurs',
+                },
                 {
                   href: '/sante/publications/editeurs?id=publishers.dynamique-ouverture',
                   label: intl.formatMessage({
@@ -356,6 +374,12 @@ function SantePublications() {
               mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}
               links={[
                 {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/sante/publications/archives',
+                },
+                {
                   href: '/sante/publications/archives?id=repositories.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.dynamique',
@@ -438,6 +462,12 @@ function SantePublications() {
                 id: 'app.publi.affiliations',
               })}
               links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: '/sante/publications/affiliations',
+                },
                 {
                   href: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
                   label: intl.formatMessage({

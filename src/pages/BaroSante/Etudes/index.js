@@ -65,6 +65,12 @@ function EtudesObservationnelles() {
             links={[
               {
                 label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/etudes-observationnelles/general',
+              },
+              {
+                label: intl.formatMessage({
                   id: 'app.health-observational.navigation.general.dynamique',
                   default: 'dynamique',
                 }),
@@ -116,6 +122,12 @@ function EtudesObservationnelles() {
               '/health/observational-studies/specifications',
             ]}
             links={[
+              {
+                label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/etudes-observationnelles/caracteristiques',
+              },
               {
                 label: intl.formatMessage({
                   id: 'app.health-observational.navigation.caracteristiques.quand',
@@ -204,6 +216,12 @@ function EtudesObservationnelles() {
             links={[
               {
                 label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/etudes-observationnelles/promoteurs',
+              },
+              {
+                label: intl.formatMessage({
                   id: 'app.health-observational.navigation.promoteurs.dynamique-ouverture',
                 }),
                 href: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
@@ -265,6 +283,12 @@ function EtudesObservationnelles() {
               '/health/observational-studies/results',
             ]}
             links={[
+              {
+                label: intl.formatMessage({
+                  id: 'app.publi.navigation.go-to-page',
+                }),
+                href: '/sante/etudes-observationnelles/resultats',
+              },
               {
                 label: intl.formatMessage({
                   id: 'app.health-observational.navigation.resultats.type-diffusion',

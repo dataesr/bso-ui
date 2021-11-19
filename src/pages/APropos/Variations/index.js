@@ -31,7 +31,7 @@ function Variations() {
           <Row gutters>
             <Col n='12 lg-8'>
               La partie nationale du BSO est déclinable pour les établissements
-              (et laboratoire).
+              (et laboratoires).
               <ol>
                 <li>
                   Chaque établissement / laboratoire qui le souhaite nous fait
@@ -52,8 +52,10 @@ function Variations() {
                   le bouton "Intégration" en bas du graphe voulu, afin de
                   récupérer l'url du graphe en question. Ensuite, ajouter à
                   cette url l'identifiant RNSR de la structure (ex:
-                  <i>?bso-local-affiliations=130015506</i>
-                  pour l'Université de Lorraine).
+                  <i>bso-local-affiliations=130015506</i>
+                  {' '}
+                  pour l'Université de
+                  Lorraine).
                 </li>
                 <li>
                   Par défaut, les éléments envoyés précédemment (nom, date de
