@@ -782,7 +782,7 @@ export default function getFetchOptions({
               aggs: {
                 by_year: {
                   terms: {
-                    field: 'study_start_year',
+                    field: 'study_completion_year',
                     size: 30,
                   },
                   aggs: {
@@ -820,7 +820,7 @@ export default function getFetchOptions({
       aggs: {
         by_year: {
           terms: {
-            field: 'study_start_year',
+            field: 'study_completion_year',
             size: 30,
           },
           aggs: {
@@ -866,7 +866,7 @@ export default function getFetchOptions({
       aggs: {
         by_year: {
           terms: {
-            field: 'study_start_year',
+            field: 'study_completion_year',
             size: 30,
           },
           aggs: {
@@ -905,7 +905,7 @@ export default function getFetchOptions({
       aggs: {
         by_year: {
           terms: {
-            field: 'study_start_year',
+            field: 'study_completion_year',
             size: 30,
           },
           aggs: {
@@ -1030,7 +1030,7 @@ export default function getFetchOptions({
       aggs: {
         by_year: {
           terms: {
-            field: 'study_start_year',
+            field: 'study_completion_year',
             size: 30,
           },
           aggs: {
@@ -1122,7 +1122,7 @@ export default function getFetchOptions({
       aggs: {
         by_year: {
           terms: {
-            field: 'study_start_year',
+            field: 'study_completion_year',
             size: 30,
           },
           aggs: {
