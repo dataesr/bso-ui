@@ -215,6 +215,14 @@ function Header() {
               })}
               asLink={<RouterLink to={urls.flash[lang]} />}
             />
+            <NavSubItem
+              current={path === urls.variations[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.a-propos-variations',
+                defaultMessage: 'Déclinaisons locales',
+              })}
+              asLink={<RouterLink to={urls.variations[lang]} />}
+            />
           </NavItem>
         </HeaderNav>
       </DSHeader>

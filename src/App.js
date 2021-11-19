@@ -11,6 +11,7 @@ import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
 import NotesFlash from './pages/APropos/NotesFlash';
+import Variations from './pages/APropos/Variations';
 import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 import BaroSante from './pages/BaroSante';
@@ -128,11 +129,19 @@ function App() {
               </PageTracker>
             </Route>
             <Route
-              exact
+              NotesFlashexact
               path={Object.keys(urls.flash).map((l) => urls.flash[l])}
             >
               <PageTracker>
                 <NotesFlash />
+              </PageTracker>
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.variations).map((l) => urls.variations[l])}
+            >
+              <PageTracker>
+                <Variations />
               </PageTracker>
             </Route>
             <Route

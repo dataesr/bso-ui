@@ -115,6 +115,10 @@ export default {
     fr: '/a-propos/notes-flash',
     en: '/about/flash-notes',
   },
+  variations: {
+    fr: '/a-propos/declinaisons',
+    en: '/about/variations',
+  },
   integration: {
     fr: '/integration/:language/:graphId/:domain?/:studyType?',
     en: '/integration/:language/:graphId/:domain?/:studyType?',
