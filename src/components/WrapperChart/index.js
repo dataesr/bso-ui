@@ -2,7 +2,9 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
+import locals from '../../config/locals.json';
 import { domains, graphIds, studiesTypes } from '../../utils/constants';
 import {
   getFormattedDate,
@@ -35,12 +37,19 @@ function WrapperChart({
   const idWithDomain = withDomain(id, domain);
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
-  const title = intl.formatMessage(
+  let title = intl.formatMessage(
     {
       id: `${!studyType ? idWithDomain : idWithContext}.title`,
     },
     dataTitle,
   );
+  const { search } = useLocation();
+  const urlSearchParams = new URLSearchParams(search);
+  const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
+  if (bsoLocalAffiliations) {
+    const prefixTitle = urlSearchParams.get('name') || locals[bsoLocalAffiliations].name;
+    title = `${prefixTitle}: ${title}`;
+  }
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
     : 'commentaire non rédigé';

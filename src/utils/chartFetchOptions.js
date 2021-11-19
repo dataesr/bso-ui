@@ -1,3 +1,4 @@
+import locals from '../config/locals.json';
 import { getPublicationYearFromObservationSnap } from './helpers';
 
 /**
@@ -1688,6 +1689,21 @@ export default function getFetchOptions({
     queryResponse.query.bool.filter.push({
       term: { bso_local_affiliations: bsoLocalAffiliations },
     });
+    const startYear = urlSearchParams.get('start-year')
+      || locals[bsoLocalAffiliations].startYear;
+    const endYear = urlSearchParams.get('end-year') || locals[bsoLocalAffiliations].endYear;
+    const year = {};
+    if (startYear) {
+      year.gte = parseInt(startYear, 10);
+    }
+    if (endYear) {
+      year.lte = parseInt(endYear, 10);
+    }
+    if (year) {
+      queryResponse.query.bool.filter.push({
+        range: { year },
+      });
+    }
   }
   return queryResponse;
 }
