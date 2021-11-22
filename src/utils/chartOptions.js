@@ -1,3 +1,4 @@
+import locals from '../config/locals.json';
 import {
   cleanNumber,
   getCSSValue,
@@ -535,13 +536,22 @@ export const chartOptions = {
     },
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data) => {
+    getOptions: (id, intl, data, search) => {
+      const urlSearchParams = new URLSearchParams(search);
+      const bsoLocalAffiliations = urlSearchParams.get(
+        'bso-local-affiliations',
+      );
+      let pointStart = 2013;
+      if (bsoLocalAffiliations) {
+        pointStart = urlSearchParams.get('start-year')
+          || locals[bsoLocalAffiliations].startYear;
+      }
       const options = getGraphOptions(id, intl);
-
       options.chart.type = 'spline';
       options.xAxis.title.text = intl.formatMessage({
         id: 'app.publication-year',
       });
+      options.xAxis.tickInterval = 1;
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.title.text = intl.formatMessage({
@@ -551,7 +561,7 @@ export const chartOptions = {
         id: `${id}.tooltip`,
       });
       options.plotOptions = {
-        series: { pointStart: 2013 },
+        series: { pointStart },
         spline: {
           dataLabels: {
             enabled: true,
@@ -570,7 +580,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -1836,7 +1845,9 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
-        title: { text: intl.formatMessage({ id: 'app.study-completion-year' }) },
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -1959,7 +1970,9 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
-        title: { text: intl.formatMessage({ id: 'app.study-completion-year' }) },
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
@@ -2373,7 +2386,9 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         categories: data?.categories || [],
-        title: { text: intl.formatMessage({ id: 'app.study-completion-year' }) },
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -2411,7 +2426,9 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
-        title: { text: intl.formatMessage({ id: 'app.study-completion-year' }) },
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
@@ -2496,7 +2513,9 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(true);
       options.xAxis = {
         type: 'category',
-        title: { text: intl.formatMessage({ id: 'app.study-completion-year' }) },
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,

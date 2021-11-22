@@ -41,6 +41,7 @@ function Variations() {
                     donnees.ipynb'
                     target='_blank'
                     rel='noreferrer'
+                    className='ml-5'
                   >
                     parvenir une liste de DOI (csv ou excel)
                   </a>
