@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import locals from '../../../../../config/locals.json';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -17,6 +18,13 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const { search } = useLocation();
+  const urlSearchParams = new URLSearchParams(search);
+  const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
+  let commentsName = '';
+  if (bsoLocalAffiliations) {
+    commentsName = urlSearchParams.get('comments-name')
+      || locals[bsoLocalAffiliations].commentsName;
+  }
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -133,6 +141,7 @@ function useGetData(observationSnaps, domain = '') {
           - dataGraph2[1]?.data.slice(-1)[0].y
         ).toFixed(2),
         maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
+        commentsName,
       };
       const dataGraph1 = { series: [] };
       const serie1 = [];
