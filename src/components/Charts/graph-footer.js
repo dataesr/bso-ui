@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -38,10 +39,13 @@ const GraphFooter = ({
   onPngButtonClick,
 }) => {
   const intl = useIntl();
+  const { search } = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const urlSearchParams = new URLSearchParams(search);
+  urlSearchParams.delete('id');
   const urlToShare = `${window.location.origin}/integration/${
     intl.locale
-  }/${srcPath}${studyType ? '/' : ''}${studyType}`;
+  }/${srcPath}${studyType ? '/' : ''}${studyType}?${urlSearchParams}`;
   const shareFill = getCSSValue('--blue-soft-100');
   const clipboardContent = `<iframe id="yourID" width="800" height="600" src=${urlToShare} />`;
 
@@ -92,7 +96,7 @@ const GraphFooter = ({
                       <Text size='xs' as='span' className='download'>
                         <FormattedMessage
                           id='app.graph.download.csv'
-                          defaultMessage='csv'
+                          defaultMessage='CSV'
                         />
                       </Text>
                     </DSIcon>
@@ -116,7 +120,7 @@ const GraphFooter = ({
                       <Text size='xs' as='span' className='download'>
                         <FormattedMessage
                           id='app.graph.download.png'
-                          defaultMessage='png'
+                          defaultMessage='PNG'
                         />
                       </Text>
                     </DSIcon>
@@ -157,7 +161,7 @@ const GraphFooter = ({
                 <div className='fs-14-24 marianne'>
                   <FormattedMessage
                     id='app.graph.share'
-                    defaultMessage='Partager ce graphique'
+                    defaultMessage='Partager'
                   />
                 </div>
                 <TwitterShareButton
