@@ -23,15 +23,12 @@ function useGetData(observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
+      const publicationYear = getPublicationYearFromObservationSnap(lastObservationSnap);
       const query = getFetchOptions({
         key: 'oaHostType',
         domain,
         search,
-        parameters: [
-          lastObservationSnap,
-          'genre.keyword',
-          getPublicationYearFromObservationSnap(lastObservationSnap),
-        ],
+        parameters: [lastObservationSnap, 'genre.keyword', publicationYear],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
@@ -227,21 +224,23 @@ function useGetData(observationSnap, domain) {
         (openArticlesTotal / articlesTotal)
         * 100
       ).toFixed(0);
-      const books = newData.find((item) => item.key === 'book');
-      const booksTotal = books?.doc_count || 0;
-      const openBooks = books?.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
+      const booksChapters = newData.find((item) => item.key === 'book-chapter');
+      const booksChaptersTotal = booksChapters?.doc_count || 0;
+      const openBooksChapters = booksChapters?.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
         item.key,
       )) || [];
-      const openBooksTotal = openBooks.reduce(
+      const openBooksChaptersTotal = openBooksChapters.reduce(
         (previousValue, currentValue) => previousValue + currentValue.doc_count,
         0,
       );
-      const openBooksPercentage = ((openBooksTotal / booksTotal) * 100).toFixed(
-        0,
-      );
+      const openBooksChaptersPercentage = (
+        (openBooksChaptersTotal / booksChaptersTotal)
+        * 100
+      ).toFixed(0);
       const comments = {
         openArticlesPercentage,
-        openBooksPercentage,
+        openBooksChaptersPercentage,
+        publicationYear,
       };
 
       return { categories, dataGraph, dataGraph3, comments };

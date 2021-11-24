@@ -182,7 +182,7 @@ function useGetData(observationSnaps, domain = '') {
       }
       return { dataGraph1, dataGraph2 };
     },
-    [domain, intl, search],
+    [domain, intl, search, commentsName],
   );
 
   useEffect(() => {

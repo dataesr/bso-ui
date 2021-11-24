@@ -74,7 +74,7 @@ const Chart = ({ hasComments, id, domain }) => {
 Chart.defaultProps = {
   hasComments: true,
   domain: '',
-  id: 'publi.general.genres-ouverture.chart-repartition-genres',
+  id: 'publi.general.genres-ouverture-treemap.chart-repartition-genres',
 };
 Chart.propTypes = {
   hasComments: PropTypes.bool,

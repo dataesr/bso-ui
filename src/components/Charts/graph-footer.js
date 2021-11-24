@@ -39,7 +39,9 @@ const GraphFooter = ({
 }) => {
   const intl = useIntl();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const urlToShare = `${window.location.origin}/integration/${intl.locale}/${srcPath}${(studyType) ? '/' : ''}${studyType}`;
+  const urlToShare = `${window.location.origin}/integration/${
+    intl.locale
+  }/${srcPath}${studyType ? '/' : ''}${studyType}`;
   const shareFill = getCSSValue('--blue-soft-100');
   const clipboardContent = `<iframe id="yourID" width="800" height="600" src=${urlToShare} />`;
 
@@ -138,7 +140,7 @@ const GraphFooter = ({
                       <Text size='xs' as='span' className=''>
                         <FormattedMessage
                           id='app.graph.integration'
-                          defaultMessage='Intégrer le graphique'
+                          defaultMessage='Intégration'
                         />
                       </Text>
                     </DSIcon>
