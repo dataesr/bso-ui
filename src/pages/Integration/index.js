@@ -21,8 +21,9 @@ const Integration = () => {
         <Col n='10'>
           <Service
             description=''
-            className='main-title'
+            className='main-title cursor-default'
             title={intl.formatMessage({ id: 'app.header.title' })}
+            link={null}
           />
         </Col>
       </Row>

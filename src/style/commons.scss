@@ -26,6 +26,12 @@ html {
   }
 }
 
+.cursor-default,
+.cursor-default > a,
+.cursor-default > a:not([href]) {
+  cursor: default;
+}
+
 /**
   Textes
  */
