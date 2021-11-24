@@ -22,7 +22,7 @@
   "app.all-repositories": "Toutes les archives ouvertes",
   "app.all-sponsor-types": "Tout type de promoteur",
   "app.all-sponsors": "Tous les promoteurs",
-  "app.baro-national.detail-publi": "Voir le détail des publications",
+  "app.baro-national.detail-publi": "Voir plus de graphes",
   "app.baro-national.intro": "Les publications en <glossary0>app.commons.open-access</glossary0> désignent les publications issues de travaux de recherche scientifique mises à disposition librement sur l'internet public, sans barrière technique ni financière. Le Baromètre de la Science Ouverte se focalise sur les <glossary1>app.glossary.publication-fr</glossary1>, c'est-à-dire les publications avec une affiliation française. Le taux d'accès ouvert représente le ratio du nombre de publications en accès ouvert rapporté au nombre total de publications sur le même périmètre (par exemple par année, discipline ou éditeur).<linebreak></linebreak>La généralisation de l’accès ouvert aux publications scientifiques est l’un des axes de la stratégie nationale de science ouverte, avec pour objectif un taux d’accès ouvert de 100 % en 2030. Elle facilite, élargit et accélère la diffusion des résultats de la recherche publique française auprès des communautés scientifiques et des acteurs sociaux (enseignants, étudiants, entreprises, associations, acteurs des politiques publiques, etc.).",
   "app.baro-national.main-title": "Publications",
   "app.baro-national.title": "Les publications",

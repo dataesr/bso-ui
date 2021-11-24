@@ -1315,6 +1315,9 @@ export const chartOptions = {
       options.subtitle = {
         text: intl.formatMessage({ id: `app.discipline.${nameClean}` }),
         widthAdjust: 0,
+        style: {
+          fontWeight: 'bold',
+        },
       };
       options.legend.enabled = false;
       return options;
@@ -1624,6 +1627,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.subtitle = {
         text: name,
+        widthAdjust: 0,
+        style: {
+          fontWeight: 'bold',
+        },
       };
       options.plotOptions = {
         column: {
@@ -2462,6 +2469,9 @@ export const chartOptions = {
       options.subtitle = {
         text: name,
         widthAdjust: 0,
+        style: {
+          fontWeight: 'bold',
+        },
       };
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.min = 0;

@@ -101,6 +101,12 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
+              Ces déclinaisons locales du BSO ont été réalisées avec l'aide de
+              l'Université de Lorraine.
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
               Liste des déclinaisons locales des BSO :
               <ul>
                 <li>Université de Lorraine</li>
