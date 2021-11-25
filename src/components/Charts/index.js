@@ -25,6 +25,9 @@ function BSOChart({
             description={intl.formatMessage({
               id: 'app.commons.graph-warning',
             })}
+            title={intl.formatMessage({
+              id: 'app.commons.graph-warning',
+            })}
           />
         )}
         {Chart && (

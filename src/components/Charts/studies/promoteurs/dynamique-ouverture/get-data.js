@@ -13,19 +13,19 @@ function useGetData(studyType, sponsor = '*') {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
-    const querySponsorTypes = getFetchOptions({
+    const querySponsors = getFetchOptions({
       key: 'sponsorsList',
       parameters: [studyType],
     });
-    const responseSponsorTypes = await Axios.post(
+    const responseSponsors = await Axios.post(
       ES_STUDIES_API_URL,
-      querySponsorTypes,
+      querySponsors,
       HEADERS,
     );
-    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor.buckets.map(
+    let sponsors = responseSponsors.data.aggregations.by_sponsor.buckets.map(
       (item) => item.key,
     );
-    sponsorTypes = sponsorTypes
+    sponsors = sponsors
       .filter((st) => st !== '')
       .map((st) => ({
         value: st,
@@ -176,7 +176,7 @@ function useGetData(studyType, sponsor = '*') {
       }
     });
     const dataGraph2 = tab;
-    return { sponsorTypes, dataGraph1, dataGraph2 };
+    return { sponsors, dataGraph1, dataGraph2 };
   }
 
   useEffect(() => {
