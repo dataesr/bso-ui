@@ -25,10 +25,12 @@ function useGetData(studyType, sponsor = '*') {
     let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor.buckets.map(
       (item) => item.key,
     );
-    sponsorTypes = sponsorTypes.map((st) => ({
-      value: st,
-      label: st,
-    }));
+    sponsorTypes = sponsorTypes
+      .filter((st) => st !== '')
+      .map((st) => ({
+        value: st,
+        label: st,
+      }));
     const queries = [];
     const queryDynamiqueOuverture = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
