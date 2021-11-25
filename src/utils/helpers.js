@@ -207,24 +207,31 @@ export function withContext(id, domain, studyType) {
  * @returns {string}
  */
 export function getSource(id) {
-  let source = '';
+  const sources = [];
   if (id.includes('-publi') || id.includes('publication')) {
-    source += 'Unpaywall, ';
+    sources.push('Unpaywall');
   }
-  if (id.includes('studies.')) {
-    source += 'clinicaltrials.gov, EU Clinical Trial Register, ';
+  if (
+    id.includes('health-general')
+    || id.includes('health-caracteristiques')
+    || id.includes('health-promoteurs')
+    || id.includes('health-resultats')
+  ) {
+    sources.push('clinicaltrials.gov');
+    sources.push('EU Clinical Trial Register');
   }
   if (id.includes('health-publi')) {
-    source += 'PubMed, ';
+    sources.push('PubMed');
   }
   if (id.includes('couts-publi')) {
-    source += 'openAPC, DOAJ, ';
+    sources.push('openAPC');
+    sources.push('DOAJ');
   }
   if (id.includes('publishers.poids-revue')) {
-    source += 'beallslist.net, ';
+    sources.push('beallslist.net');
   }
-  source += 'MESRI';
-  return source;
+  sources.push('MESRI');
+  return sources.join(', ');
 }
 
 /**
