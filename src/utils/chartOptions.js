@@ -1705,7 +1705,6 @@ export const chartOptions = {
           },
         },
       ];
-
       return options;
     },
   },
@@ -1732,6 +1731,9 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
             style: {
               textOutline: 'none',
             },

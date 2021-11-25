@@ -23,13 +23,13 @@ function useGetData(lastObservationSnap, domain) {
       search,
       parameters: [lastObservationSnap],
     });
+    queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     const queryArchive = getFetchOptions({
       key: 'couvertureAllRepo',
       domain,
       search,
       parameters: [lastObservationSnap],
     });
-    queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
     const res = await Axios.all(queries);
     let dataHAL = res[0].data.aggregations.by_publication_year.buckets;
@@ -54,16 +54,22 @@ function useGetData(lastObservationSnap, domain) {
     dataHAL.forEach((el, index) => {
       publicationYears.push(el.key);
       hal.push({
-        y: el.doc_count,
+        y_abs: el.doc_count,
+        y: (100 * el.doc_count) / dataArchive[index].doc_count,
         bsoDomain,
         y_percHAL: (100 * el.doc_count) / dataArchive[index].doc_count,
         y_tot: dataArchive[index].doc_count,
         x: el.key,
       });
       notHal.push({
-        y: dataArchive[index].doc_count - el.doc_count,
+        y_abs: dataArchive[index].doc_count - el.doc_count,
+        y:
+          (100 * (dataArchive[index].doc_count - el.doc_count))
+          / dataArchive[index].doc_count,
         bsoDomain,
-        y_percHAL: (100 * el.doc_count) / dataArchive[index].doc_count,
+        y_percHAL:
+          (100 * (dataArchive[index].doc_count - el.doc_count))
+          / dataArchive[index].doc_count,
         y_tot: dataArchive[index].doc_count,
         x: el.key,
       });
