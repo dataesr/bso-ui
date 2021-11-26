@@ -1714,13 +1714,14 @@ export const chartOptions = {
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-hal.chart-couverture-hal.tooltip',
       });
+      options.yAxis = getPercentageYAxis(false);
       options.chart.type = 'column';
       options.xAxis = {
         publicationYears,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.publi.nb-publications',
+        id: 'app.publi.part-publications-archive',
       });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa',

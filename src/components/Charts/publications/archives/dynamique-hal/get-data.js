@@ -77,17 +77,17 @@ function useGetData(lastObservationSnap, domain) {
     const dataGraph2 = [
       {
         name: intl.formatMessage({
-          id: 'app.health-publi.repositories.dynamique-hal.hal',
-        }),
-        data: hal,
-        color: getCSSValue('--acces-ouvert'),
-      },
-      {
-        name: intl.formatMessage({
           id: 'app.health-publi.repositories.dynamique-hal.notHal',
         }),
         data: notHal,
         color: getCSSValue('--green-medium-150'),
+      },
+      {
+        name: intl.formatMessage({
+          id: 'app.health-publi.repositories.dynamique-hal.hal',
+        }),
+        data: hal,
+        color: getCSSValue('--acces-ouvert'),
       },
     ];
     return { publicationYears, dataGraph2 };
