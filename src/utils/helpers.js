@@ -68,7 +68,7 @@ export function sortByPath(array, path) {
  * @returns {string}
  */
 export function cleanNumber(num, precision = 1) {
-  let myCleanedNumber = '';
+  let myCleanedNumber;
   if (num < 1000) {
     myCleanedNumber = num.toFixed(0);
   } else {
@@ -139,14 +139,12 @@ export function clearLocalStorage(keys) {
  * @returns {string}
  */
 export function getPublicationYearFromObservationSnap(observationSnap) {
-  let publicationYear = '';
-
+  let publicationYear;
   if (observationSnap.length > 4) {
     publicationYear = parseFloat(observationSnap.substring(0, 4)) - 1;
   } else {
     publicationYear = observationSnap - 1;
   }
-
   return publicationYear || '2020';
 }
 
@@ -202,11 +200,12 @@ export function withContext(id, domain, studyType) {
 }
 
 /**
- *
- * @param id
+ * List all the sources used to build a graph
+ * @param {string} id
+ * @param {string[]} otherSources
  * @returns {string}
  */
-export function getSource(id) {
+export function getSource(id, otherSources = []) {
   const sources = [];
   if (id.includes('-publi') || id.includes('publication')) {
     sources.push('Unpaywall');
@@ -231,6 +230,7 @@ export function getSource(id) {
     sources.push('beallslist.net');
   }
   sources.push('MESRI');
+  sources.push(...otherSources);
   return sources.join(', ');
 }
 

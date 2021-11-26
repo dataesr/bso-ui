@@ -46,14 +46,16 @@ function WrapperChart({
   const { search } = useLocation();
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
+  let otherSources = [];
   if (bsoLocalAffiliations) {
     const prefixTitle = urlSearchParams.get('name') || locals[bsoLocalAffiliations].name;
     title = `${prefixTitle}: ${title}`;
+    otherSources = [prefixTitle];
   }
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
     : 'commentaire non rédigé';
-  const source = getSource(idWithDomain);
+  const source = getSource(idWithDomain, otherSources);
 
   const exportChartPng = () => {
     if (chartRef.current) {
