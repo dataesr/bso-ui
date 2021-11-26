@@ -252,10 +252,6 @@ html {
   margin: 0;
 }
 
-.ml-5 {
-  margin-left: 5px;
-}
-
 .my-5 {
   margin: 0 5px;
 }
@@ -276,8 +272,24 @@ html {
   margin-bottom: 100px;
 }
 
+.ml-5 {
+  margin-left: 5px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
 .ml-n16 {
   margin-left: -16px;
+}
+
+.mr-26 {
+  margin-right: 26px;
+}
+
+.mr-120 {
+  margin-right: 120px;
 }
 
 /**

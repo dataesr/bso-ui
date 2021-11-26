@@ -74,7 +74,7 @@ const GraphFooter = ({
               ) : null}
               {source && srcPath ? <hr /> : null}
               <p>
-                <Text size='xs' as='span' className='download'>
+                <Text size='xs' as='span'>
                   <FormattedMessage
                     id='app.graph.download'
                     defaultMessage='Télécharger'
@@ -82,7 +82,7 @@ const GraphFooter = ({
                 </Text>
                 {onCsvButtonClick && (
                   <span
-                    className='icon-click'
+                    className='icon-click ml-10 mr-26'
                     tabIndex={0}
                     role='button'
                     onClick={() => onCsvButtonClick()}
@@ -93,9 +93,9 @@ const GraphFooter = ({
                       size='lg'
                       as='span'
                       iconPosition='right'
-                      className='ds-fr--v-middle'
+                      className='ds-fr--v-text-top'
                     >
-                      <Text size='xs' as='span' className='download'>
+                      <Text size='xs' as='span'>
                         <FormattedMessage
                           id='app.graph.download.csv'
                           defaultMessage='CSV'
@@ -106,20 +106,20 @@ const GraphFooter = ({
                 )}
                 {onPngButtonClick && (
                   <span
-                    className='icon-click'
+                    className='icon-click mr-120'
                     tabIndex={0}
                     role='button'
                     onClick={() => onPngButtonClick()}
                     onKeyPress={() => onPngButtonClick()}
                   >
                     <DSIcon
-                      name='ri-file-chart-fill '
+                      name='ri-file-chart-fill'
                       size='lg'
                       as='span'
                       iconPosition='right'
-                      className='ds-fr--v-middle icon-click'
+                      className='ds-fr--v-text-top'
                     >
-                      <Text size='xs' as='span' className='download'>
+                      <Text size='xs' as='span'>
                         <FormattedMessage
                           id='app.graph.download.png'
                           defaultMessage='PNG'
@@ -141,7 +141,7 @@ const GraphFooter = ({
                       size='lg'
                       as='span'
                       iconPosition='right'
-                      className='ds-fr--v-middle icon-click'
+                      className='ds-fr--v-text-top'
                     >
                       <Text size='xs' as='span' className=''>
                         <FormattedMessage
