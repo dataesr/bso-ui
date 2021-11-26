@@ -46,7 +46,7 @@ function Methodologie() {
           <Row gutters>
             <Col n='12 lg-8'>
               <ReactMarkdown components={{
-                // eslint-disable-next-line jsx-a11y/alt-text
+                // eslint-disable-next-line jsx-a11y/alt-text,react/prop-types
                 img: ({ node, ...props }) => <img style={{ maxWidth: '100%' }} {...props} />,
               }}
               >
