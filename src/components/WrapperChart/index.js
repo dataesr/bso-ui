@@ -61,6 +61,7 @@ function WrapperChart({
     if (chartRef.current) {
       chartRef.current.chart.exportChart({
         type: 'image/png',
+        scale: 30,
       });
     }
     trackEvent({
