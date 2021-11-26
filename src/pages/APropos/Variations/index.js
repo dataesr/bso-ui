@@ -35,19 +35,20 @@ function Variations() {
               <ol>
                 <li>
                   Chaque établissement / laboratoire qui le souhaite nous fait
+                  parvenir une liste de DOI (csv ou excel) , et nous précise le
+                  nom qui sera affiché pour l'établissement, la date de début
+                  ainsi que la date de fin si nécessaire. Pour obtenir cette
+                  liste de DOI, l'Université de Lorraine a développé un code que
+                  vous pouvez trouver
                   <a
-                    href='https://gitlab.com/Cthulhus_Queen/barometre_science
-                    ouverte_universitedelorraine/-/blob/ master/01_nettoyage_
-                    donnees.ipynb'
+                    href='https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/01_nettoyage_donnees.ipynb'
                     target='_blank'
                     rel='noreferrer'
                     className='ml-5'
                   >
-                    parvenir une liste de DOI (csv ou excel)
+                    ici
                   </a>
-                  , et nous précise le nom qui sera affiché pour
-                  l'établissement, la date de début ainsi que la date de fin si
-                  nécessaire.
+                  .
                 </li>
                 <li>
                   Il faut alors que notre système ingère cette liste de DOI afin
@@ -69,9 +70,9 @@ function Variations() {
                 </li>
                 <li>
                   Par défaut, les éléments envoyés précédemment (nom, date de
-                  déut et date de fin), seront intégrés par défaut pour cet
+                  déut et date de fin) seront intégrés par défaut pour cet
                   établissement / laboratoire. Néanmoins, il est possible de les
-                  surcharger via des paramètres de l'url :
+                  modifier directement dans l'URL via des paramètres :
                   <ul>
                     <li>
                       <b>name</b>
@@ -93,7 +94,7 @@ function Variations() {
                   <li>
                     Attention, seuls les graphes du BSO national adaptables.
                     Pour des raisons de manque de données, les graphes relatifs
-                    au domaine de la santé ne seront pas daptables.
+                    au domaine de la santé ne seront pas adaptables.
                   </li>
                 </li>
               </ol>
@@ -102,7 +103,12 @@ function Variations() {
           <Row gutters>
             <Col n='12 lg-8'>
               Ces déclinaisons locales du BSO ont été réalisées avec l'aide de
-              l'Université de Lorraine.
+              l'Université de Lorraine. Pour toute question, n'hésitez pas à
+              envoyer un mail à
+              <a href='mailto:bso@recherche.gouv.fr' className='ml-5'>
+                bso@recherche.gouv.fr
+              </a>
+              .
             </Col>
           </Row>
           <Row gutters>
