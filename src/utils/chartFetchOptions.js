@@ -383,6 +383,28 @@ export default function getFetchOptions({
         },
       },
     }),
+    disciplinesList: ([observationSnap, disciplineField]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: disciplineField,
+            size: 30,
+          },
+        },
+      },
+    }),
     publishersList: ([observationSnap]) => ({
       size: 0,
       query: {
