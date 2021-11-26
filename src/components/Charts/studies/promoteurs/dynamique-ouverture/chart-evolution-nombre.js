@@ -1,7 +1,6 @@
 import './chart-evolution-nombre.scss';
 import '../../../graph.scss';
 
-import { Col, Container, Row } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -40,18 +39,12 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
-  const graphs = [];
-
-  dataGraph2?.forEach((oneGraph) => {
-    const optionsGraph = chartOptions[id].getOptions(
-      withDomain(id, domain),
-      intl,
-      oneGraph,
-      studyType,
-    );
-    graphs.push(optionsGraph);
-  });
-
+  const optionsGraph = chartOptions[id].getOptions(
+    withDomain(id, domain),
+    intl,
+    dataGraph2,
+    studyType,
+  );
   return (
     <WrapperChart
       isLoading={isLoading || !allData}
@@ -78,19 +71,12 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
           </span>
         </span>
       </div>
-      <Container>
-        <Row>
-          {graphs.map((graphOptions, i) => (
-            <Col n='3' key={graphOptions.series[0].name}>
-              <HighchartsReact
-                highcharts={Highcharts}
-                options={graphOptions}
-                id={`${idWithDomainAndStudyType}-${i}`}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={optionsGraph}
+        ref={chartRef}
+        id={idWithDomainAndStudyType}
+      />
       {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );

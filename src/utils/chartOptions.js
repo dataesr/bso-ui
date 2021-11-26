@@ -1836,7 +1836,7 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
 
-      options.chart.type = 'column';
+      options.chart.type = 'bar';
       options.plotOptions = {
         series: {
           stacking: false,
@@ -1844,7 +1844,7 @@ export const chartOptions = {
             enabled: false,
           },
         },
-        column: {
+        bar: {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
@@ -1856,7 +1856,7 @@ export const chartOptions = {
         type: 'category',
         categories: data?.categories || [],
         title: {
-          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+          text: intl.formatMessage({ id: 'app.sponsor-type' }),
         },
         lineWidth: 0,
         tickWidth: 0,
@@ -1869,7 +1869,7 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-
+      options.legend = { enabled: false };
       options.tooltip = {
         headerFormat: '',
         pointFormat: intl.formatMessage({
@@ -2418,7 +2418,7 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
 
-      options.chart.type = 'column';
+      options.chart.type = 'bar';
       options.plotOptions = {
         series: {
           stacking: false,
@@ -2426,18 +2426,19 @@ export const chartOptions = {
             enabled: false,
           },
         },
-        column: {
+        bar: {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
           },
         },
       };
+      options.legend = { enabled: false };
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
         title: {
-          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+          text: intl.formatMessage({ id: 'app.sponsor-type' }),
         },
         categories: data?.categories || [],
         lineWidth: 0,
@@ -2458,22 +2459,15 @@ export const chartOptions = {
   'promoteurs.dynamique-ouverture.chart-evolution-nombre': {
     getOptions: (id, intl, graph, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-      const { data, color, name } = graph;
-      options.chart.type = 'column';
+      options.chart.height = '700px';
+      options.chart.type = 'bar';
       options.credits.enabled = false;
       options.plotOptions = {
-        column: {
+        bar: {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
           },
-        },
-      };
-      options.subtitle = {
-        text: name,
-        widthAdjust: 0,
-        style: {
-          fontWeight: 'bold',
         },
       };
       options.yAxis = getPercentageYAxis(false);
@@ -2481,26 +2475,21 @@ export const chartOptions = {
       options.yAxis.max = 100;
       options.xAxis = {
         type: 'category',
-        categories: graph?.categories || [],
+        title: {
+          text: intl.formatMessage({ id: 'app.sponsor-type' }),
+        },
+        categories: graph?.categories2 || [],
         lineWidth: 0,
         tickWidth: 0,
         labels: {
-          rotation: 0,
-          formatter() {
-            return this.isFirst || this.isLast ? this.value : null;
-          },
           style: {
-            textOverflow: 'none',
+            color: getCSSValue('--g800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
           },
         },
       };
-      options.series = [
-        {
-          color,
-          data,
-          name,
-        },
-      ];
+      options.series = graph?.series2 || [];
       options.legend.enabled = false;
       return options;
     },

@@ -772,7 +772,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueSponsor: ([studyType]) => ({
+    studiesDynamiqueSponsor: ([studyType, yearMin, yearMax]) => ({
       size: 0,
       query: {
         bool: {
@@ -785,6 +785,14 @@ export default function getFetchOptions({
             {
               term: {
                 'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
               },
             },
           ],
@@ -802,17 +810,9 @@ export default function getFetchOptions({
                 field: 'lead_sponsor_type.keyword',
               },
               aggs: {
-                by_year: {
+                by_has_result: {
                   terms: {
-                    field: 'study_completion_year',
-                    size: 30,
-                  },
-                  aggs: {
-                    by_has_result: {
-                      terms: {
-                        field: 'has_results_or_publications',
-                      },
-                    },
+                    field: 'has_results_or_publications',
                   },
                 },
               },
@@ -821,7 +821,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueOuverture: ([studyType]) => ({
+    studiesDynamiqueOuverture: ([studyType, yearMin, yearMax]) => ({
       size: 0,
       query: {
         bool: {
@@ -836,33 +836,33 @@ export default function getFetchOptions({
                 'status.keyword': 'Completed',
               },
             },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
           ],
         },
       },
       aggs: {
-        by_year: {
+        by_sponsor_type: {
           terms: {
-            field: 'study_completion_year',
-            size: 30,
+            field: 'lead_sponsor_type.keyword',
           },
           aggs: {
-            by_sponsor_type: {
+            by_has_result: {
               terms: {
-                field: 'lead_sponsor_type.keyword',
-              },
-              aggs: {
-                by_has_result: {
-                  terms: {
-                    field: 'has_results_or_publications',
-                  },
-                },
+                field: 'has_results_or_publications',
               },
             },
           },
         },
       },
     }),
-    studiesDynamiqueOuvertureSponsor: ([studyType, sponsor]) => ({
+    studiesDynamiqueOuvertureSponsor: ([studyType, sponsor, yearMin, yearMax]) => ({
       size: 0,
       query: {
         bool: {
@@ -878,6 +878,14 @@ export default function getFetchOptions({
               },
             },
             {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+            {
               term: {
                 'status.keyword': 'Completed',
               },
@@ -886,22 +894,14 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        by_year: {
+        by_has_result: {
           terms: {
-            field: 'study_completion_year',
-            size: 30,
-          },
-          aggs: {
-            by_has_result: {
-              terms: {
-                field: 'has_results_or_publications',
-              },
-            },
+            field: 'has_results_or_publications',
           },
         },
       },
     }),
-    studiesResultsTypeDiffusion: ([studyType, sponsorType]) => ({
+    studiesResultsTypeDiffusion: ([studyType, sponsorType, yearMin, yearMax]) => ({
       size: 0,
       query: {
         bool: {
@@ -914,6 +914,14 @@ export default function getFetchOptions({
             {
               term: {
                 'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
               },
             },
             {
@@ -925,22 +933,14 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        by_year: {
+        by_has_result: {
           terms: {
-            field: 'study_completion_year',
-            size: 30,
+            field: 'has_results',
           },
           aggs: {
-            by_has_result: {
+            by_has_publications_result: {
               terms: {
-                field: 'has_results',
-              },
-              aggs: {
-                by_has_publications_result: {
-                  terms: {
-                    field: 'has_publications_result',
-                  },
-                },
+                field: 'has_publications_result',
               },
             },
           },
@@ -950,6 +950,8 @@ export default function getFetchOptions({
     studiesResultsTypeDiffusionTypeIntervention: ([
       studyType,
       sponsorType,
+      yearMin,
+      yearMax,
     ]) => ({
       size: 0,
       query: {
@@ -958,6 +960,14 @@ export default function getFetchOptions({
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
               },
             },
             {
