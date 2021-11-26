@@ -1,11 +1,26 @@
-import { Col, Row } from '@dataesr/react-dsfr';
-import React from 'react';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
+import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import ReactMarkdown from 'react-markdown';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 
 function Methodologie() {
+  const [markdown, setMarkdown] = useState('');
+
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/dataesr/bso-publications/main/doc/bso.md')
+      .then((response) => response.text())
+      .then((text) => {
+        const groups = [...text.matchAll(/# 2\. Method\n\n((.|\n)*)# 3\. Results/gm)];
+        let group = groups[0][1];
+        group = group.replace(/<br \/>/g, '\n&nbsp;');
+        group = group.replace(/{ width=\d* }/g, '');
+        setMarkdown(group);
+      });
+  }, []);
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -26,6 +41,21 @@ function Methodologie() {
         title={<FormattedMessage id='app.header.nav.a-propos-methodologie' />}
         icons={renderIcons}
       />
+      <Container>
+        <section className='content py-48'>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <ReactMarkdown components={{
+                // eslint-disable-next-line jsx-a11y/alt-text
+                img: ({ node, ...props }) => <img style={{ maxWidth: '100%' }} {...props} />,
+              }}
+              >
+                {markdown}
+              </ReactMarkdown>
+            </Col>
+          </Row>
+        </section>
+      </Container>
     </div>
   );
 }
