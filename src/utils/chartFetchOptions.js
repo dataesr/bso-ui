@@ -813,6 +813,7 @@ export default function getFetchOptions({
                 by_has_result: {
                   terms: {
                     field: 'has_results_or_publications',
+                    missing: false,
                   },
                 },
               },
@@ -856,6 +857,7 @@ export default function getFetchOptions({
             by_has_result: {
               terms: {
                 field: 'has_results_or_publications',
+                missing: false,
               },
             },
           },
@@ -897,6 +899,7 @@ export default function getFetchOptions({
         by_has_result: {
           terms: {
             field: 'has_results_or_publications',
+            missing: false,
           },
         },
       },
@@ -936,11 +939,13 @@ export default function getFetchOptions({
         by_has_result: {
           terms: {
             field: 'has_results',
+            missing: false,
           },
           aggs: {
             by_has_publications_result: {
               terms: {
                 field: 'has_publications_result',
+                missing: false,
               },
             },
           },
@@ -993,11 +998,13 @@ export default function getFetchOptions({
             by_has_result: {
               terms: {
                 field: 'has_results',
+                missing: false,
               },
               aggs: {
                 by_has_publications_result: {
                   terms: {
                     field: 'has_publications_result',
+                    missing: false,
                   },
                 },
               },
@@ -1079,6 +1086,7 @@ export default function getFetchOptions({
                     by_has_result_or_publi: {
                       terms: {
                         field: 'has_results_or_publications',
+                        missing: false,
                       },
                     },
                   },
@@ -1122,6 +1130,7 @@ export default function getFetchOptions({
             by_has_result_or_publi: {
               terms: {
                 field: 'has_results_or_publications',
+                missing: false,
               },
             },
           },
@@ -1161,6 +1170,7 @@ export default function getFetchOptions({
             by_has_publications: {
               terms: {
                 field: 'has_publications_result',
+                missing: false,
               },
               aggs: {
                 by_oa: {

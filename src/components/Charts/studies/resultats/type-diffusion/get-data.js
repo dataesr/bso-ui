@@ -30,120 +30,142 @@ function useGetData(studyType, sponsorType = '*') {
       label: intl.formatMessage({ id: `app.sponsor.${st}` }),
     }));
 
+    const currentYear = new Date().getFullYear();
+    const yearMin = currentYear - 11;
+    const yearMax = currentYear - 1;
     const queries = [];
     const query1 = getFetchOptions({
       key: 'studiesResultsTypeDiffusion',
-      parameters: [studyType, sponsorType],
+      parameters: [studyType, sponsorType, yearMin, yearMax],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     const query2 = getFetchOptions({
       key: 'studiesResultsTypeDiffusionTypeIntervention',
-      parameters: [studyType, sponsorType],
+      parameters: [studyType, sponsorType, yearMin, yearMax],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const res = await Axios.all(queries);
-    const currentYear = new Date().getFullYear();
-    const data1SortedByYear = res[0].data.aggregations.by_year.buckets
-      .sort((a, b) => a.key - b.key)
-      .filter((y) => y.key >= 2010 && y.key <= currentYear);
+    const data1 = res[0].data.aggregations;
+    let data1Total = data1.by_has_result.buckets.find((ele) => ele.key === 0).doc_count;
+    data1Total += data1.by_has_result.buckets.find((ele) => ele.key === 1).doc_count;
     const dataGraph1 = {
-      categories: data1SortedByYear.map((el) => el.key),
+      categories: [
+        capitalize(
+          intl.formatMessage({
+            id: 'app.studies.no-results-publications',
+          }),
+        ),
+        capitalize(
+          intl.formatMessage({
+            id: 'app.studies.results-and-publications',
+          }),
+        ),
+        capitalize(
+          intl.formatMessage({
+            id: 'app.studies.publications-only',
+          }),
+        ),
+        capitalize(
+          intl.formatMessage({
+            id: 'app.studies.results-only',
+          }),
+        )],
       series: [
         {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.studies.no-results-publications',
-            }),
-          ),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets
-              .find((ele) => ele.key === 0)
-              ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
-              ?.doc_count,
-            y:
+          data: [
+            {
+              name: capitalize(
+                intl.formatMessage({
+                  id: 'app.studies.no-results-publications',
+                }),
+              ),
+              y_abs: data1.by_has_result.buckets
+                .find((ele) => ele.key === 0)
+                ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
+                ?.doc_count,
+              y:
+                (100
+                  * (data1.by_has_result.buckets
+                    .find((ele) => ele.key === 0)
+                    ?.by_has_publications_result.buckets.find(
+                      (ele) => ele.key === 0,
+                    )?.doc_count || 0))
+                / data1Total,
+              y_tot: data1Total,
+              yearMin,
+              yearMax,
+              color: getCSSValue('--g-400'),
+            },
+            {
+              name: capitalize(
+                intl.formatMessage({
+                  id: 'app.studies.results-and-publications',
+                }),
+              ),
+              y_abs: data1.by_has_result.buckets
+                .find((ele) => ele.key === 1)
+                ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
+                ?.doc_count,
+              y:
+                (100
+                  * (data1.by_has_result.buckets
+                    .find((ele) => ele.key === 1)
+                    ?.by_has_publications_result.buckets.find(
+                      (ele) => ele.key === 1,
+                    )?.doc_count || 0))
+                / data1Total,
+              y_tot: data1Total,
+              yearMin,
+              yearMax,
+              color: getCSSValue('--resultat-et-publication'),
+            },
+            {
+              name: capitalize(
+                intl.formatMessage({
+                  id: 'app.studies.publications-only',
+                }),
+              ),
+              y_abs: data1.by_has_result.buckets
+                .find((ele) => ele.key === 0)
+                ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
+                ?.doc_count,
+              y:
               (100
-                * (el.by_has_result.buckets
+                * (data1.by_has_result.buckets
                   .find((ele) => ele.key === 0)
-                  ?.by_has_publications_result.buckets.find(
-                    (ele) => ele.key === 0,
-                  )?.doc_count || 0))
-              / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--g-400'),
-        },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.studies.results-and-publications',
-            }),
-          ),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets
-              .find((ele) => ele.key === 1)
-              ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
-              ?.doc_count,
-            y:
-              (100
-                * (el.by_has_result.buckets
-                  .find((ele) => ele.key === 1)
                   ?.by_has_publications_result.buckets.find(
                     (ele) => ele.key === 1,
                   )?.doc_count || 0))
-              / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--resultat-et-publication'),
-        },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.studies.publications-only',
-            }),
-          ),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets
-              .find((ele) => ele.key === 0)
-              ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
-              ?.doc_count,
-            y:
+              / data1Total,
+              y_tot: data1Total,
+              yearMin,
+              yearMax,
+              color: getCSSValue('--publication-100'),
+            },
+            {
+              name: capitalize(
+                intl.formatMessage({
+                  id: 'app.studies.results-only',
+                }),
+              ),
+              y_abs: data1.by_has_result.buckets
+                .find((ele) => ele.key === 1)
+                ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
+                ?.doc_count,
+              y:
               (100
-                * (el.by_has_result.buckets
-                  .find((ele) => ele.key === 0)
-                  ?.by_has_publications_result.buckets.find(
-                    (ele) => ele.key === 1,
-                  )?.doc_count || 0))
-              / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--publication-100'),
-        },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.studies.results-only',
-            }),
-          ),
-          data: data1SortedByYear.map((el) => ({
-            y_abs: el.by_has_result.buckets
-              .find((ele) => ele.key === 1)
-              ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
-              ?.doc_count,
-            y:
-              (100
-                * (el.by_has_result.buckets
+                * (data1.by_has_result.buckets
                   .find((ele) => ele.key === 1)
                   ?.by_has_publications_result.buckets.find(
                     (ele) => ele.key === 0,
                   )?.doc_count || 0))
-              / el.doc_count,
-            y_tot: el.doc_count,
-            year: el.key,
-          })),
-          color: getCSSValue('--resultat-100'),
+              / data1Total,
+              y_tot: data1Total,
+              yearMin,
+              yearMax,
+              color: getCSSValue('--resultat-100'),
+            },
+          ],
         },
       ],
     };
@@ -173,6 +195,8 @@ function useGetData(studyType, sponsorType = '*') {
                   )?.doc_count || 0))
               / el.doc_count,
             y_tot: el.doc_count,
+            yearMin,
+            yearMax,
             intervention_type: intl.formatMessage({
               id: `app.studies.intervention-type.${el.key}`,
             }),
@@ -201,6 +225,8 @@ function useGetData(studyType, sponsorType = '*') {
                   )?.doc_count || 0))
               / el.doc_count,
             y_tot: el.doc_count,
+            yearMin,
+            yearMax,
             intervention_type: intl.formatMessage({
               id: `app.studies.intervention-type.${el.key}`,
             }),
@@ -229,6 +255,8 @@ function useGetData(studyType, sponsorType = '*') {
                   )?.doc_count || 0))
               / el.doc_count,
             y_tot: el.doc_count,
+            yearMin,
+            yearMax,
             intervention_type: intl.formatMessage({
               id: `app.studies.intervention-type.${el.key}`,
             }),
@@ -257,6 +285,8 @@ function useGetData(studyType, sponsorType = '*') {
                   )?.doc_count || 0))
               / el.doc_count,
             y_tot: el.doc_count,
+            yearMin,
+            yearMax,
             intervention_type: intl.formatMessage({
               id: `app.studies.intervention-type.${el.key}`,
             }),

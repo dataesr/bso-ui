@@ -1962,7 +1962,8 @@ export const chartOptions = {
   'resultats.type-diffusion.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-      options.chart.type = 'column';
+      options.chart.type = 'bar';
+      options.legend.enabled = false;
       options.plotOptions = {
         series: {
           stacking: 'normal',
@@ -1970,7 +1971,7 @@ export const chartOptions = {
             enabled: false,
           },
         },
-        column: {
+        bar: {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
@@ -1981,7 +1982,7 @@ export const chartOptions = {
       options.xAxis = {
         type: 'category',
         title: {
-          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+          text: intl.formatMessage({ id: 'app.type-diffusion' }),
         },
         categories: data?.categories || [],
         lineWidth: 0,
