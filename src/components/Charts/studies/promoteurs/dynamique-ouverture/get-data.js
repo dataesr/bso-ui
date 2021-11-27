@@ -131,6 +131,8 @@ function useGetData(studyType, sponsor = '*') {
         const bucket = currentSponsor.by_type.buckets[0];
         const obj = {
           name: currentSponsor.key,
+          yearMin,
+          yearMax,
           sponsor_type: bucket.key,
           color:
               bucket.key === 'academique'
