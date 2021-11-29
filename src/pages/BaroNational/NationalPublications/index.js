@@ -133,7 +133,7 @@ export default function NationalPublications() {
                   intlKey='app.national-publi.general.genres-ouverture'
                   backgroundColor={blueSoft50}
                   anchorId='general.genres-ouverture'
-                  glossaryKeys={['preprint']}
+                  glossaryKeys={['preprints']}
                 >
                   <BSOChart id='publi.general.genres-ouverture.chart-repartition-genres' />
                 </QuestionSection>

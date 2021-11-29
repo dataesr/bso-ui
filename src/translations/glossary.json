@@ -74,7 +74,7 @@
       "intlDefinition": "app.glossary.predatory.definition",
       "intlEntry": "app.glossary.predatory"
     },
-    "preprint": {
+    "preprints": {
       "intlEntry": "app.glossary.preprint",
       "intlDefinition": "app.glossary.preprint.definition"
     },
