@@ -1,4 +1,4 @@
-import { Col, Container, Row, Service } from '@dataesr/react-dsfr';
+import { Col, Container, Row, TitleDisplay } from '@dataesr/react-dsfr';
 import React, { Suspense } from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation, useParams } from 'react-router-dom';
@@ -18,13 +18,10 @@ const Integration = () => {
   return (
     <Container fluid>
       <Row justifyContent='center'>
-        <Col n='10'>
-          <Service
-            description=''
-            className='main-title cursor-default'
-            title={intl.formatMessage({ id: 'app.header.title' })}
-            link={null}
-          />
+        <Col n='10' spacing='px-3w'>
+          <TitleDisplay as='h2'>
+            {intl.formatMessage({ id: 'app.header.title' })}
+          </TitleDisplay>
         </Col>
       </Row>
       <Row justifyContent='center'>
