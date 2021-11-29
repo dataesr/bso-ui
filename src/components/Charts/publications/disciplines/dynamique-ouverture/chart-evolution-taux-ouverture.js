@@ -1,5 +1,5 @@
 /* eslint-disable react/no-this-in-sfc */
-import { Toggle } from '@dataesr/react-dsfr';
+import { Col, Row, Toggle } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more';
 import highchartsDumbbell from 'highcharts/modules/dumbbell';
@@ -12,7 +12,11 @@ import { useIntl } from 'react-intl';
 
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getCSSValue, getObservationLabel, withDomain } from '../../../../../utils/helpers';
+import {
+  getCSSValue,
+  getObservationLabel,
+  withDomain,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
@@ -172,11 +176,28 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       hasComments={hasComments}
       hasFooter={hasFooter}
     >
-      <Toggle
-        checked={isActive}
-        onChange={() => setIsActive(!isActive)}
-        label={intl.formatMessage({ id: 'app.publi.tri-progression' })}
-      />
+      <Row>
+        <Col n='1' className='fake__toggle__label'>
+          {intl.formatMessage({ id: 'app.publi.tri' })}
+        </Col>
+        <Col
+          n='3'
+          className={`fake__toggle__label fr-toggle__label ${
+            isActive ? '' : 'marianne-bold'
+          }`}
+        >
+          {intl.formatMessage({ id: 'app.publi.tri-open-access' })}
+        </Col>
+        <Col n='6'>
+          <Toggle
+            checked={isActive}
+            onChange={() => setIsActive(!isActive)}
+            label={intl.formatMessage({ id: 'app.publi.tri-progression' })}
+            className={`d-inline-flex ml-10 ${isActive ? 'marianne-bold' : ''}`}
+          />
+        </Col>
+      </Row>
+
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}

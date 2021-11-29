@@ -51,12 +51,17 @@ html {
   text-transform: uppercase;
 }
 
+.d-block {
+  display: block;
+}
+
 .d-inline {
   display: inline;
 }
 
-.d-block {
-  display: block;
+.d-inline-flex,
+div.d-inline-flex {
+  display: inline-flex;
 }
 
 .float-right {
