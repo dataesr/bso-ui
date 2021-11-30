@@ -328,6 +328,7 @@ function SantePublications() {
                   <BSOChart
                     id='publi.publishers.poids-revues.chart-repartition'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 
