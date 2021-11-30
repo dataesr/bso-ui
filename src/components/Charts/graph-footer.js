@@ -46,10 +46,10 @@ const GraphFooter = ({
   const urlToShare = `${window.location.origin}/integration/${
     intl.locale
   }/${srcPath}${studyType ? '/' : ''}${studyType}${
-    urlSearchParams ? '?' : ''
+    Array.from(urlSearchParams).length ? '?' : ''
   }${urlSearchParams}`;
   const shareFill = getCSSValue('--blue-soft-100');
-  const clipboardContent = `<iframe id="yourID" width="800" height="600" src=${urlToShare} />`;
+  const clipboardContent = `<iframe id="${srcPath}" width="800" height="600" src="${urlToShare}"></iframe>`;
 
   return (
     <>
@@ -235,18 +235,20 @@ const GraphFooter = ({
             &#60;iframe
             <br />
             <span style={{ paddingLeft: '18px' }} />
-            id='yourID'
+            id="
+            {srcPath}
+            "
             <br />
             <span style={{ paddingLeft: '18px' }} />
-            width='800'
+            width="800"
             <br />
             <span style={{ paddingLeft: '18px' }} />
-            height='600'
+            height="600"
             <br />
             <span style={{ paddingLeft: '18px' }} />
-            src='
+            src="
             {urlToShare}
-            '&nbsp;/&#62;
+            "&#62;&#60;/iframe&#62;
           </p>
         </ModalContent>
       </Modal>
