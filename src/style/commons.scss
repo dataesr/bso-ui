@@ -32,6 +32,11 @@ html {
   cursor: default;
 }
 
+ul.style-disc > li {
+  list-style: disc;
+  margin-right: 15px;
+}
+
 /**
   Textes
  */

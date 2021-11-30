@@ -114,7 +114,7 @@ function Variations() {
           <Row gutters>
             <Col n='12 lg-8'>
               Liste des déclinaisons locales des BSO :
-              <ul>
+              <ul className='style-disc'>
                 <li>Université de Lorraine</li>
               </ul>
             </Col>
