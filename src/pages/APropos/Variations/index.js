@@ -40,11 +40,11 @@ function Variations() {
                   ainsi que la date de fin si nécessaire. Pour obtenir cette
                   liste de DOI, l'Université de Lorraine a développé un code que
                   vous pouvez trouver
+                  {' '}
                   <a
                     href='https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/01_nettoyage_donnees.ipynb'
-                    target='_blank'
                     rel='noreferrer'
-                    className='ml-5'
+                    target='_blank'
                   >
                     ici
                   </a>
@@ -70,9 +70,9 @@ function Variations() {
                 </li>
                 <li>
                   Par défaut, les éléments envoyés précédemment (nom, date de
-                  déut et date de fin) seront intégrés par défaut pour cet
-                  établissement / laboratoire. Néanmoins, il est possible de les
-                  modifier directement dans l'URL via des paramètres :
+                  début et date de fin) seront intégrés pour cet établissement /
+                  laboratoire. Néanmoins, il est possible de les modifier
+                  directement dans l'URL via des paramètres :
                   <ul>
                     <li>
                       <b>name</b>
@@ -92,22 +92,41 @@ function Variations() {
                     </li>
                   </ul>
                   <li>
-                    Attention, seuls les graphes du BSO national adaptables.
-                    Pour des raisons de manque de données, les graphes relatifs
-                    au domaine de la santé ne seront pas adaptables.
+                    Attention, seuls les graphes du BSO national sont
+                    adaptables. Pour des raisons de manque de données, les
+                    graphes relatifs au domaine de la santé ne seront pas
+                    adaptables.
                   </li>
                 </li>
               </ol>
+              Exemple:
+              {' '}
+              <i>
+                <a
+                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bso-local-affiliations=130015506&start-year=2016'
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bso-local-affiliations=130015506&start-year=2016
+                </a>
+              </i>
             </Col>
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              Ces déclinaisons locales du BSO ont été réalisées avec l'aide de
-              l'Université de Lorraine. Pour toute question, n'hésitez pas à
-              envoyer un mail à
-              <a href='mailto:bso@recherche.gouv.fr' className='ml-5'>
-                bso@recherche.gouv.fr
-              </a>
+              L'Université de Lorraine a été le premier établissement à
+              développer une déclinaison locale du Baromètre français de la
+              Science Ouverte. Le code réalisé à cette occasion est disponible
+              dans HAL et dans Software Heritage. Forte de cette expérience,
+              l'Université de Lorraine a contribué à la mise en place de cette
+              nouvelle déclinaison locale.
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              Pour toute question, n'hésitez pas à envoyer un mail à
+              {' '}
+              <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
               .
             </Col>
           </Row>
