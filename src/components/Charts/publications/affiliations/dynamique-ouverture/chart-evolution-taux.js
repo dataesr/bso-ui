@@ -1,5 +1,5 @@
 /* eslint-disable react/no-this-in-sfc */
-import { Col, Row, Toggle } from '@dataesr/react-dsfr';
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more';
 import highchartsDumbbell from 'highcharts/modules/dumbbell';
@@ -29,7 +29,7 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const intl = useIntl();
   const chartRef = useRef();
-  const [isActive, setIsActive] = useState(false);
+  const [sort, setSort] = useState('tri-open-access');
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [activeData, setActiveData] = useState([]);
   const { observationSnaps, lastObservationSnap } = useGlobals();
@@ -42,8 +42,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     if (data && data.length > 0) {
       const dates = data[0].data.map((item) => item.name);
       // tri par progression si isActive
-
-      if (isActive) {
+      if (sort === 'tri-progression') {
         newData = [...data].sort((a, b) => {
           const minA = a.data[0].y;
           const maxA = a.data[data[0].data.length - 1].y;
@@ -61,7 +60,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
       for (let index = 1; index < dates.length + 1; index += 1) {
         let lowColor = '';
-        let lineColor = '';
+        let lineColor = 'white';
         let fillColor = '';
         let radius = 7;
         let showInLegend = true;
@@ -72,23 +71,14 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         case 3:
           lowColor = getCSSValue('--affiliations-etablissements-50');
           fillColor = lowColor;
-          lineColor = 'white';
-          radius = 7;
-          showInLegend = true;
           break;
         case 2:
           lowColor = getCSSValue('--affiliations-etablissements-75');
           fillColor = lowColor;
-          lineColor = 'white';
-          radius = 7;
-          showInLegend = true;
           break;
         case 1:
           lowColor = getCSSValue('--affiliations-etablissements-125');
-          lineColor = lowColor;
-          lineColor = 'white';
-          radius = 7;
-          showInLegend = true;
+          fillColor = 'white';
           break;
         case 0:
           lowColor = getCSSValue('--affiliations-etablissements-100');
@@ -150,9 +140,9 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     id,
     idWithDomain,
     intl,
-    isActive,
     lastObservationSnap,
     optionsGraph,
+    sort,
   ]);
 
   return (
@@ -166,26 +156,24 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       hasComments={hasComments}
       hasFooter={hasFooter}
     >
-      <Row>
-        <Col n='1' className='fake__toggle__label'>
-          {intl.formatMessage({ id: 'app.publi.tri' })}
-        </Col>
-        <Col
-          n='3'
-          className={`fake__toggle__label fr-toggle__label ${
-            isActive ? '' : 'marianne-bold'
-          }`}
-        >
-          {intl.formatMessage({ id: 'app.publi.tri-open-access' })}
-        </Col>
-        <Col n='6'>
-          <Toggle
-            checked={isActive}
-            onChange={() => setIsActive(!isActive)}
-            label={intl.formatMessage({ id: 'app.publi.tri-progression' })}
-          />
-        </Col>
-      </Row>
+      <RadioGroup
+        legend={intl.formatMessage({ id: 'app.publi.tri' })}
+        isInline
+        value={sort}
+        onChange={(newValue) => {
+          setSort(newValue);
+        }}
+        className='d-inline-block'
+      >
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.tri-open-access' })}
+          value='tri-open-access'
+        />
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.tri-progression' })}
+          value='tri-progression'
+        />
+      </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}
         options={optionsGraph}
