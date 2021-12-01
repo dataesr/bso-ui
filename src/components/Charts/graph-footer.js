@@ -49,7 +49,7 @@ const GraphFooter = ({
     Array.from(urlSearchParams).length ? '?' : ''
   }${urlSearchParams}`;
   const shareFill = getCSSValue('--blue-soft-100');
-  const clipboardContent = `<iframe id="${srcPath}" width="800" height="600" src="${urlToShare}"></iframe>`;
+  const clipboardContent = `<iframe id="${srcPath}" title="${title}" width="800" height="600" src="${urlToShare}"></iframe>`;
 
   return (
     <>
@@ -237,6 +237,11 @@ const GraphFooter = ({
             <span style={{ paddingLeft: '18px' }} />
             id="
             {srcPath}
+            "
+            <br />
+            <span style={{ paddingLeft: '18px' }} />
+            title="
+            {title}
             "
             <br />
             <span style={{ paddingLeft: '18px' }} />
