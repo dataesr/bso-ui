@@ -157,7 +157,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       hasFooter={hasFooter}
     >
       <RadioGroup
-        legend={intl.formatMessage({ id: 'app.publi.tri' })}
+        legend={intl.formatMessage({ id: 'app.publi.sort' })}
         isInline
         value={sort}
         onChange={(newValue) => {
@@ -166,11 +166,11 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         className='d-inline-block'
       >
         <Radio
-          label={intl.formatMessage({ id: 'app.publi.tri-open-access' })}
+          label={intl.formatMessage({ id: 'app.publi.sort-open-access' })}
           value='tri-open-access'
         />
         <Radio
-          label={intl.formatMessage({ id: 'app.publi.tri-progression' })}
+          label={intl.formatMessage({ id: 'app.publi.sort-progression' })}
           value='tri-progression'
         />
       </RadioGroup>
