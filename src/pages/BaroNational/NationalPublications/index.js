@@ -274,7 +274,10 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft25}
                   anchorId='publishers.poids-revues'
                 >
-                  <BSOChart id='publi.publishers.poids-revues.chart-repartition' />
+                  <BSOChart
+                    id='publi.publishers.poids-revues.chart-repartition'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
 
                 <QuestionSection

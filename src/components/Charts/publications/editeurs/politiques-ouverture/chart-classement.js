@@ -19,8 +19,7 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-
-  const { lastObservationSnap } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap,
     domain,
@@ -43,6 +42,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       hasComments={hasComments}
       isLoading={isLoading || !dataGraph || !categories}
       isError={isError}
+      dataTitle={{ publicationYear: beforeLastObservationSnap }}
     >
       <HighchartsReact
         highcharts={Highcharts}

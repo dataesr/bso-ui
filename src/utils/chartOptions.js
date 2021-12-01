@@ -1605,13 +1605,22 @@ export const chartOptions = {
           },
         },
       };
+      options.plotOptions = {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            style: {
+              color: getCSSValue('--g-800'),
+            },
+          },
+        },
+      };
       options.series = [
         {
           data,
           showInLegend: false,
         },
       ];
-
       return options;
     },
   },
