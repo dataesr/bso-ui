@@ -54,7 +54,7 @@ function WrapperChart({
   }
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
-    : 'commentaire non rédigé';
+    : 'Commentaire non rédigé';
   const source = getSource(idWithDomain, otherSources);
 
   const exportChartPng = () => {

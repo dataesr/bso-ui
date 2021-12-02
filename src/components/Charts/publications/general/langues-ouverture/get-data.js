@@ -41,9 +41,9 @@ function useGetData(observationSnap, domain) {
       // Tri pour avoir les années dans l'ordre d'affichage du graphe
       data.sort((a, b) => a.key - b.key);
       const categories = []; // Elements d'abscisse
-      const repository = []; // archive ouverte
-      const publisher = []; // éditeur
-      const publisherRepository = []; // les 2
+      const repository = []; // Archive ouverte
+      const publisher = []; // Editeur
+      const publisherRepository = []; // Editeur & archive ouverte
       const oa = []; // oa
       const closed = []; // closed
       const noOutline = {
@@ -192,7 +192,20 @@ function useGetData(observationSnap, domain) {
         },
       ];
 
-      return { categories, dataGraph, dataGraph3 };
+      const comments = {
+        publicationYear:
+          getPublicationYearFromObservationSnap(lastObservationSnap),
+        publicationsEnglishTotal: cleanNumber(oa[0].y_tot),
+        publicationsEnglishOpen: cleanNumber(oa[0].y_oa),
+        publicationsEnglishClosed: cleanNumber(oa[0].y_tot - oa[0].y_oa),
+        publicationsEnglishRate: oa[0].y.toFixed(0),
+        publicationsFrenchTotal: cleanNumber(oa[1].y_tot),
+        publicationsFrenchOpen: cleanNumber(oa[1].y_oa),
+        publicationsFrenchClosed: cleanNumber(oa[0].y_tot - oa[0].y_oa),
+        publicationsFrenchRate: oa[1].y.toFixed(0),
+      };
+
+      return { categories, dataGraph, dataGraph3, comments };
     },
     [domain, greenLight100, intl, yellowMedium125, search],
   );

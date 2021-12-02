@@ -3,20 +3,23 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain }) => {
+const Chart = ({ id, domain, hasComments }) => {
+  const [chartComments, setChartComments] = useState('');
   const chartRef = useRef();
   const intl = useIntl();
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
@@ -33,32 +36,40 @@ const Chart = ({ id, domain }) => {
     dataGraph,
   );
 
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomain, intl));
+  }, [allData, idWithDomain, intl]);
+
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph || !categories}
-      isError={isError}
       dataTitle={{ publicationYear: beforeLastObservationSnap }}
+      domain={domain}
+      hasComments={false}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   domain: '',
+  hasComments: true,
   id: 'publi.general.genres-ouverture.chart-repartition-genres',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

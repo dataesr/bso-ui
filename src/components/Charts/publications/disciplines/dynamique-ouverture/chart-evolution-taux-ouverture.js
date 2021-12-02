@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import {
@@ -19,6 +20,7 @@ import {
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
 highchartsMore(Highcharts);
@@ -29,9 +31,10 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const intl = useIntl();
   const chartRef = useRef();
-  const [sort, setSort] = useState('tri-open-access');
+  const [sort, setSort] = useState('sort-open-access');
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [activeData, setActiveData] = useState([]);
+  const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
@@ -44,22 +47,21 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     let newData = null;
     const series = [];
 
-    if (data && data.length > 0) {
-      const dates = data[0].data.map((item) => item.name);
-      // tri par progression si isActive
-      if (sort === 'tri-progression') {
-        newData = [...data].sort((a, b) => {
+    const dataHist = data.dataHist ? data.dataHist : [];
+    if (dataHist && dataHist.length > 0) {
+      const dates = dataHist[0].data.map((item) => item.name);
+      const serieLength = dataHist[0]?.data.length - 1;
+      if (sort === 'sort-progression') {
+        newData = dataHist.sort((a, b) => {
           const minA = a.data[0].y;
-          const maxA = a.data[data[0].data.length - 1].y;
+          const maxA = a.data[serieLength].y;
           const minB = b.data[0].y;
-          const maxB = b.data[data[0].data.length - 1].y;
+          const maxB = b.data[serieLength].y;
           return maxB - minB - (maxA - minA);
         });
       } else {
-        // sinon, tri par valeur max de la dernière année
-        newData = [...data].sort(
-          (a, b) => b.data[data[0].data.length - 1].y
-            - a.data[data[0].data.length - 1].y,
+        newData = dataHist.sort(
+          (a, b) => b.data[serieLength].y - a.data[serieLength].y,
         );
       }
 
@@ -156,55 +158,60 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     sort,
   ]);
 
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
+
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
-      isLoading={isLoading || !data || data.length <= 0}
-      isError={isError}
       chartRef={chartRef}
-      hasComments={hasComments}
+      domain={domain}
+      hasComments={false}
       hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !data || data.length <= 0}
     >
       <RadioGroup
-        legend={intl.formatMessage({ id: 'app.publi.sort' })}
+        className='d-inline-block'
         isInline
-        value={sort}
+        legend={intl.formatMessage({ id: 'app.publi.sort' })}
         onChange={(newValue) => {
           setSort(newValue);
         }}
-        className='d-inline-block'
+        value={sort}
       >
         <Radio
           label={intl.formatMessage({ id: 'app.publi.sort-open-access' })}
-          value='tri-open-access'
+          value='sort-open-access'
         />
         <Radio
           label={intl.formatMessage({ id: 'app.publi.sort-progression' })}
-          value='tri-progression'
+          value='sort-progression'
         />
       </RadioGroup>
       <HighchartsReact
+        id={idWithDomain}
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

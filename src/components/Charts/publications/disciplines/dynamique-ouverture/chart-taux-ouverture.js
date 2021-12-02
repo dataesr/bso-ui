@@ -5,34 +5,43 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
 const Chart = ({ hasComments, id, domain }) => {
+  const [chartComments, setChartComments] = useState('');
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   let graphs = [];
 
-  data.forEach((oneGraph) => {
-    const optionsGraph = chartOptions[id].getOptions(
-      withDomain(id, domain),
-      intl,
-      oneGraph,
-    );
-    graphs.push(optionsGraph);
-  });
+  if (data.dataHist) {
+    data?.dataHist.forEach((oneGraph) => {
+      const optionsGraph = chartOptions[id].getOptions(
+        withDomain(id, domain),
+        intl,
+        oneGraph,
+      );
+      graphs.push(optionsGraph);
+    });
+  }
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   const serieLength = graphs[0]?.series[0].data.length - 1;
   // classement par ordre décroissant (en taux d'oa) des disciplines
@@ -42,11 +51,11 @@ const Chart = ({ hasComments, id, domain }) => {
 
   return (
     <WrapperChart
-      id={id}
       domain={domain}
-      hasComments={hasComments}
-      isLoading={isLoading || !data || data.length <= 0}
+      hasComments={false}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !data || data.length <= 0}
     >
       <Container>
         <Row>
@@ -61,19 +70,20 @@ const Chart = ({ hasComments, id, domain }) => {
           ))}
         </Row>
       </Container>
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
+  domain: '',
   hasComments: true,
   id: 'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
-  domain: '',
 };
 Chart.propTypes = {
+  domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
-  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;

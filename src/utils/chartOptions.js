@@ -531,7 +531,6 @@ export const chartOptions = {
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
-
       return options;
     },
   },
@@ -1773,10 +1772,8 @@ export const chartOptions = {
             formatter() {
               let label = this.y.toFixed(1).concat(' % soit ');
               label = label.concat('<br/>');
-              // label = label.concat(intl.formatMessage({ id: 'app.effectif' }));
               label = label.concat(this.point.y_abs).concat(' publications');
               return label;
-              // return this.y.toFixed(1).concat(' %')
             },
           },
         },

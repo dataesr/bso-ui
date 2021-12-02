@@ -59,7 +59,8 @@ function useGetData(observationSnaps, domain = '') {
             });
           });
       });
-      const dataHist = [];
+
+      let dataHist = [];
       disciplines.forEach((discipline) => {
         dataHist.push({
           name: discipline,
@@ -83,7 +84,41 @@ function useGetData(observationSnaps, domain = '') {
             })),
         });
       });
-      return dataHist;
+      const serieLength = dataHist[0].data.length - 1;
+      dataHist = dataHist.sort(
+        (a, b) => b.data[serieLength].y - a.data[serieLength].y,
+      );
+      const bestRateValue = dataHist[0].data[serieLength].y.toFixed(0);
+      const bestRateDiscipline = intl.formatMessage({
+        id: `app.discipline.${dataHist[0].name}`,
+      });
+      const year1 = dataHist[0].data[serieLength - 1].name;
+      const year2 = dataHist[0].data[serieLength].name.replace('<br/>', ' ');
+
+      dataHist = dataHist.sort((a, b) => {
+        const minA = a.data[0].y;
+        const maxA = a.data[serieLength].y;
+        const minB = b.data[0].y;
+        const maxB = b.data[serieLength].y;
+        return maxB - minB - (maxA - minA);
+      });
+      const bestProgressionValue1 = dataHist[0].data[0].y.toFixed(0);
+      const bestProgressionValue2 = dataHist[0].data[serieLength].y.toFixed(0);
+      const bestProgressionDiscipline = intl.formatMessage({
+        id: `app.discipline.${dataHist[0].name}`,
+      });
+
+      const comments = {
+        bestRateValue,
+        bestRateDiscipline,
+        bestProgressionValue1,
+        bestProgressionValue2,
+        bestProgressionDiscipline,
+        year1,
+        year2,
+      };
+
+      return { dataHist, comments };
     },
     [domain, intl, search],
   );

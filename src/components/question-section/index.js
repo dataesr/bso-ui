@@ -21,7 +21,7 @@ const QuestionSection = ({
   );
   const description = intl.messages[`${intlKey}.description`]
     ? formatted
-    : 'desciption non rédigée';
+    : 'Description non rédigée';
   return (
     <section
       style={{ backgroundColor, paddingTop: '28px' }}

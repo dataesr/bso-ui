@@ -29,7 +29,7 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const intl = useIntl();
   const chartRef = useRef();
-  const [sort, setSort] = useState('tri-open-access');
+  const [sort, setSort] = useState('sort-open-access');
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [activeData, setActiveData] = useState([]);
   const { observationSnaps, lastObservationSnap } = useGlobals();
@@ -41,8 +41,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
     if (data && data.length > 0) {
       const dates = data[0].data.map((item) => item.name);
-      // tri par progression si isActive
-      if (sort === 'tri-progression') {
+      if (sort === 'sort-progression') {
         newData = [...data].sort((a, b) => {
           const minA = a.data[0].y;
           const maxA = a.data[data[0].data.length - 1].y;
@@ -51,7 +50,6 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
           return maxB - minB - (maxA - minA);
         });
       } else {
-        // sinon, tri par valeur max de la dernière année
         newData = [...data].sort(
           (a, b) => b.data[data[0].data.length - 1].y
             - a.data[data[0].data.length - 1].y,
@@ -167,11 +165,11 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       >
         <Radio
           label={intl.formatMessage({ id: 'app.publi.sort-open-access' })}
-          value='tri-open-access'
+          value='sort-open-access'
         />
         <Radio
           label={intl.formatMessage({ id: 'app.publi.sort-progression' })}
-          value='tri-progression'
+          value='sort-progression'
         />
       </RadioGroup>
       <HighchartsReact
