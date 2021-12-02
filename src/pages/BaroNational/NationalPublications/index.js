@@ -15,15 +15,14 @@ import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
-import urls from '../../../config/urls';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalPublications() {
-  const { lang } = useLang();
-  const location = useLocation();
+  const { lang, urls } = useLang();
+  const { pathname, search } = useLocation();
   const intl = useIntl();
   const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
@@ -44,7 +43,7 @@ export default function NationalPublications() {
     <Container fluid className='page'>
       <Banner
         backgroundColor='blue-soft-150'
-        homeLink={urls.national[lang]}
+        homeLink={urls.national[lang] + search}
         supTitle={<FormattedMessage id='app.header.title-national' />}
         title={<FormattedMessage id='app.baro-national.title' />}
         chip={<Chip />}
@@ -72,9 +71,7 @@ export default function NationalPublications() {
           <DataCardSection lang={lang} />
         </Row>
         <Row>
-          <GraphNavigation
-            mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
-          >
+          <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
               paths={['/publications/general']}

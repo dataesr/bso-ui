@@ -9,11 +9,11 @@ import useLang from '../../utils/Hooks/useLang';
 
 const Integration = () => {
   const { language, graphId, domain, studyType } = useParams();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const intl = useIntl();
   const { switchLang } = useLang();
 
-  switchLang(language, pathname);
+  switchLang(language, pathname, search);
 
   return (
     <Container fluid>

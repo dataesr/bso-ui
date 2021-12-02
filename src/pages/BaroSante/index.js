@@ -9,7 +9,7 @@ import {
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
 import BSOChart from '../../components/Charts';
@@ -24,13 +24,14 @@ import TodayNumbersSection from '../../components/TodayNumbersSection';
 import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
-import urls from '../../config/urls';
 import logoBso from '../../images/logo-bso.png';
 import GlossaryEntries from '../../translations/glossary.json';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
-  const { lang } = useLang();
+  const { lang, urls } = useLang();
+  const { search } = useLocation();
+
   const renderIcons = (
     <Row alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -56,6 +57,7 @@ function BaroSante() {
       </Col>
     </Row>
   );
+
   return (
     <div className='baro-sante page home'>
       <Banner
@@ -65,7 +67,7 @@ function BaroSante() {
         subTitle={<FormattedMessage id='app.baro-sante.intro-banner' />}
         chip={<Chip backgroundColor='blue-soft-125' />}
         icons={renderIcons}
-        homeLink={urls.national[lang]}
+        homeLink={urls.national[lang] + search}
       />
       <ScrollTop />
       <Container fluid>

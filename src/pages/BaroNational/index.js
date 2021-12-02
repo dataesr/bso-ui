@@ -1,6 +1,7 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
 import BSOChart from '../../components/Charts';
@@ -16,9 +17,12 @@ import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersI
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
+import useLang from '../../utils/Hooks/useLang';
 
 function BaroNational() {
   const intl = useIntl();
+  const { lang, urls } = useLang();
+  const { search } = useLocation();
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -71,7 +75,7 @@ function BaroNational() {
         subTitle={<FormattedMessage id='app.header.subtitle' />}
         link={{
           label: <FormattedMessage id='app.notes.flash.see' />,
-          url: intl.formatMessage({ id: 'url.about.flash' }),
+          url: intl.formatMessage({ id: 'url.about.flash' }) + search,
         }}
         icons={renderIcons}
         chip={<Chip />}
@@ -94,7 +98,7 @@ function BaroNational() {
               <Glossary entries={GlossaryEntries} />
               <HomeSection
                 link={{
-                  href: '/publications/general#dynamique',
+                  href: urls.nationalPublications.tabs[0][lang] + search,
                   label: (
                     <FormattedMessage id='app.baro-national.detail-publi' />
                   ),

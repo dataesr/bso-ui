@@ -19,7 +19,7 @@ import useLang from '../../../utils/Hooks/useLang';
 
 function EtudesObservationnelles() {
   const { lang } = useLang();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const intl = useIntl();
   const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
@@ -50,9 +50,7 @@ function EtudesObservationnelles() {
           </Container>
           <Glossary entries={GlossaryEntries} />
         </Row>
-        <GraphNavigation
-          mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
-        >
+        <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-observational.general',

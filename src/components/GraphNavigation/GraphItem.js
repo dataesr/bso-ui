@@ -9,7 +9,7 @@ import GraphNavigationLink from './GraphNavigationLink';
 import GraphTabSubItem from './GraphTabSubItem';
 
 function GraphItem({ links, mainLabel, paths }) {
-  const location = useLocation();
+  const { pathname, search } = useLocation();
   const { mobile, tablet, desktop } = useViewport();
   const viewPort = useRef('desktop');
 
@@ -19,7 +19,7 @@ function GraphItem({ links, mainLabel, paths }) {
       tablet: -90,
       desktop: -130,
     };
-    const query = new URLSearchParams(location.search);
+    const query = new URLSearchParams(search);
     const queryId = query.get('id');
     if (queryId) {
       const element = document.getElementById(`${queryId}`);
@@ -37,7 +37,18 @@ function GraphItem({ links, mainLabel, paths }) {
         }, 800);
       }
     }
-  }, [desktop, location, mainLabel, mobile]);
+  }, [desktop, mainLabel, mobile, search]);
+
+  function getUrl(href, s) {
+    const params = href.split('?');
+    const params1 = params.length > 0 ? new URLSearchParams(params[1]) : [];
+    const params2 = new URLSearchParams(s);
+    params2.delete('id');
+    params2.forEach((value, key) => {
+      params1.append(key, value);
+    });
+    return `${params[0]}?${params1.toString()}`;
+  }
 
   return (
     <>
@@ -47,7 +58,7 @@ function GraphItem({ links, mainLabel, paths }) {
             <DSLink
               key={uuidv4()}
               className='no-border'
-              as={<Link to={link.href} />}
+              as={<Link to={getUrl(link.href, search)} />}
             >
               <div className='text-white fs-14-24 pb-8'>{link.label}</div>
             </DSLink>
@@ -58,12 +69,12 @@ function GraphItem({ links, mainLabel, paths }) {
         <GraphTabSubItem
           key={uuidv4()}
           label={mainLabel}
-          activeTab={paths.indexOf(`${location.pathname}`) > -1}
+          activeTab={paths.indexOf(`${pathname}`) > -1}
         >
           {links.map((link, index) => (
             <GraphNavigationLink
               key={uuidv4()}
-              href={link.href}
+              href={getUrl(link.href, search)}
               label={link.label}
               hasHr={index === 0}
             />

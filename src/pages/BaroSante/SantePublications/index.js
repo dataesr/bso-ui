@@ -20,7 +20,7 @@ import useLang from '../../../utils/Hooks/useLang';
 
 function SantePublications() {
   const { lang } = useLang();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const intl = useIntl();
   const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
@@ -53,9 +53,7 @@ function SantePublications() {
           <DataCardSection lang={lang} domain='health' />
         </Row>
         <Row>
-          <GraphNavigation
-            mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
-          >
+          <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
               paths={[

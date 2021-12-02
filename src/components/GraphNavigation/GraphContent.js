@@ -3,8 +3,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 function GraphContent({ children, paths }) {
-  const location = useLocation();
-  return paths.indexOf(`${location.pathname}`) > -1 ? <>{children}</> : null;
+  const { pathname } = useLocation();
+  return paths.indexOf(`${pathname}`) > -1 ? <>{children}</> : null;
 }
 
 GraphContent.defaultProps = {

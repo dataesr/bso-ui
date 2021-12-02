@@ -16,7 +16,7 @@ import { useLocation } from 'react-router-dom';
 import useLang from '../../utils/Hooks/useLang';
 
 export default function SwitchLangButton() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const intl = useIntl();
   const { lang, switchLang } = useLang();
   const [isLangModalOpen, setIsLangModalOpen] = useState(false);
@@ -106,7 +106,7 @@ export default function SwitchLangButton() {
               title='title'
               onClick={() => {
                 if (lang !== selectedLang) {
-                  switchLang(selectedLang, pathname);
+                  switchLang(selectedLang, pathname, search);
                 }
                 setIsLangModalOpen(false);
               }}

@@ -36,7 +36,7 @@ export default function DataCardSection({ lang, domain }) {
     url: ES_API_URL,
     method: 'post',
   });
-  const location = useLocation().search;
+  const { search } = useLocation();
 
   const dataObj = useMemo(
     () => ({
@@ -214,7 +214,7 @@ export default function DataCardSection({ lang, domain }) {
         options: getFetchOptions({
           key: 'publiCardData',
           domain,
-          location,
+          search,
           parameters: [lastObservationSnap],
         }),
       });
@@ -224,7 +224,7 @@ export default function DataCardSection({ lang, domain }) {
         isMounted.current = false;
       }
     };
-  }, [domain, fetchData, isMounted, lastObservationSnap, response, location]);
+  }, [domain, fetchData, isMounted, lastObservationSnap, response, search]);
   return (
     <Container fluid className='bg-ultra-light-blue pt-32 mb-20 px-20'>
       <Row justifyContent='center'>

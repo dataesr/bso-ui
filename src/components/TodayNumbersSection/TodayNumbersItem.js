@@ -56,14 +56,14 @@ function TodayNumbersItem({
 }) {
   const [todayData, setTodayData] = useState({});
   const { lastObservationSnap } = useGlobals();
-  const location = useLocation().search;
+  const { search } = useLocation();
   const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
     options: getFetchOptions({
       key: itemKey,
       domain,
-      location,
+      search,
       parameters: [lastObservationSnap],
     }),
   });

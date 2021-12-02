@@ -2,8 +2,8 @@ import { Col, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
-import urls from '../../config/urls';
 import useLang from '../../utils/Hooks/useLang';
 import Banner from '../Banner';
 import Chip from '../Chip';
@@ -11,7 +11,8 @@ import Icon from '../Icon';
 
 function BannerHealth({ selected, title }) {
   const intl = useIntl();
-  const { lang } = useLang();
+  const { lang, urls } = useLang();
+  const { search } = useLocation();
 
   const icons = {
     'url.sante.publications.general': {
@@ -46,7 +47,7 @@ function BannerHealth({ selected, title }) {
   return (
     <Banner
       backgroundColor='blue-soft-100'
-      homeLink={urls.sante[lang]}
+      homeLink={urls.sante[lang] + search}
       supTitle={<FormattedMessage id='app.header.title-health' />}
       title={<FormattedMessage id={title} />}
       chip={<Chip />}

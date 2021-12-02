@@ -24,43 +24,43 @@ import WrapperDisplay from '../WrapperDisplay';
 function Header() {
   const { lang, urls } = useLang();
   const intl = useIntl();
-  const location = useLocation();
-  const [path, setPath] = useState(() => location.pathname || '');
+  const { pathname, search } = useLocation();
+  const [path, setPath] = useState(() => pathname || '');
 
   useEffect(() => {
-    if (path !== location.pathname) {
-      setPath(location.pathname);
+    if (path !== pathname) {
+      setPath(pathname);
     }
-  }, [path, setPath, location]);
+  }, [path, setPath, pathname]);
 
   return (
     <WrapperDisplay display={!path.startsWith('/integration')}>
       <Skiplinks>
-        <SkiplinkItem href={urls.national[lang]}>
+        <SkiplinkItem href={urls.national[lang] + search}>
           {intl.formatMessage({
             id: 'app.header.title',
             defaultMessage: 'Baromètre français de la Science Ouverte',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.nationalPublications.tabs[0][lang]}>
+        <SkiplinkItem href={urls.nationalPublications.tabs[0][lang] + search}>
           {intl.formatMessage({
             id: 'app.header.nav.baro-national-publications',
             defaultMessage: 'Les publications',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.sante[lang]}>
+        <SkiplinkItem href={urls.sante[lang] + search}>
           {intl.formatMessage({
             id: 'app.header.nav.baro-sante',
             defaultMessage: 'Le baromètre santé',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.santeEssais.tabs[0][lang]}>
+        <SkiplinkItem href={urls.santeEssais.tabs[0][lang] + search}>
           {intl.formatMessage({
             id: 'app.header.nav.baro-sante-essais',
             defaultMessage: 'Les essais cliniques',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.santeEtudes.tabs[0][lang]}>
+        <SkiplinkItem href={urls.santeEtudes.tabs[0][lang] + search}>
           {intl.formatMessage({
             id: 'app.header.nav.baro-sante-etudes',
             defaultMessage: 'Les études observationnelles',
@@ -79,6 +79,7 @@ function Header() {
               id: 'app.header.title',
               defaultMessage: 'Baromètre français de la Science Ouverte',
             })}
+            link={urls.national[lang] + search}
           />
           <Tool>
             <ToolItemGroup>
@@ -106,7 +107,7 @@ function Header() {
                 id: 'app.header.nav.baro-national-accueil',
                 defaultMessage: 'Accueil baromètre national',
               })}
-              asLink={<RouterLink to={urls.national[lang]} />}
+              asLink={<RouterLink to={urls.national[lang] + search} />}
             />
             <NavSubItem
               current={
@@ -120,9 +121,11 @@ function Header() {
                 id: 'app.header.nav.baro-national-publications',
                 defaultMessage: 'Les publications',
               })}
-              asLink={
-                <RouterLink to={urls.nationalPublications.tabs[0][lang]} />
-              }
+              asLink={(
+                <RouterLink
+                  to={urls.nationalPublications.tabs[0][lang] + search}
+                />
+              )}
             />
           </NavItem>
           <NavItem
@@ -138,7 +141,7 @@ function Header() {
                 id: 'app.header.nav.baro-sante-accueil',
                 defaultMessage: 'Accueil baromètre santé',
               })}
-              asLink={<RouterLink to={urls.sante[lang]} />}
+              asLink={<RouterLink to={urls.sante[lang] + search} />}
             />
             <NavSubItem
               current={
@@ -149,7 +152,11 @@ function Header() {
                 id: 'app.header.nav.baro-sante-publications',
                 defaultMessage: 'Les publications en santé',
               })}
-              asLink={<RouterLink to={urls.santePublications.tabs[0][lang]} />}
+              asLink={(
+                <RouterLink
+                  to={urls.santePublications.tabs[0][lang] + search}
+                />
+              )}
             />
             <NavSubItem
               current={
@@ -160,7 +167,9 @@ function Header() {
                 id: 'app.header.nav.baro-sante-essais',
                 defaultMessage: 'Les essais cliniques',
               })}
-              asLink={<RouterLink to={urls.santeEssais.tabs[0][lang]} />}
+              asLink={
+                <RouterLink to={urls.santeEssais.tabs[0][lang] + search} />
+              }
             />
             <NavSubItem
               current={
@@ -171,7 +180,7 @@ function Header() {
                 id: 'app.header.nav.baro-sante-etudes',
                 defaultMessage: 'Les études observationnelles',
               })}
-              asLink={<RouterLink to={urls.santeEtudes[lang]} />}
+              asLink={<RouterLink to={urls.santeEtudes[lang] + search} />}
             />
           </NavItem>
           <NavItem
@@ -189,7 +198,7 @@ function Header() {
                 id: 'app.header.nav.a-propos-methodologie',
                 defaultMessage: 'Méthodologie',
               })}
-              asLink={<RouterLink to={urls.methodologie[lang]} />}
+              asLink={<RouterLink to={urls.methodologie[lang] + search} />}
             />
             <NavSubItem
               current={path === urls.faq[lang]}
@@ -197,7 +206,7 @@ function Header() {
                 id: 'app.header.nav.a-propos-faq',
                 defaultMessage: 'FAQ',
               })}
-              asLink={<RouterLink to={urls.faq[lang]} />}
+              asLink={<RouterLink to={urls.faq[lang] + search} />}
             />
             <NavSubItem
               current={path === urls.glossaire[lang]}
@@ -205,7 +214,7 @@ function Header() {
                 id: 'app.header.nav.a-propos-glossaire',
                 defaultMessage: 'Glossaire',
               })}
-              asLink={<RouterLink to={urls.glossaire[lang]} />}
+              asLink={<RouterLink to={urls.glossaire[lang] + search} />}
             />
             <NavSubItem
               current={path === urls.flash[lang]}
@@ -213,7 +222,7 @@ function Header() {
                 id: 'app.header.nav.a-propos-notes-flash',
                 defaultMessage: 'Notes flash',
               })}
-              asLink={<RouterLink to={urls.flash[lang]} />}
+              asLink={<RouterLink to={urls.flash[lang] + search} />}
             />
             <NavSubItem
               current={path === urls.variations[lang]}
@@ -221,7 +230,7 @@ function Header() {
                 id: 'app.header.nav.a-propos-variations',
                 defaultMessage: 'Déclinaisons locales',
               })}
-              asLink={<RouterLink to={urls.variations[lang]} />}
+              asLink={<RouterLink to={urls.variations[lang] + search} />}
             />
           </NavItem>
         </HeaderNav>

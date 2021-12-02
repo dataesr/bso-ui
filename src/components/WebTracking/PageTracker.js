@@ -7,15 +7,15 @@ import { useLocation } from 'react-router-dom';
 import { documentTitles } from '../../utils/constants';
 
 function PageTracker({ children }) {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const intl = useIntl();
   const { trackPageView } = useMatomo();
   const getDocumentTitle = useCallback(
     () => intl.formatMessage({
-      id: `${documentTitles[location.pathname]}`,
+      id: `${documentTitles[pathname]}`,
       defaultMessage: 'Baromètre français de la Science Ouverte',
     }),
-    [intl, location.pathname],
+    [intl, pathname],
   );
 
   useEffect(() => {

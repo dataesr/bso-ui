@@ -10,13 +10,13 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
   const selectedLang = localStorage.getItem('__bso_lang__');
   const [lang, setLang] = useState(selectedLang || locale);
 
-  const switchLang = (newLang, pathname) => {
+  const switchLang = (newLang, pathname, search) => {
     if (supportedLanguages.includes(newLang) && newLang !== lang) {
       const url = Object.keys(urls).find((key) => urls[key][lang] === pathname);
       localStorage.setItem('__bso_lang__', newLang);
       setLang(newLang);
       if (url) {
-        window.location.replace(urls[url][newLang]);
+        window.location.replace(urls[url][newLang] + search);
       }
     }
   };

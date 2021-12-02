@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 
 import BannerHealth from '../../../components/BannerHealth';
 import BSOChart from '../../../components/Charts';
-// import DataCardSection from '../../../components/DataCardsSection';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
@@ -20,7 +19,7 @@ import useLang from '../../../utils/Hooks/useLang';
 
 function EssaisCliniques() {
   const { lang } = useLang();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const intl = useIntl();
   const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
@@ -51,9 +50,7 @@ function EssaisCliniques() {
           </Container>
           <Glossary entries={GlossaryEntries} />
         </Row>
-        <GraphNavigation
-          mobileTitleIntl={mobileButtonLabel[lang][location.pathname]}
-        >
+        <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-interventional.general',
