@@ -55,10 +55,8 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const idWithDomain = withDomain(id, domain);
-
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
-
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,

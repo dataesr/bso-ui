@@ -52,34 +52,38 @@ const Chart = ({ id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const agencyTitle = agency !== '*' ? ` (${agency})` : '';
+  const dataTitle = { agencyTitle };
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     categories,
     dataGraph,
+    dataTitle,
   );
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph || !categories}
+      dataTitle={dataTitle}
+      domain={domain}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-agencies' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.agencies-filter-label' })}
         onChange={(e) => setAgency(e.target.value)}
         options={agencies || []}
         selected={agency}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-agencies' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={id}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
       />
     </WrapperChart>
   );
@@ -90,8 +94,8 @@ Chart.defaultProps = {
   id: 'publi.general.impact-financement.chart-taux-ouverture',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

@@ -807,8 +807,8 @@ export const chartOptions = {
     },
   },
   'publi.general.impact-financement.chart-taux-ouverture': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.general.impact-financement.chart-taux-ouverture.legend',
       });
@@ -870,8 +870,8 @@ export const chartOptions = {
     },
   },
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.affiliations.dynamique-ouverture.chart-evolution-proportion.tooltip',
       });
