@@ -5,7 +5,11 @@ import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  getCSSValue,
+  getObservationLabel,
+} from '../../../../../utils/helpers';
 
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();
@@ -196,7 +200,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       ];
 
       const comments = {
-        lastObservationSnap,
+        lastObservationSnap: getObservationLabel(lastObservationSnap, intl),
         beforeLastObservationSnap,
         oa: oa[oa.length - 1]?.y.toFixed(0),
         publisher: publisher[publisher.length - 1]?.y.toFixed(0),
