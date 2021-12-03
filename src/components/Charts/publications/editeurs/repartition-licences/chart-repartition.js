@@ -55,56 +55,62 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const idWithDomain = withDomain(id, domain);
+
+  const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
+  const dataTitle = { publisherTitle };
+
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     dataGraphTreemap,
+    dataTitle,
   );
 
   return (
     <WrapperChart
-      isLoading={isLoading || !dataGraphTreemap}
-      isError={isError}
-      id={id}
+      chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
-      chartRef={chartRef.current}
       hasComments={hasComments}
       hasFooter={hasFooter}
+      id={id}
+      isLoading={isLoading || !dataGraphTreemap}
+      isError={isError}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => setPublisher(e.target.value)}
         options={publishers || []}
         selected={publisher}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
       />
       <Toggle
         checked={isDetailed}
-        onChange={() => setIsDetailed(!isDetailed)}
         label={intl.formatMessage({ id: 'app.details' })}
+        onChange={() => setIsDetailed(!isDetailed)}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.publishers.repartition-licences.chart-repartition',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.publishers.repartition-licences.chart-repartition',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

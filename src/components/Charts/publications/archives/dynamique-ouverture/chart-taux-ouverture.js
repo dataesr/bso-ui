@@ -62,35 +62,39 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     setChartComments(customComments(dataGraph1, idWithDomain, intl));
   }, [dataGraph1, idWithDomain, intl]);
 
+  const archiveTitle = archive !== '*' ? ` (${archive})` : '';
+  const dataTitle = { archiveTitle };
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     dataGraph1,
+    dataTitle,
   );
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
+      dataTitle={dataTitle}
+      domain={domain}
+      id={id}
       hasComments={false}
       hasFooter={hasFooter}
-      isLoading={isLoading || !dataGraph1}
       isError={isError}
+      isLoading={isLoading || !dataGraph1}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
         onChange={(e) => setArchive(e.target.value)}
         options={archives || []}
         selected={archive}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
@@ -98,15 +102,15 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 export default Chart;

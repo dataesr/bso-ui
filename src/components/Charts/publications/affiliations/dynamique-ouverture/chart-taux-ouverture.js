@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { capitalize, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -40,35 +40,44 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     setChartComments(customComments(dataGraph1, idWithDomain, intl));
   }, [dataGraph1, idWithDomain, intl]);
 
+  const affiliationTitle = affiliation !== '*'
+    ? ` (${intl.formatMessage({ id: `app.affiliations.${affiliation}` })})`
+    : '';
+  const dataTitle = { affiliationTitle };
+
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     dataGraph1,
+    dataTitle,
   );
 
   return (
     <WrapperChart
-      isLoading={isLoading || !dataGraph1}
-      isError={isError}
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      dataTitle={dataTitle}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph1}
     >
       <SimpleSelect
+        firstLabel={capitalize(
+          intl.formatMessage({ id: 'app.all-affiliations' }),
+        )}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.affiliations-filter-label' })}
         onChange={(e) => setAffiliation(e.target.value)}
         options={data?.affiliations || []}
         selected={affiliation}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-affiliations' })}
       />
       <HighchartsReact
+        id={idWithDomain}
         highcharts={Highcharts}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
@@ -76,15 +85,15 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.affiliations.dynamique-ouverture.chart-taux-ouverture',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.affiliations.dynamique-ouverture.chart-taux-ouverture',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 export default Chart;

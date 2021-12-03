@@ -58,10 +58,13 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const idWithDomain = withDomain(id, domain);
+  const archiveTitle = archive !== '*' ? ` (${archive})` : '';
+  const dataTitle = { archiveTitle };
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     dataGraph2,
+    dataTitle,
   );
 
   useEffect(() => {
@@ -70,27 +73,28 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
   return (
     <WrapperChart
-      isLoading={isLoading || !dataGraph2}
-      isError={isError}
-      id={id}
-      domain={domain}
       chartRef={chartRef}
+      dataTitle={dataTitle}
+      domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph2}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
         onChange={(e) => setArchive(e.target.value)}
         options={archives || []}
         selected={archive}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
@@ -98,16 +102,16 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.repositories.dynamique-ouverture.chart-evolution-proportion',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.repositories.dynamique-ouverture.chart-evolution-proportion',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

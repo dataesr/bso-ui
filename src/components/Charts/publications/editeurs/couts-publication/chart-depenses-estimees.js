@@ -51,52 +51,56 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   }, []);
 
   const idWithDomain = withDomain(id, domain);
+  const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
+  const dataTitle = { publisherTitle };
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     categoriesYear,
     dataGraphTotal,
+    dataTitle,
   );
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      dataTitle={dataTitle}
+      domain={domain}
       hasComments={hasComments}
-      isLoading={isLoading || !dataGraphTotal || !categoriesYear}
+      hasFooter={hasFooter}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !dataGraphTotal || !categoriesYear}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => setPublisher(e.target.value)}
         options={publishers || []}
         selected={publisher}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.publishers.couts-publication.chart-depenses-estimees',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.publishers.couts-publication.chart-depenses-estimees',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;
