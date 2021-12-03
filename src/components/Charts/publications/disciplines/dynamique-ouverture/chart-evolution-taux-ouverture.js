@@ -34,7 +34,6 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const [sort, setSort] = useState('sort-open-access');
   const [optionsGraph, setOptionsGraph] = useState(null);
-  const [activeData, setActiveData] = useState([]);
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
@@ -45,7 +44,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const orangeSoft175 = getCSSValue('--orange-soft-175');
 
   useEffect(() => {
-    let newData = null;
+    let newData = [];
     const series = [];
 
     const dataHist = data.dataHist ? data.dataHist : [];
@@ -136,18 +135,12 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
           lineColor: orangeSoft100,
         },
       });
-      const newDataCheck = newData.map((obj) => obj.name).join();
-      const activeDataCheck = activeData.map((obj) => obj.name).join();
 
-      if (activeDataCheck !== newDataCheck) {
-        setActiveData(newData);
-        setOptionsGraph(
-          chartOptions[id].getOptions(withDomain(id, domain), intl, series),
-        );
-      }
+      setOptionsGraph(
+        chartOptions[id].getOptions(withDomain(id, domain), intl, series),
+      );
     }
   }, [
-    activeData,
     data,
     domain,
     id,
@@ -179,9 +172,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         className='d-inline-block'
         isInline
         legend={intl.formatMessage({ id: 'app.publi.sort' })}
-        onChange={(newValue) => {
-          setSort(newValue);
-        }}
+        onChange={(newValue) => setSort(newValue)}
         value={sort}
       >
         <Radio
