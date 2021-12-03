@@ -1,5 +1,6 @@
 import locals from '../config/locals.json';
 import {
+  capitalize,
   cleanNumber,
   getCSSValue,
   getPercentageYAxis,
@@ -1312,7 +1313,9 @@ export const chartOptions = {
         },
       ];
       options.subtitle = {
-        text: intl.formatMessage({ id: `app.discipline.${nameClean}` }),
+        text: capitalize(
+          intl.formatMessage({ id: `app.discipline.${nameClean}` }),
+        ),
         widthAdjust: 0,
         style: {
           fontWeight: 'bold',

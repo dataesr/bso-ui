@@ -14,6 +14,7 @@ import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import {
+  capitalize,
   getCSSValue,
   getObservationLabel,
   withDomain,
@@ -98,11 +99,13 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         series.push({
           name: dates[index - 1],
           data: newData.map((item) => ({
-            name: intl.formatMessage({
-              id: `app.discipline.${item.name
-                .replace(/\n/g, '')
-                .replace('  ', ' ')}`,
-            }),
+            name: capitalize(
+              intl.formatMessage({
+                id: `app.discipline.${item.name
+                  .replace(/\n/g, '')
+                  .replace('  ', ' ')}`,
+              }),
+            ),
             bsoDomain: item.bsoDomain,
             low: item.data.find((el) => el.name === dates[index - 1])?.y,
             y_abs: item.data.find((el) => el.name === dates[index - 1])?.y_abs,

@@ -67,7 +67,7 @@ function useGetData(observationSnap, domain) {
       data.forEach((el, catIndex) => {
         const nameClean = el.key.replace(/\n/g, '').replace('  ', ' ');
         categories.push(
-          intl.formatMessage({ id: `app.discipline.${nameClean}` }),
+          capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` })),
         );
 
         const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')

@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
+  capitalize,
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
@@ -36,11 +37,13 @@ function useGetData(lastObservationSnap, domain = '') {
         bubbles.push({
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: intl.formatMessage({
-            id: `app.discipline.${elem.key
-              .replace(/\n/g, '')
-              .replace('  ', ' ')}`,
-          }),
+          discipline: capitalize(
+            intl.formatMessage({
+              id: `app.discipline.${elem.key
+                .replace(/\n/g, '')
+                .replace('  ', ' ')}`,
+            }),
+          ),
           bsoDomain,
           x:
             (100

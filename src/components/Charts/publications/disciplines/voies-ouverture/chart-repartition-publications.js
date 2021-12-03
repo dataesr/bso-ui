@@ -56,8 +56,8 @@ Chart.defaultProps = {
   id: 'publi.disciplines.voies-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;
