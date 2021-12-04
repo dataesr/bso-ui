@@ -1780,6 +1780,7 @@ export const chartOptions = {
           shape: 'arc',
         },
       };
+      let color = '#EEE';
       if (data) {
         options.series[0].dataLabels = {
           format:
@@ -1788,6 +1789,7 @@ export const chartOptions = {
                 + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
                 + '</div>',
         };
+        color = options.series[0].color;
       }
       /* column: {
           dataLabels: {
@@ -1810,6 +1812,9 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = {
+        stops: [
+          [100, color],
+        ],
         min: 0,
         max: 30,
         lineWidth: 0,
