@@ -32,8 +32,12 @@ function useGetData(observationSnap, domain) {
 
     const categories = data.map((dataYear) => dataYear.key);
     const predatory = [];
+    let totalPublications = 0;
+    let publicationsInList = 0;
     data.forEach((dataYear) => {
-      predatory.push({
+      totalPublications += dataYear.doc_count;
+      publicationsInList += dataYear.by_predatory.buckets.find((el) => el.key === 1).doc_count;
+      /* predatory.push({
         publicationDate: dataYear.key,
         bsoDomain,
         y_abs: dataYear.by_predatory.buckets.find((el) => el.key === 1)
@@ -44,7 +48,13 @@ function useGetData(observationSnap, domain) {
             * dataYear.by_predatory.buckets.find((el) => el.key === 1)
               .doc_count)
           / dataYear.doc_count,
-      });
+      }); */
+    });
+    predatory.push({
+      bsoDomain,
+      y_tot: totalPublications,
+      y_abs: publicationsInList,
+      y: (100 * publicationsInList) / totalPublications,
     });
     const dataGraph = [
       {

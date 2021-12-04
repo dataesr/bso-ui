@@ -273,7 +273,6 @@ export default function NationalPublications() {
                 >
                   <BSOChart
                     id='publi.publishers.poids-revues.chart-repartition'
-                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 

@@ -1767,9 +1767,29 @@ export const chartOptions = {
         id: 'app.publi.publishers.poids-revues.chart-repartition.tooltip',
       });
       options.series = data;
-      options.chart.type = 'column';
-      options.plotOptions = {
-        column: {
+      options.chart.type = 'solidgauge';
+      options.pane = {
+        center: ['50%', '85%'],
+        size: '140%',
+        startAngle: -90,
+        endAngle: 90,
+        background: {
+          backgroundColor: '#EEE',
+          innerRadius: '60%',
+          outerRadius: '100%',
+          shape: 'arc',
+        },
+      };
+      if (data) {
+        options.series[0].dataLabels = {
+          format:
+                '<div style="text-align:center">'
+                + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
+                + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
+                + '</div>',
+        };
+      }
+      /* column: {
           dataLabels: {
             style: {
               textOutline: 'none',
@@ -1783,15 +1803,29 @@ export const chartOptions = {
               return label;
             },
           },
-        },
-      };
+        }, */
+      // };
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(false, 3);
+      options.yAxis = {
+        min: 0,
+        max: 30,
+        lineWidth: 0,
+        tickWidth: 0,
+        minorTickInterval: null,
+        tickAmount: 2,
+        title: {
+          y: -70,
+        },
+        labels: {
+          enabled: false,
+        },
+    };
+      // options.yAxis = getPercentageYAxis(false, 3);
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.publi.percentage-publi',
+        id: 'app.publi.percentage-publi-bealls',
       });
       options.legend = { enabled: false };
 

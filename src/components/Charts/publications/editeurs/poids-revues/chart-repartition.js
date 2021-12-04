@@ -1,6 +1,7 @@
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
+import HCSolidGaugeModule from 'highcharts/modules/solid-gauge';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
@@ -15,6 +16,7 @@ import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
+HCSolidGaugeModule(Highcharts);
 
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
