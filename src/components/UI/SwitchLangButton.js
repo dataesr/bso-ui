@@ -48,11 +48,11 @@ export default function SwitchLangButton() {
             setIsLangModalOpen(false);
           }}
           title={intl.formatMessage({
-            id: 'app.commons.modal.fermer',
+            id: 'app.commons.modal.close',
             defaultMessage: 'Fermer la fenêtre modale',
           })}
         >
-          <FormattedMessage id='app.commons.fermer' defaultMessage='Fermer' />
+          <FormattedMessage id='app.commons.close' defaultMessage='Fermer' />
         </ModalClose>
         <ModalTitle>
           <FormattedMessage

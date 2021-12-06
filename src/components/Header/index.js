@@ -67,7 +67,13 @@ function Header() {
           })}
         </SkiplinkItem>
       </Skiplinks>
-      <DSHeader closeButtonLabel='fermer' className='bso-header'>
+      <DSHeader
+        closeButtonLabel={intl.formatMessage({
+          id: 'app.commons.close',
+          defaultMessage: 'Fermer',
+        })}
+        className='bso-header'
+      >
         <HeaderBody>
           <Logo splitCharacter={10}>
             Ministère de l'enseignement supérieur et de la recherche

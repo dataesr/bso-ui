@@ -132,7 +132,10 @@ function Glossary({ entries }) {
                     iconPosition='right'
                   >
                     <span>
-                      <FormattedMessage id='app.commons.fermer' />
+                      <FormattedMessage
+                        id='app.commons.close'
+                        defaultMessage='Fermer'
+                      />
                     </span>
                   </DSIcon>
                 </button>
