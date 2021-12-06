@@ -11,6 +11,7 @@ import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -29,7 +30,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const intl = useIntl();
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
-  const { lastObservationSnap, observationSnaps } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals();
   const [chartComments, setChartComments] = useState('');
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
@@ -55,22 +56,21 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const idWithDomain = withDomain(id, domain);
-
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
-  const dataTitle = { publisherTitle };
-
+  const dataTitle = {
+    publisherTitle,
+    publicationYear: beforeLastObservationSnap,
+  };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph1,
     dataTitle,
   );
 
   useEffect(() => {
-    // TODO Manage variable sin comments
-    setChartComments('comments');
-    // setChartComments(customComments(dataGraph1, idWithDomain, intl));
-  }, [dataGraph1, idWithDomain, intl]);
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   return (
     <WrapperChart

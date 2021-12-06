@@ -8,10 +8,11 @@ import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
   getCSSValue,
+  getObservationLabel,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, domain) {
+function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -171,9 +172,27 @@ function useGetData(observationSnap, domain) {
           dataLabels: noOutline,
         },
       ];
-      return { categories, dataGraph };
+
+      const comments = {
+        publicationYear: beforeLastObservationSnap,
+        observationYear: getObservationLabel(lastObservationSnap, intl),
+        discipline: dataGraph[0].data[0].discipline.toLowerCase(),
+        publisherRate: dataGraph[0].data[0].y.toFixed(1),
+        publisherRepositoryRate: dataGraph[1].data[0].y.toFixed(1),
+        repositoryRate: dataGraph[2].data[0].y.toFixed(1),
+      };
+
+      return { categories, dataGraph, comments };
     },
-    [domain, disciplineField, intl, yellowMedium125, bsoDomain, search],
+    [
+      beforeLastObservationSnap,
+      bsoDomain,
+      disciplineField,
+      domain,
+      intl,
+      search,
+      yellowMedium125,
+    ],
   );
 
   useEffect(() => {

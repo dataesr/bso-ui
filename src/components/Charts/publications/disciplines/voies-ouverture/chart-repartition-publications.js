@@ -3,30 +3,38 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain }) => {
+const Chart = ({ hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
+  const [chartComments, setChartComments] = useState('');
+  const idWithDomain = withDomain(id, domain);
   const { allData, isLoading, isError } = useGetData(
+    beforeLastObservationSnap,
     lastObservationSnap,
     domain,
   );
   const { dataGraph, categories } = allData;
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomain, intl));
+  }, [allData, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories,
     dataGraph,
@@ -34,29 +42,33 @@ const Chart = ({ id, domain }) => {
 
   return (
     <WrapperChart
-      domain={domain}
-      id={id}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph || !categories}
-      isError={isError}
       dataTitle={{ publicationYear: beforeLastObservationSnap }}
+      domain={domain}
+      hasComments={false}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={id}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
       />
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   domain: '',
+  hasComments: true,
   id: 'publi.disciplines.voies-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 

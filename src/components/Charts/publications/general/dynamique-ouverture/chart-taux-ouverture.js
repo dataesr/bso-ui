@@ -33,25 +33,25 @@ const Chart = ({ hasFooter, hasComments, domain, id }) => {
     setChartComments(customComments(dataGraph1, idWithDomain, intl));
   }, [dataGraph1, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph1,
   );
   return (
     <WrapperChart
-      isLoading={isLoading || !dataGraph1}
-      isError={isError}
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph1}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
@@ -59,16 +59,16 @@ const Chart = ({ hasFooter, hasComments, domain, id }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
   domain: '',
+  hasComments: true,
+  hasFooter: true,
   id: 'publi.general.dynamique-ouverture.chart-taux-ouverture',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

@@ -19,7 +19,7 @@ const Integration = () => {
     <Container fluid>
       <Row justifyContent='center'>
         <Col n='10' spacing='px-3w'>
-          <TitleDisplay as='h2'>
+          <TitleDisplay as='h2' size='xs'>
             {intl.formatMessage({ id: 'app.header.title' })}
           </TitleDisplay>
         </Col>
