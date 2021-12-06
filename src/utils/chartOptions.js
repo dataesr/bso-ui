@@ -2089,9 +2089,9 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
         labels: {
-          rotation: 0,
-          useHTML: true,
           overflow: 'allow',
+          rotation: -90,
+          useHTML: true,
           formatter() {
             const label = this.axis.defaultLabelFormatter.call(this);
             if (label === '0') {
