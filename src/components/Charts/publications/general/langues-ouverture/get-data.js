@@ -201,7 +201,7 @@ function useGetData(observationSnap, domain) {
         publicationsEnglishRate: oa[0].y.toFixed(0),
         publicationsFrenchTotal: cleanNumber(oa[1].y_tot),
         publicationsFrenchOpen: cleanNumber(oa[1].y_oa),
-        publicationsFrenchClosed: cleanNumber(oa[0].y_tot - oa[0].y_oa),
+        publicationsFrenchClosed: cleanNumber(oa[1].y_tot - oa[1].y_oa),
         publicationsFrenchRate: oa[1].y.toFixed(0),
       };
 
