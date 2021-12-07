@@ -31,8 +31,8 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
   const tooltip = !studyType
     ? intl.formatMessage({ id: `${graphId}.tooltip` })
     : intl.formatMessage({
-      id: `${withtStudyType(graphId, studyType.toLowerCase())}.tooltip`,
-    });
+        id: `${withtStudyType(graphId, studyType.toLowerCase())}.tooltip`,
+      });
   const xAxis = intl.messages[`${graphId}.xAxis`]
     ? intl.formatMessage({ id: `${graphId}.xAxis` })
     : '';
@@ -43,11 +43,11 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
   const title = !studyType
     ? intl.formatMessage({ id: `${graphId}.title` }, dataTitle)
     : intl.formatMessage(
-      {
-        id: `${withtStudyType(graphId, studyType.toLowerCase())}.title`,
-      },
-      dataTitle,
-    );
+        {
+          id: `${withtStudyType(graphId, studyType.toLowerCase())}.title`,
+        },
+        dataTitle,
+      );
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
@@ -549,8 +549,9 @@ export const chartOptions = {
       );
       let pointStart = 2013;
       if (bsoLocalAffiliations) {
-        pointStart = urlSearchParams.get('start-year')
-          || locals[bsoLocalAffiliations].startYear;
+        pointStart =
+          urlSearchParams.get('start-year') ||
+          locals[bsoLocalAffiliations].startYear;
       }
       const options = getGraphOptions(id, intl);
       options.chart.type = 'spline';
@@ -575,8 +576,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -893,8 +894,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -929,7 +930,9 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.affiliations.${el.name}` })),
+        categories: data[0].data.map((el) =>
+          intl.formatMessage({ id: `app.affiliations.${el.name}` }),
+        ),
         labels: {
           style: {
             color: getCSSValue('--g-!00'),
@@ -1060,8 +1063,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1270,8 +1273,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1523,8 +1526,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1784,29 +1787,13 @@ export const chartOptions = {
       if (data) {
         options.series[0].dataLabels = {
           format:
-            '<div style="text-align:center">'
-            + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
-            + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
-            + '</div>',
+            '<div style="text-align:center">' +
+            '<span style="font-size:25px;">{y:.1f} %</span><br/>' +
+            '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>' +
+            '</div>',
         };
         color = options.series[0].color;
       }
-      /* column: {
-          dataLabels: {
-            style: {
-              textOutline: 'none',
-            },
-            enabled: true,
-            inside: false,
-            formatter() {
-              let label = this.y.toFixed(1).concat(' % soit ');
-              label = label.concat('<br/>');
-              label = label.concat(this.point.y_abs).concat(' publications');
-              return label;
-            },
-          },
-        }, */
-      // };
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -1826,7 +1813,6 @@ export const chartOptions = {
           enabled: false,
         },
       };
-      // options.yAxis = getPercentageYAxis(false, 3);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.publi.percentage-publi-bealls',
       });
@@ -1972,7 +1958,6 @@ export const chartOptions = {
             intlKey: 'app.studies.general.sankey.no_publications_result.label',
           },
         ];
-
         const nodes = [];
         // TODO refacto
         allNodes.forEach((node) => {
@@ -1995,8 +1980,6 @@ export const chartOptions = {
       };
       const options = getGraphOptions(id, intl, studyType);
       options.colors = [nodeColor.start];
-      // options.chart.height = '800px';
-
       delete options.tooltip.pointFormat;
       options.series = [
         {
@@ -2142,13 +2125,10 @@ export const chartOptions = {
           return label;
         },
       };
-      options.yAxis = {
-        categories: data?.categoriesDistribution || [],
-        min: 0,
-        max: data?.categoriesDistribution?.length - 1 || 10,
-        title: false,
-        reversed: true,
-      };
+      options.yAxis.categories = data?.categoriesDistribution || [];
+      options.yAxis.min = 0;
+      options.yAxis.max = data?.categoriesDistribution?.length - 1 || 10;
+      options.yAxis.reversed = true;
       options.plotOptions = {
         areasplinerange: {
           marker: {
@@ -2170,14 +2150,14 @@ export const chartOptions = {
         labels: {
           formatter() {
             if (this.isFirst) {
-              return `${this.value} ${intl.formatMessage({
-                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.year',
-              })}`;
+              return intl.formatMessage({
+                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.0-year',
+              });
             }
             if (this.isLast) {
-              return `${this.value} ${intl.formatMessage({
-                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.year-and-more',
-              })}`;
+              return intl.formatMessage({
+                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.10-years-and-more',
+              });
             }
             return this.value;
           },
