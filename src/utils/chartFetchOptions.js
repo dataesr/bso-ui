@@ -1743,14 +1743,13 @@ export default function getFetchOptions({
     });
   }
   const urlSearchParams = new URLSearchParams(search);
-  const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
-  if (bsoLocalAffiliations) {
+  const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation');
+  if (bsoLocalAffiliation) {
     queryResponse.query.bool.filter.push({
-      term: { bso_local_affiliations: bsoLocalAffiliations },
+      term: { bso_local_affiliations: bsoLocalAffiliation },
     });
-    const startYear = urlSearchParams.get('start-year')
-      || locals[bsoLocalAffiliations].startYear;
-    const endYear = urlSearchParams.get('end-year') || locals[bsoLocalAffiliations].endYear;
+    const startYear = urlSearchParams.get('startYear') || locals[bsoLocalAffiliation].startYear;
+    const endYear = urlSearchParams.get('endYear') || locals[bsoLocalAffiliation].endYear;
     const year = {};
     if (startYear) {
       year.gte = parseInt(startYear, 10);

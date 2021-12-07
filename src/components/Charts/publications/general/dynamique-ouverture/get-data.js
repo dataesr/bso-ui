@@ -19,7 +19,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isError, setError] = useState(false);
   const { search } = useLocation();
   const urlSearchParams = new URLSearchParams(search);
-  const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
+  const bsoLocalAffiliations = urlSearchParams.get('bsoLocalAffiliation');
   let commentsName = '';
   if (bsoLocalAffiliations) {
     commentsName = urlSearchParams.get('comments-name')

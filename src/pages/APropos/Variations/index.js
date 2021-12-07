@@ -63,7 +63,7 @@ function Variations() {
                   le bouton "Intégration" en bas du graphe voulu, afin de
                   récupérer l'url du graphe en question. Ensuite, ajouter à
                   cette url l'identifiant RNSR de la structure (ex:
-                  <i>bso-local-affiliations=130015506</i>
+                  <i>bsoLocalAffiliation=130015506</i>
                   {' '}
                   pour l'Université de
                   Lorraine).
@@ -81,14 +81,14 @@ function Variations() {
                       Lorraine)
                     </li>
                     <li>
-                      <b>start-year</b>
+                      <b>startYear</b>
                       : filtre sur l'année de publication
-                      supérieure ou égale (ex: start-year=2016)
+                      supérieure ou égale (ex: startYear=2016)
                     </li>
                     <li>
-                      <b>end-year</b>
+                      <b>endYear</b>
                       : filtre sur l'année de publication
-                      inférieure ou égale (ex: end-year=2020)
+                      inférieure ou égale (ex: endYear=2020)
                     </li>
                     <li>
                       <b>displayTitle</b>
@@ -109,11 +109,11 @@ function Variations() {
               {' '}
               <i>
                 <a
-                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bso-local-affiliations=130015506&start-year=2016'
+                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bsoLocalAffiliation=130015506&startYear=2016'
                   rel='noreferrer'
                   target='_blank'
                 >
-                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bso-local-affiliations=130015506&start-year=2016
+                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bsoLocalAffiliation=130015506&startYear=2016
                 </a>
               </i>
             </Col>

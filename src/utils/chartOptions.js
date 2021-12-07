@@ -544,12 +544,10 @@ export const chartOptions = {
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, search) => {
       const urlSearchParams = new URLSearchParams(search);
-      const bsoLocalAffiliations = urlSearchParams.get(
-        'bso-local-affiliations',
-      );
+      const bsoLocalAffiliations = urlSearchParams.get('bsoLocalAffiliation');
       let pointStart = 2013;
       if (bsoLocalAffiliations) {
-        pointStart = urlSearchParams.get('start-year')
+        pointStart = urlSearchParams.get('startYear')
           || locals[bsoLocalAffiliations].startYear;
       }
       const options = getGraphOptions(id, intl);
