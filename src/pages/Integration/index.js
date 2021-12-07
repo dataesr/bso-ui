@@ -13,17 +13,22 @@ const Integration = () => {
   const intl = useIntl();
   const { switchLang } = useLang();
 
+  const urlSearchParams = new URLSearchParams(search);
+  const isDisplayedTitle = !(urlSearchParams.get('displayTitle') === 'false');
+
   switchLang(language, pathname, search);
 
   return (
     <Container fluid>
-      <Row justifyContent='center'>
-        <Col n='10' spacing='px-3w'>
-          <TitleDisplay as='h2' size='xs'>
-            {intl.formatMessage({ id: 'app.header.title' })}
-          </TitleDisplay>
-        </Col>
-      </Row>
+      {isDisplayedTitle && (
+        <Row justifyContent='center'>
+          <Col n='10' spacing='px-3w'>
+            <TitleDisplay as='h2' size='xs'>
+              {intl.formatMessage({ id: 'app.header.title' })}
+            </TitleDisplay>
+          </Col>
+        </Row>
+      )}
       <Row justifyContent='center'>
         <Col n='10'>
           <Suspense fallback={<Loader />}>

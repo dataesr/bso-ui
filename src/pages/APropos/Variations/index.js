@@ -90,6 +90,12 @@ function Variations() {
                       : filtre sur l'année de publication
                       inférieure ou égale (ex: end-year=2020)
                     </li>
+                    <li>
+                      <b>displayTitle</b>
+                      : affiche ou masque le titre (ex:
+                      displayTitle=false),
+                      <i>default: true</i>
+                    </li>
                   </ul>
                   <li>
                     Attention, seuls les graphes du BSO national sont
