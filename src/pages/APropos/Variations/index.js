@@ -117,9 +117,17 @@ function Variations() {
               L'Université de Lorraine a été le premier établissement à
               développer une déclinaison locale du Baromètre français de la
               Science Ouverte. Le code réalisé à cette occasion est disponible
-              dans HAL et dans Software Heritage. Forte de cette expérience,
-              l'Université de Lorraine a contribué à la mise en place de cette
-              nouvelle déclinaison locale.
+              dans
+              {' '}
+              <a
+                href='https://hal.univ-lorraine.fr/hal-03450104'
+                target='_blank'
+                rel='noreferrer'
+              >
+                HAL et Software Heritage
+              </a>
+              . Forte de cette expérience, l'Université de Lorraine a contribué
+              à la mise en place de cette nouvelle déclinaison locale.
             </Col>
           </Row>
           <Row gutters>

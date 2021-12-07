@@ -10,6 +10,7 @@ import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -65,10 +66,8 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   );
 
   useEffect(() => {
-    // TODO Manage variables in comments
-    setChartComments('comments');
-    // setChartComments(customComments(dataGraph2, idWithDomain, intl));
-  }, [dataGraph2, idWithDomain, intl]);
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   return (
     <WrapperChart

@@ -6,14 +6,16 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data-evolution';
 
 HCExporting(Highcharts);
@@ -26,43 +28,45 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    data,
-  );
+  const [chartComments, setChartComments] = useState('');
+  const idWithDomain = withDomain(id, domain);
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
+  const optionsGraph = chartOptions[id].getOptions(idWithDomain, intl, data);
 
   return (
     <WrapperChart
-      domain={domain}
-      id={id}
-      isLoading={isLoading || !data.bubbleGraph}
-      isError={isError}
       chartRef={chartRef}
+      domain={domain}
+      hasComments={false}
       hasFooter={hasFooter}
-      hasComments={hasComments}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !data.bubbleGraph}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={id}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
       />
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

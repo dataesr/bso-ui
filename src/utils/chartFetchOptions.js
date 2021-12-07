@@ -864,7 +864,12 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueOuvertureSponsor: ([studyType, sponsor, yearMin, yearMax]) => ({
+    studiesDynamiqueOuvertureSponsor: ([
+      studyType,
+      sponsor,
+      yearMin,
+      yearMax,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -904,7 +909,12 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesResultsTypeDiffusion: ([studyType, sponsorType, yearMin, yearMax]) => ({
+    studiesResultsTypeDiffusion: ([
+      studyType,
+      sponsorType,
+      yearMin,
+      yearMax,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1591,6 +1601,13 @@ export default function getFetchOptions({
             {
               term: {
                 'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                delay_start_completion: {
+                  gte: 0,
+                },
               },
             },
           ],

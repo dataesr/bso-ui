@@ -143,7 +143,19 @@ function useGetData(observationSnaps, needle = '*', domain) {
       publicationDate: el.publicationDate,
     }));
 
-    return { dataGraph1, dataGraph2 };
+    const comments = {
+      observationYear: dataGraph1[0].name,
+      publicationYear: dataGraph1[1].name,
+      beforePublicationYear: dataGraph1[2].name,
+      rate: dataGraph1[0].y.toFixed(0),
+      year1: dataGraph2[2].name,
+      year2: dataGraph2[1].name,
+      year3: dataGraph2[1].data[4].publicationDate,
+      rate1: dataGraph2[2].data[4].y.toFixed(2),
+      rate2: dataGraph2[1].data[4].y.toFixed(2),
+    };
+
+    return { dataGraph1, dataGraph2, comments };
   }
 
   useEffect(() => {

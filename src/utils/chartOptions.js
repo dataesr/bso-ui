@@ -1784,10 +1784,10 @@ export const chartOptions = {
       if (data) {
         options.series[0].dataLabels = {
           format:
-                '<div style="text-align:center">'
-                + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
-                + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
-                + '</div>',
+            '<div style="text-align:center">'
+            + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
+            + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
+            + '</div>',
         };
         color = options.series[0].color;
       }
@@ -1812,9 +1812,7 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = {
-        stops: [
-          [100, color],
-        ],
+        stops: [[100, color]],
         min: 0,
         max: 30,
         lineWidth: 0,
@@ -1827,7 +1825,7 @@ export const chartOptions = {
         labels: {
           enabled: false,
         },
-    };
+      };
       // options.yAxis = getPercentageYAxis(false, 3);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.publi.percentage-publi-bealls',
@@ -2091,9 +2089,9 @@ export const chartOptions = {
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
         labels: {
-          rotation: 0,
-          useHTML: true,
           overflow: 'allow',
+          rotation: -90,
+          useHTML: true,
           formatter() {
             const label = this.axis.defaultLabelFormatter.call(this);
             if (label === '0') {
