@@ -1,10 +1,10 @@
-import locals from '../config/locals.json';
 import {
   capitalize,
   cleanNumber,
   getCSSValue,
   getPercentageYAxis,
   getSource,
+  getURLSearchParams,
   withtStudyType,
 } from './helpers';
 
@@ -543,13 +543,7 @@ export const chartOptions = {
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, search) => {
-      const urlSearchParams = new URLSearchParams(search);
-      const bsoLocalAffiliations = urlSearchParams.get('bsoLocalAffiliation');
-      let pointStart = 2013;
-      if (bsoLocalAffiliations) {
-        pointStart = urlSearchParams.get('startYear')
-          || locals[bsoLocalAffiliations].startYear;
-      }
+      const { startYear } = getURLSearchParams(search);
       const options = getGraphOptions(id, intl);
       options.chart.type = 'spline';
       options.xAxis.title.text = intl.formatMessage({
@@ -565,7 +559,7 @@ export const chartOptions = {
         id: `${id}.tooltip`,
       });
       options.plotOptions = {
-        series: { pointStart },
+        series: { pointStart: startYear },
         spline: {
           dataLabels: {
             enabled: true,

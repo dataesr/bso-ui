@@ -1,5 +1,7 @@
-import locals from '../config/locals.json';
-import { getPublicationYearFromObservationSnap } from './helpers';
+import {
+  getPublicationYearFromObservationSnap,
+  getURLSearchParams,
+} from './helpers';
 
 /**
  *
@@ -1742,26 +1744,23 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const urlSearchParams = new URLSearchParams(search);
-  const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation');
+  const { bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
   if (bsoLocalAffiliation) {
     queryResponse.query.bool.filter.push({
       term: { bso_local_affiliations: bsoLocalAffiliation },
     });
-    const startYear = urlSearchParams.get('startYear') || locals[bsoLocalAffiliation].startYear;
-    const endYear = urlSearchParams.get('endYear') || locals[bsoLocalAffiliation].endYear;
-    const year = {};
-    if (startYear) {
-      year.gte = parseInt(startYear, 10);
-    }
-    if (endYear) {
-      year.lte = parseInt(endYear, 10);
-    }
-    if (year) {
-      queryResponse.query.bool.filter.push({
-        range: { year },
-      });
-    }
+  }
+  const year = {};
+  if (startYear) {
+    year.gte = parseInt(startYear, 10);
+  }
+  if (endYear) {
+    year.lte = parseInt(endYear, 10);
+  }
+  if (year) {
+    queryResponse.query.bool.filter.push({
+      range: { year },
+    });
   }
   return queryResponse;
 }

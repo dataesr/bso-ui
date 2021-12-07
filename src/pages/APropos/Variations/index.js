@@ -75,26 +75,42 @@ function Variations() {
                   directement dans l'URL via des paramètres :
                   <ul>
                     <li>
-                      <b>name</b>
-                      : Nom de l'établissement / laboratoire qui
-                      préfixe le titre du graphe (ex: name=Université de
-                      Lorraine)
+                      <b>bsoLocalAffiliation</b>
+                      : RNSR de l'établissement (ex:
+                      bsoLocalAffiliation=130015506)
+                      <i>requis</i>
                     </li>
                     <li>
-                      <b>startYear</b>
-                      : filtre sur l'année de publication
-                      supérieure ou égale (ex: startYear=2016)
-                    </li>
-                    <li>
-                      <b>endYear</b>
-                      : filtre sur l'année de publication
-                      inférieure ou égale (ex: endYear=2020)
+                      <b>commentsName</b>
+                      : Nom de l'établissement / laboratoire
+                      qui sera affiché dans les commentaires (ex:
+                      commentsName=pour l'université de Lorraine)
+                      <i>défaut: ''</i>
                     </li>
                     <li>
                       <b>displayTitle</b>
                       : affiche ou masque le titre (ex:
                       displayTitle=false),
-                      <i>default: true</i>
+                      <i>défaut: true</i>
+                    </li>
+                    <li>
+                      <b>endYear</b>
+                      : filtre sur l'année de publication
+                      inférieure ou égale (ex: endYear=2020)
+                      <i>défaut: Aucune</i>
+                    </li>
+                    <li>
+                      <b>name</b>
+                      : Nom de l'établissement / laboratoire qui
+                      préfixe le titre du graphe (ex: name=Université de
+                      Lorraine)
+                      <i>défaut: Aucun</i>
+                    </li>
+                    <li>
+                      <b>startYear</b>
+                      : filtre sur l'année de publication
+                      supérieure ou égale (ex: startYear=2016)
+                      <i>défaut: 2013</i>
                     </li>
                   </ul>
                   <li>
