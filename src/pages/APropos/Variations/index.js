@@ -125,11 +125,11 @@ function Variations() {
               {' '}
               <i>
                 <a
-                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bsoLocalAffiliation=130015506&startYear=2016'
+                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false'
                   rel='noreferrer'
                   target='_blank'
                 >
-                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bsoLocalAffiliation=130015506&startYear=2016
+                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false
                 </a>
               </i>
             </Col>
@@ -164,7 +164,15 @@ function Variations() {
             <Col n='12 lg-8'>
               Liste des déclinaisons locales des BSO :
               <ul className='style-disc'>
-                <li>Université de Lorraine</li>
+                <li>
+                  <a
+                    href='https://scienceouverte.univ-lorraine.fr/barometre-lorrain-de-la-science-ouverte/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Lorraine
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>

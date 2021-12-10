@@ -21,7 +21,7 @@ const Integration = () => {
       {displayTitle && (
         <Row justifyContent='center'>
           <Col n='10' spacing='px-3w'>
-            <TitleDisplay as='h2' size='xs'>
+            <TitleDisplay as='h4' size='xs' className='title-xxs'>
               {intl.formatMessage({ id: 'app.header.title' })}
             </TitleDisplay>
           </Col>

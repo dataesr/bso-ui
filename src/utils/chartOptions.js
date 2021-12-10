@@ -1190,6 +1190,11 @@ export const chartOptions = {
           borderColor: getCSSValue('--yellow-medium-100'),
           color: getCSSValue('--yellow-medium-25'),
           connectColor: getCSSValue('--yellow-medium-100'),
+          labels: {
+            formatter() {
+              return this.value.toFixed(0);
+            },
+          },
         },
       };
       options.plotOptions = {
