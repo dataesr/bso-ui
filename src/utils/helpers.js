@@ -278,19 +278,31 @@ export function getURLSearchParams(search) {
   let endYear;
   let name;
   let startYear = 2013;
+  let comment = '';
   if (bsoLocalAffiliation) {
+    comment = parseInt(
+      urlSearchParams.get('comment') || locals[bsoLocalAffiliation].comment,
+      10,
+    );
     commentsName = urlSearchParams.get('commentsName')
       || locals[bsoLocalAffiliation].commentsName;
     displayTitle = !(
       (urlSearchParams.get('displayTitle')
         || locals[bsoLocalAffiliation].displayTitle) === 'false'
     );
-    endYear = urlSearchParams.get('endYear') || locals[bsoLocalAffiliation].endYear;
+    endYear = parseInt(
+      urlSearchParams.get('endYear') || locals[bsoLocalAffiliation].endYear,
+      10,
+    );
     name = urlSearchParams.get('name') || locals[bsoLocalAffiliation].name;
-    startYear = urlSearchParams.get('startYear') || locals[bsoLocalAffiliation].startYear;
+    startYear = parseInt(
+      urlSearchParams.get('startYear') || locals[bsoLocalAffiliation].startYear,
+      10,
+    );
   }
   return {
     bsoLocalAffiliation,
+    comment,
     commentsName,
     displayTitle,
     endYear,
