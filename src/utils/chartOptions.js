@@ -348,7 +348,6 @@ export const chartOptions = {
             },
           },
         };
-
         options.annotations = [
           {
             labels: [
@@ -373,7 +372,7 @@ export const chartOptions = {
             },
           },
         ];
-
+        options.responsive.rules[0].chartOptions.legend.align = 'right';
         return options;
       },
     },
@@ -1247,7 +1246,7 @@ export const chartOptions = {
           },
         },
       ];
-
+      options.responsive.rules[0].chartOptions.legend.align = 'right';
       return options;
     },
   },
