@@ -173,6 +173,51 @@ function Variations() {
                     Université de Lorraine
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://www.pasteur.fr/fr/ceris/bibliotheque/s-engager-science-ouverte#barometre'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Institut Pasteur
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://scienceouverte.unistra.fr/strategie/le-barometre-science-ouverte/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Strasbourg
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.universite-paris-saclay.fr/barometre-science-ouverte-2021'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Paris Saclay
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Evry Val d'Essone
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.uvsq.fr/barometre-science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Versailles Saint Quentin
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
