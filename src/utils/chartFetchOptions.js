@@ -1749,18 +1749,18 @@ export default function getFetchOptions({
     queryResponse.query.bool.filter.push({
       term: { bso_local_affiliations: bsoLocalAffiliation },
     });
-  }
-  const year = {};
-  if (startYear) {
-    year.gte = parseInt(startYear, 10);
-  }
-  if (endYear) {
-    year.lte = parseInt(endYear, 10);
-  }
-  if (year) {
-    queryResponse.query.bool.filter.push({
-      range: { year },
-    });
+    const year = {};
+    if (startYear) {
+      year.gte = parseInt(startYear, 10);
+    }
+    if (endYear) {
+      year.lte = parseInt(endYear, 10);
+    }
+    if (year) {
+      queryResponse.query.bool.filter.push({
+        range: { year },
+      });
+    }
   }
   return queryResponse;
 }
