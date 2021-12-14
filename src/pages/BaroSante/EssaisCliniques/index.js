@@ -64,7 +64,7 @@ function EssaisCliniques() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/essais-cliniques/general',
+                href: '/sante/essais-cliniques/general?id=general.dynamique',
               },
               {
                 label: intl.formatMessage({
@@ -121,7 +121,7 @@ function EssaisCliniques() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/essais-cliniques/caracteristiques',
+                href: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
               },
               {
                 label: intl.formatMessage({
@@ -230,7 +230,7 @@ function EssaisCliniques() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/essais-cliniques/promoteurs',
+                href: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
               },
               {
                 label: intl.formatMessage({
@@ -299,7 +299,7 @@ function EssaisCliniques() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/essais-cliniques/resultats',
+                href: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
               },
               {
                 label: intl.formatMessage({

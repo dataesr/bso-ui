@@ -65,7 +65,7 @@ function EtudesObservationnelles() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/etudes-observationnelles/general',
+                href: '/sante/etudes-observationnelles/general?id=general.dynamique',
               },
               {
                 label: intl.formatMessage({
@@ -124,7 +124,7 @@ function EtudesObservationnelles() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/etudes-observationnelles/caracteristiques',
+                href: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
               },
               {
                 label: intl.formatMessage({
@@ -216,7 +216,7 @@ function EtudesObservationnelles() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/etudes-observationnelles/promoteurs',
+                href: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
               },
               {
                 label: intl.formatMessage({
@@ -285,7 +285,7 @@ function EtudesObservationnelles() {
                 label: intl.formatMessage({
                   id: 'app.publi.navigation.go-to-page',
                 }),
-                href: '/sante/etudes-observationnelles/resultats',
+                href: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
               },
               {
                 label: intl.formatMessage({

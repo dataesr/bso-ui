@@ -65,7 +65,7 @@ function SantePublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/sante/publications/general',
+                  href: '/sante/publications/general?id=general.dynamique-ouverture',
                 },
                 {
                   label: intl.formatMessage({
@@ -175,19 +175,19 @@ function SantePublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/sante/publications/disciplines',
+                  href: '/sante/publications/disciplines?id=disciplines.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/disciplines?id=disciplines.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.dynamique',
                   }),
+                  href: '/sante/publications/disciplines?id=disciplines.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/disciplines?id=disciplines.voies-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.voies',
                   }),
+                  href: '/sante/publications/disciplines?id=disciplines.voies-ouverture',
                 },
               ]}
             >
@@ -232,43 +232,43 @@ function SantePublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/sante/publications/editeurs',
+                  href: '/sante/publications/editeurs?id=publishers.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/editeurs?id=publishers.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.dynamique',
                   }),
+                  href: '/sante/publications/editeurs?id=publishers.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/editeurs?id=publishers.type-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.modele',
                   }),
+                  href: '/sante/publications/editeurs?id=publishers.type-ouverture',
                 },
                 {
-                  href: '/sante/publications/editeurs?id=publishers.politiques-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.politique',
                   }),
+                  href: '/sante/publications/editeurs?id=publishers.politiques-ouverture',
                 },
                 {
-                  href: '/sante/publications/editeurs?id=publishers.poids-revues',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.revues',
                   }),
+                  href: '/sante/publications/editeurs?id=publishers.poids-revues',
                 },
                 {
-                  href: '/sante/publications/editeurs?id=publishers.repartition-licences',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.licences',
                   }),
+                  href: '/sante/publications/editeurs?id=publishers.repartition-licences',
                 },
                 {
-                  href: '/sante/publications/editeurs?id=publishers.couts-publication',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.frais',
                   }),
+                  href: '/sante/publications/editeurs?id=publishers.couts-publication',
                 },
               ]}
             >
@@ -375,31 +375,31 @@ function SantePublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/sante/publications/archives',
+                  href: '/sante/publications/archives?id=repositories.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/archives?id=repositories.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.dynamique',
                   }),
+                  href: '/sante/publications/archives?id=repositories.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/archives?id=repositories.plus-utilisees',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.utilisees',
                   }),
+                  href: '/sante/publications/archives?id=repositories.plus-utilisees',
                 },
                 {
-                  href: '/sante/publications/archives?id=repositories.dynamique-depot',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.depot',
                   }),
+                  href: '/sante/publications/archives?id=repositories.dynamique-depot',
                 },
                 {
-                  href: '/sante/publications/archives?id=repositories.dynamique-hal',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.hal',
                   }),
+                  href: '/sante/publications/archives?id=repositories.dynamique-hal',
                 },
               ]}
             >
@@ -464,19 +464,19 @@ function SantePublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/sante/publications/affiliations',
+                  href: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.affiliation.dynamique',
                   }),
+                  href: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
                 },
                 {
-                  href: '/sante/publications/affiliations?id=affiliations.pays',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.affiliation.impact',
                   }),
+                  href: '/sante/publications/affiliations?id=affiliations.pays',
                 },
               ]}
             >
