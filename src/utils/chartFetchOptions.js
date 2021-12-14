@@ -682,7 +682,7 @@ export default function getFetchOptions({
           aggs: {
             by_predatory: {
               terms: {
-                field: 'predatory_journal',
+                field: 'journal_or_publisher_in_bealls_list',
               },
             },
           },

@@ -35,6 +35,7 @@ function useGetData(observationSnap, domain) {
     const goldData = [];
     const hybridData = [];
     const diamondData = [];
+    const otherData = [];
     data.forEach((dataYear) => {
       goldData.push({
         publicationDate: dataYear.key,
@@ -72,8 +73,29 @@ function useGetData(observationSnap, domain) {
               .doc_count)
           / dataYear.doc_count,
       });
+      otherData.push({
+        bsoDomain,
+        publicationDate: dataYear.key,
+        y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'other')
+          .doc_count,
+        y_tot: dataYear.doc_count,
+        y:
+          (100
+            * dataYear.by_oa_colors.buckets.find((el) => el.key === 'other')
+              .doc_count)
+          / dataYear.doc_count,
+      });
     });
     const dataGraph = [
+      {
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.other',
+          }),
+        ),
+        data: otherData,
+        color: getCSSValue('--orange-soft-100'),
+      },
       {
         name: capitalize(
           intl.formatMessage({
@@ -116,6 +138,19 @@ function useGetData(observationSnap, domain) {
         y_abs: goldData[goldData.length - 1].y_abs,
         value: goldData[goldData.length - 1].y,
         color: getCSSValue('--yellow-medium-100'),
+      },
+      {
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.publishers.other',
+          }),
+        ),
+        bsoDomain,
+        publicationDate: otherData[otherData.length - 1].publicationDate,
+        y_tot: otherData[otherData.length - 1].y_tot,
+        y_abs: otherData[otherData.length - 1].y_abs,
+        value: otherData[otherData.length - 1].y,
+        color: getCSSValue('--orange-soft-100'),
       },
       {
         name: capitalize(

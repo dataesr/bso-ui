@@ -1814,7 +1814,7 @@ export const chartOptions = {
       options.yAxis = {
         stops: [[100, color]],
         min: 0,
-        max: 30,
+        max: 100,
         lineWidth: 0,
         tickWidth: 0,
         minorTickInterval: null,

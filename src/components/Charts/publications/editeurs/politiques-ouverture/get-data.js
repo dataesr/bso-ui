@@ -53,13 +53,13 @@ function useGetData(lastObservationSnap, domain) {
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
         y_abs: elem.by_oa_colors.buckets
-          .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+          .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
           .reduce((a, b) => a + b.doc_count, 0),
         y_tot: elem.doc_count,
         y:
           (100
             * elem.by_oa_colors.buckets
-              .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+              .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
               .reduce((a, b) => a + b.doc_count, 0))
           / elem.doc_count,
       });
@@ -106,11 +106,11 @@ function useGetData(lastObservationSnap, domain) {
         x:
           (100
             * elem.by_oa_colors.buckets
-              .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+              .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
               .reduce((a, b) => a + b.doc_count, 0))
           / elem.doc_count,
         x_abs: elem.by_oa_colors.buckets
-          .filter((el) => ['gold', 'hybrid', 'diamond'].includes(el.key))
+          .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
           .reduce((a, b) => a + b.doc_count, 0),
         y:
           100
