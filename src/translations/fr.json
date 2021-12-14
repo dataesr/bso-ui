@@ -824,6 +824,7 @@
   "app.publishers.gold": "gold full APC",
   "app.publishers.green-only": "accès ouvert uniquement sur archive ouverte",
   "app.publishers.hybrid": "hybride",
+  "app.publishers.other": "autre",
   "app.publishers.objectif-science-ouverte": "Objectif national de<br>la science ouverte",
   "app.publishers.open-by-publisher": "accès ouvert sur le site de l'éditeur / plateforme",
   "app.repositories-filter-label": "Sélectionner une archive ouverte",
