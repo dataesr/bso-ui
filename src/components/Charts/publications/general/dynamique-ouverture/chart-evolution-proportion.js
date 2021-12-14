@@ -40,19 +40,19 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   );
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
+      domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
-      isLoading={isLoading || !dataGraph2}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !dataGraph2}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
@@ -60,15 +60,15 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 };
 // TODO remove publi studyType from id
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
   domain: '',
+  hasComments: true,
+  hasFooter: true,
   id: 'publi.general.dynamique-ouverture.chart-evolution-proportion',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 

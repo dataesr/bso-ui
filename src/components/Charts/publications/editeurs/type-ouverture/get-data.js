@@ -180,7 +180,22 @@ function useGetData(observationSnap, domain) {
       },
     ];
 
-    return { categories, dataGraph, dataGraphTreemap };
+    const comments = {
+      year1: 2018,
+      year2: 2019,
+      year3: 2020,
+      diamond1: diamondData
+        .find((item) => item.publicationDate === 2018)
+        .y.toFixed(2),
+      diamond2: diamondData
+        .find((item) => item.publicationDate === 2019)
+        .y.toFixed(2),
+      diamond3: diamondData
+        .find((item) => item.publicationDate === 2020)
+        .y.toFixed(2),
+    };
+
+    return { categories, dataGraph, dataGraphTreemap, comments };
   }
 
   useEffect(() => {

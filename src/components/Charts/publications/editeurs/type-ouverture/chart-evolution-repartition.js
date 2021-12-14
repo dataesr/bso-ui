@@ -3,22 +3,25 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain }) => {
+const Chart = ({ id, domain, hasComments }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap || '2020',
@@ -26,8 +29,11 @@ const Chart = ({ id, domain }) => {
   );
   const { categories, dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomain, intl));
+  }, [allData, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories,
     dataGraph,
@@ -35,11 +41,12 @@ const Chart = ({ id, domain }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !allData}
+      domain={domain}
+      hasComments={false}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !allData}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -47,17 +54,20 @@ const Chart = ({ id, domain }) => {
         ref={chartRef}
         id={idWithDomain}
       />
+      {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  id: 'publi.publishers.type-ouverture.chart-evolution-repartition',
   domain: '',
+  hasComments: true,
+  id: 'publi.publishers.type-ouverture.chart-evolution-repartition',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;
