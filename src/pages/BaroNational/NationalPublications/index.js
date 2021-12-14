@@ -80,7 +80,7 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/general',
+                  href: '/publications/general?id=general.dynamique-ouverture',
                 },
                 {
                   label: intl.formatMessage({
@@ -153,19 +153,19 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/disciplines',
+                  href: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                 },
                 {
-                  href: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.dynamique',
                   }),
+                  href: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                 },
                 {
-                  href: '/publications/disciplines?id=disciplines.voies-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.voies',
                   }),
+                  href: '/publications/disciplines?id=disciplines.voies-ouverture',
                 },
               ]}
             >
@@ -198,37 +198,37 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/editeurs',
+                  href: '/publications/editeurs?id=publishers.dynamique-ouverture',
                 },
                 {
-                  href: '/publications/editeurs?id=publishers.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.dynamique',
                   }),
+                  href: '/publications/editeurs?id=publishers.dynamique-ouverture',
                 },
                 {
-                  href: '/publications/editeurs?id=publishers.type-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.modele',
                   }),
+                  href: '/publications/editeurs?id=publishers.type-ouverture',
                 },
                 {
-                  href: '/publications/editeurs?id=publishers.politiques-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.politique',
                   }),
+                  href: '/publications/editeurs?id=publishers.politiques-ouverture',
                 },
                 {
-                  href: '/publications/editeurs?id=publishers.poids-revues',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.revues',
                   }),
+                  href: '/publications/editeurs?id=publishers.poids-revues',
                 },
                 {
-                  href: '/publications/editeurs?id=publishers.repartition-licences',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.licences',
                   }),
+                  href: '/publications/editeurs?id=publishers.repartition-licences',
                 },
                 {
                   href: '/publications/editeurs?id=publishers.couts-publication',
@@ -271,9 +271,7 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft25}
                   anchorId='publishers.poids-revues'
                 >
-                  <BSOChart
-                    id='publi.publishers.poids-revues.chart-repartition'
-                  />
+                  <BSOChart id='publi.publishers.poids-revues.chart-repartition' />
                 </QuestionSection>
 
                 <QuestionSection
@@ -311,31 +309,31 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/archives',
+                  href: '/publications/archives?id=repositories.dynamique-ouverture',
                 },
                 {
-                  href: '/publications/archives?id=repositories.dynamique-ouverture',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.dynamique',
                   }),
+                  href: '/publications/archives?id=repositories.dynamique-ouverture',
                 },
                 {
-                  href: '/publications/archives?id=repositories.plus-utilisees',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.utilisees',
                   }),
+                  href: '/publications/archives?id=repositories.plus-utilisees',
                 },
                 {
-                  href: '/publications/archives?id=repositories.dynamique-depot',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.depot',
                   }),
+                  href: '/publications/archives?id=repositories.dynamique-depot',
                 },
                 {
-                  href: '/publications/archives?id=repositories.dynamique-hal',
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.hal',
                   }),
+                  href: '/publications/archives?id=repositories.dynamique-hal',
                 },
               ]}
             >

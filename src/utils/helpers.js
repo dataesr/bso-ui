@@ -1,3 +1,5 @@
+import locals from '../config/locals.json';
+
 /**
  *
  * @param property
@@ -261,4 +263,50 @@ export function stringIsIntTheKitchen(str, key, array) {
  */
 export function isInProduction() {
   return process.env.REACT_APP_ENV === 'production';
+}
+
+/**
+ * Create a dedicated object from search location
+ * @param {string} search
+ * @returns {Object}
+ */
+export function getURLSearchParams(search) {
+  const urlSearchParams = new URLSearchParams(search);
+  const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
+  let commentsName = '';
+  let displayTitle = true;
+  let endYear;
+  let name;
+  let startYear = 2013;
+  let comment = '';
+  if (bsoLocalAffiliation) {
+    comment = parseInt(
+      urlSearchParams.get('comment') || locals[bsoLocalAffiliation].comment,
+      10,
+    );
+    commentsName = urlSearchParams.get('commentsName')
+      || locals[bsoLocalAffiliation].commentsName;
+    displayTitle = !(
+      (urlSearchParams.get('displayTitle')
+        || locals[bsoLocalAffiliation].displayTitle) === 'false'
+    );
+    endYear = parseInt(
+      urlSearchParams.get('endYear') || locals[bsoLocalAffiliation].endYear,
+      10,
+    );
+    name = urlSearchParams.get('name') || locals[bsoLocalAffiliation].name;
+    startYear = parseInt(
+      urlSearchParams.get('startYear') || locals[bsoLocalAffiliation].startYear,
+      10,
+    );
+  }
+  return {
+    bsoLocalAffiliation,
+    comment,
+    commentsName,
+    displayTitle,
+    endYear,
+    name,
+    startYear,
+  };
 }

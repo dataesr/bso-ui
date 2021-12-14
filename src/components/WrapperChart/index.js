@@ -4,11 +4,11 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import locals from '../../config/locals.json';
 import { domains, graphIds, studiesTypes } from '../../utils/constants';
 import {
   getFormattedDate,
   getSource,
+  getURLSearchParams,
   withContext,
   withDomain,
 } from '../../utils/helpers';
@@ -43,14 +43,12 @@ function WrapperChart({
     },
     dataTitle,
   );
-  const { search } = useLocation();
-  const urlSearchParams = new URLSearchParams(search);
-  const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
   let otherSources = [];
-  if (bsoLocalAffiliations) {
-    const prefixTitle = urlSearchParams.get('name') || locals[bsoLocalAffiliations].name;
-    title = `${prefixTitle}: ${title}`;
-    otherSources = [prefixTitle];
+  const { search } = useLocation();
+  const { name } = getURLSearchParams(search);
+  if (name) {
+    title = `${name}: ${title}`;
+    otherSources = [name];
   }
   const comments = intl.messages[`${idWithDomain}.comments`]
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })

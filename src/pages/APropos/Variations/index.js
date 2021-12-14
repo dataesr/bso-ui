@@ -63,7 +63,7 @@ function Variations() {
                   le bouton "Intégration" en bas du graphe voulu, afin de
                   récupérer l'url du graphe en question. Ensuite, ajouter à
                   cette url l'identifiant RNSR de la structure (ex:
-                  <i>bso-local-affiliations=130015506</i>
+                  <i>bsoLocalAffiliation=130015506</i>
                   {' '}
                   pour l'Université de
                   Lorraine).
@@ -75,20 +75,42 @@ function Variations() {
                   directement dans l'URL via des paramètres :
                   <ul>
                     <li>
+                      <b>bsoLocalAffiliation</b>
+                      : RNSR de l'établissement (ex:
+                      bsoLocalAffiliation=130015506)
+                      <i>requis</i>
+                    </li>
+                    <li>
+                      <b>commentsName</b>
+                      : Nom de l'établissement / laboratoire
+                      qui sera affiché dans les commentaires (ex:
+                      commentsName=pour l'université de Lorraine)
+                      <i>défaut: ''</i>
+                    </li>
+                    <li>
+                      <b>displayTitle</b>
+                      : affiche ou masque le titre (ex:
+                      displayTitle=false),
+                      <i>défaut: true</i>
+                    </li>
+                    <li>
+                      <b>endYear</b>
+                      : filtre sur l'année de publication
+                      inférieure ou égale (ex: endYear=2020)
+                      <i>défaut: Aucune</i>
+                    </li>
+                    <li>
                       <b>name</b>
                       : Nom de l'établissement / laboratoire qui
                       préfixe le titre du graphe (ex: name=Université de
                       Lorraine)
+                      <i>défaut: Aucun</i>
                     </li>
                     <li>
-                      <b>start-year</b>
+                      <b>startYear</b>
                       : filtre sur l'année de publication
-                      supérieure ou égale (ex: start-year=2016)
-                    </li>
-                    <li>
-                      <b>end-year</b>
-                      : filtre sur l'année de publication
-                      inférieure ou égale (ex: end-year=2020)
+                      supérieure ou égale (ex: startYear=2016)
+                      <i>défaut: 2013</i>
                     </li>
                   </ul>
                   <li>
@@ -103,11 +125,11 @@ function Variations() {
               {' '}
               <i>
                 <a
-                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bso-local-affiliations=130015506&start-year=2016'
+                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false'
                   rel='noreferrer'
                   target='_blank'
                 >
-                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?bso-local-affiliations=130015506&start-year=2016
+                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false
                 </a>
               </i>
             </Col>
@@ -142,7 +164,60 @@ function Variations() {
             <Col n='12 lg-8'>
               Liste des déclinaisons locales des BSO :
               <ul className='style-disc'>
-                <li>Université de Lorraine</li>
+                <li>
+                  <a
+                    href='https://scienceouverte.univ-lorraine.fr/barometre-lorrain-de-la-science-ouverte/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Lorraine
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.pasteur.fr/fr/ceris/bibliotheque/s-engager-science-ouverte#barometre'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Institut Pasteur
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://scienceouverte.unistra.fr/strategie/le-barometre-science-ouverte/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Strasbourg
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.universite-paris-saclay.fr/barometre-science-ouverte-2021'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Paris Saclay
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Evry Val d'Essone
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.uvsq.fr/barometre-science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Versailles Saint Quentin
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>

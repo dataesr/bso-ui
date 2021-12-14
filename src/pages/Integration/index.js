@@ -5,6 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import BSOChart from '../../components/Charts';
 import Loader from '../../components/Loader';
+import { getURLSearchParams } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 const Integration = () => {
@@ -12,18 +13,20 @@ const Integration = () => {
   const { pathname, search } = useLocation();
   const intl = useIntl();
   const { switchLang } = useLang();
-
+  const { displayTitle } = getURLSearchParams(search);
   switchLang(language, pathname, search);
 
   return (
     <Container fluid>
-      <Row justifyContent='center'>
-        <Col n='10' spacing='px-3w'>
-          <TitleDisplay as='h2' size='xs'>
-            {intl.formatMessage({ id: 'app.header.title' })}
-          </TitleDisplay>
-        </Col>
-      </Row>
+      {displayTitle && (
+        <Row justifyContent='center'>
+          <Col n='10' spacing='px-3w'>
+            <TitleDisplay as='h4' size='xs' className='title-xxs'>
+              {intl.formatMessage({ id: 'app.header.title' })}
+            </TitleDisplay>
+          </Col>
+        </Row>
+      )}
       <Row justifyContent='center'>
         <Col n='10'>
           <Suspense fallback={<Loader />}>

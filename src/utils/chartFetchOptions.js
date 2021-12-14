@@ -1,5 +1,7 @@
-import locals from '../config/locals.json';
-import { getPublicationYearFromObservationSnap } from './helpers';
+import {
+  getPublicationYearFromObservationSnap,
+  getURLSearchParams,
+} from './helpers';
 
 /**
  *
@@ -1742,15 +1744,11 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const urlSearchParams = new URLSearchParams(search);
-  const bsoLocalAffiliations = urlSearchParams.get('bso-local-affiliations');
-  if (bsoLocalAffiliations) {
+  const { bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
+  if (bsoLocalAffiliation) {
     queryResponse.query.bool.filter.push({
-      term: { bso_local_affiliations: bsoLocalAffiliations },
+      term: { bso_local_affiliations: bsoLocalAffiliation },
     });
-    const startYear = urlSearchParams.get('start-year')
-      || locals[bsoLocalAffiliations].startYear;
-    const endYear = urlSearchParams.get('end-year') || locals[bsoLocalAffiliations].endYear;
     const year = {};
     if (startYear) {
       year.gte = parseInt(startYear, 10);

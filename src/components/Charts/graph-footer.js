@@ -43,11 +43,13 @@ const GraphFooter = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const urlSearchParams = new URLSearchParams(search);
   urlSearchParams.delete('id');
-  const urlToShare = `${window.location.origin}/integration/${
-    intl.locale
-  }/${srcPath}${studyType ? '/' : ''}${studyType}${
-    Array.from(urlSearchParams).length ? '?' : ''
-  }${urlSearchParams}`;
+  const urlToShare = encodeURI(
+    `${window.location.origin}/integration/${intl.locale}/${srcPath}${
+      studyType ? '/' : ''
+    }${studyType}${
+      Array.from(urlSearchParams).length ? '?' : ''
+    }${urlSearchParams}`,
+  );
   const shareFill = getCSSValue('--blue-soft-100');
   const clipboardContent = `<iframe id="${srcPath}" title="${title}" width="800" height="600" src="${urlToShare}"></iframe>`;
 

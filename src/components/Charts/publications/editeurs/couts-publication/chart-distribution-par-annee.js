@@ -1,6 +1,7 @@
 /* eslint-disable react/no-this-in-sfc */
 import Axios from 'axios';
 import Highcharts from 'highcharts';
+import highchartsMore from 'highcharts/highcharts-more';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
@@ -19,6 +20,7 @@ import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import useGetData from './get-data';
 
+highchartsMore(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 

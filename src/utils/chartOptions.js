@@ -1,10 +1,10 @@
-import locals from '../config/locals.json';
 import {
   capitalize,
   cleanNumber,
   getCSSValue,
   getPercentageYAxis,
   getSource,
+  getURLSearchParams,
   withtStudyType,
 } from './helpers';
 
@@ -348,7 +348,6 @@ export const chartOptions = {
             },
           },
         };
-
         options.annotations = [
           {
             labels: [
@@ -373,7 +372,7 @@ export const chartOptions = {
             },
           },
         ];
-
+        options.responsive.rules[0].chartOptions.legend.align = 'right';
         return options;
       },
     },
@@ -543,15 +542,7 @@ export const chartOptions = {
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, search) => {
-      const urlSearchParams = new URLSearchParams(search);
-      const bsoLocalAffiliations = urlSearchParams.get(
-        'bso-local-affiliations',
-      );
-      let pointStart = 2013;
-      if (bsoLocalAffiliations) {
-        pointStart = urlSearchParams.get('start-year')
-          || locals[bsoLocalAffiliations].startYear;
-      }
+      const { startYear } = getURLSearchParams(search);
       const options = getGraphOptions(id, intl);
       options.chart.type = 'spline';
       options.xAxis.title.text = intl.formatMessage({
@@ -567,7 +558,7 @@ export const chartOptions = {
         id: `${id}.tooltip`,
       });
       options.plotOptions = {
-        series: { pointStart },
+        series: { pointStart: startYear },
         spline: {
           dataLabels: {
             enabled: true,
@@ -1198,6 +1189,11 @@ export const chartOptions = {
           borderColor: getCSSValue('--yellow-medium-100'),
           color: getCSSValue('--yellow-medium-25'),
           connectColor: getCSSValue('--yellow-medium-100'),
+          labels: {
+            formatter() {
+              return this.value.toFixed(0);
+            },
+          },
         },
       };
       options.plotOptions = {
@@ -1250,7 +1246,7 @@ export const chartOptions = {
           },
         },
       ];
-
+      options.responsive.rules[0].chartOptions.legend.align = 'right';
       return options;
     },
   },
@@ -1791,22 +1787,6 @@ export const chartOptions = {
         };
         color = options.series[0].color;
       }
-      /* column: {
-          dataLabels: {
-            style: {
-              textOutline: 'none',
-            },
-            enabled: true,
-            inside: false,
-            formatter() {
-              let label = this.y.toFixed(1).concat(' % soit ');
-              label = label.concat('<br/>');
-              label = label.concat(this.point.y_abs).concat(' publications');
-              return label;
-            },
-          },
-        }, */
-      // };
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -1826,7 +1806,6 @@ export const chartOptions = {
           enabled: false,
         },
       };
-      // options.yAxis = getPercentageYAxis(false, 3);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.publi.percentage-publi-bealls',
       });
@@ -1972,7 +1951,6 @@ export const chartOptions = {
             intlKey: 'app.studies.general.sankey.no_publications_result.label',
           },
         ];
-
         const nodes = [];
         // TODO refacto
         allNodes.forEach((node) => {
@@ -1995,8 +1973,6 @@ export const chartOptions = {
       };
       const options = getGraphOptions(id, intl, studyType);
       options.colors = [nodeColor.start];
-      // options.chart.height = '800px';
-
       delete options.tooltip.pointFormat;
       options.series = [
         {
@@ -2142,13 +2118,10 @@ export const chartOptions = {
           return label;
         },
       };
-      options.yAxis = {
-        categories: data?.categoriesDistribution || [],
-        min: 0,
-        max: data?.categoriesDistribution?.length - 1 || 10,
-        title: false,
-        reversed: true,
-      };
+      options.yAxis.categories = data?.categoriesDistribution || [];
+      options.yAxis.min = 0;
+      options.yAxis.max = data?.categoriesDistribution?.length - 1 || 10;
+      options.yAxis.reversed = true;
       options.plotOptions = {
         areasplinerange: {
           marker: {
@@ -2170,14 +2143,14 @@ export const chartOptions = {
         labels: {
           formatter() {
             if (this.isFirst) {
-              return `${this.value} ${intl.formatMessage({
-                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.year',
-              })}`;
+              return intl.formatMessage({
+                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.0-year',
+              });
             }
             if (this.isLast) {
-              return `${this.value} ${intl.formatMessage({
-                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.year-and-more',
-              })}`;
+              return intl.formatMessage({
+                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.10-years-and-more',
+              });
             }
             return this.value;
           },
