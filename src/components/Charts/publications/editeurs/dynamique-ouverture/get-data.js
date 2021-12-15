@@ -134,7 +134,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
       bsoDomain,
-      y: el.data[el.data.length - 1].y,
+      y: el.data.length ? el.data[el.data.length - 1].y : 0,
       publisher:
         needle === '*'
           ? intl.formatMessage({ id: 'app.all-publishers' })
