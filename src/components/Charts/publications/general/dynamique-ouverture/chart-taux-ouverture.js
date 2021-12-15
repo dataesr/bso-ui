@@ -33,7 +33,7 @@ const Chart = ({ hasFooter, hasComments, domain, id }) => {
 
   useEffect(() => {
     setChartComments(customComments(dataGraph1, idWithDomain, intl, search));
-  }, [dataGraph1, idWithDomain, intl]);
+  }, [dataGraph1, idWithDomain, intl, search]);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
