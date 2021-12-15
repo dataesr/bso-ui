@@ -119,6 +119,13 @@ function Variations() {
                     graphes relatifs au domaine de la santé ne seront pas
                     adaptables.
                   </li>
+                  <li>
+                    D'autre part, l'url soit être encodée. Pour ce faire, il
+                    faut copier coller l'url composée dans un navigateur et
+                    celui-ci la réécrira dans la barre d'adresse. C'est alors
+                    cette URL réécrite qu'il faudra mettre dans l'attribut "src"
+                    de l'iframe.
+                  </li>
                 </li>
               </ol>
               Exemple:
