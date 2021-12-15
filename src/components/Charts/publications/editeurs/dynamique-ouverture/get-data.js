@@ -144,15 +144,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
     }));
 
     const comments = {
-      observationYear: dataGraph1[0].name,
-      publicationYear: dataGraph1[1].name,
-      beforePublicationYear: dataGraph1[2].name,
-      rate: dataGraph1[0].y.toFixed(0),
-      year1: dataGraph2[2].name,
-      year2: dataGraph2[1].name,
-      year3: dataGraph2[1].data[4].publicationDate,
-      rate1: dataGraph2[2].data[4].y.toFixed(2),
-      rate2: dataGraph2[1].data[4].y.toFixed(2),
+      observationYear: dataGraph1?.[0].name || '2021',
+      publicationYear: dataGraph1?.[1].name || '2020',
+      beforePublicationYear: dataGraph1?.[2].name || '2019',
+      rate: dataGraph1?.[0].y.toFixed(0) || '0',
+      year1: dataGraph2?.[2].name || '2019',
+      year2: dataGraph2?.[1].name || '2020',
+      year3: dataGraph2?.[1]?.data?.[4]?.publicationDate || '2017',
+      rate1: dataGraph2?.[2]?.data?.[4]?.y.toFixed(2) || '0',
+      rate2: dataGraph2?.[1]?.data?.[4]?.y.toFixed(2) || '0',
     };
 
     return { dataGraph1, dataGraph2, comments };
