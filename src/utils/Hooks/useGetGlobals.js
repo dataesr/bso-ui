@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../config/config';
 import getFetchOptions from '../chartFetchOptions';
-import { clearLocalStorage } from '../helpers';
+import { clearSessionStorage } from '../helpers';
 import useLang from './useLang';
 
 export const GlobalsContext = createContext();
@@ -12,32 +12,32 @@ export const GlobalsContext = createContext();
 export const GlobalsContextProvider = ({ children }) => {
   const { lang } = useLang();
   const hours = 2;
-  const storedTimer = localStorage.getItem('storedTimer');
+  const storedTimer = sessionStorage.getItem('storedTimer');
 
   if (
     storedTimer
     && new Date().getTime() - storedTimer > hours * 60 * 60 * 1000
   ) {
-    clearLocalStorage([
+    clearSessionStorage([
       '__observationSnaps__',
       '__updateDate__',
       'storedTimer',
     ]);
   }
-  const storedObservationSnaps = localStorage.getItem('__observationSnaps__');
+  const storedObservationSnaps = sessionStorage.getItem('__observationSnaps__');
   const [observationSnaps, setObservationSnaps] = useState(
     JSON.parse(storedObservationSnaps),
   );
-  const storedLastObservationSnap = localStorage.getItem('__lastObservationSnap__') || '';
+  const storedLastObservationSnap = sessionStorage.getItem('__lastObservationSnap__') || '';
   const [lastObservationSnap, setLastObservationSnap] = useState(
     storedLastObservationSnap,
   );
-  const storedBeforeLastObservationSnap = localStorage.getItem('__beforeLastObservationSnap__') || '';
+  const storedBeforeLastObservationSnap = sessionStorage.getItem('__beforeLastObservationSnap__') || '';
   const [beforeLastObservationSnap, setBeforeLastObservationSnap] = useState(
     storedBeforeLastObservationSnap,
   );
 
-  const storedUpdateDate = localStorage.getItem('__updateDate__');
+  const storedUpdateDate = sessionStorage.getItem('__updateDate__');
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
   async function getObservationSnaps() {
@@ -73,12 +73,12 @@ export const GlobalsContextProvider = ({ children }) => {
       const responseObservationSnaps = await getObservationSnaps();
       if (responseObservationSnaps && responseObservationSnaps.length > 0) {
         setObservationSnaps(responseObservationSnaps);
-        localStorage.setItem(
+        sessionStorage.setItem(
           '__observationSnaps__',
           JSON.stringify(responseObservationSnaps),
         );
         setLastObservationSnap(responseObservationSnaps.sort().reverse()[0]);
-        localStorage.setItem(
+        sessionStorage.setItem(
           '__lastObservationSnap__',
           responseObservationSnaps.sort().reverse()[0],
         );
@@ -86,7 +86,7 @@ export const GlobalsContextProvider = ({ children }) => {
         setBeforeLastObservationSnap(
           responseObservationSnaps.sort().reverse()[1],
         );
-        localStorage.setItem(
+        sessionStorage.setItem(
           '__beforeLastObservationSnap__',
           responseObservationSnaps.sort().reverse()[1],
         );
@@ -95,9 +95,9 @@ export const GlobalsContextProvider = ({ children }) => {
           responseObservationSnaps.sort().reverse()[0],
         );
         setUpdateDate(responseUpdateDate);
-        localStorage.setItem('__updateDate__', responseUpdateDate);
+        sessionStorage.setItem('__updateDate__', responseUpdateDate);
 
-        localStorage.setItem('storedTimer', new Date().getTime());
+        sessionStorage.setItem('storedTimer', new Date().getTime());
       }
     }
     if (!observationSnaps) {

@@ -129,9 +129,9 @@ export function getPercentageYAxis(showTotal = true, max = null) {
  *
  * @param keys
  */
-export function clearLocalStorage(keys) {
+export function clearSessionStorage(keys) {
   for (let i = 0; i < keys.length; i += 1) {
-    localStorage.removeItem(keys[i]);
+    sessionStorage.removeItem(keys[i]);
   }
 }
 
