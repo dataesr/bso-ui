@@ -7,6 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -24,6 +25,7 @@ const Chart = ({ hasComments, id, domain }) => {
   const [chartComments, setChartComments] = useState('');
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
+  const { search } = useLocation();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   let graphs = [];
@@ -40,8 +42,8 @@ const Chart = ({ hasComments, id, domain }) => {
   }
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl));
-  }, [data, idWithDomain, intl]);
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
 
   const serieLength = graphs[0]?.series[0].data.length - 1;
   // classement par ordre décroissant (en taux d'oa) des disciplines
@@ -70,7 +72,9 @@ const Chart = ({ hasComments, id, domain }) => {
           ))}
         </Row>
       </Container>
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };

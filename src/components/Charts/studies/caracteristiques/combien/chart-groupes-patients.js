@@ -7,6 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -29,6 +30,7 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const intl = useIntl();
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
+  const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(
     studyType,
     sponsorType,
@@ -41,8 +43,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   );
 
   useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
+    setChartComments(
+      customComments(allData, idWithDomainAndStudyType, intl, search),
+    );
+  }, [allData, idWithDomainAndStudyType, intl, search]);
 
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
@@ -76,23 +80,25 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
         ref={chartRef}
         id={idWithDomainAndStudyType}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
   domain: 'health',
-  studyType: 'Interventional',
+  hasComments: true,
+  hasFooter: true,
   id: 'caracteristiques.combien.chart-groupes-patients',
+  studyType: 'Interventional',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
   studyType: PropTypes.oneOf(studiesTypes),
 };
 

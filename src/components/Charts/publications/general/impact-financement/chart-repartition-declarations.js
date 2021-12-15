@@ -57,8 +57,8 @@ Chart.defaultProps = {
   id: 'publi.general.impact-financement.chart-repartition-financements',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

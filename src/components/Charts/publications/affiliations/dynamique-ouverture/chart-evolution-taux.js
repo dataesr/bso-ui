@@ -183,16 +183,16 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.affiliations.dynamique-ouverture.chart-evolution-taux',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.affiliations.dynamique-ouverture.chart-evolution-taux',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

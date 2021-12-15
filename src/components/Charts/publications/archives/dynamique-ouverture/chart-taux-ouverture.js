@@ -59,8 +59,8 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   }, []);
 
   useEffect(() => {
-    setChartComments(customComments(dataGraph1, idWithDomain, intl));
-  }, [dataGraph1, idWithDomain, intl]);
+    setChartComments(customComments(dataGraph1, idWithDomain, intl, search));
+  }, [dataGraph1, idWithDomain, intl, search]);
 
   const archiveTitle = archive !== '*' ? ` (${archive})` : '';
   const dataTitle = { archiveTitle };
@@ -96,7 +96,9 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         options={optionsGraph}
         ref={chartRef}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };

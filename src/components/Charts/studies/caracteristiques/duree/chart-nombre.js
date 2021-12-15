@@ -7,6 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -29,6 +30,7 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const intl = useIntl();
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
+  const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
   const idWithDomainAndStudyType = withtStudyType(
     withDomain(id, domain),
@@ -36,8 +38,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   );
 
   useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
+    setChartComments(
+      customComments(allData, idWithDomainAndStudyType, intl, search),
+    );
+  }, [allData, idWithDomainAndStudyType, intl, search]);
 
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
@@ -71,7 +75,9 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
         options={optionsGraph}
         ref={chartRef}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };

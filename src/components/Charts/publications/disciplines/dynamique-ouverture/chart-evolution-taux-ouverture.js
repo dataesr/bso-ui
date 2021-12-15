@@ -9,6 +9,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -36,6 +37,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals();
+  const { search } = useLocation();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   const orangeSoft75 = getCSSValue('--orange-soft-75');
@@ -155,8 +157,8 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   ]);
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl));
-  }, [data, idWithDomain, intl]);
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
 
   return (
     <WrapperChart
@@ -190,7 +192,9 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         options={optionsGraph}
         ref={chartRef}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };

@@ -7,6 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -28,6 +29,7 @@ const Chart = ({ hasComments, id, domain }) => {
   const [isOa, setIsOa] = useState(false);
   const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
+  const { search } = useLocation();
   const {
     allData: { dataGraph },
     isLoading,
@@ -42,9 +44,9 @@ const Chart = ({ hasComments, id, domain }) => {
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
-      setChartComments(customComments(dataGraph, idWithDomain, intl));
+      setChartComments(customComments(dataGraph, idWithDomain, intl, search));
     }
-  }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
+  }, [dataGraph, idWithDomain, intl, isOa, search]);
 
   return (
     <WrapperChart
@@ -66,19 +68,21 @@ const Chart = ({ hasComments, id, domain }) => {
         ref={chartRef}
         id={id}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasComments: true,
   domain: '',
+  hasComments: true,
   id: 'publi.general.langues-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
-  hasComments: PropTypes.bool,
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 

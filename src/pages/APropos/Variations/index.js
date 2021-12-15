@@ -88,6 +88,12 @@ function Variations() {
                       <i>défaut: ''</i>
                     </li>
                     <li>
+                      <b>displayComment</b>
+                      : affiche ou masque le commentaire
+                      (ex: displayComment=false),
+                      <i>défaut: true</i>
+                    </li>
+                    <li>
                       <b>displayTitle</b>
                       : affiche ou masque le titre (ex:
                       displayTitle=false),

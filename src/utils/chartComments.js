@@ -1,6 +1,12 @@
 import sanitizeHtml from 'sanitize-html';
 
-export default function customComments(data, id, intl) {
+import { getURLSearchParams } from './helpers';
+
+export default function customComments(data, id, intl, search = '') {
+  const { displayComment } = getURLSearchParams(search);
+  if (!displayComment) {
+    return false;
+  }
   let comments = 'Commentaire non rédigé';
   if (data) {
     comments = intl.formatMessage(

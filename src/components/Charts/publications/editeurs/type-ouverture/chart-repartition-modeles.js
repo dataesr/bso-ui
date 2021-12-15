@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -25,6 +26,7 @@ const Chart = ({ id, domain, hasComments }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
+  const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap || 2020,
     domain,
@@ -32,7 +34,7 @@ const Chart = ({ id, domain, hasComments }) => {
   const { dataGraphTreemap } = allData;
   const idWithDomain = withDomain(id, domain);
   useEffect(() => {
-    setChartComments(customComments(allData, idWithDomain, intl));
+    setChartComments(customComments(allData, idWithDomain, intl, search));
   }, [allData, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -55,7 +57,9 @@ const Chart = ({ id, domain, hasComments }) => {
         options={optionsGraph}
         ref={chartRef}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };

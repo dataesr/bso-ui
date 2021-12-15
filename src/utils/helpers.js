@@ -272,38 +272,41 @@ export function isInProduction() {
  */
 export function getURLSearchParams(search) {
   const urlSearchParams = new URLSearchParams(search);
-  const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
+  const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   let commentsName = '';
+  let displayComment = true;
   let displayTitle = true;
   let endYear;
   let name;
   let startYear = 2013;
-  let comment = '';
   if (bsoLocalAffiliation) {
-    comment = parseInt(
-      urlSearchParams.get('comment') || locals[bsoLocalAffiliation].comment,
-      10,
-    );
-    commentsName = urlSearchParams.get('commentsName')
+    commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals[bsoLocalAffiliation].commentsName;
+    displayComment = !(
+      (urlSearchParams.get('displayComment')?.toLowerCase()
+        || locals[bsoLocalAffiliation].displayComment) === 'false'
+    );
     displayTitle = !(
-      (urlSearchParams.get('displayTitle')
+      (urlSearchParams.get('displayTitle')?.toLowerCase()
         || locals[bsoLocalAffiliation].displayTitle) === 'false'
     );
     endYear = parseInt(
-      urlSearchParams.get('endYear') || locals[bsoLocalAffiliation].endYear,
+      urlSearchParams.get('endYear')?.toLowerCase()
+        || locals[bsoLocalAffiliation].endYear,
       10,
     );
-    name = urlSearchParams.get('name') || locals[bsoLocalAffiliation].name;
+    name = urlSearchParams.get('name')?.toLowerCase()
+      || locals[bsoLocalAffiliation].name;
     startYear = parseInt(
-      urlSearchParams.get('startYear') || locals[bsoLocalAffiliation].startYear,
+      urlSearchParams.get('startYear')?.toLowerCase()
+        || locals[bsoLocalAffiliation].startYear,
       10,
     );
   }
   return {
     bsoLocalAffiliation,
-    comment,
     commentsName,
+    displayComment,
     displayTitle,
     endYear,
     name,
