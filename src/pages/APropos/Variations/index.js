@@ -231,6 +231,114 @@ function Variations() {
                     Université Versailles Saint Quentin
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte.aspx'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CEA
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://scienceouverte.univ-rennes1.fr/barometre-de-la-science-ouverte-de-luniversite-de-rennes-1'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Rennes 1
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www6.inrae.fr/dipso/La-science-ouverte-a-INRAE/Barometre-Science-Ouverte-INRAE'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    INRAE
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.univ-brest.fr/drive/menu/DRIVe/Science-Ouverte/Barometre-de-la-science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Brest
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.univ-lyon1.fr/recherche/point-barometre-pour-la-science-ouverte-lyon'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Lyon 1
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.imt-mines-albi.fr/barometre-science-ouverte-2021'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    IMT Mines Albi
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.unilasalle.fr/actualites/le-barometre-de-la-science-ouverte-unilasalle-est-disponible'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    UniLaSalle
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre1'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CNAM
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='http://pole-ist.centralesupelec.fr/fr/node/430'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CentraleSupélec
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://guide-hal.univ-grenoble-alpes.fr/actualites/formations-et-evenements-uga/barometre-science-ouverte-de-l-uga-853860.kjsp'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Grenoble Alpes
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.science-ouverte.cnrs.fr/actualite/louverture-des-publications-progresse-au-cnrs/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CNRS (pas nommé BSO mais ca en est un)
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://espacechercheurs.enpc.fr/fr/plan-science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    ENPC (pas nommé BSO mais ca en est un, fait avec leur propre méthodo)
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
