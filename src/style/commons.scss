@@ -49,7 +49,7 @@ ul.style-disc > li {
 }
 
 /**
-  Textes
+ * Textes
  */
 .text-center {
   text-align: center;
@@ -88,8 +88,17 @@ div.d-inline-flex {
   float: right;
 }
 
+.code {
+  background-color: lightgrey;
+  border: 1px solid grey;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  padding: 8px;
+  white-space: pre-wrap;
+}
+
 /**
-  Position
+ * Position
  */
 .relative {
   position: relative;
@@ -127,8 +136,16 @@ div.d-inline-flex {
   display: none;
 }
 
+.w-100 {
+  width: 100%;
+}
+
+.h-50 {
+  height: 50%;
+}
+
 /**
-  Colorimétrie
+ * Colorimétrie
  */
 .bg-white {
   background-color: #fff;
@@ -205,7 +222,7 @@ div.d-inline-flex {
 }
 
 /**
-  Espacement
+ * Espacement
  */
 
 .p-8 {
@@ -314,19 +331,7 @@ div.d-inline-flex {
 }
 
 /**
- Position
- */
-
-.w-100 {
-  width: 100%;
-}
-
-.h-50 {
-  height: 50%;
-}
-
-/**
-  Mediaqueries
+ * Mediaqueries
  */
 @media screen and(min-width: 1280px) {
   .text-center-xxl {

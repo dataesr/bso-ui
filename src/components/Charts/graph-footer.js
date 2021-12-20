@@ -234,7 +234,7 @@ const GraphFooter = ({
         </ModalTitle>
         <ModalContent>
           <p className='code'>
-            &#60;iframe
+            &lt;iframe
             <br />
             <span style={{ paddingLeft: '18px' }} />
             id="
@@ -255,7 +255,7 @@ const GraphFooter = ({
             <span style={{ paddingLeft: '18px' }} />
             src="
             {urlToShare}
-            "&#62;&#60;/iframe&#62;
+            "&gt;&lt;/iframe&gt;
           </p>
         </ModalContent>
       </Modal>

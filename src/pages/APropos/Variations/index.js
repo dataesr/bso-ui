@@ -126,7 +126,7 @@ function Variations() {
                     adaptables.
                   </li>
                   <li>
-                    D'autre part, l'url soit être encodée. Pour ce faire, il
+                    D'autre part, l'url doit être encodée. Pour ce faire, il
                     faut copier coller l'url composée dans un navigateur et
                     celui-ci la réécrira dans la barre d'adresse. C'est alors
                     cette URL réécrite qu'il faudra mettre dans l'attribut "src"
@@ -145,6 +145,30 @@ function Variations() {
                   https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false
                 </a>
               </i>
+              <br />
+              <br />
+              <pre className='code'>
+                &lt;iframe
+                <br />
+                <span style={{ paddingLeft: '18px' }} />
+                id="publi.general.dynamique-ouverture.chart-evolution-proportion"
+                <br />
+                <span style={{ paddingLeft: '18px' }} />
+                title="Université de Lorraine: Evolution du taux d'accès ouvert
+                des publications scientifiques françaises par année
+                d'observation"
+                <br />
+                <span style={{ paddingLeft: '18px' }} />
+                width="800"
+                <br />
+                <span style={{ paddingLeft: '18px' }} />
+                height="600"
+                <br />
+                <span style={{ paddingLeft: '18px' }} />
+                src="https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false"
+                <br />
+                &gt;&lt;/iframe&gt;
+              </pre>
             </Col>
           </Row>
           <Row gutters>
@@ -336,7 +360,8 @@ function Variations() {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    ENPC (pas nommé BSO mais ca en est un, fait avec leur propre méthodo)
+                    ENPC (pas nommé BSO mais ca en est un, fait avec leur propre
+                    méthodo)
                   </a>
                 </li>
               </ul>
