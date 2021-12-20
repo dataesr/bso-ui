@@ -7,7 +7,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
 
 function LinkCard({ title, linkUrl, icon }) {
   return (
@@ -23,7 +22,7 @@ function LinkCard({ title, linkUrl, icon }) {
           className='ds-fr--v-middle'
         >
           <div className='w-100 text-right pt-16'>
-            <DSLink as={<Link to={linkUrl} />}>
+            <DSLink href={linkUrl} target='_blank'>
               <FormattedMessage id='app.card.footer.title' />
             </DSLink>
           </div>
@@ -34,9 +33,9 @@ function LinkCard({ title, linkUrl, icon }) {
 }
 
 LinkCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  linkUrl: PropTypes.string.isRequired,
   icon: PropTypes.element.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default LinkCard;
