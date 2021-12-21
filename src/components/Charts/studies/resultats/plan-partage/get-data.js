@@ -55,7 +55,7 @@ function useGetData(studyType, sponsorType = '*') {
             y_tot: el.doc_count,
             year: el.key,
           })),
-          color: getCSSValue('--g-400'),
+          color: getCSSValue('--g-300'),
         },
         {
           name: intl.formatMessage({
@@ -72,7 +72,7 @@ function useGetData(studyType, sponsorType = '*') {
             y_tot: el.doc_count,
             year: el.key,
           })),
-          color: getCSSValue('--patient-25'),
+          color: getCSSValue('--g-500'),
         },
         {
           name: intl.formatMessage({ id: 'app.studies.plan-partage-no' }),
