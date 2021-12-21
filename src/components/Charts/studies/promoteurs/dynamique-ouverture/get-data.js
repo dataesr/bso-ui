@@ -22,14 +22,11 @@ function useGetData(studyType, sponsor = '*') {
       querySponsors,
       HEADERS,
     );
-    let sponsors = responseSponsors.data.aggregations.by_sponsor.buckets.map(
-      (item) => item.key,
-    );
-    sponsors = sponsors
-      .filter((st) => st !== '')
-      .map((st) => ({
-        value: st,
-        label: st,
+    const sponsors = responseSponsors.data.aggregations.by_sponsor.buckets
+      .filter((item) => item.doc_count > 10 && item.key !== '')
+      .map((item) => ({
+        value: item.key,
+        label: item.key,
       }));
     const currentYear = new Date().getFullYear();
     const yearMin = currentYear - 11;
