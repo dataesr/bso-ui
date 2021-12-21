@@ -13,9 +13,12 @@ function useGetData(studyType, sponsor = '*') {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
+    const currentYear = new Date().getFullYear();
+    const yearMin = currentYear - 11;
+    const yearMax = currentYear - 1;
     const querySponsors = getFetchOptions({
       key: 'sponsorsList',
-      parameters: [studyType],
+      parameters: [studyType, yearMin, yearMax],
     });
     const responseSponsors = await Axios.post(
       ES_STUDIES_API_URL,
@@ -28,9 +31,6 @@ function useGetData(studyType, sponsor = '*') {
         value: item.key,
         label: item.key,
       }));
-    const currentYear = new Date().getFullYear();
-    const yearMin = currentYear - 11;
-    const yearMax = currentYear - 1;
     const queries = [];
     const queryDynamiqueOuverture = getFetchOptions({
       key: 'studiesDynamiqueOuverture',

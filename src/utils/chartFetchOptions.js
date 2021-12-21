@@ -352,7 +352,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    sponsorsList: ([studyType]) => ({
+    sponsorsList: ([studyType, yearMin, yearMax]) => ({
       size: 0,
       query: {
         bool: {
@@ -360,6 +360,19 @@ export default function getFetchOptions({
             {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
               },
             },
           ],
