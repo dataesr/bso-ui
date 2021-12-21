@@ -860,6 +860,7 @@
   "app.studies.intervention-type.Dietary Supplement": "Complément alimentaire",
   "app.studies.intervention-type.Drug": "Médicament",
   "app.studies.intervention-type.Genetic": "Génétique",
+  "app.studies.intervention-type.N/A": "Non renseigné",
   "app.studies.intervention-type.Other": "Autre intervention",
   "app.studies.intervention-type.Procedure": "Procédure",
   "app.studies.intervention-type.Radiation": "Radiation",
