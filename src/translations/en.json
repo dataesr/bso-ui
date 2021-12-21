@@ -824,6 +824,7 @@
   "app.studies.intervention-type.Dietary Supplement": "Dietary supplement",
   "app.studies.intervention-type.Drug": "Medication",
   "app.studies.intervention-type.Genetic": "Genetic",
+  "app.studies.intervention-type.N/A": "Unknown",
   "app.studies.intervention-type.Other": "Other intervention",
   "app.studies.intervention-type.Procedure": "Procedure",
   "app.studies.intervention-type.Radiation": "Radiation",
