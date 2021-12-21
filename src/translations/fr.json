@@ -929,5 +929,6 @@
   "url.sante": "/sante",
   "url.sante.essais": "/sante/essais-cliniques/general",
   "url.sante.etudes": "/sante/etudes-observationnelles/general",
-  "url.sante.publications.general": "/sante/publications/general"
+  "url.sante.publications.general": "/sante/publications/general",
+  "app.pages.does-not-exist": "Cette page n'existe pas."
 }

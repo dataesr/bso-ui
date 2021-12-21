@@ -890,5 +890,6 @@
   "url.sante": "/health",
   "url.sante.essais": "/health/clinical-trials/general",
   "url.sante.etudes": "/health/observational-studies/general",
-  "url.sante.publications.general": "/health/publications/general"
+  "url.sante.publications.general": "/health/publications/general",
+  "app.pages.does-not-exist": "This page does not exist."
 }

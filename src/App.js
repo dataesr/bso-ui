@@ -18,6 +18,7 @@ import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
+import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
@@ -154,7 +155,7 @@ function App() {
               </PageTracker>
             </Route>
             <Route exact path='*'>
-              <div>Not Found</div>
+              <Error404 />
             </Route>
           </Switch>
           <Footer />
