@@ -59,7 +59,9 @@ function useGetData(studyType, sponsor = '*') {
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
     const data2 = res[1].data.aggregations;
-    const series = [{ name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] }];
+    const series = [
+      { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
+    ];
     const academic = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
@@ -69,17 +71,17 @@ function useGetData(studyType, sponsor = '*') {
     const indus = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
-    const indusWith = indus?.by_has_result.buckets.find(
-      (ele) => ele.key === 1,
-    );
+    const indusWith = indus?.by_has_result.buckets.find((ele) => ele.key === 1);
     const spons = data2;
-    const sponsWith = spons?.by_has_result.buckets.find(
-      (ele) => ele.key === 1,
-    );
+    const sponsWith = spons?.by_has_result.buckets.find((ele) => ele.key === 1);
     const sponsWithout = spons?.by_has_result.buckets.find(
       (ele) => ele.key === 0,
     );
-    const categories = [intl.formatMessage({ id: 'app.sponsor.academique' }), intl.formatMessage({ id: 'app.sponsor.industriel' }), intl.formatMessage({ id: 'app.all-sponsor-types' })];
+    const categories = [
+      intl.formatMessage({ id: 'app.sponsor.academique' }),
+      intl.formatMessage({ id: 'app.sponsor.industriel' }),
+      intl.formatMessage({ id: 'app.all-sponsor-types' }),
+    ];
     series[0].data.push({
       yearMin,
       yearMax,
@@ -116,9 +118,12 @@ function useGetData(studyType, sponsor = '*') {
         yearMax,
         color: getCSSValue('--lead-sponsor-highlight'),
         name: sponsor,
-        y_tot: (sponsWith?.doc_count + sponsWithout?.doc_count) || 0,
+        y_tot: (sponsWith?.doc_count || 0) + (sponsWithout?.doc_count || 0),
         y_abs: sponsWith?.doc_count || 0,
-        y: 100 * (sponsWith?.doc_count / (sponsWith?.doc_count + sponsWithout?.doc_count) || 0),
+        y:
+          100
+          * ((sponsWith?.doc_count || 0)
+            / ((sponsWith?.doc_count || 0) + (sponsWithout?.doc_count || 0))),
       });
       categories.push(sponsor);
     }
@@ -135,19 +140,17 @@ function useGetData(studyType, sponsor = '*') {
           yearMax,
           sponsor_type: bucket.key,
           color:
-              bucket.key === 'academique'
-                ? getCSSValue('--lead-sponsor-public')
-                : getCSSValue('--lead-sponsor-privee'),
-          y_tot:
-                  bucket.doc_count || 0,
+            bucket.key === 'academique'
+              ? getCSSValue('--lead-sponsor-public')
+              : getCSSValue('--lead-sponsor-privee'),
+          y_tot: bucket.doc_count || 0,
           y_abs:
-                  bucket.by_has_result.buckets.find((el) => el.key === 1)
-                    ?.doc_count || 0,
+            bucket.by_has_result.buckets.find((el) => el.key === 1)
+              ?.doc_count || 0,
           y:
-                (100
-                    * bucket.by_has_result.buckets.find((el) => el.key === 1)
-                      ?.doc_count || 0)
-                / bucket.doc_count,
+            (100
+              * bucket.by_has_result.buckets.find((el) => el.key === 1)
+                ?.doc_count || 0) / bucket.doc_count,
         };
         tab.data.push(obj);
         categories2.push(currentSponsor.key);

@@ -53,28 +53,28 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 
   return (
     <WrapperChart
-      isLoading={isLoading || !allData}
-      isError={isError}
-      id={id}
-      studyType={studyType}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !allData}
+      studyType={studyType}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-sponsors' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
         onChange={(e) => setSponsor(e.target.value)}
         options={allData?.sponsors || []}
         selected={sponsor}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-sponsors' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomainAndStudyType}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomainAndStudyType}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />
@@ -84,17 +84,17 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
   domain: 'health',
-  studyType: 'Interventional',
+  hasComments: true,
+  hasFooter: true,
   id: 'promoteurs.dynamique-ouverture.chart-part',
+  studyType: 'Interventional',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
   studyType: PropTypes.oneOf(studiesTypes),
 };
 
