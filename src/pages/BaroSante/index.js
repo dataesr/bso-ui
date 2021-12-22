@@ -216,7 +216,7 @@ function BaroSante() {
                                 <DSIcon name='ri-link' size='2x' as='div'>
                                   <DSLink
                                     className='w-100 text-right'
-                                    as={<Link to='/national' />}
+                                    as={<Link to='/' />}
                                   />
                                 </DSIcon>
                               </Col>
