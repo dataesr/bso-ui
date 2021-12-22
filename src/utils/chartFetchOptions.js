@@ -185,7 +185,7 @@ export default function getFetchOptions({
         by_repository: {
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
-            exclude: 'pdfs.semanticscholar.org',
+            exclude: ['pdfs.semanticscholar.org', 'edpsciences.org'],
             size: 150,
           },
           aggs: {
@@ -748,6 +748,7 @@ export default function getFetchOptions({
         by_repository: {
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
+            exclude: ['pdfs.semanticscholar.org', 'edpsciences.org'],
             size: 10000,
           },
         },
