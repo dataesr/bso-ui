@@ -273,15 +273,16 @@ export function isInProduction() {
 export function getURLSearchParams(search) {
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
-  let commentsName = '';
-  let displayComment = true;
-  let displayTitle = true;
+  let commentsName;
+  let displayComment;
+  let displayTitle;
   let endYear;
   let name;
-  let startYear = 2013;
+  let startYear;
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || locals[bsoLocalAffiliation].commentsName;
+      || locals[bsoLocalAffiliation].commentsName
+      || '';
     displayComment = !(
       (urlSearchParams.get('displayComment')?.toLowerCase()
         || locals[bsoLocalAffiliation].displayComment) === 'false'
@@ -299,7 +300,8 @@ export function getURLSearchParams(search) {
       || locals[bsoLocalAffiliation].name;
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
-        || locals[bsoLocalAffiliation].startYear,
+        || locals[bsoLocalAffiliation].startYear
+        || 2013,
       10,
     );
   }
