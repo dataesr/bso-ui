@@ -39,7 +39,7 @@ function useGetData(studyType, sponsorType = '*') {
       queryEvolution,
       HEADERS,
     );
-    const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear() - 1;
     const dataSortedByYearEvolution = resEvolution.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= currentYear);

@@ -30,7 +30,7 @@ function useGetData(studyType, sponsorType = '*') {
       label: intl.formatMessage({ id: `app.sponsor.${st}` }),
     }));
 
-    const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear() - 1;
     const yearMin = currentYear - 11;
     const yearMax = currentYear - 1;
     const queries = [];

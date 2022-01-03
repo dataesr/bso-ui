@@ -34,7 +34,7 @@ function useGetData(studyType, sponsorType = '*', id, domain) {
       key: 'studiesCaracteristiquesCombienChartGroupesPatients',
       parameters: [studyType, sponsorType],
     });
-    const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear() - 1;
     const resGroupes = await Axios.post(
       ES_STUDIES_API_URL,
       queryGroupes,

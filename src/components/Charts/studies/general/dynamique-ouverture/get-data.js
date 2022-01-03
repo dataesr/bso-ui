@@ -14,7 +14,7 @@ function useGetData(studyType, sponsor = '*') {
 
   async function getDataAxios() {
     const queries = [];
-    const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear() - 1;
     const yearMin = currentYear - 11;
     const yearMax = currentYear - 1;
     const query1 = getFetchOptions({
