@@ -309,7 +309,7 @@
   "app.health-interventional.navigation.resultats.publication": "Les publications",
   "app.health-interventional.navigation.resultats.type-diffusion": "Les types de diffusion",
   "app.health-interventional.promoteurs": "Les promoteurs",
-  "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Part d'essais déclarés ayant produit des résultats et/ou publications par promoteur (classement par nombre d'essais déclarés)",
+  "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Part d'essais déclarés ayant produit des résultats et/ou publications par promoteur (top 25, classement par nombre d'essais déclarés)",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.tooltip": "<b>{point.name}</b><br><b>{point.y:.2f} %</b> ({point.y_abs} / {point.y_tot}) pour les essais terminés entre {point.yearMin} et {point.yearMax}",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-part.title": "Part d'essais déclarés ayant produit des résultats et/ou publications par statut du promoteur",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-part.tooltip": "<b>{point.name}</b><br><b>{point.y:.2f} %</b> ({point.y_abs} / {point.y_tot}) pour les essais terminés entre {point.yearMin} et {point.yearMax}",

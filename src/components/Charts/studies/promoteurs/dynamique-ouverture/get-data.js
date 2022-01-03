@@ -16,22 +16,12 @@ function useGetData(studyType, sponsor = '*') {
     const currentYear = new Date().getFullYear() - 1;
     const yearMin = currentYear - 11;
     const yearMax = currentYear - 1;
+    const queries = [];
     const querySponsors = getFetchOptions({
       key: 'sponsorsList',
       parameters: [studyType, yearMin, yearMax],
     });
-    const responseSponsors = await Axios.post(
-      ES_STUDIES_API_URL,
-      querySponsors,
-      HEADERS,
-    );
-    const sponsors = responseSponsors.data.aggregations.by_sponsor.buckets
-      .filter((item) => item.doc_count > 10 && item.key !== '')
-      .map((item) => ({
-        value: item.key,
-        label: item.key,
-      }));
-    const queries = [];
+    queries.push(Axios.post(ES_STUDIES_API_URL, querySponsors, HEADERS));
     const queryDynamiqueOuverture = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
       parameters: [studyType, yearMin, yearMax],
@@ -54,8 +44,14 @@ function useGetData(studyType, sponsor = '*') {
       Axios.post(ES_STUDIES_API_URL, queryDynamiqueSponsor, HEADERS),
     );
     const res = await Axios.all(queries);
-    const data1 = res[0].data.aggregations;
-    const data2 = res[1].data.aggregations;
+    const sponsors = res[0].data.aggregations.by_sponsor.buckets.map(
+      (item) => ({
+        value: item.key,
+        label: item.key,
+      }),
+    );
+    const data1 = res[1].data.aggregations;
+    const data2 = res[2].data.aggregations;
     const series = [
       { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
     ];
@@ -128,7 +124,7 @@ function useGetData(studyType, sponsor = '*') {
 
     const tab = { data: [] };
     const categories2 = [];
-    res[2].data.aggregations.by_sponsor.buckets.forEach((currentSponsor) => {
+    res[3].data.aggregations.by_sponsor.buckets.forEach((currentSponsor) => {
       if (currentSponsor.key !== 'N/A') {
         const bucket = currentSponsor.by_type.buckets[0];
         const obj = {
