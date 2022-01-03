@@ -351,7 +351,7 @@ function Variations() {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    CNRS (pas nommé BSO mais ca en est un)
+                    CNRS
                   </a>
                 </li>
                 <li>
@@ -360,8 +360,7 @@ function Variations() {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    ENPC (pas nommé BSO mais ca en est un, fait avec leur propre
-                    méthodo)
+                    ENPC
                   </a>
                 </li>
               </ul>
