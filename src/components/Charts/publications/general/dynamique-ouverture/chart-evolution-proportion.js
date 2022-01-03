@@ -27,7 +27,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const { observationSnaps } = useGlobals();
   const { search } = useLocation();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
-  const { dataGraph2 } = data;
+  const { categories, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   useEffect(() => {
     setChartComments(customComments(dataGraph2, idWithDomain, intl, search));
@@ -35,6 +35,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
+    categories,
     dataGraph2,
     search,
   );

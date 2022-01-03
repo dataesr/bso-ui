@@ -174,7 +174,10 @@ function useGetData(observationSnaps, domain = '') {
           pointPlacement: -0.2,
         });
       }
-      return { dataGraph1, dataGraph2 };
+
+      const categories = dataGraph2[0].data.map((item) => item.publicationDate);
+
+      return { categories, dataGraph1, dataGraph2 };
     },
     [domain, intl, search, commentsName],
   );

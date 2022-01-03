@@ -541,14 +541,14 @@ export const chartOptions = {
     },
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data, search) => {
+    getOptions: (id, intl, categories, data, search) => {
       const { startYear } = getURLSearchParams(search);
       const options = getGraphOptions(id, intl);
       options.chart.type = 'spline';
-      options.xAxis.title.text = intl.formatMessage({
-        id: 'app.publication-year',
-      });
-      options.xAxis.tickInterval = 1;
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.title.text = intl.formatMessage({
