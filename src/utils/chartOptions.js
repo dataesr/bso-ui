@@ -2483,7 +2483,7 @@ export const chartOptions = {
   'promoteurs.dynamique-ouverture.chart-evolution-nombre': {
     getOptions: (id, intl, graph, studyType) => {
       const options = getGraphOptions(id, intl, studyType);
-      options.chart.height = '700px';
+      options.chart.height = '900px';
       options.chart.type = 'bar';
       options.credits.enabled = false;
       options.plotOptions = {

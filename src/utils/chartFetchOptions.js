@@ -382,7 +382,7 @@ export default function getFetchOptions({
         by_sponsor: {
           terms: {
             field: 'lead_sponsor.keyword',
-            size: 25,
+            size: 50,
           },
         },
       },
@@ -818,7 +818,7 @@ export default function getFetchOptions({
         by_sponsor: {
           terms: {
             field: 'lead_sponsor.keyword',
-            size: 25,
+            size: 50,
           },
           aggs: {
             by_type: {
