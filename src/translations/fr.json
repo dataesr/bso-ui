@@ -405,7 +405,7 @@
   "app.health-observational.navigation.resultats.publication": "Les publications",
   "app.health-observational.navigation.resultats.type-diffusion": "Les types de diffusion",
   "app.health-observational.promoteurs": "Les promoteurs",
-  "app.health-observational.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Part d'études déclarées ayant produit des résultats et/ou publications par promoteur (top 50, classement par nombre d'études déclarées)",
+  "app.health-observational.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Part d'études observationnelles déclarées ayant produit des résultats et/ou publications par promoteur (top 50, classement par nombre d'études déclarées)",
   "app.health-observational.promoteurs.dynamique-ouverture.chart-evolution-nombre.tooltip": "<b>{point.name}</b><br><b>{point.y:.2f} %</b> ({point.y_abs} / {point.y_tot}) pour les études terminées entre {point.yearMin} et {point.yearMax}",
   "app.health-observational.promoteurs.dynamique-ouverture.chart-part.title": "Part d'études déclarées ayant produit des résultats et/ou publications par statut du promoteur",
   "app.health-observational.promoteurs.dynamique-ouverture.chart-part.tooltip": "<b>{point.name}</b><br><b>{point.y:.2f} %</b> ({point.y_abs} / {point.y_tot}) pour les études terminées entre {point.yearMin} et {point.yearMax}",
