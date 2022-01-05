@@ -489,14 +489,17 @@ function SantePublications() {
                   <BSOChart
                     id='publi.affiliations.dynamique-ouverture.chart-taux-ouverture'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                   <BSOChart
                     id='publi.affiliations.dynamique-ouverture.chart-evolution-proportion'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                   <BSOChart
                     id='publi.affiliations.dynamique-ouverture.chart-evolution-taux'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 
