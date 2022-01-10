@@ -62,7 +62,7 @@ function Variations() {
                   site web via une iFrame. Pour décliner un graphe, cliquer sur
                   le bouton "Intégration" en bas du graphe voulu, afin de
                   récupérer l'url du graphe en question. Ensuite, ajouter à
-                  cette url l'identifiant RNSR de la structure (ex:
+                  cette url l'identifiant Siren de la structure (ex:
                   <i>bsoLocalAffiliation=130015506</i>
                   {' '}
                   pour l'Université de
@@ -76,7 +76,7 @@ function Variations() {
                   <ul>
                     <li>
                       <b>bsoLocalAffiliation</b>
-                      : RNSR de l'établissement (ex:
+                      : SIREN de l'établissement (ex:
                       bsoLocalAffiliation=130015506)
                       <i>requis</i>
                     </li>
@@ -199,7 +199,7 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              Liste des déclinaisons locales des BSO :
+              Liste des déclinaisons locales des BSO (ou équivalent de suivi tu taux open access) :
               <ul className='style-disc'>
                 <li>
                   <a
@@ -208,51 +208,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université de Lorraine
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.pasteur.fr/fr/ceris/bibliotheque/s-engager-science-ouverte#barometre'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Institut Pasteur
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://scienceouverte.unistra.fr/strategie/le-barometre-science-ouverte/'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université de Strasbourg
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.universite-paris-saclay.fr/barometre-science-ouverte-2021'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Paris Saclay
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Evry Val d'Essone
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.uvsq.fr/barometre-science-ouverte'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Versailles Saint Quentin
                   </a>
                 </li>
                 <li>
@@ -266,11 +221,47 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://scienceouverte.univ-rennes1.fr/barometre-de-la-science-ouverte-de-luniversite-de-rennes-1'
+                    href='http://pole-ist.centralesupelec.fr/fr/node/430'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    Université de Rennes 1
+                    CentraleSupélec
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre1'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CNAM
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.science-ouverte.cnrs.fr/actualite/louverture-des-publications-progresse-au-cnrs/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CNRS
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://espacechercheurs.enpc.fr/fr/plan-science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Ecole des Ponts Paristech
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.imt-mines-albi.fr/barometre-science-ouverte-2021'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    IMT Mines Albi
                   </a>
                 </li>
                 <li>
@@ -280,6 +271,24 @@ function Variations() {
                     rel='noreferrer'
                   >
                     INRAE
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.pasteur.fr/fr/ceris/bibliotheque/s-engager-science-ouverte#barometre'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Institut Pasteur
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.unilasalle.fr/actualites/le-barometre-de-la-science-ouverte-unilasalle-est-disponible'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    UniLaSalle
                   </a>
                 </li>
                 <li>
@@ -302,38 +311,29 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://www.imt-mines-albi.fr/barometre-science-ouverte-2021'
+                    href='https://scienceouverte.univ-rennes1.fr/barometre-de-la-science-ouverte-de-luniversite-de-rennes-1'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    IMT Mines Albi
+                    Université de Rennes 1
                   </a>
                 </li>
                 <li>
                   <a
-                    href='https://www.unilasalle.fr/actualites/le-barometre-de-la-science-ouverte-unilasalle-est-disponible'
+                    href='https://scienceouverte.unistra.fr/strategie/le-barometre-science-ouverte/'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    UniLaSalle
+                    Université de Strasbourg
                   </a>
                 </li>
                 <li>
                   <a
-                    href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre1'
+                    href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    CNAM
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='http://pole-ist.centralesupelec.fr/fr/node/430'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    CentraleSupélec
+                    Université Evry Val d'Essone
                   </a>
                 </li>
                 <li>
@@ -347,20 +347,20 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://www.science-ouverte.cnrs.fr/actualite/louverture-des-publications-progresse-au-cnrs/'
+                    href='https://www.universite-paris-saclay.fr/barometre-science-ouverte-2021'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    CNRS
+                    Université Paris Saclay
                   </a>
                 </li>
                 <li>
                   <a
-                    href='https://espacechercheurs.enpc.fr/fr/plan-science-ouverte'
+                    href='https://www.uvsq.fr/barometre-science-ouverte'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    ENPC
+                    Université Versailles Saint Quentin
                   </a>
                 </li>
               </ul>
