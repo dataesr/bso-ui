@@ -8,7 +8,7 @@ on:
 env:
   # Must match k8s deployment name
   DEPLOYMENT: bso-ui
-  DEPLOYMENT_NAMESPACE: staging
+  DEPLOYMENT_NAMESPACE: bso
   DEPLOYMENT_URL: https://bso.staging.dataesr.ovh
   SLACK_NOTIFICATION_CHANNEL: '#bsso_bso2'
 
