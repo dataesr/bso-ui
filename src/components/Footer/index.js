@@ -126,8 +126,8 @@ export default function Footer() {
         <FooterBody
           description={<FormattedMessage id='app.footer.description' />}
         >
-          <Logo>
-            Ministère de l'enseignement supérieur de la recherche et de
+          <Logo splitCharacter={10}>
+            Ministère de l'enseignement supérieur, de la recherche et de
             l'innovation
           </Logo>
           <FooterBodyItem>

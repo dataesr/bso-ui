@@ -331,16 +331,18 @@ function useGetData(observationSnaps, needle = '*', domain) {
       marker: { lineColor: getCSSValue('--yellow-medium-100') },
     });
 
-    const tmp = dataGraphViolin.find(
+    const dataGraphViolinGoldAPC = dataGraphViolin.find(
       (item) => item.name === 'Médiane des APC Gold',
     ).data;
-    console.log(tmp);
 
     const comments = {
-      medianValueFirst: tmp[0].x.toFixed(0),
-      medianYearFirst: tmp[0].publicationDate,
-      medianValueLast: tmp[tmp.length - 1].x.toFixed(0),
-      medianYearLast: tmp[tmp.length - 1].publicationDate,
+      medianValueFirst: dataGraphViolinGoldAPC[0].x.toFixed(0),
+      medianYearFirst: dataGraphViolinGoldAPC[0].publicationDate,
+      medianValueLast:
+        dataGraphViolinGoldAPC[dataGraphViolinGoldAPC.length - 1].x.toFixed(0),
+      medianYearLast:
+        dataGraphViolinGoldAPC[dataGraphViolinGoldAPC.length - 1]
+          .publicationDate,
     };
 
     return {

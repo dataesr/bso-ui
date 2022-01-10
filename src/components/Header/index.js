@@ -76,7 +76,7 @@ function Header() {
       >
         <HeaderBody>
           <Logo splitCharacter={10}>
-            Ministère de l'enseignement supérieur de la recherche et de
+            Ministère de l'enseignement supérieur, de la recherche et de
             l'innovation
           </Logo>
           <Service
