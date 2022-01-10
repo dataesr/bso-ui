@@ -28,42 +28,46 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       search,
       parameters: [datesObservation[0], needle],
     });
+    const publicationDate = getPublicationYearFromObservationSnap(
+      datesObservation[0],
+    );
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-
     const res = await Axios.all(queries);
+    const results = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets;
     const nbTotal = res[0].data.aggregations.by_is_oa.buckets[0].doc_count;
+    const openLicenceNumber = results
+      .filter((item) => item.key !== 'no license')
+      .reduce((a, b) => a + b.doc_count, 0);
+    const ccbyLicenceNumber = results.find(
+      (item) => item.key === 'cc-by',
+    ).doc_count;
+    const openLicenceRate = (100 * openLicenceNumber) / nbTotal;
+    const ccbyLicenceRate = (100 * ccbyLicenceNumber) / nbTotal;
     const dataGraphTreemap = [];
     if (isDetailed) {
-      res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.forEach(
-        (el) => {
-          dataGraphTreemap.push({
-            name: capitalize(
-              intl.formatMessage({
-                id: `app.licenses.${el.key}`,
-              }),
-            ),
-            publisher:
-              needle === '*'
-                ? intl.formatMessage({ id: 'app.all-publishers' })
-                : needle,
-            value: el.doc_count,
-            y_tot: nbTotal,
-            bsoDomain,
-            y_perc: (100 * el.doc_count) / nbTotal,
-            publicationDate: getPublicationYearFromObservationSnap(
-              datesObservation[0],
-            ),
-            color:
-              el.key === 'no license'
-                ? getCSSValue('--g-400')
-                : getCSSValue('--acces-ouvert'),
-          });
-        },
-      );
+      results.forEach((el) => {
+        dataGraphTreemap.push({
+          name: capitalize(
+            intl.formatMessage({
+              id: `app.licenses.${el.key}`,
+            }),
+          ),
+          publisher:
+            needle === '*'
+              ? intl.formatMessage({ id: 'app.all-publishers' })
+              : needle,
+          value: el.doc_count,
+          y_tot: nbTotal,
+          bsoDomain,
+          y_perc: (100 * el.doc_count) / nbTotal,
+          publicationDate,
+          color:
+            el.key === 'no license'
+              ? getCSSValue('--g-400')
+              : getCSSValue('--acces-ouvert'),
+        });
+      });
     } else {
-      const nbLicenceOpen = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets
-        .filter((el) => el.key !== 'no license')
-        .reduce((a, b) => a + b.doc_count, 0);
       dataGraphTreemap.push({
         name: capitalize(
           intl.formatMessage({
@@ -75,17 +79,13 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
         color: getCSSValue('--acces-ouvert'),
-        value: nbLicenceOpen,
+        value: openLicenceNumber,
         y_tot: nbTotal,
         bsoDomain,
-        y_perc: (100 * nbLicenceOpen) / nbTotal,
-        publicationDate: getPublicationYearFromObservationSnap(
-          datesObservation[0],
-        ),
+        y_perc: openLicenceRate,
+        publicationDate,
       });
-      const noLicenceElem = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets.find(
-        (el) => el.key === 'no license',
-      );
+      const noLicenceElem = results.find((el) => el.key === 'no license');
       const nbNoLicence = noLicenceElem ? noLicenceElem.doc_count : 0;
       dataGraphTreemap.push({
         name: capitalize(
@@ -102,9 +102,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         y_tot: nbTotal,
         bsoDomain,
         y_perc: (100 * nbNoLicence) / nbTotal,
-        publicationDate: getPublicationYearFromObservationSnap(
-          datesObservation[0],
-        ),
+        publicationDate,
       });
     }
 
@@ -124,9 +122,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         y:
           (100 * (noLicenceElem ? noLicenceElem.doc_count : 0))
           / elem.doc_count,
-        publicationDate: getPublicationYearFromObservationSnap(
-          datesObservation[0],
-        ),
+        publicationDate,
       });
       openLicence.push({
         publisher: elem.key,
@@ -141,9 +137,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
               .filter((el) => el.key !== 'no license')
               .reduce((a, b) => a + b.doc_count, 0))
           / elem.doc_count,
-        publicationDate: getPublicationYearFromObservationSnap(
-          datesObservation[0],
-        ),
+        publicationDate,
       });
     });
     const dataGraphBar = [
@@ -160,7 +154,20 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         color: getCSSValue('--acces-ouvert'),
       },
     ];
-    return { dataGraphTreemap, dataGraphBar, categories };
+
+    const publisher = 'Elsevier';
+    const comments = {
+      openLicenceRate: openLicenceRate.toFixed(0),
+      ccbyLicenceRate: ccbyLicenceRate.toFixed(0),
+      publicationDate,
+      publisher,
+      elsevierOpenLicenceRate: dataGraphBar
+        .find((item) => item.name === 'Licence ouverte')
+        .data.find((item) => item.publisher === publisher)
+        .y.toFixed(1),
+    };
+
+    return { categories, comments, dataGraphBar, dataGraphTreemap };
   }
 
   useEffect(() => {

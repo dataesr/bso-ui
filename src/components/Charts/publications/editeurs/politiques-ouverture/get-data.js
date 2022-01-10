@@ -145,7 +145,17 @@ function useGetData(lastObservationSnap, domain) {
       },
     ];
 
-    return { categories, dataGraph, bubbleGraph };
+    const publisher = 'Wiley';
+    const wiley = bubbleGraph
+      .find((item) => item.name === 'éditeurs et plateformes')
+      .data.find((item) => item.publisher === publisher);
+    const comments = {
+      publisher,
+      x: wiley.x.toFixed(0),
+      y: wiley.y.toFixed(0),
+    };
+
+    return { bubbleGraph, categories, comments, dataGraph };
   }
 
   useEffect(() => {

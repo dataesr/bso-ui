@@ -10,6 +10,7 @@ import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -17,6 +18,7 @@ import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -28,6 +30,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
+  const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals(domain);
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
@@ -42,14 +45,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     search,
     parameters: [lastObservationSnap],
   });
-  useEffect(() => {
-    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      setPublishers(
-        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
-      );
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
@@ -61,12 +57,25 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     dataTitle,
   );
 
+  useEffect(() => {
+    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
+      setPublishers(
+        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
+
   return (
     <WrapperChart
       chartRef={chartRef}
       dataTitle={dataTitle}
       domain={domain}
-      hasComments={hasComments}
+      hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
@@ -86,6 +95,9 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         options={optionsGraph}
         ref={chartRef}
       />
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };

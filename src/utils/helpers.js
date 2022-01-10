@@ -274,7 +274,7 @@ export function getURLSearchParams(search) {
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   let commentsName;
-  let displayComment;
+  let displayComment = true;
   let displayTitle;
   let endYear;
   let name;

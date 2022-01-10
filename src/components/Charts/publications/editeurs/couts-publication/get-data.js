@@ -330,7 +330,21 @@ function useGetData(observationSnaps, needle = '*', domain) {
       color: getCSSValue('--yellow-medium-100'),
       marker: { lineColor: getCSSValue('--yellow-medium-100') },
     });
+
+    const tmp = dataGraphViolin.find(
+      (item) => item.name === 'Médiane des APC Gold',
+    ).data;
+    console.log(tmp);
+
+    const comments = {
+      medianValueFirst: tmp[0].x.toFixed(0),
+      medianYearFirst: tmp[0].publicationDate,
+      medianValueLast: tmp[tmp.length - 1].x.toFixed(0),
+      medianYearLast: tmp[tmp.length - 1].publicationDate,
+    };
+
     return {
+      comments,
       dataGraphTotal,
       categoriesYear,
       dataGraphHistogram,
