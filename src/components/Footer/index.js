@@ -77,13 +77,19 @@ export default function Footer() {
             <FooterLink target='_blank' href='https://doaj.org/'>
               DOAJ
             </FooterLink>
-            <FooterLink target='_blank' href='https://github.com/OpenAPC/openapc-de'>
+            <FooterLink
+              target='_blank'
+              href='https://github.com/OpenAPC/openapc-de'
+            >
               OpenAPC
             </FooterLink>
             <FooterLink target='_blank' href='https://clinicaltrials.gov/'>
               ClinicalTrials.org
             </FooterLink>
-            <FooterLink target='_blank' href='https://www.clinicaltrialsregister.eu/'>
+            <FooterLink
+              target='_blank'
+              href='https://www.clinicaltrialsregister.eu/'
+            >
               EU Clinical Trials Register
             </FooterLink>
           </FooterTopCategory>
@@ -120,7 +126,10 @@ export default function Footer() {
         <FooterBody
           description={<FormattedMessage id='app.footer.description' />}
         >
-          <Logo>Ministère de l'enseignement supérieur et de la recherche</Logo>
+          <Logo>
+            Ministère de l'enseignement supérieur de la recherche et de
+            l'innovation
+          </Logo>
           <FooterBodyItem>
             <Link href='https://service-public.fr'>service-public.fr</Link>
           </FooterBodyItem>
