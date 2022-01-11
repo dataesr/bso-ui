@@ -146,7 +146,29 @@ function useGetData(observationSnaps, needle = '*', domain) {
       publicationDate: el.publicationDate,
     }));
 
-    return { dataGraph1, dataGraph2 };
+    const year = getObservationLabel(observationSnaps[0]);
+    const { y, publicationDate } = dataGraph1.find(
+      (item) => item.name === year,
+    );
+    const year1 = dataGraph2[dataGraph2.length - 1].name;
+    const value1 = dataGraph2[dataGraph2.length - 1].data
+      .find((item) => item.publicationDate === 2017)
+      .y.toFixed(0);
+    const year2 = dataGraph2[0].name;
+    const value2 = dataGraph2[0].data
+      .find((item) => item.publicationDate === 2017)
+      .y.toFixed(0);
+    const comments = {
+      year,
+      percentage: y.toFixed(0),
+      publicationDate,
+      year1,
+      value1,
+      year2,
+      value2,
+    };
+
+    return { comments, dataGraph1, dataGraph2 };
   }
 
   useEffect(() => {

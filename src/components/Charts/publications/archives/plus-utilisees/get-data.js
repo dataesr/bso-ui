@@ -23,13 +23,18 @@ function useGetData(observationSnap, domain) {
       parameters: [observationSnap],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
+    let dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
       name: el.key,
       bsoDomain,
       y: el.doc_count,
       publicationDate: getPublicationYearFromObservationSnap(observationSnap),
     }));
-    return dataGraph.slice(0, 15);
+    dataGraph = dataGraph.slice(0, 15);
+
+    const name = 'HAL';
+    const { publicationDate, y } = dataGraph.find((item) => item.name === name);
+    const comments = { name, publicationDate, value: y };
+    return { comments, dataGraph };
   }
 
   useEffect(() => {

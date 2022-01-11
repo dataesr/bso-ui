@@ -4,14 +4,17 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -22,15 +25,21 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const intl = useIntl();
 
   const { lastObservationSnap } = useGlobals();
+  const [chartComments, setChartComments] = useState('');
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
   const { publicationYears, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     publicationYears,
     dataGraph2,
   );
+  const { search } = useLocation();
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
 
   return (
     <WrapperChart
@@ -39,7 +48,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       id={id}
       domain={domain}
       chartRef={chartRef}
-      hasComments={hasComments}
+      hasComments={false}
       hasFooter={hasFooter}
     >
       <HighchartsReact
@@ -48,21 +57,24 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         ref={chartRef}
         id={idWithDomain}
       />
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.repositories.dynamique-hal.chart-couverture-hal',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.repositories.dynamique-hal.chart-couverture-hal',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

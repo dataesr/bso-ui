@@ -90,7 +90,23 @@ function useGetData(lastObservationSnap, domain) {
         color: getCSSValue('--acces-ouvert'),
       },
     ];
-    return { publicationYears, dataGraph2 };
+
+    const valueHAL = dataGraph2
+      .find((item) => item.name === 'En accès ouvert sur HAL')
+      .data.find((item) => item.x === 2020)
+      .y.toFixed(0);
+    const valueNotHAL = dataGraph2
+      .find(
+        (item) => item.name === 'En accès ouvert sur une archive mais pas sur HAL',
+      )
+      .data.find((item) => item.x === 2020)
+      .y.toFixed(0);
+    const comments = {
+      valueHAL,
+      valueNotHAL,
+    };
+
+    return { comments, dataGraph2, publicationYears };
   }
 
   useEffect(() => {

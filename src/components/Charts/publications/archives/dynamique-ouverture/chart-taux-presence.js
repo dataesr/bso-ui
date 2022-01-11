@@ -68,8 +68,8 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   );
 
   useEffect(() => {
-    setChartComments(customComments(dataGraph2, idWithDomain, intl, search));
-  }, [dataGraph2, idWithDomain, intl, search]);
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
 
   return (
     <WrapperChart

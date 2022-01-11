@@ -69,7 +69,22 @@ function useGetData(observationSnap, domain) {
       (a, b) => (b.data.find((el) => el.name === lastPublicationYear)?.y || 0)
         - (a.data.find((el) => el.name === lastPublicationYear)?.y || 0),
     );
-    return tab.slice(0, 12);
+    tab = tab.slice(0, 12);
+
+    const name = 'HAL';
+    const value1 = tab
+      .find((item) => item.name === name)
+      .data.find((item) => item.year === 2018).y;
+    const value2 = tab
+      .find((item) => item.name === name)
+      .data.find((item) => item.year === 2020).y;
+    const comments = {
+      name,
+      value1,
+      value2,
+    };
+
+    return { comments, tab };
   }
 
   useEffect(() => {

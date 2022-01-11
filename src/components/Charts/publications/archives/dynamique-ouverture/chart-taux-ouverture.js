@@ -59,13 +59,13 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   }, []);
 
   useEffect(() => {
-    setChartComments(customComments(dataGraph1, idWithDomain, intl, search));
-  }, [dataGraph1, idWithDomain, intl, search]);
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
 
   const archiveTitle = archive !== '*' ? ` (${archive})` : '';
   const dataTitle = { archiveTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph1,
     dataTitle,
