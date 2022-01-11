@@ -190,6 +190,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     [
       beforeLastObservationSnap,
       bsoDomain,
+      commentsName,
       disciplineField,
       domain,
       intl,
