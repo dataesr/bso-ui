@@ -48,7 +48,7 @@ function WrapperChart({
   const { search } = useLocation();
   const { name } = getURLSearchParams(search);
   if (name) {
-    title = `${name}: ${title}`;
+    title = `${name} : ${title}`;
     otherSources = [name];
   }
   const comments = intl.messages[`${idWithDomain}.comments`]

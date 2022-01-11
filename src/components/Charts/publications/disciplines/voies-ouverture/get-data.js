@@ -10,6 +10,7 @@ import {
   getCSSValue,
   getObservationLabel,
   getPublicationYearFromObservationSnap,
+  getURLSearchParams,
 } from '../../../../../utils/helpers';
 
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
@@ -21,6 +22,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const { search } = useLocation();
+  const { commentsName } = getURLSearchParams(search);
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -174,9 +176,10 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       ];
 
       const comments = {
-        publicationYear: beforeLastObservationSnap,
-        observationYear: getObservationLabel(lastObservationSnap, intl),
+        commentsName,
         discipline: dataGraph[0].data[0].discipline.toLowerCase(),
+        observationYear: getObservationLabel(lastObservationSnap, intl),
+        publicationYear: beforeLastObservationSnap,
         publisherRate: dataGraph[0].data[0].y.toFixed(1),
         publisherRepositoryRate: dataGraph[1].data[0].y.toFixed(1),
         repositoryRate: dataGraph[2].data[0].y.toFixed(1),
