@@ -138,7 +138,7 @@ function Variations() {
               {' '}
               <i>
                 <a
-                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false'
+                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016&displayTitle=false'
                   rel='noreferrer'
                   target='_blank'
                 >
