@@ -212,6 +212,7 @@ function EtudesObservationnelles() {
               '/sante/etudes-observationnelles/promoteurs',
               '/health/observational-studies/lead-sponsors',
             ]}
+            isDisplayed={!isInProduction()}
             links={[
               {
                 label: intl.formatMessage({

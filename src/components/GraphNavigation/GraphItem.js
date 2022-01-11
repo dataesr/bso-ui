@@ -8,7 +8,7 @@ import useViewport from '../../utils/Hooks/useViewport';
 import GraphNavigationLink from './GraphNavigationLink';
 import GraphTabSubItem from './GraphTabSubItem';
 
-function GraphItem({ links, mainLabel, paths }) {
+function GraphItem({ isDisplayed, links, mainLabel, paths }) {
   const { pathname, search } = useLocation();
   const { mobile, tablet, desktop } = useViewport();
   const viewPort = useRef('desktop');
@@ -52,7 +52,7 @@ function GraphItem({ links, mainLabel, paths }) {
 
   return (
     <>
-      {mobile && (
+      {mobile && isDisplayed && (
         <SideMenuItem key={uuidv4()} title={mainLabel}>
           {links.map(
             (link) => link
@@ -68,7 +68,7 @@ function GraphItem({ links, mainLabel, paths }) {
           )}
         </SideMenuItem>
       )}
-      {(desktop || tablet) && (
+      {(desktop || tablet) && isDisplayed && (
         <GraphTabSubItem
           key={uuidv4()}
           label={mainLabel}
@@ -92,11 +92,12 @@ function GraphItem({ links, mainLabel, paths }) {
 }
 
 GraphItem.defaultProps = {
+  isDisplayed: true,
   __TYPE: 'GraphItem',
 };
 
 GraphItem.propTypes = {
-  mainLabel: PropTypes.string.isRequired,
+  isDisplayed: PropTypes.bool,
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -104,6 +105,7 @@ GraphItem.propTypes = {
       isDisplayed: PropTypes.bool,
     }),
   ).isRequired,
+  mainLabel: PropTypes.string.isRequired,
   paths: PropTypes.arrayOf(PropTypes.string).isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   __TYPE: PropTypes.string,

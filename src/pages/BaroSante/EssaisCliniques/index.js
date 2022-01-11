@@ -226,6 +226,7 @@ function EssaisCliniques() {
               '/sante/essais-cliniques/promoteurs',
               '/health/clinical-trials/lead-sponsors',
             ]}
+            isDisplayed={!isInProduction()}
             links={[
               {
                 label: intl.formatMessage({
