@@ -199,7 +199,8 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              Liste des déclinaisons locales des BSO (ou équivalent de suivi tu taux open access) :
+              Liste des déclinaisons locales des BSO (ou équivalent de suivi du
+              taux open access) :
               <ul className='style-disc'>
                 <li>
                   <a
