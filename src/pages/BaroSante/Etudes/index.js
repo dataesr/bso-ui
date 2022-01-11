@@ -51,6 +51,7 @@ function EtudesObservationnelles() {
           <Glossary entries={GlossaryEntries} />
         </Row>
         <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
+          {/* Général */}
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-observational.general',
@@ -110,7 +111,7 @@ function EtudesObservationnelles() {
             </GraphContent>
           </GraphItem>
 
-          {/* Leurs caractéristiques */}
+          {/* Caractéristiques */}
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-observational.caracteristiques',
@@ -260,13 +261,6 @@ function EtudesObservationnelles() {
                   studyType='Observational'
                   isDisplayed={!isInProduction()}
                 />
-                {/*
-                <BSOChart
-                  id='promoteurs.impact.chart-classement-pays'
-                  domain='health'
-                  studyType='Observational'
-                />
-                */}
               </QuestionSection>
             </GraphContent>
           </GraphItem>

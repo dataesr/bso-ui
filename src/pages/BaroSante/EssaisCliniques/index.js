@@ -51,6 +51,7 @@ function EssaisCliniques() {
           <Glossary entries={GlossaryEntries} />
         </Row>
         <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
+          {/* Général */}
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-interventional.general',
@@ -107,7 +108,7 @@ function EssaisCliniques() {
             </GraphContent>
           </GraphItem>
 
-          {/* Leurs caractéristiques */}
+          {/* Caractéristiques */}
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-interventional.caracteristiques',
@@ -274,13 +275,6 @@ function EssaisCliniques() {
                   studyType='Interventional'
                   isDisplayed={!isInProduction()}
                 />
-                {/*
-                <BSOChart
-                  id='promoteurs.impact.chart-classement-pays'
-                  domain='health'
-                  studyType='Interventional'
-                />
-                */}
               </QuestionSection>
             </GraphContent>
           </GraphItem>

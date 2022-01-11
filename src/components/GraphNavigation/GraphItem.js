@@ -54,15 +54,18 @@ function GraphItem({ links, mainLabel, paths }) {
     <>
       {mobile && (
         <SideMenuItem key={uuidv4()} title={mainLabel}>
-          {links.map((link) => (
-            <DSLink
-              key={uuidv4()}
-              className='no-border'
-              as={<Link to={getUrl(link.href, search)} />}
-            >
-              <div className='text-white fs-14-24 pb-8'>{link.label}</div>
-            </DSLink>
-          ))}
+          {links.map(
+            (link) => link
+              && (link.isDisplayed === undefined || link.isDisplayed) && (
+              <DSLink
+                key={uuidv4()}
+                className='no-border'
+                as={<Link to={getUrl(link.href, search)} />}
+              >
+                <div className='text-white fs-14-24 pb-8'>{link.label}</div>
+              </DSLink>
+            ),
+          )}
         </SideMenuItem>
       )}
       {(desktop || tablet) && (
@@ -71,14 +74,17 @@ function GraphItem({ links, mainLabel, paths }) {
           label={mainLabel}
           activeTab={paths.indexOf(`${pathname}`) > -1}
         >
-          {links.map((link, index) => (
-            <GraphNavigationLink
-              key={uuidv4()}
-              href={getUrl(link.href, search)}
-              label={link.label}
-              hasHr={index === 0}
-            />
-          ))}
+          {links.map(
+            (link, index) => link
+              && (link.isDisplayed === undefined || link.isDisplayed) && (
+              <GraphNavigationLink
+                key={uuidv4()}
+                href={getUrl(link.href, search)}
+                label={link.label}
+                hasHr={index === 0}
+              />
+            ),
+          )}
         </GraphTabSubItem>
       )}
     </>
@@ -95,6 +101,7 @@ GraphItem.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       href: PropTypes.string.isRequired,
+      isDisplayed: PropTypes.bool,
     }),
   ).isRequired,
   paths: PropTypes.arrayOf(PropTypes.string).isRequired,
