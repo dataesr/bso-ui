@@ -72,6 +72,7 @@ export default function NationalPublications() {
         </Row>
         <Row>
           <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
+            {/* Général */}
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
               paths={['/publications/general']}
@@ -143,6 +144,8 @@ export default function NationalPublications() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+
+            {/* Les disciplines */}
             <GraphItem
               paths={['/publications/disciplines']}
               mainLabel={intl.formatMessage({
@@ -190,6 +193,7 @@ export default function NationalPublications() {
               </GraphContent>
             </GraphItem>
 
+            {/* Les éditeurs */}
             <GraphItem
               paths={['/publications/editeurs']}
               mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
@@ -301,6 +305,7 @@ export default function NationalPublications() {
               </GraphContent>
             </GraphItem>
 
+            {/* Les archives ouvertes */}
             <GraphItem
               paths={['/publications/archives']}
               mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}

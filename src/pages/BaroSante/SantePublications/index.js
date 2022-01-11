@@ -54,6 +54,7 @@ function SantePublications() {
         </Row>
         <Row>
           <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
+            {/* Général */}
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publi.general' })}
               paths={[
@@ -165,6 +166,7 @@ function SantePublications() {
               </GraphContent>
             </GraphItem>
 
+            {/* Les disciplines */}
             <GraphItem
               paths={['/sante/publications/disciplines']}
               mainLabel={intl.formatMessage({
@@ -224,6 +226,7 @@ function SantePublications() {
               </GraphContent>
             </GraphItem>
 
+            {/* Les éditeurs */}
             <GraphItem
               paths={['/sante/publications/editeurs']}
               mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
@@ -367,6 +370,7 @@ function SantePublications() {
               </GraphContent>
             </GraphItem>
 
+            {/* Les archives ouvertes */}
             <GraphItem
               paths={['/sante/publications/archives']}
               mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}
@@ -454,6 +458,7 @@ function SantePublications() {
               </GraphContent>
             </GraphItem>
 
+            {/* Les affiliations */}
             <GraphItem
               paths={['/sante/publications/affiliations']}
               mainLabel={intl.formatMessage({
@@ -485,21 +490,19 @@ function SantePublications() {
                   intlKey='app.health-publi.affiliations.dynamique-ouverture'
                   backgroundColor={blueSoft50}
                   anchorId='affiliations.dynamique-ouverture'
+                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart
                     id='publi.affiliations.dynamique-ouverture.chart-taux-ouverture'
                     domain='health'
-                    isDisplayed={!isInProduction()}
                   />
                   <BSOChart
                     id='publi.affiliations.dynamique-ouverture.chart-evolution-proportion'
                     domain='health'
-                    isDisplayed={!isInProduction()}
                   />
                   <BSOChart
                     id='publi.affiliations.dynamique-ouverture.chart-evolution-taux'
                     domain='health'
-                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 
@@ -512,12 +515,6 @@ function SantePublications() {
                     id='publi.affiliations.pays.chart-taux-rang-utile'
                     domain='health'
                   />
-                  {/*
-                  <BSOChart
-                    id='publi.affiliations.pays.chart-classement-pays'
-                    domain='health'
-                  />
-                  */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
