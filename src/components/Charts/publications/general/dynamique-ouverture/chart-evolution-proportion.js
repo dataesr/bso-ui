@@ -30,10 +30,10 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const { categories, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   useEffect(() => {
-    setChartComments(customComments(dataGraph2, idWithDomain, intl, search));
-  }, [dataGraph2, idWithDomain, intl, search]);
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories,
     dataGraph2,

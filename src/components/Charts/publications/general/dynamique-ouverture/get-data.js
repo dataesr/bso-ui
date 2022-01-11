@@ -119,24 +119,7 @@ function useGetData(observationSnaps, domain = '') {
           dataGraphGlobal.push(serie);
         }
       });
-      dataGraph2.comments = {
-        observationDate: dataGraph2[0]?.name,
-        previousObservationDate: dataGraph2[1]?.name,
-        observationDate4: dataGraph2[3]?.name,
-        oaYMinusOne4: dataGraph2[3]?.data.slice(-1)[0].y.toFixed(0),
-        oaYMinus4: dataGraph2[0]?.data.slice(-4)[0].y.toFixed(0),
-        publicationDate4: dataGraph2[3]?.data.slice(-1)[0].publicationDate,
-        minPublicationDate: dataGraph2[0]?.data[0]?.publicationDate,
-        previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
-        oaYMinusOnePrevious: dataGraph2[1]?.data.slice(-1)[0].y.toFixed(0),
-        oaYMinusOne: dataGraph2[0]?.data.slice(-2)[0].y.toFixed(0),
-        oaEvolution: (
-          dataGraph2[0]?.data.slice(-2)[0].y
-          - dataGraph2[1]?.data.slice(-1)[0].y
-        ).toFixed(2),
-        maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
-        commentsName,
-      };
+
       const dataGraph1 = { series: [] };
       const serie1 = [];
       const serieGlobal = [];
@@ -158,7 +141,6 @@ function useGetData(observationSnaps, domain = '') {
           publicationDate: el.lastPublicationDate,
         });
       });
-      dataGraph1.comments = dataGraph2.comments;
       const showInLegend = domain !== '';
       const currentName = domain !== ''
         ? capitalize(intl.formatMessage({ id: `app.publications.${domain}` }))
@@ -179,7 +161,32 @@ function useGetData(observationSnaps, domain = '') {
         categories = dataGraph2[0].data.map((item) => item.publicationDate);
       }
 
-      return { categories, dataGraph1, dataGraph2 };
+      const oaYMinusOnePrevious = dataGraph2[1]?.data.slice(-1)[0].y.toFixed(0);
+      const value2 = dataGraph1.series[0].data
+        .find((item) => item.name === '2021')
+        .y.toFixed(0);
+      const comments = {
+        observationDate: dataGraph2[0]?.name,
+        previousObservationDate: dataGraph2[1]?.name,
+        observationDate4: dataGraph2[3]?.name,
+        oaYMinusOne4: dataGraph2[3]?.data.slice(-1)[0].y.toFixed(0),
+        oaYMinus4: dataGraph2[0]?.data.slice(-4)[0].y.toFixed(0),
+        publicationDate4: dataGraph2[3]?.data.slice(-1)[0].publicationDate,
+        minPublicationDate: dataGraph2[0]?.data[0]?.publicationDate,
+        previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
+        oaYMinusOnePrevious,
+        oaYMinusOne: dataGraph2[0]?.data.slice(-2)[0].y.toFixed(0),
+        value2,
+        oaEvolution: (
+          dataGraph2[0]?.data.slice(-2)[0].y
+          - dataGraph2[1]?.data.slice(-1)[0].y
+        ).toFixed(2),
+        maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
+        commentsName,
+        differenceValue: value2 - oaYMinusOnePrevious,
+      };
+
+      return { categories, comments, dataGraph1, dataGraph2 };
     },
     [domain, intl, search, commentsName],
   );
