@@ -1,6 +1,6 @@
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
@@ -20,20 +20,21 @@ import GraphTitle from '../Charts/graph-title';
 import Loader from '../Loader';
 
 function WrapperChart({
-  hasFooter,
-  hasComments,
-  children,
-  id,
-  domain,
   chartRef,
-  isLoading,
-  isError,
-  studyType,
+  children,
   dataTitle,
+  domain,
+  hasComments,
+  hasFooter,
+  id,
+  isError,
+  isLoading,
+  studyType,
 }) {
   const { lang } = useLang();
   const { updateDate } = useGlobals();
   const intl = useIntl();
+  const [height, setHeight] = useState(600);
   const idWithDomain = withDomain(id, domain);
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
@@ -54,6 +55,10 @@ function WrapperChart({
     ? intl.formatMessage({ id: `${idWithDomain}.comments` })
     : 'Commentaire non rédigé';
   const source = getSource(idWithDomain, otherSources);
+
+  useEffect(() => {
+    setHeight(chartRef?.current?.chart?.chartHeight || 600);
+  }, [chartRef]);
 
   const exportChartPng = () => {
     if (chartRef.current) {
@@ -103,13 +108,14 @@ function WrapperChart({
       </div>
       {hasFooter && (
         <GraphFooter
-          title={title}
-          studyType={studyType}
           date={getFormattedDate(updateDate, lang)}
+          height={height}
+          onCsvButtonClick={exportChartCsv}
+          onPngButtonClick={exportChartPng}
           source={source}
           srcPath={`${id}${domain ? '/' : ''}${domain}`}
-          onPngButtonClick={exportChartPng}
-          onCsvButtonClick={exportChartCsv}
+          studyType={studyType}
+          title={title}
         />
       )}
     </>
@@ -117,31 +123,31 @@ function WrapperChart({
 }
 
 WrapperChart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  isLoading: false,
-  isError: false,
   chartRef: () => {},
-  studyType: '',
   dataTitle: {},
+  hasComments: true,
+  hasFooter: true,
+  isError: false,
+  isLoading: false,
+  studyType: '',
 };
 
 WrapperChart.propTypes = {
-  hasFooter: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  isError: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  id: PropTypes.oneOf(graphIds).isRequired,
-  domain: PropTypes.oneOf(domains).isRequired,
   chartRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),
     PropTypes.shape({ current: undefined }),
   ]),
-  studyType: PropTypes.oneOf(studiesTypes),
+  children: PropTypes.node.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   dataTitle: PropTypes.object,
+  domain: PropTypes.oneOf(domains).isRequired,
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds).isRequired,
+  isError: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  studyType: PropTypes.oneOf(studiesTypes),
 };
 
 export default WrapperChart;

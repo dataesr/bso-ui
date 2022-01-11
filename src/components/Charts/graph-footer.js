@@ -30,13 +30,14 @@ import { studiesTypes } from '../../utils/constants';
 import { getCSSValue } from '../../utils/helpers';
 
 const GraphFooter = ({
-  source,
   date,
-  title,
-  srcPath,
-  studyType,
+  height,
   onCsvButtonClick,
   onPngButtonClick,
+  source,
+  srcPath,
+  studyType,
+  title,
 }) => {
   const intl = useIntl();
   const { search } = useLocation();
@@ -51,7 +52,7 @@ const GraphFooter = ({
     }${urlSearchParams}`,
   );
   const shareFill = getCSSValue('--blue-soft-100');
-  const clipboardContent = `<iframe id="${srcPath}" title="${title}" width="800" height="600" src="${urlToShare}"></iframe>`;
+  const clipboardContent = `<iframe id="${srcPath}" title="${title}" width="800" height="${height}" src="${urlToShare}"></iframe>`;
 
   return (
     <>
@@ -250,7 +251,9 @@ const GraphFooter = ({
             width="800"
             <br />
             <span style={{ paddingLeft: '18px' }} />
-            height="600"
+            height="
+            {height}
+            "
             <br />
             <span style={{ paddingLeft: '18px' }} />
             src="
@@ -266,20 +269,22 @@ const GraphFooter = ({
 export default GraphFooter;
 
 GraphFooter.defaultProps = {
-  source: '',
   date: '',
-  title: '',
-  srcPath: '',
+  height: 600,
   onCsvButtonClick: null,
   onPngButtonClick: null,
+  source: '',
+  srcPath: '',
   studyType: null,
+  title: '',
 };
 GraphFooter.propTypes = {
-  source: PropTypes.string,
-  title: PropTypes.string,
   date: PropTypes.string,
-  srcPath: PropTypes.string, // pour lien intégration
+  height: PropTypes.number,
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,
+  source: PropTypes.string,
+  srcPath: PropTypes.string, // pour lien intégration
   studyType: PropTypes.oneOf(studiesTypes),
+  title: PropTypes.string,
 };
