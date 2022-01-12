@@ -798,8 +798,8 @@ export const chartOptions = {
     },
   },
   'publi.general.impact-financement.chart-taux-ouverture': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions(id, intl, '');
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.general.impact-financement.chart-taux-ouverture.legend',
       });

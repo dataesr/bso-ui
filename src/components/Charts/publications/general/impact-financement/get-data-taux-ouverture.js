@@ -7,7 +7,7 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, agency = '*', domain) {
+function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -17,7 +17,6 @@ function useGetData(observationSnap, agency = '*', domain) {
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
     const queryFilter = [];
-    queryFilter.push({ wildcard: { 'grants.agency.keyword': agency } });
     const queryFiltered = getFetchOptions({
       key: 'openingRate',
       domain,
@@ -65,10 +64,7 @@ function useGetData(observationSnap, agency = '*', domain) {
           y_tot: withDeclarationElements.doc_count,
           publicationDate: el.key,
           bsoDomain,
-          agency:
-            agency === '*'
-              ? intl.formatMessage({ id: 'app.all-agencies' })
-              : agency,
+          agency: intl.formatMessage({ id: 'app.all-agencies' }),
         });
       });
 
@@ -177,7 +173,7 @@ function useGetData(observationSnap, agency = '*', domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap, agency]);
+  }, [observationSnap]);
   return { allData, isLoading, isError };
 }
 export default useGetData;

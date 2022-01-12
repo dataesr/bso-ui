@@ -1374,30 +1374,6 @@ export default function getFetchOptions({
         },
       },
     }),
-    allAgencies: ([lastObservationSnap]) => ({
-      size: 0,
-      query: {
-        bool: {
-          filter: [
-            {
-              term: {
-                year: getPublicationYearFromObservationSnap(
-                  lastObservationSnap,
-                ),
-              },
-            },
-            { exists: { field: `oa_details.${lastObservationSnap}` } },
-          ],
-        },
-      },
-      aggs: {
-        by_agency: {
-          terms: {
-            field: 'grants.agency.keyword',
-          },
-        },
-      },
-    }),
     openingType: ([lastObservationSnap, field, splitField]) => ({
       size: 0,
       query: {
