@@ -130,7 +130,36 @@ function useGetData(observationSnap, agency = '*', domain) {
       },
     ];
 
-    return { categories, dataGraph };
+    const year = 2020;
+    const allPublicationsLabel = intl.formatMessage({
+      id: 'app.all-publications',
+    });
+    const allPublicationsRate = dataGraph
+      .find((item) => item.name === allPublicationsLabel)
+      .data.find((item) => item.publicationDate === year)
+      .y.toFixed(0);
+    const publicationsWithStatementLabel = intl.formatMessage({
+      id: 'app.with-declaration',
+    });
+    const publicationsWithStatementRate = dataGraph
+      .find((item) => item.name === publicationsWithStatementLabel)
+      .data.find((item) => item.publicationDate === year)
+      .y.toFixed(0);
+    const publicationsWithoutStatementLabel = intl.formatMessage({
+      id: 'app.without-declaration',
+    });
+    const publicationsWithoutStatementRate = dataGraph
+      .find((item) => item.name === publicationsWithoutStatementLabel)
+      .data.find((item) => item.publicationDate === year)
+      .y.toFixed(0);
+    const comments = {
+      year,
+      allPublicationsRate,
+      publicationsWithStatementRate,
+      publicationsWithoutStatementRate,
+    };
+
+    return { categories, comments, dataGraph };
   }
 
   useEffect(() => {

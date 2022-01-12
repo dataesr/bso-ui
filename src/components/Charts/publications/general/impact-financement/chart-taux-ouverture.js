@@ -9,6 +9,7 @@ import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -16,16 +17,18 @@ import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
 import useGetData from './get-data-taux-ouverture';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain }) => {
+const Chart = ({ domain, hasComments, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [agencies, setAgencies] = useState([]);
   const [agency, setAgency] = useState('*');
+  const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap,
@@ -54,19 +57,25 @@ const Chart = ({ id, domain }) => {
 
   const agencyTitle = agency !== '*' ? ` (${agency})` : '';
   const dataTitle = { agencyTitle };
+  const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories,
     dataGraph,
     dataTitle,
   );
 
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomain, intl, search));
+  }, [allData, idWithDomain, intl, search]);
+
   return (
     <WrapperChart
       chartRef={chartRef}
       dataTitle={dataTitle}
       domain={domain}
+      hasComments={false}
       id={id}
       isError={isError}
       isLoading={isLoading || !dataGraph || !categories}
@@ -85,16 +94,21 @@ const Chart = ({ id, domain }) => {
         options={optionsGraph}
         ref={chartRef}
       />
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
   domain: '',
+  hasComments: true,
   id: 'publi.general.impact-financement.chart-taux-ouverture',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 

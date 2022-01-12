@@ -39,7 +39,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     publisher,
     domain,
   );
-  const { dataGraphViolin, categoriesViolin } = data;
+  const { categoriesViolin, dataGraphViolin } = data;
   const { search } = useLocation();
   const query = getFetchOptions({
     key: 'publishersList',
@@ -52,7 +52,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categoriesViolin,
     dataGraphViolin,
