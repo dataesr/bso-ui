@@ -98,6 +98,12 @@ function SantePublications() {
                   }),
                   href: '/sante/publications/general?id=general.impact-financement',
                 },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.affiliation.impact',
+                  }),
+                  href: '/sante/publications/general?id=affiliations.pays',
+                },
               ]}
             >
               <GraphContent>
@@ -160,6 +166,17 @@ function SantePublications() {
                 >
                   <BSOChart
                     id='publi.general.impact-financement.chart-taux-ouverture'
+                    domain='health'
+                  />
+                </QuestionSection>
+
+                <QuestionSection
+                  intlKey='app.health-publi.affiliations.pays'
+                  backgroundColor={blueSoft50}
+                  anchorId='affiliations.pays'
+                >
+                  <BSOChart
+                    id='publi.affiliations.pays.chart-taux-rang-utile'
                     domain='health'
                   />
                 </QuestionSection>
@@ -461,6 +478,7 @@ function SantePublications() {
             {/* Les affiliations */}
             <GraphItem
               paths={['/sante/publications/affiliations']}
+              isDisplayed={!isInProduction()}
               mainLabel={intl.formatMessage({
                 id: 'app.publi.affiliations',
               })}
@@ -476,12 +494,6 @@ function SantePublications() {
                     id: 'app.publi.navigation.affiliation.dynamique',
                   }),
                   href: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
-                },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.affiliation.impact',
-                  }),
-                  href: '/sante/publications/affiliations?id=affiliations.pays',
                 },
               ]}
             >
@@ -506,16 +518,6 @@ function SantePublications() {
                   />
                 </QuestionSection>
 
-                <QuestionSection
-                  intlKey='app.health-publi.affiliations.pays'
-                  backgroundColor={blueSoft50}
-                  anchorId='affiliations.pays'
-                >
-                  <BSOChart
-                    id='publi.affiliations.pays.chart-taux-rang-utile'
-                    domain='health'
-                  />
-                </QuestionSection>
               </GraphContent>
             </GraphItem>
           </GraphNavigation>
