@@ -274,6 +274,7 @@ export default function NationalPublications() {
                   intlKey='app.national-publi.publishers.poids-revues'
                   backgroundColor={blueSoft25}
                   anchorId='publishers.poids-revues'
+                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='publi.publishers.poids-revues.chart-repartition' />
                 </QuestionSection>
@@ -364,8 +365,12 @@ export default function NationalPublications() {
                   intlKey='app.national-publi.repositories.dynamique-depot'
                   backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-depot'
+                  isDisplayed={!isInProduction()}
                 >
-                  <BSOChart id='publi.repositories.dynamique-depot.chart-nombre-documents-depots' />
+                  <BSOChart
+                    id='publi.repositories.dynamique-depot.chart-nombre-documents-depots'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
 
                 <QuestionSection

@@ -455,10 +455,12 @@ function SantePublications() {
                   intlKey='app.health-publi.repositories.dynamique-depot'
                   backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-depot'
+                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart
                     id='publi.repositories.dynamique-depot.chart-nombre-documents-depots'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 
