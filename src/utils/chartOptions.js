@@ -350,26 +350,41 @@ export const chartOptions = {
         };
         options.annotations = [
           {
+            labelOptions: {
+              y: 0,
+              overflow: 'none',
+              shape: 'rect',
+              backgroundColor: 'white',
+              borderColor: getCSSValue('--g-400'),
+              borderWidth: 1,
+              useHTML: false,
+              borderRadius: 0,
+            },
             labels: [
               {
                 point: {
-                  x: 100,
-                  y: 100,
+                  x: 20,
+                  y: 1,
                   xAxis: 0,
                   yAxis: 0,
                 },
                 text: intl.formatMessage({
-                  id: 'app.publishers.objectif-science-ouverte',
+                  id: 'app.below-line',
+                }),
+              },
+              {
+                point: {
+                  x: 9,
+                  y: 20,
+                  xAxis: 0,
+                  yAxis: 0,
+                },
+                text: intl.formatMessage({
+                  id: 'app.above-line',
                 }),
               },
             ],
             draggable: '',
-            labelOptions: {
-              useHTML: true,
-              borderRadius: 0,
-              borderWidth: 0,
-              backgroundColor: getCSSValue('--blue-soft-100'),
-            },
           },
         ];
         options.responsive.rules[0].chartOptions.legend.align = 'right';
@@ -1224,26 +1239,41 @@ export const chartOptions = {
       };
       options.annotations = [
         {
+          labelOptions: {
+            y: 0,
+            overflow: 'none',
+            shape: 'rect',
+            backgroundColor: 'white',
+            borderColor: getCSSValue('--g-400'),
+            borderWidth: 1,
+            useHTML: false,
+            borderRadius: 0,
+          },
           labels: [
             {
               point: {
-                x: 100,
-                y: 100,
+                x: 20,
+                y: 1,
                 xAxis: 0,
                 yAxis: 0,
               },
               text: intl.formatMessage({
-                id: 'app.publishers.objectif-science-ouverte',
+                id: 'app.below-line',
+              }),
+            },
+            {
+              point: {
+                x: 9,
+                y: 20,
+                xAxis: 0,
+                yAxis: 0,
+              },
+              text: intl.formatMessage({
+                id: 'app.above-line',
               }),
             },
           ],
           draggable: '',
-          labelOptions: {
-            useHTML: true,
-            borderRadius: 0,
-            borderWidth: 0,
-            backgroundColor: getCSSValue('--blue-soft-100'),
-          },
         },
       ];
       options.responsive.rules[0].chartOptions.legend.align = 'right';

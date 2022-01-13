@@ -10,7 +10,6 @@ import {
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
-import target from '../../../../Images/asset-target.png';
 
 function useGetData(lastObservationSnap, domain = '') {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
@@ -78,13 +77,20 @@ function useGetData(lastObservationSnap, domain = '') {
         color: getCSSValue('--orange-soft-100'),
       },
       {
-        data: [{ y: 100, x: 100 }],
-        type: 'scatter',
-        showInLegend: false,
+        type: 'line',
+        color: getCSSValue('--g-600'),
+        dashStyle: 'ShortDot',
         enableMouseTracking: false,
-        marker: {
-          symbol: `url(${target})`,
+        showInLegend: false,
+        marker: { enabled: false },
+        data: [{
+          x: 0,
+          y: 0,
+        }, {
+          x: 100,
+          y: 100,
         },
+        ],
       },
     ];
 

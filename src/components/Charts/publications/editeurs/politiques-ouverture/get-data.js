@@ -135,13 +135,20 @@ function useGetData(lastObservationSnap, domain) {
         showInLegend: false,
       },
       {
-        data: [{ y: 100, x: 100 }],
-        type: 'scatter',
+        type: 'line',
+        color: getCSSValue('--g-600'),
+        dashStyle: 'ShortDot',
         enableMouseTracking: false,
-        marker: {
-          symbol: `url(${target})`,
-        },
         showInLegend: false,
+        marker: { enabled: false },
+        data: [{
+          x: 0,
+          y: 0,
+        }, {
+          x: 100,
+          y: 100,
+        },
+        ],
       },
     ];
 
