@@ -37,6 +37,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       let data = res.data.aggregations.by_discipline.buckets;
 
       const categories = []; // Elements d'abscisse
+      const categoriesComments = []; // Elements d'abscisse
       const repository = []; // archive ouverte
       const publisher = []; // éditeur
       const publisherRepository = []; // les 2
@@ -91,6 +92,9 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             .concat(cleanNumber(totalCurrent))
             .concat(')'),
         );
+        categoriesComments.push(
+          capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` })),
+        );
         closed.push({
           y: (100 * closedCurrent) / totalCurrent,
           y_abs: closedCurrent,
@@ -98,7 +102,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           x: catIndex,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categories[catIndex],
+          discipline: categoriesComments[catIndex],
           bsoDomain,
         });
         oa.push({
@@ -108,7 +112,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           x: catIndex,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categories[catIndex],
+          discipline: categoriesComments[catIndex],
           bsoDomain,
         });
         repository.push({
@@ -118,7 +122,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           x: catIndex,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categories[catIndex],
+          discipline: categoriesComments[catIndex],
           bsoDomain,
         });
         publisher.push({
@@ -128,7 +132,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           x: catIndex,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categories[catIndex],
+          discipline: categoriesComments[catIndex],
           bsoDomain,
         });
         publisherRepository.push({
@@ -138,7 +142,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           x: catIndex,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categories[catIndex],
+          discipline: categoriesComments[catIndex],
           bsoDomain,
         });
       });
