@@ -214,29 +214,39 @@ function useGetData(observationSnap, domain) {
       ];
 
       const articles = newData.find((item) => item.key === 'journal-article');
-      const articlesTotal = articles.doc_count;
-      const openArticles = articles.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(item.key));
-      const openArticlesTotal = openArticles.reduce(
-        (previousValue, currentValue) => previousValue + currentValue.doc_count,
-        0,
-      );
-      const openArticlesPercentage = (
-        (openArticlesTotal / articlesTotal)
-        * 100
-      ).toFixed(0);
+      let openArticlesPercentage = '';
+      if (articles) {
+        const articlesTotal = articles.doc_count;
+        const openArticles = articles.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
+          item.key,
+        ));
+        const openArticlesTotal = openArticles.reduce(
+          (previousValue, currentValue) => previousValue + currentValue.doc_count,
+          0,
+        );
+        openArticlesPercentage = (
+          (openArticlesTotal / articlesTotal)
+          * 100
+        ).toFixed(0);
+      }
+
       const booksChapters = newData.find((item) => item.key === 'book-chapter');
-      const booksChaptersTotal = booksChapters?.doc_count || 0;
-      const openBooksChapters = booksChapters?.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
-        item.key,
-      )) || [];
-      const openBooksChaptersTotal = openBooksChapters.reduce(
-        (previousValue, currentValue) => previousValue + currentValue.doc_count,
-        0,
-      );
-      const openBooksChaptersPercentage = (
-        (openBooksChaptersTotal / booksChaptersTotal)
-        * 100
-      ).toFixed(0);
+      let openBooksChaptersPercentage = '';
+      if (booksChapters) {
+        const booksChaptersTotal = booksChapters?.doc_count || 0;
+        const openBooksChapters = booksChapters?.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
+          item.key,
+        )) || [];
+        const openBooksChaptersTotal = openBooksChapters.reduce(
+          (previousValue, currentValue) => previousValue + currentValue.doc_count,
+          0,
+        );
+        openBooksChaptersPercentage = (
+          (openBooksChaptersTotal / booksChaptersTotal)
+          * 100
+        ).toFixed(0);
+      }
+
       const comments = {
         openArticlesPercentage,
         openBooksChaptersPercentage,

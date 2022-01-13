@@ -20,6 +20,9 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
   const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
+    if (!datesObservation || datesObservation.length === 0) {
+      return {};
+    }
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     const query = getFetchOptions({

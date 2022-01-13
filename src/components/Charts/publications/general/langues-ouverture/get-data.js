@@ -192,17 +192,35 @@ function useGetData(observationSnap, domain) {
         },
       ];
 
+      let publicationsEnglishTotal = '';
+      let publicationsEnglishOpen = '';
+      let publicationsEnglishClosed = '';
+      let publicationsEnglishRate = '';
+      let publicationsFrenchTotal = '';
+      let publicationsFrenchOpen = '';
+      let publicationsFrenchClosed = '';
+      let publicationsFrenchRate = '';
+      if (oa && oa[0] && oa[1]) {
+        publicationsEnglishTotal = cleanNumber(oa[0].y_tot);
+        publicationsEnglishOpen = cleanNumber(oa[0].y_oa);
+        publicationsEnglishClosed = cleanNumber(oa[0].y_tot - oa[0].y_oa);
+        publicationsEnglishRate = oa[0].y.toFixed(0);
+        publicationsFrenchTotal = cleanNumber(oa[1].y_tot);
+        publicationsFrenchOpen = cleanNumber(oa[1].y_oa);
+        publicationsFrenchClosed = cleanNumber(oa[1].y_tot - oa[1].y_oa);
+        publicationsFrenchRate = oa[1].y.toFixed(0);
+      }
       const comments = {
         publicationYear:
           getPublicationYearFromObservationSnap(lastObservationSnap),
-        publicationsEnglishTotal: cleanNumber(oa[0].y_tot),
-        publicationsEnglishOpen: cleanNumber(oa[0].y_oa),
-        publicationsEnglishClosed: cleanNumber(oa[0].y_tot - oa[0].y_oa),
-        publicationsEnglishRate: oa[0].y.toFixed(0),
-        publicationsFrenchTotal: cleanNumber(oa[1].y_tot),
-        publicationsFrenchOpen: cleanNumber(oa[1].y_oa),
-        publicationsFrenchClosed: cleanNumber(oa[1].y_tot - oa[1].y_oa),
-        publicationsFrenchRate: oa[1].y.toFixed(0),
+        publicationsEnglishTotal,
+        publicationsEnglishOpen,
+        publicationsEnglishClosed,
+        publicationsEnglishRate,
+        publicationsFrenchTotal,
+        publicationsFrenchOpen,
+        publicationsFrenchClosed,
+        publicationsFrenchRate,
       };
 
       return { categories, dataGraph, dataGraph3, comments };

@@ -16,6 +16,9 @@ function useGetData(observationSnap, domain) {
   const { search } = useLocation();
 
   async function getDataGraph() {
+    if (!observationSnap) {
+      return {};
+    }
     const query = getFetchOptions({
       key: 'publishersTypesHisto',
       domain,
@@ -28,7 +31,8 @@ function useGetData(observationSnap, domain) {
       .sort((a, b) => a.key - b.key)
       .filter(
         (el) => el.key >= 2013
-          && parseInt(el.key, 10) < parseInt(observationSnap.substring(0, 4), 10),
+          && parseInt(el.key, 10)
+            < parseInt(String(observationSnap).substring(0, 4), 10),
       );
 
     const categories = data.map((dataYear) => dataYear.key);
@@ -180,19 +184,25 @@ function useGetData(observationSnap, domain) {
       },
     ];
 
+    const year1 = 2018;
+    const year2 = 2019;
+    const year3 = 2020;
+    const diamond1 = diamondData
+      .find((item) => item.publicationDate === year1)
+      ?.y.toFixed(2);
+    const diamond2 = diamondData
+      .find((item) => item.publicationDate === year2)
+      ?.y.toFixed(2);
+    const diamond3 = diamondData
+      .find((item) => item.publicationDate === year3)
+      ?.y.toFixed(2);
     const comments = {
-      year1: 2018,
-      year2: 2019,
-      year3: 2020,
-      diamond1: diamondData
-        .find((item) => item.publicationDate === 2018)
-        .y.toFixed(2),
-      diamond2: diamondData
-        .find((item) => item.publicationDate === 2019)
-        .y.toFixed(2),
-      diamond3: diamondData
-        .find((item) => item.publicationDate === 2020)
-        .y.toFixed(2),
+      year1,
+      year2,
+      year3,
+      diamond1,
+      diamond2,
+      diamond3,
     };
 
     return { categories, dataGraph, dataGraphTreemap, comments };

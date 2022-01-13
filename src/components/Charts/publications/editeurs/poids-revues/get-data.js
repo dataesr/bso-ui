@@ -16,6 +16,9 @@ function useGetData(observationSnap, domain) {
   const { search } = useLocation();
 
   async function getDataGraph() {
+    if (!observationSnap) {
+      return {};
+    }
     const query = getFetchOptions({
       key: 'predatory',
       domain,
@@ -36,7 +39,9 @@ function useGetData(observationSnap, domain) {
     let publicationsInList = 0;
     data.forEach((dataYear) => {
       totalPublications += dataYear.doc_count;
-      publicationsInList += dataYear.by_predatory.buckets.find((el) => el.key === 1).doc_count;
+      publicationsInList += dataYear.by_predatory.buckets.find(
+        (el) => el.key === 1,
+      ).doc_count;
       /* predatory.push({
         publicationDate: dataYear.key,
         bsoDomain,
