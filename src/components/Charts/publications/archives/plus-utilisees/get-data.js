@@ -34,7 +34,6 @@ function useGetData(observationSnap, domain) {
     const name = 'HAL';
     let publicationDate = '';
     let y = '';
-    console.log(dataGraph);
     if (dataGraph) {
       publicationDate = dataGraph.find(
         (item) => item.name === name,
