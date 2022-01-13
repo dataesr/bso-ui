@@ -175,14 +175,39 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         },
       ];
 
+      let discipline = '';
+      let publisherRate = '';
+      let publisherRepositoryRate = '';
+      let repositoryRate = '';
+      if (dataGraph[0] && dataGraph[0].data && dataGraph[0].data[0]) {
+        discipline = dataGraph[0].data[0].discipline.toLowerCase();
+        publisherRate = dataGraph[0].data[0].y.toFixed(1);
+      }
+      if (
+        dataGraph
+        && dataGraph[1]
+        && dataGraph[1].data
+        && dataGraph[1].data[0]
+      ) {
+        publisherRepositoryRate = dataGraph[1].data[0].y.toFixed(1);
+      }
+      if (
+        dataGraph
+        && dataGraph[2]
+        && dataGraph[2].data
+        && dataGraph[2].data[0]
+      ) {
+        repositoryRate = dataGraph[2].data[0].y.toFixed(1);
+      }
+
       const comments = {
         commentsName,
-        discipline: dataGraph[0].data[0].discipline.toLowerCase(),
+        discipline,
         observationYear: getObservationLabel(lastObservationSnap, intl),
         publicationYear: beforeLastObservationSnap,
-        publisherRate: dataGraph[0].data[0].y.toFixed(1),
-        publisherRepositoryRate: dataGraph[1].data[0].y.toFixed(1),
-        repositoryRate: dataGraph[2].data[0].y.toFixed(1),
+        publisherRate,
+        publisherRepositoryRate,
+        repositoryRate,
       };
 
       return { categories, dataGraph, comments };

@@ -164,7 +164,7 @@ function useGetData(observationSnaps, domain = '') {
       const oaYMinusOnePrevious = dataGraph2[1]?.data.slice(-1)[0].y.toFixed(0);
       const value2 = dataGraph1.series[0].data
         .find((item) => item.name === '2021')
-        .y.toFixed(0);
+        ?.y.toFixed(0);
       const comments = {
         observationDate: dataGraph2[0]?.name,
         previousObservationDate: dataGraph2[1]?.name,

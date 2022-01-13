@@ -84,29 +84,38 @@ function useGetData(observationSnaps, domain = '') {
             })),
         });
       });
-      const serieLength = dataHist[0].data.length - 1;
-      dataHist = dataHist.sort(
-        (a, b) => b.data[serieLength].y - a.data[serieLength].y,
-      );
-      const bestRateValue = dataHist[0].data[serieLength].y.toFixed(0);
-      const bestRateDiscipline = intl.formatMessage({
-        id: `app.discipline.${dataHist[0].name}`,
-      });
-      const year1 = dataHist[0].data[serieLength - 1].name;
-      const year2 = dataHist[0].data[serieLength].name.replace('<br/>', ' ');
+      let bestRateValue = '';
+      let bestRateDiscipline = '';
+      let bestProgressionValue1 = '';
+      let bestProgressionValue2 = '';
+      let bestProgressionDiscipline = '';
+      let year1 = '';
+      let year2 = '';
+      if (dataHist.length > 0) {
+        const serieLength = dataHist[0]?.data.length - 1;
+        dataHist = dataHist.sort(
+          (a, b) => b.data[serieLength].y - a.data[serieLength].y,
+        );
+        bestRateValue = dataHist[0]?.data[serieLength].y.toFixed(0);
+        bestRateDiscipline = intl.formatMessage({
+          id: `app.discipline.${dataHist[0].name}`,
+        });
+        year1 = dataHist[0].data[serieLength - 1].name;
+        year2 = dataHist[0].data[serieLength].name.replace('<br/>', ' ');
 
-      dataHist = dataHist.sort((a, b) => {
-        const minA = a.data[0].y;
-        const maxA = a.data[serieLength].y;
-        const minB = b.data[0].y;
-        const maxB = b.data[serieLength].y;
-        return maxB - minB - (maxA - minA);
-      });
-      const bestProgressionValue1 = dataHist[0].data[0].y.toFixed(0);
-      const bestProgressionValue2 = dataHist[0].data[serieLength].y.toFixed(0);
-      const bestProgressionDiscipline = intl.formatMessage({
-        id: `app.discipline.${dataHist[0].name}`,
-      });
+        dataHist = dataHist.sort((a, b) => {
+          const minA = a.data[0].y;
+          const maxA = a.data[serieLength].y;
+          const minB = b.data[0].y;
+          const maxB = b.data[serieLength].y;
+          return maxB - minB - (maxA - minA);
+        });
+        bestProgressionValue1 = dataHist[0].data[0].y.toFixed(0);
+        bestProgressionValue2 = dataHist[0].data[serieLength].y.toFixed(0);
+        bestProgressionDiscipline = intl.formatMessage({
+          id: `app.discipline.${dataHist[0].name}`,
+        });
+      }
 
       const comments = {
         bestRateValue,
