@@ -7,6 +7,7 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
+  cleanNumber,
   getCSSValue,
   getObservationLabel,
   getPublicationYearFromObservationSnap,
@@ -68,11 +69,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         }))
         .sort((a, b) => a.closed / a.total - b.closed / b.total);
       data.forEach((el, catIndex) => {
-        const nameClean = el.key.replace(/\n/g, '').replace('  ', ' ');
-        categories.push(
-          capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` })),
-        );
-
         const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
           ?.doc_count || 0;
         const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
@@ -87,6 +83,14 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           + publisherRepositoryCurrent
           + closedCurrent;
         const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
+        const nameClean = el.key.replace(/\n/g, '').replace('  ', ' ');
+        categories.push(
+          capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` }))
+            .concat('</br>(')
+            .concat(intl.formatMessage({ id: 'app.effectif' }))
+            .concat(cleanNumber(totalCurrent))
+            .concat(')'),
+        );
         closed.push({
           y: (100 * closedCurrent) / totalCurrent,
           y_abs: closedCurrent,

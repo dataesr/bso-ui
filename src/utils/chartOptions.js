@@ -210,6 +210,7 @@ export const chartOptions = {
         id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip',
       });
       options.chart.type = 'bar';
+      options.chart.height = '600px';
       options.xAxis = {
         categories,
       };
