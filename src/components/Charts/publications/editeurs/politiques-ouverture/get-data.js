@@ -7,6 +7,7 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
+  cleanNumber,
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
@@ -42,9 +43,9 @@ function useGetData(lastObservationSnap, domain) {
 
     // 1er graphe (bar)
     const data = res[0].data.aggregations.by_publisher.buckets;
-    const categories = data.map((el) => el.key);
     const openByPublishers = [];
     const greenOnly = [];
+    const categories = [];
     data.forEach((elem) => {
       openByPublishers.push({
         bsoDomain,
@@ -76,6 +77,15 @@ function useGetData(lastObservationSnap, domain) {
               ?.doc_count)
           / elem.doc_count,
       });
+      const totalCurrent = elem.doc_count;
+      const nameClean = elem.key;
+      categories.push(
+        nameClean
+          .concat('</br>(')
+          .concat(intl.formatMessage({ id: 'app.effectif' }))
+          .concat(cleanNumber(totalCurrent))
+          .concat(')'),
+      );
     });
     const dataGraph = [
       {
