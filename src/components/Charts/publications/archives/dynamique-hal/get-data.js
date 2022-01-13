@@ -91,16 +91,20 @@ function useGetData(lastObservationSnap, domain) {
       },
     ];
 
-    const valueHAL = dataGraph2
-      .find((item) => item.name === 'En accès ouvert sur HAL')
-      .data.find((item) => item.x === 2020)
-      .y.toFixed(0);
-    const valueNotHAL = dataGraph2
-      .find(
-        (item) => item.name === 'En accès ouvert sur une archive mais pas sur HAL',
-      )
-      .data.find((item) => item.x === 2020)
-      .y.toFixed(0);
+    let valueHAL = '';
+    let valueNotHAL = '';
+    if (dataGraph2) {
+      valueHAL = dataGraph2
+        .find((item) => item.name === 'En accès ouvert sur HAL')
+        ?.data.find((item) => item.x === 2020)
+        ?.y.toFixed(0);
+      valueNotHAL = dataGraph2
+        .find(
+          (item) => item.name === 'En accès ouvert sur une archive mais pas sur HAL',
+        )
+        ?.data.find((item) => item.x === 2020)
+        ?.y.toFixed(0);
+    }
     const comments = {
       valueHAL,
       valueNotHAL,

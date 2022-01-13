@@ -146,21 +146,33 @@ function useGetData(observationSnaps, needle = '*', domain) {
       publicationDate: el.publicationDate,
     }));
 
-    const year = getObservationLabel(observationSnaps[0]);
-    const { y, publicationDate } = dataGraph1.find(
-      (item) => item.name === year,
-    );
-    const year1 = dataGraph2[dataGraph2.length - 1].name;
-    const value1 = dataGraph2[dataGraph2.length - 1].data
-      .find((item) => item.publicationDate === 2017)
-      .y.toFixed(0);
-    const year2 = dataGraph2[0].name;
-    const value2 = dataGraph2[0].data
-      .find((item) => item.publicationDate === 2017)
-      .y.toFixed(0);
+    let year = '';
+    let y = '';
+    let publicationDate = '';
+    let percentage = '';
+    let year1 = '';
+    let value1 = '';
+    let year2 = '';
+    let value2 = '';
+    if (observationSnaps && dataGraph1 && dataGraph2) {
+      year = getObservationLabel(observationSnaps[0]);
+      y = dataGraph1.find((item) => item.name === year).y;
+      publicationDate = dataGraph1.find(
+        (item) => item.name === year,
+      ).publicationDate;
+      percentage = y?.toFixed(0);
+      year1 = dataGraph2[dataGraph2.length - 1].name;
+      value1 = dataGraph2[dataGraph2.length - 1].data
+        .find((item) => item.publicationDate === 2017)
+        ?.y.toFixed(0);
+      year2 = dataGraph2[0].name;
+      value2 = dataGraph2[0].data
+        .find((item) => item.publicationDate === 2017)
+        ?.y.toFixed(0);
+    }
     const comments = {
       year,
-      percentage: y.toFixed(0),
+      percentage,
       publicationDate,
       year1,
       value1,
