@@ -10,7 +10,6 @@ import {
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
-import target from '../../../../Images/asset-target.png';
 
 function useGetData(lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
@@ -141,13 +140,15 @@ function useGetData(lastObservationSnap, domain) {
         enableMouseTracking: false,
         showInLegend: false,
         marker: { enabled: false },
-        data: [{
-          x: 0,
-          y: 0,
-        }, {
-          x: 100,
-          y: 100,
-        },
+        data: [
+          {
+            x: 0,
+            y: 0,
+          },
+          {
+            x: 100,
+            y: 100,
+          },
         ],
       },
     ];

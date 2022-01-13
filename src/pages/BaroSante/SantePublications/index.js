@@ -415,6 +415,7 @@ function SantePublications() {
                     id: 'app.publi.navigation.archives.depot',
                   }),
                   href: '/sante/publications/archives?id=repositories.dynamique-depot',
+                  isDisplayed: !isInProduction(),
                 },
                 {
                   label: intl.formatMessage({
@@ -460,7 +461,6 @@ function SantePublications() {
                   <BSOChart
                     id='publi.repositories.dynamique-depot.chart-nombre-documents-depots'
                     domain='health'
-                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 
@@ -519,7 +519,6 @@ function SantePublications() {
                     domain='health'
                   />
                 </QuestionSection>
-
               </GraphContent>
             </GraphItem>
           </GraphNavigation>

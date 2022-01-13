@@ -334,6 +334,7 @@ export default function NationalPublications() {
                     id: 'app.publi.navigation.archives.depot',
                   }),
                   href: '/publications/archives?id=repositories.dynamique-depot',
+                  isDisplayed: !isInProduction(),
                 },
                 {
                   label: intl.formatMessage({
@@ -367,10 +368,7 @@ export default function NationalPublications() {
                   anchorId='repositories.dynamique-depot'
                   isDisplayed={!isInProduction()}
                 >
-                  <BSOChart
-                    id='publi.repositories.dynamique-depot.chart-nombre-documents-depots'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='publi.repositories.dynamique-depot.chart-nombre-documents-depots' />
                 </QuestionSection>
 
                 <QuestionSection
