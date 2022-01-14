@@ -22,6 +22,10 @@
       "intlDefinition": "app.glossary.clinicaltrials-gov.definition",
       "intlEntry": "app.glossary.clinicaltrials-gov"
     },
+    "code-source": {
+      "intlDefinition": "app.glossary.code-source.definition",
+      "intlEntry": "app.glossary.code-source"
+    },
     "diamond": {
       "intlDefinition": "app.glossary.diamond.definition",
       "intlEntry": "app.glossary.diamond"
@@ -33,6 +37,18 @@
     "doi": {
       "intlDefinition": "app.glossary.doi.definition",
       "intlEntry": "app.glossary.doi"
+    },
+    "donnees-recherche": {
+      "intlDefinition": "app.glossary.donnees-recherche.definition",
+      "intlEntry": "app.glossary.donnees-recherche"
+    },
+    "embargo": {
+      "intlDefinition": "app.glossary.embargo.definition",
+      "intlEntry": "app.glossary.embargo"
+    },
+    "entrepot": {
+      "intlDefinition": "app.glossary.entrepot.definition",
+      "intlEntry": "app.glossary.entrepot"
     },
     "essai-clinique": {
       "intlDefinition": "app.glossary.essai-clinique.definition",
@@ -61,6 +77,22 @@
     "hybrid": {
       "intlDefinition": "app.glossary.hybrid.definition",
       "intlEntry": "app.glossary.hybrid"
+    },
+    "licence": {
+      "intlDefinition": "app.glossary.licence.definition",
+      "intlEntry": "app.glossary.licence"
+    },
+    "list-beall": {
+      "intlDefinition": "app.glossary.list-beall.definition",
+      "intlEntry": "app.glossary.list-beall"
+    },
+    "loi-republique-numerique": {
+      "intlDefinition": "app.glossary.loi-republique-numerique.definition",
+      "intlEntry": "app.glossary.loi-republique-numerique"
+    },
+    "metadata": {
+      "intlDefinition": "app.glossary.metadata.definition",
+      "intlEntry": "app.glossary.metadata"
     },
     "openapc": {
       "intlDefinition": "app.glossary.openapc.definition",
