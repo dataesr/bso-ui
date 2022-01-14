@@ -70,13 +70,13 @@ function SantePublications() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.publi.navigation.disciplines.dynamique',
+                    id: 'app.publi.navigation.dynamique',
                   }),
                   href: '/sante/publications/general?id=general.dynamique-ouverture',
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.publi.navigation.disciplines.voies',
+                    id: 'app.publi.navigation.voies',
                   }),
                   href: '/sante/publications/general?id=general.voies-ouverture',
                 },
