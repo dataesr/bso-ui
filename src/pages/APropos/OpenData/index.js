@@ -4,6 +4,7 @@ import {
   Col,
   Container,
   Icon as DSIcon,
+  Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
 import React from 'react';
@@ -40,7 +41,6 @@ function OpenData() {
               <Card
                 bodyClassName='bg-medium-blue text-white'
                 hasArrow={false}
-                href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
               >
                 <CardDescription as='div'>
                   <Container>
@@ -59,13 +59,12 @@ function OpenData() {
                         </DSIcon>
                       </Col>
                       <Col n='12'>
-                        <DSIcon
-                          name='ri-link'
-                          size='lg'
-                          as='span'
-                          className='ds-fr--v-middle'
-                        >
-                          <div className='w-100 text-right' />
+                        <DSIcon name='ri-link' size='2x' as='div' className='ds-fr--v-middle'>
+                          <DSLink
+                            className='w-100 text-right no-content-after'
+                            href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
+                            target='_blank'
+                          />
                         </DSIcon>
                       </Col>
                     </Row>
@@ -79,7 +78,6 @@ function OpenData() {
               <Card
                 bodyClassName='bg-dark-blue text-white'
                 hasArrow={false}
-                href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
               >
                 <CardDescription as='div'>
                   <Container>
@@ -98,13 +96,12 @@ function OpenData() {
                         </DSIcon>
                       </Col>
                       <Col n='12'>
-                        <DSIcon
-                          name='ri-link'
-                          size='lg'
-                          as='span'
-                          className='ds-fr--v-middle'
-                        >
-                          <div className='w-100 text-right' />
+                        <DSIcon name='ri-link' size='2x' as='div' className='ds-fr--v-middle'>
+                          <DSLink
+                            className='w-100 text-right no-content-after'
+                            href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
+                            target='_blank'
+                          />
                         </DSIcon>
                       </Col>
                     </Row>
