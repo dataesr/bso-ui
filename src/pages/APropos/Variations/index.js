@@ -30,119 +30,121 @@ function Variations() {
         <section className='content py-48'>
           <Row gutters>
             <Col n='12 lg-8'>
-              La partie nationale du BSO est déclinable pour les établissements
-              (et laboratoires).
-              <ol>
+              <h2 className='marianne-bold fs-12-16'>
+                Déclinaisons locales du Baromètre de la Science Ouverte
+              </h2>
+              Les volets publications du BSO est déclinable pour chaque établissement ou laboratoire en mesure de constituer sa liste de publications (DOI uniquement pour le moment).
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <h4 className='marianne-bold fs-24-32'>
+                Constitution d'une liste de publication ( à la main de chaque établissement)
+              </h4>
+              Chaque établissement / laboratoire qui le souhaite nous fait
+              parvenir une liste de DOI (csv ou excel) , et nous précise le
+              nom qui sera affiché pour l'établissement, la date de début
+              ainsi que la date de fin si nécessaire. Pour obtenir cette
+              liste de DOI, l'Université de Lorraine a développé un code que
+              vous pouvez trouver
+              {' '}
+              <a
+                href='https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/01_nettoyage_donnees.ipynb'
+                rel='noreferrer'
+                target='_blank'
+              >
+                ici
+              </a>
+              .
+              Une fois cette liste réalisée, vous pouvez pour le moment nous la communiquer par email bso@recherche.gouv.fr.
+              Un meilleur système de remontée sera probablement mis en place dans le futur. Il faut alors que notre système ingère cette liste de DOI.
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <h4 className='marianne-bold fs-24-32'>
+                Utilisation et paramétrage des iFrames
+              </h4>
+              Dès lors, chaque graphique du BSO publications est déclinable pour
+              l'établissement / laboratoire en passant un paramètre dans
+              l'URL. Ce graphe sera alors intégrable dans n'importe quel
+              site web via une iFrame. Pour décliner un graphe, cliquer sur
+              le bouton "Intégration" en bas du graphe voulu, afin de
+              récupérer l'url du graphe en question. Ensuite, ajouter à
+              cette url l'identifiant Siren de la structure (ex:
+              <i>bsoLocalAffiliation=130015506</i>
+              {' '}
+              pour l'Université de Lorraine).
+              Par défaut, les éléments envoyés précédemment (nom, date de
+              début et date de fin) seront intégrés pour cet établissement /
+              laboratoire. Néanmoins, il est possible de les modifier
+              directement dans l'URL via des paramètres :
+              <ul>
                 <li>
-                  Chaque établissement / laboratoire qui le souhaite nous fait
-                  parvenir une liste de DOI (csv ou excel) , et nous précise le
-                  nom qui sera affiché pour l'établissement, la date de début
-                  ainsi que la date de fin si nécessaire. Pour obtenir cette
-                  liste de DOI, l'Université de Lorraine a développé un code que
-                  vous pouvez trouver
-                  {' '}
-                  <a
-                    href='https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/01_nettoyage_donnees.ipynb'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
-                    ici
-                  </a>
-                  .
+                  <b>bsoLocalAffiliation</b>
+                  : SIREN de l'établissement (ex:
+                  bsoLocalAffiliation=130015506)
+                  <i> requis</i>
                 </li>
                 <li>
-                  Il faut alors que notre système ingère cette liste de DOI afin
-                  de compléter les informations dont nous disposons si
-                  nécessaire.
+                  <b>commentsName</b>
+                  : Nom de l'établissement / laboratoire
+                  qui sera affiché dans les commentaires (ex:
+                  commentsName=pour l'université de Lorraine),
+                  <i> défaut: vide</i>
                 </li>
                 <li>
-                  Dès lors, chaque graphique du BSO national est déclinable pour
-                  l'établissement / laboratoire en passant un paramètre dans
-                  l'URL. Ce graphe sera alors intégrable dans n'importe quel
-                  site web via une iFrame. Pour décliner un graphe, cliquer sur
-                  le bouton "Intégration" en bas du graphe voulu, afin de
-                  récupérer l'url du graphe en question. Ensuite, ajouter à
-                  cette url l'identifiant Siren de la structure (ex:
-                  <i>bsoLocalAffiliation=130015506</i>
-                  {' '}
-                  pour l'Université de
-                  Lorraine).
+                  <b>displayComment</b>
+                  : affiche ou masque le commentaire
+                  (ex: displayComment=false),
+                  <i> défaut: true</i>
                 </li>
                 <li>
-                  Par défaut, les éléments envoyés précédemment (nom, date de
-                  début et date de fin) seront intégrés pour cet établissement /
-                  laboratoire. Néanmoins, il est possible de les modifier
-                  directement dans l'URL via des paramètres :
-                  <ul>
-                    <li>
-                      <b>bsoLocalAffiliation</b>
-                      : SIREN de l'établissement (ex:
-                      bsoLocalAffiliation=130015506)
-                      <i>requis</i>
-                    </li>
-                    <li>
-                      <b>commentsName</b>
-                      : Nom de l'établissement / laboratoire
-                      qui sera affiché dans les commentaires (ex:
-                      commentsName=pour l'université de Lorraine)
-                      <i>défaut: ''</i>
-                    </li>
-                    <li>
-                      <b>displayComment</b>
-                      : affiche ou masque le commentaire
-                      (ex: displayComment=false),
-                      <i>défaut: true</i>
-                    </li>
-                    <li>
-                      <b>displayTitle</b>
-                      : affiche ou masque le titre (ex:
-                      displayTitle=false),
-                      <i>défaut: true</i>
-                    </li>
-                    <li>
-                      <b>endYear</b>
-                      : filtre sur l'année de publication
-                      inférieure ou égale (ex: endYear=2020)
-                      <i>défaut: Aucune</i>
-                    </li>
-                    <li>
-                      <b>name</b>
-                      : Nom de l'établissement / laboratoire qui
-                      préfixe le titre du graphe (ex: name=Université de
-                      Lorraine)
-                      <i>défaut: Aucun</i>
-                    </li>
-                    <li>
-                      <b>startYear</b>
-                      : filtre sur l'année de publication
-                      supérieure ou égale (ex: startYear=2016)
-                      <i>défaut: 2013</i>
-                    </li>
-                  </ul>
-                  <li>
-                    Attention, seuls les graphes du BSO national sont
-                    adaptables. Pour des raisons de manque de données, les
-                    graphes relatifs au domaine de la santé ne seront pas
-                    adaptables.
-                  </li>
-                  <li>
-                    D'autre part, l'url doit être encodée. Pour ce faire, il
-                    faut copier coller l'url composée dans un navigateur et
-                    celui-ci la réécrira dans la barre d'adresse. C'est alors
-                    cette URL réécrite qu'il faudra mettre dans l'attribut "src"
-                    de l'iframe.
-                  </li>
+                  <b>displayTitle</b>
+                  : affiche ou masque le titre (ex:
+                  displayTitle=false),
+                  <i> défaut: true</i>
                 </li>
-              </ol>
+                <li>
+                  <b>endYear</b>
+                  : filtre sur l'année de publication
+                  inférieure ou égale (ex: endYear=2020),
+                  <i> défaut: vide</i>
+                </li>
+                <li>
+                  <b>name</b>
+                  : Nom de l'établissement / laboratoire qui
+                  préfixe le titre du graphe (ex: name=Université de
+                  Lorraine),
+                  <i> défaut: vide</i>
+                </li>
+                <li>
+                  <b>startYear</b>
+                  : filtre sur l'année de publication
+                  supérieure ou égale (ex: startYear=2016),
+                  <i> défaut: 2013</i>
+                </li>
+              </ul>
+              <li>
+                Attention, seuls les graphes du BSO publications sont
+                adaptables.
+              </li>
+              <li>
+                D'autre part, l'url doit être encodée. Pour ce faire, il
+                faut copier coller l'url composée dans un navigateur et
+                celui-ci la réécrira dans la barre d'adresse. C'est alors
+                cette URL réécrite qu'il faudra mettre dans l'attribut "src"
+                de l'iframe.
+              </li>
               Exemple:
               {' '}
               <i>
                 <a
-                  href='https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016&displayTitle=false'
+                  href='https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016'
                   rel='noreferrer'
                   target='_blank'
                 >
-                  https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false
+                  https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016
                 </a>
               </i>
               <br />
@@ -165,7 +167,7 @@ function Variations() {
                 height="600"
                 <br />
                 <span style={{ paddingLeft: '18px' }} />
-                src="https://bso.staging.dataesr.ovh/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019&displayTitle=false"
+                src="https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019"
                 <br />
                 &gt;&lt;/iframe&gt;
               </pre>
@@ -173,6 +175,9 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
+              <h4 className='marianne-bold fs-24-32'>
+                Baromètres de la Science Ouverte des établissements déjà en place
+              </h4>
               L'Université de Lorraine a été le premier établissement à
               développer une déclinaison locale du Baromètre français de la
               Science Ouverte. Le code réalisé à cette occasion est disponible
