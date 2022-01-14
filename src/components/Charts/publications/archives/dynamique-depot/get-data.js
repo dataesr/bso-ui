@@ -74,18 +74,22 @@ function useGetData(observationSnap, domain) {
     const name = 'HAL';
     let value1 = '';
     let value2 = '';
+    const year1 = 2017;
+    const year2 = 2020;
     if (tab) {
       value1 = tab
         .find((item) => item.name === name)
-        ?.data.find((item) => item.year === 2018)?.y;
+        ?.data.find((item) => item.year === year1)?.y;
       value2 = tab
         .find((item) => item.name === name)
-        ?.data.find((item) => item.year === 2020)?.y;
+        ?.data.find((item) => item.year === year2)?.y;
     }
     const comments = {
       name,
       value1,
       value2,
+      year1,
+      year2,
     };
 
     return { comments, tab };
