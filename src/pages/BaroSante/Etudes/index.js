@@ -234,7 +234,7 @@ function EtudesObservationnelles() {
               },
             ]}
           >
-            <GraphContent>
+            <GraphContent isDisplayed={!isInProduction()}>
               <QuestionSection
                 intlKey='app.health-observational.promoteurs.dynamique-ouverture'
                 backgroundColor={blueSoft50}

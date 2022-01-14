@@ -44,19 +44,19 @@ function BSOChart({
 
 BSOChart.defaultProps = {
   domain: '',
-  hasFooter: true,
   hasComments: true,
-  studyType: null,
+  hasFooter: true,
   isDisplayed: null,
+  studyType: null,
 };
 
 BSOChart.propTypes = {
-  id: PropTypes.oneOf(graphIds).isRequired,
   domain: PropTypes.oneOf(domains),
-  hasFooter: PropTypes.bool,
   hasComments: PropTypes.bool,
-  studyType: PropTypes.oneOf(studiesTypes),
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds).isRequired,
   isDisplayed: PropTypes.bool,
+  studyType: PropTypes.oneOf(studiesTypes),
 };
 
 export default BSOChart;

@@ -248,7 +248,7 @@ function EssaisCliniques() {
               },
             ]}
           >
-            <GraphContent>
+            <GraphContent isDisplayed={!isInProduction()}>
               <QuestionSection
                 intlKey='app.health-interventional.promoteurs.dynamique-ouverture'
                 backgroundColor={blueSoft50}
