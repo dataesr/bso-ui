@@ -119,6 +119,10 @@ export default {
     fr: '/a-propos/declinaisons',
     en: '/about/variations',
   },
+  opendata: {
+    fr: '/a-propos/opendata',
+    en: '/about/opendata',
+  },
   integration: {
     fr: '/integration/:language/:graphId/:domain?/:studyType?',
     en: '/integration/:language/:graphId/:domain?/:studyType?',

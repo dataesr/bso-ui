@@ -239,6 +239,14 @@ function Header() {
               })}
               asLink={<RouterLink to={urls.variations[lang] + search} />}
             />
+            <NavSubItem
+              current={path === urls.opendata[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.a-propos-opendata',
+                defaultMessage: 'Données ouvertes et code source',
+              })}
+              asLink={<RouterLink to={urls.opendata[lang] + search} />}
+            />
           </NavItem>
         </HeaderNav>
       </DSHeader>

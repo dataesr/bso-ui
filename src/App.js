@@ -11,6 +11,7 @@ import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
 import NotesFlash from './pages/APropos/NotesFlash';
+import OpenData from './pages/APropos/OpenData';
 import Variations from './pages/APropos/Variations';
 import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
@@ -143,6 +144,14 @@ function App() {
             >
               <PageTracker>
                 <Variations />
+              </PageTracker>
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.opendata).map((l) => urls.opendata[l])}
+            >
+              <PageTracker>
+                <OpenData />
               </PageTracker>
             </Route>
             <Route
