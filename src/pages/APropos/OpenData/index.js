@@ -1,4 +1,11 @@
-import { Col, Container, Row } from '@dataesr/react-dsfr';
+import {
+  Card,
+  CardDescription,
+  Col,
+  Container,
+  Icon as DSIcon,
+  Row,
+} from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -29,10 +36,82 @@ function OpenData() {
       <Container>
         <section className='content py-48'>
           <Row gutters>
-            Données ouvertes :
+            <Col n='12'>
+              <Card
+                bodyClassName='bg-medium-blue text-white'
+                hasArrow={false}
+                href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
+              >
+                <CardDescription as='div'>
+                  <Container>
+                    <Row alignItems='middle'>
+                      <Col n='12 md-6'>
+                        <div className='w-100 fs-32-40 marianne-bold pb-32 text-white text-center text-left-l'>
+                          <FormattedMessage id='app.link.opendata.title' />
+                        </div>
+                        <div className='text-center text-left-l fs-20-20 pb-56'>
+                          <FormattedMessage id='app.link.opendata' />
+                        </div>
+                      </Col>
+                      <Col n='12 md-6'>
+                        <DSIcon name='ri-file-fill' size='10x'>
+                          <div className='w-100 text-center' />
+                        </DSIcon>
+                      </Col>
+                      <Col n='12'>
+                        <DSIcon
+                          name='ri-link'
+                          size='lg'
+                          as='span'
+                          className='ds-fr--v-middle'
+                        >
+                          <div className='w-100 text-right' />
+                        </DSIcon>
+                      </Col>
+                    </Row>
+                  </Container>
+                </CardDescription>
+              </Card>
+            </Col>
           </Row>
           <Row gutters>
-            Code source :
+            <Col n='12'>
+              <Card
+                bodyClassName='bg-dark-blue text-white'
+                hasArrow={false}
+                href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
+              >
+                <CardDescription as='div'>
+                  <Container>
+                    <Row alignItems='middle'>
+                      <Col n='12 md-6'>
+                        <div className='w-100 fs-32-40 marianne-bold pb-32 text-white text-center text-left-l'>
+                          <FormattedMessage id='app.link.github.code-projet' />
+                        </div>
+                        <div className='text-center text-left-l fs-20-20 pb-56'>
+                          <FormattedMessage id='app.link.github' />
+                        </div>
+                      </Col>
+                      <Col n='12 md-6'>
+                        <DSIcon name='ri-github-fill' size='10x'>
+                          <div className='w-100 text-center' />
+                        </DSIcon>
+                      </Col>
+                      <Col n='12'>
+                        <DSIcon
+                          name='ri-link'
+                          size='lg'
+                          as='span'
+                          className='ds-fr--v-middle'
+                        >
+                          <div className='w-100 text-right' />
+                        </DSIcon>
+                      </Col>
+                    </Row>
+                  </Container>
+                </CardDescription>
+              </Card>
+            </Col>
           </Row>
         </section>
       </Container>
