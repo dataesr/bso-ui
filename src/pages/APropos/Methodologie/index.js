@@ -15,8 +15,9 @@ function Methodologie() {
       .then((text) => {
         const groups = [...text.matchAll(/# 2\. Method\n\n((.|\n)*)# 3\. Results/gm)];
         let group = groups[0][1];
-        group = group.replace(/<br \/>/g, '\n&nbsp;');
-        group = group.replace(/{ width=\d* }/g, '');
+        group = group.replaceAll(/<br \/>/g, '\n&nbsp;');
+        group = group.replaceAll(/{ width=\d* }/g, '');
+        group = group.replaceAll('## 2.', '## ');
         setMarkdown(group);
       });
   }, []);
@@ -43,6 +44,18 @@ function Methodologie() {
       />
       <Container>
         <section className='content py-48'>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              La méthodologie a été mise en place par Anne L'Hôte (MESRI), Eric Jeangirard (MESRI), Didier Torny (CNRS) et Laetitia Bracco
+              (Université de Lorraine). La méthodologie est décrite dans le document de travail disponible pour le moment sur
+              {' '}
+              <a href='https://github.com/dataesr/bso-publications/raw/main/doc/bso.pdf'>github</a>
+              {' '}
+              et bientôt sur HAL et arXiv. Elle est reproduite ci-dessous (en anglais uniquement pour le moment).
+              <br />
+              Par ailleurs, pour toute question, vous pouvez nous contacter avec l'adresse bso@recherche.gouv.fr
+            </Col>
+          </Row>
           <Row gutters>
             <Col n='12 lg-8'>
               <ReactMarkdown components={{
