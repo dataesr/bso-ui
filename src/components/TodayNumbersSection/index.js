@@ -31,10 +31,10 @@ function TodayNumbersSection({ updateDate, title, children }) {
                 <CardDescription as='div'>
                   <DSLink as={<Link to='a-propos/methodologie' />}>
                     <h6 className='m-0 fs-20-20'>
-                      Sur quoi sont basés nos résultats ?
+                      <FormattedMessage id='app.baro-national.sur-quoi' />
                     </h6>
                     <p className='fs-14-24'>
-                      <FormattedMessage id='app.baro-sante.discover-methodo' />
+                      <FormattedMessage id='app.baro-national.discover-methodo' />
                     </p>
                     <Icon
                       name='icon-bsso-22'
