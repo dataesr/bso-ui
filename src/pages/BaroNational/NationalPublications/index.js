@@ -185,6 +185,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.disciplines.voies-ouverture'
+                  glossaryKeys={['archive-ouverte', 'pmc']}
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.voies-ouverture'
                 >

@@ -102,6 +102,10 @@
       "intlDefinition": "app.glossary.pgo.definition",
       "intlEntry": "app.glossary.pgo"
     },
+    "pmc": {
+      "intlDefinition": "app.glossary.pmc.definition",
+      "intlEntry": "app.glossary.pmc"
+    },
     "predatory": {
       "intlDefinition": "app.glossary.predatory.definition",
       "intlEntry": "app.glossary.predatory"
@@ -121,6 +125,10 @@
     "publication-fr": {
       "intlDefinition": "app.glossary.publication-fr.definition",
       "intlEntry": "app.glossary.publication-fr"
+    },
+    "pubmed": {
+      "intlDefinition": "app.glossary.pubmed.definition",
+      "intlEntry": "app.glossary.pubmed"
     },
     "resultat-essai-clinique": {
       "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
