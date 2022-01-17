@@ -176,7 +176,6 @@
   "app.glossary.code-source": "Code source",
   "app.glossary.code-source.definition": "Ensemble d’instructions composant un programme informatique dans un langage de programmation. Le code source se matérialise généralement sous la forme d’un ensemble de fichiers texte lisibles par un utilisateur et exécutable par une machine. Le code source est la représentation d’un logiciel pour qu’un utilisateur puisse y apporter des modifications.",
   "app.glossary.complete": "Toutes les définitions dans le glossaire complet",
-  "app.glossary.definition.hal": "Archive ouverte nationale française portée par le Centre pour la communication scientifique directe (CCSD), unité mixte de service. <cta>hal.com</cta>",
   "app.glossary.diamond": "Modèle diamant",
   "app.glossary.diamond.definition": "La majorité des revues en accès ouvert ne demandent pas de frais de publication aux auteurs. Dans ce modèle de publication en accès ouvert, les coûts de publication sont pris en charge en amont par un État, une université, un consortium d’établissements publics ou une organisation à but non lucratif.",
   "app.glossary.doaj": "DOAJ",
