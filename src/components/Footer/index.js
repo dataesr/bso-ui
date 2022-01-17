@@ -24,7 +24,7 @@ export default function Footer() {
     <WrapperDisplay display={!pathname.startsWith('/integration')}>
       <DSFooter>
         <FooterTop>
-          <FooterTopCategory title='Liens'>
+          <FooterTopCategory title={<FormattedMessage id='app.footer.links' />}>
             <FooterLink
               target='_blank'
               href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
@@ -44,7 +44,7 @@ export default function Footer() {
               <FormattedMessage id='app.footer.link.open-data' />
             </FooterLink>
           </FooterTopCategory>
-          <FooterTopCategory title='Voir aussi'>
+          <FooterTopCategory title={<FormattedMessage id='app.footer.voir-aussi' />}>
             <FooterLink
               target='_blank'
               href='https://www.ouvrirlascience.fr/open-science/'
@@ -67,7 +67,7 @@ export default function Footer() {
               <FormattedMessage id='app.footer.link.platform-open-data' />
             </FooterLink>
           </FooterTopCategory>
-          <FooterTopCategory title='Nos sources'>
+          <FooterTopCategory title={<FormattedMessage id='app.footer.nos-sources' />}>
             <FooterLink target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/'>
               PubMed
             </FooterLink>
@@ -93,7 +93,7 @@ export default function Footer() {
               EU Clinical Trials Register
             </FooterLink>
           </FooterTopCategory>
-          <FooterTopCategory title='Nous suivre sur les réseaux'>
+          <FooterTopCategory title={<FormattedMessage id='app.footer.nous-suivre' />}>
             <FooterLink href='https://twitter.com/sup_recherche'>
               <DSIcon
                 className='ds-fr--v-middle'
