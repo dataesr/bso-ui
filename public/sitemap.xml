@@ -69,7 +69,7 @@
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://barometredelascienceouverte.esr.gouv.fr/a-propos/foire-aux-questions</loc>
+    <loc>https://barometredelascienceouverte.esr.gouv.fr/a-propos/faq</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
@@ -101,7 +101,7 @@
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/publications/editeurs</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/publications/publishers</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
@@ -109,71 +109,71 @@
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/publications/general</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/publications/general</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/publications/disciplines</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/publications/disciplines</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/publications/editeurs</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/publications/publishers</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/publications/archives</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/publications/archives</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/essais-cliniques/general</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/clinical-trials/general</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/essais-cliniques/caracteristiques</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/clinical-trials/characteristics</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/essais-cliniques/resultats</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/clinical-trials/resultats</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/etudes-observationnelles/general</loc>
+	  <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/observational-studies/general</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/etudes-observationnelles/caracteristiques</loc>
+	  <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/observational-studies/characteristics</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/sante/etudes-observationnelles/resultats</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/health/observational-studies/results</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/a-propos/methodologie</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/about/methodology</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/a-propos/foire-aux-questions</loc>
+	  <loc>https://frenchopensciencemonitor.esr.gouv.fr/about/faq</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/a-propos/glossaire</loc>
+	  <loc>https://frenchopensciencemonitor.esr.gouv.fr/about/glossary</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/a-propos/notes-flash</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/about/notes</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/a-propos/declinaisons</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/about/declinaisons</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
   <url>
-    <loc>https://frenchopensciencemonitor.esr.gouv.fr/a-propos/opendata</loc>
+    <loc>https://frenchopensciencemonitor.esr.gouv.fr/about/opendata</loc>
     <lastmod>2022-01-14</lastmod>
   </url>
 </urlset>

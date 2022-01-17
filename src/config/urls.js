@@ -15,7 +15,7 @@ export default {
       },
       {
         fr: '/publications/editeurs',
-        en: '/publications/editeurs',
+        en: '/publications/publishers',
       },
       {
         fr: '/publications/archives',
@@ -41,7 +41,7 @@ export default {
       },
       {
         fr: '/sante/publications/editeurs',
-        en: '/health/publications/editeurs',
+        en: '/health/publications/publishers',
       },
       {
         fr: '/sante/publications/archives',
@@ -63,7 +63,7 @@ export default {
       },
       {
         fr: '/sante/essais-cliniques/caracteristiques',
-        en: '/health/clinical-trials/specifications',
+        en: '/health/clinical-trials/characteristics',
       },
       {
         fr: '/sante/essais-cliniques/promoteurs',
@@ -85,7 +85,7 @@ export default {
       },
       {
         fr: '/sante/etudes-observationnelles/caracteristiques',
-        en: '/health/observational-studies/specifications',
+        en: '/health/observational-studies/characteristics',
       },
       {
         fr: '/sante/etudes-observationnelles/promoteurs',
@@ -104,8 +104,8 @@ export default {
     en: '/about/methodology',
   },
   faq: {
-    fr: '/a-propos/foire-aux-questions',
-    en: '/about/questions',
+    fr: '/a-propos/faq',
+    en: '/about/faq',
   },
   glossaire: {
     fr: '/a-propos/glossaire',
@@ -113,11 +113,11 @@ export default {
   },
   flash: {
     fr: '/a-propos/notes-flash',
-    en: '/about/flash-notes',
+    en: '/about/notes',
   },
   variations: {
     fr: '/a-propos/declinaisons',
-    en: '/about/variations',
+    en: '/about/declinaisons',
   },
   opendata: {
     fr: '/a-propos/opendata',
