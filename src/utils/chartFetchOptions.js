@@ -430,11 +430,6 @@ export default function getFetchOptions({
                 year: getPublicationYearFromObservationSnap(observationSnap),
               },
             },
-            {
-              term: {
-                [`oa_details.${observationSnap}.oa_host_type`]: 'publisher',
-              },
-            },
           ],
         },
       },
@@ -442,8 +437,8 @@ export default function getFetchOptions({
         by_publisher: {
           terms: {
             field: 'publisher_dissemination.keyword',
-            exclude: ['Cold Spring Harbor Laboratory', 'Research Square'],
-            size: 10000,
+            exclude: ['Research Square'],
+            size: 200,
           },
         },
       },
@@ -749,7 +744,7 @@ export default function getFetchOptions({
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
             exclude: ['pdfs.semanticscholar.org', 'edpsciences.org'],
-            size: 10000,
+            size: 25,
           },
         },
       },
