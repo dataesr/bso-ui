@@ -5,8 +5,11 @@
       "intlDefinition": "app.glossary.acces-ouvert.definition",
       "intlEntry": "app.glossary.acces-ouvert"
     },
+    "anr": {
+      "intlDefinition": "app.glossary.anr.definition",
+      "intlEntry": "app.glossary.anr"
+    },
     "apc": {
-      "category": "2",
       "intlDefinition": "app.glossary.apc.definition",
       "intlEntry": "app.glossary.apc"
     },

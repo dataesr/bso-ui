@@ -256,6 +256,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.type-ouverture'
+                  glossaryKeys={['apc', 'gold-full-apc', 'hybrid', 'diamond', 'barriere-mobile']}
                   backgroundColor={blueSoft25}
                   anchorId='publishers.type-ouverture'
                 >
@@ -265,6 +266,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.politiques-ouverture'
+                  glossaryKeys={['loi-republique-numerique', 'archive-ouverte', 'embargo', 'hal']}
                   backgroundColor={blueSoft50}
                   anchorId='publishers.politiques-ouverture'
                 >
@@ -274,6 +276,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.poids-revues'
+                  glossaryKeys={['predatory', 'list-beall']}
                   backgroundColor={blueSoft25}
                   anchorId='publishers.poids-revues'
                 >
@@ -285,6 +288,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.repartition-licences'
+                  glossaryKeys={['licence']}
                   backgroundColor={blueSoft50}
                   anchorId='publishers.repartition-licences'
                 >
@@ -295,6 +299,7 @@ export default function NationalPublications() {
                 <QuestionSection
                   intlKey='app.national-publi.publishers.couts-publication'
                   backgroundColor={blueSoft25}
+                  glossaryKeys={['apc', 'diamond']}
                   anchorId='publishers.couts-publication'
                 >
                   <BSOChart
@@ -351,6 +356,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-ouverture'
+                  glossaryKeys={['archive-ouverte', 'anr', 'preprints']}
                   backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-ouverture'
                 >
@@ -360,6 +366,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.plus-utilisees'
+                  glossaryKeys={['pmc', 'hal']}
                   backgroundColor={blueSoft25}
                   anchorId='repositories.plus-utilisees'
                 >
@@ -377,6 +384,7 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-hal'
+                  glossaryKeys={['hal']}
                   backgroundColor={blueSoft25}
                   anchorId='repositories.dynamique-hal'
                 >
