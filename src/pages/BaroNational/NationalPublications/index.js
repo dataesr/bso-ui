@@ -112,7 +112,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.general.dynamique-ouverture'
-                  glossaryKeys={['barriere-mobile']}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
                   backgroundColor={blueSoft50}
                   anchorId='general.dynamique-ouverture'
                 >
@@ -121,6 +121,7 @@ export default function NationalPublications() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.voies-ouverture'
+                  glossaryKeys={['archive-ouverte']}
                   backgroundColor={blueSoft25}
                   anchorId='general.voies-ouverture'
                 >
