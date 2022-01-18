@@ -46,7 +46,7 @@ To create a new release, use `npm version patch|minor|major`.
 
 ## Utiliser le glossaire
 
-* Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langue correspondantes 
+* Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langues correspondantes
 
 > La clef `intlEntry` correspond au titre dans le volet Glossaire
 
