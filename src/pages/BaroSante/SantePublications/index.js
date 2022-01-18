@@ -373,7 +373,6 @@ function SantePublications() {
                   <BSOChart
                     id='publi.publishers.couts-publication.chart-depenses-estimees'
                     domain='health'
-                    isDisplayed={!isInProduction()}
                   />
                   <BSOChart
                     id='publi.publishers.couts-publication.chart-distribution'
@@ -382,7 +381,6 @@ function SantePublications() {
                   <BSOChart
                     id='publi.publishers.couts-publication.chart-distribution-par-annee'
                     domain='health'
-                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
               </GraphContent>
