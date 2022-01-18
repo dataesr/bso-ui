@@ -46,46 +46,7 @@ To create a new release, use `npm version patch|minor|major`.
 
 ## Utiliser le glossaire
 
-* Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langues correspondantes
-
-> La clef `intlEntry` correspond au titre dans le volet Glossaire
-
-> La clef `cta` est optionnelle
-
-```json
-{
-    "entry": {
-      "intlEntry": "app.entry",
-      "intlDefinition": "app.definition",
-      "cta": "http://www.this-is-my-link.com"
-    }
-}
-```
-
-* Ajouter le composant `Glossary` dans la page
-
-```js
-import GlossaryEntries from 'glossary.json';
-<Glossary entries={GlossaryEntries} />
-```
-
-* Ajouter dans la page le composant `GlossaryFormattedMessage` à l'emplacement désiré
-
-> La props `intlKey` correspond au texte dans lequel se trouve le mot clickable
-
-> La props `glossaryKeys` correspond aux clefs dans `glossary.json` (dans l'ordre dans lequel elles apparaissent dans le texte)
-
-> La props `link` est optionnelle
-
-```js
-<GlossaryFormattedMessage
-  intlKey='app.text'
-  link='http://www.link.fr'
-  glossaryKeys={['entry1', 'entry2']}
-/>
-```
-
-* Ajouter les clefs nécessaires dans les fichiers de langues `fr.json` et `en.json`
+### 1/4 Ajouter les clefs nécessaires dans les fichiers de langues `fr.json` et `en.json`
 
 >  La balise `<glossary0>app.word</glossary0>` correspond au mot clickable du texte dans la page
 
@@ -96,4 +57,45 @@ import GlossaryEntries from 'glossary.json';
   "app.word": "word to click",
   "app.text": "Lorem <glossary0>app.word-1</glossary0> ip <cta>my-link</cta> sum <glossary1>app.word-2</glossary1>."
 }
+```
+
+### 2/4 Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langues correspondantes
+
+> La clef `intlEntry` correspond au titre dans le volet Glossaire
+
+> La clef `cta` est optionnelle
+
+```json
+{
+    "entry": {
+      "intlEntry": "app.entry",
+      "intlDefinition": "app.definition",
+      "cta": "https://www.this-is-my-link.com"
+    }
+}
+```
+
+
+### 3/4 Ajouter le composant `Glossary` dans la page
+
+```js
+import GlossaryEntries from 'glossary.json';
+
+<Glossary entries={GlossaryEntries} />
+```
+
+### 4/4 Ajouter dans la page le composant `GlossaryFormattedMessage` à l'emplacement souhaité
+
+> La props `intlKey` correspond au texte dans lequel se trouve le mot clickable
+
+> La props `glossaryKeys` correspond aux clefs dans `glossary.json` (dans l'ordre dans lequel elles apparaissent dans le texte)
+
+> La props `link` est optionnelle
+
+```js
+<GlossaryFormattedMessage
+  intlKey='app.text'
+  link='https://www.link.fr'
+  glossaryKeys={['entry1', 'entry2']}
+/>
 ```
