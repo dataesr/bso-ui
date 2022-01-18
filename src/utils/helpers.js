@@ -262,7 +262,8 @@ export function stringIsIntTheKitchen(str, key, array) {
  * @returns boolean
  */
 export function isInProduction() {
-  return process.env.REACT_APP_ENV === 'production';
+  return true;
+  // return process.env.REACT_APP_ENV === 'production';
 }
 
 /**
