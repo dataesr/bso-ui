@@ -48,7 +48,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
       if (i % 2 === 1) {
         newData.observationSnap = datesObservation[(i - 1) / 2];
         newData.data = {};
-        newData.data.oaHostType = res[
+        newData.data.oaHostType = [];
+        const oaHostType = res[
           i - 1
         ].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
@@ -57,17 +58,19 @@ function useGetData(observationSnaps, needle = '*', domain) {
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
               && el.key > 2012,
-          )
-          .map((el) => el.doc_count);
-        newData.data.all = res[i].data.aggregations.by_publication_year.buckets
+          );
+        const allHostType = res[i].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
           .filter(
             (el) => el.key < parseInt(newData.observationSnap.substring(0, 4), 10)
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
               && el.key > 2012,
-          )
-          .map((el) => el.doc_count);
+          );
+        for (let j = 0; j < allHostType.length; j += 1) {
+          newData.data.oaHostType.push(oaHostType.find((x) => x.key === allHostType[j].key)?.doc_count || 0);
+        }
+        newData.data.all = allHostType.map((el) => el.doc_count);
         newData.data.publicationDates = res[
           i
         ].data.aggregations.by_publication_year.buckets
