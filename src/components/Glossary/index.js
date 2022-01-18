@@ -62,9 +62,20 @@ function Glossary({ entries }) {
   useEffect(() => {
     if (glossaryEntries.length > 0) {
       for (let i = 0; i < glossaryEntries.length; i += 1) {
-        glossaryEntries[i].addEventListener('click', (e) => {
-          onClickEntry(e.target.dataset.glossaryKey);
-        });
+        const rootElement = document.querySelector('body');
+
+        rootElement.addEventListener(
+          'click',
+          (event) => {
+            const currentKey = glossaryEntries[i].dataset.glossaryKey;
+            const targetKey = event.target.dataset.glossaryKey;
+
+            if (targetKey === currentKey) {
+              onClickEntry(targetKey);
+            }
+          },
+          true,
+        );
       }
     }
   }, [onClickEntry, glossaryEntries]);
