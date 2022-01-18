@@ -71,6 +71,8 @@ export default function DataCardSection({ lang, domain }) {
                 ?.doc_count || 0)
                 + (buckets?.find((countObj) => countObj.key === 'diamond')
                   ?.doc_count || 0)
+                + (buckets?.find((countObj) => countObj.key === 'other')
+                  ?.doc_count || 0)
                 + (buckets?.find((countObj) => countObj.key === 'gold')
                   ?.doc_count || 0)))
             * 100
