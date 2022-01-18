@@ -120,6 +120,7 @@ function EtudesObservationnelles() {
               '/sante/etudes-observationnelles/caracteristiques',
               '/health/observational-studies/specifications',
             ]}
+            isDisplayed={!isInProduction()}
             links={[
               {
                 label: intl.formatMessage({
@@ -153,7 +154,7 @@ function EtudesObservationnelles() {
               },
             ]}
           >
-            <GraphContent>
+            <GraphContent isDisplayed={!isInProduction()}>
               <QuestionSection
                 intlKey='app.health-observational.caracteristiques.quand'
                 backgroundColor={blueSoft50}
@@ -173,7 +174,6 @@ function EtudesObservationnelles() {
                   id='caracteristiques.quand.chart-distribution-declarations'
                   domain='health'
                   studyType='Observational'
-                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
 
@@ -260,7 +260,6 @@ function EtudesObservationnelles() {
                   id='promoteurs.impact.chart-repartition'
                   domain='health'
                   studyType='Observational'
-                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
             </GraphContent>
@@ -275,6 +274,7 @@ function EtudesObservationnelles() {
               '/sante/etudes-observationnelles/resultats',
               '/health/observational-studies/results',
             ]}
+            isDisplayed={!isInProduction()}
             links={[
               {
                 label: intl.formatMessage({
@@ -308,7 +308,7 @@ function EtudesObservationnelles() {
               },
             ]}
           >
-            <GraphContent>
+            <GraphContent isDisplayed={!isInProduction()}>
               <QuestionSection
                 intlKey='app.health-observational.resultats.type-diffusion'
                 backgroundColor={blueSoft50}
@@ -318,7 +318,6 @@ function EtudesObservationnelles() {
                   id='resultats.type-diffusion.chart-repartition'
                   domain='health'
                   studyType='Observational'
-                  isDisplayed={!isInProduction()}
                 />
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition-par-type'
@@ -360,7 +359,6 @@ function EtudesObservationnelles() {
                   id='resultats.publication.chart-repartition'
                   domain='health'
                   studyType='Observational'
-                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
             </GraphContent>
