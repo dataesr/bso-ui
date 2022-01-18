@@ -274,7 +274,6 @@ function EssaisCliniques() {
                   id='promoteurs.impact.chart-repartition'
                   domain='health'
                   studyType='Interventional'
-                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
             </GraphContent>

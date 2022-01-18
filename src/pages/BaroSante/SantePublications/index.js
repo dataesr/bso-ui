@@ -346,6 +346,7 @@ function SantePublications() {
                   <BSOChart
                     id='publi.publishers.poids-revues.chart-repartition'
                     domain='health'
+                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 
@@ -499,12 +500,11 @@ function SantePublications() {
                 },
               ]}
             >
-              <GraphContent>
+              <GraphContent isDisplayed={!isInProduction()}>
                 <QuestionSection
                   intlKey='app.health-publi.affiliations.dynamique-ouverture'
                   backgroundColor={blueSoft50}
                   anchorId='affiliations.dynamique-ouverture'
-                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart
                     id='publi.affiliations.dynamique-ouverture.chart-taux-ouverture'
