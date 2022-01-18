@@ -166,7 +166,7 @@ function useGetData(lastObservationSnap, domain) {
     const publisher = 'Wiley';
     const wiley = bubbleGraph
       .find((item) => item.name === 'éditeurs et plateformes')
-      .data.find((item) => item.publisher === publisher);
+      ?.data?.find((item) => item.publisher === publisher);
     let x = '';
     let y = '';
     if (wiley) {

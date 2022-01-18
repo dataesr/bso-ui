@@ -165,9 +165,9 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       publicationDate,
       publisher,
       elsevierOpenLicenceRate: dataGraphBar
-        .find((item) => item.name === 'Licence ouverte')
-        .data.find((item) => item.publisher === publisher)
-        .y.toFixed(1),
+        ?.find((item) => item.name === 'Licence ouverte')
+        ?.data.find((item) => item.publisher === publisher)
+        ?.y.toFixed(1),
     };
 
     return { categories, comments, dataGraphBar, dataGraphTreemap };
