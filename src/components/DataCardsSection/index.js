@@ -54,7 +54,7 @@ export default function DataCardSection({ lang, domain }) {
         pathToValue: 'by_is_oa.buckets',
         isPercentage: true,
         color: 'pink',
-        intlKey: 'app.national-publi.data.publications',
+        intlKey: (domain === '') ? 'app.national-publi.data.publications' : 'app.health-publi.data.publications',
         intlValues: {
           totalPublications: formatNumberByLang(publicationsNumber, lang),
           publicationYear:
@@ -83,7 +83,7 @@ export default function DataCardSection({ lang, domain }) {
           'by_journal_article.by_oa_colors_with_priority_to_publisher.buckets',
         isPercentage: true,
         color: 'aqua',
-        intlKey: 'app.national-publi.data.publi-diamond',
+        intlKey: (domain === '') ? 'app.national-publi.data.publi-diamond' : 'app.health-publi.data.publi-diamond',
         intlValues: {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
@@ -101,7 +101,7 @@ export default function DataCardSection({ lang, domain }) {
         pathToValue: 'by_repositories.buckets',
         isPercentage: false,
         color: 'green',
-        intlKey: 'app.national.data.hosted.documents',
+        intlKey: (domain === '') ? 'app.national-publi.data.hosted-documents' : 'app.health-publi.data.hosted-documents',
         intlValues: {
           total: totalHostedDocuments,
           publicationYear:
@@ -117,7 +117,7 @@ export default function DataCardSection({ lang, domain }) {
         pathToValue: 'by_author_useful_rank.buckets.1.key',
         isPercentage: false,
         color: 'yellow',
-        intlKey: 'app.publi.data.collab-country',
+        intlKey: (domain === '') ? 'app.national-publi.data.collab-country' : 'app.health-publi.data.collab-country',
         buttonHref: 'affiliations?id=affiliations.pays',
         activeDomains: ['health'],
       },

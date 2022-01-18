@@ -43,7 +43,7 @@ function SantePublications() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.intro'
-                    glossaryKeys={['acces-ouvert']}
+                    glossaryKeys={['acces-ouvert', 'publication-fr', 'pubmed']}
                   />
                 </p>
               </Col>
@@ -109,6 +109,7 @@ function SantePublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.health-publi.general.dynamique-ouverture'
+                  glossaryKeys={['embargo', 'barriere-mobile']}
                   backgroundColor={blueSoft50}
                   anchorId='general.dynamique-ouverture'
                 >
@@ -124,6 +125,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.general.voies-ouverture'
+                  glossaryKeys={['archive-ouverte']}
                   backgroundColor={blueSoft25}
                   anchorId='general.voies-ouverture'
                 >
@@ -139,6 +141,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.general.genres-ouverture'
+                  glossaryKeys={['preprints']}
                   backgroundColor={blueSoft50}
                   anchorId='general.genres-ouverture'
                 >

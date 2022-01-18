@@ -62,9 +62,9 @@ function BaroSante() {
     <div className='baro-sante page home'>
       <Banner
         backgroundColor='blue-soft-100'
-        supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.commons.health' />}
-        subTitle={<FormattedMessage id='app.baro-sante.intro-banner' />}
+        supTitle={<FormattedMessage id='app.header.welcome-on' />}
+        title={<FormattedMessage id='app.header.title-health-bis' />}
+        subTitle={<FormattedMessage id='app.header.subtitle-health' />}
         chip={<Chip backgroundColor='blue-soft-125' />}
         icons={renderIcons}
         homeLink={urls.national[lang] + search}
@@ -96,7 +96,7 @@ function BaroSante() {
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.intro'
-                    glossaryKeys={['acces-ouvert']}
+                    glossaryKeys={['acces-ouvert', 'publication-fr', 'pubmed']}
                   />
                 )}
               >
