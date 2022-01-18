@@ -135,7 +135,24 @@ function useGetData(observationDate, domain = '') {
         },
       ];
 
-      return { categories, categories2, dataGraph, dataGraph2 };
+      const year = 2020;
+      const withFrenchAffiliationLabel = 'Premier ou dernier auteur avec affiliation française';
+      const withFrenchAffiliation = dataGraph
+        .find((item) => item.name === withFrenchAffiliationLabel)
+        ?.data.find((item) => item.x === year)
+        ?.y?.toFixed(0);
+      const withoutFrenchAffiliationLabel = 'Premier ou dernier auteur sans affiliation française';
+      const withoutFrenchAffiliation = dataGraph
+        .find((item) => item.name === withoutFrenchAffiliationLabel)
+        ?.data.find((item) => item.x === year)
+        ?.y?.toFixed(0);
+      const comments = {
+        year,
+        withFrenchAffiliation,
+        withoutFrenchAffiliation,
+      };
+
+      return { categories, categories2, comments, dataGraph, dataGraph2 };
     },
     [intl, domain, bsoDomain, search],
   );

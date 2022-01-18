@@ -256,7 +256,13 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.type-ouverture'
-                  glossaryKeys={['apc', 'gold-full-apc', 'hybrid', 'diamond', 'barriere-mobile']}
+                  glossaryKeys={[
+                    'apc',
+                    'gold-full-apc',
+                    'hybrid',
+                    'diamond',
+                    'barriere-mobile',
+                  ]}
                   backgroundColor={blueSoft25}
                   anchorId='publishers.type-ouverture'
                 >
@@ -266,7 +272,12 @@ export default function NationalPublications() {
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.politiques-ouverture'
-                  glossaryKeys={['loi-republique-numerique', 'archive-ouverte', 'embargo', 'hal']}
+                  glossaryKeys={[
+                    'loi-republique-numerique',
+                    'archive-ouverte',
+                    'embargo',
+                    'hal',
+                  ]}
                   backgroundColor={blueSoft50}
                   anchorId='publishers.politiques-ouverture'
                 >
@@ -302,15 +313,9 @@ export default function NationalPublications() {
                   glossaryKeys={['apc', 'diamond']}
                   anchorId='publishers.couts-publication'
                 >
-                  <BSOChart
-                    id='publi.publishers.couts-publication.chart-depenses-estimees'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='publi.publishers.couts-publication.chart-depenses-estimees' />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
-                  <BSOChart
-                    id='publi.publishers.couts-publication.chart-distribution-par-annee'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='publi.publishers.couts-publication.chart-distribution-par-annee' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
