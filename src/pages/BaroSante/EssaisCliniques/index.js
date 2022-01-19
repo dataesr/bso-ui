@@ -318,6 +318,7 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.resultats.publication',
                 }),
                 href: '/sante/essais-cliniques/resultats?id=resultats.publication',
+                isDisplayed: !isInProduction(),
               },
             ]}
           >
@@ -368,12 +369,12 @@ function EssaisCliniques() {
                 intlKey='app.health-interventional.resultats.publication'
                 backgroundColor={blueSoft25}
                 anchorId='resultats.publication'
+                isDisplayed={!isInProduction()}
               >
                 <BSOChart
                   id='resultats.publication.chart-repartition'
                   domain='health'
                   studyType='Interventional'
-                  isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
             </GraphContent>
