@@ -9,38 +9,47 @@
     "commentsName": "de l'INRAE"
   },
   "18009202500097": {
-    "name": "Ecole nationale supérieure des mines d'Albi-Carmaux"
+    "name": "Ecole nationale supérieure des mines d'Albi-Carmaux",
+    "commentsName": "de l'école des mines d'Albi-Carmaux"
   },
   "192512150": {
-    "name": "Université de Franche-Comté (UFC)"
+    "name": "Université de Franche-Comté (UFC)",
+    "commentsName": "de l'UFC"
   },
   "193113842": {
-    "name": "Université Toulouse 3 Paul Sabatier"
+    "name": "Université Toulouse 3 Paul Sabatier",
+    "commentsName": "de l'université Toulouse 3"
   },
   "196917751": {
-    "name": "Université Lumière Lyon 2"
+    "name": "Université Lumière Lyon 2",
+    "commentsName": "de l'université Lyon 2"
   },
   "197534720": {
     "name": "Arts et Métiers Sciences et Technologies (ENSAM)",
     "commentsName": "de l'ENSAM"
   },
   "197819444": {
-    "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)"
+    "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)",
+    "commentsName": "de l'UVSQ"
   },
   "198307662": {
-    "name": "Université de Toulon (UTLN)"
+    "name": "Université de Toulon (UTLN)",
+    "commentsName": "de l'université Toulon"
   },
   "198406852": {
-    "name": "Avignon Université"
+    "name": "Avignon Université",
+    "commentsName": "d'Avignon Université"
   },
   "775685019": {
     "name": "Commissariat à l'énergie atomique et aux énergies alternatives (CEA)",
     "commentsName": "du CEA"
   },
   "775722879": {
-    "name": "Office national d'études et de recherches aérospatiales (ONERA)"
+    "name": "Office national d'études et de recherches aérospatiales (ONERA)",
+    "commentsName": "de l'ONERA"
   },
   "817389141": {
-    "name": "Grenoble Ecole de Management (GEM)"
+    "name": "Grenoble Ecole de Management (GEM)",
+    "commentsName": "de Grenoble Ecole de Management"
   }
 }
