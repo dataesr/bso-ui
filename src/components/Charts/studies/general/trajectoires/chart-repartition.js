@@ -6,9 +6,11 @@ import HCExporting from 'highcharts/modules/exporting';
 import HCSankeyModule from 'highcharts/modules/sankey';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import {
   domains,
@@ -24,10 +26,11 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 HCSankeyModule(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
+const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [chartComments] = useState('');
+  const [chartComments, setChartComments] = useState('');
+  const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(studyType);
   const idWithDomainAndStudyType = withtStudyType(
     withDomain(id, domain),
@@ -41,22 +44,28 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     studyType,
   );
 
+  useEffect(() => {
+    setChartComments(
+      customComments(allData, idWithDomainAndStudyType, intl, search),
+    );
+  }, [allData, idWithDomainAndStudyType, intl, search]);
+
   return (
     <WrapperChart
-      isLoading={isLoading || !allData}
-      isError={isError}
-      id={id}
-      domain={domain}
-      studyType={studyType}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !allData}
+      studyType={studyType}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomainAndStudyType}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomainAndStudyType}
       />
       {hasComments && <GraphComments comments={chartComments} />}
     </WrapperChart>
@@ -64,17 +73,17 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
   domain: 'health',
-  studyType: 'Interventional',
+  hasComments: true,
+  hasFooter: true,
   id: 'general.dynamique.chart-evolution',
+  studyType: 'Interventional',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
   studyType: PropTypes.oneOf(studiesTypes),
 };
 
