@@ -231,6 +231,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.disciplines.voies-ouverture'
+                  glossaryKeys={['archive-ouverte', 'pmc']}
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.voies-ouverture'
                 >
@@ -313,6 +314,13 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.type-ouverture'
+                  glossaryKeys={[
+                    'apc',
+                    'gold-full-apc',
+                    'hybrid',
+                    'diamond',
+                    'barriere-mobile',
+                  ]}
                   backgroundColor={blueSoft25}
                   anchorId='publishers.type-ouverture'
                 >
@@ -328,6 +336,12 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.politiques-ouverture'
+                  glossaryKeys={[
+                    'loi-republique-numerique',
+                    'archive-ouverte',
+                    'embargo',
+                    'hal',
+                  ]}
                   backgroundColor={blueSoft50}
                   anchorId='publishers.politiques-ouverture'
                 >
@@ -343,6 +357,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.poids-revues'
+                  glossaryKeys={['predatory', 'list-beall']}
                   backgroundColor={blueSoft25}
                   anchorId='publishers.poids-revues'
                 >
@@ -355,6 +370,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.repartition-licences'
+                  glossaryKeys={['licence']}
                   backgroundColor={blueSoft50}
                   anchorId='publishers.repartition-licences'
                 >
@@ -370,6 +386,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.publishers.couts-publication'
+                  glossaryKeys={['apc', 'diamond']}
                   backgroundColor={blueSoft25}
                   anchorId='publishers.couts-publication'
                 >
@@ -430,6 +447,7 @@ function SantePublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.health-publi.repositories.dynamique-ouverture'
+                  glossaryKeys={['archive-ouverte', 'anr', 'preprints']}
                   backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-ouverture'
                 >
@@ -445,6 +463,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.repositories.plus-utilisees'
+                  glossaryKeys={['pmc', 'hal']}
                   backgroundColor={blueSoft25}
                   anchorId='repositories.plus-utilisees'
                 >
@@ -468,6 +487,7 @@ function SantePublications() {
 
                 <QuestionSection
                   intlKey='app.health-publi.repositories.dynamique-hal'
+                  glossaryKeys={['hal']}
                   backgroundColor={blueSoft25}
                   anchorId='repositories.dynamique-hal'
                 >
