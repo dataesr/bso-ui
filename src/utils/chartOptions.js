@@ -2183,7 +2183,12 @@ export const chartOptions = {
                 id: 'app.health-interventional.caracteristiques.duree.chart-nombre.10-years-and-more',
               });
             }
-            return this.value;
+            return intl.formatMessage(
+              {
+                id: 'app.health-interventional.caracteristiques.duree.chart-nombre.years',
+              },
+              { value1: this.value, value2: this.value + 1 },
+            );
           },
         },
         title: {
