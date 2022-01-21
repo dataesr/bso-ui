@@ -12,6 +12,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
+import { getAllIndexes } from '../../utils/helpers';
 import GlossaryItem from './GlossaryItem';
 
 function Glossary({ entries }) {
@@ -80,19 +81,39 @@ function Glossary({ entries }) {
     }
   }, [onClickEntry, glossaryEntries]);
 
+  const customFilter = useCallback((array, cb) => {
+    const innerKeys = array.map((elm) => elm.innerHTML);
+    let a = [];
+
+    for (let i = 0; i < innerKeys.length; i += 1) {
+      // Check several occurrences
+      if (
+        innerKeys.indexOf(innerKeys[i]) !== innerKeys.lastIndexOf(innerKeys[i])
+      ) {
+        a = getAllIndexes(innerKeys, innerKeys[i]);
+      }
+    }
+
+    cb(array.filter((elm, index) => a.slice(1).indexOf(index) === -1));
+  }, []);
+
   useEffect(() => {
-    const arrGlossayEntries = Array.from(
+    const arrGlossaryEntries = Array.from(
       document.querySelectorAll('.glossary-entry'),
     );
-    const glossaryLength = glossaryEntries.length;
-    const glossaryEntriesLength = arrGlossayEntries.length;
-    if (
-      (!glossaryLength && glossaryEntriesLength > 0)
-      || glossaryLength !== glossaryEntriesLength
-    ) {
-      setGlossaryEntries(arrGlossayEntries);
-    }
-  }, [glossaryEntries]);
+
+    customFilter(arrGlossaryEntries, (filtered) => {
+      const glossaryLength = glossaryEntries.length;
+      const glossaryEntriesLength = filtered.length;
+
+      if (
+        (!glossaryLength && glossaryEntriesLength > 0)
+        || glossaryLength !== glossaryEntriesLength
+      ) {
+        setGlossaryEntries(filtered);
+      }
+    });
+  }, [customFilter, glossaryEntries]);
 
   useEffect(() => {
     if (openPanel) {
