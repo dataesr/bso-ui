@@ -172,6 +172,7 @@ export default function DataCardSection({ domain, lang }) {
       },
     }),
     [
+      domain,
       apcCostSum,
       bestCollabCountry,
       diamondPublicationRate,
