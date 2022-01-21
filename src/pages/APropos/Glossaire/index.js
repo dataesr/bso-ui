@@ -16,7 +16,7 @@ import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { alphabet } from '../../../utils/constants';
-import { sortByPath } from '../../../utils/helpers';
+import { capitalize, sortByPath } from '../../../utils/helpers';
 import useViewport from '../../../utils/Hooks/useViewport';
 
 function Glossaire() {
@@ -37,9 +37,11 @@ function Glossaire() {
   const getItem = (glossaryKey) => (
     <AccordionItem
       key={uuidv4()}
-      title={intl.formatMessage({
-        id: glossaryKey.intlEntry,
-      })}
+      title={capitalize(
+        intl.formatMessage({
+          id: glossaryKey.intlEntry,
+        }),
+      )}
     >
       <Container>
         <section className='px-20 py-28 bg-soft-green'>

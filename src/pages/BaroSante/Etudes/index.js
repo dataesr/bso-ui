@@ -43,6 +43,10 @@ function EtudesObservationnelles() {
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.studies-intro'
                     glossaryKeys={['acces-ouvert']}
+                    ctas={[
+                      'https://clinicaltrials.gov/',
+                      'https://www.clinicaltrialsregister.eu/',
+                    ]}
                   />
                 </p>
               </Col>
