@@ -26,11 +26,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const [chartComments, setChartComments] = useState('');
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
+  const dataTitle = { publicationYear: beforeLastObservationSnap };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     data.dataGraph,
+    dataTitle,
   );
   const { search } = useLocation();
 
@@ -40,14 +42,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
+      dataTitle={dataTitle}
+      domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
+      id={id}
       isLoading={isLoading || !data}
       isError={isError}
-      dataTitle={{ publicationYear: beforeLastObservationSnap }}
     >
       <HighchartsReact
         highcharts={Highcharts}

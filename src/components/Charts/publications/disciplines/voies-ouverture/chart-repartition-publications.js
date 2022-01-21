@@ -32,20 +32,23 @@ const Chart = ({ hasComments, id, domain }) => {
     domain,
   );
   const { dataGraph, categories } = allData;
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomain, intl, search));
-  }, [allData, idWithDomain, intl, search]);
+  const dataTitle = { publicationYear: beforeLastObservationSnap };
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
     dataGraph,
+    dataTitle,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomain, intl, search));
+  }, [allData, idWithDomain, intl, search]);
 
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={{ publicationYear: beforeLastObservationSnap }}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       id={id}

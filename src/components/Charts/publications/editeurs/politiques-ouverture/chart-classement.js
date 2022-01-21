@@ -25,46 +25,48 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     domain,
   );
   const { categories, dataGraph } = allData;
+  const dataTitle = { publicationYear: beforeLastObservationSnap };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories,
     dataGraph,
+    dataTitle,
   );
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      dataTitle={dataTitle}
+      domain={domain}
       hasComments={hasComments}
-      isLoading={isLoading || !dataGraph || !categories}
+      hasFooter={hasFooter}
+      id={id}
       isError={isError}
-      dataTitle={{ publicationYear: beforeLastObservationSnap }}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.publishers.politiques-ouverture.chart-classement',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.publishers.politiques-ouverture.chart-classement',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

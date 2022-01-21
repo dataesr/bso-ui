@@ -31,13 +31,15 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     domain,
   );
   const { dataGraphBar, categories } = data;
+  const dataTitle = { publicationYear: beforeLastObservationSnap };
   const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories,
     dataGraphBar,
+    dataTitle,
   );
 
   useEffect(() => {
@@ -46,20 +48,20 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      dataTitle={dataTitle}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
       isError={isError}
       isLoading={isLoading || !dataGraphBar || !categories}
-      dataTitle={{ publicationYear: beforeLastObservationSnap }}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />
