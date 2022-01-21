@@ -19,7 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain, hasComments }) => {
+const Chart = ({ id, domain, hasComments, hasFooter }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -46,6 +46,7 @@ const Chart = ({ id, domain, hasComments }) => {
       chartRef={chartRef}
       domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
       id={id}
       isError={isError}
       isLoading={isLoading || !allData}
@@ -66,11 +67,13 @@ const Chart = ({ id, domain, hasComments }) => {
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
+  hasFooter: true,
   id: 'publi.publishers.type-ouverture.chart-evolution-repartition',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 

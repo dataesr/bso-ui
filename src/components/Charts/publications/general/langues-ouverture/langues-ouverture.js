@@ -19,7 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain, hasComments }) => {
+const Chart = ({ id, domain, hasComments, hasFooter }) => {
   const [chartComments, setChartComments] = useState('');
   const chartRef = useRef();
   const intl = useIntl();
@@ -50,6 +50,7 @@ const Chart = ({ id, domain, hasComments }) => {
       dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
       id={id}
       isError={isError}
       isLoading={isLoading || !dataGraph || !categories}
@@ -70,11 +71,13 @@ const Chart = ({ id, domain, hasComments }) => {
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
+  hasFooter: true,
   id: 'publi.general.genres-ouverture.chart-repartition-genres',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 

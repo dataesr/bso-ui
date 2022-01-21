@@ -19,7 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain, hasComments }) => {
+const Chart = ({ id, domain, hasComments, hasFooter }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -51,6 +51,7 @@ const Chart = ({ id, domain, hasComments }) => {
       isLoading={isLoading || !dataGraph || !categories}
       isError={isError}
       hasComments={false}
+      hasFooter={hasFooter}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -68,11 +69,13 @@ const Chart = ({ id, domain, hasComments }) => {
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
+  hasFooter: true,
   id: 'publi.general.voies-ouverture.chart-repartition-taux',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 
