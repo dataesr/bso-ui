@@ -98,7 +98,6 @@ function WrapperChart({
   if (isError) {
     return <>Error</>;
   }
-
   return (
     <>
       <div className='graph-container' data-id={idWithContext}>

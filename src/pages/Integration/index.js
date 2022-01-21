@@ -13,9 +13,8 @@ const Integration = () => {
   const { pathname, search } = useLocation();
   const intl = useIntl();
   const { switchLang } = useLang();
-  const { displayTitle } = getURLSearchParams(search);
+  const { displayTitle, displayFooter } = getURLSearchParams(search);
   switchLang(language, pathname, search);
-
   return (
     <Container fluid>
       {displayTitle && (
@@ -34,6 +33,7 @@ const Integration = () => {
               id={graphId}
               domain={domain || ''}
               studyType={studyType || ''}
+              hasFooter={displayFooter}
             />
           </Suspense>
         </Col>

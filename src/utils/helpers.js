@@ -275,8 +275,9 @@ export function getURLSearchParams(search) {
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   let commentsName;
-  let displayComment = true;
-  let displayTitle;
+  const displayComment = !(urlSearchParams.get('displayComment')?.toLowerCase() === 'false');
+  const displayTitle = !(urlSearchParams.get('displayTitle')?.toLowerCase() === 'false');
+  const displayFooter = !(urlSearchParams.get('displayFooter')?.toLowerCase() === 'false');
   let endYear;
   let name;
   let startYear;
@@ -284,14 +285,6 @@ export function getURLSearchParams(search) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals[bsoLocalAffiliation].commentsName
       || '';
-    displayComment = !(
-      (urlSearchParams.get('displayComment')?.toLowerCase()
-        || locals[bsoLocalAffiliation].displayComment) === 'false'
-    );
-    displayTitle = !(
-      (urlSearchParams.get('displayTitle')?.toLowerCase()
-        || locals[bsoLocalAffiliation].displayTitle) === 'false'
-    );
     endYear = parseInt(
       urlSearchParams.get('endYear')?.toLowerCase()
         || locals[bsoLocalAffiliation].endYear,
@@ -311,6 +304,7 @@ export function getURLSearchParams(search) {
     commentsName,
     displayComment,
     displayTitle,
+    displayFooter,
     endYear,
     name,
     startYear,

@@ -113,6 +113,12 @@ function Variations() {
                   <i> défaut: true</i>
                 </li>
                 <li>
+                  <b>displayFooter</b>
+                  : affiche ou masque le footer (ex:
+                  displayFooter=false),
+                  <i> défaut: true</i>
+                </li>
+                <li>
                   <b>endYear</b>
                   : filtre sur l'année de publication inférieure
                   ou égale (ex: endYear=2020),
