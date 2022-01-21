@@ -45,16 +45,6 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     search,
     parameters: [lastObservationSnap],
   });
-  useEffect(() => {
-    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      setPublishers(
-        response.data.aggregations.by_publisher.buckets
-          .filter((item) => item.key !== 'Cold Spring Harbor Laboratory')
-          .map((item) => item.key),
-      );
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = {
@@ -67,6 +57,17 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     dataGraph1,
     dataTitle,
   );
+
+  useEffect(() => {
+    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
+      setPublishers(
+        response.data.aggregations.by_publisher.buckets
+          .filter((item) => item.key !== 'Cold Spring Harbor Laboratory')
+          .map((item) => item.key),
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl, search));

@@ -43,12 +43,12 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
   return (
     <WrapperChart
+      chartRef={chartRef}
+      domain={domain}
+      hasComments={false}
       isLoading={isLoading || !dataGraph2}
       isError={isError}
       id={id}
-      domain={domain}
-      chartRef={chartRef}
-      hasComments={false}
       hasFooter={hasFooter}
     >
       <HighchartsReact
