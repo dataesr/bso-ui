@@ -172,8 +172,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.politiques-ouverture.chart-classement': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.chart.height = '1000px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.politiques-ouverture.chart-classement.tooltip',
@@ -204,8 +204,8 @@ export const chartOptions = {
     },
   },
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip',
       });
@@ -632,8 +632,8 @@ export const chartOptions = {
     },
   },
   'publi.general.voies-ouverture.chart-repartition-publications': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${id}.tooltip`,
       });
@@ -674,8 +674,8 @@ export const chartOptions = {
     },
   },
   'publi.general.genres-ouverture.chart-repartition-genres': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
       });
@@ -744,8 +744,8 @@ export const chartOptions = {
     },
   },
   'publi.general.langues-ouverture.chart-repartition-publications': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
       });
@@ -1393,8 +1393,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.repartition-licences.chart-classement': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.chart.height = '700px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.repartition-licences.chart-classement.tooltip',
@@ -1616,8 +1616,8 @@ export const chartOptions = {
     },
   },
   'publi.repositories.plus-utilisees.chart-nombre-documents': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.plus-utilisees.chart-nombre-documents.tooltip',
       });

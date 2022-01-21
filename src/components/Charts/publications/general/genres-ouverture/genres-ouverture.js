@@ -30,12 +30,14 @@ const Chart = ({ domain, hasComments, id }) => {
     domain,
   );
   const { dataGraph, categories } = allData;
+  const dataTitle = { publicationYear: beforeLastObservationSnap };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
     dataGraph,
+    dataTitle,
   );
 
   useEffect(() => {
@@ -50,7 +52,7 @@ const Chart = ({ domain, hasComments, id }) => {
       isLoading={isLoading || !dataGraph || !categories}
       isError={isError}
       hasComments={false}
-      dataTitle={{ publicationYear: beforeLastObservationSnap }}
+      dataTitle={dataTitle}
     >
       <HighchartsReact
         highcharts={Highcharts}
