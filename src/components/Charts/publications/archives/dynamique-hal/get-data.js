@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(lastObservationSnap, domain) {
   const intl = useIntl();
@@ -76,16 +76,20 @@ function useGetData(lastObservationSnap, domain) {
     });
     const dataGraph2 = [
       {
-        name: intl.formatMessage({
-          id: 'app.health-publi.repositories.dynamique-hal.notHal',
-        }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.health-publi.repositories.dynamique-hal.notHal',
+          }),
+        ),
         data: notHal,
         color: getCSSValue('--green-medium-150'),
       },
       {
-        name: intl.formatMessage({
-          id: 'app.health-publi.repositories.dynamique-hal.hal',
-        }),
+        name: capitalize(
+          intl.formatMessage({
+            id: 'app.health-publi.repositories.dynamique-hal.hal',
+          }),
+        ),
         data: hal,
         color: getCSSValue('--acces-ouvert'),
       },
@@ -93,16 +97,24 @@ function useGetData(lastObservationSnap, domain) {
 
     const year = 2020;
     let valueHAL = '';
+    const valueHalLabel = capitalize(
+      intl.formatMessage({
+        id: 'app.health-publi.repositories.dynamique-hal.hal',
+      }),
+    );
     let valueNotHAL = '';
+    const valueNotHalLabel = capitalize(
+      intl.formatMessage({
+        id: 'app.health-publi.repositories.dynamique-hal.notHal',
+      }),
+    );
     if (dataGraph2) {
       valueHAL = dataGraph2
-        .find((item) => item.name === 'en accès ouvert sur HAL')
+        .find((item) => item.name === valueHalLabel)
         ?.data.find((item) => item.x === year)
         ?.y.toFixed(0);
       valueNotHAL = dataGraph2
-        .find(
-          (item) => item.name === 'en accès ouvert sur une archive mais pas sur HAL',
-        )
+        .find((item) => item.name === valueNotHalLabel)
         ?.data.find((item) => item.x === year)
         ?.y.toFixed(0);
     }

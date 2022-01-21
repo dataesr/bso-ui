@@ -2058,8 +2058,15 @@ export const chartOptions = {
     },
   },
   'caracteristiques.quand.chart-evolution-temporalites': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (
+      id,
+      intl,
+      data,
+      idWithDomainAndStudyType,
+      studyType,
+      dataTitle,
+    ) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesEvolution || [],
@@ -2090,8 +2097,15 @@ export const chartOptions = {
     },
   },
   'caracteristiques.quand.chart-repartition-avant-apres': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (
+      id,
+      intl,
+      data,
+      idWithDomainAndStudyType,
+      studyType,
+      dataTitle,
+    ) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
@@ -2165,9 +2179,9 @@ export const chartOptions = {
     },
   },
   'caracteristiques.duree.chart-nombre': {
-    getOptions: (id, intl, data, studyType) => {
+    getOptions: (id, intl, data, studyType, dataTitle) => {
       // TODO refacto
-      const options = getGraphOptions(id, intl, studyType);
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       options.xAxis = {
         tickInterval: 1,
@@ -2206,8 +2220,8 @@ export const chartOptions = {
     },
   },
   'caracteristiques.combien.chart-groupes-patients': {
-    getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       // TODO refacto
       options.xAxis = {
@@ -2229,8 +2243,8 @@ export const chartOptions = {
     },
   },
   'caracteristiques.combien.chart-proportion-modes-repartition': {
-    getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
@@ -2251,9 +2265,16 @@ export const chartOptions = {
     },
   },
   'caracteristiques.types.chart-evolution-nombre': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
+    getOptions: (
+      id,
+      intl,
+      data,
+      idWithDomainAndStudyType,
+      studyType,
+      dataTitle,
+    ) => {
       // TODO refacto
-      const options = getGraphOptions(id, intl, studyType);
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       options.yAxis = getPercentageYAxis(false);
       options.xAxis.title = {
@@ -2283,8 +2304,8 @@ export const chartOptions = {
     },
   },
   'resultats.type-diffusion.chart-repartition-par-type': {
-    getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {
@@ -2320,8 +2341,8 @@ export const chartOptions = {
     },
   },
   'resultats.plan-partage.chart-repartition': {
-    getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -2358,8 +2379,15 @@ export const chartOptions = {
     },
   },
   'resultats.delai-diffusion.chart-repartition': {
-    getOptions: (id, intl, data, idWithDomainAndStudyType, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (
+      id,
+      intl,
+      data,
+      idWithDomainAndStudyType,
+      studyType,
+      dataTitle,
+    ) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categories2 || [],

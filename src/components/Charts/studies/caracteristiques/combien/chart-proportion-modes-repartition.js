@@ -37,9 +37,19 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     id,
     domain,
   );
-  const idWithDomainAndStudyType = withtStudyType(
-    withDomain(id, domain),
+  const idWithDomain = withDomain(id, domain);
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+  const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
+  const sponsorTypeTitle = sponsorType !== '*'
+    ? ` (${intl.formatMessage({ id: translationId })})`
+    : '';
+  const dataTitle = { sponsorTypeTitle };
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    allData,
     studyType,
+    dataTitle,
   );
 
   useEffect(() => {
@@ -48,37 +58,31 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     );
   }, [allData, idWithDomainAndStudyType, intl, search]);
 
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    allData,
-    studyType,
-  );
-
   return (
     <WrapperChart
+      chartRef={chartRef}
+      dataTitle={dataTitle}
+      domain={domain}
+      hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
       isLoading={isLoading || !allData}
       isError={isError}
-      id={id}
-      domain={domain}
       studyType={studyType}
-      chartRef={chartRef}
-      hasFooter={hasFooter}
-      hasComments={false}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
         onChange={(e) => setSponsorType(e.target.value)}
         options={allData?.sponsorTypes || []}
         selected={sponsorType}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomainAndStudyType}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomainAndStudyType}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />
@@ -88,17 +92,17 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
   domain: 'health',
-  studyType: 'Interventional',
+  hasComments: true,
+  hasFooter: true,
   id: 'caracteristiques.combien.chart-proportion-modes-repartition',
+  studyType: 'Interventional',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
   studyType: PropTypes.oneOf(studiesTypes),
 };
 

@@ -159,13 +159,16 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     ];
 
     const publisher = 'Elsevier';
+    const openLicenseLabel = capitalize(
+      intl.formatMessage({ id: 'app.licenses.open-license' }),
+    );
     const comments = {
       openLicenceRate: openLicenceRate.toFixed(0),
       ccbyLicenceRate: ccbyLicenceRate.toFixed(0),
       publicationDate,
       publisher,
       elsevierOpenLicenceRate: dataGraphBar
-        ?.find((item) => item.name === 'Licence libre')
+        ?.find((item) => item.name === openLicenseLabel)
         ?.data.find((item) => item.publisher === publisher)
         ?.y.toFixed(1),
     };

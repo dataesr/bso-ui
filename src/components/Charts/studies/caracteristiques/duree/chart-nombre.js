@@ -32,9 +32,19 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const [chartComments, setChartComments] = useState('');
   const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
-  const idWithDomainAndStudyType = withtStudyType(
-    withDomain(id, domain),
+  const idWithDomain = withDomain(id, domain);
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+  const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
+  const sponsorTypeTitle = sponsorType !== '*'
+    ? ` (${intl.formatMessage({ id: translationId })})`
+    : '';
+  const dataTitle = { sponsorTypeTitle };
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    allData,
     studyType,
+    dataTitle,
   );
 
   useEffect(() => {
@@ -43,16 +53,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     );
   }, [allData, idWithDomainAndStudyType, intl, search]);
 
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    allData,
-    studyType,
-  );
-
   return (
     <WrapperChart
       chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -89,6 +93,7 @@ Chart.defaultProps = {
   id: 'caracteristiques.duree.chart-nombre',
   studyType: 'Interventional',
 };
+
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
