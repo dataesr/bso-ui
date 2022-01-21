@@ -12,10 +12,12 @@ const QuestionSection = ({
   glossaryKeys,
   intlKey,
   isDisplayed,
+  ctas,
 }) => {
   const intl = useIntl();
   const formatted = (
     <GlossaryFormattedMessage
+      ctas={ctas}
       intlKey={`${intlKey}.description`}
       glossaryKeys={glossaryKeys}
     />
@@ -57,6 +59,7 @@ QuestionSection.defaultProps = {
   backgroundColor: '',
   children: null,
   glossaryKeys: [],
+  ctas: [],
   isDisplayed: null,
 };
 QuestionSection.propTypes = {
@@ -64,6 +67,7 @@ QuestionSection.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node,
   glossaryKeys: PropTypes.arrayOf(PropTypes.string),
+  ctas: PropTypes.arrayOf(PropTypes.string),
   intlKey: PropTypes.string.isRequired,
   isDisplayed: PropTypes.bool,
 };

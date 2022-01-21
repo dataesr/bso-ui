@@ -95,7 +95,7 @@ import GlossaryEntries from 'glossary.json';
 ```js
 <GlossaryFormattedMessage
   intlKey='app.text'
-  link='https://www.link.fr'
+  ctas={['https://www.link.fr']}
   glossaryKeys={['entry1', 'entry2']}
 />
 ```

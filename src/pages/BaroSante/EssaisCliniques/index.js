@@ -83,6 +83,9 @@ function EssaisCliniques() {
           >
             <GraphContent>
               <QuestionSection
+                ctas={[
+                  'https://www.wma.net/fr/policies-post/declaration-dhelsinki-de-lamm-principes-ethiques-applicables-a-la-recherche-medicale-impliquant-des-etres-humains/',
+                ]}
                 intlKey='app.health-interventional.general.dynamique'
                 backgroundColor={blueSoft50}
                 anchorId='general.dynamique'
