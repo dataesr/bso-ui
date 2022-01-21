@@ -313,9 +313,15 @@ export default function NationalPublications() {
                   glossaryKeys={['apc', 'diamond']}
                   anchorId='publishers.couts-publication'
                 >
-                  <BSOChart id='publi.publishers.couts-publication.chart-depenses-estimees' />
+                  <BSOChart
+                    id='publi.publishers.couts-publication.chart-depenses-estimees'
+                    isDisplayed={!isInProduction()}
+                  />
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
-                  <BSOChart id='publi.publishers.couts-publication.chart-distribution-par-annee' />
+                  <BSOChart
+                    id='publi.publishers.couts-publication.chart-distribution-par-annee'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
