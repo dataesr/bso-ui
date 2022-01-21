@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { domains } from '../../utils/constants';
+import { getObservationLabel } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import Icon from '../Icon';
@@ -89,8 +90,8 @@ export default function ProgressionCard({ domain }) {
       title={(
         <FormattedMessage
           values={{
-            startYear: previousObservationSnap,
-            endYear: lastObservationSnap,
+            startYear: getObservationLabel(previousObservationSnap),
+            endYear: getObservationLabel(lastObservationSnap),
             div: (chunks) => <div>{chunks}</div>,
           }}
           id={
