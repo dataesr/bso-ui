@@ -205,6 +205,7 @@ Chart.defaultProps = {
   hasFooter: true,
   id: 'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
 };
+
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

@@ -19,7 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
@@ -51,6 +51,7 @@ const Chart = ({ hasComments, id, domain }) => {
       dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
       id={id}
       isError={isError}
       isLoading={isLoading || !dataGraph || !categories}
@@ -71,11 +72,13 @@ const Chart = ({ hasComments, id, domain }) => {
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
+  hasFooter: true,
   id: 'publi.disciplines.voies-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 

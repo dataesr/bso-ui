@@ -16,7 +16,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain }) => {
+const Chart = ({ domain, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
@@ -35,28 +35,31 @@ const Chart = ({ id, domain }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph2 || !categories2}
+      domain={domain}
+      hasFooter={hasFooter}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !dataGraph2 || !categories2}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  id: 'publi.affiliations.pays.chart-classement-pays',
   domain: '',
+  hasFooter: true,
+  id: 'publi.affiliations.pays.chart-classement-pays',
 };
 Chart.propTypes = {
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 export default Chart;

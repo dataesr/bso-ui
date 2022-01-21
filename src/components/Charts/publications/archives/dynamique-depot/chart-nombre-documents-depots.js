@@ -23,7 +23,7 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 HighchartsAnnotations(Highcharts);
 
-const Chart = ({ domain, hasComments, id }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const [chartComments, setChartComments] = useState('');
@@ -47,11 +47,12 @@ const Chart = ({ domain, hasComments, id }) => {
 
   return (
     <WrapperChart
-      id={id}
       domain={domain}
       hasComments={false}
-      isLoading={isLoading || !data}
+      hasFooter={hasFooter}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !data}
     >
       <Container>
         <Row>
@@ -59,8 +60,8 @@ const Chart = ({ domain, hasComments, id }) => {
             <Col n='3' key={graphOptions.series[0].name}>
               <HighchartsReact
                 highcharts={Highcharts}
-                options={graphOptions}
                 id={`${idWithDomain}-${i}`}
+                options={graphOptions}
               />
             </Col>
           ))}
@@ -76,11 +77,13 @@ const Chart = ({ domain, hasComments, id }) => {
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
+  hasFooter: true,
   id: 'publi.repositories.dynamique-depot.chart-nombre-documents-depots',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 
