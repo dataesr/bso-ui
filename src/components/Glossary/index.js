@@ -10,12 +10,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import { getAllIndexes } from '../../utils/helpers';
 import GlossaryItem from './GlossaryItem';
 
 function Glossary({ entries }) {
+  const { pathname } = useLocation();
   const intl = useIntl();
   const contentRef = useRef();
   const [openPanel, setOpenPanel] = useState(false);
@@ -113,7 +115,7 @@ function Glossary({ entries }) {
         setGlossaryEntries(filtered);
       }
     });
-  }, [customFilter, glossaryEntries]);
+  }, [customFilter, glossaryEntries, pathname]);
 
   useEffect(() => {
     if (openPanel) {

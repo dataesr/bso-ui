@@ -183,7 +183,6 @@ export default function DataCardSection({ domain, lang }) {
       openPublicationRate,
       publicationsNumber,
       totalHostedDocuments,
-      domain,
     ],
   );
 
@@ -241,6 +240,7 @@ export default function DataCardSection({ domain, lang }) {
       }
     };
   }, [domain, fetchData, isMounted, lastObservationSnap, response, search]);
+
   return (
     <Container fluid className='bg-ultra-light-blue pt-32 mb-20 px-20'>
       <Row justifyContent='center'>
