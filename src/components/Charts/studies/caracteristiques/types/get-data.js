@@ -85,9 +85,23 @@ function useGetData(studyType, sponsorType = '*') {
     });
     dataGraph.reverse();
 
+    const year = 2019;
+    const category = intl.formatMessage({
+      id: 'app.studies.intervention-type.Drug',
+    });
+    const value = dataGraph
+      .find((item) => item.name === category)
+      ?.data.find((item) => item.x === year)?.yLabel;
+    const comments = {
+      category,
+      value,
+      year,
+    };
+
     return {
-      sponsorTypes,
+      comments,
       dataGraph,
+      sponsorTypes,
     };
   }
 
