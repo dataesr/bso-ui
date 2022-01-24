@@ -50,15 +50,17 @@ const TranslationsPage = () => {
   }, []);
 
   const generate = (lang) => {
-    const ret = Object.keys(data).map((key, i) => (
-      <div>
-        {`"${key}": "${data[key][lang]}"${
-          i + 1 === Object.keys(data).length ? '' : ','
-        }`}
-      </div>
-    ));
-
-    setGeneration(ret);
+    const generated = Object.keys(data).map((key, i) => {
+      const value = data[key][lang].replaceAll('"', '\\"');
+      return (
+        <div>
+          {`"${key}": "${value}"${
+            i + 1 === Object.keys(data).length ? '' : ','
+          }`}
+        </div>
+      );
+    });
+    setGeneration(generated);
     setIsModalOpen(true);
   };
 
