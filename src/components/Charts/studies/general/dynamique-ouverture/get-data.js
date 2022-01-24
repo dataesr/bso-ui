@@ -52,7 +52,19 @@ function useGetData(studyType, sponsor = '*') {
     const sponsWith = spons?.by_has_result.buckets.find(
       (ele) => ele.key === 1,
     );
-    const categories = [intl.formatMessage({ id: 'app.sponsor.academique' }), intl.formatMessage({ id: 'app.sponsor.industriel' }), intl.formatMessage({ id: 'app.all-sponsor-types' })];
+    const categories = [intl.formatMessage({ id: 'app.all-sponsor-types' }), intl.formatMessage({ id: 'app.sponsor.industriel' }), intl.formatMessage({ id: 'app.sponsor.academique' })];
+    series[0].data.push({
+      name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
+      yearMin,
+      yearMax,
+      color: getCSSValue('--blue-soft-100'),
+      y_tot: academic?.doc_count + indus?.doc_count || 0,
+      y_abs: academicWith?.doc_count + indusWith?.doc_count || 0,
+      y:
+        100
+        * ((academicWith?.doc_count + indusWith?.doc_count)
+          / (academic?.doc_count + indus?.doc_count)),
+    });
     series[0].data.push({
       yearMin,
       yearMax,
@@ -70,18 +82,6 @@ function useGetData(studyType, sponsor = '*') {
       y_abs: indusWith?.doc_count || 0,
       y: 100 * ((indusWith?.doc_count || 0) / indus?.doc_count),
       color: getCSSValue('--lead-sponsor-privee'),
-    });
-    series[0].data.push({
-      name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
-      yearMin,
-      yearMax,
-      color: getCSSValue('--blue-soft-100'),
-      y_tot: academic?.doc_count + indus?.doc_count || 0,
-      y_abs: academicWith?.doc_count + indusWith?.doc_count || 0,
-      y:
-        100
-        * ((academicWith?.doc_count + indusWith?.doc_count)
-          / (academic?.doc_count + indus?.doc_count)),
     });
     if (sponsor !== '*') {
       series[0].data.push({
