@@ -45,7 +45,7 @@ function Variations() {
                 unité de recherche
               </h4>
               Chaque établissement / laboratoire qui le souhaite nous fait
-              parvenir une liste de DOI (csv ou excel) , et nous précise le nom
+              parvenir une liste de DOI (csv ou excel), et nous précise le nom
               qui sera affiché pour l'établissement, la date de début ainsi que
               la date de fin si nécessaire. Pour obtenir cette liste de DOI,
               l'Université de Lorraine a développé un code que vous pouvez
@@ -89,12 +89,14 @@ function Variations() {
               <ul>
                 <li>
                   <b>bsoLocalAffiliation</b>
+                  {' '}
                   : SIREN de l'établissement (ex:
                   bsoLocalAffiliation=130015506)
                   <i> requis</i>
                 </li>
                 <li>
                   <b>commentsName</b>
+                  {' '}
                   : Nom de l'établissement / laboratoire qui
                   sera affiché dans les commentaires (ex: commentsName=pour
                   l'université de Lorraine),
@@ -102,38 +104,44 @@ function Variations() {
                 </li>
                 <li>
                   <b>displayComment</b>
+                  {' '}
                   : affiche ou masque le commentaire (ex:
                   displayComment=false),
                   <i> défaut: true</i>
                 </li>
                 <li>
                   <b>displayTitle</b>
+                  {' '}
                   : affiche ou masque le titre (ex:
                   displayTitle=false),
                   <i> défaut: true</i>
                 </li>
                 <li>
                   <b>displayFooter</b>
+                  {' '}
                   : affiche ou masque le footer (ex:
                   displayFooter=false),
                   <i> défaut: true</i>
                 </li>
                 <li>
                   <b>endYear</b>
+                  {' '}
                   : filtre sur l'année de publication inférieure
                   ou égale (ex: endYear=2020),
                   <i> défaut: vide</i>
                 </li>
                 <li>
                   <b>name</b>
+                  {' '}
                   : Nom de l'établissement / laboratoire qui préfixe
                   le titre du graphe (ex: name=Université de Lorraine),
                   <i> défaut: vide</i>
                 </li>
                 <li>
                   <b>startYear</b>
-                  : filtre sur l'année de publication supérieure
-                  ou égale (ex: startYear=2016),
+                  {' '}
+                  : filtre sur l'année de publication
+                  supérieure ou égale (ex: startYear=2016),
                   <i> défaut: 2013</i>
                 </li>
               </ul>

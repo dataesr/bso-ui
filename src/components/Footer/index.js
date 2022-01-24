@@ -44,7 +44,9 @@ export default function Footer() {
               <FormattedMessage id='app.footer.link.open-data' />
             </FooterLink>
           </FooterTopCategory>
-          <FooterTopCategory title={<FormattedMessage id='app.footer.voir-aussi' />}>
+          <FooterTopCategory
+            title={<FormattedMessage id='app.footer.voir-aussi' />}
+          >
             <FooterLink
               target='_blank'
               href='https://www.ouvrirlascience.fr/open-science/'
@@ -67,7 +69,9 @@ export default function Footer() {
               <FormattedMessage id='app.footer.link.platform-open-data' />
             </FooterLink>
           </FooterTopCategory>
-          <FooterTopCategory title={<FormattedMessage id='app.footer.nos-sources' />}>
+          <FooterTopCategory
+            title={<FormattedMessage id='app.footer.nos-sources' />}
+          >
             <FooterLink target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/'>
               PubMed
             </FooterLink>
@@ -93,7 +97,9 @@ export default function Footer() {
               EU Clinical Trials Register
             </FooterLink>
           </FooterTopCategory>
-          <FooterTopCategory title={<FormattedMessage id='app.footer.nous-suivre' />}>
+          <FooterTopCategory
+            title={<FormattedMessage id='app.footer.nous-suivre' />}
+          >
             <FooterLink href='https://twitter.com/sup_recherche'>
               <DSIcon
                 className='ds-fr--v-middle'
@@ -151,7 +157,7 @@ export default function Footer() {
             Plan d’Action National de la France au sein du Partenariat pour un
             Gouvernement Ouvert (PGO)
           </FooterLink>
-          <FooterLink href='/a-propos/foire-aux-questions'>FAQ</FooterLink>
+          <FooterLink href='/a-propos/faq'>FAQ</FooterLink>
           <FooterCopy>
             <p>
               <FormattedMessage id='app.footer.licence' />
