@@ -254,15 +254,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
         data: goldDataHistogram,
         color: getCSSValue('--yellow-medium-100'),
       },
-      {
-        name: capitalize(
-          intl.formatMessage({
-            id: 'app.publishers.diamond',
-          }),
-        ),
-        data: diamondDataHistogram,
-        color: getCSSValue('--diamond'),
-      },
+      // {
+      //   name: capitalize(
+      //    intl.formatMessage({
+      //      id: 'app.publishers.diamond',
+      //    }),
+      //  ),
+      //  data: diamondDataHistogram,
+      //  color: getCSSValue('--diamond'),
+      // },
     ];
 
     const dataGraphViolin = [];
