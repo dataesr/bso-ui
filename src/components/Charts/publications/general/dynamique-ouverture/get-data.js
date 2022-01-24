@@ -161,29 +161,47 @@ function useGetData(observationSnaps, domain = '') {
         categories = dataGraph2[0].data.map((item) => item.publicationDate);
       }
 
-      const oaYMinusOnePrevious = dataGraph2[1]?.data.slice(-1)[0].y.toFixed(0);
-      const value2 = dataGraph1.series[0].data
-        .find((item) => item.name === '2021')
+      const year1 = '2019';
+      const year2 = '2020';
+      const year3 = '2021';
+      const value1 = dataGraph2[1]?.data.slice(-1)[0].y.toFixed(0);
+      const value2 = dataGraph1?.series[0]?.data
+        .find((item) => item.name === year3)
+        ?.y.toFixed(0);
+      const healthPublicationsLabel = capitalize(
+        intl.formatMessage({ id: 'app.publications.health' }),
+      );
+      const healthValue1 = dataGraph1?.series
+        .find((item) => item.name === healthPublicationsLabel)
+        ?.data?.find((item) => item.name === year2)
+        ?.y.toFixed(0);
+      const healthValue2 = dataGraph1?.series
+        .find((item) => item.name === healthPublicationsLabel)
+        ?.data?.find((item) => item.name === year3)
         ?.y.toFixed(0);
       const comments = {
         observationDate: dataGraph2[0]?.name,
-        previousObservationDate: dataGraph2[1]?.name,
         observationDate4: dataGraph2[3]?.name,
         oaYMinusOne4: dataGraph2[3]?.data.slice(-1)[0].y.toFixed(0),
         oaYMinus4: dataGraph2[0]?.data.slice(-4)[0].y.toFixed(0),
         publicationDate4: dataGraph2[3]?.data.slice(-1)[0].publicationDate,
         minPublicationDate: dataGraph2[0]?.data[0]?.publicationDate,
-        previousMaxPublicationDate: dataGraph2[1]?.lastPublicationDate,
-        oaYMinusOnePrevious,
         oaYMinusOne: dataGraph2[0]?.data.slice(-2)[0].y.toFixed(0),
-        value2,
         oaEvolution: (
           dataGraph2[0]?.data.slice(-2)[0].y
           - dataGraph2[1]?.data.slice(-1)[0].y
         ).toFixed(2),
         maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
         commentsName,
-        differenceValue: value2 - oaYMinusOnePrevious,
+        year1,
+        year2,
+        year3,
+        value1,
+        value2,
+        healthValue1,
+        healthValue2,
+        differenceValue: value2 - value1,
+        healthDifferenceValue: healthValue2 - healthValue1,
       };
 
       return { categories, comments, dataGraph1, dataGraph2 };
