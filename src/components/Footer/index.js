@@ -100,7 +100,10 @@ export default function Footer() {
           <FooterTopCategory
             title={<FormattedMessage id='app.footer.nous-suivre' />}
           >
-            <FooterLink href='https://twitter.com/sup_recherche'>
+            <FooterLink
+              target='_blank'
+              href='https://twitter.com/sup_recherche'
+            >
               <DSIcon
                 className='ds-fr--v-middle'
                 name='ri-twitter-fill'
@@ -109,7 +112,10 @@ export default function Footer() {
                 <span>twitter</span>
               </DSIcon>
             </FooterLink>
-            <FooterLink href='https://fr.linkedin.com/company/enseignementsup-recherche'>
+            <FooterLink
+              target='_blank'
+              href='https://fr.linkedin.com/company/enseignementsup-recherche'
+            >
               <DSIcon
                 className='ds-fr--v-middle'
                 name='ri-linkedin-box-fill'
@@ -118,7 +124,10 @@ export default function Footer() {
                 <span>linkedin</span>
               </DSIcon>
             </FooterLink>
-            <FooterLink href='https://www.facebook.com/enseignementsup.recherche'>
+            <FooterLink
+              target='_blank'
+              href='https://www.facebook.com/enseignementsup.recherche'
+            >
               <DSIcon
                 className='ds-fr--v-middle'
                 name='ri-facebook-box-fill'
@@ -137,10 +146,14 @@ export default function Footer() {
             l'innovation
           </Logo>
           <FooterBodyItem>
-            <Link href='https://service-public.fr'>service-public.fr</Link>
+            <Link target='_blank' href='https://service-public.fr'>
+              service-public.fr
+            </Link>
           </FooterBodyItem>
           <FooterBodyItem>
-            <Link href='https://data.gouv.fr'>data.gouv.fr</Link>
+            <Link target='_blank' href='https://data.gouv.fr'>
+              data.gouv.fr
+            </Link>
           </FooterBodyItem>
         </FooterBody>
         <FooterBottom>
