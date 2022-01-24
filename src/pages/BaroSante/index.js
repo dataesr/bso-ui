@@ -136,7 +136,7 @@ function BaroSante() {
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.trials-intro'
-                    glossaryKeys={['acces-ouvert']}
+                    glossaryKeys={['essai-clinique', 'promoteur']}
                   />
                 )}
               >
@@ -167,7 +167,11 @@ function BaroSante() {
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-sante.studies-intro'
-                    glossaryKeys={['acces-ouvert']}
+                    glossaryKeys={[]}
+                    ctas={[
+                      'https://clinicaltrials.gov/',
+                      'https://www.clinicaltrialsregister.eu/',
+                    ]}
                   />
                 )}
               >
