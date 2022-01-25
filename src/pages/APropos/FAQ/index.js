@@ -16,40 +16,53 @@ import FaqEntries from '../../../translations/faq.json';
 function FAQ() {
   const intl = useIntl();
 
-  const getItem = (faqKey) => (
-    <AccordionItem
-      key={uuidv4()}
-      title={intl.formatMessage({ id: faqKey.intlEntry })}
-    >
-      <Container>
-        <section className='px-20 py-28 bg-light-pink'>
-          <Row>
-            <Col>
-              <FormattedMessage
-                id={faqKey.intlDefinition}
-                values={{
-                  cta: (chunks) => (
-                    <a target='_blank' href={`${faqKey.cta}`} rel='noreferrer'>
-                      {chunks}
-                    </a>
-                  ),
-                  ol: (chunks) => <ol>{chunks}</ol>,
-                  p: (chunks) => <p className='fs-16-28'>{chunks}</p>,
-                  ul: (chunks) => <ul>{chunks}</ul>,
-                  strong: (chunks) => (
-                    <strong className='d-block pb-16'>{chunks}</strong>
-                  ),
-                  li: (chunks) => (
-                    <li className='fr-col-offset-1 pb-16'>{chunks}</li>
-                  ),
-                }}
-              />
-            </Col>
-          </Row>
-        </section>
-      </Container>
-    </AccordionItem>
-  );
+  const getItem = (faqKey) => {
+    const values = {};
+
+    faqKey?.ctas?.forEach((cta, i) => {
+      values[`cta${i}`] = (chunks) => (
+        <a href={cta} target='_blank' rel='noreferrer'>
+          {chunks}
+        </a>
+      );
+    });
+
+    return (
+      <AccordionItem
+        key={uuidv4()}
+        title={intl.formatMessage({ id: faqKey.intlEntry })}
+      >
+        <Container>
+          <section className='px-20 py-28 bg-light-pink'>
+            <Row>
+              <Col>
+                <FormattedMessage
+                  id={faqKey.intlDefinition}
+                  values={{
+                    cta: (chunks) => (
+                      <a target='_blank' href={`${faqKey.cta}`} rel='noreferrer'>
+                        {chunks}
+                      </a>
+                    ),
+                    ol: (chunks) => <ol>{chunks}</ol>,
+                    p: (chunks) => <p className='fs-16-28'>{chunks}</p>,
+                    ul: (chunks) => <ul>{chunks}</ul>,
+                    strong: (chunks) => (
+                      <strong className='d-block pb-16'>{chunks}</strong>
+                    ),
+                    li: (chunks) => (
+                      <li className='fr-col-offset-1 pb-16'>{chunks}</li>
+                    ),
+                    ...values,
+                  }}
+                />
+              </Col>
+            </Row>
+          </section>
+        </Container>
+      </AccordionItem>
+    );
+  };
   const renderItems = () => Object.keys(FaqEntries[0]).map((key) => getItem(FaqEntries[0][key]));
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>

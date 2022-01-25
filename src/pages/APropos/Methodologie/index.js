@@ -15,6 +15,7 @@ function Methodologie() {
       .then((text) => {
         const groups = [...text.matchAll(/# 2\. Method\n\n((.|\n)*)# 3\. Results/gm)];
         let group = groups[0][1];
+        group = group.replaceAll('\\newpage', '');
         group = group.replaceAll(/<br \/>/g, '\n&nbsp;');
         group = group.replaceAll(/{ width=\d* }/g, '');
         group = group.replaceAll('## 2.', '## ');
@@ -59,7 +60,7 @@ function Methodologie() {
           <Row gutters>
             <Col n='12 lg-8'>
               <ReactMarkdown components={{
-                // eslint-disable-next-line jsx-a11y/alt-text,react/prop-types
+                // eslint-disable-next-line jsx-a11y/alt-text, react/prop-types
                 img: ({ node, ...props }) => <img style={{ maxWidth: '100%' }} {...props} />,
               }}
               >

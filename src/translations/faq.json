@@ -2,7 +2,8 @@
   {
     "methodology-steps": {
       "intlDefinition": "app.faq.methodology-steps.definition",
-      "intlEntry": "app.faq.methodology-steps"
+      "intlEntry": "app.faq.methodology-steps",
+      "ctas": ["https://unpaywall.org/", "https://www.crossref.org/", "https://theses.fr/", "https://bib.cnrs.fr/pascal-et-francis-en-acces-libre/", "https://hal.archives-ouvertes.fr/", "https://orcid.org/"]
     },
     "difference-ce": {
       "intlDefinition": "app.faq.difference-ce.definition",
@@ -15,7 +16,8 @@
     },
     "access-to-publications": {
       "intlDefinition": "app.faq.access-to-publications.definition",
-      "intlEntry": "app.faq.access-to-publications"
+      "intlEntry": "app.faq.access-to-publications",
+      "cta": "https://unpaywall.org/"
     },
     "date-update": {
       "intlDefinition": "app.faq.date-update.definition",
