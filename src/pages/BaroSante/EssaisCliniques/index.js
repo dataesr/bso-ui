@@ -337,7 +337,6 @@ function EssaisCliniques() {
                   id='resultats.type-diffusion.chart-repartition'
                   domain='health'
                   studyType='Interventional'
-                  isDisplayed={!isInProduction()}
                 />
                 <BSOChart
                   id='resultats.type-diffusion.chart-repartition-par-type'
