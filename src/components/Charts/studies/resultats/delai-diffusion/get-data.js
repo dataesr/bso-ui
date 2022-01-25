@@ -56,33 +56,49 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
     };
     const minBoundary = -720;
     const maxBoundary = 1800;
+
+    const categories2 = dataSortedByYear2
+      .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
+      .map((el) => (Math.abs(el.key) / 30).toString().concat(` ${intl.formatMessage({ id: 'app.studies.months' })}`));
+    categories2[0] += ` ${intl.formatMessage({
+      id: 'app.studies.month_before',
+    })}`;
+    categories2[categories2.length - 1] += ` ${intl.formatMessage({
+      id: 'app.studies.month_after',
+    })}`;
     const firstValue = dataSortedByYear2
       .filter((el) => el.key <= minBoundary)
       .reduce((a, b) => a + b.doc_count, 0);
     const lastValue = dataSortedByYear2
       .filter((el) => el.key >= maxBoundary)
       .reduce((a, b) => a + b.doc_count, 0);
-    data.before_completion.push(firstValue);
+    data.before_completion.push({
+      y: firstValue,
+      name: categories2[0],
+    });
     data.after_completion.push(0);
     dataSortedByYear2
       .filter((ele) => ele.key > minBoundary && ele.key < maxBoundary)
-      .forEach((el) => {
+      .forEach((el, ix) => {
         if (el.key <= 0) {
           data.before_completion.push({
             y: el.doc_count,
-            name: Math.abs(el.key) / 30,
+            name: categories2[ix + 1],
           });
           data.after_completion.push(0);
         } else {
           data.before_completion.push(0);
           data.after_completion.push({
             y: el.doc_count,
-            name: Math.abs(el.key) / 30,
+            name: categories2[ix + 1],
           });
         }
       });
     data.before_completion.push(0);
-    data.after_completion.push(lastValue);
+    data.after_completion.push({
+      y: lastValue,
+      name: categories2[categories2.length - 1],
+    });
     const steps2 = ['before_completion', 'after_completion'];
     const dataGraph2 = steps2.map((step) => ({
       data: data[step],
@@ -93,16 +109,6 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
       ),
       color: colors[step],
     }));
-
-    const categories2 = dataSortedByYear2
-      .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
-      .map((el) => Math.abs(el.key) / 30);
-    categories2[0] += ` ${intl.formatMessage({
-      id: 'app.studies.month_before',
-    })}`;
-    categories2[categories2.length - 1] += ` ${intl.formatMessage({
-      id: 'app.studies.month_after',
-    })}`;
 
     const query3 = getFetchOptions({
       key: 'studiesCaracteristiquesQuandDistribution',

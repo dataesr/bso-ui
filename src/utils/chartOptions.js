@@ -2393,10 +2393,14 @@ export const chartOptions = {
         categories: data?.categories2 || [],
       };
       options.xAxis.labels = {
+        overflow: 'allow',
+        rotation: -90,
+        step: 6,
+        useHTML: true,
         formatter() {
           const label = this.axis.defaultLabelFormatter.call(this);
           // TODO refacto
-          if (label === '0') {
+          if (label.startsWith('0')) {
             return intl.formatMessage({
               id: `app.${studyType.toLowerCase()}.end`,
             });
