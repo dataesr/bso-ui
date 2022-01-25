@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-function FlashCard({ url, intlTitle }) {
+function FlashCard({ intlTitle, url, urlData, urlPdf }) {
   return (
-    <Card bodyClassName='bso-flash-card bg-yellow' hasArrow={false} href={url}>
+    <Card
+      bodyClassName='bso-flash-card bg-yellow'
+      hasArrow={false}
+      enlargeLink={false}
+    >
       <CardDetail className='fs-14-24 marianne-bold'>
         <FormattedMessage id='app.notes.flash.title' />
       </CardDetail>
@@ -19,20 +23,36 @@ function FlashCard({ url, intlTitle }) {
               <FormattedMessage id='app.notes.flash.note' />
             </Link>
           </div>
-          <div>
-            <Link target='_blank' href={url}>
-              <FormattedMessage id='app.notes.flash.data-graph' />
-            </Link>
-          </div>
+          {urlPdf && (
+            <div>
+              <Link target='_blank' href={urlPdf}>
+                <FormattedMessage id='app.notes.flash.pdf' />
+              </Link>
+            </div>
+          )}
+          {urlData && (
+            <div>
+              <Link target='_blank' href={urlData}>
+                <FormattedMessage id='app.notes.flash.data' />
+              </Link>
+            </div>
+          )}
         </section>
       </CardDescription>
     </Card>
   );
 }
 
+FlashCard.defaultProps = {
+  urlData: undefined,
+  urlPdf: undefined,
+};
+
 FlashCard.propTypes = {
-  url: PropTypes.string.isRequired,
   intlTitle: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  urlData: PropTypes.string,
+  urlPdf: PropTypes.string,
 };
 
 export default FlashCard;
