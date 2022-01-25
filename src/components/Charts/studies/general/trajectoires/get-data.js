@@ -13,9 +13,12 @@ function useGetData(studyType) {
   const intl = useIntl();
 
   async function getDataAxios() {
+    const currentYear = new Date().getFullYear() - 1;
+    const yearMin = currentYear - 11;
+    const yearMax = currentYear - 1;
     const query = getFetchOptions({
       key: 'studiesTrajectoires',
-      parameters: [studyType],
+      parameters: [studyType, yearMin, yearMax],
     });
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
     const dataGraph = [];

@@ -1400,14 +1400,32 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesTrajectoires: ([studyType]) => ({
+    studiesTrajectoires: ([studyType, yearMin, yearMax]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             {
+              terms: {
+                'lead_sponsor_type.keyword': ['academique', 'industriel'],
+              },
+            },
+            {
               term: {
                 'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
               },
             },
           ],
@@ -1421,7 +1439,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_results: {
               terms: {
-                field: 'has_results',
+                field: 'has_results_or_publications',
                 missing: false,
               },
               aggs: {
