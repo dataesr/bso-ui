@@ -420,7 +420,7 @@
   "app.health-observational.caracteristiques.quand.chart-evolution-temporalites.title": "Evolution of the temporalities of observational studies",
   "app.health-observational.caracteristiques.quand.chart-evolution-temporalites.tooltip": "<b>Studies started in {point.x}</b><br>• Reported observational studies<br>{series.name}:<br>{point.yLabel}% ({point.yValue} / {point.yTotal})",
   "app.health-observational.caracteristiques.quand.chart-repartition-avant-apres.title": "Distribution of statements made before or after the start date of the study",
-  "app.health-observational.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "<b>{point.y}</b> observational studies registered {point.x} month(s) <span style = 'text-transform: lowercase'>{series.name}</span>",
+  "app.health-observational.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "<b>{point.y}</b> observational studies registered {point.name} <span style = 'text-transform: lowercase'>{series.name}</span>",
   "app.health-observational.general": "General",
   "app.health-observational.general.dynamique.title": "What is the dynamics of observational studies made public since 2012?",
   "app.health-observational.general.dynamique.chart-evolution.title": "Evolution of the share of registered observational studies having produced summaries and/or publications",

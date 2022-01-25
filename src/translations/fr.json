@@ -420,7 +420,7 @@
   "app.health-observational.caracteristiques.quand.chart-evolution-temporalites.title": "Taux d'enregistrement dans un registre public avant le début de l'étude observationnelle",
   "app.health-observational.caracteristiques.quand.chart-evolution-temporalites.tooltip": "<b>Etudes débutées en {point.x}</b><br>• Etudes observationnelles enregistrées<br>{series.name} :<br>{point.yLabel} % ({point.yValue} / {point.yTotal})",
   "app.health-observational.caracteristiques.quand.chart-repartition-avant-apres.title": "Délai d'enregistrement dans un registre public par rapport au début de l'étude observationnelle",
-  "app.health-observational.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "<b>{point.y}</b> études observationnelles enregistrées {point.name} mois <span style='text-transform: lowercase'>{series.name}</span>",
+  "app.health-observational.caracteristiques.quand.chart-repartition-avant-apres.tooltip": "<b>{point.y}</b> études observationnelles enregistrées {point.name} <span style='text-transform: lowercase'>{series.name}</span>",
   "app.health-observational.general": "Général",
   "app.health-observational.general.dynamique.title": "Quelle est la dynamique des études observationnelles rendues publiques depuis 2012 ?",
   "app.health-observational.general.dynamique.chart-evolution.title": "Part des études observationnelles enregistrées ayant produit des résultats et/ou publications",
