@@ -30,10 +30,10 @@ function BSOChart({
         )}
         {Chart && (
           <Chart
-            id={id}
             domain={domain}
             hasComments={hasComments}
             hasFooter={hasFooter}
+            id={id}
             studyType={studyType}
           />
         )}
