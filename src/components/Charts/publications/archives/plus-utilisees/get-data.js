@@ -31,17 +31,27 @@ function useGetData(observationSnap, domain) {
     }));
     dataGraph = dataGraph.slice(0, 15);
 
-    const name = 'HAL';
+    let name1 = '';
+    let name2 = '';
+    let name3 = '';
+    let name4 = '';
     let publicationDate = '';
     let y = '';
     if (dataGraph) {
+      name1 = dataGraph[0].name;
+      name2 = dataGraph[1].name;
+      name3 = dataGraph[2].name;
+      name4 = dataGraph[3].name;
       publicationDate = dataGraph.find(
-        (item) => item.name === name,
+        (item) => item.name === name1,
       )?.publicationDate;
-      y = dataGraph.find((item) => item.name === name)?.y;
+      y = dataGraph.find((item) => item.name === name1)?.y;
     }
     const comments = {
-      name,
+      name1,
+      name2,
+      name3,
+      name4,
       publicationDate,
       value: y,
     };
