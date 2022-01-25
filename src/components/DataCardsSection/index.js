@@ -25,6 +25,7 @@ export default function DataCardSection({ domain, lang }) {
   const [bestCollabCountry, setBestCollabCountry] = useState('');
   const [diamondPublicationRate, setDiamonPublicationRate] = useState(null);
   const [hostedDocuments, setHostedDocuments] = useState(null);
+  const [hostedDocumentsPMC, setHostedDocumentsPMC] = useState(null);
   const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
   const [apcCostSum, setApcCostSum] = useState(null);
   const { lastObservationSnap } = useGlobals();
@@ -95,7 +96,7 @@ export default function DataCardSection({ domain, lang }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: 'editeurs?id=publishers.type-ouverture',
-        activeDomains: ['health', ''],
+        activeDomains: [''],
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -117,7 +118,30 @@ export default function DataCardSection({ domain, lang }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: 'archives?id=repositories.dynamique-hal',
-        activeDomains: ['health', ''],
+        activeDomains: [''],
+      },
+      hostedDocumentPMC: {
+        fetch: (buckets) => formatNumberByLang(
+          buckets.find((countObj) => countObj.key === 'PubMed Central')
+            .doc_count,
+          lang,
+        ),
+        get: hostedDocumentsPMC,
+        set: (data) => setHostedDocumentsPMC(data),
+        pathToValue: 'by_repositories.buckets',
+        isPercentage: false,
+        color: 'green',
+        intlKey:
+          domain === ''
+            ? 'app.national-publi.data.hosted-documents-pmc'
+            : 'app.health-publi.data.hosted-documents-pmc',
+        intlValues: {
+          total: totalHostedDocuments,
+          publicationYear:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
+        },
+        buttonHref: 'archives?id=repositories.plus-utilisees',
+        activeDomains: ['health'],
       },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
@@ -178,6 +202,7 @@ export default function DataCardSection({ domain, lang }) {
       diamondPublicationRate,
       frenchPublicationsRate,
       hostedDocuments,
+      hostedDocumentsPMC,
       lang,
       lastObservationSnap,
       openPublicationRate,
@@ -259,8 +284,9 @@ export default function DataCardSection({ domain, lang }) {
                 } = dataObj[cardKey];
 
                 return (
-                  <Col n='12 md-6 lg-4' key={cardKey}>
-                    {activeDomains.indexOf(domain) > -1 && cardValue && (
+                  activeDomains.indexOf(domain) > -1
+                  && cardValue && (
+                    <Col n='12 md-6 lg-4' key={cardKey}>
                       <DataCard
                         isPercentage={isPercentage}
                         value={isPercentage ? parseFloat(cardValue) : cardValue}
@@ -276,8 +302,8 @@ export default function DataCardSection({ domain, lang }) {
                           <FormattedMessage values={intlValues} id={intlKey} />
                         }
                       />
-                    )}
-                  </Col>
+                    </Col>
+                  )
                 );
               })}
             </Row>
