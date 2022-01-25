@@ -90,7 +90,9 @@ function useGetData(studyType, sponsorType = '*') {
     const maxBoundary = 360;
     const categoriesRepartition = dataSortedByYearRepartition
       .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
-      .map((el) => (Math.abs(el.key) / 30).toString().concat(` ${intl.formatMessage({ id: 'app.studies.months' })}`));
+      .map((el) => (Math.abs(el.key) / 30)
+        .toString()
+        .concat(` ${intl.formatMessage({ id: 'app.studies.months' })}`));
     categoriesRepartition[0] += ` ${intl.formatMessage({
       id: 'app.studies.month_before',
     })}`;
@@ -248,14 +250,32 @@ function useGetData(studyType, sponsorType = '*') {
       },
     });
 
+    const beforeStartLabel = capitalize(
+      intl.formatMessage({ id: 'app.interventional.before_start' }),
+    );
+    const beforeStartData = dataGraphEvolution.find(
+      (item) => item.name === beforeStartLabel,
+    )?.data;
+    const value1 = beforeStartData[0]?.y?.toFixed(0);
+    const value2 = beforeStartData[beforeStartData.length - 1]?.y?.toFixed(0);
+    const year1 = beforeStartData[0]?.x;
+    const year2 = beforeStartData[beforeStartData.length - 1]?.x;
+    const comments = {
+      value1,
+      value2,
+      year1,
+      year2,
+    };
+
     return {
-      sponsorTypes,
-      categoriesEvolution: dataSortedByYearEvolution.map((el) => el.key),
-      dataGraphEvolution,
-      categoriesRepartition,
-      dataGraphRepartition,
       categoriesDistribution,
+      categoriesEvolution: dataSortedByYearEvolution.map((el) => el.key),
+      categoriesRepartition,
+      comments,
       dataGraphDistribution,
+      dataGraphEvolution,
+      dataGraphRepartition,
+      sponsorTypes,
     };
   }
 

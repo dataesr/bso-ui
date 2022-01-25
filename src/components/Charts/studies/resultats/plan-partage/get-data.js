@@ -103,7 +103,27 @@ function useGetData(studyType, sponsorType = '*') {
         },
       ],
     };
-    return { sponsorTypes, dataGraph1 };
+
+    const yesLabel = intl.formatMessage({ id: 'app.studies.plan-partage-yes' });
+    const yesData = dataGraph1?.series?.find(
+      (item) => item.name === yesLabel,
+    )?.data;
+    const value1 = yesData[0]?.y?.toFixed(0);
+    const value2 = yesData[yesData.length - 1]?.y?.toFixed(0);
+    const year1 = yesData[0]?.year;
+    const year2 = yesData[yesData.length - 1]?.year;
+    const comments = {
+      value1,
+      value2,
+      year1,
+      year2,
+    };
+
+    return {
+      comments,
+      dataGraph1,
+      sponsorTypes,
+    };
   }
 
   useEffect(() => {
