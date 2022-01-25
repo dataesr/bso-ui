@@ -1,7 +1,15 @@
-import { Col, Container, Row } from '@dataesr/react-dsfr';
+import {
+  Card,
+  CardDescription,
+  Col,
+  Container,
+  Icon as DSIcon,
+  Link as DSLink,
+  Row,
+} from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
 import BSOChart from '../../components/Charts';
@@ -134,6 +142,84 @@ function BaroNational() {
                   </Row>
                 </Container>
               </HomeSection>
+            </Col>
+            <Col n='12'>
+              <Container fluid>
+                <section className='px-20 py-48 px-l-64 px-xl-142 bg-medium-blue'>
+                  <Row>
+                    <Col n='12'>
+                      <Card
+                        bodyClassName='bg-white'
+                        href={urls.sante[lang] + search}
+                        isHorizontal
+                        hasArrow={false}
+                      >
+                        <CardDescription as='div'>
+                          <Container fluid>
+                            <Row justifyContent='center' alignItems='middle'>
+                              <Col n='12 md-5'>
+                                <p className='text-card-logo pb-16 blue-dark text-center text-left-l marianne-bold fs-24-32'>
+                                  <FormattedMessage id='app.commons.explore-sante' />
+                                </p>
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-3'
+                                  color1='blue-soft-150'
+                                  color2='yellow-medium-50'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-4'
+                                  color1='blue-soft-150'
+                                  color2='orange-medium-75'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-28'
+                                  color1='blue-soft-150'
+                                  color2='green-soft-50'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-15'
+                                  color1='blue-soft-150'
+                                  color2='blue-soft-50'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-17'
+                                  color1='blue-soft-150'
+                                  color2='pink-light-75'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-6'
+                                  color1='blue-soft-150'
+                                  color2='green-medium-50'
+                                />
+                              </Col>
+                              <Col n='12'>
+                                <DSIcon name='ri-link' size='2x' as='div'>
+                                  <DSLink
+                                    className='w-100 text-right'
+                                    as={<Link to={urls.sante[lang] + search} />}
+                                  />
+                                </DSIcon>
+                              </Col>
+                            </Row>
+                          </Container>
+                        </CardDescription>
+                      </Card>
+                    </Col>
+                  </Row>
+                </section>
+              </Container>
             </Col>
             <Col>
               <ToolCardsSection />

@@ -24,7 +24,6 @@ import TodayNumbersSection from '../../components/TodayNumbersSection';
 import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
-import logoBso from '../../images/logo-bso.png';
 import GlossaryEntries from '../../translations/glossary.json';
 import useLang from '../../utils/Hooks/useLang';
 
@@ -202,19 +201,52 @@ function BaroSante() {
                         <CardDescription as='div'>
                           <Container fluid>
                             <Row justifyContent='center' alignItems='middle'>
-                              <Col n='12 md-4'>
+                              <Col n='12 md-5'>
                                 <p className='text-card-logo pb-16 blue-dark text-center text-left-l marianne-bold fs-24-32'>
                                   <FormattedMessage id='app.commons.explore-national' />
                                 </p>
                               </Col>
-                              <Col n='12 md-7'>
-                                <section className='wrap-logo text-center'>
-                                  <img
-                                    className='w-100'
-                                    src={logoBso}
-                                    alt='logo baromètre natonal'
-                                  />
-                                </section>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-3'
+                                  color1='blue-soft-150'
+                                  color2='yellow-medium-50'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-4'
+                                  color1='blue-soft-150'
+                                  color2='orange-medium-75'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-1'
+                                  color1='blue-soft-150'
+                                  color2='green-soft-50'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-5'
+                                  color1='blue-soft-150'
+                                  color2='blue-soft-50'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-2'
+                                  color1='blue-soft-150'
+                                  color2='pink-light-75'
+                                />
+                              </Col>
+                              <Col n='4 md-1'>
+                                <Icon
+                                  name='icon-bsso-6'
+                                  color1='blue-soft-150'
+                                  color2='green-medium-50'
+                                />
                               </Col>
                               <Col n='12'>
                                 <DSIcon name='ri-link' size='2x' as='div'>
