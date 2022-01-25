@@ -88,27 +88,48 @@ function useGetData(studyType, sponsorType = '*') {
     };
     const minBoundary = -360;
     const maxBoundary = 360;
+    const categoriesRepartition = dataSortedByYearRepartition
+      .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
+      .map((el) => (Math.abs(el.key) / 30).toString().concat(` ${intl.formatMessage({ id: 'app.studies.months' })}`));
+    categoriesRepartition[0] += ` ${intl.formatMessage({
+      id: 'app.studies.month_before',
+    })}`;
+    categoriesRepartition[
+      categoriesRepartition.length - 1
+    ] += ` ${intl.formatMessage({ id: 'app.studies.month_after' })}`;
     const firstValue = dataSortedByYearRepartition
       .filter((el) => el.key <= minBoundary)
       .reduce((a, b) => a + b.doc_count, 0);
     const lastValue = dataSortedByYearRepartition
       .filter((el) => el.key >= maxBoundary)
       .reduce((a, b) => a + b.doc_count, 0);
-    data.before_start.push(firstValue);
+    data.before_start.push({
+      y: firstValue,
+      name: categoriesRepartition[0],
+    });
     data.after_start.push(0);
     dataSortedByYearRepartition
       .filter((ele) => ele.key > minBoundary && ele.key < maxBoundary)
-      .forEach((el) => {
+      .forEach((el, ix) => {
         if (el.key <= 0) {
-          data.before_start.push(el.doc_count);
+          data.before_start.push({
+            y: el.doc_count,
+            name: categoriesRepartition[ix + 1],
+          });
           data.after_start.push(0);
         } else {
           data.before_start.push(0);
-          data.after_start.push(el.doc_count);
+          data.after_start.push({
+            y: el.doc_count,
+            name: categoriesRepartition[ix + 1],
+          });
         }
       });
     data.before_start.push(0);
-    data.after_start.push(lastValue);
+    data.after_start.push({
+      y: lastValue,
+      name: categoriesRepartition[categoriesRepartition.length - 1],
+    });
     const stepsRepartition = ['before_start', 'after_start'];
     const dataGraphRepartition = stepsRepartition.map((step) => ({
       data: data[step],
@@ -119,16 +140,6 @@ function useGetData(studyType, sponsorType = '*') {
       ),
       color: colors[step],
     }));
-
-    const categoriesRepartition = dataSortedByYearRepartition
-      .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
-      .map((el) => Math.abs(el.key) / 30);
-    categoriesRepartition[0] += ` ${intl.formatMessage({
-      id: 'app.studies.month_before',
-    })}`;
-    categoriesRepartition[
-      categoriesRepartition.length - 1
-    ] += ` ${intl.formatMessage({ id: 'app.studies.month_after' })}`;
 
     const queryDistribution = getFetchOptions({
       key: 'studiesCaracteristiquesQuandDistribution',
