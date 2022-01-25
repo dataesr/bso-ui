@@ -19,15 +19,19 @@ import DataCard from '../DataCard';
 
 export default function DataCardSection({ domain, lang }) {
   const intl = useIntl();
-  const [publicationsNumber, setPublicationsNumber] = useState(null);
-  const [openPublicationRate, setOpenPublicationRate] = useState(null);
-  const [frenchPublicationsRate, setFrenchPublicationRate] = useState(null);
+  const [apcCostSum, setApcCostSum] = useState(null);
   const [bestCollabCountry, setBestCollabCountry] = useState('');
   const [diamondPublicationRate, setDiamonPublicationRate] = useState(null);
+  const [frenchPublicationsRate, setFrenchPublicationRate] = useState(null);
   const [hostedDocuments, setHostedDocuments] = useState(null);
   const [hostedDocumentsPMC, setHostedDocumentsPMC] = useState(null);
+  const [
+    openHealthPublicationPublisherRepository,
+    setOpenHealthPublicationPublisherRepository,
+  ] = useState(null);
+  const [openPublicationRate, setOpenPublicationRate] = useState(null);
+  const [publicationsNumber, setPublicationsNumber] = useState(null);
   const [totalHostedDocuments, setTotalHostedDocuments] = useState(null);
-  const [apcCostSum, setApcCostSum] = useState(null);
   const { lastObservationSnap } = useGlobals();
   const {
     fetch: fetchData,
@@ -120,29 +124,6 @@ export default function DataCardSection({ domain, lang }) {
         buttonHref: 'archives?id=repositories.dynamique-hal',
         activeDomains: [''],
       },
-      hostedDocumentPMC: {
-        fetch: (buckets) => formatNumberByLang(
-          buckets.find((countObj) => countObj.key === 'PubMed Central')
-            .doc_count,
-          lang,
-        ),
-        get: hostedDocumentsPMC,
-        set: (data) => setHostedDocumentsPMC(data),
-        pathToValue: 'by_repositories.buckets',
-        isPercentage: false,
-        color: 'green',
-        intlKey:
-          domain === ''
-            ? 'app.national-publi.data.hosted-documents-pmc'
-            : 'app.health-publi.data.hosted-documents-pmc',
-        intlValues: {
-          total: totalHostedDocuments,
-          publicationYear:
-            getPublicationYearFromObservationSnap(lastObservationSnap),
-        },
-        buttonHref: 'archives?id=repositories.plus-utilisees',
-        activeDomains: ['health'],
-      },
       bestCollabCountry: {
         fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
         get: bestCollabCountry,
@@ -155,7 +136,7 @@ export default function DataCardSection({ domain, lang }) {
             ? 'app.national-publi.data.collab-country'
             : 'app.health-publi.data.collab-country',
         buttonHref: 'affiliations?id=affiliations.pays',
-        activeDomains: ['health'],
+        activeDomains: [],
       },
       frenchPublicationsRate: {
         fetch: (buckets) => (
@@ -194,6 +175,50 @@ export default function DataCardSection({ domain, lang }) {
         buttonHref: 'editeurs?id=publishers.couts-publication',
         activeDomains: [],
       },
+      openHealthPublicationPublisherRepository: {
+        fetch: (buckets) => {
+          const documentsCount = buckets.find(
+            (item) => item.key === 'publisher;repository',
+          ).doc_count;
+          return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
+            0,
+          )} %`;
+        },
+        get: openHealthPublicationPublisherRepository,
+        set: (data) => setOpenHealthPublicationPublisherRepository(data),
+        pathToValue: 'by_oa_host_type.buckets',
+        isPercentage: true,
+        color: 'aqua',
+        intlKey: 'app.health-publi.data.publisher-repository',
+        buttonHref: 'general?id=general.voies-ouverture',
+        activeDomains: ['health'],
+      },
+      hostedDocumentPMC: {
+        fetch: (buckets) => {
+          const documentsCount = buckets.find(
+            (countObj) => countObj.key === 'PubMed Central',
+          ).doc_count;
+          return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
+            0,
+          )} %`;
+        },
+        get: hostedDocumentsPMC,
+        set: (data) => setHostedDocumentsPMC(data),
+        pathToValue: 'by_repositories.buckets',
+        isPercentage: true,
+        color: 'green',
+        intlKey:
+          domain === ''
+            ? 'app.national-publi.data.hosted-documents-pmc'
+            : 'app.health-publi.data.hosted-documents-pmc',
+        intlValues: {
+          total: totalHostedDocuments,
+          publicationYear:
+            getPublicationYearFromObservationSnap(lastObservationSnap),
+        },
+        buttonHref: 'archives?id=repositories.plus-utilisees',
+        activeDomains: ['health'],
+      },
     }),
     [
       domain,
@@ -205,6 +230,7 @@ export default function DataCardSection({ domain, lang }) {
       hostedDocumentsPMC,
       lang,
       lastObservationSnap,
+      openHealthPublicationPublisherRepository,
       openPublicationRate,
       publicationsNumber,
       totalHostedDocuments,

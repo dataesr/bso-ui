@@ -1244,7 +1244,11 @@ export default function getFetchOptions({
           },
         },
         by_journal_article: {
-          filter: { term: { 'genre.keyword': 'journal-article' } },
+          filter: {
+            term: {
+              'genre.keyword': 'journal-article',
+            },
+          },
           aggs: {
             by_oa_colors_with_priority_to_publisher: {
               terms: {
@@ -1268,6 +1272,11 @@ export default function getFetchOptions({
           terms: {
             field: 'author_useful_rank_countries.keyword',
             size: 2,
+          },
+        },
+        by_oa_host_type: {
+          terms: {
+            field: `oa_details.${observationSnap}.oa_host_type.keyword`,
           },
         },
       },
