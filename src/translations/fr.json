@@ -901,7 +901,7 @@
   "app.sante.essais.document.title": "Essais cliniques en santé du Baromètre français de la Science Ouverte",
   "app.sante.publications.document.title": "Publications en santé du Baromètre français de la Science Ouverte",
   "app.sante.studies.document.title": "Etudes observationnelles en santé du Baromètre français de la Science Ouverte",
-  "app.sante.update.date": "Site mis à jour le {date} avec les données des publications publiées entre {startDate} et {endDate}",
+  "app.sante.update.date": "Données mises à jour le {date} avec les publications publiées entre {startDate} et {endDate}",
   "app.scroll-to-top": "Défiler vers le haut",
   "app.see-details": "Voir en détail",
   "app.sponsor-filter-label": "Sélectionner un promoteur (top 50)",
