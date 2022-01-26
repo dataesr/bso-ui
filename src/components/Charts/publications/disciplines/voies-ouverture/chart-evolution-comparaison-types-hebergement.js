@@ -26,18 +26,26 @@ HighchartsAnnotations(Highcharts);
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lastObservationSnap } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
   const [chartComments, setChartComments] = useState('');
   const idWithDomain = withDomain(id, domain);
+  const dataTitle = { publicationYear: beforeLastObservationSnap };
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    data,
+    dataTitle,
+  );
+
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
   }, [data, idWithDomain, intl]);
-  const optionsGraph = chartOptions[id].getOptions(idWithDomain, intl, data);
 
   return (
     <WrapperChart
       chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

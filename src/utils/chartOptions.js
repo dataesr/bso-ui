@@ -240,8 +240,8 @@ export const chartOptions = {
   },
   'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
     {
-      getOptions: (id, intl, data) => {
-        const options = getGraphOptions(id, intl);
+      getOptions: (id, intl, data, dataTitle) => {
+        const options = getGraphOptions(id, intl, '', dataTitle);
         options.tooltip.pointFormat = intl.formatMessage({
           id: 'app.publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.tooltip',
         });
@@ -318,6 +318,9 @@ export const chartOptions = {
             borderColor: getCSSValue('--orange-soft-100'),
             color: getCSSValue('--orange-soft-25'),
             connectColor: getCSSValue('--orange-soft-100'),
+            labels: {
+              format: '{value:.0f}',
+            },
           },
         };
         options.plotOptions = {
