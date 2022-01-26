@@ -34,26 +34,51 @@ function Glossaire() {
     disabled: false,
     hidden: false,
   });
-  const getItem = (glossaryKey) => (
-    <AccordionItem
-      key={uuidv4()}
-      title={capitalize(
-        intl.formatMessage({
-          id: glossaryKey.intlEntry,
-        }),
-      )}
-    >
-      <Container>
-        <section className='px-20 py-28 bg-soft-green'>
-          <Row>
-            <Col>
-              <FormattedMessage id={glossaryKey.intlDefinition} />
-            </Col>
-          </Row>
-        </section>
-      </Container>
-    </AccordionItem>
-  );
+  const getItem = (glossaryKey) => {
+    const values = {};
+    glossaryKey?.ctas?.forEach((cta, i) => {
+      values[`cta${i}`] = (chunks) => (
+        <a href={cta} target='_blank' rel='noreferrer'>
+          {chunks}
+        </a>
+      );
+    });
+
+    return (
+      <AccordionItem
+        key={uuidv4()}
+        title={capitalize(
+          intl.formatMessage({
+            id: glossaryKey.intlEntry,
+          }),
+        )}
+      >
+        <Container>
+          <section className='px-20 py-28 bg-soft-green'>
+            <Row>
+              <Col>
+                <FormattedMessage
+                  id={glossaryKey.intlDefinition}
+                  values={{
+                    cta: (chunks) => (
+                      <a
+                        target='_blank'
+                        href={`${glossaryKey.cta}`}
+                        rel='noreferrer'
+                      >
+                        {chunks}
+                      </a>
+                    ),
+                    ...values,
+                  }}
+                />
+              </Col>
+            </Row>
+          </section>
+        </Container>
+      </AccordionItem>
+    );
+  };
 
   const renderItems = () => {
     let r;

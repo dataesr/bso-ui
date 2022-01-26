@@ -7,7 +7,8 @@
     },
     "anr": {
       "intlDefinition": "app.glossary.anr.definition",
-      "intlEntry": "app.glossary.anr"
+      "intlEntry": "app.glossary.anr",
+      "cta": "https://anr.fr/"
     },
     "apc": {
       "intlDefinition": "app.glossary.apc.definition",
@@ -23,7 +24,8 @@
     },
     "clinicaltrials-gov": {
       "intlDefinition": "app.glossary.clinicaltrials-gov.definition",
-      "intlEntry": "app.glossary.clinicaltrials-gov"
+      "intlEntry": "app.glossary.clinicaltrials-gov",
+      "ctas": ["https://clinicaltrials.gov/", "https://www.nih.gov/"]
     },
     "code-source": {
       "intlDefinition": "app.glossary.code-source.definition",
@@ -35,7 +37,8 @@
     },
     "doaj": {
       "intlDefinition": "app.glossary.doaj.definition",
-      "intlEntry": "app.glossary.doaj"
+      "intlEntry": "app.glossary.doaj",
+      "ctas": ["https://doaj.org/", "https://is4oa.org/"]
     },
     "doi": {
       "intlDefinition": "app.glossary.doi.definition",
@@ -63,11 +66,16 @@
     },
     "euctr": {
       "intlDefinition": "app.glossary.euctr.definition",
-      "intlEntry": "app.glossary.euctr"
+      "intlEntry": "app.glossary.euctr",
+      "ctas": [
+        "https://www.clinicaltrialsregister.eu/",
+        "https://eudract.ema.europa.eu/"
+      ]
     },
     "eudract": {
       "intlDefinition": "app.glossary.eudract.definition",
-      "intlEntry": "app.glossary.eudract"
+      "intlEntry": "app.glossary.eudract",
+      "cta": "https://eudract.ema.europa.eu/"
     },
     "gold-full-apc": {
       "intlDefinition": "app.glossary.gold-full-apc.definition",
@@ -75,7 +83,8 @@
     },
     "hal": {
       "intlDefinition": "app.glossary.hal.definition",
-      "intlEntry": "app.glossary.hal"
+      "intlEntry": "app.glossary.hal",
+      "cta": "https://www.ccsd.cnrs.fr/"
     },
     "hybrid": {
       "intlDefinition": "app.glossary.hybrid.definition",
@@ -87,11 +96,13 @@
     },
     "list-beall": {
       "intlDefinition": "app.glossary.list-beall.definition",
-      "intlEntry": "app.glossary.list-beall"
+      "intlEntry": "app.glossary.list-beall",
+      "cta": "https://beallslist.net/"
     },
     "loi-republique-numerique": {
       "intlDefinition": "app.glossary.loi-republique-numerique.definition",
-      "intlEntry": "app.glossary.loi-republique-numerique"
+      "intlEntry": "app.glossary.loi-republique-numerique",
+      "cta": "https://www.legifrance.gouv.fr/dossierlegislatif/JORFDOLE000031589829/"
     },
     "metadata": {
       "intlDefinition": "app.glossary.metadata.definition",
@@ -99,15 +110,18 @@
     },
     "openapc": {
       "intlDefinition": "app.glossary.openapc.definition",
-      "intlEntry": "app.glossary.openapc"
+      "intlEntry": "app.glossary.openapc",
+      "cta": "https://openapc.net/"
     },
     "pgo": {
       "intlDefinition": "app.glossary.pgo.definition",
-      "intlEntry": "app.glossary.pgo"
+      "intlEntry": "app.glossary.pgo",
+      "cta": "https://www.opengovpartnership.org/"
     },
     "pmc": {
       "intlDefinition": "app.glossary.pmc.definition",
-      "intlEntry": "app.glossary.pmc"
+      "intlEntry": "app.glossary.pmc",
+      "cta": "https://www.ncbi.nlm.nih.gov/pmc/"
     },
     "predatory": {
       "intlDefinition": "app.glossary.predatory.definition",
@@ -131,11 +145,13 @@
     },
     "pubmed": {
       "intlDefinition": "app.glossary.pubmed.definition",
-      "intlEntry": "app.glossary.pubmed"
+      "intlEntry": "app.glossary.pubmed",
+      "cta": "https://pubmed.ncbi.nlm.nih.gov/"
     },
     "resultat-essai-clinique": {
       "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
-      "intlEntry": "app.glossary.resultat-essai-clinique"
+      "intlEntry": "app.glossary.resultat-essai-clinique",
+      "cta": "https://clinicaltrials.gov/"
     },
     "type-hebergement-oa": {
       "intlDefinition": "app.glossary.type-hebergement-oa.definition",
@@ -143,7 +159,8 @@
     },
     "unpaywall": {
       "intlDefinition": "app.glossary.unpaywall.definition",
-      "intlEntry": "app.glossary.unpaywall"
+      "intlEntry": "app.glossary.unpaywall",
+      "cta": "https://unpaywall.org/"
     }
   }
 ]
