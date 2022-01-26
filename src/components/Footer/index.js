@@ -141,7 +141,11 @@ export default function Footer() {
         <FooterBody
           description={<FormattedMessage id='app.footer.description' />}
         >
-          <Logo splitCharacter={10}>
+          <Logo
+            splitCharacter={10}
+            target='_blank'
+            href='https://www.enseignementsup-recherche.gouv.fr/'
+          >
             Ministère de l'enseignement supérieur, de la recherche et de
             l'innovation
           </Logo>
