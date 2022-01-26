@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { domains } from '../../utils/constants';
 import { getObservationLabel } from '../../utils/helpers';
@@ -13,6 +13,7 @@ const lastObservationSnapIndex = 0;
 const previousObservationSnapIndex = 1;
 
 export default function ProgressionCard({ domain }) {
+  const intl = useIntl();
   const { observationSnaps } = useGlobals();
 
   const [previousObservationSnap, setPreviousObservationSnap] = useState(
@@ -86,7 +87,11 @@ export default function ProgressionCard({ domain }) {
         />
       )}
       data1={progressionPoints()}
-      data2={progressionPoints() > 1 ? ' pts' : ' pt'}
+      data2={
+        progressionPoints() > 1
+          ? ` ${intl.formatMessage({ id: 'app.commons.points' })}`
+          : ` ${intl.formatMessage({ id: 'app.commons.point' })}`
+      }
       title={(
         <FormattedMessage
           values={{

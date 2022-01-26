@@ -190,8 +190,8 @@ function BaroSante() {
             <Col n='12'>
               <Container fluid>
                 <section className='px-20 py-48 px-l-64 px-xl-142 bg-medium-blue'>
-                  <Row>
-                    <Col n='12'>
+                  <Row justifyContent='center'>
+                    <Col n='12 md-9'>
                       <Card
                         bodyClassName='bg-white'
                         href='/'

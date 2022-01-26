@@ -1,6 +1,7 @@
 import {
   Card,
   CardDescription,
+  Col,
   Container,
   Link as DSLink,
   Row,
@@ -19,36 +20,40 @@ function TodayNumbersSection({ updateDate, title, children }) {
 
   return (
     <Container fluid className='bg-white'>
-      <section className='py-48 px-20 px-md-64 max-996'>
-        <Row gutters>
-          <WrapperCol columns='12 md-4' container={mobile} gutters={false}>
-            <section className='w-100 text-center text-left-l pb-32'>
-              <div className='fs-28-32 px-24 pb-16 px-l-0'>{title}</div>
-              {updateDate}
-            </section>
-            <section className='w-100 h-50'>
-              <Card bodyClassName='bg-soft-blue' href='/'>
-                <CardDescription as='div'>
-                  <DSLink as={<Link to='a-propos/methodologie' />}>
-                    <h6 className='m-0 fs-20-20'>
-                      <FormattedMessage id='app.baro-national.sur-quoi' />
-                    </h6>
-                    <p className='fs-14-24'>
-                      <FormattedMessage id='app.baro-national.discover-methodo' />
-                    </p>
-                    <Icon
-                      name='icon-bsso-22'
-                      color1='blue-dark-125'
-                      color2='blue-soft-75'
-                    />
-                  </DSLink>
-                </CardDescription>
-              </Card>
-            </section>
-          </WrapperCol>
-          <WrapperCol active={tablet || desktop} columns='12 md-8'>
-            {children}
-          </WrapperCol>
+      <section className='px-20 py-48 px-md-64'>
+        <Row gutters justifyContent='center' alignItems='middle'>
+          <Col n='12 md-9'>
+            <Row gutters>
+              <WrapperCol columns='12 md-4' container={mobile}>
+                <section className='w-100 text-center text-left-l pb-32'>
+                  <div className='fs-28-32 px-24 pb-16 px-l-0'>{title}</div>
+                  {updateDate}
+                </section>
+                <section className='w-100 h-50'>
+                  <Card bodyClassName='bg-soft-blue' href='/'>
+                    <CardDescription as='div'>
+                      <DSLink as={<Link to='a-propos/methodologie' />}>
+                        <h6 className='m-0 fs-20-20'>
+                          <FormattedMessage id='app.baro-national.sur-quoi' />
+                        </h6>
+                        <p className='fs-14-24'>
+                          <FormattedMessage id='app.baro-national.discover-methodo' />
+                        </p>
+                        <Icon
+                          name='icon-bsso-22'
+                          color1='blue-dark-125'
+                          color2='blue-soft-75'
+                        />
+                      </DSLink>
+                    </CardDescription>
+                  </Card>
+                </section>
+              </WrapperCol>
+              <WrapperCol active={tablet || desktop} columns='12 md-8'>
+                {children}
+              </WrapperCol>
+            </Row>
+          </Col>
         </Row>
       </section>
     </Container>
