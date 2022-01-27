@@ -11,4 +11,8 @@
     @include font-size(12, 24);
     box-shadow: none;
   }
+
+  .icon {
+    min-height: 80px;
+  }
 }
