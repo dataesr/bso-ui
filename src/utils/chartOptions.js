@@ -235,6 +235,9 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
       return options;
     },
   },

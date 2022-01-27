@@ -5,7 +5,11 @@ import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getPublicationYearFromObservationSnap } from '../../../../../utils/helpers';
+import {
+  formatNumberByLang,
+  getPublicationYearFromObservationSnap,
+} from '../../../../../utils/helpers';
+import useLang from '../../../../../utils/Hooks/useLang';
 
 function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
@@ -14,6 +18,7 @@ function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const { search } = useLocation();
+  const { lang } = useLang();
 
   async function GetData() {
     const query = getFetchOptions({
@@ -45,7 +50,10 @@ function useGetData(observationSnap, domain) {
       publicationDate = dataGraph.find(
         (item) => item.name === name1,
       )?.publicationDate;
-      y = dataGraph.find((item) => item.name === name1)?.y;
+      y = formatNumberByLang(
+        dataGraph.find((item) => item.name === name1)?.y,
+        lang,
+      );
     }
     const comments = {
       name1,
