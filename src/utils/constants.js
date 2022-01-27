@@ -81,7 +81,7 @@ export const documentTitles = {
   '/sante/essais-cliniques/general': 'app.sante.essais.document.title',
   '/health/clinical-trials/general': 'app.sante.essais.document.title',
   '/sante/essais-cliniques/caracteristiques': 'app.sante.essais.document.title',
-  '/health/clinical-trials/specifications': 'app.sante.essais.document.title',
+  '/health/clinical-trials/characteristics': 'app.sante.essais.document.title',
   '/sante/essais-cliniques/promoteurs': 'app.sante.essais.document.title',
   '/health/clinical-trials/lead-sponsors': 'app.sante.essais.document.title',
   '/sante/essais-cliniques/resultats': 'app.sante.essais.document.title',
@@ -90,7 +90,7 @@ export const documentTitles = {
   '/health/observational-studies/general': 'app.sante.studies.document.title',
   '/sante/etudes-observationnelles/caracteristiques':
     'app.sante.studies.document.title',
-  '/health/observational-studies/specifications':
+  '/health/observational-studies/characteristics':
     'app.sante.studies.document.title',
   '/sante/etudes-observationnelles/promoteurs':
     'app.sante.studies.document.title',
