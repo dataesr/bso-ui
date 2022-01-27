@@ -11,7 +11,7 @@ export default {
       },
       {
         fr: '/publications/disciplines',
-        en: '/publications/disciplines',
+        en: '/publications/fields',
       },
       {
         fr: '/publications/editeurs',
@@ -19,7 +19,7 @@ export default {
       },
       {
         fr: '/publications/archives',
-        en: '/publications/archives',
+        en: '/publications/repositories',
       },
     ],
     fr: '/publications/general',
@@ -37,7 +37,7 @@ export default {
       },
       {
         fr: '/sante/publications/disciplines',
-        en: '/health/publications/disciplines',
+        en: '/health/publications/fields',
       },
       {
         fr: '/sante/publications/editeurs',
@@ -45,7 +45,7 @@ export default {
       },
       {
         fr: '/sante/publications/archives',
-        en: '/health/publications/archives',
+        en: '/health/publications/repositories',
       },
       {
         fr: '/sante/publications/affiliations',

@@ -14,11 +14,32 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
 
   const switchLang = (newLang, pathname, search) => {
     if (supportedLanguages.includes(newLang) && newLang !== lang) {
-      const url = Object.keys(urls).find((key) => urls[key][lang] === pathname);
+      let newUrl = '';
+      const keysUrls = Object.keys(urls);
+
+      for (let i = 0; i < keysUrls.length; i += 1) {
+        const key = keysUrls[i];
+        const tabsUrls = urls[key].tabs;
+
+        if (tabsUrls) {
+          for (let j = 0; j < tabsUrls.length; j += 1) {
+            if (tabsUrls[j][lang] === pathname) {
+              newUrl = tabsUrls[j][newLang];
+            }
+          }
+        }
+
+        if (urls[key][lang] === pathname) {
+          newUrl = urls[key][newLang];
+        }
+      }
+
       sessionStorage.setItem('__bso_lang__', newLang);
+
       setLang(newLang);
-      if (url) {
-        window.location.replace(urls[url][newLang] + search);
+
+      if (newUrl) {
+        window.location.replace(newUrl + search);
       }
     }
   };
