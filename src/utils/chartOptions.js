@@ -2394,6 +2394,13 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categories2 || [],
+        plotLines: [
+          {
+            color: '#000',
+            width: 1,
+            value: 24,
+          },
+        ],
       };
       options.xAxis.labels = {
         overflow: 'allow',
