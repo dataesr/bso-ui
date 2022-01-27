@@ -173,7 +173,7 @@ const GraphFooter = ({
                   title={title}
                   url={urlToShare}
                   text={title}
-                  hashtags={['OpenAccess,ScienceOuverte', 'dataESR']}
+                  hashtags={['OpenAccess', 'ScienceOuverte', 'dataESR']}
                   related={['sup_recherche', 'ouvrirlascience']}
                   via='ouvrirlascience'
                   className='share-btn'
@@ -183,6 +183,8 @@ const GraphFooter = ({
                 <LinkedinShareButton
                   url={urlToShare}
                   title={title}
+                  summary={title}
+                  source='BSO'
                   className='share-btn'
                 >
                   <LinkedinIcon size={30} bgStyle={{ fill: shareFill }} />
