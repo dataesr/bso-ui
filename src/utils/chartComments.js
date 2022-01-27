@@ -8,6 +8,14 @@ export default function customComments(data, id, intl, search = '') {
     return false;
   }
   let comments = 'Commentaire non rédigé';
+  const values = {};
+  data?.ctas?.forEach((cta, index) => {
+    values[`cta${index}`] = (chunks) => (
+      <a href={cta} target='_blank' rel='noreferrer'>
+        {chunks}
+      </a>
+    );
+  });
   if (data) {
     comments = intl.formatMessage(
       { id: `${id}.comments` },
@@ -19,6 +27,7 @@ export default function customComments(data, id, intl, search = '') {
             <br />
           </>
         ),
+        ...values,
       },
     );
   }

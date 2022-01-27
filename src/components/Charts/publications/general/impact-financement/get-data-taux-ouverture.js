@@ -154,13 +154,18 @@ function useGetData(observationSnap, domain) {
         ?.y.toFixed(0);
     }
     const comments = {
-      year,
       allPublicationsRate,
-      publicationsWithStatementRate,
       publicationsWithoutStatementRate,
+      publicationsWithStatementRate,
+      year,
     };
 
-    return { categories, comments, dataGraph };
+    return {
+      categories,
+      comments,
+      ctas: ['https://pubmed.ncbi.nlm.nih.gov/', 'https://www.nih.gov/', 'https://anr.fr/'],
+      dataGraph,
+    };
   }
 
   useEffect(() => {

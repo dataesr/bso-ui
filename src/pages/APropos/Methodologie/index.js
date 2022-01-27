@@ -54,7 +54,10 @@ function Methodologie() {
               {' '}
               et bientôt sur HAL et arXiv. Elle est reproduite ci-dessous (en anglais uniquement pour le moment).
               <br />
-              Par ailleurs, pour toute question, vous pouvez nous contacter avec l'adresse bso@recherche.gouv.fr
+              Par ailleurs, pour toute question, vous pouvez nous contacter à l'adresse
+              {' '}
+              <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
+              .
             </Col>
           </Row>
           <Row gutters>

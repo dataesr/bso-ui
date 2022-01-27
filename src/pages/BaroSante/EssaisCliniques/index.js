@@ -87,6 +87,7 @@ function EssaisCliniques() {
                   'https://www.wma.net/fr/policies-post/declaration-dhelsinki-de-lamm-principes-ethiques-applicables-a-la-recherche-medicale-impliquant-des-etres-humains/',
                   'https://clinicaltrials.gov/',
                   'https://www.clinicaltrialsregister.eu/',
+                  'https://www.ema.europa.eu/en/human-regulatory/research-development/clinical-trials/clinical-trials-information-system-training-support',
                 ]}
                 intlKey='app.health-interventional.general.dynamique'
                 backgroundColor={blueSoft50}
@@ -222,7 +223,7 @@ function EssaisCliniques() {
             </GraphContent>
           </GraphItem>
 
-          {/* Les promoteurs */}
+          {/* Les promoteurs [MASQUE] */}
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-interventional.promoteurs',
@@ -284,7 +285,7 @@ function EssaisCliniques() {
             </GraphContent>
           </GraphItem>
 
-          {/* Les resultats/publications */}
+          {/* La communication des résultats */}
           <GraphItem
             mainLabel={intl.formatMessage({
               id: 'app.health-interventional.resultats',
@@ -349,6 +350,7 @@ function EssaisCliniques() {
                 intlKey='app.health-interventional.resultats.plan-partage'
                 backgroundColor={blueSoft25}
                 anchorId='resultats.plan-partage'
+                ctas={['http://www.icmje.org/']}
               >
                 <BSOChart
                   id='resultats.plan-partage.chart-repartition'

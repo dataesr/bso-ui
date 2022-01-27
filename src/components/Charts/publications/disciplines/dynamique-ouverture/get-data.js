@@ -127,7 +127,16 @@ function useGetData(observationSnaps, domain = '') {
         year2,
       };
 
-      return { dataHist, comments };
+      return {
+        comments,
+        ctas: [
+          'https://www.arc.gov.au/excellence-research-australia/era-2018-journal-list#-strong-fields-of-research-codes-fors-strong-',
+          'https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-research-classification-anzsrc/latest-release',
+          'https://www.ncbi.nlm.nih.gov/mesh',
+          `../..${ intl.formatMessage({ id: 'url.about.methodology' }) }`,
+        ],
+        dataHist,
+      };
     },
     [domain, intl, search],
   );
