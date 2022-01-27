@@ -12,19 +12,22 @@ import {
   Logo,
 } from '@dataesr/react-dsfr';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import WrapperDisplay from '../WrapperDisplay';
 
 export default function Footer() {
   const { pathname } = useLocation();
+  const intl = useIntl();
 
   return (
     <WrapperDisplay display={!pathname.startsWith('/integration')}>
       <DSFooter>
         <FooterTop>
-          <FooterTopCategory title={<FormattedMessage id='app.footer.links' />}>
+          <FooterTopCategory
+            title={intl.formatMessage({ id: 'app.footer.links' })}
+          >
             <FooterLink
               target='_blank'
               href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
@@ -45,7 +48,7 @@ export default function Footer() {
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
-            title={<FormattedMessage id='app.footer.voir-aussi' />}
+            title={intl.formatMessage({ id: 'app.footer.voir-aussi' })}
           >
             <FooterLink
               target='_blank'
@@ -70,7 +73,7 @@ export default function Footer() {
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
-            title={<FormattedMessage id='app.footer.nos-sources' />}
+            title={intl.formatMessage({ id: 'app.footer.nos-sources' })}
           >
             <FooterLink target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/'>
               PubMed
@@ -98,7 +101,7 @@ export default function Footer() {
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
-            title={<FormattedMessage id='app.footer.nous-suivre' />}
+            title={intl.formatMessage({ id: 'app.footer.nous-suivre' })}
           >
             <FooterLink
               target='_blank'

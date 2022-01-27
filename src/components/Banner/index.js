@@ -214,7 +214,7 @@ Banner.propTypes = {
   homeLink: PropTypes.string,
   link: PropTypes.exact({
     label: PropTypes.element.isRequired,
-    url: PropTypes.element.isRequired,
+    url: PropTypes.string.isRequired,
   }),
 };
 export default Banner;
