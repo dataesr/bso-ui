@@ -12,19 +12,23 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
 
   const switchLang = (newLang, pathname, search) => {
     if (supportedLanguages.includes(newLang) && newLang !== lang) {
-      let url = '';
-      for (let i = 0; i < Object.keys(urls).length; i += 1) {
-        const key = Object.keys(urls)[i];
+      let newUrl = '';
+      const keysUrls = Object.keys(urls);
 
-        if (urls[key].tabs) {
-          for (let j = 0; j < urls[key].tabs.length; j += 1) {
-            if (urls[key].tabs[j][lang] === pathname) {
-              url = urls[key].tabs[j][newLang] + search;
+      for (let i = 0; i < keysUrls.length; i += 1) {
+        const key = keysUrls[i];
+        const tabsUrls = urls[key].tabs;
+
+        if (tabsUrls) {
+          for (let j = 0; j < tabsUrls.length; j += 1) {
+            if (tabsUrls[j][lang] === pathname) {
+              newUrl = tabsUrls[j][newLang];
             }
           }
         }
+
         if (urls[key][lang] === pathname) {
-          url = urls[key][newLang] + search;
+          newUrl = urls[key][newLang];
         }
       }
 
@@ -32,8 +36,8 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
 
       setLang(newLang);
 
-      if (url) {
-        window.location.replace(url);
+      if (newUrl) {
+        window.location.replace(newUrl + search);
       }
     }
   };
