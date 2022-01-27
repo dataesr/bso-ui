@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
+import useLang from '../../utils/Hooks/useLang';
 import useViewport from '../../utils/Hooks/useViewport';
 import GraphNavigationLink from './GraphNavigationLink';
 import GraphTabSubItem from './GraphTabSubItem';
@@ -12,6 +13,7 @@ function GraphItem({ isDisplayed, links, mainLabel, paths }) {
   const { pathname, search } = useLocation();
   const { mobile, tablet, desktop } = useViewport();
   const viewPort = useRef('desktop');
+  const { lang } = useLang();
 
   useEffect(() => {
     const objMargin = {
@@ -60,7 +62,7 @@ function GraphItem({ isDisplayed, links, mainLabel, paths }) {
               <DSLink
                 key={uuidv4()}
                 className='no-border'
-                as={<Link to={getUrl(link.href, search)} />}
+                as={<Link to={getUrl(link.href[lang], search)} />}
               >
                 <div className='text-white fs-14-24 pb-8'>{link.label}</div>
               </DSLink>
@@ -79,7 +81,7 @@ function GraphItem({ isDisplayed, links, mainLabel, paths }) {
               && (link.isDisplayed === undefined || link.isDisplayed) && (
               <GraphNavigationLink
                 key={uuidv4()}
-                href={getUrl(link.href, search)}
+                href={getUrl(link.href[lang], search)}
                 label={link.label}
                 hasHr={index === 0}
               />
