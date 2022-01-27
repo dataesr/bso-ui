@@ -6,7 +6,9 @@ import urls from '../../config/urls';
 export const LangContext = createContext();
 
 export const LangContextProvider = ({ supportedLanguages, children }) => {
-  const locale = 'fr';
+  const locale = window.location.hostname === 'frenchopensciencemonitor.esr.gouv.fr'
+    ? 'en'
+    : 'fr';
   const selectedLang = sessionStorage.getItem('__bso_lang__');
   const [lang, setLang] = useState(selectedLang || locale);
 
