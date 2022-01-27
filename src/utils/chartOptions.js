@@ -515,7 +515,11 @@ export const chartOptions = {
         getCSSValue('--orange-soft-100'),
         getCSSValue('--orange-soft-175'),
       ];
-      options.yAxis = { visible: false, min: 0, max: 100 };
+      options.yAxis = {
+        max: 100,
+        min: 0,
+        visible: false,
+      };
       options.plotOptions = {
         series: {
           grouping: false,
@@ -550,6 +554,9 @@ export const chartOptions = {
         },
       };
       options.series = data?.series;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'year' : item.name),
+      };
       return options;
     },
   },
@@ -667,6 +674,9 @@ export const chartOptions = {
           data,
         },
       ];
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'category' : 'data'),
+      };
       return options;
     },
   },

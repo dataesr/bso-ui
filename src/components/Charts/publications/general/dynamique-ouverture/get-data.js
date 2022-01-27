@@ -204,7 +204,12 @@ function useGetData(observationSnaps, domain = '') {
         healthDifferenceValue: healthValue2 - healthValue1,
       };
 
-      return { categories, comments, dataGraph1, dataGraph2 };
+      return {
+        categories,
+        comments,
+        dataGraph1,
+        dataGraph2,
+      };
     },
     [domain, intl, search, commentsName],
   );
