@@ -35,7 +35,9 @@ function useGetData(studyType, sponsor = '*') {
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
     const data2 = res[1].data.aggregations;
-    const series = [{ name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] }];
+    const series = [
+      { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
+    ];
     const academic = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
@@ -45,14 +47,14 @@ function useGetData(studyType, sponsor = '*') {
     const indus = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
-    const indusWith = indus?.by_has_result.buckets.find(
-      (ele) => ele.key === 1,
-    );
+    const indusWith = indus?.by_has_result.buckets.find((ele) => ele.key === 1);
     const spons = data2;
-    const sponsWith = spons?.by_has_result.buckets.find(
-      (ele) => ele.key === 1,
-    );
-    const categories = [intl.formatMessage({ id: 'app.all-sponsor-types' }), intl.formatMessage({ id: 'app.sponsor.industriel' }), intl.formatMessage({ id: 'app.sponsor.academique' })];
+    const sponsWith = spons?.by_has_result.buckets.find((ele) => ele.key === 1);
+    const categories = [
+      intl.formatMessage({ id: 'app.all-sponsor-types' }),
+      intl.formatMessage({ id: 'app.sponsor.industriel' }),
+      intl.formatMessage({ id: 'app.sponsor.academique' }),
+    ];
     series[0].data.push({
       name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
       yearMin,
@@ -97,7 +99,41 @@ function useGetData(studyType, sponsor = '*') {
     }
     const dataGraph1 = { categories, series };
 
-    return { dataGraph1 };
+    let allLeadSponsorRate = '';
+    let privateLeadSponsorsRate = '';
+    let publicLeadSponsorsRate = '';
+    if (dataGraph1) {
+      const data = dataGraph1?.series[0]?.data;
+      const allLeadSponsorLabel = intl.formatMessage({
+        id: 'app.all-sponsor-types',
+      });
+      const privateLeadSponsorsLabel = intl.formatMessage({
+        id: 'app.sponsor.industriel',
+      });
+      const publicLeadSponsorsLabel = intl.formatMessage({
+        id: 'app.sponsor.academique',
+      });
+      allLeadSponsorRate = data
+        ?.find((item) => item.name === allLeadSponsorLabel)
+        ?.y?.toFixed(0);
+      privateLeadSponsorsRate = data
+        ?.find((item) => item.name === privateLeadSponsorsLabel)
+        ?.y?.toFixed(0);
+      publicLeadSponsorsRate = data
+        ?.find((item) => item.name === publicLeadSponsorsLabel)
+        ?.y?.toFixed(0);
+    }
+
+    const comments = {
+      allLeadSponsorRate,
+      privateLeadSponsorsRate,
+      publicLeadSponsorsRate,
+    };
+
+    return {
+      comments,
+      dataGraph1,
+    };
   }
 
   useEffect(() => {

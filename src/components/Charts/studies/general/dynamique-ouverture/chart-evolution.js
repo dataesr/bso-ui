@@ -24,16 +24,19 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
+const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(studyType);
   const { dataGraph1 } = allData;
-
-  const idWithDomainAndStudyType = withtStudyType(
-    withDomain(id, domain),
+  const idWithDomain = withDomain(id, domain);
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph1,
     studyType,
   );
 
@@ -42,28 +45,23 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
       customComments(allData, idWithDomainAndStudyType, intl, search),
     );
   }, [allData, idWithDomainAndStudyType, intl, search]);
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    dataGraph1,
-    studyType,
-  );
+
   return (
     <WrapperChart
-      isLoading={isLoading || !allData}
-      isError={isError}
-      id={id}
-      domain={domain}
-      studyType={studyType}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !allData}
+      studyType={studyType}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomainAndStudyType}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomainAndStudyType}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />
@@ -73,17 +71,17 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
   domain: 'health',
-  studyType: 'Interventional',
+  hasComments: true,
+  hasFooter: true,
   id: 'general.dynamique.chart-evolution',
+  studyType: 'Interventional',
 };
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
   studyType: PropTypes.oneOf(studiesTypes),
 };
 

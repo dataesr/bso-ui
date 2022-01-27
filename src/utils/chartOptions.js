@@ -509,9 +509,6 @@ export const chartOptions = {
   'publi.general.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions(id, intl);
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.dynamique-ouverture.chart-taux-ouverture.tooltip',
-      });
       options.chart.type = 'bar';
       options.legend.title.text = '';
       options.colors = [
@@ -553,9 +550,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.series;
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.dynamique-ouverture.chart-taux-ouverture.tooltip',
-      });
       return options;
     },
   },
