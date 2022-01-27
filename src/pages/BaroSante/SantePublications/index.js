@@ -103,6 +103,7 @@ function SantePublications() {
                     id: 'app.publi.navigation.affiliation.impact',
                   }),
                   href: '/sante/publications/general?id=affiliations.pays',
+                  isDisplayed: !isInProduction(),
                 },
               ]}
             >
@@ -177,6 +178,7 @@ function SantePublications() {
                   intlKey='app.health-publi.affiliations.pays'
                   backgroundColor={blueSoft50}
                   anchorId='affiliations.pays'
+                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart
                     id='publi.affiliations.pays.chart-taux-rang-utile'
