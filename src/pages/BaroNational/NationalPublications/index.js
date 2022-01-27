@@ -148,7 +148,7 @@ export default function NationalPublications() {
 
             {/* Les disciplines */}
             <GraphItem
-              paths={['/publications/disciplines']}
+              paths={['/publications/disciplines', '/publications/fields']}
               mainLabel={intl.formatMessage({
                 id: 'app.publi.disciplines',
               })}
@@ -157,13 +157,19 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/disciplines?id=disciplines.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/disciplines?id=disciplines.dynamique-ouverture',
+                    en: '/publications/fields?id=disciplines.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.dynamique',
                   }),
-                  href: '/publications/disciplines?id=disciplines.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/disciplines?id=disciplines.dynamique-ouverture',
+                    en: '/publications/fields?id=disciplines.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
@@ -197,7 +203,7 @@ export default function NationalPublications() {
 
             {/* Les éditeurs */}
             <GraphItem
-              paths={['/publications/editeurs']}
+              paths={['/publications/editeurs', '/publications/publishers']}
               mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
               links={[
                 {
@@ -328,7 +334,7 @@ export default function NationalPublications() {
 
             {/* Les archives ouvertes */}
             <GraphItem
-              paths={['/publications/archives']}
+              paths={['/publications/archives', '/publications/repositories']}
               mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}
               links={[
                 {

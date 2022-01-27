@@ -30,21 +30,21 @@ export default function Footer() {
           >
             <FooterLink
               target='_blank'
+              href='https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monitor-france/information/?disjunctive.oa_host_type&disjunctive.year'
+            >
+              <FormattedMessage id='app.footer.link.open-data' />
+            </FooterLink>
+            <FooterLink
+              target='_blank'
               href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
             >
-              Github
+              <FormattedMessage id='app.glossary.code-source' />
             </FooterLink>
             <FooterLink
               target='_blank'
               href='https://hal.archives-ouvertes.fr/hal-02141819v1'
             >
               <FormattedMessage id='app.header.nav.a-propos-methodologie' />
-            </FooterLink>
-            <FooterLink
-              target='_blank'
-              href='https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monitor-france/information/?disjunctive.oa_host_type&disjunctive.year'
-            >
-              <FormattedMessage id='app.footer.link.open-data' />
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
