@@ -99,3 +99,15 @@ import GlossaryEntries from 'glossary.json';
   glossaryKeys={['entry1', 'entry2']}
 />
 ```
+
+## Mise en prod
+
+Avec `VERSION_LEVEL` qui peut valoir patch, minor ou major.
+
+```sh
+git checkout main
+git pull --rebase
+git merge staging
+npm version VERSION_LEVEL
+git push origin --tags
+```
