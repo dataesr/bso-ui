@@ -1,9 +1,9 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 
-// TODO:
-// Cette page est juste une page d'aide à la saisie des traductions. Elle sera supprimée lors de la mise en PROD
-// localhost:3000/translations
+// This page is for translations purpose.
+// It is only available in localhost via :
+// http://localhost:3000/translations or http://127.0.0.1:3000/translations
 
 import {
   Button,

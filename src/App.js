@@ -24,6 +24,7 @@ import Integration from './pages/Integration';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import TranslationPage from './translations/translations-page';
+import { isInLocal } from './utils/helpers';
 import { GraphNavigationContextProvider } from './utils/Hooks/useGraphNavigation';
 import useLang from './utils/Hooks/useLang';
 
@@ -41,9 +42,11 @@ function App() {
         <WebTracking>
           <Header />
           <Switch>
-            <Route path='/translations'>
-              <TranslationPage />
-            </Route>
+            {isInLocal() && (
+              <Route path='/translations'>
+                <TranslationPage />
+              </Route>
+            )}
             <Route
               exact
               path={Object.keys(urls.national).map((l) => urls.national[l])}

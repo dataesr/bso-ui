@@ -261,6 +261,17 @@ export function stringIsIntTheKitchen(str, key, array) {
  *
  * @returns boolean
  */
+export function isInLocal() {
+  return (
+    window.location.hostname === 'localhost'
+    || window.location.hostname === '127.0.0.1'
+  );
+}
+
+/**
+ *
+ * @returns boolean
+ */
 export function isInProduction() {
   return true;
   // return process.env.REACT_APP_ENV === 'production';
@@ -275,9 +286,15 @@ export function getURLSearchParams(search) {
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   let commentsName;
-  const displayComment = !(urlSearchParams.get('displayComment')?.toLowerCase() === 'false');
-  const displayTitle = !(urlSearchParams.get('displayTitle')?.toLowerCase() === 'false');
-  const displayFooter = !(urlSearchParams.get('displayFooter')?.toLowerCase() === 'false');
+  const displayComment = !(
+    urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
+  );
+  const displayTitle = !(
+    urlSearchParams.get('displayTitle')?.toLowerCase() === 'false'
+  );
+  const displayFooter = !(
+    urlSearchParams.get('displayFooter')?.toLowerCase() === 'false'
+  );
   let endYear;
   let name;
   let startYear;
