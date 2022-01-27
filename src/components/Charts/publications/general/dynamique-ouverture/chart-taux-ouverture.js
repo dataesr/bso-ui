@@ -30,15 +30,16 @@ const Chart = ({ hasFooter, hasComments, domain, id }) => {
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   const { dataGraph1 } = data;
-
-  useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl, search));
-  }, [data, idWithDomain, intl, search]);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     dataGraph1,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
+
   return (
     <WrapperChart
       chartRef={chartRef}
