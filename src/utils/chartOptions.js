@@ -2019,8 +2019,8 @@ export const chartOptions = {
     },
   },
   'resultats.type-diffusion.chart-repartition': {
-    getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions(id, intl, studyType, dataTitle);
       options.chart.type = 'bar';
       options.legend.enabled = false;
       options.plotOptions = {
