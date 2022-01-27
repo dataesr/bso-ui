@@ -189,13 +189,13 @@ function useGetData(observationSnap, domain) {
     const year3 = 2020;
     const diamond1 = diamondData
       .find((item) => item.publicationDate === year1)
-      ?.y.toFixed(2);
+      ?.y.toFixed(0);
     const diamond2 = diamondData
       .find((item) => item.publicationDate === year2)
-      ?.y.toFixed(2);
+      ?.y.toFixed(0);
     const diamond3 = diamondData
       .find((item) => item.publicationDate === year3)
-      ?.y.toFixed(2);
+      ?.y.toFixed(0);
     const comments = {
       year1,
       year2,

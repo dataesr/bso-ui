@@ -170,10 +170,15 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       elsevierOpenLicenceRate: dataGraphBar
         ?.find((item) => item.name === openLicenseLabel)
         ?.data.find((item) => item.publisher === publisher)
-        ?.y.toFixed(1),
+        ?.y.toFixed(0),
     };
 
-    return { categories, comments, dataGraphBar, dataGraphTreemap };
+    return {
+      categories,
+      comments,
+      dataGraphBar,
+      dataGraphTreemap,
+    };
   }
 
   useEffect(() => {

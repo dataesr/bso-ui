@@ -77,7 +77,7 @@ function useGetData(studyType, sponsorType = '*') {
             (ele) => ele.key === cat,
           )?.doc_count;
           const y = (yValue / el.doc_count) * 100;
-          const yLabel = Number(y).toFixed(0);
+          const yLabel = Number(y)?.toFixed(2);
           const yTotal = el.doc_count;
           return { x, yValue, y, yLabel, yTotal };
         }),
@@ -90,8 +90,9 @@ function useGetData(studyType, sponsorType = '*') {
       id: 'app.studies.intervention-type.Drug',
     });
     const value = dataGraph
-      .find((item) => item.name === category)
-      ?.data.find((item) => item.x === year)?.yLabel;
+      ?.find((item) => item.name === category)
+      ?.data?.find((item) => item.x === year)
+      ?.y?.toFixed(0);
     const comments = {
       category,
       value,

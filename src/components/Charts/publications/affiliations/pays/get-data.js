@@ -152,7 +152,13 @@ function useGetData(observationDate, domain = '') {
         withoutFrenchAffiliation,
       };
 
-      return { categories, categories2, comments, dataGraph, dataGraph2 };
+      return {
+        categories,
+        categories2,
+        comments,
+        dataGraph,
+        dataGraph2,
+      };
     },
     [intl, domain, bsoDomain, search],
   );

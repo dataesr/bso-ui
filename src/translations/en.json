@@ -803,7 +803,7 @@
   "app.publi.affiliations.dynamique-ouverture.chart-evolution-taux.tooltip": "<b>Publication opening rates ({point.bsoDomain})</b><br>Observation date {series.name}: {point.y:.2f}% ({point.y_abs} / { point.y_tot})",
   "app.publi.affiliations.dynamique-ouverture.chart-taux-ouverture.tooltip": "<b>Open access rate observed in {point.name} for {point.affiliation} ({point.bsoDomain})</b><br><b>{point.y:.2f}%</b> French publications published in {point.publicationDate}<br>are in open access {point.ratio} for {point.affiliation}",
   "app.publi.affiliations.pays.chart-classement-pays.tooltip": "<b>Open access rate for {point.public.bsoDomain} ({point.bsoDomain})</b><br>first or last affiliate author {point.country}<br>{point.y:.0f}% in open access ({point.y_abs} / {point.y_tot})",
-  "app.publi.affiliations.pays.chart-taux-rang-utile.tooltip": "<b>Open access rate of {point.x} ({point.bsoDomain})</b><br>{series.name}<br>{point.y:.0f}% in open access ({point.y_abs} / {point.y_tot})",
+  "app.publi.affiliations.pays.chart-taux-rang-utile.tooltip": "<b>Open access rate of {point.x} ({point.bsoDomain})</b><br>{series.name}<br>{point.y:.2f}% in open access ({point.y_abs} / {point.y_tot})",
   "app.publi.archives": "The open repositories",
   "app.national-publi.data.collab-country": "is the country of affiliation of the authors (in first or last signature) with which France collaborates the most",
   "app.health-publi.data.collab-country": "is the country of affiliation of the authors (in first or last signature) with which France collaborates the most in the field of health",

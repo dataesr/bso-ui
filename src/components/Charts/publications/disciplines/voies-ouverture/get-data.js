@@ -189,7 +189,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       let repositoryRate = '';
       if (dataGraph[0] && dataGraph[0].data && dataGraph[0].data[0]) {
         discipline = dataGraph[0].data[0].discipline.toLowerCase();
-        publisherRate = dataGraph[0].data[0].y.toFixed(1);
+        publisherRate = dataGraph[0].data[0].y.toFixed(0);
       }
       if (
         dataGraph
@@ -197,7 +197,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         && dataGraph[1].data
         && dataGraph[1].data[0]
       ) {
-        publisherRepositoryRate = dataGraph[1].data[0].y.toFixed(1);
+        publisherRepositoryRate = dataGraph[1].data[0].y.toFixed(0);
       }
       if (
         dataGraph
@@ -205,7 +205,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         && dataGraph[2].data
         && dataGraph[2].data[0]
       ) {
-        repositoryRate = dataGraph[2].data[0].y.toFixed(1);
+        repositoryRate = dataGraph[2].data[0].y.toFixed(0);
       }
 
       const comments = {
@@ -218,7 +218,11 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         repositoryRate,
       };
 
-      return { categories, dataGraph, comments };
+      return {
+        categories,
+        comments,
+        dataGraph,
+      };
     },
     [
       beforeLastObservationSnap,

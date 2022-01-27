@@ -229,7 +229,7 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              return this.y.toFixed(1).concat(' %');
+              return this.y.toFixed(0).concat(' %');
             },
           },
         },
@@ -993,7 +993,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -1423,7 +1422,7 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              return this.y.toFixed(1).concat(' %');
+              return this.y.toFixed(0).concat(' %');
             },
           },
         },

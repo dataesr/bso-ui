@@ -68,7 +68,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
               && el.key > 2012,
           );
         for (let j = 0; j < allHostType.length; j += 1) {
-          newData.data.oaHostType.push(oaHostType.find((x) => x.key === allHostType[j].key)?.doc_count || 0);
+          newData.data.oaHostType.push(
+            oaHostType.find((x) => x.key === allHostType[j].key)?.doc_count
+              || 0,
+          );
         }
         newData.data.all = allHostType.map((el) => el.doc_count);
         newData.data.publicationDates = res[
@@ -171,8 +174,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
       year1 = dataGraph2[2].name;
       year2 = dataGraph2[1].name;
       year3 = dataGraph2[1]?.data?.[4]?.publicationDate;
-      rate1 = dataGraph2[2]?.data?.[4]?.y.toFixed(2);
-      rate2 = dataGraph2[1]?.data?.[4]?.y.toFixed(2);
+      rate1 = dataGraph2[2]?.data?.[4]?.y.toFixed(0);
+      rate2 = dataGraph2[1]?.data?.[4]?.y.toFixed(0);
     }
     const comments = {
       observationYear,

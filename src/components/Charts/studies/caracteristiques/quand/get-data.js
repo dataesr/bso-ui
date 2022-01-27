@@ -58,7 +58,7 @@ function useGetData(studyType, sponsorType = '*') {
           (ele) => ele.key === step,
         )?.doc_count;
         const y = (yValue / el.doc_count) * 100;
-        const yLabel = Number(y).toFixed(0);
+        const yLabel = Number(y).toFixed(2);
         const yTotal = el.doc_count;
         return { x, yValue, y, yLabel, yTotal };
       });
