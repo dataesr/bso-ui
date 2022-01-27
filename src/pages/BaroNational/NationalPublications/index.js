@@ -81,31 +81,46 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/general?id=general.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/general?id=general.dynamique-ouverture',
+                    en: '/publications/general?id=general.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.dynamique',
                   }),
-                  href: '/publications/general?id=general.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/general?id=general.dynamique-ouverture',
+                    en: '/publications/general?id=general.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.voies',
                   }),
-                  href: '/publications/general?id=general.voies-ouverture',
+                  href: {
+                    fr: '/publications/general?id=general.voies-ouverture',
+                    en: '/publications/general?id=general.voies-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.genres',
                   }),
-                  href: '/publications/general?id=general.genres-ouverture',
+                  href: {
+                    fr: '/publications/general?id=general.genres-ouverture',
+                    en: '/publications/general?id=general.genres-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.langues',
                   }),
-                  href: '/publications/general?id=general.langues-ouverture',
+                  href: {
+                    fr: '/publications/general?id=general.langues-ouverture',
+                    en: '/publications/general?id=general.langues-ouverture',
+                  },
                 },
               ]}
             >
@@ -175,7 +190,10 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.disciplines.voies',
                   }),
-                  href: '/publications/disciplines?id=disciplines.voies-ouverture',
+                  href: {
+                    fr: '/publications/disciplines?id=disciplines.voies-ouverture',
+                    en: '/publications/fields?id=disciplines.voies-ouverture',
+                  },
                 },
               ]}
             >
@@ -210,40 +228,61 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/editeurs?id=publishers.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/editeurs?id=publishers.dynamique-ouverture',
+                    en: '/publications/publishers?id=publishers.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.dynamique',
                   }),
-                  href: '/publications/editeurs?id=publishers.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/editeurs?id=publishers.dynamique-ouverture',
+                    en: '/publications/publishers?id=publishers.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.modele',
                   }),
-                  href: '/publications/editeurs?id=publishers.type-ouverture',
+                  href: {
+                    fr: '/publications/editeurs?id=publishers.type-ouverture',
+                    en: '/publications/publishers?id=publishers.type-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.politique',
                   }),
-                  href: '/publications/editeurs?id=publishers.politiques-ouverture',
+                  href: {
+                    fr: '/publications/editeurs?id=publishers.politiques-ouverture',
+                    en: '/publications/publishers?id=publishers.politiques-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.revues',
                   }),
-                  href: '/publications/editeurs?id=publishers.poids-revues',
+                  href: {
+                    fr: '/publications/editeurs?id=publishers.poids-revues',
+                    en: '/publications/publishers?id=publishers.poids-revues',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.licences',
                   }),
-                  href: '/publications/editeurs?id=publishers.repartition-licences',
+                  href: {
+                    fr: '/publications/editeurs?id=publishers.repartition-licences',
+                    en: '/publications/publishers?id=publishers.repartition-licences',
+                  },
                 },
                 {
-                  href: '/publications/editeurs?id=publishers.couts-publication',
+                  href: {
+                    fr: '/publications/editeurs?id=publishers.couts-publication',
+                    en: '/publications/publishers?id=publishers.couts-publication',
+                  },
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.frais',
                   }),
@@ -341,32 +380,47 @@ export default function NationalPublications() {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.go-to-page',
                   }),
-                  href: '/publications/archives?id=repositories.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/archives?id=repositories.dynamique-ouverture',
+                    en: '/publications/repositories?id=repositories.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.dynamique',
                   }),
-                  href: '/publications/archives?id=repositories.dynamique-ouverture',
+                  href: {
+                    fr: '/publications/archives?id=repositories.dynamique-ouverture',
+                    en: '/publications/repositories?id=repositories.dynamique-ouverture',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.utilisees',
                   }),
-                  href: '/publications/archives?id=repositories.plus-utilisees',
+                  href: {
+                    fr: '/publications/archives?id=repositories.plus-utilisees',
+                    en: '/publications/repositories?id=repositories.plus-utilisees',
+                  },
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.depot',
                   }),
-                  href: '/publications/archives?id=repositories.dynamique-depot',
+                  href: {
+                    fr: '/publications/archives?id=repositories.dynamique-depot',
+                    en: '/publications/repositories?id=repositories.dynamique-depot',
+                  },
                   isDisplayed: !isInProduction(),
                 },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.hal',
                   }),
-                  href: '/publications/archives?id=repositories.dynamique-hal',
+                  href: {
+                    fr: '/publications/archives?id=repositories.dynamique-hal',
+                    en: '/publications/repositories?id=repositories.dynamique-hal',
+                  },
                 },
               ]}
             >
