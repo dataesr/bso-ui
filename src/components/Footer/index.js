@@ -45,6 +45,11 @@ export default function Footer() {
             >
               <FormattedMessage id='app.header.nav.a-propos-methodologie' />
             </FooterLink>
+            <FooterLink
+              href={intl.formatMessage({ id: 'app.footer.project.url' })}
+            >
+              <FormattedMessage id='app.footer.project.text' />
+            </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
             title={intl.formatMessage({ id: 'app.footer.voir-aussi' })}

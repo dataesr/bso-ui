@@ -170,6 +170,8 @@
   "app.footer.pnso.url": "https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2021-10/2e-plan-national-pour-la-science-ouverte-version-anglaise--13715.pdf",
   "app.footer.etalab-licence.url": "https://github.com/etalab/licence-ouverte/blob/master/open-licence.md",
   "app.footer.dataesr.url": "https://data.esr.gouv.fr/EN/",
+  "app.footer.project.text": "The project and his team",
+  "app.footer.project.url": "/project-and-team",
   "app.glossary": "Glossary",
   "app.glossary.acces-ouvert": "Open access (publications)",
   "app.glossary.acces-ouvert.definition": "Open access publications designate research publications made available freely on the public Internet.",
