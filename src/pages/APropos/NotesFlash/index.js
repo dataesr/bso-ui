@@ -46,6 +46,8 @@ function NotesFlash() {
               <FlashCard
                 intlTitle='app.note.flash.jan-2022'
                 url='https://enseignementsup-recherche.gouv.fr/fr/barometre-francais-de-la-science-ouverte-2021'
+                urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-tableaux-et-graphiques-16328.xlsx'
+                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-16325.pdf'
               />
             </Col>
           </Row>
