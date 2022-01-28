@@ -107,7 +107,11 @@ import GlossaryEntries from 'glossary.json';
 Avec `VERSION_LEVEL` qui peut valoir patch, minor ou major.
 
 ```sh
-npm run push -- VERSION_LEVEL
+git checkout main
+git pull origin main --rebase --tags
+git merge origin staging
+npm version VERSION_LEVEL
+git push origin main --tags
 ```
 
 :warning: Bien sûr, seuls les membres de l'[organisation dataesr](https://github.com/dataesr/) ont le droit de pusher sur le repo.
