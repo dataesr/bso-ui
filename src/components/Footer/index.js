@@ -41,8 +41,9 @@ export default function Footer() {
               <FormattedMessage id='app.glossary.code-source' />
             </FooterLink>
             <FooterLink
-              target='_blank'
-              href='https://hal.archives-ouvertes.fr/hal-02141819v1'
+              href={`${window.location.origin}${intl.formatMessage({
+                id: 'url.about.methodology',
+              })}`}
             >
               <FormattedMessage id='app.header.nav.a-propos-methodologie' />
             </FooterLink>
