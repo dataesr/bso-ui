@@ -381,7 +381,7 @@ export const chartOptions = {
               },
               {
                 point: {
-                  x: 9,
+                  x: window.innerWidth < 991 ? 20 : 10,
                   y: 20,
                   xAxis: 0,
                   yAxis: 0,

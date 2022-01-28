@@ -23,7 +23,7 @@ HCExportingData(Highcharts);
 highchartsMore(Highcharts);
 HighchartsAnnotations(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
