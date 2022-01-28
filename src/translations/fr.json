@@ -169,6 +169,7 @@
   "app.footer.pnso.text": "Deuxième Plan National pour la Science Ouverte",
   "app.footer.pnso.url": "https://www.ouvrirlascience.fr/wp-content/uploads/2021/06/Deuxieme-Plan-National-Science-Ouverte_2021-2024.pdf",
   "app.footer.etalab-licence.url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+  "app.footer.dataesr.url": "https://data.esr.gouv.fr/FR/",
   "app.glossary": "Glossaire",
   "app.glossary.acces-ouvert": "Accès ouvert (aux publications)",
   "app.glossary.acces-ouvert.definition": "Les publications en accès ouvert désignent les publications de recherche mises à disposition librement sur l'internet public.",

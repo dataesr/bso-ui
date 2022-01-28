@@ -273,8 +273,7 @@ export function isInLocal() {
  * @returns boolean
  */
 export function isInProduction() {
-  return true;
-  // return process.env.REACT_APP_ENV === 'production';
+  return process.env.REACT_APP_ENV === 'production';
 }
 
 /**
