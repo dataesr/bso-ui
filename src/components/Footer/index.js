@@ -41,9 +41,7 @@ export default function Footer() {
               <FormattedMessage id='app.glossary.code-source' />
             </FooterLink>
             <FooterLink
-              href={`${window.location.origin}${intl.formatMessage({
-                id: 'url.about.methodology',
-              })}`}
+              href={intl.formatMessage({ id: 'url.about.methodology' })}
             >
               <FormattedMessage id='app.header.nav.a-propos-methodologie' />
             </FooterLink>
@@ -63,7 +61,10 @@ export default function Footer() {
             >
               <FormattedMessage id='app.footer.scanr.text' />
             </FooterLink>
-            <FooterLink target='_blank' href='https://data.esr.gouv.fr/FR/'>
+            <FooterLink
+              target='_blank'
+              href={intl.formatMessage({ id: 'app.footer.dataesr.url' })}
+            >
               #dataESR
             </FooterLink>
             <FooterLink
@@ -154,12 +155,12 @@ export default function Footer() {
             l'innovation
           </Logo>
           <FooterBodyItem>
-            <Link target='_blank' href='https://service-public.fr'>
+            <Link target='_blank' href='https://www.service-public.fr/'>
               service-public.fr
             </Link>
           </FooterBodyItem>
           <FooterBodyItem>
-            <Link target='_blank' href='https://data.gouv.fr'>
+            <Link target='_blank' href='https://www.data.gouv.fr/fr/'>
               data.gouv.fr
             </Link>
           </FooterBodyItem>
