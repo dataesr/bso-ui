@@ -178,7 +178,9 @@ export default function Footer() {
             Plan d’Action National de la France au sein du Partenariat pour un
             Gouvernement Ouvert (PGO)
           </FooterLink>
-          <FooterLink href='/a-propos/faq'>FAQ</FooterLink>
+          <FooterLink href={intl.formatMessage({ id: 'url.about.faq' })}>
+            FAQ
+          </FooterLink>
           <FooterCopy>
             <p>
               <FormattedMessage id='app.footer.licence' />

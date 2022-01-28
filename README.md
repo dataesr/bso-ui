@@ -106,7 +106,7 @@ Avec `VERSION_LEVEL` qui peut valoir patch, minor ou major.
 
 ```sh
 git checkout main
-git pull --rebase
+git pull --rebase --tags
 git merge staging
 npm version VERSION_LEVEL
 git push origin --tags
