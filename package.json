@@ -46,7 +46,7 @@
     "lint": "eslint --fix src/**/*.js",
     "prettier": "prettier --write **/*.js",
     "stylelint": "stylelint --fix **/*.scss",
-    "push": "git checkout main && git pull --rebase --tags && git merge staging && npm version $1 && git push origin --tags"
+    "push": "git checkout main && git pull --rebase --tags && git merge staging && npm run version $1 && git push origin main --tags"
   },
   "browserslist": {
     "production": [
