@@ -30,7 +30,7 @@ export default function Footer() {
           >
             <FooterLink
               target='_blank'
-              href='https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monitor-france/information/?disjunctive.oa_host_type&disjunctive.year'
+              href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
             >
               <FormattedMessage id='app.footer.link.open-data' />
             </FooterLink>
@@ -41,8 +41,9 @@ export default function Footer() {
               <FormattedMessage id='app.glossary.code-source' />
             </FooterLink>
             <FooterLink
-              target='_blank'
-              href='https://hal.archives-ouvertes.fr/hal-02141819v1'
+              href={`${window.location.origin}${intl.formatMessage({
+                id: 'url.about.methodology',
+              })}`}
             >
               <FormattedMessage id='app.header.nav.a-propos-methodologie' />
             </FooterLink>
@@ -52,7 +53,7 @@ export default function Footer() {
           >
             <FooterLink
               target='_blank'
-              href='https://www.ouvrirlascience.fr/open-science/'
+              href={intl.formatMessage({ id: 'app.card.open-science.url' })}
             >
               <FormattedMessage id='app.footer.link.open-science' />
             </FooterLink>
@@ -60,7 +61,7 @@ export default function Footer() {
               target='_blank'
               href='https://scanr.enseignementsup-recherche.gouv.fr/'
             >
-              <FormattedMessage id='app.footer.link.scanr' />
+              <FormattedMessage id='app.footer.scanr.text' />
             </FooterLink>
             <FooterLink target='_blank' href='https://data.esr.gouv.fr/FR/'>
               #dataESR
@@ -166,9 +167,9 @@ export default function Footer() {
         <FooterBottom>
           <FooterLink
             target='_blank'
-            href='https://www.ouvrirlascience.fr/wp-content/uploads/2021/06/Deuxieme-Plan-National-Science-Ouverte_2021-2024.pdf'
+            href={intl.formatMessage({ id: 'app.footer.pnso.url' })}
           >
-            Deuxième Plan National pour la Science Ouverte
+            <FormattedMessage id='app.footer.pnso.text' />
           </FooterLink>
           <FooterLink
             target='_blank'
@@ -183,7 +184,9 @@ export default function Footer() {
               <FormattedMessage id='app.footer.licence' />
               {' '}
               <a
-                href='https://github.com/etalab/licence-ouverte/blob/master/LO.md'
+                href={intl.formatMessage({
+                  id: 'app.footer.etalab-licence.url',
+                })}
                 target='_blank'
                 rel='noreferrer'
               >
