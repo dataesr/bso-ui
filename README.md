@@ -1,9 +1,11 @@
 # bso-ui
 
-Application web du Baromètre de la Science Ouverte
-
 ![version](https://img.shields.io/github/package-json/v/dataesr/bso-ui)
 ![release](https://github.com/dataesr/bso-ui/actions/workflows/production.yml/badge.svg)
+
+Application web du Baromètre de la Science Ouverte accessible ici : 
+* fr : https://barometredelascienceouverte.esr.gouv.fr/
+* en : https://frenchopensciencemonitor.esr.gouv.fr/
 
 ## Requirements
 
@@ -46,7 +48,7 @@ To create a new release, use `npm version patch|minor|major`.
 
 ## Utiliser le glossaire
 
-### 1/4 Ajouter les clefs nécessaires dans les fichiers de langues `fr.json` et `en.json`
+### 1. Ajouter les clefs nécessaires dans les fichiers de langues `fr.json` et `en.json`
 
 >  La balise `<glossary0>app.word</glossary0>` correspond au mot clickable du texte dans la page
 
@@ -59,7 +61,7 @@ To create a new release, use `npm version patch|minor|major`.
 }
 ```
 
-### 2/4 Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langues correspondantes
+### 2. Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langues correspondantes
 
 > La clef `intlEntry` correspond au titre dans le volet Glossaire
 
@@ -76,7 +78,7 @@ To create a new release, use `npm version patch|minor|major`.
 ```
 
 
-### 3/4 Ajouter le composant `Glossary` dans la page
+### 3. Ajouter le composant `Glossary` dans la page
 
 ```js
 import GlossaryEntries from 'glossary.json';
@@ -84,7 +86,7 @@ import GlossaryEntries from 'glossary.json';
 <Glossary entries={GlossaryEntries} />
 ```
 
-### 4/4 Ajouter dans la page le composant `GlossaryFormattedMessage` à l'emplacement souhaité
+### 4. Ajouter dans la page le composant `GlossaryFormattedMessage` à l'emplacement souhaité
 
 > La props `intlKey` correspond au texte dans lequel se trouve le mot clickable
 
@@ -105,9 +107,7 @@ import GlossaryEntries from 'glossary.json';
 Avec `VERSION_LEVEL` qui peut valoir patch, minor ou major.
 
 ```sh
-git checkout main
-git pull --rebase --tags
-git merge staging
-npm version VERSION_LEVEL
-git push origin --tags
+npm run push -- VERSION_LEVEL
 ```
+
+:warning: Bien sûr, seuls les membres de l'[organisation dataesr](https://github.com/dataesr/) ont le droit de pusher sur le repo.
