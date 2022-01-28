@@ -30,7 +30,7 @@ export default function Footer() {
           >
             <FooterLink
               target='_blank'
-              href='https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monitor-france/information/?disjunctive.oa_host_type&disjunctive.year'
+              href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
             >
               <FormattedMessage id='app.footer.link.open-data' />
             </FooterLink>
