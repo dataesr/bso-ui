@@ -604,8 +604,8 @@ export const chartOptions = {
     },
   },
   'publi.general.voies-ouverture.chart-repartition-taux': {
-    getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${id}.tooltip`,
       });

@@ -20,18 +20,15 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps } = useGlobals();
   const { search } = useLocation();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
-  const { categories, dataGraph2 } = data;
+  const { categories, comments, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
-  useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl, search));
-  }, [data, idWithDomain, intl, search]);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
@@ -39,9 +36,15 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     dataGraph2,
     search,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
+
   return (
     <WrapperChart
       chartRef={chartRef}
+      dataTitle={comments}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

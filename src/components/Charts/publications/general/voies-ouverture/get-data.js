@@ -9,6 +9,7 @@ import {
   capitalize,
   getCSSValue,
   getObservationLabel,
+  getURLSearchParams,
 } from '../../../../../utils/helpers';
 
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
@@ -19,6 +20,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const greenLight100 = getCSSValue('--green-light-100');
   const { search } = useLocation();
+  const { commentsName } = getURLSearchParams(search);
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -200,17 +202,23 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       ];
 
       const comments = {
-        lastObservationSnap: getObservationLabel(lastObservationSnap, intl),
         beforeLastObservationSnap,
+        closed: closed[closed.length - 1]?.y.toFixed(0),
+        commentsName,
+        lastObservationSnap: getObservationLabel(lastObservationSnap, intl),
         oa: oa[oa.length - 1]?.y.toFixed(0),
         publisher: publisher[publisher.length - 1]?.y.toFixed(0),
         publisherRepository:
           publisherRepository[publisherRepository.length - 1]?.y.toFixed(0),
         repository: repository[repository.length - 1]?.y.toFixed(0),
-        closed: closed[closed.length - 1]?.y.toFixed(0),
       };
 
-      return { categories, dataGraph, dataGraph3, comments };
+      return {
+        categories,
+        comments,
+        dataGraph,
+        dataGraph3,
+      };
     },
     [
       domain,

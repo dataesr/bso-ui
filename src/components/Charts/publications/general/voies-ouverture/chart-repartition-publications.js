@@ -21,7 +21,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain, hasComments, hasFooter }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -32,8 +32,8 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
     lastObservationSnap || '2021',
     domain,
   );
-  const dataTitle = { publicationYear: beforeLastObservationSnap };
-  const { dataGraph3 } = allData;
+  const { comments, dataGraph3 } = allData;
+  const dataTitle = { publicationYear: beforeLastObservationSnap, ...comments };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -48,20 +48,20 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph3}
-      isError={isError}
+      dataTitle={dataTitle}
+      domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
-      dataTitle={dataTitle}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph3}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />

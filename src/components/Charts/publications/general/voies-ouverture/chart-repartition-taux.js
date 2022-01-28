@@ -19,7 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain, hasComments, hasFooter }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -30,10 +30,10 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
     lastObservationSnap || '2021',
     domain,
   );
-  const { dataGraph, categories } = allData;
+  const { categories, comments, dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories,
     dataGraph,
@@ -45,19 +45,20 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph || !categories}
-      isError={isError}
+      dataTitle={comments}
+      domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />
