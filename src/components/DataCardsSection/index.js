@@ -8,7 +8,6 @@ import { ES_API_URL } from '../../config/config';
 import getFetchOptions from '../../utils/chartFetchOptions';
 import { domains } from '../../utils/constants';
 import {
-  cleanNumber,
   formatNumberByLang,
   getPublicationYearFromObservationSnap,
   getValueByPath,
@@ -19,11 +18,8 @@ import DataCard from '../DataCard';
 
 export default function DataCardSection({ domain, lang }) {
   const intl = useIntl();
-  const [apcCostSum, setApcCostSum] = useState(null);
-  const [bestCollabCountry, setBestCollabCountry] = useState('');
   const [diamondPublicationRate, setDiamonPublicationRate] = useState(null);
   const [documentsByTypesByOA, setDocumentsByTypesByOA] = useState(null);
-  const [frenchPublicationsRate, setFrenchPublicationRate] = useState(null);
   const [hostedDocuments, setHostedDocuments] = useState(null);
   const [hostedDocumentsPMC, setHostedDocumentsPMC] = useState(null);
   const [oaBooksRate, setOaBooksRate] = useState(null);
@@ -195,12 +191,9 @@ export default function DataCardSection({ domain, lang }) {
       },
     }),
     [
-      apcCostSum,
-      bestCollabCountry,
       diamondPublicationRate,
       documentsByTypesByOA,
       domain,
-      frenchPublicationsRate,
       hostedDocuments,
       hostedDocumentsPMC,
       lang,
