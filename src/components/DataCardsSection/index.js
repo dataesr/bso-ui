@@ -149,57 +149,6 @@ export default function DataCardSection({ domain, lang }) {
         buttonHref: 'archives?id=repositories.dynamique-hal',
         activeDomains: [''],
       },
-      bestCollabCountry: {
-        fetch: (country) => <FormattedMessage id={`app.country.${country}`} />,
-        get: bestCollabCountry,
-        set: (data) => setBestCollabCountry(data),
-        pathToValue: 'by_author_useful_rank.buckets.1.key',
-        isPercentage: false,
-        color: 'yellow',
-        intlKey:
-          domain === ''
-            ? 'app.national-publi.data.collab-country'
-            : 'app.health-publi.data.collab-country',
-        buttonHref: 'affiliations?id=affiliations.pays',
-        activeDomains: [],
-      },
-      frenchPublicationsRate: {
-        fetch: (buckets) => (
-          ((buckets?.find((countObj) => countObj.key === 'fr')?.doc_count
-              || 0)
-              / publicationsNumber)
-            * 100
-        ).toFixed(0),
-        get: frenchPublicationsRate,
-        set: (data) => setFrenchPublicationRate(data),
-        pathToValue: 'by_lang.buckets',
-        isPercentage: true,
-        color: 'blue',
-        intlKey: 'app.national-publi.data.french-lang',
-        intlValues: {
-          publicationYear:
-            getPublicationYearFromObservationSnap(lastObservationSnap),
-        },
-        buttonHref: 'general?id=general.langues-ouverture',
-        activeDomains: [],
-      },
-      apcCostSum: {
-        fetch: (buckets) => `${cleanNumber(
-          Math.round(
-            buckets.find((el) => el.key === 'hybrid').apc.value
-                + buckets.find((el) => el.key === 'gold').apc.value,
-          ),
-          0,
-        )}€`,
-        get: apcCostSum,
-        set: (data) => setApcCostSum(data),
-        pathToValue: 'by_oa_colors.buckets',
-        isPercentage: false,
-        color: 'brown',
-        intlKey: 'app.national-publi.data.costs',
-        buttonHref: 'editeurs?id=publishers.couts-publication',
-        activeDomains: [],
-      },
       openHealthPublicationPublisherRepository: {
         fetch: (buckets) => {
           const documentsCount = buckets.find(
