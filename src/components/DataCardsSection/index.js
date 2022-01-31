@@ -22,9 +22,11 @@ export default function DataCardSection({ domain, lang }) {
   const [apcCostSum, setApcCostSum] = useState(null);
   const [bestCollabCountry, setBestCollabCountry] = useState('');
   const [diamondPublicationRate, setDiamonPublicationRate] = useState(null);
+  const [documentsByTypesByOA, setDocumentsByTypesByOA] = useState(null);
   const [frenchPublicationsRate, setFrenchPublicationRate] = useState(null);
   const [hostedDocuments, setHostedDocuments] = useState(null);
   const [hostedDocumentsPMC, setHostedDocumentsPMC] = useState(null);
+  const [oaBooksRate, setOaBooksRate] = useState(null);
   const [
     openHealthPublicationPublisherRepository,
     setOpenHealthPublicationPublisherRepository,
@@ -71,6 +73,29 @@ export default function DataCardSection({ domain, lang }) {
         buttonHref: '?id=general.dynamique-ouverture',
         activeDomains: ['health', ''],
       },
+      documentsByTypesByOA: {
+        fetch: (buckets) => {
+          const articles = buckets?.find(
+            (item) => item.key === 'journal-article',
+          );
+          const articlesCount = articles?.doc_count;
+          const oaArticlesCount = articles?.by_is_oa.buckets?.find(
+            (item) => item.key === 1,
+          )?.doc_count;
+          return `${((oaArticlesCount / articlesCount) * 100).toFixed(0)} %`;
+        },
+        get: documentsByTypesByOA,
+        set: (data) => setDocumentsByTypesByOA(data),
+        pathToValue: 'by_genre.buckets',
+        isPercentage: true,
+        color: 'aqua',
+        intlKey: 'app.national-publi.data.documents-by-types-by-oa',
+        intlValues: {
+          oaBooksRate,
+        },
+        buttonHref: 'general?id=general.genres-ouverture',
+        activeDomains: [''],
+      },
       diamondPublicationRate: {
         fetch: (buckets) => (
           ((buckets?.find((countObj) => countObj.key === 'diamond')
@@ -100,7 +125,7 @@ export default function DataCardSection({ domain, lang }) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
         buttonHref: 'editeurs?id=publishers.type-ouverture',
-        activeDomains: [''],
+        activeDomains: [],
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
@@ -221,10 +246,11 @@ export default function DataCardSection({ domain, lang }) {
       },
     }),
     [
-      domain,
       apcCostSum,
       bestCollabCountry,
       diamondPublicationRate,
+      documentsByTypesByOA,
+      domain,
       frenchPublicationsRate,
       hostedDocuments,
       hostedDocumentsPMC,
@@ -240,7 +266,6 @@ export default function DataCardSection({ domain, lang }) {
   const updateData = useCallback(
     (aggregations) => {
       if (!publicationsNumber || !aggregations) return;
-
       Object.keys(dataObj).forEach((k) => {
         const card = dataObj[k];
         if (!card.get) {
@@ -258,14 +283,23 @@ export default function DataCardSection({ domain, lang }) {
     if (response) {
       const { aggregations } = response;
       if (!publicationsNumber) {
+        const books = aggregations?.by_genre?.buckets?.find(
+          (item) => item.key === 'book',
+        );
+        const booksCount = books?.doc_count;
+        const oaBooksCount = books?.by_is_oa.buckets?.find(
+          (item) => item.key === 1,
+        )?.doc_count;
+        setOaBooksRate(((oaBooksCount / booksCount) * 100).toFixed(0));
         setPublicationsNumber(
           aggregations.by_is_oa.buckets[0].doc_count
             + aggregations.by_is_oa.buckets[1].doc_count,
         );
         setTotalHostedDocuments(
           formatNumberByLang(
-            aggregations.by_oa_colors.buckets.find((c) => c.key === 'green')
-              .doc_count,
+            aggregations.by_oa_colors.buckets.find(
+              (item) => item.key === 'green',
+            ).doc_count,
             lang,
           ),
         );

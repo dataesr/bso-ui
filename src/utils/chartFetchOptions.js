@@ -1279,6 +1279,18 @@ export default function getFetchOptions({
             field: `oa_details.${observationSnap}.oa_host_type.keyword`,
           },
         },
+        by_genre: {
+          terms: {
+            field: 'genre.keyword',
+          },
+          aggs: {
+            by_is_oa: {
+              terms: {
+                field: `oa_details.${observationSnap}.is_oa`,
+              },
+            },
+          },
+        },
       },
     }),
     oaHostType: ([
