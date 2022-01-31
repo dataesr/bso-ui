@@ -119,6 +119,10 @@ export default {
     fr: '/a-propos/declinaisons',
     en: '/about/declinaisons',
   },
+  project: {
+    fr: '/projet-et-equipe',
+    en: '/project-and-team',
+  },
   opendata: {
     fr: '/a-propos/opendata',
     en: '/about/opendata',

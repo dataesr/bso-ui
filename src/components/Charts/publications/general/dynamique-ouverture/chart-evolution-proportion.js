@@ -28,6 +28,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { search } = useLocation();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const { categories, comments, dataGraph2 } = data;
+  const dataTitle = comments;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -35,6 +36,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     categories,
     dataGraph2,
     search,
+    dataTitle,
   );
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={comments}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

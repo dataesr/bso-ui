@@ -21,6 +21,7 @@ import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
+import Project from './pages/Project';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import TranslationPage from './translations/translations-page';
@@ -164,6 +165,11 @@ function App() {
             >
               <PageTracker>
                 <Integration />
+              </PageTracker>
+            </Route>
+            <Route path={Object.keys(urls.project).map((l) => urls.project[l])}>
+              <PageTracker>
+                <Project />
               </PageTracker>
             </Route>
             <Route exact path='*'>

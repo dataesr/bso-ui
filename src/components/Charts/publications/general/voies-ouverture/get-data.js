@@ -221,12 +221,13 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       };
     },
     [
+      beforeLastObservationSnap,
+      commentsName,
       domain,
       greenLight100,
       intl,
-      yellowMedium125,
-      beforeLastObservationSnap,
       search,
+      yellowMedium125,
     ],
   );
 
