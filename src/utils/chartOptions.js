@@ -564,9 +564,9 @@ export const chartOptions = {
     },
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, categories, data, search) => {
+    getOptions: (id, intl, categories, data, search, dataTitle) => {
       const { startYear } = getURLSearchParams(search);
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions(id, intl, '', dataTitle);
       options.chart.type = 'spline';
       options.xAxis = {
         categories,
