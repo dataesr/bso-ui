@@ -920,7 +920,7 @@
   "app.sante.essais.document.title": "Clinical Trials in health of the French Open Science Monitor",
   "app.sante.publications.document.title": "Health Publications of the French Open Science Monitor",
   "app.sante.studies.document.title": "Observational Health Studies of the French Open Science Monitor",
-  "app.sante.update.date": "Data updated the {date} with publications published between {startDate} and {endDate}",
+  "app.sante.update.date": "Data updated on {date} with publications released between {startDate} and {endDate}",
   "app.scroll-to-top": "Scroll to top",
   "app.see-details": "See in detail",
   "app.sponsor-filter-label": "Select a lead sponsor (top 50)",
