@@ -60,7 +60,7 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
     credits: {
       enabled: true,
       text: intl.formatMessage({ id: 'app.credit' }),
-      href: 'https://bso.staging.dataesr.ovh/',
+      href: window.location.origin,
     },
     xAxis: {
       title: { text: xAxis },
