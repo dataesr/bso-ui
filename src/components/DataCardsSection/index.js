@@ -256,6 +256,7 @@ export default function DataCardSection({ domain, lang }) {
       hostedDocumentsPMC,
       lang,
       lastObservationSnap,
+      oaBooksRate,
       openHealthPublicationPublisherRepository,
       openPublicationRate,
       publicationsNumber,
