@@ -1220,12 +1220,6 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        count_publications: {
-          cardinality: {
-            field: 'doi.keyword',
-            precision_threshold: 100,
-          },
-        },
         by_is_oa: {
           terms: {
             field: `oa_details.${observationSnap}.is_oa`,
@@ -1261,17 +1255,6 @@ export default function getFetchOptions({
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
             size: 15,
-          },
-        },
-        by_lang: {
-          terms: {
-            field: 'lang.keyword',
-          },
-        },
-        by_author_useful_rank: {
-          terms: {
-            field: 'author_useful_rank_countries.keyword',
-            size: 2,
           },
         },
         by_oa_host_type: {
