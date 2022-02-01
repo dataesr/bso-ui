@@ -355,7 +355,7 @@ export const chartOptions = {
             },
           },
         };
-        options.annotations = [
+        const annotations = [
           {
             labelOptions: {
               y: 0,
@@ -394,6 +394,11 @@ export const chartOptions = {
             draggable: '',
           },
         ];
+        options.annotations = annotations;
+        // Create a deep copy
+        const exportingAnnotations = JSON.parse(JSON.stringify(annotations));
+        exportingAnnotations[0].labels[1].point.x = 20;
+        options.exporting.chartOptions.annotations = exportingAnnotations;
         options.responsive.rules[0].chartOptions.legend.align = 'right';
         return options;
       },
@@ -1247,7 +1252,7 @@ export const chartOptions = {
           },
         },
       };
-      options.annotations = [
+      const annotations = [
         {
           labelOptions: {
             y: 0,
@@ -1273,7 +1278,7 @@ export const chartOptions = {
             },
             {
               point: {
-                x: 9,
+                x: window.innerWidth < 991 ? 20 : 10,
                 y: 20,
                 xAxis: 0,
                 yAxis: 0,
@@ -1286,6 +1291,11 @@ export const chartOptions = {
           draggable: '',
         },
       ];
+      options.annotations = annotations;
+      // Create a deep copy
+      const exportingAnnotations = JSON.parse(JSON.stringify(annotations));
+      exportingAnnotations[0].labels[1].point.x = 20;
+      options.exporting.chartOptions.annotations = exportingAnnotations;
       options.responsive.rules[0].chartOptions.legend.align = 'right';
       return options;
     },
