@@ -18,6 +18,7 @@ import {
   capitalize,
   getCSSValue,
   getObservationLabel,
+  getURLSearchParams,
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
@@ -30,7 +31,7 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const chartRef = useRef();
   const [sort, setSort] = useState('sort-open-access');
@@ -38,6 +39,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { search } = useLocation();
+  const { commentsName } = getURLSearchParams(search);
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   const orangeSoft75 = getCSSValue('--orange-soft-75');
@@ -139,20 +141,20 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       });
 
       setOptionsGraph(
-        chartOptions[id].getOptions(withDomain(id, domain), intl, series),
+        chartOptions[id].getOptions(idWithDomain, intl, series, search),
       );
     }
   }, [
     data,
-    domain,
     id,
     idWithDomain,
     intl,
     lastObservationSnap,
+    orangeSoft75,
     orangeSoft100,
     orangeSoft125,
     orangeSoft175,
-    orangeSoft75,
+    search,
     sort,
   ]);
 
@@ -163,6 +165,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
+      dataTitle={{ commentsName }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getURLSearchParams, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -26,33 +26,34 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
   const { search } = useLocation();
+  const { commentsName } = getURLSearchParams(search);
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   let graphs = [];
-
   if (data.dataHist) {
     data?.dataHist.forEach((oneGraph) => {
       const optionsGraph = chartOptions[id].getOptions(
-        withDomain(id, domain),
+        idWithDomain,
         intl,
         oneGraph,
+        search,
       );
       graphs.push(optionsGraph);
     });
   }
-
-  useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl, search));
-  }, [data, idWithDomain, intl, search]);
-
   const serieLength = graphs[0]?.series[0].data.length - 1;
   // classement par ordre décroissant (en taux d'oa) des disciplines
   graphs = graphs.sort(
     (a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y,
   );
 
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
+
   return (
     <WrapperChart
+      dataTitle={{ commentsName }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -66,8 +67,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
             <Col n='3' key={graphOptions.series[0].name}>
               <HighchartsReact
                 highcharts={Highcharts}
-                options={graphOptions}
                 id={`${idWithDomain}-${i}`}
+                options={graphOptions}
               />
             </Col>
           ))}

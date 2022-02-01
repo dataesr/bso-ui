@@ -22,11 +22,12 @@ To create a new release, use `npm version patch|minor|major`.
 
 ## Scripts disponibles
 
-* `npm start`
 * `npm build`
-* `npm test`
-* `npm prepare`
 * `npm eject`
+* `npm prepare`
+* `npm run deploy:patch`
+* `npm start`
+* `npm test`
 * `npm version patch|minor|major`
 
 ## Ajouter une nouvelle icône BSSO
@@ -48,7 +49,7 @@ To create a new release, use `npm version patch|minor|major`.
 
 ## Utiliser le glossaire
 
-### 1. Ajouter les clefs nécessaires dans les fichiers de langues `fr.json` et `en.json`
+### 1. Ajouter les clefs nécessaires dans les fichiers de langues `src/translations/fr.json` et `src/translations/en.json`
 
 >  La balise `<glossary0>app.word</glossary0>` correspond au mot clickable du texte dans la page
 
@@ -64,7 +65,7 @@ To create a new release, use `npm version patch|minor|major`.
 ### 2. Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langues correspondantes
 
 > La clef `intlEntry` correspond au titre dans le volet Glossaire
-
+>
 > La clef `cta` est optionnelle
 
 ```json
@@ -89,9 +90,9 @@ import GlossaryEntries from 'glossary.json';
 ### 4. Ajouter dans la page le composant `GlossaryFormattedMessage` à l'emplacement souhaité
 
 > La props `intlKey` correspond au texte dans lequel se trouve le mot clickable
-
+>
 > La props `glossaryKeys` correspond aux clefs dans `glossary.json` (dans l'ordre dans lequel elles apparaissent dans le texte)
-
+>
 > La props `link` est optionnelle
 
 ```js
@@ -104,14 +105,9 @@ import GlossaryEntries from 'glossary.json';
 
 ## Mise en prod
 
-Avec `VERSION_LEVEL` qui peut valoir patch, minor ou major.
 
 ```sh
-git checkout main
-git pull origin main --rebase --tags
-git merge origin staging
-npm version VERSION_LEVEL
-git push origin main --tags
+npm run deploy:patch
 ```
 
 :warning: Bien sûr, seuls les membres de l'[organisation dataesr](https://github.com/dataesr/) ont le droit de pusher sur le repo.

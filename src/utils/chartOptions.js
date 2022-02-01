@@ -17,7 +17,7 @@ import {
  * @returns {{exporting:
  * {chartOptions: {legend: {enabled: boolean}, subtitle: {text: *}, title: {text: *}},
  * buttons: {contextButton: {enabled: boolean}}, filename: *},
- * credits: {enabled: boolean},
+ * credits: {text: string},
  * responsive: {rules: [{chartOptions: {legend: {layout: string, verticalAlign: string, align: string}},
  * condition: {maxWidth: number}}]}, tooltip: {headerFormat: string, pointFormat: *},
  * title: {style: {color: string, fontSize: string, fontWeight: string}, text: *, align: string},
@@ -40,17 +40,20 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
     ? intl.formatMessage({ id: `${graphId}.yAxis` })
     : '';
   const source = getSource(graphId);
-  const title = !studyType
-    ? intl.formatMessage({ id: `${graphId}.title` }, dataTitle)
-    : intl.formatMessage(
-      {
-        id: `${withtStudyType(graphId, studyType.toLowerCase())}.title`,
-      },
-      dataTitle,
-    );
+  const titleId = studyType
+    ? withtStudyType(graphId, studyType.toLowerCase())
+    : graphId;
+  const title = intl.formatMessage({ id: `${titleId}.title` }, dataTitle);
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
+      events: {
+        // eslint-disable-next-line object-shorthand, func-names
+        load: function () {
+          const target = window !== window.top ? '_blank' : '_self';
+          this.credits.element.onclick = () => window.open(window.location.origin, target);
+        },
+      },
     },
     title: { text: '' },
     tooltip: {
@@ -58,9 +61,8 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
       pointFormat: tooltip,
     },
     credits: {
-      enabled: true,
       text: intl.formatMessage({ id: 'app.credit' }),
-      href: window.location.origin,
+      href: undefined,
     },
     xAxis: {
       title: { text: xAxis },
@@ -106,7 +108,6 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
           enabled: true,
         },
         credits: {
-          enabled: true,
           text: intl
             .formatMessage({ id: 'app.credit' })
             .concat(', Sources : ')
@@ -569,9 +570,9 @@ export const chartOptions = {
     },
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, categories, data, search, dataTitle) => {
-      const { startYear } = getURLSearchParams(search);
-      const options = getGraphOptions(id, intl, '', dataTitle);
+    getOptions: (id, intl, categories, data, search) => {
+      const { commentsName, startYear } = getURLSearchParams(search);
+      const options = getGraphOptions(id, intl, '', { commentsName });
       options.chart.type = 'spline';
       options.xAxis = {
         categories,
@@ -1301,8 +1302,9 @@ export const chartOptions = {
     },
   },
   'publi.disciplines.dynamique-ouverture.chart-taux-ouverture': {
-    getOptions: (id, intl, graph) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, graph, search) => {
+      const { commentsName } = getURLSearchParams(search);
+      const options = getGraphOptions(id, intl, '', { commentsName });
       options.legend = {};
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip',
@@ -1865,8 +1867,9 @@ export const chartOptions = {
     },
   },
   'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+    getOptions: (id, intl, data, search) => {
+      const { commentsName } = getURLSearchParams(search);
+      const options = getGraphOptions(id, intl, '', { commentsName });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.tooltip',
       });
@@ -1904,10 +1907,8 @@ export const chartOptions = {
           },
         },
       };
-
       options.series = data;
       options.tooltip.shared = false;
-
       return options;
     },
   },

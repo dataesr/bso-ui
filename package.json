@@ -45,7 +45,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/**/*.js",
     "prettier": "prettier --write **/*.js",
-    "stylelint": "stylelint --fix **/*.scss"
+    "stylelint": "stylelint --fix **/*.scss",
+    "deploy:patch": "git checkout main && git pull origin main --rebase --tags && git merge origin staging && npm version patch && git push origin main --tags"
   },
   "browserslist": {
     "production": [
