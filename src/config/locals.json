@@ -1,15 +1,15 @@
 {
   "130015506": {
     "name": "Université de Lorraine",
-    "startYear": 2016,
-    "commentsName": "de l'université de Lorraine"
+    "commentsName": "de l'université de Lorraine",
+    "startYear": 2016
   },
   "180070039": {
     "name": "Institut national de recherche pour l'agriculture, l'alimentation et l'environnement (INRAE)",
     "commentsName": "de l'INRAE"
   },
   "18009202500097": {
-    "name": "Ecole nationale supérieure des mines d'Albi-Carmaux",
+    "name": "École nationale supérieure des mines d'Albi-Carmaux",
     "commentsName": "de l'école des mines d'Albi-Carmaux"
   },
   "192512150": {
@@ -40,6 +40,15 @@
     "name": "Avignon Université",
     "commentsName": "d'Avignon Université"
   },
+  "198608564": {
+    "name": "Université de Poitiers",
+    "commentsName": "de l'Université de Poitiers",
+    "startYear": 2016
+  },
+  "199119751": {
+    "name": "Université d'Evry Val d'Essonne",
+    "commentsName": "de l'Université d'Evry Val d'Essonne"
+  },
   "775685019": {
     "name": "CEA",
     "commentsName": "du CEA"
@@ -51,9 +60,5 @@
   "817389141": {
     "name": "Grenoble Ecole de Management (GEM)",
     "commentsName": "de Grenoble Ecole de Management"
-  },
-  "199119751": {
-    "name": "Université d'Evry",
-    "commentsName": "de l'Université d'Evry"
   }
 }
