@@ -274,7 +274,7 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://espacechercheurs.enpc.fr/fr/plan-science-ouverte'
+                    href='https://espacechercheurs.enpc.fr/fr/taux-OA'
                     target='_blank'
                     rel='noreferrer'
                   >
