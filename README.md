@@ -108,6 +108,7 @@ import GlossaryEntries from 'glossary.json';
 
 ```sh
 npm run deploy:patch
+git checkout staging # To come back on the "staging" branch
 ```
 
-:warning: Bien sûr, seuls les membres de l'[organisation dataesr](https://github.com/dataesr/) ont le droit de pusher sur le repo.
+:warning: Obviously, only members of the [dataesr organization](https://github.com/dataesr/) have right to push on the repo.
