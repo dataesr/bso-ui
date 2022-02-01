@@ -283,6 +283,15 @@ function Variations() {
                 </li>
                 <li>
                   <a
+                    href='https://bibliotheques.ensam.eu/page/science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    ENSAM
+                  </a>
+                </li>
+                <li>
+                  <a
                     href='https://www.imt-mines-albi.fr/barometre-science-ouverte-2021'
                     target='_blank'
                     rel='noreferrer'

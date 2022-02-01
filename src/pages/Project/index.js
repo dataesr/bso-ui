@@ -45,7 +45,42 @@ function Project() {
                 études observationnelles français. Cette deuxième version a été
                 réalisée en 2021 et ouverte le 28 janvier 2022.
               </p>
+              <h3>Et la suite (BSO3)</h3>
               <p>
+                Bien sûr, hors de question d’en rester là ! Une équipe associant
+                {' '}
+                <a
+                  href='https://www.univ-lorraine.fr/'
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  Université de Lorraine
+                </a>
+                ,
+                {' '}
+                <a
+                  href='https://www.inria.fr/fr'
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  Inria
+                </a>
+                {' '}
+                et
+                {' '}
+                <a
+                  href='https://www.enseignementsup-recherche.gouv.fr/fr'
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  MESRI
+                </a>
+                {' '}
+                prépare déjà le BSO3. Elle s’attaquera à deux nouveaux objets de
+                recherche : les codes sources et les jeux de données, toujours
+                sous l’angle de la science ouverte. Cette future version,
+                financée par le Plan de Relance, est prévue pour 2023.
+                <br />
                 <a
                   href='https://www.ouvrirlascience.fr/vers-un-barometre-francais-de-la-science-ouverte-consacre-aux-donnees-de-la-recherche-et-codes-logiciels/'
                   rel='noreferrer'
@@ -53,16 +88,6 @@ function Project() {
                 >
                   Pour en savoir plus
                 </a>
-                .
-              </p>
-              <h3>Et la suite (BSO3)</h3>
-              <p>
-                Bien sûr, hors de question d’en rester là ! Une équipe associant
-                Université de Lorraine, Inria et MESRI prépare déjà le BSO3.
-                Elle s’attaquera à deux nouveaux objets de recherche : les codes
-                sources et les jeux de données, toujours sous l’angle de la
-                science ouverte. Cette future version, financée par le Plan de
-                Relance, est prévue pour 2023.
               </p>
               <h2>L’équipe</h2>
               <p>
@@ -73,7 +98,8 @@ function Project() {
                   rel='noreferrer'
                   target='_blank'
                 >
-                  Ministère de l’Enseignement Supérieur et de la Recherche
+                  Ministère de l’Enseignement Supérieur, de la Recherche et de
+                  l'Innovation
                 </a>
                 . Les données ont patiemment été collectées, nettoyées,
                 consolidées et ordonnées par Eric Jeangirard et Anne L’Hôte.

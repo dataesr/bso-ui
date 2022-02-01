@@ -288,12 +288,10 @@ export function getURLSearchParams(search) {
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
   );
-  const displayTitle = !(
-    urlSearchParams.get('displayTitle')?.toLowerCase() === 'false'
-  );
   const displayFooter = !(
     urlSearchParams.get('displayFooter')?.toLowerCase() === 'false'
   );
+  let displayTitle;
   let endYear;
   let name;
   let startYear;
@@ -301,6 +299,12 @@ export function getURLSearchParams(search) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals[bsoLocalAffiliation].commentsName
       || '';
+    displayTitle = !(
+      (
+        urlSearchParams.get('displayTitle')
+        || locals[bsoLocalAffiliation].displayTitle
+      )?.toLowerCase() === 'false'
+    );
     endYear = parseInt(
       urlSearchParams.get('endYear')?.toLowerCase()
         || locals[bsoLocalAffiliation].endYear,
