@@ -17,7 +17,7 @@ import {
  * @returns {{exporting:
  * {chartOptions: {legend: {enabled: boolean}, subtitle: {text: *}, title: {text: *}},
  * buttons: {contextButton: {enabled: boolean}}, filename: *},
- * credits: {enabled: boolean},
+ * credits: {text: string},
  * responsive: {rules: [{chartOptions: {legend: {layout: string, verticalAlign: string, align: string}},
  * condition: {maxWidth: number}}]}, tooltip: {headerFormat: string, pointFormat: *},
  * title: {style: {color: string, fontSize: string, fontWeight: string}, text: *, align: string},
@@ -47,6 +47,13 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
+      events: {
+        // eslint-disable-next-line object-shorthand, func-names
+        load: function () {
+          const target = window !== window.top ? '_blank' : '_self';
+          this.credits.element.onclick = () => window.open(window.location.origin, target);
+        },
+      },
     },
     title: { text: '' },
     tooltip: {
@@ -54,9 +61,8 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
       pointFormat: tooltip,
     },
     credits: {
-      enabled: true,
       text: intl.formatMessage({ id: 'app.credit' }),
-      href: window.location.origin,
+      href: undefined,
     },
     xAxis: {
       title: { text: xAxis },
@@ -102,7 +108,6 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
           enabled: true,
         },
         credits: {
-          enabled: true,
           text: intl
             .formatMessage({ id: 'app.credit' })
             .concat(', Sources : ')
