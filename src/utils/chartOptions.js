@@ -51,7 +51,8 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
         // eslint-disable-next-line object-shorthand, func-names
         load: function () {
           const target = window !== window.top ? '_blank' : '_self';
-          this.credits.element.onclick = () => window.open(window.location.origin, target);
+          let tmp = this?.credits?.element?.onclick;
+          tmp = () => window.open(window.location.origin, target);
         },
       },
     },
