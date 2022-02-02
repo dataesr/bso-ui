@@ -24,25 +24,13 @@ import {
  * chart: {backgroundColor: string}
  * }}
  */
-export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
-  const legend = intl.messages[`${graphId}.legend`]
-    ? intl.formatMessage({ id: `${graphId}.legend` })
-    : '';
-  const tooltip = !studyType
-    ? intl.formatMessage({ id: `${graphId}.tooltip` })
-    : intl.formatMessage({
-      id: `${withtStudyType(graphId, studyType.toLowerCase())}.tooltip`,
-    });
-  const xAxis = intl.messages[`${graphId}.xAxis`]
-    ? intl.formatMessage({ id: `${graphId}.xAxis` })
-    : '';
-  const yAxis = intl.messages[`${graphId}.yAxis`]
-    ? intl.formatMessage({ id: `${graphId}.yAxis` })
-    : '';
-  const source = getSource(graphId);
-  const titleId = studyType
-    ? withtStudyType(graphId, studyType.toLowerCase())
-    : graphId;
+export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
+  const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
+  const legend = intl.formatMessage({ id: `${id}.legend`, defaultMessage: '' });
+  const tooltip = intl.formatMessage({ id: `${titleId}.tooltip` });
+  const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: '' });
+  const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: '' });
+  const source = getSource(id);
   const title = intl.formatMessage({ id: `${titleId}.title` }, dataTitle);
   return {
     chart: {
@@ -127,7 +115,7 @@ export function getGraphOptions(graphId, intl, studyType = '', dataTitle = {}) {
 export const chartOptions = {
   'publi.publishers.couts-publication.chart-distribution-par-annee': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.couts-publication.chart-distribution-par-annee.tooltip',
       });
@@ -175,7 +163,7 @@ export const chartOptions = {
   },
   'publi.publishers.politiques-ouverture.chart-classement': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '1000px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.politiques-ouverture.chart-classement.tooltip',
@@ -207,7 +195,7 @@ export const chartOptions = {
   },
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip',
       });
@@ -246,7 +234,7 @@ export const chartOptions = {
   'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
     {
       getOptions: (id, intl, data, dataTitle) => {
-        const options = getGraphOptions(id, intl, '', dataTitle);
+        const options = getGraphOptions({ id, intl, dataTitle });
         options.tooltip.pointFormat = intl.formatMessage({
           id: 'app.publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.tooltip',
         });
@@ -407,7 +395,7 @@ export const chartOptions = {
     },
   'publi.affiliations.pays.chart-classement-pays': {
     getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.affiliations.pays.chart-classement-pays.tooltip',
       });
@@ -433,7 +421,7 @@ export const chartOptions = {
   },
   'publi.publishers.type-ouverture.chart-evolution-repartition': {
     getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.type-ouverture.chart-evolution-repartition.tooltip',
       });
@@ -471,7 +459,7 @@ export const chartOptions = {
   },
   'publi.publishers.type-ouverture.chart-repartition-modeles': {
     getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.legend = {};
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.type-ouverture.chart-repartition-modeles.tooltip',
@@ -518,7 +506,7 @@ export const chartOptions = {
   },
   'publi.general.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.chart.type = 'bar';
       options.legend.title.text = '';
       options.colors = [
@@ -573,7 +561,11 @@ export const chartOptions = {
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, data, search) => {
       const { commentsName, startYear } = getURLSearchParams(search);
-      const options = getGraphOptions(id, intl, '', { commentsName });
+      const options = getGraphOptions({
+        id,
+        intl,
+        dataTitle: { commentsName },
+      });
       options.chart.type = 'spline';
       options.xAxis = {
         categories,
@@ -612,7 +604,7 @@ export const chartOptions = {
   },
   'publi.general.voies-ouverture.chart-repartition-taux': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${id}.tooltip`,
       });
@@ -647,7 +639,7 @@ export const chartOptions = {
   },
   'publi.general.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: `${id}.tooltip`,
       });
@@ -692,7 +684,7 @@ export const chartOptions = {
   },
   'publi.general.genres-ouverture.chart-repartition-genres': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
       });
@@ -728,7 +720,7 @@ export const chartOptions = {
   },
   'publi.general.genres-ouverture.chart-repartition-genres-treemap': {
     getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.genres-ouverture.chart-repartition-genres.tooltip',
       });
@@ -762,7 +754,7 @@ export const chartOptions = {
   },
   'publi.general.langues-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
       });
@@ -798,7 +790,7 @@ export const chartOptions = {
   },
   'publi.general.langues-ouverture.chart-repartition-publications-treemap': {
     getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.langues-ouverture.chart-repartition-publications.tooltip',
       });
@@ -832,7 +824,7 @@ export const chartOptions = {
   },
   'publi.general.impact-financement.chart-taux-ouverture': {
     getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl, '');
+      const options = getGraphOptions({ id, intl });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.general.impact-financement.chart-taux-ouverture.legend',
       });
@@ -857,14 +849,12 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
   'publi.general.impact-financement.chart-repartition-financements': {
     getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
-
+      const options = getGraphOptions({ id, intl });
       options.series = [
         {
           type: 'treemap',
@@ -895,7 +885,7 @@ export const chartOptions = {
   },
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.affiliations.dynamique-ouverture.chart-evolution-proportion.tooltip',
       });
@@ -934,7 +924,7 @@ export const chartOptions = {
   },
   'publi.affiliations.dynamique-ouverture.chart-evolution-taux': {
     getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.affiliations.dynamique-ouverture.chart-evolution-taux.tooltip',
       });
@@ -982,7 +972,7 @@ export const chartOptions = {
   },
   'publi.affiliations.pays.chart-taux-rang-utile': {
     getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.affiliations.pays.chart-taux-rang-utile.tooltip',
       });
@@ -1012,7 +1002,7 @@ export const chartOptions = {
   },
   'publi.publishers.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
@@ -1061,7 +1051,7 @@ export const chartOptions = {
   },
   'publi.publishers.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.dynamique-ouverture.chart-evolution-proportion.tooltip',
       });
@@ -1100,7 +1090,7 @@ export const chartOptions = {
   },
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.affiliations.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
@@ -1144,7 +1134,7 @@ export const chartOptions = {
   },
   'publi.publishers.politiques-ouverture.chart-comparaison': {
     getOptions: (id, intl, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.politiques-ouverture.chart-comparaison.tooltip',
       });
@@ -1305,7 +1295,11 @@ export const chartOptions = {
   'publi.disciplines.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, graph, search) => {
       const { commentsName } = getURLSearchParams(search);
-      const options = getGraphOptions(id, intl, '', { commentsName });
+      const options = getGraphOptions({
+        id,
+        intl,
+        dataTitle: { commentsName },
+      });
       options.legend = {};
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.dynamique-ouverture.chart-taux-ouverture.tooltip',
@@ -1380,7 +1374,7 @@ export const chartOptions = {
   },
   'publi.publishers.repartition-licences.chart-repartition': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.repartition-licences.chart-repartition.tooltip',
       });
@@ -1416,7 +1410,7 @@ export const chartOptions = {
   },
   'publi.publishers.repartition-licences.chart-classement': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '700px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.repartition-licences.chart-classement.tooltip',
@@ -1454,7 +1448,7 @@ export const chartOptions = {
   },
   'publi.publishers.couts-publication.chart-depenses-estimees': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.couts-publication.chart-depenses-estimees.tooltip',
       });
@@ -1506,7 +1500,7 @@ export const chartOptions = {
   },
   'publi.publishers.couts-publication.chart-distribution': {
     getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.couts-publication.chart-distribution.tooltip',
       });
@@ -1550,7 +1544,7 @@ export const chartOptions = {
   },
   'publi.repositories.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-ouverture.chart-evolution-proportion.tooltip',
       });
@@ -1589,7 +1583,7 @@ export const chartOptions = {
   },
   'publi.repositories.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
@@ -1639,7 +1633,7 @@ export const chartOptions = {
   },
   'publi.repositories.plus-utilisees.chart-nombre-documents': {
     getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions(id, intl, '', dataTitle);
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.plus-utilisees.chart-nombre-documents.tooltip',
       });
@@ -1681,7 +1675,7 @@ export const chartOptions = {
   },
   'publi.repositories.dynamique-depot.chart-nombre-documents-depots': {
     getOptions: (id, intl, graph) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-depot.chart-nombre-documents-depots.tooltip',
       });
@@ -1774,7 +1768,7 @@ export const chartOptions = {
   },
   'publi.repositories.dynamique-hal.chart-couverture-hal': {
     getOptions: (id, intl, publicationYears, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-hal.chart-couverture-hal.tooltip',
       });
@@ -1811,7 +1805,7 @@ export const chartOptions = {
   },
   'publi.publishers.poids-revues.chart-repartition': {
     getOptions: (id, intl, categories, data) => {
-      const options = getGraphOptions(id, intl);
+      const options = getGraphOptions({ id, intl });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.poids-revues.chart-repartition.tooltip',
       });
@@ -1870,7 +1864,11 @@ export const chartOptions = {
   'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture': {
     getOptions: (id, intl, data, search) => {
       const { commentsName } = getURLSearchParams(search);
-      const options = getGraphOptions(id, intl, '', { commentsName });
+      const options = getGraphOptions({
+        id,
+        intl,
+        dataTitle: { commentsName },
+      });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.tooltip',
       });
@@ -1915,8 +1913,7 @@ export const chartOptions = {
   },
   'general.dynamique.chart-evolution': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
-
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {
@@ -2023,7 +2020,7 @@ export const chartOptions = {
         });
         return nodes;
       };
-      const options = getGraphOptions(id, intl, studyType);
+      const options = getGraphOptions({ id, intl, studyType });
       options.colors = [nodeColor.start];
       delete options.tooltip.pointFormat;
       options.series = [
@@ -2039,7 +2036,7 @@ export const chartOptions = {
   },
   'resultats.type-diffusion.chart-repartition': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'bar';
       options.legend.enabled = false;
       options.plotOptions = {
@@ -2087,7 +2084,7 @@ export const chartOptions = {
       studyType,
       dataTitle,
     ) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesEvolution || [],
@@ -2126,7 +2123,7 @@ export const chartOptions = {
       studyType,
       dataTitle,
     ) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
@@ -2164,7 +2161,7 @@ export const chartOptions = {
   },
   'caracteristiques.quand.chart-distribution-declarations': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart = {
         type: 'areasplinerange',
         inverted: false,
@@ -2202,7 +2199,7 @@ export const chartOptions = {
   'caracteristiques.duree.chart-nombre': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
       // TODO refacto
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         tickInterval: 1,
@@ -2242,7 +2239,7 @@ export const chartOptions = {
   },
   'caracteristiques.combien.chart-groupes-patients': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       // TODO refacto
       options.xAxis = {
@@ -2295,7 +2292,7 @@ export const chartOptions = {
       dataTitle,
     ) => {
       // TODO refacto
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.yAxis = getPercentageYAxis(false);
       options.xAxis.title = {
@@ -2326,7 +2323,7 @@ export const chartOptions = {
   },
   'resultats.type-diffusion.chart-repartition-par-type': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {
@@ -2363,7 +2360,7 @@ export const chartOptions = {
   },
   'resultats.plan-partage.chart-repartition': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -2408,7 +2405,7 @@ export const chartOptions = {
       studyType,
       dataTitle,
     ) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categories2 || [],
@@ -2455,7 +2452,7 @@ export const chartOptions = {
   },
   'studies.resultats.delai-diffusion.chart-distribution': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart = {
         type: 'areasplinerange',
         inverted: false,
@@ -2495,8 +2492,7 @@ export const chartOptions = {
   },
   'resultats.publication.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
-
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -2530,14 +2526,12 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-
       return options;
     },
   },
   'promoteurs.dynamique-ouverture.chart-part': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
-
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {
@@ -2578,7 +2572,7 @@ export const chartOptions = {
   },
   'promoteurs.dynamique-ouverture.chart-evolution-nombre': {
     getOptions: (id, intl, graph, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart.height = '900px';
       options.chart.type = 'bar';
       options.credits.enabled = false;
@@ -2616,7 +2610,7 @@ export const chartOptions = {
   },
   'promoteurs.impact.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'column';
       options.plotOptions = {
         series: {
@@ -2668,8 +2662,7 @@ export const chartOptions = {
   },
   'promoteurs.impact.chart-classement-pays': {
     getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions(id, intl, studyType);
-
+      const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
       options.plotOptions = {
         series: {
