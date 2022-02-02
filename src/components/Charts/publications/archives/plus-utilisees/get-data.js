@@ -42,7 +42,7 @@ function useGetData(observationSnap, domain) {
     let name4 = '';
     let publicationDate = '';
     let y = '';
-    if (dataGraph) {
+    if (dataGraph && dataGraph.length >= 4) {
       name1 = dataGraph[0].name;
       name2 = dataGraph[1].name;
       name3 = dataGraph[2].name;
