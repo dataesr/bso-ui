@@ -38,15 +38,18 @@ function WrapperChart({
   const idWithDomain = withDomain(id, domain);
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
+  const { search } = useLocation();
+  const { commentsName, name } = getURLSearchParams(search);
   let title = intl.formatMessage(
     {
       id: `${!studyType ? idWithDomain : idWithContext}.title`,
     },
-    dataTitle,
+    {
+      ...dataTitle,
+      commentsName,
+    },
   );
   let otherSources = [];
-  const { search } = useLocation();
-  const { name } = getURLSearchParams(search);
   if (name) {
     title = `${name} : ${title}`;
     otherSources = [name];

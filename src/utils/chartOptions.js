@@ -39,8 +39,9 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
         // eslint-disable-next-line object-shorthand, func-names
         load: function () {
           const target = window !== window.top ? '_blank' : '_self';
-          let tmp = this?.credits?.element?.onclick;
-          tmp = () => window.open(window.location.origin, target);
+          let credits = this?.credits?.element?.onclick;
+          // eslint-disable-next-line no-unused-vars
+          credits = () => window.open(window.location.origin, target);
         },
       },
     },

@@ -26,14 +26,13 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
   const { lastObservationSnap, observationSnaps } = useGlobals();
   const [chartComments, setChartComments] = useState('');
-
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     archive,
@@ -61,7 +60,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const archiveTitle = archive !== '*' ? ` (${archive})` : '';
   const dataTitle = { archiveTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph2,
     dataTitle,

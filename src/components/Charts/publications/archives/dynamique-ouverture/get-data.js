@@ -171,13 +171,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
         ?.y.toFixed(0);
     }
     const comments = {
-      year,
       percentage,
       publicationDate,
-      year1,
       value1,
-      year2,
       value2,
+      year,
+      year1,
+      year2,
     };
 
     return { comments, dataGraph1, dataGraph2 };
