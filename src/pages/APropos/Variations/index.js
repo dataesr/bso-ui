@@ -355,6 +355,15 @@ function Variations() {
                 </li>
                 <li>
                   <a
+                    href='https://u-paris.fr/science-ouverte/barometre/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Paris
+                  </a>
+                </li>
+                <li>
+                  <a
                     href='https://scienceouverte.univ-rennes1.fr/barometre-de-la-science-ouverte-de-luniversite-de-rennes-1'
                     target='_blank'
                     rel='noreferrer'
