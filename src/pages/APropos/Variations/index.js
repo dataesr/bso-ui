@@ -238,6 +238,15 @@ function Variations() {
                 </li>
                 <li>
                   <a
+                    href='https://bibliotheques.ensam.eu/page/science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Arts et Métiers Sciences & Technologies
+                  </a>
+                </li>
+                <li>
+                  <a
                     href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte.aspx'
                     target='_blank'
                     rel='noreferrer'
@@ -279,15 +288,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Ecole des Ponts Paristech
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://bibliotheques.ensam.eu/page/science-ouverte'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    ENSAM
                   </a>
                 </li>
                 <li>
