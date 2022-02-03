@@ -31,36 +31,29 @@ function useGetData(lastObservationSnap, domain = '') {
     const dataBubbles = res.data.aggregations.by_discipline.buckets;
     const bubbles = [];
     dataBubbles
-      .filter((elem) => elem.key !== 'unknown')
-      .forEach((elem) => {
+      .filter((item) => item.key !== 'unknown')
+      .forEach((item) => {
+        const greenPublicationsCount = item.by_oa_colors.buckets.find((el) => el.key === 'green')
+          ?.doc_count || 0;
+        const openPublicationsCount = item.by_oa_colors.buckets
+          .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
+          .reduce((a, b) => a + b.doc_count, 0);
         bubbles.push({
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: capitalize(
             intl.formatMessage({
-              id: `app.discipline.${elem.key
+              id: `app.discipline.${item.key
                 .replace(/\n/g, '')
                 .replace('  ', ' ')}`,
             }),
           ),
           bsoDomain,
-          x:
-            (100
-              * elem.by_oa_colors.buckets
-                .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
-                .reduce((a, b) => a + b.doc_count, 0))
-            / elem.doc_count,
-          x_abs: elem.by_oa_colors.buckets
-            .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
-            .reduce((a, b) => a + b.doc_count, 0),
-          y:
-            100
-            * (elem.by_oa_colors.buckets.find((el) => el.key === 'green')
-              .doc_count
-              / elem.doc_count),
-          y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green')
-            .doc_count,
-          z: elem.doc_count,
+          x: (openPublicationsCount / item.doc_count) * 100,
+          x_abs: openPublicationsCount,
+          y: (greenPublicationsCount / item.doc_count) * 100,
+          y_abs: greenPublicationsCount,
+          z: item.doc_count,
         });
       });
 
@@ -83,17 +76,18 @@ function useGetData(lastObservationSnap, domain = '') {
         enableMouseTracking: false,
         showInLegend: false,
         marker: { enabled: false },
-        data: [{
-          x: 0,
-          y: 0,
-        }, {
-          x: 100,
-          y: 100,
-        },
+        data: [
+          {
+            x: 0,
+            y: 0,
+          },
+          {
+            x: 100,
+            y: 100,
+          },
         ],
       },
     ];
-
     return { bubbleGraph };
   }
 
