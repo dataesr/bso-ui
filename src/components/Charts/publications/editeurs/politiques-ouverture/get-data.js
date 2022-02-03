@@ -46,32 +46,38 @@ function useGetData(lastObservationSnap, domain) {
     const openByPublishers = [];
     const greenOnly = [];
     const categories = [];
-    data.forEach((elem) => {
-      const openByPublishersPublicationsCount = elem.by_oa_colors.buckets
-        .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
-        .reduce((a, b) => a + b.doc_count, 0);
+    data.forEach((item) => {
+      const greenPublicationsCount = parseInt(
+        item.by_oa_colors.buckets.find((el) => el.key === 'green_only')
+          ?.doc_count || 0,
+        10,
+      );
+      const oaPublicationsCount = parseInt(
+        item.by_oa_colors.buckets
+          .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
+          .reduce((a, b) => a + b.doc_count, 0),
+        10,
+      );
       openByPublishers.push({
         bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
-        publisher: elem.key,
-        y_abs: openByPublishersPublicationsCount,
-        y_tot: elem.doc_count,
-        y: (openByPublishersPublicationsCount / elem.doc_count) * 100,
+        publisher: item.key,
+        y_abs: oaPublicationsCount,
+        y_tot: item.doc_count,
+        y: (oaPublicationsCount / item.doc_count) * 100,
       });
-      const greenOnlyPublicationsCount = elem.by_oa_colors.buckets.find((el) => el.key === 'green_only')
-        ?.doc_count || 0;
       greenOnly.push({
         bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
-        publisher: elem.key,
-        y_abs: greenOnlyPublicationsCount,
-        y_tot: elem.doc_count,
-        y: (greenOnlyPublicationsCount / elem.doc_count) * 100,
+        publisher: item.key,
+        y_abs: greenPublicationsCount,
+        y_tot: item.doc_count,
+        y: (greenPublicationsCount / item.doc_count) * 100,
       });
-      const totalCurrent = elem.doc_count;
-      const nameClean = elem.key;
+      const totalCurrent = item.doc_count;
+      const nameClean = item.key;
       categories.push(
         nameClean
           .concat('</br>(')
@@ -99,29 +105,28 @@ function useGetData(lastObservationSnap, domain) {
     // 2e graph (graphe à bulles)
     const dataBubbles = res[1].data.aggregations.by_publisher.buckets;
     const bubbles = [];
-    dataBubbles.forEach((elem) => {
+    dataBubbles.forEach((item) => {
+      const greenPublicationsCount = parseInt(
+        item.by_oa_colors.buckets.find((el) => el.key === 'green')?.doc_count
+          || 0,
+        10,
+      );
+      const oaPublicationsCount = parseInt(
+        item.by_oa_colors.buckets
+          .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
+          .reduce((a, b) => a + b.doc_count, 0),
+        10,
+      );
       bubbles.push({
         bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
-        publisher: elem.key,
-        x:
-          (100
-            * elem.by_oa_colors.buckets
-              .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
-              .reduce((a, b) => a + b.doc_count, 0))
-          / elem.doc_count,
-        x_abs: elem.by_oa_colors.buckets
-          .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
-          .reduce((a, b) => a + b.doc_count, 0),
-        y:
-          100
-          * (elem.by_oa_colors.buckets.find((el) => el.key === 'green')
-            ?.doc_count || 0 / elem.doc_count),
-        y_abs:
-          elem.by_oa_colors.buckets.find((el) => el.key === 'green')
-            ?.doc_count || 0,
-        z: elem.doc_count,
+        publisher: item.key,
+        x: (oaPublicationsCount / item.doc_count) * 100,
+        x_abs: oaPublicationsCount,
+        y: (greenPublicationsCount / item.doc_count) * 100,
+        y_abs: greenPublicationsCount,
+        z: item.doc_count,
       });
     });
     const bubbleGraph = [
