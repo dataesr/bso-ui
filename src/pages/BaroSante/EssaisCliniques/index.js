@@ -66,8 +66,8 @@ function EssaisCliniques() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/general?id=general.dynamique',
                   en: '/health/clinical-trials/general?id=general.dynamique',
+                  fr: '/sante/essais-cliniques/general?id=general.dynamique',
                 },
               },
               {
@@ -75,8 +75,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.general.dynamique',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/general?id=general.dynamique',
                   en: '/health/clinical-trials/general?id=general.dynamique',
+                  fr: '/sante/essais-cliniques/general?id=general.dynamique',
                 },
               },
               {
@@ -84,8 +84,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.general.trajectoires',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/general?id=general.directions',
                   en: '/health/clinical-trials/general?id=general.directions',
+                  fr: '/sante/essais-cliniques/general?id=general.directions',
                 },
               },
             ]}
@@ -138,8 +138,8 @@ function EssaisCliniques() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
                   en: '/health/clinical-trials/characteristics?id=caracteristiques.quand',
+                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
                 },
               },
               {
@@ -147,8 +147,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.caracteristiques.quand',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
                   en: '/health/clinical-trials/characteristics?id=caracteristiques.quand',
+                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
                 },
               },
               {
@@ -156,8 +156,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.caracteristiques.duree',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.duree',
                   en: '/health/clinical-trials/characteristics?id=caracteristiques.duree',
+                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.duree',
                 },
               },
               {
@@ -165,8 +165,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.caracteristiques.combien',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.combien',
                   en: '/health/clinical-trials/characteristics?id=caracteristiques.combien',
+                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.combien',
                 },
               },
               {
@@ -174,8 +174,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.caracteristiques.types',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.types',
                   en: '/health/clinical-trials/characteristics?id=caracteristiques.types',
+                  fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.types',
                 },
               },
             ]}
@@ -263,8 +263,8 @@ function EssaisCliniques() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
                   en: '/health/clinical-trials/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                  fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
                 },
               },
               {
@@ -272,8 +272,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.promoteurs.dynamique-ouverture',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
                   en: '/health/clinical-trials/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                  fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
                 },
               },
               {
@@ -281,8 +281,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.promoteurs.impact',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.impact',
                   en: '/health/clinical-trials/lead-sponsors?id=promoteurs.impact',
+                  fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.impact',
                 },
               },
             ]}
@@ -333,8 +333,8 @@ function EssaisCliniques() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
                   en: '/health/clinical-trials/results?id=resultats.type-diffusion',
+                  fr: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
                 },
               },
               {
@@ -342,8 +342,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.resultats.type-diffusion',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
                   en: '/health/clinical-trials/results?id=resultats.type-diffusion',
+                  fr: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
                 },
               },
               {
@@ -351,8 +351,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.resultats.plan-partage',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/resultats?id=resultats.plan-partage',
                   en: '/health/clinical-trials/results?id=resultats.plan-partage',
+                  fr: '/sante/essais-cliniques/resultats?id=resultats.plan-partage',
                 },
               },
               {
@@ -360,8 +360,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.resultats.delai-diffusion',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/resultats?id=resultats.delai-diffusion',
                   en: '/health/clinical-trials/results?id=resultats.delai-diffusion',
+                  fr: '/sante/essais-cliniques/resultats?id=resultats.delai-diffusion',
                 },
               },
               {
@@ -369,8 +369,8 @@ function EssaisCliniques() {
                   id: 'app.health-interventional.navigation.resultats.publication',
                 }),
                 href: {
-                  fr: '/sante/essais-cliniques/resultats?id=resultats.publication',
                   en: '/health/clinical-trials/results?id=resultats.publication',
+                  fr: '/sante/essais-cliniques/resultats?id=resultats.publication',
                 },
                 isDisplayed: !isInProduction(),
               },

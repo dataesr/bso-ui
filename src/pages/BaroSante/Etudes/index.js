@@ -71,8 +71,8 @@ function EtudesObservationnelles() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/general?id=general.dynamique',
                   en: '/health/observational-studies/general?id=general.dynamique',
+                  fr: '/sante/etudes-observationnelles/general?id=general.dynamique',
                 },
               },
               {
@@ -81,8 +81,8 @@ function EtudesObservationnelles() {
                   default: 'dynamique',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/general?id=general.dynamique',
                   en: '/health/observational-studies/general?id=general.dynamique',
+                  fr: '/sante/etudes-observationnelles/general?id=general.dynamique',
                 },
               },
               {
@@ -91,8 +91,8 @@ function EtudesObservationnelles() {
                   default: 'trajectoires',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/general?id=general.directions',
                   en: '/health/observational-studies/general?id=general.directions',
+                  fr: '/sante/etudes-observationnelles/general?id=general.directions',
                 },
               },
             ]}
@@ -140,8 +140,8 @@ function EtudesObservationnelles() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
                   en: '/health/observational-studies/characteristics?id=caracteristiques.quand',
+                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
                 },
               },
               {
@@ -149,8 +149,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.caracteristiques.quand',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
                   en: '/health/observational-studies/characteristics?id=caracteristiques.quand',
+                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
                 },
               },
               {
@@ -158,8 +158,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.caracteristiques.duree',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.duree',
                   en: '/health/observational-studies/characteristics?id=caracteristiques.duree',
+                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.duree',
                 },
               },
               {
@@ -167,8 +167,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.caracteristiques.combien',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.combien',
                   en: '/health/observational-studies/characteristics?id=caracteristiques.combien',
+                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.combien',
                 },
               },
               {
@@ -176,8 +176,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.caracteristiques.types',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.types',
                   en: '/health/observational-studies/characteristics?id=caracteristiques.types',
+                  fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.types',
                 },
               },
             ]}
@@ -247,8 +247,8 @@ function EtudesObservationnelles() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
                   en: '/health/observational-studies/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                  fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
                 },
               },
               {
@@ -256,8 +256,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.promoteurs.dynamique-ouverture',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
                   en: '/health/observational-studies/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                  fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
                 },
               },
               {
@@ -265,8 +265,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.promoteurs.impact',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.impact',
                   en: '/health/observational-studies/lead-sponsors?id=promoteurs.impact',
+                  fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.impact',
                 },
               },
             ]}
@@ -318,8 +318,8 @@ function EtudesObservationnelles() {
                   id: 'app.publi.navigation.go-to-page',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
                   en: '/health/observational-studies/results?id=resultats.type-diffusion',
+                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
                 },
               },
               {
@@ -327,8 +327,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.resultats.type-diffusion',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
                   en: '/health/observational-studies/results?id=resultats.type-diffusion',
+                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
                 },
               },
               {
@@ -336,8 +336,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.resultats.plan-partage',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.plan-partage',
                   en: '/health/observational-studies/results?id=resultats.plan-partage',
+                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.plan-partage',
                 },
               },
               {
@@ -345,8 +345,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.resultats.delai-diffusion',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.delai-diffusion',
                   en: '/health/observational-studies/results?id=resultats.delai-diffusion',
+                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.delai-diffusion',
                 },
               },
               {
@@ -354,8 +354,8 @@ function EtudesObservationnelles() {
                   id: 'app.health-observational.navigation.resultats.publication',
                 }),
                 href: {
-                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.publication',
                   en: '/health/observational-studies/results?id=resultats.publication',
+                  fr: '/sante/etudes-observationnelles/resultats?id=resultats.publication',
                 },
               },
             ]}
