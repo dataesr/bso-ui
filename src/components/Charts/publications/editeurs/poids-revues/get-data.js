@@ -41,7 +41,7 @@ function useGetData(observationSnap, domain) {
       totalPublications += dataYear.doc_count;
       publicationsInList += dataYear.by_predatory.buckets.find(
         (el) => el.key === 1,
-      ).doc_count;
+      )?.doc_count || 0;
       /* predatory.push({
         publicationDate: dataYear.key,
         bsoDomain,

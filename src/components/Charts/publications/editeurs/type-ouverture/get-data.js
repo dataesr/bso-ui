@@ -45,48 +45,48 @@ function useGetData(observationSnap, domain) {
         publicationDate: dataYear.key,
         bsoDomain,
         y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold')
-          .doc_count,
+          ?.doc_count || 0,
         y_tot: dataYear.doc_count,
         y:
           (100
             * dataYear.by_oa_colors.buckets.find((el) => el.key === 'gold')
-              .doc_count)
+              ?.doc_count)
           / dataYear.doc_count,
       });
       hybridData.push({
         bsoDomain,
         publicationDate: dataYear.key,
         y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
-          .doc_count,
+          ?.doc_count || 0,
         y_tot: dataYear.doc_count,
         y:
           (100
             * dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
-              .doc_count)
+              ?.doc_count)
           / dataYear.doc_count,
       });
       diamondData.push({
         bsoDomain,
         publicationDate: dataYear.key,
         y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond')
-          .doc_count,
+          ?.doc_count || 0,
         y_tot: dataYear.doc_count,
         y:
           (100
             * dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond')
-              .doc_count)
+              ?.doc_count)
           / dataYear.doc_count,
       });
       otherData.push({
         bsoDomain,
         publicationDate: dataYear.key,
         y_abs: dataYear.by_oa_colors.buckets.find((el) => el.key === 'other')
-          .doc_count,
+          ?.doc_count,
         y_tot: dataYear.doc_count,
         y:
           (100
             * dataYear.by_oa_colors.buckets.find((el) => el.key === 'other')
-              .doc_count)
+              ?.doc_count)
           / dataYear.doc_count,
       });
     });
