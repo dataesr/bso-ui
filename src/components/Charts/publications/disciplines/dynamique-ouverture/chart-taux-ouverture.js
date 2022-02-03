@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { getURLSearchParams, withDomain } from '../../../../../utils/helpers';
+import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -26,7 +26,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
   const { search } = useLocation();
-  const { commentsName } = getURLSearchParams(search);
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   let graphs = [];
@@ -53,7 +52,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
 
   return (
     <WrapperChart
-      dataTitle={{ commentsName }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

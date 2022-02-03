@@ -34,6 +34,7 @@ const Chart = ({ hasFooter, hasComments, domain, id }) => {
     idWithDomain,
     intl,
     dataGraph1,
+    search,
   );
 
   useEffect(() => {

@@ -30,15 +30,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap || '2021',
     domain,
   );
-  const { categories, comments, dataGraph } = allData;
-  const dataTitle = comments;
+  const { categories, dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
     dataGraph,
-    dataTitle,
+    search,
   );
 
   useEffect(() => {
@@ -48,7 +47,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

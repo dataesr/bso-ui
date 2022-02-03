@@ -18,7 +18,6 @@ import {
   capitalize,
   getCSSValue,
   getObservationLabel,
-  getURLSearchParams,
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
@@ -39,7 +38,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { search } = useLocation();
-  const { commentsName } = getURLSearchParams(search);
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   const orangeSoft75 = getCSSValue('--orange-soft-75');
@@ -165,7 +163,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={{ commentsName }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

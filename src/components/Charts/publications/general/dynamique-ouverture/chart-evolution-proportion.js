@@ -27,8 +27,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { observationSnaps } = useGlobals();
   const { search } = useLocation();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
-  const { categories, comments, dataGraph2 } = data;
-  const dataTitle = comments;
+  const { categories, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -45,7 +44,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

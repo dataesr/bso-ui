@@ -9,7 +9,6 @@ import {
   capitalize,
   getCSSValue,
   getObservationLabel,
-  getURLSearchParams,
 } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
@@ -18,7 +17,6 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const { search } = useLocation();
-  const { commentsName } = getURLSearchParams(search);
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -192,7 +190,6 @@ function useGetData(observationSnaps, domain = '') {
           - dataGraph2[1]?.data.slice(-1)[0].y
         ).toFixed(2),
         maxPublicationDate: dataGraph2[0]?.lastPublicationDate,
-        commentsName,
         year1,
         year2,
         year3,
@@ -211,7 +208,7 @@ function useGetData(observationSnaps, domain = '') {
         dataGraph2,
       };
     },
-    [domain, intl, search, commentsName],
+    [domain, intl, search],
   );
 
   useEffect(() => {
