@@ -46,16 +46,14 @@ function useGetData(observationSnaps, domain = '') {
               dataGraph[item.key] = [];
               disciplines.push(item.key);
             }
+            const oaPublicationsCount = item.by_is_oa.buckets.find((x) => x.key === 1)?.doc_count || 0;
             dataGraph[item.key].push({
               x: idx,
               bsoDomain,
               observation_date: currentSnap,
               y_tot: item.doc_count,
-              y_abs: item.by_is_oa.buckets.find((x) => x.key === 1).doc_count,
-              y:
-                (item.by_is_oa.buckets.find((x) => x.key === 1).doc_count
-                  / item.doc_count)
-                * 100,
+              y_abs: oaPublicationsCount,
+              y: (oaPublicationsCount / item.doc_count) * 100,
             });
           });
       });
@@ -91,7 +89,7 @@ function useGetData(observationSnaps, domain = '') {
       let bestProgressionDiscipline = '';
       let year1 = '';
       let year2 = '';
-      if (dataHist.length > 0) {
+      if (dataHist && dataHist.length > 0) {
         const serieLength = dataHist[0]?.data.length - 1;
         dataHist = dataHist.sort(
           (a, b) => b.data[serieLength].y - a.data[serieLength].y,
@@ -133,7 +131,7 @@ function useGetData(observationSnaps, domain = '') {
           'https://www.arc.gov.au/excellence-research-australia/era-2018-journal-list#-strong-fields-of-research-codes-fors-strong-',
           'https://www.abs.gov.au/statistics/classifications/australian-and-new-zealand-standard-research-classification-anzsrc/latest-release',
           'https://www.ncbi.nlm.nih.gov/mesh',
-          `../..${ intl.formatMessage({ id: 'url.about.methodology' }) }`,
+          `../..${intl.formatMessage({ id: 'url.about.methodology' })}`,
         ],
         dataHist,
       };

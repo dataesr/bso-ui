@@ -103,7 +103,10 @@ GraphItem.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired,
+      href: PropTypes.shape({
+        en: PropTypes.string.isRequired,
+        fr: PropTypes.string.isRequired,
+      }),
       isDisplayed: PropTypes.bool,
     }),
   ).isRequired,
