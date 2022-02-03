@@ -26,7 +26,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isDetailed, setIsDetailed] = useState(false);
@@ -53,10 +53,11 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraphTreemap,
     dataTitle,
+    search,
   );
 
   useEffect(() => {

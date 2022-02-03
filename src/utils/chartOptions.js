@@ -174,8 +174,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.politiques-ouverture.chart-classement': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.chart.height = '1000px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.politiques-ouverture.chart-classement.tooltip',
@@ -1384,8 +1384,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.repartition-licences.chart-repartition': {
-    getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.repartition-licences.chart-repartition.tooltip',
       });
@@ -1420,8 +1420,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.repartition-licences.chart-classement': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.chart.height = '700px';
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.repartition-licences.chart-classement.tooltip',
@@ -1643,8 +1643,8 @@ export const chartOptions = {
     },
   },
   'publi.repositories.plus-utilisees.chart-nombre-documents': {
-    getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.plus-utilisees.chart-nombre-documents.tooltip',
       });
@@ -1778,8 +1778,8 @@ export const chartOptions = {
     },
   },
   'publi.repositories.dynamique-hal.chart-couverture-hal': {
-    getOptions: (id, intl, publicationYears, data) => {
-      const options = getGraphOptions({ id, intl });
+    getOptions: (id, intl, publicationYears, data, search) => {
+      const options = getGraphOptions({ id, intl, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-hal.chart-couverture-hal.tooltip',
       });

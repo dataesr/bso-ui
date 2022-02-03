@@ -29,13 +29,14 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
   const { publicationYears, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
+  const { search } = useLocation();
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     publicationYears,
     dataGraph2,
+    search,
   );
-  const { search } = useLocation();
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl, search));
