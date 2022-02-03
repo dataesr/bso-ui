@@ -32,14 +32,15 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap || '2021',
     domain,
   );
-  const { comments, dataGraph3 } = allData;
-  const dataTitle = { publicationYear: beforeLastObservationSnap, ...comments };
+  const { dataGraph3 } = allData;
+  const dataTitle = { publicationYear: beforeLastObservationSnap };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     dataGraph3,
     dataTitle,
+    search,
   );
 
   useEffect(() => {

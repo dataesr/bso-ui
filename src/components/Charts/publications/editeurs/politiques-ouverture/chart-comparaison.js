@@ -24,7 +24,7 @@ HCExportingData(Highcharts);
 HCMore(Highcharts);
 HighchartsAnnotations(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -37,9 +37,10 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     bubbleGraph,
+    search,
   );
 
   useEffect(() => {
@@ -48,19 +49,19 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={false}
-      isLoading={isLoading || !bubbleGraph}
+      hasFooter={hasFooter}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !bubbleGraph}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />

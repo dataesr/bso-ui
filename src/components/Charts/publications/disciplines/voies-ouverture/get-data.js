@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -11,10 +10,14 @@ import {
   getCSSValue,
   getObservationLabel,
   getPublicationYearFromObservationSnap,
-  getURLSearchParams,
 } from '../../../../../utils/helpers';
 
-function useGetData(beforeLastObservationSnap, observationSnap, domain) {
+function useGetData(
+  beforeLastObservationSnap,
+  observationSnap,
+  domain,
+  search,
+) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -22,8 +25,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
-  const { search } = useLocation();
-  const { commentsName } = getURLSearchParams(search);
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -209,7 +210,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       }
 
       const comments = {
-        commentsName,
         discipline,
         observationYear: getObservationLabel(lastObservationSnap, intl),
         publicationYear: beforeLastObservationSnap,
@@ -227,7 +227,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     [
       beforeLastObservationSnap,
       bsoDomain,
-      commentsName,
       disciplineField,
       domain,
       intl,
