@@ -695,8 +695,8 @@ export const chartOptions = {
     },
   },
   'publi.general.genres-ouverture.chart-repartition-genres': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
       });
