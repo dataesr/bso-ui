@@ -25,10 +25,10 @@ To create a new release, use `npm version patch|minor|major`.
 * `npm build`
 * `npm eject`
 * `npm prepare`
-* `npm run deploy:patch`
+* `npm run deploy:[patch|minor|major]`
 * `npm start`
 * `npm test`
-* `npm version patch|minor|major`
+* `npm version [patch|minor|major]`
 
 ## Ajouter une nouvelle icône BSSO
 
@@ -107,7 +107,7 @@ import GlossaryEntries from 'glossary.json';
 
 
 ```sh
-npm run deploy:patch
+npm run deploy:[patch|minor|major]
 git checkout staging # To come back on the "staging" branch
 ```
 
