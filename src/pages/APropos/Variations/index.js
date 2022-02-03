@@ -301,7 +301,7 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://www6.inrae.fr/dipso/La-science-ouverte-a-INRAE/Barometre-Science-Ouverte-INRAE'
+                    href='https://www6.inrae.fr/dipso/La-science-ouverte-a-INRAE/Barometre-Science-Ouverte-INRAE2'
                     target='_blank'
                     rel='noreferrer'
                   >
