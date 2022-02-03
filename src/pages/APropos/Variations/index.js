@@ -247,7 +247,7 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte.aspx'
+                    href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte-2021.aspx'
                     target='_blank'
                     rel='noreferrer'
                   >
