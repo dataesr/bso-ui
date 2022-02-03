@@ -47,35 +47,28 @@ function useGetData(lastObservationSnap, domain) {
     const greenOnly = [];
     const categories = [];
     data.forEach((elem) => {
+      const openByPublishersPublicationsCount = elem.by_oa_colors.buckets
+        .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
+        .reduce((a, b) => a + b.doc_count, 0);
       openByPublishers.push({
         bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
-        y_abs: elem.by_oa_colors.buckets
-          .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
-          .reduce((a, b) => a + b.doc_count, 0),
+        y_abs: openByPublishersPublicationsCount,
         y_tot: elem.doc_count,
-        y:
-          (100
-            * elem.by_oa_colors.buckets
-              .filter((el) => ['gold', 'hybrid', 'diamond', 'other'].includes(el.key))
-              .reduce((a, b) => a + b.doc_count, 0))
-          / elem.doc_count,
+        y: (openByPublishersPublicationsCount / elem.doc_count) * 100,
       });
+      const greenOnlyPublicationsCount = elem.by_oa_colors.buckets.find((el) => el.key === 'green_only')
+        ?.doc_count || 0;
       greenOnly.push({
         bsoDomain,
         publicationDate:
           getPublicationYearFromObservationSnap(lastObservationSnap),
         publisher: elem.key,
-        y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green_only')
-          ?.doc_count,
+        y_abs: greenOnlyPublicationsCount,
         y_tot: elem.doc_count,
-        y:
-          (100
-            * elem.by_oa_colors.buckets.find((el) => el.key === 'green_only')
-              ?.doc_count)
-          / elem.doc_count,
+        y: (greenOnlyPublicationsCount / elem.doc_count) * 100,
       });
       const totalCurrent = elem.doc_count;
       const nameClean = elem.key;
@@ -124,10 +117,10 @@ function useGetData(lastObservationSnap, domain) {
         y:
           100
           * (elem.by_oa_colors.buckets.find((el) => el.key === 'green')
-            .doc_count
-            / elem.doc_count),
-        y_abs: elem.by_oa_colors.buckets.find((el) => el.key === 'green')
-          .doc_count,
+            ?.doc_count || 0 / elem.doc_count),
+        y_abs:
+          elem.by_oa_colors.buckets.find((el) => el.key === 'green')
+            ?.doc_count || 0,
         z: elem.doc_count,
       });
     });
