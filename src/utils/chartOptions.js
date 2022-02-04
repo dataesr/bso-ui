@@ -31,10 +31,12 @@ export function getGraphOptions({
   dataTitle = {},
   search = undefined,
 }) {
+  let otherSources = [];
   if (search) {
-    const { commentsName } = getURLSearchParams(search);
+    const { commentsName, name } = getURLSearchParams(search);
     // eslint-disable-next-line no-param-reassign
     dataTitle.commentsName = commentsName;
+    otherSources = [name];
   }
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
   const legend = intl.formatMessage({ id: `${id}.legend`, defaultMessage: '' });
@@ -44,7 +46,7 @@ export function getGraphOptions({
   });
   const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: '' });
   const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: '' });
-  const source = getSource(id);
+  const source = getSource(id, otherSources);
   const title = intl.formatMessage(
     { id: `${titleId}.title`, defaultMessage: '' },
     dataTitle,
