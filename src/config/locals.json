@@ -5,6 +5,10 @@
     "displayTitle": "false",
     "startYear": 2016
   },
+  "130015332": {
+    "name": "Aix-Marseille Université",
+    "commentsName": "de l'AMU"
+  },
   "130026149": {
     "name": "Université PSL",
     "commentsName": "de l'université PSL"
@@ -18,7 +22,7 @@
     "commentsName": "de l'école des mines d'Albi-Carmaux"
   },
   "18009202500121": {
-    "name": "Ecole nationale supérieure Mines-Télécom Atlantique Bretagne Pays de la Loire - Campus de Nantes (IMT ATLANTIQUE)",
+    "name": "IMT Atlantique",
     "commentsName": "de l'IMT Atlantique"
   },
   "192512150": {

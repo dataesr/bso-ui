@@ -224,8 +224,7 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              Liste des déclinaisons locales des BSO (ou équivalent de suivi du
-              taux open access) :
+              Liste des déclinaisons locales des BSO utilisant le cadre proposé par le BSO général :
               <ul className='style-disc'>
                 <li>
                   <a
@@ -238,6 +237,15 @@ function Variations() {
                 </li>
                 <li>
                   <a
+                    href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte-2021.aspx'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CEA
+                  </a>
+                </li>
+                <li>
+                  <a
                     href='https://bibliotheques.ensam.eu/page/science-ouverte'
                     target='_blank'
                     rel='noreferrer'
@@ -245,13 +253,21 @@ function Variations() {
                     Arts et Métiers Sciences & Technologies
                   </a>
                 </li>
+              </ul>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              Liste des autres déclinaisons locales des BSO (ou équivalent de suivi du
+              taux open access) :
+              <ul className='style-disc'>
                 <li>
                   <a
-                    href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte-2021.aspx'
+                    href='https://aau.archi.fr/laboratoire-aau/science-ouverte/'
                     target='_blank'
                     rel='noreferrer'
                   >
-                    CEA
+                    CRENAU - UMR AAU
                   </a>
                 </li>
                 <li>
