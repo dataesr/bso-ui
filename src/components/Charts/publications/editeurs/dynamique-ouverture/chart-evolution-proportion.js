@@ -24,7 +24,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [publishers, setPublishers] = useState([]);
@@ -36,7 +36,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     publisher,
     domain,
   );
-  const { dataGraph2 } = data;
+  const { categories, dataGraph2 } = data;
   const { search } = useLocation();
   const query = getFetchOptions({
     key: 'publishersList',
@@ -44,6 +44,22 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     search,
     parameters: [lastObservationSnap],
   });
+  const idWithDomain = withDomain(id, domain);
+  const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
+  const dataTitle = { publisherTitle };
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph2,
+    dataTitle,
+    categories,
+    search,
+  );
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl, search));
+  }, [data, idWithDomain, intl, search]);
+
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
@@ -54,20 +70,6 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const idWithDomain = withDomain(id, domain);
-  const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
-  const dataTitle = { publisherTitle };
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    dataGraph2,
-    dataTitle,
-  );
-
-  useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl, search));
-  }, [data, idWithDomain, intl, search]);
 
   return (
     <WrapperChart

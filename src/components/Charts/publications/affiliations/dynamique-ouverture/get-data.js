@@ -117,6 +117,9 @@ function useGetData(
       serie.publicationDate = filtered[filtered.length - 1].key;
       dataGraph2.push(serie);
     });
+
+    const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
+
     const dataGraph1 = dataGraph2.map((el) => ({
       name: el.name, // observation date
       bsoDomain,
@@ -132,7 +135,12 @@ function useGetData(
       },
     }));
 
-    return { affiliations, dataGraph1, dataGraph2 };
+    return {
+      affiliations,
+      categories,
+      dataGraph1,
+      dataGraph2,
+    };
   }
 
   useEffect(() => {

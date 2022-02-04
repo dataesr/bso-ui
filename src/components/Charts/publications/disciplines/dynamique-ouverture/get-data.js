@@ -96,7 +96,9 @@ function useGetData(observationSnaps, domain = '') {
         );
         bestRateValue = dataHist[0]?.data[serieLength].y.toFixed(0);
         bestRateDiscipline = intl.formatMessage({
-          id: `app.discipline.${dataHist[0].name}`,
+          id: `app.discipline.${dataHist[0].name
+            .replace(/\n/g, '')
+            .replace('  ', ' ')}`,
         });
         year1 = dataHist[0].data[serieLength - 1].name;
         year2 = dataHist[0].data[serieLength].name.replace('<br/>', ' ');
@@ -111,7 +113,9 @@ function useGetData(observationSnaps, domain = '') {
         bestProgressionValue1 = dataHist[0].data[0].y.toFixed(0);
         bestProgressionValue2 = dataHist[0].data[serieLength].y.toFixed(0);
         bestProgressionDiscipline = intl.formatMessage({
-          id: `app.discipline.${dataHist[0].name}`,
+          id: `app.discipline.${dataHist[0].name
+            .replace(/\n/g, '')
+            .replace('  ', ' ')}`,
         });
       }
 
