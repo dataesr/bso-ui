@@ -39,16 +39,19 @@ export function getGraphOptions({
     otherSources = [name];
   }
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
-  const legend = intl.formatMessage({ id: `${id}.legend`, defaultMessage: '' });
+  const legend = intl.formatMessage({
+    id: `${id}.legend`,
+    defaultMessage: ' ',
+  });
   const tooltip = intl.formatMessage({
     id: `${titleId}.tooltip`,
-    defaultMessage: '',
+    defaultMessage: ' ',
   });
-  const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: '' });
-  const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: '' });
+  const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
+  const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: ' ' });
   const source = getSource(id, otherSources);
   const title = intl.formatMessage(
-    { id: `${titleId}.title`, defaultMessage: '' },
+    { id: `${titleId}.title`, defaultMessage: ' ' },
     dataTitle,
   );
   return {
@@ -253,8 +256,8 @@ export const chartOptions = {
   },
   'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
     {
-      getOptions: (id, intl, data, dataTitle) => {
-        const options = getGraphOptions({ id, intl, dataTitle });
+      getOptions: (id, intl, data, dataTitle, search) => {
+        const options = getGraphOptions({ id, intl, dataTitle, search });
         options.tooltip.pointFormat = intl.formatMessage({
           id: 'app.publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.tooltip',
         });
@@ -774,8 +777,8 @@ export const chartOptions = {
     },
   },
   'publi.general.langues-ouverture.chart-repartition-publications': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.general.genres-ouverture.chart-repartition-taux.tooltip',
       });

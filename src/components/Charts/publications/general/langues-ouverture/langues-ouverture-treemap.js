@@ -22,7 +22,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const idWithDomain = withDomain(id, domain);
@@ -36,7 +36,7 @@ const Chart = ({ hasComments, id, domain }) => {
     isError,
   } = useGetData(lastObservationSnap || '2020', isOa, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph,
   );
