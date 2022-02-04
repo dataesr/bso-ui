@@ -37,10 +37,16 @@ export function getGraphOptions({
     dataTitle.commentsName = commentsName;
   }
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
-  const legend = intl.formatMessage({ id: `${id}.legend`, defaultMessage: '' });
-  const tooltip = intl.formatMessage({ id: `${titleId}.tooltip` });
-  const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: '' });
-  const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: '' });
+  const legend = intl.formatMessage({
+    id: `${id}.legend`,
+    defaultMessage: ' ',
+  });
+  const tooltip = intl.formatMessage({
+    id: `${titleId}.tooltip`,
+    defaultMessage: ' ',
+  });
+  const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
+  const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: ' ' });
   const source = getSource(id);
   const title = intl.formatMessage({ id: `${titleId}.title` }, dataTitle);
   return {
@@ -2272,7 +2278,7 @@ export const chartOptions = {
   },
   'caracteristiques.combien.chart-proportion-modes-repartition': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
