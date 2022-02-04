@@ -51,35 +51,35 @@ function useGetData(observationSnaps, domain = '') {
               x: idx,
               bsoDomain,
               observation_date: currentSnap,
-              y_tot: item.doc_count,
+              y_tot: item?.doc_count || 0,
               y_abs: oaPublicationsCount,
-              y: (oaPublicationsCount / item.doc_count) * 100,
+              y: (oaPublicationsCount / item?.doc_count || 0) * 100,
             });
           });
       });
 
       let dataHist = [];
       disciplines.forEach((discipline) => {
+        const dataByDiscipline = dataGraph[discipline];
         dataHist.push({
           name: discipline,
           bsoDomain,
           data: datesObservation
             .slice(0) // make a copy before sorting in ascending order !
             .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
-            .map((obs) => ({
-              name: getObservationLabel(obs, intl, true),
-              bsoDomain,
-              y_tot: dataGraph[discipline].find(
-                (x) => x.observation_date === obs,
-              ).y_tot,
-              y_abs: dataGraph[discipline].find(
-                (x) => x.observation_date === obs,
-              ).y_abs,
-              y: dataGraph[discipline].find((x) => x.observation_date === obs)
-                .y,
-              x: dataGraph[discipline].find((x) => x.observation_date === obs)
-                .x,
-            })),
+            .map((obs) => {
+              const dataByDisciplineByObservationDate = dataByDiscipline.find(
+                (item) => item.observation_date === obs,
+              );
+              return {
+                name: getObservationLabel(obs, intl, true),
+                bsoDomain,
+                y_tot: dataByDisciplineByObservationDate?.y_tot || 0,
+                y_abs: dataByDisciplineByObservationDate?.y_abs || 0,
+                y: dataByDisciplineByObservationDate?.y || 0,
+                x: dataByDisciplineByObservationDate?.x || 0,
+              };
+            }),
         });
       });
       let bestRateValue = '';
