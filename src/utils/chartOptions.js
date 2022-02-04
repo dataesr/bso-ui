@@ -37,18 +37,18 @@ export function getGraphOptions({
     dataTitle.commentsName = commentsName;
   }
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
-  const legend = intl.formatMessage({
-    id: `${id}.legend`,
-    defaultMessage: ' ',
-  });
+  const legend = intl.formatMessage({ id: `${id}.legend`, defaultMessage: '' });
   const tooltip = intl.formatMessage({
     id: `${titleId}.tooltip`,
-    defaultMessage: ' ',
+    defaultMessage: '',
   });
-  const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
-  const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: ' ' });
+  const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: '' });
+  const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: '' });
   const source = getSource(id);
-  const title = intl.formatMessage({ id: `${titleId}.title` }, dataTitle);
+  const title = intl.formatMessage(
+    { id: `${titleId}.title`, defaultMessage: '' },
+    dataTitle,
+  );
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
@@ -579,6 +579,7 @@ export const chartOptions = {
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, data, search) => {
       const { startYear } = getURLSearchParams(search);
+      const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({
         id,
         intl,
@@ -587,6 +588,7 @@ export const chartOptions = {
       options.chart.type = 'spline';
       options.xAxis = {
         categories,
+        tickInterval: 1,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
@@ -594,11 +596,10 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: `${id}.tooltip`,
-      });
       options.plotOptions = {
-        series: { pointStart: startYear },
+        series: {
+          pointStart,
+        },
         spline: {
           dataLabels: {
             enabled: true,
@@ -902,14 +903,19 @@ export const chartOptions = {
     },
   },
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data, dataTitle) => {
+    getOptions: (id, intl, data, categories, dataTitle, search) => {
+      const { startYear } = getURLSearchParams(search);
+      const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.affiliations.dynamique-ouverture.chart-evolution-proportion.tooltip',
       });
       options.chart.type = 'spline';
       options.xAxis = {
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        tickInterval: 1,
+        title: {
+          text: intl.formatMessage({ id: 'app.publication-year' }),
+        },
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
@@ -917,7 +923,9 @@ export const chartOptions = {
         id: 'app.observation-dates',
       });
       options.plotOptions = {
-        series: { pointStart: 2013 },
+        series: {
+          pointStart,
+        },
         spline: {
           dataLabels: {
             enabled: true,
@@ -1068,7 +1076,9 @@ export const chartOptions = {
     },
   },
   'publi.publishers.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data, dataTitle) => {
+    getOptions: (id, intl, data, dataTitle, categories, search) => {
+      const { startYear } = getURLSearchParams(search);
+      const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.dynamique-ouverture.chart-evolution-proportion.tooltip',
@@ -1076,14 +1086,22 @@ export const chartOptions = {
       options.chart.type = 'spline';
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.xAxis.title.text = intl.formatMessage({
-        id: 'app.publication-year',
-      });
+      options.xAxis = {
+        categories,
+        tickInterval: 1,
+        title: {
+          text: intl.formatMessage({
+            id: 'app.publication-year',
+          }),
+        },
+      };
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
       options.plotOptions = {
-        series: { pointStart: 2013 },
+        series: {
+          pointStart,
+        },
         spline: {
           dataLabels: {
             enabled: true,
@@ -1102,7 +1120,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-
       return options;
     },
   },
@@ -1560,7 +1577,9 @@ export const chartOptions = {
     },
   },
   'publi.repositories.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data, dataTitle) => {
+    getOptions: (id, intl, data, categories, dataTitle, search) => {
+      const { startYear } = getURLSearchParams(search);
+      const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl, dataTitle });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-ouverture.chart-evolution-proportion.tooltip',
@@ -1571,11 +1590,14 @@ export const chartOptions = {
       options.xAxis.title.text = intl.formatMessage({
         id: 'app.publication-year',
       });
+      options.xAxis.tickInterval = 1;
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
       options.plotOptions = {
-        series: { pointStart: 2013 },
+        series: {
+          pointStart,
+        },
         spline: {
           dataLabels: {
             enabled: true,

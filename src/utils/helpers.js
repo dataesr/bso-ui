@@ -294,7 +294,7 @@ export function getURLSearchParams(search) {
   let displayTitle;
   let endYear;
   let name;
-  let startYear;
+  let startYear = 2013;
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals[bsoLocalAffiliation].commentsName

@@ -126,7 +126,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
-        name: observationSnapData.observationSnap, // observation date
+        name: observationSnapData.observationSnap,
         publicationDate: observationSnapData.data.publicationDates[index],
       }));
       serie.ratios = observationSnapData.data.oaHostType.map(
@@ -138,7 +138,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       dataGraph2.push(serie);
     });
     const dataGraph1 = dataGraph2.map((el) => ({
-      name: el.name, // observation date
+      name: el.name,
       bsoDomain,
       y: el.data.length ? el.data[el.data.length - 1].y : 0,
       publisher:
@@ -148,6 +148,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
     }));
+
+    const categories = dataGraph2?.[0]?.data.map(
+      (item) => item.publicationDate,
+    );
 
     let observationYear = '';
     let publicationYear = '';
@@ -167,29 +171,40 @@ function useGetData(observationSnaps, needle = '*', domain) {
       && dataGraph2[1]
       && dataGraph2[2]
     ) {
-      observationYear = dataGraph1[0].name;
-      publicationYear = dataGraph1[1].name;
-      beforePublicationYear = dataGraph1[2].name;
-      rate = dataGraph1[0].y.toFixed(0);
-      year1 = dataGraph2[2].name;
-      year2 = dataGraph2[1].name;
-      year3 = dataGraph2[1]?.data?.[4]?.publicationDate;
-      rate1 = dataGraph2[2]?.data?.[4]?.y.toFixed(0);
-      rate2 = dataGraph2[1]?.data?.[4]?.y.toFixed(0);
+      observationYear = dataGraph1?.[0].name;
+      publicationYear = dataGraph1?.[1].name;
+      beforePublicationYear = dataGraph1?.[2].name;
+      rate = dataGraph1?.[0]?.y.toFixed(0);
+      year1 = dataGraph2?.[3]?.name;
+      year2 = dataGraph2?.[0]?.name;
+      year3 = 2017;
+      rate1 = dataGraph2
+        .find((item) => item.name === year1)
+        ?.data?.find((item) => item.publicationDate === year3)
+        ?.y.toFixed(0);
+      rate2 = dataGraph2
+        .find((item) => item.name === year2)
+        ?.data?.find((item) => item.publicationDate === year3)
+        ?.y.toFixed(0);
     }
     const comments = {
+      beforePublicationYear,
       observationYear,
       publicationYear,
-      beforePublicationYear,
       rate,
+      rate1,
+      rate2,
       year1,
       year2,
       year3,
-      rate1,
-      rate2,
     };
 
-    return { dataGraph1, dataGraph2, comments };
+    return {
+      categories,
+      comments,
+      dataGraph1,
+      dataGraph2,
+    };
   }
 
   useEffect(() => {

@@ -146,6 +146,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
       publicationDate: el.publicationDate,
     }));
 
+    const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
+
     let year = '';
     let y = '';
     let publicationDate = '';
@@ -180,7 +182,12 @@ function useGetData(observationSnaps, needle = '*', domain) {
       year2,
     };
 
-    return { comments, dataGraph1, dataGraph2 };
+    return {
+      categories,
+      comments,
+      dataGraph1,
+      dataGraph2,
+    };
   }
 
   useEffect(() => {

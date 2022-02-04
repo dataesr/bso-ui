@@ -21,7 +21,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [affiliation, setAffiliation] = useState('*');
@@ -34,17 +34,19 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     affiliation,
     domain,
   );
-  const { dataGraph2 } = data;
+  const { categories, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const affiliationTitle = affiliation !== '*'
     ? ` (${intl.formatMessage({ id: `app.affiliations.${affiliation}` })})`
     : '';
   const dataTitle = { affiliationTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph2,
+    categories,
     dataTitle,
+    search,
   );
 
   useEffect(() => {
