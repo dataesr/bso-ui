@@ -27,15 +27,19 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 highchartsMore(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
+const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
   const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
-  const idWithDomainAndStudyType = withtStudyType(
-    withDomain(id, domain),
+  const idWithDomain = withDomain(id, domain);
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    allData,
     studyType,
   );
 
@@ -45,37 +49,30 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     );
   }, [allData, idWithDomainAndStudyType, intl, search]);
 
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    allData,
-    studyType,
-  );
-
   return (
     <WrapperChart
-      isLoading={isLoading || !allData}
-      isError={isError}
-      id={id}
-      domain={domain}
-      studyType={studyType}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !allData}
+      studyType={studyType}
     >
       <SimpleSelect
+        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
+        firstValue='*'
         label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
         onChange={(e) => setSponsorType(e.target.value)}
         options={allData?.sponsorTypes || []}
         selected={sponsorType}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomainAndStudyType}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomainAndStudyType}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />
