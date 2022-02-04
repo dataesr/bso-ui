@@ -256,10 +256,10 @@ function useGetData(studyType, sponsorType = '*') {
     const beforeStartData = dataGraphEvolution.find(
       (item) => item.name === beforeStartLabel,
     )?.data;
-    const value1 = beforeStartData[0]?.y?.toFixed(0);
-    const value2 = beforeStartData[beforeStartData.length - 1]?.y?.toFixed(0);
-    const year1 = beforeStartData[0]?.x;
-    const year2 = beforeStartData[beforeStartData.length - 1]?.x;
+    const value1 = beforeStartData?.[0]?.y?.toFixed(0);
+    const value2 = beforeStartData?.[beforeStartData.length - 1]?.y?.toFixed(0);
+    const year1 = beforeStartData?.[0]?.x;
+    const year2 = beforeStartData?.[beforeStartData.length - 1]?.x;
     const comments = {
       value1,
       value2,
