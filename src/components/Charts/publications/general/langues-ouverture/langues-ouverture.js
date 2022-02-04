@@ -19,7 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain, hasComments, hasFooter }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const chartRef = useRef();
   const intl = useIntl();
@@ -38,6 +38,7 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
     categories,
     dataGraph,
     dataTitle,
+    search,
   );
 
   useEffect(() => {

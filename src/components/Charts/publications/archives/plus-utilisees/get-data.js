@@ -28,42 +28,52 @@ function useGetData(observationSnap, domain) {
       parameters: [observationSnap],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    let dataGraph = res.data.aggregations.by_repository.buckets.map((el) => ({
-      name: el.key,
+    let dataGraph = res.data.aggregations.by_repository.buckets.map((item) => ({
+      name: item.key,
       bsoDomain,
-      y: el.doc_count,
+      y: item.doc_count,
       publicationDate: getPublicationYearFromObservationSnap(observationSnap),
     }));
     dataGraph = dataGraph.slice(0, 15);
 
-    let name1 = '';
-    let name2 = '';
-    let name3 = '';
-    let name4 = '';
-    let publicationDate = '';
-    let y = '';
-    if (dataGraph && dataGraph.length >= 4) {
-      name1 = dataGraph[0].name;
-      name2 = dataGraph[1].name;
-      name3 = dataGraph[2].name;
-      name4 = dataGraph[3].name;
-      publicationDate = dataGraph.find(
-        (item) => item.name === name1,
-      )?.publicationDate;
-      y = formatNumberByLang(
-        dataGraph.find((item) => item.name === name1)?.y,
-        lang,
-      );
-    }
+    const name1 = dataGraph?.[0]?.name || '';
+    const name2 = dataGraph?.[1]?.name || '';
+    const name3 = dataGraph?.[2]?.name || '';
+    const name4 = dataGraph?.[3]?.name || '';
+    const publicationDate = dataGraph?.find((item) => item.name === name1)?.publicationDate || '';
+    const value = formatNumberByLang(
+      dataGraph?.find((item) => item.name === name1)?.y || '',
+      lang,
+    );
+    const domain1 = intl.messages[`app.repositories.domain.${name1}`]
+      ? intl.formatMessage({ id: `app.repositories.domain.${name1}` })
+      : intl.formatMessage({ id: 'app.repositories.domain.all' });
+    const domain2 = intl.messages[`app.repositories.domain.${name2}`]
+      ? intl.formatMessage({ id: `app.repositories.domain.${name2}` })
+      : intl.formatMessage({ id: 'app.repositories.domain.all' });
+    const domain3 = intl.messages[`app.repositories.domain.${name3}`]
+      ? intl.formatMessage({ id: `app.repositories.domain.${name3}` })
+      : intl.formatMessage({ id: 'app.repositories.domain.all' });
+    const domain4 = intl.messages[`app.repositories.domain.${name4}`]
+      ? intl.formatMessage({ id: `app.repositories.domain.${name4}` })
+      : intl.formatMessage({ id: 'app.repositories.domain.all' });
     const comments = {
+      domain1,
+      domain2,
+      domain3,
+      domain4,
       name1,
       name2,
       name3,
       name4,
       publicationDate,
-      value: y,
+      value,
     };
-    return { comments, dataGraph };
+
+    return {
+      comments,
+      dataGraph,
+    };
   }
 
   useEffect(() => {
