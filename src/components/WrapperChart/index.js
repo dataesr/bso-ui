@@ -54,9 +54,10 @@ function WrapperChart({
     title = `${name} : ${title}`;
     otherSources = [name];
   }
-  const comments = intl.messages[`${idWithDomain}.comments`]
-    ? intl.formatMessage({ id: `${idWithDomain}.comments` })
-    : 'Commentaire non rédigé';
+  const comments = intl.formatMessage({
+    id: `${idWithDomain}.comments`,
+    defaultMessage: 'Commentaire non rédigé',
+  });
   const source = getSource(idWithDomain, otherSources);
 
   useEffect(() => {

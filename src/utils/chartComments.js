@@ -18,7 +18,7 @@ export default function customComments(data, id, intl, search = '') {
   });
   if (data) {
     comment = intl.formatMessage(
-      { id: `${id}.comments` },
+      { id: `${id}.comments`, defaultMessage: 'Commentaire non rédigé' },
       {
         ...(data.comments || {}),
         commentsName,
