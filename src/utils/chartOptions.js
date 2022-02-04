@@ -2272,7 +2272,7 @@ export const chartOptions = {
   },
   'caracteristiques.combien.chart-proportion-modes-repartition': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions(id, intl, studyType, dataTitle);
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         categories: data?.categoriesRepartition || [],
