@@ -50,23 +50,25 @@ function useGetData(
         },
       };
       data = data
-        .filter((el) => el.key !== 'unknown')
-        .map((el) => ({
-          by_oa_host_type: el.by_oa_host_type,
-          key: el.key,
-          total: el.doc_count,
+        .filter((item) => item.key !== 'unknown')
+        .map((item) => ({
+          by_oa_host_type: item.by_oa_host_type,
+          key: item.key,
+          total: item.doc_count,
           closed:
-            el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+            item.by_oa_host_type.buckets.find((item2) => item2.key === 'closed')
               ?.doc_count || 0,
           repository:
-            el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
-              ?.doc_count || 0,
+            item.by_oa_host_type.buckets.find(
+              (item2) => item2.key === 'repository',
+            )?.doc_count || 0,
           publisher:
-            el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
-              ?.doc_count || 0,
+            item.by_oa_host_type.buckets.find(
+              (item2) => item2.key === 'publisher',
+            )?.doc_count || 0,
           publisherRepo:
-            el.by_oa_host_type.buckets.find(
-              (item) => item.key === 'publisher;repository',
+            item.by_oa_host_type.buckets.find(
+              (item2) => item2.key === 'publisher;repository',
             )?.doc_count || 0,
         }))
         .sort((a, b) => a.closed / a.total - b.closed / b.total);
@@ -97,7 +99,7 @@ function useGetData(
           capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` })),
         );
         closed.push({
-          y: (100 * closedCurrent) / totalCurrent,
+          y: (closedCurrent / totalCurrent) * 100,
           y_abs: closedCurrent,
           y_tot: totalCurrent,
           x: catIndex,
@@ -107,7 +109,7 @@ function useGetData(
           bsoDomain,
         });
         oa.push({
-          y: (100 * oaCurrent) / totalCurrent,
+          y: (oaCurrent / totalCurrent) * 100,
           y_abs: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
@@ -117,7 +119,7 @@ function useGetData(
           bsoDomain,
         });
         repository.push({
-          y: (100 * repositoryCurrent) / totalCurrent,
+          y: (repositoryCurrent / totalCurrent) * 100,
           y_abs: repositoryCurrent,
           y_tot: totalCurrent,
           x: catIndex,
@@ -127,7 +129,7 @@ function useGetData(
           bsoDomain,
         });
         publisher.push({
-          y: (100 * publisherCurrent) / totalCurrent,
+          y: (publisherCurrent / totalCurrent) * 100,
           y_abs: publisherCurrent,
           y_tot: totalCurrent,
           x: catIndex,
@@ -137,7 +139,7 @@ function useGetData(
           bsoDomain,
         });
         publisherRepository.push({
-          y: (100 * publisherRepositoryCurrent) / totalCurrent,
+          y: (publisherRepositoryCurrent / totalCurrent) * 100,
           y_abs: publisherRepositoryCurrent,
           y_tot: totalCurrent,
           x: catIndex,
@@ -184,30 +186,10 @@ function useGetData(
         },
       ];
 
-      let discipline = '';
-      let publisherRate = '';
-      let publisherRepositoryRate = '';
-      let repositoryRate = '';
-      if (dataGraph[0] && dataGraph[0].data && dataGraph[0].data[0]) {
-        discipline = dataGraph[0].data[0].discipline.toLowerCase();
-        publisherRate = dataGraph[0].data[0].y.toFixed(0);
-      }
-      if (
-        dataGraph
-        && dataGraph[1]
-        && dataGraph[1].data
-        && dataGraph[1].data[0]
-      ) {
-        publisherRepositoryRate = dataGraph[1].data[0].y.toFixed(0);
-      }
-      if (
-        dataGraph
-        && dataGraph[2]
-        && dataGraph[2].data
-        && dataGraph[2].data[0]
-      ) {
-        repositoryRate = dataGraph[2].data[0].y.toFixed(0);
-      }
+      const discipline = dataGraph?.[0]?.data?.[0]?.discipline.toLowerCase() || '';
+      const publisherRate = dataGraph?.[0]?.data?.[0]?.y.toFixed(0) || 0;
+      const publisherRepositoryRate = dataGraph?.[1]?.data?.[0]?.y.toFixed(0) || 0;
+      const repositoryRate = dataGraph?.[2]?.data?.[0]?.y.toFixed(0) || 0;
 
       const comments = {
         discipline,
