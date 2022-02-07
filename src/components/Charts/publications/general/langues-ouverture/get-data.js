@@ -51,8 +51,9 @@ function useGetData(observationSnap, domain) {
           textOutline: 'none',
         },
       };
+      const threshold = Math.min((data.length > 0) ? data[0]?.doc_count * 0.05 : 1, 100);
       data
-        .filter((item) => item.doc_count >= 100)
+        .filter((item) => item.doc_count >= threshold)
         .forEach((item) => {
           const closedCurrent = item.by_oa_host_type.buckets.find((item2) => item2.key === 'closed')
             ?.doc_count || 0;
