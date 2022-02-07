@@ -56,24 +56,25 @@ function useGetData(observationSnap, domain) {
         'preprint',
         'dataset',
         'other',
-      ].forEach((g) => {
-        const currentElem = data.filter((el) => el.key === g);
+      ].forEach((item) => {
+        const currentElem = data.filter((item2) => item2.key === item);
         if (currentElem.length === 1) {
           newData.push(currentElem[0]);
         }
       });
-      const threshold = 1;
       newData
-        .filter((el) => el.doc_count >= threshold)
-        .forEach((el) => {
-          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+        .filter((item) => item.doc_count >= 1)
+        .forEach((item) => {
+          const closedCurrent = item.by_oa_host_type.buckets.find((item2) => item2.key === 'closed')
             ?.doc_count || 0;
-          const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
-            ?.doc_count || 0;
-          const publisherCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
-            ?.doc_count || 0;
-          const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'publisher;repository',
+          const repositoryCurrent = item.by_oa_host_type.buckets.find(
+            (item2) => item2.key === 'repository',
+          )?.doc_count || 0;
+          const publisherCurrent = item.by_oa_host_type.buckets.find(
+            (item2) => item2.key === 'publisher',
+          )?.doc_count || 0;
+          const publisherRepositoryCurrent = item.by_oa_host_type.buckets.find(
+            (item2) => item2.key === 'publisher;repository',
           )?.doc_count || 0;
           const totalCurrent = repositoryCurrent
             + publisherCurrent
@@ -81,58 +82,58 @@ function useGetData(observationSnap, domain) {
             + closedCurrent;
           const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
           closed.push({
-            y: (100 * closedCurrent) / totalCurrent,
+            y: (closedCurrent / totalCurrent) * 100,
             y_abs: closedCurrent,
             y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
+              id: `app.publication-genre.${item.key}`,
             }),
             bsoDomain,
           });
           oa.push({
-            y: (100 * oaCurrent) / totalCurrent,
+            y: (oaCurrent / totalCurrent) * 100,
             y_abs: oaCurrent,
             y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
+              id: `app.publication-genre.${item.key}`,
             }),
             bsoDomain,
           });
           repository.push({
-            y: (100 * repositoryCurrent) / totalCurrent,
+            y: (repositoryCurrent / totalCurrent) * 100,
             y_abs: repositoryCurrent,
             y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
+              id: `app.publication-genre.${item.key}`,
             }),
             bsoDomain,
           });
           publisher.push({
-            y: (100 * publisherCurrent) / totalCurrent,
+            y: (publisherCurrent / totalCurrent) * 100,
             y_abs: publisherCurrent,
             y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
+              id: `app.publication-genre.${item.key}`,
             }),
             bsoDomain,
           });
           publisherRepository.push({
-            y: (100 * publisherRepositoryCurrent) / totalCurrent,
+            y: (publisherRepositoryCurrent / totalCurrent) * 100,
             y_abs: publisherRepositoryCurrent,
             y_oa: oaCurrent,
             y_tot: totalCurrent,
             x_val: intl.formatMessage({
-              id: `app.publication-genre.${el.key}`,
+              id: `app.publication-genre.${item.key}`,
             }),
             bsoDomain,
           });
           categories.push(
             intl
-              .formatMessage({ id: `app.publication-genre.${el.key}` })
+              .formatMessage({ id: `app.publication-genre.${item.key}` })
               .concat('</br>(')
               .concat(intl.formatMessage({ id: 'app.effectif' }))
               .concat(cleanNumber(totalCurrent))
@@ -174,38 +175,32 @@ function useGetData(observationSnap, domain) {
       ];
 
       const articles = newData.find((item) => item.key === 'journal-article');
-      let openArticlesPercentage = '';
-      if (articles) {
-        const articlesTotal = articles.doc_count;
-        const openArticles = articles.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
-          item.key,
-        ));
-        const openArticlesTotal = openArticles.reduce(
-          (previousValue, currentValue) => previousValue + currentValue.doc_count,
-          0,
-        );
-        openArticlesPercentage = (
-          (openArticlesTotal / articlesTotal)
-          * 100
-        ).toFixed(0);
-      }
+      const articlesTotal = articles?.doc_count || 0;
+      const openArticles = articles?.by_oa_host_type.buckets?.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
+        item.key,
+      )) || [];
+      const openArticlesTotal = openArticles.reduce(
+        (previousValue, currentValue) => previousValue + currentValue.doc_count,
+        0,
+      );
+      const openArticlesPercentage = (
+        (openArticlesTotal / articlesTotal)
+        * 100
+      ).toFixed(0);
 
       const booksChapters = newData.find((item) => item.key === 'book-chapter');
-      let openBooksChaptersPercentage = '';
-      if (booksChapters) {
-        const booksChaptersTotal = booksChapters?.doc_count || 0;
-        const openBooksChapters = booksChapters?.by_oa_host_type.buckets.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
-          item.key,
-        )) || [];
-        const openBooksChaptersTotal = openBooksChapters.reduce(
-          (previousValue, currentValue) => previousValue + currentValue.doc_count,
-          0,
-        );
-        openBooksChaptersPercentage = (
-          (openBooksChaptersTotal / booksChaptersTotal)
-          * 100
-        ).toFixed(0);
-      }
+      const booksChaptersTotal = booksChapters?.doc_count || 0;
+      const openBooksChapters = booksChapters?.by_oa_host_type.buckets?.filter((item) => ['repository', 'publisher', 'publisher;repository'].includes(
+        item.key,
+      )) || [];
+      const openBooksChaptersTotal = openBooksChapters.reduce(
+        (previousValue, currentValue) => previousValue + currentValue.doc_count,
+        0,
+      );
+      const openBooksChaptersPercentage = (
+        (openBooksChaptersTotal / booksChaptersTotal)
+        * 100
+      ).toFixed(0);
 
       const comments = {
         openArticlesPercentage,

@@ -51,10 +51,7 @@ function useGetData(observationSnap, domain) {
           textOutline: 'none',
         },
       };
-      const threshold = Math.min(
-        data.length > 0 ? data[0]?.doc_count * 0.05 : 1,
-        100,
-      );
+      const threshold = Math.min(data?.[0]?.doc_count * 0.05 || 1, 100);
       data
         .filter((item) => item.doc_count >= threshold)
         .forEach((item) => {
@@ -107,7 +104,7 @@ function useGetData(observationSnap, domain) {
             bsoDomain,
           });
           publisherRepository.push({
-            y: (100 * publisherRepositoryCurrent) / totalCurrent,
+            y: (publisherRepositoryCurrent / totalCurrent) * 100,
             y_abs: publisherRepositoryCurrent,
             y_tot: totalCurrent,
             y_oa: oaCurrent,

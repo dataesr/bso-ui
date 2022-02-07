@@ -154,10 +154,7 @@ function useGetData(observationSnaps, domain = '') {
           pointPlacement: -0.2,
         });
       }
-      let categories = [];
-      if (dataGraph2[0] && dataGraph2[0].data) {
-        categories = dataGraph2[0].data.map((item) => item.publicationDate);
-      }
+      const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 
       const year1 = '2019';
       const year2 = '2020';

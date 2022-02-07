@@ -70,24 +70,25 @@ function useGetData(
             item.by_oa_host_type.buckets.find(
               (item2) => item2.key === 'publisher;repository',
             )?.doc_count || 0,
-        }))
-        .sort((a, b) => a.closed / a.total - b.closed / b.total);
-      data.forEach((el, catIndex) => {
-        const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+        }));
+      data.forEach((item, catIndex) => {
+        const closedCurrent = item.by_oa_host_type.buckets.find((item2) => item2.key === 'closed')
           ?.doc_count || 0;
-        const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
-          ?.doc_count || 0;
-        const publisherCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
-          ?.doc_count || 0;
-        const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
-          (item) => item.key === 'publisher;repository',
+        const repositoryCurrent = item.by_oa_host_type.buckets.find(
+          (item2) => item2.key === 'repository',
+        )?.doc_count || 0;
+        const publisherCurrent = item.by_oa_host_type.buckets.find(
+          (item2) => item2.key === 'publisher',
+        )?.doc_count || 0;
+        const publisherRepositoryCurrent = item.by_oa_host_type.buckets.find(
+          (item2) => item2.key === 'publisher;repository',
         )?.doc_count || 0;
         const totalCurrent = repositoryCurrent
           + publisherCurrent
           + publisherRepositoryCurrent
           + closedCurrent;
         const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
-        const nameClean = el.key.replace(/\n/g, '').replace('  ', ' ');
+        const nameClean = item.key.replace(/\n/g, '').replace('  ', ' ');
         categories.push(
           capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` }))
             .concat('</br>(')
