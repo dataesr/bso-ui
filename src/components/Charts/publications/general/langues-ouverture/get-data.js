@@ -51,17 +51,23 @@ function useGetData(observationSnap, domain) {
           textOutline: 'none',
         },
       };
+      const threshold = Math.min(
+        data.length > 0 ? data[0]?.doc_count * 0.05 : 1,
+        100,
+      );
       data
-        .filter((el) => el.doc_count >= 100)
-        .forEach((el) => {
-          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+        .filter((item) => item.doc_count >= threshold)
+        .forEach((item) => {
+          const closedCurrent = item.by_oa_host_type.buckets.find((item2) => item2.key === 'closed')
             ?.doc_count || 0;
-          const repositoryCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'repository')
-            ?.doc_count || 0;
-          const publisherCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'publisher')
-            ?.doc_count || 0;
-          const publisherRepositoryCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'publisher;repository',
+          const repositoryCurrent = item.by_oa_host_type.buckets.find(
+            (item2) => item2.key === 'repository',
+          )?.doc_count || 0;
+          const publisherCurrent = item.by_oa_host_type.buckets.find(
+            (item2) => item2.key === 'publisher',
+          )?.doc_count || 0;
+          const publisherRepositoryCurrent = item.by_oa_host_type.buckets.find(
+            (item2) => item2.key === 'publisher;repository',
           )?.doc_count || 0;
           const totalCurrent = repositoryCurrent
             + publisherCurrent
@@ -69,35 +75,35 @@ function useGetData(observationSnap, domain) {
             + closedCurrent;
           const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
           closed.push({
-            y: (100 * closedCurrent) / totalCurrent,
+            y: (closedCurrent / totalCurrent) * 100,
             y_abs: closedCurrent,
             y_tot: totalCurrent,
             y_oa: oaCurrent,
-            x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            x_val: intl.formatMessage({ id: `app.lang.${item.key}` }),
             bsoDomain,
           });
           oa.push({
-            y: (100 * oaCurrent) / totalCurrent,
+            y: (oaCurrent / totalCurrent) * 100,
             y_abs: oaCurrent,
             y_tot: totalCurrent,
             y_oa: oaCurrent,
-            x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            x_val: intl.formatMessage({ id: `app.lang.${item.key}` }),
             bsoDomain,
           });
           repository.push({
-            y: (100 * repositoryCurrent) / totalCurrent,
+            y: (repositoryCurrent / totalCurrent) * 100,
             y_abs: repositoryCurrent,
             y_tot: totalCurrent,
             y_oa: oaCurrent,
-            x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            x_val: intl.formatMessage({ id: `app.lang.${item.key}` }),
             bsoDomain,
           });
           publisher.push({
-            y: (100 * publisherCurrent) / totalCurrent,
+            y: (publisherCurrent / totalCurrent) * 100,
             y_abs: publisherCurrent,
             y_tot: totalCurrent,
             y_oa: oaCurrent,
-            x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            x_val: intl.formatMessage({ id: `app.lang.${item.key}` }),
             bsoDomain,
           });
           publisherRepository.push({
@@ -105,12 +111,12 @@ function useGetData(observationSnap, domain) {
             y_abs: publisherRepositoryCurrent,
             y_tot: totalCurrent,
             y_oa: oaCurrent,
-            x_val: intl.formatMessage({ id: `app.lang.${el.key}` }),
+            x_val: intl.formatMessage({ id: `app.lang.${item.key}` }),
             bsoDomain,
           });
           categories.push(
             intl
-              .formatMessage({ id: `app.lang.${el.key}` })
+              .formatMessage({ id: `app.lang.${item.key}` })
               .concat('</br>(')
               .concat(intl.formatMessage({ id: 'app.effectif' }))
               .concat(cleanNumber(totalCurrent))
@@ -151,81 +157,38 @@ function useGetData(observationSnap, domain) {
         },
       ];
 
-      const dataGraph3 = [
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          value: publisher[publisher.length - 1]?.y_abs,
-          percentage: publisher[publisher.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: yellowMedium125,
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({
-            id: 'app.type-hebergement.publisher-repository',
-          }),
-          value: publisherRepository[publisherRepository.length - 1]?.y_abs,
-          percentage: publisherRepository[publisherRepository.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: greenLight100,
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
-          value: repository[repository.length - 1]?.y_abs,
-          percentage: repository[repository.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: getCSSValue('--green-medium-125'),
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          value: closed[closed.length - 1]?.y_abs,
-          percentage: closed[closed.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: getCSSValue('--blue-soft-175'),
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-      ];
-
-      let publicationsEnglishTotal = '';
-      let publicationsEnglishOpen = '';
-      let publicationsEnglishClosed = '';
-      let publicationsEnglishRate = '';
-      let publicationsFrenchTotal = '';
-      let publicationsFrenchOpen = '';
-      let publicationsFrenchClosed = '';
-      let publicationsFrenchRate = '';
-      if (oa && oa[0] && oa[1]) {
-        publicationsEnglishTotal = cleanNumber(oa[0].y_tot);
-        publicationsEnglishOpen = cleanNumber(oa[0].y_oa);
-        publicationsEnglishClosed = cleanNumber(oa[0].y_tot - oa[0].y_oa);
-        publicationsEnglishRate = oa[0].y.toFixed(0);
-        publicationsFrenchTotal = cleanNumber(oa[1].y_tot);
-        publicationsFrenchOpen = cleanNumber(oa[1].y_oa);
-        publicationsFrenchClosed = cleanNumber(oa[1].y_tot - oa[1].y_oa);
-        publicationsFrenchRate = oa[1].y.toFixed(0);
-      }
+      const publicationsEnglishTotal = cleanNumber(oa?.[0]?.y_tot || 0);
+      const publicationsEnglishOpen = cleanNumber(oa?.[0]?.y_oa || 0);
+      const publicationsEnglishClosed = cleanNumber(
+        (oa?.[0]?.y_tot || 0) - (oa?.[0]?.y_oa || 0),
+      );
+      const publicationsEnglishRate = oa?.[0]?.y?.toFixed(0) || 0;
+      const publicationsFrenchTotal = cleanNumber(oa?.[1]?.y_tot || 0);
+      const publicationsFrenchOpen = cleanNumber(oa?.[1]?.y_oa || 0);
+      const publicationsFrenchClosed = cleanNumber(
+        (oa?.[1]?.y_tot || 0) - (oa?.[1]?.y_oa || 0),
+      );
+      const publicationsFrenchRate = oa?.[1]?.y?.toFixed(0) || 0;
       const comments = {
+        publicationsEnglishClosed,
+        publicationsEnglishOpen,
+        publicationsEnglishRate,
+        publicationsEnglishTotal,
+        publicationsFrenchClosed,
+        publicationsFrenchOpen,
+        publicationsFrenchRate,
+        publicationsFrenchTotal,
         publicationYear:
           getPublicationYearFromObservationSnap(lastObservationSnap),
-        publicationsEnglishTotal,
-        publicationsEnglishOpen,
-        publicationsEnglishClosed,
-        publicationsEnglishRate,
-        publicationsFrenchTotal,
-        publicationsFrenchOpen,
-        publicationsFrenchClosed,
-        publicationsFrenchRate,
       };
 
-      return { categories, dataGraph, dataGraph3, comments };
+      return {
+        categories,
+        comments,
+        dataGraph,
+      };
     },
-    [domain, greenLight100, intl, yellowMedium125, search],
+    [domain, greenLight100, intl, search, yellowMedium125],
   );
 
   useEffect(() => {

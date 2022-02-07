@@ -62,8 +62,9 @@ function useGetData(observationSnap, domain) {
           newData.push(currentElem[0]);
         }
       });
+      const threshold = 1;
       newData
-        .filter((el) => el.doc_count >= 100)
+        .filter((el) => el.doc_count >= threshold)
         .forEach((el) => {
           const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
             ?.doc_count || 0;
@@ -172,47 +173,6 @@ function useGetData(observationSnap, domain) {
         },
       ];
 
-      const dataGraph3 = [
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          value: publisher[publisher.length - 1]?.y_abs,
-          percentage: publisher[publisher.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: yellowMedium125,
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({
-            id: 'app.type-hebergement.publisher-repository',
-          }),
-          value: publisherRepository[publisherRepository.length - 1]?.y_abs,
-          percentage: publisherRepository[publisherRepository.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: greenLight100,
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
-          value: repository[repository.length - 1]?.y_abs,
-          percentage: repository[repository.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: getCSSValue('--green-medium-125'),
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          value: closed[closed.length - 1]?.y_abs,
-          percentage: closed[closed.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: getCSSValue('--blue-soft-175'),
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-      ];
-
       const articles = newData.find((item) => item.key === 'journal-article');
       let openArticlesPercentage = '';
       if (articles) {
@@ -253,7 +213,11 @@ function useGetData(observationSnap, domain) {
         publicationYear,
       };
 
-      return { categories, dataGraph, dataGraph3, comments };
+      return {
+        categories,
+        comments,
+        dataGraph,
+      };
     },
     [domain, greenLight100, intl, yellowMedium125, search],
   );

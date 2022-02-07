@@ -20,7 +20,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [isOa, setIsOa] = useState(false);
@@ -32,6 +32,11 @@ const Chart = ({ hasComments, id, domain }) => {
     isError,
   } = useGetData(lastObservationSnap || '2020', isOa, domain);
   const idWithDomain = withDomain(id, domain);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph,
+  );
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
@@ -40,46 +45,43 @@ const Chart = ({ hasComments, id, domain }) => {
       setChartComments('comments');
     }
   }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    dataGraph,
-  );
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
+      domain={domain}
       hasComments={false}
-      isLoading={isLoading || !dataGraph}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !dataGraph}
     >
       <Toggle
         checked={isOa}
-        onChange={() => setIsOa(!isOa)}
         label={intl.formatMessage({ id: 'app.details' })}
+        onChange={() => setIsOa(!isOa)}
       />
       <HighchartsReact
         highcharts={Highcharts}
+        id={id}
         options={optionsGraph}
         ref={chartRef}
-        id={id}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} />
+      )}
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasComments: true,
   domain: '',
+  hasComments: true,
   id: 'publi.general.genres-ouverture-treemap.chart-repartition-genres',
 };
 Chart.propTypes = {
+  domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
-  domain: PropTypes.oneOf(domains),
 };
 
 export default Chart;
