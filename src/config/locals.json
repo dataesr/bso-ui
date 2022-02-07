@@ -7,11 +7,13 @@
   },
   "130015332": {
     "name": "Aix-Marseille Université",
-    "commentsName": "de l'AMU"
+    "commentsName": "de l'AMU",
+    "startYear": 2016
   },
   "130026149": {
     "name": "Université PSL",
-    "commentsName": "de l'université PSL"
+    "commentsName": "de l'université PSL",
+    "startYear": 2016
   },
   "180070039": {
     "name": "Institut national de recherche pour l'agriculture, l'alimentation et l'environnement (INRAE)",
@@ -39,7 +41,8 @@
   },
   "196917744": {
     "name": "Université Claude Bernard Lyon 1",
-    "commentsName": "de l'université Claude Bernard Lyon 1"
+    "commentsName": "de l'université Claude Bernard Lyon 1",
+    "startYear": 2016
   },
   "196917751": {
     "name": "Université Lumière Lyon 2",
@@ -68,12 +71,13 @@
   },
   "199119751": {
     "name": "Université d'Evry Val d'Essonne",
-    "commentsName": "de l'Université d'Evry Val d'Essonne"
+    "commentsName": "de l'Université d'Evry Val d'Essonne",
+    "startYear": 2016
   },
   "201420738k": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
-    "startYear": 2015
+    "startYear": 2016
   },
   "775685019": {
     "name": "CEA",
