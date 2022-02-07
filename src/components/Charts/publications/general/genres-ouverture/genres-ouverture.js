@@ -47,19 +47,19 @@ const Chart = ({ domain, hasComments, id }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph || !categories}
-      isError={isError}
-      hasComments={false}
       dataTitle={dataTitle}
+      domain={domain}
+      hasComments={false}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} />

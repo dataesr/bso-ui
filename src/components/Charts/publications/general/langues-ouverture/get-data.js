@@ -51,7 +51,10 @@ function useGetData(observationSnap, domain) {
           textOutline: 'none',
         },
       };
-      const threshold = Math.min((data.length > 0) ? data[0]?.doc_count * 0.05 : 1, 100);
+      const threshold = Math.min(
+        data.length > 0 ? data[0]?.doc_count * 0.05 : 1,
+        100,
+      );
       data
         .filter((item) => item.doc_count >= threshold)
         .forEach((item) => {
@@ -157,13 +160,13 @@ function useGetData(observationSnap, domain) {
       const publicationsEnglishTotal = cleanNumber(oa?.[0]?.y_tot || 0);
       const publicationsEnglishOpen = cleanNumber(oa?.[0]?.y_oa || 0);
       const publicationsEnglishClosed = cleanNumber(
-        oa?.[0]?.y_tot || 0 - oa?.[0]?.y_oa || 0,
+        (oa?.[0]?.y_tot || 0) - (oa?.[0]?.y_oa || 0),
       );
       const publicationsEnglishRate = oa?.[0]?.y?.toFixed(0) || 0;
       const publicationsFrenchTotal = cleanNumber(oa?.[1]?.y_tot || 0);
       const publicationsFrenchOpen = cleanNumber(oa?.[1]?.y_oa || 0);
       const publicationsFrenchClosed = cleanNumber(
-        oa?.[1]?.y_tot || 0 - oa?.[1]?.y_oa || 0,
+        (oa?.[1]?.y_tot || 0) - (oa?.[1]?.y_oa || 0),
       );
       const publicationsFrenchRate = oa?.[1]?.y?.toFixed(0) || 0;
       const comments = {
