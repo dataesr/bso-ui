@@ -98,7 +98,7 @@ function Variations() {
                   <b>commentsName</b>
                   {' '}
                   : Nom de l'établissement / laboratoire qui
-                  sera affiché dans les commentaires (ex: commentsName=pour
+                  sera affiché dans les commentaires (ex: commentsName=de
                   l'université de Lorraine),
                   <i> défaut: vide</i>
                 </li>
@@ -224,7 +224,8 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              Liste des déclinaisons locales des BSO utilisant le cadre proposé par le BSO général :
+              Liste des déclinaisons locales des BSO utilisant le cadre proposé
+              par le BSO général :
               <ul className='style-disc'>
                 <li>
                   <a
@@ -258,8 +259,8 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              Liste des autres déclinaisons locales des BSO (ou équivalent de suivi du
-              taux open access) :
+              Liste des autres déclinaisons locales des BSO (ou équivalent de
+              suivi du taux open access) :
               <ul className='style-disc'>
                 <li>
                   <a

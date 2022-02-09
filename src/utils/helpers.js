@@ -284,13 +284,13 @@ export function isInProduction() {
 export function getURLSearchParams(search) {
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
-  let commentsName;
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
   );
   const displayFooter = !(
     urlSearchParams.get('displayFooter')?.toLowerCase() === 'false'
   );
+  let commentsName = 'françaises';
   let displayTitle;
   let endYear;
   let name;
@@ -298,7 +298,7 @@ export function getURLSearchParams(search) {
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals[bsoLocalAffiliation].commentsName
-      || '';
+      || 'françaises';
     displayTitle = !(
       (
         urlSearchParams.get('displayTitle')
