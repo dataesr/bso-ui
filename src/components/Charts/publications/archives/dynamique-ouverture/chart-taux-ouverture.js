@@ -25,7 +25,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [archives, setArchives] = useState([]);
@@ -46,6 +46,15 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     parameters: [lastObservationSnap],
   });
   const idWithDomain = withDomain(id, domain);
+  const archiveTitle = archive !== '*' ? ` (${archive})` : '';
+  const dataTitle = { archiveTitle };
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph1,
+    dataTitle,
+    search,
+  );
 
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
@@ -61,15 +70,6 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl, search));
   }, [data, idWithDomain, intl, search]);
-
-  const archiveTitle = archive !== '*' ? ` (${archive})` : '';
-  const dataTitle = { archiveTitle };
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    dataGraph1,
-    dataTitle,
-  );
 
   return (
     <WrapperChart

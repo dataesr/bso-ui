@@ -24,7 +24,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
@@ -45,16 +45,16 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     search,
     parameters: [lastObservationSnap],
   });
-
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categoriesHistogram,
     dataGraphHistogram,
     dataTitle,
+    search,
   );
 
   useEffect(() => {
