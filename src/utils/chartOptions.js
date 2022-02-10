@@ -1032,8 +1032,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.dynamique-ouverture.chart-taux-ouverture': {
-    getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });
@@ -1538,8 +1538,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.couts-publication.chart-distribution': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.publishers.couts-publication.chart-distribution.tooltip',
       });
@@ -1626,8 +1626,8 @@ export const chartOptions = {
     },
   },
   'publi.repositories.dynamique-ouverture.chart-taux-ouverture': {
-    getOptions: (id, intl, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-ouverture.chart-taux-ouverture.tooltip',
       });

@@ -59,7 +59,7 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
         ref={chartRef}
       />
       {hasComments && chartComments && (
-        <GraphComments comments={chartComments} />
+        <GraphComments comments={chartComments} hasFooter={hasFooter} />
       )}
     </WrapperChart>
   );

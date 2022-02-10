@@ -56,6 +56,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     intl,
     dataGraph1,
     dataTitle,
+    search,
   );
 
   useEffect(() => {
@@ -99,7 +100,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         ref={chartRef}
       />
       {hasComments && chartComments && (
-        <GraphComments comments={chartComments} />
+        <GraphComments comments={chartComments} hasFooter={hasFooter} />
       )}
     </WrapperChart>
   );
