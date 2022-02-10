@@ -108,7 +108,9 @@ function WrapperChart({
       <div className='graph-container' data-id={idWithContext}>
         <GraphTitle title={title} />
         {children}
-        {hasComments && <GraphComments comments={comments} />}
+        {hasComments && comments && (
+          <GraphComments comments={comments} hasFooter={hasFooter} />
+        )}
       </div>
       {hasFooter && (
         <GraphFooter

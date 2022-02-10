@@ -62,7 +62,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         options={optionsGraph}
         ref={chartRef}
       />
-      {hasComments && <GraphComments comments={chartComments} />}
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} hasFooter={hasFooter} />
+      )}
     </WrapperChart>
   );
 };

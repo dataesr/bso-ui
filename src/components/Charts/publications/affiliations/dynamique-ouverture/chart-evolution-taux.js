@@ -26,7 +26,7 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const chartRef = useRef();
   const [sort, setSort] = useState('sort-open-access');

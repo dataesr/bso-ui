@@ -22,7 +22,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, hasComments, id }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const idWithDomain = withDomain(id, domain);
@@ -52,6 +52,7 @@ const Chart = ({ domain, hasComments, id }) => {
       chartRef={chartRef}
       domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
       id={id}
       isError={isError}
       isLoading={isLoading || !dataGraph}
@@ -68,7 +69,7 @@ const Chart = ({ domain, hasComments, id }) => {
         ref={chartRef}
       />
       {hasComments && chartComments && (
-        <GraphComments comments={chartComments} />
+        <GraphComments comments={chartComments} hasFooter={hasFooter} />
       )}
     </WrapperChart>
   );
@@ -77,11 +78,13 @@ const Chart = ({ domain, hasComments, id }) => {
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
+  hasFooter: true,
   id: 'publi.general.langues-ouverture.chart-repartition-publications',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
 
