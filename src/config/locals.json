@@ -15,6 +15,11 @@
     "commentsName": "de l'université PSL",
     "startYear": 2016
   },
+  "180036048": {
+    "name": "Institut national de la santé et de la recherche médicale (INSERM)",
+    "commentsName": "de l'INSERM",
+    "startYear": 2016
+  },
   "180070039": {
     "name": "Institut national de recherche pour l'agriculture, l'alimentation et l'environnement (INRAE)",
     "commentsName": "de l'INRAE"
@@ -26,6 +31,11 @@
   "18009202500121": {
     "name": "IMT Atlantique",
     "commentsName": "d'IMT Atlantique"
+  },
+  "192112373": {
+    "name": "Université de Bourgogne",
+    "commentsName": "de l'Université de Bourgogne",
+    "startYear": 2016
   },
   "192512150": {
     "name": "Université de Franche-Comté (UFC)",
