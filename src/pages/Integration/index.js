@@ -19,7 +19,7 @@ const Integration = () => {
     <Container fluid>
       {displayTitle && (
         <Row justifyContent='center'>
-          <Col n='10' spacing='px-3w'>
+          <Col spacing='px-3w'>
             <TitleDisplay as='h4' size='xs' className='title-xxs'>
               {intl.formatMessage({ id: 'app.header.title' })}
             </TitleDisplay>
@@ -27,7 +27,7 @@ const Integration = () => {
         </Row>
       )}
       <Row justifyContent='center'>
-        <Col n='10'>
+        <Col>
           <Suspense fallback={<Loader />}>
             <BSOChart
               id={graphId}

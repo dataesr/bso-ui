@@ -9,7 +9,7 @@ const GraphComments = ({ comments }) => (
     <div className='fs-14-24 marianne-bold'>
       <FormattedMessage id='app.commons.graph-comment.label' />
     </div>
-    <p className='marianne fs-14-24'>{comments}</p>
+    <p className='marianne fs-14-24 m-0'>{comments}</p>
   </div>
 );
 
