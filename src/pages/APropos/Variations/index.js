@@ -254,6 +254,15 @@ function Variations() {
                     Arts et Métiers Sciences & Technologies
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://oaamu.hypotheses.org/3118'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Aix-Marseille Université
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
