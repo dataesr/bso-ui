@@ -48,6 +48,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       domain={domain}
+      enableExport={false}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}

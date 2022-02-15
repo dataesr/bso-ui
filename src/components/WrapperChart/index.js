@@ -24,6 +24,7 @@ function WrapperChart({
   children,
   dataTitle,
   domain,
+  enableExport,
   hasComments,
   hasFooter,
   id,
@@ -115,6 +116,7 @@ function WrapperChart({
       {hasFooter && (
         <GraphFooter
           date={getFormattedDate(updateDate, lang)}
+          enableExport={enableExport}
           height={height}
           onCsvButtonClick={exportChartCsv}
           onPngButtonClick={exportChartPng}
@@ -131,6 +133,7 @@ function WrapperChart({
 WrapperChart.defaultProps = {
   chartRef: () => {},
   dataTitle: {},
+  enableExport: true,
   hasComments: true,
   hasFooter: true,
   isError: false,
@@ -148,6 +151,7 @@ WrapperChart.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   dataTitle: PropTypes.object,
   domain: PropTypes.oneOf(domains).isRequired,
+  enableExport: PropTypes.bool,
   hasComments: PropTypes.bool,
   hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds).isRequired,
