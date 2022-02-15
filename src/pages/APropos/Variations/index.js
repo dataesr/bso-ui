@@ -254,6 +254,15 @@ function Variations() {
                     Arts et Métiers Sciences & Technologies
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://oaamu.hypotheses.org/3118'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Aix-Marseille Université
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -431,6 +440,15 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université Versailles Saint Quentin
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://bibliotheques.univ-tlse3.fr/utiliser-nos-services/se-former-s-informer/chercheurs/la-science-ouverte-l-ut3'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Toulouse 3
                   </a>
                 </li>
               </ul>

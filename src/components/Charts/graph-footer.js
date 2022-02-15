@@ -31,6 +31,7 @@ import { getCSSValue } from '../../utils/helpers';
 
 const GraphFooter = ({
   date,
+  enableExport,
   height,
   onCsvButtonClick,
   onPngButtonClick,
@@ -77,59 +78,63 @@ const GraphFooter = ({
               ) : null}
               {source && srcPath ? <hr /> : null}
               <p>
-                <Text size='xs' as='span'>
-                  <FormattedMessage
-                    id='app.graph.download'
-                    defaultMessage='Télécharger'
-                  />
-                </Text>
-                {onCsvButtonClick && (
-                  <span
-                    className='icon-click ml-10 mr-26'
-                    tabIndex={0}
-                    role='button'
-                    onClick={() => onCsvButtonClick()}
-                    onKeyPress={() => onCsvButtonClick()}
-                  >
-                    <DSIcon
-                      name='ri-file-excel-fill'
-                      size='lg'
-                      as='span'
-                      iconPosition='right'
-                      className='ds-fr--v-text-top'
-                    >
-                      <Text size='xs' as='span'>
-                        <FormattedMessage
-                          id='app.graph.download.csv'
-                          defaultMessage='CSV'
-                        />
-                      </Text>
-                    </DSIcon>
-                  </span>
-                )}
-                {onPngButtonClick && (
-                  <span
-                    className='icon-click mr-120'
-                    tabIndex={0}
-                    role='button'
-                    onClick={() => onPngButtonClick()}
-                    onKeyPress={() => onPngButtonClick()}
-                  >
-                    <DSIcon
-                      name='ri-file-chart-fill'
-                      size='lg'
-                      as='span'
-                      iconPosition='right'
-                      className='ds-fr--v-text-top'
-                    >
-                      <Text size='xs' as='span'>
-                        <FormattedMessage
-                          id='app.graph.download.png'
-                          defaultMessage='PNG'
-                        />
-                      </Text>
-                    </DSIcon>
-                  </span>
+                {enableExport && (
+                  <>
+                    <Text size='xs' as='span'>
+                      <FormattedMessage
+                        id='app.graph.download'
+                        defaultMessage='Télécharger'
+                      />
+                    </Text>
+                    {onCsvButtonClick && (
+                      <span
+                        className='icon-click ml-10 mr-26'
+                        tabIndex={0}
+                        role='button'
+                        onClick={() => onCsvButtonClick()}
+                        onKeyPress={() => onCsvButtonClick()}
+                      >
+                        <DSIcon
+                          name='ri-file-excel-fill'
+                          size='lg'
+                          as='span'
+                          iconPosition='right'
+                          className='ds-fr--v-text-top'
+                        >
+                          <Text size='xs' as='span'>
+                            <FormattedMessage
+                              id='app.graph.download.csv'
+                              defaultMessage='CSV'
+                            />
+                          </Text>
+                        </DSIcon>
+                      </span>
+                    )}
+                    {onPngButtonClick && (
+                      <span
+                        className='icon-click mr-120'
+                        tabIndex={0}
+                        role='button'
+                        onClick={() => onPngButtonClick()}
+                        onKeyPress={() => onPngButtonClick()}
+                      >
+                        <DSIcon
+                          name='ri-file-chart-fill'
+                          size='lg'
+                          as='span'
+                          iconPosition='right'
+                          className='ds-fr--v-text-top'
+                        >
+                          <Text size='xs' as='span'>
+                            <FormattedMessage
+                              id='app.graph.download.png'
+                              defaultMessage='PNG'
+                            />
+                          </Text>
+                        </DSIcon>
+                      </span>
+                    )}
+                  </>
                 )}
                 {srcPath ? (
                   <span
@@ -149,7 +154,7 @@ const GraphFooter = ({
                       <Text size='xs' as='span' className=''>
                         <FormattedMessage
                           id='app.graph.integration'
-                          defaultMessage='Intégration'
+                          defaultMessage='Integration'
                         />
                       </Text>
                     </DSIcon>
@@ -272,6 +277,7 @@ export default GraphFooter;
 
 GraphFooter.defaultProps = {
   date: '',
+  enableExport: true,
   height: 600,
   onCsvButtonClick: null,
   onPngButtonClick: null,
@@ -282,6 +288,7 @@ GraphFooter.defaultProps = {
 };
 GraphFooter.propTypes = {
   date: PropTypes.string,
+  enableExport: PropTypes.bool,
   height: PropTypes.number,
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,
