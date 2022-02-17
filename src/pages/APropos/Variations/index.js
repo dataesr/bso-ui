@@ -263,6 +263,15 @@ function Variations() {
                     Aix-Marseille Université
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://explore.psl.eu/fr/se-former/publier/barometre-de-la-science-ouverte-de-luniversite-psl'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université PSL
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
