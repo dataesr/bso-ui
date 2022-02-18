@@ -32,6 +32,11 @@
     "name": "IMT Atlantique",
     "commentsName": "d'IMT Atlantique"
   },
+  "191700327": {
+    "name": "La Rochelle Université",
+    "commentsName": "de La Rochelle Université",
+    "startYear": 2017
+  },
   "192112373": {
     "name": "Université de Bourgogne",
     "commentsName": "de l'Université de Bourgogne",
@@ -83,6 +88,10 @@
     "name": "Université d'Evry Val d'Essonne",
     "commentsName": "de l'Université d'Evry Val d'Essonne",
     "startYear": 2016
+  },
+  "200919011e": {
+    "name": "Laboratoire Matériaux Optiques, Photonique et Systèmes (LMOPS)",
+    "commentsName": "du LMOPS"
   },
   "201420738k": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
