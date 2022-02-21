@@ -31,6 +31,8 @@ export function getGraphOptions({
   dataTitle = {},
   search = undefined,
 }) {
+  // eslint-disable-next-line no-param-reassign
+  dataTitle.commentsName = 'françaises';
   let otherSources = [];
   if (search) {
     const { commentsName, name } = getURLSearchParams(search);
@@ -217,7 +219,7 @@ export const chartOptions = {
     },
   },
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
-    getOptions: (id, intl, categories, data, dataTitle, search) => {
+    getOptions: (id, intl, categories, data, dataTitle, search, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip',
@@ -244,6 +246,10 @@ export const chartOptions = {
             formatter() {
               return this.y.toFixed(0).concat(' %');
             },
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
           },
         },
       };

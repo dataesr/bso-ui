@@ -6,7 +6,6 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
-  cleanNumber,
   getCSSValue,
   getObservationLabel,
   getPublicationYearFromObservationSnap,
@@ -89,13 +88,11 @@ function useGetData(
           + closedCurrent;
         const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
         const nameClean = item.key.replace(/\n/g, '').replace('  ', ' ');
-        categories.push(
-          capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` }))
-            .concat('</br>(')
-            .concat(intl.formatMessage({ id: 'app.effectif' }))
-            .concat(cleanNumber(totalCurrent))
-            .concat(')'),
-        );
+        categories.push({
+          key: nameClean,
+          staff: totalCurrent,
+          percent: (oaCurrent / totalCurrent) * 100,
+        });
         categoriesComments.push(
           capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` })),
         );
@@ -128,6 +125,7 @@ function useGetData(
             getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categoriesComments[catIndex],
           bsoDomain,
+          oaRate: (oaCurrent / totalCurrent) * 100,
         });
         publisher.push({
           y: (publisherCurrent / totalCurrent) * 100,
@@ -138,6 +136,7 @@ function useGetData(
             getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categoriesComments[catIndex],
           bsoDomain,
+          oaRate: (oaCurrent / totalCurrent) * 100,
         });
         publisherRepository.push({
           y: (publisherRepositoryCurrent / totalCurrent) * 100,
@@ -148,6 +147,7 @@ function useGetData(
             getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categoriesComments[catIndex],
           bsoDomain,
+          oaRate: (oaCurrent / totalCurrent) * 100,
         });
       });
 

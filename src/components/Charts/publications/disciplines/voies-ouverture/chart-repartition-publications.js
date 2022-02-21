@@ -1,3 +1,4 @@
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -10,7 +11,11 @@ import { useLocation } from 'react-router-dom';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  cleanNumber,
+  withDomain,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -25,6 +30,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { search } = useLocation();
   const [chartComments, setChartComments] = useState('');
+  const [dataTitle, setDataTitle] = useState({});
+  const [optionsGraph, setOptionsGraph] = useState(null);
+  const [sort, setSort] = useState('sort-staff');
   const idWithDomain = withDomain(id, domain);
   const { allData, isLoading, isError } = useGetData(
     beforeLastObservationSnap,
@@ -33,19 +41,48 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     search,
   );
   const { categories, dataGraph } = allData;
-  const dataTitle = { publicationYear: beforeLastObservationSnap };
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
+
+  useEffect(() => {
+    setDataTitle({ publicationYear: beforeLastObservationSnap });
+  }, [beforeLastObservationSnap]);
+
+  useEffect(() => {
+    let sortKey;
+    if (sort === 'sort-staff') {
+      categories?.sort((a, b) => b.staff - a.staff);
+      sortKey = 'y_tot';
+    } else {
+      categories?.sort((a, b) => b.percent - a.percent);
+      sortKey = 'oaRate';
+    }
+    const categoriesLabel = categories?.map((item) => capitalize(intl.formatMessage({ id: `app.discipline.${item.key}` }))
+      .concat('</br>(')
+      .concat(intl.formatMessage({ id: 'app.effectif' }))
+      .concat(cleanNumber(item.staff))
+      .concat(')')) || [];
+    setOptionsGraph(
+      chartOptions[id].getOptions(
+        idWithDomain,
+        intl,
+        categoriesLabel,
+        dataGraph,
+        dataTitle,
+        search,
+        sortKey,
+      ),
+    );
+    setChartComments(customComments(allData, idWithDomain, intl));
+  }, [
+    allData,
     categories,
     dataGraph,
     dataTitle,
+    id,
+    idWithDomain,
+    intl,
     search,
-  );
-
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomain, intl, search));
-  }, [allData, idWithDomain, intl, search]);
+    sort,
+  ]);
 
   return (
     <WrapperChart
@@ -56,8 +93,37 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !allData || !categories}
     >
+      <RadioGroup
+        className='d-inline-block'
+        isInline
+        legend={intl.formatMessage({ id: 'app.publi.sort' })}
+        onChange={(newValue) => {
+          setOptionsGraph(
+            chartOptions[id].getOptions(
+              idWithDomain,
+              intl,
+              [],
+              [],
+              dataTitle,
+              search,
+              'y_tot',
+            ),
+          );
+          setSort(newValue);
+        }}
+        value={sort}
+      >
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.sort-staff' })}
+          value='sort-staff'
+        />
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.sort-open-access' })}
+          value='sort-open-rate'
+        />
+      </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}
         id={id}
