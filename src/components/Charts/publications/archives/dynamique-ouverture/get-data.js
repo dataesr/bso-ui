@@ -44,14 +44,14 @@ function useGetData(observationSnaps, needle = '*', domain) {
         queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });
 
-    const res = await Axios.all(queries);
+    const responses = await Axios.all(queries);
     const allData = [];
-    for (let i = 0; i < res.length; i += 1) {
+    for (let i = 0; i < responses.length; i += 1) {
       const newData = {};
       if (i % 2 === 1) {
         newData.observationSnap = datesObservation[(i - 1) / 2];
         newData.data = {};
-        newData.data.oaHostType = res[
+        const responseFiltered = responses[
           i - 1
         ].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
@@ -60,18 +60,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
               && el.key > 2012,
-          )
-          .map((el) => el.doc_count);
-        newData.data.all = res[i].data.aggregations.by_publication_year.buckets
-          .sort((a, b) => a.key - b.key)
-          .filter(
-            (el) => el.key < parseInt(newData.observationSnap.substring(0, 4), 10)
-              && el.by_is_oa.buckets.length > 0
-              && el.doc_count
-              && el.key > 2012,
-          )
-          .map((el) => el.doc_count);
-        newData.data.publicationDates = res[
+          );
+        newData.data.oaHostType = responseFiltered.map((el) => el.doc_count);
+        const publicationDates = responseFiltered.map((el) => el.key);
+        newData.data.all = responses[
           i
         ].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
@@ -79,9 +71,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
             (el) => el.key < parseInt(newData.observationSnap.substring(0, 4), 10)
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
-              && el.key > 2012,
+              && el.key > 2012
+              && publicationDates.includes(el.key),
           )
-          .map((el) => el.key);
+          .map((el) => el.doc_count);
+        newData.data.publicationDates = publicationDates;
         allData.push(newData);
       }
     }
