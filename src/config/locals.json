@@ -54,6 +54,11 @@
     "name": "Université Rennes 1",
     "commentsName": "de l'université de Rennes 1"
   },
+  "196901920": {
+    "name": "Institut national des sciences appliquées de Lyon (INSA Lyon)",
+    "commentsName": "de l'INSA Lyon",
+    "startYear": 2016
+  },
   "196917744": {
     "name": "Université Claude Bernard Lyon 1",
     "commentsName": "de l'université Claude Bernard Lyon 1",
@@ -88,6 +93,12 @@
   "199119751": {
     "name": "Université d'Evry Val d'Essonne",
     "commentsName": "de l'Université d'Evry Val d'Essonne",
+    "startYear": 2016
+  },
+  "200112505t": {
+    "name": "Analyse et Traitement Informatique de la Langue Française (ATILF)",
+    "commentsName": "de l'ATILF",
+    "displayTitle": "false",
     "startYear": 2016
   },
   "200919011e": {
