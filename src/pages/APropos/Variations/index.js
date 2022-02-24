@@ -272,6 +272,15 @@ function Variations() {
                     Université PSL
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://insermbiblio.inist.fr/barometre-de-la-science-ouverte-inserm/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Inserm
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
