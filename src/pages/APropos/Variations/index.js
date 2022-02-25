@@ -281,6 +281,15 @@ function Variations() {
                     Inserm
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://scienceouverte.univ-rennes1.fr/barometre-science-ouverte-de-luniversite-de-rennes-1'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Rennes 1
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -404,15 +413,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université de Paris
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://scienceouverte.univ-rennes1.fr/barometre-de-la-science-ouverte-de-luniversite-de-rennes-1'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université de Rennes 1
                   </a>
                 </li>
                 <li>
