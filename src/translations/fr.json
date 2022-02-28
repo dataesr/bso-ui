@@ -902,6 +902,7 @@
   "app.publications.document.title": "Publications du Baromètre français de la Science Ouverte",
   "app.publications.global": "publications françaises (tous domaines)",
   "app.publications.health": "publications françaises en santé",
+  "app.publications.local": "publications {commentsName}",
   "app.publishers": "éditeurs et plateformes",
   "app.publishers-filter-label": "Sélectionner un éditeur",
   "app.publishers.apc-gold": "APC Gold",

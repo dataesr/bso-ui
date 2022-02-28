@@ -9,6 +9,7 @@ import {
   capitalize,
   getCSSValue,
   getObservationLabel,
+  getURLSearchParams,
 } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
@@ -17,6 +18,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const { search } = useLocation();
+  const { commentsName } = getURLSearchParams(search);
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
@@ -141,8 +143,11 @@ function useGetData(observationSnaps, domain = '') {
       });
       const showInLegend = domain !== '';
       const currentName = domain !== ''
-        ? capitalize(intl.formatMessage({ id: `app.publications.${domain}` }))
-        : capitalize(intl.formatMessage({ id: 'app.publications.global' }));
+        ? intl.formatMessage({ id: `app.publications.${domain}` })
+        : intl.formatMessage(
+          { id: 'app.publications.local' },
+          { commentsName },
+        );
       dataGraph1.series.push({ data: serie1, showInLegend, name: currentName });
       if (domain !== '') {
         dataGraph1.series.push({
@@ -208,7 +213,7 @@ function useGetData(observationSnaps, domain = '') {
         dataGraph2,
       };
     },
-    [domain, intl, search],
+    [commentsName, domain, intl, search],
   );
 
   useEffect(() => {
