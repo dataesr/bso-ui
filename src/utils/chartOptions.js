@@ -31,15 +31,10 @@ export function getGraphOptions({
   dataTitle = {},
   search = undefined,
 }) {
+  const { commentsName, name } = getURLSearchParams(search);
   // eslint-disable-next-line no-param-reassign
-  dataTitle.commentsName = 'françaises';
-  let otherSources = [];
-  if (search) {
-    const { commentsName, name } = getURLSearchParams(search);
-    // eslint-disable-next-line no-param-reassign
-    dataTitle.commentsName = commentsName;
-    otherSources = [name];
-  }
+  dataTitle.commentsName = commentsName;
+  const otherSources = search ? [name] : [];
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
   const legend = intl.formatMessage({
     id: `${id}.legend`,
