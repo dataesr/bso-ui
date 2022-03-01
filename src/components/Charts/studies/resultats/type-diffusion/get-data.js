@@ -26,8 +26,8 @@ function useGetData(studyType, sponsorType = '*') {
       (item) => item.key,
     );
     sponsorTypes = sponsorTypes.map((st) => ({
-      value: st,
       label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+      value: st,
     }));
 
     const currentYear = new Date().getFullYear() - 1;
@@ -46,8 +46,12 @@ function useGetData(studyType, sponsorType = '*') {
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
-    let data1Total = data1.by_has_result.buckets.find((ele) => ele.key === 0).doc_count;
-    data1Total += data1.by_has_result.buckets.find((ele) => ele.key === 1).doc_count;
+    let data1Total = data1.by_has_result.buckets.find(
+      (ele) => ele.key === 0,
+    ).doc_count;
+    data1Total += data1.by_has_result.buckets.find(
+      (ele) => ele.key === 1,
+    ).doc_count;
     const dataGraph1 = {
       categories: [
         capitalize(
@@ -69,7 +73,8 @@ function useGetData(studyType, sponsorType = '*') {
           intl.formatMessage({
             id: 'app.studies.results-only',
           }),
-        )],
+        ),
+      ],
       series: [
         {
           data: [
@@ -81,8 +86,9 @@ function useGetData(studyType, sponsorType = '*') {
               ),
               y_abs: data1.by_has_result.buckets
                 .find((ele) => ele.key === 0)
-                ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
-                ?.doc_count,
+                ?.by_has_publications_result.buckets.find(
+                  (ele) => ele.key === 0,
+                )?.doc_count,
               y:
                 (100
                   * (data1.by_has_result.buckets
@@ -104,8 +110,9 @@ function useGetData(studyType, sponsorType = '*') {
               ),
               y_abs: data1.by_has_result.buckets
                 .find((ele) => ele.key === 1)
-                ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
-                ?.doc_count,
+                ?.by_has_publications_result.buckets.find(
+                  (ele) => ele.key === 1,
+                )?.doc_count,
               y:
                 (100
                   * (data1.by_has_result.buckets
@@ -127,16 +134,17 @@ function useGetData(studyType, sponsorType = '*') {
               ),
               y_abs: data1.by_has_result.buckets
                 .find((ele) => ele.key === 0)
-                ?.by_has_publications_result.buckets.find((ele) => ele.key === 1)
-                ?.doc_count,
+                ?.by_has_publications_result.buckets.find(
+                  (ele) => ele.key === 1,
+                )?.doc_count,
               y:
-              (100
-                * (data1.by_has_result.buckets
-                  .find((ele) => ele.key === 0)
-                  ?.by_has_publications_result.buckets.find(
-                    (ele) => ele.key === 1,
-                  )?.doc_count || 0))
-              / data1Total,
+                (100
+                  * (data1.by_has_result.buckets
+                    .find((ele) => ele.key === 0)
+                    ?.by_has_publications_result.buckets.find(
+                      (ele) => ele.key === 1,
+                    )?.doc_count || 0))
+                / data1Total,
               y_tot: data1Total,
               yearMin,
               yearMax,
@@ -150,16 +158,17 @@ function useGetData(studyType, sponsorType = '*') {
               ),
               y_abs: data1.by_has_result.buckets
                 .find((ele) => ele.key === 1)
-                ?.by_has_publications_result.buckets.find((ele) => ele.key === 0)
-                ?.doc_count,
+                ?.by_has_publications_result.buckets.find(
+                  (ele) => ele.key === 0,
+                )?.doc_count,
               y:
-              (100
-                * (data1.by_has_result.buckets
-                  .find((ele) => ele.key === 1)
-                  ?.by_has_publications_result.buckets.find(
-                    (ele) => ele.key === 0,
-                  )?.doc_count || 0))
-              / data1Total,
+                (100
+                  * (data1.by_has_result.buckets
+                    .find((ele) => ele.key === 1)
+                    ?.by_has_publications_result.buckets.find(
+                      (ele) => ele.key === 0,
+                    )?.doc_count || 0))
+                / data1Total,
               y_tot: data1Total,
               yearMin,
               yearMax,
@@ -170,7 +179,9 @@ function useGetData(studyType, sponsorType = '*') {
       ],
     };
     const THRESHOLD = 29;
-    const data2 = res[1].data.aggregations.by_intervention_type.buckets.filter((el) => el.doc_count > THRESHOLD);
+    const data2 = res[1].data.aggregations.by_intervention_type.buckets.filter(
+      (el) => el.doc_count > THRESHOLD,
+    );
     const dataGraph2 = {
       categories: data2.map((el) => intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` })),
       series: [
@@ -228,23 +239,23 @@ function useGetData(studyType, sponsorType = '*') {
                   (ele) => ele.key === 1,
                 )?.doc_count || 0),
             y:
-              (100 * (
-                (el.by_has_result.buckets
+              (100
+                * ((el.by_has_result.buckets
                   .find((ele) => ele.key === 1)
                   ?.by_has_publications_result.buckets.find(
                     (ele) => ele.key === 1,
                   )?.doc_count || 0)
-              + (el.by_has_result.buckets
-                .find((ele) => ele.key === 1)
-                ?.by_has_publications_result.buckets.find(
-                  (ele) => ele.key === 0,
-                )?.doc_count || 0)
-              + (el.by_has_result.buckets
-                .find((ele) => ele.key === 0)
-                ?.by_has_publications_result.buckets.find(
-                  (ele) => ele.key === 1,
-                )?.doc_count || 0)
-              )) / el.doc_count,
+                  + (el.by_has_result.buckets
+                    .find((ele) => ele.key === 1)
+                    ?.by_has_publications_result.buckets.find(
+                      (ele) => ele.key === 0,
+                    )?.doc_count || 0)
+                  + (el.by_has_result.buckets
+                    .find((ele) => ele.key === 0)
+                    ?.by_has_publications_result.buckets.find(
+                      (ele) => ele.key === 1,
+                    )?.doc_count || 0)))
+              / el.doc_count,
             y_tot: el.doc_count,
             yearMin,
             yearMax,
