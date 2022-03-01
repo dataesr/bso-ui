@@ -32,8 +32,8 @@ function useGetData(
       .map((item) => item.key)
       .sort();
     affiliations = affiliations.map((affiliation) => ({
-      value: affiliation,
       label: intl.formatMessage({ id: `app.affiliations.${affiliation}` }),
+      value: affiliation,
     }));
 
     // Pour chaque date d'observation, récupération des données associées

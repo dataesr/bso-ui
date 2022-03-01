@@ -63,7 +63,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   useEffect(() => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
-        response.data.aggregations.by_publisher.buckets.map((item) => item.key),
+        response.data.aggregations.by_publisher.buckets.map((item) => ({
+          label: item.key,
+          value: item.key,
+        })),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
