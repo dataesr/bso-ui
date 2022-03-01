@@ -192,7 +192,7 @@ function Glossary({ entries }) {
                       active={key === activeKey}
                       intlEntry={currentEntry.intlEntry}
                       className={i === 0 ? 'pt-20' : ''}
-                      link={currentEntry.cta || null}
+                      link={currentEntry.ctas || currentEntry.cta || null}
                     />
                   );
                 })}

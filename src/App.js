@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Router>
-      <IntlProvider locale={lang} messages={messages[lang]}>
+      <IntlProvider locale={lang} messages={messages[lang]} onError={() => {}}>
         <WebTracking>
           <Header />
           <Switch>
