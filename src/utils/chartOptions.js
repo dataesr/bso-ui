@@ -1583,7 +1583,7 @@ export const chartOptions = {
     getOptions: (id, intl, data, categories, dataTitle, search) => {
       const { startYear } = getURLSearchParams(search);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
-      const options = getGraphOptions({ id, intl, dataTitle });
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-ouverture.chart-evolution-proportion.tooltip',
       });
