@@ -39,12 +39,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { dataGraph1 } = data;
   const { search } = useLocation();
-  const query = getFetchOptions({
-    key: 'repositoriesList',
-    domain,
-    search,
-    parameters: [lastObservationSnap],
-  });
   const idWithDomain = withDomain(id, domain);
   const archiveTitle = archive !== '*' ? ` (${archive})` : '';
   const dataTitle = { archiveTitle };
@@ -57,6 +51,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
 
   useEffect(() => {
+    const query = getFetchOptions({
+      key: 'repositoriesList',
+      domain,
+      search,
+      parameters: [lastObservationSnap],
+    });
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setArchives(
         response.data.aggregations.by_repository.buckets.map((item) => ({
@@ -65,8 +65,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         })),
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [domain, lastObservationSnap, search]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl, search));
