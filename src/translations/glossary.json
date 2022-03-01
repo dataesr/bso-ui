@@ -84,7 +84,7 @@
     "hal": {
       "intlDefinition": "app.glossary.hal.definition",
       "intlEntry": "app.glossary.hal",
-      "cta": "https://www.ccsd.cnrs.fr/"
+      "ctas": ["https://hal.archives-ouvertes.fr/", "https://www.ccsd.cnrs.fr/"]
     },
     "hybrid": {
       "intlDefinition": "app.glossary.hybrid.definition",

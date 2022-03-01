@@ -12,6 +12,27 @@ function GlossaryItem({
   glossaryKey,
   link,
 }) {
+  let values = {};
+  if (link) {
+    if (typeof link === 'object') {
+      link?.forEach((cta, i) => {
+        values[`cta${i}`] = (chunks) => (
+          <a href={cta} target='_blank' rel='noreferrer'>
+            {chunks}
+          </a>
+        );
+      });
+    } else {
+      values = {
+        cta: (chunks) => (
+          <a href={`${link}`} target='_blank' rel='noreferrer'>
+            {chunks}
+          </a>
+        ),
+      };
+    }
+  }
+
   return (
     <article
       data-glossary-entry={glossaryKey}
@@ -29,13 +50,7 @@ function GlossaryItem({
             <FormattedMessage
               id={intlEntry}
               defaultMessage={intlEntry}
-              values={{
-                cta: (chunks) => (
-                  <a target='_blank' href={`${link}`} rel='noreferrer'>
-                    {chunks}
-                  </a>
-                ),
-              }}
+              values={values}
             />
           </p>
         </DSIcon>
@@ -44,13 +59,7 @@ function GlossaryItem({
           <FormattedMessage
             id={intlEntry}
             defaultMessage={intlEntry}
-            values={{
-              cta: (chunks) => (
-                <a target='_blank' href={`${link}`} rel='noreferrer'>
-                  {chunks}
-                </a>
-              ),
-            }}
+            values={values}
           />
         </p>
       )}
@@ -58,13 +67,7 @@ function GlossaryItem({
         <FormattedMessage
           id={intlDefinition}
           defaultMessage={intlDefinition}
-          values={{
-            cta: (chunks) => (
-              <a target='_blank' href={`${link}`} rel='noreferrer'>
-                {chunks}
-              </a>
-            ),
-          }}
+          values={values}
         />
       </p>
     </article>
@@ -77,7 +80,11 @@ GlossaryItem.defaultProps = {
 
 GlossaryItem.propTypes = {
   glossaryKey: PropTypes.string.isRequired,
-  link: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  link: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+    PropTypes.array,
+  ]),
   intlEntry: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,

@@ -219,7 +219,7 @@
   "app.glossary.gold-full-apc-min": "modèle tout APC",
   "app.glossary.gold-full-apc.definition": "Concerne les revues entièrement en accès ouvert et licence libre, demandant systématiquement des frais de publication.",
   "app.glossary.hal": "HAL",
-  "app.glossary.hal.definition": "L'archive ouverte française HAL, développée par le Centre pour la <cta>Communication Scientifique Directe (CCSD)</cta>, destinée au dépôt et à la diffusion d'articles scientifiques (publiés ou non), de thèses et d'autres objets.",
+  "app.glossary.hal.definition": "L' <cta0>archive ouverte française HAL</cta0>, développée par le Centre pour la <cta1>Communication Scientifique Directe (CCSD)</cta1>, destinée au dépôt et à la diffusion d'articles scientifiques (publiés ou non), de thèses et d'autres objets.",
   "app.glossary.hybrid": "Hybride (revue)",
   "app.glossary.hybrid-min": "hybride",
   "app.glossary.hybrid.definition": "Est considérée comme hybride une revue qui est diffusée par abonnement et qui propose à ses auteurs de payer des frais de publication (également appelés \"APC\") afin que leur article soit publié en accès ouvert. Ce paiement de frais supplémentaires dans une revue sous abonnement instaure un double paiement (\"Double-Dipping\").",

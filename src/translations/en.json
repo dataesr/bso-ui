@@ -219,7 +219,7 @@
   "app.glossary.gold-full-apc-min": "full APC model",
   "app.glossary.gold-full-apc.definition": "Relates journals fully open access and free license, systematically asking for publication fees.",
   "app.glossary.hal": "HAL",
-  "app.glossary.hal.definition": "The French open repository HAL, developed by the <cta>Centre for Direct Scientific Communication (CCSD)</cta>, for the deposit and dissemination of scientific articles (published or not), theses and other objects.",
+  "app.glossary.hal.definition": "The <cta0>French open repository HAL</cta0>, developed by the <cta1>Centre for Direct Scientific Communication (CCSD)</cta1>, for the deposit and dissemination of scientific articles (published or not), theses and other objects.",
   "app.glossary.hybrid": "Hybrid journal",
   "app.glossary.hybrid-min": "hybrid",
   "app.glossary.hybrid.definition": "It is considered a hybrid a journal that is distributed by subscription and which proposes to its authors to pay a publication fee (also called \"APC\") so that their article is published in open access. This additional fee payment in a subscription journal establishes a double payment (\"Double-Dipping\").",
