@@ -216,9 +216,6 @@ export const chartOptions = {
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, categories, data, dataTitle, search, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle, search });
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip',
-      });
       options.chart.type = 'bar';
       options.chart.height = '600px';
       options.xAxis = {
@@ -239,7 +236,7 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              return this.y.toFixed(0).concat(' %');
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
             },
           },
           dataSorting: {
@@ -613,8 +610,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -939,8 +936,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -975,7 +972,9 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.affiliations.${el.name}` })),
+        categories: data[0].data.map((el) =>
+          intl.formatMessage({ id: `app.affiliations.${el.name}` }),
+        ),
         labels: {
           style: {
             color: getCSSValue('--g-!00'),
@@ -1115,8 +1114,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1353,8 +1352,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1611,8 +1610,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1872,10 +1871,10 @@ export const chartOptions = {
       if (data) {
         options.series[0].dataLabels = {
           format:
-            '<div style="text-align:center">'
-            + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
-            + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
-            + '</div>',
+            '<div style="text-align:center">' +
+            '<span style="font-size:25px;">{y:.1f} %</span><br/>' +
+            '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>' +
+            '</div>',
         };
         color = options.series[0].color;
       }
