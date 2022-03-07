@@ -105,9 +105,9 @@ function useGetData(observationSnaps, domain = '') {
           bsoDomain,
           y:
             ((el.by_is_oa.buckets.find((b) => b.key === 1)?.doc_count || 0)
-              * 100)
-            / (el.by_is_oa.buckets[0].doc_count
-              + el.by_is_oa.buckets[1]?.doc_count),
+              / ((el.by_is_oa.buckets?.[0]?.doc_count || 0)
+                + (el.by_is_oa.buckets?.[1]?.doc_count || 0)))
+            * 100,
         }));
         serie.ratios = filtered.map(
           (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
