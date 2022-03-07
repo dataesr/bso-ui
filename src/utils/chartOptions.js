@@ -34,7 +34,7 @@ export function getGraphOptions({
   const { commentsName, name } = getURLSearchParams(search);
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;
-  const otherSources = search ? [name] : [];
+  const otherSources = search ? [name.replace(/ *\([^)]*\) */g, '')] : [];
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
   const legend = intl.formatMessage({
     id: `${id}.legend`,
