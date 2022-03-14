@@ -40,6 +40,7 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
     idWithDomain,
     intl,
     dataGraphTreemap,
+    search,
   );
 
   return (

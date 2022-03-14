@@ -52,6 +52,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     categoriesYear,
     dataGraphTotal,
     dataTitle,
+    search,
   );
 
   useEffect(() => {

@@ -39,6 +39,7 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
     intl,
     categories,
     dataGraph,
+    search,
   );
 
   return (
