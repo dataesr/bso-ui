@@ -2,132 +2,160 @@
   "130015506": {
     "name": "Université de Lorraine",
     "commentsName": "de l'université de Lorraine",
+    "commentsNameEN": "of the university of Lorraine",
     "displayTitle": "false",
     "startYear": 2016
   },
   "130015332": {
     "name": "Aix-Marseille Université",
     "commentsName": "d'AMU",
+    "commentsNameEN": "of AMU",
     "startYear": 2016
   },
   "130026149": {
     "name": "Université PSL",
     "commentsName": "de l'université PSL",
+    "commentsNameEN": "of PSL university",
     "startYear": 2016
   },
   "180036048": {
     "name": "Institut national de la santé et de la recherche médicale (Inserm)",
     "commentsName": "de l'Inserm",
+    "commentsNameEN": "of Inserm",
     "startYear": 2016
   },
   "180070039": {
     "name": "Institut national de recherche pour l'agriculture, l'alimentation et l'environnement (INRAE)",
-    "commentsName": "de l'INRAE"
+    "commentsName": "de l'INRAE",
+    "commentsNameEN": "of INRAE"
   },
   "18009202500097": {
     "name": "IMT Mines Albi",
-    "commentsName": "d'IMT Mines Albi"
+    "commentsName": "d'IMT Mines Albi",
+    "commentsNameEN": "of IMT Mines Albi"
   },
   "18009202500121": {
     "name": "IMT Atlantique",
-    "commentsName": "d'IMT Atlantique"
+    "commentsName": "d'IMT Atlantique",
+    "commentsNameEN": "of IMT Atlantique"
   },
   "191700327": {
     "name": "La Rochelle Université",
     "commentsName": "de La Rochelle Université",
+    "commentsNameEN": "of La Rochelle University",
     "startYear": 2017
   },
   "192112373": {
     "name": "Université de Bourgogne",
     "commentsName": "de l'Université de Bourgogne",
+    "commentsNameEN": "of the university of Bourgogne",
     "startYear": 2016
   },
   "192512150": {
     "name": "Université de Franche-Comté (UFC)",
-    "commentsName": "de l'UFC"
+    "commentsName": "de l'UFC",
+    "commentsNameEN": "of the UFC"
   },
   "193113842": {
     "name": "Université Toulouse 3 Paul Sabatier",
-    "commentsName": "de l'université Toulouse 3"
+    "commentsName": "de l'université Toulouse 3",
+    "commentsNameEN": "of the university of Toulouse 3"
   },
   "193509361": {
     "name": "Université Rennes 1",
-    "commentsName": "de l'université de Rennes 1"
+    "commentsName": "de l'université de Rennes 1",
+    "commentsNameEN": "of the university of Rennes 1"
   },
   "196901920": {
     "name": "Institut national des sciences appliquées de Lyon (INSA Lyon)",
     "commentsName": "de l'INSA Lyon",
+    "commentsNameEN": "of INSA Lyon",
     "startYear": 2016
   },
   "196917744": {
     "name": "Université Claude Bernard Lyon 1",
     "commentsName": "de l'université Claude Bernard Lyon 1",
+    "commentsNameEN": "of the university Claude Bernard Lyon 1",
     "startYear": 2016
   },
   "196917751": {
     "name": "Université Lumière Lyon 2",
-    "commentsName": "de l'université Lyon 2"
+    "commentsName": "de l'université Lyon 2",
+    "commentsNameEN": "of the university Lyon 2"
   },
   "197534720": {
     "name": "Arts et Métiers Sciences et Technologies (ENSAM)",
-    "commentsName": "de l'ENSAM"
+    "commentsName": "de l'ENSAM",
+    "commentsNameEN": "of ENSAM"
   },
   "197819444": {
     "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)",
-    "commentsName": "de l'UVSQ"
+    "commentsName": "de l'UVSQ",
+    "commentsNameEN": "of the UVSQ"
   },
   "198307662": {
     "name": "Université de Toulon (UTLN)",
-    "commentsName": "de l'université Toulon"
+    "commentsName": "de l'université Toulon",
+    "commentsNameEN": "of the university of Toulon"
   },
   "198406852": {
     "name": "Avignon Université",
     "commentsName": "d'Avignon Université",
+    "commentsNameEN": "of Avignon University",
     "startYear": 2015
   },
   "198608564": {
     "name": "Université de Poitiers",
     "commentsName": "de l'Université de Poitiers",
+    "commentsNameEN": "of the university of Poitiers",
     "startYear": 2016
   },
   "199119751": {
     "name": "Université d'Evry Val d'Essonne",
     "commentsName": "de l'Université d'Evry Val d'Essonne",
+    "commentsNameEN": "of the university of Evry Val d'Essonne",
     "startYear": 2016
   },
   "200112505t": {
     "name": "Analyse et Traitement Informatique de la Langue Française (ATILF)",
     "commentsName": "de l'ATILF",
+    "commentsNameEN": "of the ATILF",
     "displayTitle": "false",
     "startYear": 2016
   },
   "200117305k": {
     "name": "Dynamique des Génomes et Adaptation Microbienne (DynAMic)",
     "commentsName": "de DynAMic",
+    "commentsNameEN": "of DynAMic",
     "displayTitle": "false",
     "startYear": 2016
   },
   "200919011e": {
     "name": "Laboratoire Matériaux Optiques, Photonique et Systèmes (LMOPS)",
     "commentsName": "du LMOPS",
+    "commentsNameEN": "of LMOPS",
     "displayTitle": "false",
     "startYear": 2016
   },
   "201420738k": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
+    "commentsNameEN": "of the CRESS",
     "startYear": 2016
   },
   "775685019": {
     "name": "CEA",
-    "commentsName": "du CEA"
+    "commentsName": "du CEA",
+    "commentsNameEN": "of CEA"
   },
   "775722879": {
     "name": "Office national d'études et de recherches aérospatiales (ONERA)",
-    "commentsName": "de l'ONERA"
+    "commentsName": "de l'ONERA",
+    "commentsNameEN": "of the ONERA"
   },
   "817389141": {
     "name": "Grenoble Ecole de Management (GEM)",
-    "commentsName": "de Grenoble Ecole de Management"
+    "commentsName": "de Grenoble Ecole de Management",
+    "commentsNameEN": "of Grenoble Ecole de Management"
   }
 }

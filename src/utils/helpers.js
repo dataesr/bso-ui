@@ -296,9 +296,11 @@ export function getURLSearchParams(search, intl = undefined) {
   let endYear;
   let name;
   let startYear = 2013;
+  const selectedLang = sessionStorage.getItem('__bso_lang__');
+  const commentsNameProperty = selectedLang === 'en' ? 'commentsNameEN' : 'commentsName';
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || locals[bsoLocalAffiliation].commentsName
+      || locals[bsoLocalAffiliation][commentsNameProperty]
       || intl.formatMessage({ id: 'app.french', defaultMessage: 'françaises' });
     displayTitle = !(
       (

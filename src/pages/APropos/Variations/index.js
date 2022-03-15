@@ -103,6 +103,14 @@ function Variations() {
                   <i> défaut: vide</i>
                 </li>
                 <li>
+                  <b>commentsNameEN</b>
+                  {' '}
+                  : Nom de l'établissement / laboratoire
+                  qui sera affiché dans les commentaires en anglais (ex:
+                  commentsName=of the university of Lorraine),
+                  <i> défaut: vide</i>
+                </li>
+                <li>
                   <b>displayComment</b>
                   {' '}
                   : affiche ou masque le commentaire (ex:
