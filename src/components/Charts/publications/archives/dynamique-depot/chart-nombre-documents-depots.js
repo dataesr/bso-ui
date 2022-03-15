@@ -37,6 +37,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       withDomain(id, domain),
       intl,
       oneGraph,
+      search,
     );
     graphs.push(optionsGraph);
   });
