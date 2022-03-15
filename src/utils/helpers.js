@@ -281,7 +281,7 @@ export function isInProduction() {
  * @param {string} search
  * @returns {Object}
  */
-export function getURLSearchParams(search) {
+export function getURLSearchParams(search, intl = undefined) {
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   const displayComment = !(
@@ -290,7 +290,8 @@ export function getURLSearchParams(search) {
   const displayFooter = !(
     urlSearchParams.get('displayFooter')?.toLowerCase() === 'false'
   );
-  let commentsName = 'françaises';
+  let commentsName = intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
+    || 'françaises';
   let displayTitle;
   let endYear;
   let name;
@@ -298,7 +299,7 @@ export function getURLSearchParams(search) {
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals[bsoLocalAffiliation].commentsName
-      || 'françaises';
+      || intl.formatMessage({ id: 'app.french', defaultMessage: 'françaises' });
     displayTitle = !(
       (
         urlSearchParams.get('displayTitle')

@@ -31,15 +31,18 @@ export function getGraphOptions({
   dataTitle = {},
   search = undefined,
 }) {
-  let tmp = 'françaises';
+  let commentsNameTemp = intl.formatMessage({
+    id: 'app.french',
+    defaultMessage: 'françaises',
+  });
   let otherSources = [];
   if (search) {
-    const { commentsName, name } = getURLSearchParams(search);
-    tmp = commentsName;
+    const { commentsName, name } = getURLSearchParams(search, intl);
+    commentsNameTemp = commentsName;
     otherSources = [name];
   }
   // eslint-disable-next-line no-param-reassign
-  dataTitle.commentsName = tmp;
+  dataTitle.commentsName = commentsNameTemp;
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
   const legend = intl.formatMessage({
     id: `${id}.legend`,
@@ -50,7 +53,7 @@ export function getGraphOptions({
       id: `${titleId}.tooltip`,
       defaultMessage: ' ',
     })
-    .replaceAll('((commentsName))', tmp);
+    .replaceAll('((commentsName))', commentsNameTemp);
   const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
   const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: ' ' });
   const source = getSource(id, otherSources);
@@ -571,7 +574,7 @@ export const chartOptions = {
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, data, search) => {
-      const { startYear } = getURLSearchParams(search);
+      const { startYear } = getURLSearchParams(search, intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({
         id,
@@ -888,7 +891,7 @@ export const chartOptions = {
   },
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, categories, dataTitle, search) => {
-      const { startYear } = getURLSearchParams(search);
+      const { startYear } = getURLSearchParams(search, intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl, dataTitle, search });
       options.chart.type = 'spline';
@@ -1046,7 +1049,7 @@ export const chartOptions = {
   },
   'publi.publishers.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, dataTitle, categories, search) => {
-      const { startYear } = getURLSearchParams(search);
+      const { startYear } = getURLSearchParams(search, intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl, dataTitle, search });
       options.chart.type = 'spline';
@@ -1519,7 +1522,7 @@ export const chartOptions = {
   },
   'publi.repositories.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, categories, dataTitle, search) => {
-      const { startYear } = getURLSearchParams(search);
+      const { startYear } = getURLSearchParams(search, intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl, dataTitle, search });
       options.chart.type = 'spline';

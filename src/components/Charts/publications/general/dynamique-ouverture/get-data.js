@@ -18,7 +18,7 @@ function useGetData(observationSnaps, domain = '') {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const { search } = useLocation();
-  const { commentsName } = getURLSearchParams(search);
+  const { commentsName } = getURLSearchParams(search, intl);
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
