@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -22,6 +23,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
+  const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(observationSnaps, domain);
   const { categories, dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
@@ -30,6 +32,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     intl,
     categories,
     dataGraph,
+    search,
   );
 
   return (

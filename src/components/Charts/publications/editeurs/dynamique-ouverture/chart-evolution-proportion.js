@@ -86,7 +86,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
         firstValue='*'
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-        onChange={(e) => setPublisher(e.target.value)}
+        onChange={(event) => setPublisher(event.target.value)}
         options={publishers || []}
         selected={publisher}
       />

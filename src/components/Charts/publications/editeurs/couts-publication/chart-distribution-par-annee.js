@@ -57,6 +57,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     categoriesViolin,
     dataGraphViolin,
     dataTitle,
+    search,
   );
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html';
 import { getURLSearchParams } from './helpers';
 
 export default function customComments(data, id, intl, search = '') {
-  const { commentsName, displayComment } = getURLSearchParams(search);
+  const { commentsName, displayComment } = getURLSearchParams(search, intl);
   if (!displayComment) {
     return false;
   }

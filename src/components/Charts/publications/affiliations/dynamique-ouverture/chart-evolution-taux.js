@@ -9,6 +9,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -34,7 +35,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [activeData, setActiveData] = useState([]);
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
+
   useEffect(() => {
     let newData = null;
     const series = [];
@@ -127,7 +130,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       if (activeDataCheck !== newDataCheck) {
         setActiveData(newData);
         setOptionsGraph(
-          chartOptions[id].getOptions(withDomain(id, domain), intl, series),
+          chartOptions[id].getOptions(
+            withDomain(id, domain),
+            intl,
+            series,
+            search,
+          ),
         );
       }
     }
@@ -140,28 +148,27 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     intl,
     lastObservationSnap,
     optionsGraph,
+    search,
     sort,
   ]);
 
   return (
     <WrapperChart
-      id={id}
-      idWithDomain={idWithDomain}
-      domain={domain}
-      isLoading={isLoading || !data || data.length <= 0}
-      isError={isError}
       chartRef={chartRef}
+      domain={domain}
       hasComments={hasComments}
       hasFooter={hasFooter}
+      id={id}
+      idWithDomain={idWithDomain}
+      isError={isError}
+      isLoading={isLoading || !data || data.length <= 0}
     >
       <RadioGroup
-        legend={intl.formatMessage({ id: 'app.publi.sort' })}
-        isInline
-        value={sort}
-        onChange={(newValue) => {
-          setSort(newValue);
-        }}
         className='d-inline-block'
+        isInline
+        legend={intl.formatMessage({ id: 'app.publi.sort' })}
+        onChange={(newValue) => setSort(newValue)}
+        value={sort}
       >
         <Radio
           label={intl.formatMessage({ id: 'app.publi.sort-open-access' })}
@@ -174,9 +181,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );

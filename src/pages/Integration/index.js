@@ -13,7 +13,7 @@ const Integration = () => {
   const { pathname, search } = useLocation();
   const intl = useIntl();
   const { switchLang } = useLang();
-  const { displayTitle, displayFooter } = getURLSearchParams(search);
+  const { displayTitle, displayFooter } = getURLSearchParams(search, intl);
   switchLang(language, pathname, search);
   return (
     <Container fluid>

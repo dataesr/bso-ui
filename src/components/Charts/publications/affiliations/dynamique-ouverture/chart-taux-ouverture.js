@@ -37,22 +37,21 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { dataGraph1 } = data;
   const idWithDomain = withDomain(id, domain);
-
-  useEffect(() => {
-    setChartComments(customComments(dataGraph1, idWithDomain, intl, search));
-  }, [dataGraph1, idWithDomain, intl, search]);
-
   const affiliationTitle = affiliation !== '*'
     ? ` (${intl.formatMessage({ id: `app.affiliations.${affiliation}` })})`
     : '';
   const dataTitle = { affiliationTitle };
-
   const optionsGraph = chartOptions[id].getOptions(
     withDomain(id, domain),
     intl,
     dataGraph1,
     dataTitle,
+    search,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(dataGraph1, idWithDomain, intl, search));
+  }, [dataGraph1, idWithDomain, intl, search]);
 
   return (
     <WrapperChart
