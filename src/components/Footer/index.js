@@ -187,8 +187,8 @@ export default function Footer() {
           <FooterLink href={intl.formatMessage({ id: 'url.about.faq' })}>
             FAQ
           </FooterLink>
-          <FooterCopy>
-            <p>
+          <FooterCopy className='w-100'>
+            <p className='float-left'>
               <FormattedMessage id='app.footer.licence' />
               {' '}
               <a
@@ -201,6 +201,7 @@ export default function Footer() {
                 licence etalab-2.0
               </a>
             </p>
+            <p className='float-right'>{`v${process.env.REACT_APP_VERSION}`}</p>
           </FooterCopy>
         </FooterBottom>
       </DSFooter>

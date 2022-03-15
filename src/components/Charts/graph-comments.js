@@ -17,7 +17,7 @@ GraphComments.defaultProps = {
   hasFooter: true,
 };
 GraphComments.propTypes = {
-  comments: PropTypes.string.isRequired,
+  comments: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
   hasFooter: PropTypes.bool,
 };
 

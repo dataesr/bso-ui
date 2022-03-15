@@ -297,28 +297,29 @@ export function getURLSearchParams(search) {
   let startYear = 2013;
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || locals[bsoLocalAffiliation].commentsName
+      || locals?.[bsoLocalAffiliation]?.commentsName
       || 'françaises';
     displayTitle = !(
       (
         urlSearchParams.get('displayTitle')
-        || locals[bsoLocalAffiliation].displayTitle
+        || locals?.[bsoLocalAffiliation]?.displayTitle
       )?.toLowerCase() === 'false'
     );
     endYear = parseInt(
       urlSearchParams.get('endYear')?.toLowerCase()
-        || locals[bsoLocalAffiliation].endYear,
+        || locals?.[bsoLocalAffiliation]?.endYear,
       10,
     );
     name = urlSearchParams.get('name')?.toLowerCase()
-      || locals[bsoLocalAffiliation].name;
+      || locals?.[bsoLocalAffiliation]?.name;
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
-        || locals[bsoLocalAffiliation].startYear
+        || locals?.[bsoLocalAffiliation]?.startYear
         || 2013,
       10,
     );
   }
+
   return {
     bsoLocalAffiliation,
     commentsName,

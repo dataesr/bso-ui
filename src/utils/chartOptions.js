@@ -31,15 +31,10 @@ export function getGraphOptions({
   dataTitle = {},
   search = undefined,
 }) {
+  const { commentsName, name } = getURLSearchParams(search);
   // eslint-disable-next-line no-param-reassign
-  dataTitle.commentsName = 'françaises';
-  let otherSources = [];
-  if (search) {
-    const { commentsName, name } = getURLSearchParams(search);
-    // eslint-disable-next-line no-param-reassign
-    dataTitle.commentsName = commentsName;
-    otherSources = [name];
-  }
+  dataTitle.commentsName = commentsName;
+  const otherSources = search ? [name?.replace(/ *\([^)]*\) */g, '')] : [];
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
   const legend = intl.formatMessage({
     id: `${id}.legend`,
@@ -221,9 +216,6 @@ export const chartOptions = {
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, categories, data, dataTitle, search, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle, search });
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.disciplines.voies-ouverture.chart-repartition-publications.tooltip',
-      });
       options.chart.type = 'bar';
       options.chart.height = '600px';
       options.xAxis = {
@@ -244,7 +236,7 @@ export const chartOptions = {
             },
             enabled: true,
             formatter() {
-              return this.y.toFixed(0).concat(' %');
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
             },
           },
           dataSorting: {
@@ -1591,7 +1583,7 @@ export const chartOptions = {
     getOptions: (id, intl, data, categories, dataTitle, search) => {
       const { startYear } = getURLSearchParams(search);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
-      const options = getGraphOptions({ id, intl, dataTitle });
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.tooltip.pointFormat = intl.formatMessage({
         id: 'app.publi.repositories.dynamique-ouverture.chart-evolution-proportion.tooltip',
       });
@@ -1907,7 +1899,6 @@ export const chartOptions = {
         id: 'app.publi.percentage-publi-bealls',
       });
       options.legend = { enabled: false };
-
       return options;
     },
   },

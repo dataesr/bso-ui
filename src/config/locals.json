@@ -46,6 +46,11 @@
     "name": "Université de Franche-Comté (UFC)",
     "commentsName": "de l'UFC"
   },
+  "193000635": {
+    "name": "IMT Mines Alès",
+    "commentsName": "d'IMT Mines Alès",
+    "startYear": 2014
+  },
   "193113842": {
     "name": "Université Toulouse 3 Paul Sabatier",
     "commentsName": "de l'université Toulouse 3"
@@ -71,6 +76,11 @@
   "197534720": {
     "name": "Arts et Métiers Sciences et Technologies (ENSAM)",
     "commentsName": "de l'ENSAM"
+  },
+  "197534860": {
+    "name": "École Pratique des Hautes Études - PSL",
+    "commentsName": "de l'EPHE-PSL",
+    "startYear": 2017
   },
   "197819444": {
     "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)",
@@ -98,6 +108,12 @@
   "200112505t": {
     "name": "Analyse et Traitement Informatique de la Langue Française (ATILF)",
     "commentsName": "de l'ATILF",
+    "displayTitle": "false",
+    "startYear": 2016
+  },
+  "200117305k": {
+    "name": "Dynamique des Génomes et Adaptation Microbienne (DynAMic)",
+    "commentsName": "de DynAMic",
     "displayTitle": "false",
     "startYear": 2016
   },

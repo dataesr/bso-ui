@@ -64,7 +64,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       setPublishers(
         response.data.aggregations.by_publisher.buckets
           .filter((item) => item.key !== 'Cold Spring Harbor Laboratory')
-          .map((item) => item.key),
+          .map((item) => ({ label: item.key, value: item.key })),
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
