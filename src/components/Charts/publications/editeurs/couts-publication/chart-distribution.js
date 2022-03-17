@@ -39,12 +39,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { dataGraphHistogram, categoriesHistogram } = data;
   const { search } = useLocation();
-  const query = getFetchOptions({
-    key: 'publishersList',
-    domain,
-    search,
-    parameters: [lastObservationSnap],
-  });
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
@@ -58,6 +52,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
 
   useEffect(() => {
+    const query = getFetchOptions({
+      key: 'publishersList',
+      domain,
+      search,
+      parameters: [lastObservationSnap],
+    });
+
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
         response.data.aggregations.by_publisher.buckets.map((item) => ({
@@ -66,8 +67,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         })),
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [domain, lastObservationSnap, search]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl, search));

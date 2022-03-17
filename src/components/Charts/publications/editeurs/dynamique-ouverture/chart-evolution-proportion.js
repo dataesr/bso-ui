@@ -38,12 +38,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { categories, dataGraph2 } = data;
   const { search } = useLocation();
-  const query = getFetchOptions({
-    key: 'publishersList',
-    domain,
-    search,
-    parameters: [lastObservationSnap],
-  });
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
@@ -61,6 +55,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   }, [data, idWithDomain, intl, search]);
 
   useEffect(() => {
+    const query = getFetchOptions({
+      key: 'publishersList',
+      domain,
+      search,
+      parameters: [lastObservationSnap],
+    });
+
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       setPublishers(
         response.data.aggregations.by_publisher.buckets
@@ -68,8 +69,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           .map((item) => ({ label: item.key, value: item.key })),
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [domain, lastObservationSnap, search]);
 
   return (
     <WrapperChart
