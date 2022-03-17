@@ -582,7 +582,7 @@ function SantePublications() {
             <GraphItem
               paths={[
                 '/sante/publications/affiliations',
-                'health/publications/affiliations',
+                '/health/publications/affiliations',
               ]}
               isDisplayed={!isInProduction()}
               mainLabel={intl.formatMessage({
