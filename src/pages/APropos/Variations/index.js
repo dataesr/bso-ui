@@ -298,6 +298,15 @@ function Variations() {
                     Université de Rennes 1
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://bu.u-bourgogne.fr/EXPLOITATION/barometre-ub-de-la-science-ouverte.aspx'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Bourgogne
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
