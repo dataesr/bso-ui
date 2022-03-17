@@ -1525,9 +1525,6 @@ export const chartOptions = {
       const { startYear } = getURLSearchParams(search, intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl, dataTitle, search });
-      options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.repositories.dynamique-ouverture.chart-evolution-proportion.tooltip',
-      });
       options.chart.type = 'spline';
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
