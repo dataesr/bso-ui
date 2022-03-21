@@ -56,9 +56,16 @@
     "commentsName": "de l'UFC",
     "commentsNameEN": "of the UFC"
   },
+  "192903466": {
+    "name": "Université de Brest",
+    "commentsName": "de l'université de Brest",
+    "commentsNameEN": "of the university of Brest",
+    "startYear": 2017
+  },
   "193000635": {
     "name": "IMT Mines Alès",
     "commentsName": "d'IMT Mines Alès",
+    "commentsNameEN": "of IMT Mines Alès",
     "startYear": 2014
   },
   "193113842": {
@@ -102,6 +109,7 @@
   "197534860": {
     "name": "École Pratique des Hautes Études - PSL",
     "commentsName": "de l'EPHE-PSL",
+    "commentsNameEN": "of EPHE-PSL",
     "startYear": 2017
   },
   "197819444": {
