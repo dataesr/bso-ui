@@ -71,13 +71,10 @@ export default function DataCardSection({ domain, lang }) {
       },
       documentsByTypesByOA: {
         fetch: (buckets) => {
-          const articles = buckets?.find(
-            (item) => item.key === 'journal-article',
-          );
-          const articlesCount = articles?.doc_count;
-          const oaArticlesCount = articles?.by_is_oa.buckets?.find(
-            (item) => item.key === 1,
-          )?.doc_count;
+          const articles = buckets?.find((item) => item.key === 'journal-article') || [];
+          const articlesCount = articles?.doc_count || 0;
+          const oaArticlesCount = articles?.by_is_oa.buckets?.find((item) => item.key === 1)
+            ?.doc_count || 0;
           return `${((oaArticlesCount / articlesCount) * 100).toFixed(0)} %`;
         },
         get: documentsByTypesByOA,
@@ -125,7 +122,7 @@ export default function DataCardSection({ domain, lang }) {
       },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
-          buckets.find((countObj) => countObj.key === 'HAL').doc_count,
+          buckets?.find((countObj) => countObj.key === 'HAL')?.doc_count || 0,
           lang,
         ),
         get: hostedDocuments,
@@ -147,9 +144,8 @@ export default function DataCardSection({ domain, lang }) {
       },
       openHealthPublicationPublisherRepository: {
         fetch: (buckets) => {
-          const documentsCount = buckets.find(
-            (item) => item.key === 'publisher;repository',
-          ).doc_count;
+          const documentsCount = buckets?.find((item) => item.key === 'publisher;repository')
+            ?.doc_count || 0;
           return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
             0,
           )} %`;
@@ -165,9 +161,8 @@ export default function DataCardSection({ domain, lang }) {
       },
       hostedDocumentPMC: {
         fetch: (buckets) => {
-          const documentsCount = buckets.find(
-            (countObj) => countObj.key === 'PubMed Central',
-          ).doc_count;
+          const documentsCount = buckets?.find((countObj) => countObj.key === 'PubMed Central')
+            ?.doc_count || 0;
           return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
             0,
           )} %`;
@@ -228,11 +223,10 @@ export default function DataCardSection({ domain, lang }) {
       if (!publicationsNumber) {
         const books = aggregations?.by_genre?.buckets?.find(
           (item) => item.key === 'book',
-        );
-        const booksCount = books?.doc_count;
-        const oaBooksCount = books?.by_is_oa.buckets?.find(
-          (item) => item.key === 1,
-        )?.doc_count;
+        ) || [];
+        const booksCount = books?.doc_count || 0;
+        const oaBooksCount = books?.by_is_oa?.buckets?.find((item) => item.key === 1)?.doc_count
+          || 0;
         setOaBooksRate(((oaBooksCount / booksCount) * 100).toFixed(0));
         setPublicationsNumber(
           aggregations.by_is_oa.buckets[0].doc_count
@@ -240,9 +234,9 @@ export default function DataCardSection({ domain, lang }) {
         );
         setTotalHostedDocuments(
           formatNumberByLang(
-            aggregations.by_oa_colors.buckets.find(
+            aggregations.by_oa_colors.buckets?.find(
               (item) => item.key === 'green',
-            ).doc_count,
+            )?.doc_count || 0,
             lang,
           ),
         );
