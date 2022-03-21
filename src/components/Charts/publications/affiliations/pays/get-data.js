@@ -110,9 +110,10 @@ function useGetData(observationDate, domain = '') {
           bsoDomain,
           y:
             (100
-              * el.by_is_oa.buckets.find((item) => item.key === 1).doc_count)
-            / el.doc_count,
-          y_abs: el.by_is_oa.buckets.find((item) => item.key === 1).doc_count,
+              * el.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count
+              || 0) / el.doc_count,
+          y_abs:
+            el.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0,
           y_tot: el.doc_count,
           country: intl.formatMessage({ id: `app.country.${el.key}` }),
           publicationDate:
