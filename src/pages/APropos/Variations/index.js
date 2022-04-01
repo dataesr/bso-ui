@@ -300,11 +300,20 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://bu.u-bourgogne.fr/EXPLOITATION/barometre-ub-de-la-science-ouverte.aspx'
+                    href='https://www.u-bourgogne.fr/non-categorise/politique-science-ouverte'
                     target='_blank'
                     rel='noreferrer'
                   >
                     Université de Bourgogne
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://bu.univ-larochelle.fr/lappui-a-la-recherche/barometre-science-ouverte/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de La Rochelle
                   </a>
                 </li>
               </ul>
