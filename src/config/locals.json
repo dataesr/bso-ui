@@ -12,6 +12,18 @@
     "commentsNameEN": "of AMU",
     "startYear": 2016
   },
+  "130023385": {
+    "name": "Sorbonne Université",
+    "commentsName": "de Sorbonne Université",
+    "commentsNameEN": "of Sorbonne Université",
+    "startYear": 2018
+  },
+  "130026081": {
+    "name": "Université Grenoble Alpes",
+    "commentsName": "de l'université Grenoble Alpes",
+    "commentsNameEN": "of Grenoble Alpes university",
+    "startYear": 2016
+  },
   "130026149": {
     "name": "Université PSL",
     "commentsName": "de l'université PSL",
@@ -67,6 +79,11 @@
     "commentsName": "d'IMT Mines Alès",
     "commentsNameEN": "of IMT Mines Alès",
     "startYear": 2014
+  },
+  "193101524": {
+    "name": "INSA Toulouse",
+    "commentsName": "de l'INSA Toulouse",
+    "commentsNameEN": "of INSA Toulouse"
   },
   "193113842": {
     "name": "Université Toulouse 3 Paul Sabatier",
@@ -166,6 +183,11 @@
     "commentsName": "du CRESS",
     "commentsNameEN": "of the CRESS",
     "startYear": 2016
+  },
+  "775663958": {
+    "name": "ESSEC Business School",
+    "commentsName": "de l'ESSEC Business School",
+    "commentsNameEN": "of ESSEC Business School"
   },
   "775685019": {
     "name": "CEA",
