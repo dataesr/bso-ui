@@ -134,7 +134,7 @@ function Variations() {
                 <li>
                   <b>endYear</b>
                   {' '}
-                  : filtre sur l'année de publication inférieure
+                  : filtre sur l'année d'observation inférieure
                   ou égale (ex: endYear=2020),
                   <i> défaut: vide</i>
                 </li>
@@ -148,14 +148,14 @@ function Variations() {
                 <li>
                   <b>startYear</b>
                   {' '}
-                  : filtre sur l'année de publication
-                  supérieure ou égale (ex: startYear=2016),
+                  : filtre sur l'année d'observation supérieure
+                  ou égale (ex: startYear=2016),
                   <i> défaut: 2013</i>
                 </li>
               </ul>
               <li>
-                Attention, seuls les graphes du BSO publications sont
-                adaptables.
+                Attention, seuls les graphes du BSO publications sont adaptables
+                (et pas ceux concernant la santé).
               </li>
               <li>
                 D'autre part, l'url doit être encodée. Pour ce faire, il faut
