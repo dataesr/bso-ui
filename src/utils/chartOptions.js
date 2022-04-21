@@ -1738,7 +1738,7 @@ export const chartOptions = {
   'publi.repositories.dynamique-hal.chart-couverture-hal': {
     getOptions: (id, intl, publicationYears, data, search) => {
       const options = getGraphOptions({ id, intl, search });
-      options.yAxis = getPercentageYAxis(false);
+      options.yAxis = getPercentageYAxis(false, 125);
       options.chart.type = 'column';
       options.xAxis = {
         publicationYears,
@@ -1766,6 +1766,11 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.yAxis = {
+        max: 125,
+        endOnTick: false,
+        tickAmount: 6,
+      };
       return options;
     },
   },
