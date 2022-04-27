@@ -1,14 +1,14 @@
+// import ReactMarkdown from 'react-markdown';
+// import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from '@dataesr/react-dsfr';
-import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import ReactMarkdown from 'react-markdown';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 
 function Methodologie() {
-  const [markdown, setMarkdown] = useState('');
-
+  // const [markdown, setMarkdown] = useState('');
+  /*
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/dataesr/bso-publications/main/doc/bso.md')
       .then((response) => response.text())
@@ -22,6 +22,7 @@ function Methodologie() {
         setMarkdown(group);
       });
   }, []);
+  */
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -48,11 +49,19 @@ function Methodologie() {
           <Row gutters>
             <Col n='12 lg-8'>
               La méthodologie a été mise en place par Anne L'Hôte (MESRI), Eric Jeangirard (MESRI), Didier Torny (CNRS) et Laetitia Bracco
-              (Université de Lorraine). La méthodologie est décrite dans le document de travail disponible pour le moment sur
+              (Université de Lorraine). La méthodologie est décrite dans le document de travail disponible HAL :
+              <br />
+              <br />
               {' '}
-              <a href='https://github.com/dataesr/bso-publications/raw/main/doc/bso.pdf'>github</a>
+              <a
+                href='https://hal.archives-ouvertes.fr/hal-03651518'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Extending the open monitoring of open science: A new framework for the French Open Science Monitor (BSO)
+              </a>
               {' '}
-              et bientôt sur HAL et arXiv. Elle est reproduite ci-dessous (en anglais uniquement pour le moment).
+              <br />
               <br />
               Par ailleurs, pour toute question, vous pouvez nous contacter à l'adresse
               {' '}
@@ -60,6 +69,7 @@ function Methodologie() {
               .
             </Col>
           </Row>
+          {/*
           <Row gutters>
             <Col n='12 lg-8'>
               <ReactMarkdown components={{
@@ -71,6 +81,7 @@ function Methodologie() {
               </ReactMarkdown>
             </Col>
           </Row>
+        */}
         </section>
       </Container>
     </div>
