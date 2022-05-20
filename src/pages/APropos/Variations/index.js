@@ -316,6 +316,15 @@ function Variations() {
                     Université de La Rochelle
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://www.univ-poitiers.fr/decouvrir-la-recherche/publications-et-parutions/barometre-de-la-science-ouverte-de-luniversite-de-poitiers/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université de Poitiers
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
