@@ -117,11 +117,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-repositories' })
             : needle,
-        name: observationSnapData.observationSnap, // observation date
+        name: getObservationLabel(observationSnapData.observationSnap, intl), // observation date
         publicationDate: observationSnapData.data.publicationDates[index],
       }));
       serie.ratios = observationSnapData.data.oaHostType.map(
-        (value, index) => `(${value}/${observationSnapData.data.all[index]})`,
+        (value, index) => `(${value} / ${observationSnapData.data.all[index]})`,
       );
       serie.publicationDate = observationSnapData.data.publicationDates[
         observationSnapData.data.publicationDates.length - 1
