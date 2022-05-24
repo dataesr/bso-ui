@@ -45,7 +45,10 @@ export default async function useGetPublicationRateFrom(
             && el.key > 2012,
         );
       const data = sortedData.map(
-        (elm) => (elm.by_is_oa.buckets[0].doc_count * 100) / elm.doc_count,
+        (element) => (element.by_is_oa.buckets.find((subElement) => subElement.key === 1)
+          .doc_count
+            * 100)
+          / element.doc_count,
       );
       setResult(() => ({
         rate: data[data.length - 1],
