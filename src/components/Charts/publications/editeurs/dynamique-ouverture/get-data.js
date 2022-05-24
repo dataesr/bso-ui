@@ -130,7 +130,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         publicationDate: observationSnapData.data.publicationDates[index],
       }));
       serie.ratios = observationSnapData.data.oaHostType.map(
-        (value, index) => `(${value}/${observationSnapData.data.all[index]})`,
+        (value, index) => `(${value} / ${observationSnapData.data.all[index]})`,
       );
       serie.publicationDate = observationSnapData.data.publicationDates[
         observationSnapData.data.publicationDates.length - 1

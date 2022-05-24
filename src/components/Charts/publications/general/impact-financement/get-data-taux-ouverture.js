@@ -55,13 +55,13 @@ function useGetData(observationSnap, domain) {
         const withDeclarationElements = el.by_has_grant.buckets.find(
           (item) => item.key === 1,
         );
-        const withDeclarationOa = withDeclarationElements.by_is_oa.buckets.find(
+        const withDeclarationOa = withDeclarationElements?.by_is_oa.buckets.find(
           (item) => item.key === 1,
         )?.doc_count || 0;
         withDeclaration.push({
-          y: (100 * withDeclarationOa) / withDeclarationElements.doc_count,
+          y: (100 * withDeclarationOa) / withDeclarationElements?.doc_count,
           y_abs: withDeclarationOa,
-          y_tot: withDeclarationElements.doc_count,
+          y_tot: withDeclarationElements?.doc_count || 0,
           publicationDate: el.key,
           bsoDomain,
           agency: intl.formatMessage({ id: 'app.all-agencies' }),
@@ -163,7 +163,11 @@ function useGetData(observationSnap, domain) {
     return {
       categories,
       comments,
-      ctas: ['https://pubmed.ncbi.nlm.nih.gov/', 'https://www.nih.gov/', 'https://anr.fr/'],
+      ctas: [
+        'https://pubmed.ncbi.nlm.nih.gov/',
+        'https://www.nih.gov/',
+        'https://anr.fr/',
+      ],
       dataGraph,
     };
   }
