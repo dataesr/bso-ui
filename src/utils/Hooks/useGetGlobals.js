@@ -11,19 +11,29 @@ export const GlobalsContext = createContext();
 
 export const GlobalsContextProvider = ({ children }) => {
   const { lang } = useLang();
-  const hours = 2;
+  const hours = 0.1;
   const storedTimer = sessionStorage.getItem('storedTimer');
+  const hasNoStoredTimer = (storedTimer == null);
 
-  if (
+  if ((
     storedTimer
     && new Date().getTime() - storedTimer > hours * 60 * 60 * 1000
-  ) {
+  ) || hasNoStoredTimer) {
     clearSessionStorage([
       '__observationSnaps__',
+      '__lastObservationSnap__',
+      '__beforeLastObservationSnap__',
       '__updateDate__',
       'storedTimer',
     ]);
   }
+  if (hasNoStoredTimer) {
+    sessionStorage.setItem(
+      'storedTimer',
+      JSON.stringify(new Date().getTime()),
+    );
+  }
+
   const storedObservationSnaps = sessionStorage.getItem('__observationSnaps__');
   const [observationSnaps, setObservationSnaps] = useState(
     JSON.parse(storedObservationSnaps),
