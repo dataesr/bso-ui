@@ -108,7 +108,7 @@ function useGetData(observationSnaps, domain = '') {
             * 100,
         }));
         serie.ratios = filtered.map(
-          (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
+          (el) => `(${el.by_is_oa.buckets[0].doc_count} / ${el.doc_count})`,
         );
         serie.lastPublicationDate = filtered.length > 0 ? filtered[filtered.length - 1].key : 0;
         if (i < datesObservation.length) {

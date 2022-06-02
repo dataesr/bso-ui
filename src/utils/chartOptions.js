@@ -543,6 +543,7 @@ export const chartOptions = {
             },
           },
           dataLabels: {
+            allowOverlap: true,
             enabled: true,
             format: '{point.y:.0f} %',
             style: {
