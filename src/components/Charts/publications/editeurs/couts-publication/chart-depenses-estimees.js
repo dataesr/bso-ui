@@ -29,9 +29,10 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
   const [chartComments, setChartComments] = useState('');
-  const { lastObservationSnap, observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(
+  const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals();
+  const { data, isError, isLoading } = useGetData(
     observationSnaps,
+    beforeLastObservationSnap,
     publisher,
     domain,
   );
@@ -41,7 +42,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categoriesYear,
     dataGraphTotal,

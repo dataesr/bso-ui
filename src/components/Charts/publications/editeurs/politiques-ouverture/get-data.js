@@ -9,10 +9,11 @@ import {
   capitalize,
   cleanNumber,
   getCSSValue,
+  getObservationLabel,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(lastObservationSnap, domain) {
+function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
   const [allData, setAllData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -171,13 +172,20 @@ function useGetData(lastObservationSnap, domain) {
       x = wiley.x.toFixed(0);
       y = wiley.y.toFixed(0);
     }
+
     const comments = {
+      publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
       publisher,
       x,
       y,
     };
 
-    return { bubbleGraph, categories, comments, dataGraph };
+    return {
+      bubbleGraph,
+      categories,
+      comments,
+      dataGraph,
+    };
   }
 
   useEffect(() => {
@@ -197,6 +205,6 @@ function useGetData(lastObservationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastObservationSnap]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

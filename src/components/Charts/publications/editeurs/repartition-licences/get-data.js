@@ -23,7 +23,6 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     if (!datesObservation || datesObservation.length === 0) {
       return {};
     }
-    // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     const query = getFetchOptions({
       key: 'publishersLicence',
@@ -198,6 +197,6 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps, isDetailed, needle]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

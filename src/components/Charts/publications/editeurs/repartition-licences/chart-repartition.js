@@ -34,7 +34,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [publisher, setPublisher] = useState('*');
   const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap, observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(
+  const { data, isError, isLoading } = useGetData(
     observationSnaps,
     isDetailed,
     publisher,
