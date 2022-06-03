@@ -8,10 +8,15 @@ import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
   getCSSValue,
+  getObservationLabel,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(lastObservationSnap, domain = '') {
+function useGetData(
+  beforeLastObservationSnap,
+  lastObservationSnap,
+  domain = '',
+) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -88,7 +93,15 @@ function useGetData(lastObservationSnap, domain = '') {
         ],
       },
     ];
-    return { bubbleGraph };
+
+    const comments = {
+      publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+    };
+
+    return {
+      bubbleGraph,
+      comments,
+    };
   }
 
   useEffect(() => {
@@ -108,6 +121,6 @@ function useGetData(lastObservationSnap, domain = '') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastObservationSnap]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

@@ -151,7 +151,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     let year2 = '';
     let value2 = '';
     if (observationSnaps && dataGraph1 && dataGraph2) {
-      year = getObservationLabel(observationSnaps[0]);
+      year = getObservationLabel(observationSnaps[0], intl);
       y = dataGraph1.find((item) => item.name === year).y;
       publicationDate = dataGraph1.find(
         (item) => item.name === year,

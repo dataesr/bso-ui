@@ -24,9 +24,13 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
 
-  const { lastObservationSnap } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const [chartComments, setChartComments] = useState('');
-  const { data, isLoading, isError } = useGetData(lastObservationSnap, domain);
+  const { data, isError, isLoading } = useGetData(
+    beforeLastObservationSnap,
+    lastObservationSnap,
+    domain,
+  );
   const { publicationYears, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const { search } = useLocation();
@@ -54,9 +58,9 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} hasFooter={hasFooter} />

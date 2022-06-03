@@ -72,18 +72,12 @@ function useGetData(observationSnap, domain) {
     tab = tab.slice(0, 12);
 
     const name = 'HAL';
-    let value1 = '';
-    let value2 = '';
-    const year1 = 2017;
-    const year2 = 2020;
-    if (tab) {
-      value1 = tab
-        .find((item) => item.name === name)
-        ?.data.find((item) => item.year === year1)?.y;
-      value2 = tab
-        .find((item) => item.name === name)
-        ?.data.find((item) => item.year === year2)?.y;
-    }
+    const halData = tab.find((item) => item.name === name)?.data;
+    const year1 = halData[0]?.year;
+    const value1 = halData[0]?.y;
+    const year2 = halData[halData.length - 1]?.year;
+    const value2 = halData[halData.length - 1]?.y;
+
     const comments = {
       name,
       value1,
@@ -112,6 +106,6 @@ function useGetData(observationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

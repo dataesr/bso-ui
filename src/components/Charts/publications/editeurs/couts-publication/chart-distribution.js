@@ -14,7 +14,7 @@ import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -31,9 +31,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [publishers, setPublishers] = useState([]);
   const [publisher, setPublisher] = useState('*');
   const [chartComments, setChartComments] = useState('');
-  const { observationSnaps, lastObservationSnap } = useGlobals(domain);
-  const { data, isLoading, isError } = useGetData(
+  const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals(domain);
+  const { data, isError, isLoading } = useGetData(
     observationSnaps,
+    beforeLastObservationSnap,
     publisher,
     domain,
   );
@@ -41,7 +42,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
-  const dataTitle = { publisherTitle };
+  const dataTitle = {
+    publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+    publisherTitle,
+  };
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,

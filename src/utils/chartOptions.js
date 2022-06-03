@@ -476,8 +476,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.type-ouverture.chart-repartition-modeles': {
-    getOptions: (id, intl, data, search) => {
-      const options = getGraphOptions({ id, intl, search });
+    getOptions: (id, intl, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.legend = {};
       options.series = [
         {
@@ -543,6 +543,7 @@ export const chartOptions = {
             },
           },
           dataLabels: {
+            allowOverlap: true,
             enabled: true,
             format: '{point.y:.0f} %',
             style: {
@@ -618,8 +619,8 @@ export const chartOptions = {
     },
   },
   'publi.general.voies-ouverture.chart-repartition-taux': {
-    getOptions: (id, intl, categories, data, search) => {
-      const options = getGraphOptions({ id, intl, search });
+    getOptions: (id, intl, categories, data, dataTitle, search) => {
+      const options = getGraphOptions({ id, intl, dataTitle, search });
       options.chart.type = 'column';
       options.xAxis = {
         categories,

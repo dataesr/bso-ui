@@ -40,6 +40,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { search } = useLocation();
   const { data, isLoading, isError } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
+  const orangeSoft50 = getCSSValue('--orange-soft-50');
   const orangeSoft75 = getCSSValue('--orange-soft-75');
   const orangeSoft100 = getCSSValue('--orange-soft-100');
   const orangeSoft125 = getCSSValue('--orange-soft-125');
@@ -75,26 +76,33 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         let showInLegend = true;
         const delta = parseInt(lastObservationSnap.substr(0, 4), 10)
           - parseInt(dates[index - 1].substr(0, 4), 10);
-        // eslint-disable-next-line default-case
         switch (delta) {
+        case 4:
+          fillColor = orangeSoft50;
+          lowColor = fillColor;
+          break;
         case 3:
-          lowColor = orangeSoft75;
-          fillColor = lowColor;
+          fillColor = orangeSoft75;
+          lowColor = fillColor;
           break;
         case 2:
-          lowColor = orangeSoft125;
-          fillColor = lowColor;
+          fillColor = orangeSoft125;
+          lowColor = fillColor;
           break;
         case 1:
-          lowColor = orangeSoft175;
           fillColor = 'white';
+          lowColor = orangeSoft175;
           break;
         case 0:
-          lowColor = orangeSoft100;
-          lineColor = lowColor;
           fillColor = 'white';
+          lineColor = orangeSoft100;
+          lowColor = lineColor;
           radius = 8;
           showInLegend = false;
+          break;
+        default:
+          fillColor = 'red';
+          lowColor = fillColor;
           break;
         }
         series.push({
@@ -148,6 +156,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     idWithDomain,
     intl,
     lastObservationSnap,
+    orangeSoft50,
     orangeSoft75,
     orangeSoft100,
     orangeSoft125,

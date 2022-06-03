@@ -5,9 +5,13 @@ import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  getCSSValue,
+  getObservationLabel,
+} from '../../../../../utils/helpers';
 
-function useGetData(lastObservationSnap, domain) {
+function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
   const intl = useIntl();
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -95,35 +99,47 @@ function useGetData(lastObservationSnap, domain) {
       },
     ];
 
-    const year = 2020;
-    let valueHAL = '';
     const valueHalLabel = capitalize(
       intl.formatMessage({
         id: 'app.health-publi.repositories.dynamique-hal.hal',
       }),
     );
-    let valueNotHAL = '';
     const valueNotHalLabel = capitalize(
       intl.formatMessage({
         id: 'app.health-publi.repositories.dynamique-hal.notHal',
       }),
     );
+    let valueHAL = '';
+    let valueNotHAL = '';
     if (dataGraph2) {
       valueHAL = dataGraph2
         .find((item) => item.name === valueHalLabel)
-        ?.data.find((item) => item.x === year)
+        ?.data.find(
+          (item) => item.x.toString()
+            === getObservationLabel(beforeLastObservationSnap, intl),
+        )
         ?.y.toFixed(0);
       valueNotHAL = dataGraph2
         .find((item) => item.name === valueNotHalLabel)
-        ?.data.find((item) => item.x === year)
+        ?.data.find(
+          (item) => item.x.toString()
+            === getObservationLabel(beforeLastObservationSnap, intl),
+        )
         ?.y.toFixed(0);
     }
+
     const comments = {
+      observationYear: getObservationLabel(lastObservationSnap, intl),
+      publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
       valueHAL,
       valueNotHAL,
     };
 
-    return { comments, dataGraph2, publicationYears };
+    return {
+      comments,
+      dataGraph2,
+      publicationYears,
+    };
   }
 
   useEffect(() => {
@@ -143,6 +159,6 @@ function useGetData(lastObservationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastObservationSnap]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

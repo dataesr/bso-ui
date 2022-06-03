@@ -200,7 +200,10 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       ];
 
       const comments = {
-        beforeLastObservationSnap,
+        beforeLastObservationSnap: getObservationLabel(
+          beforeLastObservationSnap,
+          intl,
+        ),
         closed: closed[closed.length - 1]?.y.toFixed(0),
         lastObservationSnap: getObservationLabel(lastObservationSnap, intl),
         oa: oa[oa.length - 1]?.y.toFixed(0),
@@ -244,6 +247,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;
