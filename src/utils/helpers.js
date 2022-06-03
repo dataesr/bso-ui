@@ -147,7 +147,7 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
   } else {
     publicationYear = observationSnap - 1;
   }
-  return publicationYear || '2020';
+  return publicationYear;
 }
 
 export function getObservationLabel(observationSnap, intl, newline = false) {

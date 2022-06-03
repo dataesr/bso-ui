@@ -26,7 +26,7 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
   const { lastObservationSnap } = useGlobals();
   const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(
-    lastObservationSnap || '2020',
+    lastObservationSnap,
     domain,
   );
   const { categories, dataGraph } = allData;

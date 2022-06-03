@@ -103,8 +103,8 @@ function useGetData(observationSnap, domain, isOa) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap, isOa]);
+  }, [isOa, observationSnap]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

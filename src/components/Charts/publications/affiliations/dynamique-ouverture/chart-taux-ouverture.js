@@ -29,7 +29,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [affiliation, setAffiliation] = useState('*');
   const { lastObservationSnap, observationSnaps } = useGlobals();
   const { search } = useLocation();
-  const { data, isLoading, isError } = useGetData(
+  const { data, isError, isLoading } = useGetData(
     observationSnaps,
     lastObservationSnap,
     affiliation,
@@ -42,7 +42,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     : '';
   const dataTitle = { affiliationTitle };
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph1,
     dataTitle,
@@ -75,8 +75,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         selected={affiliation}
       />
       <HighchartsReact
-        id={idWithDomain}
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
       />

@@ -33,15 +33,13 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
   const { search } = useLocation();
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
     studyType,
     sponsorType,
     id,
   );
-  const idWithDomainAndStudyType = withtStudyType(
-    withDomain(id, domain),
-    studyType,
-  );
+  const idWithDomain = withDomain(id, domain);
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
 
   useEffect(() => {
     setChartComments(
@@ -50,7 +48,7 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   }, [allData, idWithDomainAndStudyType, intl, search]);
 
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     allData,
     studyType,

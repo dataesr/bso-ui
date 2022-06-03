@@ -33,8 +33,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [sort, setSort] = useState('sort-open-access');
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [activeData, setActiveData] = useState([]);
-  const { observationSnaps, lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { lastObservationSnap, observationSnaps } = useGlobals();
+  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
 
@@ -130,12 +130,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       if (activeDataCheck !== newDataCheck) {
         setActiveData(newData);
         setOptionsGraph(
-          chartOptions[id].getOptions(
-            withDomain(id, domain),
-            intl,
-            series,
-            search,
-          ),
+          chartOptions[id].getOptions(idWithDomain, intl, series, search),
         );
       }
     }

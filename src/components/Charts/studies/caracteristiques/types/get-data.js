@@ -93,6 +93,7 @@ function useGetData(studyType, sponsorType = '*') {
       ?.find((item) => item.name === category)
       ?.data?.find((item) => item.x === year)
       ?.y?.toFixed(0);
+
     const comments = {
       category,
       value,

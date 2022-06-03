@@ -13,12 +13,13 @@ export const GlobalsContextProvider = ({ children }) => {
   const { lang } = useLang();
   const hours = 0.1;
   const storedTimer = sessionStorage.getItem('storedTimer');
-  const hasNoStoredTimer = (storedTimer == null);
+  const hasNoStoredTimer = storedTimer == null;
 
-  if ((
-    storedTimer
-    && new Date().getTime() - storedTimer > hours * 60 * 60 * 1000
-  ) || hasNoStoredTimer) {
+  if (
+    (storedTimer
+      && new Date().getTime() - storedTimer > hours * 60 * 60 * 1000)
+    || hasNoStoredTimer
+  ) {
     clearSessionStorage([
       '__observationSnaps__',
       '__lastObservationSnap__',
@@ -28,10 +29,7 @@ export const GlobalsContextProvider = ({ children }) => {
     ]);
   }
   if (hasNoStoredTimer) {
-    sessionStorage.setItem(
-      'storedTimer',
-      JSON.stringify(new Date().getTime()),
-    );
+    sessionStorage.setItem('storedTimer', JSON.stringify(new Date().getTime()));
   }
 
   const storedObservationSnaps = sessionStorage.getItem('__observationSnaps__');
@@ -55,7 +53,7 @@ export const GlobalsContextProvider = ({ children }) => {
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
-      .sort((a, b) => b.substr(0, 4) - a.substr(0, 4)); // ordre DECROISSANT !
+      .sort((a, b) => b.substr(0, 4) - a.substr(0, 4));
     return newObservationSnaps.filter(
       (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );

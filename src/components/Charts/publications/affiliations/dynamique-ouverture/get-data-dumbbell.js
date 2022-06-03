@@ -14,7 +14,6 @@ function useGetData(observationSnaps, domain = '') {
   const { search } = useLocation();
 
   async function GetData() {
-    // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     observationSnaps
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
@@ -96,6 +95,6 @@ function useGetData(observationSnaps, domain = '') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;
