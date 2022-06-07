@@ -130,7 +130,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       if (activeDataCheck !== newDataCheck) {
         setActiveData(newData);
         setOptionsGraph(
-          chartOptions[id].getOptions(idWithDomain, intl, series, search),
+          chartOptions[id].getOptions(
+            idWithDomain,
+            intl,
+            series,
+            search,
+          ),
         );
       }
     }

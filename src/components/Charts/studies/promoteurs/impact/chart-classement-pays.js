@@ -34,7 +34,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
   const { dataGraph2 } = allData;
   const idWithDomain = withDomain(id, domain);
-  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+  const idWithDomainAndStudyType = withtStudyType(
+    idWithDomain,
+    studyType,
+  );
 
   useEffect(() => {
     setChartComments(

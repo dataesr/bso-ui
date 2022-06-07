@@ -126,10 +126,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       },
     ];
 
-    const publicationYear = parseInt(
-      getObservationLabel(beforeLastObservationSnap, intl),
-      10,
-    );
+    const publicationYear = parseInt(getObservationLabel(beforeLastObservationSnap, intl), 10);
     const allPublicationsLabel = intl.formatMessage({
       id: 'app.all-publications',
     });

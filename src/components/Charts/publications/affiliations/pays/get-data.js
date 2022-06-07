@@ -135,20 +135,13 @@ function useGetData(beforeLastObservationSnap, observationDate, domain = '') {
         },
       ];
 
-      const publicationYear = getObservationLabel(
-        beforeLastObservationSnap,
-        intl,
-      );
-      const withFrenchAffiliationLabel = intl.formatMessage({
-        id: 'app.affiliations.rang-utile-fr',
-      });
+      const publicationYear = getObservationLabel(beforeLastObservationSnap, intl);
+      const withFrenchAffiliationLabel = intl.formatMessage({ id: 'app.affiliations.rang-utile-fr' });
       const withFrenchAffiliation = dataGraph
         .find((item) => item.name === withFrenchAffiliationLabel)
         ?.data.find((item) => item.x.toString() === publicationYear)
         ?.y?.toFixed(0);
-      const withoutFrenchAffiliationLabel = intl.formatMessage({
-        id: 'app.affiliations.rang-utile-etranger',
-      });
+      const withoutFrenchAffiliationLabel = intl.formatMessage({ id: 'app.affiliations.rang-utile-etranger' });
       const withoutFrenchAffiliation = dataGraph
         .find((item) => item.name === withoutFrenchAffiliationLabel)
         ?.data.find((item) => item.x.toString() === publicationYear)

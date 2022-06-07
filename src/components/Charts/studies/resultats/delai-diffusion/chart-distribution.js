@@ -39,7 +39,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     id,
   );
   const idWithDomain = withDomain(id, domain);
-  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+  const idWithDomainAndStudyType = withtStudyType(
+    idWithDomain,
+    studyType,
+  );
 
   useEffect(() => {
     setChartComments(
