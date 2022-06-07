@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -26,7 +26,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const [chartComments, setChartComments] = useState('');
   const { data, isError, isLoading } = useGetData(lastObservationSnap, domain);
-  const dataTitle = { publicationYear: beforeLastObservationSnap };
+  const dataTitle = {
+    publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+  };
   const idWithDomain = withDomain(id, domain);
   const { search } = useLocation();
   const optionsGraph = chartOptions[id].getOptions(
@@ -49,8 +51,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
-      isLoading={isLoading || !data}
       isError={isError}
+      isLoading={isLoading || !data}
     >
       <HighchartsReact
         highcharts={Highcharts}

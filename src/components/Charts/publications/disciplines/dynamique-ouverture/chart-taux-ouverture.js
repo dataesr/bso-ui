@@ -26,7 +26,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
   const { search } = useLocation();
-  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   let graphs = [];
   if (data.dataHist) {

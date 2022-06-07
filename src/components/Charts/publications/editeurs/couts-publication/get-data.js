@@ -337,11 +337,11 @@ function useGetData(
 
     const comments = {
       medianValueFirst: dataGraphViolinGoldAPC[0]?.x?.toFixed(0),
-      medianYearFirst: dataGraphViolinGoldAPC[0]?.publicationDate,
       medianValueLast:
         dataGraphViolinGoldAPC[dataGraphViolinGoldAPC.length - 1]?.x?.toFixed(
           0,
         ),
+      medianYearFirst: dataGraphViolinGoldAPC[0]?.publicationDate,
       medianYearLast:
         dataGraphViolinGoldAPC[dataGraphViolinGoldAPC.length - 1]
           ?.publicationDate,
@@ -349,13 +349,13 @@ function useGetData(
     };
 
     return {
-      comments,
-      dataGraphTotal,
-      categoriesYear,
-      dataGraphHistogram,
       categoriesHistogram,
-      dataGraphViolin,
       categoriesViolin,
+      categoriesYear,
+      comments,
+      dataGraphHistogram,
+      dataGraphTotal,
+      dataGraphViolin,
     };
   }
 

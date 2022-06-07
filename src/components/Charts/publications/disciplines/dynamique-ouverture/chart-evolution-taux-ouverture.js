@@ -38,7 +38,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { search } = useLocation();
-  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   const orangeSoft50 = getCSSValue('--orange-soft-50');
   const orangeSoft75 = getCSSValue('--orange-soft-75');

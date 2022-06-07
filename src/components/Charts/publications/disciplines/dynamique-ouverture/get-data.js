@@ -101,7 +101,7 @@ function useGetData(observationSnaps, domain = '') {
             .replace('  ', ' ')}`,
         });
         year1 = dataHist[0].data[serieLength - 1].name;
-        year2 = dataHist[0].data[serieLength].name.replace('<br/>', ' ');
+        year2 = dataHist[0].data[serieLength].name.replace('<br/>', ' - ');
 
         dataHist = dataHist.sort((a, b) => {
           const minA = a.data[0].y;
@@ -120,11 +120,11 @@ function useGetData(observationSnaps, domain = '') {
       }
 
       const comments = {
-        bestRateValue,
-        bestRateDiscipline,
+        bestProgressionDiscipline,
         bestProgressionValue1,
         bestProgressionValue2,
-        bestProgressionDiscipline,
+        bestRateDiscipline,
+        bestRateValue,
         year1,
         year2,
       };
@@ -158,8 +158,8 @@ function useGetData(observationSnaps, domain = '') {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnaps, getDataByObservationSnaps]);
+  }, [getDataByObservationSnaps, observationSnaps]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;
