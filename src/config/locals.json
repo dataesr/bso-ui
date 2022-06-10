@@ -12,10 +12,16 @@
     "commentsNameEN": "of AMU",
     "startYear": 2016
   },
+  "130018351": {
+    "name": "Université de Bordeaux",
+    "commentsName": "de l'université de Bordeaux",
+    "commentsNameEN": "of Bordeaux University",
+    "startYear": 2016
+  },
   "130023385": {
     "name": "Sorbonne Université",
     "commentsName": "de Sorbonne Université",
-    "commentsNameEN": "of Sorbonne Université",
+    "commentsNameEN": "of Sorbonne university",
     "startYear": 2017
   },
   "130025745": {
@@ -23,6 +29,12 @@
     "commentsName": "de l'UPHF",
     "commentsNameEN": "of the UPHF",
     "startYear": 2016
+  },
+  "130026024": {
+    "name": "Université Paris-Saclay",
+    "commentsName": "de l'université Paris-Saclay",
+    "commentsNameEN": "of Paris Saclay university",
+    "startYear": 2017
   },
   "130026081": {
     "name": "Université Grenoble Alpes",
@@ -54,6 +66,12 @@
     "commentsNameEN": "of INRAE",
     "startYear": 2016
   },
+  "180089047": {
+    "name": "Institut national de recherche en sciences et technologies du numérique (INRIA)",
+    "commentsName": "de l'INRIA",
+    "commentsNameEN": "of INRIA",
+    "startYear": 2017
+  },
   "18009202500097": {
     "name": "IMT Mines Albi",
     "commentsName": "d'IMT Mines Albi",
@@ -67,7 +85,7 @@
   "191700327": {
     "name": "La Rochelle Université",
     "commentsName": "de La Rochelle Université",
-    "commentsNameEN": "of La Rochelle University",
+    "commentsNameEN": "of La Rochelle university",
     "startYear": 2017
   },
   "192112373": {
@@ -99,9 +117,10 @@
     "commentsNameEN": "of INSA Toulouse"
   },
   "193113842": {
-    "name": "Université Toulouse 3 Paul Sabatier",
-    "commentsName": "de l'université Toulouse 3",
-    "commentsNameEN": "of the university of Toulouse 3"
+    "name": "Université Toulouse III - Paul Sabatier",
+    "commentsName": "de l'université Toulouse III",
+    "commentsNameEN": "of Toulouse III university",
+    "startYear": 2017
   },
   "193509361": {
     "name": "Université Rennes 1",
@@ -140,6 +159,12 @@
     "name": "École Pratique des Hautes Études - PSL",
     "commentsName": "de l'EPHE-PSL",
     "commentsNameEN": "of EPHE-PSL",
+    "startYear": 2017
+  },
+  "197534936": {
+    "name": "Ecole des Mines Paris-PSL",
+    "commentsName": "des Mines Paris-PSL",
+    "commentsNameEN": "of Mines Paris-PSL",
     "startYear": 2017
   },
   "197819444": {
