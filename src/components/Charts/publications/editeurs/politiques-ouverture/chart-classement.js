@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -24,12 +24,15 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
+    beforeLastObservationSnap,
     lastObservationSnap,
     domain,
   );
   const { categories, dataGraph } = allData;
-  const dataTitle = { publicationYear: beforeLastObservationSnap };
+  const dataTitle = {
+    publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+  };
   const idWithDomain = withDomain(id, domain);
   const { search } = useLocation();
   const optionsGraph = chartOptions[id].getOptions(

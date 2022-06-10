@@ -147,13 +147,13 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
   } else {
     publicationYear = observationSnap - 1;
   }
-  return publicationYear || '2020';
+  return publicationYear;
 }
 
 export function getObservationLabel(observationSnap, intl, newline = false) {
-  let label = observationSnap.substring(0, 4);
-  if (observationSnap.length > 4) {
-    const quarter = observationSnap.substring(4, 6);
+  let label = observationSnap?.substring(0, 4);
+  if (observationSnap?.length > 4) {
+    const quarter = observationSnap?.substring(4, 6);
     const sep = newline ? '<br/>' : ' - ';
     if (quarter !== 'Q4' && intl.messages[`app.${quarter}`]) {
       label = label

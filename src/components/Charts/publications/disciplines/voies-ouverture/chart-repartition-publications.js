@@ -14,6 +14,7 @@ import { domains, graphIds } from '../../../../../utils/constants';
 import {
   capitalize,
   cleanNumber,
+  getObservationLabel,
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
@@ -34,7 +35,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [sort, setSort] = useState('sort-staff');
   const idWithDomain = withDomain(id, domain);
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
@@ -43,8 +44,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { categories, dataGraph } = allData;
 
   useEffect(() => {
-    setDataTitle({ publicationYear: beforeLastObservationSnap });
-  }, [beforeLastObservationSnap]);
+    setDataTitle({
+      publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+    });
+  }, [beforeLastObservationSnap, intl]);
 
   useEffect(() => {
     let sortKey;

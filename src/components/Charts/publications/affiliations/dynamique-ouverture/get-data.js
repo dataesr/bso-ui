@@ -63,10 +63,11 @@ function useGetData(
     }));
 
     const colors = [
-      getCSSValue('--affiliations-etablissements-100'),
+      getCSSValue('--affiliations-etablissements-150'),
       getCSSValue('--affiliations-etablissements-125'),
-      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-100'),
       getCSSValue('--affiliations-etablissements-75'),
+      getCSSValue('--affiliations-etablissements-50'),
     ];
     const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
     const dataGraph2 = [];
@@ -160,6 +161,6 @@ function useGetData(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps, needle]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

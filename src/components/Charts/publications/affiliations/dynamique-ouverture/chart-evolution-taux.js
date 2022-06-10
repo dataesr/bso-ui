@@ -33,8 +33,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [sort, setSort] = useState('sort-open-access');
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [activeData, setActiveData] = useState([]);
-  const { observationSnaps, lastObservationSnap } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { lastObservationSnap, observationSnaps } = useGlobals();
+  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
 
@@ -69,12 +69,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           - parseInt(dates[index - 1].substr(0, 4), 10);
         // eslint-disable-next-line default-case
         switch (delta) {
-        case 3:
+        case 4:
           lowColor = getCSSValue('--affiliations-etablissements-50');
           fillColor = lowColor;
           break;
-        case 2:
+        case 3:
           lowColor = getCSSValue('--affiliations-etablissements-75');
+          fillColor = lowColor;
+          break;
+        case 2:
+          lowColor = getCSSValue('--affiliations-etablissements-100');
           fillColor = lowColor;
           break;
         case 1:
@@ -82,7 +86,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           fillColor = 'white';
           break;
         case 0:
-          lowColor = getCSSValue('--affiliations-etablissements-100');
+          lowColor = getCSSValue('--affiliations-etablissements-150');
           lineColor = lowColor;
           fillColor = 'white';
           radius = 8;
@@ -130,12 +134,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       if (activeDataCheck !== newDataCheck) {
         setActiveData(newData);
         setOptionsGraph(
-          chartOptions[id].getOptions(
-            withDomain(id, domain),
-            intl,
-            series,
-            search,
-          ),
+          chartOptions[id].getOptions(idWithDomain, intl, series, search),
         );
       }
     }

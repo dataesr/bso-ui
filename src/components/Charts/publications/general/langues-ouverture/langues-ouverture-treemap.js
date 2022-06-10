@@ -34,7 +34,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     allData: { dataGraph },
     isLoading,
     isError,
-  } = useGetData(lastObservationSnap || '2020', isOa, domain);
+  } = useGetData(lastObservationSnap, isOa, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,

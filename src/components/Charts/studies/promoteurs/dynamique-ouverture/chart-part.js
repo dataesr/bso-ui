@@ -33,8 +33,9 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(studyType, sponsor);
   const { dataGraph1 } = allData;
+  const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(
-    withDomain(id, domain),
+    idWithDomain,
     studyType,
   );
 
@@ -45,7 +46,7 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   }, [allData, idWithDomainAndStudyType, intl, search]);
 
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph1,
     studyType,

@@ -108,7 +108,7 @@ function useGetData(observationSnaps, domain = '') {
             * 100,
         }));
         serie.ratios = filtered.map(
-          (el) => `(${el.by_is_oa.buckets[0].doc_count}/${el.doc_count})`,
+          (el) => `(${el.by_is_oa.buckets[0].doc_count} / ${el.doc_count})`,
         );
         serie.lastPublicationDate = filtered.length > 0 ? filtered[filtered.length - 1].key : 0;
         if (i < datesObservation.length) {
@@ -160,9 +160,9 @@ function useGetData(observationSnaps, domain = '') {
       }
       const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 
-      const year1 = '2019';
-      const year2 = '2020';
-      const year3 = '2021';
+      const year1 = getObservationLabel(datesObservation?.[2], intl);
+      const year2 = getObservationLabel(datesObservation?.[1], intl);
+      const year3 = getObservationLabel(datesObservation?.[0], intl);
       const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(0) || 0;
       const value2 = dataGraph1?.series[0]?.data
         .find((item) => item.name === year3)
@@ -231,6 +231,6 @@ function useGetData(observationSnaps, domain = '') {
     getData();
   }, [observationSnaps, getDataByObservationSnaps]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

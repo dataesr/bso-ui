@@ -195,7 +195,7 @@ function useGetData(
       const comments = {
         discipline,
         observationYear: getObservationLabel(lastObservationSnap, intl),
-        publicationYear: beforeLastObservationSnap,
+        publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
         publisherRate,
         publisherRepositoryRate,
         repositoryRate,
@@ -235,6 +235,6 @@ function useGetData(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

@@ -24,29 +24,29 @@ const Chart = ({ id, domain }) => {
   const { lastObservationSnap } = useGlobals();
   const {
     allData: { dataGraph },
-    isLoading,
     isError,
-  } = useGetData(lastObservationSnap || '2020', domain);
+    isLoading,
+  } = useGetData(lastObservationSnap, domain);
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     dataGraph,
   );
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      isLoading={isLoading || !dataGraph}
+      domain={domain}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !dataGraph}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );

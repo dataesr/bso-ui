@@ -184,18 +184,12 @@ function useGetData(observationSnap, domain) {
       },
     ];
 
-    const year1 = 2018;
-    const year2 = 2019;
-    const year3 = 2020;
-    const diamond1 = diamondData
-      .find((item) => item.publicationDate === year1)
-      ?.y.toFixed(0);
-    const diamond2 = diamondData
-      .find((item) => item.publicationDate === year2)
-      ?.y.toFixed(0);
-    const diamond3 = diamondData
-      .find((item) => item.publicationDate === year3)
-      ?.y.toFixed(0);
+    const year1 = diamondData[diamondData.length - 3].publicationDate;
+    const diamond1 = diamondData[diamondData.length - 3]?.y.toFixed(0);
+    const year2 = diamondData[diamondData.length - 2].publicationDate;
+    const diamond2 = diamondData[diamondData.length - 2]?.y.toFixed(0);
+    const year3 = diamondData[diamondData.length - 1].publicationDate;
+    const diamond3 = diamondData[diamondData.length - 1]?.y.toFixed(0);
     const comments = {
       year1,
       year2,
@@ -225,6 +219,6 @@ function useGetData(observationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

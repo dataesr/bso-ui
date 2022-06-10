@@ -19,15 +19,16 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
+  const { allData, isError, isLoading } = useGetData(
+    beforeLastObservationSnap,
     lastObservationSnap,
     domain,
   );
   const { categories2, dataGraph2 } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
+    idWithDomain,
     intl,
     categories2,
     dataGraph2,

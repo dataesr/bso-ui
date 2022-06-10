@@ -93,6 +93,7 @@ function useGetData(studyType, sponsorType = '*') {
       ?.find((item) => item.name === category)
       ?.data?.find((item) => item.x === year)
       ?.y?.toFixed(0);
+
     const comments = {
       category,
       value,
@@ -123,6 +124,6 @@ function useGetData(studyType, sponsorType = '*') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyType, sponsorType]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

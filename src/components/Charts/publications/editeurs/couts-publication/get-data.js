@@ -8,10 +8,16 @@ import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
   getCSSValue,
+  getObservationLabel,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, needle = '*', domain) {
+function useGetData(
+  observationSnaps,
+  beforeLastObservationSnap,
+  needle = '*',
+  domain,
+) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -254,15 +260,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
         data: goldDataHistogram,
         color: getCSSValue('--yellow-medium-100'),
       },
-      // {
-      //   name: capitalize(
-      //    intl.formatMessage({
-      //      id: 'app.publishers.diamond',
-      //    }),
-      //  ),
-      //  data: diamondDataHistogram,
-      //  color: getCSSValue('--diamond'),
-      // },
     ];
 
     const dataGraphViolin = [];
@@ -340,22 +337,25 @@ function useGetData(observationSnaps, needle = '*', domain) {
 
     const comments = {
       medianValueFirst: dataGraphViolinGoldAPC[0]?.x?.toFixed(0),
-      medianYearFirst: dataGraphViolinGoldAPC[0]?.publicationDate,
       medianValueLast:
-        dataGraphViolinGoldAPC[dataGraphViolinGoldAPC.length - 1]?.x?.toFixed(0),
+        dataGraphViolinGoldAPC[dataGraphViolinGoldAPC.length - 1]?.x?.toFixed(
+          0,
+        ),
+      medianYearFirst: dataGraphViolinGoldAPC[0]?.publicationDate,
       medianYearLast:
         dataGraphViolinGoldAPC[dataGraphViolinGoldAPC.length - 1]
           ?.publicationDate,
+      publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
     };
 
     return {
-      comments,
-      dataGraphTotal,
-      categoriesYear,
-      dataGraphHistogram,
       categoriesHistogram,
-      dataGraphViolin,
       categoriesViolin,
+      categoriesYear,
+      comments,
+      dataGraphHistogram,
+      dataGraphTotal,
+      dataGraphViolin,
     };
   }
 
@@ -376,6 +376,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps, needle]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

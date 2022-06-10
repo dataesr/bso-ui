@@ -5,9 +5,9 @@ import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, domain) {
+function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -126,7 +126,7 @@ function useGetData(observationSnap, domain) {
       },
     ];
 
-    const year = 2020;
+    const publicationYear = parseInt(getObservationLabel(beforeLastObservationSnap, intl), 10);
     const allPublicationsLabel = intl.formatMessage({
       id: 'app.all-publications',
     });
@@ -142,22 +142,23 @@ function useGetData(observationSnap, domain) {
     if (dataGraph) {
       allPublicationsRate = dataGraph
         .find((item) => item.name === allPublicationsLabel)
-        ?.data.find((item) => item.publicationDate === year)
+        ?.data.find((item) => item.publicationDate === publicationYear)
         ?.y.toFixed(0);
       publicationsWithStatementRate = dataGraph
         .find((item) => item.name === publicationsWithStatementLabel)
-        ?.data.find((item) => item.publicationDate === year)
+        ?.data.find((item) => item.publicationDate === publicationYear)
         ?.y.toFixed(0);
       publicationsWithoutStatementRate = dataGraph
         .find((item) => item.name === publicationsWithoutStatementLabel)
-        ?.data.find((item) => item.publicationDate === year)
+        ?.data.find((item) => item.publicationDate === publicationYear)
         ?.y.toFixed(0);
     }
+
     const comments = {
       allPublicationsRate,
       publicationsWithoutStatementRate,
       publicationsWithStatementRate,
-      year,
+      publicationYear,
     };
 
     return {
@@ -188,6 +189,6 @@ function useGetData(observationSnap, domain) {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap]);
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

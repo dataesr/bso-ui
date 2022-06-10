@@ -95,8 +95,8 @@ export default function ProgressionCard({ domain }) {
       title={(
         <FormattedMessage
           values={{
-            startYear: getObservationLabel(previousObservationSnap),
-            endYear: getObservationLabel(lastObservationSnap),
+            startYear: getObservationLabel(previousObservationSnap, intl),
+            endYear: getObservationLabel(lastObservationSnap, intl),
             div: (chunks) => <div>{chunks}</div>,
           }}
           id={

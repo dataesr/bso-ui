@@ -19,41 +19,45 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const idWithDomain = withDomain(id, domain);
 
-  const { lastObservationSnap } = useGlobals();
-  const { _, isLoading, isError } = useGetData(lastObservationSnap, domain);
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
+  const { data, isError, isLoading } = useGetData(
+    beforeLastObservationSnap,
+    lastObservationSnap,
+    domain,
+  );
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
+      domain={domain}
       hasComments={hasComments}
       hasFooter={hasFooter}
-      isLoading={isLoading}
+      id={id}
       isError={isError}
+      isLoading={isLoading}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={{}}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );
 };
 
 Chart.defaultProps = {
-  hasFooter: true,
-  hasComments: true,
-  id: 'publi.repositories.dynamique-hal.chart-taux exhaustivite',
   domain: '',
+  hasComments: true,
+  hasFooter: true,
+  id: 'publi.repositories.dynamique-hal.chart-taux exhaustivite',
 };
 
 Chart.propTypes = {
-  hasFooter: PropTypes.bool,
-  hasComments: PropTypes.bool,
-  id: PropTypes.oneOf(graphIds),
   domain: PropTypes.oneOf(domains),
+  hasComments: PropTypes.bool,
+  hasFooter: PropTypes.bool,
+  id: PropTypes.oneOf(graphIds),
 };
 
 export default Chart;

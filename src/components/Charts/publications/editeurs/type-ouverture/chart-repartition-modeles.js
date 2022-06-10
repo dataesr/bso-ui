@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -25,13 +25,16 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { lastObservationSnap } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { search } = useLocation();
-  const { allData, isLoading, isError } = useGetData(
-    lastObservationSnap || 2020,
+  const { allData, isError, isLoading } = useGetData(
+    lastObservationSnap,
     domain,
   );
   const { dataGraphTreemap } = allData;
+  const dataTitle = {
+    publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+  };
   const idWithDomain = withDomain(id, domain);
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomain, intl, search));
@@ -40,12 +43,14 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
     idWithDomain,
     intl,
     dataGraphTreemap,
+    dataTitle,
     search,
   );
 
   return (
     <WrapperChart
       chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

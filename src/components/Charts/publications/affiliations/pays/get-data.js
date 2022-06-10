@@ -7,10 +7,11 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   getCSSValue,
+  getObservationLabel,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(observationDate, domain = '') {
+function useGetData(beforeLastObservationSnap, observationDate, domain = '') {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const [allData, setData] = useState({});
@@ -36,10 +37,8 @@ function useGetData(observationDate, domain = '') {
       });
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
       const res = await Axios.all(queries);
-      // 1er graphe
       let data1 = res[0].data.aggregations.by_publication_year.buckets;
 
-      // Tri pour avoir les années dans l'ordre d'affichage du graphe
       data1 = data1
         .sort((a, b) => a.key - b.key)
         .filter(
@@ -47,9 +46,9 @@ function useGetData(observationDate, domain = '') {
             && parseInt(el.key, 10)
               < parseInt(lastObservationSnap.substring(0, 4), 10),
         );
-      const categories = []; // Elements d'abscisse
-      const fr = []; // rang utile fr
-      const foreign = []; // rang utile etranger
+      const categories = [];
+      const fr = [];
+      const foreign = [];
 
       data1.forEach((el) => {
         categories.push(el.key);
@@ -101,9 +100,9 @@ function useGetData(observationDate, domain = '') {
           color: getCSSValue('--green-warm-100'),
         },
       ];
-      // 2e graphe
+
       const data2 = res[1].data.aggregations.by_country.buckets;
-      const categories2 = []; // Elements d'abscisse
+      const categories2 = [];
       let oaCountry = [];
       data2.forEach((el) => {
         oaCountry.push({
@@ -136,19 +135,20 @@ function useGetData(observationDate, domain = '') {
         },
       ];
 
-      const year = 2020;
-      const withFrenchAffiliationLabel = 'Premier ou dernier auteur avec affiliation française';
+      const publicationYear = getObservationLabel(beforeLastObservationSnap, intl);
+      const withFrenchAffiliationLabel = intl.formatMessage({ id: 'app.affiliations.rang-utile-fr' });
       const withFrenchAffiliation = dataGraph
         .find((item) => item.name === withFrenchAffiliationLabel)
-        ?.data.find((item) => item.x === year)
+        ?.data.find((item) => item.x.toString() === publicationYear)
         ?.y?.toFixed(0);
-      const withoutFrenchAffiliationLabel = 'Premier ou dernier auteur sans affiliation française';
+      const withoutFrenchAffiliationLabel = intl.formatMessage({ id: 'app.affiliations.rang-utile-etranger' });
       const withoutFrenchAffiliation = dataGraph
         .find((item) => item.name === withoutFrenchAffiliationLabel)
-        ?.data.find((item) => item.x === year)
+        ?.data.find((item) => item.x.toString() === publicationYear)
         ?.y?.toFixed(0);
+
       const comments = {
-        year,
+        publicationYear,
         withFrenchAffiliation,
         withoutFrenchAffiliation,
       };
@@ -161,7 +161,7 @@ function useGetData(observationDate, domain = '') {
         dataGraph2,
       };
     },
-    [intl, domain, bsoDomain, search],
+    [beforeLastObservationSnap, bsoDomain, domain, intl, search],
   );
 
   useEffect(() => {
@@ -181,6 +181,6 @@ function useGetData(observationDate, domain = '') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationDate]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

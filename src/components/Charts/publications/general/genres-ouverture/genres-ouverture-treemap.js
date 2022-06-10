@@ -28,9 +28,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const {
     allData: { dataGraph },
-    isLoading,
     isError,
-  } = useGetData(lastObservationSnap || '2020', isOa, domain);
+    isLoading,
+  } = useGetData(lastObservationSnap, isOa, domain);
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,

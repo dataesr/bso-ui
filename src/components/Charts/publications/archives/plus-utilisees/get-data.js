@@ -57,6 +57,7 @@ function useGetData(observationSnap, domain) {
     const domain4 = intl.messages[`app.repositories.domain.${name4}`]
       ? intl.formatMessage({ id: `app.repositories.domain.${name4}` })
       : intl.formatMessage({ id: 'app.repositories.domain.all' });
+
     const comments = {
       domain1,
       domain2,
@@ -93,6 +94,6 @@ function useGetData(observationSnap, domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnap]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;
