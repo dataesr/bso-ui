@@ -325,6 +325,15 @@ function Variations() {
                     Université de Poitiers
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://bib.insa-toulouse.fr/fr/chercheurs-et-doctorants/science-ouverte/barometre.html'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    INSA Toulouse
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
