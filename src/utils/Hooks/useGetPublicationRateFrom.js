@@ -46,7 +46,7 @@ export default async function useGetPublicationRateFrom(
         );
       const data = sortedData.map(
         (element) => (element.by_is_oa.buckets.find((subElement) => subElement.key === 1)
-          .doc_count
+          ?.doc_count
             * 100)
           / element.doc_count,
       );
