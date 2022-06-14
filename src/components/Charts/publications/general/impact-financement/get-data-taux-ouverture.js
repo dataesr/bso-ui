@@ -16,16 +16,27 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
-    const queryFilter = [];
+    const queryFilter = [
+      {
+        term: {
+          'grants.agency.keyword': 'ANR',
+        },
+      },
+      {
+        term: {
+          'bso_local_affiliations.keyword': 'ANR',
+        },
+      },
+    ];
     const queryFiltered = getFetchOptions({
-      key: 'openingRate',
+      key: 'openingRateGrant',
       domain,
       search,
       parameters: [lastObservationSnap, queryFilter],
     });
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     const query = getFetchOptions({
-      key: 'openingRate',
+      key: 'openingRateGrant',
       domain,
       search,
       parameters: [lastObservationSnap, []],
@@ -39,29 +50,26 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     // Tri pour avoir les années dans l'ordre d'affichage du graphe
     data = data.sort((a, b) => a.key - b.key);
     dataAgency = dataAgency.sort((a, b) => a.key - b.key);
-
     const categories = []; // Elements d'abscisse
     const all = [];
     const withDeclaration = [];
-    const withoutDeclaration = [];
+    // const withoutDeclaration = [];
     dataAgency
       .filter(
         (el) => el.key > 2012
+          && el.doc_count > 1
           && parseInt(el.key, 10)
             < parseInt(lastObservationSnap.substring(0, 4), 10),
       )
       .forEach((el) => {
         // avec declaration
-        const withDeclarationElements = el.by_has_grant.buckets.find(
-          (item) => item.key === 1,
-        );
-        const withDeclarationOa = withDeclarationElements?.by_is_oa.buckets.find(
+        const withDeclarationOa = el?.by_is_oa.buckets.find(
           (item) => item.key === 1,
         )?.doc_count || 0;
         withDeclaration.push({
-          y: (100 * withDeclarationOa) / withDeclarationElements?.doc_count,
+          y: (100 * withDeclarationOa) / el?.doc_count,
           y_abs: withDeclarationOa,
-          y_tot: withDeclarationElements?.doc_count || 0,
+          y_tot: el?.doc_count || 0,
           publicationDate: el.key,
           bsoDomain,
           agency: intl.formatMessage({ id: 'app.all-agencies' }),
@@ -92,21 +100,21 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           withDeclaration.unshift(null);
         }
         // sans declaration
-        const withoutDeclarationElements = el.by_has_grant.buckets.find(
-          (item) => item.key === 0,
-        );
-        const withoutDeclarationOa = withoutDeclarationElements.by_is_oa.buckets.find(
-          (item) => item.key === 1,
-        )?.doc_count || 0;
-        withoutDeclaration.push({
-          y:
-            (100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count,
-          y_abs: withoutDeclarationOa,
-          y_tot: withoutDeclarationElements.doc_count,
-          publicationDate: el.key,
-          bsoDomain,
-          agency: 'no-grant',
-        });
+        // const withoutDeclarationElements = el.by_has_grant.buckets.find(
+        //   (item) => item.key === 0,
+        // );
+        // const withoutDeclarationOa = withoutDeclarationElements.by_is_oa.buckets.find(
+        //   (item) => item.key === 1,
+        // )?.doc_count || 0;
+        // withoutDeclaration.push({
+        //   y:
+        //     (100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count,
+        //   y_abs: withoutDeclarationOa,
+        //   y_tot: withoutDeclarationElements.doc_count,
+        //   publicationDate: el.key,
+        //   bsoDomain,
+        //   agency: 'no-grant',
+        // });
       });
     const dataGraph = [
       {
@@ -119,11 +127,11 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         data: withDeclaration,
         color: getCSSValue('--orange-soft-175'),
       },
-      {
-        name: intl.formatMessage({ id: 'app.without-declaration' }),
-        data: withoutDeclaration,
-        color: getCSSValue('--g-400'),
-      },
+      // {
+      //   name: intl.formatMessage({ id: 'app.without-declaration' }),
+      //   data: withoutDeclaration,
+      //   color: getCSSValue('--g-400'),
+      // },
     ];
 
     const publicationYear = parseInt(getObservationLabel(beforeLastObservationSnap, intl), 10);
@@ -142,15 +150,15 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     if (dataGraph) {
       allPublicationsRate = dataGraph
         .find((item) => item.name === allPublicationsLabel)
-        ?.data.find((item) => item.publicationDate === publicationYear)
+        ?.data?.find((item) => item?.publicationDate === publicationYear)
         ?.y.toFixed(0);
       publicationsWithStatementRate = dataGraph
         .find((item) => item.name === publicationsWithStatementLabel)
-        ?.data.find((item) => item.publicationDate === publicationYear)
+        ?.data?.find((item) => item?.publicationDate === publicationYear)
         ?.y.toFixed(0);
       publicationsWithoutStatementRate = dataGraph
         .find((item) => item.name === publicationsWithoutStatementLabel)
-        ?.data.find((item) => item.publicationDate === publicationYear)
+        ?.data?.find((item) => item?.publicationDate === publicationYear)
         ?.y.toFixed(0);
     }
 
