@@ -1339,7 +1339,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    openingRate: ([observationSnap, queryFilter]) => ({
+    openingRateGrant: ([observationSnap, queryFilter]) => ({
       size: 0,
       query: {
         bool: {
@@ -1352,18 +1352,6 @@ export default function getFetchOptions({
             field: 'year',
           },
           aggs: {
-            by_has_grant: {
-              terms: {
-                field: 'has_grant',
-              },
-              aggs: {
-                by_is_oa: {
-                  terms: {
-                    field: `oa_details.${observationSnap}.is_oa`,
-                  },
-                },
-              },
-            },
             by_is_oa: {
               terms: {
                 field: `oa_details.${observationSnap}.is_oa`,
