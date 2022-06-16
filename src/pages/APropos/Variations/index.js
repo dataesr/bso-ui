@@ -334,6 +334,15 @@ function Variations() {
                     INSA Toulouse
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://bu.univ-avignon.fr/barometre-de-la-science-ouverte-avignon-universite/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Avignon Université
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
