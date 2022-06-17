@@ -53,7 +53,8 @@ export const GlobalsContextProvider = ({ children }) => {
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
-      .sort((a, b) => b.substr(0, 4) - a.substr(0, 4));
+      .sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+      .filter((el) => el <= process.env.REACT_APP_LAST_OBSERVATION);
     return newObservationSnaps.filter(
       (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );
