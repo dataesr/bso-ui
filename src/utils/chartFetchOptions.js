@@ -1739,7 +1739,12 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const { bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
+  const { bsoLocalAffiliation, bsoCountry, endYear, startYear } = getURLSearchParams(search);
+  if (bsoCountry) {
+    queryResponse.query.bool.filter.push({
+      term: { bso_country: bsoCountry },
+    });
+  }
   if (bsoLocalAffiliation) {
     queryResponse.query.bool.filter.push({
       term: { bso_local_affiliations: bsoLocalAffiliation },
