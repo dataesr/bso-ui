@@ -325,6 +325,7 @@ export function getURLSearchParams(search, intl = undefined) {
   }
 
   return {
+    bsoCountry,
     bsoLocalAffiliation,
     commentsName,
     displayComment,
@@ -333,7 +334,6 @@ export function getURLSearchParams(search, intl = undefined) {
     endYear,
     name,
     startYear,
-    bsoCountry,
   };
 }
 
