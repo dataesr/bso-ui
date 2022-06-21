@@ -16,7 +16,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
-    // Pour chaque date d'observation, récupération des données associées
     const queries = [];
     datesObservation
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
@@ -94,11 +93,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
       getCSSValue('--yellow-medium-150'),
       getCSSValue('--yellow-medium-150'),
       getCSSValue('--yellow-medium-150'),
-      getCSSValue('--yellow-medium-175'),
-      getCSSValue('--yellow-medium-175'),
-      getCSSValue('--yellow-medium-175'),
+      getCSSValue('--yellow-medium-150'),
     ];
-    const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
+    const lineStyle = [
+      'solid',
+      'ShortDot',
+      'ShortDashDot',
+      'Dash',
+      'ShortDash',
+    ];
     const dataGraph2 = [];
     allData.forEach((observationSnapData, i) => {
       const serie = {};
