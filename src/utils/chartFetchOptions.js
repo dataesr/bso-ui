@@ -1740,7 +1740,10 @@ export default function getFetchOptions({
     });
   }
   const { bsoCountry, bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
-  if (bsoCountry) {
+  // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
+  const noCountryNeeded = parameters.includes('Interventional')
+    || parameters.includes('Observational');
+  if (bsoCountry && !noCountryNeeded) {
     queryResponse.query.bool.filter.push({
       term: { bso_country: bsoCountry },
     });
