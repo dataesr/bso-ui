@@ -157,7 +157,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lastObservationSnap]);
+  }, [beforeLastObservationSnap, lastObservationSnap]);
 
   return { data, isError, isLoading };
 }
