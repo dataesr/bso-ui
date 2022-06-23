@@ -85,11 +85,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
       getCSSValue('--green-medium-150'),
       getCSSValue('--green-medium-150'),
       getCSSValue('--green-medium-150'),
-      getCSSValue('--green-medium-75'),
-      getCSSValue('--green-medium-75'),
-      getCSSValue('--green-medium-75'),
+      getCSSValue('--green-medium-150'),
     ];
-    const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
+    const lineStyle = [
+      'solid',
+      'ShortDot',
+      'ShortDashDot',
+      'Dash',
+      'ShortDash',
+    ];
     const dataGraph2 = [];
     allData.forEach((observationSnapData, i) => {
       const serie = {};

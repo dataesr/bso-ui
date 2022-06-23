@@ -1739,7 +1739,15 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const { bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
+  const { bsoCountry, bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
+  // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
+  const noCountryNeeded = parameters.includes('Interventional')
+    || parameters.includes('Observational');
+  if (bsoCountry && !noCountryNeeded) {
+    queryResponse.query.bool.filter.push({
+      term: { bso_country: bsoCountry },
+    });
+  }
   if (bsoLocalAffiliation) {
     queryResponse.query.bool.filter.push({
       term: { bso_local_affiliations: bsoLocalAffiliation },

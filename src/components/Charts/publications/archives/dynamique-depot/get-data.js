@@ -5,10 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import {
-  getCSSValue,
-  getPublicationYearFromObservationSnap,
-} from '../../../../../utils/helpers';
+import { getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
   const [data, setData] = useState([]);
@@ -29,8 +26,8 @@ function useGetData(observationSnap, domain) {
 
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     let tab = [];
-    const nbHisto = 4;
-    const lastPublicationYear = getPublicationYearFromObservationSnap(observationSnap);
+    const nbHisto = 5;
+    const lastPublicationYear = observationSnap.substr(0, 4);
     res.data.aggregations.by_repository.buckets.forEach(
       (archive, archiveIndex) => {
         if (archive.key !== 'N/A') {
@@ -108,4 +105,5 @@ function useGetData(observationSnap, domain) {
 
   return { data, isError, isLoading };
 }
+
 export default useGetData;

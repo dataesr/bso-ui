@@ -20,7 +20,6 @@ function useGetData(observationSnaps, domain = '') {
 
   const getDataByObservationSnaps = useCallback(
     async (datesObservation) => {
-      // Pour chaque date d'observation, récupération des données associées
       const queries = [];
       datesObservation
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
@@ -58,11 +57,15 @@ function useGetData(observationSnaps, domain = '') {
         getCSSValue('--orange-soft-125'),
         getCSSValue('--orange-soft-125'),
         getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-175'),
-        getCSSValue('--orange-soft-175'),
-        getCSSValue('--orange-soft-175'),
+        getCSSValue('--orange-soft-125'),
       ];
-      const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
+      const lineStyle = [
+        'solid',
+        'ShortDot',
+        'ShortDashDot',
+        'Dash',
+        'ShortDash',
+      ];
       const dataGraph2 = [];
       const dataGraphGlobal = [];
       allData.forEach((observationSnapData, i) => {

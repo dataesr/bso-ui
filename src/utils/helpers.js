@@ -284,6 +284,7 @@ export function isInProduction() {
 export function getURLSearchParams(search, intl = undefined) {
   const urlSearchParams = new URLSearchParams(search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
+  const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase() || 'fr';
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
   );
@@ -324,6 +325,7 @@ export function getURLSearchParams(search, intl = undefined) {
   }
 
   return {
+    bsoCountry,
     bsoLocalAffiliation,
     commentsName,
     displayComment,
