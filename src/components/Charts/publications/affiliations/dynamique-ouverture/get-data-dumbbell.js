@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getObservationLabel } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '') {
   const [data, setData] = useState([]);
@@ -62,7 +63,7 @@ function useGetData(observationSnaps, domain = '') {
           .slice(0) // make a copy before sorting in ascending order !
           .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
           .map((obs) => ({
-            name: obs,
+            name: getObservationLabel(obs, intl),
             bsoDomain,
             y_tot: dataGraph[affiliation].find(
               (x) => x.observation_date === obs,
