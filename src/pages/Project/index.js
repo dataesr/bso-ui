@@ -98,8 +98,7 @@ function Project() {
                   rel='noreferrer'
                   target='_blank'
                 >
-                  Ministère de l’Enseignement Supérieur, de la Recherche et de
-                  l'Innovation
+                  Ministère de l'enseignement supérieur et de la recherche
                 </a>
                 . Les données ont patiemment été collectées, nettoyées,
                 consolidées et ordonnées par Eric Jeangirard et Anne L’Hôte.
