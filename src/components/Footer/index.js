@@ -156,8 +156,7 @@ export default function Footer() {
             target='_blank'
             href='https://www.enseignementsup-recherche.gouv.fr/'
           >
-            Ministère de l'enseignement supérieur, de la recherche et de
-            l'innovation
+            {intl.formatMessage({ id: 'app.ministry' })}
           </Logo>
           <FooterBodyItem>
             <Link target='_blank' href='https://www.service-public.fr/'>
