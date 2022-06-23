@@ -53,7 +53,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     const categories = []; // Elements d'abscisse
     const all = [];
     const withDeclaration = [];
-    // const withoutDeclaration = [];
     dataAgency
       .filter(
         (el) => el.key > 2012
@@ -63,9 +62,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       )
       .forEach((el) => {
         // avec declaration
-        const withDeclarationOa = el?.by_is_oa.buckets.find(
-          (item) => item.key === 1,
-        )?.doc_count || 0;
+        const withDeclarationOa = el?.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
         withDeclaration.push({
           y: (100 * withDeclarationOa) / el?.doc_count,
           y_abs: withDeclarationOa,
@@ -85,7 +82,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       .forEach((el, index) => {
         categories.push(el.key);
 
-        // avec ou sans declaration
         const Oa = el.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
         all.push({
           y: (100 * Oa) / el.doc_count,
@@ -96,25 +92,12 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           agency: 'withAndWithoutGrant',
         });
         // avec declaration, on s'assure qu'il y a bien toutes années, sinon on complète par un null
-        if (withDeclaration[index].publicationDate > el.key) {
+        if (
+          withDeclaration?.[index]?.publicationDate === undefined
+          || withDeclaration[index].publicationDate > el.key
+        ) {
           withDeclaration.unshift(null);
         }
-        // sans declaration
-        // const withoutDeclarationElements = el.by_has_grant.buckets.find(
-        //   (item) => item.key === 0,
-        // );
-        // const withoutDeclarationOa = withoutDeclarationElements.by_is_oa.buckets.find(
-        //   (item) => item.key === 1,
-        // )?.doc_count || 0;
-        // withoutDeclaration.push({
-        //   y:
-        //     (100 * withoutDeclarationOa) / withoutDeclarationElements.doc_count,
-        //   y_abs: withoutDeclarationOa,
-        //   y_tot: withoutDeclarationElements.doc_count,
-        //   publicationDate: el.key,
-        //   bsoDomain,
-        //   agency: 'no-grant',
-        // });
       });
     const dataGraph = [
       {
@@ -127,14 +110,12 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         data: withDeclaration,
         color: getCSSValue('--orange-soft-175'),
       },
-      // {
-      //   name: intl.formatMessage({ id: 'app.without-declaration' }),
-      //   data: withoutDeclaration,
-      //   color: getCSSValue('--g-400'),
-      // },
     ];
 
-    const publicationYear = parseInt(getObservationLabel(beforeLastObservationSnap, intl), 10);
+    const publicationYear = parseInt(
+      getObservationLabel(beforeLastObservationSnap, intl),
+      10,
+    );
     const allPublicationsLabel = intl.formatMessage({
       id: 'app.all-publications',
     });
@@ -155,11 +136,11 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       publicationsWithStatementRate = dataGraph
         .find((item) => item.name === publicationsWithStatementLabel)
         ?.data?.find((item) => item?.publicationDate === publicationYear)
-        ?.y.toFixed(0);
+        ?.y.toFixed(0) || 0;
       publicationsWithoutStatementRate = dataGraph
         .find((item) => item.name === publicationsWithoutStatementLabel)
         ?.data?.find((item) => item?.publicationDate === publicationYear)
-        ?.y.toFixed(0);
+        ?.y.toFixed(0) || 0;
     }
 
     const comments = {
