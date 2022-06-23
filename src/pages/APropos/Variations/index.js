@@ -40,7 +40,7 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32'>
+              <h4 className='marianne-bold fs-24-32' id='methodo'>
                 Constituer la liste de publications d'un établissement ou d'une
                 unité de recherche
               </h4>
@@ -70,7 +70,7 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32'>
+              <h4 className='marianne-bold fs-24-32' id='how-to'>
                 Utilisation et paramétrage des iFrames
               </h4>
               Dès lors, chaque graphique du BSO publications est déclinable pour
@@ -202,7 +202,7 @@ function Variations() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32'>
+              <h4 className='marianne-bold fs-24-32' id='examples'>
                 Baromètres de la Science Ouverte des établissements déjà en
                 place
               </h4>
