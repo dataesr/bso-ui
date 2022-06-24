@@ -28,7 +28,7 @@
     "name": "Sorbonne Université",
     "commentsName": "de Sorbonne Université",
     "commentsNameEN": "of Sorbonne university",
-    "startYear": 2017
+    "startYear": 2018
   },
   "130025745": {
     "name": "Université Polytechnique Hauts-de-France",
@@ -138,6 +138,12 @@
     "commentsName": "de l'université de Haute-Alsace",
     "commentsNameEN": "of the university of Haute-Alsace",
     "startYear": 2016
+  },
+  "196901870": {
+    "name": "Ecole Centrale de Lyon (Centrale Lyon)",
+    "commentsName": "de Centrale Lyon",
+    "commentsNameEN": "of Centrale Lyon",
+    "startYear": 2015
   },
   "196901920": {
     "name": "Institut national des sciences appliquées de Lyon (INSA Lyon)",
@@ -264,5 +270,10 @@
     "commentsName": "de l'ANR",
     "commentsNameEN": "of the ANR",
     "startYear": 2016
+  },
+  "007gfwn20": {
+    "name": "Haute École Spécialisée de Suisse Occidentale - Genève",
+    "commentsName": "de l'HES-SO",
+    "commentsNameEN": "of the HES-SO"
   }
 }

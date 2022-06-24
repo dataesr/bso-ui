@@ -132,17 +132,19 @@ function useGetData(observationSnaps, needle = '*', domain) {
       ];
       dataGraph2.push(serie);
     });
-    const dataGraph1 = dataGraph2.map((el) => ({
-      name: el.name, // observation date
-      bsoDomain,
-      y: el.data[el.data.length - 1]?.y || 0,
-      archive:
-        needle === '*'
-          ? intl.formatMessage({ id: 'app.all-repositories' })
-          : needle,
-      ratio: el.ratios[el.data.length - 1],
-      publicationDate: el.publicationDate,
-    }));
+    const dataGraph1 = dataGraph2
+      .map((el) => ({
+        name: el.name, // observation date
+        bsoDomain,
+        y: el.data[el.data.length - 1]?.y || 0,
+        archive:
+          needle === '*'
+            ? intl.formatMessage({ id: 'app.all-repositories' })
+            : needle,
+        ratio: el.ratios[el.data.length - 1],
+        publicationDate: el.publicationDate,
+      }))
+      .filter((el) => el.y > 0);
 
     const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 

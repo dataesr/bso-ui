@@ -125,22 +125,26 @@ function useGetData(observationSnaps, domain = '') {
       const serie1 = [];
       const serieGlobal = [];
       dataGraph2.forEach((el) => {
-        serie1.push({
-          bsoDomain,
-          name: el.name,
-          y: el.data.length > 0 ? el.data[el.data.length - 1].y : 0,
-          ratio: el.data.length > 0 ? el.ratios[el.data.length - 1] : 0,
-          publicationDate: el.lastPublicationDate,
-        });
+        if (el.lastPublicationDate) {
+          serie1.push({
+            bsoDomain,
+            name: el.name,
+            y: el.data.length > 0 ? el.data[el.data.length - 1].y : 0,
+            ratio: el.data.length > 0 ? el.ratios[el.data.length - 1] : 0,
+            publicationDate: el.lastPublicationDate,
+          });
+        }
       });
       dataGraphGlobal.forEach((el) => {
-        serieGlobal.push({
-          bsoDomain: bsoDomainGlobal,
-          name: el.name,
-          y: el.data.length > 0 ? el.data[el.data.length - 1].y : 0,
-          ratio: el.data.length > 0 ? el.ratios[el.data.length - 1] : 0,
-          publicationDate: el.lastPublicationDate,
-        });
+        if (el.lastPublicationDate) {
+          serieGlobal.push({
+            bsoDomain: bsoDomainGlobal,
+            name: el.name,
+            y: el.data.length > 0 ? el.data[el.data.length - 1].y : 0,
+            ratio: el.data.length > 0 ? el.ratios[el.data.length - 1] : 0,
+            publicationDate: el.lastPublicationDate,
+          });
+        }
       });
       const showInLegend = domain !== '';
       const currentName = domain !== ''
@@ -207,7 +211,6 @@ function useGetData(observationSnaps, domain = '') {
         differenceValue: value2 - value1,
         healthDifferenceValue: healthValue2 - healthValue1,
       };
-
       return {
         categories,
         comments,
