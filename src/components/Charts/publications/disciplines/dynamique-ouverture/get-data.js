@@ -81,10 +81,6 @@ function useGetData(observationSnaps, domain = '') {
               };
             }),
         });
-        const filteredData = dataHist[dataHist.length - 1].data.filter(
-          (el) => el.y_tot > 0,
-        );
-        dataHist[dataHist.length - 1].data = filteredData;
       });
       let bestRateValue = '';
       let bestRateDiscipline = '';

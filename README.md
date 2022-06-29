@@ -108,7 +108,6 @@ import GlossaryEntries from 'glossary.json';
 
 ```sh
 npm run deploy:[patch|minor|major]
-git checkout staging # To come back on the "staging" branch
 ```
 
 :warning: Obviously, only members of the [dataesr organization](https://github.com/dataesr/) have right to push on the repo.
