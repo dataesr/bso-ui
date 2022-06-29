@@ -50,7 +50,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     let newData = [];
     const series = [];
 
-    const dataHist = data.dataHist ? data.dataHist : [];
+    const dataHist = data?.dataHist || [];
     if (dataHist && dataHist.length > 0) {
       const dates = dataHist[0].data.map((item) => item.name);
       const serieLength = dataHist[0]?.data.length - 1;
