@@ -287,12 +287,9 @@ export function getURLSearchParams(intl = undefined) {
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.country
     || 'fr';
-  const observationYear = parseInt(
-    urlSearchParams.get('observationYear')?.toLowerCase()?.substring(0, 4)
-      || locals?.[bsoLocalAffiliation]?.observationYear?.substring(0, 4)
-      || process.env.REACT_APP_LAST_OBSERVATION?.substring(0, 4),
-    10,
-  );
+  const observationYear = urlSearchParams.get('observationYear')?.toLowerCase()
+    || locals?.[bsoLocalAffiliation]?.observationYear
+    || process.env.REACT_APP_LAST_OBSERVATION;
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
   );
