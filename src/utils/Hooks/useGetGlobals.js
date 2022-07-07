@@ -52,7 +52,7 @@ export const GlobalsContextProvider = ({ children }) => {
   async function getObservationSnaps() {
     const query = getFetchOptions({ key: 'observationSnaps' });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const { observationYear } = getURLSearchParams(window.location.search);
+    const { observationYear } = getURLSearchParams();
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort((a, b) => b.substr(0, 4) - a.substr(0, 4))

@@ -11,12 +11,7 @@ import {
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
-function useGetData(
-  beforeLastObservationSnap,
-  observationSnap,
-  domain,
-  search,
-) {
+function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -30,7 +25,6 @@ function useGetData(
       const query = getFetchOptions({
         key: 'disciplinesVoies',
         domain,
-        search,
         parameters: [lastObservationSnap, disciplineField],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -213,7 +207,6 @@ function useGetData(
       disciplineField,
       domain,
       intl,
-      search,
       yellowMedium125,
     ],
   );

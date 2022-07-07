@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -13,7 +12,6 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const { search } = useLocation();
 
   async function getDataGraph() {
     if (!observationSnap) {
@@ -22,7 +20,6 @@ function useGetData(observationSnap, domain) {
     const query = getFetchOptions({
       key: 'predatory',
       domain,
-      search,
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_year.buckets

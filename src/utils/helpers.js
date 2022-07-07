@@ -281,8 +281,8 @@ export function isInProduction() {
  * @param {string} search
  * @returns {Object}
  */
-export function getURLSearchParams(search, intl = undefined) {
-  const urlSearchParams = new URLSearchParams(search);
+export function getURLSearchParams(intl = undefined) {
+  const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.country

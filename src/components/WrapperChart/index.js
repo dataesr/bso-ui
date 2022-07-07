@@ -38,10 +38,7 @@ function WrapperChart({
   const idWithDomain = withDomain(id, domain);
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
-  const { commentsName, name } = getURLSearchParams(
-    window.location.search,
-    intl,
-  );
+  const { commentsName, name } = getURLSearchParams(intl);
   let title = intl.formatMessage(
     {
       id: `${!studyType ? idWithDomain : idWithContext}.title`,

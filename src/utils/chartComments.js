@@ -2,8 +2,8 @@ import sanitizeHtml from 'sanitize-html';
 
 import { getURLSearchParams } from './helpers';
 
-export default function customComments(data, id, intl, search = '') {
-  const { commentsName, displayComment } = getURLSearchParams(search, intl);
+export default function customComments(data, id, intl) {
+  const { commentsName, displayComment } = getURLSearchParams(intl);
   if (!displayComment) {
     return false;
   }

@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -17,21 +16,18 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const { search } = useLocation();
 
   async function GetData() {
     const queries = [];
     const queryHAL = getFetchOptions({
       key: 'couvertureHAL',
       domain,
-      search,
       parameters: [lastObservationSnap],
     });
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     const queryArchive = getFetchOptions({
       key: 'couvertureAllRepo',
       domain,
-      search,
       parameters: [lastObservationSnap],
     });
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));

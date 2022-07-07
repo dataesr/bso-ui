@@ -7,14 +7,12 @@ import {
  *
  * @param key
  * @param domain
- * @param search
  * @param parameters
  * @returns {*|{}}
  */
 export default function getFetchOptions({
   key,
   domain = null,
-  search = null,
   parameters = [],
 }) {
   const allOptions = {
@@ -1739,7 +1737,7 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const { bsoCountry, bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
+  const { bsoCountry, bsoLocalAffiliation, endYear, startYear } = getURLSearchParams();
   // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
   const noCountryNeeded = parameters.includes('Interventional')
     || parameters.includes('Observational');
