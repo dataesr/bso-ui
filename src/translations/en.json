@@ -899,6 +899,8 @@
   "app.publi.type-licence": "License type",
   "app.publi.type-oa": "Open access type",
   "app.publi.type-oa-publisher": "Type of open access to the publisher",
+  "app.publi.researchdata": "Research data",
+  "app.publi.softwarecodes": "Software codes",
   "app.publication-genre": "Publication type",
   "app.publication-genre.book": "Book",
   "app.publication-genre.book-chapter": "Book chapter",

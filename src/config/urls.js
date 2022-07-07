@@ -25,6 +25,14 @@ export default {
         fr: '/publications/financements',
         en: '/publications/fundings',
       },
+      {
+        fr: '/publications/donnees-recherche',
+        en: '/publications/research-data',
+      },
+      {
+        fr: '/publications/codes-logiciels',
+        en: '/publications/software-codes',
+      },
     ],
     fr: '/publications/general',
     en: '/publications/general',
