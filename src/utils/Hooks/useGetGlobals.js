@@ -1,16 +1,15 @@
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../config/config';
 import getFetchOptions from '../chartFetchOptions';
-import { clearSessionStorage } from '../helpers';
-import useLang from './useLang';
+import { clearSessionStorage, getURLSearchParams } from '../helpers';
 
 export const GlobalsContext = createContext();
 
 export const GlobalsContextProvider = ({ children }) => {
-  const { lang } = useLang();
   const hours = 0.1;
   const storedTimer = sessionStorage.getItem('storedTimer');
   const hasNoStoredTimer = storedTimer == null;
@@ -48,13 +47,16 @@ export const GlobalsContextProvider = ({ children }) => {
   const storedUpdateDate = sessionStorage.getItem('__updateDate__');
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
 
+  const history = useHistory();
+
   async function getObservationSnaps() {
     const query = getFetchOptions({ key: 'observationSnaps' });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
+    const { observationYear } = getURLSearchParams();
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
-      .filter((el) => el <= process.env.REACT_APP_LAST_OBSERVATION);
+      .filter((el) => el <= observationYear);
     return newObservationSnaps.filter(
       (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );
@@ -109,10 +111,8 @@ export const GlobalsContextProvider = ({ children }) => {
         sessionStorage.setItem('storedTimer', new Date().getTime());
       }
     }
-    if (!observationSnaps) {
-      getData();
-    }
-  }, [lang, observationSnaps]);
+    getData();
+  }, [history]);
 
   return (
     <GlobalsContext.Provider

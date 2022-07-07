@@ -7,7 +7,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -29,7 +28,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [isOa, setIsOa] = useState(false);
   const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
-  const { search } = useLocation();
   const {
     allData: { dataGraph },
     isLoading,
@@ -43,9 +41,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
-      setChartComments(customComments(dataGraph, idWithDomain, intl, search));
+      setChartComments(customComments(dataGraph, idWithDomain, intl));
     }
-  }, [dataGraph, idWithDomain, intl, isOa, search]);
+  }, [dataGraph, idWithDomain, intl, isOa]);
 
   return (
     <WrapperChart

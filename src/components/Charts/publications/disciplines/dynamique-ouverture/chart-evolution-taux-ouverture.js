@@ -9,7 +9,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -37,7 +36,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps, lastObservationSnap } = useGlobals();
-  const { search } = useLocation();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   const orangeSoft50 = getCSSValue('--orange-soft-50');
@@ -146,9 +144,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         },
       });
 
-      setOptionsGraph(
-        chartOptions[id].getOptions(idWithDomain, intl, series, search),
-      );
+      setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, series));
     }
   }, [
     data,
@@ -161,13 +157,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     orangeSoft100,
     orangeSoft125,
     orangeSoft175,
-    search,
     sort,
   ]);
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl, search));
-  }, [data, idWithDomain, intl, search]);
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   return (
     <WrapperChart

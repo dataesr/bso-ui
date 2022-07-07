@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -17,7 +16,6 @@ function useGetData(beforeLastObservationSnap, observationDate, domain = '') {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const { search } = useLocation();
 
   const getDataForLastObservationDate = useCallback(
     async (lastObservationSnap) => {
@@ -25,14 +23,12 @@ function useGetData(beforeLastObservationSnap, observationDate, domain = '') {
       const query1 = getFetchOptions({
         key: 'publicationRateRangUtile',
         domain,
-        search,
         parameters: [lastObservationSnap],
       });
       queries.push(Axios.post(ES_API_URL, query1, HEADERS));
       const query2 = getFetchOptions({
         key: 'publicationRatePays',
         domain,
-        search,
         parameters: [lastObservationSnap],
       });
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
@@ -135,13 +131,20 @@ function useGetData(beforeLastObservationSnap, observationDate, domain = '') {
         },
       ];
 
-      const publicationYear = getObservationLabel(beforeLastObservationSnap, intl);
-      const withFrenchAffiliationLabel = intl.formatMessage({ id: 'app.affiliations.rang-utile-fr' });
+      const publicationYear = getObservationLabel(
+        beforeLastObservationSnap,
+        intl,
+      );
+      const withFrenchAffiliationLabel = intl.formatMessage({
+        id: 'app.affiliations.rang-utile-fr',
+      });
       const withFrenchAffiliation = dataGraph
         .find((item) => item.name === withFrenchAffiliationLabel)
         ?.data.find((item) => item.x.toString() === publicationYear)
         ?.y?.toFixed(0);
-      const withoutFrenchAffiliationLabel = intl.formatMessage({ id: 'app.affiliations.rang-utile-etranger' });
+      const withoutFrenchAffiliationLabel = intl.formatMessage({
+        id: 'app.affiliations.rang-utile-etranger',
+      });
       const withoutFrenchAffiliation = dataGraph
         .find((item) => item.name === withoutFrenchAffiliationLabel)
         ?.data.find((item) => item.x.toString() === publicationYear)
@@ -161,7 +164,7 @@ function useGetData(beforeLastObservationSnap, observationDate, domain = '') {
         dataGraph2,
       };
     },
-    [beforeLastObservationSnap, bsoDomain, domain, intl, search],
+    [beforeLastObservationSnap, bsoDomain, domain, intl],
   );
 
   useEffect(() => {

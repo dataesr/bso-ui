@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -12,13 +11,11 @@ function useGetData(observationSnap, domain, isOa) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const { search } = useLocation();
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const query = getFetchOptions({
       key: 'declarationRate',
       domain,
-      search,
       parameters: [lastObservationSnap],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);

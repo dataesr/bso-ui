@@ -8,7 +8,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -30,13 +29,9 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { search } = useLocation();
   const { allData, isLoading, isError } = useGetData(studyType);
   const idWithDomain = withDomain(id, domain);
-  const idWithDomainAndStudyType = withtStudyType(
-    idWithDomain,
-    studyType,
-  );
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
 
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -46,10 +41,8 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   );
 
   useEffect(() => {
-    setChartComments(
-      customComments(allData, idWithDomainAndStudyType, intl, search),
-    );
-  }, [allData, idWithDomainAndStudyType, intl, search]);
+    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+  }, [allData, idWithDomainAndStudyType, intl]);
 
   return (
     <WrapperChart

@@ -146,6 +146,13 @@ function Variations() {
                   <i> défaut: vide</i>
                 </li>
                 <li>
+                  <b>observationYear</b>
+                  {' '}
+                  : Dernière année d'observation à
+                  prendre en compte,
+                  <i> défaut: 2021</i>
+                </li>
+                <li>
                   <b>startYear</b>
                   {' '}
                   : filtre sur l'année d'observation supérieure

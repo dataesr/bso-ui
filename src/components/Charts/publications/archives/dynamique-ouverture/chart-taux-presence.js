@@ -9,7 +9,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
@@ -39,7 +38,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     domain,
   );
   const { categories, dataGraph2 } = data;
-  const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
   const archiveTitle = archive !== '*' ? ` (${archive})` : '';
   const dataTitle = { archiveTitle };
@@ -49,14 +47,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     dataGraph2,
     categories,
     dataTitle,
-    search,
   );
 
   useEffect(() => {
     const query = getFetchOptions({
       key: 'repositoriesList',
       domain,
-      search,
       parameters: [lastObservationSnap],
     });
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
@@ -67,11 +63,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         })),
       );
     });
-  }, [domain, lastObservationSnap, search]);
+  }, [domain, lastObservationSnap]);
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl, search));
-  }, [data, idWithDomain, intl, search]);
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   return (
     <WrapperChart

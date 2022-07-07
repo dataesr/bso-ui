@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -17,14 +16,12 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const { search } = useLocation();
   const { lang } = useLang();
 
   async function GetData() {
     const query = getFetchOptions({
       key: 'repositoriesList',
       domain,
-      search,
       parameters: [observationSnap],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);

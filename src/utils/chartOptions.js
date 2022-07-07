@@ -24,25 +24,12 @@ import {
  * chart: {backgroundColor: string}
  * }}
  */
-export function getGraphOptions({
-  id,
-  intl,
-  studyType = '',
-  dataTitle = {},
-  search = undefined,
-}) {
-  let commentsNameTemp = intl.formatMessage({
-    id: 'app.french',
-    defaultMessage: 'françaises',
-  });
+export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let otherSources = [];
-  if (search) {
-    const { commentsName, name } = getURLSearchParams(search, intl);
-    commentsNameTemp = commentsName;
-    otherSources = [name];
-  }
+  const { commentsName, name } = getURLSearchParams(intl);
+  otherSources = [name];
   // eslint-disable-next-line no-param-reassign
-  dataTitle.commentsName = commentsNameTemp;
+  dataTitle.commentsName = commentsName;
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
   const legend = intl.formatMessage({
     id: `${id}.legend`,
@@ -53,7 +40,7 @@ export function getGraphOptions({
       id: `${titleId}.tooltip`,
       defaultMessage: ' ',
     })
-    .replaceAll('((commentsName))', commentsNameTemp);
+    .replaceAll('((commentsName))', commentsName);
   const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
   const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: ' ' });
   const source = getSource(id, otherSources);
@@ -574,13 +561,12 @@ export const chartOptions = {
     },
   },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, categories, data, search) => {
-      const { startYear } = getURLSearchParams(search, intl);
+    getOptions: (id, intl, categories, data) => {
+      const { startYear } = getURLSearchParams(intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({
         id,
         intl,
-        search,
       });
       options.chart.type = 'spline';
       options.xAxis = {
@@ -891,10 +877,10 @@ export const chartOptions = {
     },
   },
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data, categories, dataTitle, search) => {
-      const { startYear } = getURLSearchParams(search, intl);
+    getOptions: (id, intl, data, categories, dataTitle) => {
+      const { startYear } = getURLSearchParams(intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
-      const options = getGraphOptions({ id, intl, dataTitle, search });
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'spline';
       options.xAxis = {
         tickInterval: 1,
@@ -1049,10 +1035,10 @@ export const chartOptions = {
     },
   },
   'publi.publishers.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data, dataTitle, categories, search) => {
-      const { startYear } = getURLSearchParams(search, intl);
+    getOptions: (id, intl, data, dataTitle, categories) => {
+      const { startYear } = getURLSearchParams(intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
-      const options = getGraphOptions({ id, intl, dataTitle, search });
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'spline';
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
@@ -1522,10 +1508,10 @@ export const chartOptions = {
     },
   },
   'publi.repositories.dynamique-ouverture.chart-evolution-proportion': {
-    getOptions: (id, intl, data, categories, dataTitle, search) => {
-      const { startYear } = getURLSearchParams(search, intl);
+    getOptions: (id, intl, data, categories, dataTitle) => {
+      const { startYear } = getURLSearchParams(intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
-      const options = getGraphOptions({ id, intl, dataTitle, search });
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'spline';
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });

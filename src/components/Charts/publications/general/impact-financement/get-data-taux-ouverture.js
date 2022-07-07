@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -12,7 +11,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const { search } = useLocation();
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
@@ -31,14 +29,12 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     const queryFiltered = getFetchOptions({
       key: 'openingRateGrant',
       domain,
-      search,
       parameters: [lastObservationSnap, queryFilter],
     });
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     const query = getFetchOptions({
       key: 'openingRateGrant',
       domain,
-      search,
       parameters: [lastObservationSnap, []],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
