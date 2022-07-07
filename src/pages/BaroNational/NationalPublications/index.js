@@ -493,7 +493,10 @@ export default function NationalPublications() {
               isDisplayed={!isInProduction()}
             >
               <GraphContent isDisplayed={!isInProduction()}>
-                <QuestionSection anchorId='fundings.chart-taux-ouverture'>
+                <QuestionSection
+                  anchorId='fundings.chart-taux-ouverture'
+                  intlKey=''
+                >
                   <BSOChart id='publi.general.impact-financement.chart-taux-ouverture' />
                 </QuestionSection>
               </GraphContent>
@@ -521,7 +524,9 @@ export default function NationalPublications() {
               ]}
               isDisplayed={!isInProduction()}
             >
-              <GraphContent isDisplayed={!isInProduction()} />
+              <GraphContent isDisplayed={!isInProduction()}>
+                <QuestionSection intlKey='' />
+              </GraphContent>
             </GraphItem>
 
             {/* Les codes logiciels */}
@@ -546,7 +551,9 @@ export default function NationalPublications() {
               ]}
               isDisplayed={!isInProduction()}
             >
-              <GraphContent isDisplayed={!isInProduction()} />
+              <GraphContent isDisplayed={!isInProduction()}>
+                <QuestionSection intlKey='' />
+              </GraphContent>
             </GraphItem>
           </GraphNavigation>
         </Row>

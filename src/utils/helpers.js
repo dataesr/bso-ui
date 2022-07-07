@@ -298,6 +298,7 @@ export function getURLSearchParams(search, intl = undefined) {
   let displayTitle;
   let endYear;
   let name;
+  let observationYear = process.env.REACT_APP_LAST_OBSERVATION;
   let startYear = 2013;
   const selectedLang = sessionStorage.getItem('__bso_lang__');
   const commentsNameProperty = selectedLang === 'en' ? 'commentsNameEN' : 'commentsName';
@@ -318,6 +319,12 @@ export function getURLSearchParams(search, intl = undefined) {
     );
     name = urlSearchParams.get('name')?.toLowerCase()
       || locals?.[bsoLocalAffiliation]?.name;
+    observationYear = parseInt(
+      urlSearchParams.get('observationYear')?.toLowerCase()
+        || locals?.[bsoLocalAffiliation]?.observationYear
+        || process.env.REACT_APP_LAST_OBSERVATION,
+      10,
+    );
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
         || locals?.[bsoLocalAffiliation]?.startYear
@@ -335,6 +342,7 @@ export function getURLSearchParams(search, intl = undefined) {
     displayFooter,
     endYear,
     name,
+    observationYear,
     startYear,
   };
 }

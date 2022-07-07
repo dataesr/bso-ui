@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../config/config';
 import getFetchOptions from '../chartFetchOptions';
-import { clearSessionStorage } from '../helpers';
+import { clearSessionStorage, getURLSearchParams } from '../helpers';
 import useLang from './useLang';
 
 export const GlobalsContext = createContext();
@@ -51,10 +51,11 @@ export const GlobalsContextProvider = ({ children }) => {
   async function getObservationSnaps() {
     const query = getFetchOptions({ key: 'observationSnaps' });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
+    const { observationYear } = getURLSearchParams(window.location.search);
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
-      .filter((el) => el <= process.env.REACT_APP_LAST_OBSERVATION);
+      .filter((el) => el <= observationYear);
     return newObservationSnaps.filter(
       (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );

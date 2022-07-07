@@ -2,7 +2,6 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { domains, graphIds, studiesTypes } from '../../utils/constants';
 import {
@@ -39,8 +38,10 @@ function WrapperChart({
   const idWithDomain = withDomain(id, domain);
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
-  const { search } = useLocation();
-  const { commentsName, name } = getURLSearchParams(search, intl);
+  const { commentsName, name } = getURLSearchParams(
+    window.location.search,
+    intl,
+  );
   let title = intl.formatMessage(
     {
       id: `${!studyType ? idWithDomain : idWithContext}.title`,
