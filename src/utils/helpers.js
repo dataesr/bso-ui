@@ -287,6 +287,12 @@ export function getURLSearchParams(intl = undefined) {
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.country
     || 'fr';
+  const observationYear = parseInt(
+    urlSearchParams.get('observationYear')?.toLowerCase()?.substring(0, 4)
+      || locals?.[bsoLocalAffiliation]?.observationYear?.substring(0, 4)
+      || process.env.REACT_APP_LAST_OBSERVATION?.substring(0, 4),
+    10,
+  );
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
   );
@@ -298,10 +304,10 @@ export function getURLSearchParams(intl = undefined) {
   let displayTitle;
   let endYear;
   let name;
-  let observationYear = process.env.REACT_APP_LAST_OBSERVATION;
   let startYear = 2013;
   const selectedLang = sessionStorage.getItem('__bso_lang__');
   const commentsNameProperty = selectedLang === 'en' ? 'commentsNameEN' : 'commentsName';
+
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals?.[bsoLocalAffiliation]?.[commentsNameProperty]
@@ -319,12 +325,6 @@ export function getURLSearchParams(intl = undefined) {
     );
     name = urlSearchParams.get('name')?.toLowerCase()
       || locals?.[bsoLocalAffiliation]?.name;
-    observationYear = parseInt(
-      urlSearchParams.get('observationYear')?.toLowerCase()
-        || locals?.[bsoLocalAffiliation]?.observationYear
-        || process.env.REACT_APP_LAST_OBSERVATION,
-      10,
-    );
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
         || locals?.[bsoLocalAffiliation]?.startYear
