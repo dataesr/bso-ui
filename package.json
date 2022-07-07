@@ -46,7 +46,7 @@
     "lint": "eslint --fix src/**/*.js",
     "prettier": "prettier --write **/*.js",
     "stylelint": "stylelint --fix **/*.scss",
-    "deploy": "git switch main && git pull origin main --rebase --tags && git merge origin staging && npm version $npm_config_level && git push origin main --tags && git switch staging"
+    "deploy": "git switch main && git pull origin main --rebase --tags && git merge origin staging && npm version $npm_config_version && git push origin main --tags && git switch staging"
   },
   "browserslist": {
     "production": [

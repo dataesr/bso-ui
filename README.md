@@ -25,7 +25,7 @@ To create a new release, use `npm version patch|minor|major`.
 * `npm build`
 * `npm eject`
 * `npm prepare`
-* `npm run deploy:[patch|minor|major]`
+* `npm run deploy --version=[patch|minor|major]`
 * `npm start`
 * `npm test`
 * `npm version [patch|minor|major]`
@@ -107,7 +107,7 @@ import GlossaryEntries from 'glossary.json';
 
 
 ```sh
-npm run deploy:[patch|minor|major]
+npm run deploy --version=[patch|minor|major]
 ```
 
-:warning: Obviously, only members of the [dataesr organization](https://github.com/dataesr/) have right to push on the repo.
+:warning: Obviously, only members of the [dataesr organization](https://github.com/dataesr/) have rights to push on the repo.
