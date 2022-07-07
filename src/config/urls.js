@@ -21,6 +21,10 @@ export default {
         fr: '/publications/archives',
         en: '/publications/repositories',
       },
+      {
+        fr: '/publications/financements',
+        en: '/publications/fundings',
+      },
     ],
     fr: '/publications/general',
     en: '/publications/general',

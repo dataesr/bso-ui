@@ -463,6 +463,41 @@ export default function NationalPublications() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+
+            {/* Les financements */}
+            <GraphItem
+              paths={['/publications/financements', '/publications/fundings']}
+              mainLabel={intl.formatMessage({
+                id: 'app.publi.fundings',
+              })}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    fr: '/publications/financements?id=fundings.chart-taux-ouverture',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.fundings.anr',
+                  }),
+                  href: {
+                    en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    fr: '/publications/financements?id=fundings.chart-taux-ouverture',
+                  },
+                },
+              ]}
+              isDisplayed={!isInProduction()}
+            >
+              <GraphContent isDisplayed={!isInProduction()}>
+                <QuestionSection anchorId='fundings.chart-taux-ouverture'>
+                  <BSOChart id='publi.general.impact-financement.chart-taux-ouverture' />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
           </GraphNavigation>
         </Row>
       </section>

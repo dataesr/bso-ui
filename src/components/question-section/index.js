@@ -22,9 +22,7 @@ const QuestionSection = ({
       glossaryKeys={glossaryKeys}
     />
   );
-  const description = intl.messages[`${intlKey}.description`]
-    ? formatted
-    : 'Description non rédigée';
+  const description = intl.messages[`${intlKey}.description`] ? formatted : '';
   return (
     (isDisplayed || isDisplayed == null) && (
       <section
@@ -41,10 +39,15 @@ const QuestionSection = ({
               title=''
             />
           )}
-          <h2 className='marianne-extra-bold fs-20-26'>
-            {intl.formatMessage({ id: `${intlKey}.title` })}
-          </h2>
-          <p>{description}</p>
+          {intlKey && (
+            <h2 className='marianne-extra-bold fs-20-26'>
+              {intl.formatMessage({
+                id: `${intlKey}.title`,
+                defaultMessage: '',
+              })}
+            </h2>
+          )}
+          {description && <p>{description}</p>}
           {children}
         </Container>
       </section>
