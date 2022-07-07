@@ -848,7 +848,7 @@
   "app.promoteurs.impact.chart-classement-pays.tooltip": "<b>Trials completed, in collaboration with {point.country}</b><br>{point.y:.2f}% share scientific results or publication ({point.y_abs} / {point.y_tot})",
   "app.promoteurs.impact.chart-repartition.tooltip": "<b>Trials completed in {point.year}, {series.name}</b><br>Trials contribution with {point.name}: {point.y:.2f}% of the trials ({point.y_abs} / {point.y_tot})",
   "app.publi.affiliations": "Affiliations",
-  "app.publi.archives": "The open repositories",
+  "app.publi.archives": "Open repositories",
   "app.national-publi.data.collab-country": "is the country of affiliation of the authors (in first or last signature) with which France collaborates the most",
   "app.health-publi.data.collab-country": "is the country of affiliation of the authors (in first or last signature) with which France collaborates the most in the field of health",
   "app.publi.disciplines": "Fields",
