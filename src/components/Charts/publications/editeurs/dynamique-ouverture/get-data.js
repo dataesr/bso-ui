@@ -127,7 +127,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
-        name: observationSnapData.observationSnap,
+        name: getObservationLabel(observationSnapData.observationSnap, intl),
         publicationDate: observationSnapData.data.publicationDates[index],
       }));
       serie.ratios = observationSnapData.data.oaHostType.map(
