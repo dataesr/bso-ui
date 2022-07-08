@@ -290,6 +290,13 @@ export function getURLSearchParams(intl = undefined) {
   const observationYear = urlSearchParams.get('observationYear')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.observationYear
     || process.env.REACT_APP_LAST_OBSERVATION;
+  const idTypes = ['doi'];
+  const useHalId = !(
+    urlSearchParams.get('useHalId')?.toLowerCase() === 'false'
+  );
+  if (useHalId) {
+    idTypes.push('hal_id');
+  }
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
   );
@@ -338,6 +345,7 @@ export function getURLSearchParams(intl = undefined) {
     displayTitle,
     displayFooter,
     endYear,
+    idTypes,
     name,
     observationYear,
     startYear,

@@ -24,6 +24,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         key: 'oaHostType',
         domain,
         parameters: [lastObservationSnap],
+        objectType: ['publications'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets.sort(

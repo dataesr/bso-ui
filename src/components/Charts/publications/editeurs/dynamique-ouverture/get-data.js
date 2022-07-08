@@ -23,11 +23,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
           key: 'publicationRate',
           domain,
           parameters: [oneDate, needle, allOaHostType],
+          objectType: ['publications'],
         });
         const queryFiltered = getFetchOptions({
           key: 'publicationRate',
           domain,
           parameters: [oneDate, needle, 'publisher'],
+          objectType: ['publications'],
         });
         // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
         // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur

@@ -20,16 +20,19 @@ function useGetData(studyType, sponsor = '*') {
     const query1 = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
       parameters: [studyType, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     const query2 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureSponsor',
       parameters: [studyType, sponsor, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const query3 = getFetchOptions({
       key: 'studiesDynamiqueSponsor',
       parameters: [studyType, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const res = await Axios.all(queries);

@@ -22,6 +22,7 @@ export default async function useGetPublicationRateFrom(
           key: 'publicationRate',
           domain,
           parameters: [observationSnap],
+          objectType: ['publications'],
         }),
       });
     } else if (

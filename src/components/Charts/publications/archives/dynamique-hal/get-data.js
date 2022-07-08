@@ -23,12 +23,14 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       key: 'couvertureHAL',
       domain,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
     const queryArchive = getFetchOptions({
       key: 'couvertureAllRepo',
       domain,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
     const res = await Axios.all(queries);

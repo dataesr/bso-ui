@@ -26,6 +26,7 @@ function useGetData(observationSnaps, domain = '') {
             key: 'publicationRate',
             domain,
             parameters: [oneDate],
+            objectType: ['publications'],
           });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
@@ -36,6 +37,7 @@ function useGetData(observationSnaps, domain = '') {
             const query = getFetchOptions({
               key: 'publicationRate',
               parameters: [oneDate],
+              objectType: ['publications'],
             });
             queries.push(Axios.post(ES_API_URL, query, HEADERS));
           });

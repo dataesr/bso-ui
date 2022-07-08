@@ -21,6 +21,7 @@ function useGetData(observationSnaps, domain = '') {
           key: 'publicationRateAffiliation',
           domain,
           parameters: [oneDate, 'french_affiliations_types'],
+          objectType: ['publications'],
         });
         queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });

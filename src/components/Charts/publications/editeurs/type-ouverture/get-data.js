@@ -21,6 +21,7 @@ function useGetData(observationSnap, domain) {
       key: 'publishersTypesHisto',
       domain,
       parameters: [observationSnap],
+      objectType: ['publications'],
     });
 
     const res = await Axios.post(ES_API_URL, query, HEADERS);

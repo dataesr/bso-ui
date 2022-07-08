@@ -30,12 +30,14 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       key: 'openingRateGrant',
       domain,
       parameters: [lastObservationSnap, queryFilter],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     const query = getFetchOptions({
       key: 'openingRateGrant',
       domain,
       parameters: [lastObservationSnap, []],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);

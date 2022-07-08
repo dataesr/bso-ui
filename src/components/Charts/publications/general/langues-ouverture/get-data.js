@@ -30,6 +30,7 @@ function useGetData(observationSnap, domain) {
           getPublicationYearFromObservationSnap(lastObservationSnap),
           5,
         ],
+        objectType: ['publications'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;

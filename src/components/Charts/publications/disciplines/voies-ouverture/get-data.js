@@ -26,6 +26,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         key: 'disciplinesVoies',
         domain,
         parameters: [lastObservationSnap, disciplineField],
+        objectType: ['publications'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       let data = res.data.aggregations.by_discipline.buckets;

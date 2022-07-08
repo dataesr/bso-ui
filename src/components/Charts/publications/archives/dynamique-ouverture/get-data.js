@@ -25,11 +25,13 @@ function useGetData(observationSnaps, needle = '*', domain) {
           key: 'publicationRate',
           domain,
           parameters: [oneDate, publisherNeedle, allOaHostType],
+          objectType: ['publications'],
         });
         const queryFiltered = getFetchOptions({
           key: 'publicationRate',
           domain,
           parameters: [oneDate, publisherNeedle, 'repository'],
+          objectType: ['publications'],
         });
         const wildcard = {};
         wildcard[`oa_details.${oneDate}.repositories.keyword`] = needle;
