@@ -18,30 +18,37 @@ const fetchInfos = {
   publication: {
     path: 'aggregations.publication_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   publisher: {
     path: 'aggregations.publisher_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   repository: {
     path: 'aggregations.repositories_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   obsDates: {
     path: 'aggregations.observation_dates_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   journal: {
     path: 'aggregations.journal_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   interventional: {
     path: 'aggregations.study_type.buckets.0.doc_count',
     url: ES_STUDIES_API_URL,
+    objectType: ['clinicalTrials'],
   },
   observational: {
     path: 'aggregations.study_type.buckets.1.doc_count',
     url: ES_STUDIES_API_URL,
+    objectType: ['clinicalTrials'],
   },
 };
 
@@ -62,6 +69,7 @@ function TodayNumbersItem({
       key: itemKey,
       domain,
       parameters: [lastObservationSnap],
+      objectType: fetchInfos[itemKey].objectType,
     }),
   });
   const { ref, inView } = useInView();

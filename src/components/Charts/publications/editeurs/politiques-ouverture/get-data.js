@@ -28,12 +28,14 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       key: 'publishersPolitiqueHisto',
       domain,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryBulle = getFetchOptions({
       key: 'publishersPolitiqueBulle',
       domain,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryBulle, HEADERS));
     const res = await Axios.all(queries);

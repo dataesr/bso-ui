@@ -26,6 +26,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       key: 'publishersLicence',
       domain,
       parameters: [datesObservation[0], needle],
+      objectType: ['publications'],
     });
     const publicationDate = getPublicationYearFromObservationSnap(
       datesObservation[0],

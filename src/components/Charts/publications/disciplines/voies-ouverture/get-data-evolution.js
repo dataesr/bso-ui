@@ -28,6 +28,7 @@ function useGetData(
       key: 'disciplinesVoiesEvolutions',
       domain,
       parameters: [lastObservationSnap, disciplineField],
+      objectType: ['publications'],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const dataBubbles = res.data.aggregations.by_discipline.buckets;

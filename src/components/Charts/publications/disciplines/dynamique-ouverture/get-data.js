@@ -27,6 +27,7 @@ function useGetData(observationSnaps, domain = '') {
             key: 'publicationRateDiscipline',
             domain,
             parameters: [oneDate, disciplineField],
+            objectType: ['publications'],
           });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });

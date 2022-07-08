@@ -250,6 +250,7 @@ export default function DataCardSection({ domain, lang }) {
           key: 'publiCardData',
           domain,
           parameters: [lastObservationSnap],
+          objectType: ['publications'],
         }),
       });
     }

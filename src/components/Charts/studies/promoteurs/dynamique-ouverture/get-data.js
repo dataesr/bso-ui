@@ -20,11 +20,13 @@ function useGetData(studyType, sponsor = '*') {
     const querySponsors = getFetchOptions({
       key: 'sponsorsList',
       parameters: [studyType, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, querySponsors, HEADERS));
     const queryDynamiqueOuverture = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
       parameters: [studyType, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     queries.push(
       Axios.post(ES_STUDIES_API_URL, queryDynamiqueOuverture, HEADERS),
@@ -32,6 +34,7 @@ function useGetData(studyType, sponsor = '*') {
     const queryDynamiqueOuvertureSponsor = getFetchOptions({
       key: 'studiesDynamiqueOuvertureSponsor',
       parameters: [studyType, sponsor, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     queries.push(
       Axios.post(ES_STUDIES_API_URL, queryDynamiqueOuvertureSponsor, HEADERS),
@@ -39,6 +42,7 @@ function useGetData(studyType, sponsor = '*') {
     const queryDynamiqueSponsor = getFetchOptions({
       key: 'studiesDynamiqueSponsor',
       parameters: [studyType, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     queries.push(
       Axios.post(ES_STUDIES_API_URL, queryDynamiqueSponsor, HEADERS),

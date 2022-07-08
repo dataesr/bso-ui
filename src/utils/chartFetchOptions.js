@@ -14,6 +14,7 @@ export default function getFetchOptions({
   key,
   domain = null,
   parameters = [],
+  objectType = [],
 }) {
   const allOptions = {
     publicationRate: ([
@@ -1737,13 +1738,29 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const { bsoCountry, bsoLocalAffiliation, endYear, startYear } = getURLSearchParams();
-  // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
-  const noCountryNeeded = parameters.includes('Interventional')
-    || parameters.includes('Observational');
-  if (bsoCountry && !noCountryNeeded) {
+  const { bsoCountry, bsoLocalAffiliation, endYear, idTypes, startYear } = getURLSearchParams();
+  let useBsoCountry = true;
+  const isHealthTrialsStudies = objectType.includes('clinicalTrials');
+  const isThesis = objectType.includes('thesis');
+  const isPublications = objectType.includes('publications');
+  if (isHealthTrialsStudies) {
+    // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
+    // TODO to remove once the data is in the index
+    useBsoCountry = false;
+  }
+  if (bsoCountry && useBsoCountry) {
     queryResponse.query.bool.filter.push({
       term: { bso_country: bsoCountry },
+    });
+  }
+  if (isThesis) {
+    queryResponse.query.bool.filter.push({
+      terms: { id_types: ['nnt'] },
+    });
+  }
+  if (isPublications) {
+    queryResponse.query.bool.filter.push({
+      terms: { id_type: idTypes },
     });
   }
   if (bsoLocalAffiliation) {

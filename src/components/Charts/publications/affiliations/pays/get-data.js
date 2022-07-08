@@ -24,12 +24,14 @@ function useGetData(beforeLastObservationSnap, observationDate, domain = '') {
         key: 'publicationRateRangUtile',
         domain,
         parameters: [lastObservationSnap],
+        objectType: ['publications'],
       });
       queries.push(Axios.post(ES_API_URL, query1, HEADERS));
       const query2 = getFetchOptions({
         key: 'publicationRatePays',
         domain,
         parameters: [lastObservationSnap],
+        objectType: ['publications'],
       });
       queries.push(Axios.post(ES_API_URL, query2, HEADERS));
       const res = await Axios.all(queries);

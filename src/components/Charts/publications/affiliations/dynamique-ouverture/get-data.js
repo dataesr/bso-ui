@@ -23,6 +23,7 @@ function useGetData(
       key: 'affiliationsList',
       domain,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
     const response = await Axios.post(ES_API_URL, queryAffiliations, HEADERS);
     let affiliations = response.data.aggregations.by_affiliation.buckets

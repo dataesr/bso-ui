@@ -20,6 +20,7 @@ function useGetData(observationSnap, domain) {
     const query = getFetchOptions({
       key: 'predatory',
       domain,
+      objectType: ['publications'],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_year.buckets

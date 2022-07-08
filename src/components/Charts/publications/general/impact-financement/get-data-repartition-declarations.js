@@ -17,6 +17,7 @@ function useGetData(observationSnap, domain, isOa) {
       key: 'declarationRate',
       domain,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const data = res.data.aggregations.by_is_oa.buckets;

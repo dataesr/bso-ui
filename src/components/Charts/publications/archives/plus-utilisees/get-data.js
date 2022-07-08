@@ -23,6 +23,7 @@ function useGetData(observationSnap, domain) {
       key: 'repositoriesList',
       domain,
       parameters: [observationSnap],
+      objectType: ['publications'],
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     let dataGraph = res.data.aggregations.by_repository.buckets.map((item) => ({

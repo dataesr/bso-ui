@@ -16,6 +16,7 @@ function useGetData(studyType, sponsorType = '*') {
     const querySponsorTypes = getFetchOptions({
       key: 'sponsorsTypesList',
       parameters: [studyType],
+      objectType: ['clinicalTrials'],
     });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
@@ -33,6 +34,7 @@ function useGetData(studyType, sponsorType = '*') {
     const queryEvolution = getFetchOptions({
       key: 'studiesCaracteristiquesQuandEvolution',
       parameters: [studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     const resEvolution = await Axios.post(
       ES_STUDIES_API_URL,
@@ -75,6 +77,7 @@ function useGetData(studyType, sponsorType = '*') {
     const queryRepartition = getFetchOptions({
       key: 'studiesCaracteristiquesQuandRepartition',
       parameters: ['delay_submission_start', studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     const resRepartition = await Axios.post(
       ES_STUDIES_API_URL,
@@ -146,6 +149,7 @@ function useGetData(studyType, sponsorType = '*') {
     const queryDistribution = getFetchOptions({
       key: 'studiesCaracteristiquesQuandDistribution',
       parameters: ['delay_submission_start', studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     const resDistribution = await Axios.post(
       ES_STUDIES_API_URL,

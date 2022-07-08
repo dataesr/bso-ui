@@ -26,6 +26,7 @@ function useGetData(observationSnap, domain) {
         key: 'oaHostType',
         domain,
         parameters: [lastObservationSnap, 'genre.keyword', publicationYear],
+        objectType: ['publications'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;

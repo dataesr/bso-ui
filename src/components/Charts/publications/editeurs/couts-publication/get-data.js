@@ -34,18 +34,21 @@ function useGetData(
       key: 'apcYear',
       domain,
       parameters: [datesObservation[0], needle],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryHistogram = getFetchOptions({
       key: 'apcHistogram',
       domain,
       parameters: [datesObservation[0], needle],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryHistogram, HEADERS));
     const queryPercentile = getFetchOptions({
       key: 'apcPercentile',
       domain,
       parameters: [datesObservation[0], needle],
+      objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryPercentile, HEADERS));
     const res = await Axios.all(queries);

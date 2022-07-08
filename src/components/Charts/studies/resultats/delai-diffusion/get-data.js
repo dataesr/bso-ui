@@ -20,6 +20,7 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
     const querySponsorTypes = getFetchOptions({
       key: 'sponsorsTypesList',
       parameters: [studyType],
+      objectType: ['clinicalTrials'],
     });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
@@ -42,6 +43,7 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
     const query2 = getFetchOptions({
       key: 'studiesCaracteristiquesQuandRepartition',
       parameters: ['delay_first_results_completion', studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     query2.query.bool.filter.push({
       term: {
@@ -59,7 +61,9 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
 
     const categories2 = dataSortedByYear2
       .filter((ele) => ele.key >= minBoundary && ele.key <= maxBoundary)
-      .map((el) => (Math.abs(el.key) / 30).toString().concat(` ${intl.formatMessage({ id: 'app.studies.months' })}`));
+      .map((el) => (Math.abs(el.key) / 30)
+        .toString()
+        .concat(` ${intl.formatMessage({ id: 'app.studies.months' })}`));
     categories2[0] += ` ${intl.formatMessage({
       id: 'app.studies.month_before',
     })}`;
@@ -113,6 +117,7 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
     const query3 = getFetchOptions({
       key: 'studiesCaracteristiquesQuandDistribution',
       parameters: ['delay_first_results_completion', studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     query3.query.bool.filter.push({
       term: {
