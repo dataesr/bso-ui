@@ -1755,7 +1755,7 @@ export default function getFetchOptions({
   }
   if (isThesis) {
     queryResponse.query.bool.filter.push({
-      terms: { id_types: ['nnt_id'] },
+      terms: { id_types: ['nnt'] },
     });
   }
   if (isPublications) {

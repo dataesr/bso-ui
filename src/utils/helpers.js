@@ -295,7 +295,7 @@ export function getURLSearchParams(intl = undefined) {
     urlSearchParams.get('useHalId')?.toLowerCase() === 'false'
   );
   if (useHalId) {
-    idTypes.push('hal_id');
+    idTypes.push('hal');
   }
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
