@@ -899,8 +899,8 @@
   "app.publi.type-licence": "License type",
   "app.publi.type-oa": "Open access type",
   "app.publi.type-oa-publisher": "Type of open access to the publisher",
-  "app.publi.researchdata": "Research data",
-  "app.publi.softwarecodes": "Software codes",
+  "app.publi.researchdata": "The research data",
+  "app.publi.softwarecodes": "The software codes",
   "app.publication-genre": "Publication type",
   "app.publication-genre.book": "Book",
   "app.publication-genre.book-chapter": "Book chapter",
@@ -1043,5 +1043,7 @@
   "url.sante.essais": "/health/clinical-trials/general",
   "url.sante.etudes": "/health/observational-studies/general",
   "url.sante.publications.general": "/health/publications/general",
-  "app.pages.does-not-exist": "This page does not exist."
+  "app.pages.does-not-exist": "This page does not exist.",
+  "app.researchdata.intro": "Introduction about the research data",
+  "app.softwarecodes.intro": "Introduction about the software codes"
 }

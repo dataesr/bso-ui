@@ -901,8 +901,8 @@
   "app.publi.type-licence": "Type de licence",
   "app.publi.type-oa": "Type d'accès ouvert",
   "app.publi.type-oa-publisher": "Modèle économique de la revue",
-  "app.publi.researchdata": "Données de la recherche",
-  "app.publi.softwarecodes": "Codes logiciels",
+  "app.publi.researchdata": "Les données de la recherche",
+  "app.publi.softwarecodes": "Les codes logiciels",
   "app.publication-genre": "Type de publication",
   "app.publication-genre.book": "Ouvrage",
   "app.publication-genre.book-chapter": "Chapitre d'ouvrage",
@@ -1046,5 +1046,7 @@
   "url.sante.essais": "/sante/essais-cliniques/general",
   "url.sante.etudes": "/sante/etudes-observationnelles/general",
   "url.sante.publications.general": "/sante/publications/general",
-  "app.pages.does-not-exist": "Cette page n'existe pas."
+  "app.pages.does-not-exist": "Cette page n'existe pas.",
+  "app.researchdata.intro": "Introduction sur les données de la recherche",
+  "app.softwarecodes.intro": "Introduction sur les codes logiciels"
 }

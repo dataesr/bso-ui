@@ -501,60 +501,6 @@ export default function NationalPublications() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
-
-            {/* Les données de la recherche */}
-            <GraphItem
-              paths={[
-                '/publications/donnees-recherche',
-                '/publications/research-data',
-              ]}
-              mainLabel={intl.formatMessage({
-                id: 'app.publi.researchdata',
-              })}
-              links={[
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.go-to-page',
-                  }),
-                  href: {
-                    en: '/publications/research-data?id=researchdata.graph',
-                    fr: '/publications/donnees-recherche?id=researchdata.graph',
-                  },
-                },
-              ]}
-              isDisplayed={!isInProduction()}
-            >
-              <GraphContent isDisplayed={!isInProduction()}>
-                <QuestionSection intlKey='' />
-              </GraphContent>
-            </GraphItem>
-
-            {/* Les codes logiciels */}
-            <GraphItem
-              paths={[
-                '/publications/codes-logiciels',
-                '/publications/software-codes',
-              ]}
-              mainLabel={intl.formatMessage({
-                id: 'app.publi.softwarecodes',
-              })}
-              links={[
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.go-to-page',
-                  }),
-                  href: {
-                    en: '/publications/software-codes?id=softwarecodes.graph',
-                    fr: '/publications/codes-logiciels?id=softwarecodes.graph',
-                  },
-                },
-              ]}
-              isDisplayed={!isInProduction()}
-            >
-              <GraphContent isDisplayed={!isInProduction()}>
-                <QuestionSection intlKey='' />
-              </GraphContent>
-            </GraphItem>
           </GraphNavigation>
         </Row>
       </section>
