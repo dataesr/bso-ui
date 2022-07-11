@@ -291,10 +291,8 @@ export function getURLSearchParams(intl = undefined) {
     || locals?.[bsoLocalAffiliation]?.observationYear
     || process.env.REACT_APP_LAST_OBSERVATION;
   const idTypes = ['doi'];
-  const useHalId = !(
-    urlSearchParams.get('useHalId')?.toLowerCase() === 'false'
-  );
-  if (bsoLocalAffiliation && useHalId) {
+  const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
+  if (useHalId) {
     idTypes.push('hal');
   }
   const displayComment = !(
