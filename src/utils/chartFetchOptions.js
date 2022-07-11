@@ -1214,7 +1214,9 @@ export default function getFetchOptions({
                 year: getPublicationYearFromObservationSnap(observationSnap),
               },
             },
-            { exists: { field: `oa_details.${observationSnap}` } },
+            {
+              exists: { field: `oa_details.${observationSnap}` },
+            },
           ],
         },
       },

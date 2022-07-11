@@ -294,7 +294,7 @@ export function getURLSearchParams(intl = undefined) {
   const useHalId = !(
     urlSearchParams.get('useHalId')?.toLowerCase() === 'false'
   );
-  if (useHalId) {
+  if (bsoLocalAffiliation && useHalId) {
     idTypes.push('hal');
   }
   const displayComment = !(
