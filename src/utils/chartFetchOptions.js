@@ -1764,6 +1764,17 @@ export default function getFetchOptions({
     queryResponse.query.bool.filter.push({
       terms: { id_type: idTypes },
     });
+    queryResponse.query.bool.filter.push({
+      terms: {
+        'genre.keyword': [
+          'journal-article',
+          'proceedings',
+          'book-chapter',
+          'book',
+          'preprint',
+        ],
+      },
+    });
   }
   if (bsoLocalAffiliation) {
     queryResponse.query.bool.filter.push({
