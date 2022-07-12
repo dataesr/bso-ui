@@ -323,7 +323,7 @@ export default function getFetchOptions({
       aggs: {
         publication_count: {
           cardinality: {
-            field: 'doi.keyword',
+            field: 'id.keyword',
             precision_threshold: 1000,
           },
         },
@@ -1757,7 +1757,7 @@ export default function getFetchOptions({
   }
   if (isThesis) {
     queryResponse.query.bool.filter.push({
-      terms: { id_types: ['nnt'] },
+      terms: { id_type: ['nnt'] },
     });
   }
   if (isPublications) {
