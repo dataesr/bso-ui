@@ -205,7 +205,7 @@ export const chartOptions = {
     },
   },
   'publi.disciplines.voies-ouverture.chart-repartition-publications': {
-    getOptions: (id, intl, categories, data, dataTitle, search, sortKey) => {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey, search) => {
       const options = getGraphOptions({ id, intl, dataTitle, search });
       options.chart.type = 'bar';
       options.chart.height = '600px';
