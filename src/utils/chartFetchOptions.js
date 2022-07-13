@@ -1757,12 +1757,12 @@ export default function getFetchOptions({
   }
   if (isThesis) {
     queryResponse.query.bool.filter.push({
-      terms: { id_type: ['nnt'] },
+      terms: { 'id_type.keyword': ['nnt'] },
     });
   }
   if (isPublications) {
     queryResponse.query.bool.filter.push({
-      terms: { id_type: idTypes },
+      terms: { 'id_type.keyword': idTypes },
     });
     queryResponse.query.bool.filter.push({
       terms: {

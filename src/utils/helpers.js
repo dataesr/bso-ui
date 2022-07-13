@@ -287,13 +287,15 @@ export function getURLSearchParams(intl = undefined) {
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.country
     || 'fr';
-  const observationYear = urlSearchParams.get('observationYear')?.toLowerCase()
+  const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.observationYear
     || process.env.REACT_APP_LAST_OBSERVATION;
+  let firstObservationYear = '2018';
   const idTypes = ['doi'];
   const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
   if (useHalId) {
     idTypes.push('hal');
+    firstObservationYear = '2022';
   }
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
@@ -345,7 +347,8 @@ export function getURLSearchParams(intl = undefined) {
     endYear,
     idTypes,
     name,
-    observationYear,
+    lastObservationYear,
+    firstObservationYear,
     startYear,
   };
 }

@@ -52,11 +52,18 @@ export const GlobalsContextProvider = ({ children }) => {
   async function getObservationSnaps() {
     const query = getFetchOptions({ key: 'observationSnaps' });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const { observationYear } = getURLSearchParams();
+    const { firstObservationYear, lastObservationYear } = getURLSearchParams();
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
-      .filter((el) => el <= observationYear);
+      .filter(
+        (el) => parseInt(el.substr(0, 4), 10)
+            <= parseInt(lastObservationYear.substr(0, 4), 10),
+      )
+      .filter(
+        (el) => parseInt(el.substr(0, 4), 10)
+            >= parseInt(firstObservationYear.substr(0, 4), 10),
+      );
     return newObservationSnaps.filter(
       (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );
