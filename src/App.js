@@ -15,6 +15,8 @@ import OpenData from './pages/APropos/OpenData';
 import Variations from './pages/APropos/Variations';
 import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
+import NationalResearchData from './pages/BaroNational/NationalResearchData';
+import NationalSoftwareCodes from './pages/BaroNational/NationalSoftwareCodes';
 import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
@@ -54,6 +56,26 @@ function App() {
             >
               <PageTracker>
                 <BaroNational />
+              </PageTracker>
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.nationalResearchData).map(
+                (l) => urls.nationalResearchData[l],
+              )}
+            >
+              <PageTracker>
+                <NationalResearchData />
+              </PageTracker>
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.nationalSoftwareCodes).map(
+                (l) => urls.nationalSoftwareCodes[l],
+              )}
+            >
+              <PageTracker>
+                <NationalSoftwareCodes />
               </PageTracker>
             </Route>
             <Route

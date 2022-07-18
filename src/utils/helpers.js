@@ -281,12 +281,22 @@ export function isInProduction() {
  * @param {string} search
  * @returns {Object}
  */
-export function getURLSearchParams(search, intl = undefined) {
-  const urlSearchParams = new URLSearchParams(search);
+export function getURLSearchParams(intl = undefined) {
+  const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.country
     || 'fr';
+  const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
+    || locals?.[bsoLocalAffiliation]?.observationYear
+    || process.env.REACT_APP_LAST_OBSERVATION;
+  let firstObservationYear = '2018';
+  const idTypes = ['doi'];
+  const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
+  if (useHalId) {
+    idTypes.push('hal');
+    firstObservationYear = '2022';
+  }
   const displayComment = !(
     urlSearchParams.get('displayComment')?.toLowerCase() === 'false'
   );
@@ -301,6 +311,7 @@ export function getURLSearchParams(search, intl = undefined) {
   let startYear = 2013;
   const selectedLang = sessionStorage.getItem('__bso_lang__');
   const commentsNameProperty = selectedLang === 'en' ? 'commentsNameEN' : 'commentsName';
+
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals?.[bsoLocalAffiliation]?.[commentsNameProperty]
@@ -334,7 +345,10 @@ export function getURLSearchParams(search, intl = undefined) {
     displayTitle,
     displayFooter,
     endYear,
+    idTypes,
     name,
+    lastObservationYear,
+    firstObservationYear,
     startYear,
   };
 }

@@ -6,7 +6,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -29,7 +28,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { search } = useLocation();
   const [chartComments, setChartComments] = useState('');
   const [dataTitle, setDataTitle] = useState({});
   const [optionsGraph, setOptionsGraph] = useState(null);
@@ -39,7 +37,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    search,
   );
   const { categories, dataGraph } = allData;
 
@@ -70,22 +67,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         categoriesLabel,
         dataGraph,
         dataTitle,
-        search,
         sortKey,
       ),
     );
     setChartComments(customComments(allData, idWithDomain, intl));
-  }, [
-    allData,
-    categories,
-    dataGraph,
-    dataTitle,
-    id,
-    idWithDomain,
-    intl,
-    search,
-    sort,
-  ]);
+  }, [allData, categories, dataGraph, dataTitle, id, idWithDomain, intl, sort]);
 
   return (
     <WrapperChart
@@ -110,7 +96,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
               [],
               [],
               dataTitle,
-              search,
               'y_tot',
             ),
           );

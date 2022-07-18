@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -19,7 +18,6 @@ function useGetData(observationSnap, domain) {
   const [isError, setError] = useState(false);
   const yellowMedium125 = getCSSValue('--yellow-medium-125');
   const greenLight100 = getCSSValue('--green-light-100');
-  const { search } = useLocation();
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -27,8 +25,8 @@ function useGetData(observationSnap, domain) {
       const query = getFetchOptions({
         key: 'oaHostType',
         domain,
-        search,
         parameters: [lastObservationSnap, 'genre.keyword', publicationYear],
+        objectType: ['publications'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets;
@@ -214,7 +212,7 @@ function useGetData(observationSnap, domain) {
         dataGraph,
       };
     },
-    [domain, greenLight100, intl, yellowMedium125, search],
+    [domain, greenLight100, intl, yellowMedium125],
   );
 
   useEffect(() => {

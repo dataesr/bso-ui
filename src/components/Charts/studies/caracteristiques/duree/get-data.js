@@ -16,6 +16,7 @@ function useGetData(studyType, sponsorType = '*') {
     const querySponsorTypes = getFetchOptions({
       key: 'sponsorsTypesList',
       parameters: [studyType],
+      objectType: ['clinicalTrials'],
     });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
@@ -33,6 +34,7 @@ function useGetData(studyType, sponsorType = '*') {
     const query = getFetchOptions({
       key: 'studiesCaracteristiquesDureeChartNombre',
       parameters: [studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
     const dataSortedByYear = res.data.aggregations.delay_start_completion.buckets.sort(

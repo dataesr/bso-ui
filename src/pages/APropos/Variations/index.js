@@ -146,6 +146,13 @@ function Variations() {
                   <i> défaut: vide</i>
                 </li>
                 <li>
+                  <b>observationYear</b>
+                  {' '}
+                  : Dernière année d'observation à
+                  prendre en compte,
+                  <i> défaut: 2021</i>
+                </li>
+                <li>
                   <b>startYear</b>
                   {' '}
                   : filtre sur l'année d'observation supérieure
@@ -282,6 +289,15 @@ function Variations() {
                 </li>
                 <li>
                   <a
+                    href='https://www.ephe.psl.eu/le-barometre-de-la-science-ouverte-de-lecole'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Ecole Pratique des Hautes Études - PSL
+                  </a>
+                </li>
+                <li>
+                  <a
                     href='https://insermbiblio.inist.fr/barometre-de-la-science-ouverte-inserm/'
                     target='_blank'
                     rel='noreferrer'
@@ -343,6 +359,33 @@ function Variations() {
                     Avignon Université
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='http://pole-ist.centralesupelec.fr/fr/node/482'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    CentraleSupélec
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://science-ouverte.uca.fr/publications-et-open-access/barometre-science-ouverte-uca'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Clermont Auvergne
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://bibliotheques.univ-tlse3.fr/utiliser-nos-services/se-former-s-informer/chercheurs/la-science-ouverte-l-ut3'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Toulouse 3 - Paul Sabatier
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -358,15 +401,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     CRENAU - UMR AAU
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='http://pole-ist.centralesupelec.fr/fr/node/430'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    CentraleSupélec
                   </a>
                 </li>
                 <li>
@@ -511,15 +545,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université Versailles Saint Quentin
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://bibliotheques.univ-tlse3.fr/utiliser-nos-services/se-former-s-informer/chercheurs/la-science-ouverte-l-ut3'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Toulouse 3
                   </a>
                 </li>
               </ul>

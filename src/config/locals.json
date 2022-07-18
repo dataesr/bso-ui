@@ -272,6 +272,18 @@
     "commentsName": "de Grenoble Ecole de Management",
     "commentsNameEN": "of Grenoble Ecole de Management"
   },
+  "195922846r": {
+    "name": "Bureau de recherche géologique et minière (BRGM)",
+    "commentsName": "du BRGM",
+    "commentsNameEN": "of BRGM",
+    "startYear": 2016
+  },
+  "775684897": {
+    "name": "Institut Pasteur",
+    "commentsName": "de l'Institut Pasteur",
+    "commentsNameEN": "of the Institut Pasteur",
+    "startYear": 2016
+  },
   "anr": {
     "name": "Agence Nationale de la Recherche (ANR)",
     "commentsName": "de l'ANR",

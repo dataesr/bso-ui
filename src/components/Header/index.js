@@ -48,6 +48,18 @@ function Header() {
             defaultMessage: 'Les publications',
           })}
         </SkiplinkItem>
+        <SkiplinkItem href={urls.nationalResearchData[lang] + search}>
+          {intl.formatMessage({
+            id: 'app.publi.researchdata',
+            defaultMessage: 'Les données de la recherche',
+          })}
+        </SkiplinkItem>
+        <SkiplinkItem href={urls.nationalSoftwareCodes[lang] + search}>
+          {intl.formatMessage({
+            id: 'app.publi.softwarecodes',
+            defaultMessage: 'Les codes logiciels',
+          })}
+        </SkiplinkItem>
         <SkiplinkItem href={urls.sante[lang] + search}>
           {intl.formatMessage({
             id: 'app.header.nav.baro-sante',
@@ -133,6 +145,30 @@ function Header() {
                 />
               )}
             />
+            {/* <NavSubItem
+              current={path === urls.nationalResearchData[lang]}
+              title={intl.formatMessage({
+                id: 'app.publi.researchdata',
+                defaultMessage: 'Les données de la recherche',
+              })}
+              asLink={(
+                <RouterLink
+                  to={urls.nationalResearchData[lang] + search}
+                />
+              )}
+            />
+            <NavSubItem
+              current={path === urls.nationalSoftwareCodes[lang]}
+              title={intl.formatMessage({
+                id: 'app.publi.softwarecodes',
+                defaultMessage: 'Codes logiciels',
+              })}
+              asLink={(
+                <RouterLink
+                  to={urls.nationalSoftwareCodes[lang] + search}
+                />
+              )}
+            /> */}
           </NavItem>
           <NavItem
             current={path.startsWith(urls.sante[lang])}

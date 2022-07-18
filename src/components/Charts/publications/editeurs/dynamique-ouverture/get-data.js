@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -13,7 +12,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
     const queries = [];
@@ -24,14 +22,14 @@ function useGetData(observationSnaps, needle = '*', domain) {
         const query = getFetchOptions({
           key: 'publicationRate',
           domain,
-          search,
           parameters: [oneDate, needle, allOaHostType],
+          objectType: ['publications'],
         });
         const queryFiltered = getFetchOptions({
           key: 'publicationRate',
           domain,
-          search,
           parameters: [oneDate, needle, 'publisher'],
+          objectType: ['publications'],
         });
         // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
         // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
@@ -129,7 +127,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           needle === '*'
             ? intl.formatMessage({ id: 'app.all-publishers' })
             : needle,
-        name: observationSnapData.observationSnap,
+        name: getObservationLabel(observationSnapData.observationSnap, intl),
         publicationDate: observationSnapData.data.publicationDates[index],
       }));
       serie.ratios = observationSnapData.data.oaHostType.map(

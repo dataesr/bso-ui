@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
@@ -18,14 +17,13 @@ function useGetData(
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const { search } = useLocation();
 
   async function getDataByObservationSnaps(datesObservation) {
     const queryAffiliations = getFetchOptions({
       key: 'affiliationsList',
       domain,
-      search,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
     const response = await Axios.post(ES_API_URL, queryAffiliations, HEADERS);
     let affiliations = response.data.aggregations.by_affiliation.buckets
@@ -46,7 +44,6 @@ function useGetData(
         const query = getFetchOptions({
           key: 'publicationRate',
           domain,
-          search,
           parameters: [oneDate, needlePublisher, allOaHostType],
         });
         query.query.bool.filter.push({

@@ -21,9 +21,21 @@ export default {
         fr: '/publications/archives',
         en: '/publications/repositories',
       },
+      {
+        fr: '/publications/financements',
+        en: '/publications/fundings',
+      },
     ],
     fr: '/publications/general',
     en: '/publications/general',
+  },
+  nationalResearchData: {
+    fr: '/donnees-recherche',
+    en: '/research-data',
+  },
+  nationalSoftwareCodes: {
+    fr: '/codes-logiciels',
+    en: '/software-codes',
   },
   sante: {
     fr: '/sante',

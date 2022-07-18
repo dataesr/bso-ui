@@ -19,6 +19,7 @@ function useGetData(studyType) {
     const query = getFetchOptions({
       key: 'studiesTrajectoires',
       parameters: [studyType, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
     });
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
     const dataGraph = [];

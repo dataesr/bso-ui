@@ -7,15 +7,14 @@ import {
  *
  * @param key
  * @param domain
- * @param search
  * @param parameters
  * @returns {*|{}}
  */
 export default function getFetchOptions({
   key,
   domain = null,
-  search = null,
   parameters = [],
+  objectType = [],
 }) {
   const allOptions = {
     publicationRate: ([
@@ -324,7 +323,7 @@ export default function getFetchOptions({
       aggs: {
         publication_count: {
           cardinality: {
-            field: 'doi.keyword',
+            field: 'id.keyword',
             precision_threshold: 1000,
           },
         },
@@ -1215,7 +1214,9 @@ export default function getFetchOptions({
                 year: getPublicationYearFromObservationSnap(observationSnap),
               },
             },
-            { exists: { field: `oa_details.${observationSnap}` } },
+            {
+              exists: { field: `oa_details.${observationSnap}` },
+            },
           ],
         },
       },
@@ -1739,13 +1740,40 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const { bsoCountry, bsoLocalAffiliation, endYear, startYear } = getURLSearchParams(search);
-  // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
-  const noCountryNeeded = parameters.includes('Interventional')
-    || parameters.includes('Observational');
-  if (bsoCountry && !noCountryNeeded) {
+  const { bsoCountry, bsoLocalAffiliation, endYear, idTypes, startYear } = getURLSearchParams();
+  let useBsoCountry = true;
+  const isHealthTrialsStudies = objectType.includes('clinicalTrials');
+  const isThesis = objectType.includes('thesis');
+  const isPublications = objectType.includes('publications');
+  if (isHealthTrialsStudies) {
+    // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
+    // TODO to remove once the data is in the index
+    useBsoCountry = false;
+  }
+  if (bsoCountry && useBsoCountry) {
     queryResponse.query.bool.filter.push({
       term: { bso_country: bsoCountry },
+    });
+  }
+  if (isThesis) {
+    queryResponse.query.bool.filter.push({
+      terms: { 'id_type.keyword': ['nnt'] },
+    });
+  }
+  if (isPublications) {
+    queryResponse.query.bool.filter.push({
+      terms: { 'id_type.keyword': idTypes },
+    });
+    queryResponse.query.bool.filter.push({
+      terms: {
+        'genre.keyword': [
+          'journal-article',
+          'proceedings',
+          'book-chapter',
+          'book',
+          'preprint',
+        ],
+      },
     });
   }
   if (bsoLocalAffiliation) {

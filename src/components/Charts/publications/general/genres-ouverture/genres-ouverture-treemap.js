@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
@@ -40,9 +41,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
 
   useEffect(() => {
     if (!isOa && dataGraph && dataGraph.length > 0) {
-      // TODO Manage variables in comment
-      // setChartComments(customComments(dataGraph, idWithDomain, intl));
-      setChartComments('comments');
+      setChartComments(customComments(dataGraph, idWithDomain, intl));
     }
   }, [dataGraph, idWithDomain, intl, isOa, lastObservationSnap]);
 

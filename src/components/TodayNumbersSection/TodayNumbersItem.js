@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FormattedMessage } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, ES_STUDIES_API_URL } from '../../config/config';
 import getFetchOptions from '../../utils/chartFetchOptions';
@@ -19,30 +18,37 @@ const fetchInfos = {
   publication: {
     path: 'aggregations.publication_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   publisher: {
     path: 'aggregations.publisher_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   repository: {
     path: 'aggregations.repositories_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   obsDates: {
     path: 'aggregations.observation_dates_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   journal: {
     path: 'aggregations.journal_count.value',
     url: ES_API_URL,
+    objectType: ['publications'],
   },
   interventional: {
     path: 'aggregations.study_type.buckets.0.doc_count',
     url: ES_STUDIES_API_URL,
+    objectType: ['clinicalTrials'],
   },
   observational: {
     path: 'aggregations.study_type.buckets.1.doc_count',
     url: ES_STUDIES_API_URL,
+    objectType: ['clinicalTrials'],
   },
 };
 
@@ -56,15 +62,14 @@ function TodayNumbersItem({
 }) {
   const [todayData, setTodayData] = useState({});
   const { lastObservationSnap } = useGlobals();
-  const { search } = useLocation();
   const { fetch, response, isMounted } = useFetch({
     url: fetchInfos[itemKey].url,
     method: 'post',
     options: getFetchOptions({
       key: itemKey,
       domain,
-      search,
       parameters: [lastObservationSnap],
+      objectType: fetchInfos[itemKey].objectType,
     }),
   });
   const { ref, inView } = useInView();

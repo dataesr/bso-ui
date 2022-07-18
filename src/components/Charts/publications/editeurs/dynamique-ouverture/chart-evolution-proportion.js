@@ -7,7 +7,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
@@ -37,7 +36,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     domain,
   );
   const { categories, dataGraph2 } = data;
-  const { search } = useLocation();
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
@@ -47,18 +45,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     dataGraph2,
     dataTitle,
     categories,
-    search,
   );
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl, search));
-  }, [data, idWithDomain, intl, search]);
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   useEffect(() => {
     const query = getFetchOptions({
       key: 'publishersList',
       domain,
-      search,
       parameters: [lastObservationSnap],
     });
 
@@ -69,7 +65,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           .map((item) => ({ label: item.key, value: item.key })),
       );
     });
-  }, [domain, lastObservationSnap, search]);
+  }, [domain, lastObservationSnap]);
 
   return (
     <WrapperChart

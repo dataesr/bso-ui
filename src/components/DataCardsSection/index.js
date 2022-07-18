@@ -2,7 +2,6 @@ import { Col, Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import { ES_API_URL } from '../../config/config';
 import getFetchOptions from '../../utils/chartFetchOptions';
@@ -36,10 +35,9 @@ export default function DataCardSection({ domain, lang }) {
     response,
     isMounted,
   } = useFetch({
-    url: ES_API_URL,
     method: 'post',
+    url: ES_API_URL,
   });
-  const { search } = useLocation();
 
   const dataObj = useMemo(
     () => ({
@@ -251,8 +249,8 @@ export default function DataCardSection({ domain, lang }) {
         options: getFetchOptions({
           key: 'publiCardData',
           domain,
-          search,
           parameters: [lastObservationSnap],
+          objectType: ['publications'],
         }),
       });
     }
@@ -261,7 +259,7 @@ export default function DataCardSection({ domain, lang }) {
         isMounted.current = false;
       }
     };
-  }, [domain, fetchData, isMounted, lastObservationSnap, response, search]);
+  }, [domain, fetchData, isMounted, lastObservationSnap, response]);
 
   return (
     <Container fluid className='bg-ultra-light-blue pt-32 mb-20 px-20'>

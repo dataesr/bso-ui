@@ -16,6 +16,7 @@ function useGetData(studyType, sponsorType = '*', id, domain) {
     const querySponsorTypes = getFetchOptions({
       key: 'sponsorsTypesList',
       parameters: [studyType],
+      objectType: ['clinicalTrials'],
     });
     const responseSponsorTypes = await Axios.post(
       ES_STUDIES_API_URL,
@@ -33,6 +34,7 @@ function useGetData(studyType, sponsorType = '*', id, domain) {
     const queryGroupes = getFetchOptions({
       key: 'studiesCaracteristiquesCombienChartGroupesPatients',
       parameters: [studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     const currentYear = new Date().getFullYear() - 1;
     const resGroupes = await Axios.post(
@@ -66,6 +68,7 @@ function useGetData(studyType, sponsorType = '*', id, domain) {
     const queryRepartition = getFetchOptions({
       key: 'studiesCaracteristiquesCombienChartProportionModesRepartition',
       parameters: [studyType, sponsorType],
+      objectType: ['clinicalTrials'],
     });
     const resRepartition = await Axios.post(
       ES_STUDIES_API_URL,
