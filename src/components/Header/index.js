@@ -60,6 +60,12 @@ function Header() {
             defaultMessage: 'Les codes logiciels',
           })}
         </SkiplinkItem>
+        <SkiplinkItem href={urls.nationalThesis[lang] + search}>
+          {intl.formatMessage({
+            id: 'app.publi.thesis',
+            defaultMessage: 'Les thèses de doctorat',
+          })}
+        </SkiplinkItem>
         <SkiplinkItem href={urls.sante[lang] + search}>
           {intl.formatMessage({
             id: 'app.header.nav.baro-sante',
@@ -146,6 +152,18 @@ function Header() {
               )}
             />
             {/* <NavSubItem
+              current={path === urls.nationalThesis[lang]}
+              title={intl.formatMessage({
+                id: 'app.publi.thesis',
+                defaultMessage: 'Thèses de doctorat',
+              })}
+              asLink={(
+                <RouterLink
+                  to={urls.nationalThesis[lang] + search}
+                />
+              )}
+            /> */}
+            {/* <NavSubItem
               current={path === urls.nationalResearchData[lang]}
               title={intl.formatMessage({
                 id: 'app.publi.researchdata',
@@ -156,8 +174,8 @@ function Header() {
                   to={urls.nationalResearchData[lang] + search}
                 />
               )}
-            />
-            <NavSubItem
+            /> */}
+            {/* <NavSubItem
               current={path === urls.nationalSoftwareCodes[lang]}
               title={intl.formatMessage({
                 id: 'app.publi.softwarecodes',

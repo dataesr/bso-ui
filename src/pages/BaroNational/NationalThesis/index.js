@@ -9,7 +9,7 @@ import Icon from '../../../components/Icon';
 import ScrollTop from '../../../components/ScrollTop';
 import useLang from '../../../utils/Hooks/useLang';
 
-export default function NationalSoftwareCodes() {
+export default function NationalThesis() {
   const { lang, urls } = useLang();
   const { search } = useLocation();
 
@@ -17,7 +17,7 @@ export default function NationalSoftwareCodes() {
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
         <Icon
-          name='icon-bsso-24'
+          name='icon-bsso-12'
           color1='blue-soft-125'
           color2='publication-25'
         />
@@ -31,7 +31,7 @@ export default function NationalSoftwareCodes() {
         backgroundColor='blue-soft-150'
         homeLink={urls.national[lang] + search}
         supTitle={<FormattedMessage id='app.header.title-national' />}
-        title={<FormattedMessage id='app.publi.softwarecodes' />}
+        title={<FormattedMessage id='app.publi.thesis' />}
         chip={<Chip />}
         icons={renderIcons}
       />
@@ -42,11 +42,11 @@ export default function NationalSoftwareCodes() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  <FormattedMessage id='app.publi.softwarecodes' />
+                  <FormattedMessage id='app.publi.thesis' />
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
-                    intlKey='app.softwarecodes.intro'
+                    intlKey='app.thesis.intro'
                     glossaryKeys={[]}
                   />
                 </p>

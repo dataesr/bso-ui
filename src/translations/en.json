@@ -901,6 +901,7 @@
   "app.publi.type-oa-publisher": "Type of open access to the publisher",
   "app.publi.researchdata": "The research data",
   "app.publi.softwarecodes": "The software codes",
+  "app.publi.thesis": "PhD thesis",
   "app.publication-genre": "Publication type",
   "app.publication-genre.book": "Book",
   "app.publication-genre.book-chapter": "Book chapter",

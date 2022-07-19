@@ -30,12 +30,16 @@ export default {
     en: '/publications/general',
   },
   nationalResearchData: {
-    fr: '/donnees-recherche',
+    fr: '/donnees-de-la-recherche',
     en: '/research-data',
   },
   nationalSoftwareCodes: {
-    fr: '/codes-logiciels',
-    en: '/software-codes',
+    fr: '/codes-et-logiciels',
+    en: '/software-and-codes',
+  },
+  nationalThesis: {
+    fr: '/theses-de-doctorat',
+    en: '/thesis',
   },
   sante: {
     fr: '/sante',
