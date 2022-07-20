@@ -6,84 +6,84 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, domain, isOa) {
+function useGetData(observationSnap, domain) {
   const intl = useIntl();
-  const [allData, setData] = useState({});
+  const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
+    const queries = [];
     const query = getFetchOptions({
       key: 'declarationRate',
       domain,
       parameters: [lastObservationSnap],
       objectType: ['publications'],
     });
-    const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const data = res.data.aggregations.by_is_oa.buckets;
-    const dataGraph = [];
-
-    data.forEach((el) => {
-      if (el.key === 0) {
-        // acces fermé
-        dataGraph.push({
-          id: 'closed',
-          name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-        });
-        el.by_oa_host_type.buckets[0].by_grant_agency.buckets.forEach(
-          (agency) => {
-            dataGraph.push({
-              name: agency.key,
-              key: agency.key,
-              parent: 'closed',
-              value: agency.doc_count,
-              color: getCSSValue('--blue-soft-175'),
+    queries.push(Axios.post(ES_API_URL, query, HEADERS));
+    const res = await Axios.all(queries);
+    const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
+    const anrData = res[0].data.aggregations.by_agency.buckets
+      .filter((el) => el.key === 'ANR')[0]
+      .by_funding_year.buckets.sort((a, b) => a.key - b.key);
+    const categories = [];
+    const dataGraph2 = [];
+    const colors = [
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-100'),
+    ];
+    const dashStyle = [
+      'ShortDot',
+      'ShortDashDot',
+      'Dash',
+      'solid',
+      'ShortDash',
+    ];
+    let ix = 0;
+    anrData.forEach((el) => {
+      const fundingYear = el.key;
+      categories.push(fundingYear);
+      const currentData = [];
+      let nbTotal = 0;
+      el.by_publication_year.buckets
+        .sort((a, b) => a.key - b.key)
+        .forEach((b) => {
+          const publicationDate = b.key;
+          const oa = b.by_is_oa.buckets.find((k) => k.key === 1)?.doc_count || 0;
+          const closed = b.by_is_oa.buckets.find((k) => k.key === 0)?.doc_count || 0;
+          const total = oa + closed;
+          nbTotal += total;
+          if (publicationDate >= fundingYear && total > 10) {
+            currentData.push({
+              x: publicationDate,
+              publicationDate,
+              y_abs: oa,
+              y_tot: total,
+              y: (100.0 * oa) / total,
+              bsoDomain,
+              color: colors[ix],
             });
-          },
-        );
-      } else {
-        // access ouvert
-        dataGraph.push({
-          id: 'opened',
-          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
+          }
         });
-        el.by_oa_host_type.buckets.forEach((hostType) => {
-          dataGraph.push({
-            name: intl.formatMessage({
-              id: `app.type-hebergement.${hostType.key}`,
-            }),
-            id: hostType.key,
-            parent: 'opened',
-          });
-          hostType.by_grant_agency.buckets.forEach((agency) => {
-            let color = getCSSValue('--blue-soft-175');
-            if (hostType.key === 'repository') {
-              color = getCSSValue('--green-medium-125');
-            }
-            if (hostType.key === 'publisher') {
-              color = getCSSValue('--yellow-medium-125');
-            }
-            if (hostType.key === 'publisher;repository') {
-              color = getCSSValue('--green-light-100');
-            }
-            dataGraph.push({
-              name: agency.key,
-              key: agency.key,
-              parent: hostType.key,
-              value: agency.doc_count,
-              color,
-              dataLabels: {
-                style: {
-                  textOutline: 'none',
-                },
-              },
-            });
-          });
-        });
+      const currentSerie = {
+        name: el.key,
+        data: currentData,
+        nbTotal,
+        color: colors[ix],
+        dashStyle: dashStyle[ix],
+      };
+      if (nbTotal >= 100 && fundingYear >= 2016) {
+        dataGraph2.push(currentSerie);
+        ix += 1;
       }
     });
 
-    return { dataGraph };
+    return {
+      categories,
+      dataGraph2,
+    };
   }
 
   useEffect(() => {
@@ -101,8 +101,7 @@ function useGetData(observationSnap, domain, isOa) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOa, observationSnap]);
-
-  return { allData, isError, isLoading };
+  }, [observationSnap]);
+  return { data, isError, isLoading };
 }
 export default useGetData;

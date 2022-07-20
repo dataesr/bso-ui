@@ -837,6 +837,7 @@
   "app.oa-rate": "Open access rate",
   "app.obs-dates": "observation dates",
   "app.observation-dates": "Observation dates",
+  "app.funding-year": "Funding years",
   "app.observational.after_completion": "after the end of the study",
   "app.observational.after_start": "after the start of the study",
   "app.observational.before_completion": "before the end of the study",

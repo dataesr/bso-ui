@@ -498,6 +498,7 @@ export default function NationalPublications() {
                   intlKey=''
                 >
                   <BSOChart id='publi.general.impact-financement.chart-taux-ouverture' />
+                  <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

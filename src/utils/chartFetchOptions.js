@@ -1316,22 +1316,68 @@ export default function getFetchOptions({
         },
       },
     }),
-    declarationRate: ([lastObservationSnap]) => ({
+    oaYear: ([
+      lastObservationSnap,
+      field = 'year',
+      minPublicationDate = '2013',
+      size = 10,
+    ]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
       aggs: {
-        by_is_oa: {
+        by_publication_year: {
           terms: {
-            field: `oa_details.${lastObservationSnap}.is_oa`,
+            field,
+            size,
           },
           aggs: {
             by_oa_host_type: {
               terms: {
-                field: `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
+                field: `oa_details.${lastObservationSnap}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    declarationRate: ([lastObservationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_agency: {
+          terms: {
+            field: 'grants.agency.keyword',
+          },
+          aggs: {
+            by_funding_year: {
+              terms: {
+                field: 'grants.funding_year',
               },
               aggs: {
-                by_grant_agency: {
+                by_publication_year: {
                   terms: {
-                    field: 'grants.agency.keyword',
+                    field: 'year',
+                  },
+                  aggs: {
+                    by_is_oa: {
+                      terms: {
+                        field: `oa_details.${lastObservationSnap}.is_oa`,
+                      },
+                    },
                   },
                 },
               },
