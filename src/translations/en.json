@@ -16,7 +16,7 @@
   "app.agencies-filter-label": "Select a funding agency",
   "app.agencies-label": "Specify a funding agency",
   "app.all-affiliations": "all types of French affiliation",
-  "app.effectif": "total = ",
+  "app.effectif": "total",
   "app.fr-only": "FR only",
   "app.fr-foreign": "other",
   "app.yoy": "Yearly growth",

@@ -81,6 +81,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         nameClean
           .concat('</br>(')
           .concat(intl.formatMessage({ id: 'app.effectif' }))
+          .concat(' = ')
           .concat(cleanNumber(totalCurrent))
           .concat(')'),
       );
