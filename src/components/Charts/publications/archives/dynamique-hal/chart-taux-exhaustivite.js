@@ -20,7 +20,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const idWithDomain = withDomain(id, domain);
 
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { data, isError, isLoading } = useGetData(
+  const { isError, isLoading } = useGetData(
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
