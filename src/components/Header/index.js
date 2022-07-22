@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
-import { stringIsIntTheKitchen } from '../../utils/helpers';
+import { isInProduction, stringIsIntTheKitchen } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import SwitchLangButton from '../UI/SwitchLangButton';
 import WrapperDisplay from '../WrapperDisplay';
@@ -58,6 +58,12 @@ function Header() {
           {intl.formatMessage({
             id: 'app.publi.softwarecodes',
             defaultMessage: 'Les codes logiciels',
+          })}
+        </SkiplinkItem>
+        <SkiplinkItem href={urls.nationalThesis[lang] + search}>
+          {intl.formatMessage({
+            id: 'app.publi.thesis',
+            defaultMessage: 'Les thèses de doctorat',
           })}
         </SkiplinkItem>
         <SkiplinkItem href={urls.sante[lang] + search}>
@@ -145,30 +151,40 @@ function Header() {
                 />
               )}
             />
-            {/* <NavSubItem
-              current={path === urls.nationalResearchData[lang]}
-              title={intl.formatMessage({
-                id: 'app.publi.researchdata',
-                defaultMessage: 'Les données de la recherche',
-              })}
-              asLink={(
-                <RouterLink
-                  to={urls.nationalResearchData[lang] + search}
-                />
-              )}
-            />
-            <NavSubItem
-              current={path === urls.nationalSoftwareCodes[lang]}
-              title={intl.formatMessage({
-                id: 'app.publi.softwarecodes',
-                defaultMessage: 'Codes logiciels',
-              })}
-              asLink={(
-                <RouterLink
-                  to={urls.nationalSoftwareCodes[lang] + search}
-                />
-              )}
-            /> */}
+            {!isInProduction() && (
+              <NavSubItem
+                current={path === urls.nationalThesis[lang]}
+                title={intl.formatMessage({
+                  id: 'app.publi.thesis',
+                  defaultMessage: 'Thèses de doctorat',
+                })}
+                asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
+              />
+            )}
+            {!isInProduction() && (
+              <NavSubItem
+                current={path === urls.nationalResearchData[lang]}
+                title={intl.formatMessage({
+                  id: 'app.publi.researchdata',
+                  defaultMessage: 'Les données de la recherche',
+                })}
+                asLink={
+                  <RouterLink to={urls.nationalResearchData[lang] + search} />
+                }
+              />
+            )}
+            {!isInProduction() && (
+              <NavSubItem
+                current={path === urls.nationalSoftwareCodes[lang]}
+                title={intl.formatMessage({
+                  id: 'app.publi.softwarecodes',
+                  defaultMessage: 'Codes logiciels',
+                })}
+                asLink={
+                  <RouterLink to={urls.nationalSoftwareCodes[lang] + search} />
+                }
+              />
+            )}
           </NavItem>
           <NavItem
             current={path.startsWith(urls.sante[lang])}

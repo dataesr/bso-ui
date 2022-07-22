@@ -15,8 +15,10 @@ import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import {
   capitalize,
+  cleanNumber,
   getCSSValue,
   getObservationLabel,
+  getPublicationYearFromObservationSnap,
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
@@ -60,9 +62,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           const maxB = b.data[serieLength].y;
           return maxB - minB - (maxA - minA);
         });
-      } else {
+      } else if (sort === 'sort-open-access') {
         newData = dataHist.sort(
           (a, b) => b.data[serieLength].y - a.data[serieLength].y,
+        );
+      } else {
+        newData = dataHist.sort(
+          (a, b) => b.data[serieLength].y_tot - a.data[serieLength].y_tot,
         );
       }
 
@@ -104,7 +110,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           break;
         }
         series.push({
-          name: dates[index - 1],
+          name: dates[index - 1].replace('<br/>', ' - '),
+          publicationYear: getPublicationYearFromObservationSnap(
+            dates[index - 1],
+          ),
           data: newData.map((item) => ({
             name: capitalize(
               intl.formatMessage({
@@ -112,7 +121,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
                   .replace(/\n/g, '')
                   .replace('  ', ' ')}`,
               }),
-            ),
+            )
+              .concat('</br>(')
+              .concat(intl.formatMessage({ id: 'app.effectif' }))
+              .concat(' ')
+              .concat(
+                getPublicationYearFromObservationSnap(lastObservationSnap),
+              )
+              .concat(' = ')
+              .concat(cleanNumber(item.data[item.data.length - 1].y_tot))
+              .concat(')'),
             bsoDomain: item.bsoDomain,
             low: item.data.find((el) => el.name === dates[index - 1])?.y,
             y_abs: item.data.find((el) => el.name === dates[index - 1])?.y_abs,
@@ -188,6 +206,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         <Radio
           label={intl.formatMessage({ id: 'app.publi.sort-progression' })}
           value='sort-progression'
+        />
+        <Radio
+          label={`${intl.formatMessage({
+            id: 'app.publi.sort-staff-in',
+          })} ${getPublicationYearFromObservationSnap(lastObservationSnap)}`}
+          value='sort-staff'
         />
       </RadioGroup>
       <HighchartsReact

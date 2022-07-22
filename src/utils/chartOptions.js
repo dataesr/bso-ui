@@ -843,33 +843,43 @@ export const chartOptions = {
     },
   },
   'publi.general.impact-financement.chart-repartition-financements': {
-    getOptions: (id, intl, data) => {
+    getOptions: (id, intl, categories, data) => {
+      const { startYear } = getURLSearchParams(intl);
+      const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl });
-      options.series = [
-        {
-          type: 'treemap',
-          layoutAlgorithm: 'stripes',
-          alternateStartingDirection: true,
-          levels: [
-            {
-              level: 1,
-              layoutAlgorithm: 'sliceAndDice',
-              dataLabels: {
-                enabled: true,
-                align: 'left',
-                verticalAlign: 'top',
-                style: {
-                  textOutline: 'none',
-                  fontSize: '15px',
-                  fontWeight: 'bold',
-                  color: '#fff',
-                },
-              },
-            },
-          ],
-          data,
+      options.chart.type = 'line';
+      options.xAxis = {
+        categories,
+        tickInterval: 1,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.funding-year',
+      });
+      options.plotOptions = {
+        series: {
+          pointStart,
         },
-      ];
+        line: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            formatter() {
+              const last = this.series.data[this.series.data.length - 1];
+              if (
+                this.point.category === last.category
+                && this.point.y === last.y
+              ) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
+      options.series = data;
       return options;
     },
   },
@@ -1826,12 +1836,6 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        labels: {
-          style: {
-            color: getCSSValue('--g-800'),
-            fontSize: '14px',
-          },
-        },
       };
       options.plotOptions = {
         dumbbell: {
@@ -1846,7 +1850,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-      options.tooltip.shared = false;
       return options;
     },
   },
@@ -2630,6 +2633,38 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
+      return options;
+    },
+  },
+  'thesis.general.voies-ouverture.chart-repartition-taux': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
       return options;
     },
   },

@@ -72,6 +72,7 @@ function useGetData(observationSnaps, domain = '') {
               return {
                 name: getObservationLabel(obs, intl, true),
                 bsoDomain,
+                obs,
                 y_tot: dataByDisciplineByObservationDate?.y_tot || 0,
                 y_abs: dataByDisciplineByObservationDate?.y_abs || 0,
                 y: dataByDisciplineByObservationDate?.y || 0,

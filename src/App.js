@@ -17,6 +17,7 @@ import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 import NationalResearchData from './pages/BaroNational/NationalResearchData';
 import NationalSoftwareCodes from './pages/BaroNational/NationalSoftwareCodes';
+import NationalThesis from './pages/BaroNational/NationalThesis';
 import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
@@ -76,6 +77,16 @@ function App() {
             >
               <PageTracker>
                 <NationalSoftwareCodes />
+              </PageTracker>
+            </Route>
+            <Route
+              exact
+              path={Object.keys(urls.nationalThesis).map(
+                (l) => urls.nationalThesis[l],
+              )}
+            >
+              <PageTracker>
+                <NationalThesis />
               </PageTracker>
             </Route>
             <Route
