@@ -1836,12 +1836,6 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        labels: {
-          style: {
-            color: getCSSValue('--g-800'),
-            fontSize: '14px',
-          },
-        },
       };
       options.plotOptions = {
         dumbbell: {
@@ -1856,7 +1850,6 @@ export const chartOptions = {
         },
       };
       options.series = data;
-      options.tooltip.shared = false;
       return options;
     },
   },

@@ -18,6 +18,7 @@ import {
   cleanNumber,
   getCSSValue,
   getObservationLabel,
+  getPublicationYearFromObservationSnap,
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
@@ -109,7 +110,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           break;
         }
         series.push({
-          name: dates[index - 1],
+          name: dates[index - 1].replace('<br/>', ' - '),
+          publicationYear: getPublicationYearFromObservationSnap(
+            dates[index - 1],
+          ),
           data: newData.map((item) => ({
             name: capitalize(
               intl.formatMessage({
@@ -121,7 +125,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
               .concat('</br>(')
               .concat(intl.formatMessage({ id: 'app.effectif' }))
               .concat(' ')
-              .concat(item.data[item.data.length - 1].name.split('<br/>')[0])
+              .concat(
+                getPublicationYearFromObservationSnap(lastObservationSnap),
+              )
               .concat(' = ')
               .concat(cleanNumber(item.data[item.data.length - 1].y_tot))
               .concat(')'),
@@ -202,7 +208,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           value='sort-progression'
         />
         <Radio
-          label={intl.formatMessage({ id: 'app.publi.sort-staff' })}
+          label={`${intl.formatMessage({
+            id: 'app.publi.sort-staff-in',
+          })} ${getPublicationYearFromObservationSnap(lastObservationSnap)}`}
           value='sort-staff'
         />
       </RadioGroup>
