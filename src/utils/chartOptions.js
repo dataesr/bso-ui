@@ -176,14 +176,18 @@ export const chartOptions = {
     },
   },
   'publi.publishers.politiques-ouverture.chart-classement': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
+    getOptions: (id, intl, categories, data, dataTitle, displayType) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '1000px';
       options.chart.type = 'bar';
       options.xAxis = {
         categories,
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(
+        true,
+        null,
+        displayType === 'display-staff',
+      );
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa',

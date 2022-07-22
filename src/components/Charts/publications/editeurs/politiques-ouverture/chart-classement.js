@@ -1,3 +1,4 @@
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -20,6 +21,8 @@ HCExportingData(Highcharts);
 
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
+  const [displayType, setDisplayType] = useState('display-open-access');
+  const [optionsGraph, setOptionsGraph] = useState(null);
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
@@ -28,18 +31,49 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
   );
-  const { categories, dataGraph } = allData;
-  const dataTitle = {
-    publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
-  };
   const idWithDomain = withDomain(id, domain);
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    categories,
-    dataGraph,
-    dataTitle,
-  );
+
+  useEffect(() => {
+    allData.dataTitle = {
+      publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+    };
+    const { categories, dataGraph, dataTitle } = allData;
+    /* eslint-disable no-param-reassign */
+    if (allData && allData.dataGraph && displayType === 'display-open-access') {
+      allData.dataGraph.forEach((dataItem) => {
+        if (dataItem.name_code === 'closed') {
+          dataItem.visible = false;
+        }
+        dataItem.data.forEach((dataPoint) => {
+          dataPoint.y = dataPoint.y_rel;
+          dataPoint.y_suffix = ' %';
+        });
+      });
+    } else if (
+      allData
+      && allData.dataGraph
+      && displayType === 'display-staff'
+    ) {
+      allData.dataGraph.forEach((dataItem) => {
+        dataItem.visible = true;
+        dataItem.data.forEach((dataPoint) => {
+          dataPoint.y = dataPoint.y_abs;
+          dataPoint.y_suffix = '';
+        });
+      });
+    }
+    /* eslint-enable no-param-reassign */
+    setOptionsGraph(
+      chartOptions[id].getOptions(
+        idWithDomain,
+        intl,
+        categories,
+        dataGraph,
+        dataTitle,
+        displayType,
+      ),
+    );
+  }, [allData, beforeLastObservationSnap, id, idWithDomain, intl, displayType]);
 
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomain, intl));
@@ -48,14 +82,32 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={dataTitle}
+      dataTitle={allData.dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !allData.dataGraph || !allData.categories}
     >
+      <RadioGroup
+        className='d-inline-block'
+        isInline
+        legend={intl.formatMessage({ id: 'app.publi.display' })}
+        onChange={(newValue) => setDisplayType(newValue)}
+        value={displayType}
+      >
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.display-open-access' })}
+          value='display-open-access'
+        />
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.publi.display-staff-open-access',
+          })}
+          value='display-staff'
+        />
+      </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomain}
