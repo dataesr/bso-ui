@@ -44,6 +44,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
     const data = res[0].data.aggregations.by_publisher.buckets;
     const openByPublishers = [];
     const greenOnly = [];
+    const closed = [];
     const categories = [];
     data.forEach((item) => {
       const greenPublicationsCount = parseInt(
@@ -57,6 +58,11 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
           .reduce((a, b) => a + b.doc_count, 0),
         10,
       );
+      const closedPublicationsCount = parseInt(
+        item.by_oa_colors.buckets.find((el) => el.key === 'closed')
+          ?.doc_count || 0,
+        10,
+      );
       openByPublishers.push({
         bsoDomain,
         publicationDate:
@@ -64,7 +70,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         publisher: item.key,
         y_abs: oaPublicationsCount,
         y_tot: item.doc_count,
-        y: (oaPublicationsCount / item.doc_count) * 100,
+        y_rel: (oaPublicationsCount / item.doc_count) * 100,
       });
       greenOnly.push({
         bsoDomain,
@@ -73,7 +79,16 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         publisher: item.key,
         y_abs: greenPublicationsCount,
         y_tot: item.doc_count,
-        y: (greenPublicationsCount / item.doc_count) * 100,
+        y_rel: (greenPublicationsCount / item.doc_count) * 100,
+      });
+      closed.push({
+        bsoDomain,
+        publicationDate:
+          getPublicationYearFromObservationSnap(lastObservationSnap),
+        publisher: item.key,
+        y_abs: closedPublicationsCount,
+        y_tot: item.doc_count,
+        y_rel: (closedPublicationsCount / item.doc_count) * 100,
       });
       const totalCurrent = item.doc_count;
       const nameClean = item.key;
@@ -87,6 +102,14 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       );
     });
     const dataGraph = [
+      {
+        name: capitalize(
+          intl.formatMessage({ id: 'app.type-hebergement.closed' }),
+        ),
+        name_code: 'closed',
+        data: closed,
+        color: getCSSValue('--blue-soft-175'),
+      },
       {
         name: capitalize(
           intl.formatMessage({ id: 'app.publishers.open-by-publisher' }),

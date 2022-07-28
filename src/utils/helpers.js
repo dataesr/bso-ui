@@ -98,14 +98,22 @@ export function formatNumberByLang(num, lang, options = {}) {
   );
 }
 
-export function getPercentageYAxis(showTotal = true, max = null) {
+export function getPercentageYAxis(
+  showTotal = true,
+  max = null,
+  absolute = false,
+) {
+  let suffix = ' %';
+  if (absolute) {
+    suffix = '';
+  }
   const axis = {
     title: { text: '' },
     stackLabels: {
       enabled: true,
       formatter() {
         return showTotal && this.total
-          ? this.total.toFixed(0).concat(' %')
+          ? this.total.toFixed(0).concat(suffix)
           : '';
       },
       style: {
@@ -115,7 +123,7 @@ export function getPercentageYAxis(showTotal = true, max = null) {
     },
     labels: {
       formatter() {
-        return this.axis.defaultLabelFormatter.call(this).concat(' %');
+        return this.axis.defaultLabelFormatter.call(this).concat(suffix);
       },
     },
   };
