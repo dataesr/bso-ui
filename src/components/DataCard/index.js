@@ -21,7 +21,7 @@ function DataCard({
     <Card
       hasArrow={false}
       href='/'
-      className='bso-datacard text-center'
+      className='bso-datacard text-center fr-card--no-border'
       bodyClassName={background}
     >
       <CardDescription as='div'>

@@ -21,10 +21,10 @@ function InfoCard({
 
   return (
     <Card
-      className={classNames('bso-info-card text-center', cardClassNames)}
       bodyClassName={bodyClassName}
-      href='/'
+      className={classNames('bso-info-card text-center fr-card--no-border', cardClassNames)}
       hasArrow={false}
+      href='/'
     >
       <CardDescription as='div'>
         <section className={classNames({ 'pb-16 pt-32': !small })}>

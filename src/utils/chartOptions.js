@@ -2391,7 +2391,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.resultats.delai-diffusion.chart-distribution': {
+  'resultats.delai-diffusion.chart-distribution': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart = {

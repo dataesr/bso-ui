@@ -18,7 +18,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import { isInProduction, stringIsIntTheKitchen } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
-import SwitchLangButton from '../UI/SwitchLangButton';
+import SwitchLangButton from '../SwitchLangButton';
 import WrapperDisplay from '../WrapperDisplay';
 
 function Header() {

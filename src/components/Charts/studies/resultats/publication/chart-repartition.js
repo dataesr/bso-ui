@@ -15,7 +15,7 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import { capitalize, withDomain, withtStudyType } from '../../../../../utils/helpers';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -27,23 +27,29 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
+  const [options, setOptions] = useState([]);
+  const [sponsorType, setSponsorType] = useState('*');
   const { allData, isError, isLoading } = useGetData(studyType, sponsorType);
   const { dataGraph1 } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
-
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     dataGraph1,
     studyType,
   );
+
+  useEffect(() => {
+    const opts = allData?.sponsorTypes || [];
+    opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })), value: '*' });
+    setOptions(opts);
+  }, [allData.sponsorTypes, intl]);
+
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+  }, [allData, idWithDomainAndStudyType, intl]);
 
   return (
     <WrapperChart
@@ -57,11 +63,9 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
       studyType={studyType}
     >
       <SimpleSelect
-        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
-        firstValue='*'
         label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
         onChange={(e) => setSponsorType(e.target.value)}
-        options={allData?.sponsorTypes || []}
+        options={options}
         selected={sponsorType}
       />
       <HighchartsReact

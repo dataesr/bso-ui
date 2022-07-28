@@ -3,7 +3,7 @@
   "version": "1.0.55",
   "private": true,
   "dependencies": {
-    "@dataesr/react-dsfr": "0.7.7",
+    "@dataesr/react-dsfr": "^2.9.0",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",

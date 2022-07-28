@@ -1,0 +1,59 @@
+/**
+ * DSFR Fixes
+ **/
+
+html {
+  h1,
+  h2,
+  h3 {
+    color: var(--blue-dark-125);
+  }
+
+  .fr-enlarge-link:hover {
+    background-color: inherit;
+  }
+
+  a[href].bso-link {
+    background-image: none;
+  }
+
+  a[href].bso-link:hover {
+    background-color: white;
+  }
+
+  [target=_blank]::after {
+    content: none !important;
+  }
+
+  a[aria-disabled="true"]:not([href]) {
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .fr-hr,
+  hr {
+    padding: 1px 0;
+  }
+
+  .tab-links hr {
+    margin-bottom: 7px;
+    margin-top: 7px;
+  }
+
+  .fr-link {
+    display: inline-flex;
+  }
+
+  .fr-links-group .fr-link {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .fr-link--close {
+    display: flex;
+  }
+
+  .fr-footer {
+    border-top: 2px solid var(--blue-france-500);
+  }
+}

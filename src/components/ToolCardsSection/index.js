@@ -78,9 +78,10 @@ export default function ToolCardsSection() {
               <Col n='12' className='mb-20'>
                 <Card
                   bodyClassName='bg-white'
+                  className='fr-card--no-border'
+                  hasArrow={false}
                   href='/'
                   isHorizontal
-                  hasArrow={false}
                 >
                   <CardTitle className='blue-dark'>
                     <FormattedMessage id='app.commons.discover' />

@@ -40,6 +40,7 @@ function OpenData() {
             <Col n='12'>
               <Card
                 bodyClassName='bg-medium-blue text-white'
+                className='fr-card--no-border'
                 hasArrow={false}
               >
                 <CardDescription as='div'>
@@ -77,6 +78,7 @@ function OpenData() {
             <Col n='12'>
               <Card
                 bodyClassName='bg-dark-blue text-white'
+                className='fr-card--no-border'
                 hasArrow={false}
               >
                 <CardDescription as='div'>

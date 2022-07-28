@@ -16,7 +16,7 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import { capitalize, withDomain, withtStudyType } from '../../../../../utils/helpers';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -29,8 +29,9 @@ highchartsMore(Highcharts);
 const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
+  const [options, setOptions] = useState([]);
+  const [sponsorType, setSponsorType] = useState('*');
   const { allData, isError, isLoading } = useGetData(
     studyType,
     sponsorType,
@@ -38,11 +39,6 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   );
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
-
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
@@ -50,24 +46,32 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     studyType,
   );
 
+  useEffect(() => {
+    const opts = allData?.sponsorTypes || [];
+    opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })), value: '*' });
+    setOptions(opts);
+  }, [allData.sponsorTypes, intl]);
+
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+  }, [allData, idWithDomainAndStudyType, intl]);
+
   return (
     <WrapperChart
-      isLoading={isLoading || !allData}
-      isError={isError}
-      id={id}
-      domain={domain}
-      studyType={studyType}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !allData}
+      studyType={studyType}
     >
       <SimpleSelect
         label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
         onChange={(e) => setSponsorType(e.target.value)}
-        options={allData?.sponsorTypes || []}
+        options={options}
         selected={sponsorType}
-        firstValue='*'
-        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
       />
       <HighchartsReact
         highcharts={Highcharts}

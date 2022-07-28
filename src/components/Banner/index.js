@@ -109,7 +109,9 @@ function Banner({
             ) : (
               <small className='sup-title'>{supTitle}</small>
             )}
-            <h2 className='main-title marianne-extra-bold'>{title}</h2>
+            <h2 className='main-title marianne-extra-bold'>
+              {title}
+            </h2>
             <section className='icons'>{icons || ''}</section>
             {subTitle && (
               <h3

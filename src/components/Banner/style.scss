@@ -1,8 +1,8 @@
 .bso-banner {
-  position: relative;
   background: var(--bannerBackgroundColor);
   color: var(--bannerTextColor);
   padding: 50px 0;
+  position: relative;
 
   .sup-title {
     @include font-size(20, 24);
@@ -10,17 +10,19 @@
 
   .main-title {
     @include font-size(32, 40);
+    color: inherit;
   }
 
   .sub-title {
     @include font-size(16, 24);
+    color: inherit;
   }
 
   .bso-select-navigation {
     background: var(--blue-dark-125);
     border-radius: 8px;
-    position: absolute;
     bottom: -130px;
+    position: absolute;
     width: 100%;
 
     .fr-select--valid {
@@ -29,9 +31,9 @@
   }
 
   &.sticky {
+    padding: 0;
     position: sticky;
     top: -1px;
-    padding: 0;
 
     .sub-title,
     .icons,
