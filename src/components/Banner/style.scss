@@ -2,7 +2,6 @@
   background: var(--bannerBackgroundColor);
   color: var(--bannerTextColor);
   padding: 50px 0;
-  position: relative;
 
   .sup-title {
     @include font-size(20, 24);
@@ -22,7 +21,6 @@
     background: var(--blue-dark-125);
     border-radius: 8px;
     bottom: -130px;
-    position: absolute;
     width: 100%;
 
     .fr-select--valid {
@@ -50,9 +48,9 @@
     }
 
     .bso-select-navigation {
-      position: relative;
       bottom: 0;
       border-radius: 0;
+      position: relative;
 
       .title {
         display: none;
@@ -65,11 +63,11 @@
   }
 
   button {
+    border-bottom: 2px solid var(--green-soft-25);
+    border-radius: 0;
     color: var(--blue-dark-125);
     padding-left: 5px;
     padding-right: 5px;
-    border-radius: 0;
-    border-bottom: 2px solid var(--green-soft-25);
 
     &.active {
       border-color: var(--blue-dark-125);

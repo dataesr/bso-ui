@@ -194,8 +194,8 @@ function BaroSante() {
                     <Col n='12 md-9'>
                       <Card
                         bodyClassName='bg-white'
-                        className='fr-card--no-border'
                         hasArrow={false}
+                        hasBorder={false}
                         href='/'
                         isHorizontal
                       >

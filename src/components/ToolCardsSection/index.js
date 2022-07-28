@@ -78,8 +78,8 @@ export default function ToolCardsSection() {
               <Col n='12' className='mb-20'>
                 <Card
                   bodyClassName='bg-white'
-                  className='fr-card--no-border'
                   hasArrow={false}
+                  hasBorder={false}
                   href='/'
                   isHorizontal
                 >

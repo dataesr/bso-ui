@@ -19,10 +19,11 @@ function DataCard({
 
   return (
     <Card
-      hasArrow={false}
-      href='/'
-      className='bso-datacard text-center fr-card--no-border'
       bodyClassName={background}
+      className='bso-datacard text-center'
+      hasArrow={false}
+      hasBorder={false}
+      href='/'
     >
       <CardDescription as='div'>
         {value || isPercentage ? (

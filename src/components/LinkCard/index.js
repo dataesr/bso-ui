@@ -12,8 +12,8 @@ function LinkCard({ title, linkUrl, icon }) {
   return (
     <Card
       bodyClassName='bso-link-card bg-white'
-      className='fr-card--no-border'
       hasArrow={false}
+      hasBorder={false}
       href='/'
     >
       <CardDescription as='div'>

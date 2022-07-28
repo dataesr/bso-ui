@@ -56,4 +56,8 @@ html {
   .fr-footer {
     border-top: 2px solid var(--blue-france-500);
   }
+
+  .fr-header__menu-links .fr-link {
+    box-shadow: none;
+  }
 }

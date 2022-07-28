@@ -22,8 +22,9 @@ function InfoCard({
   return (
     <Card
       bodyClassName={bodyClassName}
-      className={classNames('bso-info-card text-center fr-card--no-border', cardClassNames)}
+      className={classNames('bso-info-card text-center', cardClassNames)}
       hasArrow={false}
+      hasBorder={false}
       href='/'
     >
       <CardDescription as='div'>
