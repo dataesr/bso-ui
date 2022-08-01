@@ -1,7 +1,7 @@
 import { Button, Card, CardDescription } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Loader from '../Loader';
 import Gauge from './Gauge';
@@ -15,7 +15,7 @@ function DataCard({
   isPercentage,
   nbGaugePosition,
 }) {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -45,7 +45,7 @@ function DataCard({
             iconPosition='right'
             size='sm'
             title={buttonLabel}
-            onClick={() => buttonHref && history.push(buttonHref)}
+            onClick={() => buttonHref && navigate(buttonHref)}
           >
             {buttonLabel}
           </Button>

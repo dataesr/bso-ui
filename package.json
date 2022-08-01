@@ -3,7 +3,7 @@
   "version": "1.0.55",
   "private": true,
   "dependencies": {
-    "@dataesr/react-dsfr": "^3.0.0",
+    "@dataesr/react-dsfr": "^3.1.1",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
@@ -27,6 +27,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "caniuse-lite": "^1.0.30001373",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^6.0.0",

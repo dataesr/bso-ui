@@ -2,7 +2,7 @@ import { Link as DSLink } from '@dataesr/react-dsfr';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import useGraphNavigation from '../../utils/Hooks/useGraphNavigation';
 import Icon from '../Icon';
@@ -10,7 +10,7 @@ import Icon from '../Icon';
 export default function GraphNavigationLink({ href, label, hasHr }) {
   const { trackEvent } = useMatomo();
   const { openTab } = useGraphNavigation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickLink = () => {
     openTab('');
 
@@ -20,13 +20,11 @@ export default function GraphNavigationLink({ href, label, hasHr }) {
       name: `go_to_${label}`,
     });
 
-    history.push(href);
+    navigate(href);
   };
   return (
     <li>
-      <DSLink onClick={onClickLink}>
-        {label}
-      </DSLink>
+      <DSLink onClick={onClickLink}>{label}</DSLink>
       <div className='float-right'>
         <Icon name='icon-bsso-34' color1='blue-soft-125' />
       </div>

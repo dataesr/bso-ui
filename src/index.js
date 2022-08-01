@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
 import LANGUAGES from './config/supported-languages';
@@ -10,9 +11,11 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <LangContextProvider supportedLanguages={LANGUAGES}>
-    <GlobalsContextProvider>
-      <App />
-    </GlobalsContextProvider>
-  </LangContextProvider>,
+  <Router>
+    <LangContextProvider supportedLanguages={LANGUAGES}>
+      <GlobalsContextProvider>
+        <App />
+      </GlobalsContextProvider>
+    </LangContextProvider>
+  </Router>,
 );
