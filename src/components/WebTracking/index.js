@@ -8,7 +8,6 @@ function WebTracking({ children }) {
     disabled: false,
     configurations: {
       disableCookies: true,
-      // setSecureCookie: true,
     },
   });
 

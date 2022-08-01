@@ -194,9 +194,10 @@ function BaroSante() {
                     <Col n='12 md-9'>
                       <Card
                         bodyClassName='bg-white'
+                        hasArrow={false}
+                        hasBorder={false}
                         href='/'
                         isHorizontal
-                        hasArrow={false}
                       >
                         <CardDescription as='div'>
                           <Container fluid>

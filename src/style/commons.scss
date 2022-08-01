@@ -2,11 +2,6 @@
  * Général
  */
 
-// Fix from DSFR
-.fr-toggle__input:checked ~ .fr-toggle__label::after {
-  z-index: 10 !important;
-}
-
 html {
   scroll-behavior: smooth;
 

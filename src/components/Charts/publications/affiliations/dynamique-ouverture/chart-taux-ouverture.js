@@ -26,6 +26,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const [affiliation, setAffiliation] = useState('*');
+  const [options, setOptions] = useState([]);
   const { lastObservationSnap, observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(
     observationSnaps,
@@ -48,7 +49,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
 
   useEffect(() => {
     setChartComments(customComments(dataGraph1, idWithDomain, intl));
-  }, [dataGraph1, idWithDomain, intl]);
+
+    const opts = data?.affiliations || [];
+    opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-affiliations' })), value: '*' });
+    setOptions(opts);
+  }, [data?.affiliations, dataGraph1, idWithDomain, intl]);
 
   return (
     <WrapperChart
@@ -62,13 +67,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isLoading={isLoading || !dataGraph1}
     >
       <SimpleSelect
-        firstLabel={capitalize(
-          intl.formatMessage({ id: 'app.all-affiliations' }),
-        )}
-        firstValue='*'
         label={intl.formatMessage({ id: 'app.affiliations-filter-label' })}
         onChange={(e) => setAffiliation(e.target.value)}
-        options={data?.affiliations || []}
+        options={options}
         selected={affiliation}
       />
       <HighchartsReact

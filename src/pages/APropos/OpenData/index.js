@@ -41,6 +41,7 @@ function OpenData() {
               <Card
                 bodyClassName='bg-medium-blue text-white'
                 hasArrow={false}
+                hasBorder={false}
               >
                 <CardDescription as='div'>
                   <Container>
@@ -59,7 +60,12 @@ function OpenData() {
                         </DSIcon>
                       </Col>
                       <Col n='12'>
-                        <DSIcon name='ri-link' size='2x' as='div' className='ds-fr--v-middle'>
+                        <DSIcon
+                          name='ri-link'
+                          size='2x'
+                          as='div'
+                          className='ds-fr--v-middle'
+                        >
                           <DSLink
                             className='w-100 text-right no-content-after'
                             href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
@@ -78,6 +84,7 @@ function OpenData() {
               <Card
                 bodyClassName='bg-dark-blue text-white'
                 hasArrow={false}
+                hasBorder={false}
               >
                 <CardDescription as='div'>
                   <Container>
@@ -96,7 +103,12 @@ function OpenData() {
                         </DSIcon>
                       </Col>
                       <Col n='12'>
-                        <DSIcon name='ri-link' size='2x' as='div' className='ds-fr--v-middle'>
+                        <DSIcon
+                          name='ri-link'
+                          size='2x'
+                          as='div'
+                          className='ds-fr--v-middle'
+                        >
                           <DSLink
                             className='w-100 text-right no-content-after'
                             href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='

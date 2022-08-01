@@ -24,7 +24,9 @@ export default function GraphNavigationLink({ href, label, hasHr }) {
   };
   return (
     <li>
-      <DSLink onClick={onClickLink}>{label}</DSLink>
+      <DSLink onClick={onClickLink}>
+        {label}
+      </DSLink>
       <div className='float-right'>
         <Icon name='icon-bsso-34' color1='blue-soft-125' />
       </div>

@@ -12,7 +12,7 @@ import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { capitalize, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -25,7 +25,7 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, id, domain }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [publishers, setPublishers] = useState([]);
+  const [options, setOptions] = useState([]);
   const [publisher, setPublisher] = useState('*');
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals();
@@ -55,14 +55,14 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     });
 
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      setPublishers(
-        response.data.aggregations.by_publisher.buckets.map((item) => ({
-          label: item.key,
-          value: item.key,
-        })),
-      );
+      const opts = response.data.aggregations.by_publisher.buckets.map((item) => ({
+        label: item.key,
+        value: item.key,
+      }));
+      opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })), value: '*' });
+      setOptions(opts);
     });
-  }, [domain, lastObservationSnap]);
+  }, [domain, intl, lastObservationSnap]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
@@ -80,11 +80,9 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       isLoading={isLoading || !dataGraphTotal || !categoriesYear}
     >
       <SimpleSelect
-        firstLabel={intl.formatMessage({ id: 'app.all-publishers' })}
-        firstValue='*'
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => setPublisher(e.target.value)}
-        options={publishers || []}
+        options={options || []}
         selected={publisher}
       />
       <HighchartsReact

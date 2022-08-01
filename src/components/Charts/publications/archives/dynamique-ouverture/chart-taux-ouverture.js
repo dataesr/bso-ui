@@ -14,7 +14,7 @@ import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { capitalize, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -27,10 +27,10 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [archives, setArchives] = useState([]);
   const [archive, setArchive] = useState('*');
-  const { observationSnaps, lastObservationSnap } = useGlobals();
   const [chartComments, setChartComments] = useState('');
+  const [options, setOptions] = useState([]);
+  const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isLoading, isError } = useGetData(
     observationSnaps,
     archive,
@@ -54,14 +54,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       parameters: [lastObservationSnap],
     });
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      setArchives(
-        response.data.aggregations.by_repository.buckets.map((item) => ({
-          label: item.key,
-          value: item.key,
-        })),
-      );
+      const opts = response.data.aggregations.by_repository.buckets.map((item) => ({
+        label: item.key,
+        value: item.key,
+      }));
+      opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })), value: '*' });
+      setOptions(opts);
     });
-  }, [domain, lastObservationSnap]);
+  }, [domain, intl, lastObservationSnap]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
@@ -79,11 +79,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isLoading={isLoading || !dataGraph1}
     >
       <SimpleSelect
-        firstLabel={intl.formatMessage({ id: 'app.all-repositories' })}
-        firstValue='*'
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
         onChange={(e) => setArchive(e.target.value)}
-        options={archives || []}
+        options={options}
         selected={archive}
       />
       <HighchartsReact

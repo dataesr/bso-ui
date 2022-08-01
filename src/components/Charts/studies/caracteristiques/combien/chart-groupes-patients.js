@@ -27,8 +27,9 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [sponsorType, setSponsorType] = useState('*');
   const [chartComments, setChartComments] = useState('');
+  const [options, setOptions] = useState([]);
+  const [sponsorType, setSponsorType] = useState('*');
   const { allData, isLoading, isError } = useGetData(
     studyType,
     sponsorType,
@@ -51,6 +52,12 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   );
 
   useEffect(() => {
+    const opts = allData?.sponsorTypes || [];
+    opts.unshift({ label: intl.formatMessage({ id: 'app.all-sponsor-types' }), value: '*' });
+    setOptions(opts);
+  }, [allData, intl]);
+
+  useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
@@ -67,11 +74,9 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
       studyType={studyType}
     >
       <SimpleSelect
-        firstLabel={intl.formatMessage({ id: 'app.all-sponsor-types' })}
-        firstValue='*'
         label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
         onChange={(e) => setSponsorType(e.target.value)}
-        options={allData?.sponsorTypes || []}
+        options={options}
         selected={sponsorType}
       />
       <HighchartsReact
