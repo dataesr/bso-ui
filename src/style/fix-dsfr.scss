@@ -9,11 +9,16 @@ html {
     color: var(--blue-dark-125);
   }
 
+  h2,
+  h3 {
+    margin: 0 0 1rem;
+  }
+
   .fr-enlarge-link:hover {
     background-color: inherit;
   }
 
-  a[href].bso-link {
+  [href] {
     background-image: none;
   }
 
@@ -59,5 +64,13 @@ html {
 
   .fr-header__menu-links .fr-link {
     box-shadow: none;
+  }
+
+  .fr-card--sm.fr-enlarge-link:not(.fr-card--no-icon) .fr-card__content {
+    padding: 1.5rem;
+  }
+
+  .fr-card--sm .fr-card__desc {
+    margin: 0 0 1rem 0;
   }
 }
