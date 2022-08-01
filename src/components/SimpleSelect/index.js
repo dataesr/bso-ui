@@ -1,5 +1,6 @@
 import './style.scss';
 
+import { Select } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,27 +10,19 @@ const SimpleSelect = ({
   onChange,
   options,
   selected,
-  firstValue,
-  firstLabel,
 }) => {
   const selectId = uuidv4();
   return (
     <div className='simple-select'>
       <label htmlFor={selectId}>
-        {label}
-        <select
-          name='select'
-          id={selectId}
+        <div className='simple-select-label'>
+          {label}
+        </div>
+        <Select
           onChange={onChange}
-          value={selected}
-        >
-          <option value={firstValue}>{firstLabel}</option>
-          {options.map((el) => (
-            <option key={uuidv4()} value={el?.value || el}>
-              {el?.label || el}
-            </option>
-          ))}
-        </select>
+          options={options}
+          selected={selected}
+        />
       </label>
     </div>
   );
@@ -46,8 +39,6 @@ SimpleSelect.propTypes = {
     PropTypes.shape({ label: PropTypes.string, value: PropTypes.string }),
   ).isRequired,
   selected: PropTypes.string,
-  firstValue: PropTypes.string.isRequired,
-  firstLabel: PropTypes.string.isRequired,
 };
 
 export default SimpleSelect;

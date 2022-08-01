@@ -1,5 +1,4 @@
 .bso-banner {
-  position: relative;
   background: var(--bannerBackgroundColor);
   color: var(--bannerTextColor);
   padding: 50px 0;
@@ -10,16 +9,17 @@
 
   .main-title {
     @include font-size(32, 40);
+    color: inherit;
   }
 
   .sub-title {
     @include font-size(16, 24);
+    color: inherit;
   }
 
   .bso-select-navigation {
     background: var(--blue-dark-125);
     border-radius: 8px;
-    position: absolute;
     bottom: -130px;
     width: 100%;
 
@@ -29,9 +29,9 @@
   }
 
   &.sticky {
+    padding: 0;
     position: sticky;
     top: -1px;
-    padding: 0;
 
     .sub-title,
     .icons,
@@ -48,9 +48,9 @@
     }
 
     .bso-select-navigation {
-      position: relative;
       bottom: 0;
       border-radius: 0;
+      position: relative;
 
       .title {
         display: none;
@@ -63,11 +63,11 @@
   }
 
   button {
+    border-bottom: 2px solid var(--green-soft-25);
+    border-radius: 0;
     color: var(--blue-dark-125);
     padding-left: 5px;
     padding-right: 5px;
-    border-radius: 0;
-    border-bottom: 2px solid var(--green-soft-25);
 
     &.active {
       border-color: var(--blue-dark-125);

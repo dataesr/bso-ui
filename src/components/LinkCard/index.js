@@ -10,7 +10,12 @@ import { FormattedMessage } from 'react-intl';
 
 function LinkCard({ title, linkUrl, icon }) {
   return (
-    <Card bodyClassName='bso-link-card bg-white' href='/' hasArrow={false}>
+    <Card
+      bodyClassName='bso-link-card bg-white'
+      hasArrow={false}
+      hasBorder={false}
+      href='/'
+    >
       <CardDescription as='div'>
         <div className='icon flex align-center'>{icon}</div>
         <h6 className='m-0'>{title}</h6>

@@ -187,20 +187,16 @@ export default function Footer() {
             FAQ
           </FooterLink>
           <FooterCopy className='w-100'>
-            <p className='float-left'>
-              <FormattedMessage id='app.footer.licence' />
+            <p className='float-right'>
+              {`v${process.env.REACT_APP_VERSION}`}
+            </p>
+            <p>
+              {intl.formatMessage({ id: 'app.footer.licence.usage' })}
               {' '}
-              <a
-                href={intl.formatMessage({
-                  id: 'app.footer.etalab-licence.url',
-                })}
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href={intl.formatMessage({ id: 'app.footer.etalab-licence.url' })} target='_blank' rel='noreferrer'>
                 licence etalab-2.0
               </a>
             </p>
-            <p className='float-right'>{`v${process.env.REACT_APP_VERSION}`}</p>
           </FooterCopy>
         </FooterBottom>
       </DSFooter>
