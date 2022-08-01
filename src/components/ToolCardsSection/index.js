@@ -21,7 +21,7 @@ export default function ToolCardsSection() {
     <Container fluid className='bg-blue'>
       <section className='px-20 py-48 px-md-64'>
         <Row gutters justifyContent='center' alignItems='middle'>
-          <Col n='12 md-9'>
+          <Col n='12 lg-12 xl-9'>
             <Row>
               <h4 className='marianne fs-28-32 text-left-m text-center m-0 mb-32'>
                 <FormattedMessage id='app.commons.contribute.title' />
