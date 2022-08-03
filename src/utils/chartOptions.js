@@ -2672,4 +2672,24 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.others.collaborations.international-collaborations': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis.categories = categories;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
 };

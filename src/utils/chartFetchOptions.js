@@ -1776,6 +1776,23 @@ export default function getFetchOptions({
         },
       },
     }),
+    internationalCollaborations: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_oa: {
+          terms: {
+            field: `oa_details.${observationSnap}.is_oa`,
+          },
+          aggs: {
+            by_country: {
+              terms: {
+                field: 'affiliations.detected_countries.keyword',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

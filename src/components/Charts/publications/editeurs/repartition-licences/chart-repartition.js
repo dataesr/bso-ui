@@ -58,11 +58,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     });
 
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      const opts = response.data.aggregations.by_publisher.buckets.map((item) => ({
-        label: item.key,
-        value: item.key,
-      }));
-      opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })), value: '*' });
+      const opts = response.data.aggregations.by_publisher.buckets.map(
+        (item) => ({
+          label: item.key,
+          value: item.key,
+        }),
+      );
+      opts.unshift({
+        label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
+        value: '*',
+      });
       setOptions(opts);
     });
   }, [domain, intl, lastObservationSnap]);
@@ -112,6 +117,7 @@ Chart.defaultProps = {
   hasFooter: true,
   id: 'publi.publishers.repartition-licences.chart-repartition',
 };
+
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

@@ -162,6 +162,9 @@ const ChartRepartitionParTypeStudies = lazy(() => import(
 const ChartRepartitionTauxThesis = lazy(() => import(
   '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'
 ));
+const ChartInterationalCollaborations = lazy(() => import(
+  '../components/Charts/publications/others/collaborations/international-collaborations'
+));
 
 const chartComponents = {
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture':
@@ -261,6 +264,8 @@ const chartComponents = {
     ChartResultatsRepartitionIcmjeStudies,
   'thesis.general.voies-ouverture.chart-repartition-taux':
     ChartRepartitionTauxThesis,
+  'publi.others.collaborations.international-collaborations':
+    ChartInterationalCollaborations,
 };
 
 export default chartComponents;

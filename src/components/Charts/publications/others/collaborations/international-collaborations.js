@@ -1,4 +1,4 @@
-/* eslint-disable react/no-this-in-sfc */
+import { Toggle } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -23,15 +23,20 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
+  const [isPercent, setPercent] = useState(false);
   const { observationSnaps } = useGlobals();
-  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
-  const { categories, dataGraph2 } = data;
+  const { data, isError, isLoading } = useGetData(
+    observationSnaps,
+    domain,
+    isPercent,
+  );
+  const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
-    dataGraph2,
+    dataGraph,
   );
 
   useEffect(() => {
@@ -46,8 +51,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph2}
+      isLoading={isLoading || !dataGraph}
     >
+      <Toggle
+        checked={isPercent}
+        label={intl.formatMessage({
+          id: 'app.commons.percent',
+          defaultMessage: 'Percent',
+        })}
+        onChange={() => setPercent(!isPercent)}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomain}
@@ -65,7 +78,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.general.dynamique-ouverture.chart-evolution-proportion',
+  id: 'publi.others.collaborations.international-collaborations',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
