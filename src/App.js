@@ -213,9 +213,10 @@ function App() {
               )}
             />
           ))}
-          {Object.keys(urls.integration).map((key) => (
+          {[...new Set(Object.values(urls.integration))].flat().map((url) => (
             <Route
-              path={urls.integration[key]}
+              exact
+              path={url}
               element={(
                 <PageTracker>
                   <Integration />
@@ -225,6 +226,7 @@ function App() {
           ))}
           {Object.keys(urls.project).map((key) => (
             <Route
+              exact
               path={urls.project[key]}
               element={(
                 <PageTracker>
