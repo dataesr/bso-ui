@@ -7,8 +7,9 @@ function FlashCard({ intlTitle, url, urlData, urlPdf }) {
   return (
     <Card
       bodyClassName='bso-flash-card bg-yellow'
-      hasArrow={false}
       enlargeLink={false}
+      hasArrow={false}
+      hasBorder={false}
     >
       <CardDetail className='fs-14-24 marianne-bold'>
         <FormattedMessage id='app.notes.flash.title' />

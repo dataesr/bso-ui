@@ -10,7 +10,7 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { capitalize, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
@@ -24,8 +24,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [affiliation, setAffiliation] = useState('*');
-  const { lastObservationSnap, observationSnaps } = useGlobals();
   const [chartComments, setChartComments] = useState('');
+  const [options, setOptions] = useState([]);
+  const { lastObservationSnap, observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(
     observationSnaps,
     lastObservationSnap,
@@ -48,7 +49,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
 
   useEffect(() => {
     setChartComments(customComments(dataGraph2, idWithDomain, intl));
-  }, [dataGraph2, idWithDomain, intl]);
+
+    const opts = data?.affiliations || [];
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-affiliations' })),
+      value: '*',
+    });
+    setOptions(opts);
+  }, [data?.affiliations, dataGraph2, idWithDomain, intl]);
 
   return (
     <WrapperChart
@@ -62,11 +70,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isLoading={isLoading || !dataGraph2}
     >
       <SimpleSelect
-        firstLabel={intl.formatMessage({ id: 'app.all-affiliations' })}
-        firstValue='*'
         label={intl.formatMessage({ id: 'app.affiliations-filter-label' })}
         onChange={(e) => setAffiliation(e.target.value)}
-        options={data?.affiliations || []}
+        options={options}
         selected={affiliation}
       />
       <HighchartsReact

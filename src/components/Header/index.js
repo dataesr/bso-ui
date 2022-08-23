@@ -11,6 +11,8 @@ import {
   Tool,
   ToolItem,
   ToolItemGroup,
+  ToolTranslate,
+  ToolTranslateItem,
 } from '@dataesr/react-dsfr';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -18,20 +20,26 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import { isInProduction, stringIsIntTheKitchen } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
-import SwitchLangButton from '../UI/SwitchLangButton';
 import WrapperDisplay from '../WrapperDisplay';
 
 function Header() {
-  const { lang, urls } = useLang();
   const intl = useIntl();
+  const { lang, switchLang, urls } = useLang();
   const { pathname, search } = useLocation();
   const [path, setPath] = useState(() => pathname || '');
+  const [selectedLang, setSelectedLang] = useState(lang);
 
   useEffect(() => {
     if (path !== pathname) {
       setPath(pathname);
     }
   }, [path, setPath, pathname]);
+
+  useEffect(() => {
+    if (!path.startsWith('/integration')) {
+      switchLang(selectedLang, pathname, search);
+    }
+  }, [path, pathname, search, selectedLang, switchLang]);
 
   return (
     <WrapperDisplay display={!path.startsWith('/integration')}>
@@ -108,7 +116,27 @@ function Header() {
           <Tool>
             <ToolItemGroup>
               <ToolItem as='div'>
-                <SwitchLangButton />
+                <ToolTranslate
+                  currentLang={selectedLang}
+                  descCurrentLang='Current language'
+                >
+                  <ToolTranslateItem
+                    href='/fr'
+                    hrefLang={lang}
+                    active={selectedLang === 'fr'}
+                    onClick={() => setSelectedLang('fr')}
+                  >
+                    Français
+                  </ToolTranslateItem>
+                  <ToolTranslateItem
+                    href='/en'
+                    hrefLang={lang}
+                    active={selectedLang === 'en'}
+                    onClick={() => setSelectedLang('en')}
+                  >
+                    Anglais
+                  </ToolTranslateItem>
+                </ToolTranslate>
               </ToolItem>
             </ToolItemGroup>
           </Tool>

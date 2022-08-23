@@ -1,7 +1,7 @@
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -41,178 +41,205 @@ function App() {
   const { lang, urls } = useLang();
 
   return (
-    <Router>
-      <IntlProvider locale={lang} messages={messages[lang]} onError={() => {}}>
-        <WebTracking>
-          <Header />
-          <Switch>
-            {isInLocal() && (
-              <Route path='/translations'>
-                <TranslationPage />
-              </Route>
-            )}
+    <IntlProvider locale={lang} messages={messages[lang]} onError={() => {}}>
+      <WebTracking>
+        <Header />
+        <Routes>
+          {isInLocal() && (
+            <Route path='/translations' element={<TranslationPage />} />
+          )}
+          {Object.keys(urls.national).map((key) => (
             <Route
               exact
-              path={Object.keys(urls.national).map((l) => urls.national[l])}
-            >
-              <PageTracker>
-                <BaroNational />
-              </PageTracker>
-            </Route>
-            <Route
-              exact
-              path={Object.keys(urls.nationalResearchData).map(
-                (l) => urls.nationalResearchData[l],
+              path={urls.national[key]}
+              element={(
+                <PageTracker>
+                  <BaroNational />
+                </PageTracker>
               )}
-            >
-              <PageTracker>
-                <NationalResearchData />
-              </PageTracker>
-            </Route>
+            />
+          ))}
+          {urls.nationalPublications.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               exact
-              path={Object.keys(urls.nationalSoftwareCodes).map(
-                (l) => urls.nationalSoftwareCodes[l],
+              path={tab[key]}
+              element={(
+                <PageTracker>
+                  <GraphNavigationContextProvider>
+                    <NationalPublications />
+                  </GraphNavigationContextProvider>
+                </PageTracker>
               )}
-            >
-              <PageTracker>
-                <NationalSoftwareCodes />
-              </PageTracker>
-            </Route>
+            />
+          )))}
+          {Object.keys(urls.nationalThesis).map((key) => (
             <Route
               exact
-              path={Object.keys(urls.nationalThesis).map(
-                (l) => urls.nationalThesis[l],
+              path={urls.nationalThesis[key]}
+              element={(
+                <PageTracker>
+                  <NationalThesis />
+                </PageTracker>
               )}
-            >
-              <PageTracker>
-                <NationalThesis />
-              </PageTracker>
-            </Route>
+            />
+          ))}
+          {Object.keys(urls.nationalResearchData).map((key) => (
             <Route
               exact
-              path={urls.nationalPublications.tabs
-                .map((tab) => Object.keys(tab).map((l) => tab[l]))
-                .flat(1)}
-            >
-              <PageTracker>
-                <GraphNavigationContextProvider>
-                  <NationalPublications />
-                </GraphNavigationContextProvider>
-              </PageTracker>
-            </Route>
-            <Route
-              exact
-              path={Object.keys(urls.sante).map((l) => urls.sante[l])}
-            >
-              <PageTracker>
-                <BaroSante />
-              </PageTracker>
-            </Route>
-            <Route
-              exact
-              path={urls.santePublications.tabs
-                .map((tab) => Object.keys(tab).map((l) => tab[l]))
-                .flat(1)}
-            >
-              <PageTracker>
-                <GraphNavigationContextProvider>
-                  <SantePublications />
-                </GraphNavigationContextProvider>
-              </PageTracker>
-            </Route>
-            <Route
-              exact
-              path={urls.santeEssais.tabs
-                .map((tab) => Object.keys(tab).map((l) => tab[l]))
-                .flat(1)}
-            >
-              <PageTracker>
-                <GraphNavigationContextProvider>
-                  <EssaisCliniques />
-                </GraphNavigationContextProvider>
-              </PageTracker>
-            </Route>
-
-            <Route
-              exact
-              path={urls.santeEtudes.tabs
-                .map((tab) => Object.keys(tab).map((l) => tab[l]))
-                .flat(1)}
-            >
-              <PageTracker>
-                <GraphNavigationContextProvider>
-                  <Etudes />
-                </GraphNavigationContextProvider>
-              </PageTracker>
-            </Route>
-            <Route
-              exact
-              path={Object.keys(urls.methodologie).map(
-                (l) => urls.methodologie[l],
+              path={urls.nationalResearchData[key]}
+              element={(
+                <PageTracker>
+                  <NationalResearchData />
+                </PageTracker>
               )}
-            >
-              <PageTracker>
-                <Methodologie />
-              </PageTracker>
-            </Route>
-            <Route exact path={Object.keys(urls.faq).map((l) => urls.faq[l])}>
-              <FAQ />
-            </Route>
+            />
+          ))}
+          {Object.keys(urls.nationalSoftwareCodes).map((key) => (
             <Route
               exact
-              path={Object.keys(urls.glossaire).map((l) => urls.glossaire[l])}
-            >
-              <PageTracker>
-                <Glossaire />
-              </PageTracker>
-            </Route>
-            <Route
-              NotesFlashexact
-              path={Object.keys(urls.flash).map((l) => urls.flash[l])}
-            >
-              <PageTracker>
-                <NotesFlash />
-              </PageTracker>
-            </Route>
-            <Route
-              exact
-              path={Object.keys(urls.variations).map((l) => urls.variations[l])}
-            >
-              <PageTracker>
-                <Variations />
-              </PageTracker>
-            </Route>
-            <Route
-              exact
-              path={Object.keys(urls.opendata).map((l) => urls.opendata[l])}
-            >
-              <PageTracker>
-                <OpenData />
-              </PageTracker>
-            </Route>
-            <Route
-              path={Object.keys(urls.integration).map(
-                (l) => urls.integration[l],
+              path={urls.nationalSoftwareCodes[key]}
+              element={(
+                <PageTracker>
+                  <NationalSoftwareCodes />
+                </PageTracker>
               )}
-            >
-              <PageTracker>
-                <Integration />
-              </PageTracker>
-            </Route>
-            <Route path={Object.keys(urls.project).map((l) => urls.project[l])}>
-              <PageTracker>
-                <Project />
-              </PageTracker>
-            </Route>
-            <Route exact path='*'>
-              <Error404 />
-            </Route>
-          </Switch>
-          <Footer />
-        </WebTracking>
-      </IntlProvider>
-    </Router>
+            />
+          ))}
+          {Object.keys(urls.sante).map((key) => (
+            <Route
+              exact
+              path={urls.sante[key]}
+              element={(
+                <PageTracker>
+                  <BaroSante />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {urls.santePublications.tabs.map((tab) => Object.keys(tab).map((key) => (
+            <Route
+              exact
+              path={tab[key]}
+              element={(
+                <PageTracker>
+                  <GraphNavigationContextProvider>
+                    <SantePublications />
+                  </GraphNavigationContextProvider>
+                </PageTracker>
+              )}
+            />
+          )))}
+          {urls.santeEssais.tabs.map((tab) => Object.keys(tab).map((key) => (
+            <Route
+              exact
+              path={tab[key]}
+              element={(
+                <PageTracker>
+                  <GraphNavigationContextProvider>
+                    <EssaisCliniques />
+                  </GraphNavigationContextProvider>
+                </PageTracker>
+              )}
+            />
+          )))}
+          {urls.santeEtudes.tabs.map((tab) => Object.keys(tab).map((key) => (
+            <Route
+              exact
+              path={tab[key]}
+              element={(
+                <PageTracker>
+                  <GraphNavigationContextProvider>
+                    <Etudes />
+                  </GraphNavigationContextProvider>
+                </PageTracker>
+              )}
+            />
+          )))}
+          {Object.keys(urls.methodologie).map((key) => (
+            <Route
+              exact
+              path={urls.methodologie[key]}
+              element={(
+                <PageTracker>
+                  <Methodologie />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.faq).map((key) => (
+            <Route exact path={urls.faq[key]} element={<FAQ />} />
+          ))}
+          {Object.keys(urls.glossaire).map((key) => (
+            <Route
+              exact
+              path={urls.glossaire[key]}
+              element={(
+                <PageTracker>
+                  <Glossaire />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.flash).map((key) => (
+            <Route
+              exact
+              path={urls.flash[key]}
+              element={(
+                <PageTracker>
+                  <NotesFlash />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.variations).map((key) => (
+            <Route
+              exact
+              path={urls.variations[key]}
+              element={(
+                <PageTracker>
+                  <Variations />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.opendata).map((key) => (
+            <Route
+              exact
+              path={urls.opendata[key]}
+              element={(
+                <PageTracker>
+                  <OpenData />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {[...new Set(Object.values(urls.integration))].flat().map((url) => (
+            <Route
+              exact
+              path={url}
+              element={(
+                <PageTracker>
+                  <Integration />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.project).map((key) => (
+            <Route
+              exact
+              path={urls.project[key]}
+              element={(
+                <PageTracker>
+                  <Project />
+                </PageTracker>
+              )}
+            />
+          ))}
+          <Route exact path='*' element={<Error404 />} />
+        </Routes>
+        <Footer />
+      </WebTracking>
+    </IntlProvider>
   );
 }
 

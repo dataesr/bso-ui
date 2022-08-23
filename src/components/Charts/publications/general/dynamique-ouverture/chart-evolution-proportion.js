@@ -24,7 +24,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const { categories, dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(

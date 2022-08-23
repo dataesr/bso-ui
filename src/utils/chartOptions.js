@@ -2395,7 +2395,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'studies.resultats.delai-diffusion.chart-distribution': {
+  'resultats.delai-diffusion.chart-distribution': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart = {
@@ -2665,6 +2665,26 @@ export const chartOptions = {
             formatter() {
               return this.y.toFixed(0).concat(' %');
             },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'publi.others.collaborations.international-collaborations': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis.categories = categories;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
           },
         },
       };

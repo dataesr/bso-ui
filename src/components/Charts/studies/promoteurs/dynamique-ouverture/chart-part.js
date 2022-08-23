@@ -15,7 +15,11 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  withDomain,
+  withtStudyType,
+} from '../../../../../utils/helpers';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -27,16 +31,13 @@ HCExportingData(Highcharts);
 const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [sponsor, setSponsor] = useState('*');
   const [chartComments, setChartComments] = useState('');
+  const [options, setOptions] = useState([]);
+  const [sponsor, setSponsor] = useState('*');
   const { allData, isLoading, isError } = useGetData(studyType, sponsor);
   const { dataGraph1 } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
 
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -44,6 +45,19 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
     dataGraph1,
     studyType,
   );
+
+  useEffect(() => {
+    const opts = allData?.sponsors || [];
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsors' })),
+      value: '*',
+    });
+    setOptions(opts);
+  }, [allData.sponsors, intl]);
+
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+  }, [allData, idWithDomainAndStudyType, intl]);
 
   return (
     <WrapperChart
@@ -57,11 +71,9 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
       studyType={studyType}
     >
       <SimpleSelect
-        firstLabel={intl.formatMessage({ id: 'app.all-sponsors' })}
-        firstValue='*'
         label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
         onChange={(e) => setSponsor(e.target.value)}
-        options={allData?.sponsors || []}
+        options={options}
         selected={sponsor}
       />
       <HighchartsReact

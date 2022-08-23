@@ -57,4 +57,5 @@ LangContextProvider.propTypes = {
 };
 
 const useLang = () => useContext(LangContext);
+
 export default useLang;

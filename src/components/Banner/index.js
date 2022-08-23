@@ -9,7 +9,7 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { getCSSValue, setCSSProperty } from '../../utils/helpers';
 import useScroll from '../../utils/Hooks/useScroll';
@@ -34,7 +34,7 @@ function Banner({
   );
   const [sticked, setSticked] = useState(false);
   const { scrollTop, scrollingDown } = useScroll();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { trackEvent } = useMatomo();
 
   setCSSProperty(
@@ -73,7 +73,7 @@ function Banner({
       name: `go_to_${e.target.value}`,
     });
 
-    history.push(e.target.value);
+    navigate(e.target.value);
   };
 
   return (

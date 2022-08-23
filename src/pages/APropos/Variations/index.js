@@ -386,6 +386,15 @@ function Variations() {
                     Université Toulouse 3 - Paul Sabatier
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://partage-connaissances.cirad.fr/actualites/barometre-national-de-la-science-ouverte-declinaison-pour-le-cirad'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Cirad
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
