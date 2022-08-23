@@ -58,9 +58,7 @@ function BannerHealth({ selected, title }) {
         options: [
           {
             label: intl.formatMessage({ id: 'app.baro-sante.title' }),
-            value: intl.formatMessage({
-              id: 'url.sante.publications.general',
-            }),
+            value: intl.formatMessage({ id: 'url.sante.publications.general' }),
           },
           {
             label: intl.formatMessage({

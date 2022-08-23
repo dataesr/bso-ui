@@ -133,15 +133,20 @@ function Banner({
           </Col>
           {selectNavigation && sticked && (
             <Col
-              n={classNames('12', { 'md-4': sticked, 'md-3': !sticked })}
               className='relative'
+              n={classNames('12', { 'md-4': sticked, 'md-3': !sticked })}
             >
               <SelectNavigation
-                sticked={sticked}
-                title={selectNavigation.title}
+                backgroundClass={
+                  backgroundColor === 'blue-soft-150'
+                    ? 'soft-background'
+                    : 'dark-background'
+                }
+                onChange={(e) => onNavigationChange(e)}
                 options={selectNavigation.options}
                 selected={navSelected}
-                onChange={(e) => onNavigationChange(e)}
+                sticked={sticked}
+                title={selectNavigation.title}
               />
             </Col>
           )}
@@ -162,11 +167,16 @@ function Banner({
           <Row>
             <Col n='12 md-5' className='relative'>
               <SelectNavigation
-                sticked={sticked}
-                title={selectNavigation.title}
+                backgroundClass={
+                  backgroundColor === 'blue-soft-150'
+                    ? 'soft-background'
+                    : 'dark-background'
+                }
+                onChange={(e) => onNavigationChange(e)}
                 options={selectNavigation.options}
                 selected={navSelected}
-                onChange={(e) => onNavigationChange(e)}
+                sticked={sticked}
+                title={selectNavigation.title}
               />
             </Col>
           </Row>

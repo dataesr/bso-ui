@@ -2,13 +2,11 @@ import { Col, Container, Row } from '@dataesr/react-dsfr';
 import { FormattedMessage } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import Banner from '../../../components/Banner';
+import BannerNational from '../../../components/BannerNational';
 import BSOChart from '../../../components/Charts';
-import Chip from '../../../components/Chip';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
-import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import { mobileButtonLabel } from '../../../utils/constants';
@@ -16,32 +14,13 @@ import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalThesis() {
-  const { lang, urls } = useLang();
-  const { pathname, search } = useLocation();
+  const { lang } = useLang();
+  const { pathname } = useLocation();
   const blueSoft50 = getCSSValue('--blue-soft-50');
-
-  const renderIcons = (
-    <Row justifyContent='center' alignItems='middle' gutters>
-      <Col n='12'>
-        <Icon
-          name='icon-bsso-12'
-          color1='blue-soft-125'
-          color2='publication-25'
-        />
-      </Col>
-    </Row>
-  );
 
   return (
     <Container fluid className='page'>
-      <Banner
-        backgroundColor='blue-soft-150'
-        homeLink={urls.national[lang] + search}
-        supTitle={<FormattedMessage id='app.header.title-national' />}
-        title={<FormattedMessage id='app.publi.thesis' />}
-        chip={<Chip />}
-        icons={renderIcons}
-      />
+      <BannerNational selected='url.national.thesis' title='app.publi.thesis' />
       <ScrollTop />
       <section className='content'>
         <Row>

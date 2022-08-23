@@ -3,10 +3,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function SelectNavigation({ title, onChange, selected, options, sticked }) {
+function SelectNavigation({
+  backgroundClass,
+  onChange,
+  options,
+  selected,
+  sticked,
+  title,
+}) {
   return (
     <section
-      className={classNames('bso-select-navigation', {
+      className={classNames('bso-select-navigation', backgroundClass, {
         'p-16': !sticked,
         'p-8': sticked,
       })}
@@ -24,12 +31,13 @@ function SelectNavigation({ title, onChange, selected, options, sticked }) {
 }
 
 SelectNavigation.defaultProps = {
+  backgroundClass: '',
   sticked: false,
 };
 
 SelectNavigation.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
-  sticked: PropTypes.bool,
+  backgroundClass: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.exact({
       value: PropTypes.string.isRequired,
@@ -38,7 +46,8 @@ SelectNavigation.propTypes = {
   ).isRequired,
   selected: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
     .isRequired,
-  onChange: PropTypes.func.isRequired,
+  sticked: PropTypes.bool,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
 };
 
 export default SelectNavigation;
