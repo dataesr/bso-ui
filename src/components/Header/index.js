@@ -36,8 +36,10 @@ function Header() {
   }, [path, setPath, pathname]);
 
   useEffect(() => {
-    switchLang(selectedLang, pathname, search);
-  }, [pathname, search, selectedLang, switchLang]);
+    if (!path.startsWith('/integration')) {
+      switchLang(selectedLang, pathname, search);
+    }
+  }, [path, pathname, search, selectedLang, switchLang]);
 
   return (
     <WrapperDisplay display={!path.startsWith('/integration')}>
