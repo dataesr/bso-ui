@@ -2689,6 +2689,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.tooltip.enabled = false;
       return options;
     },
   },

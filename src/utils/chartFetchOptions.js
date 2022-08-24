@@ -1779,14 +1779,15 @@ export default function getFetchOptions({
     internationalCollaborations: ([observationSnap]) => ({
       size: 0,
       aggs: {
-        by_oa: {
+        by_country: {
           terms: {
-            field: `oa_details.${observationSnap}.is_oa`,
+            field: 'affiliations.detected_countries.keyword',
+            exclude: ['fr'],
           },
           aggs: {
-            by_country: {
+            by_oa: {
               terms: {
-                field: 'affiliations.detected_countries.keyword',
+                field: `oa_details.${observationSnap}.is_oa`,
               },
             },
           },
