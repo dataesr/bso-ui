@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
+import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import Banner from '../Banner';
 import Chip from '../Chip';
@@ -33,28 +34,38 @@ function BannerNational({ selected, title }) {
       title={<FormattedMessage id={title} />}
       chip={<Chip />}
       icons={renderIcons}
-      selectNavigation={{
-        title: intl.formatMessage({ id: 'app.navigation.objet-recherche' }),
-        selected: intl.formatMessage({ id: selected }),
-        options: [
-          {
-            label: intl.formatMessage({ id: 'app.baro-national.title' }),
-            value: intl.formatMessage({ id: 'url.publications.general' }),
-          },
-          {
-            label: intl.formatMessage({ id: 'app.publi.thesis' }),
-            value: intl.formatMessage({ id: 'url.national.thesis' }),
-          },
-          {
-            label: intl.formatMessage({ id: 'app.publi.researchdata' }),
-            value: intl.formatMessage({ id: 'url.national.research-data' }),
-          },
-          {
-            label: intl.formatMessage({ id: 'app.publi.softwarecodes' }),
-            value: intl.formatMessage({ id: 'url.national.software-codes' }),
-          },
-        ],
-      }}
+      selectNavigation={
+        isInProduction()
+          ? false
+          : {
+            title: intl.formatMessage({
+              id: 'app.navigation.objet-recherche',
+            }),
+            selected: intl.formatMessage({ id: selected }),
+            options: [
+              {
+                label: intl.formatMessage({ id: 'app.baro-national.title' }),
+                value: intl.formatMessage({ id: 'url.publications.general' }),
+              },
+              {
+                label: intl.formatMessage({ id: 'app.publi.thesis' }),
+                value: intl.formatMessage({ id: 'url.national.thesis' }),
+              },
+              {
+                label: intl.formatMessage({ id: 'app.publi.researchdata' }),
+                value: intl.formatMessage({
+                  id: 'url.national.research-data',
+                }),
+              },
+              {
+                label: intl.formatMessage({ id: 'app.publi.softwarecodes' }),
+                value: intl.formatMessage({
+                  id: 'url.national.software-codes',
+                }),
+              },
+            ],
+          }
+      }
     />
   );
 }
