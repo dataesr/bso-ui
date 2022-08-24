@@ -75,6 +75,13 @@
   }
 }
 
+.bso-link {
+  @include font-size(14, 12);
+  background: #fff;
+  color: var(--blue-dark-125);
+  padding: 10px;
+}
+
 @media screen and(min-width: 576px) {
   .banner {
     padding: 30px 0;
