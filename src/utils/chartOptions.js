@@ -1132,8 +1132,8 @@ export const chartOptions = {
     },
   },
   'publi.publishers.politiques-ouverture.chart-comparaison': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions({ id, intl });
+    getOptions: (id, intl, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bubble';
       options.chart.zoomType = 'xy';
       options.chart.height = '600px';
