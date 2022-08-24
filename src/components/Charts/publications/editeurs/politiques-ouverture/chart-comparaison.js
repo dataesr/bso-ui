@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -35,10 +35,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { bubbleGraph } = allData;
   const idWithDomain = withDomain(id, domain);
+  const dataTitle = {
+    publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+  };
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     bubbleGraph,
+    dataTitle,
   );
 
   useEffect(() => {
@@ -48,6 +52,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
