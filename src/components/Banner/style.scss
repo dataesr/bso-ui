@@ -18,10 +18,17 @@
   }
 
   .bso-select-navigation {
-    background: var(--blue-dark-125);
     border-radius: 8px;
     bottom: -130px;
     width: 100%;
+
+    &.dark-background {
+      background: var(--blue-dark-125);
+    }
+
+    &.soft-background {
+      background: var(--blue-soft-125);
+    }
 
     .fr-select--valid {
       box-shadow: none;
@@ -73,6 +80,13 @@
       border-color: var(--blue-dark-125);
     }
   }
+}
+
+.bso-link {
+  @include font-size(14, 12);
+  background: #fff;
+  color: var(--blue-dark-125);
+  padding: 10px;
 }
 
 @media screen and(min-width: 576px) {
