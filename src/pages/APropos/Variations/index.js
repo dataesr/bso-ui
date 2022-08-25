@@ -395,6 +395,15 @@ function Variations() {
                     Cirad
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://www.imt-atlantique.fr/fr/recherche-innovation/enjeux/science-ouverte/libre-acces/bso'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    IMT Atlantique
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
