@@ -15,7 +15,11 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  withDomain,
+  withtStudyType,
+} from '../../../../../utils/helpers';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -53,7 +57,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 
   useEffect(() => {
     const opts = allData?.sponsorTypes || [];
-    opts.unshift({ label: intl.formatMessage({ id: 'app.all-sponsor-types' }), value: '*' });
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+      value: '*',
+    });
     setOptions(opts);
   }, [allData, intl]);
 

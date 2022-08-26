@@ -16,7 +16,7 @@ import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { capitalize, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import SimpleSelect from '../../../../SimpleSelect';
+import SearchableSelect from '../../../../SearchableSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -54,11 +54,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       parameters: [lastObservationSnap],
     });
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      const opts = response.data.aggregations.by_repository.buckets.map((item) => ({
-        label: item.key,
-        value: item.key,
-      }));
-      opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })), value: '*' });
+      const opts = response.data.aggregations.by_repository.buckets.map(
+        (item) => ({
+          label: item.key,
+          value: item.key,
+        }),
+      );
+      opts.unshift({
+        label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })),
+        value: '*',
+      });
       setOptions(opts);
     });
   }, [domain, intl, lastObservationSnap]);
@@ -78,9 +83,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isError={isError}
       isLoading={isLoading || !dataGraph1}
     >
-      <SimpleSelect
+      <SearchableSelect
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
-        onChange={(e) => setArchive(e.target.value)}
+        onChange={(e) => (e.length > 0 ? setArchive(e) : null)}
         options={options}
         selected={archive}
       />
