@@ -1,4 +1,4 @@
-import './loader.scss';
+import './style.scss';
 
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
