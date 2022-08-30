@@ -15,8 +15,12 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { capitalize, withDomain, withtStudyType } from '../../../../../utils/helpers';
-import SimpleSelect from '../../../../SimpleSelect';
+import {
+  capitalize,
+  withDomain,
+  withtStudyType,
+} from '../../../../../utils/helpers';
+import SearchableSelect from '../../../../SearchableSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -44,7 +48,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 
   useEffect(() => {
     const opts = allData?.sponsors || [];
-    opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-sponsors' })), value: '*' });
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsors' })),
+      value: '*',
+    });
     setOptions(opts);
   }, [allData.sponsors, intl]);
 
@@ -63,9 +70,9 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
-      <SimpleSelect
+      <SearchableSelect
         label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
-        onChange={(e) => setSponsor(e.target.value)}
+        onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
         options={options}
         selected={sponsor}
       />

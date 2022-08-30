@@ -15,7 +15,7 @@ import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { capitalize, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import SimpleSelect from '../../../../SimpleSelect';
+import SearchableSelect from '../../../../SearchableSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -62,7 +62,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       const opts = response.data.aggregations.by_publisher.buckets
         .filter((item) => item.key !== 'Cold Spring Harbor Laboratory')
         .map((item) => ({ label: item.key, value: item.key }));
-      opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })), value: '*' });
+      opts.unshift({
+        label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
+        value: '*',
+      });
       setOptions(opts);
     });
   }, [domain, intl, lastObservationSnap]);
@@ -78,9 +81,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isError={isError}
       isLoading={isLoading || !dataGraph2}
     >
-      <SimpleSelect
+      <SearchableSelect
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-        onChange={(event) => setPublisher(event.target.value)}
+        onChange={(e) => (e.length > 0 ? setPublisher(e) : null)}
         options={options || []}
         selected={publisher}
       />
