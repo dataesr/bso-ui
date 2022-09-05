@@ -23,7 +23,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       const query = getFetchOptions({
         key: 'oaYear',
         domain,
-        parameters: [lastObservationSnap, 'year', 1990, 20],
+        parameters: [lastObservationSnap, 'year', 1990, 50],
         objectType: ['thesis'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
