@@ -20,7 +20,7 @@ import {
   withDomain,
   withtStudyType,
 } from '../../../../../utils/helpers';
-import SimpleSelect from '../../../../SimpleSelect';
+import SearchableSelect from '../../../../SearchableSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -70,9 +70,9 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
-      <SimpleSelect
+      <SearchableSelect
         label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
-        onChange={(e) => setSponsor(e.target.value)}
+        onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
         options={options}
         selected={sponsor}
       />
