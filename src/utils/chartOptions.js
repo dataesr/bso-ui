@@ -2646,7 +2646,7 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        title: { text: intl.formatMessage({ id: 'app.defense-year' }) },
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
@@ -2661,7 +2661,7 @@ export const chartOptions = {
             style: {
               textOutline: 'none',
             },
-            enabled: true,
+            enabled: false,
             formatter() {
               return this.y.toFixed(0).concat(' %');
             },

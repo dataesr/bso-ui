@@ -44,7 +44,7 @@ export default function NationalThesis() {
           <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
             <GraphContent>
               <QuestionSection
-                intlKey='app.national-these.general.dynamique-ouverture'
+                intlKey='app.national-thesis.general.dynamique-ouverture'
                 glossaryKeys={['embargo', 'barriere-mobile']}
                 backgroundColor={blueSoft50}
                 anchorId='general.dynamique-ouverture'
