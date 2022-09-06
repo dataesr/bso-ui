@@ -517,7 +517,7 @@ function Variations() {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    Université de Paris
+                    Université de Paris-Cité
                   </a>
                 </li>
                 <li>
