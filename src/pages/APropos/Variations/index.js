@@ -404,6 +404,15 @@ function Variations() {
                     IMT Atlantique
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/barometre-science-ouverte-evry-2022/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Evry Val d'Essone
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -517,7 +526,7 @@ function Variations() {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    Université de Paris
+                    Université de Paris-Cité
                   </a>
                 </li>
                 <li>
@@ -527,15 +536,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université de Strasbourg
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Evry Val d'Essone
                   </a>
                 </li>
                 <li>
