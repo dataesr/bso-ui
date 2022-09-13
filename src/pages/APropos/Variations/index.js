@@ -413,6 +413,15 @@ function Variations() {
                     Université Evry Val d'Essone
                   </a>
                 </li>
+                <li>
+                  <a
+                    href='https://scienceouverte.univ-grenoble-alpes.fr/science-ouverte-grenoble-alpes/barometre-science-ouverte/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Université Grenoble Alpes
+                  </a>
+                </li>
               </ul>
             </Col>
           </Row>
@@ -536,15 +545,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université de Strasbourg
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://guide-hal.univ-grenoble-alpes.fr/actualites/formations-et-evenements-uga/barometre-science-ouverte-de-l-uga-853860.kjsp'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Grenoble Alpes
                   </a>
                 </li>
                 <li>
