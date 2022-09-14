@@ -262,7 +262,7 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://bibliotheques.ensam.eu/page/science-ouverte'
+                    href='https://bibliotheques.ensam.eu/page/barometre-de-la-science-ouverte'
                     target='_blank'
                     rel='noreferrer'
                   >
