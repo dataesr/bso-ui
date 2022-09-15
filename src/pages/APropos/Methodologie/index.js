@@ -48,8 +48,7 @@ function Methodologie() {
         <section className='content py-48'>
           <Row gutters>
             <Col n='12 lg-8'>
-              La méthodologie a été mise en place par Anne L'Hôte (MESRI), Eric Jeangirard (MESRI), Didier Torny (CNRS) et Laetitia Bracco
-              (Université de Lorraine). La méthodologie est décrite dans le document de travail disponible HAL :
+              <FormattedMessage id='app.methodo-intro' />
               <br />
               <br />
               {' '}
@@ -57,13 +56,15 @@ function Methodologie() {
                 href='https://hal.archives-ouvertes.fr/hal-03651518'
                 target='_blank'
                 rel='noreferrer'
+                className='external_link'
               >
-                Extending the open monitoring of open science: A new framework for the French Open Science Monitor (BSO)
+                Extending the open monitoring of open science: A new framework
+                for the French Open Science Monitor (BSO)
               </a>
               {' '}
               <br />
               <br />
-              Par ailleurs, pour toute question, vous pouvez nous contacter à l'adresse
+              <FormattedMessage id='app.methodo-contact' />
               {' '}
               <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
               .
