@@ -1,5 +1,7 @@
 {
   "app.ministry": "Ministère de l'enseignement supérieur et de la recherche",
+  "app.methodo-intro": "La méthodologie a été mise en place par Anne L'Hôte (MESRI), Eric Jeangirard (MESRI), Didier Torny (CNRS) et Laetitia Bracco (Université de Lorraine). La méthodologie est décrite dans le document de travail disponible HAL :",
+  "app.methodo-contact": "Par ailleurs, pour toute question, vous pouvez nous contacter à l'adresse",
   "app.Q1": "1er trimestre",
   "app.Q2": "2e trimestre",
   "app.Q3": "3e trimestre",
