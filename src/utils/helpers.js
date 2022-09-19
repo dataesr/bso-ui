@@ -323,7 +323,8 @@ export function getURLSearchParams(intl = undefined) {
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals?.[bsoLocalAffiliation]?.[commentsNameProperty]
-      || intl.formatMessage({ id: 'app.french', defaultMessage: 'françaises' });
+      || intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
+      || 'françaises';
     displayTitle = !(
       (
         urlSearchParams.get('displayTitle')
