@@ -247,6 +247,45 @@ export const chartOptions = {
       return options;
     },
   },
+  'thesis.disciplines.voies-ouverture.chart-repartition-publications': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '1000px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
   'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
     {
       getOptions: (id, intl, data, dataTitle) => {
@@ -1289,6 +1328,78 @@ export const chartOptions = {
     },
   },
   'publi.disciplines.dynamique-ouverture.chart-taux-ouverture': {
+    getOptions: (id, intl, graph) => {
+      const options = getGraphOptions({ id, intl });
+      options.legend = {};
+      options.credits.enabled = false;
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            formatter() {
+              const last = this.series.data[this.series.data.length - 1];
+              if (
+                this.point.category === last.category
+                && this.point.y === last.y
+              ) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              return '';
+            },
+          },
+        },
+      };
+      const { data, name } = graph;
+      options.chart.type = 'column';
+      options.xAxis = {
+        type: 'category',
+        categories: data.map((el) => el.name),
+        labels: {
+          rotation: -90,
+          style: {
+            color: getCSSValue('--g-800'),
+          },
+          formatter() {
+            return this.isFirst || this.isLast ? this.value : null;
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.min = 0;
+      options.yAxis.max = 100;
+      const nameClean = name.replace(/\n/g, '').replace('  ', ' ');
+      options.series = [
+        {
+          name: intl.formatMessage({ id: `app.discipline.${nameClean}` }),
+          color: getCSSValue('--orange-soft-125'),
+          data: data.map((el, i) => ({
+            name: el.name,
+            bsoDomain: el.bsoDomain,
+            y: el.y,
+            y_abs: el.y_abs,
+            y_tot: el.y_tot,
+            color:
+              i === data.length - 1
+                ? getCSSValue('--orange-soft-100')
+                : getCSSValue('--orange-soft-125'),
+          })),
+        },
+      ];
+      options.subtitle = {
+        text: capitalize(
+          intl.formatMessage({ id: `app.discipline.${nameClean}` }),
+        ),
+        widthAdjust: 0,
+        style: {
+          fontWeight: 'bold',
+        },
+      };
+      options.legend.enabled = false;
+      return options;
+    },
+  },
+  'thesis.disciplines.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, graph) => {
       const options = getGraphOptions({ id, intl });
       options.legend = {};

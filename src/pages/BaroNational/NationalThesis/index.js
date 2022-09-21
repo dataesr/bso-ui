@@ -53,6 +53,10 @@ export default function NationalThesis() {
                   id='thesis.general.voies-ouverture.chart-repartition-taux'
                   isDisplayed={!isInProduction()}
                 />
+                <BSOChart
+                  id='thesis.disciplines.voies-ouverture.chart-repartition-publications'
+                  isDisplayed={!isInProduction()}
+                />
               </QuestionSection>
             </GraphContent>
           </GraphNavigation>

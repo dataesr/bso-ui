@@ -162,6 +162,13 @@ const ChartRepartitionParTypeStudies = lazy(() => import(
 const ChartRepartitionTauxThesis = lazy(() => import(
   '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'
 ));
+const ChartTauxOuvertureThesis = lazy(() => import(
+  '../components/Charts/thesis/disciplines/dynamique-ouverture/chart-taux-ouverture'
+));
+const ChartRepartitionThesis = lazy(() => import(
+  '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-publications'
+));
+// Other
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
 ));
@@ -264,6 +271,10 @@ const chartComponents = {
     ChartResultatsRepartitionIcmjeStudies,
   'thesis.general.voies-ouverture.chart-repartition-taux':
     ChartRepartitionTauxThesis,
+  'thesis.disciplines.dynamique-ouverture.chart-taux-ouverture':
+    ChartTauxOuvertureThesis,
+  'thesis.disciplines.voies-ouverture.chart-repartition-publications':
+    ChartRepartitionThesis,
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
 };
