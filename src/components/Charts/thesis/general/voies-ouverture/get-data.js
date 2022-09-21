@@ -15,8 +15,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const yellowMedium125 = getCSSValue('--yellow-medium-125');
-  const greenLight100 = getCSSValue('--green-light-100');
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -151,7 +149,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph,
       };
     },
-    [beforeLastObservationSnap, domain, greenLight100, intl, yellowMedium125],
+    [beforeLastObservationSnap, domain, intl],
   );
 
   useEffect(() => {
