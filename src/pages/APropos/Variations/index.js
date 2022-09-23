@@ -352,6 +352,15 @@ function Variations() {
                 </li>
                 <li>
                   <a
+                    href='https://hal-insa-lyon.archives-ouvertes.fr/page/barometre-science-ouverte'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    INSA Lyon
+                  </a>
+                </li>
+                <li>
+                  <a
                     href='https://bu.univ-avignon.fr/barometre-de-la-science-ouverte-avignon-universite/'
                     target='_blank'
                     rel='noreferrer'
