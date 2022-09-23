@@ -63,7 +63,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             )?.doc_count || 0,
           halThese:
             item.by_oa_host_type.buckets.find(
-              (item2) => item2.key === 'theses.fr;HAL',
+              (item2) => item2.key === 'HAL;theses.fr',
             )?.doc_count || 0,
         }));
       data.forEach((item, catIndex) => {
@@ -75,7 +75,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           (item2) => item2.key === 'theses.fr',
         )?.doc_count || 0;
         const halTheseCurrent = item.by_oa_host_type.buckets.find(
-          (item2) => item2.key === 'theses.fr;HAL',
+          (item2) => item2.key === 'HAL;theses.fr',
         )?.doc_count || 0;
         const totalCurrent = halCurrent + theseCurrent + halTheseCurrent + closedCurrent;
         const oaCurrent = halCurrent + theseCurrent + halTheseCurrent;

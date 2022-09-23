@@ -58,7 +58,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           const HALCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'HAL')
             ?.doc_count || 0;
           const bothCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'theses.fr;HAL',
+            (item) => item.key === 'HAL;theses.fr',
           )?.doc_count || 0;
           const totalCurrent = closedCurrent + theseCurrent + HALCurrent + bothCurrent;
           const oaCurrent = theseCurrent + HALCurrent + bothCurrent;
