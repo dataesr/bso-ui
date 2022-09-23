@@ -15,13 +15,11 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const yellowMedium125 = getCSSValue('--yellow-medium-125');
-  const greenLight100 = getCSSValue('--green-light-100');
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions({
-        key: 'oaYear',
+        key: 'repositoryOaYear',
         domain,
         parameters: [lastObservationSnap, 'year', 2000, 50],
         objectType: ['thesis'],
@@ -35,7 +33,9 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       const repository = [];
       const publisher = [];
       const publisherRepository = [];
-      const oa = [];
+      const these = [];
+      const hal = [];
+      const both = [];
       const closed = [];
       const noOutline = {
         style: {
@@ -51,12 +51,17 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         )
         .forEach((el) => {
           categories.push(el.key);
-
-          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 0)
+          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
             ?.doc_count || 0;
-          const oaCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 1)
+          const theseCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'theses.fr')
             ?.doc_count || 0;
-          const totalCurrent = closedCurrent + oaCurrent;
+          const HALCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'HAL')
+            ?.doc_count || 0;
+          const bothCurrent = el.by_oa_host_type.buckets.find(
+            (item) => item.key === 'HAL;theses.fr',
+          )?.doc_count || 0;
+          const totalCurrent = closedCurrent + theseCurrent + HALCurrent + bothCurrent;
+          const oaCurrent = theseCurrent + HALCurrent + bothCurrent;
           closed.push({
             y: (100 * closedCurrent) / totalCurrent,
             y_abs: closedCurrent,
@@ -65,9 +70,25 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             x: el.key,
             bsoDomain,
           });
-          oa.push({
-            y: (100 * oaCurrent) / totalCurrent,
-            y_abs: oaCurrent,
+          these.push({
+            y: (100 * theseCurrent) / totalCurrent,
+            y_abs: theseCurrent,
+            y_oa: oaCurrent,
+            y_tot: totalCurrent,
+            x: el.key,
+            bsoDomain,
+          });
+          hal.push({
+            y: (100 * HALCurrent) / totalCurrent,
+            y_abs: HALCurrent,
+            y_oa: oaCurrent,
+            y_tot: totalCurrent,
+            x: el.key,
+            bsoDomain,
+          });
+          both.push({
+            y: (100 * bothCurrent) / totalCurrent,
+            y_abs: bothCurrent,
             y_oa: oaCurrent,
             y_tot: totalCurrent,
             x: el.key,
@@ -79,67 +100,32 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.type-hebergement.repository',
+              id: 'app.hal-only',
             }),
           ),
-          data: oa,
+          data: hal,
           color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
         },
-      ];
-
-      const dataGraph3 = [
         {
-          name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
-          id: 'oa',
-          value: oa[oa.length - 1]?.y_abs,
-          percentage: oa[oa.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: yellowMedium125,
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.hal-these',
+            }),
+          ),
+          data: both,
+          color: getCSSValue('--blue-soft-100'),
           dataLabels: noOutline,
-          bsoDomain,
         },
         {
-          name: intl.formatMessage({ id: 'app.type-hebergement.publisher' }),
-          value: publisher[publisher.length - 1]?.y_abs,
-          parent: 'oa',
-          percentage: publisher[publisher.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: yellowMedium125,
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.these-only',
+            }),
+          ),
+          data: these,
+          color: getCSSValue('--blue-soft-150'),
           dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({
-            id: 'app.type-hebergement.publisher-repository',
-          }),
-          value: publisherRepository[publisherRepository.length - 1]?.y_abs,
-          parent: 'oa',
-          percentage: publisherRepository[publisherRepository.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: greenLight100,
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.repository' }),
-          parent: 'oa',
-          value: repository[repository.length - 1]?.y_abs,
-          percentage: repository[repository.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: getCSSValue('--green-medium-125'),
-          dataLabels: noOutline,
-          bsoDomain,
-        },
-        {
-          name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
-          id: 'closed',
-          value: closed[closed.length - 1]?.y_abs,
-          percentage: closed[closed.length - 1]?.y,
-          publicationDate: categories[categories.length - 1],
-          color: getCSSValue('--blue-soft-175'),
-          dataLabels: noOutline,
-          bsoDomain,
         },
       ];
 
@@ -150,7 +136,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         ),
         closed: closed[closed.length - 1]?.y.toFixed(0),
         lastObservationSnap: getObservationLabel(lastObservationSnap, intl),
-        oa: oa[oa.length - 1]?.y.toFixed(0),
+        hal: hal[hal.length - 1]?.y.toFixed(0),
         publisher: publisher[publisher.length - 1]?.y.toFixed(0),
         publisherRepository:
           publisherRepository[publisherRepository.length - 1]?.y.toFixed(0),
@@ -161,10 +147,9 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         categories,
         comments,
         dataGraph,
-        dataGraph3,
       };
     },
-    [beforeLastObservationSnap, domain, greenLight100, intl, yellowMedium125],
+    [beforeLastObservationSnap, domain, intl],
   );
 
   useEffect(() => {

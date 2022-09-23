@@ -292,8 +292,8 @@
   },
   "anr": {
     "name": "Agence Nationale de la Recherche (ANR)",
-    "commentsName": "de l'ANR",
-    "commentsNameEN": "of the ANR",
+    "commentsName": "liées à un financement de l'ANR",
+    "commentsNameEN": "with an ANR funding",
     "startYear": 2016
   },
   "007gfwn20": {

@@ -260,7 +260,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    disciplinesVoies: ([observationSnap, disciplineField]) => ({
+    disciplinesVoies: ([observationSnap, disciplineField, voie]) => ({
       size: 0,
       query: {
         bool: {
@@ -282,7 +282,7 @@ export default function getFetchOptions({
           aggs: {
             by_oa_host_type: {
               terms: {
-                field: `oa_details.${observationSnap}.oa_host_type.keyword`,
+                field: `oa_details.${observationSnap}.${voie}.keyword`,
               },
             },
           },
@@ -1316,7 +1316,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    oaYear: ([
+    repositoryOaYear: ([
       lastObservationSnap,
       field = 'year',
       minPublicationDate = '2013',
@@ -1348,7 +1348,7 @@ export default function getFetchOptions({
           aggs: {
             by_oa_host_type: {
               terms: {
-                field: `oa_details.${lastObservationSnap}.is_oa`,
+                field: `oa_details.${lastObservationSnap}.repositories_concat.keyword`,
               },
             },
           },
