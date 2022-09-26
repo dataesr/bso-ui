@@ -134,10 +134,7 @@ function BaroNational() {
                       <ProgressionCard />
                     </Col>
                     <Col n='12'>
-                      <BSOChart
-                        id='publi.general.dynamique-ouverture.chart-evolution-proportion'
-                        hasComments={false}
-                      />
+                      <BSOChart id='publi.general.dynamique-ouverture.chart-evolution-proportion' />
                     </Col>
                   </Row>
                 </Container>
