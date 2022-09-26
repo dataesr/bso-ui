@@ -168,6 +168,17 @@
     "commentsName": "de l'université Lyon 2",
     "commentsNameEN": "of the university Lyon 2"
   },
+  "197534316": {
+    "name": "Sciences Po",
+    "commentsName": "de Sciences Po",
+    "commentsNameEN": "of Sciences Po"
+  },
+  "197534597": {
+    "name": "ENS-PSL",
+    "commentsName": "de l'ENS-PSL",
+    "commentsNameEN": "of ENS-PSL",
+    "startYear": 2019
+  },
   "197534720": {
     "name": "Arts et Métiers Sciences et Technologies (ENSAM)",
     "commentsName": "de l'ENSAM",

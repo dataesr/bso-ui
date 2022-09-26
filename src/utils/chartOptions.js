@@ -926,6 +926,38 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.general.impact-financement.chart-repartition-taux': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.funding-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'publi.affiliations.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, data, categories, dataTitle) => {
       const { startYear } = getURLSearchParams(intl);

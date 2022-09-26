@@ -239,6 +239,9 @@ export function getSource(id, otherSources = []) {
   if (id.includes('publishers.poids-revue')) {
     sources.push('beallslist.net');
   }
+  if (id.includes('impact-financement')) {
+    sources.push('ANR');
+  }
   sources.push('MESRI');
   sources.push(...otherSources);
   return sources.join(', ');
