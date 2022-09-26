@@ -41,50 +41,53 @@ function useGetData(observationSnap, domain) {
     const publisher = [];
     const publisherRepository = [];
     const repository = [];
-    data.forEach((item) => {
-      const closedCurrent = item.by_oa_host_type.buckets.find((subItem) => subItem.key === 'closed')
-        ?.doc_count || 0;
-      const publisherCurrent = item.by_oa_host_type.buckets.find(
-        (subItem) => subItem.key === 'publisher',
-      )?.doc_count || 0;
-      const publisherRepositoryCurrent = item.by_oa_host_type.buckets.find(
-        (subItem) => subItem.key === 'publisher;repository',
-      )?.doc_count || 0;
-      const repositoryCurrent = item.by_oa_host_type.buckets.find(
-        (subItem) => subItem.key === 'repository',
-      )?.doc_count || 0;
-      const oaCurrent = publisherCurrent + publisherRepositoryCurrent + repositoryCurrent;
-      const totalCurrent = closedCurrent + oaCurrent;
-      categories.push(
-        `${item.key} <br />(${intl.formatMessage({
-          id: 'app.effectif',
-        })} = ${cleanNumber(totalCurrent)})`,
-      );
-      publisher.push({
-        y: (100 * publisherCurrent) / totalCurrent,
-        y_oa: oaCurrent,
-        y_abs: publisherCurrent,
-        y_tot: totalCurrent,
-        x_val: item.key,
-        bsoDomain,
+    data
+      .filter((item) => item.key > 2015)
+      .forEach((item) => {
+        const closedCurrent = item.by_oa_host_type.buckets.find(
+          (subItem) => subItem.key === 'closed',
+        )?.doc_count || 0;
+        const publisherCurrent = item.by_oa_host_type.buckets.find(
+          (subItem) => subItem.key === 'publisher',
+        )?.doc_count || 0;
+        const publisherRepositoryCurrent = item.by_oa_host_type.buckets.find(
+          (subItem) => subItem.key === 'publisher;repository',
+        )?.doc_count || 0;
+        const repositoryCurrent = item.by_oa_host_type.buckets.find(
+          (subItem) => subItem.key === 'repository',
+        )?.doc_count || 0;
+        const oaCurrent = publisherCurrent + publisherRepositoryCurrent + repositoryCurrent;
+        const totalCurrent = closedCurrent + oaCurrent;
+        categories.push(
+          `${item.key} <br />(${intl.formatMessage({
+            id: 'app.effectif',
+          })} = ${cleanNumber(totalCurrent)})`,
+        );
+        publisher.push({
+          y: (100 * publisherCurrent) / totalCurrent,
+          y_oa: oaCurrent,
+          y_abs: publisherCurrent,
+          y_tot: totalCurrent,
+          x_val: item.key,
+          bsoDomain,
+        });
+        publisherRepository.push({
+          y: (100 * publisherRepositoryCurrent) / totalCurrent,
+          y_oa: oaCurrent,
+          y_abs: publisherRepositoryCurrent,
+          y_tot: totalCurrent,
+          x_val: item.key,
+          bsoDomain,
+        });
+        repository.push({
+          y: (100 * repositoryCurrent) / totalCurrent,
+          y_abs: repositoryCurrent,
+          y_oa: oaCurrent,
+          y_tot: totalCurrent,
+          x_val: item.key,
+          bsoDomain,
+        });
       });
-      publisherRepository.push({
-        y: (100 * publisherRepositoryCurrent) / totalCurrent,
-        y_oa: oaCurrent,
-        y_abs: publisherRepositoryCurrent,
-        y_tot: totalCurrent,
-        x_val: item.key,
-        bsoDomain,
-      });
-      repository.push({
-        y: (100 * repositoryCurrent) / totalCurrent,
-        y_abs: repositoryCurrent,
-        y_oa: oaCurrent,
-        y_tot: totalCurrent,
-        x_val: item.key,
-        bsoDomain,
-      });
-    });
     const dataGraph = [
       {
         name: capitalize(
