@@ -13,10 +13,8 @@ import {
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-  const yellowMedium125 = getCSSValue('--yellow-medium-125');
-  const greenLight100 = getCSSValue('--green-light-100');
+  const [isLoading, setLoading] = useState(true);
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -117,7 +115,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             }),
           ),
           data: publisher,
-          color: yellowMedium125,
+          color: getCSSValue('--yellow-medium-125'),
           dataLabels: noOutline,
         },
         {
@@ -127,7 +125,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             }),
           ),
           data: publisherRepository,
-          color: greenLight100,
+          color: getCSSValue('--green-light-100'),
           dataLabels: noOutline,
         },
         {
@@ -149,7 +147,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           value: oa[oa.length - 1]?.y_abs,
           percentage: oa[oa.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
-          color: yellowMedium125,
+          color: getCSSValue('--yellow-medium-125'),
           dataLabels: noOutline,
           bsoDomain,
         },
@@ -159,7 +157,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           parent: 'oa',
           percentage: publisher[publisher.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
-          color: yellowMedium125,
+          color: getCSSValue('--yellow-medium-125'),
           dataLabels: noOutline,
           bsoDomain,
         },
@@ -171,7 +169,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           parent: 'oa',
           percentage: publisherRepository[publisherRepository.length - 1]?.y,
           publicationDate: categories[categories.length - 1],
-          color: greenLight100,
+          color: getCSSValue('--green-light-100'),
           dataLabels: noOutline,
           bsoDomain,
         },
@@ -218,7 +216,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph3,
       };
     },
-    [beforeLastObservationSnap, domain, greenLight100, intl, yellowMedium125],
+    [beforeLastObservationSnap, domain, intl],
   );
 
   useEffect(() => {

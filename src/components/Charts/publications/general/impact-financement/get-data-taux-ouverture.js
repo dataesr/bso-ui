@@ -9,8 +9,8 @@ import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
@@ -45,10 +45,10 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
     let dataAgency = res[0].data.aggregations.by_publication_year.buckets;
     let data = res[1].data.aggregations.by_publication_year.buckets;
 
-    // Tri pour avoir les années dans l'ordre d'affichage du graphe
+    // Sort on publication year desc
     data = data.sort((a, b) => a.key - b.key);
     dataAgency = dataAgency.sort((a, b) => a.key - b.key);
-    const categories = []; // Elements d'abscisse
+    const categories = []; // X elements
     const all = [];
     const withDeclaration = [];
     dataAgency
@@ -178,4 +178,5 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   }, [observationSnap]);
   return { allData, isError, isLoading };
 }
+
 export default useGetData;
