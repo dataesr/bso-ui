@@ -99,7 +99,9 @@ function useGetData(observationSnaps, domain = '') {
             .replace(/\n/g, '')
             .replace('  ', ' ')}`,
         });
-        year1 = dataHist[0].data[serieLength - 1].name;
+        if (serieLength > 0) {
+          year1 = dataHist[0].data[serieLength - 1].name;
+        }
         year2 = dataHist[0].data[serieLength].name.replace('<br/>', ' - ');
 
         dataHist = dataHist.sort((a, b) => {
