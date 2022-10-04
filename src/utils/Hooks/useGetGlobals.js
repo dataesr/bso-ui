@@ -95,23 +95,21 @@ export const GlobalsContextProvider = ({ children }) => {
           '__observationSnaps__',
           JSON.stringify(responseObservationSnaps),
         );
-        setLastObservationSnap(responseObservationSnaps.sort().reverse()[0]);
-        sessionStorage.setItem(
-          '__lastObservationSnap__',
-          responseObservationSnaps.sort().reverse()[0],
-        );
+        const lastObs = responseObservationSnaps.sort().reverse()[0];
+        setLastObservationSnap(lastObs);
+        sessionStorage.setItem('__lastObservationSnap__', lastObs);
+        let beforeLast = '';
+        if (responseObservationSnaps.length > 1) {
+          // eslint-disable-next-line
+          beforeLast = responseObservationSnaps.sort().reverse()[1];
+          // eslint-disable-next-line
+        } else {
+          beforeLast = (parseInt(lastObs.substr(0, 4), 10) - 1).toString();
+        }
+        setBeforeLastObservationSnap(beforeLast);
+        sessionStorage.setItem('__beforeLastObservationSnap__', beforeLast);
 
-        setBeforeLastObservationSnap(
-          responseObservationSnaps.sort().reverse()[1],
-        );
-        sessionStorage.setItem(
-          '__beforeLastObservationSnap__',
-          responseObservationSnaps.sort().reverse()[1],
-        );
-
-        const responseUpdateDate = await getUpdateDate(
-          responseObservationSnaps.sort().reverse()[0],
-        );
+        const responseUpdateDate = await getUpdateDate(lastObs);
         setUpdateDate(responseUpdateDate);
         sessionStorage.setItem('__updateDate__', responseUpdateDate);
 
