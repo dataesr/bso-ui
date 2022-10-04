@@ -83,17 +83,19 @@ function App() {
               )}
             />
           ))}
-          {Object.keys(urls.nationalResearchData).map((key) => (
+          {urls.nationalResearchData.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               exact
-              path={urls.nationalResearchData[key]}
+              path={tab[key]}
               element={(
                 <PageTracker>
-                  <NationalResearchData />
+                  <GraphNavigationContextProvider>
+                    <NationalResearchData />
+                  </GraphNavigationContextProvider>
                 </PageTracker>
               )}
             />
-          ))}
+          )))}
           {Object.keys(urls.nationalSoftwareCodes).map((key) => (
             <Route
               exact

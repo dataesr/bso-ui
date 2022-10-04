@@ -31,6 +31,8 @@ export const mobileButtonLabel = {
       'app.health-observational.promoteurs',
     '/sante/etudes-observationnelles/resultats':
       'app.health-observational.resultats',
+    '/donnees-de-la-recherche/general': 'app.data.general',
+    '/donnees-de-la-recherche/disciplines': 'app.data.disciplines',
   },
   en: {
     '/health/publications/fields': 'app.publi.disciplines',
@@ -55,6 +57,8 @@ export const mobileButtonLabel = {
       'app.health-observational.promoteurs',
     '/health/observational-studies/resultats':
       'app.health-observational.resultats',
+    '/research-data/general': 'app.data.general',
+    '/research-data/disciplines': 'app.data.disciplines',
   },
 };
 
@@ -106,6 +110,12 @@ export const documentTitles = {
   '/a-propos/glossaire': 'app.header.nav.a-propos-glossaire',
   '/sante': 'app.sante.document.title',
   '/health': 'app.sante.document.title',
+  '/donnees-de-la-recherche': 'app.data.document.title',
+  '/donnees-de-la-recherche/general': 'app.data.document.title',
+  '/donnees-de-la-recherche/disciplines': 'app.data.document.title',
+  '/research-data': 'app.data.document.title',
+  '/research-data/general': 'app.data.document.title',
+  '/research-data/disciplines': 'app.data.document.title',
 };
 
 export const alphabet = ['a', 'c', 'd', 'e', 'f', 'h', 'm', 'p', 'r', 't', 'u'];

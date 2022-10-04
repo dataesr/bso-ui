@@ -21,13 +21,15 @@ function useGetData(observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
+      const publicationYear = getPublicationYearFromObservationSnap(lastObservationSnap);
       const query = getFetchOptions({
         key: 'oaHostType',
         domain,
         parameters: [
           lastObservationSnap,
+          `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
           'lang.keyword',
-          getPublicationYearFromObservationSnap(lastObservationSnap),
+          publicationYear,
           5,
         ],
         objectType: ['publications'],

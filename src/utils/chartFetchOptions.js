@@ -260,7 +260,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    disciplinesVoies: ([observationSnap, disciplineField, voie]) => ({
+    disciplinesVoies: ([observationSnap, disciplineField, fieldY]) => ({
       size: 0,
       query: {
         bool: {
@@ -282,7 +282,7 @@ export default function getFetchOptions({
           aggs: {
             by_oa_host_type: {
               terms: {
-                field: `oa_details.${observationSnap}.${voie}.keyword`,
+                field: fieldY,
               },
             },
           },
@@ -1279,7 +1279,8 @@ export default function getFetchOptions({
     }),
     oaHostType: ([
       lastObservationSnap,
-      field = 'year',
+      fieldY,
+      fieldX = 'year',
       minPublicationDate = '2013',
       size = 10,
     ]) => ({
@@ -1303,52 +1304,13 @@ export default function getFetchOptions({
       aggs: {
         by_publication_year: {
           terms: {
-            field,
+            field: fieldX,
             size,
           },
           aggs: {
             by_oa_host_type: {
               terms: {
-                field: `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
-              },
-            },
-          },
-        },
-      },
-    }),
-    repositoryOaYear: ([
-      lastObservationSnap,
-      field = 'year',
-      minPublicationDate = '2013',
-      size = 10,
-    ]) => ({
-      size: 0,
-      query: {
-        bool: {
-          filter: [
-            {
-              range: {
-                year: {
-                  gte: minPublicationDate,
-                  lte: getPublicationYearFromObservationSnap(
-                    lastObservationSnap,
-                  ),
-                },
-              },
-            },
-          ],
-        },
-      },
-      aggs: {
-        by_publication_year: {
-          terms: {
-            field,
-            size,
-          },
-          aggs: {
-            by_oa_host_type: {
-              terms: {
-                field: `oa_details.${lastObservationSnap}.repositories_concat.keyword`,
+                field: fieldY,
               },
             },
           },

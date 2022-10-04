@@ -27,7 +27,11 @@ function useGetData(observationSnap, domain) {
     const query = getFetchOptions({
       key: 'oaHostType',
       domain,
-      parameters: [lastObservationSnap, 'grants.funding_year'],
+      parameters: [
+        lastObservationSnap,
+        `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
+        'grants.funding_year',
+      ],
       objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
