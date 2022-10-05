@@ -27,7 +27,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'softcite_details.has_used',
+    'has_availability_statement',
     null,
   );
   const { categories, dataGraph } = allData;
@@ -75,7 +75,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'software.general.voies-ouverture.chart-software-used',
+  id: 'software.general.voies-ouverture.chart-availibility',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

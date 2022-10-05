@@ -73,7 +73,7 @@ function Project() {
                   rel='noreferrer'
                   target='_blank'
                 >
-                  MESRI
+                  MESR
                 </a>
                 {' '}
                 prépare déjà le BSO3. Elle s’attaquera à deux nouveaux objets de

@@ -27,9 +27,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'datastet_details',
-    'has_shared',
-    true,
+    'datastet_details.has_shared',
+    'datastet_details.has_used',
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {

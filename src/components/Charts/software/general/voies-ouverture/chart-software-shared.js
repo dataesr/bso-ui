@@ -27,9 +27,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'softcite_details',
-    'has_shared',
-    true,
+    'softcite_details.has_shared',
+    'softcite_details.has_used',
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {

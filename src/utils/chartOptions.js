@@ -2883,6 +2883,111 @@ export const chartOptions = {
       return options;
     },
   },
+  'software.general.voies-ouverture.chart-software-used': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.used-software',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'software.general.voies-ouverture.chart-data-used': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.used-data',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'software.general.voies-ouverture.chart-availibility': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.availibility',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'publi.others.collaborations.international-collaborations': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions({ id, intl });

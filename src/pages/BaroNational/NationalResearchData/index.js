@@ -120,6 +120,17 @@ export default function NationalResearchData() {
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-data.general.availibility'
+                  glossaryKeys={['archive-ouverte']}
+                  backgroundColor={blueSoft25}
+                  anchorId='general.availibility'
+                >
+                  <BSOChart
+                    id='software.general.voies-ouverture.chart-availibility'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
               </GraphContent>
             </GraphItem>
 

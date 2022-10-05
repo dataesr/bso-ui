@@ -14,8 +14,7 @@ function useGetData(
   beforeLastObservationSnap,
   observationSnap,
   domain,
-  softwareData,
-  mentionType,
+  fieldY,
   filterWithUsed,
 ) {
   const intl = useIntl();
@@ -30,14 +29,16 @@ function useGetData(
         domain,
         parameters: [
           lastObservationSnap,
-          `${softwareData}.${mentionType}`,
+          fieldY,
+          // `${softwareData}.${mentionType}`,
           'year',
         ],
         objectType: ['publications'],
       });
       if (filterWithUsed) {
         query.query.bool.filter.push({
-          term: { [`${softwareData}.has_used`]: true },
+          term: { [`${filterWithUsed}`]: true },
+          // term: { [`${softwareData}.has_used`]: true },
         });
       }
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -113,14 +114,7 @@ function useGetData(
         dataGraph,
       };
     },
-    [
-      beforeLastObservationSnap,
-      domain,
-      intl,
-      softwareData,
-      mentionType,
-      filterWithUsed,
-    ],
+    [beforeLastObservationSnap, domain, intl, fieldY, filterWithUsed],
   );
 
   useEffect(() => {

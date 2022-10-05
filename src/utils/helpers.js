@@ -242,7 +242,7 @@ export function getSource(id, otherSources = []) {
   if (id.includes('impact-financement')) {
     sources.push('ANR');
   }
-  sources.push('MESRI');
+  sources.push('MESR');
   sources.push(...otherSources);
   return sources.join(', ');
 }
