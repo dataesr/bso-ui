@@ -27,7 +27,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         parameters: [
           lastObservationSnap,
           disciplineField,
-          'repositories_concat',
+          `oa_details.${observationSnap}.repositories_concat.keyword`,
         ],
         objectType: ['thesis'],
       });
@@ -199,7 +199,14 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph,
       };
     },
-    [beforeLastObservationSnap, bsoDomain, disciplineField, domain, intl],
+    [
+      beforeLastObservationSnap,
+      bsoDomain,
+      disciplineField,
+      domain,
+      intl,
+      observationSnap,
+    ],
   );
 
   useEffect(() => {

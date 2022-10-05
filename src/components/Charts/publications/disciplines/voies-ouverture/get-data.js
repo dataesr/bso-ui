@@ -25,7 +25,11 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       const query = getFetchOptions({
         key: 'disciplinesVoies',
         domain,
-        parameters: [lastObservationSnap, disciplineField, 'oa_host_type'],
+        parameters: [
+          lastObservationSnap,
+          disciplineField,
+          `oa_details.${observationSnap}.oa_host_type.keyword`,
+        ],
         objectType: ['publications'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -209,6 +213,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       domain,
       intl,
       yellowMedium125,
+      observationSnap,
     ],
   );
 

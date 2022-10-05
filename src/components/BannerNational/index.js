@@ -57,12 +57,12 @@ function BannerNational({ selected, title }) {
                   id: 'url.national.research-data',
                 }),
               },
-              {
-                label: intl.formatMessage({ id: 'app.publi.softwarecodes' }),
-                value: intl.formatMessage({
-                  id: 'url.national.software-codes',
-                }),
-              },
+              // {
+              //  label: intl.formatMessage({ id: 'app.publi.softwarecodes' }),
+              //  value: intl.formatMessage({
+              //    id: 'url.national.software-codes',
+              //  }),
+              // },
             ],
           }
       }

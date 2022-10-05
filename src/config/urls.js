@@ -30,8 +30,18 @@ export default {
     en: '/publications/general',
   },
   nationalResearchData: {
-    fr: '/donnees-de-la-recherche',
-    en: '/research-data',
+    tabs: [
+      {
+        fr: '/donnees-de-la-recherche/general',
+        en: '/research-data/general',
+      },
+      {
+        fr: '/donnees-de-la-recherche/disciplines',
+        en: '/research-data/fields',
+      },
+    ],
+    fr: '/donnees-de-la-recherche/general',
+    en: '/research-data/general',
   },
   nationalSoftwareCodes: {
     fr: '/codes-et-logiciels',

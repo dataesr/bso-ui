@@ -171,6 +171,13 @@ const ChartTauxOuvertureThesis = lazy(() => import(
 const ChartRepartitionThesis = lazy(() => import(
   '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-publications'
 ));
+// BSO3
+const ChartSoftwareShared = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-software-shared'
+));
+const ChartDataShared = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-data-shared'
+));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
@@ -280,6 +287,8 @@ const chartComponents = {
     ChartTauxOuvertureThesis,
   'thesis.disciplines.voies-ouverture.chart-repartition-publications':
     ChartRepartitionThesis,
+  'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
+  'software.general.voies-ouverture.chart-data-shared': ChartDataShared,
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
 };

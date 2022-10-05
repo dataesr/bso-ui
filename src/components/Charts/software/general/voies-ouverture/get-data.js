@@ -10,11 +10,18 @@ import {
   getObservationLabel,
 } from '../../../../../utils/helpers';
 
-function useGetData(beforeLastObservationSnap, observationSnap, domain) {
+function useGetData(
+  beforeLastObservationSnap,
+  observationSnap,
+  domain,
+  softwareData,
+  mentionType,
+  filterWithUsed,
+) {
   const intl = useIntl();
   const [allData, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
@@ -23,25 +30,23 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         domain,
         parameters: [
           lastObservationSnap,
-          `oa_details.${lastObservationSnap}.repositories_concat.keyword`,
+          `${softwareData}.${mentionType}`,
           'year',
-          2000,
-          50,
         ],
-        objectType: ['thesis'],
+        objectType: ['publications'],
       });
+      if (filterWithUsed) {
+        query.query.bool.filter.push({
+          term: { [`${softwareData}.has_used`]: true },
+        });
+      }
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets.sort(
         (a, b) => a.key - b.key,
       );
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
-      const repository = [];
-      const publisher = [];
-      const publisherRepository = [];
-      const these = [];
-      const hal = [];
-      const both = [];
+      const shared = [];
       const closed = [];
       const noOutline = {
         style: {
@@ -50,52 +55,29 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       };
       data
         .filter(
-          (el) => true
+          (el) => el.key > 2012
             && lastObservationSnap.length
             && parseInt(el.key, 10)
               < parseInt(lastObservationSnap?.substring(0, 4), 10),
         )
         .forEach((el) => {
           categories.push(el.key);
-          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'closed')
+
+          const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 0)
             ?.doc_count || 0;
-          const theseCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'theses.fr')
+          const sharedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 1)
             ?.doc_count || 0;
-          const HALCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 'HAL')
-            ?.doc_count || 0;
-          const bothCurrent = el.by_oa_host_type.buckets.find(
-            (item) => item.key === 'HAL;theses.fr',
-          )?.doc_count || 0;
-          const totalCurrent = closedCurrent + theseCurrent + HALCurrent + bothCurrent;
-          const oaCurrent = theseCurrent + HALCurrent + bothCurrent;
+          const totalCurrent = sharedCurrent + closedCurrent;
           closed.push({
             y: (100 * closedCurrent) / totalCurrent,
             y_abs: closedCurrent,
             y_tot: totalCurrent,
-            y_oa: oaCurrent,
             x: el.key,
             bsoDomain,
           });
-          these.push({
-            y: (100 * theseCurrent) / totalCurrent,
-            y_abs: theseCurrent,
-            y_oa: oaCurrent,
-            y_tot: totalCurrent,
-            x: el.key,
-            bsoDomain,
-          });
-          hal.push({
-            y: (100 * HALCurrent) / totalCurrent,
-            y_abs: HALCurrent,
-            y_oa: oaCurrent,
-            y_tot: totalCurrent,
-            x: el.key,
-            bsoDomain,
-          });
-          both.push({
-            y: (100 * bothCurrent) / totalCurrent,
-            y_abs: bothCurrent,
-            y_oa: oaCurrent,
+          shared.push({
+            y: (100 * sharedCurrent) / totalCurrent,
+            y_abs: sharedCurrent,
             y_tot: totalCurrent,
             x: el.key,
             bsoDomain,
@@ -106,31 +88,11 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.hal-only',
+              id: 'app.publication',
             }),
           ),
-          data: hal,
-          color: getCSSValue('--green-medium-125'),
-          dataLabels: noOutline,
-        },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.hal-these',
-            }),
-          ),
-          data: both,
-          color: getCSSValue('--blue-soft-100'),
-          dataLabels: noOutline,
-        },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.these-only',
-            }),
-          ),
-          data: these,
-          color: getCSSValue('--blue-soft-150'),
+          data: shared,
+          color: getCSSValue('--yellow-medium-125'),
           dataLabels: noOutline,
         },
       ];
@@ -142,11 +104,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         ),
         closed: closed[closed.length - 1]?.y.toFixed(0),
         lastObservationSnap: getObservationLabel(lastObservationSnap, intl),
-        hal: hal[hal.length - 1]?.y.toFixed(0),
-        publisher: publisher[publisher.length - 1]?.y.toFixed(0),
-        publisherRepository:
-          publisherRepository[publisherRepository.length - 1]?.y.toFixed(0),
-        repository: repository[repository.length - 1]?.y.toFixed(0),
+        shared: shared[shared.length - 1]?.y.toFixed(0),
       };
 
       return {
@@ -155,7 +113,14 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph,
       };
     },
-    [beforeLastObservationSnap, domain, intl],
+    [
+      beforeLastObservationSnap,
+      domain,
+      intl,
+      softwareData,
+      mentionType,
+      filterWithUsed,
+    ],
   );
 
   useEffect(() => {
