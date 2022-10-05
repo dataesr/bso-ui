@@ -175,17 +175,13 @@ const ChartRepartitionThesis = lazy(() => import(
 const ChartSoftwareShared = lazy(() => import(
   '../components/Charts/software/general/voies-ouverture/chart-software-shared'
 ));
-const ChartDataShared = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-data-shared'
-));
+const ChartDataShared = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-shared'));
 const ChartSoftwareUsed = lazy(() => import(
   '../components/Charts/software/general/voies-ouverture/chart-software-used'
 ));
-const ChartDataUsed = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-data-used'
-));
+const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
 const ChartAvailibility = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-availibility'
+  '../components/Charts/data/general/voies-ouverture/chart-availibility'
 ));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
@@ -297,10 +293,10 @@ const chartComponents = {
   'thesis.disciplines.voies-ouverture.chart-repartition-publications':
     ChartRepartitionThesis,
   'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
-  'software.general.voies-ouverture.chart-data-shared': ChartDataShared,
+  'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
   'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
-  'software.general.voies-ouverture.chart-data-used': ChartDataUsed,
-  'software.general.voies-ouverture.chart-availibility': ChartAvailibility,
+  'data.general.voies-ouverture.chart-data-used': ChartDataUsed,
+  'data.general.voies-ouverture.chart-availibility': ChartAvailibility,
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
 };

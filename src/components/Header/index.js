@@ -58,19 +58,19 @@ function Header() {
         </SkiplinkItem>
         <SkiplinkItem href={urls.nationalResearchData[lang] + search}>
           {intl.formatMessage({
-            id: 'app.publi.researchdata',
+            id: 'app.baro-national.data.title',
             defaultMessage: 'Les données de la recherche',
           })}
         </SkiplinkItem>
         <SkiplinkItem href={urls.nationalSoftwareCodes[lang] + search}>
           {intl.formatMessage({
-            id: 'app.publi.softwarecodes',
+            id: 'app.baro-national.software.title',
             defaultMessage: 'Les codes logiciels',
           })}
         </SkiplinkItem>
         <SkiplinkItem href={urls.nationalThesis[lang] + search}>
           {intl.formatMessage({
-            id: 'app.publi.thesis',
+            id: 'app.baro-national.thesis.title',
             defaultMessage: 'Les thèses de doctorat',
           })}
         </SkiplinkItem>
@@ -193,7 +193,7 @@ function Header() {
               <NavSubItem
                 current={path === urls.nationalResearchData[lang]}
                 title={intl.formatMessage({
-                  id: 'app.publi.researchdata',
+                  id: 'app.baro-national.data.title',
                   defaultMessage: 'Les données de la recherche',
                 })}
                 asLink={

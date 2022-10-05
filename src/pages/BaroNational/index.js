@@ -187,7 +187,7 @@ function BaroNational() {
                 <Container fluid>
                   <Row gutters alignItems='top'>
                     <Col n='12'>
-                      <BSOChart id='software.general.voies-ouverture.chart-data-shared' />
+                      <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
                     </Col>
                   </Row>
                 </Container>

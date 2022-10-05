@@ -27,7 +27,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'has_availability_statement',
+    'datastet_details.has_used',
     null,
   );
   const { categories, dataGraph } = allData;
@@ -75,7 +75,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'software.general.voies-ouverture.chart-availibility',
+  id: 'data.general.voies-ouverture.chart-data-used',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

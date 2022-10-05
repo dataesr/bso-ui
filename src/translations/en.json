@@ -33,7 +33,7 @@
   "app.baro-national.detail-publi": "More analysis about the publications",
   "app.baro-national.intro": "Publications in <glossary0>app.commons.open-access</glossary0> refer to publications from scientific research that are made available online in open access for all, without technical or financial barriers. The French Open Science Monitor focuses on <glossary1>app.glossary.publications-fr</glossary1>, i.e. publications where at least one of the authors is affiliated in France. It is therefore the activity of French research that is taken into account, and not that of French scientific publishers. The open access rate represents the ratio of the number of open access publications to the total number of publications on the same perimeter (e.g. by year, discipline or publisher).<linebreak></linebreak>The generalisation of open access to scientific publications is one of the axes of the French national open science strategy, with the objective of a 100% open access rate in 2030. It facilitates, broadens and accelerates the dissemination of the results of research to scientific communities and to society in general: teachers, students, companies, associations, public policy actors, etc.",
   "app.baro-national.main-title": "Publications",
-  "app.baro-national.title": "The publications",
+  "app.baro-national.publications.title": "The publications",
   "app.baro-national.today-title": "The French Open Science Monitor today, it is ...",
   "app.baro-sante.detail-publi": "More analysis about the publications",
   "app.baro-sante.detail-studies": "More analysis about the observational studies",

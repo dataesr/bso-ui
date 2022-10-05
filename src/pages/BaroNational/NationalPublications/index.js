@@ -29,7 +29,7 @@ export default function NationalPublications() {
     <Container fluid className='page'>
       <BannerNational
         selected='url.publications.general'
-        title='app.baro-national.title'
+        title='app.baro-national.publications.title'
       />
       <ScrollTop />
       <section className='content'>
@@ -38,7 +38,7 @@ export default function NationalPublications() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  <FormattedMessage id='app.baro-national.main-title' />
+                  <FormattedMessage id='app.baro-national.publications.title' />
                 </h1>
                 <p>
                   <GlossaryFormattedMessage

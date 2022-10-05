@@ -2815,7 +2815,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'software.general.voies-ouverture.chart-data-shared': {
+  'data.general.voies-ouverture.chart-data-shared': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -2918,7 +2918,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'software.general.voies-ouverture.chart-data-used': {
+  'data.general.voies-ouverture.chart-data-used': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -2953,7 +2953,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'software.general.voies-ouverture.chart-availibility': {
+  'data.general.voies-ouverture.chart-availibility': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';

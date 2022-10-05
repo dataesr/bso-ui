@@ -20,7 +20,10 @@ export default function NationalThesis() {
 
   return (
     <Container fluid className='page'>
-      <BannerNational selected='url.national.thesis' title='app.publi.thesis' />
+      <BannerNational
+        selected='url.thesis'
+        title='app.baro-national.thesis.title'
+      />
       <ScrollTop />
       <section className='content'>
         <Row>
@@ -28,7 +31,7 @@ export default function NationalThesis() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  <FormattedMessage id='app.publi.thesis' />
+                  <FormattedMessage id='app.baro-national.thesis.title' />
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
