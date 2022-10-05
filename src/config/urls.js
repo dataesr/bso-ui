@@ -44,8 +44,18 @@ export default {
     en: '/research-data/general',
   },
   nationalSoftwareCodes: {
-    fr: '/codes-et-logiciels',
-    en: '/software-and-codes',
+    tabs: [
+      {
+        fr: '/codes-et-logiciels/general',
+        en: '/software/general',
+      },
+      {
+        fr: '/codes-et-logiciels/disciplines',
+        en: '/software/fields',
+      },
+    ],
+    fr: '/codes-et-logiciels/general',
+    en: '/software/general',
   },
   nationalThesis: {
     fr: '/theses-de-doctorat',

@@ -96,17 +96,19 @@ function App() {
               )}
             />
           )))}
-          {Object.keys(urls.nationalSoftwareCodes).map((key) => (
+          {urls.nationalSoftwareCodes.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               exact
-              path={urls.nationalSoftwareCodes[key]}
+              path={tab[key]}
               element={(
                 <PageTracker>
-                  <NationalSoftwareCodes />
+                  <GraphNavigationContextProvider>
+                    <NationalSoftwareCodes />
+                  </GraphNavigationContextProvider>
                 </PageTracker>
               )}
             />
-          ))}
+          )))}
           {Object.keys(urls.sante).map((key) => (
             <Route
               exact

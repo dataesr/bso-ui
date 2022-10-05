@@ -25,6 +25,7 @@ import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersI
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
+import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroNational() {
@@ -135,6 +136,84 @@ function BaroNational() {
                     </Col>
                     <Col n='12'>
                       <BSOChart id='publi.general.dynamique-ouverture.chart-evolution-proportion' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+              <HomeSection // thèses
+                isDisplayed={!isInProduction()}
+                link={{
+                  href: urls.nationalThesis[lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-theses' />
+                  ),
+                }}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-national-theses' />
+                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-national-theses.intro'
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='thesis.general.voies-ouverture.chart-repartition-taux' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+              <HomeSection // données
+                isDisplayed={!isInProduction()}
+                link={{
+                  href: urls.nationalResearchData.tabs[0][lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-data' />
+                  ),
+                }}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-national-data' />
+                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-national-data.intro'
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='software.general.voies-ouverture.chart-data-shared' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+              <HomeSection // logiciels
+                isDisplayed={!isInProduction()}
+                link={{
+                  href: urls.nationalSoftwareCodes.tabs[0][lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-software' />
+                  ),
+                }}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-national-software' />
+                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-national-software.intro'
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
                     </Col>
                   </Row>
                 </Container>
