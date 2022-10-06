@@ -148,7 +148,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           publisherRepository[publisherRepository.length - 1]?.y.toFixed(0),
         repository: repository[repository.length - 1]?.y.toFixed(0),
       };
-
       return {
         categories,
         comments,
