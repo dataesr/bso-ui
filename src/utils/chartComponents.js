@@ -179,6 +179,18 @@ const ChartDataShared = lazy(() => import('../components/Charts/data/general/voi
 const ChartSoftwareUsed = lazy(() => import(
   '../components/Charts/software/general/voies-ouverture/chart-software-used'
 ));
+const ChartSoftwareSharedDiscpline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared'
+));
+const ChartSoftwareUsedDiscpline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-used'
+));
+const ChartDataSharedDiscpline = lazy(() => import(
+  '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared'
+));
+const ChartDataUsedDiscpline = lazy(() => import(
+  '../components/Charts/data/disciplines/voies-ouverture/chart-data-used'
+));
 const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
 const ChartAvailibility = lazy(() => import(
   '../components/Charts/data/general/voies-ouverture/chart-availibility'
@@ -293,10 +305,17 @@ const chartComponents = {
   'thesis.disciplines.voies-ouverture.chart-repartition-publications':
     ChartRepartitionThesis,
   'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
-  'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
   'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
+  'software.disciplines.voies-ouverture.chart-software-shared':
+    ChartSoftwareSharedDiscpline,
+  'software.disciplines.voies-ouverture.chart-software-used':
+    ChartSoftwareUsedDiscpline,
   'data.general.voies-ouverture.chart-data-used': ChartDataUsed,
   'data.general.voies-ouverture.chart-availibility': ChartAvailibility,
+  'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
+  'data.disciplines.voies-ouverture.chart-data-shared':
+    ChartDataSharedDiscpline,
+  'data.disciplines.voies-ouverture.chart-data-used': ChartDataUsedDiscpline,
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
 };

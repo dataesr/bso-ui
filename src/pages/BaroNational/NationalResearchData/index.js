@@ -37,7 +37,7 @@ export default function NationalResearchData() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  <FormattedMessage id='app.publi.researchdata' />
+                  <FormattedMessage id='app.baro-national.data.title' />
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
@@ -163,11 +163,11 @@ export default function NationalResearchData() {
                   anchorId='disciplines.partage'
                 >
                   <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-software-used'
+                    id='data.disciplines.voies-ouverture.chart-data-shared'
                     isDisplayed={!isInProduction()}
                   />
                   <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-data-used'
+                    id='data.disciplines.voies-ouverture.chart-data-used'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>

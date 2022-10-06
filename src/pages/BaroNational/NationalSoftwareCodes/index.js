@@ -37,11 +37,11 @@ export default function NationalResearchData() {
             <Row>
               <Col n='12'>
                 <h1 className='contentTitle marianne-bold mb-32'>
-                  <FormattedMessage id='app.publi.softwarecodes' />
+                  <FormattedMessage id='app.baro-national.software.title' />
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
-                    intlKey='app.researchdata.intro'
+                    intlKey='app.software.intro'
                     glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 </p>
@@ -114,12 +114,9 @@ export default function NationalResearchData() {
 
             {/* Les disciplines */}
             <GraphItem
-              paths={[
-                '/donnees-de-la-recherche/disciplines',
-                '/research-data/fields',
-              ]}
+              paths={['/codes-et-logiciels/disciplines', '/software/fields']}
               mainLabel={intl.formatMessage({
-                id: 'app.data.disciplines',
+                id: 'app.software.disciplines',
               })}
               links={[
                 {
@@ -127,33 +124,33 @@ export default function NationalResearchData() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/research-data/fields?id=disciplines.partage',
-                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.partage',
+                    en: '/software/fields?id=disciplines.partage',
+                    fr: '/codes-et-logiciels/disciplines?id=disciplines.partage',
                   },
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.data.navigation.disciplines.partage',
+                    id: 'app.software.navigation.disciplines.partage',
                   }),
                   href: {
-                    en: '/research-data/fields?id=disciplines.partage',
-                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.partage',
+                    en: '/software/fields?id=disciplines.partage',
+                    fr: '/codes-et-logiciels/disciplines?id=disciplines.partage',
                   },
                 },
               ]}
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-data.disciplines.partage'
+                  intlKey='app.national-software.disciplines.partage'
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.partage'
                 >
                   <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-software-used'
+                    id='software.disciplines.voies-ouverture.chart-software-shared'
                     isDisplayed={!isInProduction()}
                   />
                   <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-data-used'
+                    id='software.disciplines.voies-ouverture.chart-software-used'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
