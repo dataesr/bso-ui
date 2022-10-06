@@ -40,10 +40,18 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
+    const queryAll = getFetchOptions({
+      key: 'openingRateAllGrant',
+      domain,
+      parameters: [lastObservationSnap],
+      objectType: ['publications'],
+    });
+    queries.push(Axios.post(ES_API_URL, queryAll, HEADERS));
     const res = await Axios.all(queries);
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
     let dataAgency = res[0].data.aggregations.by_publication_year.buckets;
     let data = res[1].data.aggregations.by_publication_year.buckets;
+    const dataAll = res[2].data.aggregations.by_agency.buckets;
 
     // Sort on publication year desc
     data = data.sort((a, b) => a.key - b.key);
@@ -110,6 +118,29 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       },
     ];
 
+    // Get all publication years as abscissa values
+    let categoriesAll = dataAll[0].by_publication_year.buckets.map(
+      (item) => item.key,
+    );
+    categoriesAll = categoriesAll.sort();
+    const dataGraphAll = [];
+    dataAll.forEach((el) => {
+      const grants = [];
+      // Sort by publication year asc
+      const years = el.by_publication_year.buckets.sort(
+        (a, b) => a.key - b.key,
+      );
+      years.forEach((item) => {
+        const nbOpen = item.by_is_oa.buckets.find((item2) => item2.key === 1)?.doc_count
+          || 0;
+        grants.push((nbOpen / item.doc_count) * 100);
+      });
+      dataGraphAll.push({
+        name: el.key,
+        data: grants,
+      });
+    });
+
     const publicationYear = parseInt(
       getObservationLabel(beforeLastObservationSnap, intl),
       10,
@@ -150,6 +181,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
     return {
       categories,
+      categoriesAll,
       comments,
       ctas: [
         'https://pubmed.ncbi.nlm.nih.gov/',
@@ -157,6 +189,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         'https://anr.fr/',
       ],
       dataGraph,
+      dataGraphAll,
     };
   }
 

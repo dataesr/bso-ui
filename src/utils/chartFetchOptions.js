@@ -1370,6 +1370,30 @@ export default function getFetchOptions({
         },
       },
     }),
+    openingRateAllGrant: ([observationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_agency: {
+          terms: {
+            field: 'grants.agency.keyword',
+          },
+          aggs: {
+            by_publication_year: {
+              terms: {
+                field: 'year',
+              },
+              aggs: {
+                by_is_oa: {
+                  terms: {
+                    field: `oa_details.${observationSnap}.is_oa`,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     openingType: ([lastObservationSnap, field, splitField]) => ({
       size: 0,
       query: {
