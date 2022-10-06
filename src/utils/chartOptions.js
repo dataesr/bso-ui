@@ -885,6 +885,29 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.general.impact-financement.chart-taux-ouverture-all-grants': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'publi.general.impact-financement.chart-repartition-financements': {
     getOptions: (id, intl, categories, data) => {
       const { startYear } = getURLSearchParams(intl);
