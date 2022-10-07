@@ -2941,6 +2941,40 @@ export const chartOptions = {
       return options;
     },
   },
+  'software.oa.voies-ouverture.chart-software-shared': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.shared-software',
+      });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          // stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'data.general.voies-ouverture.chart-data-used': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });

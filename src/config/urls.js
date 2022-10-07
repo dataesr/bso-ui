@@ -53,6 +53,10 @@ export default {
         fr: '/codes-et-logiciels/disciplines',
         en: '/software/fields',
       },
+      {
+        fr: '/codes-et-logiciels/oa',
+        en: '/software/oa',
+      },
     ],
     fr: '/codes-et-logiciels/general',
     en: '/software/general',

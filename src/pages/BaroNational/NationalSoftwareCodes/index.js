@@ -156,6 +156,47 @@ export default function NationalResearchData() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+
+            {/* Type OA */}
+            <GraphItem
+              paths={['/codes-et-logiciels/oa', '/software/oa']}
+              mainLabel={intl.formatMessage({
+                id: 'app.software.oa',
+              })}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/software/oa?id=disciplines.partage',
+                    fr: '/codes-et-logiciels/oa?id=disciplines.partage',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.software.navigation.oa.partage',
+                  }),
+                  href: {
+                    en: '/software/oa?id=disciplines.partage',
+                    fr: '/codes-et-logiciels/oa?id=disciplines.partage',
+                  },
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  intlKey='app.national-software.oa.partage'
+                  backgroundColor={blueSoft50}
+                  anchorId='oa.partage'
+                >
+                  <BSOChart
+                    id='software.oa.voies-ouverture.chart-software-shared'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
           </GraphNavigation>
         </Row>
       </section>
