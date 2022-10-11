@@ -270,6 +270,34 @@ function Header() {
             />
           </NavItem>
           <NavItem
+            current={
+              path === '/'
+              || stringIsIntTheKitchen(path, lang, urls.nationalPublications.tabs)
+                .length > 0
+            }
+            title={intl.formatMessage({
+              id: 'app.header.nav.declinaisons',
+              defaultMessage: 'Les baromètres locaux',
+            })}
+          >
+            <NavSubItem
+              current={path === urls.variations[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.declinaisons.existing',
+                defaultMessage: 'Les baromètres des établissements',
+              })}
+              asLink={<RouterLink to={urls.variations[lang] + search} />}
+            />
+            <NavSubItem
+              current={path === urls.howto[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.declinaisons.howto',
+                defaultMessage: 'Tutoriel pour réaliser son BSO local',
+              })}
+              asLink={<RouterLink to={urls.howto[lang] + search} />}
+            />
+          </NavItem>
+          <NavItem
             current={path.startsWith(
               `/${urls.methodologie[lang].split('/')[1]}`,
             )}
@@ -309,14 +337,6 @@ function Header() {
                 defaultMessage: 'Notes flash',
               })}
               asLink={<RouterLink to={urls.flash[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.variations[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-variations',
-                defaultMessage: 'Déclinaisons locales',
-              })}
-              asLink={<RouterLink to={urls.variations[lang] + search} />}
             />
             <NavSubItem
               current={path === urls.opendata[lang]}

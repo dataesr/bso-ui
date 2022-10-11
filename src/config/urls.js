@@ -155,9 +155,17 @@ export default {
     fr: '/a-propos/notes-flash',
     en: '/about/notes',
   },
-  variations: {
+  variationsOld: {
     fr: '/a-propos/declinaisons',
     en: '/about/declinaisons',
+  },
+  variations: {
+    fr: '/declinaisons/bso-locaux',
+    en: '/declinaisons/bso-locaux',
+  },
+  howto: {
+    fr: '/declinaisons/comment-realiser-bso-local',
+    en: '/declinaisons/howto',
   },
   project: {
     fr: '/projet-et-equipe',

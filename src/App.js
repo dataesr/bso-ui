@@ -12,7 +12,6 @@ import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
 import NotesFlash from './pages/APropos/NotesFlash';
 import OpenData from './pages/APropos/OpenData';
-import Variations from './pages/APropos/Variations';
 import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 import NationalResearchData from './pages/BaroNational/NationalResearchData';
@@ -22,6 +21,8 @@ import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
+import HowTo from './pages/Declinaisons/HowTo';
+import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
 import Project from './pages/Project';
@@ -195,6 +196,17 @@ function App() {
               )}
             />
           ))}
+          {Object.keys(urls.variationsOld).map((key) => (
+            <Route
+              exact
+              path={urls.variationsOld[key]}
+              element={(
+                <PageTracker>
+                  <Variations />
+                </PageTracker>
+              )}
+            />
+          ))}
           {Object.keys(urls.variations).map((key) => (
             <Route
               exact
@@ -202,6 +214,17 @@ function App() {
               element={(
                 <PageTracker>
                   <Variations />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.howto).map((key) => (
+            <Route
+              exact
+              path={urls.howto[key]}
+              element={(
+                <PageTracker>
+                  <HowTo />
                 </PageTracker>
               )}
             />
