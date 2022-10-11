@@ -270,11 +270,7 @@ function Header() {
             />
           </NavItem>
           <NavItem
-            current={
-              path === '/'
-              || stringIsIntTheKitchen(path, lang, urls.nationalPublications.tabs)
-                .length > 0
-            }
+            current={path.startsWith(`/${urls.variations[lang].split('/')[1]}`)}
             title={intl.formatMessage({
               id: 'app.header.nav.declinaisons',
               defaultMessage: 'Les baromètres locaux',
