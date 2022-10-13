@@ -49,12 +49,9 @@ function useGetData(studyType, sponsorType = '*') {
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
-    let data1Total = data1.by_has_result.buckets.find(
-      (ele) => ele.key === 0,
-    ).doc_count;
-    data1Total += data1.by_has_result.buckets.find(
-      (ele) => ele.key === 1,
-    ).doc_count;
+    let data1Total = data1.by_has_result.buckets.find((ele) => ele.key === 0)?.doc_count || 0;
+    data1Total
+      += data1.by_has_result.buckets.find((ele) => ele.key === 1)?.doc_count || 0;
     const dataGraph1 = {
       categories: [
         capitalize(
