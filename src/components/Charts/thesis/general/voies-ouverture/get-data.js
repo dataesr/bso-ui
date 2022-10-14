@@ -25,7 +25,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           lastObservationSnap,
           `oa_details.${lastObservationSnap}.repositories_concat.keyword`,
           'year',
-          2000,
+          2010,
           50,
         ],
         objectType: ['thesis'],
@@ -148,7 +148,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           publisherRepository[publisherRepository.length - 1]?.y.toFixed(0),
         repository: repository[repository.length - 1]?.y.toFixed(0),
       };
-
       return {
         categories,
         comments,

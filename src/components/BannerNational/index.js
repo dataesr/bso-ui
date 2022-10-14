@@ -44,25 +44,33 @@ function BannerNational({ selected, title }) {
             selected: intl.formatMessage({ id: selected }),
             options: [
               {
-                label: intl.formatMessage({ id: 'app.baro-national.title' }),
+                label: intl.formatMessage({
+                  id: 'app.baro-national.publications.title',
+                }),
                 value: intl.formatMessage({ id: 'url.publications.general' }),
               },
               {
-                label: intl.formatMessage({ id: 'app.publi.thesis' }),
-                value: intl.formatMessage({ id: 'url.national.thesis' }),
+                label: intl.formatMessage({
+                  id: 'app.baro-national.thesis.title',
+                }),
+                value: intl.formatMessage({ id: 'url.thesis' }),
               },
               {
-                label: intl.formatMessage({ id: 'app.publi.researchdata' }),
+                label: intl.formatMessage({
+                  id: 'app.baro-national.data.title',
+                }),
                 value: intl.formatMessage({
-                  id: 'url.national.research-data',
+                  id: 'url.data.general',
                 }),
               },
-              // {
-              //  label: intl.formatMessage({ id: 'app.publi.softwarecodes' }),
-              //  value: intl.formatMessage({
-              //    id: 'url.national.software-codes',
-              //  }),
-              // },
+              {
+                label: intl.formatMessage({
+                  id: 'app.baro-national.software.title',
+                }),
+                value: intl.formatMessage({
+                  id: 'url.software.general',
+                }),
+              },
             ],
           }
       }

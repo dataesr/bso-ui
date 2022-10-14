@@ -227,6 +227,10 @@ div.d-inline-flex {
  * Espacement
  */
 
+.p-0 {
+  padding: 0 !important;
+}
+
 .p-8 {
   padding: 8px;
 }
@@ -330,6 +334,10 @@ div.d-inline-flex {
 
 .mr-120 {
   margin-right: 120px;
+}
+
+.m-auto {
+  margin: auto !important;
 }
 
 /**

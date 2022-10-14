@@ -84,6 +84,9 @@ const ChartRepartitionDeclarations = lazy(() => import(
 const ChartTauxOuvertureFinancement = lazy(() => import(
   '../components/Charts/publications/general/impact-financement/chart-taux-ouverture'
 ));
+const ChartTauxOuvertureFinancementAllGrants = lazy(() => import(
+  '../components/Charts/publications/general/impact-financement/chart-taux-ouverture-all-grants'
+));
 const ChartRepartitionTauxFinancement = lazy(() => import(
   '../components/Charts/publications/general/impact-financement/chart-repartition-taux'
 ));
@@ -175,8 +178,28 @@ const ChartRepartitionThesis = lazy(() => import(
 const ChartSoftwareShared = lazy(() => import(
   '../components/Charts/software/general/voies-ouverture/chart-software-shared'
 ));
-const ChartDataShared = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-data-shared'
+const ChartDataShared = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-shared'));
+const ChartSoftwareUsed = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-software-used'
+));
+const ChartSoftwareSharedDiscpline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared'
+));
+const ChartSoftwareUsedDiscpline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-used'
+));
+const ChartSoftwareSharedOa = lazy(() => import(
+  '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
+));
+const ChartDataSharedDiscpline = lazy(() => import(
+  '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared'
+));
+const ChartDataUsedDiscpline = lazy(() => import(
+  '../components/Charts/data/disciplines/voies-ouverture/chart-data-used'
+));
+const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
+const ChartAvailibility = lazy(() => import(
+  '../components/Charts/data/general/voies-ouverture/chart-availibility'
 ));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
@@ -220,6 +243,8 @@ const chartComponents = {
     ChartLanguesOuverture,
   'publi.general.impact-financement.chart-taux-ouverture':
     ChartTauxOuvertureFinancement,
+  'publi.general.impact-financement.chart-taux-ouverture-all-grants':
+    ChartTauxOuvertureFinancementAllGrants,
   'publi.general.impact-financement.chart-repartition-financements':
     ChartRepartitionDeclarations,
   'publi.general.impact-financement.chart-repartition-taux':
@@ -288,7 +313,18 @@ const chartComponents = {
   'thesis.disciplines.voies-ouverture.chart-repartition-publications':
     ChartRepartitionThesis,
   'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
-  'software.general.voies-ouverture.chart-data-shared': ChartDataShared,
+  'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
+  'software.disciplines.voies-ouverture.chart-software-shared':
+    ChartSoftwareSharedDiscpline,
+  'software.disciplines.voies-ouverture.chart-software-used':
+    ChartSoftwareUsedDiscpline,
+  'software.oa.voies-ouverture.chart-software-shared': ChartSoftwareSharedOa,
+  'data.general.voies-ouverture.chart-data-used': ChartDataUsed,
+  'data.general.voies-ouverture.chart-availibility': ChartAvailibility,
+  'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
+  'data.disciplines.voies-ouverture.chart-data-shared':
+    ChartDataSharedDiscpline,
+  'data.disciplines.voies-ouverture.chart-data-used': ChartDataUsedDiscpline,
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
 };

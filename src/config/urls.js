@@ -44,8 +44,22 @@ export default {
     en: '/research-data/general',
   },
   nationalSoftwareCodes: {
-    fr: '/codes-et-logiciels',
-    en: '/software-and-codes',
+    tabs: [
+      {
+        fr: '/codes-et-logiciels/general',
+        en: '/software/general',
+      },
+      {
+        fr: '/codes-et-logiciels/disciplines',
+        en: '/software/fields',
+      },
+      {
+        fr: '/codes-et-logiciels/oa',
+        en: '/software/oa',
+      },
+    ],
+    fr: '/codes-et-logiciels/general',
+    en: '/software/general',
   },
   nationalThesis: {
     fr: '/theses-de-doctorat',
@@ -141,9 +155,17 @@ export default {
     fr: '/a-propos/notes-flash',
     en: '/about/notes',
   },
-  variations: {
+  variationsOld: {
     fr: '/a-propos/declinaisons',
     en: '/about/declinaisons',
+  },
+  variations: {
+    fr: '/declinaisons/bso-locaux',
+    en: '/declinaisons/bso-locaux',
+  },
+  howto: {
+    fr: '/declinaisons/comment-realiser-bso-local',
+    en: '/declinaisons/howto',
   },
   project: {
     fr: '/projet-et-equipe',

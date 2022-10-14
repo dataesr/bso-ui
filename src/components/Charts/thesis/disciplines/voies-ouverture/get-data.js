@@ -91,6 +91,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         closed.push({
           y: (closedCurrent / totalCurrent) * 100,
           y_abs: closedCurrent,
+          y_oa: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
           publicationDate:
@@ -101,6 +102,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         oa.push({
           y: (oaCurrent / totalCurrent) * 100,
           y_abs: oaCurrent,
+          y_oa: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
           publicationDate:
@@ -111,6 +113,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         hal.push({
           y: (halCurrent / totalCurrent) * 100,
           y_abs: halCurrent,
+          y_oa: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
           publicationDate:
@@ -122,6 +125,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         these.push({
           y: (theseCurrent / totalCurrent) * 100,
           y_abs: theseCurrent,
+          y_oa: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
           publicationDate:
@@ -133,6 +137,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         halThese.push({
           y: (halTheseCurrent / totalCurrent) * 100,
           y_abs: halTheseCurrent,
+          y_oa: oaCurrent,
           y_tot: totalCurrent,
           x: catIndex,
           publicationDate:
@@ -192,7 +197,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         publisherRepositoryRate,
         repositoryRate,
       };
-
       return {
         categories,
         comments,
