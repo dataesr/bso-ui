@@ -313,5 +313,11 @@
     "commentsName": "de l'HES-SO",
     "commentsNameEN": "of the HES-SO",
     "country": "ch"
+  },
+  "a2f": {
+    "name": "Pôle Agronomie, Agroalimentaire, Forêt",
+    "commentsName": "du pôle A2F",
+    "commentsNameEN": "of A2F",
+    "startYear": 2016
   }
 }
