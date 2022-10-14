@@ -55,7 +55,6 @@ function useGetData(observationSnaps, domain = '') {
             });
           });
       });
-
       let dataHist = [];
       disciplines.forEach((discipline) => {
         const dataByDiscipline = dataGraph[discipline];
@@ -81,6 +80,7 @@ function useGetData(observationSnaps, domain = '') {
             }),
         });
       });
+      dataHist = dataHist.filter((el) => el.data[el.data.length - 1].y_tot > 0);
       let bestRateValue = '';
       let bestRateDiscipline = '';
       let bestProgressionValue1 = '';
