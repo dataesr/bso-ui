@@ -172,7 +172,7 @@ const ChartTauxOuvertureThesis = lazy(() => import(
   '../components/Charts/thesis/disciplines/dynamique-ouverture/chart-taux-ouverture'
 ));
 const ChartRepartitionThesis = lazy(() => import(
-  '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-publications'
+  '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-thesis'
 ));
 // BSO3
 const ChartSoftwareShared = lazy(() => import(
@@ -310,7 +310,7 @@ const chartComponents = {
     ChartRepartitionTauxThesis,
   'thesis.disciplines.dynamique-ouverture.chart-taux-ouverture':
     ChartTauxOuvertureThesis,
-  'thesis.disciplines.voies-ouverture.chart-repartition-publications':
+  'thesis.disciplines.voies-ouverture.chart-repartition-thesis':
     ChartRepartitionThesis,
   'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
   'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,

@@ -20,11 +20,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           'grants.agency.keyword': 'ANR',
         },
       },
-      {
-        term: {
-          'bso_local_affiliations.keyword': 'ANR',
-        },
-      },
     ];
     const queryFiltered = getFetchOptions({
       key: 'openingRateGrant',

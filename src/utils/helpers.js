@@ -242,6 +242,10 @@ export function getSource(id, otherSources = []) {
   if (id.includes('impact-financement')) {
     sources.push('ANR');
   }
+  if (id.includes('thesis')) {
+    sources.push('theses.fr');
+  }
+  sources.push('HAL');
   sources.push('MESR');
   sources.push(...otherSources);
   return sources.join(', ');

@@ -1375,7 +1375,10 @@ export default function getFetchOptions({
       aggs: {
         by_agency: {
           terms: {
-            field: 'grants.agency.keyword',
+            field: 'grants.program.keyword',
+            missing: 'Sans financement déclaré',
+            exclude: ['ANR DOS'],
+            size: 20,
           },
           aggs: {
             by_publication_year: {

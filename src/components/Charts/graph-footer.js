@@ -73,7 +73,7 @@ const GraphFooter = ({
               {date && source ? <hr /> : null}
               {source ? (
                 <Text size='xs' className='source'>
-                  {`Source : ${source}`}
+                  {`Sources : ${source}`}
                 </Text>
               ) : null}
               {source && srcPath ? <hr /> : null}

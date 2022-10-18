@@ -57,7 +57,7 @@ export default function NationalThesis() {
                   isDisplayed={!isInProduction()}
                 />
                 <BSOChart
-                  id='thesis.disciplines.voies-ouverture.chart-repartition-publications'
+                  id='thesis.disciplines.voies-ouverture.chart-repartition-thesis'
                   isDisplayed={!isInProduction()}
                 />
               </QuestionSection>
