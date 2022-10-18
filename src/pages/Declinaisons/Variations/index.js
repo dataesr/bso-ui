@@ -246,6 +246,13 @@ function Variations() {
                 alt='bso local institut pasteur'
               />
             </Col>
+            <Col n='2' className='p-0'>
+              <CardLogo
+                href='https://www.universite-paris-saclay.fr/recherche/science-ouverte/le-barometre-de-la-science-ouverte-de-luniversite-paris-saclay'
+                img='/declinaisons/UPS.svg'
+                alt='bso local universite paris saclay'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className=''>
@@ -335,15 +342,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université de Strasbourg
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.universite-paris-saclay.fr/barometre-science-ouverte-2021'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Paris Saclay
                   </a>
                 </li>
                 <li>
