@@ -10,7 +10,7 @@ function CardLogo({ img, alt, href }) {
       hasBorder={false}
       href={href}
     >
-      <CardDescription as='div' className='m-auto'>
+      <CardDescription as='div' className='m-auto w-100'>
         <DSLink href={href} target='_blank'>
           <img
             src={img}
