@@ -153,7 +153,7 @@ function BaroNational() {
                 }
                 introText={(
                   <GlossaryFormattedMessage
-                    intlKey='app.baro-national-theses.intro'
+                    intlKey='app.thesis.intro'
                     glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 )}

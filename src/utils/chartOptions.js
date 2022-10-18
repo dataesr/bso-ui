@@ -247,7 +247,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'thesis.disciplines.voies-ouverture.chart-repartition-publications': {
+  'thesis.disciplines.voies-ouverture.chart-repartition-thesis': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';

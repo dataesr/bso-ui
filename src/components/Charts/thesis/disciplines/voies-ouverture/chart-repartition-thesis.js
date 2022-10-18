@@ -130,7 +130,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'thesis.disciplines.voies-ouverture.chart-repartition-publications',
+  id: 'thesis.disciplines.voies-ouverture.chart-repartition-thesis',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
