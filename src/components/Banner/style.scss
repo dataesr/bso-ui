@@ -17,6 +17,12 @@
     color: inherit;
   }
 
+  .sub-sub-title {
+    @include font-size(14, 20);
+    color: inherit;
+    font-weight: 500;
+  }
+
   .bso-select-navigation {
     border-radius: 8px;
     bottom: -130px;
@@ -41,6 +47,7 @@
     top: -1px;
 
     .sub-title,
+    .sub-sub-title,
     .icons,
     .chip {
       display: none;

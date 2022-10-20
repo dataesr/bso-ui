@@ -19,6 +19,7 @@ function Banner({
   backgroundColor,
   textColor,
   subTitle,
+  subsubTitle,
   supTitle,
   title,
   link,
@@ -120,6 +121,15 @@ function Banner({
                 {subTitle}
               </h3>
             )}
+            {subsubTitle && (
+              <h4
+                className={classNames('sub-sub-title pt-16 ', {
+                  'mb-l-60': selectNavigation,
+                })}
+              >
+                {subsubTitle}
+              </h4>
+            )}
             {link && !sticked && (
               <DSLink
                 className='bso-link'
@@ -190,6 +200,7 @@ Banner.defaultProps = {
   textColor: '#fff',
   supTitle: null,
   subTitle: null,
+  subsubTitle: null,
   link: null,
   chip: null,
   icons: null,
@@ -221,6 +232,7 @@ Banner.propTypes = {
     ).isRequired,
   }),
   subTitle: PropTypes.element,
+  subsubTitle: PropTypes.element,
   homeLink: PropTypes.string,
   link: PropTypes.exact({
     label: PropTypes.element.isRequired,
