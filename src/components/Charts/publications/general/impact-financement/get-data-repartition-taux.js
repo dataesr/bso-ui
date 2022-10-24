@@ -31,8 +31,13 @@ function useGetData(observationSnap, domain) {
         lastObservationSnap,
         `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
         'grants.funding_year',
+        2013,
+        50,
       ],
       objectType: ['publications'],
+    });
+    query.query.bool.filter.push({
+      term: { 'grants.agency.keyword': 'ANR' },
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
@@ -46,7 +51,7 @@ function useGetData(observationSnap, domain) {
     const publisherRepository = [];
     const repository = [];
     data
-      .filter((item) => item.key > 2015)
+      .filter((item) => item.key > 2012)
       .forEach((item) => {
         const closedCurrent = item.by_oa_host_type.buckets.find(
           (subItem) => subItem.key === 'closed',
