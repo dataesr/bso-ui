@@ -1283,6 +1283,7 @@ export default function getFetchOptions({
       fieldX = 'year',
       minPublicationDate = '2013',
       size = 10,
+      missing = 'N/A',
     ]) => ({
       size: 0,
       query: {
@@ -1311,6 +1312,7 @@ export default function getFetchOptions({
             by_oa_host_type: {
               terms: {
                 field: fieldY,
+                missing,
               },
             },
           },

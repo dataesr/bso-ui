@@ -87,6 +87,15 @@ export default function NationalResearchData() {
                     fr: '/donnees-de-la-recherche/general?id=general.utilisation',
                   },
                 },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.data.navigation.statement',
+                  }),
+                  href: {
+                    en: '/research-data/general?id=general.statement',
+                    fr: '/donnees-de-la-recherche/general?id=general.statement',
+                  },
+                },
               ]}
             >
               <GraphContent>
@@ -113,10 +122,10 @@ export default function NationalResearchData() {
                   />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.general.availibility'
+                  intlKey='app.national-data.general.statement'
                   glossaryKeys={['archive-ouverte']}
                   backgroundColor={blueSoft25}
-                  anchorId='general.availibility'
+                  anchorId='general.statement'
                 >
                   <BSOChart
                     id='data.general.voies-ouverture.chart-availibility'
@@ -154,6 +163,24 @@ export default function NationalResearchData() {
                     fr: '/donnees-de-la-recherche/disciplines?id=disciplines.partage',
                   },
                 },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.data.navigation.disciplines.utilisation',
+                  }),
+                  href: {
+                    en: '/research-data/fields?id=disciplines.utilisation',
+                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.utilisation',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.data.navigation.disciplines.statement',
+                  }),
+                  href: {
+                    en: '/research-data/fields?id=disciplines.statement',
+                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.statement',
+                  },
+                },
               ]}
             >
               <GraphContent>
@@ -166,6 +193,12 @@ export default function NationalResearchData() {
                     id='data.disciplines.voies-ouverture.chart-data-shared'
                     isDisplayed={!isInProduction()}
                   />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-data.disciplines.utilisation'
+                  backgroundColor={blueSoft50}
+                  anchorId='disciplines.utilisation'
+                >
                   <BSOChart
                     id='data.disciplines.voies-ouverture.chart-data-used'
                     isDisplayed={!isInProduction()}
