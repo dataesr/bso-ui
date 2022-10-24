@@ -1,18 +1,21 @@
 [
   {
-    "methodology-steps": {
-      "intlDefinition": "app.faq.methodology-steps.definition",
-      "intlEntry": "app.faq.methodology-steps",
-      "ctas": ["https://unpaywall.org/", "https://www.crossref.org/", "https://theses.fr/", "https://bib.cnrs.fr/pascal-et-francis-en-acces-libre/", "https://hal.archives-ouvertes.fr/", "https://orcid.org/"]
+    "bso": {
+      "intlDefinition": "app.faq.bso.definition",
+      "intlEntry": "app.faq.bso",
+      "ctas": []
     },
-    "difference-ce": {
-      "intlDefinition": "app.faq.difference-ce.definition",
-      "intlEntry": "app.faq.difference-ce",
-      "cta": "https://ec.europa.eu/info/research-and-innovation/strategy/goals-research-and-innovation-policy/open-science/open-science-monitor_en"
-    },
-    "perimeter-barometer": {
-      "intlDefinition": "app.faq.perimeter-barometer.definition",
-      "intlEntry": "app.faq.perimeter-barometer"
+    "corpus": {
+      "intlDefinition": "app.faq.corpus.definition",
+      "intlEntry": "app.faq.corpus",
+      "ctas": [
+        "https://unpaywall.org/",
+        "https://www.crossref.org/",
+        "https://theses.fr/",
+        "https://bib.cnrs.fr/pascal-et-francis-en-acces-libre/",
+        "https://hal.archives-ouvertes.fr/",
+        "https://orcid.org/"
+      ]
     },
     "access-to-publications": {
       "intlDefinition": "app.faq.access-to-publications.definition",
@@ -23,9 +26,29 @@
       "intlDefinition": "app.faq.date-update.definition",
       "intlEntry": "app.faq.date-update"
     },
-    "baro-buzz-lightyear": {
-      "intlDefinition": "app.faq.baro-buzz-lightyear.definition",
-      "intlEntry": "app.faq.baro-buzz-lightyear"
+    "bso-local": {
+      "intlDefinition": "app.faq.bso-local.definition",
+      "intlEntry": "app.faq.bso-local"
+    },
+    "community": {
+      "intlDefinition": "app.faq.community.definition",
+      "intlEntry": "app.faq.community"
+    },
+    "classification": {
+      "intlDefinition": "app.faq.classification.definition",
+      "intlEntry": "app.faq.classification"
+    },
+    "pid": {
+      "intlDefinition": "app.faq.pid.definition",
+      "intlEntry": "app.faq.pid"
+    },
+    "date-missing": {
+      "intlDefinition": "app.faq.date-missing.definition",
+      "intlEntry": "app.faq.date-missing"
+    },
+    "opendata": {
+      "intlDefinition": "app.faq.opendata.definition",
+      "intlEntry": "app.faq.opendata"
     }
   }
 ]
