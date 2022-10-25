@@ -28,15 +28,18 @@
     },
     "bso-local": {
       "intlDefinition": "app.faq.bso-local.definition",
-      "intlEntry": "app.faq.bso-local"
+      "intlEntry": "app.faq.bso-local",
+      "cta": "/declinaisons/comment-realiser-bso-local"
     },
     "community": {
       "intlDefinition": "app.faq.community.definition",
-      "intlEntry": "app.faq.community"
+      "intlEntry": "app.faq.community",
+      "cta": "https://groupes.renater.fr/sympa/info/bso-etablissements"
     },
     "classification": {
       "intlDefinition": "app.faq.classification.definition",
-      "intlEntry": "app.faq.classification"
+      "intlEntry": "app.faq.classification",
+      "cta": "https://github.com/dataesr/scientific_tagger/blob/main/project/server/main/bso_category.py"
     },
     "pid": {
       "intlDefinition": "app.faq.pid.definition",
@@ -48,7 +51,8 @@
     },
     "opendata": {
       "intlDefinition": "app.faq.opendata.definition",
-      "intlEntry": "app.faq.opendata"
+      "intlEntry": "app.faq.opendata",
+      "cta": "https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso"
     }
   }
 ]
