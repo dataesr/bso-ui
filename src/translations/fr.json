@@ -21,6 +21,8 @@
   "app.effectif": "effectif",
   "app.fr-only": "FR slt.",
   "app.fr-foreign": "autre",
+  "app.doi-hal": "avec un DOI Crossref ou un identifiant HAL",
+  "app.doi": "avec un DOI Crossref",
   "app.yoy": "Croissance annuelle",
   "app.all-agencies": "Toutes",
   "app.all-publications": "Toutes les publications",
