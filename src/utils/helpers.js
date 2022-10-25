@@ -318,6 +318,7 @@ export function getURLSearchParams(intl = undefined) {
   const displayFooter = !(
     urlSearchParams.get('displayFooter')?.toLowerCase() === 'false'
   );
+  const isPublication = window.location.pathname.startsWith('/publication');
   let commentsName = intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
     || 'françaises';
   let displayTitle;
@@ -351,6 +352,28 @@ export function getURLSearchParams(intl = undefined) {
         || 2013,
       10,
     );
+  }
+
+  if (isPublication) {
+    if (useHalId) {
+      commentsName = commentsName.concat(
+        ', ',
+        intl?.formatMessage({
+          id: 'app.doi-hal',
+          defaultMessage: 'avec un DOI Crossref ou un identifiant HAL',
+        }),
+        ',',
+      );
+    } else {
+      commentsName = commentsName.concat(
+        ', ',
+        intl?.formatMessage({
+          id: 'app.doi',
+          defaultMessage: 'avec un DOI Crossref',
+        }),
+        ',',
+      );
+    }
   }
 
   return {
