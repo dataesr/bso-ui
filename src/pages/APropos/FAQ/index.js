@@ -21,7 +21,12 @@ function FAQ() {
 
     faqKey?.ctas?.forEach((cta, i) => {
       values[`cta${i}`] = (chunks) => (
-        <a href={cta} target='_blank' rel='noreferrer'>
+        <a
+          href={cta}
+          target='_blank'
+          rel='noreferrer'
+          className='external_link'
+        >
           {chunks}
         </a>
       );
@@ -40,7 +45,12 @@ function FAQ() {
                   id={faqKey.intlDefinition}
                   values={{
                     cta: (chunks) => (
-                      <a target='_blank' href={`${faqKey.cta}`} rel='noreferrer'>
+                      <a
+                        target='_blank'
+                        href={`${faqKey.cta}`}
+                        rel='noreferrer'
+                        className='external_link'
+                      >
                         {chunks}
                       </a>
                     ),

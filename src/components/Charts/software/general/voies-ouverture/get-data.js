@@ -32,6 +32,9 @@ function useGetData(
           fieldY,
           // `${softwareData}.${mentionType}`,
           'year',
+          2013,
+          15,
+          -1,
         ],
         objectType: ['publications'],
       });
@@ -69,6 +72,8 @@ function useGetData(
           const sharedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 1)
             ?.doc_count || 0;
           const totalCurrent = sharedCurrent + closedCurrent;
+          const unknownCurrent = el.by_oa_host_type.buckets.find((item) => item.key === -1)
+            ?.doc_count || 0;
           closed.push({
             y: (100 * closedCurrent) / totalCurrent,
             y_abs: closedCurrent,
@@ -80,6 +85,7 @@ function useGetData(
             y: (100 * sharedCurrent) / totalCurrent,
             y_abs: sharedCurrent,
             y_tot: totalCurrent,
+            y_unk: unknownCurrent,
             x: el.key,
             bsoDomain,
           });

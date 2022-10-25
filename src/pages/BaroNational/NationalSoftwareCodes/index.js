@@ -41,7 +41,7 @@ export default function NationalResearchData() {
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
-                    intlKey='app.software.intro'
+                    intlKey='app.baro-national.software.intro'
                     glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 </p>
@@ -137,6 +137,15 @@ export default function NationalResearchData() {
                     fr: '/codes-et-logiciels/disciplines?id=disciplines.partage',
                   },
                 },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.software.navigation.disciplines.utilisation',
+                  }),
+                  href: {
+                    en: '/software/fields?id=disciplines.utilisation',
+                    fr: '/codes-et-logiciels/disciplines?id=disciplines.utilisation',
+                  },
+                },
               ]}
             >
               <GraphContent>
@@ -149,6 +158,12 @@ export default function NationalResearchData() {
                     id='software.disciplines.voies-ouverture.chart-software-shared'
                     isDisplayed={!isInProduction()}
                   />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-software.disciplines.utilisation'
+                  backgroundColor={blueSoft50}
+                  anchorId='disciplines.utilisation'
+                >
                   <BSOChart
                     id='software.disciplines.voies-ouverture.chart-software-used'
                     isDisplayed={!isInProduction()}

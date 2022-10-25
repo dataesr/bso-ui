@@ -20,6 +20,9 @@ function useGetData(observationSnap, domain) {
       parameters: [lastObservationSnap],
       objectType: ['publications'],
     });
+    query.query.bool.filter.push({
+      term: { 'grants.agency.keyword': 'ANR' },
+    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });

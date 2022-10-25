@@ -82,6 +82,7 @@ function BaroNational() {
         supTitle={<FormattedMessage id='app.header.welcome-on' />}
         title={<FormattedMessage id='app.header.title-bis' />}
         subTitle={<FormattedMessage id='app.header.subtitle' />}
+        // subsubTitle={<FormattedMessage id='app.header.subsubtitle' />}
         link={{
           label: <FormattedMessage id='app.notes.flash.see' />,
           url: intl.formatMessage({ id: 'url.about.flash' }) + search,
@@ -179,7 +180,7 @@ function BaroNational() {
                 }
                 introText={(
                   <GlossaryFormattedMessage
-                    intlKey='app.baro-national-data.intro'
+                    intlKey='app.baro-national.data.intro'
                     glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 )}
@@ -205,7 +206,7 @@ function BaroNational() {
                 }
                 introText={(
                   <GlossaryFormattedMessage
-                    intlKey='app.baro-national-software.intro'
+                    intlKey='app.baro-national.software.intro'
                     glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 )}
