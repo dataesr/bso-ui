@@ -1,4 +1,5 @@
 import {
+  Col,
   Footer as DSFooter,
   FooterBody,
   FooterBodyItem,
@@ -10,6 +11,7 @@ import {
   Icon as DSIcon,
   Link,
   Logo,
+  Row,
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -187,13 +189,33 @@ export default function Footer() {
             FAQ
           </FooterLink>
           <FooterCopy className='w-100'>
-            <p className='float-right'>
-              {`v${process.env.REACT_APP_VERSION}`}
-            </p>
+            <Row>
+              <Col n='lg-1 md-2 sm-3 mt-auto mb-auto'>
+                <img
+                  className='w-100'
+                  src='/logos/relance.jpg'
+                  alt='plan de relance'
+                />
+              </Col>
+              <Col n='lg-2 md-3 sm-6 mt-auto mb-auto'>
+                <img
+                  className='w-100'
+                  src='/logos/nextgeneu_en.jpg'
+                  alt="plan de relance pour l'europe"
+                />
+              </Col>
+            </Row>
+            <p className='float-right'>{`v${process.env.REACT_APP_VERSION}`}</p>
             <p>
               {intl.formatMessage({ id: 'app.footer.licence.usage' })}
               {' '}
-              <a href={intl.formatMessage({ id: 'app.footer.etalab-licence.url' })} target='_blank' rel='noreferrer'>
+              <a
+                href={intl.formatMessage({
+                  id: 'app.footer.etalab-licence.url',
+                })}
+                target='_blank'
+                rel='noreferrer'
+              >
                 licence etalab-2.0
               </a>
             </p>
