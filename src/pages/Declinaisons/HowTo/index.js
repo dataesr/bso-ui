@@ -155,9 +155,16 @@ function HowTo() {
                 <li>
                   <b>startYear</b>
                   {' '}
-                  : filtre sur l'année d'observation supérieure
-                  ou égale (ex: startYear=2016),
+                  : première année de publication (ex:
+                  startYear=2016),
                   <i> défaut: 2013</i>
+                </li>
+                <li>
+                  <b>firstObservationYear</b>
+                  {' '}
+                  : première année d'observation
+                  (ex: firstObservationYear=2019),
+                  <i> défaut: 2018</i>
                 </li>
               </ul>
               <li>
