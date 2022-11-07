@@ -305,7 +305,9 @@ export function getURLSearchParams(intl = undefined) {
   const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.observationYear
     || process.env.REACT_APP_LAST_OBSERVATION;
-  let firstObservationYear = '2018';
+  let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
+    || locals?.[bsoLocalAffiliation]?.firstObservationYear
+    || '2018';
   const idTypes = ['doi'];
   const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
   if (useHalId) {
