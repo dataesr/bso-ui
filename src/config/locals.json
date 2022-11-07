@@ -28,7 +28,8 @@
     "name": "Sorbonne Université",
     "commentsName": "de Sorbonne Université",
     "commentsNameEN": "of Sorbonne university",
-    "startYear": 2018
+    "startYear": 2018,
+    "firstObservationYear": "2019"
   },
   "130025745": {
     "name": "Université Polytechnique Hauts-de-France",
