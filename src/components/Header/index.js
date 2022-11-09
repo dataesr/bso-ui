@@ -184,7 +184,7 @@ function Header() {
                 current={path === urls.nationalThesis[lang]}
                 title={intl.formatMessage({
                   id: 'app.publi.thesis',
-                  defaultMessage: 'Thèses de doctorat',
+                  defaultMessage: 'Les thèses de doctorat',
                 })}
                 asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
               />
@@ -206,7 +206,7 @@ function Header() {
                 current={path === urls.nationalSoftwareCodes[lang]}
                 title={intl.formatMessage({
                   id: 'app.publi.softwarecodes',
-                  defaultMessage: 'Codes logiciels',
+                  defaultMessage: 'Les codes logiciels',
                 })}
                 asLink={
                   <RouterLink to={urls.nationalSoftwareCodes[lang] + search} />
@@ -338,7 +338,7 @@ function Header() {
               current={path === urls.opendata[lang]}
               title={intl.formatMessage({
                 id: 'app.header.nav.a-propos-opendata',
-                defaultMessage: 'Données ouvertes et code source',
+                defaultMessage: 'Données ouvertes et code source du BSO',
               })}
               asLink={<RouterLink to={urls.opendata[lang] + search} />}
             />
