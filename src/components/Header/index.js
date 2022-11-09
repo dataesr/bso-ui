@@ -338,7 +338,7 @@ function Header() {
               current={path === urls.opendata[lang]}
               title={intl.formatMessage({
                 id: 'app.header.nav.a-propos-opendata',
-                defaultMessage: 'Données ouvertes et code source',
+                defaultMessage: 'Données ouvertes et code source du BSO',
               })}
               asLink={<RouterLink to={urls.opendata[lang] + search} />}
             />
