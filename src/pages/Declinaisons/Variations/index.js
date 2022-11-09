@@ -253,6 +253,13 @@ function Variations() {
                 alt='bso local universite paris saclay'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6' className=''>
+              <CardLogo
+                href='https://www.univ-lyon1.fr/actualites/les-trois-quarts-de-la-production-scientifique-de-lyon-1-sont-en-acces-ouvert'
+                img='/declinaisons/lyon1.jpg'
+                alt='bso local universite lyon 1'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className=''>
@@ -315,15 +322,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     UniLaSalle
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.univ-lyon1.fr/recherche/point-barometre-pour-la-science-ouverte-lyon'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université de Lyon 1
                   </a>
                 </li>
                 <li>
