@@ -85,184 +85,191 @@ function Variations() {
                 établissements (dernière version du BSO)
               </h4>
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 img='/declinaisons/UL.svg'
                 alt='bso local UL'
                 href='https://scienceouverte.univ-lorraine.fr/barometre-lorrain-de-la-science-ouverte/'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte-2021.aspx'
                 img='/declinaisons/CEA.png'
                 alt='bso local CEA'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bibliotheques.ensam.eu/page/barometre-de-la-science-ouverte'
                 img='/declinaisons/ENSAM.png'
                 alt='bso local ENSAM'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://oaamu.hypotheses.org/3118'
                 img='/declinaisons/AMU.png'
                 alt='bso local AMU'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://explore.psl.eu/fr/se-former/publier/barometre-de-la-science-ouverte-de-luniversite-psl'
                 img='/declinaisons/PSL.png'
                 alt='bso local PSL'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.ephe.psl.eu/le-barometre-de-la-science-ouverte-de-lecole'
                 img='/declinaisons/EPHE.png'
                 alt='bso local EPHE'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://insermbiblio.inist.fr/barometre-de-la-science-ouverte-inserm/'
                 img='/declinaisons/INSERM.svg'
                 alt='bso local INSERM'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://scienceouverte.univ-rennes1.fr/barometre-science-ouverte-de-luniversite-de-rennes-1'
                 img='/declinaisons/rennes1.png'
                 alt='bso local Rennes 1'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.u-bourgogne.fr/non-categorise/politique-science-ouverte'
                 img='/declinaisons/universiteBourgogne.png'
                 alt='bso local UB'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bu.univ-larochelle.fr/lappui-a-la-recherche/barometre-science-ouverte/'
                 img='/declinaisons/universiteLaRochelle.png'
                 alt='bso local la rochelle'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.univ-poitiers.fr/decouvrir-la-recherche/publications-et-parutions/barometre-de-la-science-ouverte-de-luniversite-de-poitiers/'
                 img='/declinaisons/universitePoitiers.svg'
                 alt='bso local Poitiers'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bib.insa-toulouse.fr/fr/chercheurs-et-doctorants/science-ouverte/barometre.html'
                 img='/declinaisons/INSAToulouse.jpeg'
                 alt='bso local INSA Toulouse'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://hal-insa-lyon.archives-ouvertes.fr/page/barometre-science-ouverte'
                 img='/declinaisons/INSALyon.jpeg'
                 alt='bso local INSA Lyon'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bu.univ-avignon.fr/barometre-de-la-science-ouverte-avignon-universite/'
                 img='/declinaisons/AvignonUniversite.jpeg'
                 alt='bso local Avignon université'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='http://pole-ist.centralesupelec.fr/fr/node/482'
                 img='/declinaisons/CentraleSupelec.png'
                 alt='bso local CentraleSupélec'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://science-ouverte.uca.fr/publications-et-open-access/barometre-science-ouverte-uca'
                 img='/declinaisons/UCA.jpeg'
                 alt='bso local UCA'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bibliotheques.univ-tlse3.fr/utiliser-nos-services/se-former-s-informer/chercheurs/la-science-ouverte-l-ut3'
                 img='/declinaisons/UT3.jpeg'
                 alt='bso local Toulouse 3'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://partage-connaissances.cirad.fr/actualites/barometre-national-de-la-science-ouverte-declinaison-pour-le-cirad'
                 img='/declinaisons/CIRAD.png'
                 alt='bso local CIRAD'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.imt-atlantique.fr/fr/recherche-innovation/enjeux/science-ouverte/libre-acces/bso'
                 img='/declinaisons/IMTAtlantique.jpeg'
                 alt='bso local IMT Atlantique'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/barometre-science-ouverte-evry-2022/'
                 img='/declinaisons/universiteEvry.png'
                 alt='bso local Evry'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://scienceouverte.univ-grenoble-alpes.fr/science-ouverte-grenoble-alpes/barometre-science-ouverte/'
                 img='/declinaisons/UGA.png'
                 alt='bso local UGA'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.univ-brest.fr/drive/menu/DRIVe/Science-Ouverte/Barometre-de-la-science-ouverte'
                 img='/declinaisons/UBO.png'
                 alt='bso local univeristé brest'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.pasteur.fr/fr/ceris/bibliotheque/s-engager-science-ouverte#barometre'
                 img='/declinaisons/pasteur.png'
                 alt='bso local institut pasteur'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.universite-paris-saclay.fr/recherche/science-ouverte/le-barometre-de-la-science-ouverte-de-luniversite-paris-saclay'
                 img='/declinaisons/UPS.svg'
                 alt='bso local universite paris saclay'
               />
             </Col>
-            <Col n='lg-2 md-4 sm-6' className=''>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.univ-lyon1.fr/actualites/les-trois-quarts-de-la-production-scientifique-de-lyon-1-sont-en-acces-ouvert'
                 img='/declinaisons/lyon1.jpg'
                 alt='bso local universite lyon 1'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://scienceouverte.unistra.fr/strategie/le-barometre-science-ouverte/'
+                img='/declinaisons/unistra.png'
+                alt='bso local universite strasbourg unistra'
+              />
+            </Col>
           </Row>
           <Row gutters>
-            <Col n='12' className=''>
+            <Col n='12'>
               <h4 className='p-0'>
                 Baromètres de la Science Ouverte mis en place par les
                 établissements (ancienne version du BSO)
@@ -335,15 +342,6 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://scienceouverte.unistra.fr/strategie/le-barometre-science-ouverte/'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université de Strasbourg
-                  </a>
-                </li>
-                <li>
-                  <a
                     href='https://www.uvsq.fr/barometre-science-ouverte'
                     target='_blank'
                     rel='noreferrer'
@@ -358,7 +356,7 @@ function Variations() {
             </p>
           </Row>
           <Row gutters>
-            <Col n='12' className=''>
+            <Col n='12'>
               <h4 className='p-0'>
                 Autres suivis de l'ouverture des publications
               </h4>
