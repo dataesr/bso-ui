@@ -120,7 +120,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             }),
           ),
           data: both,
-          color: getCSSValue('--blue-soft-100'),
+          color: getCSSValue('--theseshal'),
           dataLabels: noOutline,
         },
         {
@@ -130,7 +130,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             }),
           ),
           data: these,
-          color: getCSSValue('--blue-soft-150'),
+          color: getCSSValue('--thesesfr'),
           dataLabels: noOutline,
         },
       ];

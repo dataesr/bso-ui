@@ -2879,7 +2879,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.shared-software',
       });
@@ -3067,7 +3067,7 @@ export const chartOptions = {
             style: {
               textOutline: 'none',
             },
-            enabled: true,
+            enabled: false,
             formatter() {
               return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
             },
@@ -3107,7 +3107,7 @@ export const chartOptions = {
             style: {
               textOutline: 'none',
             },
-            enabled: true,
+            enabled: false,
             formatter() {
               return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
             },
@@ -3133,7 +3133,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
@@ -3147,7 +3147,7 @@ export const chartOptions = {
             style: {
               textOutline: 'none',
             },
-            enabled: true,
+            enabled: false,
             formatter() {
               return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
             },
@@ -3187,7 +3187,7 @@ export const chartOptions = {
             style: {
               textOutline: 'none',
             },
-            enabled: true,
+            enabled: false,
             formatter() {
               return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
             },

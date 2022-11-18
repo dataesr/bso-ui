@@ -99,7 +99,7 @@ function useGetData(
             }),
           ),
           data: shared,
-          color: getCSSValue('--yellow-medium-125'),
+          color: getCSSValue('--publication-100'),
           dataLabels: noOutline,
         },
       ];

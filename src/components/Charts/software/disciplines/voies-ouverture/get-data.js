@@ -107,7 +107,7 @@ function useGetData(
             }),
           ),
           data: shared,
-          color: getCSSValue('--green-medium-125'),
+          color: getCSSValue('--orange-soft-100'),
           dataLabels: {
             ...noOutline,
             style: { color: getCSSValue('--g-800') },

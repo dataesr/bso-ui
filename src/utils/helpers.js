@@ -102,6 +102,7 @@ export function getPercentageYAxis(
   showTotal = true,
   max = null,
   absolute = false,
+  precision = 0,
 ) {
   let suffix = ' %';
   if (absolute) {
@@ -113,7 +114,7 @@ export function getPercentageYAxis(
       enabled: true,
       formatter() {
         return showTotal && this.total
-          ? this.total.toFixed(0).concat(suffix)
+          ? this.total.toFixed(precision).concat(suffix)
           : '';
       },
       style: {
