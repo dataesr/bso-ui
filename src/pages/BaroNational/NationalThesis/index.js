@@ -23,6 +23,7 @@ export default function NationalThesis() {
       <BannerNational
         selected='url.thesis'
         title='app.baro-national.thesis.title'
+        iconId='icon-these'
       />
       <ScrollTop />
       <section className='content'>

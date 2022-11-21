@@ -9,7 +9,7 @@ import Banner from '../Banner';
 import Chip from '../Chip';
 import Icon from '../Icon';
 
-function BannerNational({ selected, title }) {
+function BannerNational({ selected, title, iconId }) {
   const intl = useIntl();
   const { lang, urls } = useLang();
   const { search } = useLocation();
@@ -18,7 +18,8 @@ function BannerNational({ selected, title }) {
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
         <Icon
-          name='icon-bsso-28'
+          // name='icon-bsso-28'
+          name={iconId}
           color1='blue-soft-125'
           color2='publication-25'
         />
@@ -81,6 +82,7 @@ function BannerNational({ selected, title }) {
 BannerNational.propTypes = {
   selected: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  iconId: PropTypes.string.isRequired,
 };
 
 export default BannerNational;

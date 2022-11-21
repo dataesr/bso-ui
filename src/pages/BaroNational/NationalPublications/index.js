@@ -30,6 +30,7 @@ export default function NationalPublications() {
       <BannerNational
         selected='url.publications.general'
         title='app.baro-national.publications.title'
+        iconId='icon-bsso-28'
       />
       <ScrollTop />
       <section className='content'>

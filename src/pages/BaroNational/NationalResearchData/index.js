@@ -29,6 +29,7 @@ export default function NationalResearchData() {
       <BannerNational
         selected='url.data.general'
         title='app.baro-national.data.title'
+        iconId='icon-data'
       />
       <ScrollTop />
       <section className='content'>
