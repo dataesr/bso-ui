@@ -267,6 +267,13 @@ function Variations() {
                 alt='bso local universite strasbourg unistra'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://bu.univ-nantes.fr/science-ouverte/le-barometre-de-la-science-ouverte-de-nantes-universite'
+                img='/declinaisons/nantes_univ.png'
+                alt='bso local universite nantes'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>

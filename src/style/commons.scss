@@ -106,6 +106,10 @@ div.d-inline-flex {
   position: relative;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .z-200 {
   z-index: 200;
 }
@@ -312,6 +316,10 @@ div.d-inline-flex {
   margin-bottom: 32px;
 }
 
+.mbi-32 {
+  margin-bottom: 32px !important;
+}
+
 .mb-60 {
   margin-bottom: 60px;
 }
@@ -441,4 +449,12 @@ div.d-inline-flex {
 .external_link {
   text-decoration: underline;
   font-weight: 900;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.underline {
+  text-decoration: underline;
 }

@@ -13,10 +13,15 @@ function SelectNavigation({
 }) {
   return (
     <section
-      className={classNames('bso-select-navigation', backgroundClass, {
-        'p-16': !sticked,
-        'p-8': sticked,
-      })}
+      className={classNames(
+        'bso-select-navigation',
+        'absolute',
+        backgroundClass,
+        {
+          'p-16': !sticked,
+          'p-8': sticked,
+        },
+      )}
     >
       <div className='text-left title marianne-bold pb-16'>{title}</div>
       <div className={classNames({ 'pt-16': !sticked })}>
