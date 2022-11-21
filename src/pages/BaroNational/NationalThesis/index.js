@@ -1,5 +1,11 @@
-import { Col, Container, Row } from '@dataesr/react-dsfr';
-import { FormattedMessage } from 'react-intl';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Col,
+  Container,
+  Row,
+} from '@dataesr/react-dsfr';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import BannerNational from '../../../components/BannerNational';
@@ -17,6 +23,7 @@ export default function NationalThesis() {
   const { lang } = useLang();
   const { pathname } = useLocation();
   const blueSoft50 = getCSSValue('--blue-soft-50');
+  const intl = useIntl();
 
   return (
     <Container fluid className='page'>
@@ -31,6 +38,19 @@ export default function NationalThesis() {
           <Container>
             <Row>
               <Col n='12'>
+                <Breadcrumb>
+                  <BreadcrumbItem href='/' className='underline'>
+                    {intl.formatMessage({
+                      id: 'app.header.nav.baro-national-accueil',
+                    })}
+                  </BreadcrumbItem>
+                  <BreadcrumbItem href='#'>></BreadcrumbItem>
+                  <BreadcrumbItem href='#' className='bold'>
+                    {intl.formatMessage({
+                      id: 'app.baro-national.thesis.title',
+                    })}
+                  </BreadcrumbItem>
+                </Breadcrumb>
                 <h1 className='contentTitle marianne-bold mb-32'>
                   <FormattedMessage id='app.baro-national.thesis.title' />
                 </h1>

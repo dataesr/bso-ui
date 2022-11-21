@@ -15,7 +15,7 @@ function BannerNational({ selected, title, iconId }) {
   const { search } = useLocation();
 
   const renderIcons = (
-    <Row justifyContent='center' alignItems='middle' gutters>
+    <Row justifyContent='center' alignItems='middle' gutters className='mbi-32'>
       <Col n='12'>
         <Icon
           // name='icon-bsso-28'
