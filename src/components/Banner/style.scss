@@ -45,7 +45,6 @@
   &.sticky {
     padding: 0;
     position: sticky;
-    top: -1px;
 
     .sub-title,
     .sub-sub-title,
@@ -66,6 +65,7 @@
       bottom: 0;
       border-radius: 0;
       position: relative;
+      top: -1px;
 
       .title {
         display: none;
