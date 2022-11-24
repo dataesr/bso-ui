@@ -1,0 +1,17 @@
+.bso-betachip {
+  @include font-size(12, 16);
+  position: relative;
+  top: -30px;
+  left: -50px;
+  display: flex;
+  z-index: 1;
+  background: var(--blue-france-500);
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  text-align: center;
+  height: 14px;
+  width: 150px;
+  padding: 20px;
+}

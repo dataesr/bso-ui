@@ -42,7 +42,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     dataGraph,
     dataTitle,
   );
-
+  const hasBeta = true;
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomain, intl));
   }, [allData, idWithDomain, intl]);
@@ -52,6 +52,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       chartRef={chartRef}
       dataTitle={dataTitle}
       domain={domain}
+      hasBeta={hasBeta}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}

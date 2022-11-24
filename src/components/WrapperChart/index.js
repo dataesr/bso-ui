@@ -13,6 +13,7 @@ import {
 } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
+import BetaChip from '../BetaChip';
 import GraphComments from '../Charts/graph-comments';
 import GraphFooter from '../Charts/graph-footer';
 import GraphTitle from '../Charts/graph-title';
@@ -24,6 +25,7 @@ function WrapperChart({
   dataTitle,
   domain,
   enableExport,
+  hasBeta,
   hasComments,
   hasFooter,
   id,
@@ -105,6 +107,11 @@ function WrapperChart({
   return (
     <>
       <div className='graph-container' data-id={idWithContext}>
+        {hasBeta && (
+          <span className=''>
+            <BetaChip />
+          </span>
+        )}
         <GraphTitle title={title} />
         {children}
         {hasComments && comments && (
@@ -132,6 +139,7 @@ WrapperChart.defaultProps = {
   chartRef: () => {},
   dataTitle: {},
   enableExport: true,
+  hasBeta: false,
   hasComments: true,
   hasFooter: true,
   isError: false,
@@ -150,6 +158,7 @@ WrapperChart.propTypes = {
   dataTitle: PropTypes.object,
   domain: PropTypes.oneOf(domains).isRequired,
   enableExport: PropTypes.bool,
+  hasBeta: PropTypes.bool,
   hasComments: PropTypes.bool,
   hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds).isRequired,
