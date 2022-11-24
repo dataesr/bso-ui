@@ -67,6 +67,12 @@
     "commentsNameEN": "of Nantes Université",
     "startYear": 2016
   },
+  "194401006": {
+    "name": "Centrale Nantes",
+    "commentsName": "de Centrale Nantes",
+    "commentsNameEN": "of Centrale Nantes",
+    "startYear": 2016
+  },
   "180036048": {
     "name": "Institut national de la santé et de la recherche médicale (Inserm)",
     "commentsName": "de l'Inserm",
@@ -368,6 +374,18 @@
     "name": "Laboratoire d'océanographie microbienne",
     "commentsName": "du LOMIC",
     "commentsNameEN": "of LOMIC",
+    "startYear": 2017
+  },
+  "200610854b": {
+    "name": "Observatoire de Paris",
+    "commentsName": "de l'Observatoire de Paris",
+    "commentsNameEN": "of the Paris Observatory",
+    "startYear": 2017
+  },
+  "130029796": {
+    "name": "Université de Montpellier",
+    "commentsName": "de l'université de Montpellier",
+    "commentsNameEN": "of Montpellier University",
     "startYear": 2017
   }
 }

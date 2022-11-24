@@ -53,11 +53,11 @@ function Banner({
       const banner = document.querySelector('.bso-banner');
       const heightBanner = banner.getBoundingClientRect().height;
 
-      if (scrollTop > banner.offsetTop + heightBanner && scrollingDown) {
+      if (scrollTop > banner.offsetTop + heightBanner + 1 && scrollingDown) {
         setSticked(true);
         // For Glossaire button
         document.querySelector('html').classList.add('banner-sticked');
-      } else if (scrollTop < banner.offsetTop && !scrollingDown) {
+      } else if (scrollTop < banner.offsetTop - 1 && !scrollingDown) {
         // For Glossaire button
         document.querySelector('html').classList.remove('banner-sticked');
         setSticked(false);
