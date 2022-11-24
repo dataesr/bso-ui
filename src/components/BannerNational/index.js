@@ -58,7 +58,7 @@ function BannerNational({ selected, title, iconId }) {
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.baro-national.data.title',
+                  id: 'app.baro-national.data.title.beta',
                 }),
                 value: intl.formatMessage({
                   id: 'url.data.general',
@@ -66,7 +66,7 @@ function BannerNational({ selected, title, iconId }) {
               },
               {
                 label: intl.formatMessage({
-                  id: 'app.baro-national.software.title',
+                  id: 'app.baro-national.software.title.beta',
                 }),
                 value: intl.formatMessage({
                   id: 'url.software.general',

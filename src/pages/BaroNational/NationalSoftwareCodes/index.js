@@ -34,7 +34,7 @@ export default function NationalResearchData() {
     <Container fluid className='page'>
       <BannerNational
         selected='url.software.general'
-        title='app.baro-national.software.title'
+        title='app.baro-national.software.title.beta'
         iconId='icon-code'
       />
       <ScrollTop />
@@ -52,12 +52,16 @@ export default function NationalResearchData() {
                   <BreadcrumbItem href='#'>></BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({
-                      id: 'app.baro-national.software.title',
+                      id: 'app.baro-national.software.title.beta',
                     })}
                   </BreadcrumbItem>
                 </Breadcrumb>
                 <h1 className='contentTitle marianne-bold mb-32'>
                   <FormattedMessage id='app.baro-national.software.title' />
+                  <span> </span>
+                  <span className='beta-title'>
+                    <FormattedMessage id='app.beta' />
+                  </span>
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
@@ -193,6 +197,7 @@ export default function NationalResearchData() {
             </GraphItem>
 
             {/* Type OA */}
+            {/*
             <GraphItem
               paths={['/codes-et-logiciels/oa', '/software/oa']}
               mainLabel={intl.formatMessage({
@@ -232,6 +237,7 @@ export default function NationalResearchData() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+            */}
           </GraphNavigation>
         </Row>
       </section>
