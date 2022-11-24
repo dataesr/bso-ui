@@ -7,9 +7,17 @@ import {
 } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
-function HomeSection({ title, introText, link, children, isDisplayed }) {
+function HomeSection({
+  title,
+  introText,
+  link,
+  children,
+  isDisplayed,
+  hasBeta,
+}) {
   if (isDisplayed || isDisplayed == null) {
     return (
       <section className='home-section px-20 mb-60 px-md-64'>
@@ -18,6 +26,12 @@ function HomeSection({ title, introText, link, children, isDisplayed }) {
             <Col n='12 lg-12 xl-10'>
               <h3 className='marianne-extra-bold fs-28-32 fs-32-40-xl'>
                 {title}
+                {hasBeta && <span> </span>}
+                {hasBeta && (
+                  <span className='beta-title'>
+                    <FormattedMessage id='app.beta' />
+                  </span>
+                )}
               </h3>
               <p className='fs-16-28'>{introText}</p>
               {children}
@@ -41,6 +55,10 @@ function HomeSection({ title, introText, link, children, isDisplayed }) {
   }
 }
 
+HomeSection.defaultProps = {
+  hasBeta: false,
+};
+
 HomeSection.propTypes = {
   title: PropTypes.element.isRequired,
   introText: PropTypes.element.isRequired,
@@ -50,5 +68,6 @@ HomeSection.propTypes = {
   }).isRequired,
   children: PropTypes.element.isRequired,
   isDisplayed: PropTypes.element.isRequired,
+  hasBeta: PropTypes.bool,
 };
 export default HomeSection;

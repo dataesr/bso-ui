@@ -149,9 +149,7 @@ function BaroNational() {
                     <FormattedMessage id='app.baro-national.detail-theses' />
                   ),
                 }}
-                title={
-                  <FormattedMessage id='app.header.nav.baro-national-theses' />
-                }
+                title={<FormattedMessage id='app.baro-national.thesis.title' />}
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.thesis.intro'
@@ -175,9 +173,8 @@ function BaroNational() {
                     <FormattedMessage id='app.baro-national.detail-data' />
                   ),
                 }}
-                title={
-                  <FormattedMessage id='app.header.nav.baro-national-data' />
-                }
+                title={<FormattedMessage id='app.baro-national.data.title' />}
+                hasBeta='1'
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.data.intro'
@@ -202,8 +199,9 @@ function BaroNational() {
                   ),
                 }}
                 title={
-                  <FormattedMessage id='app.header.nav.baro-national-software' />
+                  <FormattedMessage id='app.baro-national.software.title' />
                 }
+                hasBeta='1'
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.software.intro'
