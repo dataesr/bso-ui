@@ -1160,7 +1160,5 @@
   "url.sante.essais": "/sante/essais-cliniques/general",
   "url.sante.etudes": "/sante/etudes-observationnelles/general",
   "url.sante.publications.general": "/sante/publications/general",
-  "app.pages.does-not-exist": "Cette page n'existe pas.",
-  "app.researchdata.intro": "Introduction sur les données de la recherche",
-  "app.softwarecodes.intro": "Introduction sur les codes logiciels"
+  "app.pages.does-not-exist": "Cette page n'existe pas."
 }

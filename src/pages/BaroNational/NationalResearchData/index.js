@@ -63,7 +63,7 @@ export default function NationalResearchData() {
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
-                    intlKey='app.researchdata.intro'
+                    intlKey='app.baro-national.data.intro'
                     glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 </p>
