@@ -3205,6 +3205,46 @@ export const chartOptions = {
       return options;
     },
   },
+  'data.disciplines.voies-ouverture.chart-availibility': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.availibility' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
   'publi.others.collaborations.international-collaborations': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions({ id, intl });

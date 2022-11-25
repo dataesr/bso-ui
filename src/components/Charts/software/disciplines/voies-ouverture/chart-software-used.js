@@ -46,7 +46,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
     });
   }, [beforeLastObservationSnap, intl]);
-
+  const hasBeta = true;
   useEffect(() => {
     let sortKey;
     if (sort === 'sort-staff') {
@@ -80,6 +80,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       chartRef={chartRef}
       dataTitle={dataTitle}
       domain={domain}
+      hasBeta={hasBeta}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}

@@ -34,7 +34,7 @@ export default function NationalResearchData() {
     <Container fluid className='page'>
       <BannerNational
         selected='url.data.general'
-        title='app.baro-national.data.title'
+        title='app.baro-national.data.title.beta'
         iconId='icon-data'
       />
       <ScrollTop />
@@ -56,10 +56,14 @@ export default function NationalResearchData() {
                 </Breadcrumb>
                 <h1 className='contentTitle marianne-bold mb-32'>
                   <FormattedMessage id='app.baro-national.data.title' />
+                  <span> </span>
+                  <span className='beta-title'>
+                    <FormattedMessage id='app.beta' />
+                  </span>
                 </h1>
                 <p>
                   <GlossaryFormattedMessage
-                    intlKey='app.researchdata.intro'
+                    intlKey='app.baro-national.data.intro'
                     glossaryKeys={['acces-ouvert', 'publication-fr']}
                   />
                 </p>
@@ -219,6 +223,17 @@ export default function NationalResearchData() {
                 >
                   <BSOChart
                     id='data.disciplines.voies-ouverture.chart-data-used'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-data.disciplines.statement'
+                  glossaryKeys={['archive-ouverte']}
+                  backgroundColor={blueSoft25}
+                  anchorId='disciplines.statement'
+                >
+                  <BSOChart
+                    id='data.disciplines.voies-ouverture.chart-availibility'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>

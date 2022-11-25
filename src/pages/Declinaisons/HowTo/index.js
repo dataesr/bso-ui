@@ -1,4 +1,4 @@
-import { Col, Container, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Icon as DSIcon, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -27,51 +27,136 @@ function HowTo() {
         icons={renderIcons}
       />
       <Container>
-        <section className='content py-48'>
+        <section className='content py-48 bd125'>
           <Row gutters>
             <Col n='12 lg-8'>
               <h2 className='marianne-bold fs-12-16'>
                 Déclinaisons locales du Baromètre de la Science Ouverte
               </h2>
-              Les volets publications du BSO est déclinable pour chaque
-              établissement ou laboratoire en mesure de constituer sa liste de
-              publications (DOI uniquement pour le moment).
+              Les différents volets du BSO (hors essais cliniques et études
+              observationnelles) sont déclinables pour chaque établissement ou
+              laboratoire qui le souhaite.
             </Col>
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32' id='methodo'>
-                Constituer la liste de publications d'un établissement ou d'une
-                unité de recherche
+              <h4 className='marianne-bold fs-24-32 bd125' id='methodo'>
+                A - Définition du périmètre du BSO local
               </h4>
-              Chaque établissement / laboratoire qui le souhaite nous fait
-              parvenir une liste de DOI (csv ou excel), et nous précise le nom
-              qui sera affiché pour l'établissement, la date de début ainsi que
-              la date de fin si nécessaire. Pour obtenir cette liste de DOI,
-              l'Université de Lorraine a développé un code que vous pouvez
-              trouver
-              {' '}
-              <a
-                href='https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/01_nettoyage_donnees.ipynb'
-                rel='noreferrer'
-                target='_blank'
-              >
-                ici
-              </a>
-              . Une fois cette liste réalisée, vous pouvez pour le moment nous
-              la communiquer par email à
-              {' '}
-              <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
-              .
+              Le périmètre de chaque BSO local reste entièrement à la main de
+              l'établissement. Il est possible de remonter plusieurs
+              informations :
+              <ul>
+                <li>
+                  -
+                  <span className='marianne-bold'> liste de DOI </span>
+                  (à partir des sources à votre disposition)
+                  <em> ex: 10.1016/j.chemgeo.2016.10.031</em>
+                </li>
+                <li>
+                  -
+                  <span className='marianne-bold'>
+                    {' '}
+                    liste d'identifiants structure dans HAL (structId)
+                    {' '}
+                  </span>
+                  <em> ex: 413289</em>
+                </li>
+                <li>
+                  -
+                  <span className='marianne-bold'>
+                    {' '}
+                    liste de codes collection dans HAL
+                    {' '}
+                  </span>
+                  <em> ex: UNIV-LORRAINE </em>
+                </li>
+                <li>
+                  -
+                  <span className='marianne-bold'>
+                    {' '}
+                    liste d'identifiants HAL de publications
+                    {' '}
+                  </span>
+                  <em> ex: hal-03651518</em>
+                </li>
+                <li>
+                  -
+                  <span className='marianne-bold'>
+                    {' '}
+                    liste de codes établissement pour les thèses
+                    {' '}
+                  </span>
+                  <em> ex: LORR</em>
+                </li>
+                <li>
+                  -
+                  <span className='marianne-bold'>
+                    {' '}
+                    liste d'identifiants NNT pour les thèses
+                    {' '}
+                  </span>
+                  <em> ex: 2019LORR0153</em>
+                </li>
+              </ul>
+              <em>
+                NB : Toutes les informations doivent figurer dans un seul
+                fichier.
+              </em>
+              <Col offset='2 md-4'>
+                <div className='button-link marianne-bold relative my-button'>
+                  <DSIcon
+                    className='ds-fr--v-middle'
+                    size='xl'
+                    name='ri-arrow-right-line'
+                    iconPosition='right'
+                  >
+                    <a href='https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso_dump/BSO_local.csv'>
+                      Voir un fichier d'exemple
+                    </a>
+                  </DSIcon>
+                </div>
+              </Col>
+              <h4 className='marianne-bold fs-24-32 bd125' id='methodo'>
+                B - Envoyez-nous votre fichier
+              </h4>
+              Une fois votre fichier réalisé, vous pouvez nous le transmettre
+              par email
+              <span className='underline marianne-bold'>
+                <a href='mailto:bso@recherche.gouv.fr'>
+                  {' '}
+                  bso@recherche.gouv.fr
+                  {' '}
+                </a>
+              </span>
+              et nous
+              <span className='marianne-bold'> préciser</span>
+              :
+              <ul>
+                <li>
+                  -
+                  <span className='marianne-bold'>
+                    {' '}
+                    le nom complet de l'établissement
+                  </span>
+                </li>
+                <li>
+                  - (si besoin)
+                  <span className='marianne-bold'>
+                    {' '}
+                    le nom court (ou acronyme) de l'établissement
+                  </span>
+                </li>
+                <li>
+                  -
+                  <span className='marianne-bold'> la période couverte </span>
+                  (années de publication couvertes)
+                </li>
+              </ul>
               Un meilleur système de remontée sera probablement mis en place
-              dans le futur. Il faut alors que notre système ingère cette liste
-              de DOI.
-            </Col>
-          </Row>
-          <Row gutters>
-            <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32' id='how-to'>
-                Utilisation et paramétrage des iFrames
+              dans le futur.
+              <h4 className='marianne-bold fs-24-32 bd125' id='methodo'>
+                C - Intégration des graphiques générés (via iFrame)
               </h4>
               Dès lors, chaque graphique du BSO publications est déclinable pour
               l'établissement / laboratoire. Ce graphique sera alors intégrable
