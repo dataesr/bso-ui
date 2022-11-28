@@ -67,7 +67,7 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
           // eslint-disable-next-line no-unused-vars
           credits = () => window.open(window.location.origin, target);
           this.renderer
-            .text(embargoText, this.plotLeft + 150, 150)
+            .text(embargoText, this.plotLeft, 150)
             .attr({
               zIndex: 5,
               // align: 'center',
@@ -2865,7 +2865,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
       // options.legend.title.text = intl.formatMessage({
       //   id: 'app.publi.type-hebergement',
@@ -2933,7 +2933,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-software',
       });
@@ -3002,7 +3002,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-data',
       });
@@ -3037,7 +3037,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.availibility',
       });
@@ -3232,7 +3232,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({ id: 'app.availibility' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
