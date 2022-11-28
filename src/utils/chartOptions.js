@@ -26,7 +26,7 @@ import {
  */
 export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let otherSources = [];
-  const { commentsName, name } = getURLSearchParams(intl);
+  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl);
   otherSources = [name];
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;
@@ -35,6 +35,13 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
     id: `${id}.legend`,
     defaultMessage: ' ',
   });
+  let embargoText = '';
+  if (
+    bsoLocalAffiliation
+    && lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION
+  ) {
+    embargoText = 'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
+  }
   const tooltip = intl
     .formatMessage({
       id: `${titleId}.tooltip`,
@@ -51,6 +58,7 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
+      // plotBackgroundImage: backgroundImage,
       events: {
         // eslint-disable-next-line object-shorthand, func-names
         load: function () {
@@ -58,6 +66,17 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
           let credits = this?.credits?.element?.onclick;
           // eslint-disable-next-line no-unused-vars
           credits = () => window.open(window.location.origin, target);
+          this.renderer
+            .text(embargoText, this.plotLeft, 150)
+            .attr({
+              zIndex: 5,
+              // align: 'center',
+            })
+            .css({
+              fontSize: '36px',
+              // transform: 'rotate(-45deg)',
+            })
+            .add();
         },
       },
     },
@@ -2846,7 +2865,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
       // options.legend.title.text = intl.formatMessage({
       //   id: 'app.publi.type-hebergement',
@@ -2914,7 +2933,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-software',
       });
@@ -2983,7 +3002,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-data',
       });
@@ -3018,7 +3037,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.availibility',
       });
@@ -3213,7 +3232,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({ id: 'app.availibility' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
