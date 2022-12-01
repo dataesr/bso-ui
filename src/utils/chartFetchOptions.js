@@ -329,6 +329,17 @@ export default function getFetchOptions({
         },
       },
     }),
+    these: () => ({
+      size: 0,
+      aggs: {
+        publication_count: {
+          cardinality: {
+            field: 'id.keyword',
+            precision_threshold: 1000,
+          },
+        },
+      },
+    }),
     sponsorsTypesList: ([studyType]) => ({
       size: 0,
       query: {
@@ -1321,6 +1332,22 @@ export default function getFetchOptions({
     }),
     declarationRate: ([lastObservationSnap]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: 2016,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
       aggs: {
         by_agency: {
           terms: {
@@ -1816,6 +1843,9 @@ export default function getFetchOptions({
     queryResponse.query.bool.filter.push({
       terms: { 'id_type.keyword': ['nnt'] },
     });
+  }
+  if (['publication', 'journal', 'repository'].includes(key)) {
+    idTypes.push('hal');
   }
   if (isPublications) {
     queryResponse.query.bool.filter.push({
