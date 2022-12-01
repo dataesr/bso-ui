@@ -1,11 +1,51 @@
-import { Col, Container, Icon as DSIcon, Row } from '@dataesr/react-dsfr';
-import React from 'react';
+import {
+  Col,
+  Container,
+  Icon as DSIcon,
+  Row,
+  Select,
+  TextInput,
+  Toggle,
+} from '@dataesr/react-dsfr';
+import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
+import { isInProduction } from '../../../utils/helpers';
+import objects from './tree';
 
 function HowTo() {
+  const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506');
+  const [displayComment, setDisplayComment] = useState(true);
+  const [displayFooter, setDisplayFooter] = useState(true);
+  const [displayTitle, setDisplayTitle] = useState(true);
+  const [endYear, setEndYear] = useState(2022);
+  const [firstObservationYear, setFirstObservationYear] = useState(2018);
+  const [graph, setGraph] = useState(
+    'publi.general.dynamique-ouverture.chart-taux-ouverture',
+  );
+  const [lang, setLang] = useState('fr');
+  const [lastObservationYear, setLastObservationYear] = useState(2022);
+  const [object, setObject] = useState('publi');
+  const [startYear, setStartYear] = useState(2013);
+  const [tab, setTab] = useState('general');
+
+  const graphUrl = `https://barometredelascienceouverte.esr.gouv.fr/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}`;
+  const langs = [
+    { label: 'Français', value: 'fr' },
+    { label: 'Anglais', value: 'en' },
+  ];
+  const observationYears = [2018, 2019, 2020, 2021, 2022].map((item) => ({
+    label: item,
+    value: item,
+  }));
+  const publicationYears = [
+    2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
+  ].map((item) => ({ label: item, value: item }));
+  const tabs = objects?.find((item) => item.value === object)?.children || [];
+  const graphs = tabs?.find((item) => item.value === tab)?.children || [];
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -122,13 +162,11 @@ function HowTo() {
               </h4>
               Une fois votre fichier réalisé, vous pouvez nous le transmettre
               par email
+              {' '}
               <span className='underline marianne-bold'>
-                <a href='mailto:bso@recherche.gouv.fr'>
-                  {' '}
-                  bso@recherche.gouv.fr
-                  {' '}
-                </a>
+                <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
               </span>
+              {' '}
               et nous
               <span className='marianne-bold'> préciser</span>
               :
@@ -158,145 +196,267 @@ function HowTo() {
               <h4 className='marianne-bold fs-24-32 bd125' id='methodo'>
                 C - Intégration des graphiques générés (via iFrame)
               </h4>
-              Dès lors, chaque graphique du BSO publications est déclinable pour
-              l'établissement / laboratoire. Ce graphique sera alors intégrable
-              dans n'importe quel site web via une iFrame. Pour décliner un
-              graphique, cliquer sur le bouton "Intégration" en bas du graphique
-              voulu, afin de récupérer son url. Ensuite, ajouter à cette url
-              l'identifiant Siren de la structure (ex:
-              <i>bsoLocalAffiliation=130015506</i>
-              {' '}
-              pour l'Université de
-              Lorraine). Par défaut, les éléments envoyés précédemment (nom,
-              date de début et date de fin) seront intégrés pour cet
-              établissement / laboratoire. Néanmoins, il est possible de les
-              modifier directement dans l'URL via des paramètres :
-              <ul>
-                <li>
-                  <b>bsoLocalAffiliation</b>
+              {isInProduction() && (
+                <>
+                  Dès lors, chaque graphique du BSO publications est déclinable
+                  pour l'établissement / laboratoire. Ce graphique sera alors
+                  intégrable dans n'importe quel site web via une iFrame. Pour
+                  décliner un graphique, cliquer sur le bouton "Intégration" en
+                  bas du graphique voulu, afin de récupérer son url. Ensuite,
+                  ajouter à cette url l'identifiant Siren de la structure (ex:
+                  <i>bsoLocalAffiliation=130015506</i>
                   {' '}
-                  : SIREN de l'établissement (ex:
-                  bsoLocalAffiliation=130015506)
-                  <i> requis</i>
-                </li>
-                <li>
-                  <b>commentsName</b>
+                  pour l'Université de
+                  Lorraine). Par défaut, les éléments envoyés précédemment (nom,
+                  date de début et date de fin) seront intégrés pour cet
+                  établissement / laboratoire. Néanmoins, il est possible de les
+                  modifier directement dans l'URL via des paramètres :
+                  <ul>
+                    <li>
+                      <b>bsoLocalAffiliation</b>
+                      {' '}
+                      : SIREN de l'établissement (ex:
+                      bsoLocalAffiliation=130015506)
+                      <i> requis</i>
+                    </li>
+                    <li>
+                      <b>commentsName</b>
+                      {' '}
+                      : Nom de l'établissement / laboratoire
+                      qui sera affiché dans les commentaires (ex:
+                      commentsName=de l'université de Lorraine),
+                      <i> défaut: vide</i>
+                    </li>
+                    <li>
+                      <b>commentsNameEN</b>
+                      {' '}
+                      : Nom de l'établissement /
+                      laboratoire qui sera affiché dans les commentaires en
+                      anglais (ex: commentsName=of the university of Lorraine),
+                      <i> défaut: vide</i>
+                    </li>
+                    <li>
+                      <b>displayComment</b>
+                      {' '}
+                      : affiche ou masque le commentaire
+                      (ex: displayComment=false),
+                      <i> défaut: true</i>
+                    </li>
+                    <li>
+                      <b>displayTitle</b>
+                      {' '}
+                      : affiche ou masque le titre (ex:
+                      displayTitle=false),
+                      <i> défaut: true</i>
+                    </li>
+                    <li>
+                      <b>displayFooter</b>
+                      {' '}
+                      : affiche ou masque le footer (ex:
+                      displayFooter=false),
+                      <i> défaut: true</i>
+                    </li>
+                    <li>
+                      <b>endYear</b>
+                      {' '}
+                      : filtre sur l'année d'observation
+                      inférieure ou égale (ex: endYear=2020),
+                      <i> défaut: vide</i>
+                    </li>
+                    <li>
+                      <b>name</b>
+                      {' '}
+                      : Nom de l'établissement / laboratoire qui
+                      préfixe le titre du graphe (ex: name=Université de
+                      Lorraine),
+                      <i> défaut: vide</i>
+                    </li>
+                    <li>
+                      <b>firstObservationYear</b>
+                      {' '}
+                      : première année d'observation
+                      (ex: firstObservationYear=2019),
+                      <i> défaut: 2018</i>
+                    </li>
+                    <li>
+                      <b>lastObservationYear</b>
+                      {' '}
+                      : Dernière année d'observation
+                      à prendre en compte,
+                      <i> défaut: 2021</i>
+                    </li>
+                    <li>
+                      <b>startYear</b>
+                      {' '}
+                      : première année de publication (ex:
+                      startYear=2016),
+                      <i> défaut: 2013</i>
+                    </li>
+                  </ul>
+                  <li>
+                    Attention, seuls les graphes du BSO publications sont
+                    adaptables (et pas ceux concernant la santé).
+                  </li>
+                  <li>
+                    D'autre part, l'url doit être encodée. Pour ce faire, il
+                    faut copier coller l'url composée dans un navigateur et
+                    celui-ci la réécrira dans la barre d'adresse. C'est alors
+                    cette URL réécrite qu'il faudra mettre dans l'attribut "src"
+                    de l'iframe.
+                  </li>
+                  Exemple:
                   {' '}
-                  : Nom de l'établissement / laboratoire qui
-                  sera affiché dans les commentaires (ex: commentsName=de
-                  l'université de Lorraine),
-                  <i> défaut: vide</i>
-                </li>
-                <li>
-                  <b>commentsNameEN</b>
-                  {' '}
-                  : Nom de l'établissement / laboratoire
-                  qui sera affiché dans les commentaires en anglais (ex:
-                  commentsName=of the university of Lorraine),
-                  <i> défaut: vide</i>
-                </li>
-                <li>
-                  <b>displayComment</b>
-                  {' '}
-                  : affiche ou masque le commentaire (ex:
-                  displayComment=false),
-                  <i> défaut: true</i>
-                </li>
-                <li>
-                  <b>displayTitle</b>
-                  {' '}
-                  : affiche ou masque le titre (ex:
-                  displayTitle=false),
-                  <i> défaut: true</i>
-                </li>
-                <li>
-                  <b>displayFooter</b>
-                  {' '}
-                  : affiche ou masque le footer (ex:
-                  displayFooter=false),
-                  <i> défaut: true</i>
-                </li>
-                <li>
-                  <b>endYear</b>
-                  {' '}
-                  : filtre sur l'année d'observation inférieure
-                  ou égale (ex: endYear=2020),
-                  <i> défaut: vide</i>
-                </li>
-                <li>
-                  <b>name</b>
-                  {' '}
-                  : Nom de l'établissement / laboratoire qui préfixe
-                  le titre du graphe (ex: name=Université de Lorraine),
-                  <i> défaut: vide</i>
-                </li>
-                <li>
-                  <b>observationYear</b>
-                  {' '}
-                  : Dernière année d'observation à
-                  prendre en compte,
-                  <i> défaut: 2021</i>
-                </li>
-                <li>
-                  <b>startYear</b>
-                  {' '}
-                  : première année de publication (ex:
-                  startYear=2016),
-                  <i> défaut: 2013</i>
-                </li>
-                <li>
-                  <b>firstObservationYear</b>
-                  {' '}
-                  : première année d'observation
-                  (ex: firstObservationYear=2019),
-                  <i> défaut: 2018</i>
-                </li>
-              </ul>
-              <li>
-                Attention, seuls les graphes du BSO publications sont adaptables
-                (et pas ceux concernant la santé).
-              </li>
-              <li>
-                D'autre part, l'url doit être encodée. Pour ce faire, il faut
-                copier coller l'url composée dans un navigateur et celui-ci la
-                réécrira dans la barre d'adresse. C'est alors cette URL réécrite
-                qu'il faudra mettre dans l'attribut "src" de l'iframe.
-              </li>
-              Exemple:
-              {' '}
-              <i>
-                <a
-                  href='https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016'
-                  rel='noreferrer'
-                  target='_blank'
-                >
-                  https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016
-                </a>
-              </i>
-              <br />
-              <br />
-              <pre className='code'>
-                &lt;iframe
-                <br />
-                <span style={{ paddingLeft: '18px' }} />
-                id="publi.general.dynamique-ouverture.chart-evolution-proportion"
-                <br />
-                <span style={{ paddingLeft: '18px' }} />
-                title="Université de Lorraine: Evolution du taux d'accès ouvert
-                des publications scientifiques françaises par année
-                d'observation"
-                <br />
-                <span style={{ paddingLeft: '18px' }} />
-                width="800"
-                <br />
-                <span style={{ paddingLeft: '18px' }} />
-                height="600"
-                <br />
-                <span style={{ paddingLeft: '18px' }} />
-                src="https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019"
-                <br />
-                &gt;&lt;/iframe&gt;
-              </pre>
+                  <i>
+                    <a
+                      href='https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016'
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016
+                    </a>
+                  </i>
+                  <br />
+                  <br />
+                  <pre className='code'>
+                    &lt;iframe
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    id="publi.general.dynamique-ouverture.chart-evolution-proportion"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    title="Université de Lorraine: Evolution du taux d'accès
+                    ouvert des publications scientifiques françaises par année
+                    d'observation"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    width="800"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    height="600"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    src="https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019"
+                    <br />
+                    &gt;&lt;/iframe&gt;
+                  </pre>
+                </>
+              )}
+              {!isInProduction() && (
+                <>
+                  <br />
+                  <br />
+                  <form>
+                    <TextInput
+                      hint='Celui reçu par email après avoir communiqué le périmètre de votre BSO local'
+                      label="Identifiant de l'établissement"
+                      onChange={(e) => setBsoLocalAffiliation(e.target.value)}
+                      required
+                      value={bsoLocalAffiliation}
+                      placeholder='130015506'
+                    />
+                    <Select
+                      label='Objets de recherche'
+                      onChange={(e) => setObject(e.target.value)}
+                      options={objects}
+                      selected={object}
+                    />
+                    <Select
+                      label='Onglets'
+                      onChange={(e) => setTab(e.target.value)}
+                      options={tabs}
+                      selected={tab}
+                    />
+                    <Select
+                      label='Graphiques'
+                      onChange={(e) => setGraph(e.target.value)}
+                      options={graphs}
+                      selected={graph}
+                    />
+                    <Select
+                      label='Langue'
+                      onChange={(e) => setLang(e.target.value)}
+                      options={langs}
+                      selected={lang}
+                    />
+                    <Select
+                      hint="Filtre sur l'année de publication supérieure ou égale"
+                      label='Première année de publication'
+                      onChange={(e) => setStartYear(e.target.value)}
+                      options={publicationYears}
+                      selected={startYear}
+                    />
+                    <Select
+                      hint="Filtre sur l'année de publication inférieure ou égale"
+                      label='Dernière année de publication'
+                      onChange={(e) => setEndYear(e.target.value)}
+                      options={publicationYears}
+                      selected={endYear}
+                    />
+                    <Select
+                      hint="Filtre sur l'année d'observation inférieure ou égale"
+                      label="Première année d'observation"
+                      onChange={(e) => setFirstObservationYear(e.target.value)}
+                      options={observationYears}
+                      selected={firstObservationYear}
+                    />
+                    <Select
+                      hint="Filtre sur l'année d'observation supérieure ou égale"
+                      label="Dernière année d'observation"
+                      onChange={(e) => setLastObservationYear(e.target.value)}
+                      options={observationYears}
+                      selected={lastObservationYear}
+                    />
+                    <Toggle
+                      checked={displayTitle}
+                      label='Affiche le titre du graphique'
+                      onChange={() => setDisplayTitle(!displayTitle)}
+                    />
+                    <Toggle
+                      checked={displayComment}
+                      label='Affiche le commentaire du graphique'
+                      onChange={() => setDisplayComment(!displayComment)}
+                    />
+                    <Toggle
+                      checked={displayFooter}
+                      label='Affiche le footer du graphique'
+                      onChange={() => setDisplayFooter(!displayFooter)}
+                    />
+                  </form>
+                  <iframe
+                    id='publi.general.dynamique-ouverture.chart-evolution-proportion'
+                    title="Université de Lorraine: Evolution du taux d'accès ouvert
+                    des publications scientifiques françaises par année
+                    d'observation"
+                    width='800'
+                    height='600'
+                    src={graphUrl}
+                  />
+                  <pre className='code'>
+                    &lt;iframe
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    id="publi.general.dynamique-ouverture.chart-evolution-proportion"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    title="Université de Lorraine: Evolution du taux d'accès
+                    ouvert des publications scientifiques françaises par année
+                    d'observation"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    width="800"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    height="600"
+                    <br />
+                    <span style={{ paddingLeft: '18px' }} />
+                    src="
+                    {graphUrl}
+                    "
+                    <br />
+                    &gt;&lt;/iframe&gt;
+                  </pre>
+                </>
+              )}
             </Col>
           </Row>
         </section>

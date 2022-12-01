@@ -304,7 +304,7 @@ export function getURLSearchParams(intl = undefined) {
     || locals?.[bsoLocalAffiliation]?.country
     || 'fr';
   const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
-    || locals?.[bsoLocalAffiliation]?.observationYear
+    || locals?.[bsoLocalAffiliation]?.lastObservationYear
     || process.env.REACT_APP_LAST_OBSERVATION;
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.firstObservationYear
@@ -387,10 +387,10 @@ export function getURLSearchParams(intl = undefined) {
     displayTitle,
     displayFooter,
     endYear,
-    idTypes,
-    name,
-    lastObservationYear,
     firstObservationYear,
+    idTypes,
+    lastObservationYear,
+    name,
     startYear,
   };
 }
