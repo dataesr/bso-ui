@@ -12,7 +12,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
-import { isInProduction } from '../../../utils/helpers';
+import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import objects from './tree';
 
 function HowTo() {
@@ -30,8 +30,9 @@ function HowTo() {
   const [object, setObject] = useState('publi');
   const [startYear, setStartYear] = useState(2013);
   const [tab, setTab] = useState('general');
+  const [useHalId, setUseHalId] = useState(false);
 
-  const graphUrl = `https://barometredelascienceouverte.esr.gouv.fr/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}`;
+  const graphUrl = `https://barometredelascienceouverte.esr.gouv.fr/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
   const langs = [
     { label: 'Français', value: 'fr' },
     { label: 'Anglais', value: 'en' },
@@ -80,7 +81,7 @@ function HowTo() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32 bd125' id='methodo'>
+              <h4 className='marianne-bold fs-24-32 bd125' id='step_01'>
                 A - Définition du périmètre du BSO local
               </h4>
               Le périmètre de chaque BSO local reste entièrement à la main de
@@ -157,7 +158,7 @@ function HowTo() {
                   </DSIcon>
                 </div>
               </Col>
-              <h4 className='marianne-bold fs-24-32 bd125' id='methodo'>
+              <h4 className='marianne-bold fs-24-32 bd125' id='step_02'>
                 B - Envoyez-nous votre fichier
               </h4>
               Une fois votre fichier réalisé, vous pouvez nous le transmettre
@@ -193,7 +194,7 @@ function HowTo() {
               </ul>
               Un meilleur système de remontée sera probablement mis en place
               dans le futur.
-              <h4 className='marianne-bold fs-24-32 bd125' id='methodo'>
+              <h4 className='marianne-bold fs-24-32 bd125' id='step_03'>
                 C - Intégration des graphiques générés (via iFrame)
               </h4>
               {isInProduction() && (
@@ -345,116 +346,165 @@ function HowTo() {
                 <>
                   <br />
                   <br />
-                  <form>
-                    <TextInput
-                      hint='Celui reçu par email après avoir communiqué le périmètre de votre BSO local'
-                      label="Identifiant de l'établissement"
-                      onChange={(e) => setBsoLocalAffiliation(e.target.value)}
-                      required
-                      value={bsoLocalAffiliation}
-                      placeholder='130015506'
+                  <section
+                    style={{
+                      backgroundColor: getCSSValue('--blue-soft-25'),
+                      padding: '28px',
+                    }}
+                  >
+                    <form>
+                      <TextInput
+                        hint='Celui reçu par email après avoir communiqué le périmètre de votre BSO local'
+                        label="Identifiant de l'établissement"
+                        message='Merci de saisir un identifiant'
+                        messageType={bsoLocalAffiliation === '' ? 'error' : ''}
+                        onChange={(e) => setBsoLocalAffiliation(e.target.value)}
+                        required
+                        style={{ backgroundColor: getCSSValue('--white') }}
+                        value={bsoLocalAffiliation}
+                      />
+                      <Select
+                        label='Objet de recherche'
+                        onChange={(e) => setObject(e.target.value)}
+                        options={objects}
+                        selected={object}
+                        style={{ backgroundColor: getCSSValue('--white') }}
+                      />
+                      <Select
+                        label='Onglet'
+                        onChange={(e) => setTab(e.target.value)}
+                        options={tabs}
+                        selected={tab}
+                        style={{ backgroundColor: getCSSValue('--white') }}
+                      />
+                      <Select
+                        label='Graphique'
+                        onChange={(e) => setGraph(e.target.value)}
+                        options={graphs}
+                        selected={graph}
+                        style={{ backgroundColor: getCSSValue('--white') }}
+                      />
+                      <Select
+                        label='Langue'
+                        onChange={(e) => setLang(e.target.value)}
+                        options={langs}
+                        selected={lang}
+                        style={{ backgroundColor: getCSSValue('--white') }}
+                      />
+                      <Row gutters>
+                        <Col n='12 md-6'>
+                          <Select
+                            hint="Filtre sur l'année de publication supérieure ou égale"
+                            label='Première année de publication'
+                            onChange={(e) => setStartYear(e.target.value)}
+                            options={publicationYears}
+                            selected={startYear}
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                          />
+                        </Col>
+                        <Col n='12 md-6'>
+                          <Select
+                            hint="Filtre sur l'année de publication inférieure ou égale"
+                            label='Dernière année de publication'
+                            message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
+                            messageType={endYear < startYear ? 'error' : ''}
+                            onChange={(e) => setEndYear(e.target.value)}
+                            options={publicationYears}
+                            selected={endYear}
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row gutters>
+                        <Col n='12 md-6'>
+                          <Select
+                            hint="Filtre sur l'année d'observation inférieure ou égale"
+                            label="Première année d'observation"
+                            onChange={(e) => setFirstObservationYear(e.target.value)}
+                            options={observationYears}
+                            selected={firstObservationYear}
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                          />
+                        </Col>
+                        <Col n='12 md-6'>
+                          <Select
+                            hint="Filtre sur l'année d'observation supérieure ou égale"
+                            label="Dernière année d'observation"
+                            onChange={(e) => setLastObservationYear(e.target.value)}
+                            options={observationYears}
+                            selected={lastObservationYear}
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                            messageType={
+                              lastObservationYear < firstObservationYear
+                                ? 'error'
+                                : ''
+                            }
+                            message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
+                          />
+                        </Col>
+                      </Row>
+                      <Toggle
+                        checked={displayTitle}
+                        hasLabelLeft
+                        label='Affiche le titre du graphique'
+                        onChange={() => setDisplayTitle(!displayTitle)}
+                      />
+                      <hr />
+                      <Toggle
+                        checked={displayComment}
+                        hasLabelLeft
+                        label='Affiche le commentaire du graphique'
+                        onChange={() => setDisplayComment(!displayComment)}
+                      />
+                      <hr />
+                      <Toggle
+                        checked={displayFooter}
+                        hasLabelLeft
+                        label='Affiche le footer du graphique'
+                        onChange={() => setDisplayFooter(!displayFooter)}
+                      />
+                      <hr />
+                      <Toggle
+                        checked={useHalId}
+                        hasLabelLeft
+                        label='Inclure les identifants de HAL'
+                        onChange={() => setUseHalId(!useHalId)}
+                      />
+                    </form>
+                    <iframe
+                      id='publi.general.dynamique-ouverture.chart-evolution-proportion'
+                      title="Université de Lorraine: Evolution du taux d'accès ouvert
+                      des publications scientifiques françaises par année
+                      d'observation"
+                      width='800'
+                      height='600'
+                      src={encodeURI(graphUrl)}
                     />
-                    <Select
-                      label='Objets de recherche'
-                      onChange={(e) => setObject(e.target.value)}
-                      options={objects}
-                      selected={object}
-                    />
-                    <Select
-                      label='Onglets'
-                      onChange={(e) => setTab(e.target.value)}
-                      options={tabs}
-                      selected={tab}
-                    />
-                    <Select
-                      label='Graphiques'
-                      onChange={(e) => setGraph(e.target.value)}
-                      options={graphs}
-                      selected={graph}
-                    />
-                    <Select
-                      label='Langue'
-                      onChange={(e) => setLang(e.target.value)}
-                      options={langs}
-                      selected={lang}
-                    />
-                    <Select
-                      hint="Filtre sur l'année de publication supérieure ou égale"
-                      label='Première année de publication'
-                      onChange={(e) => setStartYear(e.target.value)}
-                      options={publicationYears}
-                      selected={startYear}
-                    />
-                    <Select
-                      hint="Filtre sur l'année de publication inférieure ou égale"
-                      label='Dernière année de publication'
-                      onChange={(e) => setEndYear(e.target.value)}
-                      options={publicationYears}
-                      selected={endYear}
-                    />
-                    <Select
-                      hint="Filtre sur l'année d'observation inférieure ou égale"
-                      label="Première année d'observation"
-                      onChange={(e) => setFirstObservationYear(e.target.value)}
-                      options={observationYears}
-                      selected={firstObservationYear}
-                    />
-                    <Select
-                      hint="Filtre sur l'année d'observation supérieure ou égale"
-                      label="Dernière année d'observation"
-                      onChange={(e) => setLastObservationYear(e.target.value)}
-                      options={observationYears}
-                      selected={lastObservationYear}
-                    />
-                    <Toggle
-                      checked={displayTitle}
-                      label='Affiche le titre du graphique'
-                      onChange={() => setDisplayTitle(!displayTitle)}
-                    />
-                    <Toggle
-                      checked={displayComment}
-                      label='Affiche le commentaire du graphique'
-                      onChange={() => setDisplayComment(!displayComment)}
-                    />
-                    <Toggle
-                      checked={displayFooter}
-                      label='Affiche le footer du graphique'
-                      onChange={() => setDisplayFooter(!displayFooter)}
-                    />
-                  </form>
-                  <iframe
-                    id='publi.general.dynamique-ouverture.chart-evolution-proportion'
-                    title="Université de Lorraine: Evolution du taux d'accès ouvert
-                    des publications scientifiques françaises par année
-                    d'observation"
-                    width='800'
-                    height='600'
-                    src={graphUrl}
-                  />
-                  <pre className='code'>
-                    &lt;iframe
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    id="publi.general.dynamique-ouverture.chart-evolution-proportion"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    title="Université de Lorraine: Evolution du taux d'accès
-                    ouvert des publications scientifiques françaises par année
-                    d'observation"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    width="800"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    height="600"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    src="
-                    {graphUrl}
-                    "
-                    <br />
-                    &gt;&lt;/iframe&gt;
-                  </pre>
+                    <pre className='code'>
+                      &lt;iframe
+                      <br />
+                      <span style={{ paddingLeft: '18px' }} />
+                      id="publi.general.dynamique-ouverture.chart-evolution-proportion"
+                      <br />
+                      <span style={{ paddingLeft: '18px' }} />
+                      title="Université de Lorraine: Evolution du taux d'accès
+                      ouvert des publications scientifiques françaises par année
+                      d'observation"
+                      <br />
+                      <span style={{ paddingLeft: '18px' }} />
+                      width="800"
+                      <br />
+                      <span style={{ paddingLeft: '18px' }} />
+                      height="600"
+                      <br />
+                      <span style={{ paddingLeft: '18px' }} />
+                      src="
+                      {encodeURI(graphUrl)}
+                      "
+                      <br />
+                      &gt;&lt;/iframe&gt;
+                    </pre>
+                  </section>
                 </>
               )}
             </Col>
