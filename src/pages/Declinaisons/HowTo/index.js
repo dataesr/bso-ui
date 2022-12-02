@@ -21,8 +21,8 @@ function HowTo() {
   const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506');
   const [displayComment, setDisplayComment] = useState(true);
   const [displayFooter, setDisplayFooter] = useState(true);
-  const [displayTitle, setDisplayTitle] = useState(true);
-  const [endYear, setEndYear] = useState(2022);
+  const [displayTitle, setDisplayTitle] = useState(false);
+  const [endYear, setEndYear] = useState(2021);
   const [firstObservationYear, setFirstObservationYear] = useState(2018);
   const [graph, setGraph] = useState(
     'publi.general.dynamique-ouverture.chart-taux-ouverture',
@@ -84,7 +84,7 @@ function HowTo() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32 bd125' id='step_01'>
+              <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_01'>
                 A - Définition du périmètre du BSO local
               </h4>
               Le périmètre de chaque BSO local reste entièrement à la main de
@@ -161,7 +161,7 @@ function HowTo() {
                   </DSIcon>
                 </div>
               </Col>
-              <h4 className='marianne-bold fs-24-32 bd125' id='step_02'>
+              <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_02'>
                 B - Envoyez-nous votre fichier
               </h4>
               Une fois votre fichier réalisé, vous pouvez nous le transmettre
@@ -197,7 +197,7 @@ function HowTo() {
               </ul>
               Un meilleur système de remontée sera probablement mis en place
               dans le futur.
-              <h4 className='marianne-bold fs-24-32 bd125' id='step_03'>
+              <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_03'>
                 C - Intégration des graphiques générés (via iFrame)
               </h4>
               {isInProduction() && (
@@ -319,8 +319,6 @@ function HowTo() {
                       https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016
                     </a>
                   </i>
-                  <br />
-                  <br />
                   <pre className='code'>
                     &lt;iframe
                     <br />
@@ -356,42 +354,57 @@ function HowTo() {
                     }}
                   >
                     <form>
-                      <TextInput
-                        hint='Celui reçu par email après avoir communiqué le périmètre de votre BSO local'
-                        label="Identifiant de l'établissement"
-                        message='Merci de saisir un identifiant'
-                        messageType={bsoLocalAffiliation === '' ? 'error' : ''}
-                        onChange={(e) => setBsoLocalAffiliation(e.target.value)}
-                        required
-                        style={{ backgroundColor: getCSSValue('--white') }}
-                        value={bsoLocalAffiliation}
-                      />
-                      <Select
-                        label='Objet de recherche'
-                        onChange={(e) => setObject(e.target.value)}
-                        options={objects}
-                        selected={object}
-                        style={{ backgroundColor: getCSSValue('--white') }}
-                      />
-                      <Select
-                        label='Onglet'
-                        onChange={(e) => setTab(e.target.value)}
-                        options={tabs}
-                        selected={tab}
-                        style={{ backgroundColor: getCSSValue('--white') }}
-                      />
+                      <Row gutters>
+                        <Col n='12 md-6'>
+                          <TextInput
+                            hint="Celui communiqué par l'équipe BSO par e-mail en retour de la liste de votre périmètre."
+                            label="Identifiant de l'établissement"
+                            message='Merci de saisir un identifiant'
+                            messageType={
+                              bsoLocalAffiliation === '' ? 'error' : ''
+                            }
+                            onChange={(e) => setBsoLocalAffiliation(e.target.value)}
+                            required
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                            value={bsoLocalAffiliation}
+                          />
+                        </Col>
+                        <Col n='12 md-6'>
+                          <Select
+                            label='Objet de recherche'
+                            hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
+                            onChange={(e) => setObject(e.target.value)}
+                            options={objects}
+                            selected={object}
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row gutters>
+                        <Col n='12 md-6'>
+                          <Select
+                            label='Langue'
+                            onChange={(e) => setLang(e.target.value)}
+                            options={langs}
+                            selected={lang}
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                          />
+                        </Col>
+                        <Col n='12 md-6'>
+                          <Select
+                            label='Onglet'
+                            onChange={(e) => setTab(e.target.value)}
+                            options={tabs}
+                            selected={tab}
+                            style={{ backgroundColor: getCSSValue('--white') }}
+                          />
+                        </Col>
+                      </Row>
                       <Select
                         label='Graphique'
                         onChange={(e) => setGraph(e.target.value)}
                         options={graphs}
                         selected={graph}
-                        style={{ backgroundColor: getCSSValue('--white') }}
-                      />
-                      <Select
-                        label='Langue'
-                        onChange={(e) => setLang(e.target.value)}
-                        options={langs}
-                        selected={lang}
                         style={{ backgroundColor: getCSSValue('--white') }}
                       />
                       <Row gutters>
@@ -446,33 +459,44 @@ function HowTo() {
                           />
                         </Col>
                       </Row>
-                      <Toggle
-                        checked={displayTitle}
-                        hasLabelLeft
-                        label='Affiche le titre du graphique'
-                        onChange={() => setDisplayTitle(!displayTitle)}
-                      />
                       <hr />
-                      <Toggle
-                        checked={displayComment}
-                        hasLabelLeft
-                        label='Affiche le commentaire du graphique'
-                        onChange={() => setDisplayComment(!displayComment)}
-                      />
+                      <Row gutters>
+                        <Col n='12 md-6'>
+                          <Toggle
+                            checked={displayTitle}
+                            hasLabelLeft
+                            label='Affiche le titre du graphique'
+                            onChange={() => setDisplayTitle(!displayTitle)}
+                          />
+                        </Col>
+                        <Col n='12 md-6'>
+                          <Toggle
+                            checked={displayComment}
+                            hasLabelLeft
+                            label='Affiche le commentaire du graphique'
+                            onChange={() => setDisplayComment(!displayComment)}
+                          />
+                        </Col>
+                      </Row>
                       <hr />
-                      <Toggle
-                        checked={displayFooter}
-                        hasLabelLeft
-                        label='Affiche le footer du graphique'
-                        onChange={() => setDisplayFooter(!displayFooter)}
-                      />
-                      <hr />
-                      <Toggle
-                        checked={useHalId}
-                        hasLabelLeft
-                        label='Inclure les identifants de HAL'
-                        onChange={() => setUseHalId(!useHalId)}
-                      />
+                      <Row gutters>
+                        <Col n='12 md-6'>
+                          <Toggle
+                            checked={displayFooter}
+                            hasLabelLeft
+                            label='Affiche le footer du graphique'
+                            onChange={() => setDisplayFooter(!displayFooter)}
+                          />
+                        </Col>
+                        <Col n='12 md-6'>
+                          <Toggle
+                            checked={useHalId}
+                            hasLabelLeft
+                            label='Inclure les identifants de HAL'
+                            onChange={() => setUseHalId(!useHalId)}
+                          />
+                        </Col>
+                      </Row>
                     </form>
                     <iframe
                       id='publi.general.dynamique-ouverture.chart-evolution-proportion'
@@ -480,7 +504,7 @@ function HowTo() {
                       des publications scientifiques françaises par année
                       d'observation"
                       width='800'
-                      height='600'
+                      height='800'
                       src={encodeURI(graphUrl)}
                     />
                     <pre className='code'>
