@@ -26,7 +26,7 @@ import {
  */
 export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let otherSources = [];
-  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl);
+  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl, id);
   otherSources = [name];
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;

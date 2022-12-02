@@ -297,7 +297,7 @@ export function isInProduction() {
  * @param {string} search
  * @returns {Object}
  */
-export function getURLSearchParams(intl = undefined) {
+export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
@@ -321,7 +321,10 @@ export function getURLSearchParams(intl = undefined) {
   const displayFooter = !(
     urlSearchParams.get('displayFooter')?.toLowerCase() === 'false'
   );
-  const isPublication = window.location.pathname.startsWith('/publication');
+  const isPublication = window.location.pathname.startsWith('/publication')
+    || id.startsWith('publi.')
+    || id.startsWith('app.national-publi')
+    || id.startsWith('app.health-publi');
   let commentsName = intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
     || 'françaises';
   let displayTitle;
