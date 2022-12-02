@@ -1,4 +1,5 @@
 import {
+  Button,
   Col,
   Container,
   Icon as DSIcon,
@@ -12,6 +13,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
+import downloadFile from '../../../utils/files';
 import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import objects from './tree';
 
@@ -46,6 +48,7 @@ function HowTo() {
   ].map((item) => ({ label: item, value: item }));
   const tabs = objects?.find((item) => item.value === object)?.children || [];
   const graphs = tabs?.find((item) => item.value === tab)?.children || [];
+  const content = 'ligne_01\nligne_02\n';
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -504,6 +507,16 @@ function HowTo() {
                       <br />
                       &gt;&lt;/iframe&gt;
                     </pre>
+                    <Button
+                      icon='ri-download-fill'
+                      onClick={() => downloadFile({
+                        content,
+                        name: 'my_lalilou_file.json',
+                        type: 'octet/stream',
+                      })}
+                    >
+                      Télécharger la liste des urls des graphiques (.txt)
+                    </Button>
                   </section>
                 </>
               )}

@@ -9,34 +9,32 @@ const tree = [
         children: [
           {
             label:
-              "Taux d'accès ouvert des publications scientifiques françaises, avec un DOI Crossref, parues durant l'année précédente par date d'observation",
+              "Taux d'accès ouvert des publications scientifiques françaises parues durant l'année précédente par date d'observation",
             value: 'publi.general.dynamique-ouverture.chart-taux-ouverture',
           },
           {
             label:
-              "Évolution du taux d'accès ouvert des publications scientifiques françaises, avec un DOI Crossref, par année d'observation",
+              "Évolution du taux d'accès ouvert des publications scientifiques françaises par année d'observation",
             value:
               'publi.general.dynamique-ouverture.chart-evolution-proportion',
           },
           {
             label:
-              "Répartition des publications scientifiques françaises, avec un DOI Crossref, parues en 2021 par voie d'ouverture",
+              "Répartition des publications scientifiques françaises parues en 2021 par voie d'ouverture",
             value:
               'publi.general.voies-ouverture.chart-repartition-publications',
           },
           {
             label:
-              "Répartition des publications scientifiques françaises, avec un DOI Crossref, en accès ouvert par voie d'ouverture et par année de publication",
+              "Répartition des publications scientifiques françaises en accès ouvert par voie d'ouverture et par année de publication",
             value: 'publi.general.voies-ouverture.chart-repartition-taux',
           },
           {
-            label:
-              "Taux d'accès ouvert par type de publications françaises, avec un DOI Crossref",
+            label: "Taux d'accès ouvert par type de publications françaises",
             value: 'publi.general.genres-ouverture.chart-repartition-genres',
           },
           {
-            label:
-              "Taux d'accès ouvert par langue de publications françaises, avec un DOI Crossref",
+            label: "Taux d'accès ouvert par langue de publications françaises",
             value:
               'publi.general.langues-ouverture.chart-repartition-publications',
           },
@@ -48,24 +46,24 @@ const tree = [
         children: [
           {
             label:
-              "Taux d'accès ouvert par discipline et par date d'observation, pour les publications françaises, avec un DOI Crossref, parues durant l'année précédente (disciplines présentées dans l'ordre du taux d'accès décroissant)",
+              "Taux d'accès ouvert par discipline et par date d'observation, pour les publications françaises parues durant l'année précédente (disciplines présentées dans l'ordre du taux d'accès décroissant)",
             value: 'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
           },
           {
             label:
-              "Dynamique d'évolution du taux de publications françaises, avec un DOI Crossref, en accès ouvert pour chaque discipline par année d'observation",
+              "Dynamique d'évolution du taux de publications françaises en accès ouvert pour chaque discipline par année d'observation",
             value:
               'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
           },
           {
             label:
-              "Répartition des publications françaises, avec un DOI Crossref, par voie d'ouverture pour chaque discipline",
+              "Répartition des publications françaises par voie d'ouverture pour chaque discipline",
             value:
               'publi.disciplines.voies-ouverture.chart-repartition-publications',
           },
           {
             label:
-              "Positionnement des disciplines en fonction des voies privilégiées pour l'ouverture de leurs publications françaises, avec un DOI Crossref",
+              "Positionnement des disciplines en fonction des voies privilégiées pour l'ouverture de leurs publications françaises",
             value:
               'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
           },
@@ -77,12 +75,12 @@ const tree = [
         children: [
           {
             label:
-              "Part des publications scientifiques françaises, avec un DOI Crossref, mises à disposition en accès ouvert par leur éditeur, par année d'observation, pour les publications parues durant l'année précédente",
+              "Part des publications scientifiques françaises mises à disposition en accès ouvert par leur éditeur, par année d'observation, pour les publications parues durant l'année précédente",
             value: 'publi.publishers.dynamique-ouverture.chart-taux-ouverture',
           },
           {
             label:
-              "Évolution de la part des publications françaises, avec un DOI Crossref, mises à disposition en accès ouvert par l'éditeur par année d'observation",
+              "Évolution de la part des publications françaises mises à disposition en accès ouvert par l'éditeur par année d'observation",
             value:
               'publi.publishers.dynamique-ouverture.chart-evolution-proportion',
           },
@@ -99,27 +97,27 @@ const tree = [
           },
           {
             label:
-              "Modalités d'ouverture des publications scientifiques françaises, avec un DOI Crossref, parues en 2021 chez les éditeurs ou plateformes de publication les plus importants en volume (top 25)",
+              "Modalités d'ouverture des publications scientifiques françaises chez les éditeurs ou plateformes de publication les plus importants en volume (top 25)",
             value: 'publi.publishers.politiques-ouverture.chart-classement',
           },
           {
             label:
-              "Positionnement des éditeurs et plateformes de publication en fonction des voies privilégiées pour l'ouverture des publications françaises, avec un DOI Crossref, qu'ils diffusent (publications de 2021)",
+              "Positionnement des éditeurs et plateformes de publication en fonction des voies privilégiées pour l'ouverture des publications françaises qu'ils diffusent",
             value: 'publi.publishers.politiques-ouverture.chart-comparaison',
           },
           {
             label:
-              'Répartition des publications scientifiques françaises, avec un DOI Crossref, ouvertes par type de licence utilisée',
+              'Répartition des publications scientifiques françaises ouvertes par type de licence utilisée',
             value: 'publi.publishers.repartition-licences.chart-repartition',
           },
           {
             label:
-              "Taux d'utilisation d'une licence libre par les éditeurs ou plateformes de publication qui diffusent le plus de publications scientifiques françaises, avec un DOI Crossref, en accès ouvert (top 25, publications de 2021)",
+              "Taux d'utilisation d'une licence libre par les éditeurs ou plateformes de publication qui diffusent le plus de publications scientifiques françaises en accès ouvert (top 25)",
             value: 'publi.publishers.repartition-licences.chart-classement',
           },
           {
             label:
-              'Distribution des publications scientifiques françaises, avec un DOI Crossref, parues en 2021 en fonction des frais de publication pratiqués',
+              'Distribution des publications scientifiques françaises en fonction des frais de publication pratiqués',
             value: 'publi.publishers.couts-publication.chart-distribution',
           },
         ],
@@ -130,24 +128,24 @@ const tree = [
         children: [
           {
             label:
-              "Taux de publications scientifiques françaises, avec un DOI Crossref, ouvertes et hébergées sur une archive ouverte par date d'observation",
+              "Taux de publications scientifiques françaises ouvertes et hébergées sur une archive ouverte par date d'observation",
             value:
               'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
           },
           {
             label:
-              "Évolution du taux de publications scientifiques françaises, avec un DOI Crossref, hébergées sur une archive ouverte, par date d'observation",
+              "Évolution du taux de publications scientifiques françaises hébergées sur une archive ouverte, par date d'observation",
             value:
               'publi.repositories.dynamique-ouverture.chart-evolution-proportion',
           },
           {
             label:
-              'Principales archives ouvertes hébergeant des publications scientifiques françaises, avec un DOI Crossref, parues en 2021',
+              'Principales archives ouvertes hébergeant des publications scientifiques françaises',
             value: 'publi.repositories.plus-utilisees.chart-nombre-documents',
           },
           {
             label:
-              'Taux de couverture de HAL sur les publications scientifiques françaises, avec un DOI Crossref, hébergées sur une archive ouverte',
+              'Taux de couverture de HAL sur les publications scientifiques françaises hébergées sur une archive ouverte',
             value: 'publi.repositories.dynamique-hal.chart-couverture-hal',
           },
         ],
@@ -164,12 +162,12 @@ const tree = [
         children: [
           {
             label:
-              "Taux d'ouverture des thèses de doctorat françaises par année de soutenance (observé en 2022 - 3e trimestre)",
+              "Taux d'ouverture des thèses de doctorat françaises par année de soutenance",
             value: 'thesis.general.voies-ouverture.chart-repartition-taux',
           },
           {
             label:
-              "Répartition des thèses de doctorat françaises par voie d'ouverture pour chaque discipline (soutenues en 2021)",
+              "Répartition des thèses de doctorat françaises par voie d'ouverture pour chaque discipline",
             value:
               'thesis.disciplines.voies-ouverture.chart-repartition-thesis',
           },
