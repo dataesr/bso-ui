@@ -1865,7 +1865,7 @@ export default function getFetchOptions({
   }
   if (bsoLocalAffiliation) {
     queryResponse.query.bool.filter.push({
-      term: { bso_local_affiliations: bsoLocalAffiliation },
+      term: { 'bso_local_affiliations.keyword': bsoLocalAffiliation },
     });
     const year = {};
     if (startYear) {
