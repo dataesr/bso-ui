@@ -337,6 +337,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals?.[bsoLocalAffiliation]?.[commentsNameProperty]
+      || 'du périmètre '.concat(bsoLocalAffiliation)
       || intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
       || 'françaises';
     displayTitle = !(
@@ -351,7 +352,8 @@ export function getURLSearchParams(intl = undefined, id = '') {
       10,
     );
     name = urlSearchParams.get('name')?.toLowerCase()
-      || locals?.[bsoLocalAffiliation]?.name;
+      || locals?.[bsoLocalAffiliation]?.name
+      || 'Périmètre '.concat(bsoLocalAffiliation);
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
         || locals?.[bsoLocalAffiliation]?.startYear
