@@ -64,7 +64,7 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: '?id=general.dynamique-ouverture',
+        buttonHref: '/publications/general?id=general.dynamique-ouverture',
         activeDomains: ['health', ''],
       },
       documentsByTypesByOA: {
@@ -84,7 +84,7 @@ export default function DataCardSection({ domain, lang }) {
         intlValues: {
           oaBooksRate,
         },
-        buttonHref: 'general?id=general.genres-ouverture',
+        buttonHref: '/publications/general?id=general.genres-ouverture',
         activeDomains: [''],
       },
       diamondPublicationRate: {
@@ -115,7 +115,7 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: 'editeurs?id=publishers.type-ouverture',
+        buttonHref: '/publications/editeurs?id=publishers.type-ouverture',
         activeDomains: [],
       },
       hostedDocument: {
@@ -137,7 +137,7 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: 'archives?id=repositories.dynamique-hal',
+        buttonHref: '/publications/archives?id=repositories.dynamique-hal',
         activeDomains: [''],
       },
       openHealthPublicationPublisherRepository: {
@@ -154,7 +154,7 @@ export default function DataCardSection({ domain, lang }) {
         isPercentage: true,
         color: 'aqua',
         intlKey: 'app.health-publi.data.publisher-repository',
-        buttonHref: 'general?id=general.voies-ouverture',
+        buttonHref: '/publications/general?id=general.voies-ouverture',
         activeDomains: ['health'],
       },
       hostedDocumentPMC: {
@@ -179,7 +179,7 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: 'archives?id=repositories.plus-utilisees',
+        buttonHref: '/publications/archives?id=repositories.plus-utilisees',
         activeDomains: ['health'],
       },
     }),
