@@ -231,6 +231,8 @@
   "app.faq.community.definition": "Oui, une <cta>mailing-list RENATER</cta> est ouverte à tous pour constituer un réseau d'entraide et fédérer les compétences",
   "app.faq.corpus": "Comment est constitué le corpus de publications ?",
   "app.faq.corpus.definition": "Le corpus de publications du BSO est constitué de publications dont au moins un auteur a une affiliation française. De plus, pour rentrer dans le corpus, ces publications doivent avoir un DOI crossref ou un identifiant HAL. Ce corpus est constitué à partir de méthodes automatiques moissonnant de façon systématique les 'landing page' des DOI crossref pour y repérer ceux ayant une affiliation française. Ce processus est complété par les données de PubMed et HAL. De plus, dans le cadre des BSO locaux, chaque établissement peut aussi envoyer une liste de publications au BSO.",
+  "app.faq.corpus-bso3": "Sur quel périmètre sont réalisées les détection de mentions de jeux de données et de logiciels ?",
+  "app.faq.corpus-bso3.definition": "Les détections de jeux de donnée et de logiciels sont réalisées sur les publications identifiées dans le corpus du BSO, avec un DOI Crossref, et dont le PDF a pu être téléchargé (en accès ouvert ou grâce à un abonnement d'une institution du projet BSO3.",
   "app.faq.local": "Comment faire son propre Baromètre ?",
   "app.faq.opendata": "Où télécharger les données du BSO ?",
   "app.faq.communaute": "Existe-t-il une communauté BSO ?",
