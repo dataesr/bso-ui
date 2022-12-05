@@ -24,17 +24,12 @@ function HowTo() {
   const [displayTitle, setDisplayTitle] = useState(false);
   const [endYear, setEndYear] = useState(2021);
   const [firstObservationYear, setFirstObservationYear] = useState(2018);
-  const [graph, setGraph] = useState(
-    'publi.general.dynamique-ouverture.chart-taux-ouverture',
-  );
   const [lang, setLang] = useState('fr');
   const [lastObservationYear, setLastObservationYear] = useState(2022);
   const [object, setObject] = useState('publi');
   const [startYear, setStartYear] = useState(2013);
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
-
-  const graphUrl = `https://barometredelascienceouverte.esr.gouv.fr/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
   const langs = [
     { label: 'Français', value: 'fr' },
     { label: 'Anglais', value: 'en' },
@@ -48,7 +43,25 @@ function HowTo() {
   ].map((item) => ({ label: item, value: item }));
   const tabs = objects?.find((item) => item.value === object)?.children || [];
   const graphs = tabs?.find((item) => item.value === tab)?.children || [];
+  const firstGraph = graphs[0]?.value || null;
+  const [graph, setGraph] = useState(firstGraph);
+  function changeTab(t) {
+    setTab(t);
+    const currentTabs = objects?.find((item) => item.value === object)?.children || [];
+    const currentGraphs = currentTabs?.find((item) => item.value === t)?.children || [];
+    const currentGraph = currentGraphs[0]?.value || null;
+    setGraph(currentGraph);
+  }
+  function changeObject(o) {
+    setObject(o);
+    const currentTabs = objects?.find((item) => item.value === o)?.children || [];
+    const currentGraphs = currentTabs?.find((item) => item.value === currentTabs[0].value)
+      ?.children || [];
+    const currentGraph = currentGraphs[0]?.value || null;
+    setGraph(currentGraph);
+  }
   const content = 'ligne_01\nligne_02\n';
+  const graphUrl = `https://barometredelascienceouverte.esr.gouv.fr/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -373,7 +386,7 @@ function HowTo() {
                           <Select
                             label='Objet de recherche'
                             hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
-                            onChange={(e) => setObject(e.target.value)}
+                            onChange={(e) => changeObject(e.target.value)}
                             options={objects}
                             selected={object}
                             style={{ backgroundColor: getCSSValue('--white') }}
@@ -393,7 +406,7 @@ function HowTo() {
                         <Col n='12 md-6'>
                           <Select
                             label='Onglet'
-                            onChange={(e) => setTab(e.target.value)}
+                            onChange={(e) => changeTab(e.target.value)}
                             options={tabs}
                             selected={tab}
                             style={{ backgroundColor: getCSSValue('--white') }}
