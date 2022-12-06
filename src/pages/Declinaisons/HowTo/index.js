@@ -9,6 +9,8 @@ import {
   Toggle,
 } from '@dataesr/react-dsfr';
 import React, { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import ReactDOMServer from 'react-dom/server';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
@@ -41,47 +43,47 @@ function HowTo() {
   const publicationYears = [
     2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
   ].map((item) => ({ label: item, value: item }));
+
   const tabs = objects?.find((item) => item.value === object)?.children || [];
   const graphs = tabs?.find((item) => item.value === tab)?.children || [];
-  const firstGraph = graphs[0]?.value || null;
-  const [graph, setGraph] = useState(firstGraph);
-  function changeTab(t) {
+  const [graph, setGraph] = useState(graphs[0] || null);
+  const changeTab = (t) => {
     setTab(t);
     const currentTabs = objects?.find((item) => item.value === object)?.children || [];
     const currentGraphs = currentTabs?.find((item) => item.value === t)?.children || [];
-    const currentGraph = currentGraphs[0]?.value || null;
-    setGraph(currentGraph);
-  }
-  function changeObject(o) {
+    setGraph(currentGraphs[0] || null);
+  };
+  const changeObject = (o) => {
     setObject(o);
     const currentTabs = objects?.find((item) => item.value === o)?.children || [];
     const currentGraphs = currentTabs?.find((item) => item.value === currentTabs[0].value)
       ?.children || [];
-    const currentGraph = currentGraphs[0]?.value || null;
-    setGraph(currentGraph);
-  }
-  const graphUrl = `${window.location.origin}/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
+    setGraph(currentGraphs[0] || null);
+  };
+
+  const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
+      graphId?.value || graph?.value
+    }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
+  const getIframeSnippet = (graphId = null) => (
+    <iframe
+      id={graphId?.value || graph?.value}
+      title={graphId?.label || graph?.label}
+      width='800'
+      height='860'
+      src={getGraphUrl(graphId)}
+    />
+  );
 
   const csvContent = objects
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
-    .map(
-      (item) => `${item.label};${window.location.origin}/integration/${lang}/${item.value}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`,
-    )
+    .map((item) => [item.label, getGraphUrl(item.value)].join(';'))
     .join('\n');
 
   const htmlContent = objects
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
-    .map(
-      (item) => `<iframe id="${item.value}"
-        title="${item.label}"
-        width='800'
-        height='800'
-        src="${window.location.origin}/integration/${lang}/${item.value}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}"
-      ></iframe>`,
-    )
-    .join('<br/><br/>');
+    .map((item) => getIframeSnippet(item.value));
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -386,198 +388,196 @@ function HowTo() {
                       padding: '28px',
                     }}
                   >
-                    <form>
-                      <Row gutters>
-                        <Col n='12 md-6'>
-                          <TextInput
-                            hint="Communiqué par l'équipe BSO si périmètre ad-hoc, ou identifiant de structure HAL, ou code collection HAL"
-                            label="Identifiant de l'établissement"
-                            message='Merci de saisir un identifiant'
-                            messageType={
-                              bsoLocalAffiliation === '' ? 'error' : ''
-                            }
-                            onChange={(e) => setBsoLocalAffiliation(e.target.value)}
-                            required
-                            style={{ backgroundColor: getCSSValue('--white') }}
-                            value={bsoLocalAffiliation}
-                          />
-                        </Col>
-                        <Col n='12 md-6'>
-                          <Select
-                            label='Langue'
-                            onChange={(e) => setLang(e.target.value)}
-                            options={langs}
-                            selected={lang}
-                            style={{
-                              'margin-top': '50px',
-                              backgroundColor: getCSSValue('--white'),
-                            }}
-                          />
-                        </Col>
-                      </Row>
-                      <Row gutters>
-                        <Col n='12 md-6'>
-                          <Select
-                            label='Objet de recherche'
-                            hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
-                            onChange={(e) => changeObject(e.target.value)}
-                            options={objects}
-                            selected={object}
-                            style={{ backgroundColor: getCSSValue('--white') }}
-                          />
-                        </Col>
-                        <Col n='12 md-6'>
-                          <Select
-                            label='Onglet'
-                            onChange={(e) => changeTab(e.target.value)}
-                            options={tabs}
-                            selected={tab}
-                            style={{
-                              'margin-top': '50px',
-                              backgroundColor: getCSSValue('--white'),
-                            }}
-                          />
-                        </Col>
-                      </Row>
-                      <Row gutters>
-                        <Col n='12 md-12'>
-                          <Select
-                            label='Graphique'
-                            onChange={(e) => setGraph(e.target.value)}
-                            options={graphs}
-                            selected={graph}
-                            style={{ backgroundColor: getCSSValue('--white') }}
-                          />
-                        </Col>
-                      </Row>
-                      <Row gutters>
-                        <Col n='12 md-6'>
-                          <Select
-                            hint="Filtre sur l'année de publication supérieure ou égale"
-                            label='Première année de publication'
-                            onChange={(e) => setStartYear(e.target.value)}
-                            options={publicationYears}
-                            selected={startYear}
-                            style={{ backgroundColor: getCSSValue('--white') }}
-                          />
-                        </Col>
-                        <Col n='12 md-6'>
-                          <Select
-                            hint="Filtre sur l'année de publication inférieure ou égale"
-                            label='Dernière année de publication'
-                            message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
-                            messageType={endYear < startYear ? 'error' : ''}
-                            onChange={(e) => setEndYear(e.target.value)}
-                            options={publicationYears}
-                            selected={endYear}
-                            style={{ backgroundColor: getCSSValue('--white') }}
-                          />
-                        </Col>
-                      </Row>
-                      <Row gutters>
-                        <Col n='12 md-6'>
-                          <Select
-                            hint="Filtre sur l'année d'observation inférieure ou égale"
-                            label="Première année d'observation"
-                            onChange={(e) => setFirstObservationYear(e.target.value)}
-                            options={observationYears}
-                            selected={firstObservationYear}
-                            style={{ backgroundColor: getCSSValue('--white') }}
-                          />
-                        </Col>
-                        <Col n='12 md-6'>
-                          <Select
-                            hint="Filtre sur l'année d'observation supérieure ou égale"
-                            label="Dernière année d'observation"
-                            onChange={(e) => setLastObservationYear(e.target.value)}
-                            options={observationYears}
-                            selected={lastObservationYear}
-                            style={{ backgroundColor: getCSSValue('--white') }}
-                            messageType={
-                              lastObservationYear < firstObservationYear
-                                ? 'error'
-                                : ''
-                            }
-                            message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
-                          />
-                        </Col>
-                      </Row>
-                      <hr />
-                      <Row gutters>
-                        <Col n='12 md-6'>
-                          <Toggle
-                            checked={displayTitle}
-                            hasLabelLeft
-                            label='Affiche le titre du graphique'
-                            onChange={() => setDisplayTitle(!displayTitle)}
-                          />
-                        </Col>
-                        <Col n='12 md-6'>
-                          <Toggle
-                            checked={displayComment}
-                            hasLabelLeft
-                            label='Affiche le commentaire du graphique'
-                            onChange={() => setDisplayComment(!displayComment)}
-                          />
-                        </Col>
-                      </Row>
-                      <hr />
-                      <Row gutters>
-                        <Col n='12 md-6'>
-                          <Toggle
-                            checked={displayFooter}
-                            hasLabelLeft
-                            label='Affiche le footer du graphique'
-                            onChange={() => setDisplayFooter(!displayFooter)}
-                          />
-                        </Col>
-                        <Col n='12 md-6'>
-                          <Toggle
-                            checked={useHalId}
-                            hasLabelLeft
-                            label='Inclure les identifants de HAL'
-                            onChange={() => setUseHalId(!useHalId)}
-                          />
-                        </Col>
-                      </Row>
-                    </form>
-                    <iframe
-                      id='publi.general.dynamique-ouverture.chart-evolution-proportion'
-                      title="Université de Lorraine: Evolution du taux d'accès ouvert
-                      des publications scientifiques françaises par année
-                      d'observation"
-                      width='800'
-                      height='800'
-                      src={encodeURI(graphUrl)}
-                    />
-                    <pre className='code'>
-                      &lt;iframe
-                      <br />
-                      <span style={{ paddingLeft: '18px' }} />
-                      id="publi.general.dynamique-ouverture.chart-evolution-proportion"
-                      <br />
-                      <span style={{ paddingLeft: '18px' }} />
-                      title="Université de Lorraine: Evolution du taux d'accès
-                      ouvert des publications scientifiques françaises par année
-                      d'observation"
-                      <br />
-                      <span style={{ paddingLeft: '18px' }} />
-                      width="800"
-                      <br />
-                      <span style={{ paddingLeft: '18px' }} />
-                      height="600"
-                      <br />
-                      <span style={{ paddingLeft: '18px' }} />
-                      src="
-                      {encodeURI(graphUrl)}
-                      "
-                      <br />
-                      &gt;&lt;/iframe&gt;
-                    </pre>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <TextInput
+                          hint="Communiqué par l'équipe BSO si périmètre ad-hoc, ou identifiant de structure HAL, ou code collection HAL"
+                          label="Identifiant de l'établissement"
+                          message='Merci de saisir un identifiant'
+                          messageType={
+                            bsoLocalAffiliation === '' ? 'error' : ''
+                          }
+                          onChange={(e) => setBsoLocalAffiliation(e.target.value)}
+                          required
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                          value={bsoLocalAffiliation}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          label='Langue'
+                          onChange={(e) => setLang(e.target.value)}
+                          options={langs}
+                          selected={lang}
+                          style={{
+                            'margin-top': '50px',
+                            backgroundColor: getCSSValue('--white'),
+                          }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Select
+                          label='Objet de recherche'
+                          hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
+                          onChange={(e) => changeObject(e.target.value)}
+                          options={objects}
+                          selected={object}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          label='Onglet'
+                          onChange={(e) => changeTab(e.target.value)}
+                          options={tabs}
+                          selected={tab}
+                          style={{
+                            'margin-top': '50px',
+                            backgroundColor: getCSSValue('--white'),
+                          }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-12'>
+                        <Select
+                          label='Graphique'
+                          onChange={(e) => setGraph(e.target)}
+                          options={graphs}
+                          selected={graph}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année de publication supérieure ou égale"
+                          label='Première année de publication'
+                          onChange={(e) => setStartYear(e.target.value)}
+                          options={publicationYears}
+                          selected={startYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année de publication inférieure ou égale"
+                          label='Dernière année de publication'
+                          message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
+                          messageType={endYear < startYear ? 'error' : ''}
+                          onChange={(e) => setEndYear(e.target.value)}
+                          options={publicationYears}
+                          selected={endYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année d'observation inférieure ou égale"
+                          label="Première année d'observation"
+                          onChange={(e) => setFirstObservationYear(e.target.value)}
+                          options={observationYears}
+                          selected={firstObservationYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année d'observation supérieure ou égale"
+                          label="Dernière année d'observation"
+                          onChange={(e) => setLastObservationYear(e.target.value)}
+                          options={observationYears}
+                          selected={lastObservationYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                          messageType={
+                            lastObservationYear < firstObservationYear
+                              ? 'error'
+                              : ''
+                          }
+                          message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
+                        />
+                      </Col>
+                    </Row>
+                    <hr />
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={displayTitle}
+                          hasLabelLeft
+                          label='Affiche le titre du graphique'
+                          onChange={() => setDisplayTitle(!displayTitle)}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={displayComment}
+                          hasLabelLeft
+                          label='Affiche le commentaire du graphique'
+                          onChange={() => setDisplayComment(!displayComment)}
+                        />
+                      </Col>
+                    </Row>
+                    <hr />
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={displayFooter}
+                          hasLabelLeft
+                          label='Affiche le footer du graphique'
+                          onChange={() => setDisplayFooter(!displayFooter)}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={useHalId}
+                          hasLabelLeft
+                          label='Inclure les identifants de HAL'
+                          onChange={() => setUseHalId(!useHalId)}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12' className='studio'>
+                        {getIframeSnippet()}
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12'>
+                        <TextInput
+                          disabled
+                          hint='À copier/coller sur votre page web'
+                          label="Code de l'iframe"
+                          rows={7}
+                          textarea
+                          type='text'
+                        >
+                          {ReactDOMServer.renderToString(getIframeSnippet())}
+                        </TextInput>
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <CopyToClipboard
+                          text={ReactDOMServer.renderToString(
+                            getIframeSnippet(),
+                          )}
+                        >
+                          <Button icon='ri-clipboard-fill' iconPosition='right'>
+                            Copier le code
+                          </Button>
+                        </CopyToClipboard>
+                      </Col>
+                    </Row>
                     <Row gutters>
                       <Col n='12 md-6'>
                         <Button
                           icon='ri-download-fill'
+                          iconPosition='right'
                           onClick={() => downloadFile({
                             content: csvContent,
                             name: 'bso_urls.csv',
@@ -590,6 +590,7 @@ function HowTo() {
                       <Col n='12 md-6'>
                         <Button
                           icon='ri-download-fill'
+                          iconPosition='right'
                           onClick={() => downloadFile({
                             content: htmlContent,
                             name: 'bso_graphs.html',
