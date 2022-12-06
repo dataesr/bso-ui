@@ -70,6 +70,19 @@ function HowTo() {
     )
     .join('\n');
 
+  const htmlContent = objects
+    .reduce((acc, curr) => acc.concat(curr.children), [])
+    .reduce((acc, curr) => acc.concat(curr.children), [])
+    .map(
+      (item) => `<iframe id="${item.value}"
+        title="${item.label}"
+        width='800'
+        height='800'
+        src="${window.location.origin}/integration/${lang}/${item.value}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}"
+      ></iframe>`,
+    )
+    .join('<br/><br/>');
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -561,16 +574,32 @@ function HowTo() {
                       <br />
                       &gt;&lt;/iframe&gt;
                     </pre>
-                    <Button
-                      icon='ri-download-fill'
-                      onClick={() => downloadFile({
-                        content: csvContent,
-                        name: 'bso_urls.csv',
-                        type: 'octet/stream',
-                      })}
-                    >
-                      Télécharger la liste des urls des graphiques (.csv)
-                    </Button>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Button
+                          icon='ri-download-fill'
+                          onClick={() => downloadFile({
+                            content: csvContent,
+                            name: 'bso_urls.csv',
+                            type: 'octet/stream',
+                          })}
+                        >
+                          Télécharger la liste des urls des graphiques (.csv)
+                        </Button>
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Button
+                          icon='ri-download-fill'
+                          onClick={() => downloadFile({
+                            content: htmlContent,
+                            name: 'bso_graphs.html',
+                            type: 'octet/stream',
+                          })}
+                        >
+                          Télécharger la liste des graphiques (.html)
+                        </Button>
+                      </Col>
+                    </Row>
                   </section>
                 </>
               )}
