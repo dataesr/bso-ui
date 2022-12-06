@@ -274,6 +274,13 @@ function Variations() {
                 alt='bso local universite nantes'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://www.imt-mines-albi.fr/fr/barometre-science-ouverte-2022'
+                img='/declinaisons/IMTAlbi.png'
+                alt='bso local imt mines albi'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>
@@ -300,15 +307,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     CNAM
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.imt-mines-albi.fr/barometre-science-ouverte-2021'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    IMT Mines Albi
                   </a>
                 </li>
                 <li>
