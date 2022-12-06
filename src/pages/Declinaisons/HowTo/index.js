@@ -370,7 +370,7 @@ function HowTo() {
                       <Row gutters>
                         <Col n='12 md-6'>
                           <TextInput
-                            hint="Celui communiqué par l'équipe BSO par e-mail en retour de la liste de votre périmètre."
+                            hint="Communiqué par l'équipe BSO si périmètre ad-hoc, ou identifiant de structure HAL, ou code collection HAL"
                             label="Identifiant de l'établissement"
                             message='Merci de saisir un identifiant'
                             messageType={
@@ -384,22 +384,25 @@ function HowTo() {
                         </Col>
                         <Col n='12 md-6'>
                           <Select
-                            label='Objet de recherche'
-                            hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
-                            onChange={(e) => changeObject(e.target.value)}
-                            options={objects}
-                            selected={object}
-                            style={{ backgroundColor: getCSSValue('--white') }}
+                            label='Langue'
+                            onChange={(e) => setLang(e.target.value)}
+                            options={langs}
+                            selected={lang}
+                            style={{
+                              'margin-top': '50px',
+                              backgroundColor: getCSSValue('--white'),
+                            }}
                           />
                         </Col>
                       </Row>
                       <Row gutters>
                         <Col n='12 md-6'>
                           <Select
-                            label='Langue'
-                            onChange={(e) => setLang(e.target.value)}
-                            options={langs}
-                            selected={lang}
+                            label='Objet de recherche'
+                            hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
+                            onChange={(e) => changeObject(e.target.value)}
+                            options={objects.slice(0, 1)}
+                            selected={object}
                             style={{ backgroundColor: getCSSValue('--white') }}
                           />
                         </Col>
@@ -409,17 +412,24 @@ function HowTo() {
                             onChange={(e) => changeTab(e.target.value)}
                             options={tabs}
                             selected={tab}
+                            style={{
+                              'margin-top': '50px',
+                              backgroundColor: getCSSValue('--white'),
+                            }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row gutters>
+                        <Col n='12 md-12'>
+                          <Select
+                            label='Graphique'
+                            onChange={(e) => setGraph(e.target.value)}
+                            options={graphs}
+                            selected={graph}
                             style={{ backgroundColor: getCSSValue('--white') }}
                           />
                         </Col>
                       </Row>
-                      <Select
-                        label='Graphique'
-                        onChange={(e) => setGraph(e.target.value)}
-                        options={graphs}
-                        selected={graph}
-                        style={{ backgroundColor: getCSSValue('--white') }}
-                      />
                       <Row gutters>
                         <Col n='12 md-6'>
                           <Select
