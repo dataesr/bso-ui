@@ -1,3 +1,9 @@
+.bso-glossaire {
+  a {
+    text-decoration: underline !important;
+  }
+}
+
 .bso-glossary {
   transition: right 0.6s ease-in-out;
   background-color: var(--blue-dark-125);
@@ -37,7 +43,7 @@
     }
 
     a {
-      text-decoration: underline;
+      text-decoration: underline !important;
     }
 
     .glossary-item {

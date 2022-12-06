@@ -3,10 +3,6 @@
     color: var(--blue-dark-125);
   }
 
-  a {
-    text-decoration: underline;
-  }
-
   .contentTitle {
     @include font-size(40, 48);
   }
