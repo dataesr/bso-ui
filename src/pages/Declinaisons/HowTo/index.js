@@ -16,7 +16,7 @@ import { FormattedMessage } from 'react-intl';
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import downloadFile from '../../../utils/files';
-import { getCSSValue, isInProduction } from '../../../utils/helpers';
+import { getCSSValue } from '../../../utils/helpers';
 import objects from './tree';
 
 function HowTo() {
