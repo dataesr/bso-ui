@@ -56,13 +56,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config_file: .github/config/changelog.js
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.version.outputs.version }}
-          release_name: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
           body: "${{ steps.changelog.outputs.changes }}"
 
   deploy:
