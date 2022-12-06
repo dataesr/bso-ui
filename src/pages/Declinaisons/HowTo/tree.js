@@ -1,6 +1,6 @@
 const tree = [
   {
-    label: 'Publications',
+    label: 'Les publications',
     value: 'publi',
     children: [
       {
@@ -153,7 +153,7 @@ const tree = [
     ],
   },
   {
-    label: 'Thèses de doctorat',
+    label: 'Les thèses de doctorat',
     value: 'theses',
     children: [
       {
@@ -176,7 +176,7 @@ const tree = [
     ],
   },
   {
-    label: 'Données de la recherche',
+    label: 'Les données de la recherche',
     value: 'data',
     children: [
       {
@@ -222,7 +222,7 @@ const tree = [
     ],
   },
   {
-    label: 'Codes et logiciels',
+    label: 'Les codes et logiciels',
     value: 'codes',
     children: [
       {

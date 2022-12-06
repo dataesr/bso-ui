@@ -60,8 +60,15 @@ function HowTo() {
     const currentGraph = currentGraphs[0]?.value || null;
     setGraph(currentGraph);
   }
-  const content = 'ligne_01\nligne_02\n';
-  const graphUrl = `https://barometredelascienceouverte.esr.gouv.fr/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
+  const graphUrl = `${window.location.origin}/integration/${lang}/${graph}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
+
+  const csvContent = objects
+    .reduce((acc, curr) => acc.concat(curr.children), [])
+    .reduce((acc, curr) => acc.concat(curr.children), [])
+    .map(
+      (item) => `${item.label};${window.location.origin}/integration/${lang}/${item.value}?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`,
+    )
+    .join('\n');
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -401,7 +408,7 @@ function HowTo() {
                             label='Objet de recherche'
                             hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
                             onChange={(e) => changeObject(e.target.value)}
-                            options={objects.slice(0, 1)}
+                            options={objects}
                             selected={object}
                             style={{ backgroundColor: getCSSValue('--white') }}
                           />
@@ -557,12 +564,12 @@ function HowTo() {
                     <Button
                       icon='ri-download-fill'
                       onClick={() => downloadFile({
-                        content,
-                        name: 'my_lalilou_file.json',
+                        content: csvContent,
+                        name: 'bso_urls.csv',
                         type: 'octet/stream',
                       })}
                     >
-                      Télécharger la liste des urls des graphiques (.txt)
+                      Télécharger la liste des urls des graphiques (.csv)
                     </Button>
                   </section>
                 </>
