@@ -235,375 +235,224 @@ function HowTo() {
               <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_03'>
                 C - Intégration des graphiques générés (via iFrame)
               </h4>
-              {isInProduction() && (
-                <>
-                  Dès lors, chaque graphique du BSO publications est déclinable
-                  pour l'établissement / laboratoire. Ce graphique sera alors
-                  intégrable dans n'importe quel site web via une iFrame. Pour
-                  décliner un graphique, cliquer sur le bouton "Intégration" en
-                  bas du graphique voulu, afin de récupérer son url. Ensuite,
-                  ajouter à cette url l'identifiant Siren de la structure (ex:
-                  <i>bsoLocalAffiliation=130015506</i>
-                  {' '}
-                  pour l'Université de
-                  Lorraine). Par défaut, les éléments envoyés précédemment (nom,
-                  date de début et date de fin) seront intégrés pour cet
-                  établissement / laboratoire. Néanmoins, il est possible de les
-                  modifier directement dans l'URL via des paramètres :
-                  <ul>
-                    <li>
-                      <b>bsoLocalAffiliation</b>
-                      {' '}
-                      : SIREN de l'établissement (ex:
-                      bsoLocalAffiliation=130015506)
-                      <i> requis</i>
-                    </li>
-                    <li>
-                      <b>commentsName</b>
-                      {' '}
-                      : Nom de l'établissement / laboratoire
-                      qui sera affiché dans les commentaires (ex:
-                      commentsName=de l'université de Lorraine),
-                      <i> défaut: vide</i>
-                    </li>
-                    <li>
-                      <b>commentsNameEN</b>
-                      {' '}
-                      : Nom de l'établissement /
-                      laboratoire qui sera affiché dans les commentaires en
-                      anglais (ex: commentsName=of the university of Lorraine),
-                      <i> défaut: vide</i>
-                    </li>
-                    <li>
-                      <b>displayComment</b>
-                      {' '}
-                      : affiche ou masque le commentaire
-                      (ex: displayComment=false),
-                      <i> défaut: true</i>
-                    </li>
-                    <li>
-                      <b>displayTitle</b>
-                      {' '}
-                      : affiche ou masque le titre (ex:
-                      displayTitle=false),
-                      <i> défaut: true</i>
-                    </li>
-                    <li>
-                      <b>displayFooter</b>
-                      {' '}
-                      : affiche ou masque le footer (ex:
-                      displayFooter=false),
-                      <i> défaut: true</i>
-                    </li>
-                    <li>
-                      <b>endYear</b>
-                      {' '}
-                      : filtre sur l'année d'observation
-                      inférieure ou égale (ex: endYear=2020),
-                      <i> défaut: vide</i>
-                    </li>
-                    <li>
-                      <b>name</b>
-                      {' '}
-                      : Nom de l'établissement / laboratoire qui
-                      préfixe le titre du graphe (ex: name=Université de
-                      Lorraine),
-                      <i> défaut: vide</i>
-                    </li>
-                    <li>
-                      <b>firstObservationYear</b>
-                      {' '}
-                      : première année d'observation
-                      (ex: firstObservationYear=2019),
-                      <i> défaut: 2018</i>
-                    </li>
-                    <li>
-                      <b>lastObservationYear</b>
-                      {' '}
-                      : Dernière année d'observation
-                      à prendre en compte,
-                      <i> défaut: 2021</i>
-                    </li>
-                    <li>
-                      <b>startYear</b>
-                      {' '}
-                      : première année de publication (ex:
-                      startYear=2016),
-                      <i> défaut: 2013</i>
-                    </li>
-                  </ul>
-                  <li>
-                    Attention, seuls les graphes du BSO publications sont
-                    adaptables (et pas ceux concernant la santé).
-                  </li>
-                  <li>
-                    D'autre part, l'url doit être encodée. Pour ce faire, il
-                    faut copier coller l'url composée dans un navigateur et
-                    celui-ci la réécrira dans la barre d'adresse. C'est alors
-                    cette URL réécrite qu'il faudra mettre dans l'attribut "src"
-                    de l'iframe.
-                  </li>
-                  Exemple:
-                  {' '}
-                  <i>
-                    <a
-                      href='https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016'
-                      rel='noreferrer'
-                      target='_blank'
+              <br />
+              <br />
+              <section
+                style={{
+                  backgroundColor: getCSSValue('--blue-soft-25'),
+                  padding: '28px',
+                }}
+              >
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <TextInput
+                      hint="Communiqué par l'équipe BSO si périmètre ad-hoc, ou identifiant de structure HAL, ou code collection HAL"
+                      label="Identifiant de l'établissement"
+                      message='Merci de saisir un identifiant'
+                      messageType={bsoLocalAffiliation === '' ? 'error' : ''}
+                      onChange={(e) => setBsoLocalAffiliation(e.target.value)}
+                      required
+                      style={{ backgroundColor: getCSSValue('--white') }}
+                      value={bsoLocalAffiliation}
+                    />
+                  </Col>
+                  <Col n='12 md-6'>
+                    <Select
+                      label='Langue'
+                      onChange={(e) => setLang(e.target.value)}
+                      options={langs}
+                      selected={lang}
+                      style={{
+                        'margin-top': '50px',
+                        backgroundColor: getCSSValue('--white'),
+                      }}
+                    />
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <Select
+                      label='Objet de recherche'
+                      hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
+                      onChange={(e) => changeObject(e.target.value)}
+                      options={objects}
+                      selected={object}
+                      style={{ backgroundColor: getCSSValue('--white') }}
+                    />
+                  </Col>
+                  <Col n='12 md-6'>
+                    <Select
+                      label='Onglet'
+                      onChange={(e) => changeTab(e.target.value)}
+                      options={tabs}
+                      selected={tab}
+                      style={{
+                        'margin-top': '50px',
+                        backgroundColor: getCSSValue('--white'),
+                      }}
+                    />
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12 md-12'>
+                    <Select
+                      label='Graphique'
+                      onChange={(e) => setGraph(e.target)}
+                      options={graphs}
+                      selected={graph}
+                      style={{ backgroundColor: getCSSValue('--white') }}
+                    />
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <Select
+                      hint="Filtre sur l'année de publication supérieure ou égale"
+                      label='Première année de publication'
+                      onChange={(e) => setStartYear(e.target.value)}
+                      options={publicationYears}
+                      selected={startYear}
+                      style={{ backgroundColor: getCSSValue('--white') }}
+                    />
+                  </Col>
+                  <Col n='12 md-6'>
+                    <Select
+                      hint="Filtre sur l'année de publication inférieure ou égale"
+                      label='Dernière année de publication'
+                      message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
+                      messageType={endYear < startYear ? 'error' : ''}
+                      onChange={(e) => setEndYear(e.target.value)}
+                      options={publicationYears}
+                      selected={endYear}
+                      style={{ backgroundColor: getCSSValue('--white') }}
+                    />
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <Select
+                      hint="Filtre sur l'année d'observation inférieure ou égale"
+                      label="Première année d'observation"
+                      onChange={(e) => setFirstObservationYear(e.target.value)}
+                      options={observationYears}
+                      selected={firstObservationYear}
+                      style={{ backgroundColor: getCSSValue('--white') }}
+                    />
+                  </Col>
+                  <Col n='12 md-6'>
+                    <Select
+                      hint="Filtre sur l'année d'observation supérieure ou égale"
+                      label="Dernière année d'observation"
+                      onChange={(e) => setLastObservationYear(e.target.value)}
+                      options={observationYears}
+                      selected={lastObservationYear}
+                      style={{ backgroundColor: getCSSValue('--white') }}
+                      messageType={
+                        lastObservationYear < firstObservationYear
+                          ? 'error'
+                          : ''
+                      }
+                      message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
+                    />
+                  </Col>
+                </Row>
+                <hr />
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <Toggle
+                      checked={displayTitle}
+                      hasLabelLeft
+                      label='Affiche le titre du graphique'
+                      onChange={() => setDisplayTitle(!displayTitle)}
+                    />
+                  </Col>
+                  <Col n='12 md-6'>
+                    <Toggle
+                      checked={displayComment}
+                      hasLabelLeft
+                      label='Affiche le commentaire du graphique'
+                      onChange={() => setDisplayComment(!displayComment)}
+                    />
+                  </Col>
+                </Row>
+                <hr />
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <Toggle
+                      checked={displayFooter}
+                      hasLabelLeft
+                      label='Affiche le footer du graphique'
+                      onChange={() => setDisplayFooter(!displayFooter)}
+                    />
+                  </Col>
+                  <Col n='12 md-6'>
+                    <Toggle
+                      checked={useHalId}
+                      hasLabelLeft
+                      label='Inclure les identifants de HAL'
+                      onChange={() => setUseHalId(!useHalId)}
+                    />
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12' className='studio'>
+                    {getIframeSnippet()}
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12'>
+                    <TextInput
+                      disabled
+                      hint='À copier/coller sur votre page web'
+                      label="Code de l'iframe"
+                      rows={7}
+                      textarea
+                      type='text'
                     >
-                      https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&startYear=2016
-                    </a>
-                  </i>
-                  <pre className='code'>
-                    &lt;iframe
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    id="publi.general.dynamique-ouverture.chart-evolution-proportion"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    title="Université de Lorraine: Evolution du taux d'accès
-                    ouvert des publications scientifiques françaises par année
-                    d'observation"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    width="800"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    height="600"
-                    <br />
-                    <span style={{ paddingLeft: '18px' }} />
-                    src="https://barometredelascienceouverte.esr.gouv.fr/integration/fr/publi.general.dynamique-ouverture.chart-evolution-proportion?bsoLocalAffiliation=130015506&endYear=2019"
-                    <br />
-                    &gt;&lt;/iframe&gt;
-                  </pre>
-                </>
-              )}
-              {!isInProduction() && (
-                <>
-                  <br />
-                  <br />
-                  <section
-                    style={{
-                      backgroundColor: getCSSValue('--blue-soft-25'),
-                      padding: '28px',
-                    }}
-                  >
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <TextInput
-                          hint="Communiqué par l'équipe BSO si périmètre ad-hoc, ou identifiant de structure HAL, ou code collection HAL"
-                          label="Identifiant de l'établissement"
-                          message='Merci de saisir un identifiant'
-                          messageType={
-                            bsoLocalAffiliation === '' ? 'error' : ''
-                          }
-                          onChange={(e) => setBsoLocalAffiliation(e.target.value)}
-                          required
-                          style={{ backgroundColor: getCSSValue('--white') }}
-                          value={bsoLocalAffiliation}
-                        />
-                      </Col>
-                      <Col n='12 md-6'>
-                        <Select
-                          label='Langue'
-                          onChange={(e) => setLang(e.target.value)}
-                          options={langs}
-                          selected={lang}
-                          style={{
-                            'margin-top': '50px',
-                            backgroundColor: getCSSValue('--white'),
-                          }}
-                        />
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <Select
-                          label='Objet de recherche'
-                          hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
-                          onChange={(e) => changeObject(e.target.value)}
-                          options={objects}
-                          selected={object}
-                          style={{ backgroundColor: getCSSValue('--white') }}
-                        />
-                      </Col>
-                      <Col n='12 md-6'>
-                        <Select
-                          label='Onglet'
-                          onChange={(e) => changeTab(e.target.value)}
-                          options={tabs}
-                          selected={tab}
-                          style={{
-                            'margin-top': '50px',
-                            backgroundColor: getCSSValue('--white'),
-                          }}
-                        />
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12 md-12'>
-                        <Select
-                          label='Graphique'
-                          onChange={(e) => setGraph(e.target)}
-                          options={graphs}
-                          selected={graph}
-                          style={{ backgroundColor: getCSSValue('--white') }}
-                        />
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <Select
-                          hint="Filtre sur l'année de publication supérieure ou égale"
-                          label='Première année de publication'
-                          onChange={(e) => setStartYear(e.target.value)}
-                          options={publicationYears}
-                          selected={startYear}
-                          style={{ backgroundColor: getCSSValue('--white') }}
-                        />
-                      </Col>
-                      <Col n='12 md-6'>
-                        <Select
-                          hint="Filtre sur l'année de publication inférieure ou égale"
-                          label='Dernière année de publication'
-                          message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
-                          messageType={endYear < startYear ? 'error' : ''}
-                          onChange={(e) => setEndYear(e.target.value)}
-                          options={publicationYears}
-                          selected={endYear}
-                          style={{ backgroundColor: getCSSValue('--white') }}
-                        />
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <Select
-                          hint="Filtre sur l'année d'observation inférieure ou égale"
-                          label="Première année d'observation"
-                          onChange={(e) => setFirstObservationYear(e.target.value)}
-                          options={observationYears}
-                          selected={firstObservationYear}
-                          style={{ backgroundColor: getCSSValue('--white') }}
-                        />
-                      </Col>
-                      <Col n='12 md-6'>
-                        <Select
-                          hint="Filtre sur l'année d'observation supérieure ou égale"
-                          label="Dernière année d'observation"
-                          onChange={(e) => setLastObservationYear(e.target.value)}
-                          options={observationYears}
-                          selected={lastObservationYear}
-                          style={{ backgroundColor: getCSSValue('--white') }}
-                          messageType={
-                            lastObservationYear < firstObservationYear
-                              ? 'error'
-                              : ''
-                          }
-                          message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
-                        />
-                      </Col>
-                    </Row>
-                    <hr />
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <Toggle
-                          checked={displayTitle}
-                          hasLabelLeft
-                          label='Affiche le titre du graphique'
-                          onChange={() => setDisplayTitle(!displayTitle)}
-                        />
-                      </Col>
-                      <Col n='12 md-6'>
-                        <Toggle
-                          checked={displayComment}
-                          hasLabelLeft
-                          label='Affiche le commentaire du graphique'
-                          onChange={() => setDisplayComment(!displayComment)}
-                        />
-                      </Col>
-                    </Row>
-                    <hr />
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <Toggle
-                          checked={displayFooter}
-                          hasLabelLeft
-                          label='Affiche le footer du graphique'
-                          onChange={() => setDisplayFooter(!displayFooter)}
-                        />
-                      </Col>
-                      <Col n='12 md-6'>
-                        <Toggle
-                          checked={useHalId}
-                          hasLabelLeft
-                          label='Inclure les identifants de HAL'
-                          onChange={() => setUseHalId(!useHalId)}
-                        />
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12' className='studio'>
-                        {getIframeSnippet()}
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12'>
-                        <TextInput
-                          disabled
-                          hint='À copier/coller sur votre page web'
-                          label="Code de l'iframe"
-                          rows={7}
-                          textarea
-                          type='text'
-                        >
-                          {ReactDOMServer.renderToString(getIframeSnippet())}
-                        </TextInput>
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <CopyToClipboard
-                          text={ReactDOMServer.renderToString(
-                            getIframeSnippet(),
-                          )}
-                        >
-                          <Button icon='ri-clipboard-fill' iconPosition='right'>
-                            Copier le code
-                          </Button>
-                        </CopyToClipboard>
-                      </Col>
-                    </Row>
-                    <Row gutters>
-                      <Col n='12 md-6'>
-                        <Button
-                          icon='ri-download-fill'
-                          iconPosition='right'
-                          onClick={() => downloadFile({
-                            content: csvContent,
-                            name: 'bso_urls.csv',
-                            type: 'octet/stream',
-                          })}
-                        >
-                          Télécharger la liste des urls des graphiques (.csv)
-                        </Button>
-                      </Col>
-                      <Col n='12 md-6'>
-                        <Button
-                          icon='ri-download-fill'
-                          iconPosition='right'
-                          onClick={() => downloadFile({
-                            content: htmlContent,
-                            name: 'bso_graphs.html',
-                            type: 'octet/stream',
-                          })}
-                        >
-                          Télécharger la liste des graphiques (.html)
-                        </Button>
-                      </Col>
-                    </Row>
-                  </section>
-                </>
-              )}
+                      {ReactDOMServer.renderToString(getIframeSnippet())}
+                    </TextInput>
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <CopyToClipboard
+                      text={ReactDOMServer.renderToString(getIframeSnippet())}
+                    >
+                      <Button icon='ri-clipboard-fill' iconPosition='right'>
+                        Copier le code
+                      </Button>
+                    </CopyToClipboard>
+                  </Col>
+                </Row>
+                <Row gutters>
+                  <Col n='12 md-6'>
+                    <Button
+                      icon='ri-download-fill'
+                      iconPosition='right'
+                      onClick={() => downloadFile({
+                        content: csvContent,
+                        name: 'bso_urls.csv',
+                        type: 'octet/stream',
+                      })}
+                    >
+                      Télécharger la liste des urls des graphiques (.csv)
+                    </Button>
+                  </Col>
+                  <Col n='12 md-6'>
+                    <Button
+                      icon='ri-download-fill'
+                      iconPosition='right'
+                      onClick={() => downloadFile({
+                        content: htmlContent,
+                        name: 'bso_graphs.html',
+                        type: 'octet/stream',
+                      })}
+                    >
+                      Télécharger la liste des graphiques (.html)
+                    </Button>
+                  </Col>
+                </Row>
+              </section>
             </Col>
           </Row>
         </section>
