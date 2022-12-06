@@ -28,15 +28,15 @@ function Variations() {
         icons={renderIcons}
       />
       <Container>
-        <section className='content py-48'>
+        <section className='content bd125'>
           <Row gutters>
-            <Col n='12 offset-1'>
+            <Col n='12'>
               <h2>
                 Baromètres de la Science Ouverte mis en place par les
                 établissements
               </h2>
             </Col>
-            <Col n='12 lg-10 offset-1'>
+            <Col n='12 lg-10 '>
               L'Université de Lorraine a été le premier établissement à
               développer une déclinaison locale du Baromètre français de la
               Science Ouverte. Suite à cette expérience réussie, une
@@ -45,7 +45,7 @@ function Variations() {
               Science Ouverte, que ce soit au niveau établissement, groupement
               de laboratoires ou laboratoire.
             </Col>
-            <Col n='12 lg-10 offset-1'>
+            <Col n='12 lg-10'>
               La page
               <span>
                 <span> </span>
