@@ -99,6 +99,11 @@ div.d-inline-flex {
   white-space: pre-wrap;
 }
 
+.studio {
+  margin-left: -32px;
+  overflow: visible;
+}
+
 /**
  * Position
  */
@@ -187,6 +192,10 @@ div.d-inline-flex {
 
 .bg-medium-purple {
   background-color: var(--purple-medium-25);
+}
+
+.bg-medium-purple-50 {
+  background-color: var(--purple-medium-50);
 }
 
 .bg-dark-blue {
@@ -342,6 +351,10 @@ div.d-inline-flex {
 
 .mr-120 {
   margin-right: 120px;
+}
+
+.mt-40 {
+  margin-top: 40px;
 }
 
 .m-auto {

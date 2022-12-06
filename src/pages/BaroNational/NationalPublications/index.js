@@ -500,7 +500,7 @@ export default function NationalPublications() {
                   intlKey=''
                 >
                   <BSOChart id='publi.general.impact-financement.chart-taux-ouverture' />
-                  <BSOChart id='publi.general.impact-financement.chart-taux-ouverture-all-grants' />
+                  <BSOChart id='publi.general.impact-financement.chart-business-model' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-taux' />
                   <BSOChart id='publi.others.collaborations.international-collaborations' />

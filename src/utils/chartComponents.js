@@ -84,6 +84,9 @@ const ChartRepartitionDeclarations = lazy(() => import(
 const ChartTauxOuvertureFinancement = lazy(() => import(
   '../components/Charts/publications/general/impact-financement/chart-taux-ouverture'
 ));
+const ChartTauxOuvertureFinancementBusinessModel = lazy(() => import(
+  '../components/Charts/publications/general/impact-financement/chart-business-model'
+));
 const ChartTauxOuvertureFinancementAllGrants = lazy(() => import(
   '../components/Charts/publications/general/impact-financement/chart-taux-ouverture-all-grants'
 ));
@@ -246,6 +249,8 @@ const chartComponents = {
     ChartLanguesOuverture,
   'publi.general.impact-financement.chart-taux-ouverture':
     ChartTauxOuvertureFinancement,
+  'publi.general.impact-financement.chart-business-model':
+    ChartTauxOuvertureFinancementBusinessModel,
   'publi.general.impact-financement.chart-taux-ouverture-all-grants':
     ChartTauxOuvertureFinancementAllGrants,
   'publi.general.impact-financement.chart-repartition-financements':

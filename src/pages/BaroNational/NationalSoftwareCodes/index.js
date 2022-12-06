@@ -23,7 +23,7 @@ import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
-export default function NationalResearchData() {
+export default function NationalSoftwareCodes() {
   const { lang } = useLang();
   const { pathname } = useLocation();
   const intl = useIntl();
@@ -66,7 +66,7 @@ export default function NationalResearchData() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.software.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                    glossaryKeys={['grobid', 'softcite']}
                   />
                 </p>
               </Col>
@@ -113,7 +113,7 @@ export default function NationalResearchData() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-software.general.partage'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  glossaryKeys={['grobid', 'softcite']}
                   backgroundColor={blueSoft50}
                   anchorId='general.partage'
                 >
@@ -124,7 +124,7 @@ export default function NationalResearchData() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-software.general.utilisation'
-                  glossaryKeys={['archive-ouverte']}
+                  glossaryKeys={['grobid', 'softcite']}
                   backgroundColor={blueSoft25}
                   anchorId='general.utilisation'
                 >

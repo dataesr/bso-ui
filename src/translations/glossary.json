@@ -161,6 +161,21 @@
       "intlDefinition": "app.glossary.unpaywall.definition",
       "intlEntry": "app.glossary.unpaywall",
       "cta": "https://unpaywall.org/"
+    },
+    "grobid": {
+      "intlDefinition": "app.glossary.grobid.definition",
+      "intlEntry": "app.glossary.grobid",
+      "cta": "https://github.com/kermitt2/grobid"
+    },
+    "softcite": {
+      "intlDefinition": "app.glossary.softcite.definition",
+      "intlEntry": "app.glossary.softcite",
+      "cta": "https://github.com/ourresearch/software-mentions"
+    },
+    "datastet": {
+      "intlDefinition": "app.glossary.datastet.definition",
+      "intlEntry": "app.glossary.datastet",
+      "cta": "https://github.com/kermitt2/datastet"
     }
   }
 ]

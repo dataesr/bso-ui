@@ -64,7 +64,10 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: '?id=general.dynamique-ouverture',
+        buttonHref:
+          domain === ''
+            ? '/publications/general?id=general.dynamique-ouverture'
+            : '/sante/publications/general?id=general.dynamique-ouverture',
         activeDomains: ['health', ''],
       },
       documentsByTypesByOA: {
@@ -84,7 +87,10 @@ export default function DataCardSection({ domain, lang }) {
         intlValues: {
           oaBooksRate,
         },
-        buttonHref: 'general?id=general.genres-ouverture',
+        buttonHref:
+          domain === ''
+            ? '/publications/general?id=general.genres-ouverture'
+            : '/sante/publications/general?id=general.genres-ouverture',
         activeDomains: [''],
       },
       diamondPublicationRate: {
@@ -115,7 +121,7 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: 'editeurs?id=publishers.type-ouverture',
+        buttonHref: '/publications/editeurs?id=publishers.type-ouverture',
         activeDomains: [],
       },
       hostedDocument: {
@@ -137,7 +143,10 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: 'archives?id=repositories.dynamique-hal',
+        buttonHref:
+          domain === ''
+            ? '/publications/archives?id=repositories.dynamique-hal'
+            : '/sante/publications/archives?id=repositories.dynamique-hal',
         activeDomains: [''],
       },
       openHealthPublicationPublisherRepository: {
@@ -154,7 +163,10 @@ export default function DataCardSection({ domain, lang }) {
         isPercentage: true,
         color: 'aqua',
         intlKey: 'app.health-publi.data.publisher-repository',
-        buttonHref: 'general?id=general.voies-ouverture',
+        buttonHref:
+          domain === ''
+            ? '/publications/general?id=general.voies-ouverture'
+            : '/sante/publications/general?id=general.voies-ouverture',
         activeDomains: ['health'],
       },
       hostedDocumentPMC: {
@@ -179,7 +191,10 @@ export default function DataCardSection({ domain, lang }) {
           publicationYear:
             getPublicationYearFromObservationSnap(lastObservationSnap),
         },
-        buttonHref: 'archives?id=repositories.plus-utilisees',
+        buttonHref:
+          domain === ''
+            ? '/publications/archives?id=repositories.plus-utilisees'
+            : '/sante/publications/archives?id=repositories.plus-utilisees',
         activeDomains: ['health'],
       },
     }),

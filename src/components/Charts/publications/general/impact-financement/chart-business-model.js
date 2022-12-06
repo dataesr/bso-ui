@@ -27,10 +27,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'voie',
+    'business_model',
   );
   const { dataGraph, categories } = allData;
-
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -70,7 +69,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.general.impact-financement.chart-taux-ouverture',
+  id: 'publi.general.impact-financement.chart-business-model',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

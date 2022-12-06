@@ -17,6 +17,11 @@
         "https://orcid.org/"
       ]
     },
+    "corpus-bso3": {
+      "intlDefinition": "app.faq.corpus-bso3.definition",
+      "intlEntry": "app.faq.corpus-bso3",
+      "ctas": []
+    },
     "access-to-publications": {
       "intlDefinition": "app.faq.access-to-publications.definition",
       "intlEntry": "app.faq.access-to-publications",

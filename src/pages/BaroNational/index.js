@@ -334,6 +334,13 @@ function BaroNational() {
                   backgroundColorClass='bg-medium-green'
                 />
                 <TodayNumbersItem
+                  itemKey='these'
+                  iconName='icon-these'
+                  iconColor='green-medium-75'
+                  intlSubTitle='app.thesis'
+                  backgroundColorClass='bg-medium-purple-50'
+                />
+                <TodayNumbersItem
                   itemKey='obsDates'
                   iconName='icon-bsso-10'
                   iconColor='green-light-75'

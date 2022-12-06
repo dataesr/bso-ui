@@ -28,15 +28,15 @@ function Variations() {
         icons={renderIcons}
       />
       <Container>
-        <section className='content py-48'>
+        <section className='content bd125'>
           <Row gutters>
-            <Col n='12 offset-1'>
+            <Col n='12'>
               <h2>
                 Baromètres de la Science Ouverte mis en place par les
                 établissements
               </h2>
             </Col>
-            <Col n='12 lg-10 offset-1'>
+            <Col n='12 lg-10 '>
               L'Université de Lorraine a été le premier établissement à
               développer une déclinaison locale du Baromètre français de la
               Science Ouverte. Suite à cette expérience réussie, une
@@ -45,7 +45,7 @@ function Variations() {
               Science Ouverte, que ce soit au niveau établissement, groupement
               de laboratoires ou laboratoire.
             </Col>
-            <Col n='12 lg-10 offset-1'>
+            <Col n='12 lg-10'>
               La page
               <span>
                 <span> </span>
@@ -274,6 +274,13 @@ function Variations() {
                 alt='bso local universite nantes'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://www.imt-mines-albi.fr/fr/barometre-science-ouverte-2022'
+                img='/declinaisons/IMTAlbi.png'
+                alt='bso local imt mines albi'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>
@@ -300,15 +307,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     CNAM
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.imt-mines-albi.fr/barometre-science-ouverte-2021'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    IMT Mines Albi
                   </a>
                 </li>
                 <li>

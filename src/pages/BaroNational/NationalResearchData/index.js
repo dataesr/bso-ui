@@ -64,7 +64,7 @@ export default function NationalResearchData() {
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.data.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                    glossaryKeys={['grobid', 'datastet']}
                   />
                 </p>
               </Col>

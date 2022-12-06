@@ -297,14 +297,14 @@ export function isInProduction() {
  * @param {string} search
  * @returns {Object}
  */
-export function getURLSearchParams(intl = undefined) {
+export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.country
     || 'fr';
   const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
-    || locals?.[bsoLocalAffiliation]?.observationYear
+    || locals?.[bsoLocalAffiliation]?.lastObservationYear
     || process.env.REACT_APP_LAST_OBSERVATION;
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
     || locals?.[bsoLocalAffiliation]?.firstObservationYear
@@ -321,7 +321,10 @@ export function getURLSearchParams(intl = undefined) {
   const displayFooter = !(
     urlSearchParams.get('displayFooter')?.toLowerCase() === 'false'
   );
-  const isPublication = window.location.pathname.startsWith('/publication');
+  const isPublication = window.location.pathname.startsWith('/publication')
+    || id.startsWith('publi.')
+    || id.startsWith('app.national-publi')
+    || id.startsWith('app.health-publi');
   let commentsName = intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
     || 'françaises';
   let displayTitle;
@@ -334,6 +337,7 @@ export function getURLSearchParams(intl = undefined) {
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || locals?.[bsoLocalAffiliation]?.[commentsNameProperty]
+      || 'du périmètre '.concat(bsoLocalAffiliation)
       || intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
       || 'françaises';
     displayTitle = !(
@@ -348,7 +352,8 @@ export function getURLSearchParams(intl = undefined) {
       10,
     );
     name = urlSearchParams.get('name')?.toLowerCase()
-      || locals?.[bsoLocalAffiliation]?.name;
+      || locals?.[bsoLocalAffiliation]?.name
+      || 'Périmètre '.concat(bsoLocalAffiliation);
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
         || locals?.[bsoLocalAffiliation]?.startYear
@@ -387,10 +392,10 @@ export function getURLSearchParams(intl = undefined) {
     displayTitle,
     displayFooter,
     endYear,
-    idTypes,
-    name,
-    lastObservationYear,
     firstObservationYear,
+    idTypes,
+    lastObservationYear,
+    name,
     startYear,
   };
 }

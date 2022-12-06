@@ -26,7 +26,7 @@ import {
  */
 export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let otherSources = [];
-  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl);
+  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl, id);
   otherSources = [name];
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;
@@ -881,17 +881,62 @@ export const chartOptions = {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions({ id, intl });
       options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.general.impact-financement.chart-taux-ouverture.legend',
+        id: 'app.publi.type-hebergement',
       });
       options.chart.type = 'column';
       options.xAxis = {
         categories,
+        labels: {
+          format:
+            '<div style="text-align:center;">Global France&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ANR<br /><br />{value}</div>',
+          useHTML: true,
+        },
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.plotOptions = {
-        column: {
+        series: {
+          stacking: 'normal',
+          pointPadding: 0.1,
+          groupPadding: 0.1,
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'publi.general.impact-financement.chart-business-model': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-oa-publisher',
+      });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        labels: {
+          format:
+            '<div style="text-align:center;">Global France&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ANR<br /><br />{value}</div>',
+          useHTML: true,
+        },
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.percentage-publi',
+      });
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          pointPadding: 0.1,
+          groupPadding: 0.1,
           dataLabels: {
             enabled: true,
             formatter() {

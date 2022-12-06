@@ -40,6 +40,11 @@ const fetchInfos = {
     url: ES_API_URL,
     objectType: ['publications'],
   },
+  these: {
+    path: 'aggregations.publication_count.value',
+    url: ES_API_URL,
+    objectType: ['thesis'],
+  },
   interventional: {
     path: 'aggregations.study_type.buckets.0.doc_count',
     url: ES_STUDIES_API_URL,

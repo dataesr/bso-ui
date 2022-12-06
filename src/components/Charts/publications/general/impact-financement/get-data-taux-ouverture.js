@@ -4,179 +4,175 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(beforeLastObservationSnap, observationSnap, domain) {
+function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
+  let possibleKeys = [];
+  let splitKey = '';
+  if (split === 'voie') {
+    possibleKeys = [
+      'repository',
+      'publisher;repository',
+      'publisher',
+      'closed',
+    ];
+    splitKey = 'oa_host_type';
+  } else if (split === 'business_model') {
+    possibleKeys = ['hybrid', 'other', 'gold', 'diamond'];
+    splitKey = 'oa_colors_with_priority_to_publisher';
+  }
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
-    const queryFilter = [
-      {
-        term: {
-          'grants.agency.keyword': 'ANR',
-        },
+    const queryFilter = {
+      term: {
+        'grants.agency.keyword': 'ANR',
       },
-    ];
+    };
     const queryFiltered = getFetchOptions({
-      key: 'openingRateGrant',
+      key: 'oaHostType',
       domain,
-      parameters: [lastObservationSnap, queryFilter],
+      parameters: [
+        lastObservationSnap,
+        `oa_details.${lastObservationSnap}.${splitKey}.keyword`,
+        'year',
+        2016,
+      ],
       objectType: ['publications'],
     });
-    queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
+    queryFiltered.query.bool.filter.push(queryFilter);
     const query = getFetchOptions({
-      key: 'openingRateGrant',
+      key: 'oaHostType',
       domain,
-      parameters: [lastObservationSnap, []],
+      parameters: [
+        lastObservationSnap,
+        `oa_details.${lastObservationSnap}.${splitKey}.keyword`,
+        'year',
+        2016,
+      ],
       objectType: ['publications'],
     });
+    if (split === 'business_model') {
+      const queryFilterArticle = {
+        term: {
+          'genre.keyword': 'journal-article',
+        },
+      };
+      const queryFilterOaPublisher = {
+        term: {
+          [`oa_details.${lastObservationSnap}.oa_host_type`]: 'publisher',
+        },
+      };
+      query.query.bool.filter.push(queryFilterArticle);
+      query.query.bool.filter.push(queryFilterOaPublisher);
+      queryFiltered.query.bool.filter.push(queryFilterArticle);
+      queryFiltered.query.bool.filter.push(queryFilterOaPublisher);
+    }
+    queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
-    const queryAll = getFetchOptions({
-      key: 'openingRateAllGrant',
-      domain,
-      parameters: [lastObservationSnap],
-      objectType: ['publications'],
-    });
-    queries.push(Axios.post(ES_API_URL, queryAll, HEADERS));
     const res = await Axios.all(queries);
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
     let dataAgency = res[0].data.aggregations.by_publication_year.buckets;
     let data = res[1].data.aggregations.by_publication_year.buckets;
-    const dataAll = res[2].data.aggregations.by_agency.buckets;
-
     // Sort on publication year desc
     data = data.sort((a, b) => a.key - b.key);
     dataAgency = dataAgency.sort((a, b) => a.key - b.key);
     const categories = []; // X elements
-    const all = [];
-    const withDeclaration = [];
-    dataAgency
-      .filter(
-        (el) => el.key > 2012
-          && el.doc_count > 1
-          && parseInt(el.key, 10)
-            < parseInt(lastObservationSnap.substring(0, 4), 10),
-      )
-      .forEach((el) => {
-        // avec declaration
-        const withDeclarationOa = el?.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
-        withDeclaration.push({
-          y: (100 * withDeclarationOa) / el?.doc_count,
-          y_abs: withDeclarationOa,
-          y_tot: el?.doc_count || 0,
-          publicationDate: el.key,
-          bsoDomain,
-          agency: intl.formatMessage({ id: 'app.all-agencies' }),
-        });
-      });
-
-    data
-      .filter(
-        (el) => el.key > 2012
-          && parseInt(el.key, 10)
-            < parseInt(lastObservationSnap.substring(0, 4), 10),
-      )
-      .forEach((el, index) => {
-        categories.push(el.key);
-
-        const Oa = el.by_is_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
-        all.push({
-          y: (100 * Oa) / el.doc_count,
-          y_abs: Oa,
-          y_tot: el.doc_count,
-          publicationDate: el.key,
-          bsoDomain,
-          agency: 'withAndWithoutGrant',
-        });
-        // avec declaration, on s'assure qu'il y a bien toutes années, sinon on complète par un null
-        if (
-          withDeclaration?.[index]?.publicationDate === undefined
-          || withDeclaration[index].publicationDate > el.key
-        ) {
-          withDeclaration.unshift(null);
-        }
-      });
-    const dataGraph = [
-      {
-        name: intl.formatMessage({ id: 'app.all-publications' }),
-        data: all,
-        color: getCSSValue('--orange-soft-100'),
-      },
-      {
-        name: intl.formatMessage({ id: 'app.with-declaration' }),
-        data: withDeclaration,
-        color: getCSSValue('--orange-soft-175'),
-      },
-    ];
-
-    // Get all publication years as abscissa values
-    let categoriesAll = dataAll[0].by_publication_year.buckets.map(
-      (item) => item.key,
-    );
-    categoriesAll = categoriesAll.sort();
-    const dataGraphAll = [];
-    dataAll.forEach((el) => {
-      const grants = [];
-      // Sort by publication year asc
-      const years = el.by_publication_year.buckets.sort(
-        (a, b) => a.key - b.key,
-      );
-      years.forEach((item) => {
-        const nbOpen = item.by_is_oa.buckets.find((item2) => item2.key === 1)?.doc_count
-          || 0;
-        grants.push((nbOpen / item.doc_count) * 100);
-      });
-      dataGraphAll.push({
-        name: el.key,
-        data: grants,
-      });
-    });
-
-    const publicationYear = parseInt(
-      getObservationLabel(beforeLastObservationSnap, intl),
-      10,
-    );
-    const allPublicationsLabel = intl.formatMessage({
-      id: 'app.all-publications',
-    });
-    const publicationsWithStatementLabel = intl.formatMessage({
-      id: 'app.with-declaration',
-    });
-    const publicationsWithoutStatementLabel = intl.formatMessage({
-      id: 'app.without-declaration',
-    });
-    let allPublicationsRate = '';
-    let publicationsWithStatementRate = '';
-    let publicationsWithoutStatementRate = '';
-    if (dataGraph) {
-      allPublicationsRate = dataGraph
-        .find((item) => item.name === allPublicationsLabel)
-        ?.data?.find((item) => item?.publicationDate === publicationYear)
-        ?.y.toFixed(0);
-      publicationsWithStatementRate = dataGraph
-        .find((item) => item.name === publicationsWithStatementLabel)
-        ?.data?.find((item) => item?.publicationDate === publicationYear)
-        ?.y.toFixed(0) || 0;
-      publicationsWithoutStatementRate = dataGraph
-        .find((item) => item.name === publicationsWithoutStatementLabel)
-        ?.data?.find((item) => item?.publicationDate === publicationYear)
-        ?.y.toFixed(0) || 0;
-    }
-
-    const comments = {
-      allPublicationsRate,
-      publicationsWithoutStatementRate,
-      publicationsWithStatementRate,
-      publicationYear,
+    const colors = {
+      repository: getCSSValue('--green-medium-125'),
+      green_only: getCSSValue('--green-medium-125'),
+      'publisher;repository': getCSSValue('--green-light-100'),
+      publisher: getCSSValue('--yellow-medium-125'),
+      other: getCSSValue('--orange-soft-100'),
+      hybrid: getCSSValue('--hybrid'),
+      gold: getCSSValue('--yellow-medium-100'),
+      diamond: getCSSValue('--diamond'),
     };
+    const messageId = {
+      repository: 'app.type-hebergement.repository',
+      publisher: 'app.type-hebergement.publisher',
+      'publisher;repository': 'app.type-hebergement.publisher-repository',
+      other: 'app.publishers.other',
+      hybrid: 'app.publishers.hybrid',
+      gold: 'app.publishers.gold',
+      diamond: 'app.publishers.diamond',
+      green_only: 'app.publishers.green_only',
+    };
+    const customDataGeneral = {};
+    const customDataAgency = {};
+    possibleKeys.forEach((p) => {
+      customDataGeneral[p] = [];
+      customDataAgency[p] = [];
+    });
+    data.forEach((el) => {
+      categories.push(el.key);
+    });
+    categories.forEach((y) => {
+      const elemGeneral = data.filter((el) => el.key === y)[0];
+      const elemAgency = dataAgency.filter((el) => el.key === y)[0];
+      let totalGeneral = 0;
+      let totalAgency = 0;
+      const bucketsGeneral = elemGeneral.by_oa_host_type?.buckets;
+      const bucketsAgency = elemAgency.by_oa_host_type?.buckets;
+      possibleKeys.forEach((p) => {
+        totalGeneral
+          += bucketsGeneral.filter((e) => e.key === p)[0].doc_count || 0;
+        totalAgency
+          += bucketsAgency.filter((e) => e.key === p)[0].doc_count || 0;
+      });
+      possibleKeys.forEach((p) => {
+        const currentGeneral = bucketsGeneral.filter((e) => e.key === p)[0].doc_count || 0;
+        customDataGeneral[p].push({
+          y: (currentGeneral * 100) / totalGeneral,
+          y_tot: totalGeneral,
+          y_abs: currentGeneral,
+          bsoDomain,
+          publicationDate: y,
+        });
+        const currentAgency = bucketsAgency.filter((e) => e.key === p)[0].doc_count || 0;
+        customDataAgency[p].push({
+          y: (currentAgency * 100) / totalAgency,
+          y_tot: totalAgency,
+          y_abs: currentAgency,
+          bsoDomain,
+          publicationDate: y,
+        });
+      });
+    });
+    const dataGraph = [];
+    possibleKeys
+      .filter((p) => p !== 'closed')
+      .forEach((p) => {
+        dataGraph.push({
+          name: capitalize(
+            intl.formatMessage({
+              id: messageId[p] || 'UNK',
+            }),
+          ),
+          data: customDataGeneral[p],
+          color: colors[p],
+          stack: 'all',
+        });
+        dataGraph.push({
+          name: capitalize(
+            intl.formatMessage({
+              id: messageId[p] || 'UNK',
+            }),
+          ),
+          data: customDataAgency[p],
+          color: colors[p],
+          linkedTo: ':previous',
+          stack: 'agency',
+        });
+      });
+    const comments = {};
 
     return {
       categories,
-      categoriesAll,
       comments,
       ctas: [
         'https://pubmed.ncbi.nlm.nih.gov/',
@@ -184,7 +180,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         'https://anr.fr/',
       ],
       dataGraph,
-      dataGraphAll,
     };
   }
 
