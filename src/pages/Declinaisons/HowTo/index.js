@@ -51,18 +51,21 @@ function HowTo() {
     setTab(t);
     const currentTabs = objects?.find((item) => item.value === object)?.children || [];
     const currentGraphs = currentTabs?.find((item) => item.value === t)?.children || [];
-    setGraph(currentGraphs[0] || null);
+    setGraph(currentGraphs[0].value || null);
   };
   const changeObject = (o) => {
     setObject(o);
     const currentTabs = objects?.find((item) => item.value === o)?.children || [];
     const currentGraphs = currentTabs?.find((item) => item.value === currentTabs[0].value)
       ?.children || [];
-    setGraph(currentGraphs[0] || null);
+    setGraph(currentGraphs[0].value || null);
+  };
+  const changeGraph = (g) => {
+    setGraph(g);
   };
 
   const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
-      graphId?.value || graph?.value
+      graphId?.value || graph
     }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
   const getIframeSnippet = (graphId = null) => (
     <iframe
@@ -297,7 +300,7 @@ function HowTo() {
                   <Col n='12 md-12'>
                     <Select
                       label='Graphique'
-                      onChange={(e) => setGraph(e.target)}
+                      onChange={(e) => changeGraph(e.target.value)}
                       options={graphs}
                       selected={graph}
                       style={{ backgroundColor: getCSSValue('--white') }}
