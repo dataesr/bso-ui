@@ -51,6 +51,7 @@
   "app.data.navigation.disciplines.creation": "Création de jeux de données",
   "app.data.navigation.disciplines.utilisation": "Utilisation des données",
   "app.data.navigation.disciplines.statement": "Data availibility statement",
+  "app.data.navigation.editeurs.statement": "Data availibility statement",
   "app.data.disciplines": "Disciplines",
   "app.data.editeurs": "Editeurs",
   "app.software.general": "Général",
