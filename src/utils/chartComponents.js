@@ -219,6 +219,9 @@ const ChartAvailibility = lazy(() => import(
 const ChartAvailibilityDiscipline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-availibility'
 ));
+const ChartAvailibilityEditeur = lazy(() => import(
+  '../components/Charts/data/editeurs/voies-ouverture/chart-availibility'
+));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
@@ -347,6 +350,7 @@ const chartComponents = {
   'data.general.voies-ouverture.chart-availibility': ChartAvailibility,
   'data.disciplines.voies-ouverture.chart-availibility':
     ChartAvailibilityDiscipline,
+  'data.editeurs.voies-ouverture.chart-availibility': ChartAvailibilityEditeur,
   'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
   'data.general.voies-ouverture.chart-data-created': ChartDataCreated,
   'data.disciplines.voies-ouverture.chart-data-shared':

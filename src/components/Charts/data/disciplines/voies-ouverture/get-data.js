@@ -145,6 +145,7 @@ function useGetData(
       intl,
       fieldY,
       filterWithUsed,
+      filterWithCreated,
     ],
   );
 

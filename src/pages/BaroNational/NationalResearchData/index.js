@@ -278,6 +278,49 @@ export default function NationalResearchData() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+            {/* Les éditeurs */}
+            <GraphItem
+              paths={[
+                '/donnees-de-la-recherche/editeurs',
+                '/research-data/publishers',
+              ]}
+              mainLabel={intl.formatMessage({
+                id: 'app.data.editeurs',
+              })}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/research-data/publishers?id=editeurs.availibility',
+                    fr: '/donnees-de-la-recherche/editeurs?id=editeurs.availibility',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.data.navigation.editeurs.statement',
+                  }),
+                  href: {
+                    en: '/research-data/publishers?id=editeurs.availibility',
+                    fr: '/donnees-de-la-recherche/editeurs?id=editeurs.availibility',
+                  },
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  intlKey='app.national-data.editeurs.statement'
+                  backgroundColor={blueSoft50}
+                  anchorId='editeurs.availibility'
+                >
+                  <BSOChart
+                    id='data.editeurs.voies-ouverture.chart-availibility'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
           </GraphNavigation>
         </Row>
       </section>

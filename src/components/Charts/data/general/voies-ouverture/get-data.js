@@ -125,7 +125,14 @@ function useGetData(
         dataGraph,
       };
     },
-    [beforeLastObservationSnap, domain, intl, fieldY, filterWithUsed],
+    [
+      beforeLastObservationSnap,
+      domain,
+      intl,
+      fieldY,
+      filterWithUsed,
+      filterWithCreated,
+    ],
   );
 
   useEffect(() => {
