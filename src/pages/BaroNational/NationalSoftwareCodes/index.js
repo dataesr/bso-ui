@@ -101,6 +101,15 @@ export default function NationalSoftwareCodes() {
                 },
                 {
                   label: intl.formatMessage({
+                    id: 'app.software.navigation.creation',
+                  }),
+                  href: {
+                    en: '/software/general?id=general.creation',
+                    fr: '/codes-et-logiciels/general?id=general.creation',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.software.navigation.utilisation',
                   }),
                   href: {
@@ -119,6 +128,17 @@ export default function NationalSoftwareCodes() {
                 >
                   <BSOChart
                     id='software.general.voies-ouverture.chart-software-shared'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-software.general.creation'
+                  glossaryKeys={['grobid', 'softcite']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.creation'
+                >
+                  <BSOChart
+                    id='software.general.voies-ouverture.chart-software-created'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -163,6 +183,15 @@ export default function NationalSoftwareCodes() {
                 },
                 {
                   label: intl.formatMessage({
+                    id: 'app.software.navigation.disciplines.creation',
+                  }),
+                  href: {
+                    en: '/software/fields?id=disciplines.creation',
+                    fr: '/codes-et-logiciels/disciplines?id=disciplines.creation',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.software.navigation.disciplines.utilisation',
                   }),
                   href: {
@@ -180,6 +209,16 @@ export default function NationalSoftwareCodes() {
                 >
                   <BSOChart
                     id='software.disciplines.voies-ouverture.chart-software-shared'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-software.disciplines.creation'
+                  backgroundColor={blueSoft50}
+                  anchorId='disciplines.creation'
+                >
+                  <BSOChart
+                    id='software.disciplines.voies-ouverture.chart-software-created'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>

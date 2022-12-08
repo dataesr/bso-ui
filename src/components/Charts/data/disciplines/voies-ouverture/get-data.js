@@ -17,6 +17,7 @@ function useGetData(
   domain,
   fieldY,
   filterWithUsed,
+  filterWithCreated,
 ) {
   const disciplineField = 'bso_classification';
   const intl = useIntl();
@@ -36,6 +37,11 @@ function useGetData(
       if (filterWithUsed) {
         query.query.bool.filter.push({
           term: { [`${filterWithUsed}`]: true },
+        });
+      }
+      if (filterWithCreated) {
+        query.query.bool.filter.push({
+          term: { [`${filterWithCreated}`]: true },
         });
       }
       const res = await Axios.post(ES_API_URL, query, HEADERS);

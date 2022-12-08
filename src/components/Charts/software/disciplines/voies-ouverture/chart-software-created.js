@@ -37,9 +37,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'datastet_details.has_shared',
-    'datastet_details.has_created',
-    'datastet_details.has_used',
+    'softcite_details.has_created',
+    'softcite_details.has_used',
   );
   const { categories, dataGraph } = allData;
   useEffect(() => {
@@ -112,7 +111,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           value='sort-staff'
         />
         <Radio
-          label={intl.formatMessage({ id: 'app.publi.sort-shared' })}
+          label={intl.formatMessage({ id: 'app.publi.sort-created' })}
           value='sort-open-rate'
         />
       </RadioGroup>
@@ -133,7 +132,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'data.disciplines.voies-ouverture.chart-data-shared',
+  id: 'software.disciplines.voies-ouverture.chart-software-created',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

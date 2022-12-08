@@ -29,6 +29,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     domain,
     'softcite_details.has_shared',
     'softcite_details.has_created',
+    'softcite_details.has_used',
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {

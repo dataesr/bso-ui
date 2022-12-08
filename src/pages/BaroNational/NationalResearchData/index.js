@@ -102,6 +102,15 @@ export default function NationalResearchData() {
                 },
                 {
                   label: intl.formatMessage({
+                    id: 'app.data.navigation.creation',
+                  }),
+                  href: {
+                    en: '/research-data/general?id=general.creation',
+                    fr: '/donnees-de-la-recherche/general?id=general.creation',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.data.navigation.utilisation',
                   }),
                   href: {
@@ -129,6 +138,17 @@ export default function NationalResearchData() {
                 >
                   <BSOChart
                     id='data.general.voies-ouverture.chart-data-shared'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-data.general.creation'
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.creation'
+                >
+                  <BSOChart
+                    id='data.general.voies-ouverture.chart-data-created'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -187,6 +207,15 @@ export default function NationalResearchData() {
                 },
                 {
                   label: intl.formatMessage({
+                    id: 'app.data.navigation.disciplines.creation',
+                  }),
+                  href: {
+                    en: '/research-data/fields?id=disciplines.creation',
+                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.creation',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.data.navigation.disciplines.utilisation',
                   }),
                   href: {
@@ -213,6 +242,16 @@ export default function NationalResearchData() {
                 >
                   <BSOChart
                     id='data.disciplines.voies-ouverture.chart-data-shared'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-data.disciplines.creation'
+                  backgroundColor={blueSoft50}
+                  anchorId='disciplines.creation'
+                >
+                  <BSOChart
+                    id='data.disciplines.voies-ouverture.chart-data-created'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
