@@ -13,7 +13,10 @@ function useGetData(studyType) {
   const intl = useIntl();
 
   async function getDataAxios() {
-    const currentYear = new Date().getFullYear() - 1;
+    const currentYear = parseInt(
+      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      10,
+    );
     const yearMin = currentYear - 11;
     const yearMax = currentYear - 1;
     const query = getFetchOptions({

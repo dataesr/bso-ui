@@ -45,10 +45,13 @@ function useGetData(studyType, sponsorType = '*') {
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const res = await Axios.all(queries);
-    const currentYear = new Date().getFullYear() - 1;
+    const currentYear = parseInt(
+      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      10,
+    );
     const data1SortedByYear = res[0].data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
-      .filter((y) => y.key >= 2010 && y.key <= currentYear);
+      .filter((y) => y.key >= currentYear - 10 && y.key <= currentYear);
     const categories = [];
     const dataFrenchAcademic = [];
     const dataFrenchIndus = [];

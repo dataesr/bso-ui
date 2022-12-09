@@ -41,10 +41,13 @@ function useGetData(studyType, sponsorType = '*') {
       queryEvolution,
       HEADERS,
     );
-    const currentYear = new Date().getFullYear() - 1;
+    const currentYear = parseInt(
+      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      10,
+    );
     const dataSortedByYearEvolution = resEvolution.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
-      .filter((y) => y.key >= 2010 && y.key <= currentYear);
+      .filter((y) => y.key >= currentYear - 10 && y.key <= currentYear);
 
     const colors = {
       before_start: getCSSValue('--orange-medium-75'),
@@ -158,7 +161,7 @@ function useGetData(studyType, sponsorType = '*') {
     );
     const dataSortedByYearDistribution = resDistribution.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
-      .filter((y) => y.key >= 2010 && y.key <= currentYear);
+      .filter((y) => y.key >= currentYear - 10 && y.key <= currentYear);
     const categoriesDistribution = dataSortedByYearDistribution.map(
       (el) => el.key,
     );

@@ -46,7 +46,7 @@ function HowTo() {
 
   const tabs = objects?.find((item) => item.value === object)?.children || [];
   const graphs = tabs?.find((item) => item.value === tab)?.children || [];
-  const [graph, setGraph] = useState(graphs[0] || null);
+  const [graph, setGraph] = useState(graphs[0].value || null);
   const changeTab = (t) => {
     setTab(t);
     const currentTabs = objects?.find((item) => item.value === object)?.children || [];
@@ -65,15 +65,15 @@ function HowTo() {
   };
 
   const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
-      graphId?.value || graph
+      graphId || graph
     }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
   const getIframeSnippet = (graphId = null) => (
     <iframe
-      id={graphId?.value || graph?.value}
-      title={graphId?.label || graph?.label}
-      width='800'
       height='860'
+      id={graphId || graph}
       src={getGraphUrl(graphId)}
+      title={graphId || graph}
+      width='800'
     />
   );
 
@@ -86,7 +86,7 @@ function HowTo() {
   const htmlContent = objects
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
-    .map((item) => getIframeSnippet(item.value));
+    .map((item) => ReactDOMServer.renderToString(getIframeSnippet(item.value)));
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
