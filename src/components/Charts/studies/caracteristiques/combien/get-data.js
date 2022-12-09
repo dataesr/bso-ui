@@ -36,7 +36,10 @@ function useGetData(studyType, sponsorType = '*', id, domain) {
       parameters: [studyType, sponsorType],
       objectType: ['clinicalTrials'],
     });
-    const currentYear = new Date().getFullYear() - 1;
+    const currentYear = parseInt(
+      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      10,
+    );
     const resGroupes = await Axios.post(
       ES_STUDIES_API_URL,
       queryGroupes,
