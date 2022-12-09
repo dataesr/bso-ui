@@ -181,12 +181,21 @@ const ChartRepartitionThesis = lazy(() => import(
 const ChartSoftwareShared = lazy(() => import(
   '../components/Charts/software/general/voies-ouverture/chart-software-shared'
 ));
+const ChartSoftwareCreated = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-software-created'
+));
 const ChartDataShared = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-shared'));
+const ChartDataCreated = lazy(() => import(
+  '../components/Charts/data/general/voies-ouverture/chart-data-created'
+));
 const ChartSoftwareUsed = lazy(() => import(
   '../components/Charts/software/general/voies-ouverture/chart-software-used'
 ));
 const ChartSoftwareSharedDiscpline = lazy(() => import(
   '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared'
+));
+const ChartSoftwareCreatedDiscpline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-created'
 ));
 const ChartSoftwareUsedDiscpline = lazy(() => import(
   '../components/Charts/software/disciplines/voies-ouverture/chart-software-used'
@@ -197,6 +206,9 @@ const ChartSoftwareSharedOa = lazy(() => import(
 const ChartDataSharedDiscpline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared'
 ));
+const ChartDataCreatedDiscpline = lazy(() => import(
+  '../components/Charts/data/disciplines/voies-ouverture/chart-data-created'
+));
 const ChartDataUsedDiscpline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-data-used'
 ));
@@ -206,6 +218,9 @@ const ChartAvailibility = lazy(() => import(
 ));
 const ChartAvailibilityDiscipline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-availibility'
+));
+const ChartAvailibilityEditeur = lazy(() => import(
+  '../components/Charts/data/editeurs/voies-ouverture/chart-availibility'
 ));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
@@ -321,9 +336,13 @@ const chartComponents = {
   'thesis.disciplines.voies-ouverture.chart-repartition-thesis':
     ChartRepartitionThesis,
   'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
+  'software.general.voies-ouverture.chart-software-created':
+    ChartSoftwareCreated,
   'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
   'software.disciplines.voies-ouverture.chart-software-shared':
     ChartSoftwareSharedDiscpline,
+  'software.disciplines.voies-ouverture.chart-software-created':
+    ChartSoftwareCreatedDiscpline,
   'software.disciplines.voies-ouverture.chart-software-used':
     ChartSoftwareUsedDiscpline,
   'software.oa.voies-ouverture.chart-software-shared': ChartSoftwareSharedOa,
@@ -331,9 +350,13 @@ const chartComponents = {
   'data.general.voies-ouverture.chart-availibility': ChartAvailibility,
   'data.disciplines.voies-ouverture.chart-availibility':
     ChartAvailibilityDiscipline,
+  'data.editeurs.voies-ouverture.chart-availibility': ChartAvailibilityEditeur,
   'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
+  'data.general.voies-ouverture.chart-data-created': ChartDataCreated,
   'data.disciplines.voies-ouverture.chart-data-shared':
     ChartDataSharedDiscpline,
+  'data.disciplines.voies-ouverture.chart-data-created':
+    ChartDataCreatedDiscpline,
   'data.disciplines.voies-ouverture.chart-data-used': ChartDataUsedDiscpline,
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,

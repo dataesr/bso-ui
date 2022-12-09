@@ -16,10 +16,10 @@ function useGetData(
   observationSnap,
   domain,
   fieldY,
-  filterWithCreated,
   filterWithUsed,
+  filterWithCreated,
 ) {
-  const disciplineField = 'bso_classification';
+  const disciplineField = 'publisher_dissemination';
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const [allData, setData] = useState({});
@@ -81,7 +81,7 @@ function useGetData(
           percent: (sharedCurrent / totalCurrent) * 100,
         });
         categoriesComments.push(
-          capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` })),
+          capitalize(intl.formatMessage({ id: `${nameClean}` })),
         );
         closed.push({
           y: (closedCurrent / totalCurrent) * 100,
@@ -90,7 +90,7 @@ function useGetData(
           x: catIndex,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categoriesComments[catIndex],
+          publisher: categoriesComments[catIndex],
           bsoDomain,
         });
         shared.push({
@@ -100,7 +100,7 @@ function useGetData(
           x: catIndex,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categoriesComments[catIndex],
+          publisher: categoriesComments[catIndex],
           bsoDomain,
         });
       });
@@ -113,7 +113,7 @@ function useGetData(
             }),
           ),
           data: shared,
-          color: getCSSValue('--orange-soft-100'),
+          color: getCSSValue('--yellow-medium-125'),
           dataLabels: {
             ...noOutline,
             style: { color: getCSSValue('--g-800') },
@@ -121,11 +121,11 @@ function useGetData(
         },
       ];
 
-      const discipline = dataGraph?.[0]?.data?.[0]?.discipline.toLowerCase() || '';
+      const publisher = dataGraph?.[0]?.data?.[0]?.publisher.toLowerCase() || '';
       const sharedRate = dataGraph?.[0]?.data?.[0]?.y.toFixed(0) || 0;
 
       const comments = {
-        discipline,
+        publisher,
         observationYear: getObservationLabel(lastObservationSnap, intl),
         publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
         sharedRate,

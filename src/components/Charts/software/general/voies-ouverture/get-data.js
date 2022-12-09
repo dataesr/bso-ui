@@ -15,6 +15,7 @@ function useGetData(
   observationSnap,
   domain,
   fieldY,
+  filterWithCreated,
   filterWithUsed,
 ) {
   const intl = useIntl();
@@ -42,6 +43,11 @@ function useGetData(
         query.query.bool.filter.push({
           term: { [`${filterWithUsed}`]: true },
           // term: { [`${softwareData}.has_used`]: true },
+        });
+      }
+      if (filterWithCreated) {
+        query.query.bool.filter.push({
+          term: { [`${filterWithCreated}`]: true },
         });
       }
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -120,7 +126,14 @@ function useGetData(
         dataGraph,
       };
     },
-    [beforeLastObservationSnap, domain, intl, fieldY, filterWithUsed],
+    [
+      beforeLastObservationSnap,
+      domain,
+      intl,
+      fieldY,
+      filterWithUsed,
+      filterWithCreated,
+    ],
   );
 
   useEffect(() => {

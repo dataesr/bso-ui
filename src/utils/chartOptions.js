@@ -2935,6 +2935,39 @@ export const chartOptions = {
       return options;
     },
   },
+  'data.general.voies-ouverture.chart-data-created': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.created-data' });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'software.general.voies-ouverture.chart-software-shared': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
@@ -2946,6 +2979,41 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.shared-software',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'software.general.voies-ouverture.chart-software-created': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.created-software',
       });
       // options.legend.title.text = intl.formatMessage({
       //   id: 'app.publi.type-hebergement',
@@ -3149,6 +3217,46 @@ export const chartOptions = {
       return options;
     },
   },
+  'software.disciplines.voies-ouverture.chart-software-created': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
   'software.disciplines.voies-ouverture.chart-software-used': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
@@ -3229,6 +3337,46 @@ export const chartOptions = {
       return options;
     },
   },
+  'data.disciplines.voies-ouverture.chart-data-created': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
   'data.disciplines.voies-ouverture.chart-data-used': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
@@ -3274,6 +3422,46 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
       options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.availibility' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
+  'data.editeurs.voies-ouverture.chart-availibility': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '1000px';
       options.xAxis = {
         categories,
       };

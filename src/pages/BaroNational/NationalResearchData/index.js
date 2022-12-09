@@ -102,6 +102,15 @@ export default function NationalResearchData() {
                 },
                 {
                   label: intl.formatMessage({
+                    id: 'app.data.navigation.creation',
+                  }),
+                  href: {
+                    en: '/research-data/general?id=general.creation',
+                    fr: '/donnees-de-la-recherche/general?id=general.creation',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.data.navigation.utilisation',
                   }),
                   href: {
@@ -129,6 +138,17 @@ export default function NationalResearchData() {
                 >
                   <BSOChart
                     id='data.general.voies-ouverture.chart-data-shared'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-data.general.creation'
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.creation'
+                >
+                  <BSOChart
+                    id='data.general.voies-ouverture.chart-data-created'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -187,6 +207,15 @@ export default function NationalResearchData() {
                 },
                 {
                   label: intl.formatMessage({
+                    id: 'app.data.navigation.disciplines.creation',
+                  }),
+                  href: {
+                    en: '/research-data/fields?id=disciplines.creation',
+                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.creation',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
                     id: 'app.data.navigation.disciplines.utilisation',
                   }),
                   href: {
@@ -217,6 +246,16 @@ export default function NationalResearchData() {
                   />
                 </QuestionSection>
                 <QuestionSection
+                  intlKey='app.national-data.disciplines.creation'
+                  backgroundColor={blueSoft50}
+                  anchorId='disciplines.creation'
+                >
+                  <BSOChart
+                    id='data.disciplines.voies-ouverture.chart-data-created'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
                   intlKey='app.national-data.disciplines.utilisation'
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.utilisation'
@@ -234,6 +273,49 @@ export default function NationalResearchData() {
                 >
                   <BSOChart
                     id='data.disciplines.voies-ouverture.chart-availibility'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+            {/* Les éditeurs */}
+            <GraphItem
+              paths={[
+                '/donnees-de-la-recherche/editeurs',
+                '/research-data/publishers',
+              ]}
+              mainLabel={intl.formatMessage({
+                id: 'app.data.editeurs',
+              })}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/research-data/publishers?id=editeurs.availibility',
+                    fr: '/donnees-de-la-recherche/editeurs?id=editeurs.availibility',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.data.navigation.editeurs.statement',
+                  }),
+                  href: {
+                    en: '/research-data/publishers?id=editeurs.availibility',
+                    fr: '/donnees-de-la-recherche/editeurs?id=editeurs.availibility',
+                  },
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  intlKey='app.national-data.editeurs.statement'
+                  backgroundColor={blueSoft50}
+                  anchorId='editeurs.availibility'
+                >
+                  <BSOChart
+                    id='data.editeurs.voies-ouverture.chart-availibility'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>

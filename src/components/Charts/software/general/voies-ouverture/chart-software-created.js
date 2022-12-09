@@ -27,9 +27,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'datastet_details.has_shared',
-    'datastet_details.has_created',
-    'datastet_details.has_used',
+    'softcite_details.has_created',
+    'softcite_details.has_used',
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -77,7 +76,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'data.general.voies-ouverture.chart-data-shared',
+  id: 'software.general.voies-ouverture.chart-software-created',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

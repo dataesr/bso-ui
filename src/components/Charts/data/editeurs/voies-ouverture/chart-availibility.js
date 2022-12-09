@@ -11,7 +11,6 @@ import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import {
-  capitalize,
   cleanNumber,
   getObservationLabel,
   withDomain,
@@ -37,9 +36,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'datastet_details.has_shared',
-    'datastet_details.has_created',
-    'datastet_details.has_used',
+    'has_availability_statement',
+    null,
   );
   const { categories, dataGraph } = allData;
   useEffect(() => {
@@ -57,7 +55,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       categories?.sort((a, b) => b.percent - a.percent);
       sortKey = 'y';
     }
-    const categoriesLabel = categories?.map((item) => capitalize(intl.formatMessage({ id: `app.discipline.${item.key}` }))
+    const categoriesLabel = categories?.map((item) => item.key
       .concat('</br>(')
       .concat(intl.formatMessage({ id: 'app.effectif' }))
       .concat(' = ')
@@ -112,7 +110,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           value='sort-staff'
         />
         <Radio
-          label={intl.formatMessage({ id: 'app.publi.sort-shared' })}
+          label={intl.formatMessage({ id: 'app.publi.sort-availibility' })}
           value='sort-open-rate'
         />
       </RadioGroup>
@@ -133,7 +131,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'data.disciplines.voies-ouverture.chart-data-shared',
+  id: 'data.editeurs.voies-ouverture.chart-availibility',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

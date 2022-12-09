@@ -39,6 +39,10 @@ export default {
         fr: '/donnees-de-la-recherche/disciplines',
         en: '/research-data/fields',
       },
+      {
+        fr: '/donnees-de-la-recherche/editeurs',
+        en: '/research-data/publishers',
+      },
     ],
     fr: '/donnees-de-la-recherche/general',
     en: '/research-data/general',

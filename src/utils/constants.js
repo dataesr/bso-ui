@@ -33,6 +33,7 @@ export const mobileButtonLabel = {
       'app.health-observational.resultats',
     '/donnees-de-la-recherche/general': 'app.data.general',
     '/donnees-de-la-recherche/disciplines': 'app.data.disciplines',
+    '/donnees-de-la-recherche/editeurs': 'app.data.editeurs',
   },
   en: {
     '/health/publications/fields': 'app.publi.disciplines',
@@ -59,6 +60,7 @@ export const mobileButtonLabel = {
       'app.health-observational.resultats',
     '/research-data/general': 'app.data.general',
     '/research-data/disciplines': 'app.data.disciplines',
+    '/research-data/publishers': 'app.data.editeurs',
   },
 };
 
