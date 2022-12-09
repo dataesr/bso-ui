@@ -1864,9 +1864,16 @@ export default function getFetchOptions({
     });
   }
   if (bsoLocalAffiliation) {
+    const inputAffiliations = bsoLocalAffiliation.split(/[ ,]+/);
+    const affiliationsToSearch = [];
+    inputAffiliations.forEach((el) => {
+      affiliationsToSearch.push(el);
+      affiliationsToSearch.push(el.toLowerCase());
+      affiliationsToSearch.push(el.toUpperCase());
+    });
     queryResponse.query.bool.filter.push({
       terms: {
-        'bso_local_affiliations.keyword': bsoLocalAffiliation.split(/[ ,]+/),
+        'bso_local_affiliations.keyword': affiliationsToSearch,
       },
     });
     const year = {};
