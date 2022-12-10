@@ -3497,6 +3497,38 @@ export const chartOptions = {
       return options;
     },
   },
+  'orcid.general.present.chart-evolution': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.defense-year' }) },
+      };
+      // options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'publi.others.collaborations.international-collaborations': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions({ id, intl });

@@ -1814,6 +1814,23 @@ export default function getFetchOptions({
         },
       },
     }),
+    orcid: () => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'creation_year.keyword',
+          },
+          aggs: {
+            by_reason: {
+              terms: {
+                field: 'fr_reasons_present_concat.keyword',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
@@ -1827,9 +1844,10 @@ export default function getFetchOptions({
   const { bsoCountry, bsoLocalAffiliation, endYear, idTypes, startYear } = getURLSearchParams();
   let useBsoCountry = true;
   const isHealthTrialsStudies = objectType.includes('clinicalTrials');
+  const isOrcid = objectType.includes('orcid');
   const isThesis = objectType.includes('thesis');
   const isPublications = objectType.includes('publications');
-  if (isHealthTrialsStudies) {
+  if (isHealthTrialsStudies || isOrcid) {
     // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
     // TODO to remove once the data is in the index
     useBsoCountry = false;
