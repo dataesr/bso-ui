@@ -46,7 +46,7 @@ function HowTo() {
 
   const tabs = objects?.find((item) => item.value === object)?.children || [];
   const graphs = tabs?.find((item) => item.value === tab)?.children || [];
-  const [graph, setGraph] = useState(graphs[0] || null);
+  const [graph, setGraph] = useState(graphs[0].value || null);
   const changeTab = (t) => {
     setTab(t);
     const currentTabs = objects?.find((item) => item.value === object)?.children || [];
@@ -65,15 +65,15 @@ function HowTo() {
   };
 
   const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
-      graphId?.value || graph
+      graphId || graph
     }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
   const getIframeSnippet = (graphId = null) => (
     <iframe
-      id={graphId?.value || graph?.value}
-      title={graphId?.label || graph?.label}
-      width='800'
       height='860'
+      id={graphId || graph}
       src={getGraphUrl(graphId)}
+      title={graphId || graph}
+      width='800'
     />
   );
 
@@ -86,7 +86,7 @@ function HowTo() {
   const htmlContent = objects
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
-    .map((item) => getIframeSnippet(item.value));
+    .map((item) => ReactDOMServer.renderToString(getIframeSnippet(item.value)));
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
@@ -182,6 +182,12 @@ function HowTo() {
                 </li>
               </ul>
               <em>
+                NB : Pour les publications, nous remontons jusqu'à 2013, année
+                de publication. Pour les thèses, nous remontons jusqu'à 2010,
+                année de soutenance.
+              </em>
+              <br />
+              <em>
                 NB : Toutes les informations doivent figurer dans un seul
                 fichier.
               </em>
@@ -235,6 +241,11 @@ function HowTo() {
               </ul>
               Un meilleur système de remontée sera probablement mis en place
               dans le futur.
+              <br />
+              Vous pouvez nous envoyer votre fichier tout au long de l'année.
+              Les dates de constitution et d'envoi de ce fichier n'ont pas
+              d'incidence sur les graphiques générés car ceux-ci reposent sur
+              des "snapshots" des outils utilisés (Unpaywall, PubMed...).
               <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_03'>
                 C - Intégration des graphiques générés (via iFrame)
               </h4>
