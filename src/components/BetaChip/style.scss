@@ -1,9 +1,6 @@
 .bso-betachip {
   @include font-size(12, 16);
   font-weight: 600;
-  position: relative;
-  top: -30px;
-  left: -50px;
   display: flex;
   z-index: 1;
   // background: var(--blue-france-500);
@@ -17,4 +14,10 @@
   height: 14px;
   width: 130px;
   padding: 12px;
+}
+
+.out-of-the-box {
+  position: relative;
+  top: -30px;
+  left: -50px;
 }

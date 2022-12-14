@@ -126,8 +126,12 @@ function HowTo() {
                 A - Définition du périmètre du BSO local
               </h4>
               Le périmètre de chaque BSO local reste entièrement à la main de
-              l'établissement. Il est possible de remonter plusieurs
-              informations :
+              l'établissement ou du laboratoire. Il est possible de remonter une
+              ou plusieurs des informations
+              {' '}
+              <b>complémentaires</b>
+              {' '}
+              suivantes :
               <ul>
                 <li>
                   -
@@ -181,10 +185,71 @@ function HowTo() {
                   <em> ex: 2019LORR0153</em>
                 </li>
               </ul>
-              <em>
-                NB : Toutes les informations doivent figurer dans un seul
-                fichier.
-              </em>
+              <p>
+                Chaque information peut contenir une ou plusieurs valeurs. Ces
+                valeurs sont rensignées dans une colonne dédiée du ficher.
+                <b> Chaque colonne est indépendante des autres.</b>
+              </p>
+              <p>
+                Chaque colonne permet de relier des productions à votre BSO
+                local. Ainsi, la colonne hal_struct_id permet par exemple de
+                relier automatiquement toutes les productions de HAL avec cet
+                identifiant à votre BSO local.
+              </p>
+              <p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th className='doiCol'>doi</th>
+                      <th className='halStructCol'>hal_struct_id</th>
+                      <th className='halCollCol'>hal_coll_code</th>
+                      <th className='halIdCol'>hal_id</th>
+                      <th className='nntEtabCol'>nnt_etab</th>
+                      <th className='nntIdCol'>nnt_id</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className='doiCol'>10.1016/j.chemgeo.2016.10.031</td>
+                      <td className='halStructCol'>413289</td>
+                      <td className='halCollCol'>UNIV-LORRAINE</td>
+                      <td> </td>
+                      <td className='nntEtabCol'>LORR</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1371/journal.pone.0168349</td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1016/j.jpowsour.2016.10.037</td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1016/j.jpowsour.2016.10.035</td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1021/acs.jpcc.6b09974</td>
+                    </tr>
+                  </tbody>
+                </table>
+                Dans cet exemple, la colonne hal_id est vide (la colonne peut
+                être omise) car tous les liens sont gérés par l'identifiant
+                structure et collection. De même pour la colonne nnt_id car le
+                rattachement des thèses est géré dans cet exemple uniquement par
+                le code établissement.
+              </p>
+              <p>
+                <b>
+                  Tout l'historique doit être fourni dans le fichier, pour
+                  chaque mise à jour.
+                  {' '}
+                </b>
+                Pour les publications, nous remontons jusqu'à 2013, année de
+                publication.
+              </p>
+              <p>
+                Toutes ces informations doivent figurer dans un unique fichier
+                (voir exemple ci-dessous).
+              </p>
               <Col offset='2 md-4'>
                 <div className='button-link marianne-bold relative my-button'>
                   <DSIcon
@@ -235,6 +300,11 @@ function HowTo() {
               </ul>
               Un meilleur système de remontée sera probablement mis en place
               dans le futur.
+              <br />
+              Vous pouvez nous envoyer votre fichier tout au long de l'année.
+              Les dates de constitution et d'envoi de ce fichier n'ont pas
+              d'incidence sur les graphiques générés car ceux-ci reposent sur
+              des "snapshots" des outils utilisés (Unpaywall, PubMed...).
               <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_03'>
                 C - Intégration des graphiques générés (via iFrame)
               </h4>

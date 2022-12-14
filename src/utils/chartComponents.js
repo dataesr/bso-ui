@@ -222,6 +222,8 @@ const ChartAvailibilityDiscipline = lazy(() => import(
 const ChartAvailibilityEditeur = lazy(() => import(
   '../components/Charts/data/editeurs/voies-ouverture/chart-availibility'
 ));
+// Orcid
+const ChartOrcid = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
@@ -360,6 +362,7 @@ const chartComponents = {
   'data.disciplines.voies-ouverture.chart-data-used': ChartDataUsedDiscpline,
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
+  'orcid.general.present.chart-evolution': ChartOrcid,
 };
 
 export default chartComponents;
