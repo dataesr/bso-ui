@@ -126,8 +126,12 @@ function HowTo() {
                 A - Définition du périmètre du BSO local
               </h4>
               Le périmètre de chaque BSO local reste entièrement à la main de
-              l'établissement. Il est possible de remonter plusieurs
-              informations :
+              l'établissement ou du laboratoire. Il est possible de remonter une
+              ou plusieurs des informations
+              {' '}
+              <b>complémentaires</b>
+              {' '}
+              suivantes :
               <ul>
                 <li>
                   -
@@ -181,16 +185,24 @@ function HowTo() {
                   <em> ex: 2019LORR0153</em>
                 </li>
               </ul>
-              <em>
-                NB : Pour les publications, nous remontons jusqu'à 2013, année
-                de publication. Pour les thèses, nous remontons jusqu'à 2010,
-                année de soutenance.
-              </em>
-              <br />
-              <em>
-                NB : Toutes les informations doivent figurer dans un seul
-                fichier.
-              </em>
+              <p>
+                Chaque information peut contenir une ou plusieurs valeurs. Ces
+                valeurs sont rensignées dans une colonne dédiée du ficher.
+              </p>
+              <p>
+                Chaque information permet de collecter une liste de publications
+                ou thèses. Ces listes de publications ou thèses sont aggrégées
+                avant d'être dédupliquées.
+              </p>
+              <p>
+                Pour les publications, nous remontons jusqu'à 2013, année de
+                publication. Pour les thèses, nous remontons jusqu'à 2010, année
+                de soutenance.
+              </p>
+              <p>
+                Toutes ces informations doivent figurer dans un unique fichier
+                (voir exemple ci-dessous).
+              </p>
               <Col offset='2 md-4'>
                 <div className='button-link marianne-bold relative my-button'>
                   <DSIcon
