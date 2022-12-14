@@ -36,10 +36,17 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
     defaultMessage: ' ',
   });
   let embargoText = '';
+  let isEmbargo = false;
+  if (lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION) {
+    isEmbargo = true;
+  }
   if (
-    bsoLocalAffiliation
-    && lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION
+    id.startsWith('app.national-data.')
+    || id.startsWith('app.national-software.')
   ) {
+    isEmbargo = true;
+  }
+  if (bsoLocalAffiliation && isEmbargo) {
     embargoText = 'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
   }
   const tooltip = intl
