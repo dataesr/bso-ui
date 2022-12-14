@@ -188,16 +188,63 @@ function HowTo() {
               <p>
                 Chaque information peut contenir une ou plusieurs valeurs. Ces
                 valeurs sont rensignées dans une colonne dédiée du ficher.
+                <b> Chaque colonne est indépendante des autres.</b>
               </p>
               <p>
-                Chaque information permet de collecter une liste de publications
-                ou thèses. Ces listes de publications ou thèses sont aggrégées
-                avant d'être dédupliquées.
+                Chaque colonne permet de relier des productions à votre BSO
+                local. Ainsi, la colonne hal_struct_id permet par exemple de
+                relier automatiquement toutes les productions de HAL avec cet
+                identifiant à votre BSO local.
               </p>
               <p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th className='doiCol'>doi</th>
+                      <th className='halStructCol'>hal_struct_id</th>
+                      <th className='halCollCol'>hal_coll_code</th>
+                      <th className='halIdCol'>hal_id</th>
+                      <th className='nntEtabCol'>nnt_etab</th>
+                      <th className='nntIdCol'>nnt_id</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className='doiCol'>10.1016/j.chemgeo.2016.10.031</td>
+                      <td className='halStructCol'>413289</td>
+                      <td className='halCollCol'>UNIV-LORRAINE</td>
+                      <td> </td>
+                      <td className='nntEtabCol'>LORR</td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1371/journal.pone.0168349</td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1016/j.jpowsour.2016.10.037</td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1016/j.jpowsour.2016.10.035</td>
+                    </tr>
+                    <tr>
+                      <td className='doiCol'>10.1021/acs.jpcc.6b09974</td>
+                    </tr>
+                  </tbody>
+                </table>
+                Dans cet exemple, la colonne hal_id est vide (la colonne peut
+                être omise) car tous les liens sont gérés par l'identifiant
+                structure et collection. De même pour la colonne nnt_id car le
+                rattachement des thèses est géré dans cet exemple uniquement par
+                le code établissement.
+              </p>
+              <p>
+                <b>
+                  Tout l'historique doit être fourni dans le fichier, pour
+                  chaque mise à jour.
+                  {' '}
+                </b>
                 Pour les publications, nous remontons jusqu'à 2013, année de
-                publication. Pour les thèses, nous remontons jusqu'à 2010, année
-                de soutenance.
+                publication.
               </p>
               <p>
                 Toutes ces informations doivent figurer dans un unique fichier
