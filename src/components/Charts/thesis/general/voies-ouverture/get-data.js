@@ -4,11 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import {
-  capitalize,
-  getCSSValue,
-  getObservationLabel,
-} from '../../../../../utils/helpers';
+import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();
