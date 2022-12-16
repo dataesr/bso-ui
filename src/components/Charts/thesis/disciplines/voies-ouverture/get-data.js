@@ -150,11 +150,9 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
       const dataGraph = [
         {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.hal-only',
-            }),
-          ),
+          name: intl.formatMessage({
+            id: 'app.hal-only',
+          }),
           data: hal,
           color: getCSSValue('--green-medium-125'),
           dataLabels: {
@@ -163,21 +161,17 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           },
         },
         {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.hal-these',
-            }),
-          ),
+          name: intl.formatMessage({
+            id: 'app.hal-these',
+          }),
           data: halThese,
           color: getCSSValue('--theseshal'),
           dataLabels: noOutline,
         },
         {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.these-only',
-            }),
-          ),
+          name: intl.formatMessage({
+            id: 'app.these-only',
+          }),
           data: these,
           color: getCSSValue('--thesesfr'),
           dataLabels: noOutline,

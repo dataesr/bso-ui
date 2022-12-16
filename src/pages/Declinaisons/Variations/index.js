@@ -281,6 +281,13 @@ function Variations() {
                 alt='bso local imt mines albi'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://bibliotheques.edu.umontpellier.fr/science-ouverte/bso-um/'
+                img='/declinaisons/montpellier.jpeg'
+                alt='bso local universite montpellier'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>
