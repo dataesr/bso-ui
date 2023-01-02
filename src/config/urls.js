@@ -69,6 +69,10 @@ export default {
     fr: '/theses-de-doctorat',
     en: '/thesis',
   },
+  nationalOrcid: {
+    fr: '/orcid',
+    en: '/orcid',
+  },
   sante: {
     fr: '/sante',
     en: '/health',
