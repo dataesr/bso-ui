@@ -284,7 +284,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bibliotheques.edu.umontpellier.fr/science-ouverte/bso-um/'
-                img='/declinaisons/montpellier.jpeg'
+                img='/declinaisons/montpellier.png'
                 alt='bso local universite montpellier'
               />
             </Col>
