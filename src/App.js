@@ -13,6 +13,7 @@ import Methodologie from './pages/APropos/Methodologie';
 import NotesFlash from './pages/APropos/NotesFlash';
 import OpenData from './pages/APropos/OpenData';
 import BaroNational from './pages/BaroNational';
+import NationalOrcid from './pages/BaroNational/NationalOrcid';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 import NationalResearchData from './pages/BaroNational/NationalResearchData';
 import NationalSoftwareCodes from './pages/BaroNational/NationalSoftwareCodes';
@@ -80,6 +81,17 @@ function App() {
               element={(
                 <PageTracker>
                   <NationalThesis />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.nationalOrcid).map((key) => (
+            <Route
+              exact
+              path={urls.nationalOrcid[key]}
+              element={(
+                <PageTracker>
+                  <NationalOrcid />
                 </PageTracker>
               )}
             />

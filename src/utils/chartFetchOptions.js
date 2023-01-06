@@ -1814,17 +1814,39 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcid: () => ({
+    orcidNumber: ([interval, frReasons]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                is_fr_present: true,
+              },
+            },
+            {
+              terms: {
+                'fr_reasons_present.keyword': frReasons,
+              },
+            },
+          ],
+        },
+      },
       aggs: {
-        by_year: {
-          terms: {
-            field: 'creation_year.keyword',
+        orcid_per_day: {
+          date_histogram: {
+            field: 'creation_date',
+            calendar_interval: interval,
           },
           aggs: {
-            by_reason: {
-              terms: {
-                field: 'fr_reasons_present_concat.keyword',
+            distinct_orcid: {
+              cardinality: {
+                field: 'orcid.keyword',
+              },
+            },
+            total_orcid: {
+              cumulative_cardinality: {
+                buckets_path: 'distinct_orcid',
               },
             },
           },

@@ -74,6 +74,12 @@ function Header() {
             defaultMessage: 'Les thèses de doctorat',
           })}
         </SkiplinkItem>
+        <SkiplinkItem href={urls.nationalOrcid[lang] + search}>
+          {intl.formatMessage({
+            id: 'app.baro-national.orcid.title',
+            defaultMessage: 'Suivi ORCID',
+          })}
+        </SkiplinkItem>
         <SkiplinkItem href={urls.sante[lang] + search}>
           {intl.formatMessage({
             id: 'app.header.nav.baro-sante',
@@ -211,6 +217,16 @@ function Header() {
                 asLink={
                   <RouterLink to={urls.nationalSoftwareCodes[lang] + search} />
                 }
+              />
+            )}
+            {!isInProduction() && (
+              <NavSubItem
+                current={path === urls.nationalOrcid[lang]}
+                title={intl.formatMessage({
+                  id: 'app.baro-national.orcid.title',
+                  defaultMessage: 'Suivi ORCID',
+                })}
+                asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
               />
             )}
           </NavItem>

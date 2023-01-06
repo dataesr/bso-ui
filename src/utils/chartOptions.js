@@ -3507,15 +3507,15 @@ export const chartOptions = {
   'orcid.general.present.chart-evolution': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.type = 'column';
+      options.chart.type = 'line';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.defense-year' }) },
+        title: { text: intl.formatMessage({ id: 'app.creation-date' }) },
       };
       // options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid-count' });
       options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+        id: 'app.orcid.type',
       });
       options.legend.reversed = true;
       options.plotOptions = {

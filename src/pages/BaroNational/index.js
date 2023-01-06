@@ -217,6 +217,30 @@ function BaroNational() {
                   </Row>
                 </Container>
               </HomeSection>
+              <HomeSection // orcid
+                isDisplayed={!isInProduction()}
+                link={{
+                  href: urls.nationalOrcid[lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-orcid' />
+                  ),
+                }}
+                title={<FormattedMessage id='app.baro-national.orcid.title' />}
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.orcid.intro'
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='orcid.general.present.chart-evolution' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
             </Col>
             <Col n='12'>
               <Container fluid>

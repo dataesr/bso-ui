@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import Highcharts from 'highcharts';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -15,28 +16,29 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
-
+  const queries = [];
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions({
-        key: 'orcid',
+      const queryAll = getFetchOptions({
+        key: 'orcidNumber',
         domain,
-        parameters: [
-          lastObservationSnap,
-          `oa_details.${lastObservationSnap}.repositories_concat.keyword`,
-          'year',
-          2010,
-          50,
-        ],
+        parameters: ['month', ['address', 'employment', 'education']],
         objectType: ['orcid'],
       });
-      const res = await Axios.post(ES_ORCID_API_URL, query, HEADERS);
-      const data = res.data.aggregations.by_year.buckets.sort(
-        (a, b) => a.key - b.key,
-      );
+      queries.push(Axios.post(ES_ORCID_API_URL, queryAll, HEADERS));
+      const queryEmployment = getFetchOptions({
+        key: 'orcidNumber',
+        domain,
+        parameters: ['month', ['employment']],
+        objectType: ['orcid'],
+      });
+      queries.push(Axios.post(ES_ORCID_API_URL, queryEmployment, HEADERS));
+      const res = await Axios.all(queries);
+      const data = res[0].data.aggregations.orcid_per_day.buckets;
+      const dataEmployment = res[1].data.aggregations.orcid_per_day.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
-      const address = [];
+      const total = [];
       const employment = [];
       const noOutline = {
         style: {
@@ -44,24 +46,26 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         },
       };
       data.forEach((el) => {
-        categories.push(el.key);
-        const addressCurrent = el.by_reason.buckets.find((item) => item.key === 'address')
-          ?.doc_count || 0;
-        const employmentCurrent = el.by_reason.buckets.find((item) => item.key === 'employment')
-          ?.doc_count || 0;
-        const totalCurrent = addressCurrent + employmentCurrent;
-        address.push({
-          y_perc: (100 * addressCurrent) / totalCurrent,
-          y: addressCurrent,
-          y_tot: totalCurrent,
-          year: el.key,
+        categories.push(
+          Highcharts.dateFormat(
+            '%Y-%m-%d',
+            new Date(el.key_as_string).getTime(),
+          ),
+        );
+        total.push({
+          x: total.length,
+          y: el.total_orcid.value,
+          y_current: el.distinct_orcid.value,
+          creation_date: el.key_as_string,
           bsoDomain,
         });
+      });
+      dataEmployment.forEach((el) => {
         employment.push({
-          y_perc: (100 * employmentCurrent) / totalCurrent,
-          y: employmentCurrent,
-          y_tot: totalCurrent,
-          year: el.key,
+          x: employment.length,
+          y: el.total_orcid.value,
+          y_current: el.distinct_orcid.value,
+          creation_date: el.key_as_string,
           bsoDomain,
         });
       });
@@ -70,25 +74,26 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.hal-only',
+              id: 'app.orcid-count',
             }),
           ),
-          data: address,
+          data: total,
+          turboThreshold: 0,
           color: getCSSValue('--green-medium-125'),
           dataLabels: noOutline,
         },
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.hal-these',
+              id: 'app.employment-only',
             }),
           ),
           data: employment,
-          color: getCSSValue('--theseshal'),
+          turboThreshold: 0,
+          color: getCSSValue('--yellow-medium-125'),
           dataLabels: noOutline,
         },
       ];
-
       const comments = {
         beforeLastObservationSnap: getObservationLabel(
           beforeLastObservationSnap,
