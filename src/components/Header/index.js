@@ -107,7 +107,7 @@ function Header() {
         className='bso-header'
       >
         <HeaderBody>
-          <Logo splitCharacter={10}>
+          <Logo splitCharacter={9}>
             {intl.formatMessage({ id: 'app.ministry' })}
           </Logo>
           <Service

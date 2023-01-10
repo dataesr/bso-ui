@@ -154,7 +154,7 @@ export default function Footer() {
           description={<FormattedMessage id='app.footer.description' />}
         >
           <Logo
-            splitCharacter={10}
+            splitCharacter={9}
             target='_blank'
             href='https://www.enseignementsup-recherche.gouv.fr/'
           >
