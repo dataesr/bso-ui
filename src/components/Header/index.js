@@ -62,7 +62,7 @@ function Header() {
             defaultMessage: 'Les données de la recherche',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.nationalSoftwareCodes[lang] + search}>
+        <SkiplinkItem href={urls.nationalSoftwareCode[lang] + search}>
           {intl.formatMessage({
             id: 'app.baro-national.software.title.beta',
             defaultMessage: 'Les codes logiciels',
@@ -209,13 +209,13 @@ function Header() {
             )}
             {!isInProduction() && (
               <NavSubItem
-                current={path === urls.nationalSoftwareCodes[lang]}
+                current={path === urls.nationalSoftwareCode[lang]}
                 title={intl.formatMessage({
                   id: 'app.baro-national.software.title.beta',
                   defaultMessage: 'Les codes logiciels',
                 })}
                 asLink={
-                  <RouterLink to={urls.nationalSoftwareCodes[lang] + search} />
+                  <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
                 }
               />
             )}

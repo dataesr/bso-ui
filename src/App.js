@@ -16,7 +16,7 @@ import BaroNational from './pages/BaroNational';
 import NationalOrcid from './pages/BaroNational/NationalOrcid';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 import NationalResearchData from './pages/BaroNational/NationalResearchData';
-import NationalSoftwareCodes from './pages/BaroNational/NationalSoftwareCodes';
+import NationalSoftwareCode from './pages/BaroNational/NationalSoftwareCode';
 import NationalThesis from './pages/BaroNational/NationalThesis';
 import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
@@ -109,14 +109,14 @@ function App() {
               )}
             />
           )))}
-          {urls.nationalSoftwareCodes.tabs.map((tab) => Object.keys(tab).map((key) => (
+          {urls.nationalSoftwareCode.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               exact
               path={tab[key]}
               element={(
                 <PageTracker>
                   <GraphNavigationContextProvider>
-                    <NationalSoftwareCodes />
+                    <NationalSoftwareCode />
                   </GraphNavigationContextProvider>
                 </PageTracker>
               )}
