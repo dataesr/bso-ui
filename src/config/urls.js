@@ -47,7 +47,7 @@ export default {
     fr: '/donnees-de-la-recherche/general',
     en: '/research-data/general',
   },
-  nationalSoftwareCodes: {
+  nationalSoftwareCode: {
     tabs: [
       {
         fr: '/codes-et-logiciels/general',

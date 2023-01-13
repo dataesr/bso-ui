@@ -23,7 +23,7 @@ import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
-export default function NationalSoftwareCodes() {
+export default function NationalSoftwareCode() {
   const { lang } = useLang();
   const { pathname } = useLocation();
   const intl = useIntl();
