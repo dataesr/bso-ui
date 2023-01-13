@@ -224,6 +224,7 @@ const ChartAvailibilityEditeur = lazy(() => import(
 ));
 // Orcid
 const ChartOrcid = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
+const ChartOrcidActive = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-active'));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
@@ -363,6 +364,7 @@ const chartComponents = {
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
   'orcid.general.present.chart-evolution': ChartOrcid,
+  'orcid.general.present.chart-indicator-active': ChartOrcidActive,
 };
 
 export default chartComponents;

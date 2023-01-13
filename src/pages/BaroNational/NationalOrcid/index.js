@@ -77,6 +77,10 @@ export default function NationalOrcid() {
                   id='orcid.general.present.chart-evolution'
                   isDisplayed={!isInProduction()}
                 />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-active'
+                  isDisplayed={!isInProduction()}
+                />
               </QuestionSection>
             </GraphContent>
           </GraphNavigation>
