@@ -1853,6 +1853,35 @@ export default function getFetchOptions({
         },
       },
     }),
+    orcidIndicator: ([myField]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                is_fr_present: true,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        fr_reason: {
+          terms: {
+            field: 'fr_reasons_main.keyword',
+            missing: 'other',
+          },
+          aggs: {
+            my_indicator: {
+              terms: {
+                field: myField,
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
