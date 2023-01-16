@@ -31,10 +31,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'active',
-    'app.orcid.active',
-    'app.orcid.inactive',
-    getCSSValue('--green-soft-125'),
+    'current_employment_fr_has_id',
+    'app.orcid.affiliationid',
+    'app.orcid.no-affiliationid',
+    getCSSValue('--orange-soft-125'),
     getCSSValue('--g-400'),
   );
   const { categories, dataGraph } = allData;
@@ -49,7 +49,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     dataGraph,
     dataTitle,
   );
-
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomain, intl));
   }, [allData, idWithDomain, intl]);
@@ -82,7 +81,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-active',
+  id: 'orcid.general.present.chart-indicator-affiliationid',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

@@ -31,9 +31,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'active',
-    'app.orcid.active',
-    'app.orcid.inactive',
+    'same_id_hal',
+    'app.orcid.same-idhal',
+    'app.orcid.different-id',
     getCSSValue('--green-soft-125'),
     getCSSValue('--g-400'),
   );
@@ -82,7 +82,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-active',
+  id: 'orcid.general.present.chart-indicator-idhal-same',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

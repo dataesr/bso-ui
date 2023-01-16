@@ -5,11 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_ORCID_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import {
-  capitalize,
-  getCSSValue,
-  getObservationLabel,
-} from '../../../../../utils/helpers';
+import { capitalize, getObservationLabel } from '../../../../../utils/helpers';
 
 // const indicators = ['active', 'has_id_hal_abes', 'has_id_hal_aurehal', 'has_idref_abes', 'has_idref_aurehal', 'has_work', 'has_work_from_hal', 'same_id_hal', 'same_idref', 'current_employment_fr_has_id'];
 function useGetData(
@@ -17,6 +13,10 @@ function useGetData(
   observationSnap,
   domain,
   indicator,
+  legendTrue,
+  legendFalse,
+  colorTrue,
+  colorFalse,
 ) {
   const intl = useIntl();
   const [allData, setData] = useState({});
@@ -44,44 +44,46 @@ function useGetData(
       const indicTrue = [];
       const indicFalse = [];
       data.forEach((el) => {
-        categories.push(el.key);
-        const nbTrue = el.my_indicator.buckets.find(
-          (b) => b.key_as_string === 'true',
-        ).doc_count;
-        const nbFalse = el.my_indicator.buckets.find(
-          (b) => b.key_as_string === 'false',
-        ).doc_count;
-        const nbTot = nbTrue + nbFalse;
-        indicTrue.push({
-          y_tot: nbTrue,
-          y: (nbTrue * 100) / nbTot,
-          fr_reason: el.key,
-        });
-        indicFalse.push({
-          y_tot: nbFalse,
-          y: (nbFalse * 100) / nbTot,
-          fr_reason: el.key,
-        });
+        categories.push(
+          intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
+        );
+        const nbTrue = el.my_indicator.buckets.find((b) => b.key_as_string === 'true')
+          ?.doc_count || 0;
+        const nbFalse = el.my_indicator.buckets.find((b) => b.key_as_string === 'false')
+          ?.doc_count || 0;
+        const nbTot = nbTrue + nbFalse || 0;
+        if (nbTot > 0) {
+          indicTrue.push({
+            y_tot: nbTrue,
+            y: (nbTrue * 100) / nbTot,
+            fr_reason: el.key,
+          });
+          indicFalse.push({
+            y_tot: nbFalse,
+            y: (nbFalse * 100) / nbTot,
+            fr_reason: el.key,
+          });
+        }
       });
       const dataGraph = [
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.orcid-count',
+              id: legendTrue,
             }),
           ),
           data: indicTrue,
-          color: getCSSValue('--green-medium-125'),
+          color: colorTrue,
           dataLabels: noOutline,
         },
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.orcid-inactive',
+              id: legendFalse,
             }),
           ),
           data: indicFalse,
-          color: getCSSValue('--yellow-medium-125'),
+          color: colorFalse,
           dataLabels: noOutline,
         },
       ];
@@ -99,7 +101,16 @@ function useGetData(
         dataGraph,
       };
     },
-    [beforeLastObservationSnap, domain, intl, indicator],
+    [
+      beforeLastObservationSnap,
+      domain,
+      intl,
+      indicator,
+      colorFalse,
+      colorTrue,
+      legendFalse,
+      legendTrue,
+    ],
   );
 
   useEffect(() => {

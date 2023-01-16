@@ -81,6 +81,42 @@ export default function NationalOrcid() {
                   id='orcid.general.present.chart-indicator-active'
                   isDisplayed={!isInProduction()}
                 />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-hal'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-work'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-affiliationid'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-idref-abes'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-idref-hal'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-idref-same'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-idhal-abes'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-idhal-hal'
+                  isDisplayed={!isInProduction()}
+                />
+                <BSOChart
+                  id='orcid.general.present.chart-indicator-idhal-same'
+                  isDisplayed={!isInProduction()}
+                />
               </QuestionSection>
             </GraphContent>
           </GraphNavigation>

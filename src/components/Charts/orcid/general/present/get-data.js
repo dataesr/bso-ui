@@ -74,7 +74,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.orcid-count',
+              id: 'app.orcid.count',
             }),
           ),
           data: total,
@@ -85,7 +85,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'app.employment-only',
+              id: 'app.orcid.employment-count',
             }),
           ),
           data: employment,
