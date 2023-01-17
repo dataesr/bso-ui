@@ -32,7 +32,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'same_idref',
-    'app.orcid.same-idrefX',
+    'app.orcid.same-idref',
     'app.orcid.different-id',
     getCSSValue('--green-soft-125'),
     getCSSValue('--g-400'),

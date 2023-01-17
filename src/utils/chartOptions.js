@@ -3543,7 +3543,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid-proportion',
+        id: 'app.orcid.proportion',
       });
       options.legend.title.text = null;
       options.legend.reversed = true;
@@ -3575,7 +3575,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid-proportion',
+        id: 'app.orcid.proportion',
       });
       options.legend.title.text = null;
       options.plotOptions = {
@@ -3602,12 +3602,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3634,12 +3632,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3666,12 +3662,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3698,12 +3692,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3730,12 +3722,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3762,12 +3752,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3794,12 +3782,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3826,12 +3812,10 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {

@@ -220,6 +220,7 @@ export function getSource(id, otherSources = []) {
   const sources = [];
   if (id.includes('-publi') || id.includes('publication')) {
     sources.push('Unpaywall');
+    sources.push('HAL');
   }
   if (
     id.includes('health-general')
@@ -246,7 +247,15 @@ export function getSource(id, otherSources = []) {
   if (id.includes('thesis')) {
     sources.push('theses.fr');
   }
-  sources.push('HAL');
+  if (id.includes('hal')) {
+    sources.push('HAL');
+  }
+  if (id.includes('orcid')) {
+    sources.push('ORCID');
+  }
+  if (id.includes('idref')) {
+    sources.push('idref');
+  }
   sources.push('MESR');
   sources.push(...otherSources);
   return sources.join(', ');

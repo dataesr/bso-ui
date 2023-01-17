@@ -237,7 +237,7 @@ const ChartOrcidIdrefHal = lazy(() => import(
   '../components/Charts/orcid/general/present/chart-indicator-idref-hal'
 ));
 const ChartOrcidIdrefSame = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-idhal-same'
+  '../components/Charts/orcid/general/present/chart-indicator-idref-same'
 ));
 const ChartOrcidIdhalAbes = lazy(() => import(
   '../components/Charts/orcid/general/present/chart-indicator-idhal-abes'
