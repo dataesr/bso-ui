@@ -56,25 +56,25 @@ function Header() {
             defaultMessage: 'Les publications',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.nationalResearchData[lang] + search}>
+        <SkiplinkItem href={urls.nationalResearchData.tabs[0][lang] + search}>
           {intl.formatMessage({
             id: 'app.baro-national.data.title.beta',
             defaultMessage: 'Les données de la recherche',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.nationalSoftwareCode[lang] + search}>
+        <SkiplinkItem href={urls.nationalSoftwareCode.tabs[0][lang] + search}>
           {intl.formatMessage({
             id: 'app.baro-national.software.title.beta',
             defaultMessage: 'Les codes logiciels',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.nationalThesis[lang] + search}>
+        <SkiplinkItem href={urls.nationalThesis.tabs[0][lang] + search}>
           {intl.formatMessage({
             id: 'app.baro-national.thesis.title',
             defaultMessage: 'Les thèses de doctorat',
           })}
         </SkiplinkItem>
-        <SkiplinkItem href={urls.nationalOrcid[lang] + search}>
+        <SkiplinkItem href={urls.nationalOrcid.tabs[0][lang] + search}>
           {intl.formatMessage({
             id: 'app.baro-national.orcid.title',
             defaultMessage: 'Suivi ORCID',

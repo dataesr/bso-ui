@@ -144,7 +144,7 @@ function BaroNational() {
               <HomeSection // thèses
                 isDisplayed={!isInProduction()}
                 link={{
-                  href: urls.nationalThesis[lang] + search,
+                  href: urls.nationalThesis.tabs[0][lang] + search,
                   label: (
                     <FormattedMessage id='app.baro-national.detail-theses' />
                   ),
@@ -220,7 +220,7 @@ function BaroNational() {
               <HomeSection // orcid
                 isDisplayed={!isInProduction()}
                 link={{
-                  href: urls.nationalOrcid[lang] + search,
+                  href: urls.nationalOrcid.tabs[0][lang] + search,
                   label: (
                     <FormattedMessage id='app.baro-national.detail-orcid' />
                   ),

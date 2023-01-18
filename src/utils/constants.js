@@ -34,6 +34,7 @@ export const mobileButtonLabel = {
     '/donnees-de-la-recherche/general': 'app.data.general',
     '/donnees-de-la-recherche/disciplines': 'app.data.disciplines',
     '/donnees-de-la-recherche/editeurs': 'app.data.editeurs',
+    '/theses-de-doctorat/general': 'app.thesis.general',
   },
   en: {
     '/health/publications/fields': 'app.publi.disciplines',
@@ -61,6 +62,7 @@ export const mobileButtonLabel = {
     '/research-data/general': 'app.data.general',
     '/research-data/disciplines': 'app.data.disciplines',
     '/research-data/publishers': 'app.data.editeurs',
+    '/thesis/general': 'app.thesis.general',
   },
 };
 
@@ -118,6 +120,9 @@ export const documentTitles = {
   '/research-data': 'app.data.document.title',
   '/research-data/general': 'app.data.document.title',
   '/research-data/disciplines': 'app.data.document.title',
+  '/theses-de-doctorat/general': 'app.thesis.document.title',
+  '/thesis/general': 'app.thesis.document.title',
+  '/orcid/general': 'app.orcid.document.title',
 };
 
 export const alphabet = ['a', 'c', 'd', 'e', 'f', 'h', 'm', 'p', 'r', 't', 'u'];

@@ -5,16 +5,20 @@ import {
   Container,
   Row,
 } from '@dataesr/react-dsfr';
+import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
 import BannerNational from '../../../components/BannerNational';
 import BSOChart from '../../../components/Charts';
+import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
+import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
+import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
@@ -22,13 +26,13 @@ import useLang from '../../../utils/Hooks/useLang';
 export default function NationalThesis() {
   const { lang } = useLang();
   const { pathname } = useLocation();
-  const blueSoft50 = getCSSValue('--blue-soft-50');
   const intl = useIntl();
+  const blueSoft50 = getCSSValue('--blue-soft-50');
 
   return (
     <Container fluid className='page'>
       <BannerNational
-        selected='url.thesis'
+        selected='url.thesis.general'
         title='app.baro-national.thesis.title'
         iconId='icon-these'
       />
@@ -63,26 +67,69 @@ export default function NationalThesis() {
               </Col>
             </Row>
           </Container>
+          <Glossary entries={GlossaryEntries} />
         </Row>
         <Row>
           <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
-            <GraphContent>
-              <QuestionSection
-                intlKey='app.national-thesis.general.dynamique-ouverture'
-                glossaryKeys={['embargo', 'barriere-mobile']}
-                backgroundColor={blueSoft50}
-                anchorId='general.dynamique-ouverture'
-              >
-                <BSOChart
-                  id='thesis.general.voies-ouverture.chart-repartition-taux'
-                  isDisplayed={!isInProduction()}
-                />
-                <BSOChart
-                  id='thesis.disciplines.voies-ouverture.chart-repartition-thesis'
-                  isDisplayed={!isInProduction()}
-                />
-              </QuestionSection>
-            </GraphContent>
+            {/* Général */}
+            <GraphItem
+              mainLabel={intl.formatMessage({ id: 'app.thesis.general' })}
+              paths={['/theses-de-doctorat/general', '/thesis/general']}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/thesis/general?id=general.dynamique',
+                    fr: '/theses-de-doctorat/general?id=general.dynamique',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.thesis.navigation.dynamique',
+                  }),
+                  href: {
+                    en: '/thesis/general?id=general.dynamique',
+                    fr: '/theses-de-doctorat/general?id=general.dynamique',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.thesis.navigation.discipline',
+                  }),
+                  href: {
+                    en: '/thesis/general?id=general.discipline',
+                    fr: '/theses-de-doctorat/general?id=general.discipline',
+                  },
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  intlKey='app.national-thesis.general.dynamique-ouverture'
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.dynamique'
+                >
+                  <BSOChart
+                    id='thesis.general.voies-ouverture.chart-repartition-taux'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-thesis.general.discipline'
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.discipline'
+                >
+                  <BSOChart
+                    id='thesis.disciplines.voies-ouverture.chart-repartition-thesis'
+                    isDisplayed={!isInProduction()}
+                  />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
           </GraphNavigation>
         </Row>
       </section>

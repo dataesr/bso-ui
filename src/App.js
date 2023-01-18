@@ -74,28 +74,32 @@ function App() {
               )}
             />
           )))}
-          {Object.keys(urls.nationalThesis).map((key) => (
+          {urls.nationalThesis.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               exact
-              path={urls.nationalThesis[key]}
+              path={tab[key]}
               element={(
                 <PageTracker>
-                  <NationalThesis />
+                  <GraphNavigationContextProvider>
+                    <NationalThesis />
+                  </GraphNavigationContextProvider>
                 </PageTracker>
               )}
             />
-          ))}
-          {Object.keys(urls.nationalOrcid).map((key) => (
+          )))}
+          {urls.nationalOrcid.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               exact
-              path={urls.nationalOrcid[key]}
+              path={tab[key]}
               element={(
                 <PageTracker>
-                  <NationalOrcid />
+                  <GraphNavigationContextProvider>
+                    <NationalOrcid />
+                  </GraphNavigationContextProvider>
                 </PageTracker>
               )}
             />
-          ))}
+          )))}
           {urls.nationalResearchData.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               exact
