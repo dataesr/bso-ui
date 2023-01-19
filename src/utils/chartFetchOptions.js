@@ -1882,6 +1882,29 @@ export default function getFetchOptions({
         },
       },
     }),
+    orcidIndicatorSimple: ([myField, mySize]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                is_fr_present: true,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        my_indicator: {
+          terms: {
+            field: myField,
+            size: mySize,
+            missing: 'missing',
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

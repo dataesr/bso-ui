@@ -224,6 +224,12 @@ const ChartAvailibilityEditeur = lazy(() => import(
 ));
 // Orcid
 const ChartOrcid = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
+const ChartOrcidAffiliationSource = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-affiliationsource'
+));
+const ChartOrcidWorkSource = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-worksource'
+));
 const ChartOrcidActive = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-active'));
 const ChartOrcidHal = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-hal'));
 const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-work'));
@@ -387,6 +393,9 @@ const chartComponents = {
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
   'orcid.general.present.chart-evolution': ChartOrcid,
+  'orcid.general.present.chart-indicator-worksource': ChartOrcidWorkSource,
+  'orcid.general.present.chart-indicator-affiliationsource':
+    ChartOrcidAffiliationSource,
   'orcid.general.present.chart-indicator-active': ChartOrcidActive,
   'orcid.general.present.chart-indicator-hal': ChartOrcidHal,
   'orcid.general.present.chart-indicator-work': ChartOrcidWork,

@@ -3836,6 +3836,38 @@ export const chartOptions = {
       return options;
     },
   },
+  'orcid.general.present.chart-indicator-worksource': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '650px';
+      options.chart.type = 'bar';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.orcid.work.source' }) },
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.nb',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'publi.others.collaborations.international-collaborations': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions({ id, intl });
