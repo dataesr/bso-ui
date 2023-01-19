@@ -153,6 +153,10 @@ export default function NationalOrcid() {
                   anchorId='general.affiliations'
                 >
                   <BSOChart
+                    id='orcid.general.present.chart-indicator-affiliationsource'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
                     id='orcid.general.present.chart-indicator-affiliationid'
                     isDisplayed={!isInProduction()}
                   />

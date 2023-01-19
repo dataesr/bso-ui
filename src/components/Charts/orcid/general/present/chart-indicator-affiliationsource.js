@@ -17,7 +17,7 @@ import {
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-indicator';
+import useGetData from './get-data-indicator-simple';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -31,11 +31,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'has_work',
-    'app.orcid.has-work',
-    'app.orcid.no-work',
-    getCSSValue('--green-soft-125'),
-    getCSSValue('--g-400'),
+    'fr_reasons_main.keyword',
+    'employment_present.disambiguation_sources.keyword',
+    20,
+    'Pas de référentiel',
+    getCSSValue('--affiliations-etablissements-150'),
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -82,7 +82,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-work',
+  id: 'orcid.general.present.chart-indicator-affiliationsource',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

@@ -31,6 +31,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
+    'fr_reasons_main.keyword',
     'same_id_hal',
     'app.orcid.same-idhal',
     'app.orcid.different-id',

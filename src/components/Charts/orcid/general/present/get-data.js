@@ -46,26 +46,29 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         },
       };
       data.forEach((el) => {
-        categories.push(
-          Highcharts.dateFormat(
-            '%Y-%m-%d',
-            new Date(el.key_as_string).getTime(),
-          ),
+        const currentDate = Highcharts.dateFormat(
+          '%Y-%m',
+          new Date(el.key_as_string).getTime(),
         );
+        categories.push(currentDate);
         total.push({
           x: total.length,
           y: el.total_orcid.value,
           y_current: el.distinct_orcid.value,
-          creation_date: el.key_as_string,
+          creation_date: currentDate,
           bsoDomain,
         });
       });
       dataEmployment.forEach((el) => {
+        const currentDate = Highcharts.dateFormat(
+          '%Y-%m',
+          new Date(el.key_as_string).getTime(),
+        );
         employment.push({
           x: employment.length,
           y: el.total_orcid.value,
           y_current: el.distinct_orcid.value,
-          creation_date: el.key_as_string,
+          creation_date: currentDate,
           bsoDomain,
         });
       });
@@ -79,7 +82,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           ),
           data: total,
           turboThreshold: 0,
-          color: getCSSValue('--green-medium-125'),
+          color: getCSSValue('--green-light-125'),
           dataLabels: noOutline,
         },
         {
@@ -90,7 +93,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           ),
           data: employment,
           turboThreshold: 0,
-          color: getCSSValue('--yellow-medium-125'),
+          color: getCSSValue('--affiliations-etablissements-125'),
           dataLabels: noOutline,
         },
       ];

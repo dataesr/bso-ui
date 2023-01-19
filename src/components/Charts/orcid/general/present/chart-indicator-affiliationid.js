@@ -31,10 +31,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
+    'fr_reasons_main.keyword',
     'current_employment_fr_has_id',
     'app.orcid.affiliationid',
     'app.orcid.no-affiliationid',
-    getCSSValue('--orange-soft-125'),
+    getCSSValue('--affiliations-etablissements-100'),
     getCSSValue('--g-400'),
   );
   const { categories, dataGraph } = allData;

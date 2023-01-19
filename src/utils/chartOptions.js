@@ -3510,6 +3510,9 @@ export const chartOptions = {
       options.chart.type = 'line';
       options.xAxis = {
         categories,
+        labels: {
+          rotation: -90,
+        },
         title: { text: intl.formatMessage({ id: 'app.orcid.creation-date' }) },
       };
       // options.yAxis = getPercentageYAxis();
@@ -3841,12 +3844,48 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '650px';
       options.chart.type = 'bar';
+      options.yAxis = getPercentageYAxis();
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.orcid.work.source' }) },
       };
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid.nb',
+        id: 'app.orcid.perc',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-affiliationsource': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '650px';
+      options.chart.type = 'bar';
+      options.yAxis = getPercentageYAxis();
+      options.xAxis = {
+        categories,
+        title: {
+          text: intl.formatMessage({ id: 'app.orcid.affiliation.source' }),
+        },
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.perc',
       });
       // options.legend.title.text = intl.formatMessage({
       //   id: 'app.publi.type-hebergement',

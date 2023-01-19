@@ -12,7 +12,8 @@ function useGetData(
   beforeLastObservationSnap,
   observationSnap,
   domain,
-  indicator,
+  indicator1,
+  indicator2,
   legendTrue,
   legendFalse,
   colorTrue,
@@ -28,12 +29,12 @@ function useGetData(
       const queryCurrent = getFetchOptions({
         key: 'orcidIndicator',
         domain,
-        parameters: [indicator],
+        parameters: [indicator1, indicator2, 10],
         objectType: ['orcid'],
       });
       queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));
       const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.fr_reason.buckets;
+      const data = res[0].data.aggregations.my_indicator1.buckets;
       // const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
       const noOutline = {
@@ -50,14 +51,14 @@ function useGetData(
         categories.push(
           intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
         );
-        const nbTrue = el.my_indicator.buckets.find((b) => b.key_as_string === 'true')
+        const nbTrue = el.my_indicator2.buckets.find((b) => b.key_as_string === 'true')
           ?.doc_count || 0;
-        const nbFalse = el.my_indicator.buckets.find((b) => b.key_as_string === 'false')
+        const nbFalse = el.my_indicator2.buckets.find((b) => b.key_as_string === 'false')
           ?.doc_count || 0;
         const nbTot = nbTrue + nbFalse || 0;
         nbTrueAll += nbTrue;
         nbFalseAll += nbFalse;
-        if (nbTot > 0) {
+        if (nbTrue > 0) {
           indicTrue.push({
             y_abs: nbTrue,
             y_tot: nbTot,
@@ -128,7 +129,8 @@ function useGetData(
       beforeLastObservationSnap,
       domain,
       intl,
-      indicator,
+      indicator1,
+      indicator2,
       colorFalse,
       colorTrue,
       legendFalse,

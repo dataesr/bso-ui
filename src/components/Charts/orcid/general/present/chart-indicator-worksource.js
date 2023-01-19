@@ -31,8 +31,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
+    'is_fr_present',
     'works.source.keyword',
     20,
+    'Pas de source externe',
+    getCSSValue('--orange-soft-100'),
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -79,7 +82,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-work',
+  id: 'orcid.general.present.chart-indicator-worksource',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

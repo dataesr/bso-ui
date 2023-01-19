@@ -12,8 +12,11 @@ function useGetData(
   beforeLastObservationSnap,
   observationSnap,
   domain,
-  indicator,
+  indicator1,
+  indicator2,
   size,
+  missing,
+  color,
 ) {
   const intl = useIntl();
   const [allData, setData] = useState({});
@@ -23,33 +26,41 @@ function useGetData(
     async (lastObservationSnap) => {
       const queries = [];
       const queryCurrent = getFetchOptions({
-        key: 'orcidIndicatorSimple',
+        key: 'orcidIndicator',
         domain,
-        parameters: [indicator, size],
+        parameters: [indicator1, indicator2, size, missing],
         objectType: ['orcid'],
       });
       queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));
       const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.my_indicator.buckets;
-      const other = res[0].data.aggregations.my_indicator.sum_other_doc_count;
+      const data = res[0].data.aggregations.my_indicator1.buckets.filter(
+        (el) => el.doc_count > 0,
+      )[0];
+      const total = data.doc_count;
+      const other = data.my_indicator2.sum_other_doc_count;
       // const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
       const myData = [];
+      const myColor = color;
       const noOutline = {
         style: {
           textOutline: 'none',
         },
       };
-      data.forEach((el) => {
+      data.my_indicator2.buckets.forEach((el) => {
         categories.push(el.key);
         myData.push({
-          y: el.doc_count,
+          y: (el.doc_count * 100) / total,
+          y_abs: el.doc_count,
+          y_tot: total,
           source: el.key,
         });
       });
       categories.push('other');
       myData.push({
-        y: other,
+        y: (other * 100) / total,
+        y_abs: other,
+        y_tot: total,
         source: 'other',
       });
       const dataGraph = [
@@ -60,10 +71,11 @@ function useGetData(
             }),
           ),
           data: myData,
+          color: myColor,
           dataLabels: noOutline,
         },
       ];
-
+      console.log('ttt', dataGraph);
       const comments = {
         beforeLastObservationSnap: getObservationLabel(
           beforeLastObservationSnap,
@@ -77,7 +89,15 @@ function useGetData(
         dataGraph,
       };
     },
-    [beforeLastObservationSnap, domain, intl, indicator, size],
+    [
+      beforeLastObservationSnap,
+      domain,
+      intl,
+      indicator1,
+      indicator2,
+      size,
+      color,
+    ],
   );
 
   useEffect(() => {
