@@ -1853,12 +1853,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcidIndicator: ([
-      myField1,
-      myField2,
-      mySize2 = 10,
-      myMissing2 = false,
-    ]) => ({
+    orcidIndicator: ([myField1, myField2, mySize2 = 10]) => ({
       size: 0,
       query: {
         bool: {
@@ -1881,7 +1876,6 @@ export default function getFetchOptions({
               terms: {
                 field: myField2,
                 size: mySize2,
-                missing: myMissing2,
               },
             },
           },
