@@ -43,6 +43,12 @@
     "commentsNameEN": "of the UPHF",
     "startYear": 2016
   },
+  "130025976": {
+    "name": "CY Cergy Paris Université (CYU)",
+    "commentsName": "de CYU",
+    "commentsNameEN": "of CYU",
+    "startYear": 2020
+  },
   "130026024": {
     "name": "Université Paris-Saclay",
     "commentsName": "de l'université Paris-Saclay",
@@ -414,5 +420,11 @@
     "commentsName": "de l'HES-SO",
     "commentsNameEN": "of the HES-SO",
     "country": "ch"
+  },
+  "grid4570143": {
+    "name": "Institut national des sciences humaines et sociales (INSHS)",
+    "commentsName": " de l'INSHS",
+    "commentsNameEN": "of the INSHS",
+    "ror": "04b0z7q78"
   }
 }
