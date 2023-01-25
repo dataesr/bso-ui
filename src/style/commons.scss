@@ -221,6 +221,10 @@ div.d-inline-flex {
 
   &.btn-transparent {
     background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   &.bg-medium-blue {

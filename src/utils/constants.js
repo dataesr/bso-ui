@@ -125,4 +125,20 @@ export const documentTitles = {
   '/orcid/general': 'app.orcid.document.title',
 };
 
-export const alphabet = ['a', 'c', 'd', 'e', 'f', 'h', 'm', 'p', 'r', 't', 'u'];
+export const alphabet = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'g',
+  'h',
+  'l',
+  'm',
+  'o',
+  'p',
+  'r',
+  's',
+  't',
+  'u',
+];
