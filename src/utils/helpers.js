@@ -53,13 +53,7 @@ export function sortByPath(array, path) {
   return [...array].sort((a, b) => {
     const valueA = a ? getValueByPath(path, a).toLowerCase() : 0;
     const valueB = b ? getValueByPath(path, b).toLowerCase() : 0;
-    if (valueA < valueB) {
-      return -1;
-    }
-    if (valueA > valueB) {
-      return 1;
-    }
-    return 0;
+    return valueA && valueA.localeCompare ? valueA.localeCompare(valueB) : 0;
   });
 }
 

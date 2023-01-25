@@ -75,7 +75,6 @@ function useGetData(
           dataLabels: noOutline,
         },
       ];
-      console.log('ttt', dataGraph);
       const comments = {
         beforeLastObservationSnap: getObservationLabel(
           beforeLastObservationSnap,
@@ -91,12 +90,13 @@ function useGetData(
     },
     [
       beforeLastObservationSnap,
+      color,
       domain,
-      intl,
       indicator1,
       indicator2,
+      intl,
+      missing,
       size,
-      color,
     ],
   );
 
