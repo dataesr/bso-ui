@@ -103,8 +103,9 @@ import GlossaryEntries from 'glossary.json';
 />
 ```
 
-## Mise en prod
+## Deployment
 
+To deploy in production, simply run this command from your staging branch :
 
 ```sh
 npm run deploy --level=[patch|minor|major]
