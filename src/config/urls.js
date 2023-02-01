@@ -66,12 +66,28 @@ export default {
     en: '/software/general',
   },
   nationalThesis: {
-    fr: '/theses-de-doctorat',
-    en: '/thesis',
+    tabs: [
+      {
+        fr: '/theses-de-doctorat/general',
+        en: '/thesis/general',
+      },
+    ],
+    fr: '/theses-de-doctorat/general',
+    en: '/thesis/general',
   },
   nationalOrcid: {
-    fr: '/orcid',
-    en: '/orcid',
+    tabs: [
+      {
+        fr: '/orcid/general',
+        en: '/orcid/general',
+      },
+      {
+        fr: '/orcid/referentiels',
+        en: '/orcid/referentiels',
+      },
+    ],
+    fr: '/orcid/general',
+    en: '/orcid/general',
   },
   sante: {
     fr: '/sante',

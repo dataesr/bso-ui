@@ -3510,14 +3510,14 @@ export const chartOptions = {
       options.chart.type = 'line';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.creation-date' }) },
+        labels: {
+          rotation: -90,
+        },
+        title: { text: intl.formatMessage({ id: 'app.orcid.creation-date' }) },
       };
       // options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid-count' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.orcid.type',
-      });
-      options.legend.reversed = true;
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid.nb' });
+      options.legend.title.text = null;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -3542,12 +3542,73 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        title: null,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.title.text = null;
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-hal': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: null,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.title.text = null;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-work': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
       });
       options.legend.reversed = true;
       options.plotOptions = {
@@ -3561,6 +3622,284 @@ export const chartOptions = {
             formatter() {
               return this.y.toFixed(0).concat(' %');
             },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-affiliationid': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-idref-abes': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-idref-hal': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-idref-same': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-idhal-abes': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-idhal-hal': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-idhal-same': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-worksource': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '650px';
+      options.chart.type = 'bar';
+      options.yAxis = getPercentageYAxis();
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.orcid.work.source' }) },
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.perc',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'orcid.general.present.chart-indicator-affiliationsource': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '650px';
+      options.chart.type = 'bar';
+      options.yAxis = getPercentageYAxis();
+      options.xAxis = {
+        categories,
+        title: {
+          text: intl.formatMessage({ id: 'app.orcid.affiliation.source' }),
+        },
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.perc',
+      });
+      // options.legend.title.text = intl.formatMessage({
+      //   id: 'app.publi.type-hebergement',
+      // });
+      options.legend.reversed = true;
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
           },
         },
       };

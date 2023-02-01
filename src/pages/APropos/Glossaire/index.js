@@ -130,9 +130,12 @@ function Glossaire() {
                   } my-5 d-inline`}
                 >
                   <Button
-                    className={classNames('text-upper fs-16-24', {
-                      active: letter === activeLetter,
-                    })}
+                    className={classNames(
+                      'text-upper fs-16-24 btn-transparent',
+                      {
+                        active: letter === activeLetter,
+                      },
+                    )}
                     styleAsLink
                     size='sm'
                     onClick={(e) => {

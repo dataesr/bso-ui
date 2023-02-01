@@ -224,7 +224,36 @@ const ChartAvailibilityEditeur = lazy(() => import(
 ));
 // Orcid
 const ChartOrcid = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
+const ChartOrcidAffiliationSource = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-affiliationsource'
+));
+const ChartOrcidWorkSource = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-worksource'
+));
 const ChartOrcidActive = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-active'));
+const ChartOrcidHal = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-hal'));
+const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-work'));
+const ChartOrcidAffiliationId = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-affiliationid'
+));
+const ChartOrcidIdrefAbes = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-idref-abes'
+));
+const ChartOrcidIdrefHal = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-idref-hal'
+));
+const ChartOrcidIdrefSame = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-idref-same'
+));
+const ChartOrcidIdhalAbes = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-idhal-abes'
+));
+const ChartOrcidIdhalHal = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-idhal-hal'
+));
+const ChartOrcidIdhalSame = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-idhal-same'
+));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
@@ -364,7 +393,21 @@ const chartComponents = {
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
   'orcid.general.present.chart-evolution': ChartOrcid,
+  'orcid.general.present.chart-indicator-worksource': ChartOrcidWorkSource,
+  'orcid.general.present.chart-indicator-affiliationsource':
+    ChartOrcidAffiliationSource,
   'orcid.general.present.chart-indicator-active': ChartOrcidActive,
+  'orcid.general.present.chart-indicator-hal': ChartOrcidHal,
+  'orcid.general.present.chart-indicator-work': ChartOrcidWork,
+  'orcid.general.present.chart-indicator-affiliationid':
+    ChartOrcidAffiliationId,
+  'orcid.general.present.chart-indicator-idref-abes': ChartOrcidIdrefAbes,
+  'orcid.general.present.chart-indicator-idref-hal': ChartOrcidIdrefHal,
+  'orcid.general.present.chart-indicator-idref-same': ChartOrcidIdrefSame,
+  'orcid.general.present.chart-indicator-idhal-abes': ChartOrcidIdhalAbes,
+  'orcid.general.present.chart-indicator-idhal-hal': ChartOrcidIdhalHal,
+  'orcid.general.present.chart-indicator-idhal-same': ChartOrcidIdhalSame,
+  // Other
 };
 
 export default chartComponents;

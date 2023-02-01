@@ -1853,7 +1853,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcidIndicator: ([myField]) => ({
+    orcidIndicator: ([myField1, myField2, mySize2 = 10]) => ({
       size: 0,
       query: {
         bool: {
@@ -1867,17 +1867,40 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        fr_reason: {
+        my_indicator1: {
           terms: {
-            field: 'fr_reasons_main.keyword',
-            missing: 'other',
+            field: myField1,
           },
           aggs: {
-            my_indicator: {
+            my_indicator2: {
               terms: {
-                field: myField,
+                field: myField2,
+                size: mySize2,
               },
             },
+          },
+        },
+      },
+    }),
+    orcidIndicatorSimple: ([myField, mySize]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                is_fr_present: true,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        my_indicator: {
+          terms: {
+            field: myField,
+            size: mySize,
+            missing: 'missing',
           },
         },
       },

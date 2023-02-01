@@ -219,6 +219,14 @@ div.d-inline-flex {
     background-color: var(--blue-dark-125);
   }
 
+  &.btn-transparent {
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
   &.bg-medium-blue {
     background: var(--blue-soft-100);
   }

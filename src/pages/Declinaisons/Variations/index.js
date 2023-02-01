@@ -288,6 +288,13 @@ function Variations() {
                 alt='bso local universite montpellier'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://www.sorbonne-universite.fr/barometre-science-ouverte-de-sorbonne-universite'
+                img='/declinaisons/sorbonne.svg'
+                alt='bso local sorbonne universite'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>

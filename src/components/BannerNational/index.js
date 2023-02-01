@@ -54,7 +54,7 @@ function BannerNational({ selected, title, iconId }) {
                 label: intl.formatMessage({
                   id: 'app.baro-national.thesis.title',
                 }),
-                value: intl.formatMessage({ id: 'url.thesis' }),
+                value: intl.formatMessage({ id: 'url.thesis.general' }),
               },
               {
                 label: intl.formatMessage({

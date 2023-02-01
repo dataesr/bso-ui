@@ -32,10 +32,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'fr_reasons_main.keyword',
-    'active',
-    'app.orcid.active',
-    'app.orcid.inactive',
-    getCSSValue('--green-light-125'),
+    'has_work',
+    'app.orcid.has-work',
+    'app.orcid.no-work',
+    getCSSValue('--orange-soft-100'),
     getCSSValue('--g-400'),
   );
   const { categories, dataGraph } = allData;
@@ -83,7 +83,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-active',
+  id: 'orcid.general.present.chart-indicator-work',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

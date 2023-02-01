@@ -53,13 +53,7 @@ export function sortByPath(array, path) {
   return [...array].sort((a, b) => {
     const valueA = a ? getValueByPath(path, a).toLowerCase() : 0;
     const valueB = b ? getValueByPath(path, b).toLowerCase() : 0;
-    if (valueA < valueB) {
-      return -1;
-    }
-    if (valueA > valueB) {
-      return 1;
-    }
-    return 0;
+    return valueA && valueA.localeCompare ? valueA.localeCompare(valueB) : 0;
   });
 }
 
@@ -220,6 +214,7 @@ export function getSource(id, otherSources = []) {
   const sources = [];
   if (id.includes('-publi') || id.includes('publication')) {
     sources.push('Unpaywall');
+    sources.push('HAL');
   }
   if (
     id.includes('health-general')
@@ -246,7 +241,15 @@ export function getSource(id, otherSources = []) {
   if (id.includes('thesis')) {
     sources.push('theses.fr');
   }
-  sources.push('HAL');
+  if (id.includes('hal')) {
+    sources.push('HAL');
+  }
+  if (id.includes('orcid')) {
+    sources.push('ORCID');
+  }
+  if (id.includes('idref')) {
+    sources.push('idref');
+  }
   sources.push('MESR');
   sources.push(...otherSources);
   return sources.join(', ');
