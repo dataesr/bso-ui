@@ -9,7 +9,7 @@ const tree = [
         children: [
           {
             label:
-              "Taux d'accès ouvert des publications scientifiques françaises parues durant l'année précédente par date d'observation",
+              "Taux d'accès ouvert des publications scientifiques françaises parues durant l'année précédente par année d'observation",
             value: 'publi.general.dynamique-ouverture.chart-taux-ouverture',
           },
           {
@@ -46,7 +46,7 @@ const tree = [
         children: [
           {
             label:
-              "Taux d'accès ouvert par discipline et par date d'observation, pour les publications françaises parues durant l'année précédente (disciplines présentées dans l'ordre du taux d'accès décroissant)",
+              "Taux d'accès ouvert par discipline et par année d'observation, pour les publications françaises parues durant l'année précédente (disciplines présentées dans l'ordre du taux d'accès décroissant)",
             value: 'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
           },
           {
@@ -128,13 +128,13 @@ const tree = [
         children: [
           {
             label:
-              "Taux de publications scientifiques françaises ouvertes et hébergées sur une archive ouverte par date d'observation",
+              "Taux de publications scientifiques françaises ouvertes et hébergées sur une archive ouverte par année d'observation",
             value:
               'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
           },
           {
             label:
-              "Évolution du taux de publications scientifiques françaises hébergées sur une archive ouverte, par date d'observation",
+              "Évolution du taux de publications scientifiques françaises hébergées sur une archive ouverte, par année d'observation",
             value:
               'publi.repositories.dynamique-ouverture.chart-evolution-proportion',
           },
