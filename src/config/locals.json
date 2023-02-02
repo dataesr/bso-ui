@@ -3,143 +3,167 @@
     "name": "Université de Strasbourg (Unistra)",
     "commentsName": "de l'Unistra",
     "commentsNameEN": "of Unistra",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "00pg6eq24"
   },
   "130015506": {
-    "name": "Université de Lorraine",
+    "name": "Université de Lorraine (UL)",
     "commentsName": "de l'université de Lorraine",
     "commentsNameEN": "of the university of Lorraine",
     "displayTitle": "false",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "04vfs2w97"
   },
   "130015332": {
-    "name": "Aix-Marseille Université",
+    "name": "Aix-Marseille Université (AMU)",
     "commentsName": "d'AMU",
     "commentsNameEN": "of AMU",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "035xkbk20"
   },
   "130018351": {
     "name": "Université de Bordeaux",
     "commentsName": "de l'université de Bordeaux",
     "commentsNameEN": "of Bordeaux University",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "057qpr032"
   },
   "130020761": {
     "name": "CentraleSupélec",
     "commentsName": "de CentraleSupélec",
     "commentsNameEN": "of CentraleSupélec",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "019tcpt25"
   },
   "130023385": {
     "name": "Sorbonne Université",
     "commentsName": "de Sorbonne Université",
     "commentsNameEN": "of Sorbonne university",
     "startYear": 2018,
-    "firstObservationYear": "2019"
+    "firstObservationYear": "2019",
+    "ror": "02en5vm52"
   },
   "130025745": {
     "name": "Université Polytechnique Hauts-de-France",
     "commentsName": "de l'UPHF",
     "commentsNameEN": "of the UPHF",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "02ezch769"
   },
   "130025976": {
     "name": "CY Cergy Paris Université (CYU)",
     "commentsName": "de CYU",
     "commentsNameEN": "of CYU",
-    "startYear": 2020
+    "startYear": 2020,
+    "ror": "043htjv09"
   },
   "130026024": {
     "name": "Université Paris-Saclay",
     "commentsName": "de l'université Paris-Saclay",
     "commentsNameEN": "of Paris Saclay university",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "03xjwb503"
   },
   "130026081": {
-    "name": "Université Grenoble Alpes",
+    "name": "Université Grenoble Alpes (UGA)",
     "commentsName": "de l'université Grenoble Alpes",
     "commentsNameEN": "of Grenoble Alpes university",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "02rx3b187"
   },
   "130026149": {
     "name": "Université PSL",
     "commentsName": "de l'université PSL",
     "commentsNameEN": "of PSL university",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "013cjyk83"
   },
   "130028061": {
     "name": "Université Clermont Auvergne (UCA)",
     "commentsName": "de l'UCA",
     "commentsNameEN": "of UCA",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "01a8ajp46"
   },
   "130029747": {
     "name": "Nantes Université",
     "commentsName": "de Nantes Université",
     "commentsNameEN": "of Nantes Université",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "03gnr7b55"
   },
   "130029796": {
     "name": "Université de Montpellier",
     "commentsName": "de l'université de Montpellier",
     "commentsNameEN": "of Montpellier University",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "051escj72"
   },
   "180036048": {
     "name": "Institut National de la Santé et de la Recherche Médicale (Inserm)",
     "commentsName": "de l'Inserm",
     "commentsNameEN": "of Inserm",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "02vjkv261"
   },
   "180006025": {
     "name": "Institut de Recherche pour le Développement (IRD)",
     "commentsName": "de l'IRD",
-    "commentsNameEN": "of the IRD"
+    "commentsNameEN": "of the IRD",
+    "ror": "05q3vnk25"
   },
   "180070039": {
     "name": "Institut national de recherche pour l'agriculture, l'alimentation et l'environnement (INRAE)",
     "commentsName": "de INRAE",
     "commentsNameEN": "of INRAE",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "003vg9w96"
   },
   "180089047": {
     "name": "Institut national de recherche en sciences et technologies du numérique (INRIA)",
     "commentsName": "de l'INRIA",
     "commentsNameEN": "of INRIA",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "02kvxyf05"
   },
   "18009202500097": {
     "name": "IMT Mines Albi",
     "commentsName": "d'IMT Mines Albi",
-    "commentsNameEN": "of IMT Mines Albi"
+    "commentsNameEN": "of IMT Mines Albi",
+    "ror": "00bq8vv83"
   },
   "18009202500121": {
     "name": "IMT Atlantique",
     "commentsName": "d'IMT Atlantique",
-    "commentsNameEN": "of IMT Atlantique"
+    "commentsNameEN": "of IMT Atlantique",
+    "ror": "030hj3061"
   },
   "191700327": {
     "name": "La Rochelle Université",
     "commentsName": "de La Rochelle Université",
     "commentsNameEN": "of La Rochelle university",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "04mv1z119"
   },
   "192112373": {
     "name": "Université de Bourgogne",
     "commentsName": "de l'Université de Bourgogne",
     "commentsNameEN": "of the university of Bourgogne",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "03k1bsr36"
   },
   "192512150": {
     "name": "Université de Franche-Comté (UFC)",
     "commentsName": "de l'UFC",
-    "commentsNameEN": "of the UFC"
+    "commentsNameEN": "of the UFC",
+    "ror": "03pcc9z86"
   },
   "192903466": {
     "name": "Université de Brest",
     "commentsName": "de l'université de Brest",
     "commentsNameEN": "of the university of Brest",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "01b8h3982"
   },
   "193000635": {
     "name": "IMT Mines Alès",
@@ -150,127 +174,149 @@
   "193101524": {
     "name": "INSA Toulouse",
     "commentsName": "de l'INSA Toulouse",
-    "commentsNameEN": "of INSA Toulouse"
+    "commentsNameEN": "of INSA Toulouse",
+    "ror": "01h8pf755"
   },
   "193113842": {
     "name": "Université Toulouse III - Paul Sabatier",
     "commentsName": "de l'université Toulouse III",
     "commentsNameEN": "of Toulouse III university",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "02v6kpv12"
   },
   "193509361": {
     "name": "Université Rennes 1",
     "commentsName": "de l'université de Rennes 1",
-    "commentsNameEN": "of the university of Rennes 1"
+    "commentsNameEN": "of the university of Rennes 1",
+    "ror": "015m7wh34"
   },
   "194401006": {
     "name": "Centrale Nantes",
     "commentsName": "de Centrale Nantes",
     "commentsNameEN": "of Centrale Nantes",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "03nh7d505"
   },
   "195112966": {
     "name": "Université de Reims Champagne-Ardenne (URCA)",
     "commentsName": "de l'URCA",
     "commentsNameEN": "of URCA",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "03hypw319"
   },
   "195922846r": {
     "name": "Bureau de recherche géologique et minière (BRGM)",
     "commentsName": "du BRGM",
     "commentsNameEN": "of BRGM",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "05hnb7x64"
   },
   "196811665": {
-    "name": "Université de Haute-Alsace",
+    "name": "Université de Haute-Alsace (UHA)",
     "commentsName": "de l'université de Haute-Alsace",
     "commentsNameEN": "of the university of Haute-Alsace",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "04k8k6n84"
   },
   "196901870": {
     "name": "Ecole Centrale de Lyon (Centrale Lyon)",
     "commentsName": "de Centrale Lyon",
     "commentsNameEN": "of Centrale Lyon",
-    "startYear": 2015
+    "startYear": 2015,
+    "ror": "05s6rge65"
   },
   "196901920": {
     "name": "Institut national des sciences appliquées de Lyon (INSA Lyon)",
     "commentsName": "de l'INSA Lyon",
     "commentsNameEN": "of INSA Lyon",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "050jn9y42"
   },
   "196917744": {
     "name": "Université Claude Bernard Lyon 1",
     "commentsName": "de l'UCBL",
     "commentsNameEN": "of the UCBL",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "029brtt94"
   },
   "196917751": {
     "name": "Université Lumière Lyon 2",
     "commentsName": "de l'université Lyon 2",
-    "commentsNameEN": "of the university Lyon 2"
+    "commentsNameEN": "of the university Lyon 2",
+    "ror": "03rth4p18"
   },
   "197534316": {
     "name": "Sciences Po",
     "commentsName": "de Sciences Po",
     "commentsNameEN": "of Sciences Po",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "05fe7ax82"
   },
   "197534597": {
     "name": "ENS-PSL",
     "commentsName": "de l'ENS-PSL",
     "commentsNameEN": "of ENS-PSL",
-    "startYear": 2018
+    "startYear": 2018,
+    "ror": "05a0dhs15"
   },
   "197534720": {
     "name": "Arts et Métiers Sciences et Technologies (ENSAM)",
     "commentsName": "de l'ENSAM",
-    "commentsNameEN": "of ENSAM"
+    "commentsNameEN": "of ENSAM",
+    "ror": "018pp1107"
   },
   "197534860": {
     "name": "École Pratique des Hautes Études - PSL",
     "commentsName": "de l'EPHE-PSL",
     "commentsNameEN": "of EPHE-PSL",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "046b3cj80"
   },
   "197534936": {
     "name": "Ecole des Mines Paris-PSL",
     "commentsName": "des Mines Paris-PSL",
     "commentsNameEN": "of Mines Paris-PSL",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "04y8cs423"
   },
   "197819444": {
     "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)",
     "commentsName": "de l'UVSQ",
-    "commentsNameEN": "of the UVSQ"
+    "commentsNameEN": "of the UVSQ",
+    "ror": "03mkjjy25"
   },
   "198307662": {
     "name": "Université de Toulon (UTLN)",
     "commentsName": "de l'université Toulon",
-    "commentsNameEN": "of the university of Toulon"
+    "commentsNameEN": "of the university of Toulon",
+    "ror": "02m9kbe37"
   },
   "198406852": {
     "name": "Avignon Université",
     "commentsName": "d'Avignon Université",
     "commentsNameEN": "of Avignon University",
-    "startYear": 2015
+    "startYear": 2015,
+    "ror": "00mfpxb84"
   },
   "198608564": {
     "name": "Université de Poitiers",
     "commentsName": "de l'Université de Poitiers",
     "commentsNameEN": "of the university of Poitiers",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "04xhy8q59"
   },
   "199119751": {
     "name": "Université d'Evry Val d'Essonne",
     "commentsName": "de l'Université d'Evry Val d'Essonne",
     "commentsNameEN": "of the university of Evry Val d'Essonne",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "00e96v939"
   },
   "199312380": {
     "name": "Université Sorbonne Paris Nord",
     "commentsName": "de l'Université Sorbonne Paris Nord",
-    "commentsNameEN": "of the university of Sorbonne Paris Nord"
+    "commentsNameEN": "of the university of Sorbonne Paris Nord",
+    "ror": "0199hds37"
   },
   "199712666k": {
     "name": "Laboratoire d'océanographie microbienne (LOMIC)",
@@ -283,7 +329,8 @@
     "commentsName": "de l'ATILF",
     "commentsNameEN": "of the ATILF",
     "displayTitle": "false",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "02cy9g557"
   },
   "200116904z": {
     "name": "Laboratoire Agronomie et Environnement (LAE)",
@@ -309,13 +356,15 @@
     "name": "Observatoire de Paris",
     "commentsName": "de l'Observatoire de Paris",
     "commentsNameEN": "of the Paris Observatory",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "029nkcm90"
   },
   "200918490n": {
     "name": "Laboratoire d'océanographie et du climat : expérimentations et approches numériques (LOCEAN)",
     "commentsName": "du LOCEAN",
     "commentsNameEN": "of LOCEAN",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "05j3atf73"
   },
   "200919011e": {
     "name": "Laboratoire Matériaux Optiques, Photonique et Systèmes (LMOPS)",
@@ -334,7 +383,8 @@
     "name": "Biologie intégrative des organismes marins (BIOM)",
     "commentsName": "du BIOM",
     "commentsNameEN": "of BIOM",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "03wg93s13"
   },
   "201420738k": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
@@ -352,45 +402,53 @@
     "name": "Observatoire Océanologique de Banyuls sur Mer (OOB)",
     "commentsName": "de l'OOB",
     "commentsNameEN": "of OOB",
-    "startYear": 2017
+    "startYear": 2017,
+    "ror": "05gz4kr37"
   },
   "331596270": {
     "name": "Centre de coopération internationale en recherche agronomique pour le développement (CIRAD)",
     "commentsName": "du CIRAD",
-    "commentsNameEN": "of the CIRAD"
+    "commentsNameEN": "of the CIRAD",
+    "ror": "05kpkpg04"
   },
   "775663958": {
     "name": "ESSEC Business School",
     "commentsName": "de l'ESSEC Business School",
-    "commentsNameEN": "of ESSEC Business School"
+    "commentsNameEN": "of ESSEC Business School",
+    "ror": "02dga6j42"
   },
   "775684897": {
     "name": "Institut Pasteur",
     "commentsName": "de l'Institut Pasteur",
     "commentsNameEN": "of the Institut Pasteur",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "0495fxg12"
   },
   "775685019": {
     "name": "CEA",
     "commentsName": "du CEA",
-    "commentsNameEN": "of CEA"
+    "commentsNameEN": "of CEA",
+    "ror": "00jjx8s55"
   },
   "775722879": {
     "name": "Office national d'études et de recherches aérospatiales (ONERA)",
     "commentsName": "de l'ONERA",
     "commentsNameEN": "of the ONERA",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "005y2ap84"
   },
   "780507190": {
     "name": "Institut Polytechnique UniLaSalle (UniLaSalle)",
     "commentsName": "d'UniLaSalle",
     "commentsNameEN": "of UniLaSalle",
-    "startYear": 2018
+    "startYear": 2018,
+    "ror": "05wy89733"
   },
   "817389141": {
     "name": "Grenoble Ecole de Management (GEM)",
     "commentsName": "de Grenoble Ecole de Management",
-    "commentsNameEN": "of Grenoble Ecole de Management"
+    "commentsNameEN": "of Grenoble Ecole de Management",
+    "ror": "01h4fxd96"
   },
   "a2f": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt",
@@ -402,7 +460,8 @@
     "name": "Agence Nationale de la Recherche (ANR)",
     "commentsName": "liées à un financement de l'ANR",
     "commentsNameEN": "with an ANR funding",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "00rbzpz17"
   },
   "driihm": {
     "name": "Laboratoire d'Excellence Dispositif de Recherche Interdisciplinaire sur les Interactions Hommes-Milieux (LabEx DRIIHM)",
@@ -413,13 +472,15 @@
     "name": "Université de Rennes",
     "commentsName": "de l'université de Rennes",
     "commentsNameEN": "of Rennes University",
-    "startYear": 2016
+    "startYear": 2016,
+    "ror": "015m7wh34"
   },
   "007gfwn20": {
     "name": "Haute École Spécialisée de Suisse Occidentale - Genève",
     "commentsName": "de l'HES-SO",
     "commentsNameEN": "of the HES-SO",
-    "country": "ch"
+    "country": "ch",
+    "ror": "007gfwn20"
   },
   "grid4570143": {
     "name": "Institut national des sciences humaines et sociales (INSHS)",
