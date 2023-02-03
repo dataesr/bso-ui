@@ -307,7 +307,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   let affiliationParams;
   if (Object.keys(locals).includes(bsoLocalAffiliationLowerCase)) {
     affiliationParams = locals?.[bsoLocalAffiliationLowerCase];
-  } else {
+  } else if (bsoLocalAffiliation) {
     bsoLocalAffiliation = Object.keys(locals).filter(
       (key) => locals[key]?.ror === bsoLocalAffiliationLowerCase,
     )?.[0];
