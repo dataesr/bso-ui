@@ -302,16 +302,25 @@ export function isInProduction() {
  */
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
-  const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
-  const bsoLocalAffiliationLowerCase = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
+  let bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
+  const bsoLocalAffiliationLowerCase = bsoLocalAffiliation?.toLowerCase() || undefined;
+  let affiliationParams;
+  if (Object.keys(locals).includes(bsoLocalAffiliationLowerCase)) {
+    affiliationParams = locals?.[bsoLocalAffiliationLowerCase];
+  } else {
+    bsoLocalAffiliation = Object.keys(locals).filter(
+      (key) => locals[key]?.ror === bsoLocalAffiliationLowerCase,
+    )?.[0];
+    affiliationParams = locals?.[bsoLocalAffiliation];
+  }
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
-    || locals?.[bsoLocalAffiliationLowerCase]?.country
+    || affiliationParams?.country
     || 'fr';
   const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
-    || locals?.[bsoLocalAffiliationLowerCase]?.lastObservationYear
+    || affiliationParams?.lastObservationYear
     || process.env.REACT_APP_LAST_OBSERVATION;
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
-    || locals?.[bsoLocalAffiliationLowerCase]?.firstObservationYear
+    || affiliationParams?.firstObservationYear
     || '2018';
   const idTypes = ['doi'];
   const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
@@ -340,27 +349,26 @@ export function getURLSearchParams(intl = undefined, id = '') {
 
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || locals?.[bsoLocalAffiliationLowerCase]?.[commentsNameProperty]
+      || affiliationParams?.[commentsNameProperty]
       || 'du périmètre '.concat(bsoLocalAffiliation)
       || intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
       || 'françaises';
     displayTitle = !(
       (
-        urlSearchParams.get('displayTitle')
-        || locals?.[bsoLocalAffiliationLowerCase]?.displayTitle
+        urlSearchParams.get('displayTitle') || affiliationParams?.displayTitle
       )?.toLowerCase() === 'false'
     );
     endYear = parseInt(
       urlSearchParams.get('endYear')?.toLowerCase()
-        || locals?.[bsoLocalAffiliationLowerCase]?.endYear,
+        || affiliationParams?.endYear,
       10,
     );
     name = urlSearchParams.get('name')?.toLowerCase()
-      || locals?.[bsoLocalAffiliationLowerCase]?.name
+      || affiliationParams?.name
       || 'Périmètre '.concat(bsoLocalAffiliation);
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
-        || locals?.[bsoLocalAffiliationLowerCase]?.startYear
+        || affiliationParams?.startYear
         || 2013,
       10,
     );
