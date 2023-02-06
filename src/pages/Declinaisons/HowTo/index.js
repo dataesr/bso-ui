@@ -99,6 +99,7 @@ function HowTo() {
       </Col>
     </Row>
   );
+
   return (
     <div className='variations'>
       <Banner
