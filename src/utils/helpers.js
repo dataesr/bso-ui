@@ -316,9 +316,16 @@ export function getURLSearchParams(intl = undefined, id = '') {
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || affiliationParams?.country
     || 'fr';
-  const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
-    || affiliationParams?.lastObservationYear
-    || process.env.REACT_APP_LAST_OBSERVATION;
+  let lastObservationYear = '2021Q4';
+  if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
+    lastObservationYear = urlSearchParams
+      .get('lastObservationYear')
+      ?.toLowerCase();
+  } else if (affiliationParams?.lastObservationYear) {
+    lastObservationYear = affiliationParams?.lastObservationYear;
+  } else if (bsoLocalAffiliation === undefined) {
+    lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
+  }
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
     || affiliationParams?.firstObservationYear
     || '2018';
