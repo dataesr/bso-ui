@@ -302,32 +302,38 @@ export function isInProduction() {
  */
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
-  let bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
+  let bsoLocalAffiliation;
+  // Enable bsoLocalAffiliation only on iframe and not on the global website
+  if (window.location.href.includes('integration')) {
+    bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
+  }
   const bsoLocalAffiliationLowerCase = bsoLocalAffiliation?.toLowerCase() || undefined;
-  let affiliationParams;
+  let localAffiliationSettings;
+  // bsoLocalAffiliation can be either the structure identifier
   if (Object.keys(locals).includes(bsoLocalAffiliationLowerCase)) {
-    affiliationParams = locals?.[bsoLocalAffiliationLowerCase];
+    localAffiliationSettings = locals?.[bsoLocalAffiliationLowerCase];
+    // or the ror
   } else if (bsoLocalAffiliation) {
     bsoLocalAffiliation = Object.keys(locals).filter(
-      (key) => locals[key]?.ror === bsoLocalAffiliationLowerCase,
+      (key) => locals[key]?.ror?.toLowerCase() === bsoLocalAffiliationLowerCase,
     )?.[0];
-    affiliationParams = locals?.[bsoLocalAffiliation];
+    localAffiliationSettings = locals?.[bsoLocalAffiliation];
   }
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
-    || affiliationParams?.country
+    || localAffiliationSettings?.country
     || 'fr';
   let lastObservationYear = '2021Q4';
   if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
     lastObservationYear = urlSearchParams
       .get('lastObservationYear')
       ?.toLowerCase();
-  } else if (affiliationParams?.lastObservationYear) {
-    lastObservationYear = affiliationParams?.lastObservationYear;
+  } else if (localAffiliationSettings?.lastObservationYear) {
+    lastObservationYear = localAffiliationSettings?.lastObservationYear;
   } else if (bsoLocalAffiliation === undefined) {
     lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
   }
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
-    || affiliationParams?.firstObservationYear
+    || localAffiliationSettings?.firstObservationYear
     || '2018';
   const idTypes = ['doi'];
   const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
@@ -356,26 +362,27 @@ export function getURLSearchParams(intl = undefined, id = '') {
 
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || affiliationParams?.[commentsNameProperty]
+      || localAffiliationSettings?.[commentsNameProperty]
       || 'du périmètre '.concat(bsoLocalAffiliation)
       || intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
       || 'françaises';
     displayTitle = !(
       (
-        urlSearchParams.get('displayTitle') || affiliationParams?.displayTitle
+        urlSearchParams.get('displayTitle')
+        || localAffiliationSettings?.displayTitle
       )?.toLowerCase() === 'false'
     );
     endYear = parseInt(
       urlSearchParams.get('endYear')?.toLowerCase()
-        || affiliationParams?.endYear,
+        || localAffiliationSettings?.endYear,
       10,
     );
     name = urlSearchParams.get('name')?.toLowerCase()
-      || affiliationParams?.name
+      || localAffiliationSettings?.name
       || 'Périmètre '.concat(bsoLocalAffiliation);
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
-        || affiliationParams?.startYear
+        || localAffiliationSettings?.startYear
         || 2013,
       10,
     );
