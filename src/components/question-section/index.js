@@ -9,10 +9,10 @@ const QuestionSection = ({
   anchorId,
   backgroundColor,
   children,
+  ctas,
   glossaryKeys,
   intlKey,
   isDisplayed,
-  ctas,
 }) => {
   const intl = useIntl();
   const formatted = (
