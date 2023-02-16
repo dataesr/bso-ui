@@ -67,6 +67,7 @@ function HowTo() {
   const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
       graphId || graph
     }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
+
   const getIframeSnippet = (graphId = null) => (
     <iframe
       height='860'
@@ -493,7 +494,16 @@ function HowTo() {
                       text={ReactDOMServer.renderToString(getIframeSnippet())}
                     >
                       <Button icon='ri-clipboard-fill' iconPosition='right'>
-                        Copier le code
+                        Copier le code de l'iframe
+                      </Button>
+                    </CopyToClipboard>
+                  </Col>
+                  <Col n='12 md-6'>
+                    <CopyToClipboard
+                      text={ReactDOMServer.renderToString(getGraphUrl())}
+                    >
+                      <Button icon='ri-clipboard-fill' iconPosition='right'>
+                        Copier l'url
                       </Button>
                     </CopyToClipboard>
                   </Col>
