@@ -321,7 +321,7 @@ function HowTo() {
                 <Row gutters>
                   <Col n='12 md-6'>
                     <TextInput
-                      hint="Communiqué par l'équipe BSO si périmètre ad-hoc, ou identifiant de structure HAL, ou code collection HAL"
+                      hint="Si périmètre ad-hoc, identifant communiqué par l'équipe BSO ou grid ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
                       label="Identifiant de l'établissement"
                       message='Merci de saisir un identifiant'
                       messageType={bsoLocalAffiliation === '' ? 'error' : ''}

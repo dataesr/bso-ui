@@ -312,11 +312,12 @@ export function getURLSearchParams(intl = undefined, id = '') {
   // bsoLocalAffiliation can be either the structure identifier
   if (Object.keys(locals).includes(bsoLocalAffiliationLowerCase)) {
     localAffiliationSettings = locals?.[bsoLocalAffiliationLowerCase];
-    // or the ror
+    // or the grid or the RoR
   } else if (bsoLocalAffiliation) {
-    bsoLocalAffiliation = Object.keys(locals).filter(
-      (key) => locals[key]?.ror?.toLowerCase() === bsoLocalAffiliationLowerCase,
-    )?.[0];
+    bsoLocalAffiliation = Object.keys(locals).filter((key) => [
+      locals[key]?.ror?.toLowerCase(),
+      locals[key]?.grid?.toLowerCase(),
+    ].includes(bsoLocalAffiliationLowerCase))?.[0];
     localAffiliationSettings = locals?.[bsoLocalAffiliation];
   }
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
