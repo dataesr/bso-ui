@@ -366,6 +366,30 @@
     "ror": "0199hds37",
     "grid": "grid.11318.3a"
   },
+  "199411684f": {
+    "name": "Physico-chimie Curie (PCC)",
+    "commentsName": "du PCC",
+    "commentsNameEN": "of the PCC",
+    "startYear": 2017,
+    "ror": "055ss7a31",
+    "grid": "grid.465542.4"
+  },
+  "199712620k": {
+    "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
+    "commentsName": "du LCMCP",
+    "commentsNameEN": "of the LCMCP",
+    "startYear": 2017,
+    "ror": "028ta1f94",
+    "grid": "grid.462088.0"
+  },
+  "199712651u": {
+    "name": "Laboratoire de recherche en informatique de Sorbonne Université (LIP6)",
+    "commentsName": "du LIP6",
+    "commentsNameEN": "of the LIP6",
+    "startYear": 2017,
+    "ror": "05krcen59",
+    "grid": "grid.462751.3"
+  },
   "199712666k": {
     "name": "Laboratoire d'océanographie microbienne (LOMIC)",
     "commentsName": "du LOMIC",
