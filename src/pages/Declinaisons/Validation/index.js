@@ -1,4 +1,5 @@
 import { Col, Container, File, Icon as DSIcon, Row } from '@dataesr/react-dsfr';
+import Papa from 'papaparse';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -32,8 +33,49 @@ const renderIcons = (
 );
 
 function Validation() {
+  const [doiCount, setDoiCount] = useState(0);
+  const [halCollCode, setHalCollCode] = useState(0);
+  const [halId, setHalId] = useState(0);
+  const [halStructId, setHalStructId] = useState(0);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState(undefined);
+  const [nntEtab, setNntEtab] = useState(0);
+  const [nntId, setNntId] = useState(0);
+
+  const handleFileChange = (e) => {
+    setIsError(true);
+    e.preventDefault();
+    if (e.target.files.length !== 1) {
+      setMessage('Merci de soumettre un et un seul fichier !');
+    } else if (!SUPPORTED_MIME_TYPES.includes(e.target.files?.[0]?.type)) {
+      setMessage('Les formats de fichier acceptés sont .csv, .xls ou .xlsx !');
+    } else {
+      setIsError(false);
+      const inputFile = e.target.files[0];
+      Papa.parse(inputFile, {
+        config: { delimiter: ';' },
+        header: true,
+        skipEmptyLines: 'greedy',
+        complete: (results) => {
+          console.log(results.data);
+          console.log(results.data.filter((item) => item?.hal_struct_id));
+          setDoiCount(results.data.filter((item) => item?.doi)?.length);
+          setHalCollCode(
+            results.data.filter((item) => item?.hal_coll_code)?.length,
+          );
+          setHalId(results.data.filter((item) => item?.hal_id)?.length);
+          setHalStructId(
+            results.data.filter((item) => item?.hal_struct_id)?.length,
+          );
+          setNntEtab(results.data.filter((item) => item?.nnt_etab)?.length);
+          setNntId(results.data.filter((item) => item?.nnt_id)?.length);
+        },
+        error: (err, file, inputElem, reason) => {
+          console.log(reason);
+        },
+      });
+    }
+  };
 
   return (
     <>
@@ -47,49 +89,47 @@ function Validation() {
         />
       </div>
       <Container>
-        <section className='content bd125'>
+        <section className='content bd125 mb-20'>
           <Row gutters>
             <Col n='12 lg-8'>
               <h2 className='marianne-bold fs-12-16'>
                 Validation du fichier de DOIs
               </h2>
-              Veuillez soumettre votre fichier ici afin de le valider.
             </Col>
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
               <File
-                hint='Séparator CSV ou xlsx, avec headers'
+                hint='Fichier Excel ou CSV (séparateur point virgule ;). Merci de préciser le nom des colonnes.'
                 label='Fichier de DOIs à valider'
-                onChange={async (e) => {
-                  setIsError(true);
-                  e.preventDefault();
-                  if (e.target.files.length !== 1) {
-                    setMessage('Merci de soumettre un et un seul fichier !');
-                  } else if (
-                    !SUPPORTED_MIME_TYPES.includes(e.target.files?.[0]?.type)
-                  ) {
-                    setMessage(
-                      'Les formats de fichier acceptés sont .csv ou .xlsx !',
-                    );
-                  } else if (e.target.files?.[0].size < 100) {
-                    setMessage('Votre fichier semble vide !');
-                  } else {
-                    setIsError(false);
-                    const reader = new FileReader();
-                    reader.onload = async (f) => {
-                      const text = f.target.result;
-                      // TODO: Should display message about number of DOIs, number of Hal...
-                      console.log(text);
-                      setMessage('Loaded');
-                    };
-                  }
-                }}
+                onChange={handleFileChange}
               />
               {message && (
                 <span className={isError ? 'text-red' : 'text-green'}>
                   {message}
                 </span>
+              )}
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              {(!!doiCount
+                || !!halCollCode
+                || !!halId
+                || !!halStructId
+                || !!nntEtab
+                || !!nntId) && (
+                <div>
+                  Ce fichier contient :
+                  <ul>
+                    {!!doiCount && <li>{`${doiCount} DOI`}</li>}
+                    {!!halCollCode && <li>{`${halCollCode} hal_coll_code`}</li>}
+                    {!!halId && <li>{`${halId} hal_id`}</li>}
+                    {!!halStructId && <li>{`${halStructId} hal_struct_id`}</li>}
+                    {!!nntEtab && <li>{`${nntEtab} nnt_etab`}</li>}
+                    {!!nntId && <li>{`${nntId} nnt_id`}</li>}
+                  </ul>
+                </div>
               )}
             </Col>
           </Row>
