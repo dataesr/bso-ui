@@ -296,30 +296,41 @@ export function isInProduction() {
 }
 
 /**
+ * Calculate the bsoLocalAffiliation identifier according to the urlSearchParams
+ * @param {Object} urlSearchParams
+ * @returns {string}
+ */
+function getLocalAffiliation(urlSearchParams) {
+  // Should adapt the graph only in an iframe
+  // Prevent seeing the whole website for a bsoLocal
+  if (!window.location.href.includes('integration')) {
+    return undefined;
+  }
+  let bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation').toLowerCase() || undefined;
+  // If bsoLocalAffiliation exists in config
+  if (Object.keys(locals).includes(bsoLocalAffiliation)) {
+    return bsoLocalAffiliation;
+  }
+  // If bsoLocalAffiliation is the grid or the ror of a structure in config
+  bsoLocalAffiliation = Object.keys(locals).filter((key) => [
+    locals[key]?.grid?.toLowerCase(),
+    locals[key]?.ror?.toLowerCase(),
+  ].includes(bsoLocalAffiliation))?.[0];
+  if (bsoLocalAffiliation) {
+    return bsoLocalAffiliation;
+  }
+  return undefined;
+}
+
+/**
  * Create a dedicated object from search location
  * @param {string} search
  * @returns {Object}
  */
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
-  let bsoLocalAffiliation;
-  // Enable bsoLocalAffiliation only on iframe and not on the global website
-  if (window.location.href.includes('integration')) {
-    bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
-  }
-  const bsoLocalAffiliationLowerCase = bsoLocalAffiliation?.toLowerCase() || undefined;
-  let localAffiliationSettings;
-  // bsoLocalAffiliation can be either the structure identifier
-  if (Object.keys(locals).includes(bsoLocalAffiliationLowerCase)) {
-    localAffiliationSettings = locals?.[bsoLocalAffiliationLowerCase];
-    // or the grid or the RoR
-  } else if (bsoLocalAffiliation) {
-    bsoLocalAffiliation = Object.keys(locals).filter((key) => [
-      locals[key]?.ror?.toLowerCase(),
-      locals[key]?.grid?.toLowerCase(),
-    ].includes(bsoLocalAffiliationLowerCase))?.[0];
-    localAffiliationSettings = locals?.[bsoLocalAffiliation];
-  }
+  const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
+  const localAffiliationSettings = locals?.[bsoLocalAffiliation];
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
     || 'fr';
