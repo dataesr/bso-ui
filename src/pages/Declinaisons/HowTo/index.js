@@ -437,7 +437,7 @@ function HowTo() {
                     <Toggle
                       checked={displayTitle}
                       hasLabelLeft
-                      label='Affiche le titre du graphique'
+                      label='Afficher le titre du graphique'
                       onChange={() => setDisplayTitle(!displayTitle)}
                     />
                   </Col>
@@ -445,7 +445,7 @@ function HowTo() {
                     <Toggle
                       checked={displayComment}
                       hasLabelLeft
-                      label='Affiche le commentaire du graphique'
+                      label='Afficher le commentaire du graphique'
                       onChange={() => setDisplayComment(!displayComment)}
                     />
                   </Col>
@@ -456,7 +456,7 @@ function HowTo() {
                     <Toggle
                       checked={displayFooter}
                       hasLabelLeft
-                      label='Affiche le footer du graphique'
+                      label='Afficher le footer du graphique'
                       onChange={() => setDisplayFooter(!displayFooter)}
                     />
                   </Col>

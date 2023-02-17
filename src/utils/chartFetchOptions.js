@@ -11,10 +11,10 @@ import {
  * @returns {*|{}}
  */
 export default function getFetchOptions({
-  key,
   domain = null,
-  parameters = [],
+  key,
   objectType = [],
+  parameters = [],
 }) {
   const allOptions = {
     publicationRate: ([
@@ -449,6 +449,28 @@ export default function getFetchOptions({
             field: 'publisher_dissemination.keyword',
             exclude: ['Research Square'],
             size: 200,
+          },
+        },
+      },
+    }),
+    journalsList: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_journal: {
+          terms: {
+            field: 'journal_title.keyword',
+            size: 1000,
           },
         },
       },

@@ -225,7 +225,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnaps, needle]);
+  }, [needle, observationSnaps]);
 
   return { data, isLoading, isError };
 }

@@ -1255,6 +1255,52 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture': {
+    getOptions: (id, intl, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.legend = {};
+      options.chart.type = 'bar';
+      options.colors = [getCSSValue('--yellow-medium-125')];
+      options.yAxis = { visible: false, min: 0, max: 100 };
+      options.plotOptions = {
+        bar: {
+          states: {
+            hover: {
+              color: getCSSValue('--yellow-medium-75'),
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+            style: {
+              color: getCSSValue('--g-800'),
+              fontSize: '20px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      };
+      options.xAxis = {
+        type: 'category',
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g-800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = [
+        {
+          data,
+          showInLegend: false,
+        },
+      ];
+      return options;
+    },
+  },
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture': {
     getOptions: (id, intl, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
