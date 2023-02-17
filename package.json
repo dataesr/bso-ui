@@ -20,7 +20,7 @@
     "react-markdown": "^7.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
-    "react-share": "^4.4.0",
+    "react-share": "^4.4.1",
     "sanitize-html": "^2.5.3",
     "uuid": "^8.3.2"
   },
