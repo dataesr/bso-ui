@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { Col, Container, File, Icon as DSIcon, Row } from '@dataesr/react-dsfr';
 import Papa from 'papaparse';
 import { useState } from 'react';
@@ -21,6 +23,7 @@ const SUPPORTED_MIME_TYPES = [
   'application/xls',
   'text/csv',
 ];
+const nntEtabRegexp = /^[A-Z]{4}[A-Z0-9]{0,11}$/;
 
 const renderIcons = (
   <Row justifyContent='center' alignItems='middle' gutters>
@@ -50,6 +53,16 @@ function Validation() {
       header: true,
       skipEmptyLines: 'greedy',
       complete: (results) => {
+        results.data
+          .filter((item) => item?.nnt_etab)
+          .forEach((item) => {
+            if (item?.nnt_etab?.match(nntEtabRegexp)) {
+              setIsError(true);
+              setMessage(
+                `Vos "nnt_etab" doivent être une suite de 4 lettres majuscules optionnellement suivi d'un chiffre ou d'une lettre en majuscule, ${item?.nnt_etab} ne respecte pas cette condition.`,
+              );
+            }
+          });
         setDoiCount(results.data.filter((item) => item?.doi)?.length);
         setHalCollCode(
           results.data.filter((item) => item?.hal_coll_code)?.length,
