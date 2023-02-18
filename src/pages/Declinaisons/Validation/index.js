@@ -2,9 +2,11 @@ import { Col, Container, File, Icon as DSIcon, Row } from '@dataesr/react-dsfr';
 import Papa from 'papaparse';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { read, utils } from 'xlsx';
 
 import Banner from '../../../components/Banner';
 
+const DELIMITER = ';';
 const SUPPORTED_MIME_TYPES = [
   'application/msexcel',
   'application/vnd.ms-excel',
@@ -42,38 +44,56 @@ function Validation() {
   const [nntEtab, setNntEtab] = useState(0);
   const [nntId, setNntId] = useState(0);
 
-  const handleFileChange = (e) => {
-    setIsError(true);
+  const readCSV = (input) => {
+    Papa.parse(input, {
+      config: { delimiter: DELIMITER },
+      header: true,
+      skipEmptyLines: 'greedy',
+      complete: (results) => {
+        setDoiCount(results.data.filter((item) => item?.doi)?.length);
+        setHalCollCode(
+          results.data.filter((item) => item?.hal_coll_code)?.length,
+        );
+        setHalId(results.data.filter((item) => item?.hal_id)?.length);
+        setHalStructId(
+          results.data.filter((item) => item?.hal_struct_id)?.length,
+        );
+        setNntEtab(results.data.filter((item) => item?.nnt_etab)?.length);
+        setNntId(results.data.filter((item) => item?.nnt_id)?.length);
+      },
+      error: (err, file, inputElem, reason) => {
+        console.log(reason);
+      },
+    });
+  };
+
+  const handleFileChange = async (e) => {
     e.preventDefault();
     if (e.target.files.length !== 1) {
+      setIsError(true);
       setMessage('Merci de soumettre un et un seul fichier !');
     } else if (!SUPPORTED_MIME_TYPES.includes(e.target.files?.[0]?.type)) {
+      setIsError(true);
       setMessage('Les formats de fichier acceptés sont .csv, .xls ou .xlsx !');
     } else {
-      setIsError(false);
       const inputFile = e.target.files[0];
-      Papa.parse(inputFile, {
-        config: { delimiter: ';' },
-        header: true,
-        skipEmptyLines: 'greedy',
-        complete: (results) => {
-          console.log(results.data);
-          console.log(results.data.filter((item) => item?.hal_struct_id));
-          setDoiCount(results.data.filter((item) => item?.doi)?.length);
-          setHalCollCode(
-            results.data.filter((item) => item?.hal_coll_code)?.length,
+      if (inputFile?.type === 'text/csv') {
+        readCSV(inputFile);
+      } else {
+        const buffer = await inputFile.arrayBuffer();
+        const workbook = read(buffer);
+        if (workbook.SheetNames.length > 1) {
+          setIsError(true);
+          setMessage(
+            "Attention, il semblerait que votre fichier ait plus d'un onglet. Merci de ne soumettre qu'un seul onglet",
           );
-          setHalId(results.data.filter((item) => item?.hal_id)?.length);
-          setHalStructId(
-            results.data.filter((item) => item?.hal_struct_id)?.length,
-          );
-          setNntEtab(results.data.filter((item) => item?.nnt_etab)?.length);
-          setNntId(results.data.filter((item) => item?.nnt_id)?.length);
-        },
-        error: (err, file, inputElem, reason) => {
-          console.log(reason);
-        },
-      });
+        }
+        const data = utils.sheet_to_csv(
+          workbook.Sheets[workbook.SheetNames[0]],
+          { FS: DELIMITER },
+        );
+        readCSV(data);
+      }
     }
   };
 
