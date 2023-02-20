@@ -58,7 +58,7 @@ function useGetData(observationSnap, domain) {
           const closed = b.by_is_oa.buckets.find((k) => k.key === 0)?.doc_count || 0;
           const total = oa + closed;
           nbTotal += total;
-          if (publicationDate >= fundingYear && total > 10) {
+          if (publicationDate > fundingYear && total > 10) {
             currentData.push({
               x: publicationDate,
               publicationDate,
