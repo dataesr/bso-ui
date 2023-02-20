@@ -306,21 +306,20 @@ function getLocalAffiliation(urlSearchParams) {
   if (!window.location.href.includes('integration')) {
     return undefined;
   }
-  let bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation').toLowerCase() || undefined;
+  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   // If bsoLocalAffiliation exists in config
   if (Object.keys(locals).includes(bsoLocalAffiliation)) {
     return bsoLocalAffiliation;
   }
   // If bsoLocalAffiliation is the grid, the paysage or the ror of a structure in config
-  bsoLocalAffiliation = Object.keys(locals).filter((key) => [
-    locals[key]?.grid?.toLowerCase(),
-    locals[key]?.paysage?.toLowerCase(),
-    locals[key]?.ror?.toLowerCase(),
-  ].includes(bsoLocalAffiliation))?.[0];
   if (bsoLocalAffiliation) {
-    return bsoLocalAffiliation;
+    bsoLocalAffiliation = Object.keys(locals).filter((key) => [
+      locals[key]?.grid?.toLowerCase(),
+      locals[key]?.paysage?.toLowerCase(),
+      locals[key]?.ror?.toLowerCase(),
+    ].includes(bsoLocalAffiliation))?.[0];
   }
-  return undefined;
+  return bsoLocalAffiliation;
 }
 
 /**
