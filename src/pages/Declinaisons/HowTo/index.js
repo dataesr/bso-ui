@@ -67,6 +67,7 @@ function HowTo() {
   const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
       graphId || graph
     }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
+
   const getIframeSnippet = (graphId = null) => (
     <iframe
       height='860'
@@ -99,6 +100,7 @@ function HowTo() {
       </Col>
     </Row>
   );
+
   return (
     <div className='variations'>
       <Banner
@@ -319,7 +321,7 @@ function HowTo() {
                 <Row gutters>
                   <Col n='12 md-6'>
                     <TextInput
-                      hint="Communiqué par l'équipe BSO si périmètre ad-hoc, ou identifiant de structure HAL, ou code collection HAL"
+                      hint="Si périmètre ad-hoc, identifant communiqué par l'équipe BSO ou grid ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
                       label="Identifiant de l'établissement"
                       message='Merci de saisir un identifiant'
                       messageType={bsoLocalAffiliation === '' ? 'error' : ''}
@@ -435,7 +437,7 @@ function HowTo() {
                     <Toggle
                       checked={displayTitle}
                       hasLabelLeft
-                      label='Affiche le titre du graphique'
+                      label='Afficher le titre du graphique'
                       onChange={() => setDisplayTitle(!displayTitle)}
                     />
                   </Col>
@@ -443,7 +445,7 @@ function HowTo() {
                     <Toggle
                       checked={displayComment}
                       hasLabelLeft
-                      label='Affiche le commentaire du graphique'
+                      label='Afficher le commentaire du graphique'
                       onChange={() => setDisplayComment(!displayComment)}
                     />
                   </Col>
@@ -454,7 +456,7 @@ function HowTo() {
                     <Toggle
                       checked={displayFooter}
                       hasLabelLeft
-                      label='Affiche le footer du graphique'
+                      label='Afficher le footer du graphique'
                       onChange={() => setDisplayFooter(!displayFooter)}
                     />
                   </Col>
@@ -492,7 +494,16 @@ function HowTo() {
                       text={ReactDOMServer.renderToString(getIframeSnippet())}
                     >
                       <Button icon='ri-clipboard-fill' iconPosition='right'>
-                        Copier le code
+                        Copier le code de l'iframe
+                      </Button>
+                    </CopyToClipboard>
+                  </Col>
+                  <Col n='12 md-6'>
+                    <CopyToClipboard
+                      text={ReactDOMServer.renderToString(getGraphUrl())}
+                    >
+                      <Button icon='ri-clipboard-fill' iconPosition='right'>
+                        Copier l'url
                       </Button>
                     </CopyToClipboard>
                   </Col>

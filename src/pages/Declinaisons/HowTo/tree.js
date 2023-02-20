@@ -188,6 +188,10 @@ const tree = [
             value: 'data.general.voies-ouverture.chart-data-shared',
           },
           {
+            label: 'Proportion de publications qui créent un jeu de données',
+            value: 'data.general.voies-ouverture.chart-data-created',
+          },
+          {
             label: 'Proportion de publications qui utilisent un jeu de données',
             value: 'data.general.voies-ouverture.chart-data-used',
           },
@@ -209,13 +213,29 @@ const tree = [
           },
           {
             label:
-              'Proportion de publications qui réutilisent un jeu de données par discipline',
+              'Proportion de publications qui créent un jeu de données par discipline',
+            value: 'data.disciplines.voies-ouverture.chart-data-created',
+          },
+          {
+            label:
+              'Proportion de publications qui utilisent un jeu de données par discipline',
             value: 'data.disciplines.voies-ouverture.chart-data-used',
           },
           {
             label:
               'Proportion des publications qui présentent un Data Availibility Statement par discipline',
             value: 'data.disciplines.voies-ouverture.chart-availibility',
+          },
+        ],
+      },
+      {
+        label: 'Editeurs',
+        value: 'editeurs',
+        children: [
+          {
+            label:
+              'Proportion des publications qui présentent un Data Availibility Statement par éditeur',
+            value: 'data.editeurs.voies-ouverture.chart-availibility',
           },
         ],
       },
@@ -236,6 +256,11 @@ const tree = [
           },
           {
             label:
+              'Proportion de publications qui créent un logiciel ou du code',
+            value: 'software.general.voies-ouverture.chart-software-created',
+          },
+          {
+            label:
               'Proportion de publications qui utilisent un logiciel ou du code',
             value: 'software.general.voies-ouverture.chart-software-used',
           },
@@ -249,6 +274,12 @@ const tree = [
             label:
               'Proportion de publications qui partagent un logiciel ou du code par discipline',
             value: 'software.disciplines.voies-ouverture.chart-software-shared',
+          },
+          {
+            label:
+              'Proportion de publications qui créent un logiciel ou du code par discipline',
+            value:
+              'software.disciplines.voies-ouverture.chart-software-created',
           },
           {
             label:

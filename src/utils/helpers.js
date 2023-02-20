@@ -98,10 +98,7 @@ export function getPercentageYAxis(
   absolute = false,
   precision = 0,
 ) {
-  let suffix = ' %';
-  if (absolute) {
-    suffix = '';
-  }
+  const suffix = absolute ? '' : ' %';
   const axis = {
     title: { text: '' },
     stackLabels: {
@@ -296,22 +293,56 @@ export function isInProduction() {
 }
 
 /**
+ * Calculate the bsoLocalAffiliation identifier according to the urlSearchParams
+ * @param {Object} urlSearchParams
+ * @returns {string}
+ */
+function getLocalAffiliation(urlSearchParams) {
+  // Should adapt the graph only in an iframe
+  // Prevent seeing the whole website for a bsoLocal
+  if (!window.location.href.includes('integration')) {
+    return undefined;
+  }
+  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
+  // If bsoLocalAffiliation exists in config
+  if (Object.keys(locals).includes(bsoLocalAffiliation)) {
+    return bsoLocalAffiliation;
+  }
+  // If bsoLocalAffiliation is the grid, the paysage or the ror of a structure in config
+  if (bsoLocalAffiliation) {
+    bsoLocalAffiliation = Object.keys(locals).filter((key) => [
+      locals[key]?.grid?.toLowerCase(),
+      locals[key]?.paysage?.toLowerCase(),
+      locals[key]?.ror?.toLowerCase(),
+    ].includes(bsoLocalAffiliation))?.[0];
+  }
+  return bsoLocalAffiliation;
+}
+
+/**
  * Create a dedicated object from search location
  * @param {string} search
  * @returns {Object}
  */
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
-  const bsoLocalAffiliation = urlSearchParams.get('bsoLocalAffiliation') || undefined;
-  const bsoLocalAffiliationLowerCase = urlSearchParams.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
+  const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
+  const localAffiliationSettings = locals?.[bsoLocalAffiliation];
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
-    || locals?.[bsoLocalAffiliationLowerCase]?.country
+    || localAffiliationSettings?.country
     || 'fr';
-  const lastObservationYear = urlSearchParams.get('lastObservationYear')?.toLowerCase()
-    || locals?.[bsoLocalAffiliationLowerCase]?.lastObservationYear
-    || process.env.REACT_APP_LAST_OBSERVATION;
+  let lastObservationYear = '2021Q4';
+  if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
+    lastObservationYear = urlSearchParams
+      .get('lastObservationYear')
+      ?.toLowerCase();
+  } else if (localAffiliationSettings?.lastObservationYear) {
+    lastObservationYear = localAffiliationSettings?.lastObservationYear;
+  } else if (bsoLocalAffiliation === undefined) {
+    lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
+  }
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
-    || locals?.[bsoLocalAffiliationLowerCase]?.firstObservationYear
+    || localAffiliationSettings?.firstObservationYear
     || '2018';
   const idTypes = ['doi'];
   const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
@@ -340,27 +371,27 @@ export function getURLSearchParams(intl = undefined, id = '') {
 
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || locals?.[bsoLocalAffiliationLowerCase]?.[commentsNameProperty]
+      || localAffiliationSettings?.[commentsNameProperty]
       || 'du périmètre '.concat(bsoLocalAffiliation)
       || intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
       || 'françaises';
     displayTitle = !(
       (
         urlSearchParams.get('displayTitle')
-        || locals?.[bsoLocalAffiliationLowerCase]?.displayTitle
+        || localAffiliationSettings?.displayTitle
       )?.toLowerCase() === 'false'
     );
     endYear = parseInt(
       urlSearchParams.get('endYear')?.toLowerCase()
-        || locals?.[bsoLocalAffiliationLowerCase]?.endYear,
+        || localAffiliationSettings?.endYear,
       10,
     );
     name = urlSearchParams.get('name')?.toLowerCase()
-      || locals?.[bsoLocalAffiliationLowerCase]?.name
+      || localAffiliationSettings?.name
       || 'Périmètre '.concat(bsoLocalAffiliation);
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
-        || locals?.[bsoLocalAffiliationLowerCase]?.startYear
+        || localAffiliationSettings?.startYear
         || 2013,
       10,
     );

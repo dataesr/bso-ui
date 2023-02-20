@@ -24,25 +24,21 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, id, hasComments, hasFooter }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const { lastObservationSnap, observationSnaps } = useGlobals();
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
-  const [publisher, setPublisher] = useState('*');
-  const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals();
+  const [journal, setJournal] = useState('*');
   const { data, isError, isLoading } = useGetData(
     observationSnaps,
-    publisher,
+    journal,
     domain,
   );
-  const { dataGraph1 } = data;
   const idWithDomain = withDomain(id, domain);
-  const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
-  const dataTitle = {
-    publisherTitle,
-    publicationYear: beforeLastObservationSnap,
-  };
+  const { dataGraph1 } = data;
+  const dataTitle = {};
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
@@ -52,17 +48,17 @@ const Chart = ({ domain, id, hasComments, hasFooter }) => {
 
   useEffect(() => {
     const query = getFetchOptions({
-      key: 'publishersList',
+      key: 'journalsList',
       domain,
       parameters: [lastObservationSnap],
     });
 
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      const opts = response.data.aggregations.by_publisher.buckets
-        .filter((item) => item.key !== 'Cold Spring Harbor Laboratory')
-        .map((item) => ({ label: item.key, value: item.key }));
+      const opts = response.data.aggregations.by_journal.buckets.map(
+        (item) => ({ label: item.key, value: item.key }),
+      );
       opts.unshift({
-        label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
+        label: capitalize(intl.formatMessage({ id: 'app.all-journals' })),
         value: '*',
       });
       setOptions(opts);
@@ -76,7 +72,6 @@ const Chart = ({ domain, id, hasComments, hasFooter }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -85,10 +80,10 @@ const Chart = ({ domain, id, hasComments, hasFooter }) => {
       isLoading={isLoading || !dataGraph1}
     >
       <SearchableSelect
-        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-        onChange={(e) => (e.length > 0 ? setPublisher(e) : null)}
+        label={intl.formatMessage({ id: 'app.journals-filter-label' })}
+        onChange={(e) => (e.length > 0 ? setJournal(e) : null)}
         options={options}
-        selected={publisher}
+        selected={journal}
       />
       <HighchartsReact
         highcharts={Highcharts}
@@ -107,7 +102,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.publishers.dynamique-ouverture.chart-taux-ouverture',
+  id: 'publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
@@ -115,4 +110,5 @@ Chart.propTypes = {
   hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
 };
+
 export default Chart;

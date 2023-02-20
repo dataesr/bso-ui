@@ -18,7 +18,7 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 HCSolidGaugeModule(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
@@ -34,19 +34,19 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
 
   return (
     <WrapperChart
-      id={id}
-      domain={domain}
       chartRef={chartRef}
-      hasFooter={hasFooter}
+      domain={domain}
       hasComments={hasComments}
-      isLoading={isLoading || !dataGraph}
+      hasFooter={hasFooter}
+      id={id}
       isError={isError}
+      isLoading={isLoading || !dataGraph}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
     </WrapperChart>
   );

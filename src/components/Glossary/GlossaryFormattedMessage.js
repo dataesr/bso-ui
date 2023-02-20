@@ -1,12 +1,22 @@
+/* eslint-disable no-param-reassign */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import sanitizeHtml from 'sanitize-html';
 
+import { getObservationLabel } from '../../utils/helpers';
+import useGlobals from '../../utils/Hooks/useGetGlobals';
 import GlossaryEntry from './GlossaryEntry';
 
-function GlossaryFormattedMessage({ intlKey, glossaryKeys, ctas = [] }) {
-  const values = {};
+function GlossaryFormattedMessage({
+  ctas = [],
+  glossaryKeys,
+  intlKey,
+  values = {},
+}) {
+  const { beforeLastObservationSnap } = useGlobals();
+  const intl = useIntl();
+  values.publicationYear = getObservationLabel(beforeLastObservationSnap, intl);
   const link = ctas[0] || '';
 
   glossaryKeys.forEach((g, i) => {
@@ -44,13 +54,15 @@ function GlossaryFormattedMessage({ intlKey, glossaryKeys, ctas = [] }) {
   );
 }
 
-GlossaryFormattedMessage.defaultProps = {
-  ctas: [],
-};
 GlossaryFormattedMessage.propTypes = {
+  ctas: PropTypes.arrayOf(PropTypes.string),
   glossaryKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   intlKey: PropTypes.string.isRequired,
-  ctas: PropTypes.arrayOf(PropTypes.string),
+  values: PropTypes.object,
+};
+GlossaryFormattedMessage.defaultProps = {
+  ctas: [],
+  values: {},
 };
 
 export default GlossaryFormattedMessage;

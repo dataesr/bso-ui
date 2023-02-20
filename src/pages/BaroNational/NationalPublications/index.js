@@ -50,7 +50,7 @@ export default function NationalPublications() {
                       id: 'app.header.nav.baro-national-accueil',
                     })}
                   </BreadcrumbItem>
-                  <BreadcrumbItem href='#'>></BreadcrumbItem>
+                  <BreadcrumbItem href='#'>{'>'}</BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({
                       id: 'app.baro-national.publications.title',
@@ -299,6 +299,10 @@ export default function NationalPublications() {
                 >
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-taux-ouverture' />
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-evolution-proportion' />
+                  <BSOChart
+                    id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
 
                 <QuestionSection

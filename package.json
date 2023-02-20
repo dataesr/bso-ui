@@ -10,6 +10,7 @@
     "env-cmd": "^10.1.0",
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
+    "papaparse": "^5.3.2",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
@@ -19,15 +20,15 @@
     "react-markdown": "^7.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
-    "react-share": "^4.4.0",
+    "react-share": "^4.4.1",
     "sanitize-html": "^2.5.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "caniuse-lite": "^1.0.30001373",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^6.0.0",

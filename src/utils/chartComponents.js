@@ -51,6 +51,9 @@ const ChartTauxOuverturePublishers = lazy(() => import(
 const ChartRepartitionPublishers = lazy(() => import(
   '../components/Charts/publications/editeurs/poids-revues/chart-repartition'
 ));
+const ChartTauxOuvertureJournals = lazy(() => import(
+  '../components/Charts/publications/editeurs/dynamique-ouverture-journals/chart-taux-ouverture'
+));
 const ChartClassementPublishers = lazy(() => import(
   '../components/Charts/publications/editeurs/politiques-ouverture/chart-classement'
 ));
@@ -324,6 +327,8 @@ const chartComponents = {
     ChartTauxOuverturePublishers,
   'publi.publishers.dynamique-ouverture.chart-evolution-proportion':
     ChartEvolutionProportionPublishers,
+  'publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture':
+    ChartTauxOuvertureJournals,
   'publi.publishers.couts-publication.chart-distribution-par-annee':
     ChartDistributionParAnnee,
   'publi.publishers.couts-publication.chart-distribution':

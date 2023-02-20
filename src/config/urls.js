@@ -191,6 +191,10 @@ export default {
     fr: '/declinaisons/comment-realiser-bso-local',
     en: '/declinaisons/howto',
   },
+  validation: {
+    fr: '/declinaisons/validation',
+    en: '/declinaisons/validation',
+  },
   project: {
     fr: '/projet-et-equipe',
     en: '/project-and-team',

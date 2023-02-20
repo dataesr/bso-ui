@@ -110,6 +110,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph,
       };
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [beforeLastObservationSnap, domain, intl],
   );
 
@@ -127,8 +128,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       }
     }
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap]);
+  }, [getDataForLastObservationSnap, observationSnap]);
 
   return { allData, isError, isLoading };
 }
