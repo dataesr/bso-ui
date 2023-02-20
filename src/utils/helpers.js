@@ -328,6 +328,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
   const localAffiliationSettings = locals?.[bsoLocalAffiliation];
+  const alias = localAffiliationSettings?.alias;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
     || 'fr';
@@ -421,7 +422,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
 
   return {
     bsoCountry,
-    bsoLocalAffiliation,
+    bsoLocalAffiliation: alias || bsoLocalAffiliation,
     commentsName,
     displayComment,
     displayTitle,
