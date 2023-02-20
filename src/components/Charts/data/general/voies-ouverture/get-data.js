@@ -28,15 +28,7 @@ function useGetData(
       const query = getFetchOptions({
         key: 'oaHostType',
         domain,
-        parameters: [
-          lastObservationSnap,
-          fieldY,
-          // `${softwareData}.${mentionType}`,
-          'year',
-          2013,
-          15,
-          -1,
-        ],
+        parameters: [lastObservationSnap, fieldY, 'year', 2013, 15, -1],
         objectType: ['publications'],
       });
       if (filterWithUsed) {

@@ -98,10 +98,7 @@ export function getPercentageYAxis(
   absolute = false,
   precision = 0,
 ) {
-  let suffix = ' %';
-  if (absolute) {
-    suffix = '';
-  }
+  const suffix = absolute ? '' : ' %';
   const axis = {
     title: { text: '' },
     stackLabels: {

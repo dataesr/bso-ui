@@ -65,7 +65,6 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   return {
     chart: {
       backgroundColor: getCSSValue('--white'),
-      // plotBackgroundImage: backgroundImage,
       events: {
         // eslint-disable-next-line object-shorthand, func-names
         load: function () {
@@ -77,11 +76,9 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
             .text(embargoText, this.plotLeft, 150)
             .attr({
               zIndex: 5,
-              // align: 'center',
             })
             .css({
               fontSize: '36px',
-              // transform: 'rotate(-45deg)',
             })
             .add();
         },
@@ -224,9 +221,6 @@ export const chartOptions = {
           stacking: 'normal',
           dataLabels: {
             enabled: false,
-            formatter() {
-              return this.y.toFixed(1).concat(' %');
-            },
           },
         },
       };
@@ -2945,9 +2939,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -2963,11 +2954,8 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -2978,9 +2966,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -2996,11 +2981,8 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.created-data' });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3011,9 +2993,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3029,13 +3008,10 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.shared-software',
       });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3046,9 +3022,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3064,13 +3037,10 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.created-software',
       });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3081,9 +3051,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3099,13 +3066,10 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-software',
       });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3116,9 +3080,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3144,15 +3105,11 @@ export const chartOptions = {
       options.legend.reversed = true;
       options.plotOptions = {
         column: {
-          // stacking: 'normal',
           dataLabels: {
             style: {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3168,13 +3125,10 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-data',
       });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3185,9 +3139,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3203,13 +3154,10 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.availibility',
       });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3220,9 +3168,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3253,9 +3198,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3293,9 +3235,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3333,9 +3272,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3358,7 +3294,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
@@ -3373,9 +3309,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3413,9 +3346,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3453,9 +3383,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3478,7 +3405,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.availibility' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
@@ -3493,9 +3420,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3518,7 +3442,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 1);
+      options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.availibility' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
@@ -3533,9 +3457,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
-            },
           },
           dataSorting: {
             enabled: true,
@@ -3561,7 +3482,6 @@ export const chartOptions = {
         },
         title: { text: intl.formatMessage({ id: 'app.orcid.creation-date' }) },
       };
-      // options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid.nb' });
       options.legend.title.text = null;
       options.plotOptions = {
@@ -3572,9 +3492,6 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: false,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
           },
         },
       };
@@ -3898,9 +3815,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.perc',
       });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3933,9 +3847,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.perc',
       });
-      // options.legend.title.text = intl.formatMessage({
-      //   id: 'app.publi.type-hebergement',
-      // });
       options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
