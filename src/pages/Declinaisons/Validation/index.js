@@ -23,7 +23,14 @@ const SUPPORTED_MIME_TYPES = [
   'application/xls',
   'text/csv',
 ];
-const nntEtabRegexp = /^[A-Z]{4}[A-Z0-9]{0,11}$/;
+// hal_struct_id is only digits
+const halStructIdRegex = /^\d*$/;
+// hal_id is 'hal-' + digits
+const halIdRegex = /^hal-\d+$/;
+// https://documentation.abes.fr/sudoc/regles/CodesUnivEtab.htm
+const nntEtabRegex = /^[A-Z]{4}[A-Z0-9]{0,1}$/;
+// https://documentation.abes.fr/sudoc/regles/Catalogage/Retro_CodeCourt_NNT.htm
+const nntIdRegex = /^(19|20)\d{2}[A-Z]{4}\w{4}$/;
 
 const renderIcons = (
   <Row justifyContent='center' alignItems='middle' gutters>
@@ -52,30 +59,97 @@ function Validation() {
       config: { delimiter: DELIMITER },
       header: true,
       skipEmptyLines: 'greedy',
-      complete: (results) => {
-        results.data
-          .filter((item) => item?.nnt_etab)
-          .forEach((item) => {
-            if (item?.nnt_etab?.match(nntEtabRegexp)) {
-              setIsError(true);
-              setMessage(
-                `Vos "nnt_etab" doivent être une suite de 4 lettres majuscules optionnellement suivi d'un chiffre ou d'une lettre en majuscule, ${item?.nnt_etab} ne respecte pas cette condition.`,
-              );
-            }
-          });
-        setDoiCount(results.data.filter((item) => item?.doi)?.length);
-        setHalCollCode(
-          results.data.filter((item) => item?.hal_coll_code)?.length,
-        );
-        setHalId(results.data.filter((item) => item?.hal_id)?.length);
-        setHalStructId(
-          results.data.filter((item) => item?.hal_struct_id)?.length,
-        );
-        setNntEtab(results.data.filter((item) => item?.nnt_etab)?.length);
-        setNntId(results.data.filter((item) => item?.nnt_id)?.length);
+      complete: ({ data }) => {
+        if (
+          data.some(
+            (item) => item?.hal_struct_id
+              && !item?.hal_struct_id?.match(halStructIdRegex),
+          )
+        ) {
+          const errors = data.filter(
+            (item) => item?.hal_struct_id
+              && !item?.hal_struct_id?.match(halStructIdRegex),
+          );
+          setIsError(true);
+          let errorMessage = 'Vos "hal_struct_id" doivent être une suite de chiffres.';
+          errorMessage += ` Vous avez ${
+            errors?.length
+          } "hal_struct_id" qui ne respecte${
+            errors?.length > 1 ? 'nt' : ''
+          } pas cette condition:`;
+          errorMessage += `${errors
+            .map((item) => item?.hal_struct_id || '')
+            .join(', ')}.`;
+          setMessage(errorMessage);
+        } else if (
+          data.some((item) => item?.hal_id && !item?.hal_id?.match(halIdRegex))
+        ) {
+          const errors = data.filter(
+            (item) => item?.hal_id && !item?.hal_id?.match(halIdRegex),
+          );
+          setIsError(true);
+          let errorMessage = 'Vos "hal_id" doivent être de la forme "hal-" suivi de chiffres.';
+          errorMessage += ` Vous avez ${
+            errors?.length
+          } "hal_id" qui ne respecte${
+            errors?.length > 1 ? 'nt' : ''
+          } pas cette condition:`;
+          errorMessage += `${errors
+            .map((item) => item?.hal_id || '')
+            .join(', ')}.`;
+          setMessage(errorMessage);
+        } else if (
+          data.some(
+            (item) => item?.nnt_etab && !item?.nnt_etab?.match(nntEtabRegex),
+          )
+        ) {
+          const errors = data.filter(
+            (item) => item?.nnt_etab && !item?.nnt_etab?.match(nntEtabRegex),
+          );
+          setIsError(true);
+          let errorMessage = 'Vos "nnt_etab" doivent être une suite de 4 lettres majuscules optionnellement suivi d\'un chiffre ou d\'une lettre en majuscule.';
+          errorMessage += ` Vous avez ${
+            errors?.length
+          } "nnt_etab" qui ne respecte${
+            errors?.length > 1 ? 'nt' : ''
+          } pas cette condition:`;
+          errorMessage += ` ${errors
+            .map((item) => item?.nnt_etab || '')
+            .join(', ')}.`;
+          setMessage(errorMessage);
+        } else if (
+          data.some((item) => item?.nnt_id && !item?.nnt_id?.match(nntIdRegex))
+        ) {
+          const errors = data.filter(
+            (item) => item?.nnt_id && !item?.nnt_id?.match(nntIdRegex),
+          );
+          setIsError(true);
+          let errorMessage = 'Vos "nnt_id" doivent être une année de soutenance suivie de 4 lettres majuscules puis de 4 caractères alphanumériques tel que décrit ';
+          errorMessage
+            += '<a href="https://documentation.abes.fr/sudoc/regles/Catalogage/Retro_CodeCourt_NNT.htm" target="_blank">sur cette page</a>.';
+          errorMessage += ` Vous avez ${
+            errors?.length
+          } "nnt_id" qui ne respecte${
+            errors?.length > 1 ? 'nt' : ''
+          } pas cette condition:`;
+          errorMessage += ` ${errors
+            .map((item) => item?.nnt_id || '')
+            .join(', ')}.`;
+          setMessage(errorMessage);
+        } else {
+          setDoiCount(data.filter((item) => item?.doi)?.length);
+          setHalCollCode(data.filter((item) => item?.hal_coll_code)?.length);
+          setHalId(data.filter((item) => item?.hal_id)?.length);
+          setHalStructId(data.filter((item) => item?.hal_struct_id)?.length);
+          setNntEtab(data.filter((item) => item?.nnt_etab)?.length);
+          setNntId(data.filter((item) => item?.nnt_id)?.length);
+        }
       },
-      error: (err, file, inputElem, reason) => {
-        console.log(reason);
+      error: () => {
+        setIsError(true);
+        setMessage(
+          "Erreur lors du chargement du fichier. Merci d'en vérifier le format.",
+        );
       },
     });
   };
@@ -139,7 +213,7 @@ function Validation() {
               />
               {message && (
                 <span className={isError ? 'text-red' : 'text-green'}>
-                  {message}
+                  <div dangerouslySetInnerHTML={{ __html: message }} />
                 </span>
               )}
             </Col>
