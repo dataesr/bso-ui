@@ -25,7 +25,7 @@ export default function Footer() {
 
   return (
     <WrapperDisplay display={!pathname.startsWith('/integration')}>
-      <DSFooter className='mt-2'>
+      <DSFooter>
         <FooterTop>
           <FooterTopCategory
             title={intl.formatMessage({ id: 'app.footer.links' })}
