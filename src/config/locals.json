@@ -144,6 +144,14 @@
     "grid": "grid.4399.7",
     "paysage": "Uan45"
   },
+  "180044174": {
+    "name": "Muséum national d'Histoire naturelle (MNHN)",
+    "commentsName": "du MNHN",
+    "commentsNameEN": "of the MNHN",
+    "paysage": "VaJ52",
+    "ror": "03wkt5x30",
+    "grid": "grid.410350.3"
+  },
   "180070039": {
     "name": "Institut national de recherche pour l'agriculture, l'alimentation et l'environnement (INRAE)",
     "commentsName": "de INRAE",
@@ -646,7 +654,7 @@
   },
   "grid4570143": {
     "name": "Institut national des sciences humaines et sociales (INSHS)",
-    "commentsName": " de l'INSHS",
+    "commentsName": "de l'INSHS",
     "commentsNameEN": "of the INSHS",
     "ror": "04b0z7q78",
     "grid": "grid.457014.3",
@@ -654,7 +662,7 @@
   },
   "imts": {
     "name": "Tous les IMTs",
-    "commentsName": " des IMTs",
+    "commentsName": "des IMTs",
     "commentsNameEN": "of the IMTs",
     "alias": "18009202500097,18009202500121,193000635"
   }
