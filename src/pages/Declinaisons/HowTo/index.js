@@ -499,9 +499,7 @@ function HowTo() {
                     </CopyToClipboard>
                   </Col>
                   <Col n='12 md-6'>
-                    <CopyToClipboard
-                      text={ReactDOMServer.renderToString(getGraphUrl())}
-                    >
+                    <CopyToClipboard text={getGraphUrl()}>
                       <Button icon='ri-clipboard-fill' iconPosition='right'>
                         Copier l'url
                       </Button>
