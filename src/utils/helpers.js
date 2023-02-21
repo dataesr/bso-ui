@@ -298,8 +298,8 @@ export function isInProduction() {
  * @returns {string}
  */
 function getLocalAffiliation(urlSearchParams) {
-  // Should adapt the graph only in an iframe
-  // Prevent seeing the whole website for a bsoLocal
+  // Should adapt the graph only in iframes
+  // Prevent seeing the whole website for a bsoLocalAffiliation
   if (!window.location.href.includes('integration')) {
     return undefined;
   }
@@ -309,12 +309,13 @@ function getLocalAffiliation(urlSearchParams) {
     return bsoLocalAffiliation;
   }
   // If bsoLocalAffiliation is the grid, the paysage or the ror of a structure in config
-  if (bsoLocalAffiliation) {
-    bsoLocalAffiliation = Object.keys(locals).filter((key) => [
-      locals[key]?.grid?.toLowerCase(),
-      locals[key]?.paysage?.toLowerCase(),
-      locals[key]?.ror?.toLowerCase(),
-    ].includes(bsoLocalAffiliation))?.[0];
+  const matched = Object.keys(locals).filter((key) => [
+    locals[key]?.grid?.toLowerCase(),
+    locals[key]?.paysage?.toLowerCase(),
+    locals[key]?.ror?.toLowerCase(),
+  ].includes(bsoLocalAffiliation));
+  if (bsoLocalAffiliation && matched.length > 0) {
+    [bsoLocalAffiliation] = matched;
   }
   return bsoLocalAffiliation;
 }
