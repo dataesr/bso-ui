@@ -35,23 +35,16 @@ function useGetData(
         parameters: [filter1, indicator1, indicator2, size1, size2],
         objectType: ['orcid'],
       });
-      if (indicator2 === 'same_idref') {
-        queryCurrent.query.bool.filter.push({ term: { has_idref_abes: true } });
-        queryCurrent.query.bool.filter.push({
-          term: { has_idref_aurehal: true },
-        });
-      }
-      if (indicator2 === 'same_id_hal') {
-        queryCurrent.query.bool.filter.push({
-          term: { has_id_hal_abes: true },
-        });
-        queryCurrent.query.bool.filter.push({
-          term: { has_id_hal_aurehal: true },
-        });
-      }
       queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));
       const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.my_indicator1.buckets;
+      let data = [];
+      if (indicator1 === 'first_these_year') {
+        data = res[0].data.aggregations.my_indicator1.buckets
+          .sort((a, b) => a.key - b.key)
+          .filter((a) => a.key >= 1990);
+      } else {
+        data = res[0].data.aggregations.my_indicator1.buckets;
+      }
       // const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
       const noOutline = {
@@ -61,20 +54,13 @@ function useGetData(
       };
       const indicTrue = [];
       const indicFalse = [];
-      let nbTrueAll = 0;
-      let nbFalseAll = 0;
-      let nbTotAll = 0;
       data.forEach((el) => {
-        categories.push(
-          intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
-        );
+        categories.push(el.key);
         const nbTrue = el.my_indicator2.buckets.find((b) => b.key_as_string === 'true')
           ?.doc_count || 0;
         const nbFalse = el.my_indicator2.buckets.find((b) => b.key_as_string === 'false')
           ?.doc_count || 0;
         const nbTot = nbTrue + nbFalse || 0;
-        nbTrueAll += nbTrue;
-        nbFalseAll += nbFalse;
         if (nbTrue > 0) {
           indicTrue.push({
             y_abs: nbTrue,
@@ -90,22 +76,6 @@ function useGetData(
           });
         }
       });
-      nbTotAll = nbTrueAll + nbFalseAll;
-      if (indicTrue.length > 1) {
-        indicTrue.push({
-          y_abs: nbTrueAll,
-          y_tot: nbTotAll,
-          y: (nbTrueAll * 100) / nbTotAll,
-          fr_reason: intl.formatMessage({ id: 'app.orcid.fr-all' }),
-        });
-        indicFalse.push({
-          y_abs: nbFalseAll,
-          y_tot: nbTotAll,
-          y: (nbFalseAll * 100) / nbTotAll,
-          fr_reason: intl.formatMessage({ id: 'app.orcid.fr-all' }),
-        });
-        categories.push(intl.formatMessage({ id: 'app.orcid.fr-all' }));
-      }
       const dataGraph = [
         {
           name: capitalize(
@@ -115,16 +85,6 @@ function useGetData(
           ),
           data: indicTrue,
           color: colorTrue,
-          dataLabels: noOutline,
-        },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: legendFalse,
-            }),
-          ),
-          data: indicFalse,
-          color: colorFalse,
           dataLabels: noOutline,
         },
       ];

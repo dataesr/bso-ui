@@ -239,6 +239,12 @@ const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/pre
 const ChartOrcidAffiliationId = lazy(() => import(
   '../components/Charts/orcid/general/present/chart-indicator-affiliationid'
 ));
+const ChartOrcidTheseYear = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-these-year'
+));
+const ChartOrcidTheseDiscipline = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-these-discipline'
+));
 const ChartOrcidIdrefAbes = lazy(() => import(
   '../components/Charts/orcid/general/present/chart-indicator-idref-abes'
 ));
@@ -406,6 +412,9 @@ const chartComponents = {
   'orcid.general.present.chart-indicator-work': ChartOrcidWork,
   'orcid.general.present.chart-indicator-affiliationid':
     ChartOrcidAffiliationId,
+  'orcid.general.present.chart-indicator-these-year': ChartOrcidTheseYear,
+  'orcid.general.present.chart-indicator-these-discipline':
+    ChartOrcidTheseDiscipline,
   'orcid.general.present.chart-indicator-idref-abes': ChartOrcidIdrefAbes,
   'orcid.general.present.chart-indicator-idref-hal': ChartOrcidIdrefHal,
   'orcid.general.present.chart-indicator-idref-same': ChartOrcidIdrefSame,

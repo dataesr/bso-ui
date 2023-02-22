@@ -119,6 +119,14 @@ export default function NationalOrcid() {
                   anchorId='general.users'
                 >
                   <BSOChart
+                    id='orcid.general.present.chart-indicator-these-year'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
+                    id='orcid.general.present.chart-indicator-these-discipline'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
                     id='orcid.general.present.chart-evolution'
                     isDisplayed={!isInProduction()}
                   />

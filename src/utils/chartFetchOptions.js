@@ -1875,7 +1875,13 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcidIndicator: ([myFilter1, myField1, myField2, mySize2 = 10]) => ({
+    orcidIndicator: ([
+      myFilter1,
+      myField1,
+      myField2,
+      mySize1 = 10,
+      mySize2 = 10,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1892,6 +1898,7 @@ export default function getFetchOptions({
         my_indicator1: {
           terms: {
             field: myField1,
+            size: mySize1,
           },
           aggs: {
             my_indicator2: {
