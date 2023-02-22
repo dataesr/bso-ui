@@ -32,6 +32,20 @@ function useGetData(
         parameters: [indicator1, indicator2, 10],
         objectType: ['orcid'],
       });
+      if (indicator2 === 'same_idref') {
+        queryCurrent.query.bool.filter.push({ term: { has_idref_abes: true } });
+        queryCurrent.query.bool.filter.push({
+          term: { has_idref_aurehal: true },
+        });
+      }
+      if (indicator2 === 'same_id_hal') {
+        queryCurrent.query.bool.filter.push({
+          term: { has_id_hal_abes: true },
+        });
+        queryCurrent.query.bool.filter.push({
+          term: { has_id_hal_aurehal: true },
+        });
+      }
       queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));
       const res = await Axios.all(queries);
       const data = res[0].data.aggregations.my_indicator1.buckets;
