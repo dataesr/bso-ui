@@ -1,5 +1,4 @@
 import Axios from 'axios';
-// import Highcharts from 'highcharts';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -7,7 +6,6 @@ import { ES_ORCID_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { capitalize, getObservationLabel } from '../../../../../utils/helpers';
 
-// const indicators = ['active', 'has_id_hal_abes', 'has_id_hal_aurehal', 'has_idref_abes', 'has_idref_aurehal', 'has_work', 'has_work_from_hal', 'same_id_hal', 'same_idref', 'current_employment_fr_has_id'];
 function useGetData(
   beforeLastObservationSnap,
   observationSnap,
@@ -45,7 +43,6 @@ function useGetData(
       } else {
         data = res[0].data.aggregations.my_indicator1.buckets;
       }
-      // const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
       const noOutline = {
         style: {
@@ -103,15 +100,16 @@ function useGetData(
       };
     },
     [
-      beforeLastObservationSnap,
       domain,
-      intl,
+      filter1,
       indicator1,
       indicator2,
-      colorFalse,
-      colorTrue,
-      legendFalse,
+      size1,
+      size2,
+      intl,
       legendTrue,
+      colorTrue,
+      beforeLastObservationSnap,
     ],
   );
 
@@ -129,8 +127,7 @@ function useGetData(
       }
     }
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap]);
+  }, [getDataForLastObservationSnap, observationSnap]);
 
   return { allData, isError, isLoading };
 }
