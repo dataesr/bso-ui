@@ -1,6 +1,14 @@
 import './style.scss';
 
-import { Col, Container, File, Icon as DSIcon, Row } from '@dataesr/react-dsfr';
+import {
+  Button,
+  Col,
+  Container,
+  File,
+  Icon as DSIcon,
+  Row,
+  TextInput,
+} from '@dataesr/react-dsfr';
 import Papa from 'papaparse';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -45,14 +53,17 @@ const renderIcons = (
 );
 
 function Validation() {
+  const [acronym, setAcronym] = useState(null);
   const [doiCount, setDoiCount] = useState(0);
   const [halCollCode, setHalCollCode] = useState(0);
   const [halId, setHalId] = useState(0);
   const [halStructId, setHalStructId] = useState(0);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState(undefined);
+  const [name, setName] = useState(null);
   const [nntEtab, setNntEtab] = useState(0);
   const [nntId, setNntId] = useState(0);
+  const [startYear, setStartYear] = useState(2013);
 
   const readCSV = (input) => {
     Papa.parse(input, {
@@ -200,15 +211,44 @@ function Validation() {
           <Row gutters>
             <Col n='12 lg-8'>
               <h2 className='marianne-bold fs-12-16'>
-                Validation du fichier de DOIs
+                Création ou mise à jour d'un BSO
               </h2>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <TextInput
+                label='Nom complet de la structure'
+                onChange={(e) => setName(e.target.value)}
+                required
+                value={name}
+              />
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <TextInput
+                label='Acronyme de la structure'
+                onChange={(e) => setAcronym(e.target.value)}
+                value={acronym}
+              />
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <TextInput
+                label='Première année de publication'
+                onChange={(e) => setStartYear(e.target.value)}
+                type='number'
+                value={startYear}
+              />
             </Col>
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
               <File
                 hint='Fichier Excel ou CSV (séparateur point virgule ;). Merci de préciser le nom des colonnes.'
-                label='Fichier de DOIs à valider'
+                label='Fichier de DOIs'
                 onChange={handleFileChange}
               />
               {message && (
@@ -238,6 +278,11 @@ function Validation() {
                   </ul>
                 </div>
               )}
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <Button>Envoyer</Button>
             </Col>
           </Row>
         </section>
