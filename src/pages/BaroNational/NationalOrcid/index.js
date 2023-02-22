@@ -156,10 +156,6 @@ export default function NationalOrcid() {
                     id='orcid.general.present.chart-indicator-affiliationsource'
                     isDisplayed={!isInProduction()}
                   />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-affiliationid'
-                    isDisplayed={!isInProduction()}
-                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

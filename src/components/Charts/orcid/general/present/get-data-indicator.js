@@ -12,6 +12,7 @@ function useGetData(
   beforeLastObservationSnap,
   observationSnap,
   domain,
+  filter1,
   indicator1,
   indicator2,
   legendTrue,
@@ -29,7 +30,7 @@ function useGetData(
       const queryCurrent = getFetchOptions({
         key: 'orcidIndicator',
         domain,
-        parameters: [indicator1, indicator2, 10],
+        parameters: [filter1, indicator1, indicator2, 10],
         objectType: ['orcid'],
       });
       if (indicator2 === 'same_idref') {

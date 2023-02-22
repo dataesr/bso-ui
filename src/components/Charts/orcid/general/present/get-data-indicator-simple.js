@@ -12,6 +12,7 @@ function useGetData(
   beforeLastObservationSnap,
   observationSnap,
   domain,
+  filter1,
   indicator1,
   indicator2,
   size,
@@ -28,7 +29,7 @@ function useGetData(
       const queryCurrent = getFetchOptions({
         key: 'orcidIndicator',
         domain,
-        parameters: [indicator1, indicator2, size, missing],
+        parameters: [filter1, indicator1, indicator2, size, missing],
         objectType: ['orcid'],
       });
       queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));

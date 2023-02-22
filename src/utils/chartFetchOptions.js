@@ -1875,14 +1875,14 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcidIndicator: ([myField1, myField2, mySize2 = 10]) => ({
+    orcidIndicator: ([myFilter1, myField1, myField2, mySize2 = 10]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             {
               term: {
-                is_fr_present: true,
+                [`${myFilter1}`]: true,
               },
             },
           ],
@@ -1904,14 +1904,14 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcidIndicatorSimple: ([myField, mySize]) => ({
+    orcidIndicatorSimple: ([myFilter1, myField, mySize, myMissing]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
             {
               term: {
-                is_fr_present: true,
+                [`${myFilter1}`]: true,
               },
             },
           ],
@@ -1922,7 +1922,7 @@ export default function getFetchOptions({
           terms: {
             field: myField,
             size: mySize,
-            missing: 'missing',
+            missing: myMissing,
           },
         },
       },
