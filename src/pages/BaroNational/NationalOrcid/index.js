@@ -119,6 +119,14 @@ export default function NationalOrcid() {
                   anchorId='general.users'
                 >
                   <BSOChart
+                    id='orcid.general.present.chart-indicator-these-year'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
+                    id='orcid.general.present.chart-indicator-these-discipline'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
                     id='orcid.general.present.chart-evolution'
                     isDisplayed={!isInProduction()}
                   />
@@ -154,10 +162,6 @@ export default function NationalOrcid() {
                 >
                   <BSOChart
                     id='orcid.general.present.chart-indicator-affiliationsource'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-affiliationid'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>

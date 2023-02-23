@@ -1,4 +1,3 @@
-/* eslint-disable react/no-this-in-sfc */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -10,11 +9,15 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import {
+  getCSSValue,
+  getObservationLabel,
+  withDomain,
+} from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-repartition-declarations';
+import useGetData from './get-data-indicator-these';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -23,30 +26,47 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { lastObservationSnap } = useGlobals();
-  const { data, isError, isLoading } = useGetData(lastObservationSnap, domain);
-  const { categories, dataGraph2 } = data;
+  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
+  const { allData, isLoading, isError } = useGetData(
+    beforeLastObservationSnap,
+    lastObservationSnap,
+    domain,
+    'has_these',
+    'first_these_year',
+    'has_orcid',
+    'app.orcid.active',
+    'app.orcid.inactive',
+    getCSSValue('--green-light-125'),
+    getCSSValue('--g-400'),
+    100,
+  );
+  const { categories, dataGraph } = allData;
+  const dataTitle = {
+    observationYear: getObservationLabel(lastObservationSnap, intl),
+  };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
-    dataGraph2,
+    dataGraph,
+    dataTitle,
   );
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl));
-  }, [data, idWithDomain, intl]);
+    setChartComments(customComments(allData, idWithDomain, intl));
+  }, [allData, idWithDomain, intl]);
 
   return (
     <WrapperChart
       chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph2}
+      isLoading={isLoading || !dataGraph || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -60,12 +80,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     </WrapperChart>
   );
 };
-// TODO remove publi studyType from id
+
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.general.impact-financement.chart-repartition-declarations',
+  id: 'orcid.general.present.chart-indicator-these-year',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

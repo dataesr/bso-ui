@@ -32,6 +32,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'is_fr_present',
+    'is_fr_present',
     'works.source.keyword',
     20,
     'Pas de source externe',

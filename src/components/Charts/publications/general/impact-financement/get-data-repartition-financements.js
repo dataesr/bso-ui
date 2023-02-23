@@ -28,7 +28,7 @@ function useGetData(observationSnap, domain) {
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
     const anrData = res[0].data.aggregations.by_agency.buckets
       .filter((el) => el.key === 'ANR')[0]
-      .by_funding_year.buckets.sort((a, b) => a.key - b.key);
+      .by_funding_year.buckets.sort((a, b) => a.key - b.key) || [];
     const categories = [];
     const dataGraph2 = [];
     const colors = [

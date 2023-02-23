@@ -81,8 +81,8 @@ const ChartTauxOuverture = lazy(() => import(
 const ChartGenreOuverture = lazy(() => import(
   '../components/Charts/publications/general/genres-ouverture/genres-ouverture'
 ));
-const ChartRepartitionDeclarations = lazy(() => import(
-  '../components/Charts/publications/general/impact-financement/chart-repartition-declarations'
+const ChartRepartitionFinancements = lazy(() => import(
+  '../components/Charts/publications/general/impact-financement/chart-repartition-financements'
 ));
 const ChartTauxOuvertureFinancement = lazy(() => import(
   '../components/Charts/publications/general/impact-financement/chart-taux-ouverture'
@@ -239,6 +239,12 @@ const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/pre
 const ChartOrcidAffiliationId = lazy(() => import(
   '../components/Charts/orcid/general/present/chart-indicator-affiliationid'
 ));
+const ChartOrcidTheseYear = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-these-year'
+));
+const ChartOrcidTheseDiscipline = lazy(() => import(
+  '../components/Charts/orcid/general/present/chart-indicator-these-discipline'
+));
 const ChartOrcidIdrefAbes = lazy(() => import(
   '../components/Charts/orcid/general/present/chart-indicator-idref-abes'
 ));
@@ -304,7 +310,7 @@ const chartComponents = {
   'publi.general.impact-financement.chart-taux-ouverture-all-grants':
     ChartTauxOuvertureFinancementAllGrants,
   'publi.general.impact-financement.chart-repartition-financements':
-    ChartRepartitionDeclarations,
+    ChartRepartitionFinancements,
   'publi.general.impact-financement.chart-repartition-taux':
     ChartRepartitionTauxFinancement,
   'publi.general.genres-ouverture.chart-repartition-genres':
@@ -406,6 +412,9 @@ const chartComponents = {
   'orcid.general.present.chart-indicator-work': ChartOrcidWork,
   'orcid.general.present.chart-indicator-affiliationid':
     ChartOrcidAffiliationId,
+  'orcid.general.present.chart-indicator-these-year': ChartOrcidTheseYear,
+  'orcid.general.present.chart-indicator-these-discipline':
+    ChartOrcidTheseDiscipline,
   'orcid.general.present.chart-indicator-idref-abes': ChartOrcidIdrefAbes,
   'orcid.general.present.chart-indicator-idref-hal': ChartOrcidIdrefHal,
   'orcid.general.present.chart-indicator-idref-same': ChartOrcidIdrefSame,

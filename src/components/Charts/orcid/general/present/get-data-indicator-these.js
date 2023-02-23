@@ -13,9 +13,12 @@ function useGetData(
   filter1,
   indicator1,
   indicator2,
-  size,
-  missing,
-  color,
+  legendTrue,
+  legendFalse,
+  colorTrue,
+  colorFalse,
+  size1,
+  size2,
 ) {
   const intl = useIntl();
   const [allData, setData] = useState({});
@@ -27,52 +30,62 @@ function useGetData(
       const queryCurrent = getFetchOptions({
         key: 'orcidIndicator',
         domain,
-        parameters: [filter1, indicator1, indicator2, 10, size, missing],
+        parameters: [filter1, indicator1, indicator2, size1, size2],
         objectType: ['orcid'],
       });
       queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));
       const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.my_indicator1.buckets.filter(
-        (el) => el.doc_count > 0,
-      )[0];
-      const total = data.doc_count;
-      const other = data.my_indicator2.sum_other_doc_count;
+      let data = [];
+      if (indicator1 === 'first_these_year') {
+        data = res[0].data.aggregations.my_indicator1.buckets
+          .sort((a, b) => a.key - b.key)
+          .filter((a) => a.key >= 1990);
+      } else {
+        data = res[0].data.aggregations.my_indicator1.buckets;
+      }
       const categories = [];
-      const myData = [];
-      const myColor = color;
       const noOutline = {
         style: {
           textOutline: 'none',
         },
       };
-      data.my_indicator2.buckets.forEach((el) => {
+      const indicTrue = [];
+      const indicFalse = [];
+      data.forEach((el) => {
         categories.push(el.key);
-        myData.push({
-          y: (el.doc_count * 100) / total,
-          y_abs: el.doc_count,
-          y_tot: total,
-          source: el.key,
-        });
-      });
-      categories.push('other');
-      myData.push({
-        y: (other * 100) / total,
-        y_abs: other,
-        y_tot: total,
-        source: 'other',
+        const nbTrue = el.my_indicator2.buckets.find((b) => b.key_as_string === 'true')
+          ?.doc_count || 0;
+        const nbFalse = el.my_indicator2.buckets.find((b) => b.key_as_string === 'false')
+          ?.doc_count || 0;
+        const nbTot = nbTrue + nbFalse || 0;
+        if (nbTrue > 0) {
+          indicTrue.push({
+            y_abs: nbTrue,
+            y_tot: nbTot,
+            y: (nbTrue * 100) / nbTot,
+            fr_reason: intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
+          });
+          indicFalse.push({
+            y_abs: nbFalse,
+            y_tot: nbTot,
+            y: (nbFalse * 100) / nbTot,
+            fr_reason: intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
+          });
+        }
       });
       const dataGraph = [
         {
           name: capitalize(
             intl.formatMessage({
-              id: 'myid',
+              id: legendTrue,
             }),
           ),
-          data: myData,
-          color: myColor,
+          data: indicTrue,
+          color: colorTrue,
           dataLabels: noOutline,
         },
       ];
+
       const comments = {
         beforeLastObservationSnap: getObservationLabel(
           beforeLastObservationSnap,
@@ -87,15 +100,16 @@ function useGetData(
       };
     },
     [
-      beforeLastObservationSnap,
-      color,
       domain,
       filter1,
       indicator1,
       indicator2,
+      size1,
+      size2,
       intl,
-      missing,
-      size,
+      legendTrue,
+      colorTrue,
+      beforeLastObservationSnap,
     ],
   );
 

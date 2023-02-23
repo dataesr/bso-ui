@@ -127,6 +127,13 @@ function HowTo() {
               <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_01'>
                 A - Définition du périmètre du BSO local
               </h4>
+              <p>
+                <b>
+                  {' '}
+                  Un seul fichier est attendu toutes années confondues. Aucune
+                  donnée concernant les APC n'est à fournir.
+                </b>
+              </p>
               Le périmètre de chaque BSO local reste entièrement à la main de
               l'établissement ou du laboratoire. Il est possible de remonter une
               ou plusieurs des informations
@@ -249,8 +256,14 @@ function HowTo() {
                 publication.
               </p>
               <p>
+                <b> Un seul fichier est attendu toutes années confondues.</b>
+              </p>
+              <p>
                 Toutes ces informations doivent figurer dans un unique fichier
                 (voir exemple ci-dessous).
+              </p>
+              <p>
+                <b> NB: Aucune donnée concernant les APC n'est à fournir.</b>
               </p>
               <Col offset='2 md-4'>
                 <div className='button-link marianne-bold relative my-button'>
@@ -499,9 +512,7 @@ function HowTo() {
                     </CopyToClipboard>
                   </Col>
                   <Col n='12 md-6'>
-                    <CopyToClipboard
-                      text={ReactDOMServer.renderToString(getGraphUrl())}
-                    >
+                    <CopyToClipboard text={getGraphUrl()}>
                       <Button icon='ri-clipboard-fill' iconPosition='right'>
                         Copier l'url
                       </Button>

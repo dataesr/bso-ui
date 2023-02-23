@@ -17,7 +17,7 @@ import {
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-indicator';
+import useGetData from './get-data-indicator-these';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -31,13 +31,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'is_fr_present',
-    'fr_reasons_main.keyword',
-    'has_idref_aurehal',
-    'app.orcid.has-idref-hal',
-    'app.orcid.no-idref-hal',
-    getCSSValue('--green-soft-125'),
+    'has_these',
+    'first_these_discipline.discipline.keyword',
+    'has_orcid',
+    'app.orcid.active',
+    'app.orcid.inactive',
+    getCSSValue('--green-light-125'),
     getCSSValue('--g-400'),
+    100,
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -84,7 +85,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-idref-hal',
+  id: 'orcid.general.present.chart-indicator-these-year',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

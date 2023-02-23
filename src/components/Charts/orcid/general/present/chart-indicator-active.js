@@ -31,6 +31,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
+    'is_fr_present',
     'fr_reasons_main.keyword',
     'active',
     'app.orcid.active',
