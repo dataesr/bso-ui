@@ -14,7 +14,7 @@ import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-repartition-declarations';
+import useGetData from './get-data-repartition-financements';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -65,7 +65,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.general.impact-financement.chart-repartition-declarations',
+  id: 'publi.general.impact-financement.chart-repartition-financements',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
