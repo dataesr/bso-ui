@@ -58,7 +58,7 @@
   "130025745": {
     "name": "Université Polytechnique Hauts-de-France",
     "commentsName": "de l'UPHF",
-    "commentsNameEN": "of the UPHF",
+    "commentsNameEN": "of UPHF",
     "startYear": 2016,
     "ror": "02ezch769",
     "grid": "grid.12810.3a",
@@ -139,7 +139,7 @@
   "180006025": {
     "name": "Institut de Recherche pour le Développement (IRD)",
     "commentsName": "de l'IRD",
-    "commentsNameEN": "of the IRD",
+    "commentsNameEN": "of IRD",
     "ror": "05q3vnk25",
     "grid": "grid.4399.7",
     "paysage": "Uan45"
@@ -147,7 +147,7 @@
   "180044174": {
     "name": "Muséum national d'Histoire naturelle (MNHN)",
     "commentsName": "du MNHN",
-    "commentsNameEN": "of the MNHN",
+    "commentsNameEN": "of MNHN",
     "paysage": "VaJ52",
     "ror": "03wkt5x30",
     "grid": "grid.410350.3"
@@ -207,7 +207,7 @@
   "192512150": {
     "name": "Université de Franche-Comté (UFC)",
     "commentsName": "de l'UFC",
-    "commentsNameEN": "of the UFC",
+    "commentsNameEN": "of UFC",
     "ror": "03pcc9z86",
     "grid": "grid.7459.f",
     "paysage": "7Mpgt"
@@ -231,7 +231,7 @@
     "paysage": "waCb4"
   },
   "193101524": {
-    "name": "INSA Toulouse",
+    "name": "Institut National des Sciences Appliquées de Toulouse (INSA Toulouse)",
     "commentsName": "de l'INSA Toulouse",
     "commentsNameEN": "of INSA Toulouse",
     "ror": "01h8pf755",
@@ -299,7 +299,7 @@
     "paysage": "fWJJA"
   },
   "196901920": {
-    "name": "Institut national des sciences appliquées de Lyon (INSA Lyon)",
+    "name": "Institut National des Sciences Sppliquées de Lyon (INSA Lyon)",
     "commentsName": "de l'INSA Lyon",
     "commentsNameEN": "of INSA Lyon",
     "startYear": 2016,
@@ -310,7 +310,7 @@
   "196917744": {
     "name": "Université Claude Bernard Lyon 1 (UCBL)",
     "commentsName": "de l'UCBL",
-    "commentsNameEN": "of the UCBL",
+    "commentsNameEN": "of UCBL",
     "startYear": 2016,
     "ror": "029brtt94",
     "grid": "grid.7849.2",
@@ -377,7 +377,7 @@
   "197819444": {
     "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)",
     "commentsName": "de l'UVSQ",
-    "commentsNameEN": "of the UVSQ",
+    "commentsNameEN": "of UVSQ",
     "ror": "03mkjjy25",
     "grid": "grid.12832.3a",
     "paysage": "V13Pk"
@@ -428,7 +428,7 @@
   "199411684f": {
     "name": "Physico-chimie Curie (PCC)",
     "commentsName": "du PCC",
-    "commentsNameEN": "of the PCC",
+    "commentsNameEN": "of PCC",
     "startYear": 2017,
     "ror": "055ss7a31",
     "grid": "grid.465542.4",
@@ -437,7 +437,7 @@
   "199712620k": {
     "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
     "commentsName": "du LCMCP",
-    "commentsNameEN": "of the LCMCP",
+    "commentsNameEN": "of LCMCP",
     "startYear": 2017,
     "ror": "028ta1f94",
     "grid": "grid.462088.0",
@@ -446,7 +446,7 @@
   "199712651u": {
     "name": "Laboratoire de recherche en informatique de Sorbonne Université (LIP6)",
     "commentsName": "du LIP6",
-    "commentsNameEN": "of the LIP6",
+    "commentsNameEN": "of LIP6",
     "startYear": 2017,
     "ror": "05krcen59",
     "grid": "grid.462751.3",
@@ -461,10 +461,19 @@
     "grid": "grid.503282.e",
     "paysage": "KQCDr"
   },
+  "200112483u": {
+    "name": "Institut d’Astrophysique de Paris (IAP)",
+    "commentsName": "de l'IAP",
+    "commentsNameEN": "of IAP",
+    "startYear": 2017,
+    "grid": "grid.435813.8",
+    "ror": "022bnxw24",
+    "paysage": "69R6a"
+  },
   "200112505t": {
     "name": "Analyse et Traitement Informatique de la Langue Française (ATILF)",
     "commentsName": "de l'ATILF",
-    "commentsNameEN": "of the ATILF",
+    "commentsNameEN": "of ATILF",
     "displayTitle": "false",
     "startYear": 2016,
     "ror": "02cy9g557",
@@ -474,7 +483,7 @@
   "200116904z": {
     "name": "Laboratoire Agronomie et Environnement (LAE)",
     "commentsName": "du LAE",
-    "commentsNameEN": "of the LAE",
+    "commentsNameEN": "of LAE",
     "displayTitle": "false"
   },
   "200117305k": {
@@ -541,7 +550,7 @@
   "201420738k": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
-    "commentsNameEN": "of the CRESS",
+    "commentsNameEN": "of CRESS",
     "startYear": 2016,
     "paysage": "DAPPM"
   },
@@ -565,7 +574,7 @@
   "331596270": {
     "name": "Centre de coopération internationale en recherche agronomique pour le développement (CIRAD)",
     "commentsName": "du CIRAD",
-    "commentsNameEN": "of the CIRAD",
+    "commentsNameEN": "of CIRAD",
     "ror": "05kpkpg04",
     "grid": "grid.8183.2",
     "paysage": "7dd3j"
@@ -598,7 +607,7 @@
   "775722879": {
     "name": "Office national d'études et de recherches aérospatiales (ONERA)",
     "commentsName": "de l'ONERA",
-    "commentsNameEN": "of the ONERA",
+    "commentsNameEN": "of ONERA",
     "startYear": 2016,
     "ror": "005y2ap84",
     "grid": "grid.4365.4",
@@ -653,7 +662,7 @@
   "007gfwn20": {
     "name": "Haute École Spécialisée de Suisse Occidentale - Genève",
     "commentsName": "de l'HES-SO",
-    "commentsNameEN": "of the HES-SO",
+    "commentsNameEN": "of HES-SO",
     "country": "ch",
     "ror": "007gfwn20",
     "grid": "grid.483305.9"
@@ -661,7 +670,7 @@
   "grid4570143": {
     "name": "Institut national des sciences humaines et sociales (INSHS)",
     "commentsName": "de l'INSHS",
-    "commentsNameEN": "of the INSHS",
+    "commentsNameEN": "of INSHS",
     "ror": "04b0z7q78",
     "grid": "grid.457014.3",
     "paysage": "EH4gV"
@@ -669,7 +678,7 @@
   "imts": {
     "name": "Tous les IMTs",
     "commentsName": "des IMTs",
-    "commentsNameEN": "of the IMTs",
+    "commentsNameEN": "of IMTs",
     "alias": "18009202500097,18009202500121,193000635"
   }
 }
