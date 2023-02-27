@@ -51,8 +51,8 @@ function useGetData(
       };
       const indicTrue = [];
       const indicFalse = [];
+
       data.forEach((el) => {
-        categories.push(el.key);
         const nbTrue = el.my_indicator2.buckets.find((b) => b.key_as_string === 'true')
           ?.doc_count || 0;
         const nbFalse = el.my_indicator2.buckets.find((b) => b.key_as_string === 'false')
@@ -63,7 +63,8 @@ function useGetData(
             y_abs: nbTrue,
             y_tot: nbTot,
             y: (nbTrue * 100) / nbTot,
-            fr_reason: intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
+            indicator: el.key,
+            name: el.key,
           });
           indicFalse.push({
             y_abs: nbFalse,
@@ -73,6 +74,10 @@ function useGetData(
           });
         }
       });
+      let dataToUse = indicTrue;
+      if (indicator1 === 'first_these_discipline.discipline.keyword') {
+        dataToUse = indicTrue.sort((a, b) => b.y - a.y);
+      }
       const dataGraph = [
         {
           name: capitalize(
@@ -80,12 +85,16 @@ function useGetData(
               id: legendTrue,
             }),
           ),
-          data: indicTrue,
+          data: dataToUse,
           color: colorTrue,
           dataLabels: noOutline,
+          // keys: ['name', 'y'],
+          // dataSorting: { enabled: true, matchByName: true, sortKey: 'name' },
         },
       ];
-
+      dataToUse.forEach((el) => {
+        categories.push(el.name);
+      });
       const comments = {
         beforeLastObservationSnap: getObservationLabel(
           beforeLastObservationSnap,

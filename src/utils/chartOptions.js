@@ -3542,10 +3542,10 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid.proportion',
+        id: 'app.orcid.these-proportion',
       });
       options.legend.title.text = null;
-      options.legend.reversed = true;
+      options.legend.enabled = false;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -3567,19 +3567,27 @@ export const chartOptions = {
   'orcid.general.present.chart-indicator-these-year': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.type = 'column';
+      options.chart.type = 'line';
       options.xAxis = {
         categories,
-        title: null,
+        title: { text: '' },
+        labels: {
+          rotation: -90,
+          overflow: 'allow',
+          padding: 200,
+        },
       };
-      options.yAxis = getPercentageYAxis();
+      options.xAxis.title.text = intl.formatMessage({
+        id: 'app.defense-year',
+      });
+      options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid.proportion',
+        id: 'app.orcid.these-proportion',
       });
       options.legend.title.text = null;
-      options.legend.reversed = true;
+      options.legend.enabled = false;
       options.plotOptions = {
-        column: {
+        line: {
           stacking: 'normal',
           dataLabels: {
             style: {
