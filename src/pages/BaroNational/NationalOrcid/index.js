@@ -22,10 +22,11 @@ import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalOrcid() {
+  const intl = useIntl();
   const { lang } = useLang();
   const { pathname } = useLocation();
+  const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
-  const intl = useIntl();
 
   return (
     <Container fluid className='page'>
@@ -113,57 +114,36 @@ export default function NationalOrcid() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-orcid.general.users'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
                   anchorId='general.users'
+                  backgroundColor={blueSoft50}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  intlKey='app.national-orcid.general.users'
+                  isDisplayed={!isInProduction()}
                 >
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-these-year'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-these-discipline'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-evolution'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-active'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='orcid.general.present.chart-indicator-these-year' />
+                  <BSOChart id='orcid.general.present.chart-indicator-these-discipline' />
+                  <BSOChart id='orcid.general.present.chart-evolution' />
+                  <BSOChart id='orcid.general.present.chart-indicator-active' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-orcid.general.publications'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
                   anchorId='general.publications'
+                  backgroundColor={blueSoft25}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  intlKey='app.national-orcid.general.publications'
+                  isDisplayed={!isInProduction()}
                 >
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-work'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-hal'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-worksource'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='orcid.general.present.chart-indicator-work' />
+                  <BSOChart id='orcid.general.present.chart-indicator-hal' />
+                  <BSOChart id='orcid.general.present.chart-indicator-worksource' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-orcid.general.affiliations'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
                   anchorId='general.affiliations'
+                  backgroundColor={blueSoft50}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  intlKey='app.national-orcid.general.affiliations'
+                  isDisplayed={!isInProduction()}
                 >
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-affiliationsource'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='orcid.general.present.chart-indicator-affiliationsource' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -203,42 +183,26 @@ export default function NationalOrcid() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-orcid.referentiel.idref'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
                   anchorId='referentiel.idref'
+                  backgroundColor={blueSoft50}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  intlKey='app.national-orcid.referentiel.idref'
+                  isDisplayed={!isInProduction()}
                 >
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-idref-abes'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-idref-hal'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-idref-same'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='orcid.general.present.chart-indicator-idref-abes' />
+                  <BSOChart id='orcid.general.present.chart-indicator-idref-hal' />
+                  <BSOChart id='orcid.general.present.chart-indicator-idref-same' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-orcid.referentiel.idhal'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
                   anchorId='referentiel.idhal'
+                  backgroundColor={blueSoft25}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  intlKey='app.national-orcid.referentiel.idhal'
+                  isDisplayed={!isInProduction()}
                 >
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-idhal-abes'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-idhal-hal'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-idhal-same'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='orcid.general.present.chart-indicator-idhal-abes' />
+                  <BSOChart id='orcid.general.present.chart-indicator-idhal-hal' />
+                  <BSOChart id='orcid.general.present.chart-indicator-idhal-same' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
