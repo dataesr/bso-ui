@@ -31,6 +31,8 @@ const SUPPORTED_MIME_TYPES = [
   'application/xls',
   'text/csv',
 ];
+// DOI does not contain comma
+const doiRegex = /^[^,]+$/;
 // hal_struct_id is only digits
 const halStructIdRegex = /^\d*$/;
 // hal_id is 'hal-' + digits
@@ -54,16 +56,28 @@ const renderIcons = (
 
 function Validation() {
   const [acronym, setAcronym] = useState(null);
-  const [doiCount, setDoiCount] = useState(0);
-  const [halCollCode, setHalCollCode] = useState(0);
-  const [halId, setHalId] = useState(0);
-  const [halStructId, setHalStructId] = useState(0);
-  const [isError, setIsError] = useState(false);
+  const [doiCount, setDoiCount] = useState(undefined);
+  const [email, setEmail] = useState(undefined);
+  const [halCollCodeCount, setHalCollCodeCount] = useState(undefined);
+  const [halIdCount, setHalIdCount] = useState(undefined);
+  const [halStructIdCount, setHalStructIdCount] = useState(undefined);
+  const [isError, setIsError] = useState(true);
   const [message, setMessage] = useState(undefined);
   const [name, setName] = useState(null);
-  const [nntEtab, setNntEtab] = useState(0);
-  const [nntId, setNntId] = useState(0);
+  const [nntEtabCount, setNntEtabCount] = useState(undefined);
+  const [nntIdCount, setNntIdCount] = useState(undefined);
   const [startYear, setStartYear] = useState(2013);
+
+  const resetState = () => {
+    setDoiCount(undefined);
+    setHalCollCodeCount(undefined);
+    setHalIdCount(undefined);
+    setHalStructIdCount(undefined);
+    setIsError(true);
+    setMessage(undefined);
+    setNntEtabCount(undefined);
+    setNntIdCount(undefined);
+  };
 
   const readCSV = (input) => {
     Papa.parse(input, {
@@ -71,17 +85,20 @@ function Validation() {
       header: true,
       skipEmptyLines: 'greedy',
       complete: ({ data }) => {
+        const dataWithIndex = data.map((item, index) => ({
+          ...item,
+          index: index + 2,
+        }));
         if (
-          data.some(
+          dataWithIndex.some(
             (item) => item?.hal_struct_id
               && !item?.hal_struct_id?.match(halStructIdRegex),
           )
         ) {
-          const errors = data.filter(
+          const errors = dataWithIndex.filter(
             (item) => item?.hal_struct_id
               && !item?.hal_struct_id?.match(halStructIdRegex),
           );
-          setIsError(true);
           let errorMessage = 'Vos "hal_struct_id" doivent être une suite de chiffres.';
           errorMessage += ` Vous avez ${
             errors?.length
@@ -93,12 +110,13 @@ function Validation() {
             .join(', ')}.`;
           setMessage(errorMessage);
         } else if (
-          data.some((item) => item?.hal_id && !item?.hal_id?.match(halIdRegex))
+          dataWithIndex.some(
+            (item) => item?.hal_id && !item?.hal_id?.match(halIdRegex),
+          )
         ) {
-          const errors = data.filter(
+          const errors = dataWithIndex.filter(
             (item) => item?.hal_id && !item?.hal_id?.match(halIdRegex),
           );
-          setIsError(true);
           let errorMessage = 'Vos "hal_id" doivent être de la forme "hal-" suivi de chiffres.';
           errorMessage += ` Vous avez ${
             errors?.length
@@ -110,14 +128,13 @@ function Validation() {
             .join(', ')}.`;
           setMessage(errorMessage);
         } else if (
-          data.some(
+          dataWithIndex.some(
             (item) => item?.nnt_etab && !item?.nnt_etab?.match(nntEtabRegex),
           )
         ) {
-          const errors = data.filter(
+          const errors = dataWithIndex.filter(
             (item) => item?.nnt_etab && !item?.nnt_etab?.match(nntEtabRegex),
           );
-          setIsError(true);
           let errorMessage = 'Vos "nnt_etab" doivent être une suite de 4 lettres majuscules optionnellement suivi d\'un chiffre ou d\'une lettre en majuscule.';
           errorMessage += ` Vous avez ${
             errors?.length
@@ -129,12 +146,13 @@ function Validation() {
             .join(', ')}.`;
           setMessage(errorMessage);
         } else if (
-          data.some((item) => item?.nnt_id && !item?.nnt_id?.match(nntIdRegex))
+          dataWithIndex.some(
+            (item) => item?.nnt_id && !item?.nnt_id?.match(nntIdRegex),
+          )
         ) {
-          const errors = data.filter(
+          const errors = dataWithIndex.filter(
             (item) => item?.nnt_id && !item?.nnt_id?.match(nntIdRegex),
           );
-          setIsError(true);
           let errorMessage = 'Vos "nnt_id" doivent être une année de soutenance suivie de 4 lettres majuscules puis de 4 caractères alphanumériques tel que décrit ';
           errorMessage
             += '<a href="https://documentation.abes.fr/sudoc/regles/Catalogage/Retro_CodeCourt_NNT.htm" target="_blank">sur cette page</a>.';
@@ -147,17 +165,52 @@ function Validation() {
             .map((item) => item?.nnt_id || '')
             .join(', ')}.`;
           setMessage(errorMessage);
+        } else if (
+          // eslint-disable-next-line no-underscore-dangle
+          dataWithIndex.some((item) => item?.__parsed_extra)
+        ) {
+          // eslint-disable-next-line no-underscore-dangle
+          const errors = dataWithIndex.filter((item) => item?.__parsed_extra);
+          let errorMessage = 'Il y a des souci(s) de donnée  dans votre fichier CSV.';
+          errorMessage += ` Il y a ${errors.length} soucis à la ligne!`;
+          errorMessage += '<ul>';
+          errors.forEach((item) => {
+            // eslint-disable-next-line no-underscore-dangle
+            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.__parsed_extra}</li>`;
+          });
+          errorMessage += '</ul>';
+          setMessage(errorMessage);
+        } else if (
+          dataWithIndex.some((item) => item?.doi && !item?.doi?.match(doiRegex))
+        ) {
+          const errors = dataWithIndex.filter(
+            (item) => item?.doi && !item?.doi?.match(doiRegex),
+          );
+          let errorMessage = 'Les DOI ne doivent pas contenir de virgule.';
+          errorMessage += ` Erreur(s) sur ${errors.length} DOI :`;
+          errorMessage += '<ul>';
+          errors.forEach((item) => {
+            errorMessage += `<li>Ligne ${item?.index} : DOI ${item?.doi}</li>`;
+          });
+          errorMessage += '</ul>';
+          setMessage(errorMessage);
         } else {
-          setDoiCount(data.filter((item) => item?.doi)?.length);
-          setHalCollCode(data.filter((item) => item?.hal_coll_code)?.length);
-          setHalId(data.filter((item) => item?.hal_id)?.length);
-          setHalStructId(data.filter((item) => item?.hal_struct_id)?.length);
-          setNntEtab(data.filter((item) => item?.nnt_etab)?.length);
-          setNntId(data.filter((item) => item?.nnt_id)?.length);
+          setIsError(false);
+          setDoiCount(dataWithIndex.filter((item) => item?.doi)?.length);
+          setHalCollCodeCount(
+            dataWithIndex.filter((item) => item?.hal_coll_code)?.length,
+          );
+          setHalIdCount(dataWithIndex.filter((item) => item?.hal_id)?.length);
+          setHalStructIdCount(
+            dataWithIndex.filter((item) => item?.hal_struct_id)?.length,
+          );
+          setNntEtabCount(
+            dataWithIndex.filter((item) => item?.nnt_etab)?.length,
+          );
+          setNntIdCount(dataWithIndex.filter((item) => item?.nnt_id)?.length);
         }
       },
       error: () => {
-        setIsError(true);
         setMessage(
           "Erreur lors du chargement du fichier. Merci d'en vérifier le format.",
         );
@@ -167,11 +220,10 @@ function Validation() {
 
   const handleFileChange = async (e) => {
     e.preventDefault();
+    resetState();
     if (e.target.files.length !== 1) {
-      setIsError(true);
       setMessage('Merci de soumettre un et un seul fichier !');
     } else if (!SUPPORTED_MIME_TYPES.includes(e.target.files?.[0]?.type)) {
-      setIsError(true);
       setMessage('Les formats de fichier acceptés sont .csv, .xls ou .xlsx !');
     } else {
       const inputFile = e.target.files[0];
@@ -181,7 +233,6 @@ function Validation() {
         const buffer = await inputFile.arrayBuffer();
         const workbook = read(buffer);
         if (workbook.SheetNames.length > 1) {
-          setIsError(true);
           setMessage(
             "Attention, il semblerait que votre fichier ait plus d'un onglet. Merci de ne soumettre qu'un seul onglet",
           );
@@ -202,7 +253,7 @@ function Validation() {
           backgroundColor='blue-soft-50'
           textColor='blue-dark-150'
           supTitle={<FormattedMessage id='app.header.title' />}
-          title={<FormattedMessage id='app.header.nav.a-propos-validation' />}
+          title={<FormattedMessage id='app.header.nav.a-propos-variations' />}
           icons={renderIcons}
         />
       </div>
@@ -211,8 +262,17 @@ function Validation() {
           <Row gutters>
             <Col n='12 lg-8'>
               <h2 className='marianne-bold fs-12-16'>
-                Création ou mise à jour d'un BSO
+                Formulaire de de mande de création ou de mise à jour d'un BSO
               </h2>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <TextInput
+                label='Email de contact'
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
             </Col>
           </Row>
           <Row gutters>
@@ -261,20 +321,24 @@ function Validation() {
           <Row gutters>
             <Col n='12 lg-8'>
               {(!!doiCount
-                || !!halCollCode
-                || !!halId
-                || !!halStructId
-                || !!nntEtab
-                || !!nntId) && (
+                || !!halCollCodeCount
+                || !!halIdCount
+                || !!halStructIdCount
+                || !!nntEtabCount
+                || !!nntIdCount) && (
                 <div>
                   Ce fichier contient :
                   <ul>
                     {!!doiCount && <li>{`${doiCount} DOI`}</li>}
-                    {!!halCollCode && <li>{`${halCollCode} hal_coll_code`}</li>}
-                    {!!halId && <li>{`${halId} hal_id`}</li>}
-                    {!!halStructId && <li>{`${halStructId} hal_struct_id`}</li>}
-                    {!!nntEtab && <li>{`${nntEtab} nnt_etab`}</li>}
-                    {!!nntId && <li>{`${nntId} nnt_id`}</li>}
+                    {!!halCollCodeCount && (
+                      <li>{`${halCollCodeCount} hal_coll_code`}</li>
+                    )}
+                    {!!halIdCount && <li>{`${halIdCount} hal_id`}</li>}
+                    {!!halStructIdCount && (
+                      <li>{`${halStructIdCount} hal_struct_id`}</li>
+                    )}
+                    {!!nntEtabCount && <li>{`${nntEtabCount} nnt_etab`}</li>}
+                    {!!nntIdCount && <li>{`${nntIdCount} nnt_id`}</li>}
                   </ul>
                 </div>
               )}
@@ -282,7 +346,7 @@ function Validation() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <Button>Envoyer</Button>
+              <Button disabled={name?.length === 0 || isError}>Envoyer</Button>
             </Col>
           </Row>
         </section>
