@@ -6,11 +6,9 @@ server {
     try_files $uri $uri/ /index.html =404;
   }
   location /mailer/ {
-    limit_except OPTIONS GET PATCH PUT {
-      proxy_pass https://api.sendinblue.com/v3/smtp/email;
-      proxy_set_header Api-Key ${SIB_KEY};
-      proxy_set_header Accept application/json;
-      proxy_set_header Content-Type application/json;
-    }
+    proxy_pass https://api.sendinblue.com/v3/smtp/email;
+    proxy_set_header Api-Key ${SIB_KEY};
+    proxy_set_header Accept application/json;
+    proxy_set_header Content-Type application/json;
   }
 }
