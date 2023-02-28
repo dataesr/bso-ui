@@ -11,6 +11,16 @@ import {
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
 
+function compare(a, b) {
+  if (a.key > b.key) {
+    return -1;
+  }
+  if (a.key < b.key) {
+    return 1;
+  }
+  return 0;
+}
+
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const disciplineField = 'thesis_classification.discipline';
   const intl = useIntl();
@@ -66,6 +76,21 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
               (item2) => item2.key === 'HAL;theses.fr',
             )?.doc_count || 0,
         }));
+      const categoriesLabels = [];
+      data.forEach((item, catIndex) => {
+        const nameClean = item.key
+          .replace(/\n/g, '')
+          .replace('  ', ' ')
+          .replace('É', 'E');
+        categoriesLabels.push({
+          key: nameClean,
+          catIndex,
+        });
+      });
+      categoriesLabels.sort((a, b) => compare(a, b));
+      categoriesLabels.forEach((el, ix) => {
+        categoriesLabels[ix].alphaOrder = ix;
+      });
       data.forEach((item, catIndex) => {
         const closedCurrent = item.by_oa_host_type.buckets.find((item2) => item2.key === 'closed')
           ?.doc_count || 0;
@@ -79,11 +104,21 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         )?.doc_count || 0;
         const totalCurrent = halCurrent + theseCurrent + halTheseCurrent + closedCurrent;
         const oaCurrent = halCurrent + theseCurrent + halTheseCurrent;
-        const nameClean = item.key.replace(/\n/g, '').replace('  ', ' ');
+        const nameClean = item.key
+          .replace(/\n/g, '')
+          .replace('  ', ' ')
+          .replace('É', 'E');
+        const currentC = categoriesLabels.filter(
+          (c) => c.catIndex === catIndex,
+        )[0];
+        // eslint-disable-next-line
+        const alphaOrder = currentC.alphaOrder;
         categories.push({
           key: nameClean,
           staff: totalCurrent,
           percent: (oaCurrent / totalCurrent) * 100,
+          catIndex,
+          alphaOrder,
         });
         categoriesComments.push(
           capitalize(intl.formatMessage({ id: `${nameClean}` })),
@@ -98,6 +133,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categoriesComments[catIndex],
           bsoDomain,
+          alphaOrder,
         });
         oa.push({
           y: (oaCurrent / totalCurrent) * 100,
@@ -109,6 +145,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
             getPublicationYearFromObservationSnap(lastObservationSnap),
           discipline: categoriesComments[catIndex],
           bsoDomain,
+          alphaOrder,
         });
         hal.push({
           y: (halCurrent / totalCurrent) * 100,
@@ -121,6 +158,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           discipline: categoriesComments[catIndex],
           bsoDomain,
           oaRate: (oaCurrent / totalCurrent) * 100,
+          alphaOrder,
         });
         these.push({
           y: (theseCurrent / totalCurrent) * 100,
@@ -133,6 +171,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           discipline: categoriesComments[catIndex],
           bsoDomain,
           oaRate: (oaCurrent / totalCurrent) * 100,
+          alphaOrder,
         });
         halThese.push({
           y: (halTheseCurrent / totalCurrent) * 100,
@@ -145,9 +184,9 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           discipline: categoriesComments[catIndex],
           bsoDomain,
           oaRate: (oaCurrent / totalCurrent) * 100,
+          alphaOrder,
         });
       });
-
       const dataGraph = [
         {
           name: intl.formatMessage({
