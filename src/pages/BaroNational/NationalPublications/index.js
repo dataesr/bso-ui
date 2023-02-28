@@ -496,12 +496,12 @@ export default function NationalPublications() {
                   },
                 },
               ]}
-              isDisplayed={!isInProduction()}
             >
               <GraphContent isDisplayed={!isInProduction()}>
                 <QuestionSection
                   anchorId='fundings.chart-taux-ouverture'
                   intlKey=''
+                  backgroundColor={blueSoft50}
                 >
                   <BSOChart id='publi.general.impact-financement.chart-taux-ouverture' />
                   <BSOChart id='publi.general.impact-financement.chart-business-model' />
