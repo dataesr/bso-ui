@@ -7,8 +7,6 @@ server {
   }
   location /mailer/ {
     limit_except OPTIONS GET PATCH PUT {
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
       proxy_pass https://api.sendinblue.com/v3/smtp/email;
       proxy_set_header Api-Key ${SIB_KEY};
       proxy_set_header Accept application/json;
