@@ -1,5 +1,6 @@
 server {
   listen 3000;
+  add_header Access-Control-Allow-Origin *;
   location / {
     root /usr/share/nginx/html;
     index index.html index.htm;
