@@ -36,10 +36,10 @@ const SUPPORTED_MIME_TYPES = [
 const doiRegex = /^[^,]+$/;
 // hal_struct_id is only digits
 const halStructIdRegex = /^\d*$/;
-// hal_id is 'hal-' + digits
-const halIdRegex = /^hal-\d+$/;
+// hal_id
+const halIdRegex = /^[a-zA-Z0-9]{3,}(-|_)(\d{8})$/;
 // https://documentation.abes.fr/sudoc/regles/CodesUnivEtab.htm
-const nntEtabRegex = /^[A-Z]{4}[A-Z0-9]{0,1}$/;
+const nntEtabRegex = /^[a-zA-Z0-9]{4,6}$/;
 // https://documentation.abes.fr/sudoc/regles/Catalogage/Retro_CodeCourt_NNT.htm
 const nntIdRegex = /^(19|20)\d{2}[A-Z]{4}\w{4}$/;
 
@@ -148,9 +148,11 @@ function Validation() {
           } "hal_struct_id" qui ne respecte${
             errors?.length > 1 ? 'nt' : ''
           } pas cette condition:`;
-          errorMessage += `${errors
-            .map((item) => item?.hal_struct_id || '')
-            .join(', ')}.`;
+          errorMessage += '<ul>';
+          errors.forEach((item) => {
+            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.hal_struct_id}</li>`;
+          });
+          errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
           dataWithIndex.some(
@@ -160,15 +162,17 @@ function Validation() {
           const errors = dataWithIndex.filter(
             (item) => item?.hal_id && !item?.hal_id?.match(halIdRegex),
           );
-          let errorMessage = 'Vos "hal_id" doivent être de la forme "hal-" suivi de chiffres.';
+          let errorMessage = 'Vos "hal_id" ne respectent pas le format imposé.';
           errorMessage += ` Vous avez ${
             errors?.length
           } "hal_id" qui ne respecte${
             errors?.length > 1 ? 'nt' : ''
           } pas cette condition:`;
-          errorMessage += `${errors
-            .map((item) => item?.hal_id || '')
-            .join(', ')}.`;
+          errorMessage += '<ul>';
+          errors.forEach((item) => {
+            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.hal_id}</li>`;
+          });
+          errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
           dataWithIndex.some(
@@ -178,15 +182,17 @@ function Validation() {
           const errors = dataWithIndex.filter(
             (item) => item?.nnt_etab && !item?.nnt_etab?.match(nntEtabRegex),
           );
-          let errorMessage = 'Vos "nnt_etab" doivent être une suite de 4 lettres majuscules optionnellement suivi d\'un chiffre ou d\'une lettre en majuscule.';
+          let errorMessage = 'Vos "nnt_etab" doivent être une suite de 4, 5 ou 6 chiffres ou lettres.';
           errorMessage += ` Vous avez ${
             errors?.length
           } "nnt_etab" qui ne respecte${
             errors?.length > 1 ? 'nt' : ''
           } pas cette condition:`;
-          errorMessage += ` ${errors
-            .map((item) => item?.nnt_etab || '')
-            .join(', ')}.`;
+          errorMessage += '<ul>';
+          errors.forEach((item) => {
+            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.nnt_etab}</li>`;
+          });
+          errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
           dataWithIndex.some(
@@ -204,9 +210,11 @@ function Validation() {
           } "nnt_id" qui ne respecte${
             errors?.length > 1 ? 'nt' : ''
           } pas cette condition:`;
-          errorMessage += ` ${errors
-            .map((item) => item?.nnt_id || '')
-            .join(', ')}.`;
+          errorMessage += '<ul>';
+          errors.forEach((item) => {
+            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.nnt_id}</li>`;
+          });
+          errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
           // eslint-disable-next-line no-underscore-dangle
