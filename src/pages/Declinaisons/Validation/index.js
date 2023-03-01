@@ -9,6 +9,7 @@ import {
   Row,
   TextInput,
 } from '@dataesr/react-dsfr';
+import Axios from 'axios';
 import Papa from 'papaparse';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -55,18 +56,19 @@ const renderIcons = (
 );
 
 function Validation() {
-  const [acronym, setAcronym] = useState(null);
-  const [doiCount, setDoiCount] = useState(undefined);
-  const [email, setEmail] = useState(undefined);
-  const [halCollCodeCount, setHalCollCodeCount] = useState(undefined);
-  const [halIdCount, setHalIdCount] = useState(undefined);
-  const [halStructIdCount, setHalStructIdCount] = useState(undefined);
+  const [acronym, setAcronym] = useState();
+  const [doiCount, setDoiCount] = useState();
+  const [email, setEmail] = useState();
+  const [dataFile, setDataFile] = useState();
+  const [halCollCodeCount, setHalCollCodeCount] = useState();
+  const [halIdCount, setHalIdCount] = useState();
+  const [halStructIdCount, setHalStructIdCount] = useState();
   const [isError, setIsError] = useState(true);
-  const [message, setMessage] = useState(undefined);
-  const [name, setName] = useState(null);
-  const [nntEtabCount, setNntEtabCount] = useState(undefined);
-  const [nntIdCount, setNntIdCount] = useState(undefined);
-  const [startYear, setStartYear] = useState(2013);
+  const [message, setMessage] = useState();
+  const [name, setName] = useState();
+  const [nntEtabCount, setNntEtabCount] = useState();
+  const [nntIdCount, setNntIdCount] = useState();
+  const [firstPublicationYear, setFirstPublicationYear] = useState(2013);
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -79,9 +81,50 @@ function Validation() {
     setNntIdCount(undefined);
   };
 
+  const sendEmail = () => {
+    const txt = Papa.unparse(dataFile, {
+      delimiter: DELIMITER,
+      header: true,
+      skipEmptyLines: 'greedy',
+    });
+    const content = btoa(txt);
+    const options = {
+      method: 'POST',
+      url: `${window.location.origin}/mailer/`,
+      headers: {
+        Authorization: 'Basic YWRtaW46Qm91Y2hlcmllNDMx',
+        'Content-Type': 'application/json',
+      },
+      data: {
+        sender: { name: email, email },
+        to: [{ email: 'bso@recherche.gouv.fr', name: 'MESR - BSO' }],
+        subject: "Demande d'un nouveau BSO Local",
+        htmlContent: `<html><body>
+          <p>Email de contact: ${email}</p>
+          <p>Nom de la structure: ${name}</p>
+          <p>Acronyme de la structure: ${acronym}</p>
+          <p>Première année de publication: ${firstPublicationYear}</p>
+          </body></html>`,
+        attachment: [{ content, name: 'bso.csv' }],
+      },
+    };
+
+    Axios.request(options)
+      .then(() => {
+        resetState();
+        setMessage('Merci pour votre envoi !');
+      })
+      .catch(() => {
+        setIsError(true);
+        setMessage(
+          "Error lors de l'envoi de votre fichier, merci de contacter bso@recherche.gouv.fr.",
+        );
+      });
+  };
+
   const readCSV = (input) => {
     Papa.parse(input, {
-      config: { delimiter: DELIMITER },
+      delimiter: DELIMITER,
       header: true,
       skipEmptyLines: 'greedy',
       complete: ({ data }) => {
@@ -196,18 +239,17 @@ function Validation() {
           setMessage(errorMessage);
         } else {
           setIsError(false);
-          setDoiCount(dataWithIndex.filter((item) => item?.doi)?.length);
+          setDataFile(data);
+          setDoiCount(data.filter((item) => item?.doi)?.length);
           setHalCollCodeCount(
-            dataWithIndex.filter((item) => item?.hal_coll_code)?.length,
+            data.filter((item) => item?.hal_coll_code)?.length,
           );
-          setHalIdCount(dataWithIndex.filter((item) => item?.hal_id)?.length);
+          setHalIdCount(data.filter((item) => item?.hal_id)?.length);
           setHalStructIdCount(
-            dataWithIndex.filter((item) => item?.hal_struct_id)?.length,
+            data.filter((item) => item?.hal_struct_id)?.length,
           );
-          setNntEtabCount(
-            dataWithIndex.filter((item) => item?.nnt_etab)?.length,
-          );
-          setNntIdCount(dataWithIndex.filter((item) => item?.nnt_id)?.length);
+          setNntEtabCount(data.filter((item) => item?.nnt_etab)?.length);
+          setNntIdCount(data.filter((item) => item?.nnt_id)?.length);
         }
       },
       error: () => {
@@ -271,6 +313,7 @@ function Validation() {
               <TextInput
                 label='Email de contact'
                 onChange={(e) => setEmail(e.target.value)}
+                required
                 value={email}
               />
             </Col>
@@ -278,7 +321,7 @@ function Validation() {
           <Row gutters>
             <Col n='12 lg-8'>
               <TextInput
-                label='Nom complet de la structure'
+                label='Nom de la structure'
                 onChange={(e) => setName(e.target.value)}
                 required
                 value={name}
@@ -298,9 +341,9 @@ function Validation() {
             <Col n='12 lg-8'>
               <TextInput
                 label='Première année de publication'
-                onChange={(e) => setStartYear(e.target.value)}
+                onChange={(e) => setFirstPublicationYear(e.target.value)}
                 type='number'
-                value={startYear}
+                value={firstPublicationYear}
               />
             </Col>
           </Row>
@@ -346,7 +389,12 @@ function Validation() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <Button disabled={name?.length === 0 || isError}>Envoyer</Button>
+              <Button
+                disabled={email?.length === 0 || name?.length === 0 || isError}
+                onClick={() => sendEmail()}
+              >
+                Envoyer
+              </Button>
             </Col>
           </Row>
         </section>
