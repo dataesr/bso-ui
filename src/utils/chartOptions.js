@@ -974,7 +974,7 @@ export const chartOptions = {
     },
   },
   'publi.general.impact-financement.chart-repartition-financements': {
-    getOptions: (id, intl, categories, data) => {
+    getOptions: (id, intl, categories, data, agency) => {
       const { startYear } = getURLSearchParams(intl);
       const pointStart = Math.max(startYear, categories?.[0] || -Infinity);
       const options = getGraphOptions({ id, intl });

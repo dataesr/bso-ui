@@ -6,7 +6,7 @@ import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(observationSnap, domain) {
+function useGetData(observationSnap, needle = '*', domain) {
   const intl = useIntl();
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -17,12 +17,17 @@ function useGetData(observationSnap, domain) {
     const query = getFetchOptions({
       key: 'declarationRate',
       domain,
-      parameters: [lastObservationSnap],
+      parameters: [lastObservationSnap, needle],
       objectType: ['publications'],
     });
     query.query.bool.filter.push({
       term: { 'grants.agency.keyword': 'ANR' },
     });
+    if (needle !== 'ANR - global') {
+      query.query.bool.filter.push({
+        term: { 'grants.sub_agency.keyword': needle },
+      });
+    }
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -61,6 +66,10 @@ function useGetData(observationSnap, domain) {
           if (publicationDate > fundingYear && total > 10) {
             currentData.push({
               x: publicationDate,
+              subagency:
+                needle === '*'
+                  ? intl.formatMessage({ id: 'app.all-agency' })
+                  : needle,
               publicationDate,
               y_abs: oa,
               y_tot: total,
@@ -82,6 +91,7 @@ function useGetData(observationSnap, domain) {
         ix += 1;
       }
     });
+    console.log('tttt', dataGraph2);
 
     return {
       categories,
@@ -90,8 +100,10 @@ function useGetData(observationSnap, domain) {
   }
 
   useEffect(() => {
+    console.log('ttt7', needle);
     async function getData() {
       try {
+        console.log('ttttry', needle);
         const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
       } catch (e) {
@@ -104,7 +116,7 @@ function useGetData(observationSnap, domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap]);
+  }, [observationSnap, needle]);
   return { data, isError, isLoading };
 }
 export default useGetData;
