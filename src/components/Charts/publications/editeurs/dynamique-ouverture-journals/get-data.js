@@ -30,7 +30,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
           });
           if (needle) {
             query?.query?.bool?.filter?.push({
-              wildcard: { 'journal_title.keyword': needle },
+              wildcard: { 'journal_issn_l.keyword': needle },
             });
           }
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
@@ -46,7 +46,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
             });
             if (needle) {
               query?.query?.bool?.filter?.push({
-                wildcard: { 'journal_title.keyword': needle },
+                wildcard: { 'journal_issn_l.keyword': needle },
               });
             }
             queries.push(Axios.post(ES_API_URL, query, HEADERS));
