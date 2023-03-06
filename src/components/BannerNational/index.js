@@ -60,17 +60,19 @@ function BannerNational({ selected, title, iconId }) {
                 label: intl.formatMessage({
                   id: 'app.baro-national.data.title.beta',
                 }),
-                value: intl.formatMessage({
-                  id: 'url.data.general',
-                }),
+                value: intl.formatMessage({ id: 'url.data.general' }),
               },
               {
                 label: intl.formatMessage({
                   id: 'app.baro-national.software.title.beta',
                 }),
-                value: intl.formatMessage({
-                  id: 'url.software.general',
+                value: intl.formatMessage({ id: 'url.software.general' }),
+              },
+              {
+                label: intl.formatMessage({
+                  id: 'app.baro-national.orcid.title',
                 }),
+                value: intl.formatMessage({ id: 'url.orcid.general' }),
               },
             ],
           }

@@ -51,9 +51,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     if (sort === 'sort-staff') {
       categories?.sort((a, b) => b.staff - a.staff);
       sortKey = 'y_tot';
-    } else {
+    } else if (sort === 'sort-open-access') {
       categories?.sort((a, b) => b.percent - a.percent);
       sortKey = 'oaRate';
+    } else if (sort === 'sort-alpha') {
+      categories?.sort((a, b) => b.alphaOrder - a.alphaOrder);
+      sortKey = 'alphaOrder';
     }
     const categoriesLabel = categories?.map((item) => capitalize(intl.formatMessage({ id: `${item.key}` }))
       .concat('</br>(')
@@ -110,7 +113,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         />
         <Radio
           label={intl.formatMessage({ id: 'app.publi.sort-open-access' })}
-          value='sort-open-rate'
+          value='sort-open-access'
+        />
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.sort-alpha' })}
+          value='sort-alpha'
         />
       </RadioGroup>
       <HighchartsReact
