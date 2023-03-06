@@ -17,7 +17,6 @@ import { read, utils } from 'xlsx';
 
 import Banner from '../../../components/Banner';
 
-const DELIMITER = ';';
 const SUPPORTED_MIME_TYPES = [
   'application/msexcel',
   'application/vnd.ms-excel',
@@ -83,7 +82,7 @@ function Validation() {
 
   const sendEmail = () => {
     const txt = Papa.unparse(dataFile, {
-      delimiter: DELIMITER,
+      delimiter: ',',
       header: true,
       skipEmptyLines: 'greedy',
     });
@@ -124,21 +123,28 @@ function Validation() {
 
   const readCSV = (input) => {
     Papa.parse(input, {
-      delimiter: DELIMITER,
       header: true,
       skipEmptyLines: 'greedy',
-      complete: ({ data }) => {
-        const dataWithIndex = data.map((item, index) => ({
+      transform: (value) => value.trim(),
+      transformHeader: (header) => header.trim().toLowerCase(),
+      complete: ({ data, meta }) => {
+        // Add line number
+        const dataWithLine = data.map((item, index) => ({
           ...item,
-          index: index + 2,
+          line: index + 2,
         }));
-        if (
-          dataWithIndex.some(
+        // Check if headers are present
+        if (!meta.fields.includes('doi')) {
+          setMessage(
+            "Merci de préciser les noms de colonne dans votre fichier. Si besoin, utiliser le fichier d'exemple.",
+          );
+        } else if (
+          dataWithLine.some(
             (item) => item?.hal_struct_id
               && !item?.hal_struct_id?.match(halStructIdRegex),
           )
         ) {
-          const errors = dataWithIndex.filter(
+          const errors = dataWithLine.filter(
             (item) => item?.hal_struct_id
               && !item?.hal_struct_id?.match(halStructIdRegex),
           );
@@ -150,16 +156,16 @@ function Validation() {
           } pas cette condition:`;
           errorMessage += '<ul>';
           errors.forEach((item) => {
-            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.hal_struct_id}</li>`;
+            errorMessage += `<li>Ligne ${item?.line} : Donnée en extra ${item?.hal_struct_id}</li>`;
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
-          dataWithIndex.some(
+          dataWithLine.some(
             (item) => item?.hal_id && !item?.hal_id?.match(halIdRegex),
           )
         ) {
-          const errors = dataWithIndex.filter(
+          const errors = dataWithLine.filter(
             (item) => item?.hal_id && !item?.hal_id?.match(halIdRegex),
           );
           let errorMessage = 'Vos "hal_id" ne respectent pas le format imposé.';
@@ -170,16 +176,16 @@ function Validation() {
           } pas cette condition:`;
           errorMessage += '<ul>';
           errors.forEach((item) => {
-            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.hal_id}</li>`;
+            errorMessage += `<li>Ligne ${item?.line} : Donnée en extra ${item?.hal_id}</li>`;
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
-          dataWithIndex.some(
+          dataWithLine.some(
             (item) => item?.nnt_etab && !item?.nnt_etab?.match(nntEtabRegex),
           )
         ) {
-          const errors = dataWithIndex.filter(
+          const errors = dataWithLine.filter(
             (item) => item?.nnt_etab && !item?.nnt_etab?.match(nntEtabRegex),
           );
           let errorMessage = 'Vos "nnt_etab" doivent être une suite de 4, 5 ou 6 chiffres ou lettres.';
@@ -190,16 +196,16 @@ function Validation() {
           } pas cette condition:`;
           errorMessage += '<ul>';
           errors.forEach((item) => {
-            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.nnt_etab}</li>`;
+            errorMessage += `<li>Ligne ${item?.line} : Donnée en extra ${item?.nnt_etab}</li>`;
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
-          dataWithIndex.some(
+          dataWithLine.some(
             (item) => item?.nnt_id && !item?.nnt_id?.match(nntIdRegex),
           )
         ) {
-          const errors = dataWithIndex.filter(
+          const errors = dataWithLine.filter(
             (item) => item?.nnt_id && !item?.nnt_id?.match(nntIdRegex),
           );
           let errorMessage = 'Vos "nnt_id" doivent être une année de soutenance suivie de 4 lettres majuscules puis de 4 caractères alphanumériques tel que décrit ';
@@ -212,39 +218,51 @@ function Validation() {
           } pas cette condition:`;
           errorMessage += '<ul>';
           errors.forEach((item) => {
-            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.nnt_id}</li>`;
+            errorMessage += `<li>Ligne ${item?.line} : Donnée en extra ${item?.nnt_id}</li>`;
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
           // eslint-disable-next-line no-underscore-dangle
-          dataWithIndex.some((item) => item?.__parsed_extra)
+          dataWithLine.some((item) => item?.__parsed_extra)
         ) {
           // eslint-disable-next-line no-underscore-dangle
-          const errors = dataWithIndex.filter((item) => item?.__parsed_extra);
+          const errors = dataWithLine.filter((item) => item?.__parsed_extra);
           let errorMessage = 'Il y a des souci(s) de donnée  dans votre fichier CSV.';
           errorMessage += ` Il y a ${errors.length} soucis à la ligne!`;
           errorMessage += '<ul>';
           errors.forEach((item) => {
             // eslint-disable-next-line no-underscore-dangle
-            errorMessage += `<li>Ligne ${item?.index} : Donnée en extra ${item?.__parsed_extra}</li>`;
+            errorMessage += `<li>Ligne ${item?.line} : Donnée en extra ${item?.__parsed_extra}</li>`;
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
         } else if (
-          dataWithIndex.some((item) => item?.doi && !item?.doi?.match(doiRegex))
+          dataWithLine.some((item) => item?.doi && !item?.doi?.match(doiRegex))
         ) {
-          const errors = dataWithIndex.filter(
+          const errors = dataWithLine.filter(
             (item) => item?.doi && !item?.doi?.match(doiRegex),
           );
           let errorMessage = 'Les DOI ne doivent pas contenir de virgule.';
           errorMessage += ` Erreur(s) sur ${errors.length} DOI :`;
           errorMessage += '<ul>';
           errors.forEach((item) => {
-            errorMessage += `<li>Ligne ${item?.index} : DOI ${item?.doi}</li>`;
+            errorMessage += `<li>Ligne ${item?.line} : DOI ${item?.doi}</li>`;
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
+          // Check if there is data to send
+        } else if (
+          doiCount === 0
+          && halCollCodeCount === 0
+          && halIdCount === 0
+          && halStructIdCount === 0
+          && nntEtabCount === 0
+          && nntIdCount === 0
+        ) {
+          setMessage(
+            "Il semblerait qu'il n'y ait aucune donnée à envoyer. Merci de vérifier votre fichier.",
+          );
         } else {
           setIsError(false);
           setDataFile(data);
@@ -289,11 +307,21 @@ function Validation() {
         }
         const data = utils.sheet_to_csv(
           workbook.Sheets[workbook.SheetNames[0]],
-          { FS: DELIMITER },
+          { FS: ',' },
         );
         readCSV(data);
       }
     }
+  };
+
+  const handleEmailChange = (emailAddress) => {
+    // /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+    // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/
+    // if (!/\S+@\S+\.\S+/.match(emailAddress)) {
+    //   setIsError(true);
+    //   setMessage('Adresse email invalide.');
+    // }
+    setEmail(emailAddress);
   };
 
   return (
@@ -319,9 +347,12 @@ function Validation() {
           <Row gutters>
             <Col n='12 lg-8'>
               <TextInput
+                autoComplete='email'
+                autoFocus
                 label='Email de contact'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => handleEmailChange(e.target.value)}
                 required
+                type='email'
                 value={email}
               />
             </Col>
@@ -371,12 +402,14 @@ function Validation() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              {(!!doiCount
-                || !!halCollCodeCount
-                || !!halIdCount
-                || !!halStructIdCount
-                || !!nntEtabCount
-                || !!nntIdCount) && (
+              {!!(
+                doiCount
+                || halCollCodeCount
+                || halIdCount
+                || halStructIdCount
+                || nntEtabCount
+                || nntIdCount
+              ) && (
                 <div>
                   Ce fichier contient :
                   <ul>
