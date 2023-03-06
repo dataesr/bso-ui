@@ -469,7 +469,7 @@ export default function getFetchOptions({
       aggs: {
         by_journal: {
           terms: {
-            field: 'journal_title.keyword',
+            field: 'journal_issn_l.keyword',
             size: 1000,
           },
         },
