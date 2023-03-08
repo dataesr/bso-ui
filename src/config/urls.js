@@ -175,6 +175,10 @@ export default {
     fr: '/a-propos/glossaire',
     en: '/about/glossary',
   },
+  communication: {
+    fr: '/a-propos/communication',
+    en: '/about/communication',
+  },
   flash: {
     fr: '/a-propos/notes-flash',
     en: '/about/notes',

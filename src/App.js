@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import WebTracking from './components/WebTracking';
 import PageTracker from './components/WebTracking/PageTracker';
+import Communication from './pages/APropos/Communication';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
@@ -208,6 +209,17 @@ function App() {
               element={(
                 <PageTracker>
                   <NotesFlash />
+                </PageTracker>
+              )}
+            />
+          ))}
+          {Object.keys(urls.communication).map((key) => (
+            <Route
+              exact
+              path={urls.communication[key]}
+              element={(
+                <PageTracker>
+                  <Communication />
                 </PageTracker>
               )}
             />
