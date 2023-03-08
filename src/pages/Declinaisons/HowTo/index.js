@@ -1,4 +1,6 @@
 import {
+  Accordion,
+  AccordionItem,
   Button,
   Col,
   Container,
@@ -124,430 +126,456 @@ function HowTo() {
           </Row>
           <Row gutters>
             <Col n='12 lg-8'>
-              <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_01'>
-                A - Définition du périmètre du BSO local
-              </h4>
-              <p>
-                <b>
+              <Accordion>
+                <AccordionItem title='1. Définition du périmètre du BSO local'>
+                  <p>
+                    <b>
+                      {' '}
+                      Un seul fichier est attendu toutes années confondues.
+                      Aucune donnée concernant les APC n'est à fournir.
+                    </b>
+                  </p>
+                  Le périmètre de chaque BSO local reste entièrement à la main
+                  de l'établissement ou du laboratoire. Il est possible de
+                  remonter une ou plusieurs des informations
                   {' '}
-                  Un seul fichier est attendu toutes années confondues. Aucune
-                  donnée concernant les APC n'est à fournir.
-                </b>
-              </p>
-              Le périmètre de chaque BSO local reste entièrement à la main de
-              l'établissement ou du laboratoire. Il est possible de remonter une
-              ou plusieurs des informations
-              {' '}
-              <b>complémentaires</b>
-              {' '}
-              suivantes :
-              <ul>
-                <li>
-                  -
-                  <span className='marianne-bold'> liste de DOI </span>
-                  (à partir des sources à votre disposition)
-                  <em> ex: 10.1016/j.chemgeo.2016.10.031</em>
-                </li>
-                <li>
-                  -
-                  <span className='marianne-bold'>
-                    {' '}
-                    liste d'identifiants structure dans HAL (structId)
-                    {' '}
-                  </span>
-                  <em> ex: 413289</em>
-                </li>
-                <li>
-                  -
-                  <span className='marianne-bold'>
-                    {' '}
-                    liste de codes collection dans HAL
-                    {' '}
-                  </span>
-                  <em> ex: UNIV-LORRAINE </em>
-                </li>
-                <li>
-                  -
-                  <span className='marianne-bold'>
-                    {' '}
-                    liste d'identifiants HAL de publications
-                    {' '}
-                  </span>
-                  <em> ex: hal-03651518</em>
-                </li>
-                <li>
-                  -
-                  <span className='marianne-bold'>
-                    {' '}
-                    liste de codes établissement pour les thèses
-                    {' '}
-                  </span>
-                  <em> ex: LORR</em>
-                </li>
-                <li>
-                  -
-                  <span className='marianne-bold'>
-                    {' '}
-                    liste d'identifiants NNT pour les thèses
-                    {' '}
-                  </span>
-                  <em> ex: 2019LORR0153</em>
-                </li>
-              </ul>
-              <p>
-                Chaque information peut contenir une ou plusieurs valeurs. Ces
-                valeurs sont rensignées dans une colonne dédiée du ficher.
-                <b> Chaque colonne est indépendante des autres.</b>
-              </p>
-              <p>
-                Chaque colonne permet de relier des productions à votre BSO
-                local. Ainsi, la colonne hal_struct_id permet par exemple de
-                relier automatiquement toutes les productions de HAL avec cet
-                identifiant à votre BSO local.
-              </p>
-              <p>
-                <table>
-                  <thead>
-                    <tr>
-                      <th className='doiCol'>doi</th>
-                      <th className='halStructCol'>hal_struct_id</th>
-                      <th className='halCollCol'>hal_coll_code</th>
-                      <th className='halIdCol'>hal_id</th>
-                      <th className='nntEtabCol'>nnt_etab</th>
-                      <th className='nntIdCol'>nnt_id</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className='doiCol'>10.1016/j.chemgeo.2016.10.031</td>
-                      <td className='halStructCol'>413289</td>
-                      <td className='halCollCol'>UNIV-LORRAINE</td>
-                      <td> </td>
-                      <td className='nntEtabCol'>LORR</td>
-                      <td> </td>
-                    </tr>
-                    <tr>
-                      <td className='doiCol'>10.1371/journal.pone.0168349</td>
-                    </tr>
-                    <tr>
-                      <td className='doiCol'>10.1016/j.jpowsour.2016.10.037</td>
-                    </tr>
-                    <tr>
-                      <td className='doiCol'>10.1016/j.jpowsour.2016.10.035</td>
-                    </tr>
-                    <tr>
-                      <td className='doiCol'>10.1021/acs.jpcc.6b09974</td>
-                    </tr>
-                  </tbody>
-                </table>
-                Dans cet exemple, la colonne hal_id est vide (la colonne peut
-                être omise) car tous les liens sont gérés par l'identifiant
-                structure et collection. De même pour la colonne nnt_id car le
-                rattachement des thèses est géré dans cet exemple uniquement par
-                le code établissement.
-              </p>
-              <p>
-                <b>
-                  Tout l'historique doit être fourni dans le fichier, pour
-                  chaque mise à jour.
+                  <b>complémentaires</b>
                   {' '}
-                </b>
-                Pour les publications, nous remontons jusqu'à 2013, année de
-                publication.
-              </p>
-              <p>
-                <b> Un seul fichier est attendu toutes années confondues.</b>
-              </p>
-              <p>
-                Toutes ces informations doivent figurer dans un unique fichier
-                (voir exemple ci-dessous).
-              </p>
-              <p>
-                <b> NB: Aucune donnée concernant les APC n'est à fournir.</b>
-              </p>
-              <Col offset='2 md-4'>
-                <div className='button-link marianne-bold relative my-button'>
-                  <DSIcon
-                    className='ds-fr--v-middle'
-                    size='xl'
-                    name='ri-arrow-right-line'
-                    iconPosition='right'
-                  >
-                    <a href='https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso_dump/BSO_local.csv'>
-                      Voir un fichier d'exemple
+                  suivantes :
+                  <ul>
+                    <li>
+                      -
+                      <span className='marianne-bold'> liste de DOI </span>
+                      (à partir des sources à votre disposition)
+                      <em> ex: 10.1016/j.chemgeo.2016.10.031</em>
+                    </li>
+                    <li>
+                      -
+                      <span className='marianne-bold'>
+                        {' '}
+                        liste d'identifiants structure dans HAL (structId)
+                        {' '}
+                      </span>
+                      <em> ex: 413289</em>
+                    </li>
+                    <li>
+                      -
+                      <span className='marianne-bold'>
+                        {' '}
+                        liste de codes collection dans HAL
+                        {' '}
+                      </span>
+                      <em> ex: UNIV-LORRAINE </em>
+                    </li>
+                    <li>
+                      -
+                      <span className='marianne-bold'>
+                        {' '}
+                        liste d'identifiants HAL de publications
+                        {' '}
+                      </span>
+                      <em> ex: hal-03651518</em>
+                    </li>
+                    <li>
+                      -
+                      <span className='marianne-bold'>
+                        {' '}
+                        liste de codes établissement pour les thèses
+                        {' '}
+                      </span>
+                      <em> ex: LORR</em>
+                    </li>
+                    <li>
+                      -
+                      <span className='marianne-bold'>
+                        {' '}
+                        liste d'identifiants NNT pour les thèses
+                        {' '}
+                      </span>
+                      <em> ex: 2019LORR0153</em>
+                    </li>
+                  </ul>
+                  <p>
+                    Chaque information peut contenir une ou plusieurs valeurs.
+                    Ces valeurs sont rensignées dans une colonne dédiée du
+                    ficher.
+                    <b> Chaque colonne est indépendante des autres.</b>
+                  </p>
+                  <p>
+                    Chaque colonne permet de relier des productions à votre BSO
+                    local. Ainsi, la colonne hal_struct_id permet par exemple de
+                    relier automatiquement toutes les productions de HAL avec
+                    cet identifiant à votre BSO local.
+                  </p>
+                  <p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th className='doiCol'>doi</th>
+                          <th className='halStructCol'>hal_struct_id</th>
+                          <th className='halCollCol'>hal_coll_code</th>
+                          <th className='halIdCol'>hal_id</th>
+                          <th className='nntEtabCol'>nnt_etab</th>
+                          <th className='nntIdCol'>nnt_id</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className='doiCol'>
+                            10.1016/j.chemgeo.2016.10.031
+                          </td>
+                          <td className='halStructCol'>413289</td>
+                          <td className='halCollCol'>UNIV-LORRAINE</td>
+                          <td> </td>
+                          <td className='nntEtabCol'>LORR</td>
+                          <td> </td>
+                        </tr>
+                        <tr>
+                          <td className='doiCol'>
+                            10.1371/journal.pone.0168349
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className='doiCol'>
+                            10.1016/j.jpowsour.2016.10.037
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className='doiCol'>
+                            10.1016/j.jpowsour.2016.10.035
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className='doiCol'>10.1021/acs.jpcc.6b09974</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    Dans cet exemple, la colonne hal_id est vide (la colonne
+                    peut être omise) car tous les liens sont gérés par
+                    l'identifiant structure et collection. De même pour la
+                    colonne nnt_id car le rattachement des thèses est géré dans
+                    cet exemple uniquement par le code établissement.
+                  </p>
+                  <p>
+                    <b>
+                      Tout l'historique doit être fourni dans le fichier, pour
+                      chaque mise à jour.
+                      {' '}
+                    </b>
+                    Pour les publications, nous remontons jusqu'à 2013, année de
+                    publication.
+                  </p>
+                  <p>
+                    <b>
+                      {' '}
+                      Un seul fichier est attendu toutes années confondues.
+                    </b>
+                  </p>
+                  <p>
+                    Toutes ces informations doivent figurer dans un unique
+                    fichier (voir exemple ci-dessous).
+                  </p>
+                  <p>
+                    <b>
+                      {' '}
+                      NB: Aucune donnée concernant les APC n'est à fournir.
+                    </b>
+                  </p>
+                  <Col offset='2 md-4'>
+                    <div className='button-link marianne-bold relative my-button'>
+                      <DSIcon
+                        className='ds-fr--v-middle'
+                        size='xl'
+                        name='ri-arrow-right-line'
+                        iconPosition='right'
+                      >
+                        <a href='https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso_dump/BSO_local.csv'>
+                          Voir un fichier d'exemple
+                        </a>
+                      </DSIcon>
+                    </div>
+                  </Col>
+                </AccordionItem>
+                <AccordionItem title='2. Envoyez-nous votre fichier'>
+                  Une fois votre fichier réalisé, vous pouvez nous le
+                  transmettre par email
+                  {' '}
+                  <span className='underline marianne-bold'>
+                    <a href='mailto:bso@recherche.gouv.fr'>
+                      bso@recherche.gouv.fr
                     </a>
-                  </DSIcon>
-                </div>
-              </Col>
-              <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_02'>
-                B - Envoyez-nous votre fichier
-              </h4>
-              Une fois votre fichier réalisé, vous pouvez nous le transmettre
-              par email
-              {' '}
-              <span className='underline marianne-bold'>
-                <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
-              </span>
-              {' '}
-              et nous
-              <span className='marianne-bold'> préciser</span>
-              :
-              <ul>
-                <li>
-                  -
-                  <span className='marianne-bold'>
-                    {' '}
-                    le nom complet de l'établissement
                   </span>
-                </li>
-                <li>
-                  - (si besoin)
-                  <span className='marianne-bold'>
-                    {' '}
-                    le nom court (ou acronyme) de l'établissement
-                  </span>
-                </li>
-                <li>
-                  -
-                  <span className='marianne-bold'> la période couverte </span>
-                  (années de publication couvertes)
-                </li>
-              </ul>
-              Un meilleur système de remontée sera probablement mis en place
-              dans le futur.
-              <br />
-              Vous pouvez nous envoyer votre fichier tout au long de l'année.
-              Les dates de constitution et d'envoi de ce fichier n'ont pas
-              d'incidence sur les graphiques générés car ceux-ci reposent sur
-              des "snapshots" des outils utilisés (Unpaywall, PubMed...).
-              <h4 className='marianne-bold fs-24-32 bd125 mt-40' id='step_03'>
-                C - Intégration des graphiques générés (via iFrame)
-              </h4>
-              <br />
-              <br />
-              <section
-                style={{
-                  backgroundColor: getCSSValue('--blue-soft-25'),
-                  padding: '28px',
-                }}
-              >
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <TextInput
-                      hint="Si périmètre ad-hoc, identifant communiqué par l'équipe BSO ou grid ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
-                      label="Identifiant de l'établissement"
-                      message='Merci de saisir un identifiant'
-                      messageType={bsoLocalAffiliation === '' ? 'error' : ''}
-                      onChange={(e) => setBsoLocalAffiliation(e.target.value)}
-                      required
-                      style={{ backgroundColor: getCSSValue('--white') }}
-                      value={bsoLocalAffiliation}
-                    />
-                  </Col>
-                  <Col n='12 md-6'>
-                    <Select
-                      label='Langue'
-                      onChange={(e) => setLang(e.target.value)}
-                      options={langs}
-                      selected={lang}
-                      style={{
-                        'margin-top': '50px',
-                        backgroundColor: getCSSValue('--white'),
-                      }}
-                    />
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <Select
-                      label='Objet de recherche'
-                      hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
-                      onChange={(e) => changeObject(e.target.value)}
-                      options={objects}
-                      selected={object}
-                      style={{ backgroundColor: getCSSValue('--white') }}
-                    />
-                  </Col>
-                  <Col n='12 md-6'>
-                    <Select
-                      label='Onglet'
-                      onChange={(e) => changeTab(e.target.value)}
-                      options={tabs}
-                      selected={tab}
-                      style={{
-                        'margin-top': '50px',
-                        backgroundColor: getCSSValue('--white'),
-                      }}
-                    />
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12 md-12'>
-                    <Select
-                      label='Graphique'
-                      onChange={(e) => changeGraph(e.target.value)}
-                      options={graphs}
-                      selected={graph}
-                      style={{ backgroundColor: getCSSValue('--white') }}
-                    />
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <Select
-                      hint="Filtre sur l'année de publication supérieure ou égale"
-                      label='Première année de publication'
-                      onChange={(e) => setStartYear(e.target.value)}
-                      options={publicationYears}
-                      selected={startYear}
-                      style={{ backgroundColor: getCSSValue('--white') }}
-                    />
-                  </Col>
-                  <Col n='12 md-6'>
-                    <Select
-                      hint="Filtre sur l'année de publication inférieure ou égale"
-                      label='Dernière année de publication'
-                      message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
-                      messageType={endYear < startYear ? 'error' : ''}
-                      onChange={(e) => setEndYear(e.target.value)}
-                      options={publicationYears}
-                      selected={endYear}
-                      style={{ backgroundColor: getCSSValue('--white') }}
-                    />
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <Select
-                      hint="Filtre sur l'année d'observation inférieure ou égale"
-                      label="Première année d'observation"
-                      onChange={(e) => setFirstObservationYear(e.target.value)}
-                      options={observationYears}
-                      selected={firstObservationYear}
-                      style={{ backgroundColor: getCSSValue('--white') }}
-                    />
-                  </Col>
-                  <Col n='12 md-6'>
-                    <Select
-                      hint="Filtre sur l'année d'observation supérieure ou égale"
-                      label="Dernière année d'observation"
-                      onChange={(e) => setLastObservationYear(e.target.value)}
-                      options={observationYears}
-                      selected={lastObservationYear}
-                      style={{ backgroundColor: getCSSValue('--white') }}
-                      messageType={
-                        lastObservationYear < firstObservationYear
-                          ? 'error'
-                          : ''
-                      }
-                      message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
-                    />
-                  </Col>
-                </Row>
-                <hr />
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <Toggle
-                      checked={displayTitle}
-                      hasLabelLeft
-                      label='Afficher le titre du graphique'
-                      onChange={() => setDisplayTitle(!displayTitle)}
-                    />
-                  </Col>
-                  <Col n='12 md-6'>
-                    <Toggle
-                      checked={displayComment}
-                      hasLabelLeft
-                      label='Afficher le commentaire du graphique'
-                      onChange={() => setDisplayComment(!displayComment)}
-                    />
-                  </Col>
-                </Row>
-                <hr />
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <Toggle
-                      checked={displayFooter}
-                      hasLabelLeft
-                      label='Afficher le footer du graphique'
-                      onChange={() => setDisplayFooter(!displayFooter)}
-                    />
-                  </Col>
-                  <Col n='12 md-6'>
-                    <Toggle
-                      checked={useHalId}
-                      hasLabelLeft
-                      label='Inclure les identifants de HAL'
-                      onChange={() => setUseHalId(!useHalId)}
-                    />
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12' className='studio'>
-                    {getIframeSnippet()}
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12'>
-                    <TextInput
-                      disabled
-                      hint='À copier/coller sur votre page web'
-                      label="Code de l'iframe"
-                      rows={7}
-                      textarea
-                      type='text'
-                    >
-                      {ReactDOMServer.renderToString(getIframeSnippet())}
-                    </TextInput>
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <CopyToClipboard
-                      text={ReactDOMServer.renderToString(getIframeSnippet())}
-                    >
-                      <Button icon='ri-clipboard-fill' iconPosition='right'>
-                        Copier le code de l'iframe
-                      </Button>
-                    </CopyToClipboard>
-                  </Col>
-                  <Col n='12 md-6'>
-                    <CopyToClipboard text={getGraphUrl()}>
-                      <Button icon='ri-clipboard-fill' iconPosition='right'>
-                        Copier l'url
-                      </Button>
-                    </CopyToClipboard>
-                  </Col>
-                </Row>
-                <Row gutters>
-                  <Col n='12 md-6'>
-                    <Button
-                      icon='ri-download-fill'
-                      iconPosition='right'
-                      onClick={() => downloadFile({
-                        content: csvContent,
-                        name: 'bso_urls.csv',
-                        type: 'octet/stream',
-                      })}
-                    >
-                      Télécharger la liste des urls des graphiques (.csv)
-                    </Button>
-                  </Col>
-                  <Col n='12 md-6'>
-                    <Button
-                      icon='ri-download-fill'
-                      iconPosition='right'
-                      onClick={() => downloadFile({
-                        content: htmlContent,
-                        name: 'bso_graphs.html',
-                        type: 'octet/stream',
-                      })}
-                    >
-                      Télécharger la liste des graphiques (.html)
-                    </Button>
-                  </Col>
-                </Row>
-              </section>
+                  {' '}
+                  et nous
+                  <span className='marianne-bold'> préciser</span>
+                  :
+                  <ul>
+                    <li>
+                      -
+                      <span className='marianne-bold'>
+                        {' '}
+                        le nom complet de l'établissement
+                      </span>
+                    </li>
+                    <li>
+                      - (si besoin)
+                      <span className='marianne-bold'>
+                        {' '}
+                        le nom court (ou acronyme) de l'établissement
+                      </span>
+                    </li>
+                    <li>
+                      -
+                      <span className='marianne-bold'>
+                        {' '}
+                        la période couverte
+                        {' '}
+                      </span>
+                      (années de publication couvertes)
+                    </li>
+                  </ul>
+                  Un meilleur système de remontée sera probablement mis en place
+                  dans le futur.
+                  <br />
+                  Vous pouvez nous envoyer votre fichier tout au long de
+                  l'année. Les dates de constitution et d'envoi de ce fichier
+                  n'ont pas d'incidence sur les graphiques générés car ceux-ci
+                  reposent sur des "snapshots" des outils utilisés (Unpaywall,
+                  PubMed...).
+                </AccordionItem>
+                <AccordionItem
+                  title='3. Intégration des graphiques générés (via iFrame)'
+                  initExpand
+                >
+                  <section
+                    style={{
+                      backgroundColor: getCSSValue('--blue-soft-25'),
+                      padding: '28px',
+                    }}
+                  >
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <TextInput
+                          hint="Si périmètre ad-hoc, identifant communiqué par l'équipe BSO ou grid ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
+                          label="Identifiant de l'établissement"
+                          message='Merci de saisir un identifiant'
+                          messageType={
+                            bsoLocalAffiliation === '' ? 'error' : ''
+                          }
+                          onChange={(e) => setBsoLocalAffiliation(e.target.value)}
+                          required
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                          value={bsoLocalAffiliation}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          label='Langue'
+                          onChange={(e) => setLang(e.target.value)}
+                          options={langs}
+                          selected={lang}
+                          style={{
+                            'margin-top': '50px',
+                            backgroundColor: getCSSValue('--white'),
+                          }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Select
+                          label='Objet de recherche'
+                          hint='Les indicateurs sur les essais cliniques ne sont pas (encore) déclinables.'
+                          onChange={(e) => changeObject(e.target.value)}
+                          options={objects}
+                          selected={object}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          label='Onglet'
+                          onChange={(e) => changeTab(e.target.value)}
+                          options={tabs}
+                          selected={tab}
+                          style={{
+                            'margin-top': '50px',
+                            backgroundColor: getCSSValue('--white'),
+                          }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-12'>
+                        <Select
+                          label='Graphique'
+                          onChange={(e) => changeGraph(e.target.value)}
+                          options={graphs}
+                          selected={graph}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année de publication supérieure ou égale"
+                          label='Première année de publication'
+                          onChange={(e) => setStartYear(e.target.value)}
+                          options={publicationYears}
+                          selected={startYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année de publication inférieure ou égale"
+                          label='Dernière année de publication'
+                          message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
+                          messageType={endYear < startYear ? 'error' : ''}
+                          onChange={(e) => setEndYear(e.target.value)}
+                          options={publicationYears}
+                          selected={endYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année d'observation inférieure ou égale"
+                          label="Première année d'observation"
+                          onChange={(e) => setFirstObservationYear(e.target.value)}
+                          options={observationYears}
+                          selected={firstObservationYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Select
+                          hint="Filtre sur l'année d'observation supérieure ou égale"
+                          label="Dernière année d'observation"
+                          onChange={(e) => setLastObservationYear(e.target.value)}
+                          options={observationYears}
+                          selected={lastObservationYear}
+                          style={{ backgroundColor: getCSSValue('--white') }}
+                          messageType={
+                            lastObservationYear < firstObservationYear
+                              ? 'error'
+                              : ''
+                          }
+                          message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
+                        />
+                      </Col>
+                    </Row>
+                    <hr />
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={displayTitle}
+                          hasLabelLeft
+                          label='Afficher le titre du graphique'
+                          onChange={() => setDisplayTitle(!displayTitle)}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={displayComment}
+                          hasLabelLeft
+                          label='Afficher le commentaire du graphique'
+                          onChange={() => setDisplayComment(!displayComment)}
+                        />
+                      </Col>
+                    </Row>
+                    <hr />
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={displayFooter}
+                          hasLabelLeft
+                          label='Afficher le footer du graphique'
+                          onChange={() => setDisplayFooter(!displayFooter)}
+                        />
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Toggle
+                          checked={useHalId}
+                          hasLabelLeft
+                          label='Inclure les identifants de HAL'
+                          onChange={() => setUseHalId(!useHalId)}
+                        />
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12' className='studio'>
+                        {getIframeSnippet()}
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12'>
+                        <TextInput
+                          disabled
+                          hint='À copier/coller sur votre page web'
+                          label="Code de l'iframe"
+                          rows={7}
+                          textarea
+                          type='text'
+                        >
+                          {ReactDOMServer.renderToString(getIframeSnippet())}
+                        </TextInput>
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <CopyToClipboard
+                          text={ReactDOMServer.renderToString(
+                            getIframeSnippet(),
+                          )}
+                        >
+                          <Button icon='ri-clipboard-fill' iconPosition='right'>
+                            Copier le code de l'iframe
+                          </Button>
+                        </CopyToClipboard>
+                      </Col>
+                      <Col n='12 md-6'>
+                        <CopyToClipboard text={getGraphUrl()}>
+                          <Button icon='ri-clipboard-fill' iconPosition='right'>
+                            Copier l'url
+                          </Button>
+                        </CopyToClipboard>
+                      </Col>
+                    </Row>
+                    <Row gutters>
+                      <Col n='12 md-6'>
+                        <Button
+                          icon='ri-download-fill'
+                          iconPosition='right'
+                          onClick={() => downloadFile({
+                            content: csvContent,
+                            name: 'bso_urls.csv',
+                            type: 'octet/stream',
+                          })}
+                        >
+                          Télécharger la liste des urls des graphiques (.csv)
+                        </Button>
+                      </Col>
+                      <Col n='12 md-6'>
+                        <Button
+                          icon='ri-download-fill'
+                          iconPosition='right'
+                          onClick={() => downloadFile({
+                            content: htmlContent,
+                            name: 'bso_graphs.html',
+                            type: 'octet/stream',
+                          })}
+                        >
+                          Télécharger la liste des graphiques (.html)
+                        </Button>
+                      </Col>
+                    </Row>
+                  </section>
+                </AccordionItem>
+              </Accordion>
             </Col>
           </Row>
         </section>
