@@ -86,17 +86,17 @@ export default function NationalSoftwareCode() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/software/general?id=general.partage',
-                    fr: '/codes-et-logiciels/general?id=general.partage',
+                    en: '/software/general?id=general.utilisation',
+                    fr: '/codes-et-logiciels/general?id=general.utilisation',
                   },
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.software.navigation.partage',
+                    id: 'app.software.navigation.utilisation',
                   }),
                   href: {
-                    en: '/software/general?id=general.partage',
-                    fr: '/codes-et-logiciels/general?id=general.partage',
+                    en: '/software/general?id=general.utilisation',
+                    fr: '/codes-et-logiciels/general?id=general.utilisation',
                   },
                 },
                 {
@@ -110,24 +110,24 @@ export default function NationalSoftwareCode() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.software.navigation.utilisation',
+                    id: 'app.software.navigation.partage',
                   }),
                   href: {
-                    en: '/software/general?id=general.utilisation',
-                    fr: '/codes-et-logiciels/general?id=general.utilisation',
+                    en: '/software/general?id=general.partage',
+                    fr: '/codes-et-logiciels/general?id=general.partage',
                   },
                 },
               ]}
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-software.general.partage'
+                  intlKey='app.national-software.general.utilisation'
                   glossaryKeys={['grobid', 'softcite']}
-                  backgroundColor={blueSoft50}
-                  anchorId='general.partage'
+                  backgroundColor={blueSoft25}
+                  anchorId='general.utilisation'
                 >
                   <BSOChart
-                    id='software.general.voies-ouverture.chart-software-shared'
+                    id='software.general.voies-ouverture.chart-software-used'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -143,13 +143,13 @@ export default function NationalSoftwareCode() {
                   />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-software.general.utilisation'
+                  intlKey='app.national-software.general.partage'
                   glossaryKeys={['grobid', 'softcite']}
-                  backgroundColor={blueSoft25}
-                  anchorId='general.utilisation'
+                  backgroundColor={blueSoft50}
+                  anchorId='general.partage'
                 >
                   <BSOChart
-                    id='software.general.voies-ouverture.chart-software-used'
+                    id='software.general.voies-ouverture.chart-software-shared'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -168,17 +168,17 @@ export default function NationalSoftwareCode() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/software/fields?id=disciplines.partage',
-                    fr: '/codes-et-logiciels/disciplines?id=disciplines.partage',
+                    en: '/software/fields?id=disciplines.utilisation',
+                    fr: '/codes-et-logiciels/disciplines?id=disciplines.utilisation',
                   },
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.software.navigation.disciplines.partage',
+                    id: 'app.software.navigation.disciplines.utilisation',
                   }),
                   href: {
-                    en: '/software/fields?id=disciplines.partage',
-                    fr: '/codes-et-logiciels/disciplines?id=disciplines.partage',
+                    en: '/software/fields?id=disciplines.utilisation',
+                    fr: '/codes-et-logiciels/disciplines?id=disciplines.utilisation',
                   },
                 },
                 {
@@ -192,23 +192,23 @@ export default function NationalSoftwareCode() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.software.navigation.disciplines.utilisation',
+                    id: 'app.software.navigation.disciplines.partage',
                   }),
                   href: {
-                    en: '/software/fields?id=disciplines.utilisation',
-                    fr: '/codes-et-logiciels/disciplines?id=disciplines.utilisation',
+                    en: '/software/fields?id=disciplines.partage',
+                    fr: '/codes-et-logiciels/disciplines?id=disciplines.partage',
                   },
                 },
               ]}
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-software.disciplines.partage'
+                  intlKey='app.national-software.disciplines.utilisation'
                   backgroundColor={blueSoft50}
-                  anchorId='disciplines.partage'
+                  anchorId='disciplines.utilisation'
                 >
                   <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-software-shared'
+                    id='software.disciplines.voies-ouverture.chart-software-used'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -223,12 +223,12 @@ export default function NationalSoftwareCode() {
                   />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-software.disciplines.utilisation'
+                  intlKey='app.national-software.disciplines.partage'
                   backgroundColor={blueSoft50}
-                  anchorId='disciplines.utilisation'
+                  anchorId='disciplines.partage'
                 >
                   <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-software-used'
+                    id='software.disciplines.voies-ouverture.chart-software-shared'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>

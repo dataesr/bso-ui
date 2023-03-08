@@ -87,17 +87,17 @@ export default function NationalResearchData() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/research-data/general?id=general.partage',
-                    fr: '/donnees-de-la-recherche/general?id=general.partage',
+                    en: '/research-data/general?id=general.utilisation',
+                    fr: '/donnees-de-la-recherche/general?id=general.utilisation',
                   },
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.data.navigation.partage',
+                    id: 'app.data.navigation.utilisation',
                   }),
                   href: {
-                    en: '/research-data/general?id=general.partage',
-                    fr: '/donnees-de-la-recherche/general?id=general.partage',
+                    en: '/research-data/general?id=general.utilisation',
+                    fr: '/donnees-de-la-recherche/general?id=general.utilisation',
                   },
                 },
                 {
@@ -111,11 +111,11 @@ export default function NationalResearchData() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.data.navigation.utilisation',
+                    id: 'app.data.navigation.partage',
                   }),
                   href: {
-                    en: '/research-data/general?id=general.utilisation',
-                    fr: '/donnees-de-la-recherche/general?id=general.utilisation',
+                    en: '/research-data/general?id=general.partage',
+                    fr: '/donnees-de-la-recherche/general?id=general.partage',
                   },
                 },
                 {
@@ -131,13 +131,13 @@ export default function NationalResearchData() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-data.general.partage'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
-                  anchorId='general.partage'
+                  intlKey='app.national-data.general.utilisation'
+                  glossaryKeys={['archive-ouverte']}
+                  backgroundColor={blueSoft25}
+                  anchorId='general.utilisation'
                 >
                   <BSOChart
-                    id='data.general.voies-ouverture.chart-data-shared'
+                    id='data.general.voies-ouverture.chart-data-used'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -153,13 +153,13 @@ export default function NationalResearchData() {
                   />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.general.utilisation'
-                  glossaryKeys={['archive-ouverte']}
-                  backgroundColor={blueSoft25}
-                  anchorId='general.utilisation'
+                  intlKey='app.national-data.general.partage'
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.partage'
                 >
                   <BSOChart
-                    id='data.general.voies-ouverture.chart-data-used'
+                    id='data.general.voies-ouverture.chart-data-shared'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -192,17 +192,17 @@ export default function NationalResearchData() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/research-data/fields?id=disciplines.partage',
-                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.partage',
+                    en: '/research-data/fields?id=disciplines.utilisation',
+                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.utilisation',
                   },
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.data.navigation.disciplines.partage',
+                    id: 'app.data.navigation.disciplines.utilisation',
                   }),
                   href: {
-                    en: '/research-data/fields?id=disciplines.partage',
-                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.partage',
+                    en: '/research-data/fields?id=disciplines.utilisation',
+                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.utilisation',
                   },
                 },
                 {
@@ -216,11 +216,11 @@ export default function NationalResearchData() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.data.navigation.disciplines.utilisation',
+                    id: 'app.data.navigation.disciplines.partage',
                   }),
                   href: {
-                    en: '/research-data/fields?id=disciplines.utilisation',
-                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.utilisation',
+                    en: '/research-data/fields?id=disciplines.partage',
+                    fr: '/donnees-de-la-recherche/disciplines?id=disciplines.partage',
                   },
                 },
                 {
@@ -236,12 +236,12 @@ export default function NationalResearchData() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-data.disciplines.partage'
+                  intlKey='app.national-data.disciplines.utilisation'
                   backgroundColor={blueSoft50}
-                  anchorId='disciplines.partage'
+                  anchorId='disciplines.utilisation'
                 >
                   <BSOChart
-                    id='data.disciplines.voies-ouverture.chart-data-shared'
+                    id='data.disciplines.voies-ouverture.chart-data-used'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
@@ -256,12 +256,12 @@ export default function NationalResearchData() {
                   />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.disciplines.utilisation'
+                  intlKey='app.national-data.disciplines.partage'
                   backgroundColor={blueSoft50}
-                  anchorId='disciplines.utilisation'
+                  anchorId='disciplines.partage'
                 >
                   <BSOChart
-                    id='data.disciplines.voies-ouverture.chart-data-used'
+                    id='data.disciplines.voies-ouverture.chart-data-shared'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
