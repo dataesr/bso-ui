@@ -39,13 +39,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     const agencyTitle = agency !== 'ANR - global' ? ` (${agency})` : '';
     data.dataTitle = { agencyTitle };
     setOptionsGraph(
-      chartOptions[id].getOptions(
-        idWithDomain,
-        intl,
-        categories,
-        dataGraph2,
-        agency,
-      ),
+      chartOptions[id].getOptions(idWithDomain, intl, categories, dataGraph2),
     );
   }, [data, idWithDomain, intl, agency, categories, dataGraph2, id]);
   useEffect(() => {

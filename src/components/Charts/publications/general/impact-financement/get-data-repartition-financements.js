@@ -91,7 +91,6 @@ function useGetData(observationSnap, needle = '*', domain) {
         ix += 1;
       }
     });
-    console.log('tttt', dataGraph2);
 
     return {
       categories,
@@ -100,10 +99,8 @@ function useGetData(observationSnap, needle = '*', domain) {
   }
 
   useEffect(() => {
-    console.log('ttt7', needle);
     async function getData() {
       try {
-        console.log('ttttry', needle);
         const dataGraph = await getDataForLastObservationSnap(observationSnap);
         setData(dataGraph);
       } catch (e) {
