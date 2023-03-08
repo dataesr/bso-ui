@@ -23,7 +23,6 @@ import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
 import HowTo from './pages/Declinaisons/HowTo';
-import Validation from './pages/Declinaisons/Validation';
 import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
@@ -242,17 +241,6 @@ function App() {
               element={(
                 <PageTracker>
                   <HowTo />
-                </PageTracker>
-              )}
-            />
-          ))}
-          {Object.keys(urls.validation).map((key) => (
-            <Route
-              exact
-              path={urls.validation[key]}
-              element={(
-                <PageTracker>
-                  <Validation />
                 </PageTracker>
               )}
             />

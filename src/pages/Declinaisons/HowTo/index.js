@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import Studio from '../../../components/Studio';
+import SubmissionForm from '../../../components/SubmissionForm';
 
 function HowTo() {
   const renderIcons = (
@@ -50,7 +51,7 @@ function HowTo() {
           <Row gutters>
             <Col n='12 lg-8'>
               <Accordion>
-                <AccordionItem title='1. Définition du périmètre du BSO local'>
+                <AccordionItem title='1. Définissez le périmètre de votre BSO local'>
                   <p>
                     <b>
                       {' '}
@@ -220,54 +221,10 @@ function HowTo() {
                   </Col>
                 </AccordionItem>
                 <AccordionItem title='2. Envoyez-nous votre fichier'>
-                  Une fois votre fichier réalisé, vous pouvez nous le
-                  transmettre par email
-                  {' '}
-                  <span className='underline marianne-bold'>
-                    <a href='mailto:bso@recherche.gouv.fr'>
-                      bso@recherche.gouv.fr
-                    </a>
-                  </span>
-                  {' '}
-                  et nous
-                  <span className='marianne-bold'> préciser</span>
-                  :
-                  <ul>
-                    <li>
-                      -
-                      <span className='marianne-bold'>
-                        {' '}
-                        le nom complet de l'établissement
-                      </span>
-                    </li>
-                    <li>
-                      - (si besoin)
-                      <span className='marianne-bold'>
-                        {' '}
-                        le nom court (ou acronyme) de l'établissement
-                      </span>
-                    </li>
-                    <li>
-                      -
-                      <span className='marianne-bold'>
-                        {' '}
-                        la période couverte
-                        {' '}
-                      </span>
-                      (années de publication couvertes)
-                    </li>
-                  </ul>
-                  Un meilleur système de remontée sera probablement mis en place
-                  dans le futur.
-                  <br />
-                  Vous pouvez nous envoyer votre fichier tout au long de
-                  l'année. Les dates de constitution et d'envoi de ce fichier
-                  n'ont pas d'incidence sur les graphiques générés car ceux-ci
-                  reposent sur des "snapshots" des outils utilisés (Unpaywall,
-                  PubMed...).
+                  <SubmissionForm />
                 </AccordionItem>
                 <AccordionItem
-                  title='3. Intégration des graphiques générés (via iFrame)'
+                  title='3. Intégrez directement les graphiques générés (via iFrame)'
                   initExpand
                 >
                   <Studio />

@@ -83,6 +83,7 @@ const Studio = () => {
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .map((item) => ReactDOMServer.renderToString(getIframeSnippet(item.value)));
+
   return (
     <section
       style={{
