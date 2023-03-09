@@ -1,16 +1,16 @@
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
 import WebTracking from './components/WebTracking';
 import PageTracker from './components/WebTracking/PageTracker';
+import Communication from './pages/APropos/Communication';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
-import NotesFlash from './pages/APropos/NotesFlash';
 import OpenData from './pages/APropos/OpenData';
 import BaroNational from './pages/BaroNational';
 import NationalOrcid from './pages/BaroNational/NationalOrcid';
@@ -23,7 +23,6 @@ import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
 import HowTo from './pages/Declinaisons/HowTo';
-import Validation from './pages/Declinaisons/Validation';
 import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
@@ -202,13 +201,21 @@ function App() {
               )}
             />
           ))}
+          {/* Redirect Notes Flash into communication */}
           {Object.keys(urls.flash).map((key) => (
             <Route
               exact
               path={urls.flash[key]}
+              element={<Navigate to={urls.communication[key]} />}
+            />
+          ))}
+          {Object.keys(urls.communication).map((key) => (
+            <Route
+              exact
+              path={urls.communication[key]}
               element={(
                 <PageTracker>
-                  <NotesFlash />
+                  <Communication />
                 </PageTracker>
               )}
             />
@@ -242,17 +249,6 @@ function App() {
               element={(
                 <PageTracker>
                   <HowTo />
-                </PageTracker>
-              )}
-            />
-          ))}
-          {Object.keys(urls.validation).map((key) => (
-            <Route
-              exact
-              path={urls.validation[key]}
-              element={(
-                <PageTracker>
-                  <Validation />
                 </PageTracker>
               )}
             />

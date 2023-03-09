@@ -84,8 +84,8 @@ function BaroNational() {
         subTitle={<FormattedMessage id='app.header.subtitle' />}
         // subsubTitle={<FormattedMessage id='app.header.subsubtitle' />}
         link={{
-          label: <FormattedMessage id='app.notes.flash.see' />,
-          url: intl.formatMessage({ id: 'url.about.flash' }) + search,
+          label: <FormattedMessage id='app.communication.see' />,
+          url: intl.formatMessage({ id: 'url.about.communication' }) + search,
         }}
         icons={renderIcons}
         chip={<Chip />}

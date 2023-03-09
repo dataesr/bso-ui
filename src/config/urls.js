@@ -175,6 +175,10 @@ export default {
     fr: '/a-propos/glossaire',
     en: '/about/glossary',
   },
+  communication: {
+    fr: '/a-propos/communication',
+    en: '/about/communication',
+  },
   flash: {
     fr: '/a-propos/notes-flash',
     en: '/about/notes',
@@ -190,10 +194,6 @@ export default {
   howto: {
     fr: '/declinaisons/comment-realiser-bso-local',
     en: '/declinaisons/howto',
-  },
-  validation: {
-    fr: '/declinaisons/validation',
-    en: '/declinaisons/validation',
   },
   project: {
     fr: '/projet-et-equipe',

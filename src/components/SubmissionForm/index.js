@@ -5,17 +5,13 @@ import {
   Col,
   Container,
   File,
-  Icon as DSIcon,
   Row,
   TextInput,
 } from '@dataesr/react-dsfr';
 import Axios from 'axios';
 import Papa from 'papaparse';
 import { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { read, utils } from 'xlsx';
-
-import Banner from '../../../components/Banner';
 
 const SUPPORTED_MIME_TYPES = [
   'application/msexcel',
@@ -42,19 +38,7 @@ const nntEtabRegex = /^[a-zA-Z0-9]{4,6}$/;
 // https://documentation.abes.fr/sudoc/regles/Catalogage/Retro_CodeCourt_NNT.htm
 const nntIdRegex = /^(19|20)\d{2}[A-Z]{4}\w{4}$/;
 
-const renderIcons = (
-  <Row justifyContent='center' alignItems='middle' gutters>
-    <Col n='12'>
-      <DSIcon
-        name='icon-bsso-23'
-        color1='blue-soft-125'
-        color2='blue-soft-75'
-      />
-    </Col>
-  </Row>
-);
-
-function Validation() {
+const SubmissionForm = () => {
   const [acronym, setAcronym] = useState();
   const [doiCount, setDoiCount] = useState();
   const [email, setEmail] = useState();
@@ -315,99 +299,91 @@ function Validation() {
   };
 
   return (
-    <>
-      <div className='page validation'>
-        <Banner
-          backgroundColor='blue-soft-50'
-          textColor='blue-dark-150'
-          supTitle={<FormattedMessage id='app.header.title' />}
-          title={<FormattedMessage id='app.header.nav.a-propos-variations' />}
-          icons={renderIcons}
-        />
-      </div>
-      <Container>
-        <section className='content bd125 mb-20'>
-          <Row gutters>
-            <Col n='12 lg-8'>
-              <h2 className='marianne-bold fs-12-16'>
-                Formulaire de de mande de création ou de mise à jour d'un BSO
-              </h2>
-              <form onSubmit={sendEmail}>
-                <TextInput
-                  autoComplete='email'
-                  autoFocus
-                  label='Email de contact'
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  type='email'
-                  value={email}
-                />
-                <TextInput
-                  label='Nom de la structure'
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  value={name}
-                />
-                <TextInput
-                  label='Acronyme de la structure'
-                  onChange={(e) => setAcronym(e.target.value)}
-                  value={acronym}
-                />
-                <TextInput
-                  label='Première année de publication'
-                  onChange={(e) => setFirstPublicationYear(e.target.value)}
-                  type='number'
-                  value={firstPublicationYear}
-                />
-                <File
-                  hint='Fichier Excel ou CSV (séparateur point virgule ;). Merci de préciser le nom des colonnes.'
-                  label='Fichier de DOIs'
-                  onChange={handleFileChange}
-                />
-                {message && (
-                  <span className={isError ? 'text-red' : 'text-green'}>
-                    <div dangerouslySetInnerHTML={{ __html: message }} />
-                  </span>
-                )}
-                {!!(
-                  doiCount
-                  || halCollCodeCount
-                  || halIdCount
-                  || halStructIdCount
-                  || nntEtabCount
-                  || nntIdCount
-                ) && (
-                  <div>
-                    Ce fichier contient :
-                    <ul>
-                      {!!doiCount && <li>{`${doiCount} DOI`}</li>}
-                      {!!halCollCodeCount && (
-                        <li>{`${halCollCodeCount} hal_coll_code`}</li>
-                      )}
-                      {!!halIdCount && <li>{`${halIdCount} hal_id`}</li>}
-                      {!!halStructIdCount && (
-                        <li>{`${halStructIdCount} hal_struct_id`}</li>
-                      )}
-                      {!!nntEtabCount && <li>{`${nntEtabCount} nnt_etab`}</li>}
-                      {!!nntIdCount && <li>{`${nntIdCount} nnt_id`}</li>}
-                    </ul>
-                  </div>
-                )}
-                <Button
-                  disabled={
-                    email?.length === 0 || name?.length === 0 || isError
-                  }
-                  submit
-                >
-                  Envoyer
-                </Button>
-              </form>
-            </Col>
-          </Row>
-        </section>
-      </Container>
-    </>
+    <Container>
+      <section className='content bd125 mb-20'>
+        <Row gutters>
+          <Col n='12 lg-8'>
+            <div>
+              Vous pouvez nous envoyer votre fichier tout au long de l'année.
+              Les dates de constitution et d'envoi de ce fichier n'ont pas
+              d'incidence sur les graphiques générés car ceux-ci reposent sur
+              des "snapshots" des outils utilisés (Unpaywall, PubMed...).
+            </div>
+            <br />
+            <form onSubmit={sendEmail}>
+              <TextInput
+                autoComplete='email'
+                autoFocus
+                label='Email de contact'
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                type='email'
+                value={email}
+              />
+              <TextInput
+                label='Nom de la structure'
+                onChange={(e) => setName(e.target.value)}
+                required
+                value={name}
+              />
+              <TextInput
+                label='Acronyme de la structure'
+                onChange={(e) => setAcronym(e.target.value)}
+                value={acronym}
+              />
+              <TextInput
+                label='Première année de publication'
+                onChange={(e) => setFirstPublicationYear(e.target.value)}
+                type='number'
+                value={firstPublicationYear}
+              />
+              <File
+                hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
+                label='Fichier de publications'
+                onChange={handleFileChange}
+              />
+              {message && (
+                <span className={isError ? 'text-red' : 'text-green'}>
+                  <div dangerouslySetInnerHTML={{ __html: message }} />
+                </span>
+              )}
+              {!!(
+                doiCount
+                || halCollCodeCount
+                || halIdCount
+                || halStructIdCount
+                || nntEtabCount
+                || nntIdCount
+              ) && (
+                <div>
+                  Ce fichier contient :
+                  <ul>
+                    {!!doiCount && <li>{`${doiCount} DOI`}</li>}
+                    {!!halCollCodeCount && (
+                      <li>{`${halCollCodeCount} hal_coll_code`}</li>
+                    )}
+                    {!!halIdCount && <li>{`${halIdCount} hal_id`}</li>}
+                    {!!halStructIdCount && (
+                      <li>{`${halStructIdCount} hal_struct_id`}</li>
+                    )}
+                    {!!nntEtabCount && <li>{`${nntEtabCount} nnt_etab`}</li>}
+                    {!!nntIdCount && <li>{`${nntIdCount} nnt_id`}</li>}
+                  </ul>
+                </div>
+              )}
+              <Button
+                className='mt-20'
+                disabled={email?.length === 0 || name?.length === 0 || isError}
+                submit
+              >
+                Envoyer
+              </Button>
+            </form>
+          </Col>
+        </Row>
+      </section>
+    </Container>
   );
-}
+};
 
-export default Validation;
+export default SubmissionForm;

@@ -20,12 +20,12 @@ function NotesFlash() {
   );
 
   return (
-    <div className='notes-flash page'>
+    <div className='page communication'>
       <Banner
         backgroundColor='yellow-medium-50'
         textColor='blue-dark-125'
         supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.header.nav.a-propos-notes-flash' />}
+        title={<FormattedMessage id='app.header.nav.a-propos.communication' />}
         icons={renderIcons}
       />
       <Container>
