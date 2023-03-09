@@ -338,8 +338,8 @@ const SubmissionForm = () => {
                 value={firstPublicationYear}
               />
               <File
-                hint='Fichier Excel ou CSV (séparateur point virgule ;). Merci de préciser le nom des colonnes.'
-                label='Fichier de DOIs'
+                hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
+                label='Fichier de publications'
                 onChange={handleFileChange}
               />
               {message && (
