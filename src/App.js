@@ -1,7 +1,7 @@
 import './style/main.scss';
 
 import { IntlProvider } from 'react-intl';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -11,7 +11,6 @@ import Communication from './pages/APropos/Communication';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
 import Methodologie from './pages/APropos/Methodologie';
-import NotesFlash from './pages/APropos/NotesFlash';
 import OpenData from './pages/APropos/OpenData';
 import BaroNational from './pages/BaroNational';
 import NationalOrcid from './pages/BaroNational/NationalOrcid';
@@ -202,15 +201,12 @@ function App() {
               )}
             />
           ))}
+          {/* Redirect Notes Flash into communication */}
           {Object.keys(urls.flash).map((key) => (
             <Route
               exact
               path={urls.flash[key]}
-              element={(
-                <PageTracker>
-                  <NotesFlash />
-                </PageTracker>
-              )}
+              element={<Navigate to={urls.communication[key]} />}
             />
           ))}
           {Object.keys(urls.communication).map((key) => (

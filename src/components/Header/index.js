@@ -343,12 +343,12 @@ function Header() {
               asLink={<RouterLink to={urls.glossaire[lang] + search} />}
             />
             <NavSubItem
-              current={path === urls.flash[lang]}
+              current={path === urls.communication[lang]}
               title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-notes-flash',
-                defaultMessage: 'Notes flash',
+                id: 'app.header.nav.a-propos.communication',
+                defaultMessage: 'Communication',
               })}
-              asLink={<RouterLink to={urls.flash[lang] + search} />}
+              asLink={<RouterLink to={urls.communication[lang] + search} />}
             />
             <NavSubItem
               current={path === urls.opendata[lang]}
