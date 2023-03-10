@@ -3,6 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
+import CardLogo from '../../../components/CardLogo';
 import FlashCard from '../../../components/FlashCard';
 import Icon from '../../../components/Icon';
 
@@ -39,15 +40,40 @@ function NotesFlash() {
                 <FormattedMessage id='app.notes.flash.last-note-title' />
               </h4>
               <p className='fs-16-28'>
-                <FormattedMessage id='app.note.flash.edition.2021' />
+                <FormattedMessage id='app.note.flash.edition.2022' />
               </p>
             </Col>
             <Col n='12 sm-6 lg-4'>
               <FlashCard
-                intlTitle='app.note.flash.jan-2022'
+                intlTitle='app.note.flash.mar-2023'
                 url='https://enseignementsup-recherche.gouv.fr/fr/barometre-francais-de-la-science-ouverte-2021'
-                urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-tableaux-et-graphiques-16328.xlsx'
                 urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-16325.pdf'
+              />
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12 md-6 lg-6'>
+              <h4 className='marianne-bold fs-24-32'>
+                <FormattedMessage id='app.flyer.presentation' />
+              </h4>
+              <FormattedMessage id='app.flyer.presentation.description' />
+              <CardLogo
+                href='/assets/flyer_bso_2023.pdf'
+                img='/assets/flyer.png'
+                alt='flyer bso'
+                noMargin='true'
+              />
+            </Col>
+            <Col n='12 md-6 lg-6'>
+              <h4 className='marianne-bold fs-24-32'>
+                <FormattedMessage id='app.flyer.results' />
+              </h4>
+              <FormattedMessage id='app.flyer.results.description' />
+              <CardLogo
+                href='/assets/flyer_resultats_bso_2023.pdf'
+                img='/assets/resultats_2023.png'
+                alt='flyer resultats bso'
+                noMargin='true'
               />
             </Col>
           </Row>
@@ -61,6 +87,14 @@ function NotesFlash() {
               <Col n='12'>
                 <Container fluid>
                   <Row gutters>
+                    <Col n='12 md-6 lg-4'>
+                      <FlashCard
+                        intlTitle='app.note.flash.jan-2022'
+                        url='https://enseignementsup-recherche.gouv.fr/fr/barometre-francais-de-la-science-ouverte-2021'
+                        urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-tableaux-et-graphiques-16328.xlsx'
+                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-16325.pdf'
+                      />
+                    </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
                         intlTitle='app.note.flash.jan-2021'
