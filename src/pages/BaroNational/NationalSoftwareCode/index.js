@@ -20,7 +20,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue, isInProduction } from '../../../utils/helpers';
+import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalSoftwareCode() {
@@ -126,10 +126,7 @@ export default function NationalSoftwareCode() {
                   backgroundColor={blueSoft25}
                   anchorId='general.utilisation'
                 >
-                  <BSOChart
-                    id='software.general.voies-ouverture.chart-software-used'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='software.general.voies-ouverture.chart-software-used' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-software.general.creation'
@@ -137,10 +134,7 @@ export default function NationalSoftwareCode() {
                   backgroundColor={blueSoft50}
                   anchorId='general.creation'
                 >
-                  <BSOChart
-                    id='software.general.voies-ouverture.chart-software-created'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='software.general.voies-ouverture.chart-software-created' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-software.general.partage'
@@ -148,10 +142,7 @@ export default function NationalSoftwareCode() {
                   backgroundColor={blueSoft50}
                   anchorId='general.partage'
                 >
-                  <BSOChart
-                    id='software.general.voies-ouverture.chart-software-shared'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -207,30 +198,21 @@ export default function NationalSoftwareCode() {
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.utilisation'
                 >
-                  <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-software-used'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='software.disciplines.voies-ouverture.chart-software-used' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-software.disciplines.creation'
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.creation'
                 >
-                  <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-software-created'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='software.disciplines.voies-ouverture.chart-software-created' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-software.disciplines.partage'
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.partage'
                 >
-                  <BSOChart
-                    id='software.disciplines.voies-ouverture.chart-software-shared'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='software.disciplines.voies-ouverture.chart-software-shared' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
