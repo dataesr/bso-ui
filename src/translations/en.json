@@ -1143,7 +1143,7 @@
   "app.header.subsubtitle": "Open science is the unhindered dissemination of the results, methods and products of scientific research. It builds on the opportunity presented by the digital transformation to develop open access to publications and - as far as possible - to data, source code and research methods.",
   "app.national-data.disciplines.availibility.title": "Which disciplines use a data availibility statement in publications?",
   "app.national-data.disciplines.creation.title": "What is the level of data creation by discipline?",
-  "app.national-data.disciplines.partage.title": "Quel est le niveau de partage des jeux de données par discipline ?",
+  "app.national-data.disciplines.partage.title": "What is the level of dataset sharing by discipline?",
   "app.national-data.disciplines.statement.title": "In which disciplines is the use of a dedicated data availability paragraph most common?",
   "app.national-data.disciplines.utilisation.title": "What is the level of use of the data by discipline?",
   "app.national-data.disciplines.voies-ouverture.chart-availibility.comments": "This graph shows the proportion of publications in which a Data Availibility Statement was identified, by discipline, for the last year of publication. The presence of a Data Availibility Statement in the body of the publication does not mean that the publication shares its data. Detection is done by automatic analysis of the full text of the publication with the GROBID tool.",
