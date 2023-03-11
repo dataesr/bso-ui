@@ -205,7 +205,7 @@ function BaroNational() {
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.software.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                    glossaryKeys={['grobid', 'softcite']}
                   />
                 )}
               >
