@@ -112,10 +112,7 @@ export default function NationalThesis() {
                   backgroundColor={blueSoft50}
                   anchorId='general.dynamique'
                 >
-                  <BSOChart
-                    id='thesis.general.voies-ouverture.chart-repartition-taux'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='thesis.general.voies-ouverture.chart-repartition-taux' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-thesis.general.discipline'
@@ -123,10 +120,7 @@ export default function NationalThesis() {
                   backgroundColor={blueSoft50}
                   anchorId='general.discipline'
                 >
-                  <BSOChart
-                    id='thesis.disciplines.voies-ouverture.chart-repartition-thesis'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='thesis.disciplines.voies-ouverture.chart-repartition-thesis' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
