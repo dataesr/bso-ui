@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import { isInProduction } from '../../utils/helpers';
+// import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import Banner from '../Banner';
 import Chip from '../Chip';
@@ -35,48 +35,44 @@ function BannerNational({ selected, title, iconId }) {
       title={<FormattedMessage id={title} />}
       chip={<Chip />}
       icons={renderIcons}
-      selectNavigation={
-        isInProduction()
-          ? false
-          : {
-            title: intl.formatMessage({
-              id: 'app.navigation.objet-recherche',
+      selectNavigation={{
+        title: intl.formatMessage({
+          id: 'app.navigation.objet-recherche',
+        }),
+        selected: intl.formatMessage({ id: selected }),
+        options: [
+          {
+            label: intl.formatMessage({
+              id: 'app.baro-national.publications.title',
             }),
-            selected: intl.formatMessage({ id: selected }),
-            options: [
-              {
-                label: intl.formatMessage({
-                  id: 'app.baro-national.publications.title',
-                }),
-                value: intl.formatMessage({ id: 'url.publications.general' }),
-              },
-              {
-                label: intl.formatMessage({
-                  id: 'app.baro-national.thesis.title',
-                }),
-                value: intl.formatMessage({ id: 'url.thesis.general' }),
-              },
-              {
-                label: intl.formatMessage({
-                  id: 'app.baro-national.data.title.beta',
-                }),
-                value: intl.formatMessage({ id: 'url.data.general' }),
-              },
-              {
-                label: intl.formatMessage({
-                  id: 'app.baro-national.software.title.beta',
-                }),
-                value: intl.formatMessage({ id: 'url.software.general' }),
-              },
-              {
-                label: intl.formatMessage({
-                  id: 'app.baro-national.orcid.title',
-                }),
-                value: intl.formatMessage({ id: 'url.orcid.general' }),
-              },
-            ],
-          }
-      }
+            value: intl.formatMessage({ id: 'url.publications.general' }),
+          },
+          {
+            label: intl.formatMessage({
+              id: 'app.baro-national.thesis.title',
+            }),
+            value: intl.formatMessage({ id: 'url.thesis.general' }),
+          },
+          {
+            label: intl.formatMessage({
+              id: 'app.baro-national.data.title.beta',
+            }),
+            value: intl.formatMessage({ id: 'url.data.general' }),
+          },
+          {
+            label: intl.formatMessage({
+              id: 'app.baro-national.software.title.beta',
+            }),
+            value: intl.formatMessage({ id: 'url.software.general' }),
+          },
+          // {
+          //  label: intl.formatMessage({
+          //    id: 'app.baro-national.orcid.title',
+          //  }),
+          //  value: intl.formatMessage({ id: 'url.orcid.general' }),
+          // },
+        ],
+      }}
     />
   );
 }
