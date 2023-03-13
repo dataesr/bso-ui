@@ -2,7 +2,11 @@ import { Card, CardDescription, Link as DSLink } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function CardLogo({ img, alt, href }) {
+function CardLogo({ img, alt, href, noMargin }) {
+  let className = 'm-auto w-100';
+  if (noMargin !== undefined) {
+    className = 'w-100';
+  }
   return (
     <Card
       bodyClassName='bso-link-card bg-white'
@@ -10,7 +14,7 @@ function CardLogo({ img, alt, href }) {
       hasBorder={false}
       href={href}
     >
-      <CardDescription as='div' className='m-auto w-100'>
+      <CardDescription as='div' className={className}>
         <DSLink href={href} target='_blank'>
           <img
             src={img}
@@ -27,6 +31,7 @@ CardLogo.propTypes = {
   img: PropTypes.element.isRequired,
   href: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
+  noMargin: PropTypes.bool.isRequired,
 };
 
 export default CardLogo;

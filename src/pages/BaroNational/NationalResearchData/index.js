@@ -20,7 +20,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue, isInProduction } from '../../../utils/helpers';
+import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalResearchData() {
@@ -136,10 +136,7 @@ export default function NationalResearchData() {
                   backgroundColor={blueSoft25}
                   anchorId='general.utilisation'
                 >
-                  <BSOChart
-                    id='data.general.voies-ouverture.chart-data-used'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.general.voies-ouverture.chart-data-used' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.general.creation'
@@ -147,10 +144,7 @@ export default function NationalResearchData() {
                   backgroundColor={blueSoft50}
                   anchorId='general.creation'
                 >
-                  <BSOChart
-                    id='data.general.voies-ouverture.chart-data-created'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.general.voies-ouverture.chart-data-created' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.general.partage'
@@ -158,10 +152,7 @@ export default function NationalResearchData() {
                   backgroundColor={blueSoft50}
                   anchorId='general.partage'
                 >
-                  <BSOChart
-                    id='data.general.voies-ouverture.chart-data-shared'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.general.statement'
@@ -169,10 +160,7 @@ export default function NationalResearchData() {
                   backgroundColor={blueSoft25}
                   anchorId='general.statement'
                 >
-                  <BSOChart
-                    id='data.general.voies-ouverture.chart-availibility'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.general.voies-ouverture.chart-availibility' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -240,30 +228,21 @@ export default function NationalResearchData() {
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.utilisation'
                 >
-                  <BSOChart
-                    id='data.disciplines.voies-ouverture.chart-data-used'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.disciplines.voies-ouverture.chart-data-used' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.disciplines.creation'
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.creation'
                 >
-                  <BSOChart
-                    id='data.disciplines.voies-ouverture.chart-data-created'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.disciplines.voies-ouverture.chart-data-created' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.disciplines.partage'
                   backgroundColor={blueSoft50}
                   anchorId='disciplines.partage'
                 >
-                  <BSOChart
-                    id='data.disciplines.voies-ouverture.chart-data-shared'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.disciplines.voies-ouverture.chart-data-shared' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.disciplines.statement'
@@ -271,10 +250,7 @@ export default function NationalResearchData() {
                   backgroundColor={blueSoft25}
                   anchorId='disciplines.statement'
                 >
-                  <BSOChart
-                    id='data.disciplines.voies-ouverture.chart-availibility'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.disciplines.voies-ouverture.chart-availibility' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -314,10 +290,7 @@ export default function NationalResearchData() {
                   backgroundColor={blueSoft50}
                   anchorId='editeurs.availibility'
                 >
-                  <BSOChart
-                    id='data.editeurs.voies-ouverture.chart-availibility'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='data.editeurs.voies-ouverture.chart-availibility' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

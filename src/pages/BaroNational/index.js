@@ -142,7 +142,6 @@ function BaroNational() {
                 </Container>
               </HomeSection>
               <HomeSection // thèses
-                isDisplayed={!isInProduction()}
                 link={{
                   href: urls.nationalThesis.tabs[0][lang] + search,
                   label: (
@@ -166,7 +165,6 @@ function BaroNational() {
                 </Container>
               </HomeSection>
               <HomeSection // données
-                isDisplayed={!isInProduction()}
                 link={{
                   href: urls.nationalResearchData.tabs[0][lang] + search,
                   label: (
@@ -178,7 +176,7 @@ function BaroNational() {
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.data.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                    glossaryKeys={['grobid', 'datastet']}
                   />
                 )}
               >
@@ -191,7 +189,6 @@ function BaroNational() {
                 </Container>
               </HomeSection>
               <HomeSection // logiciels
-                isDisplayed={!isInProduction()}
                 link={{
                   href: urls.nationalSoftwareCode.tabs[0][lang] + search,
                   label: (
@@ -205,7 +202,7 @@ function BaroNational() {
                 introText={(
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.software.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                    glossaryKeys={['grobid', 'softcite']}
                   />
                 )}
               >

@@ -23,53 +23,53 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [chartComments, setChartComments] = useState('');
-  const [optionsGraph, setOptionsGraph] = useState(null);
   const [agency, setAgency] = useState('ANR - global');
+  const [chartComments, setChartComments] = useState('');
+  const [dataTitle, setDataTitle] = useState({});
+  const [optionsGraph, setOptionsGraph] = useState(null);
   const { lastObservationSnap } = useGlobals();
   const { data, isError, isLoading } = useGetData(
     lastObservationSnap,
     agency,
     domain,
   );
-  const { categories, dataGraph2 } = data;
+  const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {
-    const agencyTitle = agency !== 'ANR - global' ? ` (${agency})` : '';
-    data.dataTitle = { agencyTitle };
     setOptionsGraph(
-      chartOptions[id].getOptions(idWithDomain, intl, categories, dataGraph2),
+      chartOptions[id].getOptions(idWithDomain, intl, categories, dataGraph),
     );
-  }, [data, idWithDomain, intl, agency, categories, dataGraph2, id]);
+  }, [categories, dataGraph, id, idWithDomain, intl]);
+
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
   }, [data, idWithDomain, intl]);
 
+  useEffect(() => {
+    const agencyTitle = agency !== 'ANR - global' ? ` (${agency})` : '';
+    setDataTitle({ agencyTitle });
+  }, [agency]);
+
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={data.dataTitle}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph2}
+      isLoading={isLoading || !dataGraph}
     >
       <RadioGroup
         className='d-inline-block'
         isInline
         legend={intl.formatMessage({ id: 'app.publi.display' })}
         onChange={(newValue) => setAgency(newValue)}
-        // onChange={(newValue) => console.log('ttt', newValue)}
         value={agency}
       >
-        <Radio
-          // label={intl.formatMessage({ id: 'app.publi.display-open-access' })}
-          label='ANR - global'
-          value='ANR - global'
-        />
+        <Radio label='ANR - global' value='ANR - global' />
         <Radio label='ANR DOS' value='ANR DOS' />
         <Radio label='ANR PIA' value='ANR PIA' />
       </RadioGroup>

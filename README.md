@@ -51,7 +51,7 @@ To create a new release, use `npm version patch|minor|major`.
 
 ### 1. Ajouter les clefs nécessaires dans les fichiers de langues `src/translations/fr.json` et `src/translations/en.json`
 
->  La balise `<glossary0>app.word</glossary0>` correspond au mot clickable du texte dans la page
+>  La balise `<glossary0>app.word</glossary0>` correspond au mot cliquable du texte dans la page
 
 ```json
 {

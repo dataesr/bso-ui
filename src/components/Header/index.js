@@ -185,40 +185,34 @@ function Header() {
                 />
               )}
             />
-            {!isInProduction() && (
-              <NavSubItem
-                current={path === urls.nationalThesis[lang]}
-                title={intl.formatMessage({
-                  id: 'app.publi.thesis',
-                  defaultMessage: 'Les thèses de doctorat',
-                })}
-                asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
-              />
-            )}
-            {!isInProduction() && (
-              <NavSubItem
-                current={path === urls.nationalResearchData[lang]}
-                title={intl.formatMessage({
-                  id: 'app.baro-national.data.title.beta',
-                  defaultMessage: 'Les données de la recherche',
-                })}
-                asLink={
-                  <RouterLink to={urls.nationalResearchData[lang] + search} />
-                }
-              />
-            )}
-            {!isInProduction() && (
-              <NavSubItem
-                current={path === urls.nationalSoftwareCode[lang]}
-                title={intl.formatMessage({
-                  id: 'app.baro-national.software.title.beta',
-                  defaultMessage: 'Les codes logiciels',
-                })}
-                asLink={
-                  <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
-                }
-              />
-            )}
+            <NavSubItem
+              current={path === urls.nationalThesis[lang]}
+              title={intl.formatMessage({
+                id: 'app.publi.thesis',
+                defaultMessage: 'Les thèses de doctorat',
+              })}
+              asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
+            />
+            <NavSubItem
+              current={path === urls.nationalResearchData[lang]}
+              title={intl.formatMessage({
+                id: 'app.baro-national.data.title.beta',
+                defaultMessage: 'Les données de la recherche',
+              })}
+              asLink={
+                <RouterLink to={urls.nationalResearchData[lang] + search} />
+              }
+            />
+            <NavSubItem
+              current={path === urls.nationalSoftwareCode[lang]}
+              title={intl.formatMessage({
+                id: 'app.baro-national.software.title.beta',
+                defaultMessage: 'Les codes logiciels',
+              })}
+              asLink={
+                <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
+              }
+            />
             {!isInProduction() && (
               <NavSubItem
                 current={path === urls.nationalOrcid[lang]}

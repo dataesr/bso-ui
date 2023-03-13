@@ -41,12 +41,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     null,
   );
   const { categories, dataGraph } = allData;
+  const hasBeta = true;
+
   useEffect(() => {
     setDataTitle({
       publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
     });
   }, [beforeLastObservationSnap, intl]);
-  const hasBeta = true;
+
   useEffect(() => {
     let sortKey;
     if (sort === 'sort-staff') {
