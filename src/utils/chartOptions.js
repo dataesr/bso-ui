@@ -40,12 +40,6 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   if (lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION) {
     isEmbargo = true;
   }
-  if (
-    id.startsWith('app.national-data.')
-    || id.startsWith('app.national-software.')
-  ) {
-    isEmbargo = true;
-  }
   if (bsoLocalAffiliation && isEmbargo) {
     embargoText = 'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
   }
