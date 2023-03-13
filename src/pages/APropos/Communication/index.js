@@ -46,8 +46,8 @@ function NotesFlash() {
             <Col n='12 sm-6 lg-4'>
               <FlashCard
                 intlTitle='app.note.flash.mar-2023'
-                url='https://enseignementsup-recherche.gouv.fr/fr/barometre-francais-de-la-science-ouverte-2021'
-                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-16325.pdf'
+                url='https://www.enseignementsup-recherche.gouv.fr/fr/barometre-francais-science-ouverte-2022-89981'
+                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2023-03/nf-sies-2023-03-26906.pdf'
               />
             </Col>
           </Row>
