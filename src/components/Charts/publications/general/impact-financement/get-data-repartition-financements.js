@@ -31,11 +31,11 @@ function useGetData(observationSnap, needle = '*', domain) {
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-    const anrData = res[0].data.aggregations.by_agency.buckets
-      .filter((el) => el.key === 'ANR')[0]
-      .by_funding_year.buckets.sort((a, b) => a.key - b.key) || [];
+    const anrData = res?.[0]?.data?.aggregations?.by_agency?.buckets
+      ?.filter((el) => el.key === 'ANR')?.[0]
+      ?.by_funding_year.buckets?.sort((a, b) => a.key - b.key) || [];
     const categories = [];
-    const dataGraph2 = [];
+    const dataGraph = [];
     const colors = [
       getCSSValue('--blue-soft-150'),
       getCSSValue('--blue-soft-150'),
@@ -87,14 +87,14 @@ function useGetData(observationSnap, needle = '*', domain) {
         dashStyle: dashStyle[ix],
       };
       if (nbTotal >= 100 && fundingYear >= 2016) {
-        dataGraph2.push(currentSerie);
+        dataGraph.push(currentSerie);
         ix += 1;
       }
     });
 
     return {
       categories,
-      dataGraph2,
+      dataGraph,
     };
   }
 
@@ -113,7 +113,7 @@ function useGetData(observationSnap, needle = '*', domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap, needle]);
+  }, [needle, observationSnap]);
   return { data, isError, isLoading };
 }
 export default useGetData;
