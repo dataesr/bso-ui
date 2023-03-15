@@ -197,6 +197,8 @@
   "app.glossary.code-source": "Source code",
   "app.glossary.code-source.definition": "A set of instructions that make up a computer program in a programming language. Source code is usually embodied in a set of text files that can be read by a user and executed by a machine. Source code is the representation of a software program so that a user can make changes to it.",
   "app.glossary.complete": "All definitions in the complete glossary",
+  "app.glossary.debusqapc": "rapport",
+  "app.glossary.debusqapc.definition": "L'étude 'Retrospective and prospective study of the evolution of APC costs and electronic subscriptions for French institutions' est disponible sur <cta>HAL : hal-03909068</cta>.",
   "app.glossary.diamond": "Diamond Model",
   "app.glossary.diamond-min": "diamond",
   "app.glossary.diamond.definition": "Open access journals that do not require publication fees to the authors. In this open access model, publishing costs are taken over upstream by a state, university, a consortium of public institutions or a non-profit organization.",
