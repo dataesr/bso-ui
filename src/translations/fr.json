@@ -327,7 +327,7 @@
   "app.glossary.code-source.definition": "Ensemble d'instructions composant un programme informatique dans un langage de programmation. Le code source se matérialise généralement sous la forme d'un ensemble de fichiers texte lisibles par un utilisateur et exécutable par une machine. Le code source est la représentation d'un logiciel pour qu'un utilisateur puisse y apporter des modifications.",
   "app.glossary.complete": "Toutes les définitions dans le glossaire complet",
   "app.glossary.debusqapc": "rapport sur les APC en France",
-  "app.glossary.debusqapc.definition": "L'étude 'Retrospective and prospective study of the evolution of APC costs and electronic subscriptions for French institutions' est disponible sur <cta>HAL : hal-03909068</cta>.",
+  "app.glossary.debusqapc.definition": "L'étude 'Retrospective and prospective study of the evolution of APC costs and electronic subscriptions for French institutions' est disponible sur <cta0>HAL : hal-03909068</cta0>. Le poster est disponible <cta1>ici</cta1>.",
   "app.glossary.diamond": "Modèle diamant",
   "app.glossary.diamond-min": "diamant",
   "app.glossary.diamond.definition": "Les revues en libre accès ne demandent pas de frais de publication aux auteurs. Dans ce modèle de libre accès, les coûts de publication sont pris en charge en amont par un état, une université, un consortium d'institutions publiques ou une organisation à but non lucratif.",
