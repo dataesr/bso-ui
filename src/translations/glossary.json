@@ -180,7 +180,10 @@
     "debusqapc": {
       "intlDefinition": "app.glossary.debusqapc.definition",
       "intlEntry": "app.glossary.debusqapc",
-      "cta": "https://hal-lara.archives-ouvertes.fr/OUVRIR-LA-SCIENCE/hal-03909068"
+      "ctas": [
+        "https://hal-lara.archives-ouvertes.fr/OUVRIR-LA-SCIENCE/hal-03909068",
+        "https://www.ouvrirlascience.fr/wp-content/uploads/2022/12/APC_Cost_Study_Poster.pdf"
+      ]
     }
   }
 ]
