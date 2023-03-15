@@ -89,7 +89,7 @@ function Variations() {
               <CardLogo
                 img='/declinaisons/UL.svg'
                 alt='bso local UL'
-                href='https://scienceouverte.univ-lorraine.fr/barometre-lorrain-de-la-science-ouverte/'
+                href='https://scienceouverte.univ-lorraine.fr/bibliometrie/barometre-lorrain-de-la-science-ouverte/'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -295,6 +295,13 @@ function Variations() {
                 alt='bso local sorbonne universite'
               />
             </Col>
+            <Col>
+              <CardLogo
+                href='https://www.unilasalle.fr/actualites/barometre-de-la-science-ouverte-unilasalle-2023'
+                img='/declinaisons/unilasalle.svg'
+                alt='bso local unilasalle'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>
@@ -339,15 +346,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Onera
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.unilasalle.fr/actualites/le-barometre-de-la-science-ouverte-unilasalle-est-disponible'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    UniLaSalle
                   </a>
                 </li>
                 <li>
