@@ -361,7 +361,7 @@ export default function NationalPublications() {
                 <QuestionSection
                   intlKey='app.national-publi.publishers.couts-publication'
                   backgroundColor={blueSoft25}
-                  glossaryKeys={['apc', 'diamond']}
+                  glossaryKeys={['apc', 'diamond', 'debusqapc']}
                   anchorId='publishers.couts-publication'
                 >
                   <BSOChart

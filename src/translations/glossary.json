@@ -176,6 +176,11 @@
       "intlDefinition": "app.glossary.datastet.definition",
       "intlEntry": "app.glossary.datastet",
       "cta": "https://github.com/kermitt2/datastet"
+    },
+    "debusqapc": {
+      "intlDefinition": "app.glossary.debusqapc.definition",
+      "intlEntry": "app.glossary.debusqapc",
+      "cta": "https://hal-lara.archives-ouvertes.fr/OUVRIR-LA-SCIENCE/hal-03909068"
     }
   }
 ]
