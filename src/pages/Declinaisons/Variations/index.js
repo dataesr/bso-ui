@@ -295,7 +295,7 @@ function Variations() {
                 alt='bso local sorbonne universite'
               />
             </Col>
-            <Col>
+            <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.unilasalle.fr/actualites/barometre-de-la-science-ouverte-unilasalle-2023'
                 img='/declinaisons/unilasalle.svg'

@@ -22,7 +22,7 @@ const Studio = () => {
   const [endYear, setEndYear] = useState(2021);
   const [firstObservationYear, setFirstObservationYear] = useState(2018);
   const [lang, setLang] = useState('fr');
-  const [lastObservationYear, setLastObservationYear] = useState(2021);
+  const [lastObservationYear, setLastObservationYear] = useState(2022);
   const [object, setObject] = useState('publi');
   const [startYear, setStartYear] = useState(2013);
   const [tab, setTab] = useState('general');
