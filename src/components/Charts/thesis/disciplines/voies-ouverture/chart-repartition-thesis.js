@@ -58,7 +58,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       categories?.sort((a, b) => b.alphaOrder - a.alphaOrder);
       sortKey = 'alphaOrder';
     }
-    const categoriesLabel = categories?.map((item) => capitalize(intl.formatMessage({ id: `${item.key}` }))
+    const categoriesLabel = categories?.map((item) => capitalize(
+      intl.formatMessage({ id: `app.thesis.discipline.${item.key}` }),
+    )
       .concat('</br>(')
       .concat(intl.formatMessage({ id: 'app.effectif' }))
       .concat(' = ')
