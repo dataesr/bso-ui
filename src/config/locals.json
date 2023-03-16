@@ -670,10 +670,21 @@
     "grid": "grid.22058.3d",
     "paysage": "Nc86W"
   },
+  "cercll": {
+    "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
+    "commentsName": "du CERCLL",
+    "commentsNameEN": "of the CERCLL",
+    "paysage": "dKt1t"
+  },
   "driihm": {
     "name": "Laboratoire d'Excellence Dispositif de Recherche Interdisciplinaire sur les Interactions Hommes-Milieux (LabEx DRIIHM)",
     "commentsName": "du LabEx DRIIHM",
     "commentsNameEN": "of the LabEx DRIIHM"
+  },
+  "grap": {
+    "name": "Groupe de Recherche sur l'Alcool et les Pharmacodépendances",
+    "commentsName": "du GRAP",
+    "commentsNameEN": "of the GRAP"
   },
   "91D9w": {
     "name": "Université de Rennes",
@@ -705,24 +716,5 @@
     "commentsName": "des IMTs",
     "commentsNameEN": "of IMTs",
     "alias": "18009202500097,18009202500121,193000635"
-  },
-  "0755976n": {
-    "name": "Institut Pasteur",
-    "commentsName": "de l'Institut Pasteur",
-    "commentsNameEN": "of the Institut Pasteur",
-    "ror": "0495fxg12",
-    "grid": "grid.428999.7",
-    "paysage": "Sn8Nt"
-  },
-  "CERCLL": {
-    "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
-    "commentsName": "du CERCLL",
-    "commentsNameEN": "of the CERCLL",
-    "paysage": "dKt1t"
-  },
-  "GRAP": {
-    "name": "Groupe de Recherche sur l'Alcool et les Pharmacodépendances",
-    "commentsName": "du GRAP",
-    "commentsNameEN": "of the GRAP"
   }
 }
