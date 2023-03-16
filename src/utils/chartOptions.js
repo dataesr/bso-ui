@@ -3178,7 +3178,9 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.shared-software',
+      });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3215,7 +3217,9 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.created-software',
+      });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3252,7 +3256,9 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.used' });
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.used-software',
+      });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3289,7 +3295,7 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3326,7 +3332,7 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.created-data' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3363,7 +3369,7 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.used-data' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
