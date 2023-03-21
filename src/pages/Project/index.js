@@ -45,10 +45,14 @@ function Project() {
                 études observationnelles français. Cette deuxième version a été
                 réalisée en 2021 et ouverte le 28 janvier 2022.
               </p>
-              <h3>Et la suite (BSO3)</h3>
+              <h3>Troisième version (BSO3)</h3>
               <p>
-                Bien sûr, hors de question d’en rester là ! Une équipe associant
-                {' '}
+                En mars 2023, une nouvelle édition du Baromètre est publiée ! La
+                mise à jour des données des publications s'associe à de nouveaux
+                indicateurs sur les mentions d'utilisation, de production ou de
+                création, et de réutilisation des jeux de donnée et des codes ou
+                logiciels. Ces indicateurs sont pour le moment en bêta et ont
+                été conçus grâce au travail conjoint de l'
                 <a
                   href='https://www.univ-lorraine.fr/'
                   rel='noreferrer'
@@ -56,8 +60,7 @@ function Project() {
                 >
                   Université de Lorraine
                 </a>
-                ,
-                {' '}
+                , de l'
                 <a
                   href='https://www.inria.fr/fr'
                   rel='noreferrer'
@@ -66,7 +69,7 @@ function Project() {
                   Inria
                 </a>
                 {' '}
-                et
+                et du
                 {' '}
                 <a
                   href='https://www.enseignementsup-recherche.gouv.fr/fr'
@@ -75,11 +78,7 @@ function Project() {
                 >
                   MESR
                 </a>
-                {' '}
-                prépare déjà le BSO3. Elle s’attaquera à deux nouveaux objets de
-                recherche : les codes sources et les jeux de données, toujours
-                sous l’angle de la science ouverte. Cette future version,
-                financée par le Plan de Relance, est prévue pour 2023.
+                . Cette nouvelle version a été financée par le Plan de Relance.
                 <br />
                 <a
                   href='https://www.ouvrirlascience.fr/vers-un-barometre-francais-de-la-science-ouverte-consacre-aux-donnees-de-la-recherche-et-codes-logiciels/'
@@ -88,6 +87,12 @@ function Project() {
                 >
                   Pour en savoir plus
                 </a>
+              </p>
+              <h3>Et la suite (BSO4)</h3>
+              <p>
+                Bien sûr, nous avons encore plein d'idées pour faire évoluer ce
+                Baromètre, tel que le suivi des ORCID en France ou encore
+                l'amélioration de nos modèles d'IA...
               </p>
               <h2>L’équipe</h2>
               <p>
@@ -121,6 +126,31 @@ function Project() {
                 d’orchestre, Emmanuel Weisenburger a fait en sorte que chacun
                 puisse travailler sereinement et a apporté sa connaissance du
                 paysage français de la recherche et de l’innovation.
+              </p>
+              <p>
+                Les parties "Données de la recherche" et "Codes ou logiciels" a
+                pu être réalisée grâce aux outils développés par Patrice Lopez
+                de
+                {' '}
+                <a
+                  href='https://science-miner.com/'
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  Science Miner
+                </a>
+                . Laetitia Bracco et Aricia Bassinet de l'
+                <a
+                  href='https://www.univ-lorraine.fr/'
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  Université de Lorraine
+                </a>
+                {' '}
+                en ont été les chefs de projet. Et enfin Anne L'Hôte et Eric
+                Jeangirard ont assuré l'intégration technique des briques
+                logicielles de Science Miner.
               </p>
               <p>
                 Pour toute remarque, n'hésitez pas à nous contacter à
