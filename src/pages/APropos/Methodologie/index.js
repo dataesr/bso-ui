@@ -1,5 +1,3 @@
-// import ReactMarkdown from 'react-markdown';
-// import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import { FormattedMessage } from 'react-intl';
 
@@ -7,23 +5,6 @@ import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 
 function Methodologie() {
-  // const [markdown, setMarkdown] = useState('');
-  /*
-  useEffect(() => {
-    fetch('https://raw.githubusercontent.com/dataesr/bso-publications/main/doc/bso.md')
-      .then((response) => response.text())
-      .then((text) => {
-        const groups = [...text.matchAll(/# 2\. Method\n\n((.|\n)*)# 3\. Results/gm)];
-        let group = groups[0][1];
-        group = group.replaceAll('\\newpage', '');
-        group = group.replaceAll(/<br \/>/g, '\n&nbsp;');
-        group = group.replaceAll(/{ width=\d* }/g, '');
-        group = group.replaceAll('## 2.', '## ');
-        setMarkdown(group);
-      });
-  }, []);
-  */
-
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -66,6 +47,18 @@ function Methodologie() {
               <br />
               <hr />
               <br />
+              <a
+                href='/assets/dmp.pdf'
+                target='_blank'
+                rel='noreferrer'
+                className='external_link'
+              >
+                <FormattedMessage id='app.methodo-bso3-dmp' />
+              </a>
+              <br />
+              <br />
+              <hr />
+              <br />
               <FormattedMessage id='app.methodo-publi-intro' />
               <br />
               {' '}
@@ -89,19 +82,6 @@ function Methodologie() {
               .
             </Col>
           </Row>
-          {/*
-          <Row gutters>
-            <Col n='12 lg-8'>
-              <ReactMarkdown components={{
-                // eslint-disable-next-line jsx-a11y/alt-text, react/prop-types
-                img: ({ node, ...props }) => <img style={{ maxWidth: '100%' }} {...props} />,
-              }}
-              >
-                {markdown}
-              </ReactMarkdown>
-            </Col>
-          </Row>
-        */}
         </section>
       </Container>
     </div>
