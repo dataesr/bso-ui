@@ -128,9 +128,9 @@ function Project() {
                 paysage français de la recherche et de l’innovation.
               </p>
               <p>
-                Les parties "Données de la recherche" et "Codes ou logiciels" a
-                pu être réalisée grâce aux outils développés par Patrice Lopez
-                de
+                Les parties "Données de la recherche" et "Codes ou logiciels"
+                ont pu être réalisées grâce aux outils développés" par Patrice
+                Lopez de
                 {' '}
                 <a
                   href='https://science-miner.com/'
