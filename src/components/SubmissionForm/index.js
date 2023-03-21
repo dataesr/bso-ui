@@ -64,7 +64,8 @@ const SubmissionForm = () => {
     setNntIdCount(undefined);
   };
 
-  const sendEmail = () => {
+  const sendEmail = (event) => {
+    event.preventDefault();
     const txt = Papa.unparse(dataFile, {
       delimiter: ',',
       header: true,
