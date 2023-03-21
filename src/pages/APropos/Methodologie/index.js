@@ -48,8 +48,25 @@ function Methodologie() {
         <section className='content py-48'>
           <Row gutters>
             <Col n='12 lg-8'>
-              <FormattedMessage id='app.methodo-intro' />
+              <FormattedMessage id='app.methodo-bso3-intro' />
               <br />
+              {' '}
+              <a
+                href='https://github.com/Barometre-de-la-Science-Ouverte/bso3-techdoc/blob/master/methodology/bso3.pdf'
+                target='_blank'
+                rel='noreferrer'
+                className='external_link'
+              >
+                Monitoring the production and the openness of research data and
+                software in France: Large-scale Machine-Learning analysis of
+                scientific PDF
+              </a>
+              {' '}
+              <br />
+              <br />
+              <hr />
+              <br />
+              <FormattedMessage id='app.methodo-publi-intro' />
               <br />
               {' '}
               <a
@@ -63,6 +80,8 @@ function Methodologie() {
               </a>
               {' '}
               <br />
+              <br />
+              <hr />
               <br />
               <FormattedMessage id='app.methodo-contact' />
               {' '}
