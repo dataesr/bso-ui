@@ -302,6 +302,13 @@ function Variations() {
                 alt='bso local unilasalle'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://www6.inrae.fr/dipso/La-science-ouverte-a-INRAE/Barometre-Science-Ouverte-INRAE2'
+                img='/declinaisons/inrae.png'
+                alt='bso local inrae'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>
@@ -328,15 +335,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     CNAM
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www6.inrae.fr/dipso/La-science-ouverte-a-INRAE/Barometre-Science-Ouverte-INRAE2'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    INRAE
                   </a>
                 </li>
                 <li>
