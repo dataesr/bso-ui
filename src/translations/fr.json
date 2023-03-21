@@ -1,6 +1,7 @@
 {
   "app.ministry": "Ministère de l'enseignement supérieur et de la recherche",
-  "app.methodo-intro": "La méthodologie a été mise en place par Anne L'Hôte (MESR), Eric Jeangirard (MESR), Didier Torny (CNRS) et Laetitia Bracco (Université de Lorraine). La méthodologie est décrite dans le document de travail disponible HAL :",
+  "app.methodo-bso3-intro": "La méthodologie concernant les jeux de données, les codes et logiciels a été mise en place par Patrice Lopez (science-miner), Anne L'Hôte (MESR), Eric Jeangirard (MESR), Laetitia Bracco (Université de Lorraine), Aricia Bassinet (Université de Lorraine). Un document de travail présente la méthode (attention, document en cours de rédaction) :",
+  "app.methodo-publi-intro": "La méthodologie concernant les publications a été mise en place par Anne L'Hôte (MESR), Eric Jeangirard (MESR), Didier Torny (CNRS) et Laetitia Bracco (Université de Lorraine). La méthodologie est décrite dans le document de travail disponible HAL :",
   "app.methodo-contact": "Par ailleurs, pour toute question, vous pouvez nous contacter à l'adresse",
   "app.Q1": "1er trimestre",
   "app.Q2": "2e trimestre",

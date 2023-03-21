@@ -10,5 +10,6 @@ server {
     proxy_set_header Api-Key ${SIB_KEY};
     proxy_set_header Accept application/json;
     proxy_set_header Content-Type application/json;
+    client_max_body_size 10M;
   }
 }

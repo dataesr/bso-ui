@@ -136,9 +136,9 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                href='https://scienceouverte.univ-rennes1.fr/barometre-science-ouverte-de-luniversite-de-rennes-1'
-                img='/declinaisons/rennes1.png'
-                alt='bso local Rennes 1'
+                href='https://scienceouverte.univ-rennes.fr/barometre-science-ouverte-edition-2022'
+                img='/declinaisons/rennes.jpeg'
+                alt='bso local Rennes'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
