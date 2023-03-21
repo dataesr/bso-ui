@@ -76,7 +76,6 @@ const SubmissionForm = () => {
       method: 'POST',
       url: `${window.location.origin}/mailer/`,
       headers: {
-        // Authorization: 'Basic YWRtaW46Qm91Y2hlcmllNDMx',
         'Content-Type': 'application/json',
       },
       data: {
