@@ -352,6 +352,14 @@ function Header() {
               })}
               asLink={<RouterLink to={urls.opendata[lang] + search} />}
             />
+            <NavSubItem
+              current={path === urls.faq[lang]}
+              title={intl.formatMessage({
+                id: 'app.footer.project.text',
+                defaultMessage: 'FAQ',
+              })}
+              asLink={<RouterLink to={urls.project[lang] + search} />}
+            />
           </NavItem>
         </HeaderNav>
       </DSHeader>
