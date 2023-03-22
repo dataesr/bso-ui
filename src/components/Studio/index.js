@@ -254,9 +254,8 @@ const Studio = () => {
             rows={7}
             textarea
             type='text'
-          >
-            {ReactDOMServer.renderToString(getIframeSnippet())}
-          </TextInput>
+            value={ReactDOMServer.renderToString(getIframeSnippet())}
+          />
         </Col>
       </Row>
       <Row gutters>
