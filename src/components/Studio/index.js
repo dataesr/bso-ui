@@ -8,7 +8,6 @@ import {
 } from '@dataesr/react-dsfr';
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import ReactDOMServer from 'react-dom/server';
 
 import downloadFile from '../../utils/files';
 import { getCSSValue } from '../../utils/helpers';
@@ -73,6 +72,10 @@ const Studio = () => {
     />
   );
 
+  const getIframeText = (graphId = null) => `<iframe height="860" id=${graphId || graph} src=${getGraphUrl(
+    graphId,
+  )} title=${graphId || graph} width="800" />`;
+
   const csvContent = objects
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
@@ -82,7 +85,7 @@ const Studio = () => {
   const htmlContent = objects
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
-    .map((item) => ReactDOMServer.renderToString(getIframeSnippet(item.value)));
+    .map((item) => getIframeText(item.value));
 
   return (
     <section
@@ -254,15 +257,13 @@ const Studio = () => {
             rows={7}
             textarea
             type='text'
-            value={ReactDOMServer.renderToString(getIframeSnippet())}
+            value={getIframeText()}
           />
         </Col>
       </Row>
       <Row gutters>
         <Col n='12 md-6'>
-          <CopyToClipboard
-            text={ReactDOMServer.renderToString(getIframeSnippet())}
-          >
+          <CopyToClipboard text={getIframeText()}>
             <Button icon='ri-clipboard-fill' iconPosition='right'>
               Copier le code de l'iframe
             </Button>
