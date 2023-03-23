@@ -27,7 +27,12 @@ function useGetData(observationSnap, domain) {
     });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     let dataGraph = res.data.aggregations.by_repository.buckets.map((item) => ({
-      name: item.key,
+      name: intl.formatMessage({
+        id: `app.repositories.label.${item.key
+          .toLowerCase()
+          .replace(/ /g, '')}`,
+        defaultMessage: item.key,
+      }),
       bsoDomain,
       y: item.doc_count,
       publicationDate: getPublicationYearFromObservationSnap(observationSnap),
