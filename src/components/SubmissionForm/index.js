@@ -79,8 +79,11 @@ const SubmissionForm = () => {
         'Content-Type': 'application/json',
       },
       data: {
-        sender: { name: email, email },
-        to: [{ email: 'bso@recherche.gouv.fr', name: 'MESR - BSO' }],
+        sender: { email, name: email },
+        to: [
+          { email: 'bso@recherche.gouv.fr', name: 'MESR - BSO' },
+          { email, name: email },
+        ],
         subject: "Demande d'un nouveau BSO Local",
         htmlContent: `<html><body>
           <p>Email de contact: ${email}</p>
@@ -95,7 +98,9 @@ const SubmissionForm = () => {
     Axios.request(options)
       .then(() => {
         resetState();
-        setMessage('Merci pour votre envoi !');
+        setMessage(
+          "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
+        );
       })
       .catch(() => {
         setIsError(true);
