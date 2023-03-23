@@ -71,7 +71,19 @@ const SubmissionForm = () => {
       header: true,
       skipEmptyLines: 'greedy',
     });
-    const content = btoa(txt);
+    let content = '';
+    try {
+      content = window.btoa(txt);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      setIsError(true);
+      setMessage(
+        "Erreur lors de l'encodage de votre fichier, merci de contacter bso@recherche.gouv.fr.",
+      );
+      return;
+    }
+
     const options = {
       method: 'POST',
       url: `${window.location.origin}/mailer/`,
