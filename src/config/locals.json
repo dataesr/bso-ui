@@ -409,11 +409,19 @@
   },
   "198307662": {
     "name": "Université de Toulon (UTLN)",
-    "commentsName": "de l'université Toulon",
-    "commentsNameEN": "of the university of Toulon",
+    "commentsName": "de l'UTLN",
+    "commentsNameEN": "of UTLN",
     "ror": "02m9kbe37",
     "grid": "grid.12611.35",
     "paysage": "C701f"
+  },
+  "198013443": {
+    "name": "Université de Picardie Jules Verne (UPJV)",
+    "commentsName": "de l'UPJV",
+    "commentsNameEN": "of UPJV",
+    "ror": "01gyxrk03",
+    "grid": "grid.11162.35",
+    "paysage": "8j5s2"
   },
   "198406852": {
     "name": "Avignon Université",
