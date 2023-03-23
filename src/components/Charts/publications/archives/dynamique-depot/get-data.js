@@ -30,7 +30,13 @@ function useGetData(observationSnap, domain) {
       (archive, archiveIndex) => {
         if (archive.key !== 'N/A') {
           const obj = {
-            name: archive.key,
+            key: archive.key,
+            name: intl.formatMessage({
+              id: `app.repositories.label.${archive.key
+                .toLowerCase()
+                .replace(/ /g, '')}`,
+              defaultMessage: archive.key,
+            }),
             annotationVisible: archiveIndex === 0,
             color: greenMedium150,
             data: archive.by_year.buckets
@@ -66,15 +72,15 @@ function useGetData(observationSnap, domain) {
     );
     tab = tab.slice(0, 12);
 
-    const name = 'HAL';
-    const halData = tab.find((item) => item.name === name)?.data;
+    const key = 'HAL';
+    const halData = tab.find((item) => item.key === key)?.data;
     const year1 = halData[0]?.year;
     const value1 = halData[0]?.y;
     const year2 = halData[halData.length - 1]?.year;
     const value2 = halData[halData.length - 1]?.y;
 
     const comments = {
-      name,
+      name: key,
       value1,
       value2,
       year1,

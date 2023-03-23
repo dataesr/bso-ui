@@ -1330,5 +1330,20 @@
   "url.sante.etudes": "/sante/etudes-observationnelles/general",
   "url.sante.publications.general": "/sante/publications/general",
   "app.pages.does-not-exist": "Cette page n'existe pas.",
-  "app.header.nav.declinaisons": "Les baromètres locaux"
+  "app.header.nav.declinaisons": "Les baromètres locaux",
+  "app.repositories.label.hal": "HAL (France)",
+  "app.repositories.label.pubmedcentral": "Pubmed Central (USA)",
+  "app.repositories.label.arxiv": "ArXiv (USA)",
+  "app.repositories.label.biorxiv": "bioRxiv (USA)",
+  "app.repositories.label.researchsquare": "Research Square (Springer)",
+  "app.repositories.label.archimer": "Archimer (France)",
+  "app.repositories.label.ucldiscovery": "UCL Discovery (USA)",
+  "app.repositories.label.pure(denmark)": "Pure (Danemark)",
+  "app.repositories.label.zenodo": "Zenodo (Europe)",
+  "app.repositories.label.digital.csic(spain)": "DIGITALCSIC (Espagne)",
+  "app.repositories.label.univoak": "univOAK (France)",
+  "app.repositories.label.lirias(kuleuven)": "LIRIAS (Belgique)",
+  "app.repositories.label.lilloa(lilleopenarchive)": "LillOA (France)",
+  "app.repositories.label.pure.rug.nl": "Pure (Pays-Bas)",
+  "app.repositories.label.usofficeofscientificandtechnicalinformation": "US OSTP (USA)"
 }

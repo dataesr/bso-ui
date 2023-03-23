@@ -1266,5 +1266,20 @@
   "url.thesis": "/thesis",
   "app.baro-national.orcid.title": "ORCID follow up",
   "app.header.nav.declinaisons": "The local monitors",
-  "app.software.navigation.disciplines.creation": "Software or code creation"
+  "app.software.navigation.disciplines.creation": "Software or code creation",
+  "app.repositories.label.hal": "HAL (France)",
+  "app.repositories.label.pubmedcentral": "Pubmed Central (USA)",
+  "app.repositories.label.arxiv": "ArXiv (USA)",
+  "app.repositories.label.biorxiv": "bioRxiv (USA)",
+  "app.repositories.label.researchsquare": "Research Square (Springer)",
+  "app.repositories.label.archimer": "Archimer (France)",
+  "app.repositories.label.ucldiscovery": "UCL Discovery (USA)",
+  "app.repositories.label.pure(denmark)": "Pure (Denmark)",
+  "app.repositories.label.zenodo": "Zenodo (Europe)",
+  "app.repositories.label.digital.csic(spain)": "DIGITALCSIC (Spain)",
+  "app.repositories.label.univoak": "univOAK (France)",
+  "app.repositories.label.lirias(kuleuven)": "LIRIAS (Belgium)",
+  "app.repositories.label.lilloa(lilleopenarchive)": "LillOA (France)",
+  "app.repositories.label.pure.rug.nl": "Pure (The Netherlands)",
+  "app.repositories.label.usofficeofscientificandtechnicalinformation": "US OSTP (USA)"
 }
