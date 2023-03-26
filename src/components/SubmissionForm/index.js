@@ -51,7 +51,6 @@ const SubmissionForm = () => {
   const [name, setName] = useState();
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
-  const [firstPublicationYear, setFirstPublicationYear] = useState(2013);
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -91,9 +90,15 @@ const SubmissionForm = () => {
         'Content-Type': 'application/json',
       },
       data: {
-        sender: { email, name: email },
+        sender: {
+          email: 'bso@recherche.gouv.fr',
+          name: 'Baromètre français de la Science Ouverte',
+        },
         to: [
-          { email: 'bso@recherche.gouv.fr', name: 'MESR - BSO' },
+          {
+            email: 'bso@recherche.gouv.fr',
+            name: 'Baromètre français de la Science Ouverte',
+          },
           { email, name: email },
         ],
         subject: "Demande d'un nouveau BSO Local",
@@ -101,7 +106,6 @@ const SubmissionForm = () => {
           <p>Email de contact: ${email}</p>
           <p>Nom de la structure: ${name}</p>
           <p>Acronyme de la structure: ${acronym}</p>
-          <p>Première année de publication: ${firstPublicationYear}</p>
           </body></html>`,
         attachment: [{ content, name: 'bso.csv' }],
       },
@@ -347,12 +351,6 @@ const SubmissionForm = () => {
                 label='Acronyme de la structure'
                 onChange={(e) => setAcronym(e.target.value)}
                 value={acronym}
-              />
-              <TextInput
-                label='Première année de publication'
-                onChange={(e) => setFirstPublicationYear(e.target.value)}
-                type='number'
-                value={firstPublicationYear}
               />
               <File
                 hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
