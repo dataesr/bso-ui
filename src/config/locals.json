@@ -170,6 +170,18 @@
     "grid": "grid.5328.c",
     "paysage": "E1Wdn"
   },
+  "18009202500055": {
+    "name": "Télécom SudParis (TSP)",
+    "commentsName": "de TSP",
+    "commentsNameEN": "of TSP",
+    "paysage": "YvBkH"
+  },
+  "18009202500063": {
+    "name": "Institut Mines-Télécom Business School (IMT-BS)",
+    "commentsName": "de l'IMT-BS",
+    "commentsNameEN": "of IMT-BS",
+    "paysage": "6Bu79"
+  },
   "18009202500097": {
     "name": "IMT Mines Albi",
     "commentsName": "d'IMT Mines Albi",
