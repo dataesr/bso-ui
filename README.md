@@ -9,7 +9,7 @@ Application web du Baromètre de la Science Ouverte accessible ici :
 
 ## Requirements
 
-* node >= 16
+* node >= 16 :warning:
 * npm > 7
 
 ## Boilerplate
