@@ -717,13 +717,18 @@
   "cercll": {
     "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
     "commentsName": "du CERCLL",
-    "commentsNameEN": "of the CERCLL",
+    "commentsNameEN": "of CERCLL",
     "paysage": "dKt1t"
   },
   "driihm": {
     "name": "Laboratoire d'Excellence Dispositif de Recherche Interdisciplinaire sur les Interactions Hommes-Milieux (LabEx DRIIHM)",
     "commentsName": "du LabEx DRIIHM",
     "commentsNameEN": "of the LabEx DRIIHM"
+  },
+  "empp": {
+    "name": "Pôle scientifique Energie, Mécanique, Procédés, Produits (EMPP)",
+    "commentsName": "de l'EMPP",
+    "commentsNameEN": "of EMPP"
   },
   "grap": {
     "name": "Groupe de Recherche sur l'Alcool et les Pharmacodépendances",
