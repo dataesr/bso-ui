@@ -8,6 +8,23 @@
     "grid": "grid.11843.3f",
     "paysage": "4k25D"
   },
+  "130012024": {
+    "name": "Agence nationale de sécurité sanitaire de l'alimentation, de l’environnement et du travail (ANSES)",
+    "commentsName": "de l'ANSES",
+    "commentsNameEN": "of ANSES",
+    "ror": "0471kz689",
+    "grid": "grid.15540.35",
+    "paysage": "gFuBu"
+  },
+  "130015332": {
+    "name": "Aix-Marseille Université (AMU)",
+    "commentsName": "d'AMU",
+    "commentsNameEN": "of AMU",
+    "startYear": 2016,
+    "ror": "035xkbk20",
+    "grid": "grid.5399.6",
+    "paysage": "xJdyB"
+  },
   "130015506": {
     "name": "Université de Lorraine (UL)",
     "commentsName": "de l'université de Lorraine",
@@ -18,14 +35,13 @@
     "grid": "grid.29172.3f",
     "paysage": "t6Cq5"
   },
-  "130015332": {
-    "name": "Aix-Marseille Université (AMU)",
-    "commentsName": "d'AMU",
-    "commentsNameEN": "of AMU",
-    "startYear": 2016,
-    "ror": "035xkbk20",
-    "grid": "grid.5399.6",
-    "paysage": "xJdyB"
+  "130018336": {
+    "name": "Institut national des sciences appliquées Centre Val de Loire (INSA Centre Val de Loire)",
+    "commentsName": "de l'INSA Centre Val de Loire",
+    "commentsNameEN": "of INSA Centre Val de Loire",
+    "ror": "03y0qc033",
+    "grid": "grid.454311.6",
+    "paysage": "QYw7j"
   },
   "130018351": {
     "name": "Université de Bordeaux",
@@ -717,13 +733,18 @@
   "cercll": {
     "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
     "commentsName": "du CERCLL",
-    "commentsNameEN": "of the CERCLL",
+    "commentsNameEN": "of CERCLL",
     "paysage": "dKt1t"
   },
   "driihm": {
     "name": "Laboratoire d'Excellence Dispositif de Recherche Interdisciplinaire sur les Interactions Hommes-Milieux (LabEx DRIIHM)",
     "commentsName": "du LabEx DRIIHM",
     "commentsNameEN": "of the LabEx DRIIHM"
+  },
+  "empp": {
+    "name": "Pôle scientifique Energie, Mécanique, Procédés, Produits (EMPP)",
+    "commentsName": "de l'EMPP",
+    "commentsNameEN": "of EMPP"
   },
   "grap": {
     "name": "Groupe de Recherche sur l'Alcool et les Pharmacodépendances",

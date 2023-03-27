@@ -2964,6 +2964,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -2991,6 +2992,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3020,6 +3022,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3049,6 +3052,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3077,6 +3081,7 @@ export const chartOptions = {
           },
         },
       };
+      options.exporting.chartOptions.legend.enabled = false;
       options.series = data;
       return options;
     },
@@ -3108,6 +3113,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3137,6 +3143,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3166,6 +3173,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3205,6 +3213,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3244,6 +3253,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3283,6 +3293,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3320,6 +3331,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3357,6 +3369,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3394,6 +3407,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3431,6 +3445,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3468,6 +3483,7 @@ export const chartOptions = {
       options.exporting.csv = {
         columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
       };
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
