@@ -133,7 +133,7 @@ export default function NationalResearchData() {
                 <QuestionSection
                   intlKey='app.national-data.general.utilisation'
                   glossaryKeys={['archive-ouverte']}
-                  backgroundColor={blueSoft25}
+                  backgroundColor={blueSoft50}
                   anchorId='general.utilisation'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-used' />
@@ -141,7 +141,7 @@ export default function NationalResearchData() {
                 <QuestionSection
                   intlKey='app.national-data.general.creation'
                   glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
+                  backgroundColor={blueSoft25}
                   anchorId='general.creation'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-created' />
@@ -232,7 +232,7 @@ export default function NationalResearchData() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.disciplines.creation'
-                  backgroundColor={blueSoft50}
+                  backgroundColor={blueSoft25}
                   anchorId='disciplines.creation'
                 >
                   <BSOChart id='data.disciplines.voies-ouverture.chart-data-created' />

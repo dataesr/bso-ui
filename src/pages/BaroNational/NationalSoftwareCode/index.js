@@ -123,7 +123,7 @@ export default function NationalSoftwareCode() {
                 <QuestionSection
                   intlKey='app.national-software.general.utilisation'
                   glossaryKeys={['grobid', 'softcite']}
-                  backgroundColor={blueSoft25}
+                  backgroundColor={blueSoft50}
                   anchorId='general.utilisation'
                 >
                   <BSOChart id='software.general.voies-ouverture.chart-software-used' />
@@ -131,7 +131,7 @@ export default function NationalSoftwareCode() {
                 <QuestionSection
                   intlKey='app.national-software.general.creation'
                   glossaryKeys={['grobid', 'softcite']}
-                  backgroundColor={blueSoft50}
+                  backgroundColor={blueSoft25}
                   anchorId='general.creation'
                 >
                   <BSOChart id='software.general.voies-ouverture.chart-software-created' />
@@ -202,7 +202,7 @@ export default function NationalSoftwareCode() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-software.disciplines.creation'
-                  backgroundColor={blueSoft50}
+                  backgroundColor={blueSoft25}
                   anchorId='disciplines.creation'
                 >
                   <BSOChart id='software.disciplines.voies-ouverture.chart-software-created' />
