@@ -58,8 +58,8 @@ function NotesFlash() {
               </h4>
               <FormattedMessage id='app.flyer.presentation.description' />
               <CardLogo
-                href='/assets/flyer_bso_2023.pdf'
-                img='/assets/flyer.png'
+                href='/assets/flyer_bso_2023_fr.pdf'
+                img='/assets/flyer_bso_2023_fr.png'
                 alt='flyer bso'
                 noMargin='true'
               />
@@ -70,8 +70,8 @@ function NotesFlash() {
               </h4>
               <FormattedMessage id='app.flyer.results.description' />
               <CardLogo
-                href='/assets/flyer_resultats_bso_2023.pdf'
-                img='/assets/resultats_2023.png'
+                href='/assets/flyer_resultats_bso_2023_fr.pdf'
+                img='/assets/flyer_resultats_bso_2023_fr.png'
                 alt='flyer resultats bso'
                 noMargin='true'
               />
