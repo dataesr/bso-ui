@@ -238,7 +238,7 @@ const Studio = () => {
           <Toggle
             checked={useHalId}
             hasLabelLeft
-            label='Inclure les identifants de HAL'
+            label='Inclure les identifiants de HAL'
             onChange={() => setUseHalId(!useHalId)}
           />
         </Col>
