@@ -82,7 +82,6 @@ function BaroNational() {
         supTitle={<FormattedMessage id='app.header.welcome-on' />}
         title={<FormattedMessage id='app.header.title-bis' />}
         subTitle={<FormattedMessage id='app.header.subtitle' />}
-        // subsubTitle={<FormattedMessage id='app.header.subsubtitle' />}
         link={{
           label: <FormattedMessage id='app.communication.see' />,
           url: intl.formatMessage({ id: 'url.about.communication' }) + search,

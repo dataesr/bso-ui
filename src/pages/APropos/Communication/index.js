@@ -1,13 +1,15 @@
-import { Col, Container, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
-import CardLogo from '../../../components/CardLogo';
 import FlashCard from '../../../components/FlashCard';
 import Icon from '../../../components/Icon';
+import useLang from '../../../utils/Hooks/useLang';
 
 function NotesFlash() {
+  const { lang } = useLang();
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -56,24 +58,46 @@ function NotesFlash() {
               <h4 className='marianne-bold fs-24-32'>
                 <FormattedMessage id='app.flyer.presentation' />
               </h4>
-              <FormattedMessage id='app.flyer.presentation.description' />
-              <CardLogo
-                href='/assets/flyer_bso_2023_fr.pdf'
-                img='/assets/flyer_bso_2023_fr.png'
+              <div>
+                <DSLink href='/assets/flyer_bso_2023_fr.pdf' target='_blank'>
+                  <FormattedMessage id='app.flyer.presentation.description-fr' />
+                </DSLink>
+              </div>
+              <div>
+                <DSLink href='/assets/flyer_bso_2023_en.pdf' target='_blank'>
+                  <FormattedMessage id='app.flyer.presentation.description-en' />
+                </DSLink>
+              </div>
+              <img
+                src={`/assets/flyer_bso_2023_${lang}.png`}
                 alt='flyer bso'
-                noMargin='true'
+                className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
             </Col>
             <Col n='12 md-6 lg-6'>
               <h4 className='marianne-bold fs-24-32'>
                 <FormattedMessage id='app.flyer.results' />
               </h4>
-              <FormattedMessage id='app.flyer.results.description' />
-              <CardLogo
-                href='/assets/flyer_resultats_bso_2023_fr.pdf'
-                img='/assets/flyer_resultats_bso_2023_fr.png'
+              <div>
+                <DSLink
+                  href='/assets/flyer_resultats_bso_2023_fr.pdf'
+                  target='_blank'
+                >
+                  <FormattedMessage id='app.flyer.results.description-fr' />
+                </DSLink>
+              </div>
+              <div>
+                <DSLink
+                  href='/assets/flyer_resultats_bso_2023_en.pdf'
+                  target='_blank'
+                >
+                  <FormattedMessage id='app.flyer.results.description-en' />
+                </DSLink>
+              </div>
+              <img
+                src={`/assets/flyer_resultats_bso_2023_${lang}.png`}
                 alt='flyer resultats bso'
-                noMargin='true'
+                className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
             </Col>
           </Row>
