@@ -164,6 +164,13 @@ function BaroNational() {
                 </Container>
               </HomeSection>
               <HomeSection // données
+                hasBeta
+                introText={(
+                  <GlossaryFormattedMessage
+                    glossaryKeys={['grobid', 'datastet']}
+                    intlKey='app.baro-national.data.intro'
+                  />
+                )}
                 link={{
                   href: urls.nationalResearchData.tabs[0][lang] + search,
                   label: (
@@ -171,13 +178,6 @@ function BaroNational() {
                   ),
                 }}
                 title={<FormattedMessage id='app.baro-national.data.title' />}
-                hasBeta='1'
-                introText={(
-                  <GlossaryFormattedMessage
-                    intlKey='app.baro-national.data.intro'
-                    glossaryKeys={['grobid', 'datastet']}
-                  />
-                )}
               >
                 <Container fluid>
                   <Row gutters alignItems='top'>
@@ -188,6 +188,13 @@ function BaroNational() {
                 </Container>
               </HomeSection>
               <HomeSection // logiciels
+                hasBeta
+                introText={(
+                  <GlossaryFormattedMessage
+                    glossaryKeys={['grobid', 'softcite']}
+                    intlKey='app.baro-national.software.intro'
+                  />
+                )}
                 link={{
                   href: urls.nationalSoftwareCode.tabs[0][lang] + search,
                   label: (
@@ -197,13 +204,6 @@ function BaroNational() {
                 title={
                   <FormattedMessage id='app.baro-national.software.title' />
                 }
-                hasBeta='1'
-                introText={(
-                  <GlossaryFormattedMessage
-                    intlKey='app.baro-national.software.intro'
-                    glossaryKeys={['grobid', 'softcite']}
-                  />
-                )}
               >
                 <Container fluid>
                   <Row gutters alignItems='top'>
