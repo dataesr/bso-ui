@@ -325,6 +325,14 @@
     "grid": "grid.16117.30",
     "paysage": "MUQxd"
   },
+  "196727671": {
+    "name": "Institut National des Sciences Appliquées de Strasbourg (INSA Strasbourg)",
+    "commentsName": "de l'INSA Strasbourg",
+    "commentsNameEN": "of INSA Strasbourg",
+    "ror": "001nta019",
+    "grid": "grid.435015.6",
+    "paysage": "ab5z5"
+  },
   "196811665": {
     "name": "Université de Haute-Alsace (UHA)",
     "commentsName": "de l'université de Haute-Alsace",
@@ -344,7 +352,7 @@
     "paysage": "fWJJA"
   },
   "196901920": {
-    "name": "Institut National des Sciences Sppliquées de Lyon (INSA Lyon)",
+    "name": "Institut National des Sciences Appliquées de Lyon (INSA Lyon)",
     "commentsName": "de l'INSA Lyon",
     "commentsNameEN": "of INSA Lyon",
     "startYear": 2016,
