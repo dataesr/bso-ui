@@ -309,6 +309,13 @@ function Variations() {
                 alt='bso local inrae'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://www.uvsq.fr/barometre-science-ouverte'
+                img='/declinaisons/uvsq.png'
+                alt='bso local uvsq'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>
@@ -353,15 +360,6 @@ function Variations() {
                     rel='noreferrer'
                   >
                     Université de Paris-Cité
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://www.uvsq.fr/barometre-science-ouverte'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Université Versailles Saint Quentin
                   </a>
                 </li>
               </ul>
