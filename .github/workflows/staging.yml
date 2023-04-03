@@ -14,27 +14,28 @@ env:
 
 jobs:
   publish-ghcr:
-    name: Publish docker image
+    name: Docker image
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: 🏁 Checkout
+        uses: actions/checkout@v3
 
-      - name: Log into registry
-        run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build image
-        run: docker build -f Dockerfile-staging -t ${{ github.repository }} .
-
-      - name: Get Tag
-        id: version
+      - name: 🏷️ Get tag
+        id: tag
         run: echo "tag=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
 
-      - name: Push image
+      - name: 🔑 Login docker
+        run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🐋 Build docker image
+        run: docker build -f Dockerfile-staging -t ${{ github.repository }} .
+
+      - name: 📦 Push docker image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository }}
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          docker tag ${{ github.repository }} $IMAGE_ID:${{ steps.version.outputs.tag }}
-          docker push $IMAGE_ID:${{ steps.version.outputs.tag }}
+          docker tag ${{ github.repository }} $IMAGE_ID:${{ steps.tag.outputs.tag }}
+          docker push $IMAGE_ID:${{ steps.tag.outputs.tag }}
 
   deploy:
     name: Update staging deployment
