@@ -8,12 +8,14 @@ import {
 } from '@dataesr/react-dsfr';
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useIntl } from 'react-intl';
 
 import downloadFile from '../../utils/files';
 import { getCSSValue } from '../../utils/helpers';
-import objects from './tree';
+import tree from './tree';
 
 const Studio = () => {
+  const intl = useIntl();
   const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506');
   const [displayComment, setDisplayComment] = useState(true);
   const [displayFooter, setDisplayFooter] = useState(true);
@@ -35,23 +37,47 @@ const Studio = () => {
     value: item,
   }));
   const publicationYears = [
-    2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
+    2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
   ].map((item) => ({ label: item, value: item }));
 
-  const tabs = objects?.find((item) => item.value === object)?.children || [];
-  const graphs = tabs?.find((item) => item.value === tab)?.children || [];
+  const commentsName = intl.formatMessage({
+    id: 'app.french',
+    defaultMessage: 'françaises',
+  });
+  const values = {
+    commentsName,
+    publicationYear: endYear,
+    observationYear: lastObservationYear,
+    publisherTitle: '',
+    archiveTitle: '',
+  };
+  const objects = tree.map((item) => ({
+    ...item,
+    label: intl.formatMessage({ id: item.key }, values),
+  }));
+  let tabs = objects?.find((item) => item.value === object)?.children || [];
+  tabs = tabs.map((item) => ({
+    ...item,
+    label: intl.formatMessage({ id: item.key }, values),
+  }));
+  let graphs = tabs?.find((item) => item.value === tab)?.children || [];
+  graphs = graphs.map((item) => ({
+    ...item,
+    label: intl.formatMessage({ id: item.key }, values),
+  }));
   const [graph, setGraph] = useState(graphs[0].value || null);
+  const changeObject = (o) => {
+    setObject(o);
+    const currentTabs = objects?.find((item) => item.value === o)?.children || [];
+    setTab(currentTabs[0].value || []);
+    const currentGraphs = currentTabs?.find((item) => item.value === currentTabs[0].value)
+      ?.children || [];
+    setGraph(currentGraphs[0].value || null);
+  };
   const changeTab = (t) => {
     setTab(t);
     const currentTabs = objects?.find((item) => item.value === object)?.children || [];
     const currentGraphs = currentTabs?.find((item) => item.value === t)?.children || [];
-    setGraph(currentGraphs[0].value || null);
-  };
-  const changeObject = (o) => {
-    setObject(o);
-    const currentTabs = objects?.find((item) => item.value === o)?.children || [];
-    const currentGraphs = currentTabs?.find((item) => item.value === currentTabs[0].value)
-      ?.children || [];
     setGraph(currentGraphs[0].value || null);
   };
   const changeGraph = (g) => {
@@ -114,7 +140,7 @@ const Studio = () => {
             options={langs}
             selected={lang}
             style={{
-              'margin-top': '50px',
+              marginTop: '50px',
               backgroundColor: getCSSValue('--white'),
             }}
           />
@@ -138,7 +164,7 @@ const Studio = () => {
             options={tabs}
             selected={tab}
             style={{
-              'margin-top': '50px',
+              marginTop: '50px',
               backgroundColor: getCSSValue('--white'),
             }}
           />
