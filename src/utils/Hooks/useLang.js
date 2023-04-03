@@ -1,18 +1,29 @@
 import PropTypes from 'prop-types';
 import { createContext, useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import urls from '../../config/urls';
+import { isInProduction } from '../helpers';
 
 export const LangContext = createContext();
 
 export const LangContextProvider = ({ supportedLanguages, children }) => {
-  const locale = window.location.hostname === 'frenchopensciencemonitor.esr.gouv.fr'
-    ? 'en'
-    : 'fr';
-  const selectedLang = sessionStorage.getItem('__bso_lang__');
-  const [lang, setLang] = useState(selectedLang || locale);
+  const { pathname } = useLocation();
 
-  const switchLang = (newLang, pathname, search) => {
+  // Default UI lang in French
+  let locale = 'fr';
+  // In production but not in integration aka iFrame, lang depends of the hostname
+  if (isInProduction() && !pathname.startsWith('/integration')) {
+    locale = window.location.hostname === 'frenchopensciencemonitor.esr.gouv.fr'
+      ? 'en'
+      : 'fr';
+    // In other env (local and staging), lang depends of the sessionStorage
+  } else {
+    locale = sessionStorage.getItem('__bso_lang__');
+  }
+  const [lang, setLang] = useState(locale || 'fr');
+
+  const switchLang = (newLang, path, search) => {
     if (supportedLanguages.includes(newLang) && newLang !== lang) {
       let newUrl = '';
       const keysUrls = Object.keys(urls);
@@ -23,13 +34,13 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
 
         if (tabsUrls) {
           for (let j = 0; j < tabsUrls.length; j += 1) {
-            if (tabsUrls[j][lang] === pathname) {
+            if (tabsUrls[j][lang] === path) {
               newUrl = tabsUrls[j][newLang];
             }
           }
         }
 
-        if (urls[key][lang] === pathname) {
+        if (urls[key][lang] === path) {
           newUrl = urls[key][newLang];
         }
       }
@@ -39,6 +50,12 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
       setLang(newLang);
 
       if (newUrl) {
+        if (isInProduction() && !pathname.startsWith('/integration')) {
+          const domain = newLang === 'en'
+            ? 'https://frenchopensciencemonitor.esr.gouv.fr'
+            : 'https://barometredelascienceouverte.esr.gouv.fr';
+          newUrl = domain + newUrl;
+        }
         window.location.replace(newUrl + search);
       }
     }
