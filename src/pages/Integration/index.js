@@ -9,12 +9,13 @@ import { getURLSearchParams } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 const Integration = () => {
-  const { language, graphId, domain, studyType } = useParams();
+  const { domain, graphId, language, studyType } = useParams();
   const { pathname, search } = useLocation();
   const intl = useIntl();
   const { switchLang } = useLang();
-  const { displayTitle, displayFooter } = getURLSearchParams(intl, graphId);
+  const { displayFooter, displayTitle } = getURLSearchParams(intl, graphId);
   switchLang(language, pathname, search);
+
   return (
     <Container fluid>
       {displayTitle && (

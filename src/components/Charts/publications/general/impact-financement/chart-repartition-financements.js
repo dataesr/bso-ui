@@ -69,9 +69,24 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         onChange={(newValue) => setAgency(newValue)}
         value={agency}
       >
-        <Radio label='ANR - global' value='ANR - global' />
-        <Radio label='ANR DOS' value='ANR DOS' />
-        <Radio label='ANR PIA' value='ANR PIA' />
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.global',
+          })}
+          value='ANR - global'
+        />
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.dos',
+          })}
+          value='ANR DOS'
+        />
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.pia',
+          })}
+          value='ANR PIA'
+        />
       </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}

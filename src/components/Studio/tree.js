@@ -1,151 +1,130 @@
 const tree = [
   {
-    label: 'Les publications',
+    key: 'app.baro-national.publications.title',
     value: 'publi',
     children: [
       {
-        label: 'Général',
+        key: 'app.publi.general',
         value: 'general',
         children: [
           {
-            label:
-              "Taux d'accès ouvert des publications scientifiques françaises parues durant l'année précédente par année d'observation",
+            key: 'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture.title',
             value: 'publi.general.dynamique-ouverture.chart-taux-ouverture',
           },
           {
-            label:
-              "Évolution du taux d'accès ouvert des publications scientifiques françaises par année d'observation",
+            key: 'app.national-publi.general.dynamique-ouverture.chart-evolution-proportion.title',
             value:
               'publi.general.dynamique-ouverture.chart-evolution-proportion',
           },
           {
-            label:
-              "Répartition des publications scientifiques françaises parues en 2021 par voie d'ouverture",
+            key: 'app.national-publi.general.voies-ouverture.chart-repartition-publications.title',
             value:
               'publi.general.voies-ouverture.chart-repartition-publications',
           },
           {
-            label:
-              "Répartition des publications scientifiques françaises en accès ouvert par voie d'ouverture et par année de publication",
+            key: 'app.national-publi.general.voies-ouverture.chart-repartition-taux.title',
             value: 'publi.general.voies-ouverture.chart-repartition-taux',
           },
           {
-            label: "Taux d'accès ouvert par type de publications françaises",
+            key: 'app.national-publi.general.genres-ouverture.chart-repartition-genres.title',
             value: 'publi.general.genres-ouverture.chart-repartition-genres',
           },
           {
-            label: "Taux d'accès ouvert par langue de publications françaises",
+            key: 'app.national-publi.general.langues-ouverture.chart-repartition-publications.title',
             value:
               'publi.general.langues-ouverture.chart-repartition-publications',
           },
         ],
       },
       {
-        label: 'Disciplines',
+        key: 'app.publi.disciplines',
         value: 'disciplines',
         children: [
           {
-            label:
-              "Taux d'accès ouvert par discipline et par année d'observation, pour les publications françaises parues durant l'année précédente (disciplines présentées dans l'ordre du taux d'accès décroissant)",
+            key: 'app.national-publi.disciplines.dynamique-ouverture.chart-taux-ouverture.title',
             value: 'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
           },
           {
-            label:
-              "Dynamique d'évolution du taux de publications françaises en accès ouvert pour chaque discipline par année d'observation",
+            key: 'app.national-publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture.title',
             value:
               'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
           },
           {
-            label:
-              "Répartition des publications françaises par voie d'ouverture pour chaque discipline",
+            key: 'app.national-publi.disciplines.voies-ouverture.chart-repartition-publications.title',
             value:
               'publi.disciplines.voies-ouverture.chart-repartition-publications',
           },
           {
-            label:
-              "Positionnement des disciplines en fonction des voies privilégiées pour l'ouverture de leurs publications françaises",
+            key: 'app.national-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.title',
             value:
               'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
           },
         ],
       },
       {
-        label: 'Editeurs',
+        key: 'app.publi.editeurs',
         value: 'publishers',
         children: [
           {
-            label:
-              "Part des publications scientifiques françaises mises à disposition en accès ouvert par leur éditeur, par année d'observation, pour les publications parues durant l'année précédente",
+            key: 'app.national-publi.publishers.dynamique-ouverture.chart-taux-ouverture.title',
             value: 'publi.publishers.dynamique-ouverture.chart-taux-ouverture',
           },
           {
-            label:
-              "Évolution de la part des publications françaises mises à disposition en accès ouvert par l'éditeur par année d'observation",
+            key: 'app.national-publi.publishers.dynamique-ouverture.chart-evolution-proportion.title',
             value:
               'publi.publishers.dynamique-ouverture.chart-evolution-proportion',
           },
           {
-            label:
-              'Répartition des modèles économiques pour les articles parus en 2021 et diffusés en accès ouvert par leur éditeur',
+            key: 'app.national-publi.publishers.type-ouverture.chart-repartition-modeles.title',
             value: 'publi.publishers.type-ouverture.chart-repartition-modeles',
           },
           {
-            label:
-              'Évolution des modèles économiques pour les articles diffusés en accès ouvert par leur éditeur, par année de publication',
+            key: 'app.national-publi.publishers.type-ouverture.chart-evolution-repartition.title',
             value:
               'publi.publishers.type-ouverture.chart-evolution-repartition',
           },
           {
-            label:
-              "Modalités d'ouverture des publications scientifiques françaises chez les éditeurs ou plateformes de publication les plus importants en volume (top 25)",
+            key: 'app.national-publi.publishers.politiques-ouverture.chart-classement.title',
             value: 'publi.publishers.politiques-ouverture.chart-classement',
           },
           {
-            label:
-              "Positionnement des éditeurs et plateformes de publication en fonction des voies privilégiées pour l'ouverture des publications françaises qu'ils diffusent",
+            key: 'app.national-publi.publishers.politiques-ouverture.chart-comparaison.title',
             value: 'publi.publishers.politiques-ouverture.chart-comparaison',
           },
           {
-            label:
-              'Répartition des publications scientifiques françaises ouvertes par type de licence utilisée',
+            key: 'app.national-publi.publishers.repartition-licences.chart-repartition.title',
             value: 'publi.publishers.repartition-licences.chart-repartition',
           },
           {
-            label:
-              "Taux d'utilisation d'une licence libre par les éditeurs ou plateformes de publication qui diffusent le plus de publications scientifiques françaises en accès ouvert (top 25)",
+            key: 'app.national-publi.publishers.repartition-licences.chart-classement.title',
             value: 'publi.publishers.repartition-licences.chart-classement',
           },
           {
-            label:
-              'Distribution des publications scientifiques françaises en fonction des frais de publication pratiqués',
+            key: 'app.national-publi.publishers.couts-publication.chart-distribution.title',
             value: 'publi.publishers.couts-publication.chart-distribution',
           },
         ],
       },
       {
-        label: 'Archives ouvertes',
+        key: 'app.publi.archives',
         value: 'repositories',
         children: [
           {
-            label:
-              "Taux de publications scientifiques françaises ouvertes et hébergées sur une archive ouverte par année d'observation",
+            key: 'app.national-publi.repositories.dynamique-ouverture.chart-taux-ouverture.title',
             value:
               'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
           },
           {
-            label:
-              "Évolution du taux de publications scientifiques françaises hébergées sur une archive ouverte, par année d'observation",
+            key: 'app.national-publi.repositories.dynamique-ouverture.chart-evolution-proportion.title',
             value:
               'publi.repositories.dynamique-ouverture.chart-evolution-proportion',
           },
           {
-            label:
-              'Principales archives ouvertes hébergeant des publications scientifiques françaises',
+            key: 'app.national-publi.repositories.plus-utilisees.chart-nombre-documents.title',
             value: 'publi.repositories.plus-utilisees.chart-nombre-documents',
           },
           {
-            label:
-              'Taux de couverture de HAL sur les publications scientifiques françaises hébergées sur une archive ouverte',
+            key: 'app.national-publi.repositories.dynamique-hal.chart-couverture-hal.title',
             value: 'publi.repositories.dynamique-hal.chart-couverture-hal',
           },
         ],
@@ -153,21 +132,19 @@ const tree = [
     ],
   },
   {
-    label: 'Les thèses de doctorat',
+    key: 'app.baro-national.thesis.title',
     value: 'theses',
     children: [
       {
-        label: 'Général',
+        key: 'app.thesis.general',
         value: 'general',
         children: [
           {
-            label:
-              "Taux d'ouverture des thèses de doctorat françaises par année de soutenance",
+            key: 'app.national-thesis.general.voies-ouverture.chart-repartition-taux.title',
             value: 'thesis.general.voies-ouverture.chart-repartition-taux',
           },
           {
-            label:
-              "Répartition des thèses de doctorat françaises par voie d'ouverture pour chaque discipline",
+            key: 'app.national-thesis.disciplines.voies-ouverture.chart-repartition-thesis.title',
             value:
               'thesis.disciplines.voies-ouverture.chart-repartition-thesis',
           },
@@ -176,65 +153,59 @@ const tree = [
     ],
   },
   {
-    label: 'Les données de la recherche',
+    key: 'app.baro-national.data.title.beta',
     value: 'data',
     children: [
       {
-        label: 'Général',
+        key: 'app.data.general',
         value: 'general',
         children: [
           {
-            label: 'Proportion de publications qui utilisent un jeu de données',
+            key: 'app.national-data.general.voies-ouverture.chart-data-used.title',
             value: 'data.general.voies-ouverture.chart-data-used',
           },
           {
-            label: 'Proportion de publications qui créent un jeu de données',
+            key: 'app.national-data.general.voies-ouverture.chart-data-created.title',
             value: 'data.general.voies-ouverture.chart-data-created',
           },
           {
-            label: 'Proportion de publications qui partagent un jeu de données',
+            key: 'app.national-data.general.voies-ouverture.chart-data-shared.title',
             value: 'data.general.voies-ouverture.chart-data-shared',
           },
           {
-            label:
-              'Proportion de publications qui présentent un Data Availibility Statement',
+            key: 'app.national-data.general.voies-ouverture.chart-availibility.title',
             value: 'data.general.voies-ouverture.chart-availibility',
           },
         ],
       },
       {
-        label: 'Disciplines',
+        key: 'app.data.disciplines',
         value: 'disciplines',
         children: [
           {
-            label:
-              'Proportion de publications qui utilisent un jeu de données par discipline',
+            key: 'app.national-data.disciplines.voies-ouverture.chart-data-used.title',
             value: 'data.disciplines.voies-ouverture.chart-data-used',
           },
           {
-            label:
-              'Proportion de publications qui créent un jeu de données par discipline',
+            key: 'app.national-data.disciplines.voies-ouverture.chart-data-created.title',
             value: 'data.disciplines.voies-ouverture.chart-data-created',
           },
           {
-            label:
-              'Proportion de publications qui partagent un jeu de données par discipline',
+            key: 'app.national-data.disciplines.voies-ouverture.chart-data-shared.title',
             value: 'data.disciplines.voies-ouverture.chart-data-shared',
           },
           {
-            label:
-              'Proportion des publications qui présentent un Data Availibility Statement par discipline',
+            key: 'app.national-data.disciplines.voies-ouverture.chart-availibility.title',
             value: 'data.disciplines.voies-ouverture.chart-availibility',
           },
         ],
       },
       {
-        label: 'Editeurs',
+        key: 'Editeurs',
         value: 'editeurs',
         children: [
           {
-            label:
-              'Proportion des publications qui présentent un Data Availibility Statement par éditeur',
+            key: 'app.national-data.editeurs.voies-ouverture.chart-availibility.title',
             value: 'data.editeurs.voies-ouverture.chart-availibility',
           },
         ],
@@ -242,48 +213,42 @@ const tree = [
     ],
   },
   {
-    label: 'Les codes et logiciels',
+    key: 'app.baro-national.software.title.beta',
     value: 'codes',
     children: [
       {
-        label: 'Général',
+        key: 'app.software.general',
         value: 'general',
         children: [
           {
-            label:
-              'Proportion de publications qui utilisent un logiciel ou du code',
+            key: 'app.national-software.general.voies-ouverture.chart-software-used.title',
             value: 'software.general.voies-ouverture.chart-software-used',
           },
           {
-            label:
-              'Proportion de publications qui créent un logiciel ou du code',
+            key: 'app.national-software.general.voies-ouverture.chart-software-created.title',
             value: 'software.general.voies-ouverture.chart-software-created',
           },
           {
-            label:
-              'Proportion de publications qui partagent un logiciel ou du code',
+            key: 'app.national-software.general.voies-ouverture.chart-software-shared.title',
             value: 'software.general.voies-ouverture.chart-software-shared',
           },
         ],
       },
       {
-        label: 'Disciplines',
+        key: 'app.software.disciplines',
         value: 'disciplines',
         children: [
           {
-            label:
-              'Proportion de publications qui créent un logiciel ou du code par discipline',
+            key: 'app.national-software.disciplines.voies-ouverture.chart-software-created.title',
             value:
               'software.disciplines.voies-ouverture.chart-software-created',
           },
           {
-            label:
-              'Proportion de publications qui réutilisent un logiciel ou du code par discipline',
+            key: 'app.national-software.disciplines.voies-ouverture.chart-software-used.title',
             value: 'software.disciplines.voies-ouverture.chart-software-used',
           },
           {
-            label:
-              'Proportion de publications qui partagent un logiciel ou du code par discipline',
+            key: 'app.national-software.disciplines.voies-ouverture.chart-software-shared.title',
             value: 'software.disciplines.voies-ouverture.chart-software-shared',
           },
         ],

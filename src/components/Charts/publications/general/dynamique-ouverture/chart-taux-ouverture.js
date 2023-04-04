@@ -37,6 +37,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
   }, [data, idWithDomain, intl]);
+
   return (
     <WrapperChart
       chartRef={chartRef}
