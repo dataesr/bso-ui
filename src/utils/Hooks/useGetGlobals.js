@@ -20,9 +20,10 @@ export const GlobalsContextProvider = ({ children }) => {
     || hasNoStoredTimer
   ) {
     clearSessionStorage([
-      '__observationSnaps__',
-      '__lastObservationSnap__',
       '__beforeLastObservationSnap__',
+      '__lastObservationSnap__',
+      '__lastObservationSnapThesis__',
+      '__observationSnaps__',
       '__updateDate__',
       'storedTimer',
     ]);
@@ -31,17 +32,24 @@ export const GlobalsContextProvider = ({ children }) => {
     sessionStorage.setItem('storedTimer', JSON.stringify(new Date().getTime()));
   }
 
-  const storedObservationSnaps = sessionStorage.getItem('__observationSnaps__');
-  const [observationSnaps, setObservationSnaps] = useState(
-    JSON.parse(storedObservationSnaps),
+  const storedBeforeLastObservationSnap = sessionStorage.getItem('__beforeLastObservationSnap__') || '';
+  const [beforeLastObservationSnap, setBeforeLastObservationSnap] = useState(
+    storedBeforeLastObservationSnap,
   );
+
   const storedLastObservationSnap = sessionStorage.getItem('__lastObservationSnap__') || '';
   const [lastObservationSnap, setLastObservationSnap] = useState(
     storedLastObservationSnap,
   );
-  const storedBeforeLastObservationSnap = sessionStorage.getItem('__beforeLastObservationSnap__') || '';
-  const [beforeLastObservationSnap, setBeforeLastObservationSnap] = useState(
-    storedBeforeLastObservationSnap,
+
+  const storedLastObservationSnapThesis = sessionStorage.getItem('__lastObservationSnapThesis__') || '';
+  const [lastObservationSnapThesis, setLastObservationSnapThesis] = useState(
+    storedLastObservationSnapThesis,
+  );
+
+  const storedObservationSnaps = sessionStorage.getItem('__observationSnaps__');
+  const [observationSnaps, setObservationSnaps] = useState(
+    JSON.parse(storedObservationSnaps),
   );
 
   const storedUpdateDate = sessionStorage.getItem('__updateDate__');
@@ -95,9 +103,11 @@ export const GlobalsContextProvider = ({ children }) => {
           '__observationSnaps__',
           JSON.stringify(responseObservationSnaps),
         );
+
         const lastObs = responseObservationSnaps.sort().reverse()[0];
         setLastObservationSnap(lastObs);
         sessionStorage.setItem('__lastObservationSnap__', lastObs);
+
         let beforeLast = '';
         if (responseObservationSnaps.length > 1) {
           // eslint-disable-next-line
@@ -113,6 +123,13 @@ export const GlobalsContextProvider = ({ children }) => {
         setUpdateDate(responseUpdateDate);
         sessionStorage.setItem('__updateDate__', responseUpdateDate);
 
+        const lastObservationYearThesis = process.env.REACT_APP_LAST_OBSERVATION_THESIS;
+        setLastObservationSnapThesis(lastObservationYearThesis);
+        sessionStorage.setItem(
+          '__lastObservationSnapThesis__',
+          lastObservationYearThesis,
+        );
+
         sessionStorage.setItem('storedTimer', new Date().getTime());
       }
     }
@@ -122,10 +139,11 @@ export const GlobalsContextProvider = ({ children }) => {
   return (
     <GlobalsContext.Provider
       value={{
+        beforeLastObservationSnap,
+        lastObservationSnap,
+        lastObservationSnapThesis,
         observationSnaps,
         updateDate,
-        lastObservationSnap,
-        beforeLastObservationSnap,
       }}
     >
       {children}

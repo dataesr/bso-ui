@@ -27,7 +27,7 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
+  const { beforeLastObservationSnap, lastObservationSnapThesis } = useGlobals();
   const [chartComments, setChartComments] = useState('');
   const [dataTitle, setDataTitle] = useState({});
   const [optionsGraph, setOptionsGraph] = useState(null);
@@ -35,16 +35,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const idWithDomain = withDomain(id, domain);
   const { allData, isError, isLoading } = useGetData(
     beforeLastObservationSnap,
-    lastObservationSnap,
+    lastObservationSnapThesis,
     domain,
   );
   const { categories, dataGraph } = allData;
 
   useEffect(() => {
     setDataTitle({
-      publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
+      publicationYear: getObservationLabel(lastObservationSnapThesis, intl),
     });
-  }, [beforeLastObservationSnap, intl]);
+  }, [intl, lastObservationSnapThesis]);
 
   useEffect(() => {
     let sortKey;
