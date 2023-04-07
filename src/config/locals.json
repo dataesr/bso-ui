@@ -491,6 +491,22 @@
     "grid": "grid.8390.2",
     "paysage": "RN4E6"
   },
+  "199213369w": {
+    "name": "Centre François Viete : épistémologie, histoire des sciences et des techniques (CFV)",
+    "commentsName": "du CFV",
+    "commentsNameEN": "of CFV"
+  },
+  "199213370x": {
+    "name": "Centre de Recherche sur les Identités, les Nations et l'Interculturalité (CRINI)",
+    "commentsName": "du CRINI",
+    "commentsNameEN": "of CRINI"
+  },
+  "199213371y": {
+    "name": "Centre de recherches en histoire internationale et atlantique (CRHIA)",
+    "commentsName": "du CRHIA",
+    "commentsNameEN": "of CRHIA",
+    "paysage": "VJXyv"
+  },
   "199312380": {
     "name": "Université Sorbonne Paris Nord",
     "commentsName": "de l'Université Sorbonne Paris Nord",
@@ -515,6 +531,28 @@
     "paysage": "vsGvv",
     "ror": "01rx4qw44",
     "grid": "grid.454304.2"
+  },
+  "199512347x": {
+    "name": "Centre de recherche en archéologie, archéosciences, histoire (CReAAH)",
+    "commentsName": "du CReAAH",
+    "commentsNameEN": "of CReAAH"
+  },
+  "199612340k": {
+    "name": "Littoral, Environnement, Télédétection, Géomatique (LETG)",
+    "commentsName": "du LETG",
+    "commentsNameEN": "of LETG",
+    "paysage": "u5gbH"
+  },
+  "199612367p": {
+    "name": "Espaces et sociétés (ESO)",
+    "commentsName": "de l'ESO",
+    "commentsNameEN": "of ESO",
+    "paysage": "bOXO2"
+  },
+  "199614172b": {
+    "name": "Centre de recherche en éducation de Nantes (CREN)",
+    "commentsName": "du CREN",
+    "commentsNameEN": "of CREN"
   },
   "199712620k": {
     "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
@@ -543,8 +581,14 @@
     "grid": "grid.503282.e",
     "paysage": "KQCDr"
   },
+  "200112481s": {
+    "name": "Laboratoire d'océanographie de Villefranche (LOV)",
+    "commentsName": "du LOV",
+    "commentsNameEN": "of LOV",
+    "paysage": "GI1zy"
+  },
   "200112483u": {
-    "name": "Institut d’Astrophysique de Paris (IAP)",
+    "name": "Institut d'Astrophysique de Paris (IAP)",
     "commentsName": "de l'IAP",
     "commentsNameEN": "of IAP",
     "startYear": 2017,
@@ -594,6 +638,11 @@
     "grid": "grid.4307.0",
     "paysage": "tr5VV"
   },
+  "200815513g": {
+    "name": "Littératures Antiques et Modernes (LAMO)",
+    "commentsName": "du LAMO",
+    "commentsNameEN": "of LAMO"
+  },
   "200918490n": {
     "name": "Laboratoire d'océanographie et du climat : expérimentations et approches numériques (LOCEAN)",
     "commentsName": "du LOCEAN",
@@ -635,12 +684,22 @@
     "grid": "grid.463721.5",
     "paysage": "x8K6I"
   },
+  "201220071u": {
+    "name": "Laboratoire de psychologie des pays de la Loire (LPPL)",
+    "commentsName": "du LPPL",
+    "commentsNameEN": "of LPPL"
+  },
   "201420738k": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
     "commentsNameEN": "of CRESS",
     "startYear": 2016,
     "paysage": "DAPPM"
+  },
+  "201420764n": {
+    "name": "De la Molécule aux Nano-objets: Réactivité, Interactions et Spectroscopies (MONARIS)",
+    "commentsName": "de MONARIS",
+    "commentsNameEN": "of MONARIS"
   },
   "201420847d": {
     "name": "Laboratoire de biodiversité et biotechnologies microbiennes (LBBM)",
@@ -658,6 +717,18 @@
     "ror": "05gz4kr37",
     "grid": "grid.463752.1",
     "paysage": "e7ysv"
+  },
+  "201622396d": {
+    "name": "Laboratoire de linguistique de Nantes (LLING)",
+    "commentsName": "du LLING",
+    "commentsNameEN": "of LLING",
+    "paysage": "i8N4t"
+  },
+  "201722464y": {
+    "name": "Centre atlantique de philosophie (CAPHI)",
+    "commentsName": "de CAPHI",
+    "commentsNameEN": "of CAPHI",
+    "paysage": "lbMta"
   },
   "201922973t": {
     "name": "Laboratoire de physique de l'ens (LPENS)",
