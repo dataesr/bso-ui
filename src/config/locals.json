@@ -316,7 +316,7 @@
     "grid": "grid.11667.37",
     "paysage": "57OsX"
   },
-  "195922846r": {
+  "195922846R": {
     "name": "Bureau de recherche géologique et minière (BRGM)",
     "commentsName": "du BRGM",
     "commentsNameEN": "of BRGM",
@@ -377,7 +377,7 @@
     "grid": "grid.72960.3a",
     "paysage": "CUBKB"
   },
-  "196917933g": {
+  "196917933G": {
     "name": "Toulouse Biotechnology Institute (TBI)",
     "commentsName": "de TBI",
     "commentsNameEN": "of TBI",
@@ -491,17 +491,17 @@
     "grid": "grid.8390.2",
     "paysage": "RN4E6"
   },
-  "199213369w": {
+  "199213369W": {
     "name": "Centre François Viete : épistémologie, histoire des sciences et des techniques (CFV)",
     "commentsName": "du CFV",
     "commentsNameEN": "of CFV"
   },
-  "199213370x": {
+  "199213370X": {
     "name": "Centre de Recherche sur les Identités, les Nations et l'Interculturalité (CRINI)",
     "commentsName": "du CRINI",
     "commentsNameEN": "of CRINI"
   },
-  "199213371y": {
+  "199213371Y": {
     "name": "Centre de recherches en histoire internationale et atlantique (CRHIA)",
     "commentsName": "du CRHIA",
     "commentsNameEN": "of CRHIA",
@@ -515,7 +515,7 @@
     "grid": "grid.11318.3a",
     "paysage": "cqyN7"
   },
-  "199411684f": {
+  "199411684F": {
     "name": "Physico-chimie Curie (PCC)",
     "commentsName": "du PCC",
     "commentsNameEN": "of PCC",
@@ -524,7 +524,7 @@
     "grid": "grid.465542.4",
     "paysage": "R7PyH"
   },
-  "199511949p": {
+  "199511949P": {
     "name": "Institut de recherche en informatique de Toulouse (IRIT)",
     "commentsName": "de l'IRIT",
     "commentsNameEN": "of IRIT",
@@ -532,29 +532,29 @@
     "ror": "01rx4qw44",
     "grid": "grid.454304.2"
   },
-  "199512347x": {
+  "199512347X": {
     "name": "Centre de recherche en archéologie, archéosciences, histoire (CReAAH)",
     "commentsName": "du CReAAH",
     "commentsNameEN": "of CReAAH"
   },
-  "199612340k": {
+  "199612340K": {
     "name": "Littoral, Environnement, Télédétection, Géomatique (LETG)",
     "commentsName": "du LETG",
     "commentsNameEN": "of LETG",
     "paysage": "u5gbH"
   },
-  "199612367p": {
+  "199612367P": {
     "name": "Espaces et sociétés (ESO)",
     "commentsName": "de l'ESO",
     "commentsNameEN": "of ESO",
     "paysage": "bOXO2"
   },
-  "199614172b": {
+  "199614172B": {
     "name": "Centre de recherche en éducation de Nantes (CREN)",
     "commentsName": "du CREN",
     "commentsNameEN": "of CREN"
   },
-  "199712620k": {
+  "199712620K": {
     "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
     "commentsName": "du LCMCP",
     "commentsNameEN": "of LCMCP",
@@ -563,7 +563,7 @@
     "grid": "grid.462088.0",
     "paysage": "pC839"
   },
-  "199712651u": {
+  "199712651U": {
     "name": "Laboratoire de recherche en informatique de Sorbonne Université (LIP6)",
     "commentsName": "du LIP6",
     "commentsNameEN": "of LIP6",
@@ -572,7 +572,7 @@
     "grid": "grid.462751.3",
     "paysage": "R6IMD"
   },
-  "199712666k": {
+  "199712666K": {
     "name": "Laboratoire d'océanographie microbienne (LOMIC)",
     "commentsName": "du LOMIC",
     "commentsNameEN": "of LOMIC",
@@ -581,13 +581,13 @@
     "grid": "grid.503282.e",
     "paysage": "KQCDr"
   },
-  "200112481s": {
+  "200112481S": {
     "name": "Laboratoire d'océanographie de Villefranche (LOV)",
     "commentsName": "du LOV",
     "commentsNameEN": "of LOV",
     "paysage": "GI1zy"
   },
-  "200112483u": {
+  "200112483U": {
     "name": "Institut d'Astrophysique de Paris (IAP)",
     "commentsName": "de l'IAP",
     "commentsNameEN": "of IAP",
@@ -596,7 +596,7 @@
     "ror": "022bnxw24",
     "paysage": "69R6a"
   },
-  "200112505t": {
+  "200112505T": {
     "name": "Analyse et Traitement Informatique de la Langue Française (ATILF)",
     "commentsName": "de l'ATILF",
     "commentsNameEN": "of ATILF",
@@ -606,13 +606,13 @@
     "grid": "grid.462235.4",
     "paysage": "6Lz18"
   },
-  "200116904z": {
+  "200116904Z": {
     "name": "Laboratoire Agronomie et Environnement (LAE)",
     "commentsName": "du LAE",
     "commentsNameEN": "of LAE",
     "displayTitle": "false"
   },
-  "200117305k": {
+  "200117305K": {
     "name": "Dynamique des Génomes et Adaptation Microbienne (DynAMic)",
     "commentsName": "de DynAMic",
     "commentsNameEN": "of DynAMic",
@@ -621,7 +621,7 @@
     "ror": "01gbppd30",
     "grid": "grid.503401.3"
   },
-  "200515200e": {
+  "200515200E": {
     "name": "Centre Européen de Recherche en Economie Financière et Gestion des Entreprises (CEREFIGE)",
     "commentsName": "du CEREFIGE",
     "commentsNameEN": "of CEREFIGE",
@@ -629,7 +629,7 @@
     "startYear": 2016,
     "paysage": "x57aX"
   },
-  "200610854b": {
+  "200610854B": {
     "name": "Observatoire de Paris",
     "commentsName": "de l'Observatoire de Paris",
     "commentsNameEN": "of the Paris Observatory",
@@ -638,12 +638,12 @@
     "grid": "grid.4307.0",
     "paysage": "tr5VV"
   },
-  "200815513g": {
+  "200815513G": {
     "name": "Littératures Antiques et Modernes (LAMO)",
     "commentsName": "du LAMO",
     "commentsNameEN": "of LAMO"
   },
-  "200918490n": {
+  "200918490N": {
     "name": "Laboratoire d'océanographie et du climat : expérimentations et approches numériques (LOCEAN)",
     "commentsName": "du LOCEAN",
     "commentsNameEN": "of LOCEAN",
@@ -652,7 +652,7 @@
     "grid": "grid.503329.e",
     "paysage": "Eqvz2"
   },
-  "200919011e": {
+  "200919011E": {
     "name": "Laboratoire Matériaux Optiques, Photonique et Systèmes (LMOPS)",
     "commentsName": "du LMOPS",
     "commentsNameEN": "of LMOPS",
@@ -661,7 +661,7 @@
     "ror": "055swm364",
     "grid": "grid.472585.9"
   },
-  "201019356a": {
+  "201019356A": {
     "name": "Laboratoire d'Ecogéochimie des Environnements Benthiques (LECOB)",
     "commentsName": "du LECOB",
     "commentsNameEN": "of LECOB",
@@ -669,13 +669,13 @@
     "ror": "049xh5y45",
     "grid": "grid.462905.c"
   },
-  "201119392k": {
+  "201119392K": {
     "name": "Espace pour le développement (ESPACE-DEV)",
     "commentsName": "d'ESPACE-DEV",
     "commentsNameEN": "of ESPACE-DEV",
     "paysage": "m2tBU"
   },
-  "201119727z": {
+  "201119727Z": {
     "name": "Biologie intégrative des organismes marins (BIOM)",
     "commentsName": "du BIOM",
     "commentsNameEN": "of BIOM",
@@ -684,24 +684,24 @@
     "grid": "grid.463721.5",
     "paysage": "x8K6I"
   },
-  "201220071u": {
+  "201220071U": {
     "name": "Laboratoire de psychologie des pays de la Loire (LPPL)",
     "commentsName": "du LPPL",
     "commentsNameEN": "of LPPL"
   },
-  "201420738k": {
+  "201420738K": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
     "commentsNameEN": "of CRESS",
     "startYear": 2016,
     "paysage": "DAPPM"
   },
-  "201420764n": {
+  "201420764N": {
     "name": "De la Molécule aux Nano-objets: Réactivité, Interactions et Spectroscopies (MONARIS)",
     "commentsName": "de MONARIS",
     "commentsNameEN": "of MONARIS"
   },
-  "201420847d": {
+  "201420847D": {
     "name": "Laboratoire de biodiversité et biotechnologies microbiennes (LBBM)",
     "commentsName": "du LBBM",
     "commentsNameEN": "of LBBM",
@@ -709,7 +709,7 @@
     "ror": "039p01270",
     "grid": "grid.483491.3"
   },
-  "201522729v": {
+  "201522729V": {
     "name": "Observatoire Océanologique de Banyuls sur Mer (OOB)",
     "commentsName": "de l'OOB",
     "commentsNameEN": "of OOB",
@@ -718,19 +718,19 @@
     "grid": "grid.463752.1",
     "paysage": "e7ysv"
   },
-  "201622396d": {
+  "201622396D": {
     "name": "Laboratoire de linguistique de Nantes (LLING)",
     "commentsName": "du LLING",
     "commentsNameEN": "of LLING",
     "paysage": "i8N4t"
   },
-  "201722464y": {
+  "201722464Y": {
     "name": "Centre atlantique de philosophie (CAPHI)",
     "commentsName": "de CAPHI",
     "commentsNameEN": "of CAPHI",
     "paysage": "lbMta"
   },
-  "201922973t": {
+  "201922973T": {
     "name": "Laboratoire de physique de l'ens (LPENS)",
     "commentsName": "du LPENS",
     "commentsNameEN": "of LPENS",
@@ -805,13 +805,13 @@
     "grid": "grid.462264.0",
     "paysage": "AL1dg"
   },
-  "a2f": {
+  "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
     "commentsName": "du pôle A2F",
     "commentsNameEN": "of A2F",
     "startYear": 2016
   },
-  "anr": {
+  "ANR": {
     "name": "Agence Nationale de la Recherche (ANR)",
     "commentsName": "issues d'un projet financé par l'ANR",
     "commentsNameEN": "resulting from an ANR-funded project",
@@ -820,23 +820,23 @@
     "grid": "grid.22058.3d",
     "paysage": "Nc86W"
   },
-  "cercll": {
+  "CERCLL": {
     "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
     "commentsName": "du CERCLL",
     "commentsNameEN": "of CERCLL",
     "paysage": "dKt1t"
   },
-  "driihm": {
+  "DRIIHM": {
     "name": "Laboratoire d'Excellence Dispositif de Recherche Interdisciplinaire sur les Interactions Hommes-Milieux (LabEx DRIIHM)",
     "commentsName": "du LabEx DRIIHM",
     "commentsNameEN": "of the LabEx DRIIHM"
   },
-  "empp": {
+  "EMPP": {
     "name": "Pôle scientifique Energie, Mécanique, Procédés, Produits (EMPP)",
     "commentsName": "de l'EMPP",
     "commentsNameEN": "of EMPP"
   },
-  "grap": {
+  "GRAP": {
     "name": "Groupe de Recherche sur l'Alcool et les Pharmacodépendances",
     "commentsName": "du GRAP",
     "commentsNameEN": "of the GRAP"
@@ -866,7 +866,7 @@
     "grid": "grid.457014.3",
     "paysage": "EH4gV"
   },
-  "imts": {
+  "IMTS": {
     "name": "Tous les IMTs",
     "commentsName": "des IMTs",
     "commentsNameEN": "of IMTs",
