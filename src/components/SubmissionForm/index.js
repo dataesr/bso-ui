@@ -108,6 +108,7 @@ const SubmissionForm = () => {
           <p>Email de contact: ${email}</p>
           <p>Nom de la structure: ${name}</p>
           <p>Acronyme de la structure: ${acronym}</p>
+          <p>RNSR de la structure: ${rnsr}</p>
           </body></html>`,
         attachment: [{ content, name: 'bso.csv' }],
       },
