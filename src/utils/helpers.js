@@ -305,7 +305,11 @@ function getLocalAffiliation(urlSearchParams) {
   }
   let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
   // If bsoLocalAffiliation exists in config
-  if (Object.keys(locals).includes(bsoLocalAffiliation)) {
+  if (
+    Object.keys(locals)
+      .map((item) => item.toLowerCase())
+      .includes(bsoLocalAffiliation)
+  ) {
     return bsoLocalAffiliation;
   }
   // If bsoLocalAffiliation is the grid, the paysage or the ror of a structure in config
@@ -328,7 +332,11 @@ function getLocalAffiliation(urlSearchParams) {
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
-  const localAffiliationSettings = locals?.[bsoLocalAffiliation];
+  // Turn all the keys of locals object to lower case?
+  const localsLowerCase = Object.fromEntries(
+    Object.entries(locals).map(([k, v]) => [k.toLowerCase(), v]),
+  );
+  const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation];
   const alias = localAffiliationSettings?.alias;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country

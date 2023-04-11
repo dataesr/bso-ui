@@ -51,6 +51,7 @@ const SubmissionForm = () => {
   const [name, setName] = useState();
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
+  const [rnsr, setRnsr] = useState();
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -61,6 +62,7 @@ const SubmissionForm = () => {
     setMessage(undefined);
     setNntEtabCount(undefined);
     setNntIdCount(undefined);
+    setRnsr(undefined);
   };
 
   const sendEmail = (event) => {
@@ -106,6 +108,7 @@ const SubmissionForm = () => {
           <p>Email de contact: ${email}</p>
           <p>Nom de la structure: ${name}</p>
           <p>Acronyme de la structure: ${acronym}</p>
+          <p>RNSR de la structure: ${rnsr}</p>
           </body></html>`,
         attachment: [{ content, name: 'bso.csv' }],
       },
@@ -352,6 +355,11 @@ const SubmissionForm = () => {
                 onChange={(e) => setAcronym(e.target.value)}
                 value={acronym}
               />
+              <TextInput
+                label='RNSR de la structure'
+                onChange={(e) => setRnsr(e.target.value)}
+                value={rnsr}
+              />
               <File
                 hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
                 label='Fichier de publications'
@@ -359,7 +367,10 @@ const SubmissionForm = () => {
               />
               {message && (
                 <span className={isError ? 'text-red' : 'text-green'}>
-                  <div dangerouslySetInnerHTML={{ __html: message }} />
+                  <div
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{ __html: message }}
+                  />
                 </span>
               )}
               {!!(
