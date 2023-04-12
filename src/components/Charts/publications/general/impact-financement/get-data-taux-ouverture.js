@@ -15,9 +15,9 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
   let splitKey = '';
   if (split === 'voie') {
     possibleKeys = [
-      'repository',
-      'publisher;repository',
       'publisher',
+      'publisher;repository',
+      'repository',
       'closed',
     ];
     splitKey = 'oa_host_type';
@@ -28,11 +28,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
     const queries = [];
-    const queryFilter = {
-      term: {
-        'grants.agency.keyword': 'ANR',
-      },
-    };
     const queryFiltered = getFetchOptions({
       key: 'oaHostType',
       domain,
@@ -44,7 +39,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
       ],
       objectType: ['publications'],
     });
-    queryFiltered.query.bool.filter.push(queryFilter);
     const query = getFetchOptions({
       key: 'oaHostType',
       domain,
@@ -72,6 +66,10 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
       queryFiltered.query.bool.filter.push(queryFilterArticle);
       queryFiltered.query.bool.filter.push(queryFilterOaPublisher);
     }
+    const indexToDelete = query.query.bool.filter.findIndex(
+      (item) => item?.terms?.['bso_local_affiliations.keyword'],
+    );
+    query.query.bool.filter.splice(indexToDelete, 1);
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
