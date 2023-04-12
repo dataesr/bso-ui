@@ -248,6 +248,13 @@ export function getSource(id, otherSources = []) {
     sources.push('idref');
   }
   sources.push('MESR');
+  // Remove duplicated ANR
+  if (otherSources.includes('Agence Nationale de la Recherche (ANR)')) {
+    const indexToDelete = sources.indexOf('ANR');
+    if (indexToDelete > -1) {
+      sources.splice(indexToDelete, 1);
+    }
+  }
   sources.push(...otherSources);
   return sources.join(', ');
 }

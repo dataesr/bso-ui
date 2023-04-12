@@ -875,6 +875,7 @@ export const chartOptions = {
   'publi.general.impact-financement.chart-taux-ouverture': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions({ id, intl });
+      options.legend.reversed = true;
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
