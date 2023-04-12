@@ -134,6 +134,14 @@
     "grid": "grid.4817.a",
     "paysage": "qUCQp"
   },
+  "130029754": {
+    "name": "Université de Lille (ULille)",
+    "commentsName": "d'ULille",
+    "commentsNameEN": "of ULille",
+    "ror": "02kzqn938",
+    "grid": "grid.503422.2",
+    "paysage": "U8a0v"
+  },
   "130029796": {
     "name": "Université de Montpellier",
     "commentsName": "de l'université de Montpellier",
@@ -332,6 +340,14 @@
     "ror": "05hnb7x64",
     "grid": "grid.16117.30",
     "paysage": "MUQxd"
+  },
+  "196244016": {
+    "name": "Université d'Artois (UA)",
+    "commentsName": "de l'UA",
+    "commentsNameEN": "of UA",
+    "ror": "053x9s498",
+    "grid": "grid.49319.36",
+    "paysage": "BWbvP"
   },
   "196727671": {
     "name": "Institut National des Sciences Appliquées de Strasbourg (INSA Strasbourg)",
