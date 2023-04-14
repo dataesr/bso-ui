@@ -51,7 +51,7 @@ const SubmissionForm = () => {
   const [name, setName] = useState();
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
-  const [rnsr, setRnsr] = useState();
+  const [siren, setSiren] = useState();
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -62,7 +62,7 @@ const SubmissionForm = () => {
     setMessage(undefined);
     setNntEtabCount(undefined);
     setNntIdCount(undefined);
-    setRnsr(undefined);
+    setSiren(undefined);
   };
 
   const sendEmail = (event) => {
@@ -108,7 +108,7 @@ const SubmissionForm = () => {
           <p>Email de contact: ${email}</p>
           <p>Nom de la structure: ${name}</p>
           <p>Acronyme de la structure: ${acronym}</p>
-          <p>RNSR de la structure: ${rnsr}</p>
+          <p>Siren de la structure: ${siren}</p>
           </body></html>`,
         attachment: [{ content, name: 'bso.csv' }],
       },
@@ -356,9 +356,9 @@ const SubmissionForm = () => {
                 value={acronym}
               />
               <TextInput
-                label='RNSR de la structure'
-                onChange={(e) => setRnsr(e.target.value)}
-                value={rnsr}
+                label='Siren de la structure'
+                onChange={(e) => setSiren(e.target.value)}
+                value={siren}
               />
               <File
                 hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
