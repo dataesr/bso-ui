@@ -9,7 +9,7 @@
     "paysage": "4k25D"
   },
   "130012024": {
-    "name": "Agence nationale de sécurité sanitaire de l'alimentation, de l’environnement et du travail (ANSES)",
+    "name": "Agence nationale de sécurité sanitaire de l'alimentation, de l'environnement et du travail (ANSES)",
     "commentsName": "de l'ANSES",
     "commentsNameEN": "of ANSES",
     "ror": "0471kz689",
@@ -62,9 +62,9 @@
     "paysage": "m84Aa"
   },
   "130023385": {
-    "name": "Sorbonne Université",
-    "commentsName": "de Sorbonne Université",
-    "commentsNameEN": "of Sorbonne university",
+    "name": "Sorbonne Université (SU)",
+    "commentsName": "de SU",
+    "commentsNameEN": "of SU",
     "startYear": 2018,
     "firstObservationYear": "2019",
     "ror": "02en5vm52",
@@ -106,6 +106,14 @@
     "ror": "02rx3b187",
     "grid": "grid.450307.5",
     "paysage": "Y7ch7"
+  },
+  "130026123": {
+    "name": "Université Gustave Eiffel (UGE)",
+    "commentsName": "de l'UGE",
+    "commentsNameEN": "of UGE",
+    "ror": "03x42jk29",
+    "grid": "grid.509737.f",
+    "paysage": "3Z5e6"
   },
   "130026149": {
     "name": "Université PSL",
