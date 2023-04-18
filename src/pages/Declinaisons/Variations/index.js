@@ -95,7 +95,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte-2021.aspx'
-                img='/declinaisons/CEA.png'
+                img='/declinaisons/cea.png'
                 alt='bso local CEA'
               />
             </Col>
@@ -207,7 +207,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://partage-connaissances.cirad.fr/actualites/barometre-national-de-la-science-ouverte-declinaison-pour-le-cirad'
-                img='/declinaisons/CIRAD.png'
+                img='/declinaisons/cirad.png'
                 alt='bso local CIRAD'
               />
             </Col>
@@ -270,7 +270,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bu.univ-nantes.fr/science-ouverte/le-barometre-de-la-science-ouverte-de-nantes-universite'
-                img='/declinaisons/nantes_univ.png'
+                img='/declinaisons/nantes.png'
                 alt='bso local universite nantes'
               />
             </Col>
@@ -314,6 +314,21 @@ function Variations() {
                 href='https://www.uvsq.fr/barometre-science-ouverte'
                 img='/declinaisons/uvsq.png'
                 alt='bso local uvsq'
+              />
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12' className='p-0'>
+              <h4 className='p-0'>
+                Baromètres de la Science Ouverte mis en place par les agences de
+                financement
+              </h4>
+            </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                img='/declinaisons/anr.png'
+                alt='bso local ANR'
+                href='https://anr.fr/fr/lanr/engagements/la-science-ouverte/le-barometre-science-ouverte-anr/'
               />
             </Col>
           </Row>
