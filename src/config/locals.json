@@ -838,7 +838,7 @@
   "ANR": {
     "name": "Agence Nationale de la Recherche (ANR)",
     "commentsName": "issues des projets financés par l'ANR",
-    "commentsNameEN": "resulting from an ANR-funded projects",
+    "commentsNameEN": "resulting from ANR-funded projects",
     "startYear": 2016,
     "ror": "00rbzpz17",
     "grid": "grid.22058.3d",
