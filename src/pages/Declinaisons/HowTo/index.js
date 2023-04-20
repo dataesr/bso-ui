@@ -186,8 +186,8 @@ function HowTo() {
                       chaque mise à jour.
                       {' '}
                     </b>
-                    Pour les publications, nous remontons jusqu'à 2013, année de
-                    publication.
+                    Pour les publications, le baromètre couvre la période de
+                    2013 à 2021, année de publication.
                   </p>
                   <p>
                     <b>
