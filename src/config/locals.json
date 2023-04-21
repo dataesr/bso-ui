@@ -551,6 +551,17 @@
     "commentsNameEN": "of CRHIA",
     "paysage": "VJXyv"
   },
+  "199213373A": {
+    "name": "Centre de droit maritime et océanique (CDMO)",
+    "commentsName": "du CDMO",
+    "commentsNameEN": "of CDMO"
+  },
+  "199213374B": {
+    "name": "Institut de recherche en droit privé (IRDP)",
+    "commentsName": "de l'IRDP",
+    "commentsNameEN": "of IRDP",
+    "paysage": "4Jn23"
+  },
   "199312380": {
     "name": "Université Sorbonne Paris Nord",
     "commentsName": "de l'Université Sorbonne Paris Nord",
@@ -682,6 +693,12 @@
     "grid": "grid.4307.0",
     "paysage": "tr5VV"
   },
+  "200815509C": {
+    "name": "Laboratoire d'économie et de management Nantes Atlantique (LEMNA)",
+    "commentsName": "du LEMNA",
+    "commentsNameEN": "of LEMNA",
+    "paysage": "0F71t"
+  },
   "200815513G": {
     "name": "Littératures Antiques et Modernes (LAMO)",
     "commentsName": "du LAMO",
@@ -742,6 +759,11 @@
     "commentsName": "du LPPL",
     "commentsNameEN": "of LPPL"
   },
+  "201220410M": {
+    "name": "Droit et changement social (DCS)",
+    "commentsName": "du DCS",
+    "commentsNameEN": "of DCS"
+  },
   "201420738K": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
@@ -776,6 +798,14 @@
     "commentsName": "du LLING",
     "commentsNameEN": "of LLING",
     "paysage": "i8N4t"
+  },
+  "201722392V": {
+    "name": "Centre nantais de sociologie (CENS)",
+    "commentsName": "du CENS",
+    "commentsNameEN": "of CENS",
+    "ror": "04v837171",
+    "grid": "grid.503090.f",
+    "paysage": "zRMpe"
   },
   "201722464Y": {
     "name": "Centre atlantique de philosophie (CAPHI)",
