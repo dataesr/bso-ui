@@ -39,19 +39,19 @@ const nntEtabRegex = /^[a-zA-Z0-9]{4,6}$/;
 const nntIdRegex = /^(19|20)\d{2}[A-Z]{4}\w{4}$/;
 
 const SubmissionForm = () => {
-  const [acronym, setAcronym] = useState();
+  const [acronym, setAcronym] = useState('');
   const [doiCount, setDoiCount] = useState();
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState('');
   const [dataFile, setDataFile] = useState();
   const [halCollCodeCount, setHalCollCodeCount] = useState();
   const [halIdCount, setHalIdCount] = useState();
   const [halStructIdCount, setHalStructIdCount] = useState();
   const [isError, setIsError] = useState(true);
   const [message, setMessage] = useState();
-  const [name, setName] = useState();
+  const [name, setName] = useState('');
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
-  const [siren, setSiren] = useState();
+  const [siren, setSiren] = useState('');
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -62,7 +62,6 @@ const SubmissionForm = () => {
     setMessage(undefined);
     setNntEtabCount(undefined);
     setNntIdCount(undefined);
-    setSiren(undefined);
   };
 
   const sendEmail = (event) => {
@@ -259,7 +258,6 @@ const SubmissionForm = () => {
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
-          // Check if there is data to send
         } else if (
           doiCount === 0
           && halCollCodeCount === 0
