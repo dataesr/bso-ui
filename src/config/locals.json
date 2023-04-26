@@ -1,4 +1,12 @@
 {
+  "130002850": {
+    "name": "Institut des sciences et industries du vivant et de l'environnement (AgroParisTech)",
+    "commentsName": "d'AgroParisTech",
+    "commentsNameEN": "of AgroParisTech",
+    "ror": "02kbmgc12",
+    "grid": "grid.417885.7",
+    "paysage": "SsSFH"
+  },
   "130005457": {
     "name": "Université de Strasbourg (Unistra)",
     "commentsName": "de l'Unistra",
@@ -265,9 +273,9 @@
     "paysage": "7Mpgt"
   },
   "192903466": {
-    "name": "Université de Brest",
-    "commentsName": "de l'université de Brest",
-    "commentsNameEN": "of the university of Brest",
+    "name": "Université de Brest (UBO)",
+    "commentsName": "de l'UBO",
+    "commentsNameEN": "of UBO",
     "startYear": 2017,
     "ror": "01b8h3982",
     "grid": "grid.6289.5",
@@ -342,7 +350,7 @@
   },
   "194909701": {
     "name": "Université d'Angers (UA)",
-    "commentsName": "del'UA",
+    "commentsName": "de l'UA",
     "commentsNameEN": "of UA",
     "ror": "04yrqp957",
     "grid": "grid.7252.2",
@@ -526,6 +534,22 @@
     "grid": "grid.11166.31",
     "paysage": "hlX1r"
   },
+  "199113242M": {
+    "name": "Institut Clément Ader (ICA)",
+    "commentsName": "de l'ICA",
+    "commentsNameEN": "of ICA",
+    "ror": "040smqw14",
+    "grid": "grid.454117.2",
+    "paysage": "tdJI8"
+  },
+  "199117683P": {
+    "name": "Centre d'élaboration de matériaux et d'études structurales (CEMES-CNRS)",
+    "commentsName": "du CEMES",
+    "commentsNameEN": "of CEMES",
+    "ror": "03kwnqq69",
+    "grid": "grid.462730.4",
+    "paysage": "Y69JT"
+  },
   "199119751": {
     "name": "Université d'Evry Val d'Essonne",
     "commentsName": "de l'Université d'Evry Val d'Essonne",
@@ -693,6 +717,22 @@
     "grid": "grid.4307.0",
     "paysage": "tr5VV"
   },
+  "200711884S": {
+    "name": "Laboratoire de physique et chimie des nano-objets (LPCNO)",
+    "commentsName": "du LPCNO",
+    "commentsNameEN": "of LPCNO",
+    "ror": "042xmz674",
+    "grid": "grid.462768.9",
+    "paysage": "cS9WK"
+  },
+  "200711888W": {
+    "name": "Institut de Mathématiques de Toulouse (IMT)",
+    "commentsName": "de l'IMT",
+    "commentsNameEN": "of IMT",
+    "ror": "014vp6c30",
+    "grid": "grid.462146.3",
+    "paysage": "R95E1"
+  },
   "200815509C": {
     "name": "Laboratoire d'économie et de management Nantes Atlantique (LEMNA)",
     "commentsName": "du LEMNA",
@@ -721,6 +761,14 @@
     "startYear": 2016,
     "ror": "055swm364",
     "grid": "grid.472585.9"
+  },
+  "200919895R": {
+    "name": "Laboratoire national des champs magnétiques intenses (LNCMI)",
+    "commentsName": "du LNCMI",
+    "commentsNameEN": "of LNCMI",
+    "ror": "045ktmd28",
+    "grid": "grid.462694.b",
+    "paysage": "jr7xq"
   },
   "201019356A": {
     "name": "Laboratoire d'Ecogéochimie des Environnements Benthiques (LECOB)",

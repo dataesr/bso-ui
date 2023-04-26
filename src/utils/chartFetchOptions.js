@@ -1964,6 +1964,11 @@ export default function getFetchOptions({
     queryResponse.query.bool.filter.push({
       terms: { 'id_type.keyword': ['nnt'] },
     });
+    // make sure the thesis taken into account come from the theses.fr source
+    // (not HAL only, even with an nnt)
+    queryResponse.query.bool.filter.push({
+      terms: { 'sources.keyword': ['theses'] },
+    });
   }
   if (['publication', 'journal', 'repository'].includes(key)) {
     idTypes.push('hal');
