@@ -200,6 +200,19 @@ function HowTo() {
                     fichier (voir exemple ci-dessous).
                   </p>
                   <p>
+                    Afin de constituer votre périmètre de DOI, l'Université de
+                    Lorraine propose cette méthologie :
+                    {' '}
+                    <a
+                      href='https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/'
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/
+                    </a>
+                    .
+                  </p>
+                  <p>
                     <b>
                       {' '}
                       NB: Aucune donnée concernant les APC n'est à fournir.

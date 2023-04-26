@@ -290,6 +290,15 @@
     "grid": "grid.461574.5",
     "paysage": "dj88d"
   },
+  "193112562": {
+    "name": "École nationale de l'aviation civile (ENAC)",
+    "commentsName": "de l'ENAC",
+    "commentsNameEN": "of ENAC",
+    "ror": "022zdgq74",
+    "grid": "grid.424441.3",
+    "paysage": "JQKHK",
+    "scale": "institute"
+  },
   "193113818": {
     "name": "Institut National Polytechnique de Toulouse (Toulouse INP)",
     "commentsName": "de Toulouse INP",
@@ -330,6 +339,14 @@
     "ror": "03nh7d505",
     "grid": "grid.16068.39",
     "paysage": "gCAyK"
+  },
+  "194909701": {
+    "name": "Université d'Angers (UA)",
+    "commentsName": "del'UA",
+    "commentsNameEN": "of UA",
+    "ror": "04yrqp957",
+    "grid": "grid.7252.2",
+    "paysage": "IXHyv"
   },
   "195112966": {
     "name": "Université de Reims Champagne-Ardenne (URCA)",
@@ -441,11 +458,6 @@
     "grid": "grid.36823.3c",
     "paysage": "XR16q"
   },
-  "197534712full": {
-    "name": "Conservatoire national des arts et métiers (CNAM)",
-    "commentsName": "du CNAM",
-    "commentsNameEN": "of CNAM"
-  },
   "197534720": {
     "name": "Arts et Métiers Sciences et Technologies (ENSAM)",
     "commentsName": "de l'ENSAM",
@@ -538,6 +550,17 @@
     "commentsName": "du CRHIA",
     "commentsNameEN": "of CRHIA",
     "paysage": "VJXyv"
+  },
+  "199213373A": {
+    "name": "Centre de droit maritime et océanique (CDMO)",
+    "commentsName": "du CDMO",
+    "commentsNameEN": "of CDMO"
+  },
+  "199213374B": {
+    "name": "Institut de recherche en droit privé (IRDP)",
+    "commentsName": "de l'IRDP",
+    "commentsNameEN": "of IRDP",
+    "paysage": "4Jn23"
   },
   "199312380": {
     "name": "Université Sorbonne Paris Nord",
@@ -670,6 +693,12 @@
     "grid": "grid.4307.0",
     "paysage": "tr5VV"
   },
+  "200815509C": {
+    "name": "Laboratoire d'économie et de management Nantes Atlantique (LEMNA)",
+    "commentsName": "du LEMNA",
+    "commentsNameEN": "of LEMNA",
+    "paysage": "0F71t"
+  },
   "200815513G": {
     "name": "Littératures Antiques et Modernes (LAMO)",
     "commentsName": "du LAMO",
@@ -707,6 +736,15 @@
     "commentsNameEN": "of ESPACE-DEV",
     "paysage": "m2tBU"
   },
+  "201119726Y": {
+    "name": "Laboratoire de Biologie computationnelle et quantitative (LCQB)",
+    "commentsName": "du LCQB",
+    "commentsNameEN": "of LCQB",
+    "ror": "00pcqj134",
+    "grid": "grid.503320.7",
+    "paysage": "8RQj3",
+    "scale": "laboratory"
+  },
   "201119727Z": {
     "name": "Biologie intégrative des organismes marins (BIOM)",
     "commentsName": "du BIOM",
@@ -720,6 +758,11 @@
     "name": "Laboratoire de psychologie des pays de la Loire (LPPL)",
     "commentsName": "du LPPL",
     "commentsNameEN": "of LPPL"
+  },
+  "201220410M": {
+    "name": "Droit et changement social (DCS)",
+    "commentsName": "du DCS",
+    "commentsNameEN": "of DCS"
   },
   "201420738K": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
@@ -755,6 +798,14 @@
     "commentsName": "du LLING",
     "commentsNameEN": "of LLING",
     "paysage": "i8N4t"
+  },
+  "201722392V": {
+    "name": "Centre nantais de sociologie (CENS)",
+    "commentsName": "du CENS",
+    "commentsNameEN": "of CENS",
+    "ror": "04v837171",
+    "grid": "grid.503090.f",
+    "paysage": "zRMpe"
   },
   "201722464Y": {
     "name": "Centre atlantique de philosophie (CAPHI)",

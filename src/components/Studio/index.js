@@ -98,9 +98,11 @@ const Studio = () => {
     />
   );
 
-  const getIframeText = (graphId = null) => `<iframe height="860" id=${graphId || graph} src=${getGraphUrl(
+  const getIframeText = (graphId = null) => `<iframe height="860" id="${graphId || graph}" src="${getGraphUrl(
     graphId,
-  )} title=${graphId || graph} width="800" />`;
+  ).replace(/&/g, '&amp;')}" title="${
+      graphId || graph
+    }" width="800"></iframe>`;
 
   const csvContent = objects
     .reduce((acc, curr) => acc.concat(curr.children), [])
