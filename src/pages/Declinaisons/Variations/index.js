@@ -87,7 +87,7 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                img='/declinaisons/UL.svg'
+                img='/declinaisons/ul.svg'
                 alt='bso local UL'
                 href='https://scienceouverte.univ-lorraine.fr/bibliometrie/barometre-lorrain-de-la-science-ouverte/'
               />
@@ -102,14 +102,14 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://bibliotheques.ensam.eu/page/barometre-de-la-science-ouverte'
-                img='/declinaisons/ENSAM.png'
+                img='/declinaisons/ensam.png'
                 alt='bso local ENSAM'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://oaamu.hypotheses.org/3118'
-                img='/declinaisons/AMU.png'
+                img='/declinaisons/amu.png'
                 alt='bso local AMU'
               />
             </Col>
@@ -123,7 +123,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.ephe.psl.eu/le-barometre-de-la-science-ouverte-de-lecole'
-                img='/declinaisons/EPHE.png'
+                img='/declinaisons/ephe.png'
                 alt='bso local EPHE'
               />
             </Col>
@@ -228,14 +228,14 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://scienceouverte.univ-grenoble-alpes.fr/science-ouverte-grenoble-alpes/barometre-science-ouverte/'
-                img='/declinaisons/UGA.png'
+                img='/declinaisons/uga.png'
                 alt='bso local UGA'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 href='https://www.univ-brest.fr/drive/menu/DRIVe/Science-Ouverte/Barometre-de-la-science-ouverte'
-                img='/declinaisons/UBO.png'
+                img='/declinaisons/ubo.png'
                 alt='bso local univeristé brest'
               />
             </Col>
@@ -316,6 +316,13 @@ function Variations() {
                 alt='bso local uvsq'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                href='https://openarchiv.hypotheses.org/7391'
+                img='/declinaisons/onera.jpg'
+                alt='bso local onera'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
@@ -361,15 +368,6 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://openarchiv.hypotheses.org/6387'
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    Onera
-                  </a>
-                </li>
-                <li>
-                  <a
                     href='https://u-paris.fr/science-ouverte/barometre/'
                     target='_blank'
                     rel='noreferrer'
@@ -393,7 +391,7 @@ function Variations() {
               <ul className='style-disc'>
                 <li>
                   <a
-                    href='https://www.science-ouverte.cnrs.fr/actualite/louverture-des-publications-progresse-au-cnrs/'
+                    href='https://www.cnrs.fr/fr/cnrsinfo/le-cnrs-leader-francais-de-la-science-ouverte'
                     target='_blank'
                     rel='noreferrer'
                   >
