@@ -59,9 +59,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
               && el.doc_count
               && el.key > 2012,
           );
-        newData.data.oaHostType = responseFiltered.map((el) => el.doc_count);
-        const publicationDates = responseFiltered.map((el) => el.key);
-        newData.data.all = responses[
+        const publicationDates = [];
+        const all = [];
+        const oaHostTypes = [];
+        const tmpData = responses[
           i
         ].data.aggregations.by_publication_year.buckets
           .sort((a, b) => a.key - b.key)
@@ -69,11 +70,18 @@ function useGetData(observationSnaps, needle = '*', domain) {
             (el) => el.key < parseInt(newData.observationSnap.substring(0, 4), 10)
               && el.by_is_oa.buckets.length > 0
               && el.doc_count
-              && el.key > 2012
-              && publicationDates.includes(el.key),
-          )
-          .map((el) => el.doc_count);
+              && el.key > 2012,
+          );
+        tmpData.forEach((el) => {
+          publicationDates.push(el.key);
+          all.push(el.doc_count);
+          oaHostTypes.push(
+            responseFiltered.filter((r) => r.key === el.key)[0]?.doc_count || 0,
+          );
+        });
         newData.data.publicationDates = publicationDates;
+        newData.data.all = all;
+        newData.data.oaHostType = oaHostTypes;
         allData.push(newData);
       }
     }
@@ -145,7 +153,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
       .filter((el) => el.y > 0);
 
     const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
-
     let year = '';
     let y = '';
     let publicationDate = '';
@@ -179,7 +186,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
       year1,
       year2,
     };
-
     return {
       categories,
       comments,
