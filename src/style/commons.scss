@@ -210,8 +210,20 @@ div.d-inline-flex {
   background: var(--blue-soft-50);
 }
 
-.bg-medium-blue {
+.bg-blue-soft-25 {
+  background: var(--blue-soft-25);
+}
+
+.bg-blue-soft-100 {
   background: var(--blue-soft-100);
+}
+
+.color-blue-soft-175 {
+  color: var(--blue-soft-175);
+}
+
+.color-white {
+  color: white;
 }
 
 .fr-btn {
@@ -227,7 +239,7 @@ div.d-inline-flex {
     }
   }
 
-  &.bg-medium-blue {
+  &.bg-blue-soft-100 {
     background: var(--blue-soft-100);
   }
 
@@ -254,6 +266,10 @@ div.d-inline-flex {
 
 .p-8 {
   padding: 8px;
+}
+
+.p-12 {
+  padding: 12px;
 }
 
 .p-16 {
@@ -292,6 +308,11 @@ div.d-inline-flex {
   padding-bottom: 56px;
 }
 
+.px-6 {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
 .px-7 {
   padding-left: 7px;
   padding-right: 7px;
@@ -305,6 +326,16 @@ div.d-inline-flex {
 .px-24 {
   padding-left: 24px;
   padding-right: 24px;
+}
+
+.px-28 {
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.py-4 {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .py-28 {
@@ -321,12 +352,27 @@ div.d-inline-flex {
   margin: 0;
 }
 
+.mx-5 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.my-0 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
 .my-5 {
-  margin: 0 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .mb-20 {
   margin-bottom: 20px;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
 }
 
 .mb-32 {
@@ -349,6 +395,10 @@ div.d-inline-flex {
   margin-left: 10px;
 }
 
+.ml-12 {
+  margin-left: 12px;
+}
+
 .ml-n16 {
   margin-left: -16px;
 }
@@ -359,6 +409,10 @@ div.d-inline-flex {
 
 .mr-120 {
   margin-right: 120px;
+}
+
+.mt-12 {
+  margin-top: 12px;
 }
 
 .mt-20 {

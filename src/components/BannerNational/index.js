@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-// import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import Banner from '../Banner';
 import Chip from '../Chip';
@@ -17,12 +16,7 @@ function BannerNational({ selected, title, iconId }) {
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters className='mbi-32'>
       <Col n='12'>
-        <Icon
-          // name='icon-bsso-28'
-          name={iconId}
-          color1='blue-soft-125'
-          color2='publication-25'
-        />
+        <Icon name={iconId} color1='blue-soft-125' color2='publication-25' />
       </Col>
     </Row>
   );
