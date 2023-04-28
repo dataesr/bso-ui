@@ -74,6 +74,7 @@ function BaroNational() {
       </Col>
     </Row>
   );
+
   // TODO better way to render Icons
   return (
     <div className='baro-national page home'>
@@ -240,7 +241,7 @@ function BaroNational() {
             </Col>
             <Col n='12'>
               <Container fluid>
-                <section className='px-20 py-48 px-l-64 px-xl-142 bg-medium-blue'>
+                <section className='px-20 py-48 px-l-64 px-xl-142 bg-blue-soft-100'>
                   <Row justifyContent='center'>
                     <Col n='12 lg-12 xl-9'>
                       <Card

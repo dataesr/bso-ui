@@ -39,7 +39,7 @@ function OpenData() {
           <Row gutters>
             <Col n='12'>
               <Card
-                bodyClassName='bg-medium-blue text-white'
+                bodyClassName='bg-blue-soft-100 text-white'
                 hasArrow={false}
                 hasBorder={false}
               >

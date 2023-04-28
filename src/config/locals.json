@@ -238,6 +238,14 @@
     "grid": "grid.486295.4",
     "paysage": "krqUz"
   },
+  "18009202500139": {
+    "name": "IMT Nord Europe (IMTNE)",
+    "commentsName": "de l'IMTNE",
+    "commentsNameEN": "of IMTNE",
+    "ror": "042rh9p26",
+    "grid": "grid.501738.8",
+    "paysage": "qadtj"
+  },
   "191010602": {
     "name": "Université de Technologie de Troyes (UTT)",
     "commentsName": "de l'UTT",
@@ -1001,6 +1009,6 @@
     "name": "Tous les IMTs",
     "commentsName": "des IMTs",
     "commentsNameEN": "of IMTs",
-    "alias": "18009202500097,18009202500121,193000635"
+    "alias": "18009202500097,18009202500121,18009202500139,193000635"
   }
 }

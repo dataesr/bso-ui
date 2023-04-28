@@ -1,23 +1,21 @@
 .bso-betachip {
   @include font-size(12, 16);
-  font-weight: 600;
-  display: flex;
-  z-index: 1;
-  // background: var(--blue-france-500);
-  // color: white;
-  background: var(--yellow-medium-100);
-  color: var(--blue-soft-150);
-  justify-content: center;
   align-items: center;
+  background: var(--yellow-medium-100);
   border-radius: 4px;
-  text-align: center;
+  color: var(--blue-soft-150);
+  display: flex;
+  font-weight: 600;
   height: 14px;
-  width: 130px;
+  justify-content: center;
   padding: 12px;
+  text-align: center;
+  width: 130px;
+  z-index: 1;
 }
 
 .out-of-the-box {
+  left: -50px;
   position: relative;
   top: -30px;
-  left: -50px;
 }
