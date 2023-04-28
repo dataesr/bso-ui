@@ -25,7 +25,7 @@ function Methodologie() {
   return (
     <>
       {!isInProduction() && (
-        <div className='methodologie'>
+        <div className='methodology'>
           <Banner
             backgroundColor='blue-soft-50'
             textColor='blue-dark-150'
@@ -214,6 +214,7 @@ function Methodologie() {
                       </Col>
                     </Col>
                   </Row>
+                  <Row>Notre méthodologie ouverte</Row>
                 </Col>
               </Row>
             </section>
@@ -221,7 +222,7 @@ function Methodologie() {
         </div>
       )}
       {isInProduction() && (
-        <div className='methodologie'>
+        <div className='methodology'>
           <Banner
             backgroundColor='blue-soft-50'
             textColor='blue-dark-150'
