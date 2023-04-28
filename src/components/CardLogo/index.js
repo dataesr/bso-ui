@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { Card, CardDescription, Link as DSLink } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -9,7 +11,7 @@ function CardLogo({ img, alt, href, noMargin }) {
   }
   return (
     <Card
-      bodyClassName='bso-link-card bg-white'
+      bodyClassName='bso-link-card-logo bso-link-card bg-white'
       hasArrow={false}
       hasBorder={false}
       href={href}
