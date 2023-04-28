@@ -311,7 +311,7 @@ function BaroSante() {
                   iconName='icon-bsso-10'
                   iconColor='green-light-75'
                   intlSubTitle='app.obs-dates'
-                  backgroundColorClass='bg-light-green'
+                  backgroundColorClass='bg-green-light-50'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -319,7 +319,7 @@ function BaroSante() {
                   iconName='icon-bsso-24'
                   iconColor='purple-medium-50'
                   intlSubTitle='app.interventionals'
-                  backgroundColorClass='bg-medium-purple'
+                  backgroundColorClass='bg-purple-medium-25'
                 />
                 <TodayNumbersItem
                   itemKey='observational'

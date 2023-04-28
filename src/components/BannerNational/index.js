@@ -14,7 +14,7 @@ function BannerNational({ selected, title, iconId }) {
   const { search } = useLocation();
 
   const renderIcons = (
-    <Row justifyContent='center' alignItems='middle' gutters className='mbi-32'>
+    <Row justifyContent='center' alignItems='middle' gutters className='mb-32'>
       <Col n='12'>
         <Icon name={iconId} color1='blue-soft-125' color2='publication-25' />
       </Col>

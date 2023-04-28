@@ -82,6 +82,10 @@
   @include font-size(16,32);
 }
 
+.fs-18-25 {
+  @include font-size(18,25);
+}
+
 .fs-20-20 {
   @include font-size(20,20);
 }
@@ -94,12 +98,20 @@
   @include font-size(20,26);
 }
 
+.fs-24-28 {
+  @include font-size(24,28);
+}
+
 .fs-24-32 {
   @include font-size(24,32);
 }
 
 .fs-28-32 {
   @include font-size(28,32);
+}
+
+.fs-28-38 {
+  @include font-size(28,38);
 }
 
 .fs-32-40 {

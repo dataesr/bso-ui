@@ -28,7 +28,7 @@ function Variations() {
         icons={renderIcons}
       />
       <Container>
-        <section className='content bd125'>
+        <section className='color-blue-dark-125 content'>
           <Row gutters>
             <Col n='12'>
               <h2>

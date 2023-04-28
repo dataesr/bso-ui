@@ -37,7 +37,7 @@ function HowTo() {
         icons={renderIcons}
       />
       <Container>
-        <section className='content bd125'>
+        <section className='color-blue-dark-125 content'>
           <Row gutters>
             <Col n='12 lg-8'>
               <h2 className='marianne-bold fs-12-16'>

@@ -7,11 +7,11 @@ import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import { isInProduction } from '../../../utils/helpers';
 
-function Methodologie() {
+function Methodology() {
   const intl = useIntl();
 
   const renderIcons = (
-    <Row justifyContent='center' alignItems='middle' gutters className='mbi-32'>
+    <Row justifyContent='center' alignItems='middle' gutters className='mb-32'>
       <Col n='12'>
         <Icon
           name='icon-bsso-22'
@@ -25,7 +25,7 @@ function Methodologie() {
   return (
     <>
       {!isInProduction() && (
-        <div className='methodology'>
+        <div className='color-blue-soft-175 methodology'>
           <Banner
             backgroundColor='blue-soft-50'
             textColor='blue-dark-150'
@@ -70,8 +70,8 @@ function Methodologie() {
                   </h2>
                 </Col>
               </Row>
-              <Row gutters className='bg-blue-soft-25 mt-40'>
-                <Col>
+              <Row gutters className='bg-blue-soft-25'>
+                <Col className='ml-68 mt-50'>
                   <Row>
                     <Col n='8'>
                       <Row>
@@ -129,7 +129,7 @@ function Methodologie() {
                             width='50px'
                           />
                         </div>
-                        <div className='fs-16-32 color-blue-soft-175 ml-10'>
+                        <div className='fs-16-32 ml-10'>
                           Le Baromètre français de la Science Ouverte
                         </div>
                       </Row>
@@ -142,14 +142,14 @@ function Methodologie() {
                   </Row>
                   <Row>
                     <div className='mb-24 text-center w-100'>
-                      <span className='border-radius-30 bg-white fs-28-32 marianne-bold px-28 py-4 color-blue-soft-175'>
+                      <span className='bg-white border-radius-30 fs-28-32 marianne-bold px-28 py-4'>
                         Notre constat
                       </span>
                     </div>
                   </Row>
-                  <Row gutters>
+                  <Row gutters className='mb-60'>
                     <Col n='12 md-5' offset='1' className='border'>
-                      <div className='color-blue-soft-175 fs-20-24 marianne-bold text-center '>
+                      <div className='fs-20-24 marianne-bold text-center '>
                         Les bases bibliographiques
                         <div className='mx-5'>
                           <span className='border-radius-30 bg-white px-6'>
@@ -157,10 +157,10 @@ function Methodologie() {
                           </span>
                         </div>
                       </div>
-                      <div className='color-blue-soft-175 text-center'>
+                      <div className='text-center'>
                         proposent peu de métadonnées
                       </div>
-                      <div className='color-blue-soft-175 text-center'>
+                      <div className='text-center'>
                         d'affiliation et de qualité disparate
                       </div>
                       <Col
@@ -180,18 +180,16 @@ function Methodologie() {
                       </Col>
                     </Col>
                     <Col n='12 md-5'>
-                      <div className='color-blue-soft-175 fs-20-24 marianne-bold text-center'>
+                      <div className='fs-20-24 marianne-bold text-center'>
                         Les bases bibliographiques
                         <div className='mx-5'>
-                          <span className='border-radius-30 bg-white px-6'>
+                          <span className='bg-white border-radius-30 px-6'>
                             propriétaires
                           </span>
                         </div>
                       </div>
-                      <div className='color-blue-soft-175 text-center'>
-                        pallient ces défauts en
-                      </div>
-                      <div className='color-blue-soft-175 text-center'>
+                      <div className='text-center'>pallient ces défauts en</div>
+                      <div className='text-center'>
                         enrichissant ces métadonnées
                       </div>
                       <Col
@@ -214,7 +212,146 @@ function Methodologie() {
                       </Col>
                     </Col>
                   </Row>
-                  <Row>Notre méthodologie ouverte</Row>
+                  <Row className='mb-60'>
+                    <Col n='1' className='before-border-link-0'>
+                      <div className='border-link border-link-first w-100 h-100' />
+                    </Col>
+                    <Col n='5' className='after-border-link'>
+                      <div>
+                        <span className='bg-white border-radius-30 color-blue-dark-125 fs-28-38 marianne-bold px-20'>
+                          Notre méthodologie ouverte
+                        </span>
+                      </div>
+                      <div className='fs-18-25 mt-16 ml-20'>
+                        Nous avons donc décidé de collecter un maximum de
+                        métadonnées d'affiliations pour chaque publication du
+                        monde, à partir de
+                        {' '}
+                        <b>plusieurs sources libres</b>
+                        .
+                        Notre originalité : aucune utilisation de basesde
+                        données propriétaires.
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row className='mb-140'>
+                    <Col n='1' className='before-border-link-1'>
+                      <div className='border-link w-100 h-100' />
+                    </Col>
+                    <Col n='6' className='after-border-link'>
+                      <div>
+                        <span className='bg-blue-soft-150 border-radius-30 color-white fs-24-32 marianne-bold px-20 py-4'>
+                          #1 Collecter...
+                        </span>
+                      </div>
+                      <div className='color-blue-dark-125 fs-24-28 marianne-bold ml-20 mt-10'>
+                        un maximum de métadonnées
+                      </div>
+                      <div className='fs-18-25 mt-16 ml-20 mt-12'>
+                        Pour chaque publication du monde,
+                        <br />
+                        <span className='bg-purple-medium-100 color-white px-6'>
+                          consolidation de plusieurs sources
+                        </span>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row className='mb-60'>
+                    <Col n='1' className='before-border-link-2'>
+                      <div className='border-link w-100 h-100' />
+                    </Col>
+                    <Col n='4' className='after-border-link'>
+                      <div>
+                        <span className='bg-blue-soft-150 border-radius-30 color-white fs-24-32 marianne-bold px-20 py-4'>
+                          #2 Détecter...
+                        </span>
+                      </div>
+                      <div className='color-blue-dark-125 fs-24-28 marianne-bold ml-20 mt-10'>
+                        Le pays d'affiliation
+                      </div>
+                      <div className='fs-18-25 mt-16 ml-20 mt-12'>
+                        <span className='bg-green-soft-100 color-white px-6'>
+                          On filtre
+                        </span>
+                        {' '}
+                        pour ne garder que les publications pour lesquelles
+                        {' '}
+                        <span className='bg-green-soft-100 color-white px-6'>
+                          au moins une affiliation est française
+                        </span>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row className='mb-60'>
+                    <Col n='1' className='before-border-link-3'>
+                      <div className='border-link w-100 h-100' />
+                    </Col>
+                    <Col n='6' className='after-border-link'>
+                      <div>
+                        <span className='bg-blue-soft-150 border-radius-30 color-white fs-24-32 marianne-bold px-20 py-4'>
+                          #3 Enrichir...
+                        </span>
+                      </div>
+                      <div className='color-blue-dark-125 fs-24-28 marianne-bold ml-20 mt-10'>
+                        ... le statut d'ouverture
+                      </div>
+                      <div className='fs-18-25 marianne-bold ml-20 mt-50'>
+                        Pour les DOI crossref :
+                      </div>
+                      <div className='fs-18-25 ml-20'>
+                        les informations viennent d'
+                        <span className='bg-purple-medium-100 border-black border-radius-8 color-white marianne-bold px-6'>
+                          Unpaywall
+                        </span>
+                      </div>
+                      <div className='fs-18-25 marianne-bold ml-20 mt-20'>
+                        Pour les publications dans HAL (sans DOI) :
+                      </div>
+                      <div className='fs-18-25 ml-20'>
+                        les informations viennent de
+                        {' '}
+                        <span className='bg-purple-medium-100 border-black border-radius-8 color-white marianne-bold px-6'>
+                          HAL
+                        </span>
+                      </div>
+                      <div className='color-blue-dark-125 fs-24-28 marianne-bold ml-20 mt-120'>
+                        ... la classification disciplinaire
+                      </div>
+                      <div className='fs-18-25 mt-16 ml-20 mt-20'>
+                        Grâce à un
+                        {' '}
+                        <span className='bg-orange-soft-100 color-white px-6'>
+                          algorithme de machine learning declassification
+                          automatique
+                        </span>
+                        {' '}
+                        (fastText) basé sur le titre, le résumé et le nom de la
+                        revue.
+                      </div>
+                      <div className='fs-18-25 mt-16 ml-20 mt-40'>
+                        Si des métadonnées sont disponibles dans HAL, on
+                        effectue
+                        {' '}
+                        <span className='bg-orange-soft-100 color-white px-6'>
+                          un transcodage de la nomenclature HAL vers celle du
+                          Baromètre.
+                        </span>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row className='mb-60'>
+                    <Col n='6' offset='1' className='after-border-link'>
+                      <div>
+                        <span className='bg-blue-soft-150 border-radius-30 color-white fs-24-32 marianne-bold px-20 py-4'>
+                          #4 Partager...
+                        </span>
+                      </div>
+                      <div className='color-blue-dark-125 fs-24-28 marianne-bold ml-20 mt-10'>
+                        avec la communauté toutes ces données agrégées et
+                        calculées
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </section>
@@ -299,4 +436,4 @@ function Methodologie() {
   );
 }
 
-export default Methodologie;
+export default Methodology;

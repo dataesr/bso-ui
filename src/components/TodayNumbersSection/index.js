@@ -30,7 +30,11 @@ function TodayNumbersSection({ updateDate, title, children }) {
                   {updateDate}
                 </section>
                 <section className='w-100 h-50'>
-                  <Card bodyClassName='bg-soft-blue' hasBorder={false} href='/'>
+                  <Card
+                    bodyClassName='bg-blue-soft-50'
+                    hasBorder={false}
+                    href='/'
+                  >
                     <CardDescription as='div'>
                       <DSLink as={<Link to='a-propos/methodologie' />}>
                         <h6 className='m-0 fs-20-20'>

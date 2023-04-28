@@ -1,0 +1,68 @@
+.methodology {
+  .border {
+    border-right: 1px solid var(--blue-soft-50);
+    width: 10px;
+  }
+
+  .before-border-link-0 {
+    left: 50px;
+    margin-bottom: -67px;
+    position: relative;
+    top: 15px;
+  }
+
+  .before-border-link-1 {
+    left: 50px;
+    margin-bottom: -170px;
+    position: relative;
+    top: -5px;
+  }
+
+  .before-border-link-2 {
+    left: 50px;
+    margin-bottom: -87px;
+    position: relative;
+    top: -5px;
+  }
+
+  .before-border-link-3 {
+    left: 50px;
+    margin-bottom: -87px;
+    position: relative;
+    top: -5px;
+  }
+
+  .border-link {
+    border-color: var(--blue-soft-75);
+    border-radius: 0 0 0 30px;
+    border-style: solid;
+    border-width: 0 0 10px 10px;
+
+    &.border-link-first {
+      border-radius: 30px 0 0 30px;
+      border-width: 10px 0 10px 10px;
+    }
+  }
+
+  .after-border-link {
+    position: relative;
+  }
+
+  .border-black {
+    border: 1px solid black;
+  }
+
+  .border-radius-8 {
+    border-radius: 8px;
+  }
+
+  .border-radius-30 {
+    border-radius: 30px;
+  }
+
+  .content {
+    li {
+      list-style-image: url(../../../images/ellipse.svg);
+    }
+  }
+}
