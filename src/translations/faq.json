@@ -58,6 +58,10 @@
       "intlDefinition": "app.faq.opendata.definition",
       "intlEntry": "app.faq.opendata",
       "cta": "https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso"
+    },
+    "other": {
+      "intlDefinition": "app.faq.others.definition",
+      "intlEntry": "app.faq.others.entry"
     }
   }
 ]
