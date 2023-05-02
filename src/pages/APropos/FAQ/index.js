@@ -16,7 +16,7 @@ import FaqEntries from '../../../translations/faq.json';
 function FAQ() {
   const intl = useIntl();
 
-  const getItem = (faqKey) => {
+  const renderItem = (faqKey) => {
     const values = {};
 
     faqKey?.ctas?.forEach((cta, i) => {
@@ -73,7 +73,9 @@ function FAQ() {
       </AccordionItem>
     );
   };
-  const renderItems = () => Object.keys(FaqEntries[0]).map((key) => getItem(FaqEntries[0][key]));
+
+  const renderItems = () => Object.keys(FaqEntries[0]).map((key) => renderItem(FaqEntries[0][key]));
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -85,6 +87,7 @@ function FAQ() {
       </Col>
     </Row>
   );
+
   return (
     <div className='page faq'>
       <Banner
