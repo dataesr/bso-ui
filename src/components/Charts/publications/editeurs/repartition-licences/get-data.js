@@ -17,19 +17,19 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
-  async function getDataByObservationSnaps(datesObservation) {
-    if (!datesObservation || datesObservation.length === 0) {
+  async function getDataByObservationSnaps(observationYears) {
+    if (!observationYears || observationYears.length === 0) {
       return {};
     }
     const queries = [];
     const query = getFetchOptions({
       key: 'publishersLicence',
       domain,
-      parameters: [datesObservation[0], needle],
+      parameters: [observationYears[0], needle],
       objectType: ['publications'],
     });
     const publicationDate = getPublicationYearFromObservationSnap(
-      datesObservation[0],
+      observationYears[0],
     );
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);

@@ -40,14 +40,27 @@ function useGetData(observationSnap, needle = '*', domain) {
       getCSSValue('--blue-soft-150'),
       getCSSValue('--blue-soft-150'),
       getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
+      getCSSValue('--blue-soft-150'),
       getCSSValue('--blue-soft-100'),
     ];
-    const dashStyle = [
+    const dashStyles = [
+      'Solid',
       'ShortDot',
       'ShortDashDot',
       'Dash',
-      'solid',
       'ShortDash',
+      'Dot',
+      'ShortDashDotDot',
+      'LongDash',
+      'DashDot',
+      'LongDashDot',
+      'LongDashDotDot',
     ];
     let ix = 0;
     anrData.forEach((el) => {
@@ -84,7 +97,7 @@ function useGetData(observationSnap, needle = '*', domain) {
         data: currentData,
         nbTotal,
         color: colors[ix],
-        dashStyle: dashStyle[ix],
+        dashStyle: dashStyles[ix],
       };
       if (nbTotal >= 100 && fundingYear >= 2016) {
         dataGraph.push(currentSerie);

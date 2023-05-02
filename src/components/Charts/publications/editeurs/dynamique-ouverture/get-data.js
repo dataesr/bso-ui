@@ -13,9 +13,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
-  async function getDataByObservationSnaps(datesObservation) {
+  async function getDataByObservationSnaps(observationYears) {
     const queries = [];
-    datesObservation
+    observationYears
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
       .forEach((oneDate) => {
         const allOaHostType = '*';
@@ -43,7 +43,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     for (let i = 0; i < res.length; i += 1) {
       const newData = {};
       if (i % 2 === 1) {
-        newData.observationSnap = datesObservation[(i - 1) / 2];
+        newData.observationSnap = observationYears[(i - 1) / 2];
         newData.data = {};
         newData.data.oaHostType = [];
         const oaHostType = res[
@@ -92,13 +92,25 @@ function useGetData(observationSnaps, needle = '*', domain) {
       getCSSValue('--yellow-medium-150'),
       getCSSValue('--yellow-medium-150'),
       getCSSValue('--yellow-medium-150'),
+      getCSSValue('--yellow-medium-150'),
+      getCSSValue('--yellow-medium-150'),
+      getCSSValue('--yellow-medium-150'),
+      getCSSValue('--yellow-medium-150'),
+      getCSSValue('--yellow-medium-150'),
+      getCSSValue('--yellow-medium-150'),
     ];
-    const lineStyle = [
-      'solid',
+    const dashStyles = [
+      'Solid',
       'ShortDot',
       'ShortDashDot',
       'Dash',
       'ShortDash',
+      'Dot',
+      'ShortDashDotDot',
+      'LongDash',
+      'DashDot',
+      'LongDashDot',
+      'LongDashDotDot',
     ];
     const dataGraph2 = [];
     allData.forEach((observationSnapData, i) => {
@@ -108,7 +120,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         intl,
       );
       serie.color = colors[i];
-      serie.dashStyle = lineStyle[i];
+      serie.dashStyle = dashStyles[i];
       if (i === 0) {
         serie.marker = {
           fillColor: 'white',
@@ -156,15 +168,16 @@ function useGetData(observationSnaps, needle = '*', domain) {
       (item) => item.publicationDate,
     );
 
+    let beforePublicationYear = '';
+    let firstObservationYear = '';
     let observationYear = '';
     let publicationYear = '';
-    let beforePublicationYear = '';
     let rate = '';
+    let rate1 = '';
+    let rate2 = '';
     let year1 = '';
     let year2 = '';
     let year3 = '';
-    let rate1 = '';
-    let rate2 = '';
     if (
       dataGraph1
       && dataGraph1[0]
@@ -189,9 +202,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
         .find((item) => item.name === year2)
         ?.data?.find((item) => item.publicationDate === year3)
         ?.y.toFixed(0);
+      firstObservationYear = getObservationLabel(
+        observationYears[observationYears.length - 1],
+        intl,
+      );
     }
+
     const comments = {
       beforePublicationYear,
+      firstObservationYear,
       observationYear,
       publicationYear,
       rate,

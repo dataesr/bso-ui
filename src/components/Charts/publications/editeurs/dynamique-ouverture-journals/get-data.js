@@ -17,9 +17,9 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
   const [isError, setError] = useState(false);
 
   const getDataByObservationSnaps = useCallback(
-    async (datesObservation) => {
+    async (observationYears) => {
       const queries = [];
-      datesObservation
+      observationYears
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
           const query = getFetchOptions({
@@ -36,7 +36,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
       if (domain !== '') {
-        datesObservation
+        observationYears
           ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
           .forEach((oneDate) => {
             const query = getFetchOptions({
@@ -55,7 +55,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
 
       const res = await Axios.all(queries);
       const allData = res.map((d, i) => ({
-        observationSnap: datesObservation[i % datesObservation.length],
+        observationSnap: observationYears[i % observationYears.length],
         data: d.data.aggregations.by_publication_year.buckets,
       }));
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -66,13 +66,25 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
         getCSSValue('--orange-soft-125'),
         getCSSValue('--orange-soft-125'),
         getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
       ];
-      const lineStyle = [
-        'solid',
+      const dashStyles = [
+        'Solid',
         'ShortDot',
         'ShortDashDot',
         'Dash',
         'ShortDash',
+        'Dot',
+        'ShortDashDotDot',
+        'LongDash',
+        'DashDot',
+        'LongDashDot',
+        'LongDashDotDot',
       ];
       const dataGraph2 = [];
       const dataGraphGlobal = [];
@@ -95,7 +107,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
           intl,
         );
         serie.color = colors[i];
-        serie.dashStyle = lineStyle[i];
+        serie.dashStyle = dashStyles[i];
         if (i === 0) {
           serie.marker = {
             fillColor: 'white',
@@ -122,7 +134,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
           (el) => `(${el.by_is_oa.buckets[0].doc_count} / ${el.doc_count})`,
         );
         serie.lastPublicationDate = filtered.length > 0 ? filtered[filtered.length - 1].key : 0;
-        if (i < datesObservation.length) {
+        if (i < observationYears.length) {
           dataGraph2.push(serie);
         } else {
           dataGraphGlobal.push(serie);
@@ -175,9 +187,9 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
       }
       const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 
-      const year1 = getObservationLabel(datesObservation?.[2], intl);
-      const year2 = getObservationLabel(datesObservation?.[1], intl);
-      const year3 = getObservationLabel(datesObservation?.[0], intl);
+      const year1 = getObservationLabel(observationYears?.[2], intl);
+      const year2 = getObservationLabel(observationYears?.[1], intl);
+      const year3 = getObservationLabel(observationYears?.[0], intl);
       const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(0) || 0;
       const value2 = dataGraph1?.series[0]?.data
         .find((item) => item.name === year3)
@@ -193,6 +205,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
         .find((item) => item.name === healthPublicationsLabel)
         ?.data?.find((item) => item.name === year3)
         ?.y.toFixed(0) || 0;
+
       const comments = {
         observationDate: dataGraph2[0]?.name,
         observationDate4: dataGraph2[3]?.name,
@@ -219,6 +232,7 @@ function useGetData(observationSnaps, needle = '*', domain = '') {
         differenceValue: value2 - value1,
         healthDifferenceValue: healthValue2 - healthValue1,
       };
+
       return {
         categories,
         comments,

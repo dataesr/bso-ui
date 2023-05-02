@@ -13,12 +13,12 @@ function useGetData(observationSnaps, domain = '') {
   const intl = useIntl();
 
   const getDataByObservationSnaps = useCallback(
-    async (datesObservation) => {
+    async (observationYears) => {
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const disciplineField = 'thesis_classification.discipline';
       // Pour chaque date d'observation, récupération des données associées
       const queries = [];
-      datesObservation
+      observationYears
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
           const query = getFetchOptions({
@@ -34,7 +34,7 @@ function useGetData(observationSnaps, domain = '') {
       const dataGraph = {};
       const disciplines = [];
       res.forEach((el, idx) => {
-        const currentSnap = datesObservation[idx];
+        const currentSnap = observationYears[idx];
         el.data.aggregations.by_discipline.buckets
           .filter((b) => b.key !== 'unknown')
           .forEach((item) => {
@@ -60,7 +60,7 @@ function useGetData(observationSnaps, domain = '') {
         dataHist.push({
           name: discipline,
           bsoDomain,
-          data: datesObservation
+          data: observationYears
             .slice(0) // make a copy before sorting in ascending order !
             .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
             .map((obs) => {
