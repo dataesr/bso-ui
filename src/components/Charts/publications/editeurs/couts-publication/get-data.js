@@ -24,8 +24,8 @@ function useGetData(
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
   const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
 
-  async function getDataByObservationSnaps(datesObservation) {
-    if (!datesObservation || datesObservation.length === 0) {
+  async function getDataByObservationSnaps(observationYears) {
+    if (!observationYears || observationYears.length === 0) {
       return {};
     }
     // Pour chaque date d'observation, récupération des données associées
@@ -33,21 +33,21 @@ function useGetData(
     const query = getFetchOptions({
       key: 'apcYear',
       domain,
-      parameters: [datesObservation[0], needle],
+      parameters: [observationYears[0], needle],
       objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const queryHistogram = getFetchOptions({
       key: 'apcHistogram',
       domain,
-      parameters: [datesObservation[0], needle],
+      parameters: [observationYears[0], needle],
       objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryHistogram, HEADERS));
     const queryPercentile = getFetchOptions({
       key: 'apcPercentile',
       domain,
-      parameters: [datesObservation[0], needle],
+      parameters: [observationYears[0], needle],
       objectType: ['publications'],
     });
     queries.push(Axios.post(ES_API_URL, queryPercentile, HEADERS));
@@ -64,7 +64,7 @@ function useGetData(
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
-            < parseInt(datesObservation[0].substring(0, 4), 10),
+            < parseInt(observationYears[0].substring(0, 4), 10),
       )
       .forEach((el) => {
         categoriesYear.push(el.key);
@@ -141,7 +141,7 @@ function useGetData(
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
-            < parseInt(datesObservation[0].substring(0, 4), 10),
+            < parseInt(observationYears[0].substring(0, 4), 10),
       );
     const goldDataHistogram = [];
     const hybridDataHistogram = [];
@@ -152,7 +152,7 @@ function useGetData(
     const hybridDataViolin = [];
     const histogramInterval = queryHistogram.aggs.by_year.aggs.by_oa_colors.aggs.apc.histogram.interval;
     const publicationDate = getPublicationYearFromObservationSnap(
-      datesObservation[0],
+      observationYears[0],
     );
     dataDistribution.forEach((elem, yearIndex) => {
       const currentYear = elem.key;
@@ -286,7 +286,7 @@ function useGetData(
       .filter(
         (el) => el.key > 2012
           && parseInt(el.key, 10)
-            < parseInt(datesObservation[0].substring(0, 4), 10),
+            < parseInt(observationYears[0].substring(0, 4), 10),
       )
       .forEach((el, yearIndex) => {
         const hybridElem = el.by_oa_colors.buckets.find(

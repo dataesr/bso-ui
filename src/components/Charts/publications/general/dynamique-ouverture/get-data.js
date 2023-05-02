@@ -17,9 +17,9 @@ function useGetData(observationSnaps, domain = '') {
   const [isError, setError] = useState(false);
 
   const getDataByObservationSnaps = useCallback(
-    async (datesObservation) => {
+    async (observationYears) => {
       const queries = [];
-      datesObservation
+      observationYears
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
           const query = getFetchOptions({
@@ -31,7 +31,7 @@ function useGetData(observationSnaps, domain = '') {
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
       if (domain !== '') {
-        datesObservation
+        observationYears
           ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
           .forEach((oneDate) => {
             const query = getFetchOptions({
@@ -45,7 +45,7 @@ function useGetData(observationSnaps, domain = '') {
 
       const res = await Axios.all(queries);
       const allData = res.map((d, i) => ({
-        observationSnap: datesObservation[i % datesObservation.length],
+        observationSnap: observationYears[i % observationYears.length],
         data: d.data.aggregations.by_publication_year.buckets,
       }));
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
@@ -129,7 +129,7 @@ function useGetData(observationSnaps, domain = '') {
             })`,
         );
         serie.lastPublicationDate = filtered.length > 0 ? filtered[filtered.length - 1].key : 0;
-        if (i < datesObservation.length) {
+        if (i < observationYears.length) {
           dataGraph2.push(serie);
         } else {
           dataGraphGlobal.push(serie);
@@ -182,9 +182,9 @@ function useGetData(observationSnaps, domain = '') {
       }
       const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 
-      const year1 = getObservationLabel(datesObservation?.[2], intl);
-      const year2 = getObservationLabel(datesObservation?.[1], intl);
-      const year3 = getObservationLabel(datesObservation?.[0], intl);
+      const year1 = getObservationLabel(observationYears?.[2], intl);
+      const year2 = getObservationLabel(observationYears?.[1], intl);
+      const year3 = getObservationLabel(observationYears?.[0], intl);
       const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(0) || 0;
       const value2 = dataGraph1?.series[0]?.data
         .find((item) => item.name === year3)
@@ -200,7 +200,12 @@ function useGetData(observationSnaps, domain = '') {
         .find((item) => item.name === healthPublicationsLabel)
         ?.data?.find((item) => item.name === year3)
         ?.y.toFixed(0) || 0;
+
       const comments = {
+        fistObservationYear: getObservationLabel(
+          dataGraph2[dataGraph2.length - 1]?.name,
+          intl,
+        ),
         observationDate: dataGraph2[0]?.name,
         observationDate4: dataGraph2[3]?.name,
         oaYMinusOne4: dataGraph2[3]?.data.slice(-1)?.[0]?.y.toFixed(0) || 0,
@@ -226,6 +231,7 @@ function useGetData(observationSnaps, domain = '') {
         differenceValue: value2 - value1,
         healthDifferenceValue: healthValue2 - healthValue1,
       };
+
       return {
         categories,
         comments,

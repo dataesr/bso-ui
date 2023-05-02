@@ -18,7 +18,7 @@ function useGetData(
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
-  async function getDataByObservationSnaps(datesObservation) {
+  async function getDataByObservationSnaps(observationYears) {
     const queryAffiliations = getFetchOptions({
       key: 'affiliationsList',
       domain,
@@ -36,7 +36,7 @@ function useGetData(
 
     // Pour chaque date d'observation, récupération des données associées
     const queries = [];
-    datesObservation
+    observationYears
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
       .forEach((oneDate) => {
         const needlePublisher = '*';
@@ -55,7 +55,7 @@ function useGetData(
     const res = await Axios.all(queries);
 
     const allData = res.map((d, i) => ({
-      observationSnap: datesObservation[i],
+      observationSnap: observationYears[i],
       data: d.data.aggregations.by_publication_year.buckets,
     }));
 
@@ -66,7 +66,19 @@ function useGetData(
       getCSSValue('--affiliations-etablissements-75'),
       getCSSValue('--affiliations-etablissements-50'),
     ];
-    const lineStyle = ['solid', 'ShortDot', 'ShortDashDot', 'Dash'];
+    const dashStyles = [
+      'Solid',
+      'ShortDot',
+      'ShortDashDot',
+      'Dash',
+      'ShortDash',
+      'Dot',
+      'ShortDashDotDot',
+      'LongDash',
+      'DashDot',
+      'LongDashDot',
+      'LongDashDotDot',
+    ];
     const dataGraph2 = [];
     allData.forEach((observationSnapData, i) => {
       const serie = {};
@@ -87,7 +99,7 @@ function useGetData(
         intl,
       );
       serie.color = colors[i];
-      serie.dashStyle = lineStyle[i];
+      serie.dashStyle = dashStyles[i];
       if (i === 0) {
         serie.marker = {
           fillColor: 'white',

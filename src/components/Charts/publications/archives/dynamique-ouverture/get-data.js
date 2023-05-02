@@ -13,10 +13,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
-  async function getDataByObservationSnaps(datesObservation) {
-    // Pour chaque date d'observation, récupération des données associées
+  async function getDataByObservationSnaps(observationYears) {
+    // For each observation year, retrieve associated data
     const queries = [];
-    datesObservation
+    observationYears
       ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
       .forEach((oneDate) => {
         const publisherNeedle = '*';
@@ -47,7 +47,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     for (let i = 0; i < responses.length; i += 1) {
       const newData = {};
       if (i % 2 === 1) {
-        newData.observationSnap = datesObservation[(i - 1) / 2];
+        newData.observationSnap = observationYears[(i - 1) / 2];
         newData.data = {};
         const responseFiltered = responses[
           i - 1
@@ -92,13 +92,25 @@ function useGetData(observationSnaps, needle = '*', domain) {
       getCSSValue('--green-medium-150'),
       getCSSValue('--green-medium-150'),
       getCSSValue('--green-medium-150'),
+      getCSSValue('--green-medium-150'),
+      getCSSValue('--green-medium-150'),
+      getCSSValue('--green-medium-150'),
+      getCSSValue('--green-medium-150'),
+      getCSSValue('--green-medium-150'),
+      getCSSValue('--green-medium-150'),
     ];
-    const lineStyle = [
-      'solid',
+    const dashStyles = [
+      'Solid',
       'ShortDot',
       'ShortDashDot',
       'Dash',
       'ShortDash',
+      'Dot',
+      'ShortDashDotDot',
+      'LongDash',
+      'DashDot',
+      'LongDashDot',
+      'LongDashDotDot',
     ];
     const dataGraph2 = [];
     allData.forEach((observationSnapData, i) => {
@@ -108,7 +120,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         intl,
       );
       serie.color = colors[i];
-      serie.dashStyle = lineStyle[i];
+      serie.dashStyle = dashStyles[i];
       if (i === 0) {
         serie.marker = {
           fillColor: 'white',
@@ -153,14 +165,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
       .filter((el) => el.y > 0);
 
     const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
-    let year = '';
-    let y = '';
-    let publicationDate = '';
+    let firstObservationYear = '';
     let percentage = '';
-    let year1 = '';
+    let publicationDate = '';
     let value1 = '';
-    let year2 = '';
     let value2 = '';
+    let y = '';
+    let year = '';
+    let year1 = '';
+    let year2 = '';
     if (observationSnaps && dataGraph1 && dataGraph2) {
       year = getObservationLabel(observationSnaps[0], intl);
       y = dataGraph1.find((item) => item.name === year).y;
@@ -176,8 +189,14 @@ function useGetData(observationSnaps, needle = '*', domain) {
       value2 = dataGraph2[0].data
         .find((item) => item.publicationDate === 2017)
         ?.y.toFixed(0);
+      firstObservationYear = getObservationLabel(
+        observationSnaps[observationSnaps.length - 1],
+        intl,
+      );
     }
+
     const comments = {
+      firstObservationYear,
       percentage,
       publicationDate,
       value1,
@@ -186,6 +205,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       year1,
       year2,
     };
+
     return {
       categories,
       comments,
