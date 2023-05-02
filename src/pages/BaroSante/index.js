@@ -279,7 +279,7 @@ function BaroSante() {
                   iconName='icon-bsso-28'
                   iconColor='purple-50'
                   intlSubTitle='app.publications'
-                  backgroundColorClass='bg-soft-purple'
+                  backgroundColorClass='bg-purple-25'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -295,7 +295,7 @@ function BaroSante() {
                   iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.health-publi.publishers'
-                  backgroundColorClass='bg-yellow'
+                  backgroundColorClass='bg-yellow-medium-50'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -326,7 +326,7 @@ function BaroSante() {
                   iconName='icon-bsso-6'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.observationals'
-                  backgroundColorClass='bg-yellow'
+                  backgroundColorClass='bg-yellow-medium-50'
                 />
               </TodayNumbersSection>
             </Col>

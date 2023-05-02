@@ -340,7 +340,7 @@ function Methodology() {
                     </Col>
                   </Row>
                   <Row className='mb-60'>
-                    <Col n='6' offset='1' className='after-border-link'>
+                    <Col n='11' offset='1' className='after-border-link'>
                       <div>
                         <span className='bg-blue-soft-150 border-radius-30 color-white fs-24-32 marianne-bold px-20 py-4'>
                           #4 Partager...
@@ -350,6 +350,46 @@ function Methodology() {
                         avec la communauté toutes ces données agrégées et
                         calculées
                       </div>
+                      <Row>
+                        <Col>
+                          <div className='bg-white border-black border-radius-8 fs-20-24 marianne-bold mt-28 px-8 py-4 w-60'>
+                            Données datavisualisées sur le site du Baromètre...
+                          </div>
+                          <div className='bg-yellow-medium-100 border-black border-radius-8 fs-14-19 marianne-bold mb-20 ml-40 p-8 w-60'>
+                            <a
+                              href='barometredelascienceouverte.esr.gouv.fr'
+                              target='_blank'
+                            >
+                              barometredelascienceouverte.esr.gouv.fr
+                            </a>
+                          </div>
+                          <div className='ml-60'>
+                            <img
+                              alt='screenshot BSO'
+                              src='/assets/screenshot_bso.png'
+                            />
+                          </div>
+                        </Col>
+                        <Col>
+                          <div className='bg-white border-black border-radius-8 fs-20-24 marianne-bold mt-28 px-8 py-4 w-60'>
+                            ...et disponibles sur le portail Open Data du MESR
+                          </div>
+                          <div className='bg-yellow-medium-100 border-black border-radius-8 fs-14-19 marianne-bold mb-20 ml-40 p-8 w-60'>
+                            <a
+                              href='data.enseignementsup-recherche.gouv.fr'
+                              target='_blank'
+                            >
+                              data.enseignementsup-recherche.gouv.fr
+                            </a>
+                          </div>
+                          <div className='ml-60'>
+                            <img
+                              alt='screenshot ScanR'
+                              src='/assets/screenshot_scanr.png'
+                            />
+                          </div>
+                        </Col>
+                      </Row>
                     </Col>
                   </Row>
                 </Col>

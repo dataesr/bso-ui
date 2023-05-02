@@ -57,17 +57,18 @@ function HomeSection({
 
 HomeSection.defaultProps = {
   hasBeta: false,
+  isDisplayed: true,
 };
 
 HomeSection.propTypes = {
-  title: PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
+  hasBeta: PropTypes.bool,
   introText: PropTypes.element.isRequired,
+  isDisplayed: PropTypes.element,
   link: PropTypes.shape({
     label: PropTypes.element.isRequired,
     href: PropTypes.string.isRequired,
   }).isRequired,
-  children: PropTypes.element.isRequired,
-  isDisplayed: PropTypes.element.isRequired,
-  hasBeta: PropTypes.bool,
+  title: PropTypes.element.isRequired,
 };
 export default HomeSection;

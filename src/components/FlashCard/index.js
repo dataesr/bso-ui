@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 function FlashCard({ intlTitle, url, urlData, urlPdf }) {
   return (
     <Card
-      bodyClassName='bso-flash-card bg-yellow'
+      bodyClassName='bso-flash-card bg-yellow-medium-50'
       enlargeLink={false}
       hasArrow={false}
       hasBorder={false}

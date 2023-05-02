@@ -38,7 +38,7 @@ function FAQ() {
         title={intl.formatMessage({ id: faqKey.intlEntry })}
       >
         <Container>
-          <section className='px-20 py-28 bg-light-pink'>
+          <section className='bg-pink-light-50 px-20 py-28'>
             <Row>
               <Col>
                 <FormattedMessage

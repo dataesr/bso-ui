@@ -331,7 +331,7 @@ function BaroNational() {
                   iconName='icon-bsso-28'
                   iconColor='purple-50'
                   intlSubTitle='app.publications'
-                  backgroundColorClass='bg-soft-purple'
+                  backgroundColorClass='bg-purple-25'
                 />
                 <TodayNumbersItem
                   itemKey='journal'
@@ -345,7 +345,7 @@ function BaroNational() {
                   iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.health-publi.publishers'
-                  backgroundColorClass='bg-yellow'
+                  backgroundColorClass='bg-yellow-medium-50'
                 />
                 <TodayNumbersItem
                   itemKey='repository'
