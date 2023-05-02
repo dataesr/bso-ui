@@ -8,6 +8,7 @@ import {
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
@@ -15,6 +16,9 @@ import Studio from '../../../components/Studio';
 import SubmissionForm from '../../../components/SubmissionForm';
 
 function HowTo() {
+  const search = new URLSearchParams(useLocation().search);
+  const expanded = search?.get('expanded') || 2;
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -37,7 +41,7 @@ function HowTo() {
         icons={renderIcons}
       />
       <Container>
-        <section className='color-blue-dark-125 content'>
+        <section className='color-blue-dark-125 content pb-8'>
           <Row gutters>
             <Col n='12 lg-8'>
               <h2 className='marianne-bold fs-12-16'>
@@ -51,7 +55,10 @@ function HowTo() {
           <Row gutters>
             <Col n='12 lg-8'>
               <Accordion>
-                <AccordionItem title='1. Définissez le périmètre de votre BSO local'>
+                <AccordionItem
+                  initExpand={parseInt(expanded, 10) === 0}
+                  title='1. Définissez le périmètre de votre BSO local'
+                >
                   <p>
                     <b>
                       {' '}
@@ -233,12 +240,15 @@ function HowTo() {
                     </div>
                   </Col>
                 </AccordionItem>
-                <AccordionItem title='2. Envoyez-nous votre fichier'>
+                <AccordionItem
+                  initExpand={parseInt(expanded, 10) === 1}
+                  title='2. Envoyez-nous votre fichier'
+                >
                   <SubmissionForm />
                 </AccordionItem>
                 <AccordionItem
+                  initExpand={parseInt(expanded, 10) === 2}
                   title='3. Intégrez directement les graphiques générés (via iFrame)'
-                  initExpand
                 >
                   <Studio />
                 </AccordionItem>
