@@ -170,66 +170,6 @@ div.d-inline-flex {
 /**
  * Colorimétrie
  */
-.bg-white {
-  background-color: #fff;
-}
-
-.bg-yellow-medium-50 {
-  background-color: var(--yellow-medium-50);
-}
-
-.bg-yellow-medium-100 {
-  background-color: var(--yellow-medium-100);
-}
-
-.bg-green-light-50 {
-  background-color: var(--green-light-50);
-}
-
-.bg-green-soft-25 {
-  background-color: var(--green-soft-25);
-}
-
-.bg-green-soft-100 {
-  background-color: var(--green-soft-100);
-}
-
-.bg-soft-pink {
-  background-color: var(--publication-25);
-}
-
-.bg-pink-light-50 {
-  background-color: var(--pink-light-50);
-}
-
-.bg-purple-25 {
-  background-color: var(--purple-25);
-}
-
-.bg-ultra-light-blue {
-  background-color: var(--bf100-g750);
-}
-
-.bg-purple-medium-25 {
-  background-color: var(--purple-medium-25);
-}
-
-.bg-purple-medium-50 {
-  background-color: var(--purple-medium-50);
-}
-
-.bg-purple-medium-100 {
-  background-color: var(--purple-medium-100);
-}
-
-.bg-dark-blue {
-  background: var(--blue-soft-150);
-}
-
-.bg-medium-green {
-  background: var(--green-medium-25);
-}
-
 .bg-blue-soft-25 {
   background: var(--blue-soft-25);
 }
@@ -246,16 +186,68 @@ div.d-inline-flex {
   background: var(--blue-soft-150);
 }
 
+.bg-green-light-50 {
+  background-color: var(--green-light-50);
+}
+
+.bg-green-medium-25 {
+  background: var(--green-medium-25);
+}
+
+.bg-green-soft-25 {
+  background-color: var(--green-soft-25);
+}
+
+.bg-green-soft-100 {
+  background-color: var(--green-soft-100);
+}
+
 .bg-orange-soft-100 {
   background: var(--orange-soft-100);
 }
 
-.color-blue-soft-175 {
-  color: var(--blue-soft-175);
+.bg-pink-light-50 {
+  background-color: var(--pink-light-50);
+}
+
+.bg-publication-25 {
+  background-color: var(--publication-25);
+}
+
+.bg-purple-25 {
+  background-color: var(--purple-25);
+}
+
+.bg-purple-medium-25 {
+  background-color: var(--purple-medium-25);
+}
+
+.bg-purple-medium-50 {
+  background-color: var(--purple-medium-50);
+}
+
+.bg-purple-medium-100 {
+  background-color: var(--purple-medium-100);
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-yellow-medium-50 {
+  background-color: var(--yellow-medium-50);
+}
+
+.bg-yellow-medium-100 {
+  background-color: var(--yellow-medium-100);
 }
 
 .color-blue-dark-125 {
   color: var(--blue-dark-125);
+}
+
+.color-blue-soft-175 {
+  color: var(--blue-soft-175);
 }
 
 .color-white {
@@ -282,14 +274,6 @@ div.d-inline-flex {
   &:hover {
     background-color: var(--blue-dark-100);
   }
-}
-
-.text-white {
-  color: #fff;
-}
-
-.text-blue {
-  color: var(--blue-soft-100);
 }
 
 /**

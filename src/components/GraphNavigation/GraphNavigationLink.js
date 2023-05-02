@@ -28,7 +28,7 @@ export default function GraphNavigationLink({ href, label, hasHr }) {
       <div className='float-right'>
         <Icon name='icon-bsso-34' color1='blue-soft-125' />
       </div>
-      {hasHr && <hr className='ml-n16 text-white' />}
+      {hasHr && <hr className='ml-n16 color-white' />}
     </li>
   );
 }

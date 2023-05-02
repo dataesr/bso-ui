@@ -64,7 +64,7 @@ function GraphItem({ isDisplayed, links, mainLabel, paths }) {
                 className='no-border'
                 as={<Link to={getUrl(link.href[lang], search)} />}
               >
-                <div className='text-white fs-14-24 pb-8'>{link.label}</div>
+                <div className='color-white fs-14-24 pb-8'>{link.label}</div>
               </DSLink>
             ),
           )}

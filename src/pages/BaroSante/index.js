@@ -287,7 +287,7 @@ function BaroSante() {
                   iconName='icon-bsso-2'
                   iconColor='purple-50'
                   intlSubTitle='app.journals'
-                  backgroundColorClass='bg-soft-pink'
+                  backgroundColorClass='bg-publication-25'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -303,7 +303,7 @@ function BaroSante() {
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
                   intlSubTitle='app.health-publi.repositories'
-                  backgroundColorClass='bg-medium-green'
+                  backgroundColorClass='bg-green-medium-25'
                   domain='health'
                 />
                 <TodayNumbersItem

@@ -39,7 +39,7 @@ function OpenData() {
           <Row gutters>
             <Col n='12'>
               <Card
-                bodyClassName='bg-blue-soft-100 text-white'
+                bodyClassName='bg-blue-soft-100 color-white'
                 hasArrow={false}
                 hasBorder={false}
               >
@@ -47,7 +47,7 @@ function OpenData() {
                   <Container>
                     <Row alignItems='middle'>
                       <Col n='12 md-6'>
-                        <div className='w-100 fs-32-40 marianne-bold pb-32 text-white text-center text-left-l'>
+                        <div className='w-100 fs-32-40 marianne-bold pb-32 color-white text-center text-left-l'>
                           <FormattedMessage id='app.link.opendata.title' />
                         </div>
                         <div className='text-center text-left-l fs-20-20 pb-56'>
@@ -82,7 +82,7 @@ function OpenData() {
           <Row gutters>
             <Col n='12'>
               <Card
-                bodyClassName='bg-dark-blue text-white'
+                bodyClassName='bg-blue-soft-150 color-white'
                 hasArrow={false}
                 hasBorder={false}
               >
@@ -90,7 +90,7 @@ function OpenData() {
                   <Container>
                     <Row alignItems='middle'>
                       <Col n='12 md-6'>
-                        <div className='w-100 fs-32-40 marianne-bold pb-32 text-white text-center text-left-l'>
+                        <div className='w-100 fs-32-40 marianne-bold pb-32 color-white text-center text-left-l'>
                           <FormattedMessage id='app.link.github.code-projet' />
                         </div>
                         <div className='text-center text-left-l fs-20-20 pb-56'>
