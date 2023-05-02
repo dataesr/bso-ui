@@ -322,7 +322,7 @@ const SubmissionForm = () => {
 
   return (
     <Container>
-      <section className='content bd125 mb-20'>
+      <section className='color-blue-dark-125 content mb-20'>
         <Row gutters>
           <Col n='12 lg-8'>
             <div>

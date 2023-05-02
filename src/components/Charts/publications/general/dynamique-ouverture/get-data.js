@@ -56,13 +56,25 @@ function useGetData(observationSnaps, domain = '') {
         getCSSValue('--orange-soft-125'),
         getCSSValue('--orange-soft-125'),
         getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-125'),
       ];
-      const lineStyle = [
-        'solid',
+      const dashStyles = [
+        'Solid',
         'ShortDot',
         'ShortDashDot',
         'Dash',
         'ShortDash',
+        'Dot',
+        'ShortDashDotDot',
+        'LongDash',
+        'DashDot',
+        'LongDashDot',
+        'LongDashDotDot',
       ];
       const dataGraph2 = [];
       const dataGraphGlobal = [];
@@ -85,7 +97,7 @@ function useGetData(observationSnaps, domain = '') {
           intl,
         );
         serie.color = colors[i];
-        serie.dashStyle = lineStyle[i];
+        serie.dashStyle = dashStyles[i];
         if (i === 0) {
           serie.marker = {
             fillColor: 'white',

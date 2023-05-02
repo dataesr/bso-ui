@@ -10,7 +10,7 @@ import PageTracker from './components/WebTracking/PageTracker';
 import Communication from './pages/APropos/Communication';
 import FAQ from './pages/APropos/FAQ';
 import Glossaire from './pages/APropos/Glossaire';
-import Methodologie from './pages/APropos/Methodologie';
+import Methodology from './pages/APropos/Methodology';
 import OpenData from './pages/APropos/OpenData';
 import BaroNational from './pages/BaroNational';
 import NationalOrcid from './pages/BaroNational/NationalOrcid';
@@ -182,7 +182,7 @@ function App() {
               path={urls.methodologie[key]}
               element={(
                 <PageTracker>
-                  <Methodologie />
+                  <Methodology />
                 </PageTracker>
               )}
             />

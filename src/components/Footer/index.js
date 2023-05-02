@@ -182,7 +182,7 @@ export default function Footer() {
             target='_blank'
             href='https://www.modernisation.gouv.fr/actualites/ouvrir-laction-publique-construisons-ensemble-le-plan-daction-gouvernement-ouvert-2021'
           >
-            Plan d’Action National de la France au sein du Partenariat pour un
+            Plan d'Action National de la France au sein du Partenariat pour un
             Gouvernement Ouvert (PGO)
           </FooterLink>
           <FooterLink href={intl.formatMessage({ id: 'url.about.faq' })}>

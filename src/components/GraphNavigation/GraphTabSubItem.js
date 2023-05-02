@@ -12,7 +12,7 @@ function GraphTabSubItem({ label, activeTab, children }) {
   return (
     <section className='tab marianne-light relative'>
       <button
-        className={classNames('tab-button text-white', {
+        className={classNames('tab-button color-white', {
           active: open,
           'marianne-bold activeTab': activeTab,
         })}
@@ -27,7 +27,7 @@ function GraphTabSubItem({ label, activeTab, children }) {
           <span className={classNames({ 'marianne-bold': open })}>{label}</span>
         </Icon>
       </button>
-      <ul className={classNames('tab-links text-white', { hidden: !open })}>
+      <ul className={classNames('tab-links color-white', { hidden: !open })}>
         {children}
       </ul>
     </section>

@@ -33,7 +33,7 @@ function BannerHealth({ selected, title }) {
   };
 
   const renderIcons = (
-    <Row justifyContent='center' alignItems='middle' gutters className='mbi-32'>
+    <Row justifyContent='center' alignItems='middle' gutters className='mb-32'>
       <Col n='12'>
         <Icon
           name={icons[selected]?.name}

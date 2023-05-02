@@ -331,42 +331,42 @@ function BaroNational() {
                   iconName='icon-bsso-28'
                   iconColor='purple-50'
                   intlSubTitle='app.publications'
-                  backgroundColorClass='bg-soft-purple'
+                  backgroundColorClass='bg-purple-25'
                 />
                 <TodayNumbersItem
                   itemKey='journal'
                   iconName='icon-bsso-2'
                   iconColor='purple-50'
                   intlSubTitle='app.journals'
-                  backgroundColorClass='bg-soft-pink'
+                  backgroundColorClass='bg-publication-25'
                 />
                 <TodayNumbersItem
                   itemKey='publisher'
                   iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.health-publi.publishers'
-                  backgroundColorClass='bg-yellow'
+                  backgroundColorClass='bg-yellow-medium-50'
                 />
                 <TodayNumbersItem
                   itemKey='repository'
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
                   intlSubTitle='app.health-publi.repositories'
-                  backgroundColorClass='bg-medium-green'
+                  backgroundColorClass='bg-green-medium-25'
                 />
                 <TodayNumbersItem
                   itemKey='these'
                   iconName='icon-these'
                   iconColor='green-medium-75'
                   intlSubTitle='app.thesis'
-                  backgroundColorClass='bg-medium-purple-50'
+                  backgroundColorClass='bg-purple-medium-50'
                 />
                 <TodayNumbersItem
                   itemKey='obsDates'
                   iconName='icon-bsso-10'
                   iconColor='green-light-75'
                   intlSubTitle='app.obs-dates'
-                  backgroundColorClass='bg-light-green'
+                  backgroundColorClass='bg-green-light-50'
                 />
               </TodayNumbersSection>
             </Col>

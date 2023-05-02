@@ -134,7 +134,7 @@ function Glossary({ entries }) {
           <Button
             size='sm'
             onClick={() => glossaryPanel('', !openPanel)}
-            className='btn-blue text-white'
+            className='btn-blue color-white'
           >
             <FormattedMessage
               id='app.header.nav.a-propos-glossaire'

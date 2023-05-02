@@ -40,10 +40,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
+  const orangeSoft25 = getCSSValue('--orange-soft-25');
   const orangeSoft50 = getCSSValue('--orange-soft-50');
   const orangeSoft75 = getCSSValue('--orange-soft-75');
   const orangeSoft100 = getCSSValue('--orange-soft-100');
   const orangeSoft125 = getCSSValue('--orange-soft-125');
+  const orangeSoft150 = getCSSValue('--orange-soft-150');
   const orangeSoft175 = getCSSValue('--orange-soft-175');
 
   useEffect(() => {
@@ -81,21 +83,29 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         const delta = parseInt(lastObservationSnap.substr(0, 4), 10)
           - parseInt(dates[index - 1].substr(0, 4), 10);
         switch (delta) {
-        case 4:
+        case 6:
+          fillColor = orangeSoft25;
+          lowColor = fillColor;
+          break;
+        case 5:
           fillColor = orangeSoft50;
           lowColor = fillColor;
           break;
-        case 3:
+        case 4:
           fillColor = orangeSoft75;
           lowColor = fillColor;
           break;
-        case 2:
+        case 3:
           fillColor = orangeSoft125;
           lowColor = fillColor;
           break;
+        case 2:
+          fillColor = orangeSoft150;
+          lowColor = fillColor;
+          break;
         case 1:
-          fillColor = 'white';
-          lowColor = orangeSoft175;
+          fillColor = orangeSoft175;
+          lowColor = fillColor;
           break;
         case 0:
           fillColor = 'white';
@@ -176,6 +186,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     orangeSoft125,
     orangeSoft175,
     sort,
+    orangeSoft25,
+    orangeSoft150,
   ]);
 
   useEffect(() => {

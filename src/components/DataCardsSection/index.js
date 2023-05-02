@@ -277,7 +277,7 @@ export default function DataCardSection({ domain, lang }) {
   }, [domain, fetchData, isMounted, lastObservationSnap, response]);
 
   return (
-    <Container fluid className='bg-ultra-light-blue pt-32 mb-20 px-20'>
+    <Container fluid className='pt-32 mb-20 px-20'>
       <Row justifyContent='center'>
         <Col n='12 md-11 xl-9' spacing='p-4w'>
           <section className='pb-32'>

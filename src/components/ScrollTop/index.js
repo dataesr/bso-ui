@@ -14,7 +14,7 @@ export default function ScrollTop() {
             <Button
               size='sm'
               onClick={() => window.scrollTo(0, 0)}
-              className='btn-blue text-white'
+              className='btn-blue color-white'
             >
               <div className='fs-12-12'>
                 <FormattedMessage

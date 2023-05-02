@@ -54,7 +54,7 @@ function Glossaire() {
         )}
       >
         <Container>
-          <section className='px-20 py-28 bg-soft-green'>
+          <section className='bg-green-soft-25 px-20 py-28'>
             <Row>
               <Col>
                 <FormattedMessage

@@ -279,7 +279,7 @@ function BaroSante() {
                   iconName='icon-bsso-28'
                   iconColor='purple-50'
                   intlSubTitle='app.publications'
-                  backgroundColorClass='bg-soft-purple'
+                  backgroundColorClass='bg-purple-25'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -287,7 +287,7 @@ function BaroSante() {
                   iconName='icon-bsso-2'
                   iconColor='purple-50'
                   intlSubTitle='app.journals'
-                  backgroundColorClass='bg-soft-pink'
+                  backgroundColorClass='bg-publication-25'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -295,7 +295,7 @@ function BaroSante() {
                   iconName='icon-bsso-14'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.health-publi.publishers'
-                  backgroundColorClass='bg-yellow'
+                  backgroundColorClass='bg-yellow-medium-50'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -303,7 +303,7 @@ function BaroSante() {
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
                   intlSubTitle='app.health-publi.repositories'
-                  backgroundColorClass='bg-medium-green'
+                  backgroundColorClass='bg-green-medium-25'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -311,7 +311,7 @@ function BaroSante() {
                   iconName='icon-bsso-10'
                   iconColor='green-light-75'
                   intlSubTitle='app.obs-dates'
-                  backgroundColorClass='bg-light-green'
+                  backgroundColorClass='bg-green-light-50'
                   domain='health'
                 />
                 <TodayNumbersItem
@@ -319,14 +319,14 @@ function BaroSante() {
                   iconName='icon-bsso-24'
                   iconColor='purple-medium-50'
                   intlSubTitle='app.interventionals'
-                  backgroundColorClass='bg-medium-purple'
+                  backgroundColorClass='bg-purple-medium-25'
                 />
                 <TodayNumbersItem
                   itemKey='observational'
                   iconName='icon-bsso-6'
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.observationals'
-                  backgroundColorClass='bg-yellow'
+                  backgroundColorClass='bg-yellow-medium-50'
                 />
               </TodayNumbersSection>
             </Col>
