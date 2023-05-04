@@ -64,7 +64,7 @@ HomeSection.propTypes = {
   children: PropTypes.element.isRequired,
   hasBeta: PropTypes.bool,
   introText: PropTypes.element.isRequired,
-  isDisplayed: PropTypes.element,
+  isDisplayed: PropTypes.bool,
   link: PropTypes.shape({
     label: PropTypes.element.isRequired,
     href: PropTypes.string.isRequired,

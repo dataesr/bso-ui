@@ -150,7 +150,7 @@ WrapperChart.defaultProps = {
 WrapperChart.propTypes = {
   chartRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(HTMLInputElement) }),
+    PropTypes.shape({ current: PropTypes.object }),
     PropTypes.shape({ current: undefined }),
   ]),
   children: PropTypes.node.isRequired,

@@ -94,7 +94,7 @@ function GraphItem({ isDisplayed, links, mainLabel, paths }) {
 }
 
 GraphItem.defaultProps = {
-  isDisplayed: true,
+  isDisplayed: null,
   __TYPE: 'GraphItem',
 };
 
