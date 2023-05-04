@@ -1283,5 +1283,7 @@
   "app.repositories.label.lirias(kuleuven)": "LIRIAS (Belgium)",
   "app.repositories.label.lilloa(lilleopenarchive)": "LillOA (France)",
   "app.repositories.label.pure.rug.nl": "Pure (The Netherlands)",
-  "app.repositories.label.usofficeofscientificandtechnicalinformation": "US OSTP (USA)"
+  "app.repositories.label.usofficeofscientificandtechnicalinformation": "US OSTP (USA)",
+  "app.repositories.label.diva.org": "DiVA (Sweden)",
+  "app.repositories.label.oskar-bordeaux.fr": "Oskar Bordeaux (France)"
 }
