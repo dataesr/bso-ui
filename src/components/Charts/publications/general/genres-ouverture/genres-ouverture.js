@@ -27,7 +27,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
   );
-  const { dataGraph, categories } = allData;
+  const { categories, dataGraph } = allData;
   const dataTitle = {
     publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
   };

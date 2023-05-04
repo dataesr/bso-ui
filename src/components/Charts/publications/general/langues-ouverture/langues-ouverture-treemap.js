@@ -77,7 +77,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.general.langues-ouverture.chart-repartition-publications',
+  id: 'publi.general.langues-ouverture.chart-repartition-publications-treemap',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

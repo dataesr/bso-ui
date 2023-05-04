@@ -13,21 +13,21 @@ import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+import useGetData from './get-data-proportion';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
-  const [chartComments, setChartComments] = useState('');
   const chartRef = useRef();
   const intl = useIntl();
+  const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap,
     domain,
   );
-  const { dataGraph, categories } = allData;
+  const { categories, series } = allData;
   const dataTitle = {
     publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
   };
@@ -36,7 +36,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     idWithDomain,
     intl,
     categories,
-    dataGraph,
+    series,
     dataTitle,
   );
 
@@ -53,7 +53,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !categories || !series}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -72,7 +72,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.general.langues-ouverture.chart-repartition-publications',
+  id: 'publi.general.genres-ouverture.chart-evolution-proportion',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
