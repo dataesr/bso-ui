@@ -152,6 +152,10 @@ export default function NationalPublications() {
                   glossaryKeys={['preprints']}
                 >
                   <BSOChart id='publi.general.genres-ouverture.chart-repartition-genres' />
+                  <BSOChart
+                    id='publi.general.genres-ouverture.chart-evolution-proportion'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.langues-ouverture'

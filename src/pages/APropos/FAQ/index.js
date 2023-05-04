@@ -7,6 +7,7 @@ import {
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import Banner from '../../../components/Banner';
@@ -15,8 +16,10 @@ import FaqEntries from '../../../translations/faq.json';
 
 function FAQ() {
   const intl = useIntl();
+  const search = new URLSearchParams(useLocation().search);
+  const expanded = search.get('expanded');
 
-  const getItem = (faqKey) => {
+  const renderItem = (faqKey, index) => {
     const values = {};
 
     faqKey?.ctas?.forEach((cta, i) => {
@@ -34,6 +37,7 @@ function FAQ() {
 
     return (
       <AccordionItem
+        initExpand={parseInt(index, 10) === parseInt(expanded, 10)}
         key={uuidv4()}
         title={intl.formatMessage({ id: faqKey.intlEntry })}
       >
@@ -73,7 +77,9 @@ function FAQ() {
       </AccordionItem>
     );
   };
-  const renderItems = () => Object.keys(FaqEntries[0]).map((key) => getItem(FaqEntries[0][key]));
+
+  const renderItems = () => Object.keys(FaqEntries).map((key, index) => renderItem(FaqEntries[key], index));
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -85,6 +91,7 @@ function FAQ() {
       </Col>
     </Row>
   );
+
   return (
     <div className='page faq'>
       <Banner

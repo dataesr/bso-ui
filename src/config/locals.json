@@ -1,4 +1,10 @@
 {
+  "130000383": {
+    "name": "INSHEA",
+    "commentsName": "de l'INSHEA",
+    "commentsNameEN": "of INSHEA",
+    "paysage": "a2a9U"
+  },
   "130002850": {
     "name": "Institut des sciences et industries du vivant et de l'environnement (AgroParisTech)",
     "commentsName": "d'AgroParisTech",
@@ -338,6 +344,14 @@
     "commentsNameEN": "of the university of Rennes 1",
     "paysage": "9wAap"
   },
+  "193708005": {
+    "name": "Université de Tours",
+    "commentsName": "de l'UT",
+    "commentsNameEN": "of UT",
+    "ror": "02wwzvj46",
+    "grid": "grid.12366.30",
+    "paysage": "cqkij"
+  },
   "194210951": {
     "name": "Université Jean Monnet Saint-Étienne (UJM)",
     "commentsName": "de l'UJM",
@@ -668,6 +682,14 @@
     "grid": "grid.503282.e",
     "paysage": "KQCDr"
   },
+  "199914342Y": {
+    "name": "Laboratoire matériaux et durabilité des constructions (LMDC)",
+    "commentsName": "du LMDC",
+    "commentsNameEN": "of LMDC",
+    "ror": "02mkbvg40",
+    "grid": "grid.509658.7",
+    "paysage": "KME8x"
+  },
   "200112481S": {
     "name": "Laboratoire d'océanographie de Villefranche (LOV)",
     "commentsName": "du LOV",
@@ -877,6 +899,14 @@
     "grid": "grid.507635.2",
     "paysage": "LGMcn"
   },
+  "266900273": {
+    "name": "Hospices Civils de Lyon (HCL)",
+    "commentsName": "des HCL",
+    "commentsNameEN": "of HCL",
+    "ror": "01502ca60",
+    "grid": "grid.413852.9",
+    "paysage": "Y4l0C"
+  },
   "330715368": {
     "name": "Institut Français de Recherche pour l'Exploitation de la Mer (IFREMER)",
     "commentsName": "de l'IFREMER",
@@ -1004,11 +1034,6 @@
     "ror": "04b0z7q78",
     "grid": "grid.457014.3",
     "paysage": "EH4gV"
-  },
-  "198056": {
-    "name": "Aix-Marseille Université (AMU)",
-    "commentsName": "d'AMU",
-    "commentsNameEN": "of AMU"
   },
   "IMTS": {
     "name": "Tous les IMTs",

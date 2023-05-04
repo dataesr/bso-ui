@@ -1,63 +1,65 @@
-[
-  {
-    "bso": {
-      "intlDefinition": "app.faq.bso.definition",
-      "intlEntry": "app.faq.bso",
-      "ctas": []
-    },
-    "corpus": {
-      "intlDefinition": "app.faq.corpus.definition",
-      "intlEntry": "app.faq.corpus",
-      "ctas": [
-        "https://unpaywall.org/",
-        "https://www.crossref.org/",
-        "https://theses.fr/",
-        "https://bib.cnrs.fr/pascal-et-francis-en-acces-libre/",
-        "https://hal.archives-ouvertes.fr/",
-        "https://orcid.org/"
-      ]
-    },
-    "corpus-bso3": {
-      "intlDefinition": "app.faq.corpus-bso3.definition",
-      "intlEntry": "app.faq.corpus-bso3",
-      "ctas": []
-    },
-    "access-to-publications": {
-      "intlDefinition": "app.faq.access-to-publications.definition",
-      "intlEntry": "app.faq.access-to-publications",
-      "cta": "https://unpaywall.org/"
-    },
-    "date-update": {
-      "intlDefinition": "app.faq.date-update.definition",
-      "intlEntry": "app.faq.date-update"
-    },
-    "bso-local": {
-      "intlDefinition": "app.faq.bso-local.definition",
-      "intlEntry": "app.faq.bso-local",
-      "cta": "/declinaisons/comment-realiser-bso-local"
-    },
-    "community": {
-      "intlDefinition": "app.faq.community.definition",
-      "intlEntry": "app.faq.community",
-      "cta": "https://groupes.renater.fr/sympa/info/bso-etablissements"
-    },
-    "classification": {
-      "intlDefinition": "app.faq.classification.definition",
-      "intlEntry": "app.faq.classification",
-      "cta": "https://github.com/dataesr/scientific_tagger/blob/main/project/server/main/bso_category.py"
-    },
-    "pid": {
-      "intlDefinition": "app.faq.pid.definition",
-      "intlEntry": "app.faq.pid"
-    },
-    "date-missing": {
-      "intlDefinition": "app.faq.date-missing.definition",
-      "intlEntry": "app.faq.date-missing"
-    },
-    "opendata": {
-      "intlDefinition": "app.faq.opendata.definition",
-      "intlEntry": "app.faq.opendata",
-      "cta": "https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso"
-    }
+{
+  "bso": {
+    "intlDefinition": "app.faq.bso.definition",
+    "intlEntry": "app.faq.bso.entry",
+    "ctas": []
+  },
+  "corpus": {
+    "intlDefinition": "app.faq.corpus.definition",
+    "intlEntry": "app.faq.corpus.entry",
+    "ctas": [
+      "https://unpaywall.org/",
+      "https://www.crossref.org/",
+      "https://theses.fr/",
+      "https://bib.cnrs.fr/pascal-et-francis-en-acces-libre/",
+      "https://hal.archives-ouvertes.fr/",
+      "https://orcid.org/"
+    ]
+  },
+  "corpus-bso3": {
+    "intlDefinition": "app.faq.corpus-bso3.definition",
+    "intlEntry": "app.faq.corpus-bso3.entry",
+    "ctas": []
+  },
+  "access-to-publications": {
+    "intlDefinition": "app.faq.access-to-publications.definition",
+    "intlEntry": "app.faq.access-to-publications.entry",
+    "cta": "https://unpaywall.org/"
+  },
+  "date-update": {
+    "intlDefinition": "app.faq.date-update.definition",
+    "intlEntry": "app.faq.date-update.entry"
+  },
+  "bso-local": {
+    "intlDefinition": "app.faq.bso-local.definition",
+    "intlEntry": "app.faq.bso-local.entry",
+    "cta": "/declinaisons/comment-realiser-bso-local"
+  },
+  "community": {
+    "intlDefinition": "app.faq.community.definition",
+    "intlEntry": "app.faq.community.entry",
+    "cta": "https://groupes.renater.fr/sympa/info/bso-etablissements"
+  },
+  "classification": {
+    "intlDefinition": "app.faq.classification.definition",
+    "intlEntry": "app.faq.classification.entry",
+    "cta": "https://github.com/dataesr/scientific_tagger/blob/main/project/server/main/bso_category.py"
+  },
+  "pid": {
+    "intlDefinition": "app.faq.pid.definition",
+    "intlEntry": "app.faq.pid.entry"
+  },
+  "date-missing": {
+    "intlDefinition": "app.faq.date-missing.definition",
+    "intlEntry": "app.faq.date-missing.entry"
+  },
+  "opendata": {
+    "intlDefinition": "app.faq.opendata.definition",
+    "intlEntry": "app.faq.opendata.entry",
+    "cta": "https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso"
+  },
+  "other": {
+    "intlDefinition": "app.faq.others.definition",
+    "intlEntry": "app.faq.others.entry"
   }
-]
+}

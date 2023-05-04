@@ -83,7 +83,7 @@ const GraphFooter = ({
                     <Text size='xs' as='span'>
                       <FormattedMessage
                         id='app.graph.download'
-                        defaultMessage='Télécharger'
+                        defaultMessage='Download'
                       />
                     </Text>
                     {onCsvButtonClick && (
@@ -171,7 +171,7 @@ const GraphFooter = ({
                 <div className='fs-14-24 marianne'>
                   <FormattedMessage
                     id='app.graph.share'
-                    defaultMessage='Partager'
+                    defaultMessage='Share'
                   />
                 </div>
                 <TwitterShareButton
@@ -221,10 +221,10 @@ const GraphFooter = ({
           }}
           title={intl.formatMessage({
             id: 'app.commons.modal.close',
-            defaultMessage: 'Fermer la fenêtre modale',
+            defaultMessage: 'Close modal',
           })}
         >
-          <FormattedMessage id='app.commons.close' defaultMessage='Fermer' />
+          <FormattedMessage id='app.commons.close' defaultMessage='Close' />
         </ModalClose>
         <ModalTitle>
           <Container>

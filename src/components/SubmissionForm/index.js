@@ -354,6 +354,7 @@ const SubmissionForm = () => {
                 value={acronym}
               />
               <TextInput
+                hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/ pour trouver le Siren de votre structure'
                 label='Siren de la structure'
                 onChange={(e) => setSiren(e.target.value)}
                 value={siren}

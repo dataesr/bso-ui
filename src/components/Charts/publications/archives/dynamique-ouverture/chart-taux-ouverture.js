@@ -56,7 +56,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       const opts = response.data.aggregations.by_repository.buckets.map(
         (item) => ({
-          label: item.key,
+          label: intl.formatMessage({
+            id: `app.repositories.label.${item.key
+              .toLowerCase()
+              .replace(/ /g, '')}`,
+            defaultMessage: item.key,
+          }),
           value: item.key,
         }),
       );

@@ -136,65 +136,65 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Rennes'
+                alt='bso local Université de Rennes'
                 href='https://scienceouverte.univ-rennes.fr/barometre-science-ouverte-edition-2022'
                 img='/declinaisons/rennes.jpeg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local UB'
+                alt='bso local Université de Bourgogne'
                 href='https://www.u-bourgogne.fr/non-categorise/politique-science-ouverte'
-                img='/declinaisons/universiteBourgogne.png'
+                img='/declinaisons/universite-bourgogne.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local la rochelle'
+                alt='bso local Université de La Rochelle'
                 href='https://bu.univ-larochelle.fr/lappui-a-la-recherche/barometre-science-ouverte/'
-                img='/declinaisons/universiteLaRochelle.png'
+                img='/declinaisons/universite-la-rochelle.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Poitiers'
+                alt='bso local Université de Poitiers'
                 href='https://www.univ-poitiers.fr/decouvrir-la-recherche/publications-et-parutions/barometre-de-la-science-ouverte-de-luniversite-de-poitiers/'
-                img='/declinaisons/universitePoitiers.svg'
+                img='/declinaisons/universite-poitiers.svg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local INSA Toulouse'
                 href='https://bib.insa-toulouse.fr/fr/chercheurs-et-doctorants/science-ouverte/barometre.html'
-                img='/declinaisons/INSAToulouse.jpeg'
+                img='/declinaisons/insa-toulouse.jpeg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local INSA Lyon'
                 href='https://hal-insa-lyon.archives-ouvertes.fr/page/barometre-science-ouverte'
-                img='/declinaisons/INSALyon.jpeg'
+                img='/declinaisons/insa-lyon.jpeg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Avignon université'
+                alt='bso local Avignon Université'
                 href='https://bu.univ-avignon.fr/barometre-de-la-science-ouverte-avignon-universite/'
-                img='/declinaisons/AvignonUniversite.jpeg'
+                img='/declinaisons/avignon-universite.jpeg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local CentraleSupélec'
                 href='http://pole-ist.centralesupelec.fr/fr/node/482'
-                img='/declinaisons/centralesupelec.png'
+                img='/declinaisons/centrale-supelec.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local UCA'
                 href='https://science-ouverte.uca.fr/publications-et-open-access/barometre-science-ouverte-uca'
-                img='/declinaisons/UCA.jpeg'
+                img='/declinaisons/uca.jpeg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -215,14 +215,14 @@ function Variations() {
               <CardLogo
                 alt='bso local IMT Atlantique'
                 href='https://www.imt-atlantique.fr/fr/recherche-innovation/enjeux/science-ouverte/libre-acces/bso'
-                img='/declinaisons/IMTAtlantique.jpeg'
+                img='/declinaisons/imt-atlantique.jpeg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Evry'
+                alt="bso local Université d'Evry"
                 href='https://www.biblio.univ-evry.fr/index.php/recherche-et-enseignement/science-ouverte/barometre-de-la-science-ouverte-evry/barometre-science-ouverte-evry-2022/'
-                img='/declinaisons/universiteEvry.png'
+                img='/declinaisons/universite-evry.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -234,8 +234,8 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local univeristé brest'
-                href='https://www.univ-brest.fr/drive/menu/DRIVe/Science-Ouverte/Barometre-de-la-science-ouverte'
+                alt='bso local univeristé brest ubo'
+                href='http://ubodoc.univ-brest.fr/science-ouverte-et-valorisation/science-ouverte-a-lubo/barometre_science_ouverte/'
                 img='/declinaisons/ubo.png'
               />
             </Col>
@@ -278,7 +278,7 @@ function Variations() {
               <CardLogo
                 alt='bso local imt mines albi'
                 href='https://www.imt-mines-albi.fr/fr/barometre-science-ouverte-2022'
-                img='/declinaisons/IMTAlbi.png'
+                img='/declinaisons/imt-albi.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>

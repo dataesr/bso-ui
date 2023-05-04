@@ -802,6 +802,36 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.general.genres-ouverture.chart-evolution-proportion': {
+    getOptions: (id, intl, categories, series, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publication-genre',
+      });
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = series;
+      return options;
+    },
+  },
   'publi.general.langues-ouverture.chart-repartition-publications': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });

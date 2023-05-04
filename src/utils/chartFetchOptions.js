@@ -1352,6 +1352,30 @@ export default function getFetchOptions({
         },
       },
     }),
+    oaPublicationType: ([lastObservationSnap]) => ({
+      size: 0,
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_type: {
+              terms: {
+                field: 'genre.keyword',
+              },
+              aggs: {
+                by_oa: {
+                  terms: {
+                    field: `oa_details.${lastObservationSnap}.is_oa`,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
     declarationRate: ([lastObservationSnap]) => ({
       size: 0,
       query: {

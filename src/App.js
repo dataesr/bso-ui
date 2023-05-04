@@ -35,8 +35,8 @@ import { GraphNavigationContextProvider } from './utils/Hooks/useGraphNavigation
 import useLang from './utils/Hooks/useLang';
 
 const messages = {
-  fr: messagesFR,
   en: messagesEN,
+  fr: messagesFR,
 };
 
 function App() {
