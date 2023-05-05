@@ -57,7 +57,7 @@ function HomeSection({
 
 HomeSection.defaultProps = {
   hasBeta: false,
-  isDisplayed: true,
+  isDisplayed: null,
 };
 
 HomeSection.propTypes = {

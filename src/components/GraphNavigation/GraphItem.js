@@ -54,7 +54,7 @@ function GraphItem({ isDisplayed, links, mainLabel, paths }) {
 
   return (
     <>
-      {mobile && isDisplayed && (
+      {mobile && (isDisplayed || isDisplayed == null) && (
         <SideMenuItem key={uuidv4()} title={mainLabel}>
           {links.map(
             (link) => link
@@ -70,7 +70,7 @@ function GraphItem({ isDisplayed, links, mainLabel, paths }) {
           )}
         </SideMenuItem>
       )}
-      {(desktop || tablet) && isDisplayed && (
+      {(desktop || tablet) && (isDisplayed || isDisplayed == null) && (
         <GraphTabSubItem
           key={uuidv4()}
           label={mainLabel}
