@@ -12,8 +12,8 @@ function BSOChart({
   domain,
   hasComments,
   hasFooter,
-  studyType,
   isDisplayed,
+  studyType,
 }) {
   const intl = useIntl();
   const Chart = chartComponents[id];

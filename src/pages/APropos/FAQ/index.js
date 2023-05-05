@@ -17,7 +17,7 @@ import FaqEntries from '../../../translations/faq.json';
 function FAQ() {
   const intl = useIntl();
   const search = new URLSearchParams(useLocation().search);
-  const expanded = search.get('expanded');
+  const expanded = search?.get('expanded') || 0;
 
   const renderItem = (faqKey, index) => {
     const values = {};

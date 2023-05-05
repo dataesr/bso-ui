@@ -323,6 +323,13 @@ function Variations() {
                 img='/declinaisons/onera.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Universite Jean Monnet'
+                href='https://www.univ-st-etienne.fr/fr/recherche/science-ouverte/barometre-de-la-science-ouverte.html'
+                img='/declinaisons/universite-saint-etienne.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
