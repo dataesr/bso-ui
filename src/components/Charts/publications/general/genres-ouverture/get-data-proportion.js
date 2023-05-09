@@ -31,11 +31,13 @@ function useGetData(observationSnap, domain) {
       }));
       data.forEach((year) => {
         year.by_type.buckets.forEach((type) => {
-          const tmp = series.find((item) => item.key === type.key);
-          const percent = (type.by_oa.buckets.find((item) => item.key === 1).doc_count
-              / type.doc_count)
-            * 100;
-          tmp.data.push(percent);
+          const percents = series.find((item) => item.key === type.key);
+          const yOa = type.by_oa.buckets.find(
+            (item) => item.key === 1,
+          ).doc_count;
+          const yTot = type.doc_count;
+          const y = (yOa / yTot) * 100;
+          percents.data.push({ y, yOa, yTot });
         });
       });
 
