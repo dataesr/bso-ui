@@ -45,9 +45,7 @@ function useGetData(observationSnap, domain) {
           .filter((item) => item.key !== 'preprint')
           .forEach((type) => {
             const percents = series.find((item) => item.key === type.key);
-            const yOa = type.by_oa.buckets.find(
-              (item) => item.key === 1,
-            ).doc_count;
+            const yOa = type.by_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
             const yTot = type.doc_count;
             const y = (yOa / yTot) * 100;
             percents.data.push({ y, yOa, yTot });

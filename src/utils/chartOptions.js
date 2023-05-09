@@ -805,8 +805,7 @@ export const chartOptions = {
   'publi.general.genres-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, series, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.type = 'bar';
-      options.chart.height = '600px';
+      options.chart.type = 'line';
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
