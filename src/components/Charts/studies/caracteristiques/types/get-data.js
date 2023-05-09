@@ -49,7 +49,7 @@ function useGetData(studyType, sponsorType = '*') {
     const colors = {
       Behavioral: getCSSValue('--yellow-medium-125'),
       Biological: getCSSValue('--green-soft-125'),
-      CombinationProduct: getCSSValue('--pink-medium-150'),
+      CombinationProduct: getCSSValue('--pink-soft-150'),
       Device: getCSSValue('--blue-soft-100'),
       DiagnosticTest: getCSSValue('--green-medium-150'),
       DietarySupplement: getCSSValue('--blue-dark-125'),

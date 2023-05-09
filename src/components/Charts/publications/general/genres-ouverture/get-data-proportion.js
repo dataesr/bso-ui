@@ -4,6 +4,14 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
+
+const colors = {
+  book: getCSSValue('--blue-soft-75'),
+  'book-chapter': getCSSValue('--blue-soft-100'),
+  'journal-article': getCSSValue('--orange-soft-100'),
+  proceedings: getCSSValue('--purple-medium-100'),
+};
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -24,21 +32,26 @@ function useGetData(observationSnap, domain) {
         (a, b) => a.key - b.key,
       );
       const categories = data.map((year) => year.key);
-      const series = data[0].by_type.buckets.map((type) => ({
-        data: [],
-        key: type.key,
-        name: intl.formatMessage({ id: `app.publication-genre.${type.key}` }),
-      }));
+      const series = data[0].by_type.buckets
+        .filter((item) => item.key !== 'preprint')
+        .map((type) => ({
+          color: colors[type.key],
+          data: [],
+          key: type.key,
+          name: intl.formatMessage({ id: `app.publication-genre.${type.key}` }),
+        }));
       data.forEach((year) => {
-        year.by_type.buckets.forEach((type) => {
-          const percents = series.find((item) => item.key === type.key);
-          const yOa = type.by_oa.buckets.find(
-            (item) => item.key === 1,
-          ).doc_count;
-          const yTot = type.doc_count;
-          const y = (yOa / yTot) * 100;
-          percents.data.push({ y, yOa, yTot });
-        });
+        year.by_type.buckets
+          .filter((item) => item.key !== 'preprint')
+          .forEach((type) => {
+            const percents = series.find((item) => item.key === type.key);
+            const yOa = type.by_oa.buckets.find(
+              (item) => item.key === 1,
+            ).doc_count;
+            const yTot = type.doc_count;
+            const y = (yOa / yTot) * 100;
+            percents.data.push({ y, yOa, yTot });
+          });
       });
 
       return {

@@ -805,7 +805,8 @@ export const chartOptions = {
   'publi.general.genres-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, series, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.type = 'column';
+      options.chart.type = 'bar';
+      options.chart.height = '600px';
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -816,16 +817,9 @@ export const chartOptions = {
         id: 'app.publication-genre',
       });
       options.plotOptions = {
-        column: {
-          dataLabels: {
-            style: {
-              textOutline: 'none',
-            },
-            enabled: true,
-            formatter() {
-              return this.y.toFixed(0).concat(' %');
-            },
-          },
+        bar: {
+          groupPadding: 0.1,
+          pointWidth: 7,
         },
       };
       options.series = series;
