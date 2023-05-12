@@ -111,7 +111,7 @@ function OpenData() {
                         >
                           <DSLink
                             className='w-100 text-right no-content-after'
-                            href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
+                            href='https://github.com/orgs/dataesr/repositories?q=bso'
                             target='_blank'
                           />
                         </DSIcon>

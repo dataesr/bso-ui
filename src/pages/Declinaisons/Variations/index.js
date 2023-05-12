@@ -345,6 +345,13 @@ function Variations() {
                 img='/declinaisons/anr.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local IFREMER'
+                href='https://blp.ifremer.fr/Services/Science-Ouverte/Declinaison-Ifremer-du-Barometre-francais-Science-Ouverte'
+                img='/declinaisons/ifremer.svg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12'>

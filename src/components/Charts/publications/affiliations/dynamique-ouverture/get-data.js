@@ -65,6 +65,12 @@ function useGetData(
       getCSSValue('--affiliations-etablissements-100'),
       getCSSValue('--affiliations-etablissements-75'),
       getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-50'),
+      getCSSValue('--affiliations-etablissements-50'),
     ];
     const dashStyles = [
       'Solid',

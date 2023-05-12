@@ -17,18 +17,18 @@ import SelectNavigation from './SelectNavigation';
 
 function Banner({
   backgroundColor,
-  textColor,
-  subTitle,
-  subsubTitle,
-  supTitle,
-  title,
-  link,
-  chip,
-  icons,
-  sticky,
-  selectNavigation,
   children,
+  chip,
   homeLink,
+  icons,
+  link,
+  selectNavigation,
+  sticky,
+  subsubTitle,
+  subTitle,
+  supTitle,
+  textColor,
+  title,
 }) {
   const [navSelected, setNavSelected] = useState(
     selectNavigation ? selectNavigation.selected : '',
@@ -69,8 +69,8 @@ function Banner({
     setNavSelected(e.target.value);
 
     trackEvent({
-      category: 'navigation',
       action: 'change-to-search-object',
+      category: 'navigation',
       name: `go_to_${e.target.value}`,
     });
 
@@ -79,9 +79,10 @@ function Banner({
 
   return (
     <section
-      className={classNames('bso-banner z-200 text-left-l text-center mb-60', {
-        sticky: sticky && sticked,
+      className={classNames('bso-banner z-200 text-left-l text-center', {
+        'mb-60': !selectNavigation,
         'mb-100': selectNavigation,
+        sticky: sticky && sticked,
       })}
     >
       <Container>
@@ -197,46 +198,46 @@ function Banner({
 }
 
 Banner.defaultProps = {
-  textColor: '#fff',
-  supTitle: null,
-  subTitle: null,
-  subsubTitle: null,
-  link: null,
-  chip: null,
-  icons: null,
   children: null,
+  chip: null,
+  homeLink: '',
+  icons: null,
+  link: null,
   selectNavigation: null,
   sticky: true,
-  homeLink: '',
+  subsubTitle: null,
+  subTitle: null,
+  supTitle: null,
+  textColor: '#fff',
 };
 
 Banner.propTypes = {
-  sticky: PropTypes.bool,
-  children: PropTypes.node,
   backgroundColor: PropTypes.string.isRequired,
-  textColor: PropTypes.string,
-  supTitle: PropTypes.element,
-  title: PropTypes.element.isRequired,
-  icons: PropTypes.element,
+  children: PropTypes.node,
   chip: PropTypes.element,
+  homeLink: PropTypes.string,
+  icons: PropTypes.element,
+  link: PropTypes.exact({
+    label: PropTypes.element.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
   selectNavigation: PropTypes.exact({
-    selected: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
-      .isRequired,
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-      .isRequired,
     options: PropTypes.arrayOf(
       PropTypes.exact({
         value: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
       }),
     ).isRequired,
+    selected: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+      .isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+      .isRequired,
   }),
-  subTitle: PropTypes.element,
+  sticky: PropTypes.bool,
   subsubTitle: PropTypes.element,
-  homeLink: PropTypes.string,
-  link: PropTypes.exact({
-    label: PropTypes.element.isRequired,
-    url: PropTypes.string.isRequired,
-  }),
+  subTitle: PropTypes.element,
+  supTitle: PropTypes.element,
+  textColor: PropTypes.string,
+  title: PropTypes.element.isRequired,
 };
 export default Banner;

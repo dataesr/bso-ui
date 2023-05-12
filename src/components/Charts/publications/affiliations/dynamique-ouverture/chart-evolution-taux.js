@@ -67,6 +67,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           - parseInt(dates[index - 1].substr(0, 4), 10);
         // eslint-disable-next-line default-case
         switch (delta) {
+        case 6:
+        case 5:
         case 4:
           lowColor = getCSSValue('--affiliations-etablissements-50');
           fillColor = lowColor;

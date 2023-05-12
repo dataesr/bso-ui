@@ -581,6 +581,12 @@
     "grid": "grid.8390.2",
     "paysage": "RN4E6"
   },
+  "199213366T": {
+    "name": "Cibles et Médicaments des Infections et de l'Immunité (IICiMed)",
+    "commentsName": "de l'IICiMed",
+    "commentsNameEN": "of IICiMed",
+    "paysage": "vJ8wB"
+  },
   "199213369W": {
     "name": "Centre François Viete : épistémologie, histoire des sciences et des techniques (CFV)",
     "commentsName": "du CFV",
@@ -629,14 +635,30 @@
     "name": "Institut de recherche en informatique de Toulouse (IRIT)",
     "commentsName": "de l'IRIT",
     "commentsNameEN": "of IRIT",
-    "paysage": "vsGvv",
     "ror": "01rx4qw44",
-    "grid": "grid.454304.2"
+    "grid": "grid.454304.2",
+    "paysage": "vsGvv"
   },
   "199512347X": {
     "name": "Centre de recherche en archéologie, archéosciences, histoire (CReAAH)",
     "commentsName": "du CReAAH",
     "commentsNameEN": "of CReAAH"
+  },
+  "199612295L": {
+    "name": "Laboratoire de physique subatomique et des technologies associées (SUBATECH)",
+    "commentsName": "de SUBATECH",
+    "commentsNameEN": "of SUBATECH",
+    "ror": "01kxesq83",
+    "grid": "grid.463940.c",
+    "paysage": "AaK4r"
+  },
+  "199612297N": {
+    "name": "Institut des matériaux Jean Rouxel (IMN)",
+    "commentsName": "de l'IMN",
+    "commentsNameEN": "of IMN",
+    "ror": "00cqpd580",
+    "grid": "grid.461905.f",
+    "paysage": "LtqcK"
   },
   "199612340K": {
     "name": "Littoral, Environnement, Télédétection, Géomatique (LETG)",
@@ -649,6 +671,36 @@
     "commentsName": "de l'ESO",
     "commentsNameEN": "of ESO",
     "paysage": "bOXO2"
+  },
+  "199612374X": {
+    "name": "Laboratoire de recherche en Hydrodynamique, Énergétique et Environnement Atmosphérique (LHEEA)",
+    "commentsName": "du LHEEA",
+    "commentsNameEN": "of LHEEA",
+    "ror": "057axh226",
+    "grid": "grid.463955.8",
+    "paysage": "XD8Mr"
+  },
+  "199612380D": {
+    "name": "Laboratoire de Thermique et Energie de Nantes (LTeN)",
+    "commentsName": "du LTeN",
+    "commentsNameEN": "of LTeN",
+    "ror": "021fdyt09",
+    "grid": "grid.463969.7",
+    "paysage": "3D2Dj"
+  },
+  "199612400A": {
+    "name": "Laboratoire de mathématiques Jean Leray (LMJL)",
+    "commentsName": "du LMJL",
+    "commentsNameEN": "of LMJL",
+    "ror": "04g1hjn96",
+    "grid": "grid.463913.a",
+    "paysage": "kE76W"
+  },
+  "199613759C": {
+    "name": "Institut des Substances et des Organismes de la Mer (ISOMER)",
+    "commentsName": "de l'ISOMER",
+    "commentsNameEN": "of ISOMER",
+    "paysage": "GdjgA"
   },
   "199614172B": {
     "name": "Centre de recherche en éducation de Nantes (CREN)",
@@ -682,6 +734,14 @@
     "grid": "grid.503282.e",
     "paysage": "KQCDr"
   },
+  "199819322R": {
+    "name": "Ambiances architectures urbanités (AAU)",
+    "commentsName": "de l'AAU",
+    "commentsNameEN": "of AAU",
+    "ror": "05hz99a17",
+    "grid": "grid.463749.b",
+    "paysage": "1BroQ"
+  },
   "199914342Y": {
     "name": "Laboratoire matériaux et durabilité des constructions (LMDC)",
     "commentsName": "du LMDC",
@@ -689,6 +749,14 @@
     "ror": "02mkbvg40",
     "grid": "grid.509658.7",
     "paysage": "KME8x"
+  },
+  "200012185Z": {
+    "name": "Laboratoire de planétologie et géosciences (LPG)",
+    "commentsName": "du LPG",
+    "commentsNameEN": "of LPG",
+    "ror": "04fm0sh33",
+    "grid": "grid.463945.9",
+    "paysage": "8bClX"
   },
   "200112481S": {
     "name": "Laboratoire d'océanographie de Villefranche (LOV)",
@@ -701,8 +769,8 @@
     "commentsName": "de l'IAP",
     "commentsNameEN": "of IAP",
     "startYear": 2017,
-    "grid": "grid.435813.8",
     "ror": "022bnxw24",
+    "grid": "grid.435813.8",
     "paysage": "69R6a"
   },
   "200112505T": {
@@ -730,6 +798,36 @@
     "ror": "01gbppd30",
     "grid": "grid.503401.3"
   },
+  "200212211U": {
+    "name": "Laboratoire de génie des procédés - environnement - agroalimentaire (GEPEA)",
+    "commentsName": "du GEPEA",
+    "commentsNameEN": "of GEPEA",
+    "ror": "05ngxmx20",
+    "grid": "grid.463880.1",
+    "paysage": "9JDcL"
+  },
+  "200212224H": {
+    "name": "Institut d'Electronique et des Technologies du numéRique (ITER)",
+    "commentsName": "de l'ITER",
+    "commentsNameEN": "of ITER",
+    "ror": "013q33h79",
+    "grid": "grid.462104.5",
+    "paysage": "V1T2p"
+  },
+  "200412238P": {
+    "name": "Institut de Recherche en Génie Civil et Mécanique (GeM)",
+    "commentsName": "du GeM",
+    "commentsNameEN": "of GeM",
+    "ror": "03x30hb31",
+    "grid": "grid.503214.1",
+    "paysage": "J2YPQ"
+  },
+  "200416339X": {
+    "name": "Thérapie génique translationnelle des maladies génétiques (TaRGeT)",
+    "commentsName": "de TaRGeT",
+    "commentsNameEN": "of TaRGeT",
+    "paysage": "xkKT5"
+  },
   "200515200E": {
     "name": "Centre Européen de Recherche en Economie Financière et Gestion des Entreprises (CEREFIGE)",
     "commentsName": "du CEREFIGE",
@@ -747,6 +845,14 @@
     "grid": "grid.4307.0",
     "paysage": "tr5VV"
   },
+  "200616946Y": {
+    "name": "PhysioPathologie des Adaptations Nutritionnelles (PHAN)",
+    "commentsName": "de la PHAN",
+    "commentsNameEN": "of PHAN",
+    "ror": "05vb5nm66",
+    "grid": "grid.497646.e",
+    "paysage": "d3cSu"
+  },
   "200711884S": {
     "name": "Laboratoire de physique et chimie des nano-objets (LPCNO)",
     "commentsName": "du LPCNO",
@@ -763,6 +869,14 @@
     "grid": "grid.462146.3",
     "paysage": "R95E1"
   },
+  "200812273K": {
+    "name": "Chimie et interdisciplinarité : synthèse, analyse, modélisation (CEISAM)",
+    "commentsName": "du CEISAM",
+    "commentsNameEN": "of CEISAM",
+    "ror": "04ysg2a58",
+    "grid": "grid.462886.6",
+    "paysage": "6065l"
+  },
   "200815509C": {
     "name": "Laboratoire d'économie et de management Nantes Atlantique (LEMNA)",
     "commentsName": "du LEMNA",
@@ -773,6 +887,12 @@
     "name": "Littératures Antiques et Modernes (LAMO)",
     "commentsName": "du LAMO",
     "commentsNameEN": "of LAMO"
+  },
+  "200815563L": {
+    "name": "Motricité, interactions, performance (MIP)",
+    "commentsName": "de la MIP",
+    "commentsNameEN": "of MIP",
+    "paysage": "jCn2Q"
   },
   "200918490N": {
     "name": "Laboratoire d'océanographie et du climat : expérimentations et approches numériques (LOCEAN)",
@@ -832,10 +952,38 @@
     "grid": "grid.463721.5",
     "paysage": "x8K6I"
   },
+  "201220063K": {
+    "name": "Unité en sciences biologiques et biotechnologies (US2B)",
+    "commentsName": "de l'US2B",
+    "commentsNameEN": "of US2B",
+    "paysage": "JcJrk"
+  },
   "201220071U": {
     "name": "Laboratoire de psychologie des pays de la Loire (LPPL)",
     "commentsName": "du LPPL",
     "commentsNameEN": "of LPPL"
+  },
+  "201220073W": {
+    "name": "Institut de recherche en énergie électrique de Nantes Atlantique (IREENA)",
+    "commentsName": "de l'IREENA",
+    "commentsNameEN": "of IREENA",
+    "paysage": "JROGX"
+  },
+  "201220148C": {
+    "name": "Centre de Recherche Translationnelle en Transplantation et Immunologie (CR2TI)",
+    "commentsName": "du CR2TI",
+    "commentsNameEN": "of CR2TI",
+    "ror": "02dm0bq25",
+    "grid": "grid.462425.3",
+    "paysage": "413kc"
+  },
+  "201220396X": {
+    "name": "L'unité de recherche de l'institut du thorax",
+    "commentsName": "de l'institut du thorax",
+    "commentsNameEN": "of the thorax institute",
+    "ror": "049kkt456",
+    "grid": "grid.462318.a",
+    "paysage": "Tfc1g"
   },
   "201220410M": {
     "name": "Droit et changement social (DCS)",
@@ -877,6 +1025,14 @@
     "commentsNameEN": "of LLING",
     "paysage": "i8N4t"
   },
+  "201722241F": {
+    "name": "Laboratoire des Sciences du Numérique de Nantes (LS2N)",
+    "commentsName": "du LS2N",
+    "commentsNameEN": "of LS2N",
+    "ror": "02snf8m58",
+    "grid": "grid.503212.7",
+    "paysage": "rX21R"
+  },
   "201722392V": {
     "name": "Centre nantais de sociologie (CENS)",
     "commentsName": "du CENS",
@@ -891,6 +1047,26 @@
     "commentsNameEN": "of CAPHI",
     "paysage": "lbMta"
   },
+  "201722470E": {
+    "name": "Methods in patient-centered outcomes and health research (SPHERE)",
+    "commentsName": "de SPHERE",
+    "commentsNameEN": "of SPHERE",
+    "paysage": "3EORH"
+  },
+  "201722762X": {
+    "name": "Regenerative medicine and skeleton (RMeS)",
+    "commentsName": "du RMeS",
+    "commentsNameEN": "of RMeS",
+    "paysage": "NMb9s"
+  },
+  "201722764Z": {
+    "name": "The Enteric Nervous System in gut and brain disorders (TENS)",
+    "commentsName": "du TENS",
+    "commentsNameEN": "of TENS",
+    "ror": "01kbkse74",
+    "grid": "grid.488848.0",
+    "paysage": "wo6ow"
+  },
   "201922973T": {
     "name": "Laboratoire de physique de l'ens (LPENS)",
     "commentsName": "du LPENS",
@@ -898,6 +1074,20 @@
     "ror": "03a26mh11",
     "grid": "grid.507635.2",
     "paysage": "LGMcn"
+  },
+  "202224154N": {
+    "name": "Immunologie et Nouveaux Concepts en Immunothérapie (INCIT)",
+    "commentsName": "de l'INCIT",
+    "commentsNameEN": "of INCIT",
+    "paysage": "cDsPX"
+  },
+  "202224192E": {
+    "name": "Centre de Recherche en Cancérologie et Immunologie Intégrée Nantes Angers (CRCI2NA)",
+    "commentsName": "du CRCI2NA",
+    "commentsNameEN": "of CRCI2NA",
+    "ror": "003g1aw90",
+    "grid": "grid.463837.d",
+    "paysage": "KaRM8"
   },
   "266900273": {
     "name": "Hospices Civils de Lyon (HCL)",
