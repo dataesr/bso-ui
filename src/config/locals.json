@@ -75,6 +75,14 @@
     "grid": "grid.494567.d",
     "paysage": "m84Aa"
   },
+  "130021330": {
+    "name": "Normandie Université (NU)",
+    "commentsName": "de NU",
+    "commentsNameEN": "of NU",
+    "ror": "01k40cz91",
+    "grid": "grid.460771.3",
+    "paysage": "G1r6y"
+  },
   "130023385": {
     "name": "Sorbonne Université (SU)",
     "commentsName": "de SU",
@@ -259,6 +267,14 @@
     "ror": "01qhqcj41",
     "grid": "grid.27729.39",
     "paysage": "8tVLr"
+  },
+  "191414085": {
+    "name": "Université de Caen Normandie (UNICAEN)",
+    "commentsName": "d'UNICAEN",
+    "commentsNameEN": "of UNICAEN",
+    "ror": "051kpcy16",
+    "grid": "grid.412043.0",
+    "paysage": "p25Q3"
   },
   "191700327": {
     "name": "La Rochelle Université",
@@ -513,6 +529,30 @@
     "ror": "04y8cs423",
     "grid": "grid.58140.38",
     "paysage": "KltnW"
+  },
+  "197601651": {
+    "name": "Institut national des sciences appliquées de Rouen Normandie (INSA Rouen Normandie)",
+    "commentsName": "de l'INSA Rouen Normandie",
+    "commentsNameEN": "of INSA Rouen Normandie",
+    "ror": "020ws7586",
+    "grid": "grid.435013.0",
+    "paysage": "TeXD3"
+  },
+  "197619042": {
+    "name": "Université de Rouen Normandie (UNIROUEN)",
+    "commentsName": "d'UNIROUEN",
+    "commentsNameEN": "of UNIROUEN",
+    "ror": "03nhjew95",
+    "grid": "grid.10400.35",
+    "paysage": "G4572"
+  },
+  "197627623": {
+    "name": "Université Le Havre Normandie (UNILEHAVRE)",
+    "commentsName": "d'UNILEHAVRE",
+    "commentsNameEN": "of UNILEHAVRE",
+    "ror": "05v509s40",
+    "grid": "grid.9916.7",
+    "paysage": "LsQ24"
   },
   "197819444": {
     "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)",
