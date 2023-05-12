@@ -330,6 +330,13 @@ function Variations() {
                 img='/declinaisons/universite-saint-etienne.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local IFREMER'
+                href='https://blp.ifremer.fr/Services/Science-Ouverte/Declinaison-Ifremer-du-Barometre-francais-Science-Ouverte'
+                img='/declinaisons/ifremer.svg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
@@ -343,13 +350,6 @@ function Variations() {
                 alt='bso local ANR'
                 href='https://anr.fr/fr/lanr/engagements/la-science-ouverte/le-barometre-science-ouverte-anr/'
                 img='/declinaisons/anr.png'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
-                alt='bso local IFREMER'
-                href='https://blp.ifremer.fr/Services/Science-Ouverte/Declinaison-Ifremer-du-Barometre-francais-Science-Ouverte'
-                img='/declinaisons/ifremer.svg'
               />
             </Col>
           </Row>
