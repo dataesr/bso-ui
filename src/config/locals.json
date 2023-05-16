@@ -1278,5 +1278,11 @@
     "commentsName": "des IMTs",
     "commentsNameEN": "of IMTs",
     "alias": "18009202500097,18009202500121,18009202500139,193000635"
+  },
+  "INSA": {
+    "name": "INSA",
+    "commentsName": "des INSA",
+    "commentsNameEN": "of INSA",
+    "alias": "130018336,193101524,196727671,196901920,197601651"
   }
 }
