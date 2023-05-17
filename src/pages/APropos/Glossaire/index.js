@@ -29,16 +29,16 @@ function Glossaire() {
     value: letter,
   }));
   options.unshift({
-    value: '',
-    label: intl.formatMessage({ id: 'app.glossary.select-letter' }),
     disabled: false,
     hidden: false,
+    label: intl.formatMessage({ id: 'app.glossary.select-letter' }),
+    value: '',
   });
   const getItem = (glossaryKey) => {
     const values = {};
     glossaryKey?.ctas?.forEach((cta, i) => {
       values[`cta${i}`] = (chunks) => (
-        <a href={cta} target='_blank' rel='noreferrer'>
+        <a href={cta} rel='noreferrer' target='_blank'>
           {chunks}
         </a>
       );
@@ -62,9 +62,9 @@ function Glossaire() {
                   values={{
                     cta: (chunks) => (
                       <a
-                        target='_blank'
                         href={`${glossaryKey.cta}`}
                         rel='noreferrer'
+                        target='_blank'
                       >
                         {chunks}
                       </a>

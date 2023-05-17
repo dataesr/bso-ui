@@ -25,10 +25,10 @@ function FAQ() {
     faqKey?.ctas?.forEach((cta, i) => {
       values[`cta${i}`] = (chunks) => (
         <a
-          href={cta}
-          target='_blank'
-          rel='noreferrer'
           className='external_link'
+          href={cta}
+          rel='noreferrer'
+          target='_blank'
         >
           {chunks}
         </a>
@@ -58,15 +58,15 @@ function FAQ() {
                         {chunks}
                       </a>
                     ),
-                    ol: (chunks) => <ol>{chunks}</ol>,
-                    p: (chunks) => <p className='fs-16-28'>{chunks}</p>,
-                    ul: (chunks) => <ul>{chunks}</ul>,
-                    strong: (chunks) => (
-                      <strong className='d-block pb-16'>{chunks}</strong>
-                    ),
                     li: (chunks) => (
                       <li className='fr-col-offset-1 pb-16'>{chunks}</li>
                     ),
+                    ol: (chunks) => <ol>{chunks}</ol>,
+                    p: (chunks) => <p className='fs-16-28'>{chunks}</p>,
+                    strong: (chunks) => (
+                      <strong className='d-block pb-16'>{chunks}</strong>
+                    ),
+                    ul: (chunks) => <ul className='style-disc'>{chunks}</ul>,
                     ...values,
                   }}
                 />
@@ -84,9 +84,9 @@ function FAQ() {
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
         <Icon
-          name='icon-bsso-31'
           color1='blue-dark-125'
           color2='pink-light-100'
+          name='icon-bsso-31'
         />
       </Col>
     </Row>
@@ -96,10 +96,10 @@ function FAQ() {
     <div className='page faq'>
       <Banner
         backgroundColor='pink-light-50'
-        textColor='blue-dark-125'
-        supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.faq' />}
         icons={renderIcons}
+        supTitle={<FormattedMessage id='app.header.title' />}
+        textColor='blue-dark-125'
+        title={<FormattedMessage id='app.faq' />}
       />
       <Container>
         <section className='content py-48'>
