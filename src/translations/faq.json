@@ -1,8 +1,7 @@
 {
   "bso": {
     "intlDefinition": "app.faq.bso.definition",
-    "intlEntry": "app.faq.bso.entry",
-    "ctas": []
+    "intlEntry": "app.faq.bso.entry"
   },
   "corpus": {
     "intlDefinition": "app.faq.corpus.definition",
@@ -16,19 +15,56 @@
       "https://orcid.org/"
     ]
   },
-  "corpus-bso3": {
-    "intlDefinition": "app.faq.corpus-bso3.definition",
-    "intlEntry": "app.faq.corpus-bso3.entry",
-    "ctas": []
+  "pid": {
+    "intlDefinition": "app.faq.pid.definition",
+    "intlEntry": "app.faq.pid.entry",
+    "ctas": ["https://unpaywall.org/", "https://hal.science/"]
+  },
+  "dates": {
+    "intlDefinition": "app.faq.dates.definition",
+    "intlEntry": "app.faq.dates.entry"
+  },
+  "open": {
+    "intlDefinition": "app.faq.open.definition",
+    "intlEntry": "app.faq.open.entry",
+    "ctas": ["https://unpaywall.org/", "https://hal.science/"]
   },
   "access-to-publications": {
     "intlDefinition": "app.faq.access-to-publications.definition",
     "intlEntry": "app.faq.access-to-publications.entry",
     "cta": "https://unpaywall.org/"
   },
-  "date-update": {
-    "intlDefinition": "app.faq.date-update.definition",
-    "intlEntry": "app.faq.date-update.entry"
+  "apc": {
+    "intlDefinition": "app.faq.apc.definition",
+    "intlEntry": "app.faq.apc.entry",
+    "ctas": ["https://openapc.net/", "https://doaj.org/"]
+  },
+  "economic-model": {
+    "intlDefinition": "app.faq.economic-model.definition",
+    "intlEntry": "app.faq.economic-model.entry"
+  },
+  "classification": {
+    "intlDefinition": "app.faq.classification.definition",
+    "intlEntry": "app.faq.classification.entry",
+    "cta": "https://github.com/dataesr/scientific-tagger"
+  },
+  "corpus-bso3": {
+    "intlDefinition": "app.faq.corpus-bso3.definition",
+    "intlEntry": "app.faq.corpus-bso3.entry"
+  },
+  "mentions-detection-methodology": {
+    "intlDefinition": "app.faq.mentions-detection-methodology.definition",
+    "intlEntry": "app.faq.mentions-detection-methodology.entry",
+    "ctas": [
+      "https://grobid.readthedocs.io/en/latest/",
+      "https://github.com/kermitt2/datastet",
+      "https://github.com/softcite/software-mentions",
+      "url.about.methodology"
+    ]
+  },
+  "date-missing": {
+    "intlDefinition": "app.faq.date-missing.definition",
+    "intlEntry": "app.faq.date-missing.entry"
   },
   "bso-local": {
     "intlDefinition": "app.faq.bso-local.definition",
@@ -40,26 +76,20 @@
     "intlEntry": "app.faq.community.entry",
     "cta": "https://groupes.renater.fr/sympa/info/bso-etablissements"
   },
-  "classification": {
-    "intlDefinition": "app.faq.classification.definition",
-    "intlEntry": "app.faq.classification.entry",
-    "cta": "https://github.com/dataesr/scientific_tagger/blob/main/project/server/main/bso_category.py"
+  "date-update": {
+    "intlDefinition": "app.faq.date-update.definition",
+    "intlEntry": "app.faq.date-update.entry"
   },
-  "pid": {
-    "intlDefinition": "app.faq.pid.definition",
-    "intlEntry": "app.faq.pid.entry"
+  "download": {
+    "intlDefinition": "app.faq.download.definition",
+    "intlEntry": "app.faq.download.entry",
+    "ctas": [
+      "https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified",
+      "https://github.com/orgs/dataesr/repositories?q=bso"
+    ]
   },
-  "date-missing": {
-    "intlDefinition": "app.faq.date-missing.definition",
-    "intlEntry": "app.faq.date-missing.entry"
-  },
-  "opendata": {
-    "intlDefinition": "app.faq.opendata.definition",
-    "intlEntry": "app.faq.opendata.entry",
-    "cta": "https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso"
-  },
-  "other": {
-    "intlDefinition": "app.faq.others.definition",
-    "intlEntry": "app.faq.others.entry"
+  "difference-ce": {
+    "intlDefinition": "app.faq.difference-ce.definition",
+    "intlEntry": "app.faq.difference-ce.entry"
   }
 }
