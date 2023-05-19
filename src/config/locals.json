@@ -721,9 +721,9 @@
     "paysage": "bOXO2"
   },
   "199612374X": {
-    "name": "Laboratoire de recherche en Hydrodynamique, Énergétique et Environnement Atmosphérique (LHEEA)",
-    "commentsName": "du LHEEA",
-    "commentsNameEN": "of LHEEA",
+    "name": "Laboratoire de recherche en Hydrodynamique, Énergétique et Environnement Atmosphérique (LHEAA)",
+    "commentsName": "du LHEAA",
+    "commentsNameEN": "of LHEAA",
     "ror": "057axh226",
     "grid": "grid.463955.8",
     "paysage": "XD8Mr"
@@ -855,9 +855,9 @@
     "paysage": "9JDcL"
   },
   "200212224H": {
-    "name": "Institut d'Electronique et des Technologies du numéRique (ITER)",
-    "commentsName": "de l'ITER",
-    "commentsNameEN": "of ITER",
+    "name": "Institut d'Electronique et des Technologies du numéRique (IETR)",
+    "commentsName": "de l'IETR",
+    "commentsNameEN": "of IETR",
     "ror": "013q33h79",
     "grid": "grid.462104.5",
     "paysage": "V1T2p"
@@ -1026,9 +1026,9 @@
     "paysage": "413kc"
   },
   "201220396X": {
-    "name": "L'unité de recherche de l'institut du thorax",
-    "commentsName": "de l'institut du thorax",
-    "commentsNameEN": "of the thorax institute",
+    "name": "L'unité de recherche de l'institut du thorax (ITX)",
+    "commentsName": "de l'ITX",
+    "commentsNameEN": "of ITX",
     "ror": "049kkt456",
     "grid": "grid.462318.a",
     "paysage": "Tfc1g"
