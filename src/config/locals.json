@@ -513,7 +513,7 @@
     "paysage": "jYUcF"
   },
   "197534860": {
-    "name": "École Pratique des Hautes Études - PSL",
+    "name": "École Pratique des Hautes Études-PSL",
     "commentsName": "de l'EPHE-PSL",
     "commentsNameEN": "of EPHE-PSL",
     "startYear": 2017,
@@ -529,6 +529,14 @@
     "ror": "04y8cs423",
     "grid": "grid.58140.38",
     "paysage": "KltnW"
+  },
+  "197546922": {
+    "197546922": "Université Paris Dauphine-PSL",
+    "commentsName": "de l'Université Paris Dauphine-PSL",
+    "commentsNameEN": "of Université Paris Dauphine-PSL",
+    "ror": "052bz7812",
+    "grid": "grid.11024.36",
+    "paysage": "C6Ps7"
   },
   "197601651": {
     "name": "Institut national des sciences appliquées de Rouen Normandie (INSA Rouen Normandie)",
