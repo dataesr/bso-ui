@@ -208,7 +208,7 @@ function HowTo() {
                   </p>
                   <p>
                     Afin de constituer votre périmètre de DOI, l'Université de
-                    Lorraine propose cette méthologie :
+                    Lorraine propose cette méthodologie :
                     {' '}
                     <a
                       href='https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/'
