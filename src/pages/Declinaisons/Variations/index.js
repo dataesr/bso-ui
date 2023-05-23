@@ -150,7 +150,7 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Université de La Rochelle'
+                alt='bso local La Rochelle Université'
                 href='https://bu.univ-larochelle.fr/lappui-a-la-recherche/barometre-science-ouverte/'
                 img='/declinaisons/universite-la-rochelle.png'
               />
@@ -199,7 +199,7 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Toulouse 3'
+                alt='bso local Toulouse III'
                 href='https://bibliotheques.univ-tlse3.fr/utiliser-nos-services/se-former-s-informer/chercheurs/la-science-ouverte-l-ut3'
                 img='/declinaisons/ut3.jpeg'
               />
@@ -234,98 +234,98 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local univeristé brest ubo'
+                alt='bso local Univeristé Brest UBO'
                 href='http://ubodoc.univ-brest.fr/science-ouverte-et-valorisation/science-ouverte-a-lubo/barometre_science_ouverte/'
                 img='/declinaisons/ubo.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local institut pasteur'
+                alt='bso local Institut Pasteur'
                 href='https://www.pasteur.fr/fr/ceris/bibliotheque/s-engager-science-ouverte#barometre'
                 img='/declinaisons/pasteur.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local universite paris saclay'
+                alt='bso local Université Paris-Saclay'
                 href='https://www.universite-paris-saclay.fr/recherche/science-ouverte/le-barometre-de-la-science-ouverte-de-luniversite-paris-saclay'
                 img='/declinaisons/ups.svg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local universite lyon 1'
+                alt='bso local Université Lyon 1 UCBL'
                 href='https://www.univ-lyon1.fr/actualites/les-trois-quarts-de-la-production-scientifique-de-lyon-1-sont-en-acces-ouvert'
                 img='/declinaisons/lyon1.jpg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local universite strasbourg unistra'
+                alt='bso local Université Strasbourg UNISTRA'
                 href='https://scienceouverte.unistra.fr/strategie/bso/'
                 img='/declinaisons/unistra.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local universite nantes'
+                alt='bso local Nantes Université'
                 href='https://bu.univ-nantes.fr/science-ouverte/le-barometre-de-la-science-ouverte-de-nantes-universite'
                 img='/declinaisons/nantes.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local imt mines albi'
+                alt='bso local IMT Mines Albi'
                 href='https://www.imt-mines-albi.fr/fr/barometre-science-ouverte-2022'
                 img='/declinaisons/imt-albi.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local universite montpellier'
+                alt='bso local Université de Montpellier'
                 href='https://bibliotheques.edu.umontpellier.fr/science-ouverte/bso-um/'
                 img='/declinaisons/montpellier.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local sorbonne universite'
+                alt='bso local Sorbonne Université'
                 href='https://www.sorbonne-universite.fr/barometre-science-ouverte-de-sorbonne-universite'
                 img='/declinaisons/sorbonne.svg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local unilasalle'
+                alt='bso local UniLaSalle'
                 href='https://www.unilasalle.fr/actualites/barometre-de-la-science-ouverte-unilasalle-2023'
                 img='/declinaisons/unilasalle.svg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local inrae'
+                alt='bso local INRAE'
                 href='https://www6.inrae.fr/dipso/La-science-ouverte-a-INRAE/Barometre-Science-Ouverte-INRAE2'
                 img='/declinaisons/inrae.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local uvsq'
+                alt='bso local UVSQ'
                 href='https://www.uvsq.fr/barometre-science-ouverte'
                 img='/declinaisons/uvsq.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local onera'
+                alt='bso local ONERA'
                 href='https://openarchiv.hypotheses.org/7391'
                 img='/declinaisons/onera.jpg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Universite Jean Monnet'
+                alt='bso local Université Jean Monnet Saint-Étienne UJM'
                 href='https://www.univ-st-etienne.fr/fr/recherche/science-ouverte/barometre-de-la-science-ouverte.html'
                 img='/declinaisons/universite-saint-etienne.jpg'
               />
