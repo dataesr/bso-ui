@@ -36,7 +36,7 @@ const halIdRegex = /^[a-zA-Z0-9]{3,}(-|_)(\d{8})$/;
 // https://documentation.abes.fr/sudoc/regles/CodesUnivEtab.htm
 const nntEtabRegex = /^[a-zA-Z0-9]{4,6}$/;
 // https://documentation.abes.fr/sudoc/regles/Catalogage/Retro_CodeCourt_NNT.htm
-const nntIdRegex = /^(19|20)\d{2}[A-Z]{4}\w{4}$/;
+const nntIdRegex = /^(19|20)\d{2}[A-Z0-9]{4}\w{4}$/;
 
 const SubmissionForm = () => {
   const [acronym, setAcronym] = useState('');

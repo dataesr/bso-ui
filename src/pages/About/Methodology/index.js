@@ -137,7 +137,7 @@ function Methodology() {
                   </Row>
                   <Row>
                     <h3 className='mt-12 mb-32'>
-                      Publication : une méthologie inédite
+                      Publication : une méthodologie inédite
                     </h3>
                   </Row>
                   <Row>
