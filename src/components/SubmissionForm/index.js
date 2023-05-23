@@ -51,7 +51,7 @@ const SubmissionForm = () => {
   const [name, setName] = useState('');
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
-  const [siren, setSiren] = useState('');
+  const [id, setId] = useState('');
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -107,7 +107,7 @@ const SubmissionForm = () => {
           <p>Email de contact: ${email}</p>
           <p>Nom de la structure: ${name}</p>
           <p>Acronyme de la structure: ${acronym}</p>
-          <p>Siren de la structure: ${siren}</p>
+          <p>Siren ou RNSR de la structure: ${id}</p>
           </body></html>`,
         attachment: [{ content, name: 'bso.csv' }],
       },
@@ -355,9 +355,9 @@ const SubmissionForm = () => {
               />
               <TextInput
                 hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/ pour trouver le Siren de votre structure'
-                label='Siren de la structure'
-                onChange={(e) => setSiren(e.target.value)}
-                value={siren}
+                label='Siren ou RNSR de la structure'
+                onChange={(e) => setId(e.target.value)}
+                value={id}
               />
               <File
                 hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
