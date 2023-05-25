@@ -109,7 +109,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local AMU'
-                href='https://oaamu.hypotheses.org/3118'
+                href='https://oaamu.hypotheses.org/4850'
                 img='/declinaisons/amu.png'
               />
             </Col>
