@@ -30,6 +30,10 @@ const tree = [
             value: 'publi.general.genres-ouverture.chart-repartition-genres',
           },
           {
+            key: 'app.national-publi.general.genres-ouverture.chart-evolution-proportion.title',
+            value: 'publi.general.genres-ouverture.chart-evolution-proportion',
+          },
+          {
             key: 'app.national-publi.general.langues-ouverture.chart-repartition-publications.title',
             value:
               'publi.general.langues-ouverture.chart-repartition-publications',
