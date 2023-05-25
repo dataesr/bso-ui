@@ -59,13 +59,28 @@ function HowTo() {
                   initExpand={parseInt(expanded, 10) === 0}
                   title='1. Définissez le périmètre de votre BSO local'
                 >
-                  <p>
-                    <b>
-                      {' '}
-                      Un seul fichier est attendu toutes années confondues.
-                      Aucune donnée concernant les APC n'est à fournir.
-                    </b>
-                  </p>
+                  <ul className='style-disc'>
+                    <li>
+                      Un seul et unique fichier est attendu toutes années
+                      confondues
+                    </li>
+                    <li>
+                      Pour les publications, le baromètre couvre la période de
+                      2013 à 2021, année de publication
+                    </li>
+                    <li>Aucune donnée concernant les APC n'est à fournir</li>
+                    <li>Une déduplication des publications sera effectuée</li>
+                    <li>
+                      Chaque colonne du fichier est indépendante des autres
+                    </li>
+                    <li>
+                      Chaque colonne peut contenir aucune, une ou plusieurs
+                      valeurs
+                    </li>
+                    <li>
+                      Une colonne vide peut être omise ou absente du fichier
+                    </li>
+                  </ul>
                   Le périmètre de chaque BSO local reste entièrement à la main
                   de l'établissement ou du laboratoire. Il est possible de
                   remonter une ou plusieurs des informations
@@ -128,7 +143,7 @@ function HowTo() {
                   </ul>
                   <p>
                     Chaque information peut contenir une ou plusieurs valeurs.
-                    Ces valeurs sont rensignées dans une colonne dédiée du
+                    Ces valeurs sont renseignées dans une colonne dédiée du
                     ficher.
                     <b> Chaque colonne est indépendante des autres.</b>
                   </p>
