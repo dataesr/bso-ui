@@ -63,7 +63,10 @@ function Methodology() {
             <section className='content py-48'>
               <Row>
                 <Col>
-                  <h2 className='fs-28-32 fs-40-48-xl mt-40 mb-32'>
+                  <h2
+                    className='fs-28-32 fs-40-48-xl mt-40 mb-32'
+                    id='publications'
+                  >
                     Publication :
                     <br />
                     une méthodologie inédite
