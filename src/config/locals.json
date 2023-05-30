@@ -22,6 +22,14 @@
     "grid": "grid.11843.3f",
     "paysage": "4k25D"
   },
+  "130008584": {
+    "name": "Institut national d'enseignement supérieur et de recherche en alimentation, santé animale, sciences agronomiques et de l'environnement (VetAgro Sup)",
+    "commentsName": "de VetAgro Sup",
+    "commentsNameEN": "of VetAgro Sup",
+    "ror": "01c7wz417",
+    "grid": "grid.434200.1",
+    "paysage": "5cuYU"
+  },
   "130012024": {
     "name": "Agence nationale de sécurité sanitaire de l'alimentation, de l'environnement et du travail (ANSES)",
     "commentsName": "de l'ANSES",
@@ -202,9 +210,9 @@
     "name": "Muséum national d'Histoire naturelle (MNHN)",
     "commentsName": "du MNHN",
     "commentsNameEN": "of MNHN",
-    "paysage": "VaJ52",
     "ror": "03wkt5x30",
-    "grid": "grid.410350.3"
+    "grid": "grid.410350.3",
+    "paysage": "VaJ52"
   },
   "180070039": {
     "name": "Institut national de recherche pour l'agriculture, l'alimentation et l'environnement (INRAE)",
@@ -334,8 +342,7 @@
     "commentsNameEN": "of ENAC",
     "ror": "022zdgq74",
     "grid": "grid.424441.3",
-    "paysage": "JQKHK",
-    "scale": "institute"
+    "paysage": "JQKHK"
   },
   "193113818": {
     "name": "Institut National Polytechnique de Toulouse (Toulouse INP)",
@@ -646,14 +653,16 @@
     "paysage": "vJ8wB"
   },
   "199213369W": {
-    "name": "Centre François Viete : épistémologie, histoire des sciences et des techniques (CFV)",
+    "name": "Centre François Viète: épistémologie, histoire des sciences et des techniques (CFV)",
     "commentsName": "du CFV",
-    "commentsNameEN": "of CFV"
+    "commentsNameEN": "of CFV",
+    "paysage": "jd16m"
   },
   "199213370X": {
     "name": "Centre de Recherche sur les Identités, les Nations et l'Interculturalité (CRINI)",
     "commentsName": "du CRINI",
-    "commentsNameEN": "of CRINI"
+    "commentsNameEN": "of CRINI",
+    "paysage": "oa6bx"
   },
   "199213371Y": {
     "name": "Centre de recherches en histoire internationale et atlantique (CRHIA)",
@@ -662,9 +671,10 @@
     "paysage": "VJXyv"
   },
   "199213373A": {
-    "name": "Centre de droit maritime et océanique (CDMO)",
+    "name": "Centre de Droit Maritime et Océanique (CDMO)",
     "commentsName": "du CDMO",
-    "commentsNameEN": "of CDMO"
+    "commentsNameEN": "of CDMO",
+    "paysage": "2iil0"
   },
   "199213374B": {
     "name": "Institut de recherche en droit privé (IRDP)",
@@ -700,7 +710,8 @@
   "199512347X": {
     "name": "Centre de recherche en archéologie, archéosciences, histoire (CReAAH)",
     "commentsName": "du CReAAH",
-    "commentsNameEN": "of CReAAH"
+    "commentsNameEN": "of CReAAH",
+    "paysage": "7UV7M"
   },
   "199612295L": {
     "name": "Laboratoire de physique subatomique et des technologies associées (SUBATECH)",
@@ -763,7 +774,8 @@
   "199614172B": {
     "name": "Centre de recherche en éducation de Nantes (CREN)",
     "commentsName": "du CREN",
-    "commentsNameEN": "of CREN"
+    "commentsNameEN": "of CREN",
+    "paysage": "hzkjr"
   },
   "199712620K": {
     "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
@@ -791,6 +803,14 @@
     "ror": "05nk54s89",
     "grid": "grid.503282.e",
     "paysage": "KQCDr"
+  },
+  "199517454Y": {
+    "name": "Laboratoire d'Analyse et d'Architechure des Systèmes du CNRS (LAAS-CNRS)",
+    "commentsName": "du LAAS-CNRS",
+    "commentsNameEN": "of LAAS-CNRS",
+    "ror": "03vcm6439",
+    "grid": "grid.462430.7",
+    "paysage": "66iey"
   },
   "199819322R": {
     "name": "Ambiances architectures urbanités (AAU)",
@@ -845,7 +865,8 @@
     "name": "Laboratoire Agronomie et Environnement (LAE)",
     "commentsName": "du LAE",
     "commentsNameEN": "of LAE",
-    "displayTitle": "false"
+    "displayTitle": "false",
+    "paysage": "g9olk"
   },
   "200117305K": {
     "name": "Dynamique des Génomes et Adaptation Microbienne (DynAMic)",
@@ -854,7 +875,8 @@
     "displayTitle": "false",
     "startYear": 2016,
     "ror": "01gbppd30",
-    "grid": "grid.503401.3"
+    "grid": "grid.503401.3",
+    "paysage": "sg9ap"
   },
   "200212211U": {
     "name": "Laboratoire de génie des procédés - environnement - agroalimentaire (GEPEA)",
@@ -944,7 +966,8 @@
   "200815513G": {
     "name": "Littératures Antiques et Modernes (LAMO)",
     "commentsName": "du LAMO",
-    "commentsNameEN": "of LAMO"
+    "commentsNameEN": "of LAMO",
+    "paysage": "h9zud"
   },
   "200815563L": {
     "name": "Motricité, interactions, performance (MIP)",
@@ -968,7 +991,8 @@
     "displayTitle": "false",
     "startYear": 2016,
     "ror": "055swm364",
-    "grid": "grid.472585.9"
+    "grid": "grid.472585.9",
+    "paysage": "po3e9"
   },
   "200919895R": {
     "name": "Laboratoire national des champs magnétiques intenses (LNCMI)",
@@ -984,7 +1008,8 @@
     "commentsNameEN": "of LECOB",
     "startYear": 2017,
     "ror": "049xh5y45",
-    "grid": "grid.462905.c"
+    "grid": "grid.462905.c",
+    "paysage": "leo51"
   },
   "201119392K": {
     "name": "Espace pour le développement (ESPACE-DEV)",
@@ -998,8 +1023,7 @@
     "commentsNameEN": "of LCQB",
     "ror": "00pcqj134",
     "grid": "grid.503320.7",
-    "paysage": "8RQj3",
-    "scale": "laboratory"
+    "paysage": "8RQj3"
   },
   "201119727Z": {
     "name": "Biologie intégrative des organismes marins (BIOM)",
@@ -1019,7 +1043,8 @@
   "201220071U": {
     "name": "Laboratoire de psychologie des pays de la Loire (LPPL)",
     "commentsName": "du LPPL",
-    "commentsNameEN": "of LPPL"
+    "commentsNameEN": "of LPPL",
+    "paysage": "6bgy6"
   },
   "201220073W": {
     "name": "Institut de recherche en énergie électrique de Nantes Atlantique (IREENA)",
@@ -1046,7 +1071,8 @@
   "201220410M": {
     "name": "Droit et changement social (DCS)",
     "commentsName": "du DCS",
-    "commentsNameEN": "of DCS"
+    "commentsNameEN": "of DCS",
+    "paysage": "1ix0v"
   },
   "201420738K": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
@@ -1058,7 +1084,8 @@
   "201420764N": {
     "name": "De la Molécule aux Nano-objets: Réactivité, Interactions et Spectroscopies (MONARIS)",
     "commentsName": "de MONARIS",
-    "commentsNameEN": "of MONARIS"
+    "commentsNameEN": "of MONARIS",
+    "paysage": "2ldrn"
   },
   "201420847D": {
     "name": "Laboratoire de biodiversité et biotechnologies microbiennes (LBBM)",
@@ -1066,7 +1093,8 @@
     "commentsNameEN": "of LBBM",
     "startYear": 2017,
     "ror": "039p01270",
-    "grid": "grid.483491.3"
+    "grid": "grid.483491.3",
+    "paysage": "44cxy"
   },
   "201522729V": {
     "name": "Observatoire Océanologique de Banyuls sur Mer (OOB)",
