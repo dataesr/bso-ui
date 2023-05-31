@@ -1981,7 +1981,7 @@ export default function getFetchOptions({
   }
   if (bsoCountry && useBsoCountry) {
     queryResponse.query.bool.filter.push({
-      term: { bso_country: bsoCountry },
+      term: { bso_country_corrected: bsoCountry },
     });
   }
   if (isThesis) {
