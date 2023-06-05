@@ -256,7 +256,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université Lyon 1 UCBL'
-                href='https://www.univ-lyon1.fr/actualites/les-trois-quarts-de-la-production-scientifique-de-lyon-1-sont-en-acces-ouvert'
+                href='https://www.univ-lyon1.fr/actualites/lacces-ouvert-progresse-encore-a-lyon-1'
                 img='/declinaisons/lyon1.jpg'
               />
             </Col>
