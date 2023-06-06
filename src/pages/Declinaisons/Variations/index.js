@@ -337,6 +337,13 @@ function Variations() {
                 img='/declinaisons/ifremer.svg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local cyu cergy'
+                href='https://bibliotheque.cyu.fr/version-francaise/science-ouverte/barometre-de-la-science-ouverte-2'
+                img='/declinaisons/cyu.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>

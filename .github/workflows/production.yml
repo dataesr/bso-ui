@@ -18,17 +18,13 @@ jobs:
     steps:
       - name: 🏁 Checkout
         uses: actions/checkout@v3
-
       - name: 🏷️ Get tag
         id: tag
         run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
       - name: 🔑 Login docker
         run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-
       - name: 🐋 Build docker image
         run: docker build -t ${{ github.repository }} .
-
       - name: 📦 Push docker image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository }}
