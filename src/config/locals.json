@@ -804,6 +804,15 @@
     "grid": "grid.503282.e",
     "paysage": "KQCDr"
   },
+  "199712668M": {
+    "name": "Laboratoire d'imagerie biomédicale (LIB)",
+    "commentsName": "du LIB",
+    "commentsNameEN": "of LIB",
+    "startYear": 2017,
+    "ror": "02b9znm90",
+    "grid": "grid.503298.5",
+    "paysage": "e4it1"
+  },
   "199517454Y": {
     "name": "Laboratoire d'Analyse et d'Architechure des Systèmes du CNRS (LAAS-CNRS)",
     "commentsName": "du LAAS-CNRS",
@@ -948,6 +957,13 @@
     "ror": "014vp6c30",
     "grid": "grid.462146.3",
     "paysage": "R95E1"
+  },
+  "200717404S": {
+    "name": "Laboratoire de biomécanique et mécanique des chocs (LBMC)",
+    "commentsName": "du LBMC",
+    "commentsNameEN": "of LBMC",
+    "ror": "02awy7178",
+    "paysage": "P7Anf"
   },
   "200812273K": {
     "name": "Chimie et interdisciplinarité : synthèse, analyse, modélisation (CEISAM)",
