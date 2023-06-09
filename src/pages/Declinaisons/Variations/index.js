@@ -380,7 +380,7 @@ function Variations() {
                 </li>
                 <li>
                   <a
-                    href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre1'
+                    href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre2'
                     rel='noreferrer'
                     target='_blank'
                   >
