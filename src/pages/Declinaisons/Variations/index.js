@@ -344,6 +344,13 @@ function Variations() {
                 img='/declinaisons/cyu.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local cnam'
+                href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre2'
+                img='/declinaisons/cnam.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
@@ -376,15 +383,6 @@ function Variations() {
                     target='_blank'
                   >
                     CRENAU - UMR AAU
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre2'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
-                    CNAM
                   </a>
                 </li>
                 <li>
