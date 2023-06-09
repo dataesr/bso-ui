@@ -348,7 +348,7 @@ function Variations() {
               <CardLogo
                 alt='bso local cnam'
                 href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre2'
-                img='/declinaisons/cnam.png'
+                img='/declinaisons/cnam.svg'
               />
             </Col>
           </Row>
