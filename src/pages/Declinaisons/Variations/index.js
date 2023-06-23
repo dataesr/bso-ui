@@ -351,6 +351,13 @@ function Variations() {
                 img='/declinaisons/cnam.svg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local brgm'
+                href='https://www.brgm.fr/fr/actualite/actualite/brgm-publie-barometre-science-ouverte'
+                img='/declinaisons/brgm.svg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
