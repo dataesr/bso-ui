@@ -362,7 +362,7 @@ function Variations() {
               <CardLogo
                 alt='bso local upjv'
                 href='https://www.bu.u-picardie.fr/pages-daccueil-appui-a-la-recherche/barometre-upjv-de-la-science-ouverte/'
-                img='/declinaisons/upjv.svg'
+                img='/declinaisons/upjv.png'
               />
             </Col>
           </Row>
