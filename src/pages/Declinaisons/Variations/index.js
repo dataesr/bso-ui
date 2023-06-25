@@ -358,6 +358,13 @@ function Variations() {
                 img='/declinaisons/brgm.svg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local upjv'
+                href='https://www.bu.u-picardie.fr/pages-daccueil-appui-a-la-recherche/barometre-upjv-de-la-science-ouverte/'
+                img='/declinaisons/upjv.svg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
