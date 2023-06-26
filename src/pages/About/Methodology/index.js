@@ -420,14 +420,14 @@ function Methodology() {
                   <br />
                   {' '}
                   <a
-                    href='https://github.com/Barometre-de-la-Science-Ouverte/bso3-techdoc/blob/master/methodology/bso3.pdf'
+                    href='https://hal.science/hal-04121339'
                     target='_blank'
                     rel='noreferrer'
                     className='external_link'
                   >
-                    Monitoring the production and the openness of research data
-                    and software in France: Large-scale Machine-Learning
-                    analysis of scientific PDF
+                    Large-scale Machine-Learning analysis of scientific PDF for
+                    monitoring the production and the openness of research data
+                    and software in France
                   </a>
                   {' '}
                   <br />
