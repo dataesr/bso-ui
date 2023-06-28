@@ -13,7 +13,7 @@ const colors = {
   proceedings: getCSSValue('--purple-medium-100'),
 };
 
-function useGetData(observationSnap, domain) {
+function useGetData(observationSnap, beforeLastObservationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -28,9 +28,13 @@ function useGetData(observationSnap, domain) {
         parameters: [lastObservationSnap],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
-      const data = res.data.aggregations.by_year.buckets.sort(
-        (a, b) => a.key - b.key,
-      );
+      const data = res.data.aggregations.by_year.buckets
+        .sort((a, b) => a.key - b.key)
+        .filter(
+          (el) => el.key < parseInt(beforeLastObservationSnap.substring(0, 4), 10)
+            && el.doc_count
+            && el.key > 2012,
+        );
       const categories = data.map((year) => year.key);
       const series = data[0].by_type.buckets
         .filter((item) => item.key !== 'preprint')
@@ -57,7 +61,7 @@ function useGetData(observationSnap, domain) {
         series,
       };
     },
-    [domain, intl],
+    [beforeLastObservationSnap, domain, intl],
   );
 
   useEffect(() => {

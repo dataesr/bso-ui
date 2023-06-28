@@ -25,6 +25,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isLoading, isError } = useGetData(
     lastObservationSnap,
+    beforeLastObservationSnap,
     domain,
   );
   const { categories, series } = allData;
