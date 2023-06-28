@@ -13,7 +13,7 @@ const colors = {
   proceedings: getCSSValue('--purple-medium-100'),
 };
 
-function useGetData(observationSnap, beforeLastObservationSnap, domain) {
+function useGetData(observationSnap, domain) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ function useGetData(observationSnap, beforeLastObservationSnap, domain) {
       const data = res.data.aggregations.by_year.buckets
         .sort((a, b) => a.key - b.key)
         .filter(
-          (el) => el.key < parseInt(beforeLastObservationSnap.substring(0, 4), 10)
+          (el) => el.key < parseInt(lastObservationSnap.substring(0, 4), 10)
             && el.doc_count
             && el.key > 2012,
         );
@@ -61,7 +61,7 @@ function useGetData(observationSnap, beforeLastObservationSnap, domain) {
         series,
       };
     },
-    [beforeLastObservationSnap, domain, intl],
+    [domain, intl],
   );
 
   useEffect(() => {
