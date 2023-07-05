@@ -1995,11 +1995,11 @@ export default function getFetchOptions({
     });
   }
   if (['publication', 'journal', 'repository'].includes(key)) {
-    idTypes.push('hal');
+    idTypes.push('hal_id');
   }
   if (isPublications) {
     queryResponse.query.bool.filter.push({
-      terms: { 'id_type.keyword': idTypes },
+      terms: { 'external_ids.id_type.keyword': idTypes },
     });
     queryResponse.query.bool.filter.push({
       terms: {
