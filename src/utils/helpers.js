@@ -361,10 +361,10 @@ export function getURLSearchParams(intl = undefined, id = '') {
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
     || localAffiliationSettings?.firstObservationYear
     || '2018';
-  const idTypes = ['doi'];
+  const idTypes = ['crossref'];
   const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
   if (useHalId) {
-    idTypes.push('hal');
+    idTypes.push('hal_id');
     firstObservationYear = '2022';
   }
   const displayComment = !(

@@ -372,6 +372,13 @@ function Variations() {
                 img='/declinaisons/hcl.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Normandie Université'
+                href='https://science-ouverte.normandie-univ.fr/blog/premiere-edition-du-barometre-normand-pour-la-science-ouverte/'
+                img='/declinaisons/normandie_universite.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
