@@ -637,6 +637,14 @@
     "grid": "grid.454117.2",
     "paysage": "tdJI8"
   },
+  "199115684": {
+    "name": "École polytechnique (X)",
+    "commentsName": "de l'X",
+    "commentsNameEN": "of X",
+    "ror": "05hy3tk52",
+    "grid": "grid.10877.39",
+    "paysage": "DdW7n"
+  },
   "199117683P": {
     "name": "Centre d'élaboration de matériaux et d'études structurales (CEMES-CNRS)",
     "commentsName": "du CEMES",
@@ -852,6 +860,14 @@
     "ror": "04fm0sh33",
     "grid": "grid.463945.9",
     "paysage": "8bClX"
+  },
+  "200112415V": {
+    "name": "Institut de science et d'ingénierie supramoléculaires (ISIS)",
+    "commentsName": "de l'ISIS",
+    "commentsNameEN": "of ISIS",
+    "ror": "00xts7d02",
+    "grid": "grid.483413.9",
+    "paysage": "iwUNB"
   },
   "200112481S": {
     "name": "Laboratoire d'océanographie de Villefranche (LOV)",

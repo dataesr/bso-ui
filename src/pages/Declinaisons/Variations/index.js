@@ -379,6 +379,13 @@ function Variations() {
                 img='/declinaisons/normandie_universite.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local unilehavre Université Le Havre Normandie'
+                href='https://bu.univ-lehavre.fr/enseignant-chercheur-doctorant/barometre-de-la-science-ouverte/article/barometre-de-la-science-ouverte'
+                img='/declinaisons/unilehavre.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
