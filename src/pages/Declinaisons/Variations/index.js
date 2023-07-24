@@ -386,6 +386,13 @@ function Variations() {
                 img='/declinaisons/unilehavre.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local crenau umr aau'
+                href='https://aau.archi.fr/laboratoire-aau/science-ouverte/'
+                img='/declinaisons/aau.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
@@ -411,15 +418,6 @@ function Variations() {
             </Col>
             <Col n='12 lg-8'>
               <ul className='style-disc'>
-                <li>
-                  <a
-                    href='https://aau.archi.fr/laboratoire-aau/science-ouverte/'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
-                    CRENAU - UMR AAU
-                  </a>
-                </li>
                 <li>
                   <a
                     href='https://u-paris.fr/science-ouverte/barometre/'
