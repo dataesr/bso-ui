@@ -141,12 +141,22 @@ function useGetData(observationSnaps, domain = '') {
       const serieGlobal = [];
       dataGraph2.forEach((el) => {
         if (el.lastPublicationDate) {
+          const publicationDate = Number(el.name.slice(0, 4)) - 1;
+          const y = el.data.find(
+            (item) => item.publicationDate === publicationDate,
+          );
+          let ratio = '';
+          if (typeof y === 'undefined') {
+            ratio = '(0 publications)';
+          } else if (el.data.length) {
+            ratio = el.ratios[el.data.length - 1];
+          }
           serie1.push({
             bsoDomain,
             name: el.name,
-            y: el.data.length > 0 ? el.data[el.data.length - 1].y : 0,
-            ratio: el.data.length > 0 ? el.ratios[el.data.length - 1] : 0,
-            publicationDate: el.lastPublicationDate,
+            y: y?.y ?? 0,
+            ratio,
+            publicationDate,
           });
         }
       });
