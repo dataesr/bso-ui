@@ -22,7 +22,7 @@ const sendEmail = (email, structureId, structureName) => {
         },
         { email, name: email },
       ],
-      subject: "Nouveau baromètre Local",
+      subject: "Nouveau baromètre local",
       htmlContent: `
         <html><body>
         <p>Bonjour,</p>
