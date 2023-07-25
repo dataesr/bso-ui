@@ -27,6 +27,14 @@ const SUPPORTED_MIME_TYPES = [
   'application/xls',
   'text/csv',
 ];
+const SUPPORTED_FIELDS = [
+  'doi',
+  'hal_struct_id',
+  'hal_coll_code',
+  'hal_id',
+  'nnt_etab',
+  'nnt_id',
+];
 // DOI does not contain comma
 const doiRegex = /^[^,]+$/;
 // hal_struct_id is only digits
@@ -40,18 +48,18 @@ const nntIdRegex = /^(19|20)\d{2}[A-Z0-9]{4}\w{4}$/;
 
 const SubmissionForm = () => {
   const [acronym, setAcronym] = useState('');
+  const [dataFile, setDataFile] = useState();
   const [doiCount, setDoiCount] = useState();
   const [email, setEmail] = useState('');
-  const [dataFile, setDataFile] = useState();
   const [halCollCodeCount, setHalCollCodeCount] = useState();
   const [halIdCount, setHalIdCount] = useState();
   const [halStructIdCount, setHalStructIdCount] = useState();
+  const [id, setId] = useState('');
   const [isError, setIsError] = useState(true);
   const [message, setMessage] = useState();
   const [name, setName] = useState('');
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
-  const [id, setId] = useState('');
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -141,9 +149,18 @@ const SubmissionForm = () => {
           line: index + 2,
         }));
         // Check if headers are present
+        const unsupportedFields = meta.fields.filter(
+          (field) => !SUPPORTED_FIELDS.includes(field),
+        );
         if (!meta.fields.includes('doi')) {
           setMessage(
-            "Merci de préciser les noms de colonne dans votre fichier. Si besoin, utiliser le fichier d'exemple.",
+            "Merci de préciser les noms de colonne dans votre fichier. Si besoin, utiliser le fichier d'exemple proposé à l'étape 1.",
+          );
+        } else if (unsupportedFields.length) {
+          setMessage(
+            `Attention, les en-têtes suivants ne sont pas supportées : ${unsupportedFields.join(
+              ', ',
+            )}. Veuiller les corriger avant de resoumettre votre fichier.`,
           );
         } else if (
           dataWithLine.some(
@@ -296,9 +313,9 @@ const SubmissionForm = () => {
     e.preventDefault();
     resetState();
     if (e.target.files.length !== 1) {
-      setMessage('Merci de soumettre un et un seul fichier !');
+      setMessage('Merci de soumettre un unique fichier !');
     } else if (!SUPPORTED_MIME_TYPES.includes(e.target.files?.[0]?.type)) {
-      setMessage('Les formats de fichier acceptés sont .csv, .xls ou .xlsx !');
+      setMessage('Les formats de fichier acceptés sont .csv, .xls et .xlsx !');
     } else {
       const inputFile = e.target.files[0];
       if (inputFile?.type === 'text/csv') {
