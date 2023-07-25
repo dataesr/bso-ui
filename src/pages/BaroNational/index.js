@@ -233,7 +233,7 @@ function BaroNational() {
                 <Container fluid>
                   <Row gutters alignItems='top'>
                     <Col n='12'>
-                      <BSOChart id='orcid.general.present.chart-evolution' />
+                      <BSOChart id='orcid.general.present.chart-indicator-these-year' />
                     </Col>
                   </Row>
                 </Container>

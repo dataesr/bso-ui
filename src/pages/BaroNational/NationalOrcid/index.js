@@ -92,7 +92,7 @@ export default function NationalOrcid() {
                     fr: '/orcid/general?id=general.users',
                   },
                 },
-                {
+                /* {
                   label: intl.formatMessage({
                     id: 'app.orcid.navigation.publications',
                   }),
@@ -109,7 +109,7 @@ export default function NationalOrcid() {
                     en: '/orcid/general?id=general.affiliations',
                     fr: '/orcid/general?id=general.affiliations',
                   },
-                },
+                }, */
               ]}
             >
               <GraphContent>
@@ -118,12 +118,14 @@ export default function NationalOrcid() {
                   backgroundColor={blueSoft50}
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.users'
-                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='orcid.general.present.chart-indicator-these-year' />
                   <BSOChart id='orcid.general.present.chart-indicator-these-discipline' />
                   <BSOChart id='orcid.general.present.chart-evolution' />
-                  <BSOChart id='orcid.general.present.chart-indicator-active' />
+                  <BSOChart
+                    id='orcid.general.present.chart-indicator-active'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
                 <QuestionSection
                   anchorId='general.publications'
@@ -149,6 +151,7 @@ export default function NationalOrcid() {
             </GraphItem>
             {/* Référentiels */}
             <GraphItem
+              isDisplayed={!isInProduction()}
               mainLabel={intl.formatMessage({ id: 'app.orcid.referentiels' })}
               paths={['/orcid/referentiels']}
               links={[
