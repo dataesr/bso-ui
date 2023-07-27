@@ -26,7 +26,8 @@ import {
  */
 export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let otherSources = [];
-  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl, id);
+  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } =
+    getURLSearchParams(intl, id);
   otherSources = [name];
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;
@@ -41,7 +42,8 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
     isEmbargo = true;
   }
   if (bsoLocalAffiliation && isEmbargo) {
-    embargoText = 'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
+    embargoText =
+      'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
   }
   const tooltip = intl
     .formatMessage({
@@ -699,8 +701,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -860,7 +862,7 @@ export const chartOptions = {
   'publi.general.genres-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, series, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.type = 'line';
+      options.chart.type = 'spline';
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -871,9 +873,22 @@ export const chartOptions = {
         id: 'app.publication-genre',
       });
       options.plotOptions = {
-        bar: {
-          groupPadding: 0.1,
-          pointWidth: 7,
+        spline: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            formatter() {
+              const last = this.series.data[this.series.data.length - 1];
+              if (
+                this.point.category === last.category &&
+                this.point.y === last.y
+              ) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              // return '';
+              return this.point.y.toFixed(0).concat(' %');
+            },
+          },
         },
       };
       options.series = series;
@@ -1073,8 +1088,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1147,8 +1162,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1180,7 +1195,9 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.xAxis = {
         type: 'category',
-        categories: data[0].data.map((el) => intl.formatMessage({ id: `app.affiliations.${el.name}` })),
+        categories: data[0].data.map((el) =>
+          intl.formatMessage({ id: `app.affiliations.${el.name}` }),
+        ),
         labels: {
           style: {
             color: getCSSValue('--g-!00'),
@@ -1308,8 +1325,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1579,8 +1596,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1651,8 +1668,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1890,8 +1907,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -2139,10 +2156,10 @@ export const chartOptions = {
       if (data) {
         options.series[0].dataLabels = {
           format:
-            '<div style="text-align:center">'
-            + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
-            + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
-            + '</div>',
+            '<div style="text-align:center">' +
+            '<span style="font-size:25px;">{y:.1f} %</span><br/>' +
+            '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>' +
+            '</div>',
         };
         color = options.series[0].color;
       }
