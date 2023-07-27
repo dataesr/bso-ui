@@ -379,6 +379,12 @@ export function getURLSearchParams(intl = undefined, id = '') {
     || id.startsWith('app.health-publi');
   let commentsName = intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
     || 'françaises';
+  if (
+    id === 'publi.general.dynamique-ouverture.chart-taux-ouverture-article'
+    && commentsName === 'françaises'
+  ) {
+    commentsName = 'français';
+  }
   let displayTitle;
   let endYear;
   let name;

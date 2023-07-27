@@ -78,6 +78,9 @@ const ChartEvolutionProportion = lazy(() => import(
 const ChartTauxOuverture = lazy(() => import(
   '../components/Charts/publications/general/dynamique-ouverture/chart-taux-ouverture'
 ));
+const ChartTauxOuvertureArticle = lazy(() => import(
+  '../components/Charts/publications/general/dynamique-ouverture/chart-taux-ouverture-article'
+));
 const ChartGenreOuverture = lazy(() => import(
   '../components/Charts/publications/general/genres-ouverture/genres-ouverture'
 ));
@@ -321,6 +324,8 @@ const chartComponents = {
   'publi.general.genres-ouverture.chart-evolution-proportion':
     ChartGenreOuvertureEvolution,
   'publi.general.dynamique-ouverture.chart-taux-ouverture': ChartTauxOuverture,
+  'publi.general.dynamique-ouverture.chart-taux-ouverture-article':
+    ChartTauxOuvertureArticle,
   'publi.publishers.type-ouverture.chart-repartition-modeles':
     ChartRepartitionModelesPublishers,
   'publi.publishers.type-ouverture.chart-evolution-repartition':

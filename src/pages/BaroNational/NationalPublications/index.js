@@ -161,6 +161,13 @@ export default function NationalPublications() {
                 >
                   <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
                 </QuestionSection>
+                <QuestionSection
+                  intlKey='app.national-publi.general.lpr'
+                  backgroundColor={blueSoft25}
+                  anchorId='general.lpr'
+                >
+                  <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture-article' />
+                </QuestionSection>
               </GraphContent>
             </GraphItem>
 
