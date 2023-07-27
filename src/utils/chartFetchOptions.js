@@ -21,6 +21,13 @@ export default function getFetchOptions({
       observationSnap,
       needlePublisher = '*',
       oaHostType = '*',
+      genreType = [
+        'journal-article',
+        'proceedings',
+        'book-chapter',
+        'book',
+        'preprint',
+      ],
     ]) => ({
       size: 0,
       query: {
@@ -32,6 +39,11 @@ export default function getFetchOptions({
             {
               wildcard: {
                 [`oa_details.${observationSnap}.oa_host_type`]: oaHostType,
+              },
+            },
+            {
+              terms: {
+                'genre.keyword': genreType,
               },
             },
           ],

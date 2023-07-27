@@ -10,7 +10,17 @@ import {
   getObservationLabel,
 } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, domain = '') {
+function useGetData(
+  observationSnaps,
+  domain = '',
+  genreType = [
+    'journal-article',
+    'proceedings',
+    'book-chapter',
+    'book',
+    'preprint',
+  ],
+) {
   const intl = useIntl();
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -19,13 +29,15 @@ function useGetData(observationSnaps, domain = '') {
   const getDataByObservationSnaps = useCallback(
     async (observationYears) => {
       const queries = [];
+      const allOaHostType = '*';
+      const allPublishers = '*';
       observationYears
         ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
         .forEach((oneDate) => {
           const query = getFetchOptions({
             key: 'publicationRate',
             domain,
-            parameters: [oneDate],
+            parameters: [oneDate, allPublishers, allOaHostType, genreType],
             objectType: ['publications'],
           });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
