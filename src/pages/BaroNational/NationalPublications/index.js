@@ -50,7 +50,6 @@ export default function NationalPublications() {
                       id: 'app.header.nav.baro-national-accueil',
                     })}
                   </BreadcrumbItem>
-                  <BreadcrumbItem href='#'>{'>'}</BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({
                       id: 'app.baro-national.publications.title',
