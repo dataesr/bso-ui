@@ -3,7 +3,7 @@
   "version": "1.0.55",
   "private": true,
   "dependencies": {
-    "@dataesr/react-dsfr": "^3.1.6",
+    "@dataesr/react-dsfr": "^3.9.1",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
@@ -32,7 +32,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^9.0.0",
     "prettier": "^2.3.0",
     "stylelint": "^13.13.1",
     "stylelint-scss": "^3.19.0"
@@ -45,7 +45,7 @@
     "lint": "eslint --fix src/**/*.js",
     "prepare": "husky install",
     "prettier": "prettier --write **/*.js",
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "stylelint": "stylelint --fix **/*.scss"
   },
   "browserslist": {
