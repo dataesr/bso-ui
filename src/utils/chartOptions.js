@@ -860,7 +860,7 @@ export const chartOptions = {
   'publi.general.genres-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, series, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.type = 'line';
+      options.chart.type = 'spline';
       options.xAxis = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -871,9 +871,22 @@ export const chartOptions = {
         id: 'app.publication-genre',
       });
       options.plotOptions = {
-        bar: {
-          groupPadding: 0.1,
-          pointWidth: 7,
+        spline: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            formatter() {
+              const last = this.series.data[this.series.data.length - 1];
+              if (
+                this.point.category === last.category
+                && this.point.y === last.y
+              ) {
+                return this.point.y.toFixed(0).concat(' %');
+              }
+              // return '';
+              return this.point.y.toFixed(0).concat(' %');
+            },
+          },
         },
       };
       options.series = series;

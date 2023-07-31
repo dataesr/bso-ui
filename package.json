@@ -38,8 +38,8 @@
     "stylelint-scss": "^3.19.0"
   },
   "scripts": {
-    "build": "react-scripts build",
-    "build:staging": "env-cmd -f .env.staging react-scripts build",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "build:staging": "env-cmd -f .env.staging react-scripts --openssl-legacy-provider build",
     "deploy": "git switch main && git pull origin main --rebase --tags && git merge origin staging && npm version $npm_config_level && git push origin main --tags && git switch staging",
     "eject": "react-scripts eject",
     "lint": "eslint --fix src/**/*.js",

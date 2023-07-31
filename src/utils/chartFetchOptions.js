@@ -1366,6 +1366,17 @@ export default function getFetchOptions({
     }),
     oaPublicationType: ([lastObservationSnap]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              wildcard: {
+                [`oa_details.${lastObservationSnap}.oa_host_type`]: '*',
+              },
+            },
+          ],
+        },
+      },
       aggs: {
         by_year: {
           terms: {

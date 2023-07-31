@@ -49,7 +49,6 @@ export default function NationalSoftwareCode() {
                       id: 'app.header.nav.baro-national-accueil',
                     })}
                   </BreadcrumbItem>
-                  <BreadcrumbItem href='#'>></BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({
                       id: 'app.baro-national.software.title.beta',
