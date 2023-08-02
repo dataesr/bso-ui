@@ -261,7 +261,7 @@ function useGetData(
         dataGraph2,
       };
     },
-    [domain, genreType, intl],
+    [domain, intl],
   );
 
   useEffect(() => {
