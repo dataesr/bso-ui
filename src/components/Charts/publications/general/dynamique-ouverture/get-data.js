@@ -261,7 +261,8 @@ function useGetData(
         dataGraph2,
       };
     },
-    [domain, genreType, intl],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [domain, intl],
   );
 
   useEffect(() => {
