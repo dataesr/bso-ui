@@ -24,13 +24,13 @@ jobs:
         id: tag
         run: echo "tag=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
 
-      - name: 🔑 Login docker
+      - name: 🔑 Login Docker
         run: docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🐋 Build docker image
+      - name: 🐋 Build Docker image
         run: docker build -f Dockerfile-staging -t ${{ github.repository }} .
 
-      - name: 📦 Push docker image
+      - name: 📦 Push Docker image
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository }}
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
