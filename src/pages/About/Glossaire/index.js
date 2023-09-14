@@ -127,7 +127,7 @@ function Glossaire() {
                   key={uuidv4()}
                   className={`${
                     letter === activeLetter ? 'marianne-extra-bold' : ''
-                  } my-5 d-inline`}
+                  } mx-5 d-inline`}
                 >
                   <Button
                     className={classNames(
