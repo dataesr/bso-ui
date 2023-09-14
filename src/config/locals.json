@@ -236,13 +236,15 @@
     "name": "Télécom SudParis (TSP)",
     "commentsName": "de TSP",
     "commentsNameEN": "of TSP",
-    "paysage": "YvBkH"
+    "paysage": "YvBkH",
+    "ror": "05xvk4r52"
   },
   "18009202500063": {
     "name": "Institut Mines-Télécom Business School (IMT-BS)",
     "commentsName": "de l'IMT-BS",
     "commentsNameEN": "of IMT-BS",
-    "paysage": "6Bu79"
+    "paysage": "6Bu79",
+    "ror": "00nsf1h45"
   },
   "18009202500097": {
     "name": "IMT Mines Albi",
@@ -267,6 +269,13 @@
     "ror": "042rh9p26",
     "grid": "grid.501738.8",
     "paysage": "qadtj"
+  },
+  "18009202500162": {
+    "name": "Télécom Paris",
+    "commentsName": "de Télécom Paris",
+    "commentsNameEN": " of Télécom Paris",
+    "ror": "01naq7912",
+    "paysage": "K6jgY"
   },
   "191010602": {
     "name": "Université de Technologie de Troyes (UTT)",
