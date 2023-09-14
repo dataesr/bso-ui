@@ -3,7 +3,8 @@
     "name": "INSHEA",
     "commentsName": "de l'INSHEA",
     "commentsNameEN": "of INSHEA",
-    "paysage": "a2a9U"
+    "paysage": "a2a9U",
+    "ror": "021v2ka51"
   },
   "130002850": {
     "name": "Institut des sciences et industries du vivant et de l'environnement (AgroParisTech)",
@@ -681,7 +682,8 @@
     "name": "Centre François Viète: épistémologie, histoire des sciences et des techniques (CFV)",
     "commentsName": "du CFV",
     "commentsNameEN": "of CFV",
-    "paysage": "jd16m"
+    "paysage": "jd16m",
+    "ror": "03mcrfa90"
   },
   "199213370X": {
     "name": "Centre de Recherche sur les Identités, les Nations et l'Interculturalité (CRINI)",
@@ -736,7 +738,8 @@
     "name": "Centre de recherche en archéologie, archéosciences, histoire (CReAAH)",
     "commentsName": "du CReAAH",
     "commentsNameEN": "of CReAAH",
-    "paysage": "7UV7M"
+    "paysage": "7UV7M",
+    "ror": "02wgtm643"
   },
   "199612295L": {
     "name": "Laboratoire de physique subatomique et des technologies associées (SUBATECH)",
@@ -758,13 +761,15 @@
     "name": "Littoral, Environnement, Télédétection, Géomatique (LETG)",
     "commentsName": "du LETG",
     "commentsNameEN": "of LETG",
-    "paysage": "u5gbH"
+    "paysage": "u5gbH",
+    "ror": "05sat2s07"
   },
   "199612367P": {
     "name": "Espaces et sociétés (ESO)",
     "commentsName": "de l'ESO",
     "commentsNameEN": "of ESO",
-    "paysage": "bOXO2"
+    "paysage": "bOXO2",
+    "ror": "03237mt20"
   },
   "199612374X": {
     "name": "Laboratoire de recherche en Hydrodynamique, Énergétique et Environnement Atmosphérique (LHEAA)",
@@ -800,7 +805,8 @@
     "name": "Centre de recherche en éducation de Nantes (CREN)",
     "commentsName": "du CREN",
     "commentsNameEN": "of CREN",
-    "paysage": "hzkjr"
+    "paysage": "hzkjr",
+    "ror": "00b1crx81"
   },
   "199712620K": {
     "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
@@ -882,7 +888,8 @@
     "name": "Laboratoire d'océanographie de Villefranche (LOV)",
     "commentsName": "du LOV",
     "commentsNameEN": "of LOV",
-    "paysage": "GI1zy"
+    "paysage": "GI1zy",
+    "ror": "05r5y6641"
   },
   "200112483U": {
     "name": "Institut d'Astrophysique de Paris (IAP)",
@@ -908,7 +915,8 @@
     "commentsName": "du LAE",
     "commentsNameEN": "of LAE",
     "displayTitle": "false",
-    "paysage": "g9olk"
+    "paysage": "g9olk",
+    "ror": "01dg9a450"
   },
   "200117305K": {
     "name": "Dynamique des Génomes et Adaptation Microbienne (DynAMic)",
@@ -956,7 +964,8 @@
     "commentsNameEN": "of CEREFIGE",
     "displayTitle": "false",
     "startYear": 2016,
-    "paysage": "x57aX"
+    "paysage": "x57aX",
+    "ror": "0106d5c37"
   },
   "200610854B": {
     "name": "Observatoire de Paris",
@@ -1064,7 +1073,8 @@
     "name": "Espace pour le développement (ESPACE-DEV)",
     "commentsName": "d'ESPACE-DEV",
     "commentsNameEN": "of ESPACE-DEV",
-    "paysage": "m2tBU"
+    "paysage": "m2tBU",
+    "ror": "01z485314"
   },
   "201119726Y": {
     "name": "Laboratoire de Biologie computationnelle et quantitative (LCQB)",
@@ -1087,13 +1097,15 @@
     "name": "Unité en sciences biologiques et biotechnologies (US2B)",
     "commentsName": "de l'US2B",
     "commentsNameEN": "of US2B",
-    "paysage": "JcJrk"
+    "paysage": "JcJrk",
+    "ror": "05ef4v550"
   },
   "201220071U": {
-    "name": "Laboratoire de psychologie des pays de la Loire (LPPL)",
+    "name": "Laboratoire de psychologie des Pays de la Loire (LPPL)",
     "commentsName": "du LPPL",
     "commentsNameEN": "of LPPL",
-    "paysage": "6bgy6"
+    "paysage": "6bgy6",
+    "ror": "007hrfm61"
   },
   "201220073W": {
     "name": "Institut de recherche en énergie électrique de Nantes Atlantique (IREENA)",
@@ -1121,20 +1133,23 @@
     "name": "Droit et changement social (DCS)",
     "commentsName": "du DCS",
     "commentsNameEN": "of DCS",
-    "paysage": "1ix0v"
+    "paysage": "1ix0v",
+    "ror": "014nzh720"
   },
   "201420738K": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
     "commentsNameEN": "of CRESS",
     "startYear": 2016,
-    "paysage": "DAPPM"
+    "paysage": "DAPPM",
+    "ror": "00t9egj41"
   },
   "201420764N": {
     "name": "De la Molécule aux Nano-objets: Réactivité, Interactions et Spectroscopies (MONARIS)",
     "commentsName": "de MONARIS",
     "commentsNameEN": "of MONARIS",
-    "paysage": "2ldrn"
+    "paysage": "2ldrn",
+    "ror": "02jkg8m11"
   },
   "201420847D": {
     "name": "Laboratoire de biodiversité et biotechnologies microbiennes (LBBM)",
@@ -1158,7 +1173,8 @@
     "name": "Laboratoire de linguistique de Nantes (LLING)",
     "commentsName": "du LLING",
     "commentsNameEN": "of LLING",
-    "paysage": "i8N4t"
+    "paysage": "i8N4t",
+    "ror": "0009eec40"
   },
   "201722241F": {
     "name": "Laboratoire des Sciences du Numérique de Nantes (LS2N)",
@@ -1180,7 +1196,8 @@
     "name": "Centre atlantique de philosophie (CAPHI)",
     "commentsName": "de CAPHI",
     "commentsNameEN": "of CAPHI",
-    "paysage": "lbMta"
+    "paysage": "lbMta",
+    "ror": "059ynac98"
   },
   "201722470E": {
     "name": "Methods in patient-centered outcomes and health research (SPHERE)",
@@ -1192,7 +1209,8 @@
     "name": "Regenerative medicine and skeleton (RMeS)",
     "commentsName": "du RMeS",
     "commentsNameEN": "of RMeS",
-    "paysage": "NMb9s"
+    "paysage": "NMb9s",
+    "ror": "025agbr41"
   },
   "201722764Z": {
     "name": "The Enteric Nervous System in gut and brain disorders (TENS)",
@@ -1356,7 +1374,9 @@
   "GRAP": {
     "name": "Groupe de Recherche sur l'Alcool et les Pharmacodépendances",
     "commentsName": "du GRAP",
-    "commentsNameEN": "of the GRAP"
+    "commentsNameEN": "of the GRAP",
+    "paysage": "laymk",
+    "ror": "01c62av11"
   },
   "91D9w": {
     "name": "Université de Rennes",
