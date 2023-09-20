@@ -169,6 +169,13 @@
     "ror": "https://ror.org/051escj72",
     "paysage": "evv7S"
   },
+  "130008121": {
+    "name": "Ecole Normale Supérieure de Lyon (Ens Lyon)",
+    "commentsName": "de l'Ens Lyon",
+    "commentsNameEN": "of Ens Lyon",
+    "ror": "https://ror.org/04zmssz18",
+    "paysage": "kWved"
+  },
   "180036048": {
     "name": "Institut National de la Santé et de la Recherche Médicale (Inserm)",
     "commentsName": "de l'Inserm",
@@ -1274,7 +1281,7 @@
     "name": "Tous les IMTs",
     "commentsName": "des IMTs",
     "commentsNameEN": "of IMTs",
-    "alias": "18009202500097,18009202500121,18009202500139,193000635"
+    "alias": "18009202500121,18009202500139,18009202500097,193000635,18009202500063,18009202500162, 18009202500055"
   },
   "INSA": {
     "name": "INSA",
