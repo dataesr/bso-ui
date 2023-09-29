@@ -919,6 +919,48 @@ export default function getFetchOptions({
         },
       },
     }),
+    studiesDynamiqueOuvertureWithin2Years: ([studyType, yearMin, yearMax]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor_type: {
+          terms: {
+            field: 'lead_sponsor_type.keyword',
+          },
+          aggs: {
+            by_has_results_within_2y: {
+              terms: {
+                field: 'has_results_or_publications_within_2y',
+                missing: false,
+              },
+            },
+          },
+        },
+      },
+    }),
     studiesDynamiqueOuvertureSponsor: ([
       studyType,
       sponsor,

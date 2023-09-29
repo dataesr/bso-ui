@@ -72,7 +72,7 @@ Chart.defaultProps = {
   domain: 'health',
   hasComments: true,
   hasFooter: true,
-  id: 'general.dynamique.chart-evolution',
+  id: 'general.dynamique.chart-repartition',
   studyType: 'Interventional',
 };
 Chart.propTypes = {
