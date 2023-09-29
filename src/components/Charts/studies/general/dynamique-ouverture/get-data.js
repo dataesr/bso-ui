@@ -48,7 +48,6 @@ function useGetData(studyType, sponsor = '*') {
     const data1 = res[0].data.aggregations;
     const data2 = res[1].data.aggregations;
     const data4 = res[3].data.aggregations;
-    console.log(data4);
     const series1 = [
       { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
     ];
