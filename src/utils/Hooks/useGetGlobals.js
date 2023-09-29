@@ -63,14 +63,14 @@ export const GlobalsContextProvider = ({ children }) => {
     const { firstObservationYear, lastObservationYear } = getURLSearchParams();
     const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
-      .sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+      .sort((a, b) => b.substring(0, 4) - a.substring(0, 4))
       .filter(
-        (el) => parseInt(el.substr(0, 4), 10)
-            <= parseInt(lastObservationYear.substr(0, 4), 10),
+        (el) => parseInt(el.substring(0, 4), 10)
+            <= parseInt(lastObservationYear.substring(0, 4), 10),
       )
       .filter(
-        (el) => parseInt(el.substr(0, 4), 10)
-            >= parseInt(firstObservationYear.substr(0, 4), 10),
+        (el) => parseInt(el.substring(0, 4), 10)
+            >= parseInt(firstObservationYear.substring(0, 4), 10),
       );
     return newObservationSnaps.filter(
       (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
@@ -114,7 +114,7 @@ export const GlobalsContextProvider = ({ children }) => {
           beforeLast = responseObservationSnaps.sort().reverse()[1];
           // eslint-disable-next-line
         } else {
-          beforeLast = (parseInt(lastObs.substr(0, 4), 10) - 1).toString();
+          beforeLast = (parseInt(lastObs.substring(0, 4), 10) - 1).toString();
         }
         setBeforeLastObservationSnap(beforeLast);
         sessionStorage.setItem('__beforeLastObservationSnap__', beforeLast);

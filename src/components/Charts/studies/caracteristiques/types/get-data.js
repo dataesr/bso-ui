@@ -39,7 +39,7 @@ function useGetData(studyType, sponsorType = '*') {
     const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
 
     const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
       10,
     );
     const dataSortedByYear = res.data.aggregations.by_year.buckets

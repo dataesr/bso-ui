@@ -80,8 +80,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         let fillColor = '';
         let radius = 7;
         let showInLegend = true;
-        const delta = parseInt(lastObservationSnap.substr(0, 4), 10)
-          - parseInt(dates[index - 1].substr(0, 4), 10);
+        const delta = parseInt(lastObservationSnap.substring(0, 4), 10)
+          - parseInt(dates[index - 1].substring(0, 4), 10);
         switch (delta) {
         case 6:
           fillColor = orangeSoft25;

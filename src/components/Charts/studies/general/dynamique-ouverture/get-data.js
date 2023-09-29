@@ -15,7 +15,7 @@ function useGetData(studyType, sponsor = '*') {
   async function getDataAxios() {
     const queries = [];
     const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
       10,
     );
     const yearMin = currentYear - 11;
@@ -33,21 +33,15 @@ function useGetData(studyType, sponsor = '*') {
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const query3 = getFetchOptions({
-      key: 'studiesDynamiqueSponsor',
-      parameters: [studyType, yearMin, yearMax],
-      objectType: ['clinicalTrials'],
-    });
-    queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
-    const query4 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin2Years',
       parameters: [studyType, yearMin, yearMax],
       objectType: ['clinicalTrials'],
     });
-    queries.push(Axios.post(ES_STUDIES_API_URL, query4, HEADERS));
+    queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
     const data2 = res[1].data.aggregations;
-    const data4 = res[3].data.aggregations;
+    const data3 = res[3].data.aggregations;
     const series1 = [
       { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
     ];
@@ -60,7 +54,7 @@ function useGetData(studyType, sponsor = '*') {
     const academicWith = academic1?.by_has_result.buckets.find(
       (ele) => ele.key === 1,
     );
-    const academic2 = data4.by_sponsor_type.buckets.find(
+    const academic2 = data3.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
     const academicWith2 = academic2?.by_has_results_within_2y.buckets.find(
@@ -70,7 +64,7 @@ function useGetData(studyType, sponsor = '*') {
       (ele) => ele.key === 'industriel',
     );
     const indusWith = indus?.by_has_result.buckets.find((el) => el.key === 1);
-    const indus2 = data4.by_sponsor_type.buckets.find(
+    const indus2 = data3.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
     const indusWith2 = indus2?.by_has_results_within_2y.buckets.find(
