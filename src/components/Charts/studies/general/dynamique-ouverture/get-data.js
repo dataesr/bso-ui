@@ -41,7 +41,7 @@ function useGetData(studyType, sponsor = '*') {
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
     const data2 = res[1].data.aggregations;
-    const data3 = res[3].data.aggregations;
+    const data3 = res[2].data.aggregations;
     const series1 = [
       { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
     ];
