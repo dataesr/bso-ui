@@ -114,27 +114,27 @@ function useGetData(studyType, sponsorType = '*') {
     });
     const series = [
       {
-        name: intl.formatMessage({ id: 'app.studies.french-industriel' }),
-        data: dataFrenchIndus,
         color: getCSSValue('--blue-dark-125'),
+        data: dataFrenchIndus,
+        name: intl.formatMessage({ id: 'app.studies.french-industriel' }),
         stack: 'fr',
       },
       {
-        name: intl.formatMessage({ id: 'app.studies.french-academique' }),
-        data: dataFrenchAcademic,
         color: getCSSValue('--blue-soft-100'),
+        data: dataFrenchAcademic,
+        name: intl.formatMessage({ id: 'app.studies.french-academique' }),
         stack: 'fr',
       },
       {
-        name: intl.formatMessage({ id: 'app.studies.notfrench-industriel' }),
-        data: dataNotFrenchIndus,
         color: getCSSValue('--green-warm-175'),
+        data: dataNotFrenchIndus,
+        name: intl.formatMessage({ id: 'app.studies.notfrench-industriel' }),
         stack: 'international',
       },
       {
-        name: intl.formatMessage({ id: 'app.studies.notfrench-academique' }),
-        data: dataNotFrenchAcademic,
         color: getCSSValue('--green-warm-100'),
+        data: dataNotFrenchAcademic,
+        name: intl.formatMessage({ id: 'app.studies.notfrench-academique' }),
         stack: 'international',
       },
     ];
@@ -169,7 +169,11 @@ function useGetData(studyType, sponsorType = '*') {
         },
       ],
     };
-    return { sponsorTypes, dataGraph1, dataGraph2 };
+    return {
+      dataGraph1,
+      dataGraph2,
+      sponsorTypes,
+    };
   }
 
   useEffect(() => {

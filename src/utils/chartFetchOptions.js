@@ -951,10 +951,18 @@ export default function getFetchOptions({
             field: 'lead_sponsor_type.keyword',
           },
           aggs: {
-            by_has_results_within_2y: {
+            by_has_results_within_2_years: {
               terms: {
                 field: 'has_results_or_publications_within_2y',
                 missing: false,
+              },
+              aggs: {
+                by_completion_year: {
+                  terms: {
+                    field: 'study_completion_year',
+                    size: 30,
+                  },
+                },
               },
             },
           },
