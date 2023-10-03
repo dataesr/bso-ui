@@ -18,8 +18,10 @@ function useGetData(studyType, sponsor = '*') {
       process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
       10,
     );
-    const yearMin = currentYear - 11;
     const yearMax = currentYear - 1;
+    const yearMin = yearMax - 10;
+    const yearMax2 = currentYear - 2;
+    const yearMin2 = yearMax2 - 10;
     const query1 = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
       parameters: [studyType, yearMin, yearMax],
@@ -34,7 +36,7 @@ function useGetData(studyType, sponsor = '*') {
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const query3 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin2Years',
-      parameters: [studyType, yearMin, yearMax],
+      parameters: [studyType, yearMin2, yearMax2],
       objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
