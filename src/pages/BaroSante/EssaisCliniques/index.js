@@ -108,6 +108,20 @@ function EssaisCliniques() {
                     domain='health'
                     studyType='Interventional'
                   />
+
+                  <BSOChart
+                    id='general.dynamique.chart-evolution-within-2-years'
+                    domain='health'
+                    studyType='Interventional'
+                    isDisplayed={!isInProduction()}
+                  />
+
+                  <BSOChart
+                    id='general.dynamique.chart-evolution-within-2-years-by-year'
+                    domain='health'
+                    studyType='Interventional'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
 
                 <QuestionSection

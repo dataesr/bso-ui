@@ -15,7 +15,7 @@ function useGetData(observationSnaps, domain = '') {
   async function GetData() {
     const queries = [];
     observationSnaps
-      ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+      ?.sort((a, b) => b.substring(0, 4) - a.substring(0, 4))
       .forEach((oneDate) => {
         const query = getFetchOptions({
           key: 'publicationRateAffiliation',
@@ -59,7 +59,7 @@ function useGetData(observationSnaps, domain = '') {
         bsoDomain,
         data: observationSnaps
           .slice(0) // make a copy before sorting in ascending order !
-          .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
+          .sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
           .map((obs) => ({
             name: getObservationLabel(obs, intl),
             bsoDomain,

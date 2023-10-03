@@ -3,7 +3,6 @@ import '../../../graph.scss';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
-import HCSankeyModule from 'highcharts/modules/sankey';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
@@ -23,20 +22,19 @@ import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
-HCSankeyModule(Highcharts);
 
 const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { allData, isLoading, isError } = useGetData(studyType);
+  const { allData, isError, isLoading } = useGetData(studyType);
+  const { dataGraph3 } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    allData,
+    dataGraph3,
     studyType,
   );
 
@@ -72,7 +70,7 @@ Chart.defaultProps = {
   domain: 'health',
   hasComments: true,
   hasFooter: true,
-  id: 'general.dynamique.chart-repartition',
+  id: 'general.dynamique.chart-evolution-within-2-years-by-year',
   studyType: 'Interventional',
 };
 Chart.propTypes = {

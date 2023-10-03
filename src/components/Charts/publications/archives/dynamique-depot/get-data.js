@@ -25,7 +25,7 @@ function useGetData(observationSnap, domain) {
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     let tab = [];
     const nbHisto = 5;
-    const lastPublicationYear = observationSnap.substr(0, 4);
+    const lastPublicationYear = observationSnap.substring(0, 4);
     res.data.aggregations.by_repository.buckets.forEach(
       (archive, archiveIndex) => {
         if (archive.key !== 'N/A') {

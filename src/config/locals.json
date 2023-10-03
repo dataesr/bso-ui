@@ -646,7 +646,16 @@
     "commentsName": "de l'Université Sorbonne Paris Nord",
     "commentsNameEN": "of the university of Sorbonne Paris Nord",
     "ror": "https://ror.org/0199hds37",
-    "paysage": "cqyN7"
+    "paysage": "cqyN7",
+    "scale": "university"
+  },
+  "199411117": {
+    "name": "Université Paris-Est Créteil Val-de-Marne (UPEC)",
+    "commentsName": "de l'UPEC",
+    "commentsNameEN": "of UPEC",
+    "ror": "05ggc9x40",
+    "paysage": "vb71K",
+    "scale": "university"
   },
   "199411684F": {
     "name": "Physico-chimie Curie (PCC)",
@@ -675,7 +684,8 @@
     "commentsName": "de SUBATECH",
     "commentsNameEN": "of SUBATECH",
     "ror": "https://ror.org/01kxesq83",
-    "paysage": "AaK4r"
+    "paysage": "AaK4r",
+    "scale": "laboratory"
   },
   "199612297N": {
     "name": "Institut des matériaux Jean Rouxel (IMN)",
@@ -696,21 +706,24 @@
     "commentsName": "de l'ESO",
     "commentsNameEN": "of ESO",
     "paysage": "bOXO2",
-    "ror": "https://ror.org/03237mt20"
+    "ror": "https://ror.org/03237mt20",
+    "scale": "laboratory"
   },
   "199612374X": {
     "name": "Laboratoire de recherche en Hydrodynamique, Énergétique et Environnement Atmosphérique (LHEAA)",
     "commentsName": "du LHEAA",
     "commentsNameEN": "of LHEAA",
     "ror": "https://ror.org/057axh226",
-    "paysage": "XD8Mr"
+    "paysage": "XD8Mr",
+    "scale": "laboratory"
   },
   "199612380D": {
     "name": "Laboratoire de Thermique et Energie de Nantes (LTeN)",
     "commentsName": "du LTeN",
     "commentsNameEN": "of LTeN",
     "ror": "https://ror.org/021fdyt09",
-    "paysage": "3D2Dj"
+    "paysage": "3D2Dj",
+    "scale": "laboratory"
   },
   "199612400A": {
     "name": "Laboratoire de mathématiques Jean Leray (LMJL)",
@@ -730,7 +743,8 @@
     "commentsName": "du CREN",
     "commentsNameEN": "of CREN",
     "paysage": "hzkjr",
-    "ror": "https://ror.org/00b1crx81"
+    "ror": "https://ror.org/00b1crx81",
+    "scale": "laboratory"
   },
   "199712620K": {
     "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
@@ -738,7 +752,8 @@
     "commentsNameEN": "of LCMCP",
     "startYear": 2017,
     "ror": "https://ror.org/028ta1f94",
-    "paysage": "pC839"
+    "paysage": "pC839",
+    "scale": "laboratory"
   },
   "199712651U": {
     "name": "Laboratoire de recherche en informatique de Sorbonne Université (LIP6)",
@@ -746,7 +761,8 @@
     "commentsNameEN": "of LIP6",
     "startYear": 2017,
     "ror": "https://ror.org/05krcen59",
-    "paysage": "R6IMD"
+    "paysage": "R6IMD",
+    "scale": "laboratory"
   },
   "199712666K": {
     "name": "Laboratoire d'océanographie microbienne (LOMIC)",
@@ -754,7 +770,8 @@
     "commentsNameEN": "of LOMIC",
     "startYear": 2017,
     "ror": "https://ror.org/05nk54s89",
-    "paysage": "KQCDr"
+    "paysage": "KQCDr",
+    "scale": "laboratory"
   },
   "199712668M": {
     "name": "Laboratoire d'imagerie biomédicale (LIB)",
@@ -762,35 +779,40 @@
     "commentsNameEN": "of LIB",
     "startYear": 2017,
     "ror": "https://ror.org/02b9znm90",
-    "paysage": "e4it1"
+    "paysage": "e4it1",
+    "scale": "laboratory"
   },
   "199517454Y": {
     "name": "Laboratoire d'Analyse et d'Architechure des Systèmes du CNRS (LAAS-CNRS)",
     "commentsName": "du LAAS-CNRS",
     "commentsNameEN": "of LAAS-CNRS",
     "ror": "https://ror.org/03vcm6439",
-    "paysage": "66iey"
+    "paysage": "66iey",
+    "scale": "laboratory"
   },
   "199819322R": {
     "name": "Ambiances architectures urbanités (AAU)",
     "commentsName": "de l'AAU",
     "commentsNameEN": "of AAU",
     "ror": "https://ror.org/05hz99a17",
-    "paysage": "1BroQ"
+    "paysage": "1BroQ",
+    "scale": "laboratory"
   },
   "199914342Y": {
     "name": "Laboratoire matériaux et durabilité des constructions (LMDC)",
     "commentsName": "du LMDC",
     "commentsNameEN": "of LMDC",
     "ror": "https://ror.org/02mkbvg40",
-    "paysage": "KME8x"
+    "paysage": "KME8x",
+    "scale": "laboratory"
   },
   "200012185Z": {
     "name": "Laboratoire de planétologie et géosciences (LPG)",
     "commentsName": "du LPG",
     "commentsNameEN": "of LPG",
     "ror": "https://ror.org/04fm0sh33",
-    "paysage": "8bClX"
+    "paysage": "8bClX",
+    "scale": "laboratory"
   },
   "200112415V": {
     "name": "Institut de science et d'ingénierie supramoléculaires (ISIS)",
@@ -804,7 +826,8 @@
     "commentsName": "du LOV",
     "commentsNameEN": "of LOV",
     "paysage": "GI1zy",
-    "ror": "https://ror.org/05r5y6641"
+    "ror": "https://ror.org/05r5y6641",
+    "scale": "laboratory"
   },
   "200112483U": {
     "name": "Institut d'Astrophysique de Paris (IAP)",

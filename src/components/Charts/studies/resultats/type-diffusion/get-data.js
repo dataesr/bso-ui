@@ -32,7 +32,7 @@ function useGetData(studyType, sponsorType = '*') {
     }));
 
     const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
       10,
     );
     const yearMin = currentYear - 11;

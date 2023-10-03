@@ -126,7 +126,7 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
     });
     const res3 = await Axios.post(ES_STUDIES_API_URL, query3, HEADERS);
     const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION.substr(0, 4),
+      process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
       10,
     );
     const dataSortedByYear3 = res3.data.aggregations.by_year.buckets
