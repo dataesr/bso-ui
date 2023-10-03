@@ -144,6 +144,12 @@ const ChartEvolutionNombreStudies = lazy(() => import(
 const ChartEvolutionStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
 ));
+const ChartEvolutionWithin2YearsStudies = lazy(() => import(
+  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-2-years'
+));
+const ChartEvolutionWithin2YearsByYearStudies = lazy(() => import(
+  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-2-years-by-year'
+));
 const ChartRepartitionStudies = lazy(() => import('../components/Charts/studies/general/trajectoires/chart-repartition'));
 const ChartDynamiqueNombreStudies = lazy(() => import(
   '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-evolution-nombre'
@@ -352,6 +358,10 @@ const chartComponents = {
   'publi.publishers.couts-publication.chart-depenses-estimees':
     ChartDepensesEstimeesPublishers,
   'general.dynamique.chart-evolution': ChartEvolutionStudies,
+  'general.dynamique.chart-evolution-within-2-years':
+    ChartEvolutionWithin2YearsStudies,
+  'general.dynamique.chart-evolution-within-2-years-by-year':
+    ChartEvolutionWithin2YearsByYearStudies,
   'general.trajectoires.chart-repartition': ChartRepartitionStudies,
   'caracteristiques.quand.chart-evolution-temporalites':
     ChartEvolutionTemporalitesStudies,

@@ -21,7 +21,7 @@ function useGetData(observationSnaps, domain = '') {
       // Pour chaque date d'observation, récupération des données associées
       const queries = [];
       observationYears
-        ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+        ?.sort((a, b) => b.substring(0, 4) - a.substring(0, 4))
         .forEach((oneDate) => {
           const query = getFetchOptions({
             key: 'publicationRateDiscipline',
@@ -63,7 +63,7 @@ function useGetData(observationSnaps, domain = '') {
           bsoDomain,
           data: observationYears
             .slice(0) // make a copy before sorting in ascending order !
-            .sort((a, b) => a.substr(0, 4) - b.substr(0, 4))
+            .sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
             .map((obs) => {
               const dataByDisciplineByObservationDate = dataByDiscipline.find(
                 (item) => item.observation_date === obs,

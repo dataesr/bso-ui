@@ -319,9 +319,8 @@ function getLocalAffiliation(urlSearchParams) {
   ) {
     return bsoLocalAffiliation;
   }
-  // If bsoLocalAffiliation is the grid, the paysage or the ror of a structure in config
+  // If bsoLocalAffiliation is the Paysage or the RoR of a structure in config
   const matched = Object.keys(locals).filter((key) => [
-    locals[key]?.grid?.toLowerCase(),
     locals[key]?.paysage?.toLowerCase(),
     locals[key]?.ror?.toLowerCase(),
   ].includes(bsoLocalAffiliation));

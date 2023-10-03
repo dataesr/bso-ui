@@ -16,7 +16,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
   async function getDataByObservationSnaps(observationYears) {
     const queries = [];
     observationYears
-      ?.sort((a, b) => b.substr(0, 4) - a.substr(0, 4))
+      ?.sort((a, b) => b.substring(0, 4) - a.substring(0, 4))
       .forEach((oneDate) => {
         const allOaHostType = '*';
         const query = getFetchOptions({

@@ -60,6 +60,7 @@ const SubmissionForm = () => {
   const [name, setName] = useState('');
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
+  const [ror, setRor] = useState();
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -116,6 +117,7 @@ const SubmissionForm = () => {
           <p>Nom de la structure: ${name}</p>
           <p>Acronyme de la structure: ${acronym}</p>
           <p>Siren ou RNSR de la structure: ${id}</p>
+          <p>RoR de la structure: ${ror}</p>
           </body></html>`,
         attachment: [{ content, name: 'bso.csv' }],
       },
@@ -375,6 +377,12 @@ const SubmissionForm = () => {
                 label='Siren ou RNSR de la structure'
                 onChange={(e) => setId(e.target.value)}
                 value={id}
+              />
+              <TextInput
+                hint='Utiliser https://ror.org/ pour trouver le RoR de votre structure'
+                label='RoR de la structure'
+                onChange={(e) => setRor(e.target.value)}
+                value={ror}
               />
               <File
                 hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."

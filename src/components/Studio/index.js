@@ -125,7 +125,7 @@ const Studio = () => {
       <Row gutters>
         <Col n='12 md-6'>
           <TextInput
-            hint="Si périmètre ad-hoc, identifiant communiqué par l'équipe BSO ou grid ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
+            hint="Si périmètre ad-hoc, identifiant communiqué par l'équipe BSO ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
             label="Identifiant de l'établissement"
             message='Merci de saisir un identifiant'
             messageType={bsoLocalAffiliation === '' ? 'error' : ''}

@@ -243,13 +243,13 @@ const tree = [
         value: 'disciplines',
         children: [
           {
+            key: 'app.national-software.disciplines.voies-ouverture.chart-software-used.title',
+            value: 'software.disciplines.voies-ouverture.chart-software-used',
+          },
+          {
             key: 'app.national-software.disciplines.voies-ouverture.chart-software-created.title',
             value:
               'software.disciplines.voies-ouverture.chart-software-created',
-          },
-          {
-            key: 'app.national-software.disciplines.voies-ouverture.chart-software-used.title',
-            value: 'software.disciplines.voies-ouverture.chart-software-used',
           },
           {
             key: 'app.national-software.disciplines.voies-ouverture.chart-software-shared.title',
