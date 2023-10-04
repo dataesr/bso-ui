@@ -178,21 +178,21 @@ function useGetData(studyType, sponsor = '*') {
     const allTypesData3 = [];
 
     categories3.forEach((year) => {
-      const academicDataWithResultsForYear = academic3.by_has_results_within_2_years.buckets
-        .find((item) => item.key === 1)
-        .by_completion_year.buckets.find((item) => item.key === year)
+      const academicDataWithResultsForYear = academic3?.by_has_results_within_2_years?.buckets
+        ?.find((item) => item.key === 1)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
         ?.doc_count ?? 0;
-      const academicDataWithoutResultsForYear = academic3.by_has_results_within_2_years.buckets
-        .find((item) => item.key === 0)
-        .by_completion_year.buckets.find((item) => item.key === year)
+      const academicDataWithoutResultsForYear = academic3?.by_has_results_within_2_years?.buckets
+        ?.find((item) => item.key === 0)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
         ?.doc_count ?? 0;
-      const industrialDataWithResultsForYear = industrial3.by_has_results_within_2_years.buckets
-        .find((item) => item.key === 1)
-        .by_completion_year.buckets.find((item) => item.key === year)
+      const industrialDataWithResultsForYear = industrial3?.by_has_results_within_2_years?.buckets
+        ?.find((item) => item.key === 1)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
         ?.doc_count ?? 0;
-      const industrialDataWithoutResultsForYear = industrial3.by_has_results_within_2_years.buckets
-        .find((item) => item.key === 0)
-        .by_completion_year.buckets.find((item) => item.key === year)
+      const industrialDataWithoutResultsForYear = industrial3?.by_has_results_within_2_years?.buckets
+        ?.find((item) => item.key === 0)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
         ?.doc_count ?? 0;
       academicData3.push({
         year,
