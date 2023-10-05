@@ -222,6 +222,7 @@ export default function getFetchOptions({
         by_publication_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
         },
       },
@@ -243,6 +244,7 @@ export default function getFetchOptions({
         by_publication_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
         },
       },
