@@ -53,6 +53,7 @@ export default function getFetchOptions({
         by_publication_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_is_oa: {
@@ -128,6 +129,7 @@ export default function getFetchOptions({
         by_publication_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_author_useful_rank_fr: {
@@ -200,7 +202,12 @@ export default function getFetchOptions({
             size: 150,
           },
           aggs: {
-            by_year: { terms: { field: 'year' } },
+            by_year: {
+              terms: {
+                field: 'year',
+                size: 15,
+              },
+            },
           },
         },
       },
@@ -261,6 +268,7 @@ export default function getFetchOptions({
             by_year: {
               terms: {
                 field: 'year',
+                size: 15,
               },
               aggs: {
                 by_is_oa: {
@@ -511,6 +519,7 @@ export default function getFetchOptions({
         by_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_oa_colors: {
@@ -644,6 +653,7 @@ export default function getFetchOptions({
         by_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_oa_colors: {
@@ -673,6 +683,7 @@ export default function getFetchOptions({
         by_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_oa_colors: {
@@ -710,6 +721,7 @@ export default function getFetchOptions({
         by_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_oa_colors: {
@@ -734,6 +746,7 @@ export default function getFetchOptions({
         by_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_predatory: {
@@ -1433,6 +1446,7 @@ export default function getFetchOptions({
         by_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_type: {
@@ -1511,6 +1525,7 @@ export default function getFetchOptions({
         by_publication_year: {
           terms: {
             field: 'year',
+            size: 15,
           },
           aggs: {
             by_is_oa: {
@@ -1536,6 +1551,7 @@ export default function getFetchOptions({
             by_publication_year: {
               terms: {
                 field: 'year',
+                size: 15,
               },
               aggs: {
                 by_is_oa: {
