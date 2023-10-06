@@ -170,9 +170,9 @@
     "paysage": "evv7S"
   },
   "130008121": {
-    "name": "Ecole Normale Supérieure de Lyon (Ens Lyon)",
-    "commentsName": "de l'Ens Lyon",
-    "commentsNameEN": "of Ens Lyon",
+    "name": "Ecole normale supérieure de Lyon (ENS de Lyon)",
+    "commentsName": "de l'ENS de Lyon",
+    "commentsNameEN": "of ENS of Lyon",
     "ror": "https://ror.org/04zmssz18",
     "paysage": "kWved"
   },
@@ -976,6 +976,12 @@
     "startYear": 2016,
     "ror": "https://ror.org/055swm364",
     "paysage": "po3e9"
+  },
+  "200919236Z": {
+    "name": "Laboratoire de Psychologie des Cognitions (LPC)",
+    "commentsName": "du LPC",
+    "commentsNameEN": "of LPC",
+    "paysage": "2fr5a"
   },
   "200919895R": {
     "name": "Laboratoire national des champs magnétiques intenses (LNCMI)",
