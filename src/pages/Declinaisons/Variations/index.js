@@ -19,7 +19,7 @@ function Variations() {
     </Row>
   );
   return (
-    <div className='variations'>
+    <div className='variations no-arrow-link'>
       <Banner
         backgroundColor='blue-soft-50'
         textColor='blue-dark-150'
@@ -412,6 +412,19 @@ function Variations() {
           <Row gutters>
             <Col n='12'>
               <h4 className='p-0'>
+                Baromètres de la Science Ouverte sollicités mais non (encore)
+                publiés
+              </h4>
+            </Col>
+            <Col n='12 lg-8'>
+              <ul className='style-disc'>
+                <li>ENS de Lyon</li>
+              </ul>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12'>
+              <h4 className='p-0'>
                 Baromètres de la Science Ouverte mis en place par les
                 établissements (ancienne version du BSO)
               </h4>
@@ -429,9 +442,6 @@ function Variations() {
                 </li>
               </ul>
             </Col>
-            <p>
-              <br />
-            </p>
           </Row>
           <Row gutters>
             <Col n='12'>
