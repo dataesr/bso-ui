@@ -73,4 +73,9 @@ html {
   .fr-card--sm .fr-card__desc {
     margin: 0 0 1rem 0;
   }
+
+  .no-arrow-link [class^=fr-link][target=_blank]::after,
+  .no-arrow-link [target=_blank]::after {
+    display: none;
+  }
 }
