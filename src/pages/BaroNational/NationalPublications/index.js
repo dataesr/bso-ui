@@ -170,7 +170,7 @@ export default function NationalPublications() {
               </GraphContent>
             </GraphItem>
 
-            {/* Les disciplines */}
+            {/* Disciplines */}
             <GraphItem
               paths={['/publications/disciplines', '/publications/fields']}
               mainLabel={intl.formatMessage({
@@ -228,7 +228,7 @@ export default function NationalPublications() {
               </GraphContent>
             </GraphItem>
 
-            {/* Les éditeurs */}
+            {/* Editeurs */}
             <GraphItem
               paths={['/publications/editeurs', '/publications/publishers']}
               mainLabel={intl.formatMessage({ id: 'app.publi.editeurs' })}
@@ -384,7 +384,7 @@ export default function NationalPublications() {
               </GraphContent>
             </GraphItem>
 
-            {/* Les archives ouvertes */}
+            {/* Archives ouvertes */}
             <GraphItem
               paths={['/publications/archives', '/publications/repositories']}
               mainLabel={intl.formatMessage({ id: 'app.publi.archives' })}
@@ -477,7 +477,7 @@ export default function NationalPublications() {
               </GraphContent>
             </GraphItem>
 
-            {/* Les financements */}
+            {/* Financements */}
             <GraphItem
               paths={['/publications/financements', '/publications/fundings']}
               mainLabel={intl.formatMessage({
@@ -516,6 +516,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-taux' />
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
+                  <BSOChart id='publi.others.retractations.chart-by-year' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

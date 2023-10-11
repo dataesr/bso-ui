@@ -2049,6 +2049,28 @@ export default function getFetchOptions({
         },
       },
     }),
+    retractations: () => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'retraction_details.is_retracted': true,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+            size: 15,
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
