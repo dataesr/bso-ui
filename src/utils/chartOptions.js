@@ -4152,4 +4152,25 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.others.retractations.chart-by-field': {
+    getOptions: (id, intl, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.discipline' }) },
+        type: 'category',
+      };
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
 };

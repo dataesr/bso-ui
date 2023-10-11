@@ -2069,6 +2069,11 @@ export default function getFetchOptions({
             size: 15,
           },
         },
+        by_field: {
+          terms: {
+            field: 'bso_classification.keyword',
+          },
+        },
       },
     }),
   };

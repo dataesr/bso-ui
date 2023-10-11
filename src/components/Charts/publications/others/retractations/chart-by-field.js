@@ -24,12 +24,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
-  const { dataGraph1 } = data;
+  const { dataGraph2 } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    dataGraph1,
+    dataGraph2,
   );
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph1}
+      isLoading={isLoading || !dataGraph2}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -63,7 +63,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.others.retractations.chart-by-year',
+  id: 'publi.others.retractations.chart-by-field',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

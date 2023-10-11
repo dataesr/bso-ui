@@ -282,6 +282,9 @@ const ChartInterationalCollaborations = lazy(() => import(
 const ChartRetractationsByYear = lazy(() => import(
   '../components/Charts/publications/others/retractations/chart-by-year'
 ));
+const ChartRetractationsByField = lazy(() => import(
+  '../components/Charts/publications/others/retractations/chart-by-field'
+));
 
 const chartComponents = {
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture':
@@ -446,6 +449,7 @@ const chartComponents = {
   'orcid.general.present.chart-indicator-idhal-same': ChartOrcidIdhalSame,
   // Other
   'publi.others.retractations.chart-by-year': ChartRetractationsByYear,
+  'publi.others.retractations.chart-by-field': ChartRetractationsByField,
 };
 
 export default chartComponents;

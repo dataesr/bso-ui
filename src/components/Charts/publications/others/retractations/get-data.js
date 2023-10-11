@@ -1,13 +1,16 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { capitalize } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, domain = '', isPercent = false) {
   const [data, setData] = useState({});
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
+  const intl = useIntl();
 
   const getDataByObservationSnaps = useCallback(async () => {
     const query = getFetchOptions({
@@ -15,7 +18,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       domain,
     });
     const response = await Axios.post(ES_API_URL, query, HEADERS);
-    const dataGraph = [
+    const dataGraph1 = [
       {
         name: 'Retractations',
         data: response?.data?.aggregations?.by_year?.buckets
@@ -24,10 +27,29 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       },
     ];
 
+    const dataGraph2 = [
+      {
+        name: 'Retractations',
+        data: response?.data?.aggregations?.by_field?.buckets
+          ?.sort((a, b) => a.key - b.key)
+          .map((item) => ({
+            name: capitalize(
+              intl.formatMessage({
+                id: `app.discipline.${item.key
+                  .replace(/\n/g, '')
+                  .replace('  ', ' ')}`,
+              }),
+            ),
+            y: item.doc_count,
+          })),
+      },
+    ];
+
     return {
-      dataGraph,
+      dataGraph1,
+      dataGraph2,
     };
-  }, [domain]);
+  }, [domain, intl]);
 
   useEffect(() => {
     async function getData() {
