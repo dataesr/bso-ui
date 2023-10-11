@@ -4132,19 +4132,26 @@ export const chartOptions = {
     },
   },
   'publi.others.retractations.chart-by-year': {
-    getOptions: (id, intl, data, dataTitle) => {
+    getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
-        type: 'category',
+        categories,
       };
-      options.legend.enabled = false;
+      options.yAxis = {
+        stackLabels: {
+          enabled: true,
+        },
+      };
+      options.legend.enabled = true;
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           dataLabels: {
             enabled: true,
           },
+          stacking: 'normal',
         },
       };
       options.series = data;
@@ -4153,19 +4160,26 @@ export const chartOptions = {
     },
   },
   'publi.others.retractations.chart-by-field': {
-    getOptions: (id, intl, data, dataTitle) => {
+    getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.discipline' }) },
-        type: 'category',
+        categories,
       };
-      options.legend.enabled = false;
+      options.yAxis = {
+        stackLabels: {
+          enabled: true,
+        },
+      };
+      options.legend.enabled = true;
+      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           dataLabels: {
             enabled: true,
           },
+          stacking: 'normal',
         },
       };
       options.series = data;

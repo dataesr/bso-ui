@@ -2049,7 +2049,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    retractations: () => ({
+    retractations: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
@@ -2068,10 +2068,24 @@ export default function getFetchOptions({
             field: 'year',
             size: 15,
           },
+          aggs: {
+            by_oa: {
+              terms: {
+                field: `oa_details.${observationSnap}.is_oa`,
+              },
+            },
+          },
         },
         by_field: {
           terms: {
             field: 'bso_classification.keyword',
+          },
+          aggs: {
+            by_oa: {
+              terms: {
+                field: `oa_details.${observationSnap}.is_oa`,
+              },
+            },
           },
         },
       },
