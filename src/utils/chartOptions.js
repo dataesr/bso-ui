@@ -4187,4 +4187,35 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.others.retractations.chart-by-publisher': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publishers' }) },
+        categories,
+      };
+      options.yAxis = {
+        title: {
+          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
+        },
+        stackLabels: {
+          enabled: true,
+        },
+      };
+      options.legend.enabled = true;
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+          },
+          stacking: 'normal',
+        },
+      };
+      options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
 };

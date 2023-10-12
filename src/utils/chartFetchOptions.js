@@ -2088,6 +2088,18 @@ export default function getFetchOptions({
             },
           },
         },
+        by_publisher: {
+          terms: {
+            field: 'publisher_normalized.keyword',
+          },
+          aggs: {
+            by_oa: {
+              terms: {
+                field: `oa_details.${observationSnap}.is_oa`,
+              },
+            },
+          },
+        },
       },
     }),
   };

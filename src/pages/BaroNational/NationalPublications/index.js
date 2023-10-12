@@ -518,6 +518,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
                   <BSOChart id='publi.others.retractations.chart-by-year' />
                   <BSOChart id='publi.others.retractations.chart-by-field' />
+                  <BSOChart id='publi.others.retractations.chart-by-publisher' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

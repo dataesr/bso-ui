@@ -97,11 +97,53 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       },
     ];
 
+    const buckets3 = response?.data?.aggregations?.by_publisher?.buckets?.sort(
+      (a, b) => a.key - b.key,
+    );
+    const categories3 = [];
+    const oaData3 = [];
+    const closedData3 = [];
+    buckets3.forEach((item) => {
+      categories3.push(
+        capitalize(
+          intl.formatMessage({
+            id: item.key,
+          }),
+        ),
+      );
+      oaData3.push(
+        item.by_oa.buckets.find((item3) => item3.key === 1)?.doc_count ?? 0,
+      );
+      closedData3.push(
+        item.by_oa.buckets.find((item3) => item3.key === 0)?.doc_count ?? 0,
+      );
+    });
+    const dataGraph3 = [
+      {
+        color: getCSSValue('--blue-soft-175'),
+        data: closedData3,
+        name: intl.formatMessage({
+          id: 'app.type-hebergement.closed',
+          default: 'Accès fermé',
+        }),
+      },
+      {
+        color: getCSSValue('--orange-soft-100'),
+        data: oaData3,
+        name: intl.formatMessage({
+          id: 'app.type-hebergement.open',
+          default: 'Accès ouvert',
+        }),
+      },
+    ];
+
     return {
       categories1,
       categories2,
+      categories3,
       dataGraph1,
       dataGraph2,
+      dataGraph3,
     };
   }, [domain, intl, lastObservationSnap]);
 
