@@ -4139,13 +4139,20 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
         categories,
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 3);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.publi.percent-publications-retracted',
       });
-      options.legend.enabled = false;
+      options.legend.enabled = true;
+      options.legend.reversed = true;
       options.plotOptions = {
         series: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+        column: {
+          stacking: 'normal',
           dataLabels: {
             enabled: true,
             formatter() {

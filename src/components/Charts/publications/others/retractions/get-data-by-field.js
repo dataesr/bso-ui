@@ -1,8 +1,10 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { capitalize } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 
 function useGetData(observationSnaps, domain = '', isPercent = false) {
@@ -10,6 +12,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const { lastObservationSnap } = useGlobals();
+  const intl = useIntl();
 
   const getDataByObservationSnaps = useCallback(async () => {
     const query = getFetchOptions({
@@ -22,7 +25,13 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
     const buckets = response?.data?.aggregations?.by_field?.buckets?.sort(
       (a, b) => b.doc_count - a.doc_count,
     );
-    const categories = buckets.map((item) => item.key);
+    const categories = buckets.map((item) => capitalize(
+      intl.formatMessage({
+        id: `app.discipline.${item.key
+          .replace(/\n/g, '')
+          .replace('  ', ' ')}`,
+      }),
+    ));
     const dataGraph = [
       {
         data: buckets.map(
@@ -38,7 +47,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       categories,
       dataGraph,
     };
-  }, [domain, lastObservationSnap]);
+  }, [domain, intl, lastObservationSnap]);
 
   useEffect(() => {
     async function getData() {

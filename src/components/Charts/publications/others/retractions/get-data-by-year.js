@@ -1,8 +1,10 @@
 import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 
 function useGetData(observationSnaps, domain = '', isPercent = false) {
@@ -10,6 +12,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const { lastObservationSnap } = useGlobals();
+  const intl = useIntl();
 
   const getDataByObservationSnaps = useCallback(async () => {
     const query = getFetchOptions({
@@ -23,14 +26,25 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       (a, b) => a.key - b.key,
     );
     const categories = buckets.map((item) => item.key);
+    const closedData = [];
+    const oaData = [];
+    buckets.forEach((item) => {
+      const retracted = item.by_retraction.buckets.find((i2) => i2.key === 1);
+      const closedPubs = retracted.by_oa.buckets.find((i2) => i2.key === 0)?.doc_count ?? 0;
+      closedData.push((closedPubs / item.doc_count) * 100);
+      const oaPubs = retracted.by_oa.buckets.find((i2) => i2.key === 0)?.doc_count ?? 0;
+      oaData.push((oaPubs / item.doc_count) * 100);
+    });
     const dataGraph = [
       {
-        data: buckets.map(
-          (item) => ((item.by_retraction.buckets.find((i2) => i2.key === 1)
-            ?.doc_count ?? 0)
-              / item.doc_count)
-            * 100,
-        ),
+        color: getCSSValue('--blue-soft-175'),
+        data: closedData,
+        name: intl.formatMessage({ id: 'app.type-hebergement.closed' }),
+      },
+      {
+        color: getCSSValue('--orange-soft-100'),
+        data: oaData,
+        name: intl.formatMessage({ id: 'app.type-hebergement.open' }),
       },
     ];
 
@@ -38,7 +52,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       categories,
       dataGraph,
     };
-  }, [domain, lastObservationSnap]);
+  }, [domain, intl, lastObservationSnap]);
 
   useEffect(() => {
     async function getData() {
