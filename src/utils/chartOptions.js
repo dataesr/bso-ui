@@ -4139,7 +4139,6 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
         categories,
       };
-
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.publi.percent-publications-retracted',
@@ -4168,22 +4167,19 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.discipline' }) },
         categories,
       };
-      options.yAxis = {
-        stackLabels: {
-          enabled: true,
-        },
-        title: {
-          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
-        },
-      };
-      options.legend.enabled = true;
-      options.legend.reversed = true;
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.percent-publications-retracted',
+      });
+      options.legend.enabled = false;
       options.plotOptions = {
-        column: {
+        series: {
           dataLabels: {
             enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+            },
           },
-          stacking: 'normal',
         },
       };
       options.series = data;
@@ -4199,22 +4195,19 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publishers' }) },
         categories,
       };
-      options.yAxis = {
-        stackLabels: {
-          enabled: true,
-        },
-        title: {
-          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
-        },
-      };
-      options.legend.enabled = true;
-      options.legend.reversed = true;
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.percent-publications-retracted',
+      });
+      options.legend.enabled = false;
       options.plotOptions = {
-        column: {
+        series: {
           dataLabels: {
             enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+            },
           },
-          stacking: 'normal',
         },
       };
       options.series = data;

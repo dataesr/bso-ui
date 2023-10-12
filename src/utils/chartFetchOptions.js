@@ -2049,59 +2049,6 @@ export default function getFetchOptions({
         },
       },
     }),
-    retractions: ([observationSnap]) => ({
-      size: 0,
-      query: {
-        bool: {
-          filter: [
-            {
-              term: {
-                'retraction_details.is_retracted': true,
-              },
-            },
-          ],
-        },
-      },
-      aggs: {
-        by_year: {
-          terms: {
-            field: 'year',
-            size: 15,
-          },
-          aggs: {
-            by_oa: {
-              terms: {
-                field: `oa_details.${observationSnap}.is_oa`,
-              },
-            },
-          },
-        },
-        by_field: {
-          terms: {
-            field: 'bso_classification.keyword',
-          },
-          aggs: {
-            by_oa: {
-              terms: {
-                field: `oa_details.${observationSnap}.is_oa`,
-              },
-            },
-          },
-        },
-        by_publisher: {
-          terms: {
-            field: 'publisher_normalized.keyword',
-          },
-          aggs: {
-            by_oa: {
-              terms: {
-                field: `oa_details.${observationSnap}.is_oa`,
-              },
-            },
-          },
-        },
-      },
-    }),
     retractionsByYear: ([lastObservationSnap, minPublicationDate = 2013]) => ({
       size: 0,
       query: {
@@ -2125,6 +2072,75 @@ export default function getFetchOptions({
           terms: {
             field: 'year',
             size: 15,
+          },
+          aggs: {
+            by_retraction: {
+              terms: {
+                field: 'retraction_details.is_retracted',
+              },
+            },
+          },
+        },
+      },
+    }),
+    retractionsByField: ([lastObservationSnap, minPublicationDate = 2013]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_field: {
+          terms: {
+            field: 'bso_classification.keyword',
+          },
+          aggs: {
+            by_retraction: {
+              terms: {
+                field: 'retraction_details.is_retracted',
+              },
+            },
+          },
+        },
+      },
+    }),
+    retractionsByPublisher: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_publisher: {
+          terms: {
+            field: 'publisher_normalized.keyword',
           },
           aggs: {
             by_retraction: {

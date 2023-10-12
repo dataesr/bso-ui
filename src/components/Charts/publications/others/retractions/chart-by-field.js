@@ -13,7 +13,7 @@ import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+import useGetData from './get-data-by-field';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -24,13 +24,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
-  const { categories2, dataGraph2 } = data;
+  const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    categories2,
-    dataGraph2,
+    categories,
+    dataGraph,
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph2}
+      isLoading={isLoading || !dataGraph}
     >
       <HighchartsReact
         highcharts={Highcharts}
