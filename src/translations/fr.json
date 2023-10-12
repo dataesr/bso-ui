@@ -1105,6 +1105,7 @@
   "app.publi.navigation.langues": "Les langues de publication",
   "app.publi.navigation.voies": "Les voies d'ouverture",
   "app.publi.nb-publications": "Nombre de publications",
+  "app.publi.percent-publications-retracted": "Pourcentage de publications retirées",
   "app.publi.part-publications-archive": "Part des publications en accès ouvert sur archive",
   "app.publi.percentage-publi": "Proportion de publications",
   "app.publi.percentage-publi-bealls": "Proportion de publications dont la revue ou<br>l'éditeur est dans la liste de Beall",

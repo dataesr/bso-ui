@@ -15,47 +15,38 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
   const { lastObservationSnap } = useGlobals();
 
   const getDataByObservationSnaps = useCallback(async () => {
-    const query = getFetchOptions({
+    const queries = [];
+    const query1 = getFetchOptions({
       key: 'retractions',
       domain,
       parameters: [lastObservationSnap],
+      objectType: ['publications'],
     });
-    const response = await Axios.post(ES_API_URL, query, HEADERS);
-    const buckets1 = response?.data?.aggregations?.by_year?.buckets?.sort(
+    const query2 = getFetchOptions({
+      key: 'retractionsByYear',
+      domain,
+      parameters: [lastObservationSnap],
+      objectType: ['publications'],
+    });
+    queries.push(Axios.post(ES_API_URL, query1, HEADERS));
+    queries.push(Axios.post(ES_API_URL, query2, HEADERS));
+    const responses = await Axios.all(queries);
+    const buckets1 = responses[1]?.data?.aggregations?.by_year?.buckets?.sort(
       (a, b) => a.key - b.key,
     );
-    const categories1 = [];
-    const oaData1 = [];
-    const closedData1 = [];
-    buckets1.forEach((item) => {
-      categories1.push(item.key);
-      oaData1.push(
-        item.by_oa.buckets.find((item2) => item2.key === 1)?.doc_count ?? 0,
-      );
-      closedData1.push(
-        item.by_oa.buckets.find((item2) => item2.key === 0)?.doc_count ?? 0,
-      );
-    });
+    const categories1 = buckets1.map((item) => item.key);
     const dataGraph1 = [
       {
-        color: getCSSValue('--blue-soft-175'),
-        data: closedData1,
-        name: intl.formatMessage({
-          id: 'app.type-hebergement.closed',
-          default: 'Accès fermé',
-        }),
-      },
-      {
-        color: getCSSValue('--orange-soft-100'),
-        data: oaData1,
-        name: intl.formatMessage({
-          id: 'app.type-hebergement.open',
-          default: 'Accès ouvert',
-        }),
+        data: buckets1.map(
+          (item) => ((item.by_retraction.buckets.find((i2) => i2.key === 1)
+            ?.doc_count ?? 0)
+              / item.doc_count)
+            * 100,
+        ),
       },
     ];
 
-    const buckets2 = response?.data?.aggregations?.by_field?.buckets?.sort(
+    const buckets2 = responses[0]?.data?.aggregations?.by_field?.buckets?.sort(
       (a, b) => a.key - b.key,
     );
     const categories2 = [];
@@ -97,7 +88,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       },
     ];
 
-    const buckets3 = response?.data?.aggregations?.by_publisher?.buckets?.sort(
+    const buckets3 = responses[0]?.data?.aggregations?.by_publisher?.buckets?.sort(
       (a, b) => a.key - b.key,
     );
     const categories3 = [];

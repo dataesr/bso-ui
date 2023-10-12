@@ -1391,7 +1391,7 @@ export default function getFetchOptions({
       lastObservationSnap,
       fieldY,
       fieldX = 'year',
-      minPublicationDate = '2013',
+      minPublicationDate = 2013,
       size = 10,
       missing = 'N/A',
     ]) => ({
@@ -2096,6 +2096,40 @@ export default function getFetchOptions({
             by_oa: {
               terms: {
                 field: `oa_details.${observationSnap}.is_oa`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    retractionsByYear: ([lastObservationSnap, minPublicationDate = 2013]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+            size: 15,
+          },
+          aggs: {
+            by_retraction: {
+              terms: {
+                field: 'retraction_details.is_retracted',
               },
             },
           },

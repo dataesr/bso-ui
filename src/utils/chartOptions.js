@@ -4139,19 +4139,20 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
         categories,
       };
-      options.yAxis = {
-        stackLabels: {
-          enabled: true,
-        },
-      };
-      options.legend.enabled = true;
-      options.legend.reversed = true;
+
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.percent-publications-retracted',
+      });
+      options.legend.enabled = false;
       options.plotOptions = {
-        column: {
+        series: {
           dataLabels: {
             enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+            },
           },
-          stacking: 'normal',
         },
       };
       options.series = data;
@@ -4170,6 +4171,9 @@ export const chartOptions = {
       options.yAxis = {
         stackLabels: {
           enabled: true,
+        },
+        title: {
+          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
         },
       };
       options.legend.enabled = true;
@@ -4196,11 +4200,11 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = {
-        title: {
-          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
-        },
         stackLabels: {
           enabled: true,
+        },
+        title: {
+          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
         },
       };
       options.legend.enabled = true;

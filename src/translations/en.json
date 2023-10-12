@@ -943,6 +943,7 @@
   "app.publi.navigation.langues": "The languages of publication",
   "app.publi.navigation.voies": "The opening routes",
   "app.publi.nb-publications": "Number of publications",
+  "app.publi.percent-publications-retracted": "Percent of retracted publications",
   "app.publi.part-publications-archive": "Share of publications in open access on archive",
   "app.publi.percentage-publi": "Proportion of publications",
   "app.publi.percentage-publi-bealls": "Share of publications whose journal or<br>publisher is in the Beall's list",
