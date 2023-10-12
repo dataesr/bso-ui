@@ -16,7 +16,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
 
   const getDataByObservationSnaps = useCallback(async () => {
     const query = getFetchOptions({
-      key: 'retractations',
+      key: 'retractions',
       domain,
       parameters: [lastObservationSnap],
     });

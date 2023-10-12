@@ -4131,7 +4131,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.others.retractations.chart-by-year': {
+  'publi.others.retractions.chart-by-year': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4159,7 +4159,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.others.retractations.chart-by-field': {
+  'publi.others.retractions.chart-by-field': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4187,7 +4187,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.others.retractations.chart-by-publisher': {
+  'publi.others.retractions.chart-by-publisher': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';

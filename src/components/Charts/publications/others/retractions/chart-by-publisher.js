@@ -24,13 +24,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const { observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
-  const { categories2, dataGraph2 } = data;
+  const { categories3, dataGraph3 } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    categories2,
-    dataGraph2,
+    categories3,
+    dataGraph3,
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph2}
+      isLoading={isLoading || !dataGraph3}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -64,7 +64,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.others.retractations.chart-by-field',
+  id: 'publi.others.retractions.chart-by-publisher',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

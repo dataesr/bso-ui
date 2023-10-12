@@ -516,9 +516,9 @@ export default function NationalPublications() {
                   <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-taux' />
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
-                  <BSOChart id='publi.others.retractations.chart-by-year' />
-                  <BSOChart id='publi.others.retractations.chart-by-field' />
-                  <BSOChart id='publi.others.retractations.chart-by-publisher' />
+                  <BSOChart id='publi.others.retractions.chart-by-year' />
+                  <BSOChart id='publi.others.retractions.chart-by-field' />
+                  <BSOChart id='publi.others.retractions.chart-by-publisher' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

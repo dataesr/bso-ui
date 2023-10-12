@@ -2049,7 +2049,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    retractations: ([observationSnap]) => ({
+    retractions: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
