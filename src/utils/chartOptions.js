@@ -3,6 +3,7 @@ import {
   cleanNumber,
   getCSSValue,
   getPercentageYAxis,
+  getPertenthousandYAxis,
   getSource,
   getURLSearchParams,
   withtStudyType,
@@ -4195,16 +4196,18 @@ export const chartOptions = {
     },
   },
   'publi.others.retractions.chart-by-publisher': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
+    getOptions: (id, intl, categories, graph, isPercent, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.publishers' }) },
         categories,
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPertenthousandYAxis(false, null, !isPercent);
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.publi.percent-publications-retracted',
+        id: isPercent
+          ? 'app.publi.pertenthousand-publications-retracted'
+          : 'app.publi.nb-publications-retracted',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -4212,12 +4215,15 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+              if (isPercent) {
+                return this.y === 0 ? '' : this.y.toFixed(1).concat(' ‱');
+              }
+              return this.y === 0 ? '' : this.y.toFixed();
             },
           },
         },
       };
-      options.series = data;
+      options.series = [graph];
       options.exporting.chartOptions.legend.enabled = false;
       return options;
     },

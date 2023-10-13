@@ -1,3 +1,4 @@
+import { Toggle } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -22,15 +23,22 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
+  const [isPercent, setPercent] = useState(false);
   const { observationSnaps } = useGlobals();
-  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
+  const { data, isError, isLoading } = useGetData(
+    observationSnaps,
+    domain,
+    isPercent,
+  );
   const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
+
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
     dataGraph,
+    isPercent,
   );
 
   useEffect(() => {
@@ -47,6 +55,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isError={isError}
       isLoading={isLoading || !dataGraph}
     >
+      <Toggle
+        checked={isPercent}
+        label={intl.formatMessage({ id: 'app.proportion' })}
+        onChange={() => setPercent(!isPercent)}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomain}

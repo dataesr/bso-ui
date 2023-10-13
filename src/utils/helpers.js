@@ -125,6 +125,39 @@ export function getPercentageYAxis(
   return axis;
 }
 
+export function getPertenthousandYAxis(
+  showTotal = true,
+  max = null,
+  absolute = false,
+  precision = 0,
+) {
+  const suffix = absolute ? '' : ' ‱';
+  const axis = {
+    title: { text: '' },
+    stackLabels: {
+      enabled: true,
+      formatter() {
+        return showTotal && this.total
+          ? this.total.toFixed(precision).concat(suffix)
+          : '';
+      },
+      style: {
+        fontWeight: 'bold',
+        fontSize: '15px',
+      },
+    },
+    labels: {
+      formatter() {
+        return this.axis.defaultLabelFormatter.call(this).concat(suffix);
+      },
+    },
+  };
+  if (max) {
+    axis.max = max;
+  }
+  return axis;
+}
+
 /**
  *
  * @param keys

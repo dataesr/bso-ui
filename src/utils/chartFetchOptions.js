@@ -2148,6 +2148,7 @@ export default function getFetchOptions({
         by_publisher: {
           terms: {
             field: 'publisher_normalized.keyword',
+            size: 50,
           },
           aggs: {
             by_retraction: {
