@@ -19,19 +19,19 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       objectType: ['publications'],
     });
     const numberOfRetracted = (item) => item.by_retraction.buckets.find((i2) => i2.key === 1)?.doc_count ?? 0;
+    const percentageOfRetracted = (item) => (numberOfRetracted(item) / item.doc_count) * 100;
+
     const response = await Axios.post(ES_API_URL, query, HEADERS);
     const buckets = response?.data?.aggregations?.by_publisher?.buckets
-      ?.sort((a, b) => numberOfRetracted(b) - numberOfRetracted(a))
+      ?.sort((a, b) => percentageOfRetracted(b) - percentageOfRetracted(a))
       .slice(0, 20);
     const categories = buckets.map((item) => item.key);
     const dataGraph = {
       data: buckets.map((item, catIndex) => ({
-        y_tot: item.doc_count ?? 0,
+        y_tot: item.doc_count,
         y_abs: numberOfRetracted(item),
-        y_rel: (numberOfRetracted(item) / item.doc_count) * 10000,
-        y: isPercent
-          ? (numberOfRetracted(item) / item.doc_count) * 10000
-          : numberOfRetracted(item),
+        y_rel: percentageOfRetracted(item),
+        y: isPercent ? percentageOfRetracted(item) : numberOfRetracted(item),
         x: catIndex,
         publisher: categories[catIndex],
       })),

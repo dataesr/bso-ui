@@ -4198,15 +4198,15 @@ export const chartOptions = {
   'publi.others.retractions.chart-by-publisher': {
     getOptions: (id, intl, categories, graph, isPercent, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.type = 'column';
+      options.chart.type = 'bar';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.publishers' }) },
         categories,
       };
-      options.yAxis = getPertenthousandYAxis(false, null, !isPercent);
+      options.yAxis = getPercentageYAxis(false, null, !isPercent);
       options.yAxis.title.text = intl.formatMessage({
         id: isPercent
-          ? 'app.publi.pertenthousand-publications-retracted'
+          ? 'app.publi.percent-publications-retracted'
           : 'app.publi.nb-publications-retracted',
       });
       options.legend.enabled = false;
@@ -4216,7 +4216,7 @@ export const chartOptions = {
             enabled: true,
             formatter() {
               if (isPercent) {
-                return this.y === 0 ? '' : this.y.toFixed(1).concat(' ‱');
+                return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
               }
               return this.y === 0 ? '' : this.y.toFixed();
             },
