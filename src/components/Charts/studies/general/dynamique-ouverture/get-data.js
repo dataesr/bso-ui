@@ -20,7 +20,7 @@ function useGetData(studyType, sponsor = '*') {
     );
     const yearMax = currentYear - 1;
     const yearMin = yearMax - 10;
-    const yearMax2 = currentYear - 2;
+    const yearMax2 = currentYear - 3;
     const yearMin2 = yearMax2 - 10;
     const query1 = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
