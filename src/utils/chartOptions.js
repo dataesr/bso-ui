@@ -3,7 +3,6 @@ import {
   cleanNumber,
   getCSSValue,
   getPercentageYAxis,
-  getPertenthousandYAxis,
   getSource,
   getURLSearchParams,
   withtStudyType,
