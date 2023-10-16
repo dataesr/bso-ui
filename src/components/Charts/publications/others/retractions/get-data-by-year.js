@@ -30,10 +30,10 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
     const oaData = [];
     buckets.forEach((item) => {
       const retracted = item.by_retraction.buckets.find((i2) => i2.key === 1);
-      const closedPubs = retracted.by_oa.buckets.find((i2) => i2.key === 0)?.doc_count ?? 0;
-      closedData.push((closedPubs / item.doc_count) * 100);
-      const oaPubs = retracted.by_oa.buckets.find((i2) => i2.key === 0)?.doc_count ?? 0;
-      oaData.push((oaPubs / item.doc_count) * 100);
+      const closedPublications = retracted.by_oa.buckets.find((i2) => i2.key === 0)?.doc_count ?? 0;
+      closedData.push((closedPublications / item.doc_count) * 100);
+      const oaPublications = retracted.by_oa.buckets.find((i2) => i2.key === 1)?.doc_count ?? 0;
+      oaData.push((oaPublications / item.doc_count) * 100);
     });
     const dataGraph = [
       {
