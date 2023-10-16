@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { cleanNumber, getCSSValue } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 
 function useGetData(observationSnaps, domain = '', isPercent = false) {
@@ -25,7 +25,13 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
     const buckets = response?.data?.aggregations?.by_year?.buckets?.sort(
       (a, b) => a.key - b.key,
     );
-    const categories = buckets.map((item) => item.key);
+    const categories = buckets.map((item) => item.key
+      .toString()
+      .concat('</br>(')
+      .concat(intl.formatMessage({ id: 'app.effectif-short' }))
+      .concat(' = ')
+      .concat(cleanNumber(item.doc_count))
+      .concat(')'));
     const closedData = [];
     const oaData = [];
     buckets.forEach((item) => {

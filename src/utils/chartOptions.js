@@ -4197,6 +4197,7 @@ export const chartOptions = {
   'publi.others.retractions.chart-by-publisher': {
     getOptions: (id, intl, categories, graph, isPercent, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '1000px';
       options.chart.type = 'bar';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.publishers' }) },

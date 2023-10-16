@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize } from '../../../../../utils/helpers';
+import { capitalize, cleanNumber } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 
 function useGetData(observationSnaps, domain = '', isPercent = false) {
@@ -31,7 +31,12 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
           .replace(/\n/g, '')
           .replace('  ', ' ')}`,
       }),
-    ));
+    )
+      .concat('</br>(')
+      .concat(intl.formatMessage({ id: 'app.effectif-short' }))
+      .concat(' = ')
+      .concat(cleanNumber(item.doc_count))
+      .concat(')'));
     const dataGraph = [
       {
         data: buckets.map(

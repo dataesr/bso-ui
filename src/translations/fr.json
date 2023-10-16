@@ -21,6 +21,7 @@
   "app.agencies-label": "Préciser une agence de financement",
   "app.all-affiliations": "tous types d'affiliation française",
   "app.effectif": "effectif",
+  "app.effectif-short": "eff.",
   "app.fr-only": "FR slt.",
   "app.fr-foreign": "autre",
   "app.doi-hal": "avec un DOI Crossref ou un identifiant HAL",
