@@ -1073,7 +1073,6 @@
   "app.observational.end": "Fin de l'étude<br>observationnelle",
   "app.observationals": "études observationnelles",
   "app.project": "Le projet",
-  "app.proportion": "Proportion",
   "app.promoteurs.impact.chart-classement-pays.tooltip": "<b>Essais terminés, en collaboration avec {point.country}</b><br>{point.y:.2f} % partagent des résultats ou une publication scientifique ({point.y_abs} / {point.y_tot})",
   "app.promoteurs.impact.chart-repartition.tooltip": "<b>Essais terminés en {point.year}, {series.name}</b><br>Contribution des essais avec {point.name} : {point.y:.2f} % des essais ({point.y_abs} / {point.y_tot})",
   "app.publi.affiliations": "Affiliations",
