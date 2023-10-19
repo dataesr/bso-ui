@@ -521,88 +521,94 @@
     "name": "Université de Rouen Normandie (UNIROUEN)",
     "commentsName": "d'UNIROUEN",
     "commentsNameEN": "of UNIROUEN",
-    "ror": "https://ror.org/03nhjew95",
-    "paysage": "G4572"
+    "paysage": "G4572",
+    "ror": "https://ror.org/03nhjew95"
   },
   "197627623": {
     "name": "Université Le Havre Normandie (UNILEHAVRE)",
     "commentsName": "d'UNILEHAVRE",
     "commentsNameEN": "of UNILEHAVRE",
-    "ror": "https://ror.org/05v509s40",
-    "paysage": "LsQ24"
+    "paysage": "LsQ24",
+    "ror": "https://ror.org/05v509s40"
   },
   "197819444": {
     "name": "Université de Versailles Saint Quentin en Yvelines (UVSQ)",
     "commentsName": "de l'UVSQ",
     "commentsNameEN": "of UVSQ",
-    "ror": "https://ror.org/03mkjjy25",
-    "paysage": "V13Pk"
+    "paysage": "V13Pk",
+    "ror": "https://ror.org/03mkjjy25"
   },
   "198307662": {
     "name": "Université de Toulon (UTLN)",
     "commentsName": "de l'UTLN",
     "commentsNameEN": "of UTLN",
-    "ror": "https://ror.org/02m9kbe37",
-    "paysage": "C701f"
+    "paysage": "C701f",
+    "ror": "https://ror.org/02m9kbe37"
   },
   "198013443": {
     "name": "Université de Picardie Jules Verne (UPJV)",
     "commentsName": "de l'UPJV",
     "commentsNameEN": "of UPJV",
-    "ror": "https://ror.org/01gyxrk03",
-    "paysage": "8j5s2"
+    "paysage": "8j5s2",
+    "ror": "https://ror.org/01gyxrk03"
   },
   "198406852": {
     "name": "Avignon Université",
     "commentsName": "d'Avignon Université",
     "commentsNameEN": "of Avignon University",
-    "startYear": 2015,
+    "paysage": "vxHYt",
     "ror": "https://ror.org/00mfpxb84",
-    "paysage": "vxHYt"
+    "startYear": 2015
   },
   "198608564": {
     "name": "Université de Poitiers",
     "commentsName": "de l'Université de Poitiers",
     "commentsNameEN": "of the university of Poitiers",
-    "startYear": 2016,
+    "paysage": "hlX1r",
     "ror": "https://ror.org/04xhy8q59",
-    "paysage": "hlX1r"
+    "startYear": 2016
   },
   "199111950H": {
     "name": "Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier (LIRMM)",
     "commentsName": "du LIRMM",
     "commentsNameEN": "of LIRMM",
-    "ror": "https://ror.org/013yean28",
-    "paysage": "ZW8Us"
+    "paysage": "ZW8Us",
+    "ror": "https://ror.org/013yean28"
   },
   "199113242M": {
     "name": "Institut Clément Ader (ICA)",
     "commentsName": "de l'ICA",
     "commentsNameEN": "of ICA",
-    "ror": "https://ror.org/040smqw14",
-    "paysage": "tdJI8"
+    "paysage": "tdJI8",
+    "ror": "https://ror.org/040smqw14"
   },
   "199115684": {
     "name": "École polytechnique (X)",
     "commentsName": "de l'X",
     "commentsNameEN": "of X",
-    "ror": "https://ror.org/05hy3tk52",
-    "paysage": "DdW7n"
+    "paysage": "DdW7n",
+    "ror": "https://ror.org/05hy3tk52"
   },
   "199117683P": {
     "name": "Centre d'élaboration de matériaux et d'études structurales (CEMES-CNRS)",
     "commentsName": "du CEMES",
     "commentsNameEN": "of CEMES",
-    "ror": "https://ror.org/03kwnqq69",
-    "paysage": "Y69JT"
+    "paysage": "Y69JT",
+    "ror": "https://ror.org/03kwnqq69"
   },
   "199119751": {
     "name": "Université d'Evry Val d'Essonne",
     "commentsName": "de l'Université d'Evry Val d'Essonne",
     "commentsNameEN": "of the university of Evry Val d'Essonne",
-    "startYear": 2016,
+    "paysage": "RN4E6",
     "ror": "https://ror.org/00e96v939",
-    "paysage": "RN4E6"
+    "startYear": 2016
+  },
+  "199213078E": {
+    "name": "Centre de recherche droit Dauphine (CR2D)",
+    "commentsName": "du CR2D",
+    "commentsNameEN": "of CR2D",
+    "paysage": "88f3k"
   },
   "199213366T": {
     "name": "Cibles et Médicaments des Infections et de l'Immunité (IICiMed)",
@@ -746,6 +752,13 @@
     "ror": "https://ror.org/00b1crx81",
     "scale": "laboratory"
   },
+  "199712592E": {
+    "name": "Centre de Recherche en Mathématiques de la Décision (CEREMADE)",
+    "commentsName": "du CEREMADE",
+    "commentsNameEN": "of CEREMADE",
+    "ror": "https://ror.org/03s0gj002",
+    "paysage": "SHsBA"
+  },
   "199712620K": {
     "name": "Laboratoire de Chimie de la Matière Condensée de Paris (LCMCP)",
     "commentsName": "du LCMCP",
@@ -790,7 +803,7 @@
     "paysage": "66iey",
     "scale": "laboratory"
   },
-  "199813983M":{
+  "199813983M": {
     "name": "Laboratoire de Recherche en Management (LAREQUOI)",
     "commentsName": "du LAREQUOI",
     "commentsNameEN": "of LAREQUOI",
@@ -801,32 +814,40 @@
     "name": "Ambiances architectures urbanités (AAU)",
     "commentsName": "de l'AAU",
     "commentsNameEN": "of AAU",
-    "ror": "https://ror.org/05hz99a17",
     "paysage": "1BroQ",
+    "ror": "https://ror.org/05hz99a17",
     "scale": "laboratory"
   },
   "199914342Y": {
     "name": "Laboratoire matériaux et durabilité des constructions (LMDC)",
     "commentsName": "du LMDC",
     "commentsNameEN": "of LMDC",
-    "ror": "https://ror.org/02mkbvg40",
     "paysage": "KME8x",
+    "ror": "https://ror.org/02mkbvg40",
     "scale": "laboratory"
   },
   "200012185Z": {
     "name": "Laboratoire de planétologie et géosciences (LPG)",
     "commentsName": "du LPG",
     "commentsNameEN": "of LPG",
-    "ror": "https://ror.org/04fm0sh33",
     "paysage": "8bClX",
+    "ror": "https://ror.org/04fm0sh33",
     "scale": "laboratory"
   },
   "200112415V": {
     "name": "Institut de science et d'ingénierie supramoléculaires (ISIS)",
     "commentsName": "de l'ISIS",
     "commentsNameEN": "of ISIS",
-    "ror": "https://ror.org/00xts7d02",
-    "paysage": "iwUNB"
+    "paysage": "iwUNB",
+    "ror": "https://ror.org/00xts7d02"
+  },
+  "200112476L": {
+    "name": "Dauphine Recherches en Management (DRM)",
+    "commentsName": "de DRM",
+    "commentsNameEN": "of DRM",
+    "paysage": "55jwj",
+    "ror": "https://ror.org/01mzxgm71",
+    "scale": "laboratory"
   },
   "200112481S": {
     "name": "Laboratoire d'océanographie de Villefranche (LOV)",
@@ -896,6 +917,13 @@
     "commentsName": "de TaRGeT",
     "commentsNameEN": "of TaRGeT",
     "paysage": "xkKT5"
+  },
+  "200512552B": {
+    "name": "Institut de Recherche Interdisciplinaire en Sciences Sociales (IRISSO)",
+    "commentsName": "de l'IRISSO ",
+    "commentsNameEN": "of IRISSO ",
+    "paysage": "7fzhc",
+    "ror": "https://ror.org/05mmjvv12"
   },
   "200515200E": {
     "name": "Centre Européen de Recherche en Economie Financière et Gestion des Entreprises (CEREFIGE)",
@@ -1027,6 +1055,13 @@
     "ror": "https://ror.org/03wg93s13",
     "paysage": "x8K6I"
   },
+  "201120462Y": {
+    "name": "Laboratoire d'Analyse et de Modélisation des Systèmes pour l'Aide à la Décision (LAMSADE)",
+    "commentsName": "de LAMSADE",
+    "commentsNameEN": "of LAMSADE",
+    "paysage": "8I5ZB",
+    "ror": "https://ror.org/03pnp1a74"
+  },
   "201220063K": {
     "name": "Unité en sciences biologiques et biotechnologies (US2B)",
     "commentsName": "de l'US2B",
@@ -1146,6 +1181,13 @@
     "commentsNameEN": "of TENS",
     "ror": "https://ror.org/01kbkse74",
     "paysage": "wo6ow"
+  },
+  "201922945M": {
+    "name": "Laboratoire d'Economie de Dauphine (LEDa)",
+    "commentsName": "du LEDa",
+    "commentsNameEN": "of LEDa",
+    "ror": "https://ror.org/026exgg05",
+    "paysage": "I6lPs"
   },
   "201922973T": {
     "name": "Laboratoire de physique de l'ens (LPENS)",
@@ -1312,6 +1354,13 @@
     "commentsNameEN": "of INSHS",
     "ror": "https://ror.org/04b0z7q78",
     "paysage": "EH4gV"
+  },
+  "0755976N": {
+    "name": "Université Paris Cité (UP Cité)",
+    "commentsName": "de UP Cité",
+    "commentsNameEN": "of UP Cité",
+    "ror": "https://ror.org/05f82e368",
+    "paysage": "5cZyU"
   },
   "IMTS": {
     "name": "Tous les IMTs",

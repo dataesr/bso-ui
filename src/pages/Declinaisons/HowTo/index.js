@@ -57,7 +57,7 @@ function HowTo() {
               <Accordion>
                 <AccordionItem
                   initExpand={parseInt(expanded, 10) === 0}
-                  title='1. Définissez le périmètre de votre BSO local'
+                  title='1. Définissez le périmètre de votre baromètre local'
                 >
                   <ul className='style-disc'>
                     <li>
