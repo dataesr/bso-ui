@@ -3126,7 +3126,6 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3154,7 +3153,6 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.created-data' });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3184,7 +3182,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.shared-software',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3214,7 +3211,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.created-software',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3244,7 +3240,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-software',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3305,7 +3300,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-data',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3335,7 +3329,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.availibility',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3368,7 +3361,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3408,7 +3400,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3448,7 +3439,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3486,7 +3476,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3524,7 +3513,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3562,7 +3550,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3600,7 +3587,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3638,7 +3624,6 @@ export const chartOptions = {
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3736,7 +3721,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.these-proportion',
       });
-      options.legend.title.text = null;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -3776,7 +3760,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.these-proportion',
       });
-      options.legend.title.text = null;
       options.legend.enabled = false;
       options.plotOptions = {
         line: {
@@ -4080,7 +4063,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.perc',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -4112,7 +4094,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.perc',
       });
-      options.legend.reversed = true;
       options.legend.enabled = false;
       options.plotOptions = {
         column: {
@@ -4147,6 +4128,103 @@ export const chartOptions = {
       };
       options.series = data;
       options.tooltip.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.retractions.chart-by-year': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(true, null, false, 3);
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.percent-publications-retracted',
+      });
+      options.legend.enabled = true;
+      options.legend.reversed = true;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.retractions.chart-by-field': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.discipline' }) },
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.percent-publications-retracted',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.retractions.chart-by-publisher': {
+    getOptions: (id, intl, categories, graph, isPercent, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '1000px';
+      options.chart.type = 'bar';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publishers' }) },
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(false, null, !isPercent);
+      options.yAxis.title.text = intl.formatMessage({
+        id: isPercent
+          ? 'app.publi.percent-publications-retracted'
+          : 'app.publi.nb-publications-retracted',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              if (isPercent) {
+                return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+              }
+              return this.y === 0 ? '' : this.y.toFixed();
+            },
+          },
+        },
+      };
+      options.series = [graph];
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
