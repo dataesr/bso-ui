@@ -393,6 +393,13 @@ function Variations() {
                 img='/declinaisons/aau.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local universite tours'
+                href='https://scienceouverte.univ-tours.fr/barometre-tourangeau-de-la-science-ouverte'
+                img='/declinaisons/tours.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
