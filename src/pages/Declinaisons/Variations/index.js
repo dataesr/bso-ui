@@ -207,7 +207,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local CIRAD'
-                href='https://partage-connaissances.cirad.fr/actualites/barometre-national-de-la-science-ouverte-declinaison-pour-le-cirad'
+                href='https://indicateurs-publication.cirad.lodex.fr/#bso'
                 img='/declinaisons/cirad.png'
               />
             </Col>
