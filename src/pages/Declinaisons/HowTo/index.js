@@ -41,7 +41,7 @@ function HowTo() {
         icons={renderIcons}
       />
       <Container>
-        <section className='color-blue-dark-125 content pb-8'>
+        <section className='color-blue-dark-125 content pb-8 py-48'>
           <Row gutters>
             <Col n='12 lg-8'>
               <h2 className='marianne-bold fs-12-16'>

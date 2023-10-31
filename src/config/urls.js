@@ -199,6 +199,10 @@ export default {
     fr: '/projet-et-equipe',
     en: '/project-and-team',
   },
+  citation: {
+    fr: '/citation',
+    en: '/citation',
+  },
   opendata: {
     fr: '/a-propos/opendata',
     en: '/about/opendata',

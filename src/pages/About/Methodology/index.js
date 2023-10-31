@@ -1,14 +1,16 @@
 import './style.scss';
 
-import { Col, Container, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import { isInProduction } from '../../../utils/helpers';
+import useLang from '../../../utils/Hooks/useLang';
 
 function Methodology() {
   const intl = useIntl();
+  const { lang } = useLang();
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters className='mb-32'>
@@ -24,6 +26,64 @@ function Methodology() {
 
   return (
     <>
+      <Container>
+        <section className='content py-48'>
+          <Row gutters>
+            <Col n='12 md-6 lg-6'>
+              <h4 className='marianne-bold fs-24-32'>
+                <FormattedMessage id='app.methodologie.publication' />
+              </h4>
+              <div>
+                <DSLink
+                  href='/assets/methodologie_publications_fr.pdf'
+                  target='_blank'
+                >
+                  <FormattedMessage id='app.methodologie.publication.description-fr' />
+                </DSLink>
+              </div>
+              <div>
+                <DSLink
+                  href='assets/methodologie_publications_en.pdf'
+                  target='_blank'
+                >
+                  <FormattedMessage id='app.methodologie.publication.description-en' />
+                </DSLink>
+              </div>
+              <img
+                src={`/assets/methodologie_publications_${lang}.png`}
+                alt='flyer bso'
+                className='w-100 flex img-fluid w-100 ds-fr--v-middle'
+              />
+            </Col>
+            <Col n='12 md-6 lg-6'>
+              <h4 className='marianne-bold fs-24-32'>
+                <FormattedMessage id='app.methodologie.data_software' />
+              </h4>
+              <div>
+                <DSLink
+                  href='/assets/methodologie_data_software_fr.pdf'
+                  target='_blank'
+                >
+                  <FormattedMessage id='app.methodologie.data_software.description-fr' />
+                </DSLink>
+              </div>
+              <div>
+                <DSLink
+                  href='/assets/methodologie_data_software_en.pdf'
+                  target='_blank'
+                >
+                  <FormattedMessage id='app.methodologie.data_software.description-en' />
+                </DSLink>
+              </div>
+              <img
+                src={`/assets/methodologie_data_software_${lang}.png`}
+                alt='flyer resultats bso'
+                className='w-100 flex img-fluid w-100 ds-fr--v-middle'
+              />
+            </Col>
+          </Row>
+        </section>
+      </Container>
       {!isInProduction() && (
         <div className='color-blue-soft-175 methodology'>
           <Banner
@@ -516,69 +576,31 @@ function Methodology() {
             }
             icons={renderIcons}
           />
-          <Container>
-            <section className='content py-48'>
-              <Row gutters>
-                <Col n='12 lg-8'>
-                  <FormattedMessage id='app.methodo-bso3-intro' />
-                  <br />
-                  {' '}
-                  <a
-                    href='https://hal.science/hal-04121339'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='external_link'
-                  >
-                    Large-scale Machine-Learning analysis of scientific PDF for
-                    monitoring the production and the openness of research data
-                    and software in France
-                  </a>
-                  {' '}
-                  <br />
-                  <br />
-                  <hr />
-                  <br />
-                  <a
-                    href='/assets/dmp.pdf'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='external_link'
-                  >
-                    <FormattedMessage id='app.methodo-bso3-dmp' />
-                  </a>
-                  <br />
-                  <br />
-                  <hr />
-                  <br />
-                  <FormattedMessage id='app.methodo-publi-intro' />
-                  <br />
-                  {' '}
-                  <a
-                    href='https://hal.archives-ouvertes.fr/hal-03651518'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='external_link'
-                  >
-                    Extending the open monitoring of open science: A new
-                    framework for the French Open Science Monitor (BSO)
-                  </a>
-                  {' '}
-                  <br />
-                  <br />
-                  <hr />
-                  <br />
-                  <FormattedMessage id='app.methodo-contact' />
-                  {' '}
-                  <a href='mailto:bso@recherche.gouv.fr'>
-                    bso@recherche.gouv.fr
-                  </a>
-                  .
-                </Col>
-              </Row>
-            </section>
-          </Container>
         </div>
       )}
+      <Container>
+        <section className='content py-28'>
+          <Row gutters>
+            <Col n='12 lg-8'>
+              <a
+                href='/assets/dmp.pdf'
+                target='_blank'
+                rel='noreferrer'
+                className='external_link'
+              >
+                <FormattedMessage id='app.methodo-bso3-dmp' />
+              </a>
+            </Col>
+          </Row>
+        </section>
+        <hr />
+        <section className='content py-28'>
+          <FormattedMessage id='app.methodo-contact' />
+          {' '}
+          <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
+          .
+        </section>
+      </Container>
     </>
   );
 }

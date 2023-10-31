@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import WebTracking from './components/WebTracking';
 import PageTracker from './components/WebTracking/PageTracker';
+import Citation from './pages/About/Citation';
 import Communication from './pages/About/Communication';
 import FAQ from './pages/About/FAQ';
 import Glossaire from './pages/About/Glossaire';
@@ -280,6 +281,18 @@ function App() {
               exact
               key={key}
               path={urls.opendata[key]}
+            />
+          ))}
+          {Object.keys(urls.citation).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <Citation />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.citation[key]}
             />
           ))}
           {[...new Set(Object.values(urls.integration))].flat().map((url) => (

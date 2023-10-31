@@ -353,6 +353,14 @@ function Header() {
               asLink={<RouterLink to={urls.opendata[lang] + search} />}
             />
             <NavSubItem
+              current={path === urls.citation[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.citation',
+                defaultMessage: 'Comment citer le Baromètre ?',
+              })}
+              asLink={<RouterLink to={urls.citation[lang] + search} />}
+            />
+            <NavSubItem
               current={path === urls.faq[lang]}
               title={intl.formatMessage({
                 id: 'app.footer.project.text',
