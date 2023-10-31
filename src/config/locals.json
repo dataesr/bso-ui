@@ -703,7 +703,9 @@
   "199213422D": {
     "name": "Sport et sciences sociales (E3S - UR 1342)",
     "commentsName": "de l'E3S",
-    "commentsNameEN": "of E3S"
+    "commentsNameEN": "of E3S",
+    "paysage": "smumc",
+    "scale": "laboratory"
   },
   "199312380": {
     "name": "Université Sorbonne Paris Nord",
