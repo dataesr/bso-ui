@@ -26,8 +26,17 @@ function Methodology() {
 
   return (
     <>
+      <div className='methodology'>
+        <Banner
+          backgroundColor='blue-soft-50'
+          textColor='blue-dark-150'
+          supTitle={<FormattedMessage id='app.header.title' />}
+          title={<FormattedMessage id='app.header.nav.a-propos-methodologie' />}
+          icons={renderIcons}
+        />
+      </div>
       <Container>
-        <section className='content py-48'>
+        <section className='content py-4'>
           <Row gutters>
             <Col n='12 md-6 lg-6'>
               <h4 className='marianne-bold fs-24-32'>
@@ -563,19 +572,6 @@ function Methodology() {
               </Row>
             </section>
           </Container>
-        </div>
-      )}
-      {isInProduction() && (
-        <div className='methodology'>
-          <Banner
-            backgroundColor='blue-soft-50'
-            textColor='blue-dark-150'
-            supTitle={<FormattedMessage id='app.header.title' />}
-            title={
-              <FormattedMessage id='app.header.nav.a-propos-methodologie' />
-            }
-            icons={renderIcons}
-          />
         </div>
       )}
       <Container>
