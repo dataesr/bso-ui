@@ -700,6 +700,11 @@
     "commentsNameEN": "of IRDP",
     "paysage": "4Jn23"
   },
+  "199213422D": {
+    "name": "Sport et sciences sociales (E3S - UR 1342)",
+    "commentsName": "de l'E3S",
+    "commentsNameEN": "of E3S"
+  },
   "199312380": {
     "name": "Université Sorbonne Paris Nord",
     "commentsName": "de l'Université Sorbonne Paris Nord",
@@ -890,6 +895,13 @@
     "ror": "https://ror.org/04fm0sh33",
     "scale": "laboratory"
   },
+  "200111674P": {
+    "name": "Laboratoire de mathématiques de Versailles (LMV)",
+    "commentsName": "du LMV",
+    "commentsNameEN": "of LMV",
+    "paysage": "qxs4m",
+    "ror": "https://ror.org/04k5jw363"
+  },
   "200112415V": {
     "name": "Institut de science et d'ingénierie supramoléculaires (ISIS)",
     "commentsName": "de l'ISIS",
@@ -919,6 +931,7 @@
     "commentsNameEN": "of IAP",
     "paysage": "69R6a",
     "ror": "https://ror.org/022bnxw24",
+    "scale": "laboratory",
     "startYear": 2017
   },
   "200112505T": {
@@ -928,6 +941,7 @@
     "displayTitle": "false",
     "paysage": "6Lz18",
     "ror": "https://ror.org/02cy9g557",
+    "scale": "laboratory",
     "startYear": 2016
   },
   "200116904Z": {
@@ -946,6 +960,7 @@
     "displayTitle": "false",
     "paysage": "sg9ap",
     "ror": "https://ror.org/01gbppd30",
+    "scale": "laboratory",
     "startYear": 2016
   },
   "200212211U": {
@@ -961,6 +976,7 @@
     "commentsName": "de l'IETR",
     "commentsNameEN": "of IETR",
     "paysage": "V1T2p",
+    "scale": "laboratory",
     "ror": "https://ror.org/013q33h79"
   },
   "200412238P": {
@@ -968,20 +984,23 @@
     "commentsName": "du GeM",
     "commentsNameEN": "of GeM",
     "paysage": "J2YPQ",
+    "scale": "laboratory",
     "ror": "https://ror.org/03x30hb31"
   },
   "200416339X": {
     "name": "Thérapie génique translationnelle des maladies génétiques (TaRGeT)",
     "commentsName": "de TaRGeT",
     "commentsNameEN": "of TaRGeT",
-    "paysage": "xkKT5"
+    "paysage": "xkKT5",
+    "scale": "laboratory"
   },
   "200512552B": {
     "name": "Institut de Recherche Interdisciplinaire en Sciences Sociales (IRISSO)",
     "commentsName": "de l'IRISSO ",
     "commentsNameEN": "of IRISSO ",
     "paysage": "7fzhc",
-    "ror": "https://ror.org/05mmjvv12"
+    "ror": "https://ror.org/05mmjvv12",
+    "scale": "laboratory"
   },
   "200515200E": {
     "name": "Centre Européen de Recherche en Economie Financière et Gestion des Entreprises (CEREFIGE)",
@@ -992,6 +1011,14 @@
     "ror": "https://ror.org/0106d5c37",
     "scale": "laboratory",
     "startYear": 2016
+  },
+  "200511878U": {
+    "name": "Institut Camille Jordan (ICJ)",
+    "commentsName": "de l'ICJ",
+    "commentsNameEN": "of ICJ",
+    "paysage": "FNCg4",
+    "ror": "https://ror.org/01ekw7f87",
+    "scale": "laboratory"
   },
   "200610854B": {
     "name": "Observatoire de Paris",
