@@ -17,6 +17,7 @@ const SUPPORTED_MIME_TYPES = [
   'application/msexcel',
   'application/vnd.ms-excel',
   'application/vnd.ms-office',
+  'application/vnd.oasis.opendocument.spreadsheet',
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   'application/vnd-xls',
   'application/x-dos_ms_excel',
@@ -317,7 +318,9 @@ const SubmissionForm = () => {
     if (e.target.files.length !== 1) {
       setMessage('Merci de soumettre un unique fichier !');
     } else if (!SUPPORTED_MIME_TYPES.includes(e.target.files?.[0]?.type)) {
-      setMessage('Les formats de fichier acceptés sont .csv, .xls et .xlsx !');
+      setMessage(
+        'Les formats de fichier acceptés sont .csv, .ods, .xls et .xlsx !',
+      );
     } else {
       const inputFile = e.target.files[0];
       if (inputFile?.type === 'text/csv') {

@@ -1,6 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import CardLogo from '../../components/CardLogo';
 import useLang from '../../utils/Hooks/useLang';
