@@ -374,6 +374,22 @@
     "ror": "https://ror.org/015m7wh34",
     "scale": "university"
   },
+  "193509379": {
+    "name": "Université Rennes 2",
+    "commentsName": "de Rennes II",
+    "commentsNameEN": "of Rennes II",
+    "paysage": "ti37C",
+    "ror": "https://ror.org/01m84wm78",
+    "scale": "university"
+  },
+  "193509379_labs": {
+    "name": "Université Rennes 2 (5 labos)",
+    "commentsName": "de Rennes II",
+    "commentsNameEN": "of Rennes II",
+    "paysage": "ti37C",
+    "ror": "https://ror.org/01m84wm78",
+    "scale": "university"
+  },
   "193708005": {
     "name": "Université de Tours",
     "commentsName": "de l'UT",
