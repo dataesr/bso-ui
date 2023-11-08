@@ -176,9 +176,9 @@
     "scale": "university"
   },
   "130029796": {
-    "name": "Université de Montpellier",
-    "commentsName": "de l'université de Montpellier",
-    "commentsNameEN": "of Montpellier University",
+    "name": "Université de Montpellier (UM)",
+    "commentsName": "de l'UM",
+    "commentsNameEN": "of UM",
     "paysage": "evv7S",
     "ror": "https://ror.org/051escj72",
     "scale": "university",
@@ -375,7 +375,7 @@
     "scale": "university"
   },
   "193509379": {
-    "name": "Université Rennes 2",
+    "name": "Université Rennes 2 (Rennes II)",
     "commentsName": "de Rennes II",
     "commentsNameEN": "of Rennes II",
     "paysage": "ti37C",
