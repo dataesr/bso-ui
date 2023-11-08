@@ -400,6 +400,13 @@ function Variations() {
                 img='/declinaisons/tours.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local sciences po'
+                href='https://sciencespo.libguides.com/publications/barometre-science-ouverte'
+                img='/declinaisons/scpo.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>

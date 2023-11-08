@@ -43,8 +43,15 @@ function Citation() {
                   Eric Jeangirard. Monitoring Open Access at a national level:
                   French case study. ELPUB 2019 23rd edition of the
                   International Conference on Electronic Publishing, Jun 2019,
-                  Marseille, France. doi: 10.4000/proceedings.elpub.2019.20
+                  Marseille, France. doi:
                   {' '}
+                  <a
+                    href='https://doi.org/10.4000/proceedings.elpub.2019.20'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    10.4000/proceedings.elpub.2019.20
+                  </a>
                 </p>
               </Col>
             </section>
@@ -55,9 +62,25 @@ function Citation() {
                 </strong>
                 <p>
                   Anne L'Hôte, Eric Jeangirard. Using Elasticsearch for entity
-                  recognition in affiliation disambiguation. 2021,
-                  arXiv:2110.01958 ; hal: hal-03365806
+                  recognition in affiliation disambiguation. 2021, arXiv:
                   {' '}
+                  <a
+                    href='https://arxiv.org/abs/2110.01958'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    2110.01958
+                  </a>
+                  {' '}
+                  ; hal:
+                  {' '}
+                  <a
+                    href='https://hal.science/hal-03365806'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    hal-03365806
+                  </a>
                 </p>
               </Col>
             </section>
@@ -70,7 +93,14 @@ function Citation() {
                   Laetitia Bracco, Anne L'Hôte, Eric Jeangirard, Didier Torny.
                   Extending the open monitoring of open science: A new framework
                   for the French Open Science Monitor (BSO). 2022. hal:
-                  hal-03651518
+                  {' '}
+                  <a
+                    href='https://hal.science/hal-03651518'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    hal-03651518
+                  </a>
                 </p>
               </Col>
             </section>
@@ -84,7 +114,15 @@ function Citation() {
                   Jeangirard, Patrice Lopez, et al.. Large-scale
                   Machine-Learning analysis of scientific PDF for monitoring the
                   production and the openness of research data and software in
-                  France. 2023. hal: hal-04121339v3
+                  France. 2023. hal:
+                  {' '}
+                  <a
+                    href='https://hal.science/hal-04121339'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    hal-04121339
+                  </a>
                 </p>
               </Col>
             </section>

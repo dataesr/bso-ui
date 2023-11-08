@@ -176,9 +176,9 @@
     "scale": "university"
   },
   "130029796": {
-    "name": "Université de Montpellier",
-    "commentsName": "de l'université de Montpellier",
-    "commentsNameEN": "of Montpellier University",
+    "name": "Université de Montpellier (UM)",
+    "commentsName": "de l'UM",
+    "commentsNameEN": "of UM",
     "paysage": "evv7S",
     "ror": "https://ror.org/051escj72",
     "scale": "university",
@@ -372,6 +372,22 @@
     "commentsNameEN": "of the university of Rennes 1",
     "paysage": "9wAap",
     "ror": "https://ror.org/015m7wh34",
+    "scale": "university"
+  },
+  "193509379": {
+    "name": "Université Rennes 2 (Rennes II)",
+    "commentsName": "de Rennes II",
+    "commentsNameEN": "of Rennes II",
+    "paysage": "ti37C",
+    "ror": "https://ror.org/01m84wm78",
+    "scale": "university"
+  },
+  "193509379_labs": {
+    "name": "Université Rennes 2 (5 labos)",
+    "commentsName": "de Rennes II",
+    "commentsNameEN": "of Rennes II",
+    "paysage": "ti37C",
+    "ror": "https://ror.org/01m84wm78",
     "scale": "university"
   },
   "193708005": {
@@ -902,7 +918,8 @@
     "commentsName": "du LMV",
     "commentsNameEN": "of LMV",
     "paysage": "qxs4m",
-    "ror": "https://ror.org/04k5jw363"
+    "ror": "https://ror.org/04k5jw363",
+    "scale": "laboratory"
   },
   "200112415V": {
     "name": "Institut de science et d'ingénierie supramoléculaires (ISIS)",
