@@ -33,14 +33,12 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     );
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
-    const results = res[0].data.aggregations.by_is_oa.buckets[0].by_licence.buckets;
-    const nbTotal = res[0].data.aggregations.by_is_oa.buckets[0].doc_count;
+    const results = res[0].data.aggregations.by_is_oa.buckets?.[0]?.by_licence?.buckets ?? [];
+    const nbTotal = res[0].data.aggregations.by_is_oa.buckets?.[0]?.doc_count ?? 0;
     const openLicenceNumber = results
       .filter((item) => item.key !== 'no license')
       .reduce((a, b) => a + b.doc_count, 0);
-    const ccbyLicenceNumber = results.find(
-      (item) => item.key === 'cc-by',
-    ).doc_count;
+    const ccbyLicenceNumber = results.find((item) => item.key === 'cc-by')?.doc_count ?? 0;
     const openLicenceRate = (100 * openLicenceNumber) / nbTotal;
     const ccbyLicenceRate = (100 * ccbyLicenceNumber) / nbTotal;
     const dataGraphTreemap = [];
