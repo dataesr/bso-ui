@@ -32,31 +32,24 @@ function Variations() {
           <Row gutters>
             <Col n='12'>
               <h2>
-                Baromètres de la Science Ouverte mis en place par les
-                établissements
+                <FormattedMessage id='app.variations.title' />
               </h2>
             </Col>
             <Col n='12 lg-10 '>
-              L'Université de Lorraine a été le premier établissement à
-              développer une déclinaison locale du Baromètre français de la
-              Science Ouverte. Suite à cette expérience réussie, une
-              collaboration entre le MESR et l'UL a mis en place une démarche
-              simple pour la création de déclinaison locale du Baromètre de la
-              Science Ouverte, que ce soit au niveau établissement, groupement
-              de laboratoires ou laboratoire.
+              <FormattedMessage id='app.variations.first' />
             </Col>
             <Col n='12 lg-10'>
-              La page
+              <FormattedMessage id='app.variations.page' />
               <span>
                 <span> </span>
                 <span className='external_link'>
                   <a href='comment-realiser-bso-local'>
-                    "Comment réaliser son BSO local"
+                    <FormattedMessage id='app.variations.how-to' />
                   </a>
                 </span>
                 <span> </span>
               </span>
-              détaille les étapes. Une mailing-list RENATER est ouverte à tous
+              <FormattedMessage id='app.variations.steps' />
               <span> </span>
               <span className='external_link'>
                 <a
@@ -68,10 +61,11 @@ function Variations() {
                 </a>
               </span>
               <span> </span>
-              pour constituer un réseau d'entraide et fédérer les compétences.
-              Par ailleurs, l'équipe BSO est contactable à l'adresse :
+              <FormattedMessage id='app.variations.mailinglist' />
               {' '}
-              <a href='mailto:bso@recherche.gouv.fr'>bso@recherche.gouv.fr</a>
+              <a href='mailto:bso@recherche.gouv.fr'>
+                <FormattedMessage id='app.variations.email' />
+              </a>
               .
               <p>
                 <br />
@@ -81,8 +75,7 @@ function Variations() {
           <Row gutters>
             <Col n='12' className='p-0'>
               <h4 className='p-0'>
-                Baromètres de la Science Ouverte mis en place par les
-                établissements (dernière version du BSO)
+                <FormattedMessage id='app.variations.institutions' />
               </h4>
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -411,8 +404,7 @@ function Variations() {
           <Row gutters>
             <Col n='12' className='p-0'>
               <h4 className='p-0'>
-                Baromètres de la Science Ouverte mis en place par les agences de
-                financement
+                <FormattedMessage id='app.variations.funders' />
               </h4>
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -426,8 +418,7 @@ function Variations() {
           <Row gutters>
             <Col n='12'>
               <h4 className='p-0'>
-                Baromètres de la Science Ouverte sollicités mais non (encore)
-                publiés
+                <FormattedMessage id='app.variations.not-published' />
               </h4>
             </Col>
             <Col n='12 lg-8'>
@@ -439,8 +430,7 @@ function Variations() {
           <Row gutters>
             <Col n='12'>
               <h4 className='p-0'>
-                Baromètres de la Science Ouverte mis en place par les
-                établissements (ancienne version du BSO)
+                <FormattedMessage id='app.variations.outdated' />
               </h4>
             </Col>
             <Col n='12 lg-8'>
@@ -460,7 +450,7 @@ function Variations() {
           <Row gutters>
             <Col n='12'>
               <h4 className='p-0'>
-                Autres suivis de l'ouverture des publications
+                <FormattedMessage id='app.variations.others' />
               </h4>
             </Col>
             <Col n='12 lg-8' className='p-0'>

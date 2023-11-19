@@ -13,7 +13,7 @@ function Project() {
         <section className='content py-48'>
           <Row gutters>
             <Col n='12 lg-10' className='p-0'>
-              <h2>
+              <h2 id='project'>
                 <FormattedMessage id='app.project.title' />
               </h2>
               <p>
@@ -60,7 +60,7 @@ function Project() {
           </Row>
           <Row gutters>
             <Col n='12'>
-              <h2>
+              <h2 className='mt-10' id='team'>
                 <FormattedMessage id='app.project.equipe.title' />
               </h2>
               <p>
@@ -79,12 +79,16 @@ function Project() {
             </Col>
           </Row>
           <Row gutters>
-            <Col n='12 lg-8'>
-              <h2>
+            <Col n='12 lg-8' div='contact'>
+              <h2 id='contact'>
                 <FormattedMessage id='app.project.contact.title' />
               </h2>
               <p>
                 <FormattedMessage id='app.project.contact' />
+                {' '}
+                <a href='mailto:bso@recherche.gouv.fr'>
+                  <FormattedMessage id='app.variations.email' />
+                </a>
               </p>
             </Col>
           </Row>

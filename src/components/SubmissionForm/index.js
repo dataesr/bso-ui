@@ -388,7 +388,7 @@ const SubmissionForm = () => {
                 value={ror}
               />
               <File
-                hint="Fichier Excel ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
+                hint="Fichier Excel, ODS ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
                 label='Fichier de publications'
                 onChange={handleFileChange}
               />
