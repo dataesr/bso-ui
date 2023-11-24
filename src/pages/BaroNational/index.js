@@ -194,6 +194,9 @@ function BaroNational() {
                   <GlossaryFormattedMessage
                     glossaryKeys={['grobid', 'softcite']}
                     intlKey='app.baro-national.software.intro'
+                    ctas={[
+                      'https://cloud.science-miner.com/software_kb_bso/frontend/index.html',
+                    ]}
                   />
                 )}
                 link={{

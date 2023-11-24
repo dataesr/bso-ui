@@ -27,6 +27,12 @@ html {
   }
 }
 
+p a {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .cursor-default,
 .cursor-default > a,
 .cursor-default > a:not([href]) {
