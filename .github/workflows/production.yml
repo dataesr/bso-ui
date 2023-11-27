@@ -9,7 +9,7 @@ env:
   DEPLOYMENT: bso-ui # Must match k8s deployment name
   DEPLOYMENT_NAMESPACE: bso # Must match k8s deployment namespace
   DEPLOYMENT_URL: https://bso.dataesr.ovh
-  MM_NOTIFICATION_CHANNEL: 'bso-bot'
+  MM_NOTIFICATION_CHANNEL: bots
 
 jobs:
   publish-ghcr:
