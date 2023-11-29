@@ -66,6 +66,9 @@ export default function NationalSoftwareCode() {
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.software.intro'
                     glossaryKeys={['grobid', 'softcite']}
+                    ctas={[
+                      'https://cloud.science-miner.com/software_kb_bso/frontend/index.html',
+                    ]}
                   />
                 </p>
               </Col>

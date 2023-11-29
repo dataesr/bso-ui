@@ -10,7 +10,7 @@ env:
   DEPLOYMENT: bso-ui
   DEPLOYMENT_NAMESPACE: bso
   DEPLOYMENT_URL: https://bso.staging.dataesr.ovh
-  MM_NOTIFICATION_CHANNEL: 'bso-bot'
+  MM_NOTIFICATION_CHANNEL: bots
 
 jobs:
   publish-ghcr:
