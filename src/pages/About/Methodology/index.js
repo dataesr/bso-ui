@@ -52,7 +52,7 @@ function Methodology() {
               </div>
               <div>
                 <DSLink
-                  href='assets/methodologie_publications_en.pdf'
+                  href='/assets/methodologie_publications_en.pdf'
                   target='_blank'
                 >
                   <FormattedMessage id='app.methodologie.publication.description-en' />
