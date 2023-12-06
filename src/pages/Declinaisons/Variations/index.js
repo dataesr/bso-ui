@@ -402,9 +402,16 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local université de Bordeaux'
+                alt='bso local université Bordeaux'
                 href='https://bibliotheques.u-bordeaux.fr/Soutien-a-la-recherche/Acces-ouvert-Open-access/Barometre-de-la-science-ouverte/Barometre-de-la-Science-Ouverte-de-l-universite-de-Bordeaux'
-                img='/declinaisons/universite_bordeaux.jpg'
+                img='/declinaisons/universite-bordeaux.jpg'
+              />
+            </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local université angers'
+                href='https://www.univ-angers.fr/fr/recherche/science-et-societe/barometre-de-la-science-ouverte.html'
+                img='/declinaisons/universite-angers.png'
               />
             </Col>
           </Row>
