@@ -400,6 +400,13 @@ function Variations() {
                 img='/declinaisons/scpo.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local université de Bordeaux'
+                href='https://bibliotheques.u-bordeaux.fr/Soutien-a-la-recherche/Acces-ouvert-Open-access/Barometre-de-la-science-ouverte/Barometre-de-la-Science-Ouverte-de-l-universite-de-Bordeaux'
+                img='/declinaisons/universite_bordeaux.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
