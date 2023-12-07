@@ -90,6 +90,7 @@
   },
   "difference-ce": {
     "intlDefinition": "app.faq.difference-ce.definition",
-    "intlEntry": "app.faq.difference-ce.entry"
+    "intlEntry": "app.faq.difference-ce.entry",
+    "cta": "https://research-and-innovation.ec.europa.eu/strategy/strategy-2020-2024/our-digital-future/open-science/open-science-monitor_en"
   }
 }
