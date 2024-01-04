@@ -802,7 +802,11 @@ export default function getFetchOptions({
         by_repository: {
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
-            exclude: ['pdfs.semanticscholar.org', 'edpsciences.org'],
+            exclude: [
+              'pdfs.semanticscholar.org',
+              'edpsciences.org',
+              'theses.fr',
+            ],
             size: 25,
           },
         },
