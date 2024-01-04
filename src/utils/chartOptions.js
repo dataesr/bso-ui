@@ -3346,6 +3346,35 @@ export const chartOptions = {
       return options;
     },
   },
+  'data.general.voies-ouverture.chart-data-shared-among-all': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.used-data',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
   'software.disciplines.voies-ouverture.chart-software-shared': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });

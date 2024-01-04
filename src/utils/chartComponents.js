@@ -228,6 +228,9 @@ const ChartDataUsedDiscpline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-data-used'
 ));
 const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
+const ChartDataSharedAmongAll = lazy(() => import(
+  '../components/Charts/data/general/voies-ouverture/chart-data-shared-among-all'
+));
 const ChartAvailibility = lazy(() => import(
   '../components/Charts/data/general/voies-ouverture/chart-availibility'
 ));
@@ -415,6 +418,8 @@ const chartComponents = {
     ChartSoftwareUsedDiscpline,
   'software.oa.voies-ouverture.chart-software-shared': ChartSoftwareSharedOa,
   'data.general.voies-ouverture.chart-data-used': ChartDataUsed,
+  'data.general.voies-ouverture.chart-data-shared-among-all':
+    ChartDataSharedAmongAll,
   'data.general.voies-ouverture.chart-availibility': ChartAvailibility,
   'data.disciplines.voies-ouverture.chart-availibility':
     ChartAvailibilityDiscipline,

@@ -27,13 +27,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'datastet_details.has_shared',
-    false,
-    false,
-    'datastet_details.has_created',
     'datastet_details.has_used',
+    'datastet_details.has_created',
+    'datastet_details.has_shared',
   );
-  const { categories, dataGraph } = allData;
+  const { categories, dataGraph2 } = allData;
   const dataTitle = {
     observationYear: getObservationLabel(lastObservationSnap, intl),
   };
@@ -42,7 +40,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     idWithDomain,
     intl,
     categories,
-    dataGraph,
+    dataGraph2,
     dataTitle,
   );
   const hasBeta = true;
@@ -60,7 +58,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !dataGraph2 || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -79,7 +77,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'data.general.voies-ouverture.chart-data-shared',
+  id: 'data.general.voies-ouverture.chart-data-shared-among-all',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

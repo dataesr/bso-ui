@@ -152,6 +152,7 @@ export default function NationalResearchData() {
                   anchorId='general.partage'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
+                  <BSOChart id='data.general.voies-ouverture.chart-data-shared-among-all' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.general.statement'
@@ -253,6 +254,7 @@ export default function NationalResearchData() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+
             {/* Les éditeurs */}
             <GraphItem
               paths={[
