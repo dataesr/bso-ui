@@ -511,6 +511,14 @@
     "commentsNameEN": "of TBI",
     "paysage": "UZW4E"
   },
+  "196924377": {
+    "name": "Université Jean Moulin Lyon 3 (UJML)",
+    "commentsName": "de l'UJML",
+    "commentsNameEN": "of UJML",
+    "paysage": "7Gzub",
+    "ror": "https://ror.org/05b5c0584",
+    "scale": "university"
+  },
   "197534316": {
     "name": "Sciences Po",
     "commentsName": "de Sciences Po",
@@ -539,7 +547,8 @@
     "commentsName": "de l'ENSAM",
     "commentsNameEN": "of ENSAM",
     "paysage": "jYUcF",
-    "ror": "https://ror.org/018pp1107"
+    "ror": "https://ror.org/018pp1107",
+    "scale": "university"
   },
   "197534860": {
     "name": "École Pratique des Hautes Études-PSL",
@@ -621,9 +630,9 @@
     "startYear": 2015
   },
   "198608564": {
-    "name": "Université de Poitiers",
-    "commentsName": "de l'Université de Poitiers",
-    "commentsNameEN": "of the university of Poitiers",
+    "name": "Université de Poitiers (UP)",
+    "commentsName": "de l'UP",
+    "commentsNameEN": "of UP",
     "paysage": "hlX1r",
     "ror": "https://ror.org/04xhy8q59",
     "scale": "university",
