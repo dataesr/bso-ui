@@ -193,55 +193,61 @@ const ChartRepartitionThesis = lazy(() => import(
   '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-thesis'
 ));
 // BSO3
-const ChartSoftwareShared = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-software-shared'
-));
-const ChartSoftwareCreated = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-software-created'
-));
-const ChartDataShared = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-shared'));
+const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
 const ChartDataCreated = lazy(() => import(
   '../components/Charts/data/general/voies-ouverture/chart-data-created'
 ));
-const ChartSoftwareUsed = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-software-used'
+const ChartDataShared = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-shared'));
+const ChartDataSharedAmongAll = lazy(() => import(
+  '../components/Charts/data/general/voies-ouverture/chart-data-shared-among-all'
 ));
-const ChartSoftwareSharedDiscipline = lazy(() => import(
-  '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared'
-));
-const ChartSoftwareCreatedDiscipline = lazy(() => import(
-  '../components/Charts/software/disciplines/voies-ouverture/chart-software-created'
-));
-const ChartSoftwareUsedDiscipline = lazy(() => import(
-  '../components/Charts/software/disciplines/voies-ouverture/chart-software-used'
-));
-const ChartSoftwareSharedOa = lazy(() => import(
-  '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
-));
-const ChartDataSharedDiscipline = lazy(() => import(
-  '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared'
-));
-const ChartDataCreatedDiscipline = lazy(() => import(
-  '../components/Charts/data/disciplines/voies-ouverture/chart-data-created'
+const ChartDataAvailibility = lazy(() => import(
+  '../components/Charts/data/general/voies-ouverture/chart-availibility'
 ));
 const ChartDataUsedDiscipline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-data-used'
 ));
-const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
-const ChartDataSharedAmongAll = lazy(() => import(
-  '../components/Charts/data/general/voies-ouverture/chart-data-shared-among-all'
+const ChartDataCreatedDiscipline = lazy(() => import(
+  '../components/Charts/data/disciplines/voies-ouverture/chart-data-created'
+));
+const ChartDataSharedDiscipline = lazy(() => import(
+  '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared'
 ));
 const ChartDataSharedAmongAllDiscipline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared-among-all'
 ));
-const ChartAvailibility = lazy(() => import(
-  '../components/Charts/data/general/voies-ouverture/chart-availibility'
-));
-const ChartAvailibilityDiscipline = lazy(() => import(
+const ChartDataAvailibilityDiscipline = lazy(() => import(
   '../components/Charts/data/disciplines/voies-ouverture/chart-availibility'
 ));
-const ChartAvailibilityEditeur = lazy(() => import(
+const ChartDataAvailibilityEditeur = lazy(() => import(
   '../components/Charts/data/editeurs/voies-ouverture/chart-availibility'
+));
+const ChartSoftwareUsed = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-software-used'
+));
+const ChartSoftwareCreated = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-software-created'
+));
+const ChartSoftwareShared = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-software-shared'
+));
+const ChartSoftwareSharedAmongAll = lazy(() => import(
+  '../components/Charts/software/general/voies-ouverture/chart-software-shared-among-all'
+));
+const ChartSoftwareUsedDiscipline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-used'
+));
+const ChartSoftwareCreatedDiscipline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-created'
+));
+const ChartSoftwareSharedDiscipline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared'
+));
+const ChartSoftwareSharedAmongAllDiscipline = lazy(() => import(
+  '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared-among-all'
+));
+const ChartSoftwareSharedOa = lazy(() => import(
+  '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
 ));
 // Orcid
 const ChartOrcid = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
@@ -368,6 +374,8 @@ const chartComponents = {
     ChartDistributionPublishers,
   'publi.publishers.couts-publication.chart-depenses-estimees':
     ChartDepensesEstimeesPublishers,
+  'publi.others.collaborations.international-collaborations':
+    ChartInterationalCollaborations,
   'general.dynamique.chart-evolution': ChartEvolutionStudies,
   'general.dynamique.chart-evolution-within-2-years':
     ChartEvolutionWithin2YearsStudies,
@@ -409,35 +417,38 @@ const chartComponents = {
     ChartTauxOuvertureThesis,
   'thesis.disciplines.voies-ouverture.chart-repartition-thesis':
     ChartRepartitionThesis,
-  'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
+  'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
   'software.general.voies-ouverture.chart-software-created':
     ChartSoftwareCreated,
-  'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
-  'software.disciplines.voies-ouverture.chart-software-shared':
-    ChartSoftwareSharedDiscipline,
-  'software.disciplines.voies-ouverture.chart-software-created':
-    ChartSoftwareCreatedDiscipline,
+  'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
+  'software.general.voies-ouverture.chart-software-shared-among-all':
+    ChartSoftwareSharedAmongAll,
   'software.disciplines.voies-ouverture.chart-software-used':
     ChartSoftwareUsedDiscipline,
+  'software.disciplines.voies-ouverture.chart-software-created':
+    ChartSoftwareCreatedDiscipline,
+  'software.disciplines.voies-ouverture.chart-software-shared':
+    ChartSoftwareSharedDiscipline,
+  'software.disciplines.voies-ouverture.chart-software-shared-among-all':
+    ChartSoftwareSharedAmongAllDiscipline,
   'software.oa.voies-ouverture.chart-software-shared': ChartSoftwareSharedOa,
   'data.general.voies-ouverture.chart-data-used': ChartDataUsed,
+  'data.general.voies-ouverture.chart-data-created': ChartDataCreated,
+  'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
   'data.general.voies-ouverture.chart-data-shared-among-all':
     ChartDataSharedAmongAll,
-  'data.disciplines.voies-ouverture.chart-data-shared-among-all':
-    ChartDataSharedAmongAllDiscipline,
-  'data.general.voies-ouverture.chart-availibility': ChartAvailibility,
-  'data.disciplines.voies-ouverture.chart-availibility':
-    ChartAvailibilityDiscipline,
-  'data.editeurs.voies-ouverture.chart-availibility': ChartAvailibilityEditeur,
-  'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
-  'data.general.voies-ouverture.chart-data-created': ChartDataCreated,
-  'data.disciplines.voies-ouverture.chart-data-shared':
-    ChartDataSharedDiscipline,
+  'data.general.voies-ouverture.chart-availibility': ChartDataAvailibility,
+  'data.disciplines.voies-ouverture.chart-data-used': ChartDataUsedDiscipline,
   'data.disciplines.voies-ouverture.chart-data-created':
     ChartDataCreatedDiscipline,
-  'data.disciplines.voies-ouverture.chart-data-used': ChartDataUsedDiscipline,
-  'publi.others.collaborations.international-collaborations':
-    ChartInterationalCollaborations,
+  'data.disciplines.voies-ouverture.chart-data-shared':
+    ChartDataSharedDiscipline,
+  'data.disciplines.voies-ouverture.chart-data-shared-among-all':
+    ChartDataSharedAmongAllDiscipline,
+  'data.disciplines.voies-ouverture.chart-availibility':
+    ChartDataAvailibilityDiscipline,
+  'data.editeurs.voies-ouverture.chart-availibility':
+    ChartDataAvailibilityEditeur,
   'orcid.general.present.chart-evolution': ChartOrcid,
   'orcid.general.present.chart-indicator-worksource': ChartOrcidWorkSource,
   'orcid.general.present.chart-indicator-affiliationsource':

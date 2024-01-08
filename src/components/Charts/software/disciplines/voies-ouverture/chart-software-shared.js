@@ -38,6 +38,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'softcite_details.has_shared',
+    false,
+    false,
     'softcite_details.has_created',
     'softcite_details.has_used',
   );

@@ -38,8 +38,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'softcite_details.has_used',
+    'softcite_details.has_created',
+    'softcite_details.has_shared',
   );
-  const { categories, dataGraph } = allData;
+  const { categories2, dataGraph2 } = allData;
   useEffect(() => {
     setDataTitle({
       publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
@@ -49,13 +51,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   useEffect(() => {
     let sortKey;
     if (sort === 'sort-staff') {
-      categories?.sort((a, b) => b.staff - a.staff);
+      categories2?.sort((a, b) => b.staff - a.staff);
       sortKey = 'y_tot';
     } else {
-      categories?.sort((a, b) => b.percent - a.percent);
+      categories2?.sort((a, b) => b.percent - a.percent);
       sortKey = 'y';
     }
-    const categoriesLabel = categories?.map((item) => capitalize(intl.formatMessage({ id: `app.discipline.${item.key}` }))
+    const categoriesLabel = categories2?.map((item) => capitalize(intl.formatMessage({ id: `app.discipline.${item.key}` }))
       .concat('</br>(')
       .concat(intl.formatMessage({ id: 'app.effectif' }))
       .concat(' = ')
@@ -66,13 +68,22 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         idWithDomain,
         intl,
         categoriesLabel,
-        dataGraph,
+        dataGraph2,
         dataTitle,
         sortKey,
       ),
     );
     setChartComments(customComments(allData, idWithDomain, intl));
-  }, [allData, categories, dataGraph, dataTitle, id, idWithDomain, intl, sort]);
+  }, [
+    allData,
+    categories2,
+    dataGraph2,
+    dataTitle,
+    id,
+    idWithDomain,
+    intl,
+    sort,
+  ]);
 
   return (
     <WrapperChart
@@ -84,7 +95,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !allData || !categories}
+      isLoading={isLoading || !allData || !categories2}
     >
       <RadioGroup
         className='d-inline-block'
@@ -110,7 +121,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           value='sort-staff'
         />
         <Radio
-          label={intl.formatMessage({ id: 'app.publi.sort-used' })}
+          label={intl.formatMessage({ id: 'app.publi.sort-shared' })}
           value='sort-open-rate'
         />
       </RadioGroup>
@@ -131,7 +142,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'software.disciplines.voies-ouverture.chart-software-used',
+  id: 'software.disciplines.voies-ouverture.chart-software-shared-among-all',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

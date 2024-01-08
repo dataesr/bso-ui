@@ -145,6 +145,7 @@ export default function NationalSoftwareCode() {
                   anchorId='general.partage'
                 >
                   <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
+                  <BSOChart id='software.general.voies-ouverture.chart-software-shared-among-all' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -215,6 +216,7 @@ export default function NationalSoftwareCode() {
                   anchorId='disciplines.partage'
                 >
                   <BSOChart id='software.disciplines.voies-ouverture.chart-software-shared' />
+                  <BSOChart id='software.disciplines.voies-ouverture.chart-software-shared-among-all' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

@@ -27,9 +27,11 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
+    'softcite_details.has_shared',
+    'softcite_details.has_created',
     'softcite_details.has_used',
   );
-  const { categories, dataGraph } = allData;
+  const { categories, dataGraph2 } = allData;
   const dataTitle = {
     observationYear: getObservationLabel(lastObservationSnap, intl),
   };
@@ -38,7 +40,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     idWithDomain,
     intl,
     categories,
-    dataGraph,
+    dataGraph2,
     dataTitle,
   );
   const hasBeta = true;
@@ -56,7 +58,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !dataGraph2 || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -75,7 +77,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'software.general.voies-ouverture.chart-software-used',
+  id: 'software.general.voies-ouverture.chart-software-shared-among-all',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
