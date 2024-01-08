@@ -42,14 +42,10 @@ function useGetData(
         }
       }
       if (filter1) {
-        query.query.bool.filter.push({
-          term: { [`${filter1}`]: true },
-        });
+        query.query.bool.filter.push({ term: { [`${filter1}`]: true } });
       }
       if (filter2) {
-        query.query.bool.filter.push({
-          term: { [`${filter2}`]: true },
-        });
+        query.query.bool.filter.push({ term: { [`${filter2}`]: true } });
       }
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets.sort(
@@ -87,14 +83,14 @@ function useGetData(
           const unknownCurrent = el.by_oa_host_type.buckets.find((item) => item.key === -1)
             ?.doc_count || 0;
           closed.push({
-            y: (100 * closedCurrent) / totalCurrent,
+            y: (closedCurrent / totalCurrent) * 100,
             y_abs: closedCurrent,
             y_tot: totalCurrent,
             x: el.key,
             bsoDomain,
           });
           shared.push({
-            y: (100 * sharedCurrent) / totalCurrent,
+            y: (sharedCurrent / totalCurrent) * 100,
             y_abs: sharedCurrent,
             y_tot: totalCurrent,
             y_unk: unknownCurrent,
@@ -102,7 +98,7 @@ function useGetData(
             bsoDomain,
           });
           shared2.push({
-            y: (100 * sharedCurrent2) / totalCurrent,
+            y: (sharedCurrent2 / totalCurrent) * 100,
             y_abs: sharedCurrent2,
             y_tot: totalCurrent,
             y_unk: unknownCurrent,

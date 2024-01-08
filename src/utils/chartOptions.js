@@ -3492,7 +3492,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'data.disciplines.voies-ouverture.chart-data-shared': {
+  'data.disciplines.voies-ouverture.chart-data-used': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
@@ -3501,7 +3501,7 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.used-data' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3566,7 +3566,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'data.disciplines.voies-ouverture.chart-data-used': {
+  'data.disciplines.voies-ouverture.chart-data-shared': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
@@ -3575,7 +3575,44 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.used-data' });
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'data.disciplines.voies-ouverture.chart-data-shared-among-all': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });

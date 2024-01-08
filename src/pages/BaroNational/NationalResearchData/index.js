@@ -243,6 +243,7 @@ export default function NationalResearchData() {
                   anchorId='disciplines.partage'
                 >
                   <BSOChart id='data.disciplines.voies-ouverture.chart-data-shared' />
+                  <BSOChart id='data.disciplines.voies-ouverture.chart-data-shared-among-all' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.disciplines.statement'
