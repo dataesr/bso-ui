@@ -2315,14 +2315,18 @@ export const chartOptions = {
   'general.dynamique.chart-evolution-within-2-years-by-year': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
       const options = getGraphOptions({ id, intl, studyType, dataTitle });
-      options.chart.type = 'column';
+      options.chart = {
+        type: 'bar',
+        height: '650px',
+      };
       options.plotOptions = {
         series: {
+          grouping: false,
           dataLabels: {
             enabled: false,
           },
         },
-        column: {
+        bar: {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
@@ -2338,6 +2342,7 @@ export const chartOptions = {
         },
         lineWidth: 0,
         tickWidth: 0,
+        reversed: false,
         labels: {
           style: {
             color: getCSSValue('--g800'),

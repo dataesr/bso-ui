@@ -21,7 +21,7 @@ function useGetData(studyType, sponsor = '*') {
     const yearMax = currentYear - 1;
     const yearMin = yearMax - 10;
     const yearMax2 = currentYear - 3;
-    const yearMin2 = yearMax2 - 10;
+    const yearMin2 = yearMax2 - 6;
     const query1 = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
       parameters: [studyType, yearMin, yearMax],
@@ -238,19 +238,24 @@ function useGetData(studyType, sponsor = '*') {
 
     const series3 = [
       {
-        color: getCSSValue('--blue-soft-100'),
-        data: allTypesData3,
-        name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
-      },
-      {
-        color: getCSSValue('--lead-sponsor-privee'),
-        data: industrialData3,
-        name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
-      },
-      {
+        id: 'public',
         color: getCSSValue('--lead-sponsor-public'),
         data: academicData3,
         name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
+        pointPlacement: -0.2,
+      },
+      {
+        id: 'prive',
+        color: getCSSValue('--lead-sponsor-privee'),
+        data: industrialData3,
+        name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
+        pointPlacement: 0.2,
+      },
+      {
+        id: 'main',
+        color: getCSSValue('--blue-soft-100'),
+        data: allTypesData3,
+        name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
       },
     ];
     const dataGraph3 = { categories: categories3, series: series3 };
