@@ -28,13 +28,13 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraph2 } = allData;
+  const { dataGraph3 } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    dataGraph2,
+    dataGraph3,
     studyType,
   );
 
