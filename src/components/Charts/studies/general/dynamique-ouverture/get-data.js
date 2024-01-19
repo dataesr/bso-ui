@@ -195,7 +195,6 @@ function useGetData(studyType, sponsor = '*') {
         ?.by_completion_year.buckets?.find((item) => item.key === year)
         ?.doc_count ?? 0;
       academicData3.push({
-        year,
         y:
           100
           * (academicDataWithResultsForYear
@@ -204,8 +203,7 @@ function useGetData(studyType, sponsor = '*') {
         y_abs: academicDataWithResultsForYear,
         y_tot:
           academicDataWithResultsForYear + academicDataWithoutResultsForYear,
-        yearMax,
-        yearMin,
+        year,
       });
       industrialData3.push({
         year,
