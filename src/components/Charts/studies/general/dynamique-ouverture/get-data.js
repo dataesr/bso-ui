@@ -204,6 +204,8 @@ function useGetData(studyType, sponsor = '*') {
         y_abs: academicDataWithResultsForYear,
         y_tot:
           academicDataWithResultsForYear + academicDataWithoutResultsForYear,
+        yearMax,
+        yearMin,
       });
       industrialData3.push({
         year,
@@ -216,6 +218,8 @@ function useGetData(studyType, sponsor = '*') {
         y_tot:
           industrialDataWithResultsForYear
           + industrialDataWithoutResultsForYear,
+        yearMax,
+        yearMin,
       });
       allTypesData3.push({
         year,
@@ -233,6 +237,8 @@ function useGetData(studyType, sponsor = '*') {
           + academicDataWithoutResultsForYear
           + industrialDataWithResultsForYear
           + industrialDataWithoutResultsForYear,
+        yearMax,
+        yearMin,
       });
     });
 
@@ -316,6 +322,6 @@ function useGetData(studyType, sponsor = '*') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyType, sponsor]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;
