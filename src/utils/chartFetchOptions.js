@@ -2082,13 +2082,6 @@ export default function getFetchOptions({
               terms: {
                 field: 'retraction_details.is_retracted',
               },
-              aggs: {
-                by_oa: {
-                  terms: {
-                    field: `oa_details.${lastObservationSnap}.is_oa`,
-                  },
-                },
-              },
             },
           },
         },
