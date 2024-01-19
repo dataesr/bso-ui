@@ -22,20 +22,20 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       const queryAll = getFetchOptions({
         key: 'orcidNumber',
         domain,
-        parameters: ['month', ['address', 'employment', 'education']],
+        parameters: ['year', ['address', 'employment', 'education']],
         objectType: ['orcid'],
       });
       queries.push(Axios.post(ES_ORCID_API_URL, queryAll, HEADERS));
       const queryEmployment = getFetchOptions({
         key: 'orcidNumber',
         domain,
-        parameters: ['month', ['employment']],
+        parameters: ['year', ['employment']],
         objectType: ['orcid'],
       });
       queries.push(Axios.post(ES_ORCID_API_URL, queryEmployment, HEADERS));
       const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.orcid_per_day.buckets;
-      const dataEmployment = res[1].data.aggregations.orcid_per_day.buckets;
+      const data = res[0].data.aggregations.orcid_per_year.buckets;
+      const dataEmployment = res[1].data.aggregations.orcid_per_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
       const total = [];
@@ -47,7 +47,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       };
       data.forEach((el) => {
         const currentDate = Highcharts.dateFormat(
-          '%Y-%m',
+          '%Y',
           new Date(el.key_as_string).getTime(),
         );
         categories.push(currentDate);
@@ -61,7 +61,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       });
       dataEmployment.forEach((el) => {
         const currentDate = Highcharts.dateFormat(
-          '%Y-%m',
+          '%Y',
           new Date(el.key_as_string).getTime(),
         );
         employment.push({

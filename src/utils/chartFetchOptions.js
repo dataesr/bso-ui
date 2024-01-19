@@ -1974,7 +1974,7 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        orcid_per_day: {
+        orcid_per_year: {
           date_histogram: {
             field: 'creation_date',
             calendar_interval: interval,
