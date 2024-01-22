@@ -515,6 +515,34 @@ export default function NationalPublications() {
                   <BSOChart id='publi.general.impact-financement.chart-business-model' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-taux' />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+
+            {/* A valider */}
+            <GraphItem
+              paths={['/publications/a-decider', '/publications/to-be-decided']}
+              mainLabel={intl.formatMessage({
+                id: 'app.publi.to-be-decided',
+              })}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/publications/to-be-decided?id=fundings.chart-taux-ouverture',
+                    fr: '/publications/a-decider?id=fundings.chart-taux-ouverture',
+                  },
+                },
+              ]}
+            >
+              <GraphContent isDisplayed={!isInProduction()}>
+                <QuestionSection
+                  anchorId='fundings.chart-taux-ouverture'
+                  intlKey=''
+                  backgroundColor={blueSoft50}
+                >
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
                   <BSOChart id='publi.others.retractions.chart-by-year' />
                   <BSOChart id='publi.others.retractions.chart-by-field' />

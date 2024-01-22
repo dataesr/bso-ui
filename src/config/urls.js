@@ -25,6 +25,10 @@ export default {
         fr: '/publications/financements',
         en: '/publications/fundings',
       },
+      {
+        fr: '/publications/a-decider',
+        en: '/publications/to-be-decided',
+      },
     ],
     fr: '/publications/general',
     en: '/publications/general',

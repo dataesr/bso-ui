@@ -961,6 +961,7 @@
   "app.publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.tooltip": "<b>Publications {point.publisher} of {point.publicationDate}</b><br>Part hosted by the publisher / platform : {point.x:.2f}% ({point.x_abs} / {point.z})<br>PPart hosted on an archive : {point.y:.2f}% ({point.y_abs} / {point.z})",
   "app.publi.editeurs": "Publishers",
   "app.publi.fundings": "Fundings",
+  "app.publi.to-be-decided": "To be decided",
   "app.publi.general": "General",
   "app.publi.general.genres-ouverture.chart-repartition-genres.tooltip": "<b>{point.name} published in {point.publicationDate} ({point.bsoDomain})</b><br>{point.value} in {point.oaType}<br>i.e. {point.percentage:.2f}% of the total of the publications of {point.publicationDate}",
   "app.publi.general.genres-ouverture.chart-repartition-taux.tooltip": "<b>{point.x_val} ({point.bsoDomain})</b><br>• Open access rate<br>with hosting {series.name}:<br>{point.y:.2f}% ({point.y_abs} / {point.y_tot})<br>• Total open access rate: {point.stacktotal:.2f}%",
