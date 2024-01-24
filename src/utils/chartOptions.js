@@ -4360,8 +4360,8 @@ export const chartOptions = {
     },
   },
   'publi.others.retractions.chart-by-year': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -4375,7 +4375,7 @@ export const chartOptions = {
           },
         },
       };
-      options.series = data;
+      options.series = series;
       options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
