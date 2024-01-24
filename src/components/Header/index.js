@@ -389,8 +389,8 @@ function Header() {
                 ).length > 0
               }
               title={intl.formatMessage({
-                id: 'app.header.nav.baro-national-publications',
-                defaultMessage: 'Les publications',
+                id: 'app.header.nav.baro-national-publicationsXXX',
+                defaultMessage: 'Les publications et thèses',
               })}
             >
               <NavSubItem
@@ -431,8 +431,8 @@ function Header() {
             <NavItem
               current={path.startsWith(urls.sante[lang])}
               title={intl.formatMessage({
-                id: 'app.header.nav.data-code',
-                defaultMessage: 'Données et code',
+                id: 'app.header.nav.data-codeXXX',
+                defaultMessage: 'Les données et code',
               })}
             >
               <NavSubItem
