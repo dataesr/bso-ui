@@ -34,7 +34,7 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
   const [sponsor, setSponsor] = useState('*');
-  const { allData, isLoading, isError } = useGetData(studyType, sponsor);
+  const { allData, isError, isLoading } = useGetData(studyType, sponsor);
   const { dataGraph1 } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);

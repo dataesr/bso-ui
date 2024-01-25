@@ -181,4 +181,5 @@ function useGetData(
 
   return { allData, isError, isLoading };
 }
+
 export default useGetData;

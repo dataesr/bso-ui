@@ -146,8 +146,8 @@ function useGetData(studyType, sponsorType = '*') {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType, sponsorType]);
+  }, [sponsorType, studyType]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

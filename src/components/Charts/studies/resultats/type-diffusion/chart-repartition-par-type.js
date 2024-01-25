@@ -15,7 +15,11 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { capitalize, withContext, withDomain } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  withContext,
+  withDomain,
+} from '../../../../../utils/helpers';
 import SimpleSelect from '../../../../SimpleSelect';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -30,7 +34,7 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
   const [sponsorType, setSponsorType] = useState('*');
-  const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
+  const { allData, isError, isLoading } = useGetData(studyType, sponsorType);
   const { dataGraph2 } = allData;
   const idWithDomainAndStudyType = withContext(id, domain, studyType);
   const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
@@ -48,7 +52,10 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
 
   useEffect(() => {
     const opts = allData?.sponsorTypes || [];
-    opts.unshift({ label: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })), value: '*' });
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+      value: '*',
+    });
     setOptions(opts);
   }, [allData.sponsorTypes, intl]);
 
