@@ -14,17 +14,14 @@ import { Link, useLocation } from 'react-router-dom';
 import Banner from '../../components/Banner';
 import BSOChart from '../../components/Charts';
 import Chip from '../../components/Chip';
-import Glossary from '../../components/Glossary';
 import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
 import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
-import ProgressionCard from '../../components/ProgressionCard';
 import ScrollTop from '../../components/ScrollTop';
 import TodayNumbersSection from '../../components/TodayNumbersSection';
 import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
-import GlossaryEntries from '../../translations/glossary.json';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
@@ -33,15 +30,6 @@ function BaroSante() {
 
   const renderIcons = (
     <Row alignItems='middle' gutters>
-      {/*
-      <Col n='4 md-2'>
-        <Icon
-          name='icon-bsso-28'
-          color1='blue-soft-125'
-          color2='publication-25'
-        />
-      </Col>
-      */}
       <Col n='4 md-2'>
         <Icon
           name='icon-bsso-15'

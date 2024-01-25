@@ -18,14 +18,12 @@ import Glossary from '../../components/Glossary';
 import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
 import HomeSection from '../../components/HomeSection';
 import Icon from '../../components/Icon';
-import ProgressionCard from '../../components/ProgressionCard';
 import ScrollTop from '../../components/ScrollTop';
 import TodayNumbersSection from '../../components/TodayNumbersSection';
 import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
-import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 function DataCode() {
@@ -159,30 +157,6 @@ function DataCode() {
                   </Row>
                 </Container>
               </HomeSection>
-              {/* <HomeSection
-                isDisplayed={!isInProduction()}
-                link={{
-                  href: urls.nationalOrcid.tabs[0][lang] + search,
-                  label: (
-                    <FormattedMessage id='app.baro-national.detail-orcid' />
-                  ),
-                }}
-                title={<FormattedMessage id='app.baro-national.orcid.title' />}
-                introText={(
-                  <GlossaryFormattedMessage
-                    intlKey='app.orcid.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr']}
-                  />
-                )}
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12'>
-                      <BSOChart id='orcid.general.present.chart-indicator-these-year' />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection> */}
             </Col>
             <Col n='12'>
               <Container fluid>
