@@ -83,7 +83,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-worksource',
+  id: 'orcid.general.chart-indicator-worksource',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

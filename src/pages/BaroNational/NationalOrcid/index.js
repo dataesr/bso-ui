@@ -115,7 +115,7 @@ export default function NationalOrcid() {
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.users'
                 >
-                  <BSOChart id='orcid.general.present.chart-indicator-these-year' />
+                  <BSOChart id='orcid.general.chart-indicator-these-year' />
                   <BSOChart id='orcid.general.chart-indicator-these-discipline' />
                   <BSOChart id='orcid.general.chart-evolution' />
                   <BSOChart id='orcid.general.creation-by-year' />
@@ -127,9 +127,9 @@ export default function NationalOrcid() {
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.publications'
                 >
-                  <BSOChart id='orcid.general.present.chart-indicator-work' />
+                  <BSOChart id='orcid.general.chart-indicator-work' />
                   <BSOChart id='orcid.general.present.chart-indicator-hal' />
-                  <BSOChart id='orcid.general.present.chart-indicator-worksource' />
+                  <BSOChart id='orcid.general.chart-indicator-worksource' />
                 </QuestionSection>
                 <QuestionSection
                   anchorId='general.affiliations'

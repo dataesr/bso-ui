@@ -3982,7 +3982,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-these-year': {
+  'orcid.general.chart-indicator-these-year': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'line';
@@ -4052,7 +4052,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-work': {
+  'orcid.general.chart-indicator-work': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4292,7 +4292,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-worksource': {
+  'orcid.general.chart-indicator-worksource': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '650px';

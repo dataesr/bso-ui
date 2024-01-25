@@ -306,10 +306,6 @@ export default function NationalPublications() {
                 >
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-taux-ouverture' />
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-evolution-proportion' />
-                  <BSOChart
-                    id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture'
-                    isDisplayed={!isInProduction()}
-                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -547,6 +543,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.retractions.chart-by-year' />
                   <BSOChart id='publi.others.retractions.chart-by-field' />
                   <BSOChart id='publi.others.retractions.chart-by-publisher' />
+                  <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

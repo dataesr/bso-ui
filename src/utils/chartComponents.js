@@ -462,15 +462,15 @@ const chartComponents = {
     ChartDataAvailibilityEditeur,
   'orcid.general.chart-evolution': OrcidEvolution,
   'orcid.general.creation-by-year': OrcidCreationByYear,
-  'orcid.general.present.chart-indicator-worksource': ChartOrcidWorkSource,
+  'orcid.general.chart-indicator-worksource': ChartOrcidWorkSource,
   'orcid.general.present.chart-indicator-affiliationsource':
     ChartOrcidAffiliationSource,
   'orcid.general.chart-indicator-active': ChartOrcidActive,
   'orcid.general.present.chart-indicator-hal': ChartOrcidHal,
-  'orcid.general.present.chart-indicator-work': ChartOrcidWork,
+  'orcid.general.chart-indicator-work': ChartOrcidWork,
   'orcid.general.present.chart-indicator-affiliationid':
     ChartOrcidAffiliationId,
-  'orcid.general.present.chart-indicator-these-year': ChartOrcidTheseYear,
+  'orcid.general.chart-indicator-these-year': ChartOrcidTheseYear,
   'orcid.general.chart-indicator-these-discipline': ChartOrcidTheseDiscipline,
   'orcid.general.present.chart-indicator-idref-abes': ChartOrcidIdrefAbes,
   'orcid.general.present.chart-indicator-idref-hal': ChartOrcidIdrefHal,
