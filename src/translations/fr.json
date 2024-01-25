@@ -1366,6 +1366,7 @@
   "app.national-orcid.general.present.chart-evolution.title": "Evolution du nombre d'ORCID français",
   "app.national-orcid.general.present.chart-evolution.comments": "Ce graphique présente l'évolution du nombre d'ORCID français. Un ORCID est considéré français à la date d'observation (dernier dump disponible) si au moins une de ces condition est remplie : un employeur français à date, une formation en cours en France à date, le pays indiqué sur le compte ORCID est la France, ou un email (public) en .fr. Il est à noter que dans les faits, très peu d'emails sont publics dans le dump ORCID. ",
   "app.national-orcid.general.present.chart-evolution.tooltip": "<b>{series.name}</b><br><b>{point.y}</b> comptes ORCID créés (en cumulé) avant {point.creation_date:%Y}",
+  "app.national-orcid.general.present.creation-by-year.title": "Nombre d'ORCID français par année de création",
   "app.national-orcid.general.present.chart-indicator-active.title": "Proportion de comptes ORCID français actifs (profil mis à jour depuis 2021)",
   "app.national-orcid.general.present.chart-indicator-active.tooltip": "<b>ORCID {series.name}</b><br/>{point.y:.2f} % des comptes {point.fr_reason}<br>soit {point.y_abs} / {point.y_tot} ORCID",
   "app.national-orcid.general.present.chart-indicator-hal.title": "Proportion de comptes ORCID français qui a utilisé l'import de publications depuis HAL",

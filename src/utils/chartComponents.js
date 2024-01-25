@@ -256,7 +256,8 @@ const ChartSoftwareSharedOa = lazy(() => import(
   '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
 ));
 // Orcid
-const ChartOrcid = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
+const OrcidEvolution = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
+const OrcidCreationByYear = lazy(() => import('../components/Charts/orcid/general/present/creation-by-year'));
 const ChartOrcidAffiliationSource = lazy(() => import(
   '../components/Charts/orcid/general/present/chart-indicator-affiliationsource'
 ));
@@ -459,7 +460,8 @@ const chartComponents = {
     ChartDataAvailibilityDiscipline,
   'data.editeurs.voies-ouverture.chart-availibility':
     ChartDataAvailibilityEditeur,
-  'orcid.general.present.chart-evolution': ChartOrcid,
+  'orcid.general.present.chart-evolution': OrcidEvolution,
+  'orcid.general.present.creation-by-year': OrcidCreationByYear,
   'orcid.general.present.chart-indicator-worksource': ChartOrcidWorkSource,
   'orcid.general.present.chart-indicator-affiliationsource':
     ChartOrcidAffiliationSource,

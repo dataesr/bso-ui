@@ -1366,6 +1366,7 @@
   "app.national-orcid.general.present.chart-evolution.title": "French ORCID accounts evolution",
   "app.national-orcid.general.present.chart-evolution.comments": "This graph shows the evolution of the number of French ORCIDs. An ORCID is considered French on the observation date (last available dump) if at least one of these conditions is met: a French employer on the date, a training course in progress in France on the date, the country indicated on the ORCID account is France, or a (public) email in .fr. Please note that very few emails are actually public in the ORCID dump.",
   "app.national-orcid.general.present.chart-evolution.tooltip": "<b>{series.name}</b><br><b>{point.y}</b> ORCID accounts created (cumulated) until {point.creation_date:%Y}",
+  "app.national-orcid.general.present.creation-by-year.title": "Number of French ORCID by creation year",
   "app.software.navigation.disciplines.creation": "Code or software creation",
   "app.repositories.label.archimer": "Archimer (France)",
   "app.repositories.label.arxiv": "ArXiv (USA)",

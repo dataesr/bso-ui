@@ -3904,6 +3904,20 @@ export const chartOptions = {
       return options;
     },
   },
+  'orcid.general.present.creation-by-year': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.orcid.creation-date' }) },
+      };
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid.nb' });
+      options.legend.enabled = false;
+      options.series = series;
+      return options;
+    },
+  },
   'orcid.general.present.chart-indicator-active': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });

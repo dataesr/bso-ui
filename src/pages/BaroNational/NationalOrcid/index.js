@@ -106,24 +106,6 @@ export default function NationalOrcid() {
                     fr: '/orcid/general?id=general.users',
                   },
                 },
-                /* {
-                  label: intl.formatMessage({
-                    id: 'app.orcid.navigation.publications',
-                  }),
-                  href: {
-                    en: '/orcid/general?id=general.publications',
-                    fr: '/orcid/general?id=general.publications',
-                  },
-                },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.orcid.navigation.affiliations',
-                  }),
-                  href: {
-                    en: '/orcid/general?id=general.affiliations',
-                    fr: '/orcid/general?id=general.affiliations',
-                  },
-                }, */
               ]}
             >
               <GraphContent>
@@ -136,17 +118,14 @@ export default function NationalOrcid() {
                   <BSOChart id='orcid.general.present.chart-indicator-these-year' />
                   <BSOChart id='orcid.general.present.chart-indicator-these-discipline' />
                   <BSOChart id='orcid.general.present.chart-evolution' />
-                  <BSOChart
-                    id='orcid.general.present.chart-indicator-active'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='orcid.general.present.creation-by-year' />
+                  <BSOChart id='orcid.general.present.chart-indicator-active' />
                 </QuestionSection>
                 <QuestionSection
                   anchorId='general.publications'
                   backgroundColor={blueSoft25}
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.publications'
-                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='orcid.general.present.chart-indicator-work' />
                   <BSOChart id='orcid.general.present.chart-indicator-hal' />
@@ -157,7 +136,6 @@ export default function NationalOrcid() {
                   backgroundColor={blueSoft50}
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.affiliations'
-                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='orcid.general.present.chart-indicator-affiliationsource' />
                 </QuestionSection>
