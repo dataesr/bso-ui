@@ -4423,19 +4423,22 @@ export const chartOptions = {
     },
   },
   'publi.others.retractions.chart-by-publisher': {
-    getOptions: (id, intl, categories, graph, isPercent, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, graph, sort) => {
+      const options = getGraphOptions({ id, intl });
       options.chart.height = '1000px';
       options.chart.type = 'bar';
       options.xAxis = {
-        title: { text: intl.formatMessage({ id: 'app.publishers' }) },
+        title: {
+          text: capitalize(intl.formatMessage({ id: 'app.publishers' })),
+        },
         categories,
       };
-      options.yAxis = getPercentageYAxis(false, null, !isPercent);
+      options.yAxis = getPercentageYAxis(false, null, sort !== 'sort-percent');
       options.yAxis.title.text = intl.formatMessage({
-        id: isPercent
-          ? 'app.publi.percent-publications-retracted'
-          : 'app.publi.nb-publications-retracted',
+        id:
+          sort === 'sort-percent'
+            ? 'app.publi.percent-publications-retracted'
+            : 'app.publi.nb-publications-retracted',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -4443,7 +4446,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              if (isPercent) {
+              if (sort === 'sort-percent') {
                 return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
               }
               return this.y === 0 ? '' : this.y.toFixed();

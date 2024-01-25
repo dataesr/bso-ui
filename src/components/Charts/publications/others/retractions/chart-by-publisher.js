@@ -23,12 +23,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const [isPercent, setPercent] = useState(false);
+  const [sort, setSort] = useState('sort-number');
   const { observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(
     observationSnaps,
     domain,
-    isPercent,
+    sort,
   );
   const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
@@ -37,7 +37,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     intl,
     categories,
     dataGraph,
-    isPercent,
+    sort,
   );
 
   useEffect(() => {
@@ -57,8 +57,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       <RadioGroup
         className='d-inline-block'
         isInline
-        onChange={() => setPercent(!isPercent)}
-        value={isPercent ? 'sort-percent' : 'sort-number'}
+        onChange={(newValue) => setSort(newValue)}
+        value={sort}
       >
         <Radio
           label={intl.formatMessage({

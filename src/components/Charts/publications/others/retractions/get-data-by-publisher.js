@@ -7,7 +7,7 @@ import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { cleanNumber } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 
-function useGetData(observationSnaps, domain = '', isPercent = false) {
+function useGetData(observationSnaps, domain = '', sort = 'sort-number') {
   const [data, setData] = useState({});
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -39,7 +39,10 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
         y_tot: item.doc_count,
         y_abs: numberOfRetracted(item),
         y_rel: percentageOfRetracted(item),
-        y: isPercent ? percentageOfRetracted(item) : numberOfRetracted(item),
+        y:
+          sort === 'sort-percent'
+            ? percentageOfRetracted(item)
+            : numberOfRetracted(item),
         x: catIndex,
         publisher: categories[catIndex],
       })),
@@ -49,7 +52,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       categories,
       dataGraph,
     };
-  }, [domain, isPercent, intl, lastObservationSnap]);
+  }, [domain, intl, lastObservationSnap, sort]);
 
   useEffect(() => {
     async function getData() {
@@ -65,7 +68,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       }
     }
     getData();
-  }, [getDataByObservationSnaps, isPercent, observationSnaps]);
+  }, [getDataByObservationSnaps, observationSnaps, sort]);
 
   return { data, isError, isLoading };
 }
