@@ -8,7 +8,7 @@ import {
   Row,
 } from '@dataesr/react-dsfr';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
@@ -25,50 +25,70 @@ import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersI
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
+import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
-function BaroSante() {
+function DataCode() {
+  const intl = useIntl();
   const { lang, urls } = useLang();
   const { search } = useLocation();
-
   const renderIcons = (
-    <Row alignItems='middle' gutters>
-      {/*
+    <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='4 md-2'>
         <Icon
-          name='icon-bsso-28'
+          name='icon-bsso-3'
           color1='blue-soft-125'
-          color2='publication-25'
+          color2='yellow-medium-50'
         />
       </Col>
-      */}
       <Col n='4 md-2'>
         <Icon
-          name='icon-bsso-15'
+          name='icon-bsso-4'
+          color1='blue-soft-125'
+          color2='orange-medium-75'
+        />
+      </Col>
+      <Col n='4 md-2'>
+        <Icon
+          name='icon-bsso-1'
           color1='blue-soft-125'
           color2='green-soft-50'
         />
       </Col>
       <Col n='4 md-2'>
+        <Icon name='icon-bsso-5' color1='blue-soft-125' color2='blue-soft-50' />
+      </Col>
+      <Col n='4 md-2'>
         <Icon
-          name='icon-bsso-17'
+          name='icon-bsso-2'
           color1='blue-soft-125'
-          color2='orange-medium-50'
+          color2='pink-light-75'
+        />
+      </Col>
+      <Col n='4 md-2'>
+        <Icon
+          name='icon-bsso-6'
+          color1='blue-soft-125'
+          color2='green-medium-50'
         />
       </Col>
     </Row>
   );
 
+  // TODO better way to render Icons
   return (
-    <div className='baro-sante page home'>
+    <div className='baro-national page home'>
       <Banner
-        backgroundColor='blue-soft-100'
+        backgroundColor='blue-soft-150'
         supTitle={<FormattedMessage id='app.header.welcome-on' />}
-        title={<FormattedMessage id='app.header.title-health-bis' />}
-        subTitle={<FormattedMessage id='app.header.subtitle-health' />}
-        chip={<Chip backgroundColor='blue-soft-125' />}
+        title={<FormattedMessage id='app.header.title-bis' />}
+        subTitle={<FormattedMessage id='app.header.subtitle' />}
+        link={{
+          label: <FormattedMessage id='app.communication.see' />,
+          url: intl.formatMessage({ id: 'url.about.communication' }) + search,
+        }}
         icons={renderIcons}
-        homeLink={urls.national[lang] + search}
+        chip={<Chip />}
       />
       <ScrollTop />
       <Container fluid>
@@ -77,119 +97,92 @@ function BaroSante() {
             <Col n='12 md-12 xl-10' className='px-20 px-md-64' offset='xl-2'>
               <section className='py-28'>
                 <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
-                  <FormattedMessage id='app.health-home.numbers' />
+                  <FormattedMessage id='app.national-home.numbers' />
                 </h2>
                 <p className='fs-14-24 blue m-0'>
                   <UpdateDate />
                 </p>
               </section>
             </Col>
-            {/*
             <Col n='12 xl-10' offset='xl-2'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
-                link={{
-                  href: '/sante/publications/general',
-                  label: <FormattedMessage id='app.baro-sante.detail-publi' />,
-                }}
-                title={
-                  <FormattedMessage id='app.header.nav.baro-national-publications' />
-                }
+                hasBeta
                 introText={(
                   <GlossaryFormattedMessage
-                    intlKey='app.baro-sante.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr', 'pubmed']}
+                    glossaryKeys={['grobid', 'datastet']}
+                    intlKey='app.baro-national.data.intro'
                   />
                 )}
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12 md-8'>
-                      <BSOChart
-                        id='publi.general.dynamique-ouverture.chart-taux-ouverture'
-                        domain='health'
-                        hasComments={false}
-                        hasFooter={false}
-                      />
-                    </Col>
-                    <Col n='12 md-4'>
-                      <ProgressionCard domain='health' />
-                    </Col>
-                    <Col n='12'>
-                      <BSOChart
-                        domain='health'
-                        id='publi.general.dynamique-ouverture.chart-evolution-proportion'
-                        hasComments={false}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection>
-            </Col>
-            */}
-            <Col n='12 xl-10' offset='xl-2'>
-              <HomeSection
                 link={{
-                  href: '/sante/essais-cliniques/general',
-                  label: <FormattedMessage id='app.baro-sante.detail-trials' />,
-                }}
-                title={
-                  <FormattedMessage id='app.header.nav.baro-sante-essais' />
-                }
-                introText={(
-                  <GlossaryFormattedMessage
-                    intlKey='app.baro-sante.trials-intro'
-                    glossaryKeys={['essai-clinique', 'promoteur']}
-                  />
-                )}
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12'>
-                      <BSOChart
-                        id='general.dynamique.chart-evolution'
-                        domain='health'
-                        studyType='Interventional'
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection>
-            </Col>
-            <Col n='12 xl-10' offset='xl-2'>
-              <HomeSection
-                link={{
-                  href: '/sante/etudes-observationnelles/general',
+                  href: urls.nationalResearchData.tabs[0][lang] + search,
                   label: (
-                    <FormattedMessage id='app.baro-sante.detail-studies' />
+                    <FormattedMessage id='app.baro-national.detail-data' />
                   ),
                 }}
-                title={
-                  <FormattedMessage id='app.header.nav.baro-sante-etudes' />
-                }
+                title={<FormattedMessage id='app.baro-national.data.title' />}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+              <HomeSection
+                hasBeta
                 introText={(
                   <GlossaryFormattedMessage
-                    intlKey='app.baro-sante.studies-intro'
-                    glossaryKeys={[]}
+                    glossaryKeys={['grobid', 'softcite']}
+                    intlKey='app.baro-national.software.intro'
                     ctas={[
-                      'https://clinicaltrials.gov/',
-                      'https://www.clinicaltrialsregister.eu/',
+                      'https://cloud.science-miner.com/software_kb_bso/frontend/index.html',
                     ]}
                   />
                 )}
+                link={{
+                  href: urls.nationalSoftwareCode.tabs[0][lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-software' />
+                  ),
+                }}
+                title={
+                  <FormattedMessage id='app.baro-national.software.title' />
+                }
               >
                 <Container fluid>
                   <Row gutters alignItems='top'>
                     <Col n='12'>
-                      <BSOChart
-                        id='general.dynamique.chart-evolution'
-                        domain='health'
-                        studyType='Observational'
-                      />
+                      <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
                     </Col>
                   </Row>
                 </Container>
               </HomeSection>
+              {/* <HomeSection
+                isDisplayed={!isInProduction()}
+                link={{
+                  href: urls.nationalOrcid.tabs[0][lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-orcid' />
+                  ),
+                }}
+                title={<FormattedMessage id='app.baro-national.orcid.title' />}
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.orcid.intro'
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='orcid.general.present.chart-indicator-these-year' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection> */}
             </Col>
             <Col n='12'>
               <Container fluid>
@@ -200,7 +193,7 @@ function BaroSante() {
                         bodyClassName='bg-white'
                         hasArrow={false}
                         hasBorder={false}
-                        href='/'
+                        href={urls.sante[lang] + search}
                         isHorizontal
                       >
                         <CardDescription as='div'>
@@ -208,7 +201,7 @@ function BaroSante() {
                             <Row justifyContent='center' alignItems='middle'>
                               <Col n='12 md-5'>
                                 <p className='text-card-logo pb-16 blue-dark text-center text-left-l marianne-bold fs-24-32'>
-                                  <FormattedMessage id='app.commons.explore-national' />
+                                  <FormattedMessage id='app.commons.explore-sante' />
                                 </p>
                               </Col>
                               <Col n='4 md-1'>
@@ -227,21 +220,21 @@ function BaroSante() {
                               </Col>
                               <Col n='4 md-1'>
                                 <Icon
-                                  name='icon-bsso-1'
+                                  name='icon-bsso-28'
                                   color1='blue-soft-150'
                                   color2='green-soft-50'
                                 />
                               </Col>
                               <Col n='4 md-1'>
                                 <Icon
-                                  name='icon-bsso-5'
+                                  name='icon-bsso-15'
                                   color1='blue-soft-150'
                                   color2='blue-soft-50'
                                 />
                               </Col>
                               <Col n='4 md-1'>
                                 <Icon
-                                  name='icon-bsso-2'
+                                  name='icon-bsso-17'
                                   color1='blue-soft-150'
                                   color2='pink-light-75'
                                 />
@@ -257,7 +250,7 @@ function BaroSante() {
                                 <DSIcon name='ri-link' size='2x' as='div'>
                                   <DSLink
                                     className='w-100 text-right'
-                                    as={<Link to='/' />}
+                                    as={<Link to={urls.sante[lang] + search} />}
                                   />
                                 </DSIcon>
                               </Col>
@@ -270,7 +263,7 @@ function BaroSante() {
                 </section>
               </Container>
             </Col>
-            <Col>
+            <Col n='12'>
               <ToolCardsSection />
             </Col>
             <Col n='12'>
@@ -284,7 +277,6 @@ function BaroSante() {
                   iconColor='purple-50'
                   intlSubTitle='app.publications'
                   backgroundColorClass='bg-purple-25'
-                  domain='health'
                 />
                 <TodayNumbersItem
                   itemKey='journal'
@@ -292,7 +284,6 @@ function BaroSante() {
                   iconColor='purple-50'
                   intlSubTitle='app.journals'
                   backgroundColorClass='bg-publication-25'
-                  domain='health'
                 />
                 <TodayNumbersItem
                   itemKey='publisher'
@@ -300,7 +291,6 @@ function BaroSante() {
                   iconColor='yellow-medium-75'
                   intlSubTitle='app.health-publi.publishers'
                   backgroundColorClass='bg-yellow-medium-50'
-                  domain='health'
                 />
                 <TodayNumbersItem
                   itemKey='repository'
@@ -308,7 +298,13 @@ function BaroSante() {
                   iconColor='green-medium-75'
                   intlSubTitle='app.health-publi.repositories'
                   backgroundColorClass='bg-green-medium-25'
-                  domain='health'
+                />
+                <TodayNumbersItem
+                  itemKey='these'
+                  iconName='icon-these'
+                  iconColor='green-medium-75'
+                  intlSubTitle='app.thesis'
+                  backgroundColorClass='bg-purple-medium-50'
                 />
                 <TodayNumbersItem
                   itemKey='obsDates'
@@ -316,21 +312,6 @@ function BaroSante() {
                   iconColor='green-light-75'
                   intlSubTitle='app.obs-dates'
                   backgroundColorClass='bg-green-light-50'
-                  domain='health'
-                />
-                <TodayNumbersItem
-                  itemKey='interventional'
-                  iconName='icon-bsso-24'
-                  iconColor='purple-medium-50'
-                  intlSubTitle='app.interventionals'
-                  backgroundColorClass='bg-purple-medium-25'
-                />
-                <TodayNumbersItem
-                  itemKey='observational'
-                  iconName='icon-bsso-6'
-                  iconColor='yellow-medium-75'
-                  intlSubTitle='app.observationals'
-                  backgroundColorClass='bg-yellow-medium-50'
                 />
               </TodayNumbersSection>
             </Col>
@@ -341,4 +322,4 @@ function BaroSante() {
   );
 }
 
-export default BaroSante;
+export default DataCode;

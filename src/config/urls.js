@@ -69,6 +69,10 @@ export default {
     fr: '/codes-et-logiciels/general',
     en: '/software/general',
   },
+  nationalDataCode: {
+    fr: '/data-code',
+    en: '/data-code',
+  },
   nationalThesis: {
     tabs: [
       {

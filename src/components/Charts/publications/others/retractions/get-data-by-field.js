@@ -22,9 +22,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       objectType: ['publications'],
     });
     const response = await Axios.post(ES_API_URL, query, HEADERS);
-    const buckets = response?.data?.aggregations?.by_field?.buckets?.sort(
-      (a, b) => b.doc_count - a.doc_count,
-    );
+    const buckets = response?.data?.aggregations?.by_field?.buckets;
     const categories = buckets.map((item) => capitalize(
       intl.formatMessage({
         id: `app.discipline.${item.key
@@ -39,12 +37,14 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       .concat(')'));
     const dataGraph = [
       {
-        data: buckets.map(
-          (item) => ((item.by_retraction.buckets.find((i2) => i2.key === 1)
-            ?.doc_count ?? 0)
-              / item.doc_count)
-            * 100,
-        ),
+        data: buckets
+          .map(
+            (item) => ((item.by_retraction.buckets.find((i2) => i2.key === 1)
+              ?.doc_count ?? 0)
+                / item.doc_count)
+              * 100,
+          )
+          .sort((a, b) => b - a),
       },
     ];
 

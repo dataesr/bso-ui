@@ -9,12 +9,14 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import BannerNational from '../../../components/BannerNational';
+import Banner from '../../../components/Banner';
 import BSOChart from '../../../components/Charts';
+import Chip from '../../../components/Chip';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
 import GraphNavigation from '../../../components/GraphNavigation';
 import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
+import Icon from '../../../components/Icon';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import { mobileButtonLabel } from '../../../utils/constants';
@@ -23,17 +25,32 @@ import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalOrcid() {
   const intl = useIntl();
-  const { lang } = useLang();
-  const { pathname } = useLocation();
+  const { lang, urls } = useLang();
+  const { pathname, search } = useLocation();
   const blueSoft25 = getCSSValue('--blue-soft-25');
   const blueSoft50 = getCSSValue('--blue-soft-50');
 
+  const renderIcons = (
+    <Row justifyContent='center' alignItems='middle' gutters className='mb-32'>
+      <Col n='12'>
+        <Icon
+          name='icon-these'
+          color1='blue-soft-125'
+          color2='publication-25'
+        />
+      </Col>
+    </Row>
+  );
+
   return (
     <Container fluid className='page'>
-      <BannerNational
-        selected='url.thesis'
-        title='app.baro-national.orcid.title'
-        iconId='icon-these'
+      <Banner
+        backgroundColor='blue-soft-150'
+        chip={<Chip />}
+        homeLink={urls.national[lang] + search}
+        icons={renderIcons}
+        supTitle={<FormattedMessage id='app.header.title-national' />}
+        title={<FormattedMessage id='app.baro-national.orcid.title' />}
       />
       <ScrollTop />
       <section className='content'>
@@ -43,9 +60,7 @@ export default function NationalOrcid() {
               <Col n='12'>
                 <Breadcrumb>
                   <BreadcrumbItem href='/' className='underline'>
-                    {intl.formatMessage({
-                      id: 'app.header.nav.baro-national-accueil',
-                    })}
+                    {intl.formatMessage({ id: 'app.header.nav.orcid' })}
                   </BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({

@@ -17,14 +17,15 @@ function Citation() {
       </Col>
     </Row>
   );
+
   return (
     <div className='opendata'>
       <Banner
         backgroundColor='blue-soft-50'
-        textColor='blue-dark-150'
-        supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.header.nav.citation' />}
         icons={renderIcons}
+        supTitle={<FormattedMessage id='app.header.title' />}
+        textColor='blue-dark-150'
+        title={<FormattedMessage id='app.header.nav.citation' />}
       />
       <Container>
         <section className='color-blue-dark-125 content py-48'>

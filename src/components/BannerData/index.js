@@ -37,15 +37,15 @@ function BannerNational({ selected, title, iconId }) {
         options: [
           {
             label: intl.formatMessage({
-              id: 'app.baro-national.publications.title',
+              id: 'app.baro-national.data.title.beta',
             }),
-            value: intl.formatMessage({ id: 'url.publications.general' }),
+            value: intl.formatMessage({ id: 'url.data.general' }),
           },
           {
             label: intl.formatMessage({
-              id: 'app.baro-national.thesis.title',
+              id: 'app.baro-national.software.title.beta',
             }),
-            value: intl.formatMessage({ id: 'url.thesis.general' }),
+            value: intl.formatMessage({ id: 'url.software.general' }),
           },
         ],
       }}

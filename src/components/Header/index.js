@@ -238,8 +238,8 @@ function Header() {
               <NavSubItem
                 current={path === urls.sante[lang]}
                 title={intl.formatMessage({
-                  id: 'app.header.nav.baro-sante-accueil',
-                  defaultMessage: 'Accueil baromètre santé',
+                  id: 'app.header.nav.health-home',
+                  defaultMessage: 'Accueil santé',
                 })}
                 asLink={<RouterLink to={urls.sante[lang] + search} />}
               />
@@ -389,7 +389,7 @@ function Header() {
                 ).length > 0
               }
               title={intl.formatMessage({
-                id: 'app.header.nav.baro-national-publicationsXXX',
+                id: 'app.header.nav.baro-publications-theses',
                 defaultMessage: 'Les publications et thèses',
               })}
             >
@@ -397,7 +397,7 @@ function Header() {
                 current={path === urls.national[lang]}
                 title={intl.formatMessage({
                   id: 'app.header.nav.baro-national-accueil',
-                  defaultMessage: 'Accueil baromètre national',
+                  defaultMessage: 'Accueil publications et thèses',
                 })}
                 asLink={<RouterLink to={urls.national[lang] + search} />}
               />
@@ -429,19 +429,21 @@ function Header() {
               />
             </NavItem>
             <NavItem
-              current={path.startsWith(urls.sante[lang])}
+              current={path.startsWith(urls.nationalDataCode[lang])}
               title={intl.formatMessage({
-                id: 'app.header.nav.data-codeXXX',
+                id: 'app.header.nav.data-code',
                 defaultMessage: 'Les données et code',
               })}
             >
               <NavSubItem
-                current={path === urls.sante[lang]}
+                current={path === urls.nationalDataCode[lang]}
                 title={intl.formatMessage({
                   id: 'app.header.nav.data-code-welcome',
-                  defaultMessage: 'Accueil données et code santé',
+                  defaultMessage: 'Accueil données et code',
                 })}
-                asLink={<RouterLink to={urls.sante[lang] + search} />}
+                asLink={
+                  <RouterLink to={urls.nationalDataCode[lang] + search} />
+                }
               />
               <NavSubItem
                 current={path === urls.nationalResearchData[lang]}
@@ -457,7 +459,7 @@ function Header() {
                 current={path === urls.nationalSoftwareCode[lang]}
                 title={intl.formatMessage({
                   id: 'app.baro-national.software.title.beta',
-                  defaultMessage: 'Les codes logiciels',
+                  defaultMessage: 'Les codes et logiciels',
                 })}
                 asLink={
                   <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
@@ -467,15 +469,15 @@ function Header() {
             <NavItem
               current={path.startsWith(urls.sante[lang])}
               title={intl.formatMessage({
-                id: 'app.header.nav.data-code',
-                defaultMessage: 'Santé',
+                id: 'app.header.nav.health',
+                defaultMessage: 'La santé',
               })}
             >
               <NavSubItem
                 current={path === urls.sante[lang]}
                 title={intl.formatMessage({
-                  id: 'app.header.nav.baro-sante-accueil',
-                  defaultMessage: 'Accueil baromètre santé',
+                  id: 'app.header.nav.health-home',
+                  defaultMessage: 'Accueil santé',
                 })}
                 asLink={<RouterLink to={urls.sante[lang] + search} />}
               />
@@ -509,7 +511,25 @@ function Header() {
                 `/${urls.variations[lang].split('/')[1]}`,
               )}
               title={intl.formatMessage({
-                id: 'app.header.nav.declinaisonsXXX',
+                id: 'app.header.nav.orcid',
+                defaultMessage: 'ORCID',
+              })}
+            >
+              <NavSubItem
+                current={path === urls.nationalOrcid[lang]}
+                title={intl.formatMessage({
+                  id: 'app.baro-national.orcid.title',
+                  defaultMessage: 'Suivi ORCID',
+                })}
+                asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
+              />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(
+                `/${urls.variations[lang].split('/')[1]}`,
+              )}
+              title={intl.formatMessage({
+                id: 'app.header.nav.institutions',
                 defaultMessage: 'Les établissements',
               })}
             >
@@ -528,14 +548,6 @@ function Header() {
                   defaultMessage: 'Tutoriel pour réaliser son BSO local',
                 })}
                 asLink={<RouterLink to={urls.howto[lang] + search} />}
-              />
-              <NavSubItem
-                current={path === urls.nationalOrcid[lang]}
-                title={intl.formatMessage({
-                  id: 'app.baro-national.orcid.title',
-                  defaultMessage: 'Suivi ORCID',
-                })}
-                asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
               />
             </NavItem>
             <NavItem

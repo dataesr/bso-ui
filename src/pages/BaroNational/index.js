@@ -25,7 +25,6 @@ import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersI
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
-import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroNational() {
@@ -141,7 +140,7 @@ function BaroNational() {
                   </Row>
                 </Container>
               </HomeSection>
-              <HomeSection // thèses
+              <HomeSection
                 link={{
                   href: urls.nationalThesis.tabs[0][lang] + search,
                   label: (
@@ -160,83 +159,6 @@ function BaroNational() {
                   <Row gutters alignItems='top'>
                     <Col n='12'>
                       <BSOChart id='thesis.general.voies-ouverture.chart-repartition-taux' />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection>
-              <HomeSection // données
-                hasBeta
-                introText={(
-                  <GlossaryFormattedMessage
-                    glossaryKeys={['grobid', 'datastet']}
-                    intlKey='app.baro-national.data.intro'
-                  />
-                )}
-                link={{
-                  href: urls.nationalResearchData.tabs[0][lang] + search,
-                  label: (
-                    <FormattedMessage id='app.baro-national.detail-data' />
-                  ),
-                }}
-                title={<FormattedMessage id='app.baro-national.data.title' />}
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12'>
-                      <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection>
-              <HomeSection // logiciels
-                hasBeta
-                introText={(
-                  <GlossaryFormattedMessage
-                    glossaryKeys={['grobid', 'softcite']}
-                    intlKey='app.baro-national.software.intro'
-                    ctas={[
-                      'https://cloud.science-miner.com/software_kb_bso/frontend/index.html',
-                    ]}
-                  />
-                )}
-                link={{
-                  href: urls.nationalSoftwareCode.tabs[0][lang] + search,
-                  label: (
-                    <FormattedMessage id='app.baro-national.detail-software' />
-                  ),
-                }}
-                title={
-                  <FormattedMessage id='app.baro-national.software.title' />
-                }
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12'>
-                      <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection>
-              <HomeSection // orcid
-                isDisplayed={!isInProduction()}
-                link={{
-                  href: urls.nationalOrcid.tabs[0][lang] + search,
-                  label: (
-                    <FormattedMessage id='app.baro-national.detail-orcid' />
-                  ),
-                }}
-                title={<FormattedMessage id='app.baro-national.orcid.title' />}
-                introText={(
-                  <GlossaryFormattedMessage
-                    intlKey='app.orcid.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr']}
-                  />
-                )}
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12'>
-                      <BSOChart id='orcid.general.present.chart-indicator-these-year' />
                     </Col>
                   </Row>
                 </Container>

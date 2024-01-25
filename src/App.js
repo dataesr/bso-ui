@@ -23,6 +23,7 @@ import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import SantePublications from './pages/BaroSante/SantePublications';
+import DataCode from './pages/DataCode';
 import HowTo from './pages/Declinaisons/HowTo';
 import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
@@ -133,6 +134,18 @@ function App() {
               path={tab[key]}
             />
           )))}
+          {Object.keys(urls.nationalDataCode).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <DataCode />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.nationalDataCode[key]}
+            />
+          ))}
           {Object.keys(urls.sante).map((key) => (
             <Route
               element={(
