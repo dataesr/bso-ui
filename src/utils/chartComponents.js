@@ -460,19 +460,18 @@ const chartComponents = {
     ChartDataAvailibilityDiscipline,
   'data.editeurs.voies-ouverture.chart-availibility':
     ChartDataAvailibilityEditeur,
-  'orcid.general.present.chart-evolution': OrcidEvolution,
+  'orcid.general.chart-evolution': OrcidEvolution,
   'orcid.general.creation-by-year': OrcidCreationByYear,
   'orcid.general.present.chart-indicator-worksource': ChartOrcidWorkSource,
   'orcid.general.present.chart-indicator-affiliationsource':
     ChartOrcidAffiliationSource,
-  'orcid.general.present.chart-indicator-active': ChartOrcidActive,
+  'orcid.general.chart-indicator-active': ChartOrcidActive,
   'orcid.general.present.chart-indicator-hal': ChartOrcidHal,
   'orcid.general.present.chart-indicator-work': ChartOrcidWork,
   'orcid.general.present.chart-indicator-affiliationid':
     ChartOrcidAffiliationId,
   'orcid.general.present.chart-indicator-these-year': ChartOrcidTheseYear,
-  'orcid.general.present.chart-indicator-these-discipline':
-    ChartOrcidTheseDiscipline,
+  'orcid.general.chart-indicator-these-discipline': ChartOrcidTheseDiscipline,
   'orcid.general.present.chart-indicator-idref-abes': ChartOrcidIdrefAbes,
   'orcid.general.present.chart-indicator-idref-hal': ChartOrcidIdrefHal,
   'orcid.general.present.chart-indicator-idref-same': ChartOrcidIdrefSame,

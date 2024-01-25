@@ -73,7 +73,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-evolution',
+  id: 'orcid.general.chart-evolution',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

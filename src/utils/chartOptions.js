@@ -3876,7 +3876,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-evolution': {
+  'orcid.general.chart-evolution': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'line';
@@ -3918,7 +3918,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-active': {
+  'orcid.general.chart-indicator-active': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3950,7 +3950,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-these-discipline': {
+  'orcid.general.chart-indicator-these-discipline': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
