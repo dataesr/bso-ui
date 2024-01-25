@@ -52,6 +52,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
               '%Y',
               new Date(item.key_as_string).getTime(),
             ),
+            color: getCSSValue('--green-light-125'),
           })),
         },
       ];
