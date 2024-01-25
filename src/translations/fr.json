@@ -1084,6 +1084,7 @@
   "app.national-publi.others.retractions.chart-by-publisher.title": "Publications retirées par éditeur",
   "app.national-publi.others.retractions.chart-by-publisher.tooltip": "<b>{point.publisher}</b><br>• Pourcentage de publications retirées :<br>{point.y_rel:.1f}% ({point.y_abs}/{point.y_tot})",
   "app.national-publi.others.retractions.chart-by-year.title": "Nombre de publications retirées par année de publication",
+  "app.national-publi.others.retractions.chart-by-year.tooltip": "<b>{point.y} publications</b> retirées en {point.year}",
   "app.national-publi.others.retractions.chart-by-field.title": "Taux de publications retirées par discipline",
   "app.navigation.objet-recherche": "Navigation par objet de recherche",
   "app.navigation.methodologies": "Navigation dans les méthodologies",

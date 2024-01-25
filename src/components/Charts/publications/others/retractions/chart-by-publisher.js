@@ -23,7 +23,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const [isPercent, setPercent] = useState(true);
+  const [isPercent, setPercent] = useState(false);
   const { observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(
     observationSnaps,
@@ -32,7 +32,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
-
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
@@ -59,19 +58,19 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         className='d-inline-block'
         isInline
         onChange={() => setPercent(!isPercent)}
-        value={isPercent}
+        value={isPercent ? 'sort-percent' : 'sort-number'}
       >
-        <Radio
-          label={intl.formatMessage({
-            id: 'app.publi.display-percent-retracted',
-          })}
-          value
-        />
         <Radio
           label={intl.formatMessage({
             id: 'app.publi.display-number-retracted',
           })}
-          value={false}
+          value='sort-number'
+        />
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.publi.display-percent-retracted',
+          })}
+          value='sort-percent'
         />
       </RadioGroup>
       <HighchartsReact

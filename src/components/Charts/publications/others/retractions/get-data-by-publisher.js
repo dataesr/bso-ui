@@ -26,7 +26,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
 
     const response = await Axios.post(ES_API_URL, query, HEADERS);
     const buckets = response?.data?.aggregations?.by_publisher?.buckets
-      ?.sort((a, b) => percentageOfRetracted(b) - percentageOfRetracted(a))
+      ?.sort((a, b) => numberOfRetracted(b) - numberOfRetracted(a))
       .slice(0, 20);
     const categories = buckets.map((item) => item.key
       .concat('</br>(')

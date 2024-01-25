@@ -890,6 +890,7 @@
   "app.national-publi.others.retractions.chart-by-publisher.title": "Retracted publications by publisher",
   "app.national-publi.others.retractions.chart-by-publisher.tooltip": "<b>{point.publisher}</b><br>• Share of retracted publications :<br>{point.y_rel:.1f}% ({point.y_abs}/{point.y_tot})",
   "app.national-publi.others.retractions.chart-by-year.title": "Number of retracted publications by year of publication",
+  "app.national-publi.others.retractions.chart-by-year.tooltip": "<b>{point.y} publications</b> retracted in {point.year}",
   "app.national-publi.others.retractions.chart-by-field.title": "Rate of retracted publications by scientific field",
   "app.navigation.objet-recherche": "Research object navigation",
   "app.methodologie.publication": "Methodology for monitoring open access to publications",
