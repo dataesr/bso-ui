@@ -19,25 +19,34 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const queries = [];
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const queryAll = getFetchOptions({
+      const query1 = getFetchOptions({
         key: 'orcidNumber',
         domain,
         parameters: ['year', ['address', 'employment', 'education']],
         objectType: ['orcid'],
       });
-      queries.push(Axios.post(ES_ORCID_API_URL, queryAll, HEADERS));
-      const queryEmployment = getFetchOptions({
+      queries.push(Axios.post(ES_ORCID_API_URL, query1, HEADERS));
+      const query2 = getFetchOptions({
         key: 'orcidNumber',
         domain,
         parameters: ['year', ['employment']],
         objectType: ['orcid'],
       });
-      queries.push(Axios.post(ES_ORCID_API_URL, queryEmployment, HEADERS));
+      queries.push(Axios.post(ES_ORCID_API_URL, query2, HEADERS));
+      const query3 = getFetchOptions({
+        key: 'orcidNumberWithFilter',
+        domain,
+        parameters: ['year', ['employment'], 'has_these'],
+        objectType: ['orcid'],
+      });
+      queries.push(Axios.post(ES_ORCID_API_URL, query3, HEADERS));
       const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.orcid_per_year.buckets;
+      const data1 = res[0].data.aggregations.orcid_per_year.buckets;
+      const data2 = res[1].data.aggregations.orcid_per_year.buckets;
+      const data3 = res[2].data.aggregations.orcid_per_year.buckets;
       const dataGraph2 = [
         {
-          data: data.map((item) => ({
+          data: data3.map((item) => ({
             y: item.doc_count,
             name: Highcharts.dateFormat(
               '%Y',
@@ -46,7 +55,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           })),
         },
       ];
-      const dataEmployment = res[1].data.aggregations.orcid_per_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
       const total = [];
@@ -56,7 +64,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           textOutline: 'none',
         },
       };
-      data.forEach((el) => {
+      data1.forEach((el) => {
         const currentDate = Highcharts.dateFormat(
           '%Y',
           new Date(el.key_as_string).getTime(),
@@ -70,7 +78,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           bsoDomain,
         });
       });
-      dataEmployment.forEach((el) => {
+      data2.forEach((el) => {
         const currentDate = Highcharts.dateFormat(
           '%Y',
           new Date(el.key_as_string).getTime(),
@@ -124,7 +132,8 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph2,
       };
     },
-    [beforeLastObservationSnap, domain, intl, queries],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [beforeLastObservationSnap, domain, intl],
   );
 
   useEffect(() => {

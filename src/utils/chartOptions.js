@@ -3904,7 +3904,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.creation-by-year': {
+  'orcid.general.creation-by-year': {
     getOptions: (id, intl, categories, series) => {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';

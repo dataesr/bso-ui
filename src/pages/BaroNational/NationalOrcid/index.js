@@ -118,7 +118,7 @@ export default function NationalOrcid() {
                   <BSOChart id='orcid.general.present.chart-indicator-these-year' />
                   <BSOChart id='orcid.general.present.chart-indicator-these-discipline' />
                   <BSOChart id='orcid.general.present.chart-evolution' />
-                  <BSOChart id='orcid.general.present.creation-by-year' />
+                  <BSOChart id='orcid.general.creation-by-year' />
                   <BSOChart id='orcid.general.present.chart-indicator-active' />
                 </QuestionSection>
                 <QuestionSection

@@ -461,7 +461,7 @@ const chartComponents = {
   'data.editeurs.voies-ouverture.chart-availibility':
     ChartDataAvailibilityEditeur,
   'orcid.general.present.chart-evolution': OrcidEvolution,
-  'orcid.general.present.creation-by-year': OrcidCreationByYear,
+  'orcid.general.creation-by-year': OrcidCreationByYear,
   'orcid.general.present.chart-indicator-worksource': ChartOrcidWorkSource,
   'orcid.general.present.chart-indicator-affiliationsource':
     ChartOrcidAffiliationSource,

@@ -2044,6 +2044,50 @@ export default function getFetchOptions({
         },
       },
     }),
+    orcidNumberWithFilter: ([interval, frReasons, filter]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                is_fr_present: true,
+              },
+            },
+            {
+              terms: {
+                'fr_reasons_present.keyword': frReasons,
+              },
+            },
+            {
+              term: {
+                [`${filter}`]: true,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        orcid_per_year: {
+          date_histogram: {
+            field: 'creation_date',
+            calendar_interval: interval,
+          },
+          aggs: {
+            distinct_orcid: {
+              cardinality: {
+                field: 'orcid.keyword',
+              },
+            },
+            total_orcid: {
+              cumulative_cardinality: {
+                buckets_path: 'distinct_orcid',
+              },
+            },
+          },
+        },
+      },
+    }),
     orcidIndicator: ([
       myFilter1,
       myField1,
