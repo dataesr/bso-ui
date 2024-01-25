@@ -37,9 +37,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     dataGraph2,
   );
 
-  console.log('top');
-  console.log(optionsGraph);
-
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomain, intl));
   }, [allData, idWithDomain, intl]);
@@ -52,7 +49,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph2?.data || !categories}
+      isLoading={isLoading || !dataGraph2 || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}

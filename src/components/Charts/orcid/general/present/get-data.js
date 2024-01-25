@@ -35,15 +35,17 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       queries.push(Axios.post(ES_ORCID_API_URL, queryEmployment, HEADERS));
       const res = await Axios.all(queries);
       const data = res[0].data.aggregations.orcid_per_year.buckets;
-      const dataGraph2 = {
-        data: data.map((item) => ({
-          y: item.doc_count,
-          name: Highcharts.dateFormat(
-            '%Y',
-            new Date(item.key_as_string).getTime(),
-          ),
-        })),
-      };
+      const dataGraph2 = [
+        {
+          data: data.map((item) => ({
+            y: item.doc_count,
+            name: Highcharts.dateFormat(
+              '%Y',
+              new Date(item.key_as_string).getTime(),
+            ),
+          })),
+        },
+      ];
       const dataEmployment = res[1].data.aggregations.orcid_per_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
@@ -122,8 +124,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph2,
       };
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [beforeLastObservationSnap, domain, intl],
+    [beforeLastObservationSnap, domain, intl, queries],
   );
 
   useEffect(() => {
