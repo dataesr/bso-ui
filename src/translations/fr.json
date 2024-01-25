@@ -717,7 +717,7 @@
   "app.health-observational.resultats.delai-diffusion.chart-repartition.title": "Délai de publication des résultats par rapport à la fin de l'étude",
   "app.health-observational.resultats.delai-diffusion.chart-repartition.tooltip": "<b style='text-transform: lowercase'>{point.name} {series.name} :</b><br><b>{point.y} étude(s)</b> rendue(s) disponible(s)",
   "app.health-observational.resultats.plan-partage.title": "Les études avec résultats et/ou publications ont-ils une déclaration de partage des données ?",
-  "app.health-observational.resultats.plan-partage.chart-repartition.title": "Répartition des études observationnelles enregstrées en fonction de la présence d'une déclaration de partage des données",
+  "app.health-observational.resultats.plan-partage.chart-repartition.title": "Répartition des études observationnelles enregistrées en fonction de la présence d'une déclaration de partage des données",
   "app.health-observational.resultats.plan-partage.chart-repartition.tooltip": "<b>Etudes débutées en {point.year}</b><br>Présence d'une déclaration de partage des données : {series.name} pour {point.y:.2f} % ({point.y_abs} / {point.y_tot})",
   "app.health-observational.resultats.publication.title": "Les publications issues d'études observationnelles enregistrées sont-elles ouvertes ?",
   "app.health-observational.resultats.publication.chart-repartition-icmje.title": "Répartition du nombre de publications dans des revues adhérant à l'ICMJE",
