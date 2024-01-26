@@ -6,18 +6,18 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
-import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
+import customComments from '../../../../utils/chartComments';
+import { chartOptions } from '../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../utils/constants';
 import {
   getCSSValue,
   getObservationLabel,
   withDomain,
-} from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
-import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-indicator-simple';
+} from '../../../../utils/helpers';
+import useGlobals from '../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../WrapperChart';
+import GraphComments from '../../graph-comments';
+import useGetData from './get-data-indicator';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -32,11 +32,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'is_fr_present',
-    'is_fr_present',
-    'works.source.keyword',
-    20,
-    'Pas de source externe',
-    getCSSValue('--orange-soft-100'),
+    'fr_reasons_main.keyword',
+    'has_id_hal_abes',
+    'app.orcid.has-idhal-abes',
+    'app.orcid.no-idhal-abes',
+    getCSSValue('--green-soft-125'),
+    getCSSValue('--g-400'),
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -83,7 +84,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.chart-indicator-worksource',
+  id: 'orcid.general.chart-indicator-idhal-abes',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

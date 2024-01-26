@@ -6,18 +6,14 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
-import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getCSSValue,
-  getObservationLabel,
-  withDomain,
-} from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
-import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-indicator-simple';
+import customComments from '../../../../utils/chartComments';
+import { chartOptions } from '../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../utils/constants';
+import { withDomain } from '../../../../utils/helpers';
+import useGlobals from '../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../WrapperChart';
+import GraphComments from '../../graph-comments';
+import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -31,24 +27,14 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'is_fr_present',
-    'is_fr_present',
-    'employment_present.disambiguation_sources.keyword',
-    20,
-    'Pas de référentiel',
-    getCSSValue('--affiliations-etablissements-150'),
   );
-  const { categories, dataGraph } = allData;
-  const dataTitle = {
-    observationYear: getObservationLabel(lastObservationSnap, intl),
-  };
+  const { categories, dataGraph2 } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
-    dataGraph,
-    dataTitle,
+    dataGraph2,
   );
 
   useEffect(() => {
@@ -58,13 +44,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !dataGraph2 || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -83,7 +68,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.chart-indicator-affiliationsource',
+  id: 'orcid.general.creation-by-year',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

@@ -6,17 +6,17 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
-import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
+import customComments from '../../../../utils/chartComments';
+import { chartOptions } from '../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../utils/constants';
 import {
   getCSSValue,
   getObservationLabel,
   withDomain,
-} from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
-import GraphComments from '../../../graph-comments';
+} from '../../../../utils/helpers';
+import useGlobals from '../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../WrapperChart';
+import GraphComments from '../../graph-comments';
 import useGetData from './get-data-indicator';
 
 HCExporting(Highcharts);
@@ -33,9 +33,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     domain,
     'is_fr_present',
     'fr_reasons_main.keyword',
-    'has_work_from_hal',
-    'app.orcid.link_hal',
-    'app.orcid.no_link',
+    'has_idref_aurehal',
+    'app.orcid.has-idref-hal',
+    'app.orcid.no-idref-hal',
     getCSSValue('--green-soft-125'),
     getCSSValue('--g-400'),
   );
@@ -84,7 +84,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.chart-indicator-hal',
+  id: 'orcid.general.chart-indicator-idref-hal',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

@@ -256,44 +256,24 @@ const ChartSoftwareSharedOa = lazy(() => import(
   '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
 ));
 // Orcid
-const OrcidEvolution = lazy(() => import('../components/Charts/orcid/general/present/chart-evolution'));
-const OrcidCreationByYear = lazy(() => import('../components/Charts/orcid/general/present/creation-by-year'));
+const OrcidEvolution = lazy(() => import('../components/Charts/orcid/general/chart-evolution'));
+const OrcidCreationByYear = lazy(() => import('../components/Charts/orcid/general/creation-by-year'));
 const ChartOrcidAffiliationSource = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-affiliationsource'
+  '../components/Charts/orcid/general/chart-indicator-affiliationsource'
 ));
-const ChartOrcidWorkSource = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-worksource'
-));
-const ChartOrcidActive = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-active'));
-const ChartOrcidHal = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-hal'));
-const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/present/chart-indicator-work'));
-const ChartOrcidAffiliationId = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-affiliationid'
-));
-const ChartOrcidTheseYear = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-these-year'
-));
-const ChartOrcidTheseDiscipline = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-these-discipline'
-));
-const ChartOrcidIdrefAbes = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-idref-abes'
-));
-const ChartOrcidIdrefHal = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-idref-hal'
-));
-const ChartOrcidIdrefSame = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-idref-same'
-));
-const ChartOrcidIdhalAbes = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-idhal-abes'
-));
-const ChartOrcidIdhalHal = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-idhal-hal'
-));
-const ChartOrcidIdhalSame = lazy(() => import(
-  '../components/Charts/orcid/general/present/chart-indicator-idhal-same'
-));
+const ChartOrcidWorkSource = lazy(() => import('../components/Charts/orcid/general/chart-indicator-worksource'));
+const ChartOrcidActive = lazy(() => import('../components/Charts/orcid/general/chart-indicator-active'));
+const ChartOrcidHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-hal'));
+const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/chart-indicator-work'));
+const ChartOrcidAffiliationId = lazy(() => import('../components/Charts/orcid/general/chart-indicator-affiliationid'));
+const ChartOrcidTheseYear = lazy(() => import('../components/Charts/orcid/general/chart-indicator-these-year'));
+const ChartOrcidTheseDiscipline = lazy(() => import('../components/Charts/orcid/general/chart-indicator-these-discipline'));
+const ChartOrcidIdrefAbes = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-abes'));
+const ChartOrcidIdrefHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-hal'));
+const ChartOrcidIdrefSame = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-same'));
+const ChartOrcidIdhalAbes = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-abes'));
+const ChartOrcidIdhalHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-hal'));
+const ChartOrcidIdhalSame = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-same'));
 // Other
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'

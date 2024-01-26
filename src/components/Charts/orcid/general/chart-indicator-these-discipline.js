@@ -6,18 +6,18 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
-import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
+import customComments from '../../../../utils/chartComments';
+import { chartOptions } from '../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../utils/constants';
 import {
   getCSSValue,
   getObservationLabel,
   withDomain,
-} from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
-import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-indicator';
+} from '../../../../utils/helpers';
+import useGlobals from '../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../WrapperChart';
+import GraphComments from '../../graph-comments';
+import useGetData from './get-data-indicator-these';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -31,13 +31,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'is_fr_present',
-    'fr_reasons_main.keyword',
-    'has_idref_abes',
-    'app.orcid.has-idref-abes',
-    'app.orcid.no-idref-abes',
-    getCSSValue('--green-soft-125'),
-    getCSSValue('--g-400'),
+    'has_these',
+    'first_these_discipline.discipline.keyword',
+    'has_orcid',
+    'app.orcid.active',
+    getCSSValue('--green-light-125'),
+    100,
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -84,7 +83,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.chart-indicator-idref-abes',
+  id: 'orcid.general.chart-indicator-these-year',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

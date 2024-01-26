@@ -3,13 +3,13 @@ import Highcharts from 'highcharts';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_ORCID_API_URL, HEADERS } from '../../../../../config/config';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { ES_ORCID_API_URL, HEADERS } from '../../../../config/config';
+import getFetchOptions from '../../../../utils/chartFetchOptions';
 import {
   capitalize,
   getCSSValue,
   getObservationLabel,
-} from '../../../../../utils/helpers';
+} from '../../../../utils/helpers';
 
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();

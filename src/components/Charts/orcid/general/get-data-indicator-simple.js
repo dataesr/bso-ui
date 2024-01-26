@@ -2,9 +2,9 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_ORCID_API_URL, HEADERS } from '../../../../../config/config';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getObservationLabel } from '../../../../../utils/helpers';
+import { ES_ORCID_API_URL, HEADERS } from '../../../../config/config';
+import getFetchOptions from '../../../../utils/chartFetchOptions';
+import { capitalize, getObservationLabel } from '../../../../utils/helpers';
 
 function useGetData(
   beforeLastObservationSnap,
