@@ -4021,7 +4021,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-hal': {
+  'orcid.general.chart-indicator-hal': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4082,7 +4082,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-affiliationid': {
+  'orcid.general.chart-indicator-affiliationid': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4112,7 +4112,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idref-abes': {
+  'orcid.general.chart-indicator-idref-abes': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4142,7 +4142,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idref-hal': {
+  'orcid.general.chart-indicator-idref-hal': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4172,7 +4172,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idref-same': {
+  'orcid.general.chart-indicator-idref-same': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4202,7 +4202,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idhal-abes': {
+  'orcid.general.chart-indicator-idhal-abes': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4232,7 +4232,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idhal-hal': {
+  'orcid.general.chart-indicator-idhal-hal': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4262,7 +4262,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idhal-same': {
+  'orcid.general.chart-indicator-idhal-same': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4321,7 +4321,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-affiliationsource': {
+  'orcid.general.chart-indicator-affiliationsource': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '650px';

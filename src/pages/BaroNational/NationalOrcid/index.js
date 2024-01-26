@@ -128,7 +128,7 @@ export default function NationalOrcid() {
                   intlKey='app.national-orcid.general.publications'
                 >
                   <BSOChart id='orcid.general.chart-indicator-work' />
-                  <BSOChart id='orcid.general.present.chart-indicator-hal' />
+                  <BSOChart id='orcid.general.chart-indicator-hal' />
                   <BSOChart id='orcid.general.chart-indicator-worksource' />
                 </QuestionSection>
                 <QuestionSection
@@ -137,7 +137,7 @@ export default function NationalOrcid() {
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.affiliations'
                 >
-                  <BSOChart id='orcid.general.present.chart-indicator-affiliationsource' />
+                  <BSOChart id='orcid.general.chart-indicator-affiliationsource' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -184,9 +184,9 @@ export default function NationalOrcid() {
                   intlKey='app.national-orcid.referentiel.idref'
                   isDisplayed={!isInProduction()}
                 >
-                  <BSOChart id='orcid.general.present.chart-indicator-idref-abes' />
-                  <BSOChart id='orcid.general.present.chart-indicator-idref-hal' />
-                  <BSOChart id='orcid.general.present.chart-indicator-idref-same' />
+                  <BSOChart id='orcid.general.chart-indicator-idref-abes' />
+                  <BSOChart id='orcid.general.chart-indicator-idref-hal' />
+                  <BSOChart id='orcid.general.chart-indicator-idref-same' />
                 </QuestionSection>
                 <QuestionSection
                   anchorId='referentiel.idhal'
@@ -195,9 +195,9 @@ export default function NationalOrcid() {
                   intlKey='app.national-orcid.referentiel.idhal'
                   isDisplayed={!isInProduction()}
                 >
-                  <BSOChart id='orcid.general.present.chart-indicator-idhal-abes' />
-                  <BSOChart id='orcid.general.present.chart-indicator-idhal-hal' />
-                  <BSOChart id='orcid.general.present.chart-indicator-idhal-same' />
+                  <BSOChart id='orcid.general.chart-indicator-idhal-abes' />
+                  <BSOChart id='orcid.general.chart-indicator-idhal-hal' />
+                  <BSOChart id='orcid.general.chart-indicator-idhal-same' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
