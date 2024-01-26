@@ -2203,7 +2203,6 @@ export default function getFetchOptions({
         by_field: {
           terms: {
             field: 'bso_classification.keyword',
-            size: 50,
           },
           aggs: {
             by_retraction: {

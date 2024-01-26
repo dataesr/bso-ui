@@ -298,9 +298,9 @@ const ChartOrcidIdhalSame = lazy(() => import(
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
 ));
-const ChartRetractionsByYear = lazy(() => import('../components/Charts/publications/others/retractions/chart-by-year'));
-const ChartRetractionsByField = lazy(() => import('../components/Charts/publications/others/retractions/chart-by-field'));
-const ChartRetractionsByPublisher = lazy(() => import(
+const RetractionsByYear = lazy(() => import('../components/Charts/publications/others/retractions/chart-by-year'));
+const RetractionsByField = lazy(() => import('../components/Charts/publications/others/retractions/chart-by-field'));
+const RetractionsByPublisher = lazy(() => import(
   '../components/Charts/publications/others/retractions/chart-by-publisher'
 ));
 
@@ -479,9 +479,9 @@ const chartComponents = {
   'orcid.general.present.chart-indicator-idhal-hal': ChartOrcidIdhalHal,
   'orcid.general.present.chart-indicator-idhal-same': ChartOrcidIdhalSame,
   // Other
-  'publi.others.retractions.chart-by-year': ChartRetractionsByYear,
-  'publi.others.retractions.chart-by-field': ChartRetractionsByField,
-  'publi.others.retractions.chart-by-publisher': ChartRetractionsByPublisher,
+  'publi.others.retractions.chart-by-year': RetractionsByYear,
+  'publi.others.retractions.chart-by-field': RetractionsByField,
+  'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,
 };
 
 export default chartComponents;
