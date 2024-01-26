@@ -31,7 +31,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [sort, setSort] = useState('sort-count');
   const { observationSnaps } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
-  // const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {

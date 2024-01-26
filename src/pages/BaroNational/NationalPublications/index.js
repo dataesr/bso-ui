@@ -527,15 +527,15 @@ export default function NationalPublications() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/publications/to-be-decided?id=fundings.chart-taux-ouverture',
-                    fr: '/publications/a-decider?id=fundings.chart-taux-ouverture',
+                    en: '/publications/to-be-decided?id=to-be-decided.international-collaborations',
+                    fr: '/publications/a-decider?id=to-be-decided.international-collaborations',
                   },
                 },
               ]}
             >
               <GraphContent isDisplayed={!isInProduction()}>
                 <QuestionSection
-                  anchorId='fundings.chart-taux-ouverture'
+                  anchorId='to-be-decided.international-collaborations'
                   intlKey=''
                   backgroundColor={blueSoft50}
                 >
@@ -543,6 +543,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.retractions.chart-by-year' />
                   <BSOChart id='publi.others.retractions.chart-by-field' />
                   <BSOChart id='publi.others.retractions.chart-by-publisher' />
+                  <BSOChart id='publi.others.retractions.chart-by-reason' />
                   <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                 </QuestionSection>
               </GraphContent>

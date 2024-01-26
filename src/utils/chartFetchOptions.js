@@ -2251,6 +2251,35 @@ export default function getFetchOptions({
         },
       },
     }),
+    retractionsByReason: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_reason: {
+          terms: {
+            field: 'retraction_details.retraction_nature.keyword',
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

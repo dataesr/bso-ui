@@ -4455,4 +4455,32 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.others.retractions.chart-by-reason': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: {
+          text: intl.formatMessage({
+            id: 'app.national-publi.others.retractions.chart-by-reason.yAxis',
+          }),
+        },
+        categories,
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.nb-publications',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
 };
