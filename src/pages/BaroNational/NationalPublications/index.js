@@ -544,6 +544,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.retractions.chart-by-field' />
                   <BSOChart id='publi.others.retractions.chart-by-publisher' />
                   <BSOChart id='publi.others.retractions.chart-by-nature' />
+                  <BSOChart id='publi.others.retractions.chart-by-reason' />
                   <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                 </QuestionSection>
               </GraphContent>

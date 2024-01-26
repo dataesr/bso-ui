@@ -286,6 +286,9 @@ const RetractionsByPublisher = lazy(() => import(
 const RetractionsByNature = lazy(() => import(
   '../components/Charts/publications/others/retractions/chart-by-nature'
 ));
+const RetractionsByReason = lazy(() => import(
+  '../components/Charts/publications/others/retractions/chart-by-reason'
+));
 
 const chartComponents = {
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture':
@@ -465,6 +468,7 @@ const chartComponents = {
   'publi.others.retractions.chart-by-field': RetractionsByField,
   'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,
   'publi.others.retractions.chart-by-nature': RetractionsByNature,
+  'publi.others.retractions.chart-by-reason': RetractionsByReason,
 };
 
 export default chartComponents;
