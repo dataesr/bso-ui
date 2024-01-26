@@ -4423,7 +4423,7 @@ export const chartOptions = {
     },
   },
   'publi.others.retractions.chart-by-publisher': {
-    getOptions: (id, intl, categories, graph, sort) => {
+    getOptions: (id, intl, categories, series, sort, yAxisTitleId) => {
       const options = getGraphOptions({ id, intl });
       options.chart.height = '1000px';
       options.chart.type = 'bar';
@@ -4434,12 +4434,7 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis(false, null, sort !== 'sort-percent');
-      options.yAxis.title.text = intl.formatMessage({
-        id:
-          sort === 'sort-percent'
-            ? 'app.publi.percent-publications-retracted'
-            : 'app.publi.nb-publications-retracted',
-      });
+      options.yAxis.title.text = intl.formatMessage({ id: yAxisTitleId });
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -4454,7 +4449,7 @@ export const chartOptions = {
           },
         },
       };
-      options.series = [graph];
+      options.series = series;
       options.exporting.chartOptions.legend.enabled = false;
       return options;
     },

@@ -23,6 +23,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
     });
     const response = await Axios.post(ES_API_URL, query, HEADERS);
     const buckets = response?.data?.aggregations?.by_field?.buckets;
+
     const categories = buckets.map((item) => capitalize(
       intl.formatMessage({
         id: `app.discipline.${item.key
@@ -35,6 +36,7 @@ function useGetData(observationSnaps, domain = '', isPercent = false) {
       .concat(' = ')
       .concat(cleanNumber(item.doc_count))
       .concat(')'));
+
     const dataGraph = [
       {
         data: buckets
