@@ -283,8 +283,8 @@ const RetractionsByField = lazy(() => import('../components/Charts/publications/
 const RetractionsByPublisher = lazy(() => import(
   '../components/Charts/publications/others/retractions/chart-by-publisher'
 ));
-const RetractionsByReason = lazy(() => import(
-  '../components/Charts/publications/others/retractions/chart-by-reason'
+const RetractionsByNature = lazy(() => import(
+  '../components/Charts/publications/others/retractions/chart-by-nature'
 ));
 
 const chartComponents = {
@@ -464,7 +464,7 @@ const chartComponents = {
   'publi.others.retractions.chart-by-year': RetractionsByYear,
   'publi.others.retractions.chart-by-field': RetractionsByField,
   'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,
-  'publi.others.retractions.chart-by-reason': RetractionsByReason,
+  'publi.others.retractions.chart-by-nature': RetractionsByNature,
 };
 
 export default chartComponents;

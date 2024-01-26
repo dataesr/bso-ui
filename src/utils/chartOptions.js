@@ -4455,14 +4455,14 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.others.retractions.chart-by-reason': {
+  'publi.others.retractions.chart-by-nature': {
     getOptions: (id, intl, categories, series) => {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
       options.xAxis = {
         title: {
           text: intl.formatMessage({
-            id: 'app.national-publi.others.retractions.chart-by-reason.yAxis',
+            id: 'app.national-publi.others.retractions.chart-by-nature.yAxis',
           }),
         },
         categories,

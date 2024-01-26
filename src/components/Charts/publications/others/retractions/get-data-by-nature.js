@@ -13,13 +13,13 @@ function useGetData(observationSnaps, domain = '') {
 
   const getDataByObservationSnaps = useCallback(async () => {
     const query = getFetchOptions({
-      key: 'retractionsByReason',
+      key: 'retractionsByNature',
       domain,
       parameters: [lastObservationSnap],
       objectType: ['publications'],
     });
     const response = await Axios.post(ES_API_URL, query, HEADERS);
-    const buckets = response?.data?.aggregations?.by_reason?.buckets?.sort(
+    const buckets = response?.data?.aggregations?.by_nature?.buckets?.sort(
       (a, b) => a.key - b.key,
     ) ?? [];
 
@@ -28,7 +28,7 @@ function useGetData(observationSnaps, domain = '') {
       data: buckets.map((item, index) => ({
         y: item.doc_count,
         x: index,
-        reason: categories[index],
+        nature: categories[index],
       })),
     };
 

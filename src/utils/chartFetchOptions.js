@@ -2251,7 +2251,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    retractionsByReason: ([
+    retractionsByNature: ([
       lastObservationSnap,
       minPublicationDate = 2013,
     ]) => ({
@@ -2273,7 +2273,7 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        by_reason: {
+        by_nature: {
           terms: {
             field: 'retraction_details.retraction_nature.keyword',
           },
