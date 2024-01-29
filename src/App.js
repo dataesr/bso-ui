@@ -22,7 +22,6 @@ import NationalThesis from './pages/BaroNational/NationalThesis';
 import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
-import SantePublications from './pages/BaroSante/SantePublications';
 import DataCode from './pages/DataCode';
 import HowTo from './pages/Declinaisons/HowTo';
 import Variations from './pages/Declinaisons/Variations';
@@ -183,20 +182,6 @@ function App() {
               path={urls.sante[key]}
             />
           ))}
-          {urls.santePublications.tabs.map((tab) => Object.keys(tab).map((key) => (
-            <Route
-              element={(
-                <PageTracker>
-                  <GraphNavigationContextProvider>
-                    <SantePublications />
-                  </GraphNavigationContextProvider>
-                </PageTracker>
-              )}
-              exact
-              key={key}
-              path={tab[key]}
-            />
-          )))}
           {urls.santeEssais.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(
