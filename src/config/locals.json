@@ -97,6 +97,13 @@
     "ror": "https://ror.org/02en5vm52",
     "scale": "university"
   },
+  "130025661": {
+    "name": "Université Côte d'Azur (UCA)",
+    "commentsName": "de l'UCA",
+    "commentsNameEN": "of UCA",
+    "paysage": "s3t8T",
+    "ror": "https://ror.org/019tgvf94"
+  },
   "130025745": {
     "name": "Université Polytechnique Hauts-de-France",
     "commentsName": "de l'UPHF",
@@ -518,6 +525,13 @@
     "paysage": "7Gzub",
     "ror": "https://ror.org/05b5c0584",
     "scale": "university"
+  },
+  "197209166": {
+    "name": "Le Mans Université (LMU)",
+    "commentsName": "de LMU",
+    "commentsNameEN": "of LMU",
+    "paysage": "9xlel",
+    "ror": "https://ror.org/01mtcc283"
   },
   "197534316": {
     "name": "Sciences Po",
@@ -1214,6 +1228,13 @@
     "paysage": "413kc",
     "ror": "https://ror.org/02dm0bq25",
     "scale": "laboratory"
+  },
+  "201220263C": {
+    "name": "HEUDIASYC (HDS)",
+    "commentsName": "de HDS",
+    "commentsNameEN": "of HDS",
+    "paysage": "ZV6KH",
+    "ror": "https://ror.org/0075hvk77"
   },
   "201220396X": {
     "name": "L'unité de recherche de l'institut du thorax (ITX)",
