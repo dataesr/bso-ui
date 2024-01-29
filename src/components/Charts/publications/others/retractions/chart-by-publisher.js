@@ -37,10 +37,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       field = 'y_percent';
       yAxisTitleId = 'app.publi.percent-publications-retracted';
       break;
-    case 'sort-total':
-      field = 'y_total';
-      yAxisTitleId = 'app.publi.nb-publications';
-      break;
     default:
     }
 
@@ -99,12 +95,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
             id: 'app.publi.display-percent-retracted',
           })}
           value='sort-percent'
-        />
-        <Radio
-          label={intl.formatMessage({
-            id: 'app.publi.display-total-retracted',
-          })}
-          value='sort-total'
         />
       </RadioGroup>
       <HighchartsReact
