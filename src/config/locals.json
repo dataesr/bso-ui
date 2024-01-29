@@ -115,9 +115,9 @@
     "ror": "https://ror.org/043htjv09"
   },
   "130026024": {
-    "name": "Université Paris-Saclay",
-    "commentsName": "de l'université Paris-Saclay",
-    "commentsNameEN": "of Paris Saclay university",
+    "name": "Université Paris-Saclay (Univ. Paris-Saclay)",
+    "commentsName": "de l'Univ. Paris-Saclay",
+    "commentsNameEN": "of Univ. Paris-Saclay",
     "paysage": "G2qA7",
     "ror": "https://ror.org/03xjwb503",
     "scale": "university",
@@ -1508,6 +1508,12 @@
     "paysage": "5cZyU",
     "ror": "https://ror.org/05f82e368",
     "scale": "university"
+  },
+  "UFRCHIMIESU": {
+    "name": "UFR de Chimie de Sorbonne Université (UFR-Chimie)",
+    "commentsName": "de l'UFR-Chimie",
+    "commentsNameEN": "of UFR-Chimie",
+    "paysage": "gl7b4"
   },
   "IMTS": {
     "name": "Tous les IMTs",
