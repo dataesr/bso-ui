@@ -41,6 +41,23 @@ const messages = {
   fr: messagesFR,
 };
 
+const redirects = {
+  '/a-propos/notes-flash': '/a-propos/communication',
+  '/about/notes': '/about/communication',
+  '/a-propos/declinaisons': '/declinaisons/bso-locaux',
+  '/about/declinaisons': '/declinaisons/bso-locaux',
+  '/sante/publications/general': '/publications/general',
+  '/sante/publications/disciplines': '/publications/general',
+  '/sante/publications/editeurs': '/publications/general',
+  '/sante/publications/archives': '/publications/general',
+  '/sante/publications/affiliations': '/publications/general',
+  '/health/publications/general': '/publications/general',
+  '/health/publications/fields': '/publications/general',
+  '/health/publications/publishers': '/publications/general',
+  '/health/publications/repositories': '/publications/general',
+  '/health/publications/affiliations': '/publications/general',
+};
+
 function App() {
   const { lang, urls } = useLang();
 
@@ -52,6 +69,14 @@ function App() {
           {isInLocal() && (
             <Route path='/translations' element={<TranslationPage />} />
           )}
+          {Object.keys(redirects).map((redirect) => (
+            <Route
+              element={<Navigate to={redirects[redirect]} replace />}
+              exact
+              key={redirect}
+              path={redirect}
+            />
+          ))}
           {Object.keys(urls.national).map((key) => (
             <Route
               element={(
@@ -227,15 +252,6 @@ function App() {
               path={urls.glossaire[key]}
             />
           ))}
-          {/* Redirect Notes Flash into communication */}
-          {Object.keys(urls.flash).map((key) => (
-            <Route
-              element={<Navigate to={urls.communication[key]} />}
-              exact
-              key={key}
-              path={urls.flash[key]}
-            />
-          ))}
           {Object.keys(urls.communication).map((key) => (
             <Route
               element={(
@@ -246,18 +262,6 @@ function App() {
               exact
               key={key}
               path={urls.communication[key]}
-            />
-          ))}
-          {Object.keys(urls.variationsOld).map((key) => (
-            <Route
-              element={(
-                <PageTracker>
-                  <Variations />
-                </PageTracker>
-              )}
-              exact
-              key={key}
-              path={urls.variationsOld[key]}
             />
           ))}
           {Object.keys(urls.variations).map((key) => (
