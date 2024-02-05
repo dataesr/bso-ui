@@ -41,7 +41,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
-    observationYear: getObservationLabel(lastObservationSnap, intl),
+    observationYear: getObservationLabel(beforeLastObservationSnap, intl),
   };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
