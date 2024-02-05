@@ -115,9 +115,9 @@ export default function NationalOrcid() {
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.users'
                 >
+                  <BSOChart id='orcid.general.chart-evolution' />
                   <BSOChart id='orcid.general.chart-indicator-these-year' />
                   <BSOChart id='orcid.general.chart-indicator-these-discipline' />
-                  <BSOChart id='orcid.general.chart-evolution' />
                   <BSOChart id='orcid.general.creation-by-year' />
                   <BSOChart id='orcid.general.chart-indicator-active' />
                 </QuestionSection>
