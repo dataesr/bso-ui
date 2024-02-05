@@ -2124,7 +2124,15 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcidIndicatorSimple: ([myFilter1, myField, mySize, myMissing]) => ({
+    orcidComplexIndicator: ([
+      myFilter1,
+      myField1,
+      myField2,
+      myField3,
+      mySize1 = 10,
+      mySize2 = 10,
+      mySize3 = 10,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -2138,11 +2146,26 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        my_indicator: {
+        my_indicator1: {
           terms: {
-            field: myField,
-            size: mySize,
-            missing: myMissing,
+            field: myField1,
+            size: mySize1,
+          },
+          aggs: {
+            my_indicator2: {
+              terms: {
+                field: myField2,
+                size: mySize2,
+              },
+              aggs: {
+                my_indicator3: {
+                  terms: {
+                    field: myField3,
+                    size: mySize3,
+                  },
+                },
+              },
+            },
           },
         },
       },

@@ -35,7 +35,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     'is_fr_present',
     'works.source.keyword',
     20,
-    'Pas de source externe',
     getCSSValue('--orange-soft-100'),
   );
   const { categories, dataGraph } = allData;

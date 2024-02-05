@@ -4082,6 +4082,36 @@ export const chartOptions = {
       return options;
     },
   },
+  'orcid.general.chart-indicator-active-work': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = series;
+      return options;
+    },
+  },
   'orcid.general.chart-indicator-affiliationid': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });

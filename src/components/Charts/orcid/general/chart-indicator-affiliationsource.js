@@ -35,7 +35,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     'is_fr_present',
     'employment_present.disambiguation_sources.keyword',
     20,
-    'Pas de référentiel',
     getCSSValue('--affiliations-etablissements-150'),
   );
   const { categories, dataGraph } = allData;

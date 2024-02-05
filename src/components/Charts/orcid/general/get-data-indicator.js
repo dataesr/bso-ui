@@ -22,34 +22,32 @@ function useGetData(
 ) {
   const intl = useIntl();
   const [allData, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const queries = [];
-      const queryCurrent = getFetchOptions({
+      const query = getFetchOptions({
         key: 'orcidIndicator',
         domain,
         parameters: [filter1, indicator1, indicator2, size1, size2],
         objectType: ['orcid'],
       });
       if (indicator2 === 'same_idref') {
-        queryCurrent.query.bool.filter.push({ term: { has_idref_abes: true } });
-        queryCurrent.query.bool.filter.push({
+        query.query.bool.filter.push({ term: { has_idref_abes: true } });
+        query.query.bool.filter.push({
           term: { has_idref_aurehal: true },
         });
       }
       if (indicator2 === 'same_id_hal') {
-        queryCurrent.query.bool.filter.push({
+        query.query.bool.filter.push({
           term: { has_id_hal_abes: true },
         });
-        queryCurrent.query.bool.filter.push({
+        query.query.bool.filter.push({
           term: { has_id_hal_aurehal: true },
         });
       }
-      queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));
-      const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.my_indicator1.buckets;
+      const res = await Axios.post(ES_ORCID_API_URL, query, HEADERS);
+      const data = res.data.aggregations.my_indicator1.buckets;
       const categories = [];
       const noOutline = {
         style: {

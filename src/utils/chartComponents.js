@@ -265,6 +265,7 @@ const ChartOrcidWorkSource = lazy(() => import('../components/Charts/orcid/gener
 const ChartOrcidActive = lazy(() => import('../components/Charts/orcid/general/chart-indicator-active'));
 const ChartOrcidHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-hal'));
 const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/chart-indicator-work'));
+const ChartOrcidActiveWork = lazy(() => import('../components/Charts/orcid/general/chart-indicator-active-work'));
 const ChartOrcidAffiliationId = lazy(() => import('../components/Charts/orcid/general/chart-indicator-affiliationid'));
 const ChartOrcidTheseYear = lazy(() => import('../components/Charts/orcid/general/chart-indicator-these-year'));
 const ChartOrcidTheseDiscipline = lazy(() => import('../components/Charts/orcid/general/chart-indicator-these-discipline'));
@@ -446,6 +447,7 @@ const chartComponents = {
     ChartDataAvailibilityDiscipline,
   'data.editeurs.voies-ouverture.chart-availibility':
     ChartDataAvailibilityEditeur,
+  // Orcid
   'orcid.general.chart-evolution': OrcidEvolution,
   'orcid.general.creation-by-year': OrcidCreationByYear,
   'orcid.general.chart-indicator-worksource': ChartOrcidWorkSource,
@@ -454,6 +456,7 @@ const chartComponents = {
   'orcid.general.chart-indicator-active': ChartOrcidActive,
   'orcid.general.chart-indicator-hal': ChartOrcidHal,
   'orcid.general.chart-indicator-work': ChartOrcidWork,
+  'orcid.general.chart-indicator-active-work': ChartOrcidActiveWork,
   'orcid.general.chart-indicator-affiliationid': ChartOrcidAffiliationId,
   'orcid.general.chart-indicator-these-year': ChartOrcidTheseYear,
   'orcid.general.chart-indicator-these-discipline': ChartOrcidTheseDiscipline,

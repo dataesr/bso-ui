@@ -14,7 +14,6 @@ function useGetData(
   indicator1,
   indicator2,
   size,
-  missing,
   color,
 ) {
   const intl = useIntl();
@@ -23,16 +22,14 @@ function useGetData(
   const [isError, setError] = useState(false);
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const queries = [];
-      const queryCurrent = getFetchOptions({
+      const query = getFetchOptions({
         key: 'orcidIndicator',
         domain,
-        parameters: [filter1, indicator1, indicator2, 10, size, missing],
+        parameters: [filter1, indicator1, indicator2, 10, size],
         objectType: ['orcid'],
       });
-      queries.push(Axios.post(ES_ORCID_API_URL, queryCurrent, HEADERS));
-      const res = await Axios.all(queries);
-      const data = res[0].data.aggregations.my_indicator1.buckets.filter(
+      const res = await Axios.post(ES_ORCID_API_URL, query, HEADERS);
+      const data = res.data.aggregations.my_indicator1.buckets.filter(
         (el) => el.doc_count > 0,
       )[0];
       const total = data.doc_count;
@@ -94,7 +91,6 @@ function useGetData(
       indicator1,
       indicator2,
       intl,
-      missing,
       size,
     ],
   );

@@ -128,6 +128,7 @@ export default function NationalOrcid() {
                   intlKey='app.national-orcid.general.publications'
                 >
                   <BSOChart id='orcid.general.chart-indicator-work' />
+                  <BSOChart id='orcid.general.chart-indicator-active-work' />
                   <BSOChart id='orcid.general.chart-indicator-hal' />
                   <BSOChart id='orcid.general.chart-indicator-worksource' />
                 </QuestionSection>
