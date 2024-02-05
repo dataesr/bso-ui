@@ -1359,6 +1359,7 @@
   "app.orcid.nb": "Number of ORCID accounts",
   "app.orcid.count": "Total number of French ORCID to-date",
   "app.orcid.employment-count": "Total number of ORCID with a French employement to-date",
+  "app.orcid.thesis-count": "Total ORCIDs who defended a thesis in France",
   "app.orcid.creation-date": "ORCID account creation date",
   "app.orcid.these-proportion": "Proportion of French PhD that have an ORCID",
   "app.orcid.general": "General",

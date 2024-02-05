@@ -1329,6 +1329,7 @@
   "app.orcid.address": "ORCID déclarant une adresse en France",
   "app.orcid.count": "Total ORCID français à date",
   "app.orcid.employment-count": "Total ORCID avec employeur français à date",
+  "app.orcid.thesis-count": "Total ORCID ayant soutenu une thèse en France",
   "app.orcid.nb": "Nombre de comptes ORCID",
   "app.orcid.perc": "Proportion de comptes ORCID",
   "app.orcid.creation-date": "Date de création de l'ORCID",

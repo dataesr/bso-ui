@@ -40,10 +40,22 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         objectType: ['orcid'],
       });
       queries.push(Axios.post(ES_ORCID_API_URL, query3, HEADERS));
+      const query4 = getFetchOptions({
+        key: 'orcidNumberWithFilter',
+        domain,
+        parameters: [
+          'year',
+          ['address', 'employment', 'education'],
+          'has_these',
+        ],
+        objectType: ['orcid'],
+      });
+      queries.push(Axios.post(ES_ORCID_API_URL, query4, HEADERS));
       const res = await Axios.all(queries);
       const data1 = res[0].data.aggregations.orcid_per_year.buckets;
       const data2 = res[1].data.aggregations.orcid_per_year.buckets;
       const data3 = res[2].data.aggregations.orcid_per_year.buckets;
+      const data4 = res[3].data.aggregations.orcid_per_year.buckets;
       const dataGraph2 = [
         {
           data: data3.map((item) => ({
@@ -57,14 +69,8 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         },
       ];
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-      const categories = [];
       const total = [];
-      const employment = [];
-      const noOutline = {
-        style: {
-          textOutline: 'none',
-        },
-      };
+      const categories = [];
       data1.forEach((el) => {
         const currentDate = Highcharts.dateFormat(
           '%Y',
@@ -79,6 +85,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           bsoDomain,
         });
       });
+      const employment = [];
       data2.forEach((el) => {
         const currentDate = Highcharts.dateFormat(
           '%Y',
@@ -88,6 +95,20 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           bsoDomain,
           creation_date: currentDate,
           x: employment.length,
+          y: el.total_orcid.value,
+          y_current: el.distinct_orcid.value,
+        });
+      });
+      const thesis = [];
+      data4.forEach((el) => {
+        const currentDate = Highcharts.dateFormat(
+          '%Y',
+          new Date(el.key_as_string).getTime(),
+        );
+        thesis.push({
+          bsoDomain,
+          creation_date: currentDate,
+          x: thesis.length,
           y: el.total_orcid.value,
           y_current: el.distinct_orcid.value,
         });
@@ -111,7 +132,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           data: total,
           turboThreshold: 0,
           color: getCSSValue('--green-light-125'),
-          dataLabels: noOutline,
+          dataLabels: { style: { textOutline: 'none' } },
         },
         {
           name: capitalize(
@@ -122,7 +143,18 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           data: employment,
           turboThreshold: 0,
           color: getCSSValue('--affiliations-etablissements-125'),
-          dataLabels: noOutline,
+          dataLabels: { style: { textOutline: 'none' } },
+        },
+        {
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.orcid.thesis-count',
+            }),
+          ),
+          data: thesis,
+          turboThreshold: 0,
+          color: getCSSValue('--thesesfr'),
+          dataLabels: { style: { textOutline: 'none' } },
         },
       ];
 
