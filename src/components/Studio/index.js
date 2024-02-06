@@ -11,11 +11,13 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useIntl } from 'react-intl';
 
 import downloadFile from '../../utils/files';
-import { getCSSValue } from '../../utils/helpers';
+import { getCSSValue, getObservationLabel } from '../../utils/helpers';
+import useGlobals from '../../utils/Hooks/useGetGlobals';
 import tree from './tree';
 
 const Studio = () => {
   const intl = useIntl();
+  const { lastObservationSnap } = useGlobals();
   const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506');
   const [displayComment, setDisplayComment] = useState(true);
   const [displayFooter, setDisplayFooter] = useState(true);
@@ -23,7 +25,13 @@ const Studio = () => {
   const [endYear, setEndYear] = useState(2022);
   const [firstObservationYear, setFirstObservationYear] = useState(2018);
   const [lang, setLang] = useState('fr');
-  const [lastObservationYear, setLastObservationYear] = useState(2023);
+  const [lastObservationYear, setLastObservationYear] = useState(
+    getObservationLabel(
+      lastObservationSnap > process.env.REACT_APP_LAST_OBSERVATION
+        ? process.env.REACT_APP_LAST_OBSERVATION
+        : lastObservationSnap,
+    ),
+  );
   const [object, setObject] = useState('publi');
   const [startYear, setStartYear] = useState(2013);
   const [tab, setTab] = useState('general');
