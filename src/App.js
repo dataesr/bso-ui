@@ -24,6 +24,7 @@ import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import DataCode from './pages/DataCode';
 import HowTo from './pages/Declinaisons/HowTo';
+import Policy from './pages/Declinaisons/Policy';
 import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
@@ -273,6 +274,18 @@ function App() {
               exact
               key={key}
               path={urls.howto[key]}
+            />
+          ))}
+          {Object.keys(urls.policy).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <Policy />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.policy[key]}
             />
           ))}
           {Object.keys(urls.opendata).map((key) => (

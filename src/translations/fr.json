@@ -509,6 +509,7 @@
   "app.header.nav.declinaisons.existing": "Les baromètres des établissements",
   "app.header.nav.declinaisons": "Les baromètres locaux",
   "app.header.nav.declinaisons.howto": "Tutoriel pour réaliser son BSO local",
+  "app.header.nav.declinaisons.policy": "Politique de science ouverte des établissements",
   "app.header.subtitle": "Mesurer l'évolution de la science ouverte en France à partir de données fiables, ouvertes et maîtrisées.",
   "app.header.subsubtitle": "La science ouverte est la diffusion sans entrave des résultats, des méthodes et des produits de la recherche scientifique. Elle s'appuie sur l'opportunité que représente la mutation numérique pour développer l'accès ouvert aux publications et - autant que possible - aux données, au codes sources et aux méthodes de la recherche.",
   "app.header.title": "Baromètre français de la Science Ouverte",

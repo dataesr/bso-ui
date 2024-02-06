@@ -507,9 +507,7 @@ function Header() {
               />
             </NavItem>
             <NavItem
-              current={path.startsWith(
-                `/${urls.variations[lang].split('/')[1]}`,
-              )}
+              current={path === urls.nationalOrcid[lang]}
               title={intl.formatMessage({
                 id: 'app.header.nav.orcid',
                 defaultMessage: 'ORCID',
@@ -548,6 +546,15 @@ function Header() {
                   defaultMessage: 'Tutoriel pour réaliser son BSO local',
                 })}
                 asLink={<RouterLink to={urls.howto[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.policy[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.policy',
+                  defaultMessage:
+                    'Politique de science ouverte des établissements',
+                })}
+                asLink={<RouterLink to={urls.policy[lang] + search} />}
               />
             </NavItem>
             <NavItem

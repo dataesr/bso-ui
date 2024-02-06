@@ -206,6 +206,10 @@ export default {
     fr: '/declinaisons/comment-realiser-bso-local',
     en: '/declinaisons/howto',
   },
+  policy: {
+    fr: '/declinaisons/politique-etablissements',
+    en: '/declinaisons/institutional-policy',
+  },
   project: {
     fr: '/projet-et-equipe',
     en: '/project-and-team',
