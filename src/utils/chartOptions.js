@@ -3885,9 +3885,11 @@ export const chartOptions = {
         labels: {
           rotation: -90,
         },
-        title: { text: intl.formatMessage({ id: 'app.orcid.creation-date' }) },
+        title: { text: intl.formatMessage({ id: 'app.orcid.creation-year' }) },
       };
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid.nb' });
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.nb-cumulated',
+      });
       options.legend.title.text = null;
       options.plotOptions = {
         column: {
@@ -3910,7 +3912,7 @@ export const chartOptions = {
       options.chart.type = 'column';
       options.xAxis = {
         categories,
-        title: { text: intl.formatMessage({ id: 'app.orcid.creation-date' }) },
+        title: { text: intl.formatMessage({ id: 'app.orcid.creation-year' }) },
       };
       options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid.nb' });
       options.legend.enabled = false;
