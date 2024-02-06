@@ -2312,17 +2312,67 @@ export const chartOptions = {
       return options;
     },
   },
-  'general.dynamique.chart-evolution-within-2-years-by-year': {
-    getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions({ id, intl, studyType, dataTitle });
-      options.chart.type = 'column';
+  'general.dynamique.chart-evolution-within-3-years': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
       options.plotOptions = {
         series: {
+          stacking: false,
           dataLabels: {
             enabled: false,
           },
         },
-        column: {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        title: {
+          text: intl.formatMessage({ id: 'app.sponsor-type' }),
+        },
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+      options.legend = { enabled: false };
+      options.tooltip = {
+        headerFormat: '',
+        pointFormat: intl.formatMessage({
+          id: `${withtStudyType(id, studyType)}.tooltip`,
+        }),
+      };
+      return options;
+    },
+  },
+  'general.dynamique.chart-evolution-within-2-years-by-year': {
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
+      options.chart = {
+        type: 'bar',
+        height: '650px',
+      };
+      options.plotOptions = {
+        series: {
+          grouping: false,
+          dataLabels: {
+            enabled: false,
+          },
+        },
+        bar: {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
@@ -2338,6 +2388,50 @@ export const chartOptions = {
         },
         lineWidth: 0,
         tickWidth: 0,
+        reversed: false,
+        labels: {
+          style: {
+            color: getCSSValue('--g800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+      return options;
+    },
+  },
+  'general.dynamique.chart-evolution-within-3-years-by-year': {
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
+      options.chart = {
+        type: 'bar',
+        height: '650px',
+      };
+      options.plotOptions = {
+        series: {
+          grouping: false,
+          dataLabels: {
+            enabled: false,
+          },
+        },
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(true);
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
+        lineWidth: 0,
+        tickWidth: 0,
+        reversed: false,
         labels: {
           style: {
             color: getCSSValue('--g800'),
@@ -3170,7 +3264,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'software.general.voies-ouverture.chart-software-shared': {
+  'software.general.voies-ouverture.chart-software-used': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3180,7 +3274,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.shared-software',
+        id: 'app.used-software',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3194,8 +3288,8 @@ export const chartOptions = {
           },
         },
       };
-      options.series = data;
       options.exporting.chartOptions.legend.enabled = false;
+      options.series = data;
       return options;
     },
   },
@@ -3228,7 +3322,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'software.general.voies-ouverture.chart-software-used': {
+  'software.general.voies-ouverture.chart-software-shared': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3238,7 +3332,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.used-software',
+        id: 'app.shared-software',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -3252,8 +3346,37 @@ export const chartOptions = {
           },
         },
       };
-      options.exporting.chartOptions.legend.enabled = false;
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'software.general.voies-ouverture.chart-software-shared-among-all': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis(true, null, false, 2);
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.shared-software',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3346,7 +3469,36 @@ export const chartOptions = {
       return options;
     },
   },
-  'software.disciplines.voies-ouverture.chart-software-shared': {
+  'data.general.voies-ouverture.chart-data-shared-among-all': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = getPercentageYAxis(true, null, false, 2);
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.used-data',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'software.disciplines.voies-ouverture.chart-software-used': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
@@ -3356,7 +3508,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.shared-software',
+        id: 'app.used-software',
       });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
@@ -3424,7 +3576,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'software.disciplines.voies-ouverture.chart-software-used': {
+  'software.disciplines.voies-ouverture.chart-software-shared': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
@@ -3434,7 +3586,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.used-software',
+        id: 'app.shared-software',
       });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
@@ -3463,7 +3615,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'data.disciplines.voies-ouverture.chart-data-shared': {
+  'software.disciplines.voies-ouverture.chart-software-shared-among-all': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
@@ -3472,7 +3624,46 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.shared-software',
+      });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'data.disciplines.voies-ouverture.chart-data-used': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.used-data' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3537,7 +3728,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'data.disciplines.voies-ouverture.chart-data-used': {
+  'data.disciplines.voies-ouverture.chart-data-shared': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
@@ -3546,7 +3737,44 @@ export const chartOptions = {
         categories,
       };
       options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({ id: 'app.used-data' });
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'data.disciplines.voies-ouverture.chart-data-shared-among-all': {
+    getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.shared-data' });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-hebergement',
       });
@@ -3648,7 +3876,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-evolution': {
+  'orcid.general.chart-evolution': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'line';
@@ -3676,7 +3904,21 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-active': {
+  'orcid.general.creation-by-year': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.orcid.creation-date' }) },
+      };
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.orcid.nb' });
+      options.legend.enabled = false;
+      options.series = series;
+      return options;
+    },
+  },
+  'orcid.general.chart-indicator-active': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3708,7 +3950,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-these-discipline': {
+  'orcid.general.chart-indicator-these-discipline': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
@@ -3740,7 +3982,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-these-year': {
+  'orcid.general.chart-indicator-these-year': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'line';
@@ -3779,7 +4021,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-hal': {
+  'orcid.general.chart-indicator-hal': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3810,7 +4052,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-work': {
+  'orcid.general.chart-indicator-work': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3840,7 +4082,37 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-affiliationid': {
+  'orcid.general.chart-indicator-active-work': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.orcid.proportion',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = series;
+      return options;
+    },
+  },
+  'orcid.general.chart-indicator-affiliationid': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3870,7 +4142,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idref-abes': {
+  'orcid.general.chart-indicator-idref-abes': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3900,7 +4172,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idref-hal': {
+  'orcid.general.chart-indicator-idref-hal': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3930,7 +4202,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idref-same': {
+  'orcid.general.chart-indicator-idref-same': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3960,7 +4232,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idhal-abes': {
+  'orcid.general.chart-indicator-idhal-abes': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -3990,7 +4262,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idhal-hal': {
+  'orcid.general.chart-indicator-idhal-hal': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4020,7 +4292,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-idhal-same': {
+  'orcid.general.chart-indicator-idhal-same': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'column';
@@ -4050,7 +4322,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-worksource': {
+  'orcid.general.chart-indicator-worksource': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '650px';
@@ -4079,7 +4351,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'orcid.general.present.chart-indicator-affiliationsource': {
+  'orcid.general.chart-indicator-affiliationsource': {
     getOptions: (id, intl, categories, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '650px';
@@ -4132,90 +4404,43 @@ export const chartOptions = {
     },
   },
   'publi.others.retractions.chart-by-year': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
         categories,
       };
-      options.yAxis = getPercentageYAxis(true, null, false, 3);
-      options.yAxis.title.text = intl.formatMessage({
-        id: 'app.publi.percent-publications-retracted',
-      });
-      options.legend.enabled = true;
-      options.legend.reversed = true;
+      options.legend.enabled = false;
       options.plotOptions = {
         series: {
           dataLabels: {
             enabled: true,
           },
         },
-        column: {
-          stacking: 'normal',
-          dataLabels: {
-            enabled: true,
-            formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
-            },
-          },
-        },
       };
-      options.series = data;
+      options.series = series;
       options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
   'publi.others.retractions.chart-by-field': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
+    getOptions: (id, intl, categories, series, sort, yAxisTitleId) => {
+      const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.discipline' }) },
         categories,
       };
-      options.yAxis = getPercentageYAxis();
-      options.yAxis.title.text = intl.formatMessage({
-        id: 'app.publi.percent-publications-retracted',
-      });
+      options.yAxis = getPercentageYAxis(false, null, sort !== 'sort-percent');
+      options.yAxis.title.text = intl.formatMessage({ id: yAxisTitleId });
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
           dataLabels: {
             enabled: true,
             formatter() {
-              return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
-            },
-          },
-        },
-      };
-      options.series = data;
-      options.exporting.chartOptions.legend.enabled = false;
-      return options;
-    },
-  },
-  'publi.others.retractions.chart-by-publisher': {
-    getOptions: (id, intl, categories, graph, isPercent, dataTitle) => {
-      const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.height = '1000px';
-      options.chart.type = 'bar';
-      options.xAxis = {
-        title: { text: intl.formatMessage({ id: 'app.publishers' }) },
-        categories,
-      };
-      options.yAxis = getPercentageYAxis(false, null, !isPercent);
-      options.yAxis.title.text = intl.formatMessage({
-        id: isPercent
-          ? 'app.publi.percent-publications-retracted'
-          : 'app.publi.nb-publications-retracted',
-      });
-      options.legend.enabled = false;
-      options.plotOptions = {
-        series: {
-          dataLabels: {
-            enabled: true,
-            formatter() {
-              if (isPercent) {
+              if (sort === 'sort-percent') {
                 return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
               }
               return this.y === 0 ? '' : this.y.toFixed();
@@ -4223,7 +4448,95 @@ export const chartOptions = {
           },
         },
       };
-      options.series = [graph];
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.retractions.chart-by-publisher': {
+    getOptions: (id, intl, categories, series, sort, yAxisTitleId) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.height = '1000px';
+      options.chart.type = 'bar';
+      options.xAxis = {
+        title: {
+          text: capitalize(intl.formatMessage({ id: 'app.publishers' })),
+        },
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(false, null, sort !== 'sort-percent');
+      options.yAxis.title.text = intl.formatMessage({ id: yAxisTitleId });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              if (sort === 'sort-percent') {
+                return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+              }
+              return this.y === 0 ? '' : this.y.toFixed();
+            },
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.retractions.chart-by-nature': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: {
+          text: intl.formatMessage({
+            id: 'app.national-publi.others.retractions.chart-by-nature.yAxis',
+          }),
+        },
+        categories,
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.nb-publications',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.retractions.chart-by-reason': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: {
+          text: intl.formatMessage({
+            id: 'app.national-publi.others.retractions.chart-by-reason.yAxis',
+          }),
+        },
+        categories,
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.nb-publications',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = series;
       options.exporting.chartOptions.legend.enabled = false;
       return options;
     },

@@ -57,10 +57,6 @@ function BannerHealth({ selected, title }) {
         selected: intl.formatMessage({ id: selected }),
         options: [
           {
-            label: intl.formatMessage({ id: 'app.baro-sante.title' }),
-            value: intl.formatMessage({ id: 'url.sante.publications.general' }),
-          },
-          {
             label: intl.formatMessage({
               id: 'app.baro-sante.trials.main-title',
             }),

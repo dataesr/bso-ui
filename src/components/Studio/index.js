@@ -20,10 +20,10 @@ const Studio = () => {
   const [displayComment, setDisplayComment] = useState(true);
   const [displayFooter, setDisplayFooter] = useState(true);
   const [displayTitle, setDisplayTitle] = useState(false);
-  const [endYear, setEndYear] = useState(2021);
+  const [endYear, setEndYear] = useState(2022);
   const [firstObservationYear, setFirstObservationYear] = useState(2018);
   const [lang, setLang] = useState('fr');
-  const [lastObservationYear, setLastObservationYear] = useState(2022);
+  const [lastObservationYear, setLastObservationYear] = useState(2023);
   const [object, setObject] = useState('publi');
   const [startYear, setStartYear] = useState(2013);
   const [tab, setTab] = useState('general');
@@ -32,12 +32,12 @@ const Studio = () => {
     { label: 'Français', value: 'fr' },
     { label: 'Anglais', value: 'en' },
   ];
-  const observationYears = [2018, 2019, 2020, 2021, 2022].map((item) => ({
+  const observationYears = [2018, 2019, 2020, 2021, 2022, 2023].map((item) => ({
     label: item,
     value: item,
   }));
   const publicationYears = [
-    2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
   ].map((item) => ({ label: item, value: item }));
 
   const commentsName = intl.formatMessage({

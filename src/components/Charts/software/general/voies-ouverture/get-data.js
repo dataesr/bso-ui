@@ -14,9 +14,11 @@ function useGetData(
   beforeLastObservationSnap,
   observationSnap,
   domain,
-  fieldY,
-  filterWithCreated,
-  filterWithUsed,
+  fieldAgg1,
+  fieldAgg2,
+  fieldAgg3,
+  filter1,
+  filter2,
 ) {
   const intl = useIntl();
   const [allData, setData] = useState({});
@@ -28,27 +30,22 @@ function useGetData(
       const query = getFetchOptions({
         key: 'oaHostType',
         domain,
-        parameters: [
-          lastObservationSnap,
-          fieldY,
-          // `${softwareData}.${mentionType}`,
-          'year',
-          2013,
-          15,
-          -1,
-        ],
+        parameters: [lastObservationSnap, fieldAgg1, 'year', 2013, 15, -1],
         objectType: ['publications'],
       });
-      if (filterWithUsed) {
-        query.query.bool.filter.push({
-          term: { [`${filterWithUsed}`]: true },
-          // term: { [`${softwareData}.has_used`]: true },
-        });
+      if (fieldAgg2) {
+        query.aggs.by_publication_year.aggs.by_oa_host_type.aggs = {
+          by_agg_2: { terms: { field: fieldAgg2 } },
+        };
+        if (fieldAgg3) {
+          query.aggs.by_publication_year.aggs.by_oa_host_type.aggs.by_agg_2.aggs = { by_agg_3: { terms: { field: fieldAgg3 } } };
+        }
       }
-      if (filterWithCreated) {
-        query.query.bool.filter.push({
-          term: { [`${filterWithCreated}`]: true },
-        });
+      if (filter2) {
+        query.query.bool.filter.push({ term: { [`${filter2}`]: true } });
+      }
+      if (filter1) {
+        query.query.bool.filter.push({ term: { [`${filter1}`]: true } });
       }
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_publication_year.buckets.sort(
@@ -57,6 +54,7 @@ function useGetData(
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
       const categories = [];
       const shared = [];
+      const shared2 = [];
       const closed = [];
       const noOutline = {
         style: {
@@ -72,11 +70,15 @@ function useGetData(
         )
         .forEach((el) => {
           categories.push(el.key);
-
           const closedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 0)
             ?.doc_count || 0;
           const sharedCurrent = el.by_oa_host_type.buckets.find((item) => item.key === 1)
             ?.doc_count || 0;
+          const sharedCurrent2 = el.by_oa_host_type.buckets
+            .find((item) => item.key === 1)
+            ?.by_agg_2?.buckets?.find((item) => item.key === 1)
+            ?.by_agg_3.buckets?.find((item) => item.key === 1)?.doc_count
+            || 0;
           const totalCurrent = sharedCurrent + closedCurrent;
           const unknownCurrent = el.by_oa_host_type.buckets.find((item) => item.key === -1)
             ?.doc_count || 0;
@@ -90,6 +92,14 @@ function useGetData(
           shared.push({
             y: (100 * sharedCurrent) / totalCurrent,
             y_abs: sharedCurrent,
+            y_tot: totalCurrent,
+            y_unk: unknownCurrent,
+            x: el.key,
+            bsoDomain,
+          });
+          shared2.push({
+            y: (100 * sharedCurrent2) / totalCurrent,
+            y_abs: sharedCurrent2,
             y_tot: totalCurrent,
             y_unk: unknownCurrent,
             x: el.key,
@@ -110,6 +120,19 @@ function useGetData(
         },
       ];
 
+      const dataGraph2 = [
+        {
+          name: capitalize(
+            intl.formatMessage({
+              id: 'app.publication',
+            }),
+          ),
+          data: shared2,
+          color: getCSSValue('--publication-100'),
+          dataLabels: noOutline,
+        },
+      ];
+
       const comments = {
         beforeLastObservationSnap: getObservationLabel(
           beforeLastObservationSnap,
@@ -124,15 +147,18 @@ function useGetData(
         categories,
         comments,
         dataGraph,
+        dataGraph2,
       };
     },
     [
       beforeLastObservationSnap,
       domain,
+      fieldAgg1,
+      fieldAgg2,
+      fieldAgg3,
+      filter1,
+      filter2,
       intl,
-      fieldY,
-      filterWithUsed,
-      filterWithCreated,
     ],
   );
 

@@ -306,10 +306,6 @@ export default function NationalPublications() {
                 >
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-taux-ouverture' />
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-evolution-proportion' />
-                  <BSOChart
-                    id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture'
-                    isDisplayed={!isInProduction()}
-                  />
                 </QuestionSection>
 
                 <QuestionSection
@@ -515,10 +511,41 @@ export default function NationalPublications() {
                   <BSOChart id='publi.general.impact-financement.chart-business-model' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-taux' />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+
+            {/* A valider */}
+            <GraphItem
+              paths={['/publications/a-decider', '/publications/to-be-decided']}
+              mainLabel={intl.formatMessage({
+                id: 'app.publi.to-be-decided',
+              })}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/publications/to-be-decided?id=to-be-decided.international-collaborations',
+                    fr: '/publications/a-decider?id=to-be-decided.international-collaborations',
+                  },
+                },
+              ]}
+            >
+              <GraphContent isDisplayed={!isInProduction()}>
+                <QuestionSection
+                  anchorId='to-be-decided.international-collaborations'
+                  intlKey=''
+                  backgroundColor={blueSoft50}
+                >
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
                   <BSOChart id='publi.others.retractions.chart-by-year' />
                   <BSOChart id='publi.others.retractions.chart-by-field' />
                   <BSOChart id='publi.others.retractions.chart-by-publisher' />
+                  <BSOChart id='publi.others.retractions.chart-by-nature' />
+                  <BSOChart id='publi.others.retractions.chart-by-reason' />
+                  <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

@@ -9,7 +9,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import BannerNational from '../../../components/BannerNational';
+import BannerData from '../../../components/BannerData';
 import BSOChart from '../../../components/Charts';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
@@ -32,10 +32,10 @@ export default function NationalSoftwareCode() {
 
   return (
     <Container fluid className='page'>
-      <BannerNational
+      <BannerData
+        iconId='icon-code'
         selected='url.software.general'
         title='app.baro-national.software.title.beta'
-        iconId='icon-code'
       />
       <ScrollTop />
       <section className='content'>
@@ -45,9 +45,7 @@ export default function NationalSoftwareCode() {
               <Col n='12'>
                 <Breadcrumb>
                   <BreadcrumbItem href='/' className='underline'>
-                    {intl.formatMessage({
-                      id: 'app.header.nav.baro-national-accueil',
-                    })}
+                    {intl.formatMessage({ id: 'app.header.nav.data-code' })}
                   </BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({
@@ -145,6 +143,7 @@ export default function NationalSoftwareCode() {
                   anchorId='general.partage'
                 >
                   <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
+                  <BSOChart id='software.general.voies-ouverture.chart-software-shared-among-all' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -215,6 +214,7 @@ export default function NationalSoftwareCode() {
                   anchorId='disciplines.partage'
                 >
                   <BSOChart id='software.disciplines.voies-ouverture.chart-software-shared' />
+                  <BSOChart id='software.disciplines.voies-ouverture.chart-software-shared-among-all' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

@@ -38,7 +38,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'softcite_details.has_used',
-    null,
   );
   const { categories, dataGraph } = allData;
   useEffect(() => {

@@ -22,7 +22,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const { observationSnaps } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(observationSnaps, domain);
+  const { allData, isError, isLoading } = useGetData(observationSnaps, domain);
   const { categories, dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(

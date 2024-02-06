@@ -178,6 +178,6 @@ function useGetData(studyType, sponsor = '*') {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyType, sponsor]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

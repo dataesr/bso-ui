@@ -10,7 +10,7 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { cleanNumber, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -23,23 +23,46 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const [isPercent, setPercent] = useState(true);
+  const [optionsGraph, setOptionsGraph] = useState(null);
+  const [sort, setSort] = useState('sort-count');
   const { observationSnaps } = useGlobals();
-  const { data, isError, isLoading } = useGetData(
-    observationSnaps,
-    domain,
-    isPercent,
-  );
-  const { categories, dataGraph } = data;
+  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
 
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    categories,
-    dataGraph,
-    isPercent,
-  );
+  useEffect(() => {
+    let field = 'y_count';
+    let yAxisTitleId = 'app.publi.nb-publications-retracted';
+    switch (sort) {
+    case 'sort-percent':
+      field = 'y_percent';
+      yAxisTitleId = 'app.publi.percent-publications-retracted';
+      break;
+    default:
+    }
+
+    const dataGraph = data
+      .sort((a, b) => b[field] - a[field])
+      .slice(0, 20)
+      .map((item) => ({ ...item, y: item[field] }));
+    const categories = dataGraph
+      .map((item) => item.publisher
+        .concat('</br>(')
+        .concat(intl.formatMessage({ id: 'app.effectif' }))
+        .concat(' = ')
+        .concat(cleanNumber(item.y_total))
+        .concat(')'))
+      .slice(0, 20);
+    setOptionsGraph(
+      chartOptions[id].getOptions(
+        idWithDomain,
+        intl,
+        categories,
+        [{ data: dataGraph }],
+        sort,
+        yAxisTitleId,
+      ),
+    );
+  }, [data, id, idWithDomain, intl, sort]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
@@ -53,25 +76,25 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph}
+      isLoading={isLoading || !data}
     >
       <RadioGroup
         className='d-inline-block'
         isInline
-        onChange={() => setPercent(!isPercent)}
-        value={isPercent}
+        onChange={(newValue) => setSort(newValue)}
+        value={sort}
       >
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.publi.display-count-retracted',
+          })}
+          value='sort-count'
+        />
         <Radio
           label={intl.formatMessage({
             id: 'app.publi.display-percent-retracted',
           })}
-          value
-        />
-        <Radio
-          label={intl.formatMessage({
-            id: 'app.publi.display-number-retracted',
-          })}
-          value={false}
+          value='sort-percent'
         />
       </RadioGroup>
       <HighchartsReact

@@ -6,17 +6,17 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
-import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
+import customComments from '../../../../utils/chartComments';
+import { chartOptions } from '../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../utils/constants';
 import {
   getCSSValue,
   getObservationLabel,
   withDomain,
-} from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
-import GraphComments from '../../../graph-comments';
+} from '../../../../utils/helpers';
+import useGlobals from '../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../WrapperChart';
+import GraphComments from '../../graph-comments';
 import useGetData from './get-data-indicator';
 
 HCExporting(Highcharts);
@@ -27,16 +27,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
     'is_fr_present',
     'fr_reasons_main.keyword',
-    'current_employment_fr_has_id',
-    'app.orcid.affiliationid',
-    'app.orcid.no-affiliationid',
-    getCSSValue('--affiliations-etablissements-100'),
+    'same_idref',
+    'app.orcid.same-idref',
+    'app.orcid.different-id',
+    getCSSValue('--green-soft-125'),
     getCSSValue('--g-400'),
   );
   const { categories, dataGraph } = allData;
@@ -51,6 +51,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     dataGraph,
     dataTitle,
   );
+
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomain, intl));
   }, [allData, idWithDomain, intl]);
@@ -83,7 +84,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-affiliationid',
+  id: 'orcid.general.chart-indicator-idref-same',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

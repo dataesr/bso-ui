@@ -47,24 +47,6 @@ function BannerNational({ selected, title, iconId }) {
             }),
             value: intl.formatMessage({ id: 'url.thesis.general' }),
           },
-          {
-            label: intl.formatMessage({
-              id: 'app.baro-national.data.title.beta',
-            }),
-            value: intl.formatMessage({ id: 'url.data.general' }),
-          },
-          {
-            label: intl.formatMessage({
-              id: 'app.baro-national.software.title.beta',
-            }),
-            value: intl.formatMessage({ id: 'url.software.general' }),
-          },
-          // {
-          //  label: intl.formatMessage({
-          //    id: 'app.baro-national.orcid.title',
-          //  }),
-          //  value: intl.formatMessage({ id: 'url.orcid.general' }),
-          // },
         ],
       }}
     />
@@ -72,9 +54,9 @@ function BannerNational({ selected, title, iconId }) {
 }
 
 BannerNational.propTypes = {
+  iconId: PropTypes.string.isRequired,
   selected: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  iconId: PropTypes.string.isRequired,
 };
 
 export default BannerNational;

@@ -9,7 +9,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import BannerNational from '../../../components/BannerNational';
+import BannerData from '../../../components/BannerData';
 import BSOChart from '../../../components/Charts';
 import Glossary from '../../../components/Glossary';
 import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
@@ -32,10 +32,10 @@ export default function NationalResearchData() {
 
   return (
     <Container fluid className='page'>
-      <BannerNational
+      <BannerData
+        iconId='icon-data'
         selected='url.data.general'
         title='app.baro-national.data.title.beta'
-        iconId='icon-data'
       />
       <ScrollTop />
       <section className='content'>
@@ -45,9 +45,7 @@ export default function NationalResearchData() {
               <Col n='12'>
                 <Breadcrumb>
                   <BreadcrumbItem href='/' className='underline'>
-                    {intl.formatMessage({
-                      id: 'app.header.nav.baro-national-accueil',
-                    })}
+                    {intl.formatMessage({ id: 'app.header.nav.data-code' })}
                   </BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({ id: 'app.baro-national.data.title' })}
@@ -152,6 +150,7 @@ export default function NationalResearchData() {
                   anchorId='general.partage'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
+                  <BSOChart id='data.general.voies-ouverture.chart-data-shared-among-all' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.general.statement'
@@ -242,6 +241,7 @@ export default function NationalResearchData() {
                   anchorId='disciplines.partage'
                 >
                   <BSOChart id='data.disciplines.voies-ouverture.chart-data-shared' />
+                  <BSOChart id='data.disciplines.voies-ouverture.chart-data-shared-among-all' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.disciplines.statement'
@@ -253,6 +253,7 @@ export default function NationalResearchData() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+
             {/* Les éditeurs */}
             <GraphItem
               paths={[

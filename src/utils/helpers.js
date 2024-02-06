@@ -247,6 +247,9 @@ export function getSource(id, otherSources = []) {
   if (id.includes('idref')) {
     sources.push('idref');
   }
+  if (id.includes('retractions')) {
+    sources.push('Retractation Watch');
+  }
   sources.push('MESR');
   // Remove duplicated ANR
   if (otherSources.includes('Agence Nationale de la Recherche (ANR)')) {

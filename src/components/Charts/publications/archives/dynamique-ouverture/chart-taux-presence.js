@@ -32,7 +32,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
   const { lastObservationSnap, observationSnaps } = useGlobals();
-  const { data, isLoading, isError } = useGetData(
+  const { data, isError, isLoading } = useGetData(
     observationSnaps,
     archive,
     domain,

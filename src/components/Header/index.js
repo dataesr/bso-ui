@@ -147,73 +147,374 @@ function Header() {
             </ToolItemGroup>
           </Tool>
         </HeaderBody>
-        <HeaderNav path={path}>
-          <NavItem
-            current={
-              path === '/'
-              || stringIsIntTheKitchen(path, lang, urls.nationalPublications.tabs)
-                .length > 0
-            }
-            title={intl.formatMessage({
-              id: 'app.header.nav.baro-national',
-              defaultMessage: 'Le baromètre national',
-            })}
-          >
-            <NavSubItem
-              current={path === urls.national[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.baro-national-accueil',
-                defaultMessage: 'Accueil baromètre national',
-              })}
-              asLink={<RouterLink to={urls.national[lang] + search} />}
-            />
-            <NavSubItem
+        {isInProduction() && (
+          <HeaderNav path={path}>
+            <NavItem
               current={
-                stringIsIntTheKitchen(
+                path === '/'
+                || stringIsIntTheKitchen(
                   path,
                   lang,
                   urls.nationalPublications.tabs,
                 ).length > 0
               }
               title={intl.formatMessage({
-                id: 'app.header.nav.baro-national-publications',
-                defaultMessage: 'Les publications',
+                id: 'app.header.nav.baro-national',
+                defaultMessage: 'Le baromètre national',
               })}
-              asLink={(
-                <RouterLink
-                  to={urls.nationalPublications.tabs[0][lang] + search}
+            >
+              <NavSubItem
+                current={path === urls.national[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-national-accueil',
+                  defaultMessage: 'Accueil baromètre national',
+                })}
+                asLink={<RouterLink to={urls.national[lang] + search} />}
+              />
+              <NavSubItem
+                current={
+                  stringIsIntTheKitchen(
+                    path,
+                    lang,
+                    urls.nationalPublications.tabs,
+                  ).length > 0
+                }
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-national-publications',
+                  defaultMessage: 'Les publications',
+                })}
+                asLink={(
+                  <RouterLink
+                    to={urls.nationalPublications.tabs[0][lang] + search}
+                  />
+                )}
+              />
+              <NavSubItem
+                current={path === urls.nationalThesis[lang]}
+                title={intl.formatMessage({
+                  id: 'app.publi.thesis',
+                  defaultMessage: 'Les thèses de doctorat',
+                })}
+                asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.nationalResearchData[lang]}
+                title={intl.formatMessage({
+                  id: 'app.baro-national.data.title.beta',
+                  defaultMessage: 'Les données de la recherche',
+                })}
+                asLink={
+                  <RouterLink to={urls.nationalResearchData[lang] + search} />
+                }
+              />
+              <NavSubItem
+                current={path === urls.nationalSoftwareCode[lang]}
+                title={intl.formatMessage({
+                  id: 'app.baro-national.software.title.beta',
+                  defaultMessage: 'Les codes logiciels',
+                })}
+                asLink={
+                  <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
+                }
+              />
+              {!isInProduction() && (
+                <NavSubItem
+                  current={path === urls.nationalOrcid[lang]}
+                  title={intl.formatMessage({
+                    id: 'app.baro-national.orcid.title',
+                    defaultMessage: 'Suivi ORCID',
+                  })}
+                  asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
                 />
               )}
-            />
-            <NavSubItem
-              current={path === urls.nationalThesis[lang]}
+            </NavItem>
+            <NavItem
+              current={path.startsWith(urls.sante[lang])}
               title={intl.formatMessage({
-                id: 'app.publi.thesis',
-                defaultMessage: 'Les thèses de doctorat',
+                id: 'app.header.nav.baro-sante',
+                defaultMessage: 'Le baromètre santé',
               })}
-              asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.nationalResearchData[lang]}
+            >
+              <NavSubItem
+                current={path === urls.sante[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.health-home',
+                  defaultMessage: 'Accueil santé',
+                })}
+                asLink={<RouterLink to={urls.sante[lang] + search} />}
+              />
+              <NavSubItem
+                current={
+                  stringIsIntTheKitchen(path, lang, urls.santePublications.tabs)
+                    .length > 0
+                }
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-sante-publications',
+                  defaultMessage: 'Les publications en santé',
+                })}
+                asLink={(
+                  <RouterLink
+                    to={urls.santePublications.tabs[0][lang] + search}
+                  />
+                )}
+              />
+              <NavSubItem
+                current={
+                  stringIsIntTheKitchen(path, lang, urls.santeEssais.tabs)
+                    .length > 0
+                }
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-sante-essais',
+                  defaultMessage: 'Les essais cliniques',
+                })}
+                asLink={
+                  <RouterLink to={urls.santeEssais.tabs[0][lang] + search} />
+                }
+              />
+              <NavSubItem
+                current={
+                  stringIsIntTheKitchen(path, lang, urls.santeEtudes.tabs)
+                    .length > 0
+                }
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-sante-etudes',
+                  defaultMessage: 'Les études observationnelles',
+                })}
+                asLink={<RouterLink to={urls.santeEtudes[lang] + search} />}
+              />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(
+                `/${urls.variations[lang].split('/')[1]}`,
+              )}
               title={intl.formatMessage({
-                id: 'app.baro-national.data.title.beta',
-                defaultMessage: 'Les données de la recherche',
+                id: 'app.header.nav.declinaisons',
+                defaultMessage: 'Les baromètres locaux',
               })}
-              asLink={
-                <RouterLink to={urls.nationalResearchData[lang] + search} />
+            >
+              <NavSubItem
+                current={path === urls.variations[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.existing',
+                  defaultMessage: 'Les baromètres des établissements',
+                })}
+                asLink={<RouterLink to={urls.variations[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.howto[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.howto',
+                  defaultMessage: 'Tutoriel pour réaliser son BSO local',
+                })}
+                asLink={<RouterLink to={urls.howto[lang] + search} />}
+              />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(
+                `/${urls.methodologie[lang].split('/')[1]}`,
+              )}
+              title={intl.formatMessage({
+                id: 'app.header.nav.a-propos',
+                defaultMessage: 'À propos',
+              })}
+            >
+              <NavSubItem
+                current={path === urls.methodologie[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-methodologie',
+                  defaultMessage: 'Méthodologie',
+                })}
+                asLink={<RouterLink to={urls.methodologie[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.faq[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-faq',
+                  defaultMessage: 'FAQ',
+                })}
+                asLink={<RouterLink to={urls.faq[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.glossaire[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-glossaire',
+                  defaultMessage: 'Glossaire',
+                })}
+                asLink={<RouterLink to={urls.glossaire[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.communication[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos.communication',
+                  defaultMessage: 'Communication',
+                })}
+                asLink={<RouterLink to={urls.communication[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.opendata[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-opendata',
+                  defaultMessage: 'Données ouvertes et code source du BSO',
+                })}
+                asLink={<RouterLink to={urls.opendata[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.citation[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.citation',
+                  defaultMessage: 'Comment citer le Baromètre ?',
+                })}
+                asLink={<RouterLink to={urls.citation[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.faq[lang]}
+                title={intl.formatMessage({
+                  id: 'app.footer.project.text',
+                  defaultMessage: 'FAQ',
+                })}
+                asLink={<RouterLink to={urls.project[lang] + search} />}
+              />
+            </NavItem>
+          </HeaderNav>
+        )}
+        {!isInProduction() && (
+          <HeaderNav path={path}>
+            <NavItem
+              current={
+                path === '/'
+                || stringIsIntTheKitchen(
+                  path,
+                  lang,
+                  urls.nationalPublications.tabs,
+                ).length > 0
               }
-            />
-            <NavSubItem
-              current={path === urls.nationalSoftwareCode[lang]}
               title={intl.formatMessage({
-                id: 'app.baro-national.software.title.beta',
-                defaultMessage: 'Les codes logiciels',
+                id: 'app.header.nav.baro-publications-theses',
+                defaultMessage: 'Les publications et thèses',
               })}
-              asLink={
-                <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
-              }
-            />
-            {!isInProduction() && (
+            >
+              <NavSubItem
+                current={path === urls.national[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-national-accueil',
+                  defaultMessage: 'Accueil publications et thèses',
+                })}
+                asLink={<RouterLink to={urls.national[lang] + search} />}
+              />
+              <NavSubItem
+                current={
+                  stringIsIntTheKitchen(
+                    path,
+                    lang,
+                    urls.nationalPublications.tabs,
+                  ).length > 0
+                }
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-national-publications',
+                  defaultMessage: 'Les publications',
+                })}
+                asLink={(
+                  <RouterLink
+                    to={urls.nationalPublications.tabs[0][lang] + search}
+                  />
+                )}
+              />
+              <NavSubItem
+                current={path === urls.nationalThesis[lang]}
+                title={intl.formatMessage({
+                  id: 'app.publi.thesis',
+                  defaultMessage: 'Les thèses de doctorat',
+                })}
+                asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
+              />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(urls.nationalDataCode[lang])}
+              title={intl.formatMessage({
+                id: 'app.header.nav.data-code',
+                defaultMessage: 'Les données et code',
+              })}
+            >
+              <NavSubItem
+                current={path === urls.nationalDataCode[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.data-code-welcome',
+                  defaultMessage: 'Accueil données et code',
+                })}
+                asLink={
+                  <RouterLink to={urls.nationalDataCode[lang] + search} />
+                }
+              />
+              <NavSubItem
+                current={path === urls.nationalResearchData[lang]}
+                title={intl.formatMessage({
+                  id: 'app.baro-national.data.title.beta',
+                  defaultMessage: 'Les données de la recherche',
+                })}
+                asLink={
+                  <RouterLink to={urls.nationalResearchData[lang] + search} />
+                }
+              />
+              <NavSubItem
+                current={path === urls.nationalSoftwareCode[lang]}
+                title={intl.formatMessage({
+                  id: 'app.baro-national.software.title.beta',
+                  defaultMessage: 'Les codes et logiciels',
+                })}
+                asLink={
+                  <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
+                }
+              />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(urls.sante[lang])}
+              title={intl.formatMessage({
+                id: 'app.header.nav.health',
+                defaultMessage: 'La santé',
+              })}
+            >
+              <NavSubItem
+                current={path === urls.sante[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.health-home',
+                  defaultMessage: 'Accueil santé',
+                })}
+                asLink={<RouterLink to={urls.sante[lang] + search} />}
+              />
+              <NavSubItem
+                current={
+                  stringIsIntTheKitchen(path, lang, urls.santeEssais.tabs)
+                    .length > 0
+                }
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-sante-essais',
+                  defaultMessage: 'Les essais cliniques',
+                })}
+                asLink={
+                  <RouterLink to={urls.santeEssais.tabs[0][lang] + search} />
+                }
+              />
+              <NavSubItem
+                current={
+                  stringIsIntTheKitchen(path, lang, urls.santeEtudes.tabs)
+                    .length > 0
+                }
+                title={intl.formatMessage({
+                  id: 'app.header.nav.baro-sante-etudes',
+                  defaultMessage: 'Les études observationnelles',
+                })}
+                asLink={<RouterLink to={urls.santeEtudes[lang] + search} />}
+              />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(
+                `/${urls.variations[lang].split('/')[1]}`,
+              )}
+              title={intl.formatMessage({
+                id: 'app.header.nav.orcid',
+                defaultMessage: 'ORCID',
+              })}
+            >
               <NavSubItem
                 current={path === urls.nationalOrcid[lang]}
                 title={intl.formatMessage({
@@ -222,154 +523,101 @@ function Header() {
                 })}
                 asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
               />
-            )}
-          </NavItem>
-          <NavItem
-            current={path.startsWith(urls.sante[lang])}
-            title={intl.formatMessage({
-              id: 'app.header.nav.baro-sante',
-              defaultMessage: 'Le baromètre santé',
-            })}
-          >
-            <NavSubItem
-              current={path === urls.sante[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.baro-sante-accueil',
-                defaultMessage: 'Accueil baromètre santé',
-              })}
-              asLink={<RouterLink to={urls.sante[lang] + search} />}
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(path, lang, urls.santePublications.tabs)
-                  .length > 0
-              }
-              title={intl.formatMessage({
-                id: 'app.header.nav.baro-sante-publications',
-                defaultMessage: 'Les publications en santé',
-              })}
-              asLink={(
-                <RouterLink
-                  to={urls.santePublications.tabs[0][lang] + search}
-                />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(
+                `/${urls.variations[lang].split('/')[1]}`,
               )}
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(path, lang, urls.santeEssais.tabs)
-                  .length > 0
-              }
               title={intl.formatMessage({
-                id: 'app.header.nav.baro-sante-essais',
-                defaultMessage: 'Les essais cliniques',
+                id: 'app.header.nav.institutions',
+                defaultMessage: 'Les établissements',
               })}
-              asLink={
-                <RouterLink to={urls.santeEssais.tabs[0][lang] + search} />
-              }
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(path, lang, urls.santeEtudes.tabs)
-                  .length > 0
-              }
+            >
+              <NavSubItem
+                current={path === urls.variations[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.existing',
+                  defaultMessage: 'Les baromètres des établissements',
+                })}
+                asLink={<RouterLink to={urls.variations[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.howto[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.howto',
+                  defaultMessage: 'Tutoriel pour réaliser son BSO local',
+                })}
+                asLink={<RouterLink to={urls.howto[lang] + search} />}
+              />
+            </NavItem>
+            <NavItem
+              current={path.startsWith(
+                `/${urls.methodologie[lang].split('/')[1]}`,
+              )}
               title={intl.formatMessage({
-                id: 'app.header.nav.baro-sante-etudes',
-                defaultMessage: 'Les études observationnelles',
+                id: 'app.header.nav.a-propos',
+                defaultMessage: 'À propos',
               })}
-              asLink={<RouterLink to={urls.santeEtudes[lang] + search} />}
-            />
-          </NavItem>
-          <NavItem
-            current={path.startsWith(`/${urls.variations[lang].split('/')[1]}`)}
-            title={intl.formatMessage({
-              id: 'app.header.nav.declinaisons',
-              defaultMessage: 'Les baromètres locaux',
-            })}
-          >
-            <NavSubItem
-              current={path === urls.variations[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.declinaisons.existing',
-                defaultMessage: 'Les baromètres des établissements',
-              })}
-              asLink={<RouterLink to={urls.variations[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.howto[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.declinaisons.howto',
-                defaultMessage: 'Tutoriel pour réaliser son BSO local',
-              })}
-              asLink={<RouterLink to={urls.howto[lang] + search} />}
-            />
-          </NavItem>
-          <NavItem
-            current={path.startsWith(
-              `/${urls.methodologie[lang].split('/')[1]}`,
-            )}
-            title={intl.formatMessage({
-              id: 'app.header.nav.a-propos',
-              defaultMessage: 'À propos',
-            })}
-          >
-            <NavSubItem
-              current={path === urls.methodologie[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-methodologie',
-                defaultMessage: 'Méthodologie',
-              })}
-              asLink={<RouterLink to={urls.methodologie[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.faq[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-faq',
-                defaultMessage: 'FAQ',
-              })}
-              asLink={<RouterLink to={urls.faq[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.glossaire[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-glossaire',
-                defaultMessage: 'Glossaire',
-              })}
-              asLink={<RouterLink to={urls.glossaire[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.communication[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos.communication',
-                defaultMessage: 'Communication',
-              })}
-              asLink={<RouterLink to={urls.communication[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.opendata[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-opendata',
-                defaultMessage: 'Données ouvertes et code source du BSO',
-              })}
-              asLink={<RouterLink to={urls.opendata[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.citation[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.citation',
-                defaultMessage: 'Comment citer le Baromètre ?',
-              })}
-              asLink={<RouterLink to={urls.citation[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.faq[lang]}
-              title={intl.formatMessage({
-                id: 'app.footer.project.text',
-                defaultMessage: 'FAQ',
-              })}
-              asLink={<RouterLink to={urls.project[lang] + search} />}
-            />
-          </NavItem>
-        </HeaderNav>
+            >
+              <NavSubItem
+                current={path === urls.methodologie[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-methodologie',
+                  defaultMessage: 'Méthodologie',
+                })}
+                asLink={<RouterLink to={urls.methodologie[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.faq[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-faq',
+                  defaultMessage: 'FAQ',
+                })}
+                asLink={<RouterLink to={urls.faq[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.glossaire[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-glossaire',
+                  defaultMessage: 'Glossaire',
+                })}
+                asLink={<RouterLink to={urls.glossaire[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.communication[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos.communication',
+                  defaultMessage: 'Communication',
+                })}
+                asLink={<RouterLink to={urls.communication[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.opendata[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.a-propos-opendata',
+                  defaultMessage: 'Données ouvertes et code source du BSO',
+                })}
+                asLink={<RouterLink to={urls.opendata[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.citation[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.citation',
+                  defaultMessage: 'Comment citer le Baromètre ?',
+                })}
+                asLink={<RouterLink to={urls.citation[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.faq[lang]}
+                title={intl.formatMessage({
+                  id: 'app.footer.project.text',
+                  defaultMessage: 'FAQ',
+                })}
+                asLink={<RouterLink to={urls.project[lang] + search} />}
+              />
+            </NavItem>
+          </HeaderNav>
+        )}
       </DSHeader>
     </WrapperDisplay>
   );

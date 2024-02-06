@@ -38,6 +38,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     lastObservationSnap,
     domain,
     'datastet_details.has_created',
+    false,
+    false,
     'datastet_details.has_used',
   );
   const { categories, dataGraph } = allData;

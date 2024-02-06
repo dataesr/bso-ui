@@ -6,14 +6,18 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
-import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
-import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
-import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+import customComments from '../../../../utils/chartComments';
+import { chartOptions } from '../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../utils/constants';
+import {
+  getCSSValue,
+  getObservationLabel,
+  withDomain,
+} from '../../../../utils/helpers';
+import useGlobals from '../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../WrapperChart';
+import GraphComments from '../../graph-comments';
+import useGetData from './get-data-indicator-simple';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -23,10 +27,15 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
+    'is_fr_present',
+    'is_fr_present',
+    'works.source.keyword',
+    20,
+    getCSSValue('--orange-soft-100'),
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -73,7 +82,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-evolution',
+  id: 'orcid.general.chart-indicator-worksource',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

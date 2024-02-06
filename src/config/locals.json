@@ -97,6 +97,13 @@
     "ror": "https://ror.org/02en5vm52",
     "scale": "university"
   },
+  "130025661": {
+    "name": "Université Côte d'Azur (UCA)",
+    "commentsName": "de l'UCA",
+    "commentsNameEN": "of UCA",
+    "paysage": "s3t8T",
+    "ror": "https://ror.org/019tgvf94"
+  },
   "130025745": {
     "name": "Université Polytechnique Hauts-de-France",
     "commentsName": "de l'UPHF",
@@ -115,9 +122,9 @@
     "ror": "https://ror.org/043htjv09"
   },
   "130026024": {
-    "name": "Université Paris-Saclay",
-    "commentsName": "de l'université Paris-Saclay",
-    "commentsNameEN": "of Paris Saclay university",
+    "name": "Université Paris-Saclay (Univ. Paris-Saclay)",
+    "commentsName": "de l'Univ. Paris-Saclay",
+    "commentsNameEN": "of Univ. Paris-Saclay",
     "paysage": "G2qA7",
     "ror": "https://ror.org/03xjwb503",
     "scale": "university",
@@ -303,9 +310,9 @@
     "ror": "https://ror.org/04mv1z119"
   },
   "192112373": {
-    "name": "Université de Bourgogne",
-    "commentsName": "de l'Université de Bourgogne",
-    "commentsNameEN": "of the university of Bourgogne",
+    "name": "Université de Bourgogne (uB)",
+    "commentsName": "de l'uB",
+    "commentsNameEN": "of uB",
     "paysage": "Lr94O",
     "ror": "https://ror.org/03k1bsr36",
     "scale": "university",
@@ -511,6 +518,21 @@
     "commentsNameEN": "of TBI",
     "paysage": "UZW4E"
   },
+  "196924377": {
+    "name": "Université Jean Moulin Lyon 3 (UJML)",
+    "commentsName": "de l'UJML",
+    "commentsNameEN": "of UJML",
+    "paysage": "7Gzub",
+    "ror": "https://ror.org/05b5c0584",
+    "scale": "university"
+  },
+  "197209166": {
+    "name": "Le Mans Université (LMU)",
+    "commentsName": "de LMU",
+    "commentsNameEN": "of LMU",
+    "paysage": "9xlel",
+    "ror": "https://ror.org/01mtcc283"
+  },
   "197534316": {
     "name": "Sciences Po",
     "commentsName": "de Sciences Po",
@@ -539,7 +561,8 @@
     "commentsName": "de l'ENSAM",
     "commentsNameEN": "of ENSAM",
     "paysage": "jYUcF",
-    "ror": "https://ror.org/018pp1107"
+    "ror": "https://ror.org/018pp1107",
+    "scale": "university"
   },
   "197534860": {
     "name": "École Pratique des Hautes Études-PSL",
@@ -621,9 +644,9 @@
     "startYear": 2015
   },
   "198608564": {
-    "name": "Université de Poitiers",
-    "commentsName": "de l'Université de Poitiers",
-    "commentsNameEN": "of the university of Poitiers",
+    "name": "Université de Poitiers (UP)",
+    "commentsName": "de l'UP",
+    "commentsNameEN": "of UP",
     "paysage": "hlX1r",
     "ror": "https://ror.org/04xhy8q59",
     "scale": "university",
@@ -1206,6 +1229,13 @@
     "ror": "https://ror.org/02dm0bq25",
     "scale": "laboratory"
   },
+  "201220263C": {
+    "name": "HEUDIASYC (HDS)",
+    "commentsName": "de HDS",
+    "commentsNameEN": "of HDS",
+    "paysage": "ZV6KH",
+    "ror": "https://ror.org/0075hvk77"
+  },
   "201220396X": {
     "name": "L'unité de recherche de l'institut du thorax (ITX)",
     "commentsName": "de l'ITX",
@@ -1394,7 +1424,7 @@
     "startYear": 2016
   },
   "775685019": {
-    "name": "CEA",
+    "name": "Commissariat à l'énergie atomique et aux énergies alternatives (CEA)",
     "commentsName": "du CEA",
     "commentsNameEN": "of CEA",
     "paysage": "zYXK8",
@@ -1499,6 +1529,12 @@
     "paysage": "5cZyU",
     "ror": "https://ror.org/05f82e368",
     "scale": "university"
+  },
+  "UFRCHIMIESU": {
+    "name": "UFR de Chimie de Sorbonne Université (UFR-Chimie)",
+    "commentsName": "de l'UFR-Chimie",
+    "commentsNameEN": "of UFR-Chimie",
+    "paysage": "gl7b4"
   },
   "IMTS": {
     "name": "Tous les IMTs",

@@ -34,7 +34,7 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
   const [sponsorType, setSponsorType] = useState('*');
-  const { allData, isLoading, isError } = useGetData(studyType, sponsorType);
+  const { allData, isError, isLoading } = useGetData(studyType, sponsorType);
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';

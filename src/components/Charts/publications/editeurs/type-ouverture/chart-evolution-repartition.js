@@ -23,7 +23,7 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
     lastObservationSnap,
     domain,
   );

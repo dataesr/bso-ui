@@ -2,9 +2,9 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_ORCID_API_URL, HEADERS } from '../../../../../config/config';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getObservationLabel } from '../../../../../utils/helpers';
+import { ES_ORCID_API_URL, HEADERS } from '../../../../config/config';
+import getFetchOptions from '../../../../utils/chartFetchOptions';
+import { capitalize, getObservationLabel } from '../../../../utils/helpers';
 
 function useGetData(
   beforeLastObservationSnap,
@@ -14,9 +14,7 @@ function useGetData(
   indicator1,
   indicator2,
   legendTrue,
-  legendFalse,
   colorTrue,
-  colorFalse,
   size1,
   size2,
 ) {
@@ -78,6 +76,7 @@ function useGetData(
       if (indicator1 === 'first_these_discipline.discipline.keyword') {
         dataToUse = indicTrue.sort((a, b) => b.y - a.y);
       }
+
       const dataGraph = [
         {
           name: capitalize(
@@ -88,13 +87,12 @@ function useGetData(
           data: dataToUse,
           color: colorTrue,
           dataLabels: noOutline,
-          // keys: ['name', 'y'],
-          // dataSorting: { enabled: true, matchByName: true, sortKey: 'name' },
         },
       ];
       dataToUse.forEach((el) => {
         categories.push(el.name);
       });
+
       const comments = {
         beforeLastObservationSnap: getObservationLabel(
           beforeLastObservationSnap,
@@ -102,6 +100,7 @@ function useGetData(
         ),
         lastObservationSnap: getObservationLabel(lastObservationSnap, intl),
       };
+
       return {
         categories,
         comments,

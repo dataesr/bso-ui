@@ -802,7 +802,11 @@ export default function getFetchOptions({
         by_repository: {
           terms: {
             field: `oa_details.${observationSnap}.repositories.keyword`,
-            exclude: ['pdfs.semanticscholar.org', 'edpsciences.org'],
+            exclude: [
+              'pdfs.semanticscholar.org',
+              'edpsciences.org',
+              'theses.fr',
+            ],
             size: 25,
           },
         },
@@ -969,6 +973,56 @@ export default function getFetchOptions({
             by_has_results_within_2_years: {
               terms: {
                 field: 'has_results_or_publications_within_2y',
+                missing: false,
+              },
+              aggs: {
+                by_completion_year: {
+                  terms: {
+                    field: 'study_completion_year',
+                    size: 30,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
+    studiesDynamiqueOuvertureWithin3Years: ([studyType, yearMin, yearMax]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor_type: {
+          terms: {
+            field: 'lead_sponsor_type.keyword',
+          },
+          aggs: {
+            by_has_results_within_3_years: {
+              terms: {
+                field: 'has_results_or_publications_within_3y',
                 missing: false,
               },
               aggs: {
@@ -1970,7 +2024,51 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        orcid_per_day: {
+        orcid_per_year: {
+          date_histogram: {
+            field: 'creation_date',
+            calendar_interval: interval,
+          },
+          aggs: {
+            distinct_orcid: {
+              cardinality: {
+                field: 'orcid.keyword',
+              },
+            },
+            total_orcid: {
+              cumulative_cardinality: {
+                buckets_path: 'distinct_orcid',
+              },
+            },
+          },
+        },
+      },
+    }),
+    orcidNumberWithFilter: ([interval, frReasons, filter]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                is_fr_present: true,
+              },
+            },
+            {
+              terms: {
+                'fr_reasons_present.keyword': frReasons,
+              },
+            },
+            {
+              term: {
+                [`${filter}`]: true,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        orcid_per_year: {
           date_histogram: {
             field: 'creation_date',
             calendar_interval: interval,
@@ -2026,7 +2124,15 @@ export default function getFetchOptions({
         },
       },
     }),
-    orcidIndicatorSimple: ([myFilter1, myField, mySize, myMissing]) => ({
+    orcidComplexIndicator: ([
+      myFilter1,
+      myField1,
+      myField2,
+      myField3,
+      mySize1 = 10,
+      mySize2 = 10,
+      mySize3 = 10,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -2040,11 +2146,26 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        my_indicator: {
+        my_indicator1: {
           terms: {
-            field: myField,
-            size: mySize,
-            missing: myMissing,
+            field: myField1,
+            size: mySize1,
+          },
+          aggs: {
+            my_indicator2: {
+              terms: {
+                field: myField2,
+                size: mySize2,
+              },
+              aggs: {
+                my_indicator3: {
+                  terms: {
+                    field: myField3,
+                    size: mySize3,
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -2077,13 +2198,6 @@ export default function getFetchOptions({
             by_retraction: {
               terms: {
                 field: 'retraction_details.is_retracted',
-              },
-              aggs: {
-                by_oa: {
-                  terms: {
-                    field: `oa_details.${lastObservationSnap}.is_oa`,
-                  },
-                },
               },
             },
           },
@@ -2156,6 +2270,64 @@ export default function getFetchOptions({
                 field: 'retraction_details.is_retracted',
               },
             },
+          },
+        },
+      },
+    }),
+    retractionsByNature: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_nature: {
+          terms: {
+            field: 'retraction_details.retraction_nature.keyword',
+          },
+        },
+      },
+    }),
+    retractionsByReason: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_reason: {
+          terms: {
+            field: 'retraction_details.retraction_reason.keyword',
           },
         },
       },

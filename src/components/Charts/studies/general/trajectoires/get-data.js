@@ -183,6 +183,6 @@ function useGetData(studyType) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyType]);
 
-  return { allData, isLoading, isError };
+  return { allData, isError, isLoading };
 }
 export default useGetData;

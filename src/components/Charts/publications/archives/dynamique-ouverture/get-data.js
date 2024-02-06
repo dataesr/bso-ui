@@ -231,6 +231,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [observationSnaps, needle]);
 
-  return { data, isLoading, isError };
+  return { data, isError, isLoading };
 }
 export default useGetData;

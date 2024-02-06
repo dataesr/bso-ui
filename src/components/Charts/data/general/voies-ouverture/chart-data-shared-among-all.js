@@ -9,15 +9,11 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getCSSValue,
-  getObservationLabel,
-  withDomain,
-} from '../../../../../utils/helpers';
+import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-indicator';
+import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -27,19 +23,15 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'is_fr_present',
-    'fr_reasons_main.keyword',
-    'has_idref_aurehal',
-    'app.orcid.has-idref-hal',
-    'app.orcid.no-idref-hal',
-    getCSSValue('--green-soft-125'),
-    getCSSValue('--g-400'),
+    'datastet_details.has_used',
+    'datastet_details.has_created',
+    'datastet_details.has_shared',
   );
-  const { categories, dataGraph } = allData;
+  const { categories, dataGraph2 } = allData;
   const dataTitle = {
     observationYear: getObservationLabel(lastObservationSnap, intl),
   };
@@ -48,10 +40,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     idWithDomain,
     intl,
     categories,
-    dataGraph,
+    dataGraph2,
     dataTitle,
   );
-
+  const hasBeta = true;
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomain, intl));
   }, [allData, idWithDomain, intl]);
@@ -61,11 +53,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       chartRef={chartRef}
       dataTitle={dataTitle}
       domain={domain}
+      hasBeta={hasBeta}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !dataGraph2 || !categories}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -84,7 +77,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-idref-hal',
+  id: 'data.general.voies-ouverture.chart-data-shared-among-all',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

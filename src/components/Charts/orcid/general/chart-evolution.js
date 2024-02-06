@@ -6,18 +6,14 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../../utils/chartComments';
-import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
-import {
-  getCSSValue,
-  getObservationLabel,
-  withDomain,
-} from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
-import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-indicator';
+import customComments from '../../../../utils/chartComments';
+import { chartOptions } from '../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../utils/constants';
+import { getObservationLabel, withDomain } from '../../../../utils/helpers';
+import useGlobals from '../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../WrapperChart';
+import GraphComments from '../../graph-comments';
+import useGetData from './get-data';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -27,17 +23,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { allData, isLoading, isError } = useGetData(
+  const { allData, isError, isLoading } = useGetData(
     beforeLastObservationSnap,
     lastObservationSnap,
     domain,
-    'is_fr_present',
-    'fr_reasons_main.keyword',
-    'has_id_hal_aurehal',
-    'app.orcid.has-idhal-hal',
-    'app.orcid.no-idhal-hal',
-    getCSSValue('--green-soft-125'),
-    getCSSValue('--g-400'),
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
@@ -84,7 +73,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.present.chart-indicator-idhal-hal',
+  id: 'orcid.general.chart-evolution',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

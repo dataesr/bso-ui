@@ -34,9 +34,9 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const chartRef = useRef();
-  const [sort, setSort] = useState('sort-open-access');
-  const [optionsGraph, setOptionsGraph] = useState(null);
   const [chartComments, setChartComments] = useState('');
+  const [optionsGraph, setOptionsGraph] = useState(null);
+  const [sort, setSort] = useState('sort-open-access');
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
@@ -227,8 +227,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         />
       </RadioGroup>
       <HighchartsReact
-        id={idWithDomain}
         highcharts={Highcharts}
+        id={idWithDomain}
         options={optionsGraph}
         ref={chartRef}
       />
