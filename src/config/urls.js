@@ -101,6 +101,33 @@ export default {
     fr: '/sante',
     en: '/health',
   },
+  // TO BE DELETED
+  santePublications: {
+    tabs: [
+      {
+        fr: '/sante/publications/general',
+        en: '/health/publications/general',
+      },
+      {
+        fr: '/sante/publications/disciplines',
+        en: '/health/publications/fields',
+      },
+      {
+        fr: '/sante/publications/editeurs',
+        en: '/health/publications/publishers',
+      },
+      {
+        fr: '/sante/publications/archives',
+        en: '/health/publications/repositories',
+      },
+      {
+        fr: '/sante/publications/affiliations',
+        en: '/health/publications/affiliations',
+      },
+    ],
+    fr: '/sante/publications/general',
+    en: '/health/publications/general',
+  },
   santeEssais: {
     tabs: [
       {
@@ -160,6 +187,16 @@ export default {
   communication: {
     fr: '/a-propos/communication',
     en: '/about/communication',
+  },
+  // TO BE DELETED
+  flash: {
+    fr: '/a-propos/notes-flash',
+    en: '/about/notes',
+  },
+  // TO BE DELETED
+  variationsOld: {
+    fr: '/a-propos/declinaisons',
+    en: '/about/declinaisons',
   },
   variations: {
     fr: '/declinaisons/bso-locaux',
