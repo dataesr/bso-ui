@@ -3359,7 +3359,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 2);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.shared-software',
       });
@@ -3477,7 +3477,7 @@ export const chartOptions = {
         categories,
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
-      options.yAxis = getPercentageYAxis();
+      options.yAxis = getPercentageYAxis(true, null, false, 2);
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.used-data',
       });
