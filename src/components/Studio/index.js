@@ -11,7 +11,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useIntl } from 'react-intl';
 
 import downloadFile from '../../utils/files';
-import { getCSSValue } from '../../utils/helpers';
+import { getCSSValue, getObservationLabel } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import tree from './tree';
 
@@ -26,9 +26,11 @@ const Studio = () => {
   const [firstObservationYear, setFirstObservationYear] = useState(2018);
   const [lang, setLang] = useState('fr');
   const [lastObservationYear, setLastObservationYear] = useState(
-    lastObservationSnap > process.env.REACT_APP_LAST_OBSERVATION
-      ? process.env.REACT_APP_LAST_OBSERVATION
-      : lastObservationSnap,
+    getObservationLabel(
+      lastObservationSnap > process.env.REACT_APP_LAST_OBSERVATION
+        ? process.env.REACT_APP_LAST_OBSERVATION
+        : lastObservationSnap,
+    ),
   );
   const [object, setObject] = useState('publi');
   const [startYear, setStartYear] = useState(2013);
