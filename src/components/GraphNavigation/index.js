@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 import useScroll from '../../utils/Hooks/useScroll';
 import useViewport from '../../utils/Hooks/useViewport';
 
-function GraphNavigation({ mobileTitleIntl, children }) {
+function GraphNavigation({ children, mobileTitleIntl }) {
   const [sticky, setSticky] = useState(false);
   const [offsetTop, setOffsetTop] = useState(null);
   const [initOffsetTop, setInitOffsetTop] = useState(null);
