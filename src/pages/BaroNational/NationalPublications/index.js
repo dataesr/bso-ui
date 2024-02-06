@@ -532,6 +532,7 @@ export default function NationalPublications() {
                   },
                 },
               ]}
+              isDisplayed={!isInProduction()}
             >
               <GraphContent isDisplayed={!isInProduction()}>
                 <QuestionSection
