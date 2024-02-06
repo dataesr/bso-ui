@@ -35,7 +35,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     'first_these_discipline.discipline.keyword',
     'has_orcid',
     'app.orcid.active',
-    getCSSValue('--green-light-125'),
+    getCSSValue('--thesesfr'),
     100,
   );
   const { categories, dataGraph } = allData;
@@ -83,7 +83,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.chart-indicator-these-year',
+  id: 'orcid.general.chart-indicator-these-discipline',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

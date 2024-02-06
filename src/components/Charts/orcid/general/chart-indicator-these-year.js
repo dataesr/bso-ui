@@ -35,7 +35,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     'first_these_year',
     'has_orcid',
     'app.orcid.active',
-    getCSSValue('--green-light-125'),
+    getCSSValue('--thesesfr'),
     100,
   );
   const { categories, dataGraph } = allData;

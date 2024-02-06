@@ -24,6 +24,7 @@ import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
 import DataCode from './pages/DataCode';
 import HowTo from './pages/Declinaisons/HowTo';
+import Policy from './pages/Declinaisons/Policy';
 import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
@@ -31,7 +32,7 @@ import Project from './pages/Project';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import TranslationPage from './translations/translations-page';
-import { isInLocal } from './utils/helpers';
+import { isInLocal, isInProduction } from './utils/helpers';
 import { GraphNavigationContextProvider } from './utils/Hooks/useGraphNavigation';
 import useLang from './utils/Hooks/useLang';
 
@@ -40,22 +41,24 @@ const messages = {
   fr: messagesFR,
 };
 
-const redirects = {
-  '/a-propos/notes-flash': '/a-propos/communication',
-  '/about/notes': '/about/communication',
-  '/a-propos/declinaisons': '/declinaisons/bso-locaux',
-  '/about/declinaisons': '/declinaisons/bso-locaux',
-  '/sante/publications/general': '/publications/general',
-  '/sante/publications/disciplines': '/publications/general',
-  '/sante/publications/editeurs': '/publications/general',
-  '/sante/publications/archives': '/publications/general',
-  '/sante/publications/affiliations': '/publications/general',
-  '/health/publications/general': '/publications/general',
-  '/health/publications/fields': '/publications/general',
-  '/health/publications/publishers': '/publications/general',
-  '/health/publications/repositories': '/publications/general',
-  '/health/publications/affiliations': '/publications/general',
-};
+const redirects = isInProduction
+  ? {}
+  : {
+    '/a-propos/notes-flash': '/a-propos/communication',
+    '/about/notes': '/about/communication',
+    '/a-propos/declinaisons': '/declinaisons/bso-locaux',
+    '/about/declinaisons': '/declinaisons/bso-locaux',
+    '/sante/publications/general': '/publications/general',
+    '/sante/publications/disciplines': '/publications/general',
+    '/sante/publications/editeurs': '/publications/general',
+    '/sante/publications/archives': '/publications/general',
+    '/sante/publications/affiliations': '/publications/general',
+    '/health/publications/general': '/publications/general',
+    '/health/publications/fields': '/publications/general',
+    '/health/publications/publishers': '/publications/general',
+    '/health/publications/repositories': '/publications/general',
+    '/health/publications/affiliations': '/publications/general',
+  };
 
 function App() {
   const { lang, urls } = useLang();
@@ -271,6 +274,18 @@ function App() {
               exact
               key={key}
               path={urls.howto[key]}
+            />
+          ))}
+          {Object.keys(urls.policy).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <Policy />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.policy[key]}
             />
           ))}
           {Object.keys(urls.opendata).map((key) => (
