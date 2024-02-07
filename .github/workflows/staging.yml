@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🏁 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🏷️ Get tag
         id: tag
@@ -56,7 +56,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - uses: dataesr/mm-notifier-action@v1
+      - uses: dataesr/mm-notifier-action@v1.0.2
         with:
           deployment_url: ${{ env.DEPLOYMENT_URL }}
           github_token: ${{ secrets.GITHUB_TOKEN}}
