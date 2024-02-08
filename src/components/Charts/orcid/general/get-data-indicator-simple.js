@@ -18,8 +18,8 @@ function useGetData(
 ) {
   const intl = useIntl();
   const [allData, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions({
@@ -43,20 +43,36 @@ function useGetData(
         },
       };
       data.my_indicator2.buckets.forEach((el) => {
-        categories.push(el.key);
+        categories.push(
+          intl.formatMessage({
+            id: `app.commons.${el.key}`,
+            defaultMessage: el.key,
+          }),
+        );
         myData.push({
           y: (el.doc_count * 100) / total,
           y_abs: el.doc_count,
           y_tot: total,
-          source: el.key,
+          source: intl.formatMessage({
+            id: `app.commons.${el.key}`,
+            defaultMessage: el.key,
+          }),
         });
       });
-      categories.push('other');
+      categories.push(
+        intl.formatMessage({
+          id: 'app.commons.other',
+          defaultMessage: 'Autre',
+        }),
+      );
       myData.push({
         y: (other * 100) / total,
         y_abs: other,
         y_tot: total,
-        source: 'other',
+        source: intl.formatMessage({
+          id: 'app.commons.other',
+          defaultMessage: 'Autre',
+        }),
       });
       const dataGraph = [
         {
