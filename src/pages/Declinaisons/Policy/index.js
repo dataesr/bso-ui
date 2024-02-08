@@ -29,7 +29,7 @@ const Policy = () => {
     },
     {
       from: 2021,
-      to: 2024,
+      to: 2023,
       color: getCSSValue('--ouvrir-la-science-yellow'),
     },
   ];
@@ -52,7 +52,6 @@ const Policy = () => {
         { y: 22, y_percent: 120 },
         { y: 30, y_percent: 500 },
         { y: 32, y_percent: 500 },
-        { y: 37, y_percent: 505 },
       ],
     },
   ];

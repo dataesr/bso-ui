@@ -235,7 +235,12 @@ export function getSource(id, otherSources = []) {
   if (id.includes('impact-financement')) {
     sources.push('ANR');
   }
-  if (id.includes('thesis')) {
+  if (
+    id.includes('thesis')
+    || id.includes('orcid.general.creation-by-year')
+    || id.includes('orcid.general.chart-indicator-these-year')
+    || id.includes('orcid.general.chart-indicator-these-discipline')
+  ) {
     sources.push('theses.fr');
   }
   if (id.includes('hal')) {
