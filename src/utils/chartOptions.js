@@ -4543,33 +4543,4 @@ export const chartOptions = {
       return options;
     },
   },
-  'other.institution.open-science-policy': {
-    getOptions: (id, intl, series) => {
-      const options = getGraphOptions({ id, intl });
-      options.xAxis.tickInterval = 1;
-      options.xAxis.plotBands = [
-        {
-          from: 2018,
-          to: 2021,
-          color: getCSSValue('--ouvrir-la-science-green'),
-        },
-        {
-          from: 2021,
-          to: 2024,
-          color: getCSSValue('--ouvrir-la-science-yellow'),
-        },
-      ];
-      options.yAxis = getPercentageYAxis();
-      options.legend.enabled = false;
-      options.plotOptions = {
-        series: {
-          color: getCSSValue('--ouvrir-la-science-blue'),
-          pointStart: 2016,
-        },
-      };
-      options.series = series;
-      options.exporting.chartOptions.legend.enabled = false;
-      return options;
-    },
-  },
 };
