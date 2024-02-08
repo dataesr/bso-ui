@@ -252,6 +252,18 @@ function App() {
               path={urls.communication[key]}
             />
           ))}
+          {Object.keys(urls.policy).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <Policy />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.policy[key]}
+            />
+          ))}
           {Object.keys(urls.variations).map((key) => (
             <Route
               element={(
@@ -274,18 +286,6 @@ function App() {
               exact
               key={key}
               path={urls.howto[key]}
-            />
-          ))}
-          {Object.keys(urls.policy).map((key) => (
-            <Route
-              element={(
-                <PageTracker>
-                  <Policy />
-                </PageTracker>
-              )}
-              exact
-              key={key}
-              path={urls.policy[key]}
             />
           ))}
           {Object.keys(urls.opendata).map((key) => (
