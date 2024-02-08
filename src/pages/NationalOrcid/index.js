@@ -9,19 +9,19 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import Banner from '../../../components/Banner';
-import BSOChart from '../../../components/Charts';
-import Chip from '../../../components/Chip';
-import GlossaryFormattedMessage from '../../../components/Glossary/GlossaryFormattedMessage';
-import GraphNavigation from '../../../components/GraphNavigation';
-import GraphContent from '../../../components/GraphNavigation/GraphContent';
-import GraphItem from '../../../components/GraphNavigation/GraphItem';
-import Icon from '../../../components/Icon';
-import QuestionSection from '../../../components/question-section';
-import ScrollTop from '../../../components/ScrollTop';
-import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue, isInProduction } from '../../../utils/helpers';
-import useLang from '../../../utils/Hooks/useLang';
+import Banner from '../../components/Banner';
+import BSOChart from '../../components/Charts';
+import Chip from '../../components/Chip';
+import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
+import GraphNavigation from '../../components/GraphNavigation';
+import GraphContent from '../../components/GraphNavigation/GraphContent';
+import GraphItem from '../../components/GraphNavigation/GraphItem';
+import Icon from '../../components/Icon';
+import QuestionSection from '../../components/question-section';
+import ScrollTop from '../../components/ScrollTop';
+import { mobileButtonLabel } from '../../utils/constants';
+import { getCSSValue, isInProduction } from '../../utils/helpers';
+import useLang from '../../utils/Hooks/useLang';
 
 export default function NationalOrcid() {
   const intl = useIntl();
@@ -82,7 +82,10 @@ export default function NationalOrcid() {
           </Container>
         </Row>
         <Row>
-          <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
+          <GraphNavigation
+            mobileTitleIntl={mobileButtonLabel[lang][pathname]}
+            isDisplayed={!isInProduction()}
+          >
             {/* Général */}
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.orcid.general' })}
@@ -107,6 +110,7 @@ export default function NationalOrcid() {
                   },
                 },
               ]}
+              isDisplayed={!isInProduction()}
             >
               <GraphContent>
                 <QuestionSection
@@ -115,10 +119,19 @@ export default function NationalOrcid() {
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.users'
                 >
+                  <BSOChart
+                    id='orcid.general.chart-indicator-these-year'
+                    isDisplayed={!isInProduction()}
+                  />
                   <BSOChart id='orcid.general.chart-evolution' />
-                  <BSOChart id='orcid.general.creation-by-year' />
-                  <BSOChart id='orcid.general.chart-indicator-these-year' />
-                  <BSOChart id='orcid.general.chart-indicator-these-discipline' />
+                  <BSOChart
+                    id='orcid.general.creation-by-year'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
+                    id='orcid.general.chart-indicator-these-discipline'
+                    isDisplayed={!isInProduction()}
+                  />
                   <BSOChart id='orcid.general.chart-indicator-active' />
                 </QuestionSection>
                 <QuestionSection
