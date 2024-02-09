@@ -4538,4 +4538,29 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.others.sources.publications-by-source': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        categories,
+      };
+      options.legend.enabled = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
 };
