@@ -355,7 +355,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
     || 'fr';
-  let lastObservationYear = '2021Q4';
+  let lastObservationYear = '2023Q4';
   if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
     lastObservationYear = urlSearchParams
       .get('lastObservationYear')
@@ -387,7 +387,9 @@ export function getURLSearchParams(intl = undefined, id = '') {
   let commentsName = intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
     || 'françaises';
   if (
-    id === 'publi.general.dynamique-ouverture.chart-taux-ouverture-article'
+    id.includes(
+      'publi.general.dynamique-ouverture.chart-taux-ouverture-article',
+    )
     && commentsName === 'françaises'
   ) {
     commentsName = 'français';

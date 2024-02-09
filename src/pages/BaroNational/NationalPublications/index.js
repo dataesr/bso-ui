@@ -1,4 +1,5 @@
 import {
+  Alert,
   Breadcrumb,
   BreadcrumbItem,
   Col,
@@ -133,6 +134,24 @@ export default function NationalPublications() {
                   anchorId='general.dynamique-ouverture'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture' />
+                  {}
+                  {!isInProduction() && (
+                    <>
+                      <Alert
+                        description={intl.formatMessage({
+                          id: 'app.commons.graph-warning',
+                        })}
+                        title=''
+                      />
+                      <iframe
+                        height='812'
+                        id='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                        src='../integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true'
+                        title='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                        width='100%'
+                      />
+                    </>
+                  )}
                   <BSOChart id='publi.general.dynamique-ouverture.chart-evolution-proportion' />
                 </QuestionSection>
                 <QuestionSection
