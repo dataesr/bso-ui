@@ -6,7 +6,7 @@ import {
   TextInput,
   Toggle,
 } from '@dataesr/react-dsfr';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useIntl } from 'react-intl';
 
@@ -25,17 +25,26 @@ const Studio = () => {
   const [endYear, setEndYear] = useState(2022);
   const [firstObservationYear, setFirstObservationYear] = useState(2018);
   const [lang, setLang] = useState('fr');
-  const [lastObservationYear, setLastObservationYear] = useState(
-    getObservationLabel(
-      lastObservationSnap > process.env.REACT_APP_LAST_OBSERVATION
-        ? process.env.REACT_APP_LAST_OBSERVATION
-        : lastObservationSnap,
-    ),
-  );
+  const [lastObservationYear, setLastObservationYear] = useState();
   const [object, setObject] = useState('publi');
   const [startYear, setStartYear] = useState(2013);
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
+
+  useEffect(() => {
+    setLastObservationYear(
+      getObservationLabel(
+        lastObservationSnap > process.env.REACT_APP_LAST_OBSERVATION
+          ? process.env.REACT_APP_LAST_OBSERVATION
+          : lastObservationSnap,
+      ),
+    );
+  }, [lastObservationSnap]);
+
+  const commentsName = intl.formatMessage({
+    id: 'app.french',
+    defaultMessage: 'françaises',
+  });
   const langs = [
     { label: 'Français', value: 'fr' },
     { label: 'Anglais', value: 'en' },
@@ -47,11 +56,6 @@ const Studio = () => {
   const publicationYears = [
     2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
   ].map((item) => ({ label: item, value: item }));
-
-  const commentsName = intl.formatMessage({
-    id: 'app.french',
-    defaultMessage: 'françaises',
-  });
   const values = {
     commentsName,
     publicationYear: endYear,
@@ -59,6 +63,7 @@ const Studio = () => {
     publisherTitle: '',
     archiveTitle: '',
   };
+
   const objects = tree.map((item) => ({
     ...item,
     label: intl.formatMessage({ id: item.key }, values),
