@@ -380,26 +380,21 @@ function Header() {
         {!isInProduction() && (
           <HeaderNav path={path}>
             <NavItem
-              current={
-                path === '/'
-                || stringIsIntTheKitchen(
-                  path,
-                  lang,
-                  urls.nationalPublications.tabs,
-                ).length > 0
-              }
+              current={path.startsWith(urls.nationalPublications[lang])}
               title={intl.formatMessage({
                 id: 'app.header.nav.baro-publications-theses',
                 defaultMessage: 'Les publications et thèses',
               })}
             >
               <NavSubItem
-                current={path === urls.national[lang]}
+                current={path === urls.nationalPublications[lang]}
                 title={intl.formatMessage({
                   id: 'app.header.nav.baro-national-accueil',
                   defaultMessage: 'Accueil publications et thèses',
                 })}
-                asLink={<RouterLink to={urls.national[lang] + search} />}
+                asLink={
+                  <RouterLink to={urls.nationalPublications[lang] + search} />
+                }
               />
               <NavSubItem
                 current={

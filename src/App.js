@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import WebTracking from './components/WebTracking';
 import PageTracker from './components/WebTracking/PageTracker';
+import HomePage from './pages';
 import Citation from './pages/About/Citation';
 import Communication from './pages/About/Communication';
 import FAQ from './pages/About/FAQ';
@@ -83,7 +84,7 @@ function App() {
             <Route
               element={(
                 <PageTracker>
-                  <BaroNational />
+                  <HomePage />
                 </PageTracker>
               )}
               exact
@@ -91,6 +92,16 @@ function App() {
               path={urls.national[key]}
             />
           ))}
+          <Route
+            element={(
+              <PageTracker>
+                <BaroNational />
+              </PageTracker>
+            )}
+            exact
+            key={urls.nationalPublications[lang]}
+            path={urls.nationalPublications[lang]}
+          />
           {urls.nationalPublications.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(

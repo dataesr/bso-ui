@@ -11,25 +11,27 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
 
-import Banner from '../../components/Banner';
-import BSOChart from '../../components/Charts';
-import Chip from '../../components/Chip';
-import Glossary from '../../components/Glossary';
-import GlossaryFormattedMessage from '../../components/Glossary/GlossaryFormattedMessage';
-import HomeSection from '../../components/HomeSection';
-import Icon from '../../components/Icon';
-import ScrollTop from '../../components/ScrollTop';
-import TodayNumbersSection from '../../components/TodayNumbersSection';
-import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
-import ToolCardsSection from '../../components/ToolCardsSection';
-import UpdateDate from '../../components/UpdateDate';
-import GlossaryEntries from '../../translations/glossary.json';
-import useLang from '../../utils/Hooks/useLang';
+import Banner from '../components/Banner';
+import BSOChart from '../components/Charts';
+import Chip from '../components/Chip';
+import Glossary from '../components/Glossary';
+import GlossaryFormattedMessage from '../components/Glossary/GlossaryFormattedMessage';
+import HomeSection from '../components/HomeSection';
+import Icon from '../components/Icon';
+import ProgressionCard from '../components/ProgressionCard';
+import ScrollTop from '../components/ScrollTop';
+import TodayNumbersSection from '../components/TodayNumbersSection';
+import TodayNumbersItem from '../components/TodayNumbersSection/TodayNumbersItem';
+import ToolCardsSection from '../components/ToolCardsSection';
+import UpdateDate from '../components/UpdateDate';
+import GlossaryEntries from '../translations/glossary.json';
+import useLang from '../utils/Hooks/useLang';
 
-const DataCode = () => {
+const HomePage = () => {
   const intl = useIntl();
   const { lang, urls } = useLang();
   const { search } = useLocation();
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -105,6 +107,67 @@ const DataCode = () => {
             <Col n='12 xl-10' offset='xl-2'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
+                link={{
+                  href: urls.nationalPublications.tabs[0][lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-publi' />
+                  ),
+                }}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-national-publications' />
+                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-national.intro'
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12 md-8'>
+                      <BSOChart
+                        id='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                        hasComments={false}
+                        hasFooter={false}
+                      />
+                    </Col>
+                    <Col n='12 md-4'>
+                      <ProgressionCard />
+                    </Col>
+                    <Col n='12'>
+                      <BSOChart id='publi.general.dynamique-ouverture.chart-evolution-proportion' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+              <HomeSection
+                link={{
+                  href: urls.nationalThesis.tabs[0][lang] + search,
+                  label: (
+                    <FormattedMessage id='app.baro-national.detail-theses' />
+                  ),
+                }}
+                title={<FormattedMessage id='app.baro-national.thesis.title' />}
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.thesis.intro'
+                    glossaryKeys={['acces-ouvert', 'publication-fr']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='thesis.general.voies-ouverture.chart-repartition-taux' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+            </Col>
+            <Col n='12 xl-10' offset='xl-2'>
+              <Glossary entries={GlossaryEntries} />
+              <HomeSection
                 hasBeta
                 introText={(
                   <GlossaryFormattedMessage
@@ -153,6 +216,70 @@ const DataCode = () => {
                   <Row gutters alignItems='top'>
                     <Col n='12'>
                       <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+            </Col>
+            <Col n='12 xl-10' offset='xl-2'>
+              <HomeSection
+                link={{
+                  href: '/sante/essais-cliniques/general',
+                  label: <FormattedMessage id='app.baro-sante.detail-trials' />,
+                }}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-sante-essais' />
+                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-sante.trials-intro'
+                    glossaryKeys={['essai-clinique', 'promoteur']}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart
+                        id='general.dynamique.chart-evolution'
+                        domain='health'
+                        studyType='Interventional'
+                      />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+            </Col>
+            <Col n='12 xl-10' offset='xl-2'>
+              <HomeSection
+                link={{
+                  href: '/sante/etudes-observationnelles/general',
+                  label: (
+                    <FormattedMessage id='app.baro-sante.detail-studies' />
+                  ),
+                }}
+                title={
+                  <FormattedMessage id='app.header.nav.baro-sante-etudes' />
+                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='app.baro-sante.studies-intro'
+                    glossaryKeys={[]}
+                    ctas={[
+                      'https://clinicaltrials.gov/',
+                      'https://www.clinicaltrialsregister.eu/',
+                    ]}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart
+                        id='general.dynamique.chart-evolution'
+                        domain='health'
+                        studyType='Observational'
+                      />
                     </Col>
                   </Row>
                 </Container>
@@ -296,4 +423,4 @@ const DataCode = () => {
   );
 };
 
-export default DataCode;
+export default HomePage;
