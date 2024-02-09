@@ -60,47 +60,47 @@ function useGetData(
       let nbFalseAll = 0;
       let nbTotAll = 0;
       data.forEach((el) => {
-        categories.push(
-          intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
-        );
+        // categories.push(
+        //   intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
+        // );
         const nbTrue = el.my_indicator2.buckets.find((b) => b.key_as_string === 'true')
           ?.doc_count || 0;
         const nbFalse = el.my_indicator2.buckets.find((b) => b.key_as_string === 'false')
           ?.doc_count || 0;
-        const nbTot = nbTrue + nbFalse || 0;
+        // const nbTot = nbTrue + nbFalse || 0;
         nbTrueAll += nbTrue;
         nbFalseAll += nbFalse;
-        if (nbTrue > 0) {
-          indicTrue.push({
-            y_abs: nbTrue,
-            y_tot: nbTot,
-            y: (nbTrue * 100) / nbTot,
-            fr_reason: intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
-          });
-          indicFalse.push({
-            y_abs: nbFalse,
-            y_tot: nbTot,
-            y: (nbFalse * 100) / nbTot,
-            fr_reason: intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
-          });
-        }
+        // if (nbTrue > 0) {
+        //   indicTrue.push({
+        //     y_abs: nbTrue,
+        //     y_tot: nbTot,
+        //     y: (nbTrue * 100) / nbTot,
+        //     fr_reason: intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
+        //   });
+        //   indicFalse.push({
+        //     y_abs: nbFalse,
+        //     y_tot: nbTot,
+        //     y: (nbFalse * 100) / nbTot,
+        //     fr_reason: intl.formatMessage({ id: 'app.orcid.'.concat(el.key) }),
+        //   });
+        // }
       });
       nbTotAll = nbTrueAll + nbFalseAll;
-      if (indicTrue.length > 1) {
-        indicTrue.push({
-          y_abs: nbTrueAll,
-          y_tot: nbTotAll,
-          y: (nbTrueAll * 100) / nbTotAll,
-          fr_reason: intl.formatMessage({ id: 'app.orcid.fr-all' }),
-        });
-        indicFalse.push({
-          y_abs: nbFalseAll,
-          y_tot: nbTotAll,
-          y: (nbFalseAll * 100) / nbTotAll,
-          fr_reason: intl.formatMessage({ id: 'app.orcid.fr-all' }),
-        });
-        categories.push(intl.formatMessage({ id: 'app.orcid.fr-all' }));
-      }
+      // if (indicTrue.length > 1) {
+      categories.push(intl.formatMessage({ id: 'app.orcid.fr-all' }));
+      indicTrue.push({
+        y_abs: nbTrueAll,
+        y_tot: nbTotAll,
+        y: (nbTrueAll * 100) / nbTotAll,
+        fr_reason: intl.formatMessage({ id: 'app.orcid.fr-all' }),
+      });
+      indicFalse.push({
+        y_abs: nbFalseAll,
+        y_tot: nbTotAll,
+        y: (nbFalseAll * 100) / nbTotAll,
+        fr_reason: intl.formatMessage({ id: 'app.orcid.fr-all' }),
+      });
+      // }
       const dataGraph = [
         {
           name: capitalize(

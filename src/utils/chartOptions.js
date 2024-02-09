@@ -3931,7 +3931,6 @@ export const chartOptions = {
         id: 'app.orcid.proportion',
       });
       options.legend.title.text = null;
-      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -3961,7 +3960,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid.these-proportion',
+        id: 'app.orcid.thesis-proportion',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -4000,7 +3999,7 @@ export const chartOptions = {
       });
       options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid.these-proportion',
+        id: 'app.orcid.thesis-proportion',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -4063,7 +4062,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.proportion',
       });
-      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -4093,7 +4091,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.proportion',
       });
-      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',

@@ -34,8 +34,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     'is_fr_present',
     'fr_reasons_main.keyword',
     'has_work_from_hal',
-    'app.orcid.link_hal',
-    'app.orcid.no_link',
+    'app.orcid.link-hal',
+    'app.orcid.no-link',
     getCSSValue('--green-soft-125'),
     getCSSValue('--g-400'),
   );
