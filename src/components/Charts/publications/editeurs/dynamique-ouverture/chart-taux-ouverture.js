@@ -59,7 +59,9 @@ const Chart = ({ domain, id, hasComments, hasFooter }) => {
 
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
       const opts = response.data.aggregations.by_publisher.buckets
-        .filter((item) => item.key !== 'Cold Spring Harbor Laboratory')
+        .filter(
+          (item) => !['Cold Spring Harbor Laboratory', 'unknown'].includes(item.key),
+        )
         .map((item) => ({ label: item.key, value: item.key }));
       opts.unshift({
         label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),

@@ -134,28 +134,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           color: getCSSValue('--green-light-125'),
           dataLabels: { style: { textOutline: 'none' } },
         },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.orcid.employment-count',
-            }),
-          ),
-          data: employment,
-          turboThreshold: 0,
-          color: getCSSValue('--affiliations-etablissements-125'),
-          dataLabels: { style: { textOutline: 'none' } },
-        },
-        {
-          name: capitalize(
-            intl.formatMessage({
-              id: 'app.orcid.thesis-count',
-            }),
-          ),
-          data: thesis,
-          turboThreshold: 0,
-          color: getCSSValue('--thesesfr'),
-          dataLabels: { style: { textOutline: 'none' } },
-        },
       ];
 
       return {

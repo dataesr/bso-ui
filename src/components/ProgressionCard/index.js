@@ -3,26 +3,25 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { domains } from '../../utils/constants';
-import { getObservationLabel } from '../../utils/helpers';
+import { getObservationLabel, isInProduction } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import Icon from '../Icon';
 import InfoCard from '../InfoCard';
 
-const lastObservationSnapIndex = 0;
-const previousObservationSnapIndex = 1;
-
 export default function ProgressionCard({ domain }) {
   const intl = useIntl();
-  const { observationSnaps } = useGlobals();
-
-  const [previousObservationSnap, setPreviousObservationSnap] = useState(
-    observationSnaps ? observationSnaps[previousObservationSnapIndex] : '',
-  );
-  const [lastObservationSnap, setLastObservationSnap] = useState(
-    observationSnaps ? observationSnaps[lastObservationSnapIndex] : '',
-  );
+  const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals();
+  const [previousObservationSnap, setPreviousObservationSnap] = useState('');
   const [progression, setProgression] = useState({});
+
+  useEffect(() => {
+    setPreviousObservationSnap(
+      isInProduction()
+        ? beforeLastObservationSnap
+        : observationSnaps?.[observationSnaps?.length - 1],
+    );
+  }, [beforeLastObservationSnap, observationSnaps]);
 
   const updateProgression = (res, year) => {
     const { rate } = res;
@@ -67,15 +66,6 @@ export default function ProgressionCard({ domain }) {
     }
     return progPoints;
   };
-
-  useEffect(() => {
-    if (observationSnaps && !previousObservationSnap && !lastObservationSnap) {
-      setPreviousObservationSnap(
-        observationSnaps[previousObservationSnapIndex],
-      );
-      setLastObservationSnap(observationSnaps[lastObservationSnapIndex]);
-    }
-  }, [lastObservationSnap, observationSnaps, previousObservationSnap]);
 
   return (
     <InfoCard

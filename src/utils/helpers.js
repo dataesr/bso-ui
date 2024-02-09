@@ -235,7 +235,12 @@ export function getSource(id, otherSources = []) {
   if (id.includes('impact-financement')) {
     sources.push('ANR');
   }
-  if (id.includes('thesis')) {
+  if (
+    id.includes('thesis')
+    || id.includes('orcid.general.creation-by-year')
+    || id.includes('orcid.general.chart-indicator-these-year')
+    || id.includes('orcid.general.chart-indicator-these-discipline')
+  ) {
     sources.push('theses.fr');
   }
   if (id.includes('hal')) {
@@ -350,7 +355,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
     || 'fr';
-  let lastObservationYear = '2021Q4';
+  let lastObservationYear = '2023Q4';
   if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
     lastObservationYear = urlSearchParams
       .get('lastObservationYear')
@@ -382,7 +387,9 @@ export function getURLSearchParams(intl = undefined, id = '') {
   let commentsName = intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
     || 'françaises';
   if (
-    id === 'publi.general.dynamique-ouverture.chart-taux-ouverture-article'
+    id.includes(
+      'publi.general.dynamique-ouverture.chart-taux-ouverture-article',
+    )
     && commentsName === 'françaises'
   ) {
     commentsName = 'français';

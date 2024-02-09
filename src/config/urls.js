@@ -30,8 +30,8 @@ export default {
         en: '/publications/to-be-decided',
       },
     ],
-    fr: '/publications/general',
-    en: '/publications/general',
+    fr: '/publications',
+    en: '/publications',
   },
   nationalResearchData: {
     tabs: [

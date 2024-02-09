@@ -2332,6 +2332,39 @@ export default function getFetchOptions({
         },
       },
     }),
+    external_ids: ([lastObservationSnap, minPublicationDate = 2013]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+          },
+          aggs: {
+            by_external_ids_type: {
+              terms: {
+                field: 'external_ids.id_type.keyword',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
@@ -2368,7 +2401,7 @@ export default function getFetchOptions({
       terms: { 'sources.keyword': ['theses'] },
     });
   }
-  if (['publication', 'journal', 'repository'].includes(key)) {
+  if (['publication', 'journal', 'repository', 'external_ids'].includes(key)) {
     idTypes.push('hal_id');
   }
   if (isPublications) {

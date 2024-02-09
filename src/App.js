@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import WebTracking from './components/WebTracking';
 import PageTracker from './components/WebTracking/PageTracker';
+import HomePage from './pages';
 import Citation from './pages/About/Citation';
 import Communication from './pages/About/Communication';
 import FAQ from './pages/About/FAQ';
@@ -14,7 +15,6 @@ import Glossaire from './pages/About/Glossaire';
 import Methodology from './pages/About/Methodology';
 import OpenData from './pages/About/OpenData';
 import BaroNational from './pages/BaroNational';
-import NationalOrcid from './pages/BaroNational/NationalOrcid';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 import NationalResearchData from './pages/BaroNational/NationalResearchData';
 import NationalSoftwareCode from './pages/BaroNational/NationalSoftwareCode';
@@ -28,6 +28,7 @@ import Policy from './pages/Declinaisons/Policy';
 import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
+import NationalOrcid from './pages/NationalOrcid';
 import Project from './pages/Project';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
@@ -83,7 +84,7 @@ function App() {
             <Route
               element={(
                 <PageTracker>
-                  <BaroNational />
+                  <HomePage />
                 </PageTracker>
               )}
               exact
@@ -91,6 +92,16 @@ function App() {
               path={urls.national[key]}
             />
           ))}
+          <Route
+            element={(
+              <PageTracker>
+                <BaroNational />
+              </PageTracker>
+            )}
+            exact
+            key={urls.nationalPublications[lang]}
+            path={urls.nationalPublications[lang]}
+          />
           {urls.nationalPublications.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(
@@ -252,6 +263,18 @@ function App() {
               path={urls.communication[key]}
             />
           ))}
+          {Object.keys(urls.policy).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <Policy />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.policy[key]}
+            />
+          ))}
           {Object.keys(urls.variations).map((key) => (
             <Route
               element={(
@@ -274,18 +297,6 @@ function App() {
               exact
               key={key}
               path={urls.howto[key]}
-            />
-          ))}
-          {Object.keys(urls.policy).map((key) => (
-            <Route
-              element={(
-                <PageTracker>
-                  <Policy />
-                </PageTracker>
-              )}
-              exact
-              key={key}
-              path={urls.policy[key]}
             />
           ))}
           {Object.keys(urls.opendata).map((key) => (

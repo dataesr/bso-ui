@@ -589,7 +589,7 @@ export const chartOptions = {
           dataLabels: {
             allowOverlap: true,
             enabled: true,
-            format: '{point.y:.0f} %',
+            format: '{point.y:.1f} %',
             style: {
               color: getCSSValue('--g-800'),
               fontSize: '20px',
@@ -702,7 +702,7 @@ export const chartOptions = {
                 this.point.category === last.category
                 && this.point.y === last.y
               ) {
-                return this.point.y.toFixed(0).concat(' %');
+                return this.point.y.toFixed(1).concat(' %');
               }
               return '';
             },
@@ -3849,9 +3849,6 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.availibility' });
-      options.legend.title.text = intl.formatMessage({
-        id: 'app.publi.type-hebergement',
-      });
       options.legend.enabled = false;
       options.plotOptions = {
         series: {
@@ -3890,7 +3887,7 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.nb-cumulated',
       });
-      options.legend.title.text = null;
+      options.legend.enabled = false;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -3903,6 +3900,7 @@ export const chartOptions = {
         },
       };
       options.series = data;
+      options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
   },
@@ -3933,7 +3931,6 @@ export const chartOptions = {
         id: 'app.orcid.proportion',
       });
       options.legend.title.text = null;
-      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -3963,7 +3960,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid.these-proportion',
+        id: 'app.orcid.thesis-proportion',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -4002,7 +3999,7 @@ export const chartOptions = {
       });
       options.yAxis = getPercentageYAxis(true, null, false, 1);
       options.yAxis.title.text = intl.formatMessage({
-        id: 'app.orcid.these-proportion',
+        id: 'app.orcid.thesis-proportion',
       });
       options.legend.enabled = false;
       options.plotOptions = {
@@ -4065,7 +4062,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.proportion',
       });
-      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -4095,7 +4091,6 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({
         id: 'app.orcid.proportion',
       });
-      options.legend.reversed = true;
       options.plotOptions = {
         column: {
           stacking: 'normal',
@@ -4534,6 +4529,31 @@ export const chartOptions = {
       options.plotOptions = {
         series: {
           dataLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.sources.publications-by-source': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        categories,
+      };
+      options.legend.enabled = true;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
             enabled: true,
           },
         },

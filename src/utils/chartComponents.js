@@ -188,6 +188,7 @@ const ChartTypeDiffusionRepartitionStudies = lazy(() => import(
 const ChartRepartitionParTypeStudies = lazy(() => import(
   '../components/Charts/studies/resultats/type-diffusion/chart-repartition-par-type'
 ));
+
 // Theses
 const ChartRepartitionTauxThesis = lazy(() => import(
   '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'
@@ -198,7 +199,8 @@ const ChartTauxOuvertureThesis = lazy(() => import(
 const ChartRepartitionThesis = lazy(() => import(
   '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-thesis'
 ));
-// BSO3
+
+// Data & code
 const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
 const ChartDataCreated = lazy(() => import(
   '../components/Charts/data/general/voies-ouverture/chart-data-created'
@@ -255,6 +257,7 @@ const ChartSoftwareSharedAmongAllDiscipline = lazy(() => import(
 const ChartSoftwareSharedOa = lazy(() => import(
   '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
 ));
+
 // Orcid
 const OrcidEvolution = lazy(() => import('../components/Charts/orcid/general/chart-evolution'));
 const OrcidCreationByYear = lazy(() => import('../components/Charts/orcid/general/creation-by-year'));
@@ -275,7 +278,8 @@ const ChartOrcidIdrefSame = lazy(() => import('../components/Charts/orcid/genera
 const ChartOrcidIdhalAbes = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-abes'));
 const ChartOrcidIdhalHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-hal'));
 const ChartOrcidIdhalSame = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-same'));
-// Other
+
+// Others
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
 ));
@@ -289,6 +293,9 @@ const RetractionsByNature = lazy(() => import(
 ));
 const RetractionsByReason = lazy(() => import(
   '../components/Charts/publications/others/retractions/chart-by-reason'
+));
+const PublicationsBySource = lazy(() => import(
+  '../components/Charts/publications/others/sources/publications-by-source'
 ));
 
 const chartComponents = {
@@ -466,12 +473,13 @@ const chartComponents = {
   'orcid.general.chart-indicator-idhal-abes': ChartOrcidIdhalAbes,
   'orcid.general.chart-indicator-idhal-hal': ChartOrcidIdhalHal,
   'orcid.general.chart-indicator-idhal-same': ChartOrcidIdhalSame,
-  // Other
+  // Others
   'publi.others.retractions.chart-by-year': RetractionsByYear,
   'publi.others.retractions.chart-by-field': RetractionsByField,
   'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,
   'publi.others.retractions.chart-by-nature': RetractionsByNature,
   'publi.others.retractions.chart-by-reason': RetractionsByReason,
+  'publi.others.sources.publications-by-source': PublicationsBySource,
 };
 
 export default chartComponents;

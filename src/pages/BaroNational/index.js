@@ -27,10 +27,11 @@ import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
 import useLang from '../../utils/Hooks/useLang';
 
-function BaroNational() {
+const BaroNational = () => {
   const intl = useIntl();
   const { lang, urls } = useLang();
   const { search } = useLocation();
+
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='4 md-2'>
@@ -300,6 +301,6 @@ function BaroNational() {
       </Container>
     </div>
   );
-}
+};
 
 export default BaroNational;

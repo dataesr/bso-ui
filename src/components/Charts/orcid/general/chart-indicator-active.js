@@ -27,6 +27,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
+
   const { allData, isError, isLoading } = useGetData(
     beforeLastObservationSnap,
     lastObservationSnap,
@@ -41,7 +42,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
-    observationYear: getObservationLabel(beforeLastObservationSnap, intl),
+    isActiveYear: Number(getObservationLabel(lastObservationSnap, intl)) - 2,
   };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(

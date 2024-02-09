@@ -380,26 +380,21 @@ function Header() {
         {!isInProduction() && (
           <HeaderNav path={path}>
             <NavItem
-              current={
-                path === '/'
-                || stringIsIntTheKitchen(
-                  path,
-                  lang,
-                  urls.nationalPublications.tabs,
-                ).length > 0
-              }
+              current={path.startsWith(urls.nationalPublications[lang])}
               title={intl.formatMessage({
                 id: 'app.header.nav.baro-publications-theses',
                 defaultMessage: 'Les publications et thèses',
               })}
             >
               <NavSubItem
-                current={path === urls.national[lang]}
+                current={path === urls.nationalPublications[lang]}
                 title={intl.formatMessage({
                   id: 'app.header.nav.baro-national-accueil',
                   defaultMessage: 'Accueil publications et thèses',
                 })}
-                asLink={<RouterLink to={urls.national[lang] + search} />}
+                asLink={
+                  <RouterLink to={urls.nationalPublications[lang] + search} />
+                }
               />
               <NavSubItem
                 current={
@@ -532,6 +527,15 @@ function Header() {
               })}
             >
               <NavSubItem
+                current={path === urls.policy[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.policy',
+                  defaultMessage:
+                    'Politique de science ouverte des établissements',
+                })}
+                asLink={<RouterLink to={urls.policy[lang] + search} />}
+              />
+              <NavSubItem
                 current={path === urls.variations[lang]}
                 title={intl.formatMessage({
                   id: 'app.header.nav.declinaisons.existing',
@@ -546,15 +550,6 @@ function Header() {
                   defaultMessage: 'Tutoriel pour réaliser son BSO local',
                 })}
                 asLink={<RouterLink to={urls.howto[lang] + search} />}
-              />
-              <NavSubItem
-                current={path === urls.policy[lang]}
-                title={intl.formatMessage({
-                  id: 'app.header.nav.declinaisons.policy',
-                  defaultMessage:
-                    'Politique de science ouverte des établissements',
-                })}
-                asLink={<RouterLink to={urls.policy[lang] + search} />}
               />
             </NavItem>
             <NavItem

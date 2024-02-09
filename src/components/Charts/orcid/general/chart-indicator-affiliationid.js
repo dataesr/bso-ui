@@ -34,7 +34,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     'is_fr_present',
     'fr_reasons_main.keyword',
     'current_employment_fr_has_id',
-    'app.orcid.affiliationid',
+    'app.orcid.affiliation-id',
     'app.orcid.no-affiliationid',
     getCSSValue('--affiliations-etablissements-100'),
     getCSSValue('--g-400'),

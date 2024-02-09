@@ -6,18 +6,14 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import customComments from '../../../../utils/chartComments';
-import { chartOptions } from '../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../utils/constants';
-import {
-  getCSSValue,
-  getObservationLabel,
-  withDomain,
-} from '../../../../utils/helpers';
-import useGlobals from '../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../WrapperChart';
-import GraphComments from '../../graph-comments';
-import useGetData from './get-data-indicator';
+import customComments from '../../../../../utils/chartComments';
+import { chartOptions } from '../../../../../utils/chartOptions';
+import { domains, graphIds } from '../../../../../utils/constants';
+import { withDomain } from '../../../../../utils/helpers';
+import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import WrapperChart from '../../../../WrapperChart';
+import GraphComments from '../../../graph-comments';
+import useGetData from './get-data-by-source';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -26,46 +22,30 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { allData, isError, isLoading } = useGetData(
-    beforeLastObservationSnap,
-    lastObservationSnap,
-    domain,
-    'is_fr_present',
-    'fr_reasons_main.keyword',
-    'has_work_from_hal',
-    'app.orcid.link-hal',
-    'app.orcid.no-link',
-    getCSSValue('--green-soft-125'),
-    getCSSValue('--g-400'),
-  );
-  const { categories, dataGraph } = allData;
-  const dataTitle = {
-    observationYear: getObservationLabel(lastObservationSnap, intl),
-  };
+  const { observationSnaps } = useGlobals();
+  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
+  const { categories, dataGraph } = data;
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categories,
     dataGraph,
-    dataTitle,
   );
 
   useEffect(() => {
-    setChartComments(customComments(allData, idWithDomain, intl));
-  }, [allData, idWithDomain, intl]);
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !dataGraph || !categories}
+      isLoading={isLoading || !dataGraph}
     >
       <HighchartsReact
         highcharts={Highcharts}
@@ -79,12 +59,12 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     </WrapperChart>
   );
 };
-
+// TODO remove publi studyType from id
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'orcid.general.chart-indicator-hal',
+  id: 'publi.others.sources.publications-by-source',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

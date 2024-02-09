@@ -55,12 +55,9 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     });
 
     Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      const opts = response.data.aggregations.by_publisher.buckets.map(
-        (item) => ({
-          label: item.key,
-          value: item.key,
-        }),
-      );
+      const opts = response.data.aggregations.by_publisher.buckets
+        .filter((item) => !['unknown'].includes(item.key))
+        .map((item) => ({ label: item.key, value: item.key }));
       opts.unshift({
         label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
         value: '*',
