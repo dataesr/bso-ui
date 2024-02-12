@@ -22,6 +22,7 @@ import NationalThesis from './pages/BaroNational/NationalThesis';
 import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
+import SantePublications from './pages/BaroSante/SantePublications';
 import DataCode from './pages/DataCode';
 import HowTo from './pages/Declinaisons/HowTo';
 import Policy from './pages/Declinaisons/Policy';
@@ -196,6 +197,44 @@ function App() {
               path={urls.sante[key]}
             />
           ))}
+          {isInProduction()
+            && urls.santePublications.tabs.map((tab) => Object.keys(tab).map((key) => (
+              <Route
+                element={(
+                  <PageTracker>
+                    <GraphNavigationContextProvider>
+                      <SantePublications />
+                    </GraphNavigationContextProvider>
+                  </PageTracker>
+                )}
+                exact
+                key={key}
+                path={tab[key]}
+              />
+            )))}
+          {/* Redirect Notes Flash into communication */}
+          {isInProduction()
+            && Object.keys(urls.flash).map((key) => (
+              <Route
+                element={<Navigate to={urls.communication[key]} />}
+                exact
+                key={key}
+                path={urls.flash[key]}
+              />
+            ))}
+          {isInProduction()
+            && Object.keys(urls.variationsOld).map((key) => (
+              <Route
+                element={(
+                  <PageTracker>
+                    <Variations />
+                  </PageTracker>
+                )}
+                exact
+                key={key}
+                path={urls.variationsOld[key]}
+              />
+            ))}
           {urls.santeEssais.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(
