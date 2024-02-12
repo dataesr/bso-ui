@@ -54,7 +54,7 @@ function NotesFlash() {
             </Col>
           </Row>
           <Row gutters>
-            <Col n='12 md-6 lg-6'>
+            <Col n='12 md-4 lg-4'>
               <h4 className='marianne-bold fs-24-32'>
                 <FormattedMessage id='app.flyer.presentation' />
               </h4>
@@ -74,7 +74,7 @@ function NotesFlash() {
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
             </Col>
-            <Col n='12 md-6 lg-6'>
+            <Col n='12 md-4 lg-4'>
               <h4 className='marianne-bold fs-24-32'>
                 <FormattedMessage id='app.flyer.results' />
               </h4>
@@ -97,6 +97,29 @@ function NotesFlash() {
               <img
                 src={`/assets/flyer_resultats_bso_2023_${lang}.png`}
                 alt='flyer resultats bso'
+                className='w-100 flex img-fluid w-100 ds-fr--v-middle'
+              />
+            </Col>
+            <Col n='12 md-4 lg-4'>
+              <h4 className='marianne-bold fs-24-32'>
+                <FormattedMessage id='app.flyer.variations' />
+              </h4>
+              <div>
+                <DSLink
+                  href='/assets/flyer_bso_local_variations_2023.pdf'
+                  target='_blank'
+                >
+                  <FormattedMessage id='app.flyer.variations.description-fr' />
+                </DSLink>
+              </div>
+              {/* <div>
+                <DSLink href='/assets/flyer_bso_2023_en.pdf' target='_blank'>
+                  <FormattedMessage id='app.flyer.variations.description-en' />
+                </DSLink>
+              </div> */}
+              <img
+                src='/assets/flyer_bso_local_variations_2023.png'
+                alt='flyer local variation bso'
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
             </Col>
