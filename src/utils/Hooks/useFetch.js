@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 
 import { HEADERS } from '../../config/config';
 
-export default function useFetch({ method, url, options }) {
+export default function useFetch({ method, options, url }) {
   const isMounted = useRef(true);
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState(false);
