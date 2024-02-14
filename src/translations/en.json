@@ -975,7 +975,6 @@
   "app.variations.institutions": "Open science monitors set up by institutions (last version)",
   "app.variations.funders": "Open science monitors set up by funders",
   "app.variations.not-published": "Open science monitors asked but not (yet) published",
-  "app.variations.outdated": "Open science monitors set up by institutions (old version)",
   "app.variations.others": "Other follow-ups of the opening of publications",
   "app.promoteurs.impact.chart-classement-pays.tooltip": "<b>Trials completed, in collaboration with {point.country}</b><br>{point.y:.2f}% share scientific results or publication ({point.y_abs} / {point.y_tot})",
   "app.promoteurs.impact.chart-repartition.tooltip": "<b>Trials completed in {point.year}, {series.name}</b><br>Trials contribution with {point.name}: {point.y:.2f}% of the trials ({point.y_abs} / {point.y_tot})",
