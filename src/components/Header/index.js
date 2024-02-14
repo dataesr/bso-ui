@@ -507,6 +507,7 @@ function Header() {
                 id: 'app.header.nav.orcid',
                 defaultMessage: 'ORCID',
               })}
+              display={!isInProduction()}
             >
               <NavSubItem
                 current={path === urls.nationalOrcid[lang]}
@@ -534,6 +535,7 @@ function Header() {
                     'Politique de science ouverte des établissements',
                 })}
                 asLink={<RouterLink to={urls.policy[lang] + search} />}
+                display={!isInProduction()}
               />
               <NavSubItem
                 current={path === urls.variations[lang]}

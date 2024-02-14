@@ -414,6 +414,13 @@ const Variations = () => {
                 img='/declinaisons/universite-angers.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local université paris cité'
+                href='https://u-paris.fr/science-ouverte/barometre/'
+                img='/declinaisons/universite-paris-cite.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
@@ -438,26 +445,6 @@ const Variations = () => {
             <Col n='12 lg-8'>
               <ul className='style-disc'>
                 <li>ENS de Lyon</li>
-              </ul>
-            </Col>
-          </Row>
-          <Row gutters>
-            <Col n='12'>
-              <h4 className='p-0'>
-                <FormattedMessage id='app.variations.outdated' />
-              </h4>
-            </Col>
-            <Col n='12 lg-8'>
-              <ul className='style-disc'>
-                <li>
-                  <a
-                    href='https://u-paris.fr/science-ouverte/barometre/'
-                    rel='noreferrer'
-                    target='_blank'
-                  >
-                    Université de Paris-Cité
-                  </a>
-                </li>
               </ul>
             </Col>
           </Row>
