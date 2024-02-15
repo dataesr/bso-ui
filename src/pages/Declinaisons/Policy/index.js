@@ -11,7 +11,7 @@ import customComments from '../../../utils/chartComments';
 import { getGraphOptions } from '../../../utils/chartOptions';
 import { getCSSValue, getPercentageYAxis } from '../../../utils/helpers';
 
-const { OPENDATASOFT_API_KEY } = process.env;
+const { REACT_APP_OPENDATASOFT_API_KEY } = process.env;
 const OPENDATASOFT_LIMIT = 100;
 const START_YEAR = 2016;
 
@@ -36,7 +36,7 @@ const Policy = () => {
     } = {}) => {
       let url = 'https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets';
       url += `/fr-esr-resultats-de-l-enquete-sur-la-mise-en-oeuvre-des-politiques-de-science-ou/records?limit=${limit}&offset=${offset}`;
-      url += `&apikey=${OPENDATASOFT_API_KEY}`;
+      url += `&apikey=${REACT_APP_OPENDATASOFT_API_KEY}`;
       const response = await axios.get(url, {
         headers: { accept: 'application/json; charset=utf-8' },
       });
