@@ -3,8 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --silent
 COPY . .
-ARG REACT_APP_OPENDATASOFT_API_KEY
-ENV REACT_APP_OPENDATASOFT_API_KEY $REACT_APP_OPENDATASOFT_API_KEY
 RUN npm run build:staging
 
 # staging environment
