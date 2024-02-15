@@ -777,12 +777,28 @@
     "paysage": "vsGvv",
     "ror": "https://ror.org/01rx4qw44"
   },
+  "199511952T": {
+    "name": "Laboratoire de Mécanique et Génie Civil (LMGC)",
+    "commentsName": "du LMGC",
+    "commentsNameEN": "of LMGC",
+    "paysage": "M5ibj",
+    "ror": "https://ror.org/02fke9256",
+    "scale": "laboratory"
+  },
   "199512347X": {
     "name": "Centre de recherche en archéologie, archéosciences, histoire (CReAAH)",
     "commentsName": "du CReAAH",
     "commentsNameEN": "of CReAAH",
     "paysage": "7UV7M",
     "ror": "https://ror.org/02wgtm643",
+    "scale": "laboratory"
+  },
+  "199517454Y": {
+    "name": "Laboratoire d'Analyse et d'Architechure des Systèmes du CNRS (LAAS-CNRS)",
+    "commentsName": "du LAAS-CNRS",
+    "commentsNameEN": "of LAAS-CNRS",
+    "paysage": "66iey",
+    "ror": "https://ror.org/03vcm6439",
     "scale": "laboratory"
   },
   "199612295L": {
@@ -896,14 +912,6 @@
     "ror": "https://ror.org/02b9znm90",
     "scale": "laboratory",
     "startYear": 2017
-  },
-  "199517454Y": {
-    "name": "Laboratoire d'Analyse et d'Architechure des Systèmes du CNRS (LAAS-CNRS)",
-    "commentsName": "du LAAS-CNRS",
-    "commentsNameEN": "of LAAS-CNRS",
-    "paysage": "66iey",
-    "ror": "https://ror.org/03vcm6439",
-    "scale": "laboratory"
   },
   "199813983M": {
     "name": "Laboratoire de Recherche en Management (LAREQUOI)",

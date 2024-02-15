@@ -4563,4 +4563,6 @@ export const chartOptions = {
       return options;
     },
   },
+  'other.policy.open-science-policy': {},
+  'other.policy.open-science-document': {},
 };
