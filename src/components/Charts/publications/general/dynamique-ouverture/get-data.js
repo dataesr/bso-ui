@@ -207,10 +207,10 @@ function useGetData(
       const year1 = getObservationLabel(observationYears?.[2], intl);
       const year2 = getObservationLabel(observationYears?.[1], intl);
       const year3 = getObservationLabel(observationYears?.[0], intl);
-      const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0;
+      const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(0) || 0;
       const value2 = dataGraph1?.series[0]?.data
         .find((item) => item.name === year3)
-        ?.y.toFixed(1) || 0;
+        ?.y.toFixed(0) || 0;
       const healthPublicationsLabel = capitalize(
         intl.formatMessage({ id: 'app.publications.health' }),
       );
@@ -250,7 +250,7 @@ function useGetData(
         value2,
         healthValue1,
         healthValue2,
-        differenceValue: (value2 - value1).toFixed(1),
+        differenceValue: (value2 - value1).toFixed(0),
         healthDifferenceValue: healthValue2 - healthValue1,
       };
 
