@@ -2414,6 +2414,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: false,
           },
+          pointWidth: 15,
         },
         bar: {
           dataLabels: {
@@ -2440,6 +2441,7 @@ export const chartOptions = {
           },
         },
       };
+      options.legend.reversed = true;
       options.series = data?.series || [];
       return options;
     },
