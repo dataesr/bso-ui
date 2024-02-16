@@ -315,13 +315,13 @@ function useGetData(studyType, sponsor = '*') {
         color: getCSSValue('--lead-sponsor-privee'),
         data: industrialData4,
         name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
-        pointPlacement: 0.2,
       },
       {
         id: 'main',
         color: getCSSValue('--blue-soft-100'),
         data: allTypesData4,
         name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+        pointPlacement: 0.2,
       },
     ];
     const dataGraph4 = { categories: categories4, series: series4 };
