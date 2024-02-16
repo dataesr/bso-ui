@@ -589,7 +589,7 @@ export const chartOptions = {
           dataLabels: {
             allowOverlap: true,
             enabled: true,
-            format: '{point.y:.1f} %',
+            format: '{point.y:.0f} %',
             style: {
               color: getCSSValue('--g-800'),
               fontSize: '20px',
@@ -2371,6 +2371,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: false,
           },
+          pointWidth: 15,
         },
         bar: {
           dataLabels: {
@@ -2397,6 +2398,7 @@ export const chartOptions = {
           },
         },
       };
+      options.legend.reversed = true;
       options.series = data?.series || [];
       return options;
     },
@@ -2414,6 +2416,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: false,
           },
+          pointWidth: 15,
         },
         bar: {
           dataLabels: {
@@ -2440,6 +2443,7 @@ export const chartOptions = {
           },
         },
       };
+      options.legend.reversed = true;
       options.series = data?.series || [];
       return options;
     },

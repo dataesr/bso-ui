@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsor = '*') {
   const intl = useIntl();
@@ -78,9 +78,9 @@ function useGetData(studyType, sponsor = '*') {
       (ele) => ele.key === 0,
     );
     const categories = [
-      intl.formatMessage({ id: 'app.all-sponsor-types' }),
-      intl.formatMessage({ id: 'app.sponsor.industriel' }),
-      intl.formatMessage({ id: 'app.sponsor.academique' }),
+      capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+      capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
+      capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
     ];
     series[0].data.push({
       name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
