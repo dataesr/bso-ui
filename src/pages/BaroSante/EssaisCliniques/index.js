@@ -104,18 +104,18 @@ function EssaisCliniques() {
                   anchorId='general.dynamique'
                 >
                   <BSOChart
+                    id='general.dynamique.chart-evolution-within-3-years'
+                    domain='health'
+                    studyType='Interventional'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
                     id='general.dynamique.chart-evolution'
                     domain='health'
                     studyType='Interventional'
                   />
                   <BSOChart
                     id='general.dynamique.chart-evolution-within-2-years'
-                    domain='health'
-                    studyType='Interventional'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='general.dynamique.chart-evolution-within-3-years'
                     domain='health'
                     studyType='Interventional'
                     isDisplayed={!isInProduction()}
