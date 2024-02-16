@@ -140,8 +140,8 @@ function useGetData(studyType, sponsor = '*') {
           / (academic2?.doc_count + indus2?.doc_count)),
       y_abs: academicWith2?.doc_count ?? 0 + indusWith2?.doc_count ?? 0,
       y_tot: academic2?.doc_count ?? 0 + indus2?.doc_count ?? 0,
-      yearMax,
-      yearMin,
+      yearMax: yearMax2,
+      yearMin: yearMin2,
     });
     series2[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
@@ -149,8 +149,8 @@ function useGetData(studyType, sponsor = '*') {
       y: 100 * ((academicWith2?.doc_count ?? 0) / academic2?.doc_count),
       y_abs: academicWith2?.doc_count ?? 0,
       y_tot: academic2?.doc_count ?? 0,
-      yearMax,
-      yearMin,
+      yearMax: yearMax2,
+      yearMin: yearMin2,
     });
     series2[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
@@ -158,8 +158,8 @@ function useGetData(studyType, sponsor = '*') {
       y: 100 * ((indusWith2?.doc_count ?? 0) / indus2?.doc_count),
       y_abs: indusWith2?.doc_count ?? 0,
       y_tot: indus2?.doc_count ?? 0,
-      yearMax,
-      yearMin,
+      yearMax: yearMax2,
+      yearMin: yearMin2,
     });
     series3[0].data.push({
       color: getCSSValue('--blue-soft-100'),
@@ -170,8 +170,8 @@ function useGetData(studyType, sponsor = '*') {
           / (academic3?.doc_count + indus3?.doc_count)),
       y_abs: academicWith3?.doc_count ?? 0 + indusWith3?.doc_count ?? 0,
       y_tot: academic3?.doc_count ?? 0 + indus3?.doc_count ?? 0,
-      yearMax,
-      yearMin,
+      yearMax: yearMax2,
+      yearMin: yearMin2,
     });
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
@@ -179,8 +179,8 @@ function useGetData(studyType, sponsor = '*') {
       y: 100 * ((academicWith3?.doc_count ?? 0) / academic3?.doc_count),
       y_abs: academicWith3?.doc_count ?? 0,
       y_tot: academic3?.doc_count ?? 0,
-      yearMax,
-      yearMin,
+      yearMax: yearMax2,
+      yearMin: yearMin2,
     });
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
@@ -188,8 +188,8 @@ function useGetData(studyType, sponsor = '*') {
       y: 100 * ((indusWith3?.doc_count ?? 0) / indus3?.doc_count),
       y_abs: indusWith3?.doc_count ?? 0,
       y_tot: indus3?.doc_count ?? 0,
-      yearMax,
-      yearMin,
+      yearMax: yearMax2,
+      yearMin: yearMin2,
     });
     if (sponsor !== '*') {
       series1[0].data.push({
@@ -207,8 +207,8 @@ function useGetData(studyType, sponsor = '*') {
         y: 100 * ((sponsWith?.doc_count ?? 0) / spons?.doc_count),
         y_abs: sponsWith?.doc_count ?? 0,
         y_tot: spons?.doc_count ?? 0,
-        yearMax,
-        yearMin,
+        yearMax: yearMax2,
+        yearMin: yearMin2,
       });
       series3[0].data.push({
         color: getCSSValue('--lead-sponsor-highlight'),
@@ -216,8 +216,8 @@ function useGetData(studyType, sponsor = '*') {
         y: 100 * ((sponsWith?.doc_count ?? 0) / spons?.doc_count),
         y_abs: sponsWith?.doc_count ?? 0,
         y_tot: spons?.doc_count ?? 0,
-        yearMax,
-        yearMin,
+        yearMax: yearMax2,
+        yearMin: yearMin2,
       });
       categories.push(sponsor);
     }
