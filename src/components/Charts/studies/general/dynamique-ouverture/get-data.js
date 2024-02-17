@@ -69,9 +69,13 @@ function useGetData(studyType, sponsor = '*') {
     const academic2 = data3.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
-    const academicWith2 = academic2?.by_has_results_within_2_years.buckets.find(
-      (ele) => ele.key === 1,
-    );
+    const academicWith2 = academic2?.by_has_results_within_2_years.buckets
+      .find((ele) => ele.key === 1)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const academicWithout2 = academic2?.by_has_results_within_2_years.buckets
+      .find((ele) => ele.key === 0)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const academicTotal2 = (academicWith2?.doc_count || 0) + (academicWithout2?.doc_count || 0);
     const academic3 = data4.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
@@ -89,9 +93,13 @@ function useGetData(studyType, sponsor = '*') {
     const indus2 = data3.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
-    const indusWith2 = indus2?.by_has_results_within_2_years.buckets.find(
-      (el) => el.key === 1,
-    );
+    const indusWith2 = indus2?.by_has_results_within_2_years.buckets
+      .find((el) => el.key === 1)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const indusWithout2 = indus2?.by_has_results_within_2_years.buckets
+      .find((el) => el.key === 0)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const indusTotal2 = (indusWith2?.doc_count || 0) + (indusWithout2?.doc_count || 0);
     const indus3 = data4.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
@@ -145,29 +153,26 @@ function useGetData(studyType, sponsor = '*') {
       y:
         100
         * ((academicWith2?.doc_count + indusWith2?.doc_count)
-          / (academic2?.doc_count + indus2?.doc_count)),
+          / (academicTotal2 + indusTotal2)),
       y_abs: academicWith2?.doc_count ?? 0 + indusWith2?.doc_count ?? 0,
-      y_tot: academic2?.doc_count ?? 0 + indus2?.doc_count ?? 0,
+      y_tot: academicTotal2 + indusTotal2,
       yearMax: yearMax2,
-      yearMin: yearMin2,
     });
     series2[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: intl.formatMessage({ id: 'app.sponsor.academique' }),
-      y: 100 * ((academicWith2?.doc_count ?? 0) / academic2?.doc_count),
+      y: 100 * ((academicWith2?.doc_count ?? 0) / academicTotal2),
       y_abs: academicWith2?.doc_count ?? 0,
-      y_tot: academic2?.doc_count ?? 0,
+      y_tot: academicTotal2,
       yearMax: yearMax2,
-      yearMin: yearMin2,
     });
     series2[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
-      y: 100 * ((indusWith2?.doc_count ?? 0) / indus2?.doc_count),
+      y: 100 * ((indusWith2?.doc_count ?? 0) / indusTotal2),
       y_abs: indusWith2?.doc_count ?? 0,
-      y_tot: indus2?.doc_count ?? 0,
+      y_tot: indusTotal2,
       yearMax: yearMax2,
-      yearMin: yearMin2,
     });
     series3[0].data.push({
       color: getCSSValue('--blue-soft-100'),
