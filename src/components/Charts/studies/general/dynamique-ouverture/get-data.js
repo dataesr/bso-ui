@@ -75,9 +75,13 @@ function useGetData(studyType, sponsor = '*') {
     const academic3 = data4.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
-    const academicWith3 = academic3?.by_has_results_within_3_years.buckets.find(
-      (ele) => ele.key === 1,
-    );
+    const academicWith3 = academic3?.by_has_results_within_3_years.buckets
+      .find((ele) => ele.key === 1)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const academicWithout3 = academic3?.by_has_results_within_3_years.buckets
+      .find((ele) => ele.key === 0)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const academicTotal3 = (academicWith3?.doc_count || 0) + (academicWithout3?.doc_count || 0);
     const indus = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
@@ -91,9 +95,13 @@ function useGetData(studyType, sponsor = '*') {
     const indus3 = data4.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
-    const indusWith3 = indus3?.by_has_results_within_3_years.buckets.find(
-      (el) => el.key === 1,
-    );
+    const indusWith3 = indus3?.by_has_results_within_3_years.buckets
+      .find((el) => el.key === 1)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const indusWithout3 = indus3?.by_has_results_within_3_years.buckets
+      .find((el) => el.key === 0)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const indusTotal3 = (indusWith3?.doc_count || 0) + (indusWithout3?.doc_count || 0);
     const spons = data2;
     const sponsWith = spons?.by_has_result.buckets.find((el) => el.key === 1);
     const categories = [
@@ -167,29 +175,26 @@ function useGetData(studyType, sponsor = '*') {
       y:
         100
         * ((academicWith3?.doc_count + indusWith3?.doc_count)
-          / (academic3?.doc_count + indus3?.doc_count)),
+          / (academicTotal3 + indusTotal3)),
       y_abs: academicWith3?.doc_count ?? 0 + indusWith3?.doc_count ?? 0,
-      y_tot: academic3?.doc_count ?? 0 + indus3?.doc_count ?? 0,
+      y_tot: academicTotal3 + indusTotal3,
       yearMax: yearMax2,
-      yearMin: yearMin2,
     });
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: intl.formatMessage({ id: 'app.sponsor.academique' }),
-      y: 100 * ((academicWith3?.doc_count ?? 0) / academic3?.doc_count),
+      y: 100 * ((academicWith3?.doc_count ?? 0) / academicTotal3),
       y_abs: academicWith3?.doc_count ?? 0,
-      y_tot: academic3?.doc_count ?? 0,
+      y_tot: academicTotal3,
       yearMax: yearMax2,
-      yearMin: yearMin2,
     });
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
-      y: 100 * ((indusWith3?.doc_count ?? 0) / indus3?.doc_count),
+      y: 100 * ((indusWith3?.doc_count ?? 0) / indusTotal3),
       y_abs: indusWith3?.doc_count ?? 0,
-      y_tot: indus3?.doc_count ?? 0,
+      y_tot: indusTotal3,
       yearMax: yearMax2,
-      yearMin: yearMin2,
     });
     if (sponsor !== '*') {
       series1[0].data.push({
@@ -224,7 +229,6 @@ function useGetData(studyType, sponsor = '*') {
     const dataGraph1 = { categories, series: series1 };
     const dataGraph2 = { categories, series: series2 };
     const dataGraph3 = { categories, series: series3 };
-
     const categories4 = data3.by_sponsor_type.buckets[0].by_has_results_within_2_years.buckets[0].by_completion_year.buckets
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= currentYear)
