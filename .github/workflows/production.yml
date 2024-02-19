@@ -30,9 +30,7 @@ jobs:
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository }}
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          docker build -t $IMAGE_ID:${{ steps.tag.outputs.tag }} -t $IMAGE_ID:latest .
-        env:
-          REACT_APP_OPENDATASOFT_API_KEY: ${{ secrets.REACT_APP_OPENDATASOFT_API_KEY }}
+          docker build -t $IMAGE_ID:${{ steps.tag.outputs.tag }} -t $IMAGE_ID:latest --build-arg REACT_APP_OPENDATASOFT_API_KEY=${{ secrets.REACT_APP_OPENDATASOFT_API_KEY }} .
 
       - name: 📦 Push Docker image
         run: |
