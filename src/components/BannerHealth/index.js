@@ -47,7 +47,7 @@ function BannerHealth({ selected, title }) {
       value: intl.formatMessage({ id: 'url.sante.etudes' }),
     },
   ];
-  if (isInProduction) {
+  if (isInProduction()) {
     options.unshift({
       label: intl.formatMessage({ id: 'app.baro-sante.title' }),
       value: intl.formatMessage({ id: 'url.sante.publications.general' }),

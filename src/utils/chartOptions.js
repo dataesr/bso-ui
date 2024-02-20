@@ -2412,7 +2412,7 @@ export const chartOptions = {
           keysList.forEach((item) => {
             nodes.push({
               id: `${node}-${item.keyword}`,
-              name: intl.formatMessage({ id: item.intlKey }),
+              name: capitalize(intl.formatMessage({ id: item.intlKey })),
               color: nodeColor[item.keyword?.split('-').slice(-1)],
             });
           });
