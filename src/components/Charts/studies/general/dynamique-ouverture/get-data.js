@@ -470,6 +470,8 @@ function useGetData(studyType, sponsor = '*') {
       privateLeadSponsorsRate3: privateLeadSponsorsRate3.toFixed(0),
       publicLeadSponsorsRate,
       publicLeadSponsorsRate3: publicLeadSponsorsRate3.toFixed(0),
+      yearMin2,
+      yearMax2,
     };
 
     return {
