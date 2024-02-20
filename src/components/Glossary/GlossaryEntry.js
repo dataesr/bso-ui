@@ -14,11 +14,11 @@ GlossaryEntry.defaultProps = {
   defaultMessage: '?',
 };
 GlossaryEntry.propTypes = {
-  glossaryKey: PropTypes.string.isRequired,
   defaultMessage: PropTypes.string,
+  glossaryKey: PropTypes.string.isRequired,
   intlKey: PropTypes.oneOfType([
-    PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
   ]).isRequired,
 };
 export default GlossaryEntry;

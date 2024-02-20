@@ -123,6 +123,10 @@
       "intlEntry": "app.glossary.pmc",
       "cta": "https://www.ncbi.nlm.nih.gov/pmc/"
     },
+    "posted-results": {
+      "intlDefinition": "app.glossary.posted-results.definition",
+      "intlEntry": "app.glossary.posted-results"
+    },
     "predatory": {
       "intlDefinition": "app.glossary.predatory.definition",
       "intlEntry": "app.glossary.predatory"

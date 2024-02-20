@@ -144,14 +144,8 @@ const ChartEvolutionNombreStudies = lazy(() => import(
 const ChartEvolutionStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
 ));
-const ChartEvolutionWithin2YearsStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-2-years'
-));
 const ChartEvolutionWithin3YearsStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years'
-));
-const ChartEvolutionWithin2YearsByYearStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-2-years-by-year'
 ));
 const ChartEvolutionWithin3YearsByYearStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year'
@@ -378,12 +372,8 @@ const chartComponents = {
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
   'general.dynamique.chart-evolution': ChartEvolutionStudies,
-  'general.dynamique.chart-evolution-within-2-years':
-    ChartEvolutionWithin2YearsStudies,
   'general.dynamique.chart-evolution-within-3-years':
     ChartEvolutionWithin3YearsStudies,
-  'general.dynamique.chart-evolution-within-2-years-by-year':
-    ChartEvolutionWithin2YearsByYearStudies,
   'general.dynamique.chart-evolution-within-3-years-by-year':
     ChartEvolutionWithin3YearsByYearStudies,
   'general.trajectoires.chart-repartition': ChartRepartitionStudies,
