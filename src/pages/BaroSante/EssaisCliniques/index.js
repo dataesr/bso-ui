@@ -96,8 +96,7 @@ function EssaisCliniques() {
                   ctas={[
                     'https://www.wma.net/fr/policies-post/declaration-dhelsinki-de-lamm-principes-ethiques-applicables-a-la-recherche-medicale-impliquant-des-etres-humains/',
                     'https://clinicaltrials.gov/',
-                    'https://www.clinicaltrialsregister.eu/',
-                    'https://www.ema.europa.eu/en/human-regulatory/research-development/clinical-trials/clinical-trials-information-system-training-support',
+                    'https://euclinicaltrials.eu/',
                   ]}
                   intlKey='app.health-interventional.general.dynamique'
                   backgroundColor={blueSoft50}

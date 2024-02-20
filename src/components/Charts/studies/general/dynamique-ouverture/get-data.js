@@ -174,29 +174,31 @@ function useGetData(studyType, sponsor = '*') {
       y_tot: indusTotal2,
       yearMax: yearMax2,
     });
+    const allLeadSponsorRate3 = 100
+      * ((academicWith3?.doc_count + indusWith3?.doc_count)
+        / (academicTotal3 + indusTotal3));
     series3[0].data.push({
       color: getCSSValue('--blue-soft-100'),
       name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
-      y:
-        100
-        * ((academicWith3?.doc_count + indusWith3?.doc_count)
-          / (academicTotal3 + indusTotal3)),
+      y: allLeadSponsorRate3,
       y_abs: academicWith3?.doc_count ?? 0 + indusWith3?.doc_count ?? 0,
       y_tot: academicTotal3 + indusTotal3,
       yearMax: yearMax2,
     });
+    const publicLeadSponsorsRate3 = 100 * ((academicWith3?.doc_count ?? 0) / academicTotal3);
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: intl.formatMessage({ id: 'app.sponsor.academique' }),
-      y: 100 * ((academicWith3?.doc_count ?? 0) / academicTotal3),
+      y: publicLeadSponsorsRate3,
       y_abs: academicWith3?.doc_count ?? 0,
       y_tot: academicTotal3,
       yearMax: yearMax2,
     });
+    const privateLeadSponsorsRate3 = 100 * ((indusWith3?.doc_count ?? 0) / indusTotal3);
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
-      y: 100 * ((indusWith3?.doc_count ?? 0) / indusTotal3),
+      y: privateLeadSponsorsRate3,
       y_abs: indusWith3?.doc_count ?? 0,
       y_tot: indusTotal3,
       yearMax: yearMax2,
@@ -463,8 +465,11 @@ function useGetData(studyType, sponsor = '*') {
 
     const comments = {
       allLeadSponsorRate,
+      allLeadSponsorRate3: allLeadSponsorRate3.toFixed(0),
       privateLeadSponsorsRate,
+      privateLeadSponsorsRate3: privateLeadSponsorsRate3.toFixed(0),
       publicLeadSponsorsRate,
+      publicLeadSponsorsRate3: publicLeadSponsorsRate3.toFixed(0),
     };
 
     return {
