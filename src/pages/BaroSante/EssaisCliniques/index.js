@@ -121,6 +121,7 @@ function EssaisCliniques() {
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
+
                 <QuestionSection
                   intlKey='app.health-interventional.general.trajectoires'
                   backgroundColor={blueSoft25}
