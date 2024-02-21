@@ -2744,13 +2744,6 @@ export const chartOptions = {
         categories: data?.categories || [],
         lineWidth: 0,
         tickWidth: 0,
-        labels: {
-          style: {
-            color: getCSSValue('--g800'),
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
-        },
       };
       options.series = data?.series || [];
       options.legend.reversed = true;

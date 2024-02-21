@@ -34,9 +34,11 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const chartRef = useRef();
+
   const [chartComments, setChartComments] = useState('');
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [sort, setSort] = useState('sort-open-access');
+
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
