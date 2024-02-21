@@ -3,35 +3,49 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import { capitalize, cleanNumber } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, domain = '') {
+function useGetData(observationSnaps, intl) {
   const [data, setData] = useState([]);
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
-  const { lastObservationSnap } = useGlobals();
 
   const getDataByField = useCallback(async () => {
     const query = getFetchOptions({
-      key: 'retractionsByField',
-      domain,
-      parameters: [lastObservationSnap],
+      key: 'publicationsFromHalWithoutDoi',
       objectType: ['publications'],
+      parameters: [2021],
     });
+    const { filter } = query.query.bool;
+    query.query.bool.filter = filter.filter(
+      (item) => !item?.terms?.['external_ids.id_type.keyword'],
+    );
     const response = await Axios.post(ES_API_URL, query, HEADERS);
 
-    const numberOfRetracted = (item) => item.by_retraction.buckets.find((i2) => i2.key === 1)?.doc_count ?? 0;
-    const percentageOfRetracted = (item) => (numberOfRetracted(item) / item.doc_count) * 100;
-    const buckets = response?.data?.aggregations?.by_field?.buckets?.map(
-      (item) => ({
-        field: item.key,
-        y_count: numberOfRetracted(item),
-        y_percent: percentageOfRetracted(item),
-        y_total: item.doc_count,
+    const series = [
+      {
+        data: response?.data?.aggregations?.by_field?.buckets.map((item) => ({
+          y: item.doc_count,
+          name: item.key,
+        })),
+      },
+    ];
+    const categories = series[0].data.map((item) => capitalize(
+      intl.formatMessage({
+        id: `app.discipline.${item.name
+          .replace(/\n/g, '')
+          .replace('  ', ' ')}`,
       }),
-    );
-    return buckets;
-  }, [domain, lastObservationSnap]);
+    )
+      .concat('<br><i>(')
+      .concat(intl.formatMessage({ id: 'app.effectif' }))
+      .concat(' ')
+      .concat(cleanNumber(item.y))
+      .concat(')</i>'));
+    const dataGraph = { categories, series };
+
+    return { dataGraph };
+  }, [intl]);
 
   useEffect(() => {
     async function getData() {

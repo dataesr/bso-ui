@@ -2282,7 +2282,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    external_ids: ([lastObservationSnap, minPublicationDate = 2013]) => ({
+    externalIds: ([lastObservationSnap, minPublicationDate = 2013]) => ({
       size: 0,
       query: {
         bool: {
@@ -2311,6 +2311,38 @@ export default function getFetchOptions({
                 field: 'external_ids.id_type.keyword',
               },
             },
+          },
+        },
+      },
+    }),
+    publicationsFromHalWithoutDoi: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: lastObservationSnap,
+                },
+              },
+            },
+          ],
+          must_not: {
+            term: {
+              'external_ids.id_type': 'crossref',
+            },
+          },
+        },
+      },
+      aggs: {
+        by_field: {
+          terms: {
+            field: 'bso_classification.keyword',
           },
         },
       },

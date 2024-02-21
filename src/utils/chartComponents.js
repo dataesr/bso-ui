@@ -274,6 +274,9 @@ const ChartOrcidIdhalHal = lazy(() => import('../components/Charts/orcid/general
 const ChartOrcidIdhalSame = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-same'));
 
 // Others
+const HalNoDoiByField = lazy(() => import(
+  '../components/Charts/publications/others/hal-no-doi/hal-no-doi-by-field'
+));
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
 ));
@@ -464,6 +467,7 @@ const chartComponents = {
   'orcid.general.chart-indicator-idhal-hal': ChartOrcidIdhalHal,
   'orcid.general.chart-indicator-idhal-same': ChartOrcidIdhalSame,
   // Others
+  'publi.others.hal-no-doi.hal-no-doi-by-field': HalNoDoiByField,
   'publi.others.retractions.chart-by-year': RetractionsByYear,
   'publi.others.retractions.chart-by-field': RetractionsByField,
   'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,

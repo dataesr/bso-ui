@@ -13,8 +13,7 @@ function useGetData(observationSnaps) {
 
   const getDataByObservationSnaps = useCallback(async () => {
     const query = getFetchOptions({
-      key: 'external_ids',
-      // objectType: ['publications'],
+      key: 'externalIds',
       parameters: [lastObservationSnap],
     });
     const queries = [];

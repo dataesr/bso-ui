@@ -4469,6 +4469,20 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.others.hal-no-doi.hal-no-doi-by-field': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'bar';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        categories: data?.categories ?? [],
+      };
+      options.legend.enabled = false;
+      options.series = data?.series ?? [];
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
   'other.policy.open-science-policy': {},
   'other.policy.open-science-document': {},
 };

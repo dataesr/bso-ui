@@ -94,7 +94,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       const nameClean = item.key;
       categories.push(
         nameClean
-          .concat('</br>(')
+          .concat('<br>(')
           .concat(intl.formatMessage({ id: 'app.effectif' }))
           .concat(' = ')
           .concat(cleanNumber(totalCurrent))

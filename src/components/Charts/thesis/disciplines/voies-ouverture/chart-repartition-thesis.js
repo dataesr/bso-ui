@@ -61,7 +61,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     const categoriesLabel = categories?.map((item) => capitalize(
       intl.formatMessage({ id: `app.thesis.discipline.${item.key}` }),
     )
-      .concat('</br>(')
+      .concat('<br>(')
       .concat(intl.formatMessage({ id: 'app.effectif' }))
       .concat(' = ')
       .concat(cleanNumber(item.staff))

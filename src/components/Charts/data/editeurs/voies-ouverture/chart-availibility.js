@@ -56,7 +56,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       sortKey = 'y';
     }
     const categoriesLabel = categories?.map((item) => item.key
-      .concat('</br>(')
+      .concat('<br>(')
       .concat(intl.formatMessage({ id: 'app.effectif' }))
       .concat(' = ')
       .concat(cleanNumber(item.staff))

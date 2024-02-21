@@ -114,7 +114,7 @@ function useGetData(observationSnap, domain) {
           categories.push(
             intl
               .formatMessage({ id: `app.lang.${item.key}` })
-              .concat('</br>(')
+              .concat('<br>(')
               .concat(intl.formatMessage({ id: 'app.effectif' }))
               .concat(' = ')
               .concat(cleanNumber(totalCurrent))

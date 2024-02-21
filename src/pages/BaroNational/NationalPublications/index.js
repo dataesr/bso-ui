@@ -580,6 +580,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.retractions.chart-by-reason' />
                   <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                   <BSOChart id='publi.others.sources.publications-by-source' />
+                  <BSOChart id='publi.others.hal-no-doi.hal-no-doi-by-field' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
