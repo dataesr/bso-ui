@@ -151,7 +151,7 @@ const Policy = () => {
       pie: {
         dataLabels: {
           enabled: true,
-          format: '{point.name}<br/>{y}%',
+          format: '{point.name}<br/>{point.y_percent:.0f} %',
         },
       },
     };
