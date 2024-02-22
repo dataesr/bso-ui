@@ -26,7 +26,9 @@ function useGetData(observationSnaps, domain = '') {
     const categories = buckets.map((item) => item.key.toString());
     const dataGraph = {
       data: buckets.map((item, catIndex) => ({
-        y: item.doc_count,
+        y:
+          item?.by_retraction?.buckets?.find((bucket) => bucket.key === 1)
+            ?.doc_count ?? 0,
         x: catIndex,
         year: categories[catIndex],
       })),
