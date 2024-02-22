@@ -26,17 +26,16 @@ function useGetData(observationSnaps, intl) {
       {
         data: response?.data?.aggregations?.by_field?.buckets.map((item) => ({
           y: item.doc_count,
+          label: intl.formatMessage({
+            id: `app.discipline.${item.key
+              .replace(/\n/g, '')
+              .replace('  ', ' ')}`,
+          }),
           name: item.key,
         })),
       },
     ];
-    const categories = series[0].data.map((item) => capitalize(
-      intl.formatMessage({
-        id: `app.discipline.${item.name
-          .replace(/\n/g, '')
-          .replace('  ', ' ')}`,
-      }),
-    )
+    const categories = series[0].data.map((item) => capitalize(item.label)
       .concat('<br><i>(')
       .concat(intl.formatMessage({ id: 'app.effectif' }))
       .concat(' ')

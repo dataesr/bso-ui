@@ -1093,6 +1093,7 @@
   "app.national-publi.data.documents-by-types-by-oa": "des articles de revue sont en accès ouvert, contre {oaBooksRate} % des ouvrages",
   "app.national-publi.others.collaborations.international-collaborations.title": "Top 10 des collaborations internationales avec la France",
   "app.national-publi.others.hal-no-doi.hal-no-doi-by-field.title": "Répartition par discipline parmi les publications de HAL sans DOI",
+  "app.national-publi.others.hal-no-doi.hal-no-doi-by-field.tooltip": "En {point.label}, <b>{point.y} publications</b> sont présentes dans HAL sans DOI",
   "app.national-publi.others.retractions.chart-by-publisher.title": "Publications retirées par éditeur (top 20)",
   "app.national-publi.others.retractions.chart-by-publisher.tooltip": "<b>{point.publisher}</b><br>• Pourcentage de publications retirées :<br>{point.y_percent:.3f}% ({point.y_count}/{point.y_total})",
   "app.national-publi.others.retractions.chart-by-year.title": "Nombre de publications retirées par année de publication",
