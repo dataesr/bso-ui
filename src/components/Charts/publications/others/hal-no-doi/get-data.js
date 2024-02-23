@@ -36,6 +36,9 @@ function useGetData(observationSnaps, intl) {
               .replace('  ', ' ')}`,
           }),
           name: item.key,
+          by_year: item.by_year.buckets
+            .map((bucket) => ({ year: bucket.key, y: bucket.doc_count }))
+            .sort((a, b) => a.year - b.year),
         })),
         color: getCSSValue('--orange-soft-100'),
       },

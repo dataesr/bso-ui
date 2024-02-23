@@ -468,6 +468,9 @@ const chartComponents = {
   'orcid.general.chart-indicator-idhal-same': ChartOrcidIdhalSame,
   // Others
   'publi.others.hal-no-doi.hal-no-doi-by-field': HalNoDoiByField,
+  'publi.others.hal-no-doi.hal-no-doi-by-field-by-year': lazy(() => import(
+    '../components/Charts/publications/others/hal-no-doi/hal-no-doi-by-field-by-year'
+  )),
   'publi.others.retractions.chart-by-year': RetractionsByYear,
   'publi.others.retractions.chart-by-field': RetractionsByField,
   'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,

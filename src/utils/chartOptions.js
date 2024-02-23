@@ -4477,9 +4477,81 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
         categories: data?.categories ?? [],
       };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.nb-publications',
+      });
       options.legend.enabled = false;
       options.series = data?.series ?? [];
       options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.hal-no-doi.hal-no-doi-by-field-by-year': {
+    getOptions: (id, intl, graph) => {
+      const options = getGraphOptions({ id, intl });
+      options.legend.enabled = false;
+      options.credits.enabled = false;
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+            // formatter() {
+            //   const last = this.series.data[this.series.data.length - 1];
+            //   if (
+            //     this.point.category === last.category
+            //     && this.point.y === last.y
+            //   ) {
+            //     return this.point.y.toFixed(0).concat(' %');
+            //   }
+            //   return '';
+            // },
+          },
+        },
+      };
+      const { data, name } = graph;
+      options.chart.type = 'column';
+      console.log(data);
+      options.xAxis = {
+        type: 'category',
+        categories: data.map((el) => el.year),
+        labels: {
+          rotation: -90,
+          style: {
+            color: getCSSValue('--g-800'),
+          },
+          formatter() {
+            return this.isFirst || this.isLast ? this.value : null;
+          },
+        },
+      };
+      // options.yAxis = getPercentageYAxis();
+      // options.yAxis.min = 0;
+      // options.yAxis.max = 100;
+      // const nameClean = name.replace(/\n/g, '').replace('  ', ' ');
+      options.series = [
+        {
+          name,
+          color: getCSSValue('--orange-soft-125'),
+          data: data.map((el) => ({
+            name: el.year.toString(),
+            // bsoDomain: el.bsoDomain,
+            y: el.y,
+            // y_abs: el.y_abs,
+            // y_tot: el.y_tot,
+            color: getCSSValue('--orange-soft-100'),
+          })),
+        },
+      ];
+      // console.log(data);
+      // options.series = data;
+      options.subtitle = {
+        text: capitalize(name),
+        widthAdjust: 0,
+        style: {
+          fontWeight: 'bold',
+        },
+      };
       return options;
     },
   },

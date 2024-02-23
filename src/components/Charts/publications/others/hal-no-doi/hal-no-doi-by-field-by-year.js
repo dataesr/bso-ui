@@ -1,11 +1,10 @@
-/* eslint-disable react/no-this-in-sfc */
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
@@ -21,27 +20,33 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
-  const [chartComments, setChartComments] = useState('');
+  const chartRef = useRef();
   const intl = useIntl();
-  const { observationSnaps } = useGlobals();
-  const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
-  let graphs = [];
-  if (data?.dataHist) {
-    data.dataHist.forEach((oneGraph) => {
-      const optionsGraph = chartOptions[id].getOptions(
+  const { observationSnaps } = useGlobals();
+
+  // const [optionsGraph, setOptionsGraph] = useState();
+  const [chartComments, setChartComments] = useState('');
+
+  const { data, isError, isLoading } = useGetData(observationSnaps, intl);
+  // const { dataGraph } = data;
+
+  const graphs = [];
+  if (data?.dataGraph) {
+    data.dataGraph.series?.[0]?.data.forEach((oneGraph) => {
+      const ggg = { data: oneGraph.by_year, name: oneGraph.label };
+      const optionsGraph1 = chartOptions[id].getOptions(
         idWithDomain,
         intl,
-        oneGraph,
+        ggg,
       );
-      graphs.push(optionsGraph);
+      graphs.push(optionsGraph1);
     });
   }
-  const serieLength = graphs[0]?.series[0].data.length - 1;
-  // classement par ordre décroissant (en taux d'oa) des disciplines
-  graphs = graphs.sort(
-    (a, b) => b.series[0].data[serieLength].y - a.series[0].data[serieLength].y,
-  );
+
+  // useEffect(() => {
+  //   setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, dataGraph));
+  // }, [dataGraph, id, idWithDomain, intl]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
@@ -49,13 +54,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
 
   return (
     <WrapperChart
+      chartRef={chartRef}
       domain={domain}
-      enableExport={false}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !data || data.length <= 0}
+      isLoading={isLoading || !data}
     >
       <Container>
         <Row>
@@ -77,13 +82,13 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
 };
 
+// TODO remove publi studyType from id
 Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.disciplines.dynamique-ouverture.chart-taux-ouverture',
+  id: 'publi.others.hal-no-doi.hal-no-doi-by-field-by-year',
 };
-
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

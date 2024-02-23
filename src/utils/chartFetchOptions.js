@@ -2344,6 +2344,13 @@ export default function getFetchOptions({
           terms: {
             field: 'bso_classification.keyword',
           },
+          aggs: {
+            by_year: {
+              terms: {
+                field: 'year',
+              },
+            },
+          },
         },
       },
     }),
