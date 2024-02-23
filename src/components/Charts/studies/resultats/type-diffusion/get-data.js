@@ -4,11 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import {
-  capitalize,
-  cleanNumber,
-  getCSSValue,
-} from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
