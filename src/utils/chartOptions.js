@@ -4496,22 +4496,11 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             allowOverlap: true,
-            // formatter() {
-            //   const last = this.series.data[this.series.data.length - 1];
-            //   if (
-            //     this.point.category === last.category
-            //     && this.point.y === last.y
-            //   ) {
-            //     return this.point.y.toFixed(0).concat(' %');
-            //   }
-            //   return '';
-            // },
           },
         },
       };
       const { data, name } = graph;
       options.chart.type = 'column';
-      console.log(data);
       options.xAxis = {
         type: 'category',
         categories: data.map((el) => el.year),
@@ -4525,26 +4514,17 @@ export const chartOptions = {
           },
         },
       };
-      // options.yAxis = getPercentageYAxis();
-      // options.yAxis.min = 0;
-      // options.yAxis.max = 100;
-      // const nameClean = name.replace(/\n/g, '').replace('  ', ' ');
       options.series = [
         {
           name,
           color: getCSSValue('--orange-soft-125'),
           data: data.map((el) => ({
-            name: el.year.toString(),
-            // bsoDomain: el.bsoDomain,
-            y: el.y,
-            // y_abs: el.y_abs,
-            // y_tot: el.y_tot,
             color: getCSSValue('--orange-soft-100'),
+            name: el.year.toString(),
+            y: el.y,
           })),
         },
       ];
-      // console.log(data);
-      // options.series = data;
       options.subtitle = {
         text: capitalize(name),
         widthAdjust: 0,

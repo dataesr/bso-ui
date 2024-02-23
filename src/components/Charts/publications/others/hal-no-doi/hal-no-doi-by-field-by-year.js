@@ -24,29 +24,19 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const idWithDomain = withDomain(id, domain);
   const { observationSnaps } = useGlobals();
-
-  // const [optionsGraph, setOptionsGraph] = useState();
   const [chartComments, setChartComments] = useState('');
-
   const { data, isError, isLoading } = useGetData(observationSnaps, intl);
-  // const { dataGraph } = data;
 
   const graphs = [];
   if (data?.dataGraph) {
     data.dataGraph.series?.[0]?.data.forEach((oneGraph) => {
-      const ggg = { data: oneGraph.by_year, name: oneGraph.label };
-      const optionsGraph1 = chartOptions[id].getOptions(
-        idWithDomain,
-        intl,
-        ggg,
-      );
+      const optionsGraph1 = chartOptions[id].getOptions(idWithDomain, intl, {
+        data: oneGraph.by_year,
+        name: oneGraph.label,
+      });
       graphs.push(optionsGraph1);
     });
   }
-
-  // useEffect(() => {
-  //   setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, dataGraph));
-  // }, [dataGraph, id, idWithDomain, intl]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
