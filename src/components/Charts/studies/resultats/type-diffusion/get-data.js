@@ -4,7 +4,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  cleanNumber,
+  getCSSValue,
+} from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
@@ -186,7 +190,18 @@ function useGetData(studyType, sponsorType = '*') {
       (el) => el.doc_count > THRESHOLD,
     );
     const dataGraph2 = {
-      categories: data2.map((el) => intl.formatMessage({ id: `app.studies.intervention-type.${el.key}` })),
+      categories: data2.map((el) => intl
+        .formatMessage({ id: `app.studies.intervention-type.${el.key}` })
+        .concat('<br><i>(')
+        .concat(
+          intl.formatMessage({
+            id: 'app.effectif',
+            defaultMessage: 'effectif',
+          }),
+        )
+        .concat(' = ')
+        .concat(cleanNumber(el.doc_count))
+        .concat(')</i>')),
       series: [
         {
           name: capitalize(

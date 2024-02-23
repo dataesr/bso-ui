@@ -2741,11 +2741,11 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
-        categories: data?.categories || [],
+        categories: data?.categories ?? [],
         lineWidth: 0,
         tickWidth: 0,
       };
-      options.series = data?.series || [];
+      options.series = data?.series ?? [];
       options.legend.reversed = true;
       return options;
     },
