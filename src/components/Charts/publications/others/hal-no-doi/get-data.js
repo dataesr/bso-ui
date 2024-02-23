@@ -3,7 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, cleanNumber } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  cleanNumber,
+  getCSSValue,
+} from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, intl) {
   const [data, setData] = useState([]);
@@ -33,6 +37,7 @@ function useGetData(observationSnaps, intl) {
           }),
           name: item.key,
         })),
+        color: getCSSValue('--orange-soft-100'),
       },
     ];
     const categories = series[0].data.map((item) => capitalize(item.label)
