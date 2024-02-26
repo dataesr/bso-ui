@@ -46,7 +46,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       .map((item) => ({ ...item, y: item[field] }));
     const categories = dataGraph
       .map((item) => item.publisher
-        .concat('</br>(')
+        .concat('<br>(')
         .concat(intl.formatMessage({ id: 'app.effectif' }))
         .concat(' = ')
         .concat(cleanNumber(item.y_total))

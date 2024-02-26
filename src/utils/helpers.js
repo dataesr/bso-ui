@@ -264,7 +264,8 @@ export function getSource(id, otherSources = []) {
     }
   }
   sources.push(...otherSources);
-  return sources.join(', ');
+  // Deduplicate sources
+  return [...new Set(sources)].join(', ');
 }
 
 /**

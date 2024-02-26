@@ -1,5 +1,6 @@
 import '../../../graph.scss';
 
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -17,6 +18,7 @@ import {
 } from '../../../../../utils/constants';
 import {
   capitalize,
+  cleanNumber,
   withContext,
   withDomain,
 } from '../../../../../utils/helpers';
@@ -32,23 +34,55 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
+  const [dataTitle, setDataTitle] = useState();
   const [options, setOptions] = useState([]);
+  const [optionsGraph, setOptionsGraph] = useState();
+  const [sort, setSort] = useState('sort-staff');
   const [sponsorType, setSponsorType] = useState('*');
+
   const { allData, isError, isLoading } = useGetData(studyType, sponsorType);
-  const { dataGraph2 } = allData;
   const idWithDomainAndStudyType = withContext(id, domain, studyType);
-  const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
-  const sponsorTypeTitle = sponsorType !== '*'
-    ? ` (${intl.formatMessage({ id: translationId })})`
-    : '';
-  const dataTitle = { sponsorTypeTitle };
-  const optionsGraph = chartOptions[id].getOptions(
-    withDomain(id, domain),
-    intl,
-    dataGraph2,
-    studyType,
-    dataTitle,
-  );
+
+  useEffect(() => {
+    if (allData?.dataGraph2) {
+      const field = sort === 'sort-percent' ? 'y_percent_results' : 'y_tot';
+      const opts = {};
+      // Deep copy
+      const dataCopy = JSON.parse(JSON.stringify(allData.dataGraph2));
+      opts.series = dataCopy.map((serie) => ({
+        ...serie,
+        data: serie.data.sort((a, b) => b[field] - a[field]),
+      }));
+      opts.categories = opts.series[0].data.map((item) => capitalize(item.intervention_type)
+        .concat('<br><i>(')
+        .concat(
+          intl.formatMessage({
+            id: 'app.effectif',
+            defaultMessage: 'effectif',
+          }),
+        )
+        .concat(' = ')
+        .concat(cleanNumber(item.y_tot))
+        .concat(')</i>'));
+      setOptionsGraph(
+        chartOptions[id].getOptions(
+          withDomain(id, domain),
+          intl,
+          opts,
+          studyType,
+          dataTitle,
+        ),
+      );
+    }
+  }, [dataTitle, allData.dataGraph2, id, domain, intl, studyType, sort]);
+
+  useEffect(() => {
+    const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
+    const sponsorTypeTitle = sponsorType !== '*'
+      ? ` (${intl.formatMessage({ id: translationId })})`
+      : '';
+    setDataTitle({ sponsorTypeTitle });
+  }, [intl, sponsorType]);
 
   useEffect(() => {
     const opts = allData?.sponsorTypes || [];
@@ -81,6 +115,22 @@ const Chart = ({ hasFooter, hasComments, domain, id, studyType }) => {
         options={options}
         selected={sponsorType}
       />
+      <RadioGroup
+        className='d-inline-block'
+        isInline
+        legend={intl.formatMessage({ id: 'app.publi.sort' })}
+        onChange={(newSort) => setSort(newSort)}
+        value={sort}
+      >
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.sort-staff' })}
+          value='sort-staff'
+        />
+        <Radio
+          label={intl.formatMessage({ id: 'app.clinical-trials.sort-results' })}
+          value='sort-percent'
+        />
+      </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}

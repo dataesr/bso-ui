@@ -54,7 +54,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           .replace('  ', ' ')}`,
       }),
     )
-      .concat('</br>(')
+      .concat('<br>(')
       .concat(intl.formatMessage({ id: 'app.effectif-short' }))
       .concat(' = ')
       .concat(cleanNumber(item.y_total))

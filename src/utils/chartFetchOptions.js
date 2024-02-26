@@ -938,56 +938,6 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueOuvertureWithin2Years: ([studyType, yearMin, yearMax]) => ({
-      size: 0,
-      query: {
-        bool: {
-          filter: [
-            {
-              term: {
-                'study_type.keyword': studyType,
-              },
-            },
-            {
-              term: {
-                'status.keyword': 'Completed',
-              },
-            },
-            {
-              range: {
-                study_completion_year: {
-                  gte: yearMin,
-                  lte: yearMax,
-                },
-              },
-            },
-          ],
-        },
-      },
-      aggs: {
-        by_sponsor_type: {
-          terms: {
-            field: 'lead_sponsor_type.keyword',
-          },
-          aggs: {
-            by_has_results_within_2_years: {
-              terms: {
-                field: 'has_results_or_publications_within_2y',
-                missing: false,
-              },
-              aggs: {
-                by_completion_year: {
-                  terms: {
-                    field: 'study_completion_year',
-                    size: 30,
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    }),
     studiesDynamiqueOuvertureWithin3Years: ([studyType, yearMin, yearMax]) => ({
       size: 0,
       query: {
@@ -2332,7 +2282,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    external_ids: ([lastObservationSnap, minPublicationDate = 2013]) => ({
+    externalIds: ([lastObservationSnap, minPublicationDate = 2013]) => ({
       size: 0,
       query: {
         bool: {
@@ -2359,6 +2309,45 @@ export default function getFetchOptions({
             by_external_ids_type: {
               terms: {
                 field: 'external_ids.id_type.keyword',
+              },
+            },
+          },
+        },
+      },
+    }),
+    publicationsFromHalWithoutDoi: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: lastObservationSnap,
+                },
+              },
+            },
+          ],
+          must_not: {
+            term: {
+              'external_ids.id_type': 'crossref',
+            },
+          },
+        },
+      },
+      aggs: {
+        by_field: {
+          terms: {
+            field: 'bso_classification.keyword',
+          },
+          aggs: {
+            by_year: {
+              terms: {
+                field: 'year',
               },
             },
           },

@@ -96,8 +96,8 @@ function EssaisCliniques() {
                   ctas={[
                     'https://www.wma.net/fr/policies-post/declaration-dhelsinki-de-lamm-principes-ethiques-applicables-a-la-recherche-medicale-impliquant-des-etres-humains/',
                     'https://clinicaltrials.gov/',
+                    'https://euclinicaltrials.eu/',
                     'https://www.clinicaltrialsregister.eu/',
-                    'https://www.ema.europa.eu/en/human-regulatory/research-development/clinical-trials/clinical-trials-information-system-training-support',
                   ]}
                   intlKey='app.health-interventional.general.dynamique'
                   backgroundColor={blueSoft50}
@@ -115,24 +115,13 @@ function EssaisCliniques() {
                     studyType='Interventional'
                   />
                   <BSOChart
-                    id='general.dynamique.chart-evolution-within-2-years'
-                    domain='health'
-                    studyType='Interventional'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
-                    id='general.dynamique.chart-evolution-within-2-years-by-year'
-                    domain='health'
-                    studyType='Interventional'
-                    isDisplayed={!isInProduction()}
-                  />
-                  <BSOChart
                     id='general.dynamique.chart-evolution-within-3-years-by-year'
                     domain='health'
                     studyType='Interventional'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
+
                 <QuestionSection
                   intlKey='app.health-interventional.general.trajectoires'
                   backgroundColor={blueSoft25}

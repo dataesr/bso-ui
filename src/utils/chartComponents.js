@@ -144,14 +144,8 @@ const ChartEvolutionNombreStudies = lazy(() => import(
 const ChartEvolutionStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
 ));
-const ChartEvolutionWithin2YearsStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-2-years'
-));
 const ChartEvolutionWithin3YearsStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years'
-));
-const ChartEvolutionWithin2YearsByYearStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-2-years-by-year'
 ));
 const ChartEvolutionWithin3YearsByYearStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year'
@@ -280,6 +274,9 @@ const ChartOrcidIdhalHal = lazy(() => import('../components/Charts/orcid/general
 const ChartOrcidIdhalSame = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-same'));
 
 // Others
+const HalNoDoiByField = lazy(() => import(
+  '../components/Charts/publications/others/hal-no-doi/hal-no-doi-by-field'
+));
 const ChartInterationalCollaborations = lazy(() => import(
   '../components/Charts/publications/others/collaborations/international-collaborations'
 ));
@@ -378,12 +375,8 @@ const chartComponents = {
   'publi.others.collaborations.international-collaborations':
     ChartInterationalCollaborations,
   'general.dynamique.chart-evolution': ChartEvolutionStudies,
-  'general.dynamique.chart-evolution-within-2-years':
-    ChartEvolutionWithin2YearsStudies,
   'general.dynamique.chart-evolution-within-3-years':
     ChartEvolutionWithin3YearsStudies,
-  'general.dynamique.chart-evolution-within-2-years-by-year':
-    ChartEvolutionWithin2YearsByYearStudies,
   'general.dynamique.chart-evolution-within-3-years-by-year':
     ChartEvolutionWithin3YearsByYearStudies,
   'general.trajectoires.chart-repartition': ChartRepartitionStudies,
@@ -474,6 +467,10 @@ const chartComponents = {
   'orcid.general.chart-indicator-idhal-hal': ChartOrcidIdhalHal,
   'orcid.general.chart-indicator-idhal-same': ChartOrcidIdhalSame,
   // Others
+  'publi.others.hal-no-doi.hal-no-doi-by-field': HalNoDoiByField,
+  'publi.others.hal-no-doi.hal-no-doi-by-field-by-year': lazy(() => import(
+    '../components/Charts/publications/others/hal-no-doi/hal-no-doi-by-field-by-year'
+  )),
   'publi.others.retractions.chart-by-year': RetractionsByYear,
   'publi.others.retractions.chart-by-field': RetractionsByField,
   'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,

@@ -204,9 +204,9 @@ function useGetData(
       }
       const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 
-      const year1 = getObservationLabel(observationYears?.[2], intl);
-      const year2 = getObservationLabel(observationYears?.[1], intl);
       const year3 = getObservationLabel(observationYears?.[0], intl);
+      const year2 = getObservationLabel(observationYears?.[1], intl);
+      const year1 = year2 - 1;
       const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(0) || 0;
       const value2 = dataGraph1?.series[0]?.data
         .find((item) => item.name === year3)

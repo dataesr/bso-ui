@@ -2266,52 +2266,6 @@ export const chartOptions = {
       return options;
     },
   },
-  'general.dynamique.chart-evolution-within-2-years': {
-    getOptions: (id, intl, data, studyType) => {
-      const options = getGraphOptions({ id, intl, studyType });
-      options.chart.type = 'bar';
-      options.plotOptions = {
-        series: {
-          stacking: false,
-          dataLabels: {
-            enabled: false,
-          },
-        },
-        bar: {
-          dataLabels: {
-            enabled: true,
-            format: '{point.y:.0f} %',
-          },
-        },
-      };
-      options.yAxis = getPercentageYAxis(false);
-      options.xAxis = {
-        type: 'category',
-        categories: data?.categories || [],
-        title: {
-          text: intl.formatMessage({ id: 'app.sponsor-type' }),
-        },
-        lineWidth: 0,
-        tickWidth: 0,
-        labels: {
-          style: {
-            color: getCSSValue('--g800'),
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
-        },
-      };
-      options.series = data?.series || [];
-      options.legend = { enabled: false };
-      options.tooltip = {
-        headerFormat: '',
-        pointFormat: intl.formatMessage({
-          id: `${withtStudyType(id, studyType)}.tooltip`,
-        }),
-      };
-      return options;
-    },
-  },
   'general.dynamique.chart-evolution-within-3-years': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
@@ -2355,51 +2309,6 @@ export const chartOptions = {
           id: `${withtStudyType(id, studyType)}.tooltip`,
         }),
       };
-      return options;
-    },
-  },
-  'general.dynamique.chart-evolution-within-2-years-by-year': {
-    getOptions: (id, intl, data, studyType, dataTitle) => {
-      const options = getGraphOptions({ id, intl, studyType, dataTitle });
-      options.chart = {
-        type: 'bar',
-        height: '650px',
-      };
-      options.plotOptions = {
-        series: {
-          grouping: false,
-          dataLabels: {
-            enabled: false,
-          },
-          pointWidth: 15,
-        },
-        bar: {
-          dataLabels: {
-            enabled: true,
-            format: '{point.y:.0f} %',
-          },
-        },
-      };
-      options.yAxis = getPercentageYAxis(true);
-      options.xAxis = {
-        type: 'category',
-        categories: data?.categories || [],
-        title: {
-          text: intl.formatMessage({ id: 'app.study-completion-year' }),
-        },
-        lineWidth: 0,
-        tickWidth: 0,
-        reversed: false,
-        labels: {
-          style: {
-            color: getCSSValue('--g800'),
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
-        },
-      };
-      options.legend.reversed = true;
-      options.series = data?.series || [];
       return options;
     },
   },
@@ -2503,7 +2412,7 @@ export const chartOptions = {
           keysList.forEach((item) => {
             nodes.push({
               id: `${node}-${item.keyword}`,
-              name: intl.formatMessage({ id: item.intlKey }),
+              name: capitalize(intl.formatMessage({ id: item.intlKey })),
               color: nodeColor[item.keyword?.split('-').slice(-1)],
             });
           });
@@ -2832,18 +2741,11 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
         type: 'category',
-        categories: data?.categories || [],
+        categories: data?.categories ?? [],
         lineWidth: 0,
         tickWidth: 0,
-        labels: {
-          style: {
-            color: getCSSValue('--g800'),
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
-        },
       };
-      options.series = data?.series || [];
+      options.series = data?.series ?? [];
       options.legend.reversed = true;
       return options;
     },
@@ -4564,6 +4466,72 @@ export const chartOptions = {
       };
       options.series = series;
       options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.hal-no-doi.hal-no-doi-by-field': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'bar';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        categories: data?.categories ?? [],
+      };
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.nb-publications',
+      });
+      options.legend.enabled = false;
+      options.series = data?.series ?? [];
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.hal-no-doi.hal-no-doi-by-field-by-year': {
+    getOptions: (id, intl, graph) => {
+      const options = getGraphOptions({ id, intl });
+      options.legend.enabled = false;
+      options.credits.enabled = false;
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+            allowOverlap: true,
+          },
+        },
+      };
+      const { data, name } = graph;
+      options.chart.type = 'column';
+      options.xAxis = {
+        type: 'category',
+        categories: data.map((el) => el.year),
+        labels: {
+          rotation: -90,
+          style: {
+            color: getCSSValue('--g-800'),
+          },
+          formatter() {
+            return this.isFirst || this.isLast ? this.value : null;
+          },
+        },
+      };
+      options.series = [
+        {
+          name,
+          color: getCSSValue('--orange-soft-125'),
+          data: data.map((el) => ({
+            color: getCSSValue('--orange-soft-100'),
+            name: el.year.toString(),
+            y: el.y,
+          })),
+        },
+      ];
+      options.subtitle = {
+        text: capitalize(name),
+        widthAdjust: 0,
+        style: {
+          fontWeight: 'bold',
+        },
+      };
       return options;
     },
   },

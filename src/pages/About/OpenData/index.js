@@ -68,7 +68,7 @@ function OpenData() {
                         >
                           <DSLink
                             className='w-100 text-right no-content-after'
-                            href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
+                            href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?refine.keyword=BSO&sort=modified'
                             target='_blank'
                           />
                         </DSIcon>

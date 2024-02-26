@@ -27,8 +27,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
   let graphs = [];
-  if (data.dataHist) {
-    data?.dataHist.forEach((oneGraph) => {
+  if (data?.dataHist) {
+    data.dataHist.forEach((oneGraph) => {
       const optionsGraph = chartOptions[id].getOptions(
         idWithDomain,
         intl,

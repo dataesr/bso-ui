@@ -51,4 +51,5 @@ function useGetData(observationSnaps, domain = '') {
 
   return { data, isError, isLoading };
 }
+
 export default useGetData;

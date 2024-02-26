@@ -1,5 +1,4 @@
 import {
-  Alert,
   Breadcrumb,
   BreadcrumbItem,
   Col,
@@ -124,6 +123,24 @@ export default function NationalPublications() {
                     fr: '/publications/general?id=general.langues-ouverture',
                   },
                 },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.hal',
+                  }),
+                  href: {
+                    en: '/publications/general?id=general.hal',
+                    fr: '/publications/general?id=general.hal',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.lpr',
+                  }),
+                  href: {
+                    en: '/publications/general?id=general.lpr',
+                    fr: '/publications/general?id=general.lpr',
+                  },
+                },
               ]}
             >
               <GraphContent>
@@ -134,24 +151,6 @@ export default function NationalPublications() {
                   anchorId='general.dynamique-ouverture'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture' />
-                  {}
-                  {!isInProduction() && (
-                    <>
-                      <Alert
-                        description={intl.formatMessage({
-                          id: 'app.commons.graph-warning',
-                        })}
-                        title=''
-                      />
-                      <iframe
-                        height='812'
-                        id='publi.general.dynamique-ouverture.chart-taux-ouverture'
-                        src='../integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true'
-                        title='publi.general.dynamique-ouverture.chart-taux-ouverture'
-                        width='100%'
-                      />
-                    </>
-                  )}
                   <BSOChart id='publi.general.dynamique-ouverture.chart-evolution-proportion' />
                 </QuestionSection>
                 <QuestionSection
@@ -178,6 +177,20 @@ export default function NationalPublications() {
                   anchorId='general.langues-ouverture'
                 >
                   <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='general.hal'
+                  backgroundColor={blueSoft25}
+                  isDisplayed={!isInProduction()}
+                  intlKey='app.national-publi.general.hal'
+                >
+                  <iframe
+                    height='788'
+                    id='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                    src='../integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true'
+                    title='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                    width='100%'
+                  />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.lpr'
@@ -567,6 +580,8 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.retractions.chart-by-reason' />
                   <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                   <BSOChart id='publi.others.sources.publications-by-source' />
+                  <BSOChart id='publi.others.hal-no-doi.hal-no-doi-by-field' />
+                  <BSOChart id='publi.others.hal-no-doi.hal-no-doi-by-field-by-year' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

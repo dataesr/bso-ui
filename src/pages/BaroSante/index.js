@@ -135,7 +135,7 @@ function BaroSante() {
                   <Row gutters alignItems='top'>
                     <Col n='12'>
                       <BSOChart
-                        id='general.dynamique.chart-evolution'
+                        id='general.dynamique.chart-evolution-within-3-years'
                         domain='health'
                         studyType='Interventional'
                       />
@@ -170,7 +170,7 @@ function BaroSante() {
                   <Row gutters alignItems='top'>
                     <Col n='12'>
                       <BSOChart
-                        id='general.dynamique.chart-evolution'
+                        id='general.dynamique.chart-evolution-within-3-years'
                         domain='health'
                         studyType='Observational'
                       />
