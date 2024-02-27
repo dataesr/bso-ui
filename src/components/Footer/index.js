@@ -118,7 +118,7 @@ export default function Footer() {
             >
               <DSIcon
                 className='ds-fr--v-middle'
-                name='ri-twitter-fill'
+                name='ri-twitter-x-fill'
                 size='xl'
               >
                 <span>twitter</span>

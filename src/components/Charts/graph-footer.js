@@ -22,8 +22,8 @@ import {
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
-  TwitterIcon,
   TwitterShareButton,
+  XIcon,
 } from 'react-share';
 
 import { studiesTypes } from '../../utils/constants';
@@ -170,35 +170,35 @@ const GraphFooter = ({
               <div className='flex flex-end align-center'>
                 <div className='fs-14-24 marianne'>
                   <FormattedMessage
-                    id='app.graph.share'
                     defaultMessage='Share'
+                    id='app.graph.share'
                   />
                 </div>
                 <TwitterShareButton
-                  title={title}
-                  url={urlToShare}
-                  text={title}
+                  className='share-btn'
                   hashtags={['OpenAccess', 'ScienceOuverte', 'dataESR']}
                   related={['sup_recherche', 'ouvrirlascience']}
+                  text={title}
+                  title={title}
+                  url={urlToShare}
                   via='ouvrirlascience'
-                  className='share-btn'
                 >
-                  <TwitterIcon size={30} bgStyle={{ fill: shareFill }} />
+                  <XIcon size={30} bgStyle={{ fill: shareFill }} />
                 </TwitterShareButton>
                 <LinkedinShareButton
-                  url={urlToShare}
-                  title={title}
-                  summary={title}
-                  source='BSO'
                   className='share-btn'
+                  source='BSO'
+                  summary={title}
+                  title={title}
+                  url={urlToShare}
                 >
                   <LinkedinIcon size={30} bgStyle={{ fill: shareFill }} />
                 </LinkedinShareButton>
                 <FacebookShareButton
                   className='share-btn'
+                  hashtag='ScienceOuverte'
                   quote={title}
                   url={urlToShare}
-                  hashtag='ScienceOuverte'
                 >
                   <FacebookIcon size={30} bgStyle={{ fill: shareFill }} />
                 </FacebookShareButton>
@@ -208,20 +208,20 @@ const GraphFooter = ({
         </Container>
       </div>
       <Modal
-        size='lg'
-        isOpen={isModalOpen}
+        className='graph-integration'
         hide={() => {
           setIsModalOpen(false);
         }}
-        className='graph-integration'
+        isOpen={isModalOpen}
+        size='lg'
       >
         <ModalClose
           hide={() => {
             setIsModalOpen(false);
           }}
           title={intl.formatMessage({
-            id: 'app.commons.modal.close',
             defaultMessage: 'Close modal',
+            id: 'app.commons.modal.close',
           })}
         >
           <FormattedMessage id='app.commons.close' defaultMessage='Close' />
