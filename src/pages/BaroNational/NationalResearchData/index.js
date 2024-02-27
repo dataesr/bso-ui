@@ -84,8 +84,17 @@ export default function NationalResearchData() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/research-data/general?id=general.utilisation',
-                    fr: '/donnees-de-la-recherche/general?id=general.utilisation',
+                    en: '/research-data/general?id=general.partage',
+                    fr: '/donnees-de-la-recherche/general?id=general.partage',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.data.navigation.partage',
+                  }),
+                  href: {
+                    en: '/research-data/general?id=general.partage',
+                    fr: '/donnees-de-la-recherche/general?id=general.partage',
                   },
                 },
                 {
@@ -108,15 +117,6 @@ export default function NationalResearchData() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.data.navigation.partage',
-                  }),
-                  href: {
-                    en: '/research-data/general?id=general.partage',
-                    fr: '/donnees-de-la-recherche/general?id=general.partage',
-                  },
-                },
-                {
-                  label: intl.formatMessage({
                     id: 'app.data.navigation.statement',
                   }),
                   href: {
@@ -127,6 +127,15 @@ export default function NationalResearchData() {
               ]}
             >
               <GraphContent>
+                <QuestionSection
+                  intlKey='app.national-data.general.partage'
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.partage'
+                >
+                  <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
+                  <BSOChart id='data.general.voies-ouverture.chart-data-shared-among-all' />
+                </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.general.utilisation'
                   glossaryKeys={['archive-ouverte']}
@@ -142,15 +151,6 @@ export default function NationalResearchData() {
                   anchorId='general.creation'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-created' />
-                </QuestionSection>
-                <QuestionSection
-                  intlKey='app.national-data.general.partage'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
-                  anchorId='general.partage'
-                >
-                  <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
-                  <BSOChart id='data.general.voies-ouverture.chart-data-shared-among-all' />
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-data.general.statement'

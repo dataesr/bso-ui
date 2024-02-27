@@ -86,8 +86,17 @@ export default function NationalSoftwareCode() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/software/general?id=general.utilisation',
-                    fr: '/codes-et-logiciels/general?id=general.utilisation',
+                    en: '/software/general?id=general.partage',
+                    fr: '/codes-et-logiciels/general?id=general.partage',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.software.navigation.partage',
+                  }),
+                  href: {
+                    en: '/software/general?id=general.partage',
+                    fr: '/codes-et-logiciels/general?id=general.partage',
                   },
                 },
                 {
@@ -108,18 +117,18 @@ export default function NationalSoftwareCode() {
                     fr: '/codes-et-logiciels/general?id=general.creation',
                   },
                 },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.software.navigation.partage',
-                  }),
-                  href: {
-                    en: '/software/general?id=general.partage',
-                    fr: '/codes-et-logiciels/general?id=general.partage',
-                  },
-                },
               ]}
             >
               <GraphContent>
+                <QuestionSection
+                  intlKey='app.national-software.general.partage'
+                  glossaryKeys={['grobid', 'softcite']}
+                  backgroundColor={blueSoft50}
+                  anchorId='general.partage'
+                >
+                  <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
+                  <BSOChart id='software.general.voies-ouverture.chart-software-shared-among-all' />
+                </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-software.general.utilisation'
                   glossaryKeys={['grobid', 'softcite']}
@@ -135,15 +144,6 @@ export default function NationalSoftwareCode() {
                   anchorId='general.creation'
                 >
                   <BSOChart id='software.general.voies-ouverture.chart-software-created' />
-                </QuestionSection>
-                <QuestionSection
-                  intlKey='app.national-software.general.partage'
-                  glossaryKeys={['grobid', 'softcite']}
-                  backgroundColor={blueSoft50}
-                  anchorId='general.partage'
-                >
-                  <BSOChart id='software.general.voies-ouverture.chart-software-shared' />
-                  <BSOChart id='software.general.voies-ouverture.chart-software-shared-among-all' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
