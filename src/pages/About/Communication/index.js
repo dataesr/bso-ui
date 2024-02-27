@@ -46,11 +46,7 @@ function NotesFlash() {
               </p>
             </Col>
             <Col n='12 sm-6 lg-4'>
-              <FlashCard
-                intlTitle='app.note.flash.fev-2024'
-                url='https://www.enseignementsup-recherche.gouv.fr/fr/barometre-francais-science-ouverte-2022-89981'
-                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2023-03/nf-sies-2023-03-26906.pdf'
-              />
+              <FlashCard intlTitle='app.note.flash.fev-2024' url='' urlPdf='' />
             </Col>
           </Row>
           <Row gutters>
