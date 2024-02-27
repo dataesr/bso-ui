@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import Banner from '../Banner';
 import Chip from '../Chip';
@@ -36,20 +35,6 @@ function BannerNational({ selected, title, iconId }) {
       value: intl.formatMessage({ id: 'url.thesis.general' }),
     },
   ];
-  if (isInProduction()) {
-    options.push({
-      label: intl.formatMessage({
-        id: 'app.baro-national.data.title.beta',
-      }),
-      value: intl.formatMessage({ id: 'url.data.general' }),
-    });
-    options.push({
-      label: intl.formatMessage({
-        id: 'app.baro-national.software.title.beta',
-      }),
-      value: intl.formatMessage({ id: 'url.software.general' }),
-    });
-  }
 
   return (
     <Banner

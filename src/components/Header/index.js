@@ -286,40 +286,44 @@ function Header() {
               />
             </NavItem>
           )}
-          <NavItem
-            current={path.startsWith(`/${urls.variations[lang].split('/')[1]}`)}
-            title={intl.formatMessage({
-              id: 'app.header.nav.institutions',
-              defaultMessage: 'Les établissements',
-            })}
-          >
-            <NavSubItem
-              current={path === urls.policy[lang]}
+          {!isInProduction() && (
+            <NavItem
+              current={path.startsWith(
+                `/${urls.variations[lang].split('/')[1]}`,
+              )}
               title={intl.formatMessage({
-                id: 'app.header.nav.declinaisons.policy',
-                defaultMessage:
-                  'Politique de science ouverte des établissements',
+                id: 'app.header.nav.institutions',
+                defaultMessage: 'Les établissements',
               })}
-              asLink={<RouterLink to={urls.policy[lang] + search} />}
-              display={!isInProduction()}
-            />
-            <NavSubItem
-              current={path === urls.variations[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.declinaisons.existing',
-                defaultMessage: 'Les baromètres des établissements',
-              })}
-              asLink={<RouterLink to={urls.variations[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.howto[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.declinaisons.howto',
-                defaultMessage: 'Tutoriel pour réaliser son BSO local',
-              })}
-              asLink={<RouterLink to={urls.howto[lang] + search} />}
-            />
-          </NavItem>
+            >
+              <NavSubItem
+                current={path === urls.policy[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.policy',
+                  defaultMessage:
+                    'Politique de science ouverte des établissements',
+                })}
+                asLink={<RouterLink to={urls.policy[lang] + search} />}
+                display={!isInProduction()}
+              />
+              <NavSubItem
+                current={path === urls.variations[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.existing',
+                  defaultMessage: 'Les baromètres des établissements',
+                })}
+                asLink={<RouterLink to={urls.variations[lang] + search} />}
+              />
+              <NavSubItem
+                current={path === urls.howto[lang]}
+                title={intl.formatMessage({
+                  id: 'app.header.nav.declinaisons.howto',
+                  defaultMessage: 'Tutoriel pour réaliser son BSO local',
+                })}
+                asLink={<RouterLink to={urls.howto[lang] + search} />}
+              />
+            </NavItem>
+          )}
           <NavItem
             current={path.startsWith(
               `/${urls.methodologie[lang].split('/')[1]}`,
