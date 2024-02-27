@@ -38,6 +38,11 @@ const tree = [
             value:
               'publi.general.langues-ouverture.chart-repartition-publications',
           },
+          {
+            key: 'app.national-publi.general.dynamique-ouverture.chart-taux-ouverture-article.title',
+            value:
+              'publi.general.dynamique-ouverture.chart-taux-ouverture-article',
+          },
         ],
       },
       {
