@@ -42,7 +42,7 @@ function NotesFlash() {
                 <FormattedMessage id='app.notes.flash.last-note-title' />
               </h4>
               <p className='fs-16-28'>
-                <FormattedMessage id='app.note.flash.edition.2022' />
+                <FormattedMessage id='app.note.flash.edition.2023' />
               </p>
             </Col>
             <Col n='12 sm-6 lg-4'>

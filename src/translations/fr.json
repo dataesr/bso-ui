@@ -552,7 +552,7 @@
   "app.health-interventional.caracteristiques.duree.chart-nombre.legend": "Nombre d'essais enregistrés",
   "app.health-interventional.caracteristiques.duree.chart-nombre.xAxis": "Durée moyenne de l'essai",
   "app.health-interventional.caracteristiques.duree.chart-nombre.0-year": "Moins de 1 an",
-  "app.health-interventional.caracteristiques.duree.chart-nombre.years": "de {value1} à {value 2} ans",
+  "app.health-interventional.caracteristiques.duree.chart-nombre.years": "de {value1} à {value2} ans",
   "app.health-interventional.caracteristiques.duree.chart-nombre.10-years-and-more": "10 ans<br>et plus",
   "app.health-interventional.caracteristiques.quand.chart-distribution-declarations.title": "Distribution des déclarations d'essais cliniques par année, selon la durée entre la déclaration et le début de l'essai, entre -2 ans avant le début de l'essai et +2 ans après le début de l'essai clinique",
   "app.health-caracteristiques.quand.chart-distribution-declarations.xAxis": "Durée entre la déclaration et le début de l'essai clinique, en mois",

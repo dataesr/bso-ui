@@ -54,9 +54,9 @@ function useGetData(studyType, sponsorType = '*') {
     ];
 
     return {
-      sponsorTypes,
       categories,
       dataGraph,
+      sponsorTypes,
     };
   }
 
