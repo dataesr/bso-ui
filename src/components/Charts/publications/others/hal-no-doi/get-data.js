@@ -7,9 +7,10 @@ import {
   capitalize,
   cleanNumber,
   getCSSValue,
+  getObservationLabel,
 } from '../../../../../utils/helpers';
 
-function useGetData(observationSnaps, intl) {
+function useGetData(beforeLastObservationSnap, intl) {
   const [data, setData] = useState([]);
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ function useGetData(observationSnaps, intl) {
     const query = getFetchOptions({
       key: 'publicationsFromHalWithoutDoi',
       objectType: ['publications'],
-      parameters: [2021],
+      parameters: [getObservationLabel(beforeLastObservationSnap, intl)],
     });
     const { filter } = query.query.bool;
     query.query.bool.filter = filter.filter(
@@ -52,12 +53,12 @@ function useGetData(observationSnaps, intl) {
     const dataGraph = { categories, series };
 
     return { dataGraph };
-  }, [intl]);
+  }, [beforeLastObservationSnap, intl]);
 
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataByField(observationSnaps);
+        const dataGraph = await getDataByField();
         setData(dataGraph);
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -68,7 +69,7 @@ function useGetData(observationSnaps, intl) {
       }
     }
     getData();
-  }, [getDataByField, observationSnaps]);
+  }, [getDataByField]);
 
   return { data, isError, isLoading };
 }

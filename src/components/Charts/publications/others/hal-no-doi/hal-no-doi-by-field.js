@@ -22,12 +22,15 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const idWithDomain = withDomain(id, domain);
-  const { observationSnaps } = useGlobals();
+  const { beforeLastObservationSnap } = useGlobals();
 
   const [optionsGraph, setOptionsGraph] = useState();
   const [chartComments, setChartComments] = useState('');
 
-  const { data, isError, isLoading } = useGetData(observationSnaps, intl);
+  const { data, isError, isLoading } = useGetData(
+    beforeLastObservationSnap,
+    intl,
+  );
   const { dataGraph } = data;
 
   useEffect(() => {

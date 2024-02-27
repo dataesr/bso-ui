@@ -4474,7 +4474,6 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'bar';
       options.xAxis = {
-        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
         categories: data?.categories ?? [],
       };
       options.yAxis.title.text = intl.formatMessage({
