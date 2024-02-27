@@ -4482,6 +4482,13 @@ export const chartOptions = {
       });
       options.legend.enabled = false;
       options.series = data?.series ?? [];
+      options.plotOptions = {
+        bar: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
       options.exporting.chartOptions.legend.enabled = false;
       return options;
     },
@@ -4496,6 +4503,10 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             allowOverlap: true,
+            formatter() {
+              const last = this.series.data[this.series.data.length - 1];
+              return this.point.y === last.y ? this.point.y : '';
+            },
           },
         },
       };
@@ -4517,9 +4528,11 @@ export const chartOptions = {
       options.series = [
         {
           name,
-          color: getCSSValue('--orange-soft-125'),
-          data: data.map((el) => ({
-            color: getCSSValue('--orange-soft-100'),
+          data: data.map((el, index) => ({
+            color:
+              index === data.length - 1
+                ? getCSSValue('--orange-soft-100')
+                : getCSSValue('--orange-soft-125'),
             name: el.year.toString(),
             y: el.y,
           })),

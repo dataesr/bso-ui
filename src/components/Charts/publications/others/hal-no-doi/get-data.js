@@ -29,16 +29,16 @@ function useGetData(observationSnaps, intl) {
     const series = [
       {
         data: response?.data?.aggregations?.by_field?.buckets.map((item) => ({
-          y: item.doc_count,
+          by_year: item.by_year.buckets
+            .map((bucket) => ({ year: bucket.key, y: bucket.doc_count }))
+            .sort((a, b) => a.year - b.year),
           label: intl.formatMessage({
             id: `app.discipline.${item.key
               .replace(/\n/g, '')
               .replace('  ', ' ')}`,
           }),
           name: item.key,
-          by_year: item.by_year.buckets
-            .map((bucket) => ({ year: bucket.key, y: bucket.doc_count }))
-            .sort((a, b) => a.year - b.year),
+          y: item.doc_count,
         })),
         color: getCSSValue('--orange-soft-100'),
       },
