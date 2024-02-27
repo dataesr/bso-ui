@@ -49,6 +49,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     <WrapperChart
       chartRef={chartRef}
       domain={domain}
+      enableExport={false}
       hasComments={false}
       hasFooter={hasFooter}
       id={id}
