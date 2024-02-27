@@ -4,7 +4,6 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
-import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import Banner from '../Banner';
 import Chip from '../Chip';
@@ -47,12 +46,6 @@ function BannerHealth({ selected, title }) {
       value: intl.formatMessage({ id: 'url.sante.etudes' }),
     },
   ];
-  if (isInProduction()) {
-    options.unshift({
-      label: intl.formatMessage({ id: 'app.baro-sante.title' }),
-      value: intl.formatMessage({ id: 'url.sante.publications.general' }),
-    });
-  }
 
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters className='mb-32'>
