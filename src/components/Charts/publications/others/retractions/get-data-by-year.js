@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 
 function useGetData(observationSnaps, domain = '') {
@@ -26,10 +27,11 @@ function useGetData(observationSnaps, domain = '') {
     const categories = buckets.map((item) => item.key.toString());
     const dataGraph = {
       data: buckets.map((item, catIndex) => ({
+        color: getCSSValue('--orange-soft-100'),
+        x: catIndex,
         y:
           item?.by_retraction?.buckets?.find((bucket) => bucket.key === 1)
             ?.doc_count ?? 0,
-        x: catIndex,
         year: categories[catIndex],
       })),
     };
