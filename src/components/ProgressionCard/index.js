@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { domains } from '../../utils/constants';
-import { getObservationLabel, isInProduction } from '../../utils/helpers';
+import { getObservationLabel } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
 import Icon from '../Icon';
@@ -17,9 +17,7 @@ export default function ProgressionCard({ domain }) {
 
   useEffect(() => {
     setPreviousObservationSnap(
-      isInProduction()
-        ? beforeLastObservationSnap
-        : observationSnaps?.[observationSnaps?.length - 1],
+      observationSnaps?.[observationSnaps?.length - 1],
     );
   }, [beforeLastObservationSnap, observationSnaps]);
 
