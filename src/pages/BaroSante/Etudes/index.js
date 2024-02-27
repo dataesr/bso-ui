@@ -107,7 +107,6 @@ function EtudesObservationnelles() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-within-3-years'
-                    isDisplayed={!isInProduction()}
                     studyType='Observational'
                   />
                   <BSOChart
@@ -119,7 +118,6 @@ function EtudesObservationnelles() {
                     id='general.dynamique.chart-evolution-within-3-years-by-year'
                     domain='health'
                     studyType='Observational'
-                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 

@@ -22,7 +22,6 @@ import NationalThesis from './pages/BaroNational/NationalThesis';
 import BaroSante from './pages/BaroSante';
 import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
 import Etudes from './pages/BaroSante/Etudes';
-import SantePublications from './pages/BaroSante/SantePublications';
 import DataCode from './pages/DataCode';
 import HowTo from './pages/Declinaisons/HowTo';
 import Policy from './pages/Declinaisons/Policy';
@@ -34,7 +33,7 @@ import Project from './pages/Project';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import TranslationPage from './translations/translations-page';
-import { isInLocal, isInProduction } from './utils/helpers';
+import { isInLocal } from './utils/helpers';
 import { GraphNavigationContextProvider } from './utils/Hooks/useGraphNavigation';
 import useLang from './utils/Hooks/useLang';
 
@@ -43,24 +42,22 @@ const messages = {
   fr: messagesFR,
 };
 
-const redirects = isInProduction
-  ? {}
-  : {
-    '/a-propos/notes-flash': '/a-propos/communication',
-    '/about/notes': '/about/communication',
-    '/a-propos/declinaisons': '/declinaisons/bso-locaux',
-    '/about/declinaisons': '/declinaisons/bso-locaux',
-    '/sante/publications/general': '/publications/general',
-    '/sante/publications/disciplines': '/publications/general',
-    '/sante/publications/editeurs': '/publications/general',
-    '/sante/publications/archives': '/publications/general',
-    '/sante/publications/affiliations': '/publications/general',
-    '/health/publications/general': '/publications/general',
-    '/health/publications/fields': '/publications/general',
-    '/health/publications/publishers': '/publications/general',
-    '/health/publications/repositories': '/publications/general',
-    '/health/publications/affiliations': '/publications/general',
-  };
+const redirects = {
+  '/a-propos/notes-flash': '/a-propos/communication',
+  '/about/notes': '/about/communication',
+  '/a-propos/declinaisons': '/declinaisons/bso-locaux',
+  '/about/declinaisons': '/declinaisons/bso-locaux',
+  '/sante/publications/general': '/publications/general',
+  '/sante/publications/disciplines': '/publications/general',
+  '/sante/publications/editeurs': '/publications/general',
+  '/sante/publications/archives': '/publications/general',
+  '/sante/publications/affiliations': '/publications/general',
+  '/health/publications/general': '/publications/general',
+  '/health/publications/fields': '/publications/general',
+  '/health/publications/publishers': '/publications/general',
+  '/health/publications/repositories': '/publications/general',
+  '/health/publications/affiliations': '/publications/general',
+};
 
 function App() {
   const { lang, urls } = useLang();
@@ -197,44 +194,6 @@ function App() {
               path={urls.sante[key]}
             />
           ))}
-          {isInProduction()
-            && urls.santePublications.tabs.map((tab) => Object.keys(tab).map((key) => (
-              <Route
-                element={(
-                  <PageTracker>
-                    <GraphNavigationContextProvider>
-                      <SantePublications />
-                    </GraphNavigationContextProvider>
-                  </PageTracker>
-                )}
-                exact
-                key={key}
-                path={tab[key]}
-              />
-            )))}
-          {/* Redirect Notes Flash into communication */}
-          {isInProduction()
-            && Object.keys(urls.flash).map((key) => (
-              <Route
-                element={<Navigate to={urls.communication[key]} />}
-                exact
-                key={key}
-                path={urls.flash[key]}
-              />
-            ))}
-          {isInProduction()
-            && Object.keys(urls.variationsOld).map((key) => (
-              <Route
-                element={(
-                  <PageTracker>
-                    <Variations />
-                  </PageTracker>
-                )}
-                exact
-                key={key}
-                path={urls.variationsOld[key]}
-              />
-            ))}
           {urls.santeEssais.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(

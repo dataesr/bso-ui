@@ -181,7 +181,6 @@ export default function NationalPublications() {
                 <QuestionSection
                   anchorId='general.hal'
                   backgroundColor={blueSoft25}
-                  isDisplayed={!isInProduction()}
                   intlKey='app.national-publi.general.hal'
                 >
                   <iframe

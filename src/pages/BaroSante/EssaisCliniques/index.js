@@ -107,7 +107,6 @@ function EssaisCliniques() {
                     id='general.dynamique.chart-evolution-within-3-years'
                     domain='health'
                     studyType='Interventional'
-                    isDisplayed={!isInProduction()}
                   />
                   <BSOChart
                     id='general.dynamique.chart-evolution'
@@ -118,7 +117,6 @@ function EssaisCliniques() {
                     id='general.dynamique.chart-evolution-within-3-years-by-year'
                     domain='health'
                     studyType='Interventional'
-                    isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
 
