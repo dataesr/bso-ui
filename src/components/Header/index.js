@@ -268,23 +268,24 @@ function Header() {
               asLink={<RouterLink to={urls.santeEtudes[lang] + search} />}
             />
           </NavItem>
-          <NavItem
-            current={path === urls.nationalOrcid[lang]}
-            title={intl.formatMessage({
-              id: 'app.header.nav.orcid',
-              defaultMessage: 'ORCID',
-            })}
-            display={!isInProduction()}
-          >
-            <NavSubItem
+          {!isInProduction() && (
+            <NavItem
               current={path === urls.nationalOrcid[lang]}
               title={intl.formatMessage({
-                id: 'app.baro-national.orcid.title',
-                defaultMessage: 'Suivi ORCID',
+                id: 'app.header.nav.orcid',
+                defaultMessage: 'ORCID',
               })}
-              asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
-            />
-          </NavItem>
+            >
+              <NavSubItem
+                current={path === urls.nationalOrcid[lang]}
+                title={intl.formatMessage({
+                  id: 'app.baro-national.orcid.title',
+                  defaultMessage: 'Suivi ORCID',
+                })}
+                asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
+              />
+            </NavItem>
+          )}
           <NavItem
             current={path.startsWith(`/${urls.variations[lang].split('/')[1]}`)}
             title={intl.formatMessage({
