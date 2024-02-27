@@ -46,7 +46,11 @@ function NotesFlash() {
               </p>
             </Col>
             <Col n='12 sm-6 lg-4'>
-              <FlashCard intlTitle='app.note.flash.fev-2024' url='' urlPdf='' />
+              <FlashCard
+                intlTitle='app.note.flash.fev-2024'
+                url='https://www.enseignementsup-recherche.gouv.fr/fr/le-barometre-francais-de-la-science-ouverte-2023-94953'
+                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2024-02/nf-sies-2024-02-16325.pdf'
+              />
             </Col>
           </Row>
           <Row gutters>
@@ -76,7 +80,7 @@ function NotesFlash() {
               </h4>
               <div>
                 <DSLink
-                  href='/assets/flyer_resultats_bso_2023_fr.pdf'
+                  href='/assets/flyer_resultats_bso_2024_fr.pdf'
                   target='_blank'
                 >
                   <FormattedMessage id='app.flyer.results.description-fr' />
@@ -84,14 +88,14 @@ function NotesFlash() {
               </div>
               <div>
                 <DSLink
-                  href='/assets/flyer_resultats_bso_2023_en.pdf'
+                  href='/assets/flyer_resultats_bso_2024_en.pdf'
                   target='_blank'
                 >
                   <FormattedMessage id='app.flyer.results.description-en' />
                 </DSLink>
               </div>
               <img
-                src={`/assets/flyer_resultats_bso_2023_${lang}.png`}
+                src={`/assets/flyer_resultats_bso_2024_${lang}.png`}
                 alt='flyer resultats bso'
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
