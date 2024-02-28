@@ -184,7 +184,7 @@ export default function NationalPublications() {
                   intlKey='app.national-publi.general.hal'
                 >
                   <iframe
-                    height='788'
+                    height={lang === 'fr' ? '788' : '765'}
                     id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                     src={`../integration/${lang}/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true`}
                     title='publi.general.dynamique-ouverture.chart-taux-ouverture'
