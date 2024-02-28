@@ -59,12 +59,12 @@ function NotesFlash() {
                 <FormattedMessage id='app.flyer.presentation' />
               </h4>
               <div>
-                <DSLink href='/assets/flyer_bso_2023_fr.pdf' target='_blank'>
+                <DSLink href='/assets/flyer_bso_2024_fr.pdf' target='_blank'>
                   <FormattedMessage id='app.flyer.presentation.description-fr' />
                 </DSLink>
               </div>
               <div>
-                <DSLink href='/assets/flyer_bso_2023_en.pdf' target='_blank'>
+                <DSLink href='/assets/flyer_bso_2024_en.pdf' target='_blank'>
                   <FormattedMessage id='app.flyer.presentation.description-en' />
                 </DSLink>
               </div>
