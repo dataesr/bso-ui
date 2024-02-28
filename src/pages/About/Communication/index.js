@@ -49,7 +49,7 @@ function NotesFlash() {
               <FlashCard
                 intlTitle='app.note.flash.fev-2024'
                 url='https://www.enseignementsup-recherche.gouv.fr/fr/le-barometre-francais-de-la-science-ouverte-2023-94953'
-                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2024-02/nf-sies-2024-02-16325.pdf'
+                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2024-02/nf-sies-2024-05-31926.pdf'
               />
             </Col>
           </Row>
