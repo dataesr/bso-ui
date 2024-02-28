@@ -58,7 +58,7 @@ function useGetData(beforeLastObservationSnap, intl) {
   useEffect(() => {
     async function getData() {
       try {
-        const dataGraph = await getDataByField();
+        const dataGraph = await getDataByField(beforeLastObservationSnap);
         setData(dataGraph);
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -69,7 +69,7 @@ function useGetData(beforeLastObservationSnap, intl) {
       }
     }
     getData();
-  }, [getDataByField]);
+  }, [beforeLastObservationSnap, getDataByField]);
 
   return { data, isError, isLoading };
 }
