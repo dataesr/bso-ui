@@ -186,7 +186,7 @@ export default function NationalPublications() {
                   <iframe
                     height='788'
                     id='publi.general.dynamique-ouverture.chart-taux-ouverture'
-                    src='../integration/fr/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true'
+                    src={`../integration/${lang}/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true`}
                     title='publi.general.dynamique-ouverture.chart-taux-ouverture'
                     width='100%'
                   />
