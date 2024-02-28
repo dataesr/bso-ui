@@ -140,7 +140,7 @@ function Header() {
                     active={selectedLang === 'en'}
                     onClick={() => setSelectedLang('en')}
                   >
-                    Anglais
+                    English
                   </ToolTranslateItem>
                 </ToolTranslate>
               </ToolItem>
