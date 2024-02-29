@@ -298,7 +298,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local INRAE'
-                href='https://www6.inrae.fr/dipso/La-science-ouverte-a-INRAE/Barometre-Science-Ouverte-INRAE2'
+                href='https://science-ouverte.inrae.fr/fr/la-science-ouverte/le-barometre-de-la-science-ouverte-inrae'
                 img='/declinaisons/inrae.png'
               />
             </Col>
