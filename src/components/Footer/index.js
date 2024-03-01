@@ -121,7 +121,7 @@ export default function Footer() {
                 name='ri-twitter-x-fill'
                 size='xl'
               >
-                <span>twitter</span>
+                <span>X</span>
               </DSIcon>
             </FooterLink>
             <FooterLink
