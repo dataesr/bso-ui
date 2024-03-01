@@ -29,36 +29,54 @@ function useGetData(observationSnap, domain) {
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
       const data = res.data.aggregations.by_year.buckets
+        // Sort data by publication year ascending
         .sort((a, b) => a.key - b.key)
+        // Filter data on 2012 < publication year < lastObservationYear
         .filter(
           (el) => el.key < parseInt(lastObservationSnap.substring(0, 4), 10)
             && el.doc_count
             && el.key > 2012,
         );
-      const categories = data.map((year) => year.key);
-      const series = data[0].by_type.buckets
+      // Find all years in data (xAxis)
+      const years = data.map((year) => year.key);
+      // Find all types accross years (different lines)
+      const types = [];
+      data.forEach((year) => year.by_type.buckets
         .filter((item) => item.key !== 'preprint')
-        .map((type) => ({
-          color: colors[type.key],
-          data: [],
-          key: type.key,
-          name: intl.formatMessage({ id: `app.publication-genre.${type.key}` }),
+        .forEach((type) => {
+          if (!types.find((item) => item.key === type.key)) {
+            types.push({
+              color: colors[type.key],
+              data: [],
+              key: type.key,
+              name: intl.formatMessage({
+                id: `app.publication-genre.${type.key}`,
+              }),
+            });
+          }
         }));
-      data.forEach((year) => {
-        year.by_type.buckets
-          .filter((item) => item.key !== 'preprint')
-          .forEach((type) => {
-            const percents = series.find((item) => item.key === type.key);
-            const yOa = type.by_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
-            const yTot = type.doc_count;
+      // For each publication type
+      types.forEach((type) => {
+        // For each publication year
+        years.forEach((year) => {
+          // Find corresponding data for this type for this year
+          const d = data
+            .find((item) => item.key === year)
+            .by_type.buckets.find((item) => item.key === type.key);
+          if (d) {
+            const yOa = d.by_oa.buckets.find((item) => item.key === 1)?.doc_count || 0;
+            const yTot = d.doc_count;
             const y = (yOa / yTot) * 100;
-            percents.data.push({ y, yOa, yTot });
-          });
+            type.data.push({ y, yOa, yTot });
+          } else {
+            type.data.push({ y: 0, yOa: 0, yTot: 0 });
+          }
+        });
       });
 
       return {
-        categories,
-        series,
+        categories: years,
+        series: types,
       };
     },
     [domain, intl],

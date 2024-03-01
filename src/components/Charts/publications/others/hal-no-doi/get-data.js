@@ -16,6 +16,7 @@ function useGetData(beforeLastObservationSnap, intl) {
   const [isLoading, setLoading] = useState(true);
 
   const getDataByField = useCallback(async () => {
+    if (!beforeLastObservationSnap) return {};
     const query = getFetchOptions({
       key: 'publicationsFromHalWithoutDoi',
       objectType: ['publications'],
