@@ -3,6 +3,10 @@
     "intlDefinition": "app.faq.bso.definition",
     "intlEntry": "app.faq.bso.entry"
   },
+  "changement": {
+    "intlDefinition": "app.faq.changement.definition",
+    "intlEntry": "app.faq.changement.entry"
+  },
   "corpus": {
     "intlDefinition": "app.faq.corpus.definition",
     "intlEntry": "app.faq.corpus.entry",
