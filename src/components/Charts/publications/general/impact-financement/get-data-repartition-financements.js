@@ -20,9 +20,6 @@ function useGetData(observationSnap, needle = '*', domain) {
       parameters: [lastObservationSnap, needle],
       objectType: ['publications'],
     });
-    query.query.bool.filter.push({
-      term: { 'grants.agency.keyword': 'ANR' },
-    });
     if (needle !== 'ANR - global') {
       query.query.bool.filter.push({
         term: { 'grants.sub_agency.keyword': needle },

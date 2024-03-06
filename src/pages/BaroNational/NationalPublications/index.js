@@ -539,6 +539,13 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft50}
                 >
                   <BSOChart id='publi.general.impact-financement.chart-taux-ouverture' />
+                  <iframe
+                    height='716'
+                    id='publi.general.impact-financement.chart-taux-ouverture'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=ANR&displayTitle=false`}
+                    title='publi.general.impact-financement.chart-taux-ouverture'
+                    width='100%'
+                  />
                   <BSOChart id='publi.general.impact-financement.chart-business-model' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-taux' />
