@@ -1484,6 +1484,11 @@ export default function getFetchOptions({
                 },
               },
             },
+            {
+              term: {
+                'grants.agency.keyword': 'ANR',
+              },
+            },
           ],
         },
       },
