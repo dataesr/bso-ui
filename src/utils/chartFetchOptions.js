@@ -2411,12 +2411,14 @@ export default function getFetchOptions({
   }
   if (bsoLocalAffiliation) {
     const inputAffiliations = bsoLocalAffiliation.split(/[ ,]+/);
-    const affiliationsToSearch = [];
+    let affiliationsToSearch = [];
     inputAffiliations.forEach((el) => {
       affiliationsToSearch.push(el);
       affiliationsToSearch.push(el.toLowerCase());
       affiliationsToSearch.push(el.toUpperCase());
     });
+    // Filter on unique affiliations
+    affiliationsToSearch = [...new Set(affiliationsToSearch)];
     queryResponse.query.bool.filter.push({
       terms: {
         'bso_local_affiliations.keyword': affiliationsToSearch,
