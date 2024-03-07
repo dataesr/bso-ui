@@ -40,14 +40,24 @@ function useGetData(studyType, sponsor = '*') {
       objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
+    const query4 = getFetchOptions({
+      key: 'studiesDynamiqueOuvertureWithin1Year',
+      parameters: [studyType, yearMin2, yearMax2],
+      objectType: ['clinicalTrials'],
+    });
+    queries.push(Axios.post(ES_STUDIES_API_URL, query4, HEADERS));
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
     const data2 = res[1].data.aggregations;
     const data3 = res[2].data.aggregations;
+    const data4 = res[3].data.aggregations;
     const series1 = [
       { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
     ];
     const series3 = [
+      { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
+    ];
+    const series4 = [
       { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
     ];
     const academic1 = data1.by_sponsor_type.buckets.find(
@@ -66,6 +76,16 @@ function useGetData(studyType, sponsor = '*') {
       .find((ele) => ele.key === 0)
       ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
     const academicTotal3 = (academicWith3?.doc_count || 0) + (academicWithout3?.doc_count || 0);
+    const academic4 = data4.by_sponsor_type.buckets.find(
+      (ele) => ele.key === 'academique',
+    );
+    const academicWith4 = academic4?.by_has_results_within_1_year.buckets
+      .find((ele) => ele.key === 1)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const academicWithout4 = academic4?.by_has_results_within_1_year.buckets
+      .find((ele) => ele.key === 0)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const academicTotal4 = (academicWith4?.doc_count || 0) + (academicWithout4?.doc_count || 0);
     const indus = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
@@ -80,6 +100,16 @@ function useGetData(studyType, sponsor = '*') {
       .find((el) => el.key === 0)
       ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
     const indusTotal3 = (indusWith3?.doc_count || 0) + (indusWithout3?.doc_count || 0);
+    const indus4 = data4.by_sponsor_type.buckets.find(
+      (ele) => ele.key === 'industriel',
+    );
+    const indusWith4 = indus4?.by_has_results_within_1_year.buckets
+      .find((el) => el.key === 1)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const indusWithout4 = indus4?.by_has_results_within_1_year.buckets
+      .find((el) => el.key === 0)
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+    const indusTotal4 = (indusWith4?.doc_count || 0) + (indusWithout4?.doc_count || 0);
     const spons = data2;
     const sponsWith = spons?.by_has_result.buckets.find((el) => el.key === 1);
     const categories = [
@@ -146,6 +176,35 @@ function useGetData(studyType, sponsor = '*') {
       y_tot: indusTotal3,
       yearMax: yearMax2,
     });
+    const allLeadSponsorRate4 = 100
+      * ((academicWith4?.doc_count + indusWith4?.doc_count)
+        / (academicTotal4 + indusTotal4));
+    series4[0].data.push({
+      color: getCSSValue('--blue-soft-100'),
+      name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
+      y: allLeadSponsorRate4,
+      y_abs: academicWith4?.doc_count ?? 0 + indusWith4?.doc_count ?? 0,
+      y_tot: academicTotal4 + indusTotal4,
+      yearMax: yearMax2,
+    });
+    const publicLeadSponsorsRate4 = 100 * ((academicWith4?.doc_count ?? 0) / academicTotal4);
+    series4[0].data.push({
+      color: getCSSValue('--lead-sponsor-public'),
+      name: intl.formatMessage({ id: 'app.sponsor.academique' }),
+      y: publicLeadSponsorsRate4,
+      y_abs: academicWith4?.doc_count ?? 0,
+      y_tot: academicTotal4,
+      yearMax: yearMax2,
+    });
+    const privateLeadSponsorsRate4 = 100 * ((indusWith4?.doc_count ?? 0) / indusTotal4);
+    series4[0].data.push({
+      color: getCSSValue('--lead-sponsor-privee'),
+      name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
+      y: privateLeadSponsorsRate4,
+      y_abs: indusWith4?.doc_count ?? 0,
+      y_tot: indusTotal4,
+      yearMax: yearMax2,
+    });
     if (sponsor !== '*') {
       series1[0].data.push({
         color: getCSSValue('--lead-sponsor-highlight'),
@@ -165,10 +224,20 @@ function useGetData(studyType, sponsor = '*') {
         yearMax: yearMax2,
         yearMin: yearMin2,
       });
+      series4[0].data.push({
+        color: getCSSValue('--lead-sponsor-highlight'),
+        name: sponsor,
+        y: 100 * ((sponsWith?.doc_count ?? 0) / spons?.doc_count),
+        y_abs: sponsWith?.doc_count ?? 0,
+        y_tot: spons?.doc_count ?? 0,
+        yearMax: yearMax2,
+        yearMin: yearMin2,
+      });
       categories.push(sponsor);
     }
     const dataGraph1 = { categories, series: series1 };
     const dataGraph3 = { categories, series: series3 };
+    const dataGraph4 = { categories, series: series4 };
 
     const categories5 = data3.by_sponsor_type.buckets[0].by_has_results_within_3_years.buckets[0].by_completion_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -311,6 +380,7 @@ function useGetData(studyType, sponsor = '*') {
       comments,
       dataGraph1,
       dataGraph3,
+      dataGraph4,
       dataGraph5,
     };
   }
