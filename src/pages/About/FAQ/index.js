@@ -61,6 +61,12 @@ function FAQ() {
                     li: (chunks) => (
                       <li className='fr-col-offset-1 pb-16'>{chunks}</li>
                     ),
+                    linebreak: (chunks) => (
+                      <>
+                        {chunks}
+                        <br />
+                      </>
+                    ),
                     ol: (chunks) => <ol>{chunks}</ol>,
                     p: (chunks) => <p className='fs-16-28'>{chunks}</p>,
                     strong: (chunks) => (
