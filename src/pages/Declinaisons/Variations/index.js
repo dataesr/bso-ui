@@ -421,6 +421,13 @@ const Variations = () => {
                 img='/declinaisons/universite-paris-cite.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local upec université paris est créteil'
+                href='https://bibliotheque.u-pec.fr/savan/science-ouverte/le-barometre-science-ouverte-de-lupec-1'
+                img='/declinaisons/upec.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
