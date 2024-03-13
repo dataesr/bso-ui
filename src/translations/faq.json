@@ -19,6 +19,10 @@
       "https://orcid.org/"
     ]
   },
+  "type": {
+    "intlDefinition": "app.faq.type.definition",
+    "intlEntry": "app.faq.type.entry"
+  },
   "pid": {
     "intlDefinition": "app.faq.pid.definition",
     "intlEntry": "app.faq.pid.entry",
