@@ -123,7 +123,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local INSERM'
-                href='https://insermbiblio.inist.fr/barometre-de-la-science-ouverte-inserm/'
+                href='https://insermbiblio.inist.fr/barometre-de-la-science-ouverte-inserm-2024/'
                 img='/declinaisons/inserm.svg'
               />
             </Col>
