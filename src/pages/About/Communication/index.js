@@ -69,7 +69,7 @@ function NotesFlash() {
                 </DSLink>
               </div>
               <img
-                src={`/assets/flyer_bso_2023_${lang}.png`}
+                src={`/assets/flyer_bso_2024_${lang}.png`}
                 alt='flyer bso'
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
