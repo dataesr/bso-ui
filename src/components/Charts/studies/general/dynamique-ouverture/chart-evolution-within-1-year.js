@@ -71,7 +71,7 @@ Chart.defaultProps = {
   domain: 'health',
   hasComments: true,
   hasFooter: true,
-  id: 'general.dynamique.chart-evolution-within-3-years',
+  id: 'general.dynamique.chart-evolution-within-1-year',
   studyType: 'Interventional',
 };
 Chart.propTypes = {

@@ -89,7 +89,7 @@ const SubmissionForm = () => {
       console.error(error);
       setIsError(true);
       setMessage(
-        "Erreur lors de l'encodage de votre fichier, merci de contacter bso@recherche.gouv.fr.",
+        "Erreur lors de l'encodage de votre fichier, merci d'envoyer votre fichier à bso@recherche.gouv.fr.",
       );
       return;
     }
