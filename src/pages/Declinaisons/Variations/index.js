@@ -428,6 +428,13 @@ const Variations = () => {
                 img='/declinaisons/upec.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local inp institut national polytechnique de toulouse'
+                href='https://bibliotech.inp-toulouse.fr/fr/services-aux-chercheurs/barometre-de-la-science-ouverte-toulouse-inp.html'
+                img='/declinaisons/inp.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
