@@ -42,7 +42,7 @@ function useGetData(studyType, sponsor = '*') {
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const query4 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin1Year',
-      parameters: [studyType, yearMax, yearMax],
+      parameters: [studyType, yearMin, yearMax],
       objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query4, HEADERS));
@@ -333,6 +333,107 @@ function useGetData(studyType, sponsor = '*') {
     ];
     const dataGraph5 = { categories: categories5, series: series5 };
 
+    const categories6 = data4.by_sponsor_type.buckets[0].by_has_results_within_1_year.buckets[0].by_completion_year.buckets
+      .sort((a, b) => a.key - b.key)
+      .filter((y) => y.key >= 2010 && y.key <= currentYear)
+      .map((item) => item.key);
+    const academic6 = data4.by_sponsor_type.buckets.find(
+      (item) => item.key === 'academique',
+    );
+    const academicData6 = [];
+    const industrial6 = data4.by_sponsor_type.buckets.find(
+      (item) => item.key === 'industriel',
+    );
+    const industrialData6 = [];
+    const allTypesData6 = [];
+
+    categories6.forEach((year) => {
+      const academicDataWithResultsForYear = academic6?.by_has_results_within_1_year?.buckets
+        ?.find((item) => item.key === 1)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
+        ?.doc_count ?? 0;
+      const academicDataWithoutResultsForYear = academic6?.by_has_results_within_1_year?.buckets
+        ?.find((item) => item.key === 0)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
+        ?.doc_count ?? 0;
+      const industrialDataWithResultsForYear = industrial6?.by_has_results_within_1_year?.buckets
+        ?.find((item) => item.key === 1)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
+        ?.doc_count ?? 0;
+      const industrialDataWithoutResultsForYear = industrial6?.by_has_results_within_1_year?.buckets
+        ?.find((item) => item.key === 0)
+        ?.by_completion_year.buckets?.find((item) => item.key === year)
+        ?.doc_count ?? 0;
+      academicData6.push({
+        y:
+          100
+          * (academicDataWithResultsForYear
+            / (academicDataWithResultsForYear
+              + academicDataWithoutResultsForYear)),
+        y_abs: academicDataWithResultsForYear,
+        y_tot:
+          academicDataWithResultsForYear + academicDataWithoutResultsForYear,
+        year,
+      });
+      industrialData6.push({
+        year,
+        y:
+          100
+          * (industrialDataWithResultsForYear
+            / (industrialDataWithResultsForYear
+              + industrialDataWithoutResultsForYear)),
+        y_abs: industrialDataWithResultsForYear,
+        y_tot:
+          industrialDataWithResultsForYear
+          + industrialDataWithoutResultsForYear,
+        yearMax,
+        yearMin,
+      });
+      allTypesData6.push({
+        year,
+        y:
+          100
+          * ((academicDataWithResultsForYear + industrialDataWithResultsForYear)
+            / (academicDataWithResultsForYear
+              + academicDataWithoutResultsForYear
+              + industrialDataWithResultsForYear
+              + industrialDataWithoutResultsForYear)),
+        y_abs:
+          academicDataWithResultsForYear + industrialDataWithResultsForYear,
+        y_tot:
+          academicDataWithResultsForYear
+          + academicDataWithoutResultsForYear
+          + industrialDataWithResultsForYear
+          + industrialDataWithoutResultsForYear,
+        yearMax,
+        yearMin,
+      });
+    });
+
+    const series6 = [
+      {
+        id: 'public',
+        color: getCSSValue('--lead-sponsor-public'),
+        data: academicData6,
+        name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
+        pointPlacement: -0.2,
+      },
+      {
+        id: 'prive',
+        color: getCSSValue('--lead-sponsor-privee'),
+        data: industrialData6,
+        name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
+      },
+      {
+        id: 'main',
+        color: getCSSValue('--blue-soft-100'),
+        data: allTypesData6,
+        name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+        pointPlacement: 0.2,
+      },
+    ];
+    const dataGraph6 = { categories: categories6, series: series6 };
+
     let allLeadSponsorRate = '';
     let privateLeadSponsorsRate = '';
     let publicLeadSponsorsRate = '';
@@ -376,6 +477,7 @@ function useGetData(studyType, sponsor = '*') {
       dataGraph3,
       dataGraph4,
       dataGraph5,
+      dataGraph6,
     };
   }
 

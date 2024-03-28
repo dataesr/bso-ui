@@ -2403,6 +2403,51 @@ export const chartOptions = {
       return options;
     },
   },
+  'general.dynamique.chart-evolution-within-1-year-by-year': {
+    getOptions: (id, intl, data, studyType, dataTitle) => {
+      const options = getGraphOptions({ id, intl, studyType, dataTitle });
+      options.chart = {
+        type: 'bar',
+        height: '950px',
+      };
+      options.plotOptions = {
+        series: {
+          grouping: false,
+          dataLabels: {
+            enabled: false,
+          },
+          pointWidth: 15,
+        },
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(true);
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
+        lineWidth: 0,
+        tickWidth: 0,
+        reversed: false,
+        labels: {
+          style: {
+            color: getCSSValue('--g800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.legend.reversed = true;
+      options.series = data?.series || [];
+      return options;
+    },
+  },
   'general.trajectoires.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const nodeColor = {
