@@ -332,6 +332,7 @@ function getLocalAffiliation(urlSearchParams) {
   const matched = Object.keys(locals).filter((key) => [
     locals[key]?.paysage?.toLowerCase(),
     locals[key]?.ror?.toLowerCase(),
+    locals[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
   ].includes(bsoLocalAffiliation));
   if (bsoLocalAffiliation && matched.length > 0) {
     [bsoLocalAffiliation] = matched;
