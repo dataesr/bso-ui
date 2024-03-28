@@ -42,7 +42,7 @@ function useGetData(studyType, sponsor = '*') {
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const query4 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin1Year',
-      parameters: [studyType, yearMin2, yearMax2],
+      parameters: [studyType, yearMax, yearMax],
       objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query4, HEADERS));
@@ -75,10 +75,10 @@ function useGetData(studyType, sponsor = '*') {
     );
     const academicWith4 = academic4?.by_has_results_within_1_year.buckets
       .find((ele) => ele.key === 1)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
     const academicWithout4 = academic4?.by_has_results_within_1_year.buckets
       .find((ele) => ele.key === 0)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
     const academicTotal4 = (academicWith4?.doc_count || 0) + (academicWithout4?.doc_count || 0);
     const indus = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
@@ -99,10 +99,10 @@ function useGetData(studyType, sponsor = '*') {
     );
     const indusWith4 = indus4?.by_has_results_within_1_year.buckets
       .find((el) => el.key === 1)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
     const indusWithout4 = indus4?.by_has_results_within_1_year.buckets
       .find((el) => el.key === 0)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax2);
+      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
     const indusTotal4 = (indusWith4?.doc_count || 0) + (indusWithout4?.doc_count || 0);
     const spons = data2;
     const sponsWith = spons?.by_has_result.buckets.find((el) => el.key === 1);
@@ -179,7 +179,7 @@ function useGetData(studyType, sponsor = '*') {
       y: allLeadSponsorRate4,
       y_abs: (academicWith4?.doc_count ?? 0) + (indusWith4?.doc_count ?? 0),
       y_tot: academicTotal4 + indusTotal4,
-      yearMax: yearMax2,
+      yearMax,
     });
     const publicLeadSponsorsRate4 = 100 * ((academicWith4?.doc_count ?? 0) / academicTotal4);
     series4[0].data.push({
@@ -188,7 +188,7 @@ function useGetData(studyType, sponsor = '*') {
       y: publicLeadSponsorsRate4,
       y_abs: academicWith4?.doc_count ?? 0,
       y_tot: academicTotal4,
-      yearMax: yearMax2,
+      yearMax,
     });
     const privateLeadSponsorsRate4 = 100 * ((indusWith4?.doc_count ?? 0) / indusTotal4);
     series4[0].data.push({
@@ -197,7 +197,7 @@ function useGetData(studyType, sponsor = '*') {
       y: privateLeadSponsorsRate4,
       y_abs: indusWith4?.doc_count ?? 0,
       y_tot: indusTotal4,
-      yearMax: yearMax2,
+      yearMax,
     });
     if (sponsor !== '*') {
       series1[0].data.push({
@@ -224,8 +224,7 @@ function useGetData(studyType, sponsor = '*') {
         y: 100 * ((sponsWith?.doc_count ?? 0) / spons?.doc_count),
         y_abs: sponsWith?.doc_count ?? 0,
         y_tot: spons?.doc_count ?? 0,
-        yearMax: yearMax2,
-        yearMin: yearMin2,
+        yearMax,
       });
       categories.push(sponsor);
     }
@@ -366,6 +365,7 @@ function useGetData(studyType, sponsor = '*') {
       privateLeadSponsorsRate3: privateLeadSponsorsRate3.toFixed(0),
       publicLeadSponsorsRate,
       publicLeadSponsorsRate3: publicLeadSponsorsRate3.toFixed(0),
+      yearMax,
       yearMin2,
       yearMax2,
     };

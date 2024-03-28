@@ -45,7 +45,7 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={{ year: allData?.comments?.yearMax2 ?? 0 }}
+      dataTitle={{ year: allData?.comments?.yearMax ?? 0 }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
