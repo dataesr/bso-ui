@@ -46,20 +46,14 @@ function useGetData(studyType, sponsor = '*') {
       objectType: ['clinicalTrials'],
     });
     queries.push(Axios.post(ES_STUDIES_API_URL, query4, HEADERS));
+    const series1 = [{ data: [] }];
+    const series3 = [{ data: [] }];
+    const series4 = [{ data: [] }];
     const res = await Axios.all(queries);
     const data1 = res[0].data.aggregations;
     const data2 = res[1].data.aggregations;
     const data3 = res[2].data.aggregations;
     const data4 = res[3].data.aggregations;
-    const series1 = [
-      { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
-    ];
-    const series3 = [
-      { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
-    ];
-    const series4 = [
-      { name: intl.formatMessage({ id: 'app.sponsor-type' }), data: [] },
-    ];
     const academic1 = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
@@ -124,8 +118,8 @@ function useGetData(studyType, sponsor = '*') {
         100
         * ((academicWith?.doc_count + indusWith?.doc_count)
           / (academic1?.doc_count + indus?.doc_count)),
-      y_abs: academicWith?.doc_count ?? 0 + indusWith?.doc_count ?? 0,
-      y_tot: academic1?.doc_count ?? 0 + indus?.doc_count ?? 0,
+      y_abs: (academicWith?.doc_count ?? 0) + (indusWith?.doc_count ?? 0),
+      y_tot: (academic1?.doc_count ?? 0) + (indus?.doc_count ?? 0),
       yearMax,
       yearMin,
     });
@@ -154,7 +148,7 @@ function useGetData(studyType, sponsor = '*') {
       color: getCSSValue('--blue-soft-100'),
       name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
       y: allLeadSponsorRate3,
-      y_abs: academicWith3?.doc_count ?? 0 + indusWith3?.doc_count ?? 0,
+      y_abs: (academicWith3?.doc_count ?? 0) + (indusWith3?.doc_count ?? 0),
       y_tot: academicTotal3 + indusTotal3,
       yearMax: yearMax2,
     });
@@ -183,7 +177,7 @@ function useGetData(studyType, sponsor = '*') {
       color: getCSSValue('--blue-soft-100'),
       name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
       y: allLeadSponsorRate4,
-      y_abs: academicWith4?.doc_count ?? 0 + indusWith4?.doc_count ?? 0,
+      y_abs: (academicWith4?.doc_count ?? 0) + (indusWith4?.doc_count ?? 0),
       y_tot: academicTotal4 + indusTotal4,
       yearMax: yearMax2,
     });

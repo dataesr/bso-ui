@@ -7,7 +7,7 @@ import {
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import Banner from '../../../components/Banner';
@@ -16,8 +16,7 @@ import FaqEntries from '../../../translations/faq.json';
 
 function FAQ() {
   const intl = useIntl();
-  const search = new URLSearchParams(useLocation().search);
-  const expanded = search?.get('expanded') || 0;
+  const [searchParams] = useSearchParams();
 
   const renderItem = (faqKey, index) => {
     const values = {};
@@ -37,7 +36,9 @@ function FAQ() {
 
     return (
       <AccordionItem
-        initExpand={parseInt(index, 10) === parseInt(expanded, 10)}
+        initExpand={
+          parseInt(index, 10) === parseInt(searchParams.get('expanded'), 10)
+        }
         key={uuidv4()}
         title={intl.formatMessage({ id: faqKey.intlEntry })}
       >

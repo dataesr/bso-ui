@@ -42,6 +42,7 @@ function OpenData() {
                 bodyClassName='bg-blue-soft-100 color-white'
                 hasArrow={false}
                 hasBorder={false}
+                href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?refine.keyword=BSO&sort=modified'
               >
                 <CardDescription as='div'>
                   <Container>
@@ -85,6 +86,7 @@ function OpenData() {
                 bodyClassName='bg-blue-soft-150 color-white'
                 hasArrow={false}
                 hasBorder={false}
+                href='https://github.com/orgs/dataesr/repositories?q=bso'
               >
                 <CardDescription as='div'>
                   <Container>
