@@ -328,14 +328,14 @@ function getLocalAffiliation(urlSearchParams) {
   ) {
     return bsoLocalAffiliation;
   }
-  // If bsoLocalAffiliation is the Paysage or the RoR of a structure in config
+  // If bsoLocalAffiliation is the Paysage or the RoR of a structure in locals config file
   const matched = Object.keys(locals).filter((key) => [
     locals[key]?.paysage?.toLowerCase(),
     locals[key]?.ror?.toLowerCase(),
     locals[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
   ].includes(bsoLocalAffiliation));
   if (bsoLocalAffiliation && matched.length > 0) {
-    [bsoLocalAffiliation] = matched;
+    bsoLocalAffiliation = matched[0].toLocaleLowerCase();
   }
   return bsoLocalAffiliation;
 }
