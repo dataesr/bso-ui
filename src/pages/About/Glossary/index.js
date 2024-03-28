@@ -10,6 +10,7 @@ import {
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useSearchParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import Banner from '../../../components/Banner';
@@ -19,22 +20,25 @@ import { alphabet } from '../../../utils/constants';
 import { capitalize, sortByPath } from '../../../utils/helpers';
 import useViewport from '../../../utils/Hooks/useViewport';
 
-function Glossaire() {
+function Glossary() {
   const intl = useIntl();
   const { mobile } = useViewport();
   const [activeLetter, setActiveLetter] = useState('');
+  const [searchParams] = useSearchParams();
 
   const options = alphabet.map((letter) => ({
     label: letter.toUpperCase(),
     value: letter,
   }));
+
   options.unshift({
     disabled: false,
     hidden: false,
     label: intl.formatMessage({ id: 'app.glossary.select-letter' }),
     value: '',
   });
-  const getItem = (glossaryKey) => {
+
+  const getItem = (glossaryKey, index) => {
     const values = {};
     glossaryKey?.ctas?.forEach((cta, i) => {
       values[`cta${i}`] = (chunks) => (
@@ -46,6 +50,9 @@ function Glossaire() {
 
     return (
       <AccordionItem
+        initExpand={
+          parseInt(index, 10) === parseInt(searchParams.get('expanded'), 10)
+        }
         key={uuidv4()}
         title={capitalize(
           intl.formatMessage({
@@ -84,7 +91,7 @@ function Glossaire() {
     let r;
     const firstGlossaryEntry = GlossaryEntries[0];
     if (!activeLetter) {
-      r = Object.keys(firstGlossaryEntry).map((key) => getItem(firstGlossaryEntry[key]));
+      r = Object.keys(firstGlossaryEntry).map((key, index) => getItem(firstGlossaryEntry[key], index));
     } else {
       r = Object.keys(firstGlossaryEntry).map((key) => {
         const firstLetterEntry = intl.formatMessage({
@@ -177,4 +184,4 @@ function Glossaire() {
   );
 }
 
-export default Glossaire;
+export default Glossary;

@@ -55,10 +55,10 @@ function Banner({
 
       if (scrollTop > banner.offsetTop + heightBanner + 1 && scrollingDown) {
         setSticked(true);
-        // For Glossaire button
+        // For Glossary button
         document.querySelector('html').classList.add('banner-sticked');
       } else if (scrollTop < banner.offsetTop - 1 && !scrollingDown) {
-        // For Glossaire button
+        // For Glossary button
         document.querySelector('html').classList.remove('banner-sticked');
         setSticked(false);
       }

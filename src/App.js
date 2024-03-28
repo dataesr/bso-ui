@@ -11,7 +11,7 @@ import HomePage from './pages';
 import Citation from './pages/About/Citation';
 import Communication from './pages/About/Communication';
 import FAQ from './pages/About/FAQ';
-import Glossaire from './pages/About/Glossaire';
+import Glossary from './pages/About/Glossary';
 import Methodology from './pages/About/Methodology';
 import OpenData from './pages/About/OpenData';
 import BaroNational from './pages/BaroNational';
@@ -241,7 +241,7 @@ function App() {
             <Route
               element={(
                 <PageTracker>
-                  <Glossaire />
+                  <Glossary />
                 </PageTracker>
               )}
               exact
