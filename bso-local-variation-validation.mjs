@@ -38,7 +38,7 @@ const sendEmail = (email, structureId, structureName) => {
 
 if (process.argv.length === 4) {
   const email = process.argv[2];
-  const structureId = process.argv[3];
+  const structureId = process.argv[3].toLowerCase();
   const structureName = locals?.[structureId]?.commentsName;
   if (structureName) {
     sendEmail(email, structureId, structureName);
