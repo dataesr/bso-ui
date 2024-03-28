@@ -369,7 +369,7 @@ const Variations = () => {
               <CardLogo
                 alt='bso local Normandie Université'
                 href='https://science-ouverte.normandie-univ.fr/blog/premiere-edition-du-barometre-normand-pour-la-science-ouverte/'
-                img='/declinaisons/normandie_universite.png'
+                img='/declinaisons/normandie-universite.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -433,6 +433,13 @@ const Variations = () => {
                 alt='bso local inp institut national polytechnique de toulouse'
                 href='https://bibliotech.inp-toulouse.fr/fr/services-aux-chercheurs/barometre-de-la-science-ouverte-toulouse-inp.html'
                 img='/declinaisons/inp.png'
+              />
+            </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local université gustave eiffel'
+                href='https://www.univ-gustave-eiffel.fr/la-recherche/science-ouverte/barometre-de-la-science-ouverte-a-luniversite'
+                img='/declinaisons/gustave-eiffel.png'
               />
             </Col>
           </Row>
