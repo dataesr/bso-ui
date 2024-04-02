@@ -124,6 +124,12 @@ function EssaisCliniques() {
                     isDisplayed={!isInProduction()}
                     studyType='Interventional'
                   />
+                  <BSOChart
+                    id='general.dynamique.chart-evolution-within-1-year-by-year'
+                    domain='health'
+                    isDisplayed={!isInProduction()}
+                    studyType='Interventional'
+                  />
                 </QuestionSection>
 
                 <QuestionSection

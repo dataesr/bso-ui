@@ -153,6 +153,9 @@ const ChartEvolutionWithin3YearsByYearStudies = lazy(() => import(
 const ChartEvolutionWithin1YearStudies = lazy(() => import(
   '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
 ));
+const ChartEvolutionWithin1YearByYearStudies = lazy(() => import(
+  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year-by-year'
+));
 const ChartRepartitionStudies = lazy(() => import('../components/Charts/studies/general/trajectoires/chart-repartition'));
 const ChartDynamiqueNombreStudies = lazy(() => import(
   '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-evolution-nombre'
@@ -384,6 +387,8 @@ const chartComponents = {
     ChartEvolutionWithin3YearsByYearStudies,
   'general.dynamique.chart-evolution-within-1-year':
     ChartEvolutionWithin1YearStudies,
+  'general.dynamique.chart-evolution-within-1-year-by-year':
+    ChartEvolutionWithin1YearByYearStudies,
   'general.trajectoires.chart-repartition': ChartRepartitionStudies,
   'caracteristiques.quand.chart-evolution-temporalites':
     ChartEvolutionTemporalitesStudies,

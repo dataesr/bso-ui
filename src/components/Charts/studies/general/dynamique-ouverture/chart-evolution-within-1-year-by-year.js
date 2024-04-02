@@ -28,13 +28,13 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraph4 } = allData;
+  const { dataGraph6 } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    dataGraph4,
+    dataGraph6,
     studyType,
   );
 
@@ -45,7 +45,6 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   return (
     <WrapperChart
       chartRef={chartRef}
-      dataTitle={{ year: allData?.comments?.yearMax ?? 0 }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -71,7 +70,7 @@ Chart.defaultProps = {
   domain: 'health',
   hasComments: true,
   hasFooter: true,
-  id: 'general.dynamique.chart-evolution-within-1-year',
+  id: 'general.dynamique.chart-evolution-within-1-year-by-year',
   studyType: 'Interventional',
 };
 Chart.propTypes = {
