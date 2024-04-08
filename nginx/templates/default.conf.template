@@ -9,6 +9,7 @@ server {
     proxy_set_header accept application/json;
     proxy_set_header api-key $BREVO_KEY;
     proxy_set_header content-type application/json;
+    proxy_ssl_server_name on;
     proxy_pass https://api.brevo.com/v3/smtp/email;
   }
 }
