@@ -88,7 +88,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         });
       });
       categoriesLabels.sort((a, b) => compare(a, b));
-      categoriesLabels.forEach((el, ix) => {
+      categoriesLabels.forEach((_, ix) => {
         categoriesLabels[ix].alphaOrder = ix;
       });
       data.forEach((item, catIndex) => {
@@ -102,8 +102,8 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         const halTheseCurrent = item.by_oa_host_type.buckets.find(
           (item2) => item2.key === 'HAL;theses.fr',
         )?.doc_count || 0;
-        const totalCurrent = halCurrent + theseCurrent + halTheseCurrent + closedCurrent;
         const oaCurrent = halCurrent + theseCurrent + halTheseCurrent;
+        const totalCurrent = oaCurrent + closedCurrent;
         const nameClean = item.key
           .replace(/\n/g, '')
           .replace('  ', ' ')
@@ -187,6 +187,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           alphaOrder,
         });
       });
+
       const dataGraph = [
         {
           name: intl.formatMessage({
@@ -230,6 +231,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         publisherRepositoryRate,
         repositoryRate,
       };
+
       return {
         categories,
         comments,
