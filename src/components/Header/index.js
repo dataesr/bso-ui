@@ -149,7 +149,10 @@ function Header() {
         </HeaderBody>
         <HeaderNav path={path}>
           <NavItem
-            current={path.startsWith(urls.nationalPublications[lang])}
+            current={
+              path.startsWith(urls.nationalPublications[lang])
+              || path === urls.nationalThesis[lang]
+            }
             title={intl.formatMessage({
               id: 'app.header.nav.baro-publications-theses',
               defaultMessage: 'Les publications et thèses',
@@ -193,7 +196,13 @@ function Header() {
             />
           </NavItem>
           <NavItem
-            current={path.startsWith(urls.nationalDataCode[lang])}
+            current={
+              path === urls.nationalDataCode[lang]
+              || stringIsIntTheKitchen(path, lang, urls.nationalResearchData.tabs)
+                .length > 0
+              || stringIsIntTheKitchen(path, lang, urls.nationalSoftwareCode.tabs)
+                .length > 0
+            }
             title={intl.formatMessage({
               id: 'app.header.nav.data-code',
               defaultMessage: 'Les données et code',
@@ -208,7 +217,13 @@ function Header() {
               asLink={<RouterLink to={urls.nationalDataCode[lang] + search} />}
             />
             <NavSubItem
-              current={path === urls.nationalResearchData[lang]}
+              current={
+                stringIsIntTheKitchen(
+                  path,
+                  lang,
+                  urls.nationalResearchData.tabs,
+                ).length > 0
+              }
               title={intl.formatMessage({
                 id: 'app.baro-national.data.title.beta',
                 defaultMessage: 'Les données de la recherche',
@@ -218,7 +233,13 @@ function Header() {
               }
             />
             <NavSubItem
-              current={path === urls.nationalSoftwareCode[lang]}
+              current={
+                stringIsIntTheKitchen(
+                  path,
+                  lang,
+                  urls.nationalSoftwareCode.tabs,
+                ).length > 0
+              }
               title={intl.formatMessage({
                 id: 'app.baro-national.software.title.beta',
                 defaultMessage: 'Les codes et logiciels',
