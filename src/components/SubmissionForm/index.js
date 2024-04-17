@@ -132,7 +132,7 @@ const SubmissionForm = () => {
           <p>Siren ou RNSR de la structure: ${id}</p>
           <p>RoR de la structure: ${ror}</p>
           </body></html>`,
-        attachment: [{ content, name: 'bso.csv' }],
+        attachment: [{ content, name: `${id.length > 0 ? id : 'bso'}.csv` }],
       },
     };
 
