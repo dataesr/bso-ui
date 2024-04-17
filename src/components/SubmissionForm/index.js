@@ -13,6 +13,12 @@ import Papa from 'papaparse';
 import { useState } from 'react';
 import { read, utils } from 'xlsx';
 
+const {
+  REACT_APP_OS_PASSWORD,
+  REACT_APP_OS_TENANT_NAME,
+  REACT_APP_OS_USERNAME,
+} = process.env;
+
 const SUPPORTED_MIME_TYPES = [
   'application/msexcel',
   'application/vnd.ms-excel',
@@ -72,6 +78,46 @@ const SubmissionForm = () => {
     setMessage(undefined);
     setNntEtabCount(undefined);
     setNntIdCount(undefined);
+  };
+
+  const getPreviousDoiCount = async () => {
+    if (
+      REACT_APP_OS_PASSWORD
+      && REACT_APP_OS_TENANT_NAME
+      && REACT_APP_OS_USERNAME
+    ) {
+      const body = {
+        auth: {
+          identity: {
+            methods: ['password'],
+            password: {
+              user: {
+                name: REACT_APP_OS_USERNAME,
+                domain: { id: 'default' },
+                password: REACT_APP_OS_PASSWORD,
+              },
+            },
+          },
+          scope: {
+            project: {
+              name: REACT_APP_OS_TENANT_NAME,
+              domain: { id: 'default' },
+            },
+          },
+        },
+      };
+
+      const response = await fetch(
+        'https://auth.cloud.ovh.net/v3/auth/tokens',
+        {
+          body: JSON.stringify(body),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        },
+      );
+      const token = response?.headers?.get('x-subject-token');
+      console.log(token);
+    }
   };
 
   const sendEmail = (event) => {
@@ -390,7 +436,10 @@ const SubmissionForm = () => {
               <TextInput
                 hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/ pour trouver le Siren de votre structure'
                 label='Siren ou RNSR de la structure'
-                onChange={(e) => setId(e.target.value)}
+                onChange={(e) => {
+                  setId(e.target.value);
+                  getPreviousDoiCount();
+                }}
                 value={id}
               />
               <TextInput
