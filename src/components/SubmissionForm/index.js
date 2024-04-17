@@ -87,10 +87,22 @@ const SubmissionForm = () => {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
+      const splitText = txt.split('\n');
+      const errors = [];
+      for (let i = 0; i < splitText.length; i += 1) {
+        try {
+          window.btoa(splitText[i]);
+        } catch (e) {
+          errors.push(i + 1);
+        }
+      }
       setIsError(true);
-      setMessage(
-        "Erreur lors de l'encodage de votre fichier, merci d'envoyer votre fichier à bso@recherche.gouv.fr.",
-      );
+      const errorMessage = errors.length === 1
+        ? `Un caractère spécial a été détecté à la ligne ${errors[0]}. Merci de corriger votre fichier afin de le soumettre.`
+        : `Un caractère spécial a été détecté aux ${errors.join(
+          ', ',
+        )}. Merci de corriger votre fichier afin de le soumettre.`;
+      setMessage(errorMessage);
       return;
     }
 
