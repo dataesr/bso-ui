@@ -13,6 +13,12 @@ import Papa from 'papaparse';
 import { useState } from 'react';
 import { read, utils } from 'xlsx';
 
+const {
+  REACT_APP_OS_PASSWORD,
+  REACT_APP_OS_TENANT_NAME,
+  REACT_APP_OS_USERNAME,
+} = process.env;
+
 const SUPPORTED_MIME_TYPES = [
   'application/msexcel',
   'application/vnd.ms-excel',
@@ -74,6 +80,50 @@ const SubmissionForm = () => {
     setNntIdCount(undefined);
   };
 
+  const getPreviousDoiCount = async () => {
+    console.log('getPreviousDoiCount');
+    console.log(REACT_APP_OS_PASSWORD);
+    console.log(REACT_APP_OS_TENANT_NAME);
+    console.log(REACT_APP_OS_USERNAME);
+    if (
+      REACT_APP_OS_PASSWORD
+      && REACT_APP_OS_TENANT_NAME
+      && REACT_APP_OS_USERNAME
+    ) {
+      const body = {
+        auth: {
+          identity: {
+            methods: ['password'],
+            password: {
+              user: {
+                name: REACT_APP_OS_USERNAME,
+                domain: { id: 'default' },
+                password: REACT_APP_OS_PASSWORD,
+              },
+            },
+          },
+          scope: {
+            project: {
+              name: REACT_APP_OS_TENANT_NAME,
+              domain: { id: 'default' },
+            },
+          },
+        },
+      };
+
+      const response = await fetch(
+        'https://auth.cloud.ovh.net/v3/auth/tokens',
+        {
+          body: JSON.stringify(body),
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+        },
+      );
+      const token = response?.headers?.get('x-subject-token');
+      console.log(token);
+    }
+  };
+
   const sendEmail = (event) => {
     event.preventDefault();
     const txt = Papa.unparse(dataFile, {
@@ -87,10 +137,22 @@ const SubmissionForm = () => {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
+      const splitText = txt.split('\n');
+      const errors = [];
+      for (let i = 0; i < splitText.length; i += 1) {
+        try {
+          window.btoa(splitText[i]);
+        } catch (e) {
+          errors.push(i + 1);
+        }
+      }
       setIsError(true);
-      setMessage(
-        "Erreur lors de l'encodage de votre fichier, merci d'envoyer votre fichier à bso@recherche.gouv.fr.",
-      );
+      const errorMessage = errors.length === 1
+        ? `Un caractère spécial a été détecté à la ligne ${errors[0]}. Merci de corriger votre fichier afin de le soumettre.`
+        : `Un caractère spécial a été détecté aux ${errors.join(
+          ', ',
+        )}. Merci de corriger votre fichier afin de le soumettre.`;
+      setMessage(errorMessage);
       return;
     }
 
@@ -120,7 +182,7 @@ const SubmissionForm = () => {
           <p>Siren ou RNSR de la structure: ${id}</p>
           <p>RoR de la structure: ${ror}</p>
           </body></html>`,
-        attachment: [{ content, name: 'bso.csv' }],
+        attachment: [{ content, name: `${id.length > 0 ? id : 'bso'}.csv` }],
       },
     };
 
@@ -378,7 +440,10 @@ const SubmissionForm = () => {
               <TextInput
                 hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/ pour trouver le Siren de votre structure'
                 label='Siren ou RNSR de la structure'
-                onChange={(e) => setId(e.target.value)}
+                onChange={(e) => {
+                  setId(e.target.value);
+                  getPreviousDoiCount();
+                }}
                 value={id}
               />
               <TextInput
