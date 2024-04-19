@@ -82,7 +82,9 @@ const SubmissionForm = () => {
 
   const getPreviousDoiCount = async () => {
     console.log('getPreviousDoiCount');
-    console.log(process.env);
+    console.log(REACT_APP_OS_PASSWORD);
+    console.log(REACT_APP_OS_TENANT_NAME);
+    console.log(REACT_APP_OS_USERNAME);
     if (
       REACT_APP_OS_PASSWORD
       && REACT_APP_OS_TENANT_NAME
