@@ -10,14 +10,8 @@ import {
 } from '@dataesr/react-dsfr';
 import Axios from 'axios';
 import Papa from 'papaparse';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { read, utils } from 'xlsx';
-
-const {
-  REACT_APP_OS_PASSWORD,
-  REACT_APP_OS_TENANT_NAME,
-  REACT_APP_OS_USERNAME,
-} = process.env;
 
 const SUPPORTED_MIME_TYPES = [
   'application/msexcel',
@@ -67,6 +61,7 @@ const SubmissionForm = () => {
   const [name, setName] = useState('');
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
+  const [previousDoiCount, setPreviousDoiCount] = useState('');
   const [ror, setRor] = useState();
 
   const resetState = () => {
@@ -78,50 +73,6 @@ const SubmissionForm = () => {
     setMessage(undefined);
     setNntEtabCount(undefined);
     setNntIdCount(undefined);
-  };
-
-  const getPreviousDoiCount = async () => {
-    console.log('getPreviousDoiCount');
-    console.log(REACT_APP_OS_PASSWORD);
-    console.log(REACT_APP_OS_TENANT_NAME);
-    console.log(REACT_APP_OS_USERNAME);
-    if (
-      REACT_APP_OS_PASSWORD
-      && REACT_APP_OS_TENANT_NAME
-      && REACT_APP_OS_USERNAME
-    ) {
-      const body = {
-        auth: {
-          identity: {
-            methods: ['password'],
-            password: {
-              user: {
-                name: REACT_APP_OS_USERNAME,
-                domain: { id: 'default' },
-                password: REACT_APP_OS_PASSWORD,
-              },
-            },
-          },
-          scope: {
-            project: {
-              name: REACT_APP_OS_TENANT_NAME,
-              domain: { id: 'default' },
-            },
-          },
-        },
-      };
-
-      const response = await fetch(
-        'https://auth.cloud.ovh.net/v3/auth/tokens',
-        {
-          body: JSON.stringify(body),
-          headers: { 'Content-Type': 'application/json' },
-          method: 'POST',
-        },
-      );
-      const token = response?.headers?.get('x-subject-token');
-      console.log(token);
-    }
   };
 
   const sendEmail = (event) => {
@@ -404,6 +355,28 @@ const SubmissionForm = () => {
     }
   };
 
+  const setInstitutionId = async (e) => {
+    e.preventDefault();
+    const institutionId = e.target.value;
+    setId(institutionId);
+    try {
+      const options = {
+        url: `https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso-local/${institutionId}.csv`,
+      };
+      Axios.request(options)
+        .then((r) => setPreviousDoiCount(
+          r.data
+            .split('\n')
+            .slice(1)
+            .filter((item) => item.length).length,
+        ))
+        .catch(() => {});
+      // eslint-disable-next-line no-empty
+    } catch (_) {
+      console.log('ERROR');
+    }
+  };
+
   return (
     <Container>
       <section className='color-blue-dark-125 content mb-20'>
@@ -440,12 +413,21 @@ const SubmissionForm = () => {
               <TextInput
                 hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/ pour trouver le Siren de votre structure'
                 label='Siren ou RNSR de la structure'
-                onChange={(e) => {
-                  setId(e.target.value);
-                  getPreviousDoiCount();
-                }}
+                onChange={(e) => setInstitutionId(e)}
                 value={id}
               />
+              {previousDoiCount && (
+                <div className='text-green'>
+                  Le précédent baromètre local de cette structure comptait
+                  {' '}
+                  <b>
+                    {previousDoiCount}
+                    {' '}
+                    lignes
+                  </b>
+                  .
+                </div>
+              )}
               <TextInput
                 hint='Utiliser https://ror.org/ pour trouver le RoR de votre structure'
                 label='RoR de la structure'
@@ -465,6 +447,7 @@ const SubmissionForm = () => {
                   />
                 </span>
               )}
+
               {!!(
                 doiCount
                 || halCollCodeCount
@@ -496,6 +479,12 @@ const SubmissionForm = () => {
               >
                 Envoyer
               </Button>
+              {(email?.length === 0 || name?.length === 0 || isError) && (
+                <div className='italic text-red'>
+                  Veuillez remplir les champs email et nom ou corriger les
+                  erreurs.
+                </div>
+              )}
             </form>
           </Col>
         </Row>
