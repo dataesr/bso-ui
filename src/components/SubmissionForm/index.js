@@ -10,7 +10,7 @@ import {
 } from '@dataesr/react-dsfr';
 import Axios from 'axios';
 import Papa from 'papaparse';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { read, utils } from 'xlsx';
 
 const SUPPORTED_MIME_TYPES = [
@@ -373,7 +373,8 @@ const SubmissionForm = () => {
         .catch(() => {});
       // eslint-disable-next-line no-empty
     } catch (_) {
-      console.log('ERROR');
+      // eslint-disable-next-line no-console
+      console.error('ERROR');
     }
   };
 
