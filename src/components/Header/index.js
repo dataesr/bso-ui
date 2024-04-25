@@ -402,10 +402,10 @@ function Header() {
               asLink={<RouterLink to={urls.citation[lang] + search} />}
             />
             <NavSubItem
-              current={path === urls.faq[lang]}
+              current={path === urls.project[lang]}
               title={intl.formatMessage({
                 id: 'app.footer.project.text',
-                defaultMessage: 'FAQ',
+                defaultMessage: 'Projet',
               })}
               asLink={<RouterLink to={urls.project[lang] + search} />}
             />
