@@ -35,6 +35,7 @@ const SUPPORTED_FIELDS = [
   'hal_id',
   'nnt_etab',
   'nnt_id',
+  '',
 ];
 // DOI does not contain comma
 const doiRegex = /^[^,]+$/;
