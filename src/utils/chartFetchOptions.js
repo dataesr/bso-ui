@@ -1519,7 +1519,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    declarationRate: ([lastObservationSnap]) => ({
+    declarationRate: ([lastObservationSnap, bsoLocalAffiliation, agency]) => ({
       size: 0,
       query: {
         bool: {
@@ -1536,7 +1536,12 @@ export default function getFetchOptions({
             },
             {
               term: {
-                'grants.agency.keyword': 'ANR',
+                'grants.agency.keyword': agency,
+              },
+            },
+            {
+              terms: {
+                'bso_local_affiliations.keyword': [bsoLocalAffiliation],
               },
             },
           ],

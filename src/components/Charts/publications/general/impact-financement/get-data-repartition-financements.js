@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { getCSSValue, getURLSearchParams } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, needle = '*', domain) {
   const intl = useIntl();
@@ -13,11 +13,12 @@ function useGetData(observationSnap, needle = '*', domain) {
   const [isError, setError] = useState(false);
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
+    const { agency, bsoLocalAffiliation } = getURLSearchParams(intl);
     const queries = [];
     const query = getFetchOptions({
       key: 'declarationRate',
       domain,
-      parameters: [lastObservationSnap, needle],
+      parameters: [lastObservationSnap, bsoLocalAffiliation, agency],
       objectType: ['publications'],
     });
     if (needle !== 'ANR - global') {

@@ -4,9 +4,13 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  getCSSValue,
+  getURLSearchParams,
+} from '../../../../../utils/helpers';
 
-function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
+function useGetData(observationSnap, domain, split) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isError, setError] = useState(false);
@@ -27,6 +31,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
   }
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
+    const { agency } = getURLSearchParams(intl);
     const queries = [];
     const queryFiltered = getFetchOptions({
       key: 'oaHostType',
@@ -70,6 +75,9 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain, split) {
       (item) => item?.terms?.['bso_local_affiliations.keyword'],
     );
     query.query.bool.filter.splice(indexToDelete, 1);
+    queryFiltered.query.bool.filter.push({
+      term: { 'grants.agency.keyword': agency },
+    });
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
