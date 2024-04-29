@@ -370,6 +370,8 @@ export function getURLSearchParams(intl = undefined, id = '') {
   let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
     || localAffiliationSettings?.firstObservationYear
     || '2018';
+  const agency = urlSearchParams.get('agency')?.toLowerCase()
+    || localAffiliationSettings?.agency;
   const idTypes = ['crossref'];
   const useHalId = (urlSearchParams.get('useHalId')?.toLowerCase() || 'false') === 'true';
   if (useHalId) {
@@ -454,6 +456,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   }
 
   return {
+    agency,
     bsoCountry,
     bsoLocalAffiliation: alias || bsoLocalAffiliation,
     commentsName,

@@ -1496,7 +1496,8 @@
     "commentsNameEN": "resulting from ANR-funded projects",
     "paysage": "Nc86W",
     "ror": "https://ror.org/00rbzpz17",
-    "startYear": 2016
+    "startYear": 2016,
+    "agency": "ANR"
   },
   "CERCLL": {
     "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
