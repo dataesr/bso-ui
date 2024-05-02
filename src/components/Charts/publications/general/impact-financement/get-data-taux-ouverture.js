@@ -75,9 +75,11 @@ function useGetData(observationSnap, domain, split) {
       (item) => item?.terms?.['bso_local_affiliations.keyword'],
     );
     query.query.bool.filter.splice(indexToDelete, 1);
-    queryFiltered.query.bool.filter.push({
-      term: { 'grants.agency.keyword': agency },
-    });
+    if (agency) {
+      queryFiltered.query.bool.filter.push({
+        term: { 'grants.agency.keyword': agency },
+      });
+    }
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);

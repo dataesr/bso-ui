@@ -47,17 +47,17 @@ function useGetData(studyType, sponsorType = '*') {
       .filter((y) => y.key >= 2012 && y.key <= currentYear);
 
     const colors = {
-      Behavioral: getCSSValue('--yellow-medium-125'),
-      Biological: getCSSValue('--green-soft-125'),
-      CombinationProduct: getCSSValue('--pink-soft-150'),
-      Device: getCSSValue('--blue-soft-100'),
-      DiagnosticTest: getCSSValue('--green-medium-150'),
-      DietarySupplement: getCSSValue('--blue-dark-125'),
-      Drug: getCSSValue('--orange-soft-100'),
-      Genetic: getCSSValue('--purple-medium-100'),
-      Other: getCSSValue('--g-400'),
-      Procedure: getCSSValue('--orange-medium-100'),
-      Radiation: getCSSValue('--pink-light-100'),
+      BEHAVIORAL: getCSSValue('--yellow-medium-125'),
+      BIOLOGICAL: getCSSValue('--green-soft-125'),
+      COMBINATION_PRODUCT: getCSSValue('--pink-soft-150'),
+      DEVICE: getCSSValue('--blue-soft-100'),
+      DIAGNOSTIC_TEST: getCSSValue('--green-medium-150'),
+      DIETARY_SUPPLEMENT: getCSSValue('--blue-dark-125'),
+      DRUG: getCSSValue('--orange-soft-100'),
+      GENETIC: getCSSValue('--purple-medium-100'),
+      OTHER: getCSSValue('--g-400'),
+      PROCEDURE: getCSSValue('--orange-medium-100'),
+      RADIATION: getCSSValue('--pink-light-100'),
     };
 
     const dataGraph = [];
@@ -92,7 +92,7 @@ function useGetData(studyType, sponsorType = '*') {
 
     const year = 2019;
     const category = intl.formatMessage({
-      id: 'app.studies.intervention-type.Drug',
+      id: 'app.studies.intervention-type.DRUG',
     });
     const value = dataGraph
       ?.find((item) => item.name === category)
