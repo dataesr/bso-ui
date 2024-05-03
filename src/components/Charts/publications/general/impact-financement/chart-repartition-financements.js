@@ -23,17 +23,19 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
-  const [agency, setAgency] = useState('ANR - global');
+
   const [chartComments, setChartComments] = useState('');
   const [dataTitle, setDataTitle] = useState({});
   const [optionsGraph, setOptionsGraph] = useState(null);
+  const [selectedSubAgency, setSelectedSubAgency] = useState('*');
+
   const { lastObservationSnap } = useGlobals();
   const { data, isError, isLoading } = useGetData(
     lastObservationSnap,
-    agency,
+    selectedSubAgency,
     domain,
   );
-  const { categories, dataGraph } = data;
+  const { categories, dataGraph, subAgencies } = data;
   const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {
@@ -47,9 +49,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   }, [data, idWithDomain, intl]);
 
   useEffect(() => {
-    const agencyTitle = agency !== 'ANR - global' ? ` (${agency})` : '';
-    setDataTitle({ agencyTitle });
-  }, [agency]);
+    const selectedSubAgencyTitle = selectedSubAgency !== '*' ? ` (${selectedSubAgency})` : '';
+    setDataTitle({ agencyTitle: selectedSubAgencyTitle });
+  }, [selectedSubAgency]);
 
   return (
     <WrapperChart
@@ -62,32 +64,31 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isError={isError}
       isLoading={isLoading || !dataGraph}
     >
-      <RadioGroup
-        className='d-inline-block'
-        isInline
-        legend={intl.formatMessage({ id: 'app.publi.display' })}
-        onChange={(newValue) => setAgency(newValue)}
-        value={agency}
-      >
-        <Radio
-          label={intl.formatMessage({
-            id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.global',
-          })}
-          value='ANR - global'
-        />
-        <Radio
-          label={intl.formatMessage({
-            id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.dos',
-          })}
-          value='ANR DOS'
-        />
-        <Radio
-          label={intl.formatMessage({
-            id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.pia',
-          })}
-          value='ANR PIA'
-        />
-      </RadioGroup>
+      {subAgencies?.length > 0 && (
+        <RadioGroup
+          className='d-inline-block'
+          isInline
+          legend={intl.formatMessage({ id: 'app.publi.display' })}
+          onChange={(newValue) => setSelectedSubAgency(newValue)}
+          value={selectedSubAgency}
+        >
+          <Radio
+            label={intl.formatMessage({
+              id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.all',
+            })}
+            value='*'
+          />
+          {subAgencies.slice(0, 2).map((subAgency) => (
+            <Radio
+              label={intl.formatMessage({
+                id: `app.national-publi.general.impact-financement.chart-repartition-financements.source.${subAgency.key}`,
+                defaultMessage: `${subAgency.key}`,
+              })}
+              value={subAgency.key}
+            />
+          ))}
+        </RadioGroup>
+      )}
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomain}
