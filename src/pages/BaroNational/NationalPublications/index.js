@@ -547,7 +547,13 @@ export default function NationalPublications() {
                     width='100%'
                   />
                   <BSOChart id='publi.general.impact-financement.chart-business-model' />
-                  <BSOChart id='publi.general.impact-financement.chart-repartition-financements' />
+                  <iframe
+                    height='788'
+                    id='publi.general.impact-financement.chart-repartition-financements'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-financements?bsoLocalAffiliation=00rbzpz17&displayTitle=false`}
+                    title='publi.general.impact-financement.chart-repartition-financements'
+                    width='100%'
+                  />
                   <BSOChart id='publi.general.impact-financement.chart-repartition-taux' />
                 </QuestionSection>
               </GraphContent>

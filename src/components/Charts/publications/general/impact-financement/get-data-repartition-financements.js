@@ -21,13 +21,19 @@ function useGetData(observationSnap, needle = '*', domain) {
       parameters: [lastObservationSnap, bsoLocalAffiliation, agency],
       objectType: ['publications'],
     });
-    if (needle !== 'ANR - global') {
-      query.query.bool.filter.push({
-        term: { 'grants.sub_agency.keyword': needle },
-      });
-    }
+    query.query.bool.filter.push({
+      wildcard: { 'grants.sub_agency.keyword': needle },
+    });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
+    const query2 = getFetchOptions({
+      key: 'subAgencies',
+      domain,
+      parameters: [lastObservationSnap, bsoLocalAffiliation, agency],
+      objectType: ['publications'],
+    });
+    queries.push(Axios.post(ES_API_URL, query2, HEADERS));
     const res = await Axios.all(queries);
+    const subAgencies = res?.[1]?.data?.aggregations?.by_sub_agency?.buckets ?? [];
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
     const anrData = res?.[0]?.data?.aggregations?.by_agency?.buckets
       ?.filter((el) => el.key === 'ANR')?.[0]
@@ -106,6 +112,7 @@ function useGetData(observationSnap, needle = '*', domain) {
     return {
       categories,
       dataGraph,
+      subAgencies,
     };
   }
 

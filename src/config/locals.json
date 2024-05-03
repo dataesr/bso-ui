@@ -42,7 +42,8 @@
     "commentsName": "de l'ANSES",
     "commentsNameEN": "of ANSES",
     "paysage": "gFuBu",
-    "ror": "https://ror.org/0471kz689"
+    "ror": "https://ror.org/0471kz689",
+    "agency": "ANSES"
   },
   "130015332": {
     "name": "Aix-Marseille Université (AMU)",
@@ -1498,7 +1499,7 @@
     "commentsNameEN": "of A2F",
     "startYear": 2016
   },
-  "00rbzpz17": {
+  "ANR": {
     "name": "Agence Nationale de la Recherche (ANR)",
     "commentsName": "issues des projets financés par l'ANR",
     "commentsNameEN": "resulting from ANR-funded projects",

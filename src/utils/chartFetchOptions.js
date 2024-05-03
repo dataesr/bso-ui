@@ -1578,6 +1578,42 @@ export default function getFetchOptions({
         },
       },
     }),
+    subAgencies: ([lastObservationSnap, bsoLocalAffiliation, agency]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: 2016,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+            {
+              term: {
+                'grants.agency.keyword': agency,
+              },
+            },
+            {
+              terms: {
+                'bso_local_affiliations.keyword': [bsoLocalAffiliation],
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sub_agency: {
+          terms: {
+            field: 'grants.sub_agency.keyword',
+          },
+        },
+      },
+    }),
     openingRateGrant: ([observationSnap, queryFilter]) => ({
       size: 0,
       query: {
