@@ -13,6 +13,14 @@
     "paysage": "SsSFH",
     "ror": "https://ror.org/02kbmgc12"
   },
+  "130003759": {
+    "name": "Université de Nîmes (UNÎMES)",
+    "commentsName": "de l'UNÎMES",
+    "commentsNameEN": "of UNÎMES",
+    "paysage": "HAU8L",
+    "ror": "https://ror.org/044t4x544",
+    "scale": "university"
+  },
   "130005457": {
     "name": "Université de Strasbourg (Unistra)",
     "commentsName": "de l'Unistra",
@@ -684,9 +692,9 @@
     "scale": "laboratory"
   },
   "199119751": {
-    "name": "Université d'Evry Val d'Essonne",
-    "commentsName": "de l'Université d'Evry Val d'Essonne",
-    "commentsNameEN": "of the university of Evry Val d'Essonne",
+    "name": "Université d'Evry Val d'Essonne (UEVE)",
+    "commentsName": "de l'UEVE",
+    "commentsNameEN": "of UEVE",
     "paysage": "RN4E6",
     "ror": "https://ror.org/00e96v939",
     "scale": "university",
@@ -1490,7 +1498,7 @@
     "commentsNameEN": "of A2F",
     "startYear": 2016
   },
-  "ANR": {
+  "00rbzpz17": {
     "name": "Agence Nationale de la Recherche (ANR)",
     "commentsName": "issues des projets financés par l'ANR",
     "commentsNameEN": "resulting from ANR-funded projects",

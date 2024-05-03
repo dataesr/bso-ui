@@ -92,20 +92,20 @@ function useGetData(studyType, sponsorType = '*', id, domain) {
       const randomizedPoint = {
         x: year.key,
         y: year.by_design_allocation.buckets.find(
-          (el) => el.key === 'Randomized',
+          (el) => el.key === 'RANDOMIZED',
         )?.doc_count,
       };
       randomized.push(randomizedPoint);
       const naPoint = {
         x: year.key,
-        y: year.by_design_allocation.buckets.find((el) => el.key === 'N/A')
+        y: year.by_design_allocation.buckets.find((el) => el.key === 'NA')
           ?.doc_count,
       };
       na.push(naPoint);
       const nonRandomizedPoint = {
         x: year.key,
         y: year.by_design_allocation.buckets.find(
-          (el) => el.key === 'Non-Randomized',
+          (el) => el.key === 'NON_RANDOMIZED',
         )?.doc_count,
       };
       nonRandomized.push(nonRandomizedPoint);

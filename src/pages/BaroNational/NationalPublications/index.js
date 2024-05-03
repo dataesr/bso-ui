@@ -542,7 +542,7 @@ export default function NationalPublications() {
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-taux-ouverture'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=ANR&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=00rbzpz17&displayTitle=false`}
                     title='publi.general.impact-financement.chart-taux-ouverture'
                     width='100%'
                   />
