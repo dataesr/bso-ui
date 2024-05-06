@@ -541,7 +541,16 @@
     "commentsName": "de LMU",
     "commentsNameEN": "of LMU",
     "paysage": "9xlel",
-    "ror": "https://ror.org/01mtcc283"
+    "ror": "https://ror.org/01mtcc283",
+    "scale": "university"
+  },
+  "197517196": {
+    "name": "Université Sorbonne Nouvelle (USN)",
+    "commentsName": "de l'USN",
+    "commentsNameEN": "of USN",
+    "paysage": "8k883",
+    "ror": "03z6jp965",
+    "scale": "university"
   },
   "197534316": {
     "name": "Sciences Po",
