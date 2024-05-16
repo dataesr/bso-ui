@@ -151,7 +151,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université de Poitiers'
-                href='https://www.univ-poitiers.fr/decouvrir-la-recherche/publications-et-parutions/barometre-de-la-science-ouverte-de-luniversite-de-poitiers/'
+                href='https://scienceouverte.univ-poitiers.fr/barometre-de-la-science-ouverte-de-luniversite-de-poitiers/'
                 img='/declinaisons/universite-poitiers.svg'
               />
             </Col>
