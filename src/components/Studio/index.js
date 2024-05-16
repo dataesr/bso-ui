@@ -53,6 +53,7 @@ const Studio = () => {
     label: item,
     value: item,
   }));
+  observationYears.push({ label: 'La plus récente', value: 'latest' });
   const publicationYears = [
     2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
   ].map((item) => ({ label: item, value: item }));

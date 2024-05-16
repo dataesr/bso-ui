@@ -358,7 +358,9 @@ export function getURLSearchParams(intl = undefined, id = '') {
     || localAffiliationSettings?.country
     || 'fr';
   let lastObservationYear = '2023Q4';
-  if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
+  if (urlSearchParams.get('lastObservationYear')?.toLowerCase() === 'latest') {
+    lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
+  } else if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
     lastObservationYear = urlSearchParams
       .get('lastObservationYear')
       ?.toLowerCase();
