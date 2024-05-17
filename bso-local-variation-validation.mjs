@@ -1,10 +1,11 @@
-// node bso-local-variation-validation.mjs anne.lhote@gmail.com 130015506
+// node bso-local-variation-validation.mjs anne.lhote@gmail.com,anne.lhote@recherche.gouv.fr 130015506
 import Axios from 'axios';
 import https from 'node:https';
 
 import locals from './src/config/locals.json' assert { type: "json" };
 
-const sendEmail = (email, structureId, structureName) => {
+const sendEmail = (emails, structureId, structureName) => {
+  const to = emails.split(',').map((email) => ({ email, name: email }))
   const options = {
     method: 'POST',
     url: 'https://barometredelascienceouverte.esr.gouv.fr/mailer/',
@@ -17,7 +18,7 @@ const sendEmail = (email, structureId, structureName) => {
           // Encode UTF8
           name: JSON.parse(JSON.stringify('Baromètre français de la Science Ouverte')),
         },
-        { email, name: email },
+        ...to,
       ],
       templateId: 234,
       params:{
@@ -38,11 +39,11 @@ const sendEmail = (email, structureId, structureName) => {
 };
 
 if (process.argv.length === 4) {
-  const email = process.argv[2];
+  const emails = process.argv[2];
   const structureId = process.argv[3];
   const structureName = locals?.[structureId.toUpperCase()]?.commentsName;
   if (structureName) {
-    sendEmail(email, structureId.toLowerCase(), structureName);
+    sendEmail(emails, structureId.toLowerCase(), structureName);
   } else {
     console.error(`This structureId "${structureId.toUpperCase()}" does not exists in locals config file (src/config/locals.json).`);
   }
