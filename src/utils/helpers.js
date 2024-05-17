@@ -232,9 +232,6 @@ export function getSource(id, otherSources = []) {
   if (id.includes('publishers.poids-revue')) {
     sources.push('beallslist.net');
   }
-  if (id.includes('impact-financement')) {
-    sources.push('ANR');
-  }
   if (
     id.includes('thesis')
     || id.includes('orcid.general.creation-by-year')
@@ -256,13 +253,6 @@ export function getSource(id, otherSources = []) {
     sources.push('Retractation Watch');
   }
   sources.push('MESR');
-  // Remove duplicated ANR
-  if (otherSources.includes('Agence Nationale de la Recherche (ANR)')) {
-    const indexToDelete = sources.indexOf('ANR');
-    if (indexToDelete > -1) {
-      sources.splice(indexToDelete, 1);
-    }
-  }
   sources.push(...otherSources);
   // Deduplicate sources
   return [...new Set(sources)].join(', ');

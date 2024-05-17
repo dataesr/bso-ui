@@ -964,7 +964,7 @@ export const chartOptions = {
     },
   },
   'publi.general.impact-financement.chart-taux-ouverture': {
-    getOptions: (id, intl, categories, data) => {
+    getOptions: (id, intl, categories, data, agency) => {
       const options = getGraphOptions({ id, intl });
       options.legend.reversed = true;
       options.legend.title.text = intl.formatMessage({
@@ -974,8 +974,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
         labels: {
-          format:
-            '<div style="text-align:center;">Global France&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ANR<br /><br />{value}</div>',
+          format: `<div style="text-align:center;">Global France&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${agency}<br /><br />{value}</div>`,
           useHTML: true,
         },
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
@@ -1000,7 +999,7 @@ export const chartOptions = {
     },
   },
   'publi.general.impact-financement.chart-business-model': {
-    getOptions: (id, intl, categories, data) => {
+    getOptions: (id, intl, categories, data, agency) => {
       const options = getGraphOptions({ id, intl });
       options.legend.title.text = intl.formatMessage({
         id: 'app.publi.type-oa-publisher',
@@ -1009,8 +1008,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
         labels: {
-          format:
-            '<div style="text-align:center;">Global France&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ANR<br /><br />{value}</div>',
+          format: `<div style="text-align:center;">Global France&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${agency}<br /><br />{value}</div>`,
           useHTML: true,
         },
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },

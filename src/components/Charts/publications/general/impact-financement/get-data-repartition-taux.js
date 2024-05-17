@@ -8,6 +8,7 @@ import {
   capitalize,
   cleanNumber,
   getCSSValue,
+  getURLSearchParams,
 } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain) {
@@ -24,6 +25,7 @@ function useGetData(observationSnap, domain) {
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function getDataForLastObservationSnap(lastObservationSnap) {
+    const { agency } = getURLSearchParams(intl);
     const query = getFetchOptions({
       key: 'oaHostType',
       domain,
@@ -37,7 +39,7 @@ function useGetData(observationSnap, domain) {
       objectType: ['publications'],
     });
     query.query.bool.filter.push({
-      term: { 'grants.agency.keyword': 'ANR' },
+      term: { 'grants.agency.keyword': agency },
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);

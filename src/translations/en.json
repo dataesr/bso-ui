@@ -596,7 +596,7 @@
   "app.national-publi.general.impact-financement.chart-repartition-financements.title": "Evolution of the open access rate by edition calls for proposals observed by year of publication",
   "app.national-publi.general.impact-financement.chart-repartition-financements.tooltip": "<b>Funding year {series.name} ({point.bsoDomain})</b><br>{point.y:.2f}% of the publications ((commentsName)) published in {point.publicationDate} in open access ({point.y_abs} / {point.y_tot})",
   "app.health-publi.general.impact-financement.chart-repartition-financements.tooltip": "<b>Funding year {series.name} ({point.bsoDomain})</b><br>{point.y:.2f}% of the publications ((commentsName)) published in {point.publicationDate} in open access ({point.y_abs} / {point.y_tot})",
-  "app.national-publi.general.impact-financement.chart-repartition-financements.source.all": "ANR - global",
+  "app.national-publi.general.impact-financement.chart-repartition-financements.source.all": "global",
   "app.national-publi.general.impact-financement.chart-repartition-financements.source.ANR DOS": "ANR AAPG",
   "app.national-publi.general.impact-financement.chart-repartition-financements.source.ANR PIA": "ANR France 2030 (including PIA 2, 3 et 4)",
   "app.national-publi.general.impact-financement.chart-repartition-taux.title": "Distribution of the open access rate of publications in France by OA route and per funding year",

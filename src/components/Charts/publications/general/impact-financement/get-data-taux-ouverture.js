@@ -128,12 +128,12 @@ function useGetData(observationSnap, domain, split) {
       const bucketsAgency = elemAgency.by_oa_host_type?.buckets;
       possibleKeys.forEach((p) => {
         totalGeneral
-          += bucketsGeneral.filter((e) => e.key === p)[0].doc_count || 0;
+          += bucketsGeneral.filter((e) => e.key === p)[0]?.doc_count || 0;
         totalAgency
-          += bucketsAgency.filter((e) => e.key === p)[0].doc_count || 0;
+          += bucketsAgency.filter((e) => e.key === p)[0]?.doc_count || 0;
       });
       possibleKeys.forEach((p) => {
-        const currentGeneral = bucketsGeneral.filter((e) => e.key === p)[0].doc_count || 0;
+        const currentGeneral = bucketsGeneral.filter((e) => e.key === p)[0]?.doc_count || 0;
         customDataGeneral[p].push({
           y: (currentGeneral * 100) / totalGeneral,
           y_tot: totalGeneral,
@@ -141,7 +141,7 @@ function useGetData(observationSnap, domain, split) {
           bsoDomain,
           publicationDate: y,
         });
-        const currentAgency = bucketsAgency.filter((e) => e.key === p)[0].doc_count || 0;
+        const currentAgency = bucketsAgency.filter((e) => e.key === p)[0]?.doc_count || 0;
         customDataAgency[p].push({
           y: (currentAgency * 100) / totalAgency,
           y_tot: totalAgency,

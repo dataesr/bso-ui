@@ -9,7 +9,7 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getURLSearchParams, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -21,6 +21,7 @@ HCExportingData(Highcharts);
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
+  const { agency } = getURLSearchParams(intl);
   const [chartComments, setChartComments] = useState('');
   const { lastObservationSnap } = useGlobals();
   const { allData, isError, isLoading } = useGetData(
@@ -35,6 +36,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     intl,
     categories,
     dataGraph,
+    agency,
   );
 
   useEffect(() => {
