@@ -1542,6 +1542,16 @@
     "paysage": "laymk",
     "ror": "https://ror.org/01c62av11"
   },
+  "ribac2022articles": {
+    "name": "RIBAC 2022 articles",
+    "commentsName": "de RIBAC 2022 articles",
+    "commentsNameEN": "of RIBAC 2022 articles"
+  },
+  "ribac2022chapitres": {
+    "name": "RIBAC 2022 chapitres",
+    "commentsName": "de RIBAC 2022 chapitres",
+    "commentsNameEN": "of RIBAC 2022 chapitres"
+  },
   "91D9w": {
     "name": "Université de Rennes",
     "commentsName": "de l'université de Rennes",
