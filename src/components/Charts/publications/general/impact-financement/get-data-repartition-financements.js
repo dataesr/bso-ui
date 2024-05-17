@@ -35,8 +35,8 @@ function useGetData(observationSnap, needle = '*', domain) {
     const res = await Axios.all(queries);
     const subAgencies = res?.[1]?.data?.aggregations?.by_sub_agency?.buckets ?? [];
     const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-    const anrData = res?.[0]?.data?.aggregations?.by_agency?.buckets
-      ?.filter((el) => el.key === 'ANR')?.[0]
+    const dataAgency = res?.[0]?.data?.aggregations?.by_agency?.buckets
+      ?.filter((el) => el.key === agency)?.[0]
       ?.by_funding_year.buckets?.sort((a, b) => a.key - b.key) || [];
     const categories = [];
     const dataGraph = [];
@@ -67,7 +67,7 @@ function useGetData(observationSnap, needle = '*', domain) {
       'LongDashDotDot',
     ];
     let ix = 0;
-    anrData.forEach((el) => {
+    dataAgency.forEach((el) => {
       const fundingYear = el.key;
       categories.push(fundingYear);
       const currentData = [];
@@ -103,7 +103,8 @@ function useGetData(observationSnap, needle = '*', domain) {
         color: colors[ix],
         dashStyle: dashStyles[ix],
       };
-      if (nbTotal >= 100 && fundingYear >= 2016) {
+      const minTotal = agency === 'ANR' ? 100 : 0;
+      if (nbTotal >= minTotal && fundingYear >= 2016) {
         dataGraph.push(currentSerie);
         ix += 1;
       }

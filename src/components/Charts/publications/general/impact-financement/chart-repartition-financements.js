@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
-import { withDomain } from '../../../../../utils/helpers';
+import { getURLSearchParams, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
@@ -29,6 +29,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [selectedSubAgency, setSelectedSubAgency] = useState('*');
 
+  const { agency } = getURLSearchParams(intl);
   const { lastObservationSnap } = useGlobals();
   const { data, isError, isLoading } = useGetData(
     lastObservationSnap,
@@ -36,6 +37,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     domain,
   );
   const { categories, dataGraph, subAgencies } = data;
+  const subAgenciesCount = agency === 'ANR' ? 2 : 1;
   const idWithDomain = withDomain(id, domain);
 
   useEffect(() => {
@@ -73,13 +75,15 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
           value={selectedSubAgency}
         >
           <Radio
-            label={intl.formatMessage({
+            key='all'
+            label={`${agency} - ${intl.formatMessage({
               id: 'app.national-publi.general.impact-financement.chart-repartition-financements.source.all',
-            })}
+            })}`}
             value='*'
           />
-          {subAgencies.slice(0, 2).map((subAgency) => (
+          {subAgencies.slice(0, subAgenciesCount).map((subAgency) => (
             <Radio
+              key={subAgency.key}
               label={intl.formatMessage({
                 id: `app.national-publi.general.impact-financement.chart-repartition-financements.source.${subAgency.key}`,
                 defaultMessage: `${subAgency.key}`,
@@ -101,6 +105,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     </WrapperChart>
   );
 };
+
 // TODO remove publi studyType from id
 Chart.defaultProps = {
   domain: '',
