@@ -408,12 +408,19 @@
     "scale": "university"
   },
   "193708005": {
-    "name": "Université de Tours",
+    "name": "Université de Tours (UT)",
     "commentsName": "de l'UT",
     "commentsNameEN": "of UT",
     "paysage": "cqkij",
     "ror": "https://ror.org/02wwzvj46",
     "scale": "university"
+  },
+  "193801347": {
+    "name": "Sciences Po Grenoble - UGA (IEPG)",
+    "commentsName": "de l'IEPG",
+    "commentsNameEN": "of IEPG",
+    "paysage": "851ij",
+    "ror": "https://ror.org/03c7zyj82"
   },
   "194210951": {
     "name": "Université Jean Monnet Saint-Étienne (UJM)",
