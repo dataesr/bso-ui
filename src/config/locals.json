@@ -1510,6 +1510,13 @@
   },
   "ANR": {
     "name": "Agence Nationale de la Recherche (ANR)",
+    "commentsName": "issues de la collection HAL de l'ANR",
+    "commentsNameEN": "resulting from the HAL collection from ANR",
+    "startYear": 2016,
+    "agency": "ANR"
+  },
+  "00rbzpz17": {
+    "name": "Agence Nationale de la Recherche (ANR)",
     "commentsName": "issues des projets financés par l'ANR",
     "commentsNameEN": "resulting from ANR-funded projects",
     "paysage": "Nc86W",
