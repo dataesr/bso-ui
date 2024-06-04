@@ -54,7 +54,7 @@ export default function Footer() {
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
-            title={intl.formatMessage({ id: 'app.footer.voir-aussi' })}
+            title={intl.formatMessage({ id: 'app.footer.see-also' })}
           >
             <FooterLink
               target='_blank'
@@ -82,7 +82,7 @@ export default function Footer() {
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
-            title={intl.formatMessage({ id: 'app.footer.nos-sources' })}
+            title={intl.formatMessage({ id: 'app.footer.sources' })}
           >
             <FooterLink target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/'>
               PubMed
@@ -110,12 +110,9 @@ export default function Footer() {
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
-            title={intl.formatMessage({ id: 'app.footer.nous-suivre' })}
+            title={intl.formatMessage({ id: 'app.footer.follow' })}
           >
-            <FooterLink
-              target='_blank'
-              href='https://twitter.com/sup_recherche'
-            >
+            <FooterLink target='_blank' href='https://x.com/dataESR'>
               <DSIcon
                 className='ds-fr--v-middle'
                 name='ri-twitter-x-fill'
@@ -126,14 +123,14 @@ export default function Footer() {
             </FooterLink>
             <FooterLink
               target='_blank'
-              href='https://fr.linkedin.com/company/enseignementsup-recherche'
+              href='https://www.linkedin.com/company/enseignementsup-recherche/mycompany/'
             >
               <DSIcon
                 className='ds-fr--v-middle'
                 name='ri-linkedin-box-fill'
                 size='xl'
               >
-                <span>linkedin</span>
+                <span>Linkedin</span>
               </DSIcon>
             </FooterLink>
             <FooterLink
@@ -145,7 +142,28 @@ export default function Footer() {
                 name='ri-facebook-box-fill'
                 size='xl'
               >
-                <span>facebook</span>
+                <span>Facebook</span>
+              </DSIcon>
+            </FooterLink>
+          </FooterTopCategory>
+          <FooterTopCategory
+            title={intl.formatMessage({ id: 'app.footer.contact' })}
+          >
+            <FooterLink target='_blank' href='mailto:bso@recherche.gouv.fr'>
+              <DSIcon className='ds-fr--v-middle' name='ri-mail-fill' size='xl'>
+                <span>Email</span>
+              </DSIcon>
+            </FooterLink>
+            <FooterLink
+              target='_blank'
+              href='https://groupes.renater.fr/sympa/info/bso-etablissements'
+            >
+              <DSIcon
+                className='ds-fr--v-middle'
+                name='ri-group-fill'
+                size='xl'
+              >
+                <span>Mailing-list</span>
               </DSIcon>
             </FooterLink>
           </FooterTopCategory>
