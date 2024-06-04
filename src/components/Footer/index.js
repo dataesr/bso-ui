@@ -80,6 +80,12 @@ export default function Footer() {
             >
               <FormattedMessage id='app.footer.link.platform-open-data' />
             </FooterLink>
+            <FooterLink
+              target='_blank'
+              href='https://works-magnet.dataesr.ovh/'
+            >
+              <FormattedMessage id='app.footer.works-magnet' />
+            </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
             title={intl.formatMessage({ id: 'app.footer.sources' })}
