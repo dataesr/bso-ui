@@ -442,6 +442,13 @@ const Variations = () => {
                 img='/declinaisons/gustave-eiffel.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt="bso local muséum national d'Histoire naturelle"
+                href='https://www.mnhn.fr/fr/la-science-ouverte-au-museum'
+                img='/declinaisons/mnhn.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
