@@ -1556,6 +1556,11 @@
     "paysage": "laymk",
     "ror": "https://ror.org/01c62av11"
   },
+  "POLEM4": {
+    "name": "Pôle M4 - Université de Lorraine",
+    "commentsName": "du Pôle M4",
+    "commentsNameEN": "of Pôle M4"
+  },
   "RIBAC2022ARTICLES": {
     "name": "RIBAC 2022 articles",
     "commentsName": "de RIBAC 2022 articles",
