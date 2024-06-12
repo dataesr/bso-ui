@@ -1524,8 +1524,8 @@
   },
   "00RBZPZ17": {
     "name": "Agence Nationale de la Recherche (ANR)",
-    "commentsName": "issues des projets financés par l'ANR",
-    "commentsNameEN": "resulting from ANR-funded projects",
+    "commentsName": "issues d'un projet financé par l'ANR",
+    "commentsNameEN": "resulting from an ANR-funded project",
     "paysage": "Nc86W",
     "ror": "https://ror.org/00rbzpz17",
     "startYear": 2016,
