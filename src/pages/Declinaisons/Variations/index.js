@@ -449,6 +449,13 @@ const Variations = () => {
                 img='/declinaisons/mnhn.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt="bso local unica université côte d'azur"
+                href='https://univ-cotedazur.fr/recherche-innovation/science-ouverte/science-ouverte-a-universite-cote-dazur/barometre-science-ouverte'
+                img='/declinaisons/unica.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
