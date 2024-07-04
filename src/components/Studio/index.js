@@ -276,14 +276,16 @@ const Studio = () => {
             onChange={() => setDisplayFooter(!displayFooter)}
           />
         </Col>
-        <Col n='12 md-6'>
-          <Toggle
-            checked={useHalId}
-            hasLabelLeft
-            label='Inclure les identifiants de HAL'
-            onChange={() => setUseHalId(!useHalId)}
-          />
-        </Col>
+        {object === 'publi' && (
+          <Col n='12 md-6'>
+            <Toggle
+              checked={useHalId}
+              hasLabelLeft
+              label='Inclure les identifiants de HAL'
+              onChange={() => setUseHalId(!useHalId)}
+            />
+          </Col>
+        )}
       </Row>
       <Row gutters>
         <Col n='12' className='studio'>
