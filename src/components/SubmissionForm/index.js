@@ -358,7 +358,7 @@ const SubmissionForm = () => {
 
   const setInstitutionId = async (e) => {
     e.preventDefault();
-    const institutionId = e.target.value;
+    const institutionId = e.target.value.replaceAll(' ', '');
     setId(institutionId);
     try {
       const options = {
@@ -413,7 +413,7 @@ const SubmissionForm = () => {
                 value={acronym}
               />
               <TextInput
-                hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/ pour trouver le Siren de votre structure'
+                hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/search/organizations pour trouver le Siren de la structure'
                 label='Siren ou RNSR de la structure'
                 onChange={(e) => setInstitutionId(e)}
                 value={id}
@@ -431,7 +431,7 @@ const SubmissionForm = () => {
                 </div>
               )}
               <TextInput
-                hint='Utiliser https://ror.org/ pour trouver le RoR de votre structure'
+                hint='Utiliser https://ror.org/ pour trouver le RoR de la structure'
                 label='RoR de la structure'
                 onChange={(e) => setRor(e.target.value)}
                 value={ror}
