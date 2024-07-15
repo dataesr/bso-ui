@@ -1,3 +1,4 @@
+import { ES_STUDIES_API_SOURCES } from '../config/config';
 import {
   getPublicationYearFromObservationSnap,
   getURLSearchParams,
@@ -2470,6 +2471,10 @@ export default function getFetchOptions({
     // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
     // TODO to remove once the data is in the index
     useBsoCountry = false;
+    // Filter on chosen sources (ClinicalTrials, eudrCTR and / or CTIS)
+    queryResponse.query.bool.filter.push({
+      terms: { 'all_sources.keyword': ES_STUDIES_API_SOURCES },
+    });
   }
   if (bsoCountry && useBsoCountry) {
     queryResponse.query.bool.filter.push({
