@@ -410,7 +410,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local université angers'
-                href='https://www.univ-angers.fr/fr/recherche/science-et-societe/barometre-de-la-science-ouverte.html'
+                href='https://www.univ-angers.fr/fr/recherche/science-et-societe/open-access-et-publications-sur-hal-ua/barometre-de-la-science-ouverte.html'
                 img='/declinaisons/universite-angers.png'
               />
             </Col>
