@@ -60,13 +60,13 @@ jobs:
           config_file: .github/config/changelog.js
 
       - name: 📦 Create release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-          name: ${{ steps.tag.outputs.tag }}
           body: "${{ steps.changelog.outputs.changes }}"
+          name: ${{ steps.tag.outputs.tag }}
+          tag_name: ${{ steps.tag.outputs.tag }}
 
   deploy:
     name: Update production deployment

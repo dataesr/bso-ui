@@ -1134,6 +1134,14 @@
     "paysage": "R95E1",
     "ror": "https://ror.org/014vp6c30"
   },
+  "200711909U": {
+    "name": "UMR 5244 IHPE",
+    "commentsName": "de l'IHPE",
+    "commentsNameEN": "of IHPE",
+    "paysage": "zwaiv",
+    "ror": "https://ror.org/00zn13224",
+    "scale": "laboratory"
+  },
   "200717404S": {
     "name": "Laboratoire de biomécanique et mécanique des chocs (LBMC)",
     "commentsName": "du LBMC",
