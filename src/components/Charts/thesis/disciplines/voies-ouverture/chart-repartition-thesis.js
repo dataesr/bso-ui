@@ -81,8 +81,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       allData.comments.sort = intl
         .formatMessage({ id: `app.publi.${sort}` })
         .toLowerCase();
-      allData.comments.discipline = categories[0].key;
-      allData.comments.rate = Math.round(categories[0].percent);
+      allData.comments.discipline = categories[0]?.key;
+      allData.comments.rate = Math.round(categories[0]?.percent);
       setChartComments(customComments(allData, idWithDomain, intl));
     }
   }, [allData, categories, dataGraph, dataTitle, id, idWithDomain, intl, sort]);
