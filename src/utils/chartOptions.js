@@ -963,6 +963,38 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.general.langues.chart-publications-by-year': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'spline';
+      options.xAxis = {
+        categories,
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+      };
+      options.yAxis = {
+        type: 'logarithmic',
+        title: {
+          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
+        },
+      };
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publication-lang',
+      });
+      options.tooltip.pointFormat = intl.formatMessage({
+        id: 'app.publi.general.langues.chart-publications-by-year.tooltip',
+      });
+      options.plotOptions = {
+        spline: {
+          dataLabels: {
+            enabled: false,
+          },
+        },
+      };
+      options.series = data;
+
+      return options;
+    },
+  },
   'publi.general.impact-financement.chart-taux-ouverture': {
     getOptions: (id, intl, categories, data, agency) => {
       const options = getGraphOptions({ id, intl });

@@ -2217,6 +2217,44 @@ export default function getFetchOptions({
         },
       },
     }),
+    publicationsByYear: ([
+      lastObservationSnap,
+      customField,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+            size: 15,
+          },
+          aggs: {
+            by_custom: {
+              terms: {
+                field: customField,
+              },
+            },
+          },
+        },
+      },
+    }),
     retractionsByYear: ([lastObservationSnap, minPublicationDate = 2013]) => ({
       size: 0,
       query: {

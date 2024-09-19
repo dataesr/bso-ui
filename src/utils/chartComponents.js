@@ -105,6 +105,9 @@ const ChartRepartitionTauxFinancement = lazy(() => import(
 const ChartLanguesOuverture = lazy(() => import(
   '../components/Charts/publications/general/langues-ouverture/langues-ouverture'
 ));
+const ChartLanguesByYear = lazy(() => import(
+  '../components/Charts/publications/general/langues-evolution/langues-by-year'
+));
 const ChartRepartitionPublications = lazy(() => import(
   '../components/Charts/publications/general/voies-ouverture/chart-repartition-publications'
 ));
@@ -336,6 +339,7 @@ const chartComponents = {
     ChartRepartitionPublications,
   'publi.general.langues-ouverture.chart-repartition-publications':
     ChartLanguesOuverture,
+  'publi.general.langues.chart-publications-by-year': ChartLanguesByYear,
   'publi.general.impact-financement.chart-taux-ouverture':
     ChartTauxOuvertureFinancement,
   'publi.general.impact-financement.chart-business-model':

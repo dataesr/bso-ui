@@ -177,6 +177,10 @@ export default function NationalPublications() {
                   anchorId='general.langues-ouverture'
                 >
                   <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
+                  <BSOChart
+                    id='publi.general.langues.chart-publications-by-year'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
                 <QuestionSection
                   anchorId='general.hal'
