@@ -2489,6 +2489,50 @@ export default function getFetchOptions({
         },
       },
     }),
+    datasetsWithImplicitMentionsOnly: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+            {
+              range: {
+                'datastet_details.nb_mentions': {
+                  gt: 0,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+            size: 10,
+          },
+          aggs: {
+            is_implicit: {
+              terms: {
+                field: 'datastet_details.is_implicit_only',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

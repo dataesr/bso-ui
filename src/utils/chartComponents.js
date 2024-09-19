@@ -260,6 +260,9 @@ const ChartSoftwareSharedAmongAllDiscipline = lazy(() => import(
 const ChartSoftwareSharedOa = lazy(() => import(
   '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
 ));
+const DatasetsWithImplicitMentionsOnly = lazy(() => import(
+  '../components/Charts/data/general/mentions/datasets-with-implicit-mentions-only'
+));
 
 // Orcid
 const OrcidEvolution = lazy(() => import('../components/Charts/orcid/general/chart-evolution'));
@@ -429,6 +432,7 @@ const chartComponents = {
     ChartTauxOuvertureThesis,
   'thesis.disciplines.voies-ouverture.chart-repartition-thesis':
     ChartRepartitionThesis,
+  // Code
   'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
   'software.general.voies-ouverture.chart-software-created':
     ChartSoftwareCreated,
@@ -444,6 +448,7 @@ const chartComponents = {
   'software.disciplines.voies-ouverture.chart-software-shared-among-all':
     ChartSoftwareSharedAmongAllDiscipline,
   'software.oa.voies-ouverture.chart-software-shared': ChartSoftwareSharedOa,
+  // Data
   'data.general.voies-ouverture.chart-data-used': ChartDataUsed,
   'data.general.voies-ouverture.chart-data-created': ChartDataCreated,
   'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
@@ -461,6 +466,8 @@ const chartComponents = {
     ChartDataAvailibilityDiscipline,
   'data.editeurs.voies-ouverture.chart-availibility':
     ChartDataAvailibilityEditeur,
+  'data.general.mentions.datasets-with-implicit-mentions-only':
+    DatasetsWithImplicitMentionsOnly,
   // Orcid
   'orcid.general.chart-evolution': OrcidEvolution,
   'orcid.general.creation-by-year': OrcidCreationByYear,
