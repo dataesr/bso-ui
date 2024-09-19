@@ -972,7 +972,6 @@ export const chartOptions = {
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
       };
       options.yAxis = {
-        type: 'logarithmic',
         title: {
           text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
         },
@@ -986,7 +985,10 @@ export const chartOptions = {
       options.plotOptions = {
         spline: {
           dataLabels: {
-            enabled: false,
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
           },
         },
       };
