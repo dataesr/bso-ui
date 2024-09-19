@@ -101,7 +101,7 @@ const SubmissionForm = () => {
       setIsError(true);
       const errorMessage = errors.length === 1
         ? `Un caractère spécial a été détecté à la ligne ${errors[0]}. Merci de corriger votre fichier afin de le soumettre.`
-        : `Un caractère spécial a été détecté aux ${errors.join(
+        : `Un caractère spécial a été détecté aux lignes ${errors.join(
           ', ',
         )}. Merci de corriger votre fichier afin de le soumettre.`;
       setMessage(errorMessage);
@@ -145,10 +145,11 @@ const SubmissionForm = () => {
           "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
         );
       })
-      .catch(() => {
+      .catch((e) => {
+        console.error(e);
         setIsError(true);
         setMessage(
-          "Error lors de l'envoi de votre fichier, merci de contacter bso@recherche.gouv.fr.",
+          "Erreur lors de l'envoi de votre fichier, merci de contacter bso@recherche.gouv.fr.",
         );
       });
   };
