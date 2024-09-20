@@ -1226,6 +1226,14 @@
     "paysage": "m2tBU",
     "ror": "https://ror.org/01z485314"
   },
+  "201119419P": {
+    "name": "Laboratoire d'électrochimie et de physico-chimie des matériaux et des interfaces (LEPMI)",
+    "commentsName": "du LEPMI",
+    "commentsNameEN": "of LEPMI",
+    "paysage": "eu248",
+    "ror": "https://ror.org/04axb9j69",
+    "scale": "laboratory"
+  },
   "201119726Y": {
     "name": "Laboratoire de Biologie computationnelle et quantitative (LCQB)",
     "commentsName": "du LCQB",
