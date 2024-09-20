@@ -22,9 +22,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
+  const { lastObservationSnap } = useGlobals();
   const { allData, isError, isLoading } = useGetData(
-    beforeLastObservationSnap,
     lastObservationSnap,
     domain,
   );
@@ -74,7 +73,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'data.general.mentions.datasets-with-implicit-mentions-only',
+  id: 'software.general.mentions.software-with-at-least-one-explicit-mention',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

@@ -155,7 +155,6 @@ export default function NationalResearchData() {
                 <QuestionSection
                   anchorId='general.statement'
                   backgroundColor={blueSoft25}
-                  glossaryKeys={['archive-ouverte']}
                   intlKey='app.national-data.general.statement'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-availibility' />
@@ -163,11 +162,10 @@ export default function NationalResearchData() {
                 <QuestionSection
                   anchorId='general.mentions'
                   backgroundColor={blueSoft50}
-                  glossaryKeys={['archive-ouverte']}
                   intlKey='app.national-data.general.mentions'
                   isDisplayed={!isInProduction()}
                 >
-                  <BSOChart id='data.general.mentions.datasets-with-implicit-mentions-only' />
+                  <BSOChart id='data.general.mentions.datasets-with-at-least-one-explicit-mention' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

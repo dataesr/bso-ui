@@ -2489,7 +2489,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    datasetsWithImplicitMentionsOnly: ([
+    datasetsWithAtLeastOneExplicitMention: ([
       lastObservationSnap,
       minPublicationDate = 2013,
     ]) => ({
@@ -2527,6 +2527,50 @@ export default function getFetchOptions({
             is_implicit: {
               terms: {
                 field: 'datastet_details.is_implicit_only',
+              },
+            },
+          },
+        },
+      },
+    }),
+    codeWithAtLeastOneExplicitMention: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+            {
+              range: {
+                'softcite_details.nb_mentions': {
+                  gt: 0,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_publication_year: {
+          terms: {
+            field: 'year',
+            size: 10,
+          },
+          aggs: {
+            is_implicit: {
+              terms: {
+                field: 'softcite_details.is_implicit_only',
               },
             },
           },

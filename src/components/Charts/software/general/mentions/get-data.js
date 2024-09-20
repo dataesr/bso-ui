@@ -15,7 +15,7 @@ function useGetData(observationSnap, domain) {
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
       const query = getFetchOptions({
-        key: 'datasetsWithAtLeastOneExplicitMention',
+        key: 'codeWithAtLeastOneExplicitMention',
         domain,
         parameters: [lastObservationSnap],
         objectType: ['publications'],
@@ -41,19 +41,19 @@ function useGetData(observationSnap, domain) {
         )
         .forEach((el) => {
           years.push(el.key);
-          const numberOfDatasetsWithImplicitMentionsOnly = el.is_implicit.buckets.find((item) => item.key === 1)?.doc_count
+          const numberOfSoftwareWithImplicitMentionsOnly = el.is_implicit.buckets.find((item) => item.key === 1)?.doc_count
             || 0;
-          const numberOfDatasetsWithAtLeastOneExplicitMention = el.is_implicit.buckets.find((item) => item.key === 0)?.doc_count
+          const numberOfSoftwareWithAtLeastOneExplicitMention = el.is_implicit.buckets.find((item) => item.key === 0)?.doc_count
             || 0;
-          const numberOfDatasets = numberOfDatasetsWithImplicitMentionsOnly
-            + numberOfDatasetsWithAtLeastOneExplicitMention;
+          const numberOfSoftware = numberOfSoftwareWithImplicitMentionsOnly
+            + numberOfSoftwareWithAtLeastOneExplicitMention;
           publications.push({
             y:
-              (numberOfDatasetsWithAtLeastOneExplicitMention
-                / numberOfDatasets)
+              (numberOfSoftwareWithAtLeastOneExplicitMention
+                / numberOfSoftware)
               * 100,
-            y_abs: numberOfDatasetsWithAtLeastOneExplicitMention,
-            y_tot: numberOfDatasets,
+            y_abs: numberOfSoftwareWithAtLeastOneExplicitMention,
+            y_tot: numberOfSoftware,
             x: el.key,
             bsoDomain,
           });
