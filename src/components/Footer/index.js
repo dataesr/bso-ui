@@ -70,6 +70,12 @@ export default function Footer() {
             </FooterLink>
             <FooterLink
               target='_blank'
+              href='https://works-magnet.dataesr.ovh/'
+            >
+              <FormattedMessage id='app.footer.works-magnet.text' />
+            </FooterLink>
+            <FooterLink
+              target='_blank'
               href={intl.formatMessage({ id: 'app.footer.dataesr.url' })}
             >
               #dataESR
