@@ -20,7 +20,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue } from '../../../utils/helpers';
+import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalSoftwareCode() {
@@ -144,6 +144,14 @@ export default function NationalSoftwareCode() {
                   anchorId='general.creation'
                 >
                   <BSOChart id='software.general.voies-ouverture.chart-software-created' />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='general.mentions'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.national-software.general.mentions'
+                  isDisplayed={!isInProduction()}
+                >
+                  <BSOChart id='software.general.mentions.software-with-at-least-one-explicit-mention' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

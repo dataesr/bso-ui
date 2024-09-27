@@ -20,7 +20,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue } from '../../../utils/helpers';
+import { getCSSValue, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalResearchData() {
@@ -128,37 +128,44 @@ export default function NationalResearchData() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-data.general.partage'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
                   anchorId='general.partage'
+                  backgroundColor={blueSoft50}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  intlKey='app.national-data.general.partage'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-shared' />
                   <BSOChart id='data.general.voies-ouverture.chart-data-shared-among-all' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.general.utilisation'
-                  glossaryKeys={['archive-ouverte']}
-                  backgroundColor={blueSoft50}
                   anchorId='general.utilisation'
+                  backgroundColor={blueSoft25}
+                  glossaryKeys={['archive-ouverte']}
+                  intlKey='app.national-data.general.utilisation'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-used' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.general.creation'
-                  glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft25}
                   anchorId='general.creation'
+                  backgroundColor={blueSoft50}
+                  glossaryKeys={['embargo', 'barriere-mobile']}
+                  intlKey='app.national-data.general.creation'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-data-created' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.general.statement'
-                  glossaryKeys={['archive-ouverte']}
-                  backgroundColor={blueSoft25}
                   anchorId='general.statement'
+                  backgroundColor={blueSoft25}
+                  intlKey='app.national-data.general.statement'
                 >
                   <BSOChart id='data.general.voies-ouverture.chart-availibility' />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='general.mentions'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.national-data.general.mentions'
+                  isDisplayed={!isInProduction()}
+                >
+                  <BSOChart id='data.general.mentions.datasets-with-at-least-one-explicit-mention' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

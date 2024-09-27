@@ -193,7 +193,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Toulouse III'
-                href='https://bibliotheques.univ-tlse3.fr/utiliser-nos-services/se-former-s-informer/chercheurs/la-science-ouverte-l-ut3'
+                href='https://www.univ-tlse3.fr/la-recherche/science-ouverte'
                 img='/declinaisons/ut3.jpeg'
               />
             </Col>

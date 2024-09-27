@@ -70,6 +70,12 @@ export default function Footer() {
             </FooterLink>
             <FooterLink
               target='_blank'
+              href='https://works-magnet.dataesr.ovh/'
+            >
+              <FormattedMessage id='app.footer.works-magnet.text' />
+            </FooterLink>
+            <FooterLink
+              target='_blank'
               href={intl.formatMessage({ id: 'app.footer.dataesr.url' })}
             >
               #dataESR
@@ -79,12 +85,6 @@ export default function Footer() {
               href='https://data.enseignementsup-recherche.gouv.fr/pages/home/'
             >
               <FormattedMessage id='app.footer.link.platform-open-data' />
-            </FooterLink>
-            <FooterLink
-              target='_blank'
-              href='https://works-magnet.dataesr.ovh/'
-            >
-              <FormattedMessage id='app.footer.works-magnet' />
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory

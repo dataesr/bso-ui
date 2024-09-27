@@ -4,6 +4,13 @@ import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../../utils/helpers';
+
+const colors = {
+  en: getCSSValue('--blue-soft-100'),
+  fr: getCSSValue('--orange-soft-100'),
+  others: getCSSValue('--purple-medium-100'),
+};
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();
@@ -26,30 +33,79 @@ function useGetData(observationSnap, domain) {
       const categories = Object.values(data).map((d) => d.key); // Elements d'abscisse
 
       const dataByLang = {};
-      data.forEach((year) => year.by_custom.buckets.forEach((lang) => {
-        dataByLang[lang.key] = [
-          ...(dataByLang?.[lang.key] ?? []),
-          { year: year.key, count: lang.doc_count },
-        ];
+      data.forEach((year) => year.by_custom.buckets.forEach((bucket) => {
+        dataByLang[bucket.key] = {
+          ...(dataByLang?.[bucket.key] ?? {}),
+          [year.key]: dataByLang[bucket.key]?.[year.key]
+            ? dataByLang[bucket.key][year.key] + bucket.doc_count
+            : bucket.doc_count,
+        };
       }));
 
-      const dataGraph = Object.entries(dataByLang).map(([key, values]) => ({
-        name: intl.formatMessage({ id: `app.lang.${key}` }),
-        data: values.map((v) => ({
-          name: v.year,
-          y: v.count,
-          lang: intl.formatMessage({ id: `app.lang.${key}` }),
-        })),
+      const dataTotal = data.map((d) => ({ year: d.key, count: d.doc_count }));
+      const dataEnglish = data.map((d) => ({
+        year: d.key,
+        count:
+          d.by_custom.buckets.find((item) => item.key === 'en')?.doc_count || 0,
+      }));
+      const dataFrench = data.map((d) => ({
+        year: d.key,
+        count:
+          d.by_custom.buckets.find((item) => item.key === 'fr')?.doc_count || 0,
+      }));
+      const dataOthers = dataTotal.map((d) => ({
+        year: d.year,
+        count:
+          d.count
+          - dataEnglish.find((item) => item.year === d.year).count
+          - dataFrench.find((item) => item.year === d.year).count,
       }));
 
-      const sum = (array) => array.reduce((acc, value) => acc + value, 0);
-      dataGraph.sort(
-        (a, b) => sum(b.data.map(({ y }) => y)) - sum(a.data.map(({ y }) => y)),
-      );
+      const dataGraph = [
+        {
+          name: intl.formatMessage({ id: 'app.lang.en' }),
+          color: colors.en,
+          data: dataEnglish.map((d) => ({
+            name: d.year,
+            y: d.count,
+            percent: Number(
+              (d.count / dataTotal.find((item) => item.year === d.year).count)
+                * 100,
+            ).toFixed(1),
+            lang: intl.formatMessage({ id: 'app.lang.en' }),
+          })),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.lang.fr' }),
+          color: colors.fr,
+          data: dataFrench.map((d) => ({
+            name: d.year,
+            y: d.count,
+            percent: Number(
+              (d.count / dataTotal.find((item) => item.year === d.year).count)
+                * 100,
+            ).toFixed(1),
+            lang: intl.formatMessage({ id: 'app.lang.fr' }),
+          })),
+        },
+        {
+          name: intl.formatMessage({ id: 'app.lang.others' }),
+          color: colors.others,
+          data: dataOthers.map((d) => ({
+            name: d.year,
+            y: d.count,
+            percent: Number(
+              (d.count / dataTotal.find((item) => item.year === d.year).count)
+                * 100,
+            ).toFixed(1),
+            lang: intl.formatMessage({ id: 'app.lang.others' }),
+          })),
+        },
+      ];
 
       return {
         categories,
-        dataGraph: dataGraph.slice(0, 5),
+        dataGraph,
       };
     },
     [domain, intl],
