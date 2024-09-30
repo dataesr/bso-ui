@@ -964,7 +964,7 @@ export const chartOptions = {
     },
   },
   'publi.general.langues.chart-publications-by-year': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
+    getOptions: (id, intl, categories, data, dataTitle, isPercent) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'spline';
       options.xAxis = {
@@ -973,14 +973,20 @@ export const chartOptions = {
       };
       options.yAxis = {
         title: {
-          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
+          text: intl.formatMessage({
+            id: isPercent
+              ? 'app.publi.percentage-publi'
+              : 'app.publi.nb-publications',
+          }),
         },
       };
       options.legend.title.text = intl.formatMessage({
         id: 'app.publication-lang',
       });
       options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.langues.chart-publications-by-year.tooltip',
+        id: isPercent
+          ? 'app.publi.general.langues.chart-publications-by-year-percent.tooltip'
+          : 'app.publi.general.langues.chart-publications-by-year.tooltip',
       });
       options.plotOptions = {
         spline: {
@@ -989,6 +995,9 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
+            formatter() {
+              return isPercent ? this.y.toFixed(0).concat(' %') : this.y;
+            },
           },
         },
       };
