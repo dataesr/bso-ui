@@ -1,185 +1,5 @@
 import { lazy } from 'react';
 
-// Essais cliniques + études observationnelles
-const ChartGroupesPatientsStudies = lazy(() => import(
-  '../components/Charts/studies/caracteristiques/combien/chart-groupes-patients'
-));
-const ChartProportionModesRepartitionStudies = lazy(() => import(
-  '../components/Charts/studies/caracteristiques/combien/chart-proportion-modes-repartition'
-));
-const ChartNombreStudies = lazy(() => import('../components/Charts/studies/caracteristiques/duree/chart-nombre'));
-const ChartDistributionDeclarationsStudies = lazy(() => import(
-  '../components/Charts/studies/caracteristiques/quand/chart-distribution-declarations'
-));
-const ChartEvolutionTemporalitesStudies = lazy(() => import(
-  '../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites'
-));
-const ChartRepartitionAvantApresStudies = lazy(() => import(
-  '../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres'
-));
-const ChartEvolutionNombreStudies = lazy(() => import(
-  '../components/Charts/studies/caracteristiques/types/chart-evolution-nombre'
-));
-const ChartEvolutionStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
-));
-const ChartEvolutionWithin3YearsStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years'
-));
-const ChartEvolutionWithin3YearsByYearStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year'
-));
-const ChartEvolutionWithin1YearStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
-));
-const ChartEvolutionWithin1YearByYearStudies = lazy(() => import(
-  '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year-by-year'
-));
-const ChartRepartitionStudies = lazy(() => import('../components/Charts/studies/general/trajectoires/chart-repartition'));
-const ChartDynamiqueNombreStudies = lazy(() => import(
-  '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-evolution-nombre'
-));
-const ChartPartStudies = lazy(() => import(
-  '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-part'
-));
-const ChartClassementPaysStudies = lazy(() => import(
-  '../components/Charts/studies/promoteurs/impact/chart-classement-pays'
-));
-const ChartPromoteursRepartitionStudies = lazy(() => import('../components/Charts/studies/promoteurs/impact/chart-repartition'));
-const ChartDistributionStudies = lazy(() => import(
-  '../components/Charts/studies/resultats/delai-diffusion/chart-distribution'
-));
-const ChartDelaiDiffusionRepartitionStudies = lazy(() => import(
-  '../components/Charts/studies/resultats/delai-diffusion/chart-repartition'
-));
-const ChartPlanPartageRepartitionStudies = lazy(() => import(
-  '../components/Charts/studies/resultats/plan-partage/chart-repartition'
-));
-const ChartResultatsRepartitionStudies = lazy(() => import(
-  '../components/Charts/studies/resultats/publication/chart-repartition'
-));
-const ChartResultatsRepartitionIcmjeStudies = lazy(() => import(
-  '../components/Charts/studies/resultats/publication/chart-repartition-icmje'
-));
-const ChartTypeDiffusionRepartitionStudies = lazy(() => import(
-  '../components/Charts/studies/resultats/type-diffusion/chart-repartition'
-));
-const ChartRepartitionParTypeStudies = lazy(() => import(
-  '../components/Charts/studies/resultats/type-diffusion/chart-repartition-par-type'
-));
-
-// Theses
-const ChartRepartitionTauxThesis = lazy(() => import(
-  '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'
-));
-const ChartTauxOuvertureThesis = lazy(() => import(
-  '../components/Charts/thesis/disciplines/dynamique-ouverture/chart-taux-ouverture'
-));
-const ChartRepartitionThesis = lazy(() => import(
-  '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-thesis'
-));
-
-// Data & code
-const ChartDataUsed = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used'));
-const ChartDataCreated = lazy(() => import(
-  '../components/Charts/data/general/voies-ouverture/chart-data-created'
-));
-const ChartDataShared = lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-shared'));
-const ChartDataSharedAmongAll = lazy(() => import(
-  '../components/Charts/data/general/voies-ouverture/chart-data-shared-among-all'
-));
-const ChartDataAvailibility = lazy(() => import(
-  '../components/Charts/data/general/voies-ouverture/chart-availibility'
-));
-const ChartDataUsedDiscipline = lazy(() => import(
-  '../components/Charts/data/disciplines/voies-ouverture/chart-data-used'
-));
-const ChartDataCreatedDiscipline = lazy(() => import(
-  '../components/Charts/data/disciplines/voies-ouverture/chart-data-created'
-));
-const ChartDataSharedDiscipline = lazy(() => import(
-  '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared'
-));
-const ChartDataSharedAmongAllDiscipline = lazy(() => import(
-  '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared-among-all'
-));
-const ChartDataAvailibilityDiscipline = lazy(() => import(
-  '../components/Charts/data/disciplines/voies-ouverture/chart-availibility'
-));
-const ChartDataAvailibilityEditeur = lazy(() => import(
-  '../components/Charts/data/editeurs/voies-ouverture/chart-availibility'
-));
-const ChartSoftwareUsed = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-software-used'
-));
-const ChartSoftwareCreated = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-software-created'
-));
-const ChartSoftwareShared = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-software-shared'
-));
-const ChartSoftwareSharedAmongAll = lazy(() => import(
-  '../components/Charts/software/general/voies-ouverture/chart-software-shared-among-all'
-));
-const ChartSoftwareUsedDiscipline = lazy(() => import(
-  '../components/Charts/software/disciplines/voies-ouverture/chart-software-used'
-));
-const ChartSoftwareCreatedDiscipline = lazy(() => import(
-  '../components/Charts/software/disciplines/voies-ouverture/chart-software-created'
-));
-const ChartSoftwareSharedDiscipline = lazy(() => import(
-  '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared'
-));
-const ChartSoftwareSharedAmongAllDiscipline = lazy(() => import(
-  '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared-among-all'
-));
-const ChartSoftwareSharedOa = lazy(() => import(
-  '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
-));
-
-// Orcid
-const OrcidEvolution = lazy(() => import('../components/Charts/orcid/general/chart-evolution'));
-const OrcidCreationByYear = lazy(() => import('../components/Charts/orcid/general/creation-by-year'));
-const ChartOrcidAffiliationSource = lazy(() => import(
-  '../components/Charts/orcid/general/chart-indicator-affiliationsource'
-));
-const ChartOrcidWorkSource = lazy(() => import('../components/Charts/orcid/general/chart-indicator-worksource'));
-const ChartOrcidActive = lazy(() => import('../components/Charts/orcid/general/chart-indicator-active'));
-const ChartOrcidHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-hal'));
-const ChartOrcidWork = lazy(() => import('../components/Charts/orcid/general/chart-indicator-work'));
-const ChartOrcidActiveWork = lazy(() => import('../components/Charts/orcid/general/chart-indicator-active-work'));
-const ChartOrcidAffiliationId = lazy(() => import('../components/Charts/orcid/general/chart-indicator-affiliationid'));
-const ChartOrcidTheseYear = lazy(() => import('../components/Charts/orcid/general/chart-indicator-these-year'));
-const ChartOrcidTheseDiscipline = lazy(() => import('../components/Charts/orcid/general/chart-indicator-these-discipline'));
-const ChartOrcidIdrefAbes = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-abes'));
-const ChartOrcidIdrefHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-hal'));
-const ChartOrcidIdrefSame = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-same'));
-const ChartOrcidIdhalAbes = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-abes'));
-const ChartOrcidIdhalHal = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-hal'));
-const ChartOrcidIdhalSame = lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-same'));
-
-// Others
-const HalNoDoiByField = lazy(() => import(
-  '../components/Charts/publications/others/hal-no-doi/hal-no-doi-by-field'
-));
-const ChartInterationalCollaborations = lazy(() => import(
-  '../components/Charts/publications/others/collaborations/international-collaborations'
-));
-const RetractionsByYear = lazy(() => import('../components/Charts/publications/others/retractions/chart-by-year'));
-const RetractionsByField = lazy(() => import('../components/Charts/publications/others/retractions/chart-by-field'));
-const RetractionsByPublisher = lazy(() => import(
-  '../components/Charts/publications/others/retractions/chart-by-publisher'
-));
-const RetractionsByNature = lazy(() => import(
-  '../components/Charts/publications/others/retractions/chart-by-nature'
-));
-const RetractionsByReason = lazy(() => import(
-  '../components/Charts/publications/others/retractions/chart-by-reason'
-));
-const PublicationsBySource = lazy(() => import(
-  '../components/Charts/publications/others/sources/publications-by-source'
-));
-
 const chartComponents = {
   'publi.affiliations.dynamique-ouverture.chart-taux-ouverture': lazy(() => import(
     '../components/Charts/publications/affiliations/dynamique-ouverture/chart-taux-ouverture'
@@ -313,127 +133,205 @@ const chartComponents = {
   'publi.publishers.couts-publication.chart-depenses-estimees': lazy(() => import(
     '../components/Charts/publications/editeurs/couts-publication/chart-depenses-estimees'
   )),
-  'publi.others.collaborations.international-collaborations':
-    ChartInterationalCollaborations,
-  'general.dynamique.chart-evolution': ChartEvolutionStudies,
-  'general.dynamique.chart-evolution-within-3-years':
-    ChartEvolutionWithin3YearsStudies,
-  'general.dynamique.chart-evolution-within-3-years-by-year':
-    ChartEvolutionWithin3YearsByYearStudies,
-  'general.dynamique.chart-evolution-within-1-year':
-    ChartEvolutionWithin1YearStudies,
-  'general.dynamique.chart-evolution-within-1-year-by-year':
-    ChartEvolutionWithin1YearByYearStudies,
-  'general.trajectoires.chart-repartition': ChartRepartitionStudies,
-  'caracteristiques.quand.chart-evolution-temporalites':
-    ChartEvolutionTemporalitesStudies,
-  'caracteristiques.quand.chart-repartition-avant-apres':
-    ChartRepartitionAvantApresStudies,
-  'caracteristiques.quand.chart-distribution-declarations':
-    ChartDistributionDeclarationsStudies,
-  'caracteristiques.duree.chart-nombre': ChartNombreStudies,
-  'caracteristiques.combien.chart-groupes-patients':
-    ChartGroupesPatientsStudies,
-  'caracteristiques.combien.chart-proportion-modes-repartition':
-    ChartProportionModesRepartitionStudies,
-  'caracteristiques.types.chart-evolution-nombre': ChartEvolutionNombreStudies,
-  'promoteurs.dynamique-ouverture.chart-part': ChartPartStudies,
-  'promoteurs.dynamique-ouverture.chart-evolution-nombre':
-    ChartDynamiqueNombreStudies,
-  'promoteurs.impact.chart-repartition': ChartPromoteursRepartitionStudies,
-  'promoteurs.impact.chart-classement-pays': ChartClassementPaysStudies,
-  'resultats.type-diffusion.chart-repartition':
-    ChartTypeDiffusionRepartitionStudies,
-  'resultats.type-diffusion.chart-repartition-par-type':
-    ChartRepartitionParTypeStudies,
-  'resultats.plan-partage.chart-repartition':
-    ChartPlanPartageRepartitionStudies,
-  'resultats.delai-diffusion.chart-repartition':
-    ChartDelaiDiffusionRepartitionStudies,
-  'resultats.delai-diffusion.chart-distribution': ChartDistributionStudies,
-  'resultats.publication.chart-repartition': ChartResultatsRepartitionStudies,
-  'resultats.publication.chart-repartition-icmje':
-    ChartResultatsRepartitionIcmjeStudies,
-  'thesis.general.voies-ouverture.chart-repartition-taux':
-    ChartRepartitionTauxThesis,
-  'thesis.disciplines.dynamique-ouverture.chart-taux-ouverture':
-    ChartTauxOuvertureThesis,
-  'thesis.disciplines.voies-ouverture.chart-repartition-thesis':
-    ChartRepartitionThesis,
+  'publi.others.collaborations.international-collaborations': lazy(() => import(
+    '../components/Charts/publications/others/collaborations/international-collaborations'
+  )),
+  'general.dynamique.chart-evolution': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
+  )),
+  'general.dynamique.chart-evolution-within-3-years': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years'
+  )),
+  'general.dynamique.chart-evolution-within-3-years-by-year': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year'
+  )),
+  'general.dynamique.chart-evolution-within-1-year': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
+  )),
+  'general.dynamique.chart-evolution-within-1-year-by-year': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year-by-year'
+  )),
+  'general.trajectoires.chart-repartition': lazy(() => import(
+    '../components/Charts/studies/general/trajectoires/chart-repartition'
+  )),
+  'caracteristiques.quand.chart-evolution-temporalites': lazy(() => import(
+    '../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites'
+  )),
+  'caracteristiques.quand.chart-repartition-avant-apres': lazy(() => import(
+    '../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres'
+  )),
+  'caracteristiques.quand.chart-distribution-declarations': lazy(() => import(
+    '../components/Charts/studies/caracteristiques/quand/chart-distribution-declarations'
+  )),
+  'caracteristiques.duree.chart-nombre': lazy(() => import('../components/Charts/studies/caracteristiques/duree/chart-nombre')),
+  'caracteristiques.combien.chart-groupes-patients': lazy(() => import(
+    '../components/Charts/studies/caracteristiques/combien/chart-groupes-patients'
+  )),
+  'caracteristiques.combien.chart-proportion-modes-repartition': lazy(() => import(
+    '../components/Charts/studies/caracteristiques/combien/chart-proportion-modes-repartition'
+  )),
+  'caracteristiques.types.chart-evolution-nombre': lazy(() => import(
+    '../components/Charts/studies/caracteristiques/types/chart-evolution-nombre'
+  )),
+  'promoteurs.dynamique-ouverture.chart-part': lazy(() => import(
+    '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-part'
+  )),
+  'promoteurs.dynamique-ouverture.chart-evolution-nombre': lazy(() => import(
+    '../components/Charts/studies/promoteurs/dynamique-ouverture/chart-evolution-nombre'
+  )),
+  'promoteurs.impact.chart-repartition': lazy(() => import('../components/Charts/studies/promoteurs/impact/chart-repartition')),
+  'promoteurs.impact.chart-classement-pays': lazy(() => import(
+    '../components/Charts/studies/promoteurs/impact/chart-classement-pays'
+  )),
+  'resultats.type-diffusion.chart-repartition': lazy(() => import(
+    '../components/Charts/studies/resultats/type-diffusion/chart-repartition'
+  )),
+  'resultats.type-diffusion.chart-repartition-par-type': lazy(() => import(
+    '../components/Charts/studies/resultats/type-diffusion/chart-repartition-par-type'
+  )),
+  'resultats.plan-partage.chart-repartition': lazy(() => import(
+    '../components/Charts/studies/resultats/plan-partage/chart-repartition'
+  )),
+  'resultats.delai-diffusion.chart-repartition': lazy(() => import(
+    '../components/Charts/studies/resultats/delai-diffusion/chart-repartition'
+  )),
+  'resultats.delai-diffusion.chart-distribution': lazy(() => import(
+    '../components/Charts/studies/resultats/delai-diffusion/chart-distribution'
+  )),
+  'resultats.publication.chart-repartition': lazy(() => import(
+    '../components/Charts/studies/resultats/publication/chart-repartition'
+  )),
+  'resultats.publication.chart-repartition-icmje': lazy(() => import(
+    '../components/Charts/studies/resultats/publication/chart-repartition-icmje'
+  )),
+  'thesis.general.voies-ouverture.chart-repartition-taux': lazy(() => import(
+    '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'
+  )),
+  'thesis.disciplines.dynamique-ouverture.chart-taux-ouverture': lazy(() => import(
+    '../components/Charts/thesis/disciplines/dynamique-ouverture/chart-taux-ouverture'
+  )),
+  'thesis.disciplines.voies-ouverture.chart-repartition-thesis': lazy(() => import(
+    '../components/Charts/thesis/disciplines/voies-ouverture/chart-repartition-thesis'
+  )),
   // Code
-  'software.general.voies-ouverture.chart-software-used': ChartSoftwareUsed,
-  'software.general.voies-ouverture.chart-software-created':
-    ChartSoftwareCreated,
-  'software.general.voies-ouverture.chart-software-shared': ChartSoftwareShared,
-  'software.general.voies-ouverture.chart-software-shared-among-all':
-    ChartSoftwareSharedAmongAll,
-  'software.disciplines.voies-ouverture.chart-software-used':
-    ChartSoftwareUsedDiscipline,
-  'software.disciplines.voies-ouverture.chart-software-created':
-    ChartSoftwareCreatedDiscipline,
-  'software.disciplines.voies-ouverture.chart-software-shared':
-    ChartSoftwareSharedDiscipline,
-  'software.disciplines.voies-ouverture.chart-software-shared-among-all':
-    ChartSoftwareSharedAmongAllDiscipline,
-  'software.oa.voies-ouverture.chart-software-shared': ChartSoftwareSharedOa,
+  'software.general.voies-ouverture.chart-software-used': lazy(() => import(
+    '../components/Charts/software/general/voies-ouverture/chart-software-used'
+  )),
+  'software.general.voies-ouverture.chart-software-created': lazy(() => import(
+    '../components/Charts/software/general/voies-ouverture/chart-software-created'
+  )),
+  'software.general.voies-ouverture.chart-software-shared': lazy(() => import(
+    '../components/Charts/software/general/voies-ouverture/chart-software-shared'
+  )),
+  'software.general.voies-ouverture.chart-software-shared-among-all': lazy(() => import(
+    '../components/Charts/software/general/voies-ouverture/chart-software-shared-among-all'
+  )),
+  'software.disciplines.voies-ouverture.chart-software-used': lazy(() => import(
+    '../components/Charts/software/disciplines/voies-ouverture/chart-software-used'
+  )),
+  'software.disciplines.voies-ouverture.chart-software-created': lazy(() => import(
+    '../components/Charts/software/disciplines/voies-ouverture/chart-software-created'
+  )),
+  'software.disciplines.voies-ouverture.chart-software-shared': lazy(() => import(
+    '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared'
+  )),
+  'software.disciplines.voies-ouverture.chart-software-shared-among-all': lazy(
+    () => import(
+      '../components/Charts/software/disciplines/voies-ouverture/chart-software-shared-among-all'
+    ),
+  ),
+  'software.oa.voies-ouverture.chart-software-shared': lazy(() => import(
+    '../components/Charts/software/oa/voies-ouverture/chart-software-shared'
+  )),
   'software.general.mentions.software-with-at-least-one-explicit-mention': lazy(
     () => import(
       '../components/Charts/software/general/mentions/software-with-at-least-one-explicit-mention'
     ),
   ),
   // Data
-  'data.general.voies-ouverture.chart-data-used': ChartDataUsed,
-  'data.general.voies-ouverture.chart-data-created': ChartDataCreated,
-  'data.general.voies-ouverture.chart-data-shared': ChartDataShared,
-  'data.general.voies-ouverture.chart-data-shared-among-all':
-    ChartDataSharedAmongAll,
-  'data.general.voies-ouverture.chart-availibility': ChartDataAvailibility,
-  'data.disciplines.voies-ouverture.chart-data-used': ChartDataUsedDiscipline,
-  'data.disciplines.voies-ouverture.chart-data-created':
-    ChartDataCreatedDiscipline,
-  'data.disciplines.voies-ouverture.chart-data-shared':
-    ChartDataSharedDiscipline,
-  'data.disciplines.voies-ouverture.chart-data-shared-among-all':
-    ChartDataSharedAmongAllDiscipline,
-  'data.disciplines.voies-ouverture.chart-availibility':
-    ChartDataAvailibilityDiscipline,
-  'data.editeurs.voies-ouverture.chart-availibility':
-    ChartDataAvailibilityEditeur,
+  'data.general.voies-ouverture.chart-data-used': lazy(() => import('../components/Charts/data/general/voies-ouverture/chart-data-used')),
+  'data.general.voies-ouverture.chart-data-created': lazy(() => import(
+    '../components/Charts/data/general/voies-ouverture/chart-data-created'
+  )),
+  'data.general.voies-ouverture.chart-data-shared': lazy(() => import(
+    '../components/Charts/data/general/voies-ouverture/chart-data-shared'
+  )),
+  'data.general.voies-ouverture.chart-data-shared-among-all': lazy(() => import(
+    '../components/Charts/data/general/voies-ouverture/chart-data-shared-among-all'
+  )),
+  'data.general.voies-ouverture.chart-availibility': lazy(() => import(
+    '../components/Charts/data/general/voies-ouverture/chart-availibility'
+  )),
+  'data.disciplines.voies-ouverture.chart-data-used': lazy(() => import(
+    '../components/Charts/data/disciplines/voies-ouverture/chart-data-used'
+  )),
+  'data.disciplines.voies-ouverture.chart-data-created': lazy(() => import(
+    '../components/Charts/data/disciplines/voies-ouverture/chart-data-created'
+  )),
+  'data.disciplines.voies-ouverture.chart-data-shared': lazy(() => import(
+    '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared'
+  )),
+  'data.disciplines.voies-ouverture.chart-data-shared-among-all': lazy(() => import(
+    '../components/Charts/data/disciplines/voies-ouverture/chart-data-shared-among-all'
+  )),
+  'data.disciplines.voies-ouverture.chart-availibility': lazy(() => import(
+    '../components/Charts/data/disciplines/voies-ouverture/chart-availibility'
+  )),
+  'data.editeurs.voies-ouverture.chart-availibility': lazy(() => import(
+    '../components/Charts/data/editeurs/voies-ouverture/chart-availibility'
+  )),
   'data.general.mentions.datasets-with-at-least-one-explicit-mention': lazy(
     () => import(
       '../components/Charts/data/general/mentions/datasets-with-at-least-one-explicit-mention'
     ),
   ),
   // Orcid
-  'orcid.general.chart-evolution': OrcidEvolution,
-  'orcid.general.creation-by-year': OrcidCreationByYear,
-  'orcid.general.chart-indicator-worksource': ChartOrcidWorkSource,
-  'orcid.general.chart-indicator-affiliationsource':
-    ChartOrcidAffiliationSource,
-  'orcid.general.chart-indicator-active': ChartOrcidActive,
-  'orcid.general.chart-indicator-hal': ChartOrcidHal,
-  'orcid.general.chart-indicator-work': ChartOrcidWork,
-  'orcid.general.chart-indicator-active-work': ChartOrcidActiveWork,
-  'orcid.general.chart-indicator-affiliationid': ChartOrcidAffiliationId,
-  'orcid.general.chart-indicator-these-year': ChartOrcidTheseYear,
-  'orcid.general.chart-indicator-these-discipline': ChartOrcidTheseDiscipline,
-  'orcid.general.chart-indicator-idref-abes': ChartOrcidIdrefAbes,
-  'orcid.general.chart-indicator-idref-hal': ChartOrcidIdrefHal,
-  'orcid.general.chart-indicator-idref-same': ChartOrcidIdrefSame,
-  'orcid.general.chart-indicator-idhal-abes': ChartOrcidIdhalAbes,
-  'orcid.general.chart-indicator-idhal-hal': ChartOrcidIdhalHal,
-  'orcid.general.chart-indicator-idhal-same': ChartOrcidIdhalSame,
+  'orcid.general.chart-evolution': lazy(() => import('../components/Charts/orcid/general/chart-evolution')),
+  'orcid.general.creation-by-year': lazy(() => import('../components/Charts/orcid/general/creation-by-year')),
+  'orcid.general.chart-indicator-worksource': lazy(() => import('../components/Charts/orcid/general/chart-indicator-worksource')),
+  'orcid.general.chart-indicator-affiliationsource': lazy(() => import(
+    '../components/Charts/orcid/general/chart-indicator-affiliationsource'
+  )),
+  'orcid.general.chart-indicator-active': lazy(() => import('../components/Charts/orcid/general/chart-indicator-active')),
+  'orcid.general.chart-indicator-hal': lazy(() => import('../components/Charts/orcid/general/chart-indicator-hal')),
+  'orcid.general.chart-indicator-work': lazy(() => import('../components/Charts/orcid/general/chart-indicator-work')),
+  'orcid.general.chart-indicator-active-work': lazy(() => import('../components/Charts/orcid/general/chart-indicator-active-work')),
+  'orcid.general.chart-indicator-affiliationid': lazy(() => import('../components/Charts/orcid/general/chart-indicator-affiliationid')),
+  'orcid.general.chart-indicator-these-year': lazy(() => import('../components/Charts/orcid/general/chart-indicator-these-year')),
+  'orcid.general.chart-indicator-these-discipline': lazy(() => import(
+    '../components/Charts/orcid/general/chart-indicator-these-discipline'
+  )),
+  'orcid.general.chart-indicator-idref-abes': lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-abes')),
+  'orcid.general.chart-indicator-idref-hal': lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-hal')),
+  'orcid.general.chart-indicator-idref-same': lazy(() => import('../components/Charts/orcid/general/chart-indicator-idref-same')),
+  'orcid.general.chart-indicator-idhal-abes': lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-abes')),
+  'orcid.general.chart-indicator-idhal-hal': lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-hal')),
+  'orcid.general.chart-indicator-idhal-same': lazy(() => import('../components/Charts/orcid/general/chart-indicator-idhal-same')),
   // Others
-  'publi.others.hal-no-doi.hal-no-doi-by-field': HalNoDoiByField,
+  'publi.others.hal-no-doi.hal-no-doi-by-field': lazy(() => import(
+    '../components/Charts/publications/others/hal-no-doi/hal-no-doi-by-field'
+  )),
   'publi.others.hal-no-doi.hal-no-doi-by-field-by-year': lazy(() => import(
     '../components/Charts/publications/others/hal-no-doi/hal-no-doi-by-field-by-year'
   )),
-  'publi.others.retractions.chart-by-year': RetractionsByYear,
-  'publi.others.retractions.chart-by-field': RetractionsByField,
-  'publi.others.retractions.chart-by-publisher': RetractionsByPublisher,
-  'publi.others.retractions.chart-by-nature': RetractionsByNature,
-  'publi.others.retractions.chart-by-reason': RetractionsByReason,
-  'publi.others.sources.publications-by-source': PublicationsBySource,
+  'publi.others.retractions.chart-by-year': lazy(() => import(
+    '../components/Charts/publications/others/retractions/chart-by-year'
+  )),
+  'publi.others.retractions.chart-by-field': lazy(() => import(
+    '../components/Charts/publications/others/retractions/chart-by-field'
+  )),
+  'publi.others.retractions.chart-by-publisher': lazy(() => import(
+    '../components/Charts/publications/others/retractions/chart-by-publisher'
+  )),
+  'publi.others.retractions.chart-by-nature': lazy(() => import(
+    '../components/Charts/publications/others/retractions/chart-by-nature'
+  )),
+  'publi.others.retractions.chart-by-reason': lazy(() => import(
+    '../components/Charts/publications/others/retractions/chart-by-reason'
+  )),
+  'publi.others.sources.publications-by-source': lazy(() => import(
+    '../components/Charts/publications/others/sources/publications-by-source'
+  )),
 };
 
 export default chartComponents;
