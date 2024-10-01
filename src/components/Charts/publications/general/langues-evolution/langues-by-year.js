@@ -1,4 +1,4 @@
-import { Toggle } from '@dataesr/react-dsfr';
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -59,14 +59,24 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isError={isError}
       isLoading={isLoading || !dataGraph || !categories}
     >
-      <Toggle
-        checked={isPercent}
-        label={intl.formatMessage({
-          id: 'app.commons.percent',
-          defaultMessage: 'Percent',
-        })}
-        onChange={() => setPercent(!isPercent)}
-      />
+      <RadioGroup
+        className='d-inline-block'
+        isInline
+        legend={intl.formatMessage({ id: 'app.publi.display' })}
+        onChange={(value) => setPercent(value === 'percent')}
+        value={isPercent ? 'percent' : 'number'}
+      >
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.nb-publications' })}
+          value='number'
+        />
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.commons.percent',
+          })}
+          value='percent'
+        />
+      </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomain}
