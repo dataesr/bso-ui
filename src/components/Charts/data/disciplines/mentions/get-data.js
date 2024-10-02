@@ -19,7 +19,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      console.log(lastObservationSnap);
       const query = getFetchOptions({
         key: 'datasetsWithAtLeastOneExplicitMentionByDiscipline',
         domain,
@@ -98,7 +97,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         dataGraph,
       };
     },
-    [domain, intl],
+    [beforeLastObservationSnap, domain, intl],
   );
 
   useEffect(() => {
