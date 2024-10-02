@@ -2533,6 +2533,46 @@ export default function getFetchOptions({
         },
       },
     }),
+    datasetsWithAtLeastOneExplicitMentionByDiscipline: ([
+      lastObservationSnap,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(
+                  lastObservationSnap,
+                ),
+              },
+            },
+            {
+              range: {
+                'datastet_details.nb_mentions': {
+                  gt: 0,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: 'bso_classification.keyword',
+            size: 25,
+          },
+          aggs: {
+            is_implicit: {
+              terms: {
+                field: 'datastet_details.is_implicit_only',
+              },
+            },
+          },
+        },
+      },
+    }),
     codeWithAtLeastOneExplicitMention: ([
       lastObservationSnap,
       minPublicationDate = 2013,

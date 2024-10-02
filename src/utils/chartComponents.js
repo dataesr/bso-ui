@@ -285,6 +285,11 @@ const chartComponents = {
       '../components/Charts/data/general/mentions/datasets-with-at-least-one-explicit-mention'
     ),
   ),
+  'data.disciplines.mentions.datasets-with-at-least-one-explicit-mention': lazy(
+    () => import(
+      '../components/Charts/data/disciplines/mentions/datasets-with-at-least-one-explicit-mention'
+    ),
+  ),
   // Orcid
   'orcid.general.chart-evolution': lazy(() => import('../components/Charts/orcid/general/chart-evolution')),
   'orcid.general.creation-by-year': lazy(() => import('../components/Charts/orcid/general/creation-by-year')),
