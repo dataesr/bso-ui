@@ -38,7 +38,7 @@ const SUPPORTED_FIELDS = [
   '',
 ];
 // DOI does not contain comma
-const doiRegex = /^[^,]+$/;
+const doiRegex = /^10\.[^,]+$/;
 // hal_struct_id is only digits
 const halStructIdRegex = /^\d*$/;
 // hal_id
@@ -286,11 +286,11 @@ const SubmissionForm = () => {
           const errors = dataWithLine.filter(
             (item) => item?.doi && !item?.doi?.match(doiRegex),
           );
-          let errorMessage = 'Les DOI ne doivent pas contenir de virgule.';
+          let errorMessage = 'Les DOI doivent commencer par "10." et ne doivent pas contenir de virgule.';
           errorMessage += ` Erreur(s) sur ${errors.length} DOI :`;
           errorMessage += '<ul>';
           errors.forEach((item) => {
-            errorMessage += `<li>Ligne ${item?.line} : DOI ${item?.doi}</li>`;
+            errorMessage += `<li>Ligne ${item?.line} : DOI : ${item?.doi}</li>`;
           });
           errorMessage += '</ul>';
           setMessage(errorMessage);
