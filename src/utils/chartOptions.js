@@ -964,7 +964,7 @@ export const chartOptions = {
     },
   },
   'publi.general.langues.chart-publications-by-year': {
-    getOptions: (id, intl, categories, data, dataTitle) => {
+    getOptions: (id, intl, categories, data, dataTitle, isPercent) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'spline';
       options.xAxis = {
@@ -973,14 +973,20 @@ export const chartOptions = {
       };
       options.yAxis = {
         title: {
-          text: intl.formatMessage({ id: 'app.publi.nb-publications' }),
+          text: intl.formatMessage({
+            id: isPercent
+              ? 'app.publi.percentage-publi'
+              : 'app.publi.nb-publications',
+          }),
         },
       };
       options.legend.title.text = intl.formatMessage({
         id: 'app.publication-lang',
       });
       options.tooltip.pointFormat = intl.formatMessage({
-        id: 'app.publi.general.langues.chart-publications-by-year.tooltip',
+        id: isPercent
+          ? 'app.publi.general.langues.chart-publications-by-year-percent.tooltip'
+          : 'app.publi.general.langues.chart-publications-by-year.tooltip',
       });
       options.plotOptions = {
         spline: {
@@ -989,6 +995,9 @@ export const chartOptions = {
               textOutline: 'none',
             },
             enabled: true,
+            formatter() {
+              return isPercent ? this.y.toFixed(0).concat(' %') : this.y;
+            },
           },
         },
       };
@@ -3583,6 +3592,41 @@ export const chartOptions = {
           dataSorting: {
             enabled: true,
             sortKey,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'data.disciplines.mentions.datasets-with-at-least-one-explicit-mention': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bar';
+      options.chart.height = '700px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.national-data.general.mentions.datasets-with-at-least-one-explicit-mention.title',
+      });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-hebergement',
+      });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: false,
           },
         },
       };

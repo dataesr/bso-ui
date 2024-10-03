@@ -1,3 +1,4 @@
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -20,12 +21,14 @@ HCExportingData(Highcharts);
 
 const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const [chartComments, setChartComments] = useState('');
+  const [isPercent, setPercent] = useState(false);
   const chartRef = useRef();
   const intl = useIntl();
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isError, isLoading } = useGetData(
     lastObservationSnap,
     domain,
+    isPercent,
   );
   const { dataGraph, categories } = allData;
   const dataTitle = {
@@ -38,6 +41,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     categories,
     dataGraph,
     dataTitle,
+    isPercent,
   );
 
   useEffect(() => {
@@ -55,6 +59,24 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       isError={isError}
       isLoading={isLoading || !dataGraph || !categories}
     >
+      <RadioGroup
+        className='d-inline-block'
+        isInline
+        legend={intl.formatMessage({ id: 'app.publi.display' })}
+        onChange={(value) => setPercent(value === 'percent')}
+        value={isPercent ? 'percent' : 'number'}
+      >
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.nb-publications' })}
+          value='number'
+        />
+        <Radio
+          label={intl.formatMessage({
+            id: 'app.commons.percent',
+          })}
+          value='percent'
+        />
+      </RadioGroup>
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomain}

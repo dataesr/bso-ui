@@ -12,7 +12,7 @@ const colors = {
   others: getCSSValue('--purple-medium-100'),
 };
 
-function useGetData(observationSnap, domain) {
+function useGetData(observationSnap, domain, isPercent) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -67,11 +67,18 @@ function useGetData(observationSnap, domain) {
           color: colors.en,
           data: dataEnglish.map((d) => ({
             name: d.year,
-            y: d.count,
-            percent: Number(
+            yabs: d.count,
+            ypercent: Number(
               (d.count / dataTotal.find((item) => item.year === d.year).count)
                 * 100,
             ).toFixed(1),
+            y: isPercent
+              ? Number(
+                (d.count
+                    / dataTotal.find((item) => item.year === d.year).count)
+                    * 100,
+              )
+              : d.count,
             lang: intl.formatMessage({ id: 'app.lang.en' }),
           })),
         },
@@ -80,11 +87,18 @@ function useGetData(observationSnap, domain) {
           color: colors.fr,
           data: dataFrench.map((d) => ({
             name: d.year,
-            y: d.count,
-            percent: Number(
+            yabs: d.count,
+            ypercent: Number(
               (d.count / dataTotal.find((item) => item.year === d.year).count)
                 * 100,
             ).toFixed(1),
+            y: isPercent
+              ? Number(
+                (d.count
+                    / dataTotal.find((item) => item.year === d.year).count)
+                    * 100,
+              )
+              : d.count,
             lang: intl.formatMessage({ id: 'app.lang.fr' }),
           })),
         },
@@ -93,11 +107,18 @@ function useGetData(observationSnap, domain) {
           color: colors.others,
           data: dataOthers.map((d) => ({
             name: d.year,
-            y: d.count,
-            percent: Number(
+            yabs: d.count,
+            ypercent: Number(
               (d.count / dataTotal.find((item) => item.year === d.year).count)
                 * 100,
             ).toFixed(1),
+            y: isPercent
+              ? Number(
+                (d.count
+                    / dataTotal.find((item) => item.year === d.year).count)
+                    * 100,
+              )
+              : d.count,
             lang: intl.formatMessage({ id: 'app.lang.others' }),
           })),
         },
@@ -108,7 +129,7 @@ function useGetData(observationSnap, domain) {
         dataGraph,
       };
     },
-    [domain, intl],
+    [domain, intl, isPercent],
   );
 
   useEffect(() => {
@@ -126,7 +147,7 @@ function useGetData(observationSnap, domain) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap]);
+  }, [observationSnap, isPercent]);
 
   return { allData, isError, isLoading };
 }

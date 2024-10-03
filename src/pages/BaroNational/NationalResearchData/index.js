@@ -229,34 +229,43 @@ export default function NationalResearchData() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.national-data.disciplines.utilisation'
-                  backgroundColor={blueSoft50}
                   anchorId='disciplines.utilisation'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.national-data.disciplines.utilisation'
                 >
                   <BSOChart id='data.disciplines.voies-ouverture.chart-data-used' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.disciplines.creation'
-                  backgroundColor={blueSoft25}
                   anchorId='disciplines.creation'
+                  backgroundColor={blueSoft25}
+                  intlKey='app.national-data.disciplines.creation'
                 >
                   <BSOChart id='data.disciplines.voies-ouverture.chart-data-created' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.disciplines.partage'
-                  backgroundColor={blueSoft50}
                   anchorId='disciplines.partage'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.national-data.disciplines.partage'
                 >
                   <BSOChart id='data.disciplines.voies-ouverture.chart-data-shared' />
                   <BSOChart id='data.disciplines.voies-ouverture.chart-data-shared-among-all' />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.national-data.disciplines.statement'
-                  glossaryKeys={['archive-ouverte']}
-                  backgroundColor={blueSoft25}
                   anchorId='disciplines.statement'
+                  backgroundColor={blueSoft25}
+                  glossaryKeys={['archive-ouverte']}
+                  intlKey='app.national-data.disciplines.statement'
                 >
                   <BSOChart id='data.disciplines.voies-ouverture.chart-availibility' />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='disciplines.mentions'
+                  backgroundColor={blueSoft50}
+                  glossaryKeys={['archive-ouverte']}
+                  intlKey='app.national-data.general.mentions'
+                  isDisplayed={!isInProduction()}
+                >
+                  <BSOChart id='data.disciplines.mentions.datasets-with-at-least-one-explicit-mention' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
