@@ -148,6 +148,9 @@ function Project() {
                       <li>
                         <FormattedMessage id='app.project.ct.3' />
                       </li>
+                      <li>
+                        <FormattedMessage id='app.project.ct.4' />
+                      </li>
                     </ul>
                   </p>
                 </Col>
