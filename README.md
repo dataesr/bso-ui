@@ -4,6 +4,7 @@
 ![license](https://img.shields.io/github/license/dataesr/bso-ui)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/dataesr/bso-ui)
 [![Production deployment](https://github.com/dataesr/bso-ui/actions/workflows/production.yml/badge.svg)](https://github.com/dataesr/bso-ui/actions/workflows/production.yml)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/dataesr/bso-ui)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/dataesr/bso-ui)
 
 Application web du Baromètre de la Science Ouverte accessible ici : 
 * fr : https://barometredelascienceouverte.esr.gouv.fr/
