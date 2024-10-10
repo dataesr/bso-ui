@@ -61,11 +61,11 @@ function Project() {
           </Row>
           <Row gutters>
             <Col n='12'>
-              <h2 className='mt-10' id='team'>
-                <FormattedMessage id='app.project.team.title' />
+              <h2 className='mt-10' id='tool'>
+                <FormattedMessage id='app.project.tool.title' />
               </h2>
               <p>
-                <FormattedMessage id='app.project.team.description' />
+                <FormattedMessage id='app.project.tool.description' />
               </p>
               <p>
                 <FormattedMessage id='app.project.bright.initiative' />
@@ -83,20 +83,49 @@ function Project() {
             <>
               <Row gutters>
                 <Col n='12'>
-                  <h2 className='mt-10' id='copil'>
-                    <FormattedMessage id='app.project.committee.copil.title' />
+                  <h2 className='mt-10' id='team'>
+                    <FormattedMessage id='app.project.team.title' />
                   </h2>
                   <p>
-                    <FormattedMessage id='app.project.committee.copil.description' />
                     <ul>
                       <li>
-                        <FormattedMessage id='app.project.committee.copil.1' />
+                        <FormattedMessage id='app.project.team.1' />
                       </li>
                       <li>
-                        <FormattedMessage id='app.project.committee.copil.2' />
+                        <FormattedMessage id='app.project.team.2' />
                       </li>
                       <li>
-                        <FormattedMessage id='app.project.committee.copil.3' />
+                        <FormattedMessage id='app.project.team.3' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.team.4' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.team.5' />
+                      </li>
+                    </ul>
+                  </p>
+                </Col>
+              </Row>
+              <Row gutters>
+                <Col n='12'>
+                  <h2 className='mt-10' id='copil'>
+                    <FormattedMessage id='app.project.copil.title' />
+                  </h2>
+                  <p>
+                    <FormattedMessage id='app.project.copil.description' />
+                    <ul>
+                      <li>
+                        <FormattedMessage id='app.project.copil.1' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.copil.2' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.copil.3' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.copil.4' />
                       </li>
                     </ul>
                   </p>
@@ -105,19 +134,19 @@ function Project() {
               <Row gutters>
                 <Col n='12'>
                   <h2 className='mt-10' id='ct'>
-                    <FormattedMessage id='app.project.committee.ct.title' />
+                    <FormattedMessage id='app.project.ct.title' />
                   </h2>
                   <p>
-                    <FormattedMessage id='app.project.committee.ct.description' />
+                    <FormattedMessage id='app.project.ct.description' />
                     <ul>
                       <li>
-                        <FormattedMessage id='app.project.committee.ct.1' />
+                        <FormattedMessage id='app.project.ct.1' />
                       </li>
                       <li>
-                        <FormattedMessage id='app.project.committee.ct.2' />
+                        <FormattedMessage id='app.project.ct.2' />
                       </li>
                       <li>
-                        <FormattedMessage id='app.project.committee.ct.3' />
+                        <FormattedMessage id='app.project.ct.3' />
                       </li>
                     </ul>
                   </p>
