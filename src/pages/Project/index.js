@@ -3,6 +3,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CardLogo from '../../components/CardLogo';
+import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 function Project() {
@@ -61,10 +62,10 @@ function Project() {
           <Row gutters>
             <Col n='12'>
               <h2 className='mt-10' id='team'>
-                <FormattedMessage id='app.project.equipe.title' />
+                <FormattedMessage id='app.project.team.title' />
               </h2>
               <p>
-                <FormattedMessage id='app.project.equipe' />
+                <FormattedMessage id='app.project.team.description' />
               </p>
               <p>
                 <FormattedMessage id='app.project.bright.initiative' />
@@ -78,6 +79,52 @@ function Project() {
               />
             </Col>
           </Row>
+          {!isInProduction() && (
+            <>
+              <Row gutters>
+                <Col n='12'>
+                  <h2 className='mt-10' id='copil'>
+                    <FormattedMessage id='app.project.committee.copil.title' />
+                  </h2>
+                  <p>
+                    <FormattedMessage id='app.project.committee.copil.description' />
+                    <ul>
+                      <li>
+                        <FormattedMessage id='app.project.committee.copil.1' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.committee.copil.2' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.committee.copil.3' />
+                      </li>
+                    </ul>
+                  </p>
+                </Col>
+              </Row>
+              <Row gutters>
+                <Col n='12'>
+                  <h2 className='mt-10' id='ct'>
+                    <FormattedMessage id='app.project.committee.ct.title' />
+                  </h2>
+                  <p>
+                    <FormattedMessage id='app.project.committee.ct.description' />
+                    <ul>
+                      <li>
+                        <FormattedMessage id='app.project.committee.ct.1' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.committee.ct.2' />
+                      </li>
+                      <li>
+                        <FormattedMessage id='app.project.committee.ct.3' />
+                      </li>
+                    </ul>
+                  </p>
+                </Col>
+              </Row>
+            </>
+          )}
           <Row gutters>
             <Col n='12 lg-8' div='contact'>
               <h2 id='contact'>
