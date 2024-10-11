@@ -127,6 +127,9 @@ function Project() {
                       <li>
                         <FormattedMessage id='app.project.copil.4' />
                       </li>
+                      <li>
+                        <FormattedMessage id='app.project.copil.5' />
+                      </li>
                     </ul>
                   </p>
                 </Col>
