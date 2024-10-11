@@ -1307,14 +1307,24 @@
     "commentsName": "de l'ITX",
     "commentsNameEN": "of ITX",
     "paysage": "Tfc1g",
-    "ror": "https://ror.org/049kkt456"
+    "ror": "https://ror.org/049kkt456",
+    "scale": "laboratory"
   },
   "201220410M": {
     "name": "Droit et changement social (DCS)",
     "commentsName": "du DCS",
     "commentsNameEN": "of DCS",
     "paysage": "1ix0v",
-    "ror": "https://ror.org/014nzh720"
+    "ror": "https://ror.org/014nzh720",
+    "scale": "laboratory"
+  },
+  "201220427F": {
+    "name": "Laboratoire d'Automatique, de Mécanique et d'Informatique Industrielles et Humaines (LAMIH)",
+    "commentsName": "du LAMIH",
+    "commentsNameEN": "of the LAMIH",
+    "paysage": "kfe0r",
+    "ror": "006z7v557",
+    "scale": "laboratory"
   },
   "201420738K": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
