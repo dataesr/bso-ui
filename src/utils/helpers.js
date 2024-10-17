@@ -209,7 +209,10 @@ export function withContext(id, domain, studyType) {
  */
 export function getSource(id, otherSources = []) {
   const sources = [];
-  if (id.includes('-publi') || id.includes('publication')) {
+  if (id.includes('repositories.datasets')) {
+    sources.push('Datacite');
+  }
+  if (id.includes('-publi.') || id.includes('publication')) {
     sources.push('Unpaywall');
     sources.push('HAL');
   }
