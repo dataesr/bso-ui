@@ -2,9 +2,8 @@ import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import CardLogo from '../../components/CardLogo';
-import { isInProduction } from '../../utils/helpers';
-import useLang from '../../utils/Hooks/useLang';
+import CardLogo from '../../../components/CardLogo';
+import useLang from '../../../utils/Hooks/useLang';
 
 function Project() {
   const { lang } = useLang();
