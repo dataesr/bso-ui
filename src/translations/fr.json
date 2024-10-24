@@ -518,6 +518,7 @@
   "app.graph.download.csv": "CSV",
   "app.graph.download.png": "PNG",
   "app.graph.integration": "Intégration",
+  "app.graph.fullscreen": "Plein écran",
   "app.graph.share": "Partager",
   "app.hal": "HAL",
   "app.hal-only": "HAL seulement",
