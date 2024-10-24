@@ -70,11 +70,14 @@ function WrapperChart({
     console.log(title);
     console.log(name);
     if (chartRef.current) {
-      chartRef.current.chart.exportChart({
-        type: 'image/png',
-        scale: 30,
-        filename: title,
-      });
+      chartRef.current.chart.exportChart(
+        {
+          type: 'image/png',
+          scale: 30,
+          filename: title,
+        },
+        { title },
+      );
     }
     trackEvent({
       category: 'export',
