@@ -67,14 +67,11 @@ function WrapperChart({
 
   const exportChartPng = () => {
     if (chartRef.current) {
-      console.log('exportChartPng');
-      console.log(title);
       chartRef.current.chart.exportChart(
         {
-          type: 'image/png',
+          filename: title,
           scale: 30,
-          // filename: title,
-          filename: JSON.stringify('test accentué'),
+          type: 'image/png',
         },
         // Override exporting graph title to add name
         { title: { text: title } },
