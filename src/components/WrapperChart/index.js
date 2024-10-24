@@ -76,7 +76,7 @@ function WrapperChart({
           scale: 30,
           filename: title,
         },
-        { title },
+        { title: { text: title } },
       );
     }
     trackEvent({
