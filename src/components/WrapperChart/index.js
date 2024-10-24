@@ -66,6 +66,9 @@ function WrapperChart({
   }, [chartRef]);
 
   const exportChartPng = () => {
+    console.log('exportChartPng');
+    console.log(title);
+    console.log(name);
     if (chartRef.current) {
       chartRef.current.chart.exportChart({
         type: 'image/png',
