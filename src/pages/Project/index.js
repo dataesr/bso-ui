@@ -76,86 +76,82 @@ function Project() {
               />
             </Col>
           </Row>
-          {!isInProduction() && (
-            <>
-              <Row gutters>
-                <Col n='12'>
-                  <h2 className='mt-10' id='team'>
-                    <FormattedMessage id='app.project.team.title' />
-                  </h2>
-                  <p>
-                    <ul>
-                      <li>
-                        <FormattedMessage id='app.project.team.1' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.team.2' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.team.3' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.team.4' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.team.5' />
-                      </li>
-                    </ul>
-                  </p>
-                </Col>
-              </Row>
-              <Row gutters>
-                <Col n='12'>
-                  <h2 className='mt-10' id='copil'>
-                    <FormattedMessage id='app.project.copil.title' />
-                  </h2>
-                  <p>
-                    <ul>
-                      <li>
-                        <FormattedMessage id='app.project.copil.1' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.copil.2' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.copil.3' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.copil.4' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.copil.5' />
-                      </li>
-                    </ul>
-                  </p>
-                </Col>
-              </Row>
-              <Row gutters>
-                <Col n='12'>
-                  <h2 className='mt-10' id='ct'>
-                    <FormattedMessage id='app.project.ct.title' />
-                  </h2>
-                  <p>
-                    <FormattedMessage id='app.project.ct.description' />
-                    <ul>
-                      <li>
-                        <FormattedMessage id='app.project.ct.1' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.ct.2' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.ct.3' />
-                      </li>
-                      <li>
-                        <FormattedMessage id='app.project.ct.4' />
-                      </li>
-                    </ul>
-                  </p>
-                </Col>
-              </Row>
-            </>
-          )}
+          <Row gutters>
+            <Col n='12'>
+              <h2 className='mt-10' id='team'>
+                <FormattedMessage id='app.project.team.title' />
+              </h2>
+              <p>
+                <ul>
+                  <li>
+                    <FormattedMessage id='app.project.team.1' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.team.2' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.team.3' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.team.4' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.team.5' />
+                  </li>
+                </ul>
+              </p>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12'>
+              <h2 className='mt-10' id='copil'>
+                <FormattedMessage id='app.project.copil.title' />
+              </h2>
+              <p>
+                <ul>
+                  <li>
+                    <FormattedMessage id='app.project.copil.1' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.copil.2' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.copil.3' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.copil.4' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.copil.5' />
+                  </li>
+                </ul>
+              </p>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col n='12'>
+              <h2 className='mt-10' id='ct'>
+                <FormattedMessage id='app.project.ct.title' />
+              </h2>
+              <p>
+                <FormattedMessage id='app.project.ct.description' />
+                <ul>
+                  <li>
+                    <FormattedMessage id='app.project.ct.1' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.ct.2' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.ct.3' />
+                  </li>
+                  <li>
+                    <FormattedMessage id='app.project.ct.4' />
+                  </li>
+                </ul>
+              </p>
+            </Col>
+          </Row>
           <Row gutters>
             <Col n='12 lg-8' div='contact'>
               <h2 id='contact'>
