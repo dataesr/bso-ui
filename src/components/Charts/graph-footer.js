@@ -32,6 +32,7 @@ import { getCSSValue } from '../../utils/helpers';
 const GraphFooter = ({
   date,
   enableExport,
+  fullscreen,
   height,
   onCsvButtonClick,
   onPngButtonClick,
@@ -136,9 +137,9 @@ const GraphFooter = ({
                     )}
                   </>
                 )}
-                {srcPath ? (
+                {srcPath && (
                   <span
-                    className='icon-click'
+                    className='icon-click mr-26'
                     tabIndex={0}
                     role='button'
                     onClick={() => setIsModalOpen(!isModalOpen)}
@@ -159,7 +160,29 @@ const GraphFooter = ({
                       </Text>
                     </DSIcon>
                   </span>
-                ) : null}
+                )}
+                <span
+                  className='icon-click'
+                  tabIndex={0}
+                  role='button'
+                  onClick={() => fullscreen()}
+                  onKeyPress={() => fullscreen()}
+                >
+                  <DSIcon
+                    name='ri-layout-grid-fill'
+                    size='lg'
+                    as='span'
+                    iconPosition='right'
+                    className='ds-fr--v-text-top'
+                  >
+                    <Text size='xs' as='span' className=''>
+                      <FormattedMessage
+                        id='app.graph.fullscreen'
+                        defaultMessage='Plein écran'
+                      />
+                    </Text>
+                  </DSIcon>
+                </span>
               </p>
             </Col>
           </Row>
@@ -278,6 +301,7 @@ export default GraphFooter;
 GraphFooter.defaultProps = {
   date: '',
   enableExport: true,
+  fullscreen: null,
   height: 600,
   onCsvButtonClick: null,
   onPngButtonClick: null,
@@ -289,6 +313,7 @@ GraphFooter.defaultProps = {
 GraphFooter.propTypes = {
   date: PropTypes.string,
   enableExport: PropTypes.bool,
+  fullscreen: PropTypes.func,
   height: PropTypes.number,
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,

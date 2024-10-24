@@ -299,6 +299,7 @@
   "app.graph.download.csv": "CSV",
   "app.graph.download.png": "PNG",
   "app.graph.integration": "Integration",
+  "app.graph.fullscreen": "Fullscreen",
   "app.graph.share": "Share",
   "app.hal": "HAL",
   "app.hal-only": "HAL only",

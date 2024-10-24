@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import App from './App';
+import App from './app';
 import LANGUAGES from './config/supported-languages';
 import { GlobalsContextProvider } from './utils/Hooks/useGetGlobals';
 import { LangContextProvider } from './utils/Hooks/useLang';
