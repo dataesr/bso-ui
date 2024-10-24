@@ -70,7 +70,7 @@ export default function Footer() {
             </FooterLink>
             <FooterLink
               target='_blank'
-              href='https://works-magnet.dataesr.ovh/'
+              href='https://works-magnet.esr.gouv.fr/'
             >
               <FormattedMessage id='app.footer.works-magnet.text' />
             </FooterLink>

@@ -23,9 +23,6 @@ function Project() {
               <p>
                 <FormattedMessage id='app.project.chronologie2' />
               </p>
-              <p>
-                <FormattedMessage id='app.project.chronologie.partners' />
-              </p>
             </Col>
             <Col n='lg-3 md-4 sm-6'>
               <CardLogo
@@ -113,7 +110,6 @@ function Project() {
                     <FormattedMessage id='app.project.copil.title' />
                   </h2>
                   <p>
-                    <FormattedMessage id='app.project.copil.description' />
                     <ul>
                       <li>
                         <FormattedMessage id='app.project.copil.1' />

@@ -261,6 +261,120 @@ export const chartOptions = {
       return options;
     },
   },
+  'data.general.repositories.datasets-by-publisher': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.chart.height = '600px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(true, null, true); // absolute = true
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.nb.datasets' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.data-repository',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0);
+            },
+          },
+          stackLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
+  'data.general.repositories.datasets-by-format': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.chart.height = '600px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(true, null, true); // absolute = true
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.nb.datasets' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.data-format',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0);
+            },
+          },
+          stackLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
+  'data.general.repositories.datasets-by-size': {
+    getOptions: (id, intl, categories, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'column';
+      options.chart.height = '600px';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(true, null, true); // absolute = true
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.nb.datasets' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.data-size',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            style: {
+              textOutline: 'none',
+            },
+            enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0);
+            },
+          },
+          stackLabels: {
+            enabled: true,
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'field' : item.name),
+      };
+      return options;
+    },
+  },
   'thesis.disciplines.voies-ouverture.chart-repartition-thesis': {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });

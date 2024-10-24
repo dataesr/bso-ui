@@ -2617,6 +2617,45 @@ export default function getFetchOptions({
         },
       },
     }),
+    datasetsByCategory: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+      aggregationType,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte:
+                    getPublicationYearFromObservationSnap(lastObservationSnap)
+                    + 1,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            size: 15,
+            field: 'year',
+          },
+          aggs: {
+            by_type: {
+              terms: {
+                field: `${aggregationType}.keyword`,
+                size: 35,
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
@@ -2633,10 +2672,13 @@ export default function getFetchOptions({
   const isOrcid = objectType.includes('orcid');
   const isThesis = objectType.includes('thesis');
   const isPublications = objectType.includes('publications');
-  if (isHealthTrialsStudies || isOrcid) {
+  const isDatasets = objectType.includes('datasets');
+  if (isHealthTrialsStudies || isOrcid || isDatasets) {
     // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
     // TODO to remove once the data is in the index
     useBsoCountry = false;
+  }
+  if (isHealthTrialsStudies) {
     // Filter on chosen sources (ClinicalTrials, eudrCTR and / or CTIS)
     queryResponse.query.bool.filter.push({
       terms: { 'all_sources.keyword': ES_STUDIES_API_SOURCES },
@@ -2686,11 +2728,19 @@ export default function getFetchOptions({
     });
     // Filter on unique affiliations
     affiliationsToSearch = [...new Set(affiliationsToSearch)];
-    queryResponse.query.bool.filter.push({
-      terms: {
-        'bso_local_affiliations.keyword': affiliationsToSearch,
-      },
-    });
+    if (isDatasets) {
+      queryResponse.query.bool.filter.push({
+        terms: {
+          'bso3_local_affiliations.keyword': affiliationsToSearch,
+        },
+      });
+    } else {
+      queryResponse.query.bool.filter.push({
+        terms: {
+          'bso_local_affiliations.keyword': affiliationsToSearch,
+        },
+      });
+    }
     const year = {};
     if (startYear) {
       year.gte = parseInt(startYear, 10);
