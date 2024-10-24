@@ -74,6 +74,7 @@ function WrapperChart({
           type: 'image/png',
           scale: 30,
           // filename: title,
+          filename: 'test accentué',
         },
         // Override exporting graph title to add name
         { title: { text: title } },
