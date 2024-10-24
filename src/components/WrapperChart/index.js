@@ -66,9 +66,6 @@ function WrapperChart({
   }, [chartRef]);
 
   const exportChartPng = () => {
-    console.log('exportChartPng');
-    console.log(title);
-    console.log(name);
     if (chartRef.current) {
       chartRef.current.chart.exportChart(
         {
@@ -76,6 +73,7 @@ function WrapperChart({
           scale: 30,
           filename: title,
         },
+        // Override exporting graph title to add name
         { title: { text: title } },
       );
     }
