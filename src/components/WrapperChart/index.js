@@ -69,9 +69,9 @@ function WrapperChart({
     if (chartRef.current) {
       chartRef.current.chart.exportChart(
         {
-          type: 'image/png',
-          scale: 30,
           filename: title,
+          scale: 30,
+          type: 'image/png',
         },
         // Override exporting graph title to add name
         { title: { text: title } },
