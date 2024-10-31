@@ -31,6 +31,19 @@
       "intlDefinition": "app.glossary.code-source.definition",
       "intlEntry": "app.glossary.code-source"
     },
+    "datastet": {
+      "intlDefinition": "app.glossary.datastet.definition",
+      "intlEntry": "app.glossary.datastet",
+      "cta": "https://github.com/kermitt2/datastet"
+    },
+    "debusqapc": {
+      "intlDefinition": "app.glossary.debusqapc.definition",
+      "intlEntry": "app.glossary.debusqapc",
+      "ctas": [
+        "https://hal-lara.archives-ouvertes.fr/OUVRIR-LA-SCIENCE/hal-03909068",
+        "https://www.ouvrirlascience.fr/wp-content/uploads/2022/12/APC_Cost_Study_Poster.pdf"
+      ]
+    },
     "diamond": {
       "intlDefinition": "app.glossary.diamond.definition",
       "intlEntry": "app.glossary.diamond"
@@ -51,10 +64,6 @@
     "embargo": {
       "intlDefinition": "app.glossary.embargo.definition",
       "intlEntry": "app.glossary.embargo"
-    },
-    "entrepot": {
-      "intlDefinition": "app.glossary.entrepot.definition",
-      "intlEntry": "app.glossary.entrepot"
     },
     "essai-clinique": {
       "intlDefinition": "app.glossary.essai-clinique.definition",
@@ -80,6 +89,11 @@
     "gold-full-apc": {
       "intlDefinition": "app.glossary.gold-full-apc.definition",
       "intlEntry": "app.glossary.gold-full-apc"
+    },
+    "grobid": {
+      "intlDefinition": "app.glossary.grobid.definition",
+      "intlEntry": "app.glossary.grobid",
+      "cta": "https://github.com/kermitt2/grobid"
     },
     "hal": {
       "intlDefinition": "app.glossary.hal.definition",
@@ -156,10 +170,19 @@
       "intlEntry": "app.glossary.pubmed",
       "cta": "https://pubmed.ncbi.nlm.nih.gov/"
     },
+    "repository": {
+      "intlDefinition": "app.glossary.repository.definition",
+      "intlEntry": "app.glossary.repository"
+    },
     "resultat-essai-clinique": {
       "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
       "intlEntry": "app.glossary.resultat-essai-clinique",
       "cta": "https://clinicaltrials.gov/"
+    },
+    "softcite": {
+      "intlDefinition": "app.glossary.softcite.definition",
+      "intlEntry": "app.glossary.softcite",
+      "cta": "https://github.com/ourresearch/software-mentions"
     },
     "type-hebergement-oa": {
       "intlDefinition": "app.glossary.type-hebergement-oa.definition",
@@ -169,29 +192,6 @@
       "intlDefinition": "app.glossary.unpaywall.definition",
       "intlEntry": "app.glossary.unpaywall",
       "cta": "https://unpaywall.org/"
-    },
-    "grobid": {
-      "intlDefinition": "app.glossary.grobid.definition",
-      "intlEntry": "app.glossary.grobid",
-      "cta": "https://github.com/kermitt2/grobid"
-    },
-    "softcite": {
-      "intlDefinition": "app.glossary.softcite.definition",
-      "intlEntry": "app.glossary.softcite",
-      "cta": "https://github.com/ourresearch/software-mentions"
-    },
-    "datastet": {
-      "intlDefinition": "app.glossary.datastet.definition",
-      "intlEntry": "app.glossary.datastet",
-      "cta": "https://github.com/kermitt2/datastet"
-    },
-    "debusqapc": {
-      "intlDefinition": "app.glossary.debusqapc.definition",
-      "intlEntry": "app.glossary.debusqapc",
-      "ctas": [
-        "https://hal-lara.archives-ouvertes.fr/OUVRIR-LA-SCIENCE/hal-03909068",
-        "https://www.ouvrirlascience.fr/wp-content/uploads/2022/12/APC_Cost_Study_Poster.pdf"
-      ]
     }
   }
 ]

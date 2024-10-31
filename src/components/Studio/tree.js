@@ -264,6 +264,43 @@ const tree = [
       },
     ],
   },
+  {
+    key: 'app.baro-national.datasets',
+    value: 'datasets',
+    isInProduction: false,
+    children: [
+      {
+        key: 'app.tree.datasets.by-publisher',
+        value: 'publisher',
+        children: [
+          {
+            key: 'app.national-data.general.repositories.datasets-by-publisher.title',
+            value: 'data.general.repositories.datasets-by-publisher',
+          },
+        ],
+      },
+      {
+        key: 'app.tree.datasets.by-size',
+        value: 'size',
+        children: [
+          {
+            key: 'app.national-data.general.repositories.datasets-by-size.title',
+            value: 'data.general.repositories.datasets-by-size',
+          },
+        ],
+      },
+      {
+        key: 'app.tree.datasets.by-format',
+        value: 'format',
+        children: [
+          {
+            key: 'app.national-data.general.repositories.datasets-by-format.title',
+            value: 'data.general.repositories.datasets-by-format',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export default tree;

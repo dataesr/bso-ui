@@ -11,23 +11,27 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useIntl } from 'react-intl';
 
 import downloadFile from '../../utils/files';
-import { getCSSValue, getObservationLabel } from '../../utils/helpers';
+import {
+  getCSSValue,
+  getObservationLabel,
+  isInProduction,
+} from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import tree from './tree';
 
 const Studio = () => {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
-  const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506');
+  const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506'); // University of Lorraine
   const [displayComment, setDisplayComment] = useState(true);
   const [displayFooter, setDisplayFooter] = useState(true);
   const [displayTitle, setDisplayTitle] = useState(false);
-  const [endYear, setEndYear] = useState(2022);
-  const [firstObservationYear, setFirstObservationYear] = useState(2018);
+  const [endYear, setEndYear] = useState('2022');
+  const [firstObservationYear, setFirstObservationYear] = useState('2018');
   const [lang, setLang] = useState('fr');
   const [lastObservationYear, setLastObservationYear] = useState();
   const [object, setObject] = useState('publi');
-  const [startYear, setStartYear] = useState(2013);
+  const [startYear, setStartYear] = useState('2013');
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
 
@@ -49,26 +53,39 @@ const Studio = () => {
     { label: 'Français', value: 'fr' },
     { label: 'Anglais', value: 'en' },
   ];
-  const observationYears = [2018, 2019, 2020, 2021, 2022, 2023].map((item) => ({
-    label: item,
-    value: item,
-  }));
+  const observationYears = ['2018', '2019', '2020', '2021', '2022', '2023'].map(
+    (item) => ({
+      label: item,
+      value: item,
+    }),
+  );
   observationYears.push({ label: 'La plus récente', value: 'latest' });
   const publicationYears = [
-    2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
+    '2013',
+    '2014',
+    '2015',
+    '2016',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021',
+    '2022',
   ].map((item) => ({ label: item, value: item }));
   const values = {
-    commentsName,
-    publicationYear: endYear,
-    observationYear: lastObservationYear,
-    publisherTitle: '',
     archiveTitle: '',
+    commentsName,
+    observationYear: lastObservationYear,
+    publicationYear: endYear,
+    publisherTitle: '',
   };
 
-  const objects = tree.map((item) => ({
-    ...item,
-    label: intl.formatMessage({ id: item.key }, values),
-  }));
+  const objects = tree
+    .filter((item) => !isInProduction() || (item?.isInProduction ?? true))
+    .map((item) => ({
+      ...item,
+      label: intl.formatMessage({ id: item.key }, values),
+    }));
   let tabs = objects?.find((item) => item.value === object)?.children || [];
   tabs = tabs.map((item) => ({
     ...item,
@@ -142,7 +159,7 @@ const Studio = () => {
             hint="Si périmètre ad-hoc, identifiant communiqué par l'équipe BSO ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
             label="Identifiant de l'établissement"
             message='Merci de saisir un identifiant'
-            messageType={bsoLocalAffiliation === '' ? 'error' : ''}
+            messageType={bsoLocalAffiliation === '' ? 'error' : null}
             onChange={(e) => setBsoLocalAffiliation(e.target.value)}
             required
             style={{ backgroundColor: getCSSValue('--white') }}
@@ -156,7 +173,7 @@ const Studio = () => {
             options={langs}
             selected={lang}
             style={{
-              marginTop: '50px',
+              marginTop: '71px',
               backgroundColor: getCSSValue('--white'),
             }}
           />
@@ -180,7 +197,7 @@ const Studio = () => {
             options={tabs}
             selected={tab}
             style={{
-              marginTop: '50px',
+              marginTop: '51px',
               backgroundColor: getCSSValue('--white'),
             }}
           />
@@ -200,6 +217,7 @@ const Studio = () => {
       <Row gutters>
         <Col n='12 md-6'>
           <Select
+            disabled={object !== 'publi'}
             hint="Filtre sur l'année de publication supérieure ou égale"
             label='Première année de publication'
             onChange={(e) => setStartYear(e.target.value)}
@@ -210,10 +228,11 @@ const Studio = () => {
         </Col>
         <Col n='12 md-6'>
           <Select
+            disabled={object !== 'publi'}
             hint="Filtre sur l'année de publication inférieure ou égale"
             label='Dernière année de publication'
             message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
-            messageType={endYear < startYear ? 'error' : ''}
+            messageType={endYear < startYear ? 'error' : null}
             onChange={(e) => setEndYear(e.target.value)}
             options={publicationYears}
             selected={endYear}
@@ -224,6 +243,7 @@ const Studio = () => {
       <Row gutters>
         <Col n='12 md-6'>
           <Select
+            disabled={object !== 'publi'}
             hint="Filtre sur l'année d'observation inférieure ou égale"
             label="Première année d'observation"
             onChange={(e) => setFirstObservationYear(e.target.value)}
@@ -234,6 +254,7 @@ const Studio = () => {
         </Col>
         <Col n='12 md-6'>
           <Select
+            disabled={object !== 'publi'}
             hint="Filtre sur l'année d'observation supérieure ou égale"
             label="Dernière année d'observation"
             onChange={(e) => setLastObservationYear(e.target.value)}
@@ -241,7 +262,7 @@ const Studio = () => {
             selected={lastObservationYear}
             style={{ backgroundColor: getCSSValue('--white') }}
             messageType={
-              lastObservationYear < firstObservationYear ? 'error' : ''
+              lastObservationYear < firstObservationYear ? 'error' : null
             }
             message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
           />

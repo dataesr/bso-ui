@@ -84,6 +84,7 @@
   "app.baro-national.data.title.beta": "Les données de la recherche [bêta]",
   "app.baro-national.software.title": "Les code et logiciels",
   "app.baro-national.software.title.beta": "Les code et logiciels [bêta]",
+  "app.baro-national.datasets": "Les jeux de données",
   "app.baro-national.data-and-software.title": "Données de la recherche et code ou logiciels",
   "app.baro-national.today-title": "Le baromètre, aujourd'hui c'est…",
   "app.thesis.intro": "Les thèses de doctorat constituent une contribution majeure à la recherche et à la production de nouvelles connaissances. Elles font partie des jalons essentiels dans le processus collectif de recherche et l'ambition de la politique de science ouverte est de favoriser leur ouverture au public, sauf exceptions légitimes liées au secret professionnel ou secrets industriels et commerciaux.<linebreak></linebreak><linebreak></linebreak>Une thèse constitue à la fois une œuvre de l'esprit, un document administratif et une archive publique. La diffusion des thèses au format électronique est régie par deux arrêtés ministériels successifs. Pour les thèses soutenues entre 2006 et 2016, le docteur ne peut s'opposer à la diffusion de sa thèse en accès restreint au sein de son établissement de soutenance. Pour les thèses soutenues à partir de septembre 2016, le docteur ne peut s'opposer à la diffusion de sa thèse au sein de l'ensemble de la communauté universitaire. En revanche, le docteur peut s'opposer temporairement à la diffusion de sa thèse en accès libre sur internet en la soumettant à un embargo : une thèse sous embargo est consultable en accès restreint au sein de la communauté universitaire française pendant toute la période de l'embargo, avant de devenir consultable en accès libre sur internet. Seules les thèses confidentielles ne sont consultables par personne.",
@@ -442,8 +443,8 @@
   "app.glossary.embargo": "Embargo",
   "app.glossary.embargo-min": "embargo",
   "app.glossary.embargo.definition": "Période pendant laquelle une production scientifique ne peut pas être diffusée dans une archive ouverte. Pour les publications scientifiques financées par l'État, la loi pour une République numérique limite la période d'embargo après laquelle l'écrit peut être diffusé ouvertement, quel que soit le contrat avec l'éditeur. (Voir Loi pour une République numérique). Pour les thèses, il est possible pour l'auteur de définir une période pendant laquelle la thèse est disponible uniquement au sein de la communauté universitaire.",
-  "app.glossary.entrepot": "Entrepôt de données",
-  "app.glossary.entrepot.definition": "Pluridisciplinaire ou thématique dans une discipline, des jeux de données y sont déposés, documentés et diffusés. Un entrepôt permet un meilleur archivage et un accès plus large aux données qu'un serveur de laboratoire ou une autre solution locale.",
+  "app.glossary.repository": "Entrepôt de données",
+  "app.glossary.repository.definition": "Pluridisciplinaire ou thématique dans une discipline, des jeux de données y sont déposés, documentés et diffusés. Un entrepôt permet un meilleur archivage et un accès plus large aux données qu'un serveur de laboratoire ou une autre solution locale.",
   "app.glossary.essai-clinique": "Essai clinique",
   "app.glossary.essai-clinique.definition": "Aussi appelé études interventionelles, c'est un type de recherche clinique dans laquelle les participants sont répartis dans des groupes qui reçoivent une ou plusieurs interventions afin que les chercheurs puissent évaluer les effets des interventions sur les résultats biomédicaux ou liés à la santé. La notion d'intervention est définie comme tout acte réalisé sur la personne non justifié par la prise en charge médicale de la personne.",
   "app.glossary.etude-observationelle": "Étude observationelle",
@@ -1540,5 +1541,8 @@
   "app.repositories.label.ucldiscovery": "UCL Discovery (USA)",
   "app.repositories.label.univoak": "univOAK (France)",
   "app.repositories.label.usofficeofscientificandtechnicalinformation": "US OSTP (USA)",
-  "app.repositories.label.zenodo": "Zenodo (Europe)"
+  "app.repositories.label.zenodo": "Zenodo (Europe)",
+  "app.tree.datasets.by-publisher": "Par entrepôt",
+  "app.tree.datasets.by-size": "Par taille",
+  "app.tree.datasets.by-format": "Par format"
 }

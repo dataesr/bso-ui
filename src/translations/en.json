@@ -232,8 +232,8 @@
   "app.glossary.embargo": "Embargo",
   "app.glossary.embargo-min": "embargo",
   "app.glossary.embargo.definition": "Period during which a scientific production cannot be disseminated in an open archive. For scientific publications financed by the State, the Law for a Digital Republic limits the embargo period after which the writing can be disseminated openly, regardless of the contract with the publisher. (See Law for a Digital Republic). For theses, it is possible for the author to define a period during which the thesis is available only within the academic community.",
-  "app.glossary.entrepot": "Data repository",
-  "app.glossary.entrepot.definition": "Multidisciplinary or thematic within a scientific field, datasets are deposited, documented and disseminated. A repository allows better archiving and wider access to data than a laboratory server or other local solution",
+  "app.glossary.repository": "Data repository",
+  "app.glossary.repository.definition": "Multidisciplinary or thematic within a scientific field, datasets are deposited, documented and disseminated. A repository allows better archiving and wider access to data than a laboratory server or other local solution",
   "app.glossary.essai-clinique": "Clinical trial",
   "app.glossary.essai-clinique.definition": "Also called interventional studies, it is a type of clinical research in which participants are distributed in groups receiving one or more interventions so that researchers can evaluate the effects of interventions on biomedical outcomes or health-related results. The notion of intervention is defined as any act carried out on the person not justified by the medical care of the person.",
   "app.glossary.etude-observationelle": "Observational study",
@@ -1260,6 +1260,7 @@
   "app.baro-national.software.intro": "Code and software play a key role in scientific research, where they are tool, result and object of study. The availability of software source code, with the possibility of modifying, reusing and disseminating them, is a major challenge to enable the reproducibility of scientific results and to support the sharing and creation of knowledge, in an open science approach.<linebreak></linebreak>The Open Science Monitor uses an approach via the full text of French publications to detect code and software. This approach is only conducted on the basis of publications for which the full text could be downloaded.<linebreak></linebreak>This analysis mobilizes the open source software <glossary0>app.glossary.grobid</glossary0> and <glossary1>app.glossary.softcite</glossary1><linebreak></linebreak><cta0>An interface for exploring</cta0> mentions of software detected in the corpus is also being made available, on an experimental basis.",
   "app.baro-national.software.title": "Code and software",
   "app.baro-national.software.title.beta": "Code and software [beta]",
+  "app.baro-national.datasets": "Datasets",
   "app.baro-national.thesis.title": "PhD theses",
   "app.baro-national.data-and-software.title": "Research data and software",
   "app.beta": "[beta]",
@@ -1491,5 +1492,8 @@
   "app.repositories.label.ucldiscovery": "UCL Discovery (USA)",
   "app.repositories.label.univoak": "univOAK (France)",
   "app.repositories.label.usofficeofscientificandtechnicalinformation": "US OSTP (USA)",
-  "app.repositories.label.zenodo": "Zenodo (Europe)"
+  "app.repositories.label.zenodo": "Zenodo (Europe)",
+  "app.tree.datasets.by-publisher": "By repository",
+  "app.tree.datasets.by-size": "By size",
+  "app.tree.datasets.by-format": "By format"
 }
