@@ -40,6 +40,7 @@ function WrapperChart({
   const idWithDomain = withDomain(id, domain);
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
+
   const { commentsName, name } = getURLSearchParams(intl, id);
   let title = intl.formatMessage(
     {
@@ -91,7 +92,6 @@ function WrapperChart({
       name: `csv_${title}`,
     });
   };
-  const fullscreen = () => chartRef.current.chart.fullscreen.open();
 
   if (isLoading) {
     return (
@@ -126,7 +126,6 @@ function WrapperChart({
         <GraphFooter
           date={getFormattedDate(updateDate, lang)}
           enableExport={enableExport}
-          fullscreen={fullscreen}
           height={height}
           onCsvButtonClick={exportChartCsv}
           onPngButtonClick={exportChartPng}
