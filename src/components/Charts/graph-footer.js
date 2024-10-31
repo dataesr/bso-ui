@@ -139,51 +139,53 @@ const GraphFooter = ({
                   </>
                 )}
                 {srcPath && (
-                  <span
-                    className='icon-click mr-26'
-                    onClick={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
-                    onKeyPress={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
-                    role='button'
-                    tabIndex={0}
-                  >
-                    <DSIcon
-                      as='span'
-                      className='ds-fr--v-text-top'
-                      iconPosition='right'
-                      name='ri-file-code-fill'
-                      size='lg'
+                  <>
+                    <span
+                      className='icon-click mr-26'
+                      onClick={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
+                      onKeyPress={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
+                      role='button'
+                      tabIndex={0}
                     >
-                      <Text size='xs' as='span' className=''>
-                        <FormattedMessage
-                          id='app.graph.integration'
-                          defaultMessage='Integration'
-                        />
-                      </Text>
-                    </DSIcon>
-                  </span>
+                      <DSIcon
+                        as='span'
+                        className='ds-fr--v-text-top'
+                        iconPosition='right'
+                        name='ri-file-code-fill'
+                        size='lg'
+                      >
+                        <Text size='xs' as='span' className=''>
+                          <FormattedMessage
+                            id='app.graph.integration'
+                            defaultMessage='Integration'
+                          />
+                        </Text>
+                      </DSIcon>
+                    </span>
+                    <span
+                      className='icon-click'
+                      onClick={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
+                      onKeyPress={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
+                      role='button'
+                      tabIndex={0}
+                    >
+                      <DSIcon
+                        as='span'
+                        className='ds-fr--v-text-top'
+                        iconPosition='right'
+                        name='ri-fullscreen-line'
+                        size='lg'
+                      >
+                        <Text size='xs' as='span' className=''>
+                          <FormattedMessage
+                            id='app.graph.fullscreen'
+                            defaultMessage='Plein écran'
+                          />
+                        </Text>
+                      </DSIcon>
+                    </span>
+                  </>
                 )}
-                <span
-                  className='icon-click'
-                  onClick={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
-                  onKeyPress={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
-                  role='button'
-                  tabIndex={0}
-                >
-                  <DSIcon
-                    as='span'
-                    className='ds-fr--v-text-top'
-                    iconPosition='right'
-                    name='ri-fullscreen-line'
-                    size='lg'
-                  >
-                    <Text size='xs' as='span' className=''>
-                      <FormattedMessage
-                        id='app.graph.fullscreen'
-                        defaultMessage='Plein écran'
-                      />
-                    </Text>
-                  </DSIcon>
-                </span>
               </p>
             </Col>
           </Row>

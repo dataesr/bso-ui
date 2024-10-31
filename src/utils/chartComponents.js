@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle -- Avoid cycle warning because of fullscreen feature */
 import { lazy } from 'react';
 
 const chartComponents = {
