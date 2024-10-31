@@ -28,11 +28,11 @@ import {
 
 import { studiesTypes } from '../../utils/constants';
 import { getCSSValue } from '../../utils/helpers';
+import FullScreen from '../FullScreen';
 
 const GraphFooter = ({
   date,
   enableExport,
-  fullscreen,
   height,
   onCsvButtonClick,
   onPngButtonClick,
@@ -43,7 +43,8 @@ const GraphFooter = ({
 }) => {
   const intl = useIntl();
   const { search } = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalIntegrationOpen, setIsModalIntegrationOpen] = useState(false);
+  const [isModalFullscreenOpen, setIsModalFullscreenOpen] = useState(false);
   const urlSearchParams = new URLSearchParams(search);
   urlSearchParams.delete('id');
   const urlToShare = encodeURI(
@@ -140,17 +141,17 @@ const GraphFooter = ({
                 {srcPath && (
                   <span
                     className='icon-click mr-26'
-                    tabIndex={0}
+                    onClick={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
+                    onKeyPress={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
                     role='button'
-                    onClick={() => setIsModalOpen(!isModalOpen)}
-                    onKeyPress={() => setIsModalOpen(!isModalOpen)}
+                    tabIndex={0}
                   >
                     <DSIcon
+                      as='span'
+                      className='ds-fr--v-text-top'
+                      iconPosition='right'
                       name='ri-file-code-fill'
                       size='lg'
-                      as='span'
-                      iconPosition='right'
-                      className='ds-fr--v-text-top'
                     >
                       <Text size='xs' as='span' className=''>
                         <FormattedMessage
@@ -163,17 +164,17 @@ const GraphFooter = ({
                 )}
                 <span
                   className='icon-click'
-                  tabIndex={0}
+                  onClick={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
+                  onKeyPress={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
                   role='button'
-                  onClick={() => fullscreen()}
-                  onKeyPress={() => fullscreen()}
+                  tabIndex={0}
                 >
                   <DSIcon
-                    name='ri-layout-grid-fill'
-                    size='lg'
                     as='span'
-                    iconPosition='right'
                     className='ds-fr--v-text-top'
+                    iconPosition='right'
+                    name='ri-fullscreen-line'
+                    size='lg'
                   >
                     <Text size='xs' as='span' className=''>
                       <FormattedMessage
@@ -233,14 +234,14 @@ const GraphFooter = ({
       <Modal
         className='graph-integration'
         hide={() => {
-          setIsModalOpen(false);
+          setIsModalIntegrationOpen(false);
         }}
-        isOpen={isModalOpen}
+        isOpen={isModalIntegrationOpen}
         size='lg'
       >
         <ModalClose
           hide={() => {
-            setIsModalOpen(false);
+            setIsModalIntegrationOpen(false);
           }}
           title={intl.formatMessage({
             defaultMessage: 'Close modal',
@@ -292,6 +293,30 @@ const GraphFooter = ({
           </p>
         </ModalContent>
       </Modal>
+      <Modal
+        className='graph-fullscreen'
+        hide={() => {
+          setIsModalFullscreenOpen(false);
+        }}
+        isOpen={isModalFullscreenOpen}
+        size='lg'
+        style={{ with: '100%' }}
+      >
+        <ModalClose
+          hide={() => {
+            setIsModalFullscreenOpen(false);
+          }}
+          title={intl.formatMessage({
+            defaultMessage: 'Close modal',
+            id: 'app.commons.modal.close',
+          })}
+        >
+          <FormattedMessage id='app.commons.close' defaultMessage='Close' />
+        </ModalClose>
+        <ModalContent>
+          <FullScreen domain='' graphId={srcPath} studyType={studyType} />
+        </ModalContent>
+      </Modal>
     </>
   );
 };
@@ -301,7 +326,6 @@ export default GraphFooter;
 GraphFooter.defaultProps = {
   date: '',
   enableExport: true,
-  fullscreen: null,
   height: 600,
   onCsvButtonClick: null,
   onPngButtonClick: null,
@@ -313,7 +337,6 @@ GraphFooter.defaultProps = {
 GraphFooter.propTypes = {
   date: PropTypes.string,
   enableExport: PropTypes.bool,
-  fullscreen: PropTypes.func,
   height: PropTypes.number,
   onCsvButtonClick: PropTypes.func,
   onPngButtonClick: PropTypes.func,
