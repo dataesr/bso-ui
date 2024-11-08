@@ -456,6 +456,13 @@ const Variations = () => {
                 img='/declinaisons/unica.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt="bso local ua université d'artois"
+                href='https://science-ouverte.univ-artois.fr/barometre-de-la-science-ouverte-de-luniversite-dartois/'
+                img='/declinaisons/universite-artois.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
