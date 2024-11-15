@@ -1612,6 +1612,21 @@
     "paysage": "laymk",
     "ror": "https://ror.org/01c62av11"
   },
+  "IPHC-DEPE": {
+    "name": "Institut Pluridisciplinaire Hubert Curien - Département Écologie, physiologie et éthologie (IPHC - DEPE)",
+    "commentsName": "de l'IPHC - DEPE",
+    "commentsNameEN": "of IPHC - DEPE"
+  },
+  "IPHC-DRS": {
+    "name": "Institut Pluridisciplinaire Hubert Curien - Département de Recherches Subatomiques (IPHC - DRS)",
+    "commentsName": "de l'IPHC - DRS",
+    "commentsNameEN": "of IPHC - DRS"
+  },
+  "IPHC-DSA": {
+    "name": "Institut Pluridisciplinaire Hubert Curien - Département de Sciences Analytiques (IPHC - DSA)",
+    "commentsName": "de l'IPHC - DSA",
+    "commentsNameEN": "of IPHC - DSA"
+  },
   "POLEM4": {
     "name": "Pôle M4 - Université de Lorraine",
     "commentsName": "du Pôle M4",
