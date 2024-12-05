@@ -42,7 +42,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     scientificField,
   );
   const { dataGraph, categories } = allData;
-  const scientificFieldTitle = scientificField !== '*' ? ` (${scientificField})` : '';
+  const scientificFieldTitle = scientificField !== '*'
+    ? ` (${capitalize(
+      intl.formatMessage({
+        id: `app.discipline.${scientificField
+          .replace(/\n/g, '')
+          .replace('  ', ' ')}`,
+        defaultMessage: scientificField,
+      }),
+    )})`
+    : '';
   const dataTitle = {
     publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
     scientificFieldTitle,
@@ -69,7 +78,9 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         (item) => ({
           label: capitalize(
             intl.formatMessage({
-              id: `app.discipline.${item.key}`,
+              id: `app.discipline.${item.key
+                .replace(/\n/g, '')
+                .replace('  ', ' ')}`,
               defaultMessage: item.key,
             }),
           ),
