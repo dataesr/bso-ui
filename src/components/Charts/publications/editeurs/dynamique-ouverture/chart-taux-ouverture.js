@@ -40,8 +40,8 @@ const Chart = ({ domain, id, hasComments, hasFooter }) => {
   const idWithDomain = withDomain(id, domain);
   const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
   const dataTitle = {
-    publisherTitle,
     publicationYear: beforeLastObservationSnap,
+    publisherTitle,
   };
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,

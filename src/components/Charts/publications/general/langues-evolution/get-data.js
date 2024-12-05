@@ -12,7 +12,7 @@ const colors = {
   others: getCSSValue('--purple-medium-100'),
 };
 
-function useGetData(observationSnap, domain, isPercent) {
+function useGetData(observationSnap, domain, isPercent, needle = '*') {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ function useGetData(observationSnap, domain, isPercent) {
       const query = getFetchOptions({
         key: 'publicationsByYear',
         domain,
-        parameters: [lastObservationSnap, 'lang.keyword'],
+        parameters: [lastObservationSnap, 'lang.keyword', needle],
         objectType: ['publications'],
       });
       const res = await Axios.post(ES_API_URL, query, HEADERS);
@@ -129,7 +129,7 @@ function useGetData(observationSnap, domain, isPercent) {
         dataGraph,
       };
     },
-    [domain, intl, isPercent],
+    [domain, intl, isPercent, needle],
   );
 
   useEffect(() => {
@@ -147,7 +147,7 @@ function useGetData(observationSnap, domain, isPercent) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [observationSnap, isPercent]);
+  }, [isPercent, needle, observationSnap]);
 
   return { allData, isError, isLoading };
 }

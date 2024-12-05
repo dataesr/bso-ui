@@ -431,7 +431,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    disciplinesList: ([observationSnap, disciplineField]) => ({
+    scientificFieldList: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
@@ -447,8 +447,8 @@ export default function getFetchOptions({
       aggs: {
         by_discipline: {
           terms: {
-            field: disciplineField,
-            size: 30,
+            field: 'bso_classification.keyword',
+            size: 50,
           },
         },
       },
@@ -2220,12 +2220,16 @@ export default function getFetchOptions({
     publicationsByYear: ([
       lastObservationSnap,
       customField,
+      needleScientificField = '*',
       minPublicationDate = 2013,
     ]) => ({
       size: 0,
       query: {
         bool: {
           filter: [
+            {
+              wildcard: { 'bso_classification.keyword': needleScientificField },
+            },
             {
               range: {
                 year: {
