@@ -9,7 +9,7 @@ import React, { useRef } from 'react';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
+import ChartWrapper from '../../../../ChartWrapper';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -27,7 +27,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
   );
 
   return (
-    <WrapperChart
+    <ChartWrapper
       chartRef={chartRef}
       domain={domain}
       hasComments={hasComments}
@@ -42,7 +42,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
         options={{}}
         ref={chartRef}
       />
-    </WrapperChart>
+    </ChartWrapper>
   );
 };
 

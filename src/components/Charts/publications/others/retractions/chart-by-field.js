@@ -16,7 +16,7 @@ import {
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
+import ChartWrapper from '../../../../ChartWrapper';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data-by-field';
 
@@ -77,7 +77,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   }, [data, idWithDomain, intl]);
 
   return (
-    <WrapperChart
+    <ChartWrapper
       chartRef={chartRef}
       domain={domain}
       hasComments={false}
@@ -114,7 +114,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} hasFooter={hasFooter} />
       )}
-    </WrapperChart>
+    </ChartWrapper>
   );
 };
 // TODO remove publi studyType from id

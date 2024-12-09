@@ -10,7 +10,7 @@ import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
+import ChartWrapper from '../../../../ChartWrapper';
 import useGetData from './get-data';
 
 HCExporting(Highcharts);
@@ -35,7 +35,7 @@ const Chart = ({ domain, hasFooter, id }) => {
   );
 
   return (
-    <WrapperChart
+    <ChartWrapper
       chartRef={chartRef}
       domain={domain}
       hasFooter={hasFooter}
@@ -49,7 +49,7 @@ const Chart = ({ domain, hasFooter, id }) => {
         options={optionsGraph}
         ref={chartRef}
       />
-    </WrapperChart>
+    </ChartWrapper>
   );
 };
 

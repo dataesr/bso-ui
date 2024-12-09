@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import GraphComments from '../../../components/Charts/graph-comments';
-import WrapperChart from '../../../components/WrapperChart';
+import ChartWrapper from '../../../components/ChartWrapper';
 import customComments from '../../../utils/chartComments';
 import { getGraphOptions } from '../../../utils/chartOptions';
 import { getCSSValue, getPercentageYAxis } from '../../../utils/helpers';
@@ -177,7 +177,7 @@ const Policy = () => {
           </Row>
           <Row>
             <Col n='12'>
-              <WrapperChart
+              <ChartWrapper
                 chartRef={chartRef1}
                 domain=''
                 hasComments={false}
@@ -194,12 +194,12 @@ const Policy = () => {
                 {chartComments1 && (
                   <GraphComments comments={chartComments1} hasFooter />
                 )}
-              </WrapperChart>
+              </ChartWrapper>
             </Col>
           </Row>
           <Row>
             <Col n='12'>
-              <WrapperChart
+              <ChartWrapper
                 chartRef={chartRef2}
                 domain=''
                 hasComments={false}
@@ -216,7 +216,7 @@ const Policy = () => {
                 {chartComments2 && (
                   <GraphComments comments={chartComments2} hasFooter />
                 )}
-              </WrapperChart>
+              </ChartWrapper>
             </Col>
           </Row>
         </section>

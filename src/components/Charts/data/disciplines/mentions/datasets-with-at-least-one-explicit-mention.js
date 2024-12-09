@@ -16,7 +16,7 @@ import {
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
+import ChartWrapper from '../../../../ChartWrapper';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
@@ -63,7 +63,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   }, [allData, idWithDomain, intl]);
 
   return (
-    <WrapperChart
+    <ChartWrapper
       chartRef={chartRef}
       dataTitle={dataTitle}
       domain={domain}
@@ -83,7 +83,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} hasFooter={hasFooter} />
       )}
-    </WrapperChart>
+    </ChartWrapper>
   );
 };
 

@@ -18,7 +18,7 @@ import {
   withDomain,
 } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
-import WrapperChart from '../../../../WrapperChart';
+import ChartWrapper from '../../../../ChartWrapper';
 import useGetData from './get-data-dumbbell';
 
 highchartsMore(Highcharts);
@@ -151,7 +151,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   ]);
 
   return (
-    <WrapperChart
+    <ChartWrapper
       chartRef={chartRef}
       domain={domain}
       hasComments={hasComments}
@@ -183,7 +183,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         options={optionsGraph}
         ref={chartRef}
       />
-    </WrapperChart>
+    </ChartWrapper>
   );
 };
 

@@ -21,8 +21,8 @@ import {
   withDomain,
   withtStudyType,
 } from '../../../../../utils/helpers';
+import ChartWrapper from '../../../../ChartWrapper';
 import SimpleSelect from '../../../../SimpleSelect';
-import WrapperChart from '../../../../WrapperChart';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
@@ -60,7 +60,7 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
   }, [allData, idWithDomainAndStudyType, intl]);
 
   return (
-    <WrapperChart
+    <ChartWrapper
       chartRef={chartRef}
       domain={domain}
       hasComments={false}
@@ -85,7 +85,7 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} hasFooter={hasFooter} />
       )}
-    </WrapperChart>
+    </ChartWrapper>
   );
 };
 

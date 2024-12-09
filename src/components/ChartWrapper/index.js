@@ -19,7 +19,7 @@ import GraphFooter from '../Charts/graph-footer';
 import GraphTitle from '../Charts/graph-title';
 import Loader from '../Loader';
 
-function WrapperChart({
+function ChartWrapper({
   chartRef,
   children,
   dataTitle,
@@ -139,7 +139,7 @@ function WrapperChart({
   );
 }
 
-WrapperChart.defaultProps = {
+ChartWrapper.defaultProps = {
   chartRef: () => {},
   dataTitle: {},
   enableExport: true,
@@ -151,7 +151,7 @@ WrapperChart.defaultProps = {
   studyType: '',
 };
 
-WrapperChart.propTypes = {
+ChartWrapper.propTypes = {
   chartRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.object }),
@@ -171,4 +171,4 @@ WrapperChart.propTypes = {
   studyType: PropTypes.oneOf(studiesTypes),
 };
 
-export default WrapperChart;
+export default ChartWrapper;
