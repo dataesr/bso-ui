@@ -376,9 +376,9 @@
     "ror": "https://ror.org/022zdgq74"
   },
   "193113818": {
-    "name": "Institut National Polytechnique de Toulouse (Toulouse INP)",
-    "commentsName": "de Toulouse INP",
-    "commentsNameEN": "of Toulouse INP",
+    "name": "Institut National Polytechnique de Toulouse (INPT)",
+    "commentsName": "de l'INPT",
+    "commentsNameEN": "of INPT",
     "paysage": "mMex4",
     "ror": "https://ror.org/033p9g875"
   },
@@ -1542,6 +1542,13 @@
     "paysage": "zO154",
     "ror": "https://ror.org/005y2ap84",
     "startYear": 2016
+  },
+  "775729155": {
+    "name": "IFP Energies nouvelles (IFPEN)",
+    "commentsName": "de l'IFPEN",
+    "commentsNameEN": "of IFPEN",
+    "paysage": "7053Q",
+    "ror": "https://ror.org/03gcbhc33"
   },
   "780507190": {
     "name": "Institut Polytechnique UniLaSalle (UniLaSalle)",
