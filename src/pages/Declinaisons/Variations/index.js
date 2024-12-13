@@ -463,6 +463,13 @@ const Variations = () => {
                 img='/declinaisons/universite-artois.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local ined'
+                href='https://so.site.ined.fr/fr/publications/bso/'
+                img='/declinaisons/ined.svg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
