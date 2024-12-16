@@ -66,7 +66,7 @@ function HowTo() {
                     </li>
                     <li>
                       Pour les publications, le baromètre couvre la période de
-                      2013 à 2021, année de publication
+                      2013 à 2022, année de publication
                     </li>
                     <li>Aucune donnée concernant les APC n'est à fournir</li>
                     <li>Une déduplication des publications sera effectuée</li>
@@ -209,7 +209,7 @@ function HowTo() {
                       {' '}
                     </b>
                     Pour les publications, le baromètre couvre la période de
-                    2013 à 2021, année de publication.
+                    2013 à 2022, année de publication.
                   </p>
                   <p>
                     <b>
