@@ -26,24 +26,43 @@ const Studio = () => {
   const [displayComment, setDisplayComment] = useState(true);
   const [displayFooter, setDisplayFooter] = useState(true);
   const [displayTitle, setDisplayTitle] = useState(false);
-  const [endYear, setEndYear] = useState('2022');
-  const [firstObservationYear, setFirstObservationYear] = useState('2018');
+  const [endYear, setEndYear] = useState();
   const [lang, setLang] = useState('fr');
-  const [lastObservationYear, setLastObservationYear] = useState();
   const [object, setObject] = useState('publi');
+  const [observationYearFirst, setObservationYearFirst] = useState('2018');
+  const [observationYearLast, setObservationYearLast] = useState();
+  const [observationYears, setObservationYears] = useState([]);
+  const [publicationYears, setPublicationYears] = useState([]);
   const [startYear, setStartYear] = useState('2013');
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
 
   useEffect(() => {
-    setLastObservationYear(
-      getObservationLabel(
-        lastObservationSnap > process.env.REACT_APP_LAST_OBSERVATION
-          ? process.env.REACT_APP_LAST_OBSERVATION
-          : lastObservationSnap,
-      ),
+    const lastObservationYearTmp = getObservationLabel(
+      lastObservationSnap > process.env.REACT_APP_LAST_OBSERVATION
+        ? process.env.REACT_APP_LAST_OBSERVATION
+        : lastObservationSnap,
     );
-  }, [lastObservationSnap]);
+    setObservationYearLast(lastObservationYearTmp);
+    setEndYear(lastObservationYearTmp - 1);
+    const observationYearsTmp = [
+      ...Array(
+        Number(lastObservationYearTmp) - Number(observationYearFirst) + 1,
+      ).keys(),
+    ].map((item) => ({
+      label: item + Number(observationYearFirst),
+      value: item + Number(observationYearFirst),
+    }));
+    observationYearsTmp.push({ label: 'La plus récente', value: 'latest' });
+    setObservationYears(observationYearsTmp);
+    const publicationYearsTmp = [
+      ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
+    ].map((item) => ({
+      label: item + Number(startYear),
+      value: item + Number(startYear),
+    }));
+    setPublicationYears(publicationYearsTmp);
+  }, [observationYearFirst, lastObservationSnap, startYear]);
 
   const commentsName = intl.formatMessage({
     id: 'app.french',
@@ -53,29 +72,10 @@ const Studio = () => {
     { label: 'Français', value: 'fr' },
     { label: 'Anglais', value: 'en' },
   ];
-  const observationYears = ['2018', '2019', '2020', '2021', '2022', '2023'].map(
-    (item) => ({
-      label: item,
-      value: item,
-    }),
-  );
-  observationYears.push({ label: 'La plus récente', value: 'latest' });
-  const publicationYears = [
-    '2013',
-    '2014',
-    '2015',
-    '2016',
-    '2017',
-    '2018',
-    '2019',
-    '2020',
-    '2021',
-    '2022',
-  ].map((item) => ({ label: item, value: item }));
   const values = {
     archiveTitle: '',
     commentsName,
-    observationYear: lastObservationYear,
+    observationYear: observationYearLast,
     publicationYear: endYear,
     publisherTitle: '',
   };
@@ -117,7 +117,7 @@ const Studio = () => {
 
   const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
       graphId || graph
-    }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${lastObservationYear}&startYear=${startYear}&firstObservationYear=${firstObservationYear}&useHalId=${useHalId}`;
+    }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${observationYearLast}&startYear=${startYear}&firstObservationYear=${observationYearFirst}&useHalId=${useHalId}`;
 
   const getIframeSnippet = (graphId = null) => (
     <iframe
@@ -246,9 +246,9 @@ const Studio = () => {
             disabled={object !== 'publi'}
             hint="Filtre sur l'année d'observation inférieure ou égale"
             label="Première année d'observation"
-            onChange={(e) => setFirstObservationYear(e.target.value)}
+            onChange={(e) => setObservationYearFirst(e.target.value)}
             options={observationYears}
-            selected={firstObservationYear}
+            selected={observationYearFirst}
             style={{ backgroundColor: getCSSValue('--white') }}
           />
         </Col>
@@ -257,14 +257,14 @@ const Studio = () => {
             disabled={object !== 'publi'}
             hint="Filtre sur l'année d'observation supérieure ou égale"
             label="Dernière année d'observation"
-            onChange={(e) => setLastObservationYear(e.target.value)}
-            options={observationYears}
-            selected={lastObservationYear}
-            style={{ backgroundColor: getCSSValue('--white') }}
-            messageType={
-              lastObservationYear < firstObservationYear ? 'error' : null
-            }
             message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
+            messageType={
+              observationYearLast < observationYearFirst ? 'error' : null
+            }
+            onChange={(e) => setObservationYearLast(e.target.value)}
+            options={observationYears}
+            selected={observationYearLast}
+            style={{ backgroundColor: getCSSValue('--white') }}
           />
         </Col>
       </Row>
