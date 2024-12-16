@@ -297,17 +297,13 @@ const GraphFooter = ({
       </Modal>
       <Modal
         className='graph-fullscreen'
-        hide={() => {
-          setIsModalFullscreenOpen(false);
-        }}
+        hide={() => setIsModalFullscreenOpen(false)}
         isOpen={isModalFullscreenOpen}
         size='lg'
         style={{ with: '100%' }}
       >
         <ModalClose
-          hide={() => {
-            setIsModalFullscreenOpen(false);
-          }}
+          hide={() => setIsModalFullscreenOpen(false)}
           title={intl.formatMessage({
             defaultMessage: 'Close modal',
             id: 'app.commons.modal.close',
