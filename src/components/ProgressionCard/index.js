@@ -49,16 +49,12 @@ export default function ProgressionCard({ domain }) {
       const rhesus = progression[lastObservationSnap] >= progression[previousObservationSnap]
         ? '+'
         : '';
-      let lastOaRate = progression[lastObservationSnap]
-        ? progression[lastObservationSnap]
-        : null;
-      lastOaRate = Math.round(lastOaRate);
-      let previousOaRate = progression[previousObservationSnap]
-        ? progression[previousObservationSnap]
-        : null;
-      previousOaRate = Math.round(previousOaRate);
+      const lastOaRate = progression?.[lastObservationSnap];
+      const previousOaRate = progression?.[previousObservationSnap];
       if (previousOaRate && lastOaRate) {
-        const evolution = Math.round(lastOaRate - previousOaRate);
+        const evolution = (
+          lastOaRate.toFixed(1) - previousOaRate.toFixed(1)
+        ).toFixed(1);
         progPoints = `${rhesus}${evolution}`;
       }
     }

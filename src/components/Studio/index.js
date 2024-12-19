@@ -55,7 +55,6 @@ const Studio = () => {
       value: item + Number(observationYearFirst),
     }));
     observationYearsTmp.push({ label: 'La plus récente', value: 'latest' });
-    console.log(observationYearsTmp);
     setObservationYears(observationYearsTmp);
     const publicationYearsTmp = [
       // ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
