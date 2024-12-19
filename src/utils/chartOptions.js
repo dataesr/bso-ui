@@ -703,7 +703,7 @@ export const chartOptions = {
           dataLabels: {
             allowOverlap: true,
             enabled: true,
-            format: '{point.y:.0f} %',
+            format: '{point.y:.1f} %',
             style: {
               color: getCSSValue('--g-800'),
               fontSize: '20px',
