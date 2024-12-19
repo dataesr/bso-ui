@@ -47,16 +47,19 @@ const Studio = () => {
     setEndYear(lastObservationYearTmp - 1);
     const observationYearsTmp = [
       ...Array(
-        Number(lastObservationYearTmp) - Number(observationYearFirst) + 1,
+        // Number(lastObservationYearTmp) - Number(observationYearFirst) + 1,
+        2024 - Number(observationYearFirst) + 1,
       ).keys(),
     ].map((item) => ({
       label: item + Number(observationYearFirst),
       value: item + Number(observationYearFirst),
     }));
     observationYearsTmp.push({ label: 'La plus récente', value: 'latest' });
+    console.log(observationYearsTmp);
     setObservationYears(observationYearsTmp);
     const publicationYearsTmp = [
-      ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
+      // ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
+      ...Array(2024 - Number(startYear)).keys(),
     ].map((item) => ({
       label: item + Number(startYear),
       value: item + Number(startYear),
