@@ -44,29 +44,25 @@ const Studio = () => {
         : lastObservationSnap,
     );
     setObservationYearLast(lastObservationYearTmp);
+    setEndYear(lastObservationYearTmp - 1);
     const observationYearsTmp = [
       ...Array(
         // Number(lastObservationYearTmp) - Number(observationYearFirst) + 1,
         2024 - Number(observationYearFirst) + 1,
       ).keys(),
     ].map((item) => ({
-      label: `${item + Number(observationYearFirst)}`,
-      value: `${item + Number(observationYearFirst)}`,
+      label: item + Number(observationYearFirst),
+      value: item + Number(observationYearFirst),
     }));
-    observationYearsTmp.push({
-      label: "Date d'observation utilisée dans le baromètre national",
-      value: 'latest',
-    });
+    observationYearsTmp.push({ label: 'La plus récente', value: 'latest' });
     setObservationYears(observationYearsTmp);
     const publicationYearsTmp = [
       // ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
       ...Array(2024 - Number(startYear)).keys(),
     ].map((item) => ({
-      label: `${item + Number(startYear)}`,
-      value: `${item + Number(startYear)}`,
+      label: item + Number(startYear),
+      value: item + Number(startYear),
     }));
-
-    setEndYear(publicationYearsTmp[publicationYearsTmp.length - 1].value);
     setPublicationYears(publicationYearsTmp);
   }, [observationYearFirst, lastObservationSnap, startYear]);
 
