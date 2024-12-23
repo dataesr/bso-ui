@@ -15,6 +15,7 @@ import Glossary from './pages/About/Glossary';
 import Methodology from './pages/About/Methodology';
 import OpenData from './pages/About/OpenData';
 import Project from './pages/About/Project';
+import WorksMagnet from './pages/About/WorksMagnet';
 import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 import NationalResearchData from './pages/BaroNational/NationalResearchData';
@@ -319,6 +320,18 @@ function App() {
               exact
               key={key}
               path={urls.citation[key]}
+            />
+          ))}
+          {Object.keys(urls.worksmagnet).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <WorksMagnet />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.worksmagnet[key]}
             />
           ))}
           {[...new Set(Object.values(urls.integration))].flat().map((url) => (

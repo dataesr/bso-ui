@@ -402,6 +402,14 @@ function Header() {
               asLink={<RouterLink to={urls.citation[lang] + search} />}
             />
             <NavSubItem
+              current={path === urls.worksmagnet[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.worksmagnet',
+                defaultMessage: 'Works-magnet',
+              })}
+              asLink={<RouterLink to={urls.worksmagnet[lang] + search} />}
+            />
+            <NavSubItem
               current={path === urls.project[lang]}
               title={intl.formatMessage({
                 id: 'app.footer.project.text',

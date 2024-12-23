@@ -185,6 +185,10 @@ export default {
     fr: '/a-propos/opendata',
     en: '/about/opendata',
   },
+  worksmagnet: {
+    fr: '/a-propos/works-magnet',
+    en: '/about/works-magnet',
+  },
   integration: {
     fr: [
       '/integration/:language/:graphId/:domain/:studyType',
