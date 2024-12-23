@@ -41,11 +41,11 @@ const sendEmail = (emails, structureId, structureName) => {
 if (process.argv.length === 4) {
   const emails = process.argv[2];
   const structureId = process.argv[3];
-  const structureName = locals?.[structureId.toUpperCase()]?.commentsName;
+  const structureName = locals?.[structureId]?.commentsName;
   if (structureName) {
-    sendEmail(emails, structureId.toLowerCase(), structureName);
+    sendEmail(emails, structureId, structureName);
   } else {
-    console.error(`This structureId "${structureId.toUpperCase()}" does not exists in locals config file (src/config/locals.json).`);
+    console.error(`This structureId "${structureId}" does not exists in locals config file (src/config/locals.json).`);
   }
 } else {
   console.error('Misuse, this command line require 2 arguments : email address and structure id');
