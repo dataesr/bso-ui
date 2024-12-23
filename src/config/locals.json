@@ -132,9 +132,9 @@
     "startYear": 2016
   },
   "130025976": {
-    "name": "CY Cergy Paris Université (CYU)",
-    "commentsName": "de CYU",
-    "commentsNameEN": "of CYU",
+    "name": "CY Cergy Paris Université (CY)",
+    "commentsName": "de CY",
+    "commentsNameEN": "of CY",
     "startYear": 2020,
     "paysage": "RS4WF",
     "ror": "https://ror.org/043htjv09"
@@ -337,9 +337,9 @@
     "startYear": 2016
   },
   "192512150": {
-    "name": "Université de Franche-Comté (UFC)",
-    "commentsName": "de l'UFC",
-    "commentsNameEN": "of UFC",
+    "name": "Université de Franche-Comté (uFC)",
+    "commentsName": "de l'uFC",
+    "commentsNameEN": "of uFC",
     "paysage": "7Mpgt",
     "ror": "https://ror.org/03pcc9z86",
     "scale": "university"
