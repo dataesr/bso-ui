@@ -312,7 +312,7 @@ function getLocalAffiliation(urlSearchParams) {
   if (!window.location.href.includes('integration')) {
     return undefined;
   }
-  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.toLowerCase() || undefined;
+  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation') || undefined;
   // If bsoLocalAffiliation exists in config
   if (
     Object.keys(locals)
