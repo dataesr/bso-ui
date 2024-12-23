@@ -167,6 +167,16 @@ export default function NationalResearchData() {
                 >
                   <BSOChart id='data.general.mentions.datasets-with-at-least-one-explicit-mention' />
                 </QuestionSection>
+                <QuestionSection
+                  anchorId='general.repositories'
+                  backgroundColor={blueSoft25}
+                  intlKey='app.national-data.general.repositories'
+                  isDisplayed={!isInProduction()}
+                >
+                  <BSOChart id='data.general.repositories.datasets-by-publisher' />
+                  <BSOChart id='data.general.repositories.datasets-by-size' />
+                  <BSOChart id='data.general.repositories.datasets-by-format' />
+                </QuestionSection>
               </GraphContent>
             </GraphItem>
 
