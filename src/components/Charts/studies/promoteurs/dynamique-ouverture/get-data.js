@@ -158,7 +158,11 @@ function useGetData(studyType, sponsor = '*') {
     });
     const series2 = [tab];
     const dataGraph2 = { categories2, series2 };
-    return { sponsors, dataGraph1, dataGraph2 };
+    return {
+      dataGraph1,
+      dataGraph2,
+      sponsors,
+    };
   }
 
   useEffect(() => {

@@ -414,7 +414,7 @@ export default function getFetchOptions({
       aggs: {
         by_sponsor: {
           terms: {
-            field: 'lead_sponsor.keyword',
+            field: 'lead_sponsor_normalized.keyword',
             size: 50,
           },
         },
@@ -876,7 +876,7 @@ export default function getFetchOptions({
       aggs: {
         by_sponsor: {
           terms: {
-            field: 'lead_sponsor.keyword',
+            field: 'lead_sponsor_normalized.keyword',
             size: 50,
           },
           aggs: {
@@ -1056,7 +1056,7 @@ export default function getFetchOptions({
             },
             {
               wildcard: {
-                'lead_sponsor.keyword': sponsor,
+                'lead_sponsor_normalized.keyword': sponsor,
               },
             },
             {
