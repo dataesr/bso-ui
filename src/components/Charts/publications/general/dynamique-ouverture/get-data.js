@@ -231,7 +231,7 @@ function useGetData(
         observationDate: dataGraph2[0]?.name,
         observationDate4: dataGraph2[3]?.name,
         oaYMinusOne4: dataGraph2[3]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0,
-        oaYMinus4: dataGraph2[0]?.data.slice(-4)?.[0]?.y.toFixed(1) || 0,
+        oaYMinus4: dataGraph2[0]?.data.slice(-5)?.[0]?.y.toFixed(1) || 0,
         publicationDate4:
           dataGraph2[3]?.data.slice(-1)?.[0]?.publicationDate || 0,
         minPublicationDate: dataGraph2[0]?.data?.[0]?.publicationDate || 0,
