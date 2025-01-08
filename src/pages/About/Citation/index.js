@@ -127,6 +127,26 @@ function Citation() {
                 </p>
               </Col>
             </section>
+            <section className='content py-4'>
+              <Col n='12 lg-10'>
+                <strong>
+                  <FormattedMessage id='app.citation5' />
+                </strong>
+                <p>
+                  Laetitia Bracco, Eric Jeangirard, Anne L'Hôte, Laurent Romary.
+                  How to build an Open Science Monitor based on publications? A
+                  French perspective ? 2024. hal:
+                  {' '}
+                  <a
+                    href='https://hal.science/hal-04854788'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    hal-04854788
+                  </a>
+                </p>
+              </Col>
+            </section>
           </Row>
         </section>
       </Container>
