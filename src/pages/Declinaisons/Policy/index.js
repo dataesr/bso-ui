@@ -1,6 +1,8 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import axios from 'axios';
 import Highcharts from 'highcharts';
+import HCExportingData from 'highcharts/modules/export-data';
+import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import { useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -10,6 +12,9 @@ import ChartWrapper from '../../../components/ChartWrapper';
 import customComments from '../../../utils/chartComments';
 import { getGraphOptions } from '../../../utils/chartOptions';
 import { getCSSValue, getPercentageYAxis } from '../../../utils/helpers';
+
+HCExporting(Highcharts);
+HCExportingData(Highcharts);
 
 const { REACT_APP_OPENDATASOFT_API_KEY } = process.env;
 const END_YEAR = 2024;
