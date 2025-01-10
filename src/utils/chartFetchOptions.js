@@ -915,7 +915,7 @@ export default function getFetchOptions({
             {
               range: {
                 study_completion_year: {
-                  gte: yearMin,
+                  gt: yearMin,
                   lte: yearMax,
                 },
               },

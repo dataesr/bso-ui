@@ -12,6 +12,7 @@ import { getGraphOptions } from '../../../utils/chartOptions';
 import { getCSSValue, getPercentageYAxis } from '../../../utils/helpers';
 
 const { REACT_APP_OPENDATASOFT_API_KEY } = process.env;
+const END_YEAR = 2024;
 const OPENDATASOFT_LIMIT = 100;
 const START_YEAR = 2016;
 
@@ -35,7 +36,7 @@ const Policy = () => {
       offset = 0,
     } = {}) => {
       let url = 'https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets';
-      url += `/fr-esr-resultats-de-l-enquete-sur-la-mise-en-oeuvre-des-politiques-de-science-ou/records?limit=${limit}&offset=${offset}`;
+      url += `/fr-esr-enquete-etablissements-pnso2/records?limit=${limit}&offset=${offset}&order_by=uo_lib`;
       url += `&apikey=${REACT_APP_OPENDATASOFT_API_KEY}`;
       const response = await axios.get(url, {
         headers: { accept: 'application/json; charset=utf-8' },
@@ -59,15 +60,15 @@ const Policy = () => {
   }, []);
 
   useEffect(() => {
-    const years = [
-      ...Array(new Date().getFullYear() - START_YEAR + 1).keys(),
-    ].map((year) => year + START_YEAR);
+    const years = [...Array(END_YEAR - START_YEAR + 1).keys()].map(
+      (year) => year + START_YEAR,
+    );
     const tmp = {};
     // eslint-disable-next-line no-return-assign
     years.forEach((year) => (tmp[year] = { y: 0, y_percent: 0 }));
     data.forEach((item) => {
-      if (item?.first_year_of_publication) {
-        tmp[item.first_year_of_publication].y += 1;
+      if (item?.['1_annee_publi_doc_cadre']) {
+        tmp[item['1_annee_publi_doc_cadre']].y += 1;
       }
     });
     const series1 = {};
@@ -115,30 +116,31 @@ const Policy = () => {
       ),
     };
 
+    const orderFromPolicyExists = {
+      Oui: 3,
+      Non: 2,
+      'Pas encore, mais nous y travaillons': 1,
+    };
+
     let series2 = [];
     data.forEach((item) => {
-      if (
-        !series2.find(
-          (serie) => serie.name === item.charter_policy_open_science_exists,
-        )
-      ) {
+      if (!series2.find((serie) => serie.name === item['1_doc_cadre'])) {
         series2.push({
-          color:
-            colorFromPolicyExists?.[item.charter_policy_open_science_exists]
-            ?? getCSSValue('--g-500'),
-          name: item?.charter_policy_open_science_exists,
+          name: item['1_doc_cadre'],
           y: 0,
         });
       }
-      series2.find(
-        (serie) => serie.name === item.charter_policy_open_science_exists,
-      ).y += 1;
+      series2.find((serie) => serie.name === item['1_doc_cadre']).y += 1;
     });
-    series2 = series2.map((item) => ({
-      ...item,
-      name: item?.name ?? 'Pas de réponse',
-      y_percent: (item.y / data.length) * 100,
-    }));
+    series2 = series2
+      .map((item) => ({
+        ...item,
+        color: colorFromPolicyExists[item?.name] ?? getCSSValue('--g-500'),
+        name: item?.name ?? 'Pas de réponse',
+        order: orderFromPolicyExists[item?.name] ?? 0,
+        y_percent: (item.y / data.length) * 100,
+      }))
+      .sort((a, b) => b.order - a.order);
     const options2Tmp = getGraphOptions({ id: id2, intl });
     options2Tmp.chart.type = 'pie';
     options2Tmp.series = [
@@ -160,8 +162,26 @@ const Policy = () => {
   }, [data, intl]);
 
   useEffect(() => {
-    setChartComments1(customComments({ comments: {} }, id1, intl));
-    setChartComments2(customComments({ comments: {} }, id2, intl));
+    setChartComments1(
+      customComments(
+        {
+          comments: {},
+          ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
+        },
+        id1,
+        intl,
+      ),
+    );
+    setChartComments2(
+      customComments(
+        {
+          comments: {},
+          ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
+        },
+        id2,
+        intl,
+      ),
+    );
   }, [id2, intl]);
 
   return (
@@ -177,6 +197,31 @@ const Policy = () => {
           </Row>
           <Row>
             <Col n='12'>
+              <FormattedMessage
+                id='other.policy.open-science-policy-contact'
+                values={{
+                  cta: (chunks) => (
+                    <a
+                      className='external_link'
+                      href='mailto:coso@recherche.gouv.fr'
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                  linebreak: (chunks) => (
+                    <>
+                      {chunks}
+                      <br />
+                    </>
+                  ),
+                }}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col n='12' className='fr-mt-5w'>
               <ChartWrapper
                 chartRef={chartRef1}
                 domain=''
@@ -217,6 +262,65 @@ const Policy = () => {
                   <GraphComments comments={chartComments2} hasFooter />
                 )}
               </ChartWrapper>
+            </Col>
+          </Row>
+          <Row>
+            <Col n='12' className='fr-mt-5w'>
+              <table>
+                <thead>
+                  <tr>
+                    <th scope='col'>Établissement</th>
+                    <th scope='col'>Année de publication du document-cadre</th>
+                    <th scope='col'>
+                      Lien vers le document-cadre le plus récent
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data
+                    .filter((item) => item?.['1_url_doc_cadre'])
+                    .map((item) => (
+                      <tr>
+                        <td>{item.uo_lib}</td>
+                        <td>{item['1_annee_publi_doc_cadre']}</td>
+                        <td>
+                          <a
+                            href={item['1_url_doc_cadre']}
+                            rel='noreferrer'
+                            target='_blank'
+                          >
+                            lien
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </Col>
+          </Row>
+          <Row>
+            <Col n='12' className='fr-mt-5w'>
+              <FormattedMessage
+                id='other.policy.open-science-policy-contact'
+                values={{
+                  cta: (chunks) => (
+                    <a
+                      className='external_link'
+                      href='mailto:coso@recherche.gouv.fr'
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                  linebreak: (chunks) => (
+                    <>
+                      {chunks}
+                      <br />
+                    </>
+                  ),
+                }}
+              />
             </Col>
           </Row>
         </section>
