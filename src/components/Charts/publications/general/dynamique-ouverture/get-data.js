@@ -224,7 +224,7 @@ function useGetData(
         ?.y.toFixed(0) || 0;
 
       // Should collect data from 2019 so slice between last year minus 2019
-      const slice = parseInt(observationYears[0].substring(0, 4), 10) - 2019;
+      const slice = parseInt(observationYears?.[0]?.substring(0, 4), 10) - 2019;
       const comments = {
         fistObservationYear: getObservationLabel(
           dataGraph2[dataGraph2.length - 1]?.name,
