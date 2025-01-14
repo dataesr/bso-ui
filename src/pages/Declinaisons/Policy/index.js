@@ -83,7 +83,12 @@ const Policy = () => {
       const y = Object.keys(tmp)
         .filter((key) => key <= year)
         .reduce((acc, curr) => acc + tmp[curr].y, 0);
-      series1[year] = { name: year, y, y_percent: (y / data.length) * 100 };
+      series1[year] = {
+        name: year,
+        total: data.length,
+        y,
+        y_percent: (y / data.length) * 100,
+      };
     });
     const options1Tmp = getGraphOptions({ id: id1, intl });
     options1Tmp.xAxis.tickInterval = 1;
@@ -159,6 +164,7 @@ const Policy = () => {
         color: colorFromPolicyExists[item?.name] ?? getCSSValue('--g-500'),
         name: item?.name ?? 'Pas de réponse',
         order: orderFromPolicyExists[item?.name] ?? 0,
+        total: data.length,
         y_percent: (item.y / data.length) * 100,
       }))
       .sort((a, b) => b.order - a.order);
@@ -221,7 +227,27 @@ const Policy = () => {
               <FormattedMessage
                 id='other.policy.open-science-policy-contact'
                 values={{
-                  cta: (chunks) => (
+                  cta0: (chunks) => (
+                    <a
+                      className='external_link'
+                      href='https://hal-lara.archives-ouvertes.fr/hal-04842977'
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                  cta1: (chunks) => (
+                    <a
+                      className='external_link'
+                      href='https://www.ouvrirlascience.fr'
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                  cta2: (chunks) => (
                     <a
                       className='external_link'
                       href='mailto:coso@recherche.gouv.fr'
@@ -290,10 +316,23 @@ const Policy = () => {
               <table>
                 <thead>
                   <tr>
-                    <th scope='col'>Établissement</th>
-                    <th scope='col'>Année de publication du document-cadre</th>
                     <th scope='col'>
-                      Lien vers le document-cadre le plus récent
+                      <FormattedMessage
+                        id='other.policy.institutions'
+                        defaultMessage='Etablissement'
+                      />
+                    </th>
+                    <th scope='col'>
+                      <FormattedMessage
+                        id='other.policy.publication_year'
+                        defaultMessage='Année de publication du document-cadre'
+                      />
+                    </th>
+                    <th scope='col'>
+                      <FormattedMessage
+                        id='other.policy.link'
+                        defaultMessage='Lien vers le document-cadre le plus récent'
+                      />
                     </th>
                   </tr>
                 </thead>
@@ -332,7 +371,27 @@ const Policy = () => {
               <FormattedMessage
                 id='other.policy.open-science-policy-contact'
                 values={{
-                  cta: (chunks) => (
+                  cta0: (chunks) => (
+                    <a
+                      className='external_link'
+                      href='https://hal-lara.archives-ouvertes.fr/hal-04842977'
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                  cta1: (chunks) => (
+                    <a
+                      className='external_link'
+                      href='https://www.ouvrirlascience.fr'
+                      rel='noreferrer'
+                      target='_blank'
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                  cta2: (chunks) => (
                     <a
                       className='external_link'
                       href='mailto:coso@recherche.gouv.fr'
