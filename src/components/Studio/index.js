@@ -163,7 +163,7 @@ const Studio = () => {
         <Col n='12 md-6'>
           <TextInput
             hint="Si périmètre ad-hoc, identifiant communiqué par l'équipe BSO ou RoR. Dans tous les cas, identifiant de structure HAL, ou code collection HAL"
-            label="Identifiant de l'établissement"
+            label="Identifiant de l'établissement (ou de structure ou collection HAL)"
             message='Merci de saisir un identifiant'
             messageType={bsoLocalAffiliation === '' ? 'error' : null}
             onChange={(e) => setBsoLocalAffiliation(e.target.value)}
