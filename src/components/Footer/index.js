@@ -32,7 +32,7 @@ export default function Footer() {
           >
             <FooterLink
               target='_blank'
-              href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified'
+              href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?refine.keyword=BSO&sort=modified'
             >
               <FormattedMessage id='app.footer.link.open-data' />
             </FooterLink>

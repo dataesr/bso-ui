@@ -16,7 +16,6 @@ import { getCSSValue, getPercentageYAxis } from '../../../utils/helpers';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const { REACT_APP_OPENDATASOFT_API_KEY } = process.env;
 const END_YEAR = 2024;
 const OPENDATASOFT_LIMIT = 100;
 const START_YEAR = 2016;
@@ -42,7 +41,6 @@ const Policy = () => {
     } = {}) => {
       let url = 'https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets';
       url += `/fr-esr-enquete-etablissements-pnso2/records?limit=${limit}&offset=${offset}&order_by=uo_lib`;
-      url += `&apikey=${REACT_APP_OPENDATASOFT_API_KEY}`;
       const response = await axios.get(url, {
         headers: { accept: 'application/json; charset=utf-8' },
       });
@@ -72,8 +70,12 @@ const Policy = () => {
     // eslint-disable-next-line no-return-assign
     years.forEach((year) => (tmp[year] = { y: 0, y_percent: 0 }));
     data.forEach((item) => {
-      if (item?.['1_annee_publi_doc_cadre']) {
-        tmp[item['1_annee_publi_doc_cadre']].y += 1;
+      if (
+        item?.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
+      ) {
+        tmp[
+          item.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
+        ].y += 1;
       }
     });
     const series1 = {};
@@ -129,13 +131,27 @@ const Policy = () => {
 
     let series2 = [];
     data.forEach((item) => {
-      if (!series2.find((serie) => serie.name === item['1_doc_cadre'])) {
+      if (
+        !series2.find(
+          (serie) => serie.name
+            === item[
+              '1_2_existe_t_il_un_document_cadre_charte_politique_precisant_votre_politique_de_science_ouverte'
+            ],
+        )
+      ) {
         series2.push({
-          name: item['1_doc_cadre'],
+          name: item[
+            '1_2_existe_t_il_un_document_cadre_charte_politique_precisant_votre_politique_de_science_ouverte'
+          ],
           y: 0,
         });
       }
-      series2.find((serie) => serie.name === item['1_doc_cadre']).y += 1;
+      series2.find(
+        (serie) => serie.name
+          === item[
+            '1_2_existe_t_il_un_document_cadre_charte_politique_precisant_votre_politique_de_science_ouverte'
+          ],
+      ).y += 1;
     });
     series2 = series2
       .map((item) => ({
@@ -283,14 +299,22 @@ const Policy = () => {
                 </thead>
                 <tbody>
                   {data
-                    .filter((item) => item?.['1_url_doc_cadre'])
+                    .filter(
+                      (item) => item?.lien_vers_le_document_cadre_le_plus_recent,
+                    )
                     .map((item) => (
                       <tr>
                         <td>{item.uo_lib}</td>
-                        <td>{item['1_annee_publi_doc_cadre']}</td>
+                        <td>
+                          {
+                            item.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
+                          }
+                        </td>
                         <td>
                           <a
-                            href={item['1_url_doc_cadre']}
+                            href={
+                              item.lien_vers_le_document_cadre_le_plus_recent
+                            }
                             rel='noreferrer'
                             target='_blank'
                           >

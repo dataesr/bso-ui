@@ -258,6 +258,9 @@ function EssaisCliniques() {
                   intlKey='app.health-interventional.caracteristiques.types'
                   backgroundColor={blueSoft25}
                   anchorId='caracteristiques.types'
+                  ctas={[
+                    'https://clinicaltrials.gov/policy/protocol-definitions#InterventionType',
+                  ]}
                 >
                   <BSOChart
                     id='caracteristiques.types.chart-evolution-nombre'

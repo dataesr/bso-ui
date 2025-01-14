@@ -1220,7 +1220,7 @@ export default function getFetchOptions({
         by_year: {
           terms: {
             field: 'study_start_year',
-            size: 30,
+            size: 10,
           },
           aggs: {
             by_ipd: {
