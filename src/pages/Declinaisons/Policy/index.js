@@ -162,7 +162,10 @@ const Policy = () => {
       .map((item) => ({
         ...item,
         color: colorFromPolicyExists[item?.name] ?? getCSSValue('--g-500'),
-        name: item?.name ?? 'Pas de réponse',
+        name: intl.formatMessage({
+          id: `other.policy.${item.name.toLowerCase()}`,
+          default: 'Pas de réponse',
+        }),
         order: orderFromPolicyExists[item?.name] ?? 0,
         total: data.length,
         y_percent: (item.y / data.length) * 100,
@@ -185,6 +188,7 @@ const Policy = () => {
       },
     };
     options2Tmp.exporting.chartOptions.legend.enabled = false;
+    console.log(options2Tmp);
     setOptions2(options2Tmp);
   }, [data, intl]);
 
@@ -313,6 +317,14 @@ const Policy = () => {
           </Row>
           <Row>
             <Col n='12' className='fr-mt-5w'>
+              <span>
+                <h3 className='fs-16-24 marianne-bold'>
+                  <FormattedMessage
+                    id='other.policy.open-science-table.title'
+                    defaultMessage='Etablissements ayant publié en ligne un document de politique de science ouverte'
+                  />
+                </h3>
+              </span>
               <table>
                 <thead>
                   <tr>
@@ -357,7 +369,10 @@ const Policy = () => {
                             rel='noreferrer'
                             target='_blank'
                           >
-                            lien
+                            <FormattedMessage
+                              id='other.policy.link2'
+                              defaultMessage='lien'
+                            />
                           </a>
                         </td>
                       </tr>
