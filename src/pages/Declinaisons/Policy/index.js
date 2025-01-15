@@ -188,7 +188,6 @@ const Policy = () => {
       },
     };
     options2Tmp.exporting.chartOptions.legend.enabled = false;
-    console.log(options2Tmp);
     setOptions2(options2Tmp);
   }, [data, intl]);
 
