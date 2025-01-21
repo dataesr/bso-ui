@@ -345,7 +345,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   const localsLowerCase = Object.fromEntries(
     Object.entries(locals).map(([k, v]) => [k.toLowerCase(), v]),
   );
-  const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation.toLowerCase()];
+  const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation?.toLowerCase()];
   const alias = localAffiliationSettings?.alias;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
