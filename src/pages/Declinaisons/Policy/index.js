@@ -40,7 +40,7 @@ const Policy = () => {
       offset = 0,
     } = {}) => {
       let url = 'https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets';
-      url += `/fr-esr-enquete-etablissements-pnso2/records?limit=${limit}&offset=${offset}&order_by=uo_lib`;
+      url += `/fr-esr-politiques-so-etablissements/records?limit=${limit}&offset=${offset}&order_by=uo_lib`;
       const response = await axios.get(url, {
         headers: { accept: 'application/json; charset=utf-8' },
       });
