@@ -315,6 +315,7 @@ function Header() {
               defaultMessage: 'Les établissements',
             })}
           >
+            {/* TODO: inprod */}
             {!isInProduction() && (
               <NavSubItem
                 current={path === urls.policy[lang]}
@@ -324,7 +325,6 @@ function Header() {
                     'Politique de science ouverte des établissements',
                 })}
                 asLink={<RouterLink to={urls.policy[lang] + search} />}
-                display={!isInProduction()}
               />
             )}
             <NavSubItem
