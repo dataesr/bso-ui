@@ -315,18 +315,15 @@ function Header() {
               defaultMessage: 'Les établissements',
             })}
           >
-            {/* TODO: inprod */}
-            {!isInProduction() && (
-              <NavSubItem
-                current={path === urls.policy[lang]}
-                title={intl.formatMessage({
-                  id: 'app.header.nav.declinaisons.policy',
-                  defaultMessage:
-                    'Politique de science ouverte des établissements',
-                })}
-                asLink={<RouterLink to={urls.policy[lang] + search} />}
-              />
-            )}
+            <NavSubItem
+              current={path === urls.policy[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.declinaisons.policy',
+                defaultMessage:
+                  'Politique de science ouverte des établissements',
+              })}
+              asLink={<RouterLink to={urls.policy[lang] + search} />}
+            />
             <NavSubItem
               current={path === urls.variations[lang]}
               title={intl.formatMessage({

@@ -267,7 +267,6 @@ const tree = [
   {
     key: 'app.baro-national.datasets',
     value: 'datasets',
-    isInProduction: false, // TODO: inprod
     children: [
       {
         key: 'app.data.general',
