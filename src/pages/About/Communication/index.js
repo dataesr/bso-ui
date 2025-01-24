@@ -59,7 +59,7 @@ function NotesFlash() {
                 <FormattedMessage id='app.flyer.presentation' />
               </h4>
               <div>
-                <DSLink href='/assets/flyer_bso_2024_fr.pdf' target='_blank'>
+                <DSLink href='/assets/flyer_bso_2025_fr.pdf' target='_blank'>
                   <FormattedMessage id='app.flyer.presentation.description-fr' />
                 </DSLink>
               </div>
@@ -69,7 +69,7 @@ function NotesFlash() {
                 </DSLink>
               </div>
               <img
-                src={`/assets/flyer_bso_2024_${lang}.png`}
+                src={`/assets/flyer_bso_2025_${lang}.png`}
                 alt='flyer bso'
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
@@ -80,7 +80,7 @@ function NotesFlash() {
               </h4>
               <div>
                 <DSLink
-                  href='/assets/flyer_resultats_bso_2024_fr.pdf'
+                  href='/assets/flyer_resultats_bso_2025_fr.pdf'
                   target='_blank'
                 >
                   <FormattedMessage id='app.flyer.results.description-fr' />
@@ -95,7 +95,7 @@ function NotesFlash() {
                 </DSLink>
               </div>
               <img
-                src={`/assets/flyer_resultats_bso_2024_${lang}.png`}
+                src={`/assets/flyer_resultats_bso_2025_${lang}.png`}
                 alt='flyer resultats bso'
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
