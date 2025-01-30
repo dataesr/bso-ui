@@ -22,14 +22,14 @@ const START_YEAR = 2016;
 
 const Policy = () => {
   const [chartComments1, setChartComments1] = useState('');
-  const [chartComments2, setChartComments2] = useState('');
+  // const [chartComments2, setChartComments2] = useState('');
   const [data, setData] = useState([]);
   const [options1, setOptions1] = useState();
-  const [options2, setOptions2] = useState();
+  // const [options2, setOptions2] = useState();
 
   const intl = useIntl();
   const chartRef1 = useRef();
-  const chartRef2 = useRef();
+  // const chartRef2 = useRef();
 
   const id1 = 'other.policy.open-science-policy';
   const id2 = 'other.policy.open-science-document';
@@ -67,27 +67,30 @@ const Policy = () => {
       (year) => year + START_YEAR,
     );
     const tmp = {};
-    // eslint-disable-next-line no-return-assign
-    years.forEach((year) => (tmp[year] = { y: 0, y_percent: 0 }));
+    years.forEach((year) => {
+      tmp[year] = { y: 0, y_percent: 0, y_tot: data.length, y_abs: 0 };
+    });
     data.forEach((item) => {
       if (
         item?.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
       ) {
         tmp[
           item.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
-        ].y += 1;
+        ].y_abs += 1;
       }
     });
     const series1 = {};
     Object.keys(tmp).forEach((year) => {
-      const y = Object.keys(tmp)
+      const yAbs = Object.keys(tmp)
         .filter((key) => key <= year)
-        .reduce((acc, curr) => acc + tmp[curr].y, 0);
+        .reduce((acc, curr) => acc + tmp[curr].y_abs, 0);
       series1[year] = {
         name: year,
         total: data.length,
-        y,
-        y_percent: (y / data.length) * 100,
+        y_abs: yAbs,
+        y_tot: data.length,
+        y: (yAbs / data.length) * 100,
+        y_percent: (yAbs / data.length) * 100,
       };
     });
     const options1Tmp = getGraphOptions({ id: id1, intl });
@@ -188,7 +191,7 @@ const Policy = () => {
       },
     };
     options2Tmp.exporting.chartOptions.legend.enabled = false;
-    setOptions2(options2Tmp);
+    // setOptions2(options2Tmp);
   }, [data, intl]);
 
   useEffect(() => {
@@ -202,16 +205,16 @@ const Policy = () => {
         intl,
       ),
     );
-    setChartComments2(
-      customComments(
-        {
-          comments: {},
-          ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
-        },
-        id2,
-        intl,
-      ),
-    );
+    // setChartComments2(
+    //  customComments(
+    //    {
+    //      comments: {},
+    //      ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
+    //    },
+    //    id2,
+    //    intl,
+    //  ),
+    // );
   }, [id2, intl]);
 
   return (
@@ -288,28 +291,6 @@ const Policy = () => {
                 />
                 {chartComments1 && (
                   <GraphComments comments={chartComments1} hasFooter />
-                )}
-              </ChartWrapper>
-            </Col>
-          </Row>
-          <Row>
-            <Col n='12'>
-              <ChartWrapper
-                chartRef={chartRef2}
-                domain=''
-                hasComments={false}
-                id={id2}
-                isError={false}
-                isLoading={false}
-              >
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  id={id1}
-                  options={options2}
-                  ref={chartRef2}
-                />
-                {chartComments2 && (
-                  <GraphComments comments={chartComments2} hasFooter />
                 )}
               </ChartWrapper>
             </Col>
