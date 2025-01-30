@@ -54,6 +54,7 @@ function useGetData(studyType, sponsor = '*') {
     const data2 = res[1].data.aggregations;
     const data3 = res[2].data.aggregations;
     const data4 = res[3].data.aggregations;
+    // TODO rename data4 refers to 1Y, should be data1Y etc ...
     const academic1 = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
@@ -462,10 +463,13 @@ function useGetData(studyType, sponsor = '*') {
     const comments = {
       allLeadSponsorRate,
       allLeadSponsorRate3: allLeadSponsorRate3.toFixed(0),
+      allLeadSponsorRate4: allLeadSponsorRate4.toFixed(0),
       privateLeadSponsorsRate,
       privateLeadSponsorsRate3: privateLeadSponsorsRate3.toFixed(0),
+      privateLeadSponsorsRate4: privateLeadSponsorsRate4.toFixed(0),
       publicLeadSponsorsRate,
       publicLeadSponsorsRate3: publicLeadSponsorsRate3.toFixed(0),
+      publicLeadSponsorsRate4: publicLeadSponsorsRate4.toFixed(0),
       yearMax,
       yearMin2,
       yearMax2,
