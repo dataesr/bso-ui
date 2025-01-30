@@ -42,14 +42,14 @@ function NotesFlash() {
                 <FormattedMessage id='app.notes.flash.last-note-title' />
               </h4>
               <p className='fs-16-28'>
-                <FormattedMessage id='app.note.flash.edition.2023' />
+                <FormattedMessage id='app.note.flash.edition.2024' />
               </p>
             </Col>
             <Col n='12 sm-6 lg-4'>
               <FlashCard
-                intlTitle='app.note.flash.fev-2024'
-                url='https://www.enseignementsup-recherche.gouv.fr/fr/le-barometre-francais-de-la-science-ouverte-2023-94953'
-                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2024-02/nf-sies-2024-05-31926.pdf'
+                intlTitle='app.note.flash.jan-2025'
+                url='https://www.enseignementsup-recherche.gouv.fr/fr/le-barometre-francais-de-la-science-ouverte-2024-98423'
+                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2025-01/nf-sies-2025-01-36071.pdf'
               />
             </Col>
           </Row>
@@ -129,6 +129,13 @@ function NotesFlash() {
               <Col n='12'>
                 <Container fluid>
                   <Row gutters>
+                    <Col n='12 md-6 lg-4'>
+                      <FlashCard
+                        intlTitle='app.note.flash.fev-2024'
+                        url='https://www.enseignementsup-recherche.gouv.fr/fr/le-barometre-francais-de-la-science-ouverte-2023-94953'
+                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2024-02/nf-sies-2024-05-31926.pdf'
+                      />
+                    </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
                         intlTitle='app.note.flash.mar-2023'
