@@ -127,20 +127,20 @@ function Header() {
                   descCurrentLang='Current language'
                 >
                   <ToolTranslateItem
-                    href='/fr'
-                    hrefLang={lang}
-                    active={selectedLang === 'fr'}
-                    onClick={() => setSelectedLang('fr')}
-                  >
-                    Français
-                  </ToolTranslateItem>
-                  <ToolTranslateItem
                     href='/en'
                     hrefLang={lang}
                     active={selectedLang === 'en'}
                     onClick={() => setSelectedLang('en')}
                   >
                     English
+                  </ToolTranslateItem>
+                  <ToolTranslateItem
+                    href='/ja'
+                    hrefLang={lang}
+                    active={selectedLang === 'ja'}
+                    onClick={() => setSelectedLang('ja')}
+                  >
+                    日本語
                   </ToolTranslateItem>
                 </ToolTranslate>
               </ToolItem>
