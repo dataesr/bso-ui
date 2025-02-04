@@ -97,6 +97,7 @@ export default function NationalOrcid() {
                   }),
                   href: {
                     en: '/orcid/general?id=general.users',
+                    ja: '/orcid/general?id=general.users',
                     fr: '/orcid/general?id=general.users',
                   },
                 },
@@ -106,6 +107,7 @@ export default function NationalOrcid() {
                   }),
                   href: {
                     en: '/orcid/general?id=general.users',
+                    ja: '/orcid/general?id=general.users',
                     fr: '/orcid/general?id=general.users',
                   },
                 },
@@ -167,6 +169,7 @@ export default function NationalOrcid() {
                   }),
                   href: {
                     en: '/orcid/referentiels?id=referentiel.idref',
+                    ja: '/orcid/referentiels?id=referentiel.idref',
                     fr: '/orcid/referentiels?id=referentiel.idref',
                   },
                 },
@@ -176,6 +179,7 @@ export default function NationalOrcid() {
                   }),
                   href: {
                     en: '/orcid/referentiels?id=referentiel.idref',
+                    ja: '/orcid/referentiels?id=referentiel.idref',
                     fr: '/orcid/referentiels?id=referentiel.idref',
                   },
                 },
@@ -185,6 +189,7 @@ export default function NationalOrcid() {
                   }),
                   href: {
                     en: '/orcid/referentiels?id=referentiel.idhal',
+                    ja: '/orcid/referentiels?id=referentiel.idhal',
                     fr: '/orcid/referentiels?id=referentiel.idhal',
                   },
                 },

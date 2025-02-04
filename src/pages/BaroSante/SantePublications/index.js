@@ -68,6 +68,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/general?id=general.dynamique-ouverture',
+                    ja: '/health/publications/general?id=general.dynamique-ouverture',
                     fr: '/sante/publications/general?id=general.dynamique-ouverture',
                   },
                 },
@@ -77,6 +78,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/general?id=general.dynamique-ouverture',
+                    ja: '/health/publications/general?id=general.dynamique-ouverture',
                     fr: '/sante/publications/general?id=general.dynamique-ouverture',
                   },
                 },
@@ -86,6 +88,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/general?id=general.voies-ouverture',
+                    ja: '/health/publications/general?id=general.voies-ouverture',
                     fr: '/sante/publications/general?id=general.voies-ouverture',
                   },
                 },
@@ -95,6 +98,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/general?id=general.genres-ouverture',
+                    ja: '/health/publications/general?id=general.genres-ouverture',
                     fr: '/sante/publications/general?id=general.genres-ouverture',
                   },
                 },
@@ -104,6 +108,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/general?id=general.langues-ouverture',
+                    ja: '/health/publications/general?id=general.langues-ouverture',
                     fr: '/sante/publications/general?id=general.langues-ouverture',
                   },
                 },
@@ -113,6 +118,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/general?id=general.impact-financement',
+                    ja: '/health/publications/general?id=general.impact-financement',
                     fr: '/sante/publications/general?id=general.impact-financement',
                   },
                 },
@@ -122,6 +128,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/general?id=affiliations.pays',
+                    ja: '/health/publications/general?id=affiliations.pays',
                     fr: '/sante/publications/general?id=affiliations.pays',
                   },
                   isDisplayed: !isInProduction(),
@@ -225,6 +232,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/fields?id=disciplines.dynamique-ouverture',
+                    ja: '/health/publications/fields?id=disciplines.dynamique-ouverture',
                     fr: '/sante/publications/disciplines?id=disciplines.dynamique-ouverture',
                   },
                 },
@@ -234,6 +242,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/fields?id=disciplines.dynamique-ouverture',
+                    ja: '/health/publications/fields?id=disciplines.dynamique-ouverture',
                     fr: '/sante/publications/disciplines?id=disciplines.dynamique-ouverture',
                   },
                 },
@@ -243,6 +252,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/fields?id=disciplines.voies-ouverture',
+                    ja: '/health/publications/fields?id=disciplines.voies-ouverture',
                     fr: '/sante/publications/disciplines?id=disciplines.voies-ouverture',
                   },
                 },
@@ -296,6 +306,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/publishers?id=publishers.dynamique-ouverture',
+                    ja: '/health/publications/publishers?id=publishers.dynamique-ouverture',
                     fr: '/sante/publications/editeurs?id=publishers.dynamique-ouverture',
                   },
                 },
@@ -305,6 +316,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/publishers?id=publishers.dynamique-ouverture',
+                    ja: '/health/publications/publishers?id=publishers.dynamique-ouverture',
                     fr: '/sante/publications/editeurs?id=publishers.dynamique-ouverture',
                   },
                 },
@@ -314,6 +326,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/publishers?id=publishers.type-ouverture',
+                    ja: '/health/publications/publishers?id=publishers.type-ouverture',
                     fr: '/sante/publications/editeurs?id=publishers.type-ouverture',
                   },
                 },
@@ -323,6 +336,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/publishers?id=publishers.politiques-ouverture',
+                    ja: '/health/publications/publishers?id=publishers.politiques-ouverture',
                     fr: '/sante/publications/editeurs?id=publishers.politiques-ouverture',
                   },
                 },
@@ -332,6 +346,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/publishers?id=publishers.poids-revues',
+                    ja: '/health/publications/publishers?id=publishers.poids-revues',
                     fr: '/sante/publications/editeurs?id=publishers.poids-revues',
                   },
                 },
@@ -341,6 +356,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/publishers?id=publishers.repartition-licences',
+                    ja: '/health/publications/publishers?id=publishers.repartition-licences',
                     fr: '/sante/publications/editeurs?id=publishers.repartition-licences',
                   },
                 },
@@ -350,6 +366,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/publishers?id=publishers.couts-publication',
+                    ja: '/health/publications/publishers?id=publishers.couts-publication',
                     fr: '/sante/publications/editeurs?id=publishers.couts-publication',
                   },
                 },
@@ -481,6 +498,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/repositories?id=repositories.dynamique-ouverture',
+                    ja: '/health/publications/repositories?id=repositories.dynamique-ouverture',
                     fr: '/sante/publications/archives?id=repositories.dynamique-ouverture',
                   },
                 },
@@ -490,6 +508,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/repositories?id=repositories.dynamique-ouverture',
+                    ja: '/health/publications/repositories?id=repositories.dynamique-ouverture',
                     fr: '/sante/publications/archives?id=repositories.dynamique-ouverture',
                   },
                 },
@@ -499,6 +518,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/repositories?id=repositories.plus-utilisees',
+                    ja: '/health/publications/repositories?id=repositories.plus-utilisees',
                     fr: '/sante/publications/archives?id=repositories.plus-utilisees',
                   },
                 },
@@ -508,6 +528,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/repositories?id=repositories.dynamique-depot',
+                    ja: '/health/publications/repositories?id=repositories.dynamique-depot',
                     fr: '/sante/publications/archives?id=repositories.dynamique-depot',
                   },
                   isDisplayed: !isInProduction(),
@@ -518,6 +539,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/repositories?id=repositories.dynamique-hal',
+                    ja: '/health/publications/repositories?id=repositories.dynamique-hal',
                     fr: '/sante/publications/archives?id=repositories.dynamique-hal',
                   },
                 },
@@ -595,6 +617,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/affiliations?id=affiliations.dynamique-ouverture',
+                    ja: '/health/publications/affiliations?id=affiliations.dynamique-ouverture',
                     fr: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
                   },
                 },
@@ -604,6 +627,7 @@ function SantePublications() {
                   }),
                   href: {
                     en: '/health/publications/affiliations?id=affiliations.dynamique-ouverture',
+                    ja: '/health/publications/affiliations?id=affiliations.dynamique-ouverture',
                     fr: '/sante/publications/affiliations?id=affiliations.dynamique-ouverture',
                   },
                 },
