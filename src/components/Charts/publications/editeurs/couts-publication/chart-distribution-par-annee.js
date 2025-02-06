@@ -19,7 +19,8 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+// import useGetData from './get-data';
+import useGetData from './get-data-josm';
 
 highchartsMore(Highcharts);
 HCExporting(Highcharts);

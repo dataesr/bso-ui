@@ -1,7 +1,7 @@
 /* eslint-disable react/no-this-in-sfc */
 import '../../../graph.scss';
 
-import Axios from 'axios';
+// import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -10,9 +10,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { REPOSITORY_LIST } from '../../../../../config/publicationDataLists';
 import customComments from '../../../../../utils/chartComments';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
+// import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { capitalize, withDomain } from '../../../../../utils/helpers';
@@ -20,7 +21,8 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+// import useGetData from './get-data';
+import useGetData from './get-data-josm';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -50,34 +52,22 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
 
   useEffect(() => {
-    const query = getFetchOptions({
-      key: 'repositoriesList',
-      domain,
-      parameters: [lastObservationSnap],
-    });
-    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      const opts = response.data.aggregations.by_repository.buckets.map(
-        (item) => ({
-          label: intl.formatMessage({
-            id: `app.repositories.label.${item.key
-              .toLowerCase()
-              .replace(/ /g, '')}`,
-            defaultMessage: item.key,
-          }),
-          value: item.key,
-        }),
-      );
-      opts.unshift({
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
+
+  useEffect(() => {
+      // REPOSITORY_LISTを配列に変換
+      const repositoryArray = Object.keys(REPOSITORY_LIST).map((key) => ({
+        label: REPOSITORY_LIST[key],
+        value: key,
+      }));
+      repositoryArray.unshift({
         label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })),
         value: '*',
       });
-      setOptions(opts);
-    });
-  }, [domain, intl, lastObservationSnap]);
-
-  useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl));
-  }, [data, idWithDomain, intl]);
+      // console.log(opts);
+      setOptions(repositoryArray);
+  }, [intl]);
 
   return (
     <ChartWrapper

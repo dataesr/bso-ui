@@ -1,9 +1,8 @@
 {
   "name": "bso-ui",
-  "version": "1.13.0",
+  "version": "1.13.9",
   "private": true,
   "dependencies": {
-    "http-proxy-middleware": "^2.0.0",
     "@dataesr/react-dsfr": "^3.9.1",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "axios": "^0.21.1",

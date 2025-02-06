@@ -1,5 +1,10 @@
 server {
-  listen 3000;
+  listen 3000 ssl;
+  server_name localhost;
+
+  ssl_certificate /etc/nginx/server.crt;
+  ssl_certificate_key /etc/nginx/server.key;
+
   location / {
     root /usr/share/nginx/html;
     index index.html index.htm;
@@ -7,10 +12,16 @@ server {
   }
   location /mailer/ {
     proxy_set_header accept application/json;
-    proxy_set_header api-key $BREVO_KEY;
+    proxy_set_header api-key "dummy_key";
     proxy_set_header content-type application/json;
     proxy_ssl_server_name on;
     proxy_pass https://api.brevo.com/v3/smtp/email;
     client_max_body_size 10M;
+  }
+  location /elasticsearch/ {
+    rewrite /elasticsearch/(.*) /$1 break;
+    proxy_set_header Authorization "ApiKey WFJRVmJwUUJGUTYzTF9zcVJkSDk6bWt4c19STjhSdmUwMGxDbHhxVDNqQQ==";
+    proxy_ssl_verify off;
+    proxy_pass https://es01:9200;
   }
 }
