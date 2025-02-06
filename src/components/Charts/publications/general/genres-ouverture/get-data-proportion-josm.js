@@ -5,7 +5,6 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
-import graphData from './graph-data-proportion.json';
 
 const colors = {
   book: getCSSValue('--blue-soft-75'),

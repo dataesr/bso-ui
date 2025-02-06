@@ -9,7 +9,6 @@ import {
   getCSSValue,
   getObservationLabel,
 } from '../../../../../utils/helpers';
-import graphData from './graph-data.json';
 
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const intl = useIntl();

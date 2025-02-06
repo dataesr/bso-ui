@@ -10,7 +10,6 @@ import {
   getCSSValue,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
-import graphData from './graph-data.json';
 
 function useGetData(observationSnap, domain) {
   const intl = useIntl();

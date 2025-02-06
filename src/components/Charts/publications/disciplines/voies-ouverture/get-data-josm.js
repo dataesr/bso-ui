@@ -10,7 +10,6 @@ import {
   getObservationLabel,
   getPublicationYearFromObservationSnap,
 } from '../../../../../utils/helpers';
-import graphData from './graph-data.json';
 
 function useGetData(beforeLastObservationSnap, observationSnap, domain) {
   const disciplineField = domain === 'health' ? 'bsso_classification.field' : 'bso_classification';
