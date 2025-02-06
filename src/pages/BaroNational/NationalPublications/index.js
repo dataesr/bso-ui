@@ -84,6 +84,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.dynamique-ouverture',
+                    ja: '/publications/general?id=general.dynamique-ouverture',
                     fr: '/publications/general?id=general.dynamique-ouverture',
                   },
                 },
@@ -93,6 +94,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.dynamique-ouverture',
+                    ja: '/publications/general?id=general.dynamique-ouverture',
                     fr: '/publications/general?id=general.dynamique-ouverture',
                   },
                 },
@@ -102,6 +104,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.voies-ouverture',
+                    ja: '/publications/general?id=general.voies-ouverture',
                     fr: '/publications/general?id=general.voies-ouverture',
                   },
                 },
@@ -111,6 +114,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.genres-ouverture',
+                    ja: '/publications/general?id=general.genres-ouverture',
                     fr: '/publications/general?id=general.genres-ouverture',
                   },
                 },
@@ -120,6 +124,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.langues-ouverture',
+                    ja: '/publications/general?id=general.langues-ouverture',
                     fr: '/publications/general?id=general.langues-ouverture',
                   },
                 },
@@ -129,6 +134,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.hal',
+                    ja: '/publications/general?id=general.hal',
                     fr: '/publications/general?id=general.hal',
                   },
                 },
@@ -138,6 +144,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.lpr',
+                    ja: '/publications/general?id=general.lpr',
                     fr: '/publications/general?id=general.lpr',
                   },
                 },
@@ -218,6 +225,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fields?id=disciplines.dynamique-ouverture',
+                    ja: '/publications/fields?id=disciplines.dynamique-ouverture',
                     fr: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                   },
                 },
@@ -227,6 +235,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fields?id=disciplines.dynamique-ouverture',
+                    ja: '/publications/fields?id=disciplines.dynamique-ouverture',
                     fr: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                   },
                 },
@@ -236,6 +245,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fields?id=disciplines.voies-ouverture',
+                    ja: '/publications/fields?id=disciplines.voies-ouverture',
                     fr: '/publications/disciplines?id=disciplines.voies-ouverture',
                   },
                 },
@@ -274,6 +284,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.dynamique-ouverture',
+                    ja: '/publications/publishers?id=publishers.dynamique-ouverture',
                     fr: '/publications/editeurs?id=publishers.dynamique-ouverture',
                   },
                 },
@@ -283,6 +294,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.dynamique-ouverture',
+                    ja: '/publications/publishers?id=publishers.dynamique-ouverture',
                     fr: '/publications/editeurs?id=publishers.dynamique-ouverture',
                   },
                 },
@@ -292,6 +304,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.type-ouverture',
+                    ja: '/publications/publishers?id=publishers.type-ouverture',
                     fr: '/publications/editeurs?id=publishers.type-ouverture',
                   },
                 },
@@ -301,6 +314,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.politiques-ouverture',
+                    ja: '/publications/publishers?id=publishers.politiques-ouverture',
                     fr: '/publications/editeurs?id=publishers.politiques-ouverture',
                   },
                 },
@@ -310,6 +324,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.poids-revues',
+                    ja: '/publications/publishers?id=publishers.poids-revues',
                     fr: '/publications/editeurs?id=publishers.poids-revues',
                   },
                 },
@@ -319,12 +334,14 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.repartition-licences',
+                    ja: '/publications/publishers?id=publishers.repartition-licences',
                     fr: '/publications/editeurs?id=publishers.repartition-licences',
                   },
                 },
                 {
                   href: {
                     en: '/publications/publishers?id=publishers.couts-publication',
+                    ja: '/publications/publishers?id=publishers.couts-publication',
                     fr: '/publications/editeurs?id=publishers.couts-publication',
                   },
                   label: intl.formatMessage({
@@ -426,6 +443,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-ouverture',
+                    ja: '/publications/repositories?id=repositories.dynamique-ouverture',
                     fr: '/publications/archives?id=repositories.dynamique-ouverture',
                   },
                 },
@@ -435,6 +453,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-ouverture',
+                    ja: '/publications/repositories?id=repositories.dynamique-ouverture',
                     fr: '/publications/archives?id=repositories.dynamique-ouverture',
                   },
                 },
@@ -444,6 +463,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.plus-utilisees',
+                    ja: '/publications/repositories?id=repositories.plus-utilisees',
                     fr: '/publications/archives?id=repositories.plus-utilisees',
                   },
                 },
@@ -453,6 +473,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-depot',
+                    ja: '/publications/repositories?id=repositories.dynamique-depot',
                     fr: '/publications/archives?id=repositories.dynamique-depot',
                   },
                   isDisplayed: !isInProduction(),
@@ -463,6 +484,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-hal',
+                    ja: '/publications/repositories?id=repositories.dynamique-hal',
                     fr: '/publications/archives?id=repositories.dynamique-hal',
                   },
                 },
@@ -521,6 +543,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    ja: '/publications/fundings?id=fundings.chart-taux-ouverture',
                     fr: '/publications/financements?id=fundings.chart-taux-ouverture',
                   },
                 },
@@ -530,6 +553,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    ja: '/publications/fundings?id=fundings.chart-taux-ouverture',
                     fr: '/publications/financements?id=fundings.chart-taux-ouverture',
                   },
                 },
@@ -615,6 +639,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/to-be-decided?id=to-be-decided.international-collaborations',
+                    ja: '/publications/to-be-decided?id=to-be-decided.international-collaborations',
                     fr: '/publications/a-decider?id=to-be-decided.international-collaborations',
                   },
                 },

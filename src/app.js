@@ -32,7 +32,7 @@ import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
 import NationalOrcid from './pages/NationalOrcid';
 import messagesEN from './translations/en.json';
-import messagesFR from './translations/fr.json';
+import messagesJA from './translations/ja.json';
 import TranslationPage from './translations/translations-page';
 import { isInLocal } from './utils/helpers';
 import { GraphNavigationContextProvider } from './utils/Hooks/useGraphNavigation';
@@ -40,7 +40,7 @@ import useLang from './utils/Hooks/useLang';
 
 const messages = {
   en: messagesEN,
-  fr: messagesFR,
+  ja: messagesJA,
 };
 
 const redirects = {

@@ -17,7 +17,7 @@ import {
 import React, { useEffect, useState } from 'react';
 
 import En from './en.json';
-import Fr from './fr.json';
+import Ja from './ja.json';
 
 const TranslationsPage = () => {
   const [data, setData] = useState({});
@@ -25,24 +25,24 @@ const TranslationsPage = () => {
   const [generation, setGeneration] = useState('');
 
   useEffect(() => {
-    const arrayFr = [];
     const arrayEn = [];
-
-    for (const key in Fr) {
-      arrayFr.push(key);
-      arrayFr[key] = Fr[key];
-    }
+    const arrayJa = [];
 
     for (const key in En) {
       arrayEn.push(key);
       arrayEn[key] = En[key];
     }
 
+    for (const key in Ja) {
+      arrayJa.push(key);
+      arrayJa[key] = Ja[key];
+    }
+
     const newData = {};
-    arrayFr.forEach((key) => {
+    arrayEn.forEach((key) => {
       newData[key] = {
-        fr: arrayFr[key],
-        en: arrayEn[key] || '',
+        en: arrayEn[key],
+        ja: arrayJa[key] || '',
       };
     });
 
@@ -70,7 +70,7 @@ const TranslationsPage = () => {
     setData(newData);
   };
 
-  if (!data || data === {}) {
+  if (!data) {
     return null;
   }
 
@@ -79,10 +79,10 @@ const TranslationsPage = () => {
       <Container>
         <Row>
           <Col n='2'>
-            <Button onClick={() => generate('fr')}>Générer FR</Button>
+            <Button onClick={() => generate('en')}>Générer EN</Button>
           </Col>
           <Col n='2'>
-            <Button onClick={() => generate('en')}>Générer EN</Button>
+            <Button onClick={() => generate('ja')}>Générer JA</Button>
           </Col>
         </Row>
         {Object.keys(data).map((key) => (
@@ -93,17 +93,6 @@ const TranslationsPage = () => {
               </Col>
             </Row>
             <Row>
-              <Col n='1'>FR</Col>
-              <Col>
-                <textarea
-                  style={{ width: '800px', height: '50px' }}
-                  id={`${key}_fr`}
-                  value={data[key].fr}
-                  onChange={(e) => saveData(key, e.target.value, 'fr')}
-                />
-              </Col>
-            </Row>
-            <Row>
               <Col n='1'>EN</Col>
               <Col>
                 <textarea
@@ -111,6 +100,17 @@ const TranslationsPage = () => {
                   id={`${key}_en`}
                   value={data[key].en}
                   onChange={(e) => saveData(key, e.target.value, 'en')}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col n='1'>JA</Col>
+              <Col>
+                <textarea
+                  style={{ width: '800px', height: '50px' }}
+                  id={`${key}_ja`}
+                  value={data[key].ja}
+                  onChange={(e) => saveData(key, e.target.value, 'ja')}
                 />
               </Col>
             </Row>
