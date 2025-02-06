@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
     capitalize,
     getCSSValue,
@@ -66,7 +65,36 @@ function useGetData(
         );
 
         /* eslint-disable no-underscore-dangle */
-        const predata = preRes.data.hits.hits[0]._source.data;
+        let predata = preRes?.data?.hits?.hits[0]?._source.data;
+        if (!predata) {
+            const allPubRes = await Axios.post(
+                'http://localhost:3000/elasticsearch/oa_index/_search',
+                {
+                    size: 1,
+                    query: {
+                        bool: {
+                            filter: [
+                                { term: { calc_date: latestCalcDate } },
+                                { term: { data_type: 'editeurs.couts-publication.get-data' } },
+                                { term: { publisher: 'all-publishers' } },
+                            ],
+                        },
+                    },
+                },
+            );
+            predata = allPubRes?.data?.hits?.hits[0]?._source.data;
+            for (let i = 0; i < predata.length; i += 1) {
+                predata[i].total = 0;
+                predata[i].histgram_data = predata[i].histgram_data.map((item) => ({
+                    ...item,
+                    frequency: 0,
+                }));
+                predata[i].percentile_data = predata[i].percentile_data.map((item) => ({
+                    ...item,
+                    value: 0,
+                }));
+            }
+        }
         const pre_buckets1 = [];
         const pre_buckets2 = [];
         const pre_buckets3 = [];
