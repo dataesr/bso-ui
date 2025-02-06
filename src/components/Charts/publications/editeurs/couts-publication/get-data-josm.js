@@ -14,7 +14,7 @@ import {
 function useGetData(
     observationSnaps,
     beforeLastObservationSnap,
-    needle = '*',
+    needle = 'all-publishers',
     domain,
 ) {
     console.log('domain', domain);
@@ -42,17 +42,12 @@ function useGetData(
                     },
                 },
             ],
-            query: {
-                term: {
-                    data_type: 'editeurs.couts-publication.get-data',
-                },
-            },
         });
 
         // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
         /* eslint-disable no-underscore-dangle */
         const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
-
+        console.log('needle', needle);
         // 2回目のクエリ 最新のcalc_dateのデータを取得
         const preRes = await Axios.post(
             'http://localhost:3000/elasticsearch/oa_index/_search',
@@ -63,13 +58,12 @@ function useGetData(
                         filter: [
                             { term: { calc_date: latestCalcDate } },
                             { term: { data_type: 'editeurs.couts-publication.get-data' } },
-                            // { term: { publisher: 'Elsevier' } },
+                            { term: { publisher: needle } },
                         ],
                     },
                 },
             },
         );
-        console.log('preRes', preRes);
 
         /* eslint-disable no-underscore-dangle */
         const predata = preRes.data.hits.hits[0]._source.data;
