@@ -230,33 +230,33 @@ export default function DataCardSection({ domain, lang }) {
     [dataObj, publicationsNumber],
   );
 
-  useEffect(() => {
-    if (response) {
-      const { aggregations } = response;
-      if (!publicationsNumber) {
-        const books = aggregations?.by_genre?.buckets?.find(
-          (item) => item.key === 'book',
-        ) || [];
-        const booksCount = books?.doc_count || 0;
-        const oaBooksCount = books?.by_is_oa?.buckets?.find((item) => item.key === 1)?.doc_count
-          || 0;
-        setOaBooksRate(((oaBooksCount / booksCount) * 100).toFixed(0));
-        setPublicationsNumber(
-          aggregations.by_is_oa.buckets[0].doc_count
-            + aggregations.by_is_oa.buckets[1].doc_count,
-        );
-        setTotalHostedDocuments(
-          formatNumberByLang(
-            aggregations.by_oa_colors.buckets?.find(
-              (item) => item.key === 'green',
-            )?.doc_count || 0,
-            lang,
-          ),
-        );
-      }
-      updateData(aggregations);
-    }
-  }, [response, publicationsNumber, updateData, lang]);
+  // useEffect(() => {
+  //   if (response) {
+  //     const { aggregations } = response;
+  //     if (!publicationsNumber) {
+  //       const books = aggregations?.by_genre?.buckets?.find(
+  //         (item) => item.key === 'book',
+  //       ) || [];
+  //       const booksCount = books?.doc_count || 0;
+  //       const oaBooksCount = books?.by_is_oa?.buckets?.find((item) => item.key === 1)?.doc_count
+  //         || 0;
+  //       setOaBooksRate(((oaBooksCount / booksCount) * 100).toFixed(0));
+  //       setPublicationsNumber(
+  //         aggregations.by_is_oa.buckets[0].doc_count
+  //           + aggregations.by_is_oa.buckets[1].doc_count,
+  //       );
+  //       setTotalHostedDocuments(
+  //         formatNumberByLang(
+  //           aggregations.by_oa_colors.buckets?.find(
+  //             (item) => item.key === 'green',
+  //           )?.doc_count || 0,
+  //           lang,
+  //         ),
+  //       );
+  //     }
+  //     updateData(aggregations);
+  //   }
+  // }, [response, publicationsNumber, updateData, lang]);
 
   useEffect(() => {
     if (!response && isMounted.current && lastObservationSnap) {
