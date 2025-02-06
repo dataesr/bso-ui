@@ -58,8 +58,8 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   useEffect(() => {
       // REPOSITORY_LISTを配列に変換
       const repositoryArray = Object.keys(REPOSITORY_LIST).map((key) => ({
-        label: REPOSITORY_LIST[key],
-        value: key,
+        label: key,
+        value: REPOSITORY_LIST[key],
       }));
       repositoryArray.unshift({
         label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })),
