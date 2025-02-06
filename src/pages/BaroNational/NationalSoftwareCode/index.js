@@ -87,6 +87,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/general?id=general.partage',
+                    ja: '/software/general?id=general.partage',
                     fr: '/codes-et-logiciels/general?id=general.partage',
                   },
                 },
@@ -96,6 +97,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/general?id=general.partage',
+                    ja: '/software/general?id=general.partage',
                     fr: '/codes-et-logiciels/general?id=general.partage',
                   },
                 },
@@ -105,6 +107,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/general?id=general.utilisation',
+                    ja: '/software/general?id=general.utilisation',
                     fr: '/codes-et-logiciels/general?id=general.utilisation',
                   },
                 },
@@ -114,6 +117,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/general?id=general.creation',
+                    ja: '/software/general?id=general.creation',
                     fr: '/codes-et-logiciels/general?id=general.creation',
                   },
                 },
@@ -169,6 +173,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/fields?id=disciplines.utilisation',
+                    ja: '/software/fields?id=disciplines.utilisation',
                     fr: '/codes-et-logiciels/disciplines?id=disciplines.utilisation',
                   },
                 },
@@ -178,6 +183,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/fields?id=disciplines.utilisation',
+                    ja: '/software/fields?id=disciplines.utilisation',
                     fr: '/codes-et-logiciels/disciplines?id=disciplines.utilisation',
                   },
                 },
@@ -187,6 +193,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/fields?id=disciplines.creation',
+                    ja: '/software/fields?id=disciplines.creation',
                     fr: '/codes-et-logiciels/disciplines?id=disciplines.creation',
                   },
                 },
@@ -196,6 +203,7 @@ export default function NationalSoftwareCode() {
                   }),
                   href: {
                     en: '/software/fields?id=disciplines.partage',
+                    ja: '/software/fields?id=disciplines.partage',
                     fr: '/codes-et-logiciels/disciplines?id=disciplines.partage',
                   },
                 },

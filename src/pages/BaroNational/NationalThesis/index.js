@@ -81,6 +81,7 @@ export default function NationalThesis() {
                   }),
                   href: {
                     en: '/thesis/general?id=general.dynamique',
+                    ja: '/thesis/general?id=general.dynamique',
                     fr: '/theses-de-doctorat/general?id=general.dynamique',
                   },
                 },
@@ -90,6 +91,7 @@ export default function NationalThesis() {
                   }),
                   href: {
                     en: '/thesis/general?id=general.dynamique',
+                    ja: '/thesis/general?id=general.dynamique',
                     fr: '/theses-de-doctorat/general?id=general.dynamique',
                   },
                 },
@@ -99,6 +101,7 @@ export default function NationalThesis() {
                   }),
                   href: {
                     en: '/thesis/general?id=general.discipline',
+                    ja: '/thesis/general?id=general.discipline',
                     fr: '/theses-de-doctorat/general?id=general.discipline',
                   },
                 },

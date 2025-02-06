@@ -11,17 +11,17 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
   const { pathname } = useLocation();
 
   // Default UI lang in French
-  let locale = 'fr';
+  let locale = 'en';
   // In production but not in integration aka iFrame, lang depends of the hostname
   if (isInProduction() && !pathname.startsWith('/integration')) {
     locale = window.location.hostname === 'frenchopensciencemonitor.esr.gouv.fr'
       ? 'en'
-      : 'fr';
+      : 'ja';
     // In other env (local and staging), lang depends of the sessionStorage
   } else {
     locale = sessionStorage.getItem('__bso_lang__');
   }
-  const [lang, setLang] = useState(locale || 'fr');
+  const [lang, setLang] = useState(locale || 'en');
 
   const switchLang = (newLang, path, search) => {
     if (supportedLanguages.includes(newLang) && newLang !== lang) {
