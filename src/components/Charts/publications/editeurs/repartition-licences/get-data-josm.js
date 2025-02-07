@@ -50,10 +50,6 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
           data_type: 'editeurs.repartition-licences.get-data',
         },
       },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
@@ -94,10 +90,6 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
 
     const preRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
       query,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     // 成形処理

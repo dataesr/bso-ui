@@ -56,17 +56,17 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   }, [data, idWithDomain, intl]);
 
   useEffect(() => {
-      // REPOSITORY_LISTを配列に変換
-      const repositoryArray = Object.keys(REPOSITORY_LIST).map((key) => ({
-        label: key,
-        value: REPOSITORY_LIST[key],
-      }));
-      repositoryArray.unshift({
-        label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })),
-        value: '*',
-      });
-      // console.log(opts);
-      setOptions(repositoryArray);
+    // REPOSITORY_LISTを配列に変換
+    const repositoryArray = Object.keys(REPOSITORY_LIST).map((key) => ({
+      label: key,
+      value: REPOSITORY_LIST[key],
+    }));
+    repositoryArray.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })),
+      value: '*',
+    });
+    // console.log(opts);
+    setOptions(repositoryArray);
   }, [intl]);
 
   return (

@@ -44,225 +44,221 @@ function useGetData(observationSnaps, needle = '*', domain) {
     const latestDateRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
       size: 0,
       aggs: {
-          unique_calc_dates: {
-              terms: {
-                  field: 'calc_date',
-                  size: 10000,
-              },
+        unique_calc_dates: {
+          terms: {
+            field: 'calc_date',
+            size: 10000,
           },
+        },
       },
       query: {
-          term: {
-              data_type: 'editeurs.dynamique-ouverture.get-data',
-          },
+        term: {
+          data_type: 'editeurs.dynamique-ouverture.get-data',
+        },
       },
-  });
+    });
 
-  // ユニークな `calc_date` のリストを取得
-  const yearMonthDayList = latestDateRes.data.aggregations.unique_calc_dates.buckets.map(
+    // ユニークな `calc_date` のリストを取得
+    const yearMonthDayList = latestDateRes.data.aggregations.unique_calc_dates.buckets.map(
       (bucket) => bucket.key_as_string.slice(0, 10),
-  );
+    );
 
-  const yearGroups = yearMonthDayList.reduce((acc, date) => {
+    const yearGroups = yearMonthDayList.reduce((acc, date) => {
       const year = date.slice(0, 4);
       if (!acc[year]) acc[year] = [];
       acc[year].push(date);
       return acc;
-  }, {});
-  const lastDateOfYear = [];
+    }, {});
+    const lastDateOfYear = [];
 
-  // 各年のデータから最終日を取得
-  Object.keys(yearGroups).forEach((year) => {
+    // 各年のデータから最終日を取得
+    Object.keys(yearGroups).forEach((year) => {
       /* eslint-enable arrow-parens, no-confusing-arrow */
       const yearDates = yearGroups[year];
       const lastDate = yearDates.reduce((latest, current) => (current > latest ? current : latest));
       lastDateOfYear.push(lastDate);
-  });
+    });
 
-  /* eslint-disable no-underscore-dangle */
-  let preRes;
+    /* eslint-disable no-underscore-dangle */
+    let preRes;
 
-if (needle === '*') {
-    const preAllDataRes = await Axios.post(
+    if (needle === '*') {
+      const preAllDataRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
         {
-            query: {
-                bool: {
-                    filter: [
-                        { terms: { calc_date: lastDateOfYear } },
-                        { term: { data_type: 'editeurs.dynamique-ouverture.get-data' } },
-                    ],
-                },
+          query: {
+            bool: {
+              filter: [
+                { terms: { calc_date: lastDateOfYear } },
+                { term: { data_type: 'editeurs.dynamique-ouverture.get-data' } },
+              ],
             },
-            aggs: {
-                by_calc_date: {
-                    terms: {
-                        field: 'calc_date',
+          },
+          aggs: {
+            by_calc_date: {
+              terms: {
+                field: 'calc_date',
+                size: 1000,
+                order: { _key: 'desc' },
+              },
+              aggs: {
+                nested_data: {
+                  nested: {
+                    path: 'data',
+                  },
+                  aggs: {
+                    total_per_year: {
+                      terms: {
+                        field: 'data.publication_year',
                         size: 1000,
-                        order: { _key: 'desc' },
-                    },
-                    aggs: {
-                        nested_data: {
-                            nested: {
-                                path: 'data',
-                            },
-                            aggs: {
-                                total_per_year: {
-                                    terms: {
-                                        field: 'data.publication_year',
-                                        size: 1000,
-                                    },
-                                    aggs: {
-                                        total_sum: {
-                                            sum: {
-                                                field: 'data.total',
-                                            },
-                                        },
-                                        oa_sum: {
-                                            sum: {
-                                                field: 'data.oa',
-                                            },
-                                        },
-                                    },
-                                },
-                            },
+                      },
+                      aggs: {
+                        total_sum: {
+                          sum: {
+                            field: 'data.total',
+                          },
                         },
+                        oa_sum: {
+                          sum: {
+                            field: 'data.oa',
+                          },
+                        },
+                      },
                     },
+                  },
                 },
+              },
             },
+          },
         },
-    );
+      );
 
-    const preSource = [];
-    let preData = [];
-    const preBuckets = preAllDataRes.data.aggregations.by_calc_date.buckets;
+      const preSource = [];
+      let preData = [];
+      const preBuckets = preAllDataRes.data.aggregations.by_calc_date.buckets;
 
-    for (let i = 0; i < preBuckets.length; i += 1) {
+      for (let i = 0; i < preBuckets.length; i += 1) {
         const preNestDatabuckets = preBuckets[i].nested_data.total_per_year.buckets;
         for (let j = 0; j < preNestDatabuckets.length; j += 1) {
-            const publicationYear = preNestDatabuckets[j].key;
-            const total = preNestDatabuckets[j].total_sum.value;
-            const oa = preNestDatabuckets[j].oa_sum.value;
-            preData.push({
-                pubulication_year: publicationYear,
-                total,
-                oa,
-            });
+          const publicationYear = preNestDatabuckets[j].key;
+          const total = preNestDatabuckets[j].total_sum.value;
+          const oa = preNestDatabuckets[j].oa_sum.value;
+          preData.push({
+            pubulication_year: publicationYear,
+            total,
+            oa,
+          });
         }
         preSource.push({
-            _source: {
-                data: preData,
-            },
+          _source: {
+            data: preData,
+          },
         });
         preData = [];
-    }
-    preRes = {
+      }
+      preRes = {
         data: {
-            hits: {
-                hits: preSource,
-            },
+          hits: {
+            hits: preSource,
+          },
         },
-    };
-    console.log('editeurs.dynamique_preRes1', preRes);
-} else {
-    preRes = await Axios.post(
+      };
+      console.log('editeurs.dynamique_preRes1', preRes); // eslint-disable-line no-console
+    } else {
+      preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
         {
-            query: {
-                bool: {
-                    filter: [
-                        { terms: { calc_date: lastDateOfYear } },
-                        { term: { data_type: 'editeurs.dynamique-ouverture.get-data' } },
-                        { term: { publisher: needle } },
-                    ],
-                },
+          query: {
+            bool: {
+              filter: [
+                { terms: { calc_date: lastDateOfYear } },
+                { term: { data_type: 'editeurs.dynamique-ouverture.get-data' } },
+                { term: { publisher: needle } },
+              ],
             },
+          },
         },
-    );
-    console.log('preRes2', preRes);
+      );
+      console.log('preRes2', preRes); // eslint-disable-line no-console
 
-    const preList = preRes.data.hits.hits;
-    console.log('preList', preList);
+      const preList = preRes.data.hits.hits;
+      console.log('preList', preList); // eslint-disable-line no-console
 
-    const preSource = preList.map((hit) => ({
-      _source: {
+      const preSource = preList.map((hit) => ({
+        _source: {
           data: hit._source.data.map((item) => ({
-              pubulication_year: item.publication_year,
-              total: item.total,
-              oa: item.oa,
+            pubulication_year: item.publication_year,
+            total: item.total,
+            oa: item.oa,
           })),
-      },
-  }));
+        },
+      }));
 
-  // preResのデータ構造変更
-  preRes = {
-      data: {
+      // preResのデータ構造変更
+      preRes = {
+        data: {
           hits: {
-              hits: preSource,
+            hits: preSource,
           },
-      },
-  };
-}
+        },
+      };
+    }
 
-// 観測年の降順にソート
-// const sortedHits = preRes.data.hits.hits.reverse();
-// console.log('sortedHits', sortedHits);
-
-  // 成形処理
-  const res = preRes.data.hits.hits.flatMap((hit) => [
-    {
-      data: {
-        aggregations: {
-          by_publication_year: {
-            doc_count_error_upper_bound: 0,
-            sum_other_doc_count: 0,
-            buckets: hit._source.data.map((item) => ({
-              key: item.pubulication_year,
-              doc_count: item.oa,
-              by_is_oa: {
-                doc_count_error_upper_bound: 0,
-                sum_other_doc_count: 0,
-                buckets: [
-                  {
-                    key: 1,
-                    key_as_string: 'true',
-                    doc_count: item.oa,
-                  },
-                ],
-              },
-            })),
+    // 成形処理
+    const res = preRes.data.hits.hits.flatMap((hit) => [
+      {
+        data: {
+          aggregations: {
+            by_publication_year: {
+              doc_count_error_upper_bound: 0,
+              sum_other_doc_count: 0,
+              buckets: hit._source.data.map((item) => ({
+                key: item.pubulication_year,
+                doc_count: item.oa,
+                by_is_oa: {
+                  doc_count_error_upper_bound: 0,
+                  sum_other_doc_count: 0,
+                  buckets: [
+                    {
+                      key: 1,
+                      key_as_string: 'true',
+                      doc_count: item.oa,
+                    },
+                  ],
+                },
+              })),
+            },
           },
         },
       },
-    },
-    {
-      data: {
-        aggregations: {
-          by_publication_year: {
-            doc_count_error_upper_bound: 0,
-            sum_other_doc_count: 0,
-            buckets: hit._source.data.map((item) => ({
-              key: item.pubulication_year,
-              doc_count: item.total,
-              by_is_oa: {
-                doc_count_error_upper_bound: 0,
-                sum_other_doc_count: 0,
-                buckets: [
-                  {
-                    key: 1,
-                    key_as_string: 'true',
-                    doc_count: item.total,
-                  },
-                ],
-              },
-            })),
+      {
+        data: {
+          aggregations: {
+            by_publication_year: {
+              doc_count_error_upper_bound: 0,
+              sum_other_doc_count: 0,
+              buckets: hit._source.data.map((item) => ({
+                key: item.pubulication_year,
+                doc_count: item.total,
+                by_is_oa: {
+                  doc_count_error_upper_bound: 0,
+                  sum_other_doc_count: 0,
+                  buckets: [
+                    {
+                      key: 1,
+                      key_as_string: 'true',
+                      doc_count: item.total,
+                    },
+                  ],
+                },
+              })),
+            },
           },
         },
       },
-    },
-  ]);
-  /* eslint-enable no-underscore-dangle */
-  // console.log('editeurs.dynamique_res', res);
+    ]);
+    /* eslint-enable no-underscore-dangle */
+    console.log('editeurs.dynamique_res', res); // eslint-disable-line no-console
 
     const allData = [];
     for (let i = 0; i < res.length; i += 1) {

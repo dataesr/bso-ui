@@ -40,19 +40,18 @@ function useGetData(observationSnaps, domain = '') {
       const latestDateRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
         size: 0,
         aggs: {
-              unique_calc_dates: {
-                      terms: {
-                            field: 'calc_date',
-                            size: 10000,
-                      },
-              },
+          unique_calc_dates: {
+            terms: {
+              field: 'calc_date',
+              size: 10000,
+            },
+          },
         },
         query: {
           term: {
-              data_type: 'disciplines.dynamique-ouverture.get-data',
+            data_type: 'disciplines.dynamique-ouverture.get-data',
           },
         },
-
       });
 
       // ユニークな `calc_date` のリストを取得
@@ -72,31 +71,29 @@ function useGetData(observationSnaps, domain = '') {
       Object.keys(yearGroups).forEach((year) => {
         /* eslint-enable arrow-parens, no-confusing-arrow */
         const yearDates = yearGroups[year];
-        console.log(yearDates);
+        console.log(yearDates); // eslint-disable-line no-console
         const lastDate = yearDates.reduce((latest, current) => (current > latest ? current : latest));
         lastDateOfYear.push(lastDate);
       });
 
-      console.log('lastDateOfYear', lastDateOfYear);
-
       const preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
         {
-              size: 10000,
-              query: {
-                      bool: {
-                            filter: [
-                                    { terms: { calc_date: lastDateOfYear } },
-                                    { term: { data_type: 'disciplines.dynamique-ouverture.get-data' } },
-                            ],
-                      },
-              },
+          size: 10000,
+          query: {
+            bool: {
+              filter: [
+                { terms: { calc_date: lastDateOfYear } },
+                { term: { data_type: 'disciplines.dynamique-ouverture.get-data' } },
+              ],
+            },
+          },
         },
       );
 
       preRes.data.hits.hits.sort((a, b) => b._source.calc_date.localeCompare(a._source.calc_date));
 
-      console.log('prot_dynamique-ouverture_res:', preRes);
+      console.log('prot_dynamique-ouverture_res:', preRes); // eslint-disable-line no-console
 
       // データ成形処理
       const res = [];
@@ -148,7 +145,7 @@ function useGetData(observationSnaps, domain = '') {
         });
       });
 
-      console.log('dynamique-ouverture_res:', res);
+      console.log('dynamique-ouverture_res:', res); // eslint-disable-line no-console
 
       const dataGraph = {};
       const disciplines = [];
@@ -173,7 +170,7 @@ function useGetData(observationSnaps, domain = '') {
           });
       });
       let dataHist = [];
-      console.log('disciplines', disciplines);
+      console.log('disciplines', disciplines); // eslint-disable-line no-console
       disciplines.forEach((discipline) => {
         const dataByDiscipline = dataGraph[discipline];
         dataHist.push({

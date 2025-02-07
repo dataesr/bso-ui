@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -60,10 +60,6 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
           data_type: 'archives.dynamique-hal.get-data',
         },
       },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
@@ -80,13 +76,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
           ],
         },
       },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
-    // console.log('archives.dynamique-hal.get-data_preRes:', preRes); // eslint-disable-line no-console
-
     // 成形処理
     /* eslint-disable no-underscore-dangle */
     const res = [
@@ -112,7 +102,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
               sum_other_doc_count: 0,
               buckets: preRes.data.hits.hits[0]._source.data.map((item) => ({
                 key: item.publication_year,
-                doc_count: item.jp_repo + item.other_repo,
+                doc_count: item.other_repo,
               })),
             },
           },
@@ -120,7 +110,6 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       },
     ];
     /* eslint-enable no-underscore-dangle */
-    // console.log('archives.dynamique-hal.get-data_res:', res); // eslint-disable-line no-console
 
     let dataHAL = res[0].data.aggregations.by_publication_year.buckets;
     dataHAL = dataHAL

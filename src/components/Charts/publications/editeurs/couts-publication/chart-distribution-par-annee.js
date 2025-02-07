@@ -1,6 +1,6 @@
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable simple-import-sort/imports */
-import Axios from 'axios';
+// import Axios from 'axios';
 import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -13,7 +13,7 @@ import { useIntl } from 'react-intl';
 import { PUBLISHER_LIST } from '../../../../../config/publicationDataLists';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
+// import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { capitalize, withDomain } from '../../../../../utils/helpers';

@@ -58,11 +58,9 @@ function useGetData(observationSnap, domain) {
       // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
       /* eslint-disable no-underscore-dangle */
       const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
-      console.log('latestCalcDate:', latestCalcDate);
 
       // calc_dateの1年前の年数をgraphYearDataに代入
       const graphYearData = (parseInt(latestCalcDate.substring(0, 4), 10) - 1);
-      console.log('graphYearData:', graphYearData);
 
       // 2回目のクエリ 最新のcalc_dateのデータを取得
       const preRes = await Axios.post(
@@ -87,8 +85,7 @@ function useGetData(observationSnap, domain) {
           },
         },
       );
-      console.log('prot_langues-ouverture:', preRes);
-      console.log('graphYearData:', graphYearData);
+      console.log('prot_langues-ouverture:', preRes); // eslint-disable-line no-console
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
 
       // ここに変更を記述
@@ -132,7 +129,7 @@ function useGetData(observationSnap, domain) {
 
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_publication_year.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
-      console.log('transformed_langues-ouverture_res:', res);
+      console.log('transformed_langues-ouverture_res:', res); // eslint-disable-line no-console
 
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
       // console.log('langues-ouverture_res:', res);

@@ -42,10 +42,6 @@ function useGetData(observationSnap, domain) {
           data_type: 'editeurs.type-ouverture.get-data',
         },
       },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
@@ -61,10 +57,6 @@ function useGetData(observationSnap, domain) {
             { term: { data_type: 'editeurs.type-ouverture.get-data' } },
           ],
         },
-      },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
       },
     });
     // console.log('editeurs.type-ouverture:', preRes); // eslint-disable-line no-console

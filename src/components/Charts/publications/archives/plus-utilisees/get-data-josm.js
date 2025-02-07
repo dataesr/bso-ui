@@ -42,10 +42,6 @@ function useGetData(observationSnap, domain) {
           data_type: 'archives.dynamique-ouverture.get-data',
         },
       },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
@@ -67,10 +63,6 @@ function useGetData(observationSnap, domain) {
             { term: { data_type: 'archives.dynamique-ouverture.get-data' } },
           ],
         },
-      },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
       },
     });
     // console.log('preRes_plus:', preRes); // eslint-disable-line no-console

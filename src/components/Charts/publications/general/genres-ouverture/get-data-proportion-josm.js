@@ -53,7 +53,6 @@ function useGetData(observationSnap, domain) {
       // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
       /* eslint-disable no-underscore-dangle */
       const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
-      console.log('latestCalcDate:', latestCalcDate);
 
       // 2回目のクエリ 最新のcalc_dateのデータを取得
       const preRes = await Axios.post(
@@ -68,7 +67,7 @@ function useGetData(observationSnap, domain) {
           },
         },
       );
-      console.log('prot_genres-prop-ouverture_res:', preRes);
+      console.log('prot_genres-prop-ouverture_res:', preRes); // eslint-disable-line no-console
 
       // ここに変更を記述
       const res = { data: { aggregations: { by_year: { buckets: [] } } } };
@@ -118,7 +117,7 @@ function useGetData(observationSnap, domain) {
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_year.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
 
-      console.log('transformed_genres-prop-ouverture_res:', res);
+      console.log('transformed_genres-prop-ouverture_res:', res); // eslint-disable-line no-console
 
       const data = res.data.aggregations.by_year.buckets
         // Sort data by publication year ascending

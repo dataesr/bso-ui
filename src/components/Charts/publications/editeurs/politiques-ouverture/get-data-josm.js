@@ -56,10 +56,6 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
           data_type: 'editeurs.politiques-ouverture.get-data',
         },
       },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
 
     // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
@@ -90,12 +86,8 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
           ],
         },
       },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
     });
-    console.log('preRes_editeurs.politiques:', preRes);
+    console.log('preRes_editeurs.politiques:', preRes); // eslint-disable-line no-console
 
     // 成形処理
     const res = [{
@@ -126,7 +118,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         },
       },
     }];
-    console.log('res_editeurs.politiques:', res);
+    console.log('res_editeurs.politiques:', res); // eslint-disable-line no-console
 
     // 1er graphe (bar)
     const data = res[0].data.aggregations.by_publisher.buckets;

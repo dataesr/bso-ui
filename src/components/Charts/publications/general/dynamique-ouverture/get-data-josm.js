@@ -28,7 +28,6 @@ function useGetData(
 
   const getDataByObservationSnaps = useCallback(
     async (observationYears) => {
-      console.log('observationYears:', observationYears);
       const queries = [];
       const allOaHostType = '*';
       const allPublishers = '*';
@@ -43,7 +42,6 @@ function useGetData(
           });
           queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
-      console.log('queries:', queries); // デバッグ用ログ
       if (domain !== '') {
         observationYears
           ?.sort((a, b) => b.substring(0, 4) - a.substring(0, 4))
@@ -69,22 +67,22 @@ function useGetData(
       const latestDateRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
         size: 0,
         aggs: {
-              unique_calc_dates: {
-                      terms: {
-                            field: 'calc_date',
-                            size: 10000,
-                      },
-              },
+          unique_calc_dates: {
+            terms: {
+              field: 'calc_date',
+              size: 10000,
+            },
+          },
         },
         query: {
-              bool: {
-                      filter: [
-                            { term: { data_type: 'general.dynamique-ouverture.get-data' } },
-                      ],
-              },
+          bool: {
+            filter: [
+              { term: { data_type: 'general.dynamique-ouverture.get-data' } },
+            ],
+          },
         },
       });
-      console.log('latestDateRes:', latestDateRes);
+      console.log('latestDateRes:', latestDateRes); // eslint-disable-line no-console
 
       // ユニークな `calc_date` のリストを取得
       const yearMonthDayList = latestDateRes.data.aggregations.unique_calc_dates.buckets.map(
@@ -103,7 +101,7 @@ function useGetData(
       Object.keys(yearGroups).forEach((year) => {
         /* eslint-enable arrow-parens, no-confusing-arrow */
         const yearDates = yearGroups[year];
-        console.log(yearDates);
+        console.log(yearDates); // eslint-disable-line no-console
         const lastDate = yearDates.reduce((latest, current) => (current > latest ? current : latest));
         lastDateOfYear.push(lastDate);
       });
@@ -111,21 +109,21 @@ function useGetData(
       const preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
         {
-              size: 10000,
-              query: {
-                      bool: {
-                            filter: [
-                                    { terms: { calc_date: lastDateOfYear } },
-                                    { term: { data_type: 'general.dynamique-ouverture.get-data' } },
-                            ],
-                      },
-              },
+          size: 10000,
+          query: {
+            bool: {
+              filter: [
+                { terms: { calc_date: lastDateOfYear } },
+                { term: { data_type: 'general.dynamique-ouverture.get-data' } },
+              ],
+            },
+          },
         },
       );
 
       preRes.data.hits.hits.sort((a, b) => b._source.calc_date.localeCompare(a._source.calc_date));
 
-      console.log('prot_dynamique-ouverture_res:', preRes);
+      console.log('prot_dynamique-ouverture_res:', preRes); // eslint-disable-line no-console
 
       // データ成形処理
       const res = preRes.data.hits.hits.map((hit) => {
@@ -155,7 +153,7 @@ function useGetData(
         };
       });
 
-      console.log('res:', res);
+      console.log('res:', res); // eslint-disable-line no-console
 
       // const allData = res.map((d, i) => ({
       //   observationSnap: observationYears[i % observationYears.length],
@@ -165,8 +163,6 @@ function useGetData(
         observationSnap: observationYears.length > 0 ? observationYears[i % observationYears.length] : 'defaultSnap',
         data: d.data.aggregations.by_publication_year.buckets,
       }));
-
-      console.log('allData:', allData);
 
       /* eslint-enable no-underscore-dangle */
 
@@ -259,7 +255,6 @@ function useGetData(
           dataGraphGlobal.push(serie);
         }
       });
-      console.log('dataGraph2:', dataGraph2);
 
       const dataGraph1 = { series: [] };
       const serie1 = [];
@@ -335,8 +330,6 @@ function useGetData(
         .find((item) => item.name === healthPublicationsLabel)
         ?.data?.find((item) => item.name === year3)
         ?.y.toFixed(0) || 0;
-
-      console.log('dataGraph1:', dataGraph1);
 
       const comments = {
         fistObservationYear: getObservationLabel(

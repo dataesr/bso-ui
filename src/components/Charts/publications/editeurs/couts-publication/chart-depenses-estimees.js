@@ -1,6 +1,6 @@
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable simple-import-sort/imports */
-import Axios from 'axios';
+// import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 import { PUBLISHER_LIST } from '../../../../../config/publicationDataLists';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
+// import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import { capitalize, withDomain } from '../../../../../utils/helpers';
@@ -63,38 +63,38 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
     setOptions(opts);
   }, [domain, intl]);
 
-useEffect(() => {
-  setChartComments(customComments(data, idWithDomain, intl));
-}, [data, idWithDomain, intl]);
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
-return (
-  <ChartWrapper
-    chartRef={chartRef}
-    dataTitle={dataTitle}
-    domain={domain}
-    hasComments={false}
-    hasFooter={hasFooter}
-    id={id}
-    isError={isError}
-    isLoading={isLoading || !dataGraphTotal || !categoriesYear}
-  >
-    <SearchableSelect
-      label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
-      onChange={(e) => (e.length > 0 ? setPublisher(e) : null)}
-      options={options || []}
-      selected={publisher}
-    />
-    <HighchartsReact
-      highcharts={Highcharts}
-      id={idWithDomain}
-      options={optionsGraph}
-      ref={chartRef}
-    />
-    {hasComments && chartComments && (
-      <GraphComments comments={chartComments} hasFooter={hasFooter} />
-    )}
-  </ChartWrapper>
-);
+  return (
+    <ChartWrapper
+      chartRef={chartRef}
+      dataTitle={dataTitle}
+      domain={domain}
+      hasComments={false}
+      hasFooter={hasFooter}
+      id={id}
+      isError={isError}
+      isLoading={isLoading || !dataGraphTotal || !categoriesYear}
+    >
+      <SearchableSelect
+        label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
+        onChange={(e) => (e.length > 0 ? setPublisher(e) : null)}
+        options={options || []}
+        selected={publisher}
+      />
+      <HighchartsReact
+        highcharts={Highcharts}
+        id={idWithDomain}
+        options={optionsGraph}
+        ref={chartRef}
+      />
+      {hasComments && chartComments && (
+        <GraphComments comments={chartComments} hasFooter={hasFooter} />
+      )}
+    </ChartWrapper>
+  );
 };
 
 Chart.defaultProps = {

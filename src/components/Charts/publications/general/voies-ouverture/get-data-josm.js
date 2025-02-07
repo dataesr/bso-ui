@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
+// import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
   getCSSValue,
@@ -18,16 +18,16 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
   const getDataForLastObservationSnap = useCallback(
     async (lastObservationSnap) => {
-      const query = getFetchOptions({
-        key: 'oaHostType',
-        domain,
-        parameters: [
-          lastObservationSnap,
-          `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
-          'year',
-        ],
-        objectType: ['publications'],
-      });
+      // const query = getFetchOptions({
+      //   key: 'oaHostType',
+      //   domain,
+      //   parameters: [
+      //     lastObservationSnap,
+      //     `oa_details.${lastObservationSnap}.oa_host_type.keyword`,
+      //     'year',
+      //   ],
+      //   objectType: ['publications'],
+      // });
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
       // console.log('voies-ouverture:', res);
       // const data = res.data.aggregations.by_publication_year.buckets.sort(
@@ -65,8 +65,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       /* eslint-disable no-underscore-dangle */
       const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
 
-      console.log('latestCalcDate:', latestCalcDate);
-
       // 2回目のクエリ 最新のcalc_dateのデータを取得
       const preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
@@ -81,7 +79,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           },
         },
       );
-      console.log('prot_voies-ouverture:', preRes);
+      console.log('prot_voies-ouverture:', preRes); // eslint-disable-line no-console
 
       // ここに変更を記述
       const res = { data: { aggregations: { by_publication_year: { buckets: [] } } } };
@@ -122,7 +120,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_publication_year.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
 
-      console.log('transformed_voies-ouverture_res:', res);
+      console.log('transformed_voies-ouverture_res:', res); // eslint-disable-line no-console
 
       const data = res.data.aggregations.by_publication_year.buckets.sort(
         (a, b) => a.key - b.key,
