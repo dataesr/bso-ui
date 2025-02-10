@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../../utils/helpers';
 
@@ -28,7 +28,6 @@ function useGetData(observationSnap, domain) {
         parameters: [lastObservationSnap],
       });
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
-      // console.log('genres-ouverture(proportion)_res:', res);
 
       // 1回目のクエリ 最新のcalc_dateを取得
       const latestDateRes = await Axios.post(
@@ -67,7 +66,6 @@ function useGetData(observationSnap, domain) {
           },
         },
       );
-      console.log('prot_genres-prop-ouverture_res:', preRes); // eslint-disable-line no-console
 
       // ここに変更を記述
       const res = { data: { aggregations: { by_year: { buckets: [] } } } };
@@ -117,7 +115,10 @@ function useGetData(observationSnap, domain) {
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_year.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
 
-      console.log('transformed_genres-prop-ouverture_res:', res); // eslint-disable-line no-console
+      if (IS_TEST) {
+        console.log('genres-prop-ouverture_preRes:', preRes); // eslint-disable-line no-console
+        console.log('genres-prop-ouverture_res:', res); // eslint-disable-line no-console
+      }
 
       const data = res.data.aggregations.by_year.buckets
         // Sort data by publication year ascending
@@ -130,7 +131,6 @@ function useGetData(observationSnap, domain) {
         );
 
       // const res = graphData;
-      // console.log('genres-ouverture(proportion)_res:', res);
       // const data = (res?.data?.aggregations?.by_year?.buckets && Array.isArray(res.data.aggregations.by_year.buckets))
       // ? res.data.aggregations.by_year.buckets
       //     // Sort data by publication year ascending

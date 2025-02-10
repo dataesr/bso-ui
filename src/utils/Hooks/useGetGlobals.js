@@ -66,7 +66,6 @@ export const GlobalsContextProvider = ({ children }) => {
     const observationBuckets = res?.data?.aggregations?.unique_calc_dates?.buckets;
     const newObservationSnaps = [...new Set(observationBuckets.map((item) => item.key_as_string.slice(0, 4)))]
       .sort((a, b) => b - a);
-    console.log(newObservationSnaps); // eslint-disable-line no-console
     return newObservationSnaps;
   }
 

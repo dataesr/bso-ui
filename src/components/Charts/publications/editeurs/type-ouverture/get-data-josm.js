@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
@@ -59,7 +59,6 @@ function useGetData(observationSnap, domain) {
         },
       },
     });
-    // console.log('editeurs.type-ouverture:', preRes); // eslint-disable-line no-console
 
     // 成形処理
     const res = {
@@ -86,7 +85,10 @@ function useGetData(observationSnap, domain) {
         },
       },
     };
-    // console.log('editeurs.type-ouverture_res:', res); // eslint-disable-line no-console
+    if (IS_TEST) {
+      console.log('type-ouverture_preRes:', preRes); // eslint-disable-line no-console
+      console.log('type-ouverture_res:', res); // eslint-disable-line no-console
+    }
 
     const data = res.data.aggregations.by_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -95,7 +97,6 @@ function useGetData(observationSnap, domain) {
           && parseInt(el.key, 10)
             < parseInt(String(observationSnap).substring(0, 4), 10),
       );
-    // console.log('observationSnap:', observationSnap); // eslint-disable-line no-console
 
     const categories = data.map((dataYear) => dataYear.key);
     const goldData = [];

@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -56,7 +56,6 @@ function useGetData(observationSnap, domain) {
       // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
       /* eslint-disable no-underscore-dangle */
       const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
-      console.log('latestCalcDate:', latestCalcDate); // eslint-disable-line no-console
 
       // calc_dateの1年前の年数をgraphYearDataに代入
       const graphYearData = (parseInt(latestCalcDate.substring(0, 4), 10) - 1);
@@ -83,7 +82,6 @@ function useGetData(observationSnap, domain) {
           },
         },
       );
-      console.log('prot_genres-ouverture:', preRes); // eslint-disable-line no-console
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
 
       // ここに変更を記述
@@ -127,7 +125,10 @@ function useGetData(observationSnap, domain) {
 
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_publication_year.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
-      console.log('transformed_genres-ouverture_res:', res); // eslint-disable-line no-console
+      if (IS_TEST) {
+        console.log('genres-ouverture_preRes:', preRes); // eslint-disable-line no-console
+        console.log('genres-ouverture_res:', res); // eslint-disable-line no-console
+      }
 
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });

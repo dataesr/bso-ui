@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -59,7 +59,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
       /* eslint-disable no-underscore-dangle */
       const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
-      console.log('latestCalcDate:', latestCalcDate); // eslint-disable-line no-console
 
       // calc_dateの1年前の年数をgraphYearDataに代入
       const graphYearData = (parseInt(latestCalcDate.substring(0, 4), 10) - 1);
@@ -86,7 +85,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           },
         },
       );
-      console.log('preRes_voies-ouverture_res:', preRes); // eslint-disable-line no-console
 
       // データ成形処理
       const res = { data: { aggregations: { by_discipline: { buckets: [] } } } };
@@ -129,7 +127,11 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_discipline.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
-      console.log('transformed_voies-ouverture_res:', res); // eslint-disable-line no-console
+
+      if (IS_TEST) {
+        console.log('voies-ouverture_preRes:', preRes); // eslint-disable-line no-console
+        console.log('voies-ouverture_res:', res); // eslint-disable-line no-console
+      }
 
       let data = res.data.aggregations.by_discipline.buckets;
 

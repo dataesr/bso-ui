@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
@@ -163,7 +163,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
           },
         },
       };
-      console.log('editeurs.dynamique_preRes1', preRes); // eslint-disable-line no-console
+      if (IS_TEST) {
+      console.log('dynamique-ouverture_preRes', preRes); // eslint-disable-line no-console
+      }
     } else {
       preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
@@ -179,10 +181,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
           },
         },
       );
-      console.log('preRes2', preRes); // eslint-disable-line no-console
+      if (IS_TEST) {
+        console.log('dynamique-ouverture_preRes', preRes); // eslint-disable-line no-console
+      }
 
       const preList = preRes.data.hits.hits;
-      console.log('preList', preList); // eslint-disable-line no-console
 
       const preSource = preList.map((hit) => ({
         _source: {
@@ -258,7 +261,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
       },
     ]);
     /* eslint-enable no-underscore-dangle */
-    console.log('editeurs.dynamique_res', res); // eslint-disable-line no-console
+    if (IS_TEST) {
+      console.log('dynamique-ouverture_res:', res); // eslint-disable-line no-console
+    }
 
     const allData = [];
     for (let i = 0; i < res.length; i += 1) {

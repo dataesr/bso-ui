@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -162,7 +162,10 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         buckets: byLicenceBuckets,
       },
     });
-    // console.log('editeurs.repartition-licences.get-data_res:', res); // eslint-disable-line no-console
+    if (IS_TEST) {
+      console.log('repartition-licences_preRes:', preRes); // eslint-disable-line no-console
+      console.log('repartition-licences_res:', res); // eslint-disable-line no-console
+    }
 
     const results = res[0].data.aggregations.by_is_oa.buckets?.[0]?.by_licence?.buckets ?? [];
     const nbTotal = res[0].data.aggregations.by_is_oa.buckets?.[0]?.doc_count ?? 0;

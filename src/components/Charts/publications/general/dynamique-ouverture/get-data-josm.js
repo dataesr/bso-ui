@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -82,7 +82,6 @@ function useGetData(
           },
         },
       });
-      console.log('latestDateRes:', latestDateRes); // eslint-disable-line no-console
 
       // ユニークな `calc_date` のリストを取得
       const yearMonthDayList = latestDateRes.data.aggregations.unique_calc_dates.buckets.map(
@@ -101,7 +100,6 @@ function useGetData(
       Object.keys(yearGroups).forEach((year) => {
         /* eslint-enable arrow-parens, no-confusing-arrow */
         const yearDates = yearGroups[year];
-        console.log(yearDates); // eslint-disable-line no-console
         const lastDate = yearDates.reduce((latest, current) => (current > latest ? current : latest));
         lastDateOfYear.push(lastDate);
       });
@@ -122,8 +120,6 @@ function useGetData(
       );
 
       preRes.data.hits.hits.sort((a, b) => b._source.calc_date.localeCompare(a._source.calc_date));
-
-      console.log('prot_dynamique-ouverture_res:', preRes); // eslint-disable-line no-console
 
       // データ成形処理
       const res = preRes.data.hits.hits.map((hit) => {
@@ -153,7 +149,10 @@ function useGetData(
         };
       });
 
-      console.log('res:', res); // eslint-disable-line no-console
+      if (IS_TEST) {
+        console.log('dynamique-ouverture_preRes:', preRes); // eslint-disable-line no-console
+        console.log('dynamique-ouverture_res:', res); // eslint-disable-line no-console
+      }
 
       // const allData = res.map((d, i) => ({
       //   observationSnap: observationYears[i % observationYears.length],

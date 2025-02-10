@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -29,14 +29,12 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       //   objectType: ['publications'],
       // });
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
-      // console.log('voies-ouverture:', res);
       // const data = res.data.aggregations.by_publication_year.buckets.sort(
       //   (a, b) => a.key - b.key,
       // );
       // const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
       // const res = graphData;
-      // console.log('voies-ouverture:', res);
       // const data = (res?.data?.aggregations?.by_publication_year?.buckets && Array.isArray(res.data.aggregations.by_publication_year.buckets))
       // ? res.data.aggregations.by_publication_year.buckets.sort((a, b) => a.key - b.key)
       // : [];
@@ -79,7 +77,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
           },
         },
       );
-      console.log('prot_voies-ouverture:', preRes); // eslint-disable-line no-console
 
       // ここに変更を記述
       const res = { data: { aggregations: { by_publication_year: { buckets: [] } } } };
@@ -120,7 +117,10 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_publication_year.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
 
-      console.log('transformed_voies-ouverture_res:', res); // eslint-disable-line no-console
+      if (IS_TEST) {
+        console.log('voies-ouverture_preRes:', preRes); // eslint-disable-line no-console
+        console.log('voies-ouverture_res:', res); // eslint-disable-line no-console
+      }
 
       const data = res.data.aggregations.by_publication_year.buckets.sort(
         (a, b) => a.key - b.key,

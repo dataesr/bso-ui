@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
 function useGetData(observationSnaps, needle = '*', domain) {
@@ -131,6 +131,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
           },
         },
       };
+      if (IS_TEST) {
+        console.log('dynamique-ouverture_preRes:', preRes); // eslint-disable-line no-console
+      }
     } else {
       preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
@@ -146,7 +149,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
           },
         },
       );
-
+      if (IS_TEST) {
+        console.log('dynamique-ouverture_preRes:', preRes); // eslint-disable-line no-console
+      }
       const preList = preRes.data.hits.hits;
       const preSource = preList.map((hit) => ({
         _source: {
@@ -223,6 +228,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
         },
       },
     ]);
+
+    if (IS_TEST) {
+      console.log('dynamique-ouverture_res:', responses); // eslint-disable-line no-console
+    }
+
     const allData = [];
     for (let i = 0; i < responses.length; i += 1) {
       const newData = {};

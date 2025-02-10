@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -87,7 +87,6 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         },
       },
     });
-    console.log('preRes_editeurs.politiques:', preRes); // eslint-disable-line no-console
 
     // 成形処理
     const res = [{
@@ -118,7 +117,10 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         },
       },
     }];
-    console.log('res_editeurs.politiques:', res); // eslint-disable-line no-console
+    if (IS_TEST) {
+      console.log('politiques-ouverture_preRes:', preRes); // eslint-disable-line no-console
+      console.log('politiques-ouverture_res:', res); // eslint-disable-line no-console
+    }
 
     // 1er graphe (bar)
     const data = res[0].data.aggregations.by_publisher.buckets;

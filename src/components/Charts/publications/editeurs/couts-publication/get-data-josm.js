@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import {
   capitalize,
   getCSSValue,
@@ -16,7 +16,6 @@ function useGetData(
   needle = 'all-publishers',
   domain,
 ) {
-  console.log('domain', domain); // eslint-disable-line no-console
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
@@ -46,7 +45,6 @@ function useGetData(
     // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
     /* eslint-disable no-underscore-dangle */
     const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
-    console.log('needle', needle); // eslint-disable-line no-console
     // 2回目のクエリ 最新のcalc_dateのデータを取得
     const preRes = await Axios.post(
       'http://localhost:3000/elasticsearch/oa_index/_search',
@@ -63,6 +61,9 @@ function useGetData(
         },
       },
     );
+    if (IS_TEST) {
+      console.log('couts-publication_preRes', preRes); // eslint-disable-line no-console
+    }
 
     /* eslint-disable no-underscore-dangle */
     let predata = preRes?.data?.hits?.hits[0]?._source.data;
@@ -82,6 +83,9 @@ function useGetData(
           },
         },
       );
+      if (IS_TEST) {
+        console.log('couts-publication_allPubRes', allPubRes); // eslint-disable-line no-console
+      }
       predata = allPubRes?.data?.hits?.hits[0]?._source.data;
       for (let i = 0; i < predata.length; i += 1) {
         predata[i].total = 0;
@@ -220,7 +224,9 @@ function useGetData(
       });
     }
 
-    console.log('res', res); // eslint-disable-line no-console
+    if (IS_TEST) {
+      console.log('couts-publication_res', res); // eslint-disable-line no-console
+    }
 
     // 1er graphe : histogram total
     let dataTotal = res[0].data.aggregations.by_year.buckets;

@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getObservationLabel } from '../../../../../utils/helpers';
 
@@ -71,7 +71,6 @@ function useGetData(observationSnaps, domain = '') {
       Object.keys(yearGroups).forEach((year) => {
         /* eslint-enable arrow-parens, no-confusing-arrow */
         const yearDates = yearGroups[year];
-        console.log(yearDates); // eslint-disable-line no-console
         const lastDate = yearDates.reduce((latest, current) => (current > latest ? current : latest));
         lastDateOfYear.push(lastDate);
       });
@@ -92,8 +91,6 @@ function useGetData(observationSnaps, domain = '') {
       );
 
       preRes.data.hits.hits.sort((a, b) => b._source.calc_date.localeCompare(a._source.calc_date));
-
-      console.log('prot_dynamique-ouverture_res:', preRes); // eslint-disable-line no-console
 
       // データ成形処理
       const res = [];
@@ -145,7 +142,10 @@ function useGetData(observationSnaps, domain = '') {
         });
       });
 
-      console.log('dynamique-ouverture_res:', res); // eslint-disable-line no-console
+      if (IS_TEST) {
+        console.log('dynamique-ouverture_preRes:', preRes); // eslint-disable-line no-console
+        console.log('dynamique-ouverture_res:', res); // eslint-disable-line no-console
+      }
 
       const dataGraph = {};
       const disciplines = [];
@@ -170,7 +170,6 @@ function useGetData(observationSnaps, domain = '') {
           });
       });
       let dataHist = [];
-      console.log('disciplines', disciplines); // eslint-disable-line no-console
       disciplines.forEach((discipline) => {
         const dataByDiscipline = dataGraph[discipline];
         dataHist.push({

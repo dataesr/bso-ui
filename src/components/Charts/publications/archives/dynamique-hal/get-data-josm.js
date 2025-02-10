@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -77,6 +77,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         },
       },
     });
+
     // 成形処理
     /* eslint-disable no-underscore-dangle */
     const res = [
@@ -110,6 +111,10 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       },
     ];
     /* eslint-enable no-underscore-dangle */
+    if (IS_TEST) {
+      console.log('dynamique-hal_preRes:', preRes); // eslint-disable-line no-console
+      console.log('dynamique-hal_res:', res); // eslint-disable-line no-console
+    }
 
     let dataHAL = res[0].data.aggregations.by_publication_year.buckets;
     dataHAL = dataHAL

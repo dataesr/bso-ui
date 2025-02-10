@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -85,7 +85,6 @@ function useGetData(observationSnap, domain) {
           },
         },
       );
-      console.log('prot_langues-ouverture:', preRes); // eslint-disable-line no-console
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
 
       // ここに変更を記述
@@ -129,15 +128,16 @@ function useGetData(observationSnap, domain) {
 
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_publication_year.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
-      console.log('transformed_langues-ouverture_res:', res); // eslint-disable-line no-console
+      if (IS_TEST) {
+        console.log('langues-ouverture_preRes:', preRes); // eslint-disable-line no-console
+        console.log('langues-ouverture_res:', res); // eslint-disable-line no-console
+      }
 
       // const res = await Axios.post(ES_API_URL, query, HEADERS);
-      // console.log('langues-ouverture_res:', res);
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
       // const res = graphData;
-      // console.log('langues-ouverture_res:', res);
       // const data = (res?.data?.aggregations?.by_publication_year?.buckets && Array.isArray(res.data.aggregations.by_publication_year.buckets))
       // ? res.data.aggregations.by_publication_year.buckets
       // : [];
