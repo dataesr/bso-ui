@@ -65,8 +65,11 @@ const Studio = () => {
       label: `${item + Number(startYear)}`,
       value: `${item + Number(startYear)}`,
     }));
-
-    setEndYear(publicationYearsTmp[publicationYearsTmp.length - 1].value);
+    publicationYearsTmp.push({
+      label: 'Date de publication utilisée dans le baromètre national',
+      value: 'latest',
+    });
+    setEndYear(publicationYearsTmp[publicationYearsTmp.length - 2].value);
     setPublicationYears(publicationYearsTmp);
   }, [observationYearFirst, lastObservationSnap, startYear]);
 

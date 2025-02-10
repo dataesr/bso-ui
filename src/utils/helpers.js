@@ -412,11 +412,18 @@ export function getURLSearchParams(intl = undefined, id = '') {
         || localAffiliationSettings?.displayTitle
       )?.toLowerCase() === 'false'
     );
-    endYear = parseInt(
-      urlSearchParams.get('endYear')?.toLowerCase()
-        || localAffiliationSettings?.endYear,
-      10,
-    );
+    if (
+      urlSearchParams.get('lastObservationYear')?.toLowerCase() === 'latest'
+      || urlSearchParams.get('endYear')?.toLowerCase() === 'latest'
+    ) {
+      endYear = parseInt(process.env.REACT_APP_LAST_OBSERVATION, 10) - 1;
+    } else {
+      endYear = parseInt(
+        urlSearchParams.get('endYear')?.toLowerCase()
+          || localAffiliationSettings?.endYear,
+        10,
+      );
+    }
     name = urlSearchParams.get('name')?.toLowerCase()
       || localAffiliationSettings?.name
       || 'Périmètre '.concat(bsoLocalAffiliation);
