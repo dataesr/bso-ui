@@ -17,21 +17,13 @@ Application web du Baromètre de la Science Ouverte accessible ici :
 
 ## Boilerplate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 The version number follows [semver](https://semver.org/).
 
-To create a new release, use `npm version patch|minor|major`.
+To push in prod, run `npm run deploy --level=[patch|minor|major]`
 
-## Scripts disponibles
+## Workflow
 
-* `npm build`
-* `npm eject`
-* `npm prepare`
-* `npm run deploy --level=[patch|minor|major]`
-* `npm start`
-* `npm test`
-* `npm version [patch|minor|major]`
+The workflow to submit a new FOSM local variation is described in workflow.md.
 
 ## Ajouter une nouvelle icône BSSO
 
@@ -105,13 +97,3 @@ import GlossaryEntries from 'glossary.json';
   glossaryKeys={['entry1', 'entry2']}
 />
 ```
-
-## Deployment
-
-To deploy in production, simply run this command from your staging branch :
-
-```sh
-npm run deploy --level=[patch|minor|major]
-```
-
-:warning: Obviously, only members of the [dataesr organization](https://github.com/dataesr/) have rights to push on the repo.
