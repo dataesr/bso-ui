@@ -14,4 +14,5 @@ Merci. Nous vous tiendrons au courant dès que les données seront ingérées, p
 Bonne journée,
 ```
 7. The next Friday, we run the FOSM "Nouvel ET" like explained here https://github.com/dataesr/disd-pipelines/blob/main/bso2/bso-publications.ipynb. Follow the progress through the dedicated dashboard.
-8. The next Monday, if all the jobs are finished and succed, use the node script here https://github.com/dataesr/bso-ui/blob/staging/bso-local-variation-validation.mjs to warn users that there FOSM local variation is ready. You can filter on trigger on your mail box. Do not forget to remove the trigger on dedicated emails.
+8. The next Monday, if all the jobs are finished and succeeded, move the 'bso-publications-staging' ES alias on the newly created ES index. Check on bso.staging.dataesr.ovh that everything is ok. If so, move the 'bso-publications' ES alias on the newly created ES index
+9. Then use the node script here https://github.com/dataesr/bso-ui/blob/staging/bso-local-variation-validation.mjs to warn users that there FOSM local variation is ready. You can filter on trigger on your mail box. Do not forget to remove the trigger on dedicated emails.
