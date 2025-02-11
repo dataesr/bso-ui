@@ -58,6 +58,14 @@
   font-weight: 100;
 }
 
+.notosans {
+  font-family: 'NotoSansJP-N', sans-serif;
+}
+
+.notosans-bold {
+  font-family: 'NotoSansJP-B', sans-serif;
+}
+
 .fs-12-12 {
   @include font-size(12, 12);
 }
