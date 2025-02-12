@@ -103,7 +103,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
               sum_other_doc_count: 0,
               buckets: preRes.data.hits.hits[0]._source.data.map((item) => ({
                 key: item.publication_year,
-                doc_count: item.other_repo,
+                doc_count: item.other_repo + item.jp_repo,
               })),
             },
           },
