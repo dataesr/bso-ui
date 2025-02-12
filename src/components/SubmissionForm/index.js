@@ -76,6 +76,39 @@ const SubmissionForm = () => {
     setNntIdCount(undefined);
   };
 
+  const sendTicketOffice = (content) => {
+    const data = {
+      contact: {
+        email,
+      },
+      structure: {
+        name,
+        ...(acronym && { acronym }),
+        ...(id && { siren: id }),
+        ...(ror && { ror }),
+      },
+      csv: content,
+    };
+
+    const options = {
+      method: 'POST',
+      url: `${window.location.origin}/ticket/variations`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data,
+    };
+
+    Axios.request(options)
+      .then(() => {
+        console.log('success');
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      });
+  };
+
   const sendEmail = (event) => {
     event.preventDefault();
     const txt = Papa.unparse(dataFile, {
@@ -153,6 +186,8 @@ const SubmissionForm = () => {
           "Erreur lors de l'envoi de votre fichier, merci de contacter bso@recherche.gouv.fr.",
         );
       });
+
+    sendTicketOffice(content);
   };
 
   const readCSV = (input) => {
