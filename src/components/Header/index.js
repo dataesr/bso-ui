@@ -1,4 +1,5 @@
 import {
+  Container,
   Header as DSHeader,
   HeaderBody,
   HeaderNav,
@@ -99,6 +100,19 @@ function Header() {
           })}
         </SkiplinkItem>
       </Skiplinks>
+      <div className='brands'>
+        <Container className='brands-container'>
+          <a href='https://nii.ac.jp' target='_blank' rel='noreferrer'>
+            <img src='/logos/nii.png' alt='National Institute of Informatics' />
+          </a>
+          <a href='https://rcos.nii.ac.jp' target='_blank' rel='noreferrer'>
+            <img
+              src='/logos/rcos.png'
+              alt='Research Center for Open Science and Data Platform'
+            />
+          </a>
+        </Container>
+      </div>
       <DSHeader
         closeButtonLabel={intl.formatMessage({
           id: 'app.commons.close',
@@ -107,9 +121,9 @@ function Header() {
         className='bso-header'
       >
         <HeaderBody>
-          <Logo splitCharacter={9}>
+          {/* <Logo splitCharacter={9}>
             {intl.formatMessage({ id: 'app.ministry' })}
-          </Logo>
+          </Logo> */}
           <Service
             description=''
             className='main-title'
@@ -195,6 +209,7 @@ function Header() {
               asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
             />
           </NavItem>
+          {/*
           <NavItem
             current={
               path === urls.nationalDataCode[lang]
@@ -344,6 +359,7 @@ function Header() {
               asLink={<RouterLink to={urls.howto[lang] + search} />}
             />
           </NavItem>
+          */}
           <NavItem
             current={path.startsWith(
               `/${urls.methodologie[lang].split('/')[1]}`,
