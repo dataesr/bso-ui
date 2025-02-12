@@ -31,6 +31,24 @@
     }
   }
 
+  .fr-link--close {
+    align-items: center;
+    color: var(--g-800);
+    display: flex;
+    font-size: 1rem;
+  }
+
+  .fr-link--close::after {
+    background-color: inherit;
+    content: '\eb99';
+    font-family: remixicon, sans-serif;
+    font-size: 2rem;
+    height: 2rem;
+    line-height: 1;
+    mask-image: inherit;
+    width: 2rem;
+  }
+
   @media (max-width: 991px) {
     .fr-header__brand {
       filter: none;
@@ -52,10 +70,27 @@
       line-height: 1.4;
     }
 
+    .fr-header__menu > .fr-container {
+      padding-top: 8px;
+    }
+
     .fr-header__navbar .fr-btn--menu::before {
       align-items: center;
       display: flex;
       justify-content: center;
+    }
+
+    .fr-nav__item::before {
+      display: none;
+    }
+
+    .fr-translate {
+      padding-inline: 64px 24px;
+    }
+
+    .fr-links-group .fr-translate__btn {
+      box-shadow: inset 0 0 0 1px var(--border-default-grey);
+      width: auto;
     }
   }
 

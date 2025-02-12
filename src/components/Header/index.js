@@ -3,7 +3,6 @@ import {
   Header as DSHeader,
   HeaderBody,
   HeaderNav,
-  Logo,
   NavItem,
   NavSubItem,
   Service,
@@ -19,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
-import { isInProduction, stringIsIntTheKitchen } from '../../utils/helpers';
+import { stringIsIntTheKitchen } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import WrapperDisplay from '../WrapperDisplay';
 
@@ -121,9 +120,6 @@ function Header() {
         className='bso-header'
       >
         <HeaderBody>
-          {/* <Logo splitCharacter={9}>
-            {intl.formatMessage({ id: 'app.ministry' })}
-          </Logo> */}
           <Service
             description=''
             className='main-title'
@@ -209,157 +205,6 @@ function Header() {
               asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
             />
           </NavItem>
-          {/*
-          <NavItem
-            current={
-              path === urls.nationalDataCode[lang]
-              || stringIsIntTheKitchen(path, lang, urls.nationalResearchData.tabs)
-                .length > 0
-              || stringIsIntTheKitchen(path, lang, urls.nationalSoftwareCode.tabs)
-                .length > 0
-            }
-            title={intl.formatMessage({
-              id: 'app.header.nav.data-code',
-              defaultMessage: 'Les données et code',
-            })}
-          >
-            <NavSubItem
-              current={path === urls.nationalDataCode[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.data-code-welcome',
-                defaultMessage: 'Accueil données et code',
-              })}
-              asLink={<RouterLink to={urls.nationalDataCode[lang] + search} />}
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(
-                  path,
-                  lang,
-                  urls.nationalResearchData.tabs,
-                ).length > 0
-              }
-              title={intl.formatMessage({
-                id: 'app.baro-national.data.title.beta',
-                defaultMessage: 'Les données de la recherche',
-              })}
-              asLink={
-                <RouterLink to={urls.nationalResearchData[lang] + search} />
-              }
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(
-                  path,
-                  lang,
-                  urls.nationalSoftwareCode.tabs,
-                ).length > 0
-              }
-              title={intl.formatMessage({
-                id: 'app.baro-national.software.title.beta',
-                defaultMessage: 'Les codes et logiciels',
-              })}
-              asLink={
-                <RouterLink to={urls.nationalSoftwareCode[lang] + search} />
-              }
-            />
-          </NavItem>
-          <NavItem
-            current={path.startsWith(urls.sante[lang])}
-            title={intl.formatMessage({
-              id: 'app.header.nav.health',
-              defaultMessage: 'La santé',
-            })}
-          >
-            <NavSubItem
-              current={path === urls.sante[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.health-home',
-                defaultMessage: 'Accueil santé',
-              })}
-              asLink={<RouterLink to={urls.sante[lang] + search} />}
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(path, lang, urls.santeEssais.tabs)
-                  .length > 0
-              }
-              title={intl.formatMessage({
-                id: 'app.header.nav.baro-sante-essais',
-                defaultMessage: 'Les essais cliniques',
-              })}
-              asLink={
-                <RouterLink to={urls.santeEssais.tabs[0][lang] + search} />
-              }
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(path, lang, urls.santeEtudes.tabs)
-                  .length > 0
-              }
-              title={intl.formatMessage({
-                id: 'app.header.nav.baro-sante-etudes',
-                defaultMessage: 'Les études observationnelles',
-              })}
-              asLink={<RouterLink to={urls.santeEtudes[lang] + search} />}
-            />
-          </NavItem>
-          {!isInProduction() && (
-            <NavItem
-              current={path === urls.nationalOrcid[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.orcid',
-                defaultMessage: 'ORCID',
-              })}
-            >
-              <NavSubItem
-                current={path === urls.nationalOrcid[lang]}
-                title={intl.formatMessage({
-                  id: 'app.baro-national.orcid.title',
-                  defaultMessage: 'Suivi ORCID',
-                })}
-                asLink={<RouterLink to={urls.nationalOrcid[lang] + search} />}
-              />
-            </NavItem>
-          )}
-
-          <NavItem
-            current={path.startsWith(`/${urls.variations[lang].split('/')[1]}`)}
-            title={intl.formatMessage({
-              id: 'app.header.nav.institutions',
-              defaultMessage: 'Les établissements',
-            })}
-          >
-            {!isInProduction() && (
-              <NavSubItem
-                current={path === urls.policy[lang]}
-                title={intl.formatMessage({
-                  id: 'app.header.nav.declinaisons.policy',
-                  defaultMessage:
-                    'Politique de science ouverte des établissements',
-                })}
-                asLink={<RouterLink to={urls.policy[lang] + search} />}
-                display={!isInProduction()}
-              />
-            )}
-            <NavSubItem
-              current={path === urls.variations[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.declinaisons.existing',
-                defaultMessage: 'Les baromètres des établissements',
-              })}
-              asLink={<RouterLink to={urls.variations[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.howto[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.declinaisons.howto',
-                defaultMessage: 'Tutoriel pour réaliser son BSO local',
-              })}
-              asLink={<RouterLink to={urls.howto[lang] + search} />}
-            />
-          </NavItem>
-          */}
           <NavItem
             current={path.startsWith(
               `/${urls.methodologie[lang].split('/')[1]}`,
