@@ -47,11 +47,6 @@ function useGetData(observationSnaps, domain = '') {
             },
           },
         },
-        query: {
-          term: {
-            data_type: 'disciplines.dynamique-ouverture.get-data',
-          },
-        },
       });
 
       // ユニークな `calc_date` のリストを取得
@@ -74,7 +69,6 @@ function useGetData(observationSnaps, domain = '') {
         const lastDate = yearDates.reduce((latest, current) => (current > latest ? current : latest));
         lastDateOfYear.push(lastDate);
       });
-
       const preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
         {
@@ -90,27 +84,30 @@ function useGetData(observationSnaps, domain = '') {
         },
       );
 
-      preRes.data.hits.hits.sort((a, b) => b._source.calc_date.localeCompare(a._source.calc_date));
-
       // データ成形処理
       const res = [];
 
       // データをpublication_yearごとにグループ化
       const groupedByYear = {};
-      preRes.data.hits.hits.forEach((hit) => {
-        hit._source.data.forEach((item) => {
-          const year = item.publication_year;
-          if (!groupedByYear[year]) {
-            groupedByYear[year] = [];
+      for (let i = 0; i < lastDateOfYear.length; i += 1) {
+        const year = parseInt(lastDateOfYear[i].slice(0, 4), 10);
+        preRes.data.hits.hits.forEach((hit) => {
+          if (lastDateOfYear[i] === hit._source.calc_date) {
+            hit._source.data.forEach((item) => {
+              if (item.publication_year === year - 1) {
+                if (!groupedByYear[year]) {
+                  groupedByYear[year] = [];
+                }
+                groupedByYear[year].push({
+                  field: hit._source.field,
+                  total: item.total,
+                  oa: item.oa,
+                });
+              }
+            });
           }
-          groupedByYear[year].push({
-            field: hit._source.field,
-            total: item.total,
-            oa: item.oa,
-          });
         });
-      });
-
+      }
       // publication_yearの降順でソート
       const sortedYears = Object.keys(groupedByYear).sort((a, b) => b - a);
 

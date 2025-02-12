@@ -67,6 +67,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       const preRes = await Axios.post(
         'http://localhost:3000/elasticsearch/oa_index/_search',
         {
+          size: 10000,
           query: {
             bool: {
               must: [
