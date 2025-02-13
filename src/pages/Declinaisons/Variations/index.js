@@ -88,7 +88,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local CEA'
-                href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte-2021.aspx'
+                href='https://www.cea.fr/chercheurs/Pages/information-scientifique/barometre-science-ouverte.aspx'
                 img='/declinaisons/cea.png'
               />
             </Col>
