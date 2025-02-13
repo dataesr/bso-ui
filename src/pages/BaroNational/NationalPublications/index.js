@@ -21,7 +21,8 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue, isInProduction } from '../../../utils/helpers';
+// import { getCSSValue, isInProduction } from '../../../utils/helpers';
+import { getCSSValue } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 export default function NationalPublications() {
@@ -128,26 +129,26 @@ export default function NationalPublications() {
                     fr: '/publications/general?id=general.langues-ouverture',
                   },
                 },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.hal',
-                  }),
-                  href: {
-                    en: '/publications/general?id=general.hal',
-                    ja: '/publications/general?id=general.hal',
-                    fr: '/publications/general?id=general.hal',
-                  },
-                },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.lpr',
-                  }),
-                  href: {
-                    en: '/publications/general?id=general.lpr',
-                    ja: '/publications/general?id=general.lpr',
-                    fr: '/publications/general?id=general.lpr',
-                  },
-                },
+                // {
+                //   label: intl.formatMessage({
+                //     id: 'app.publi.navigation.hal',
+                //   }),
+                //   href: {
+                //     en: '/publications/general?id=general.hal',
+                //     ja: '/publications/general?id=general.hal',
+                //     fr: '/publications/general?id=general.hal',
+                //   },
+                // },
+                // {
+                //   label: intl.formatMessage({
+                //     id: 'app.publi.navigation.lpr',
+                //   }),
+                //   href: {
+                //     en: '/publications/general?id=general.lpr',
+                //     ja: '/publications/general?id=general.lpr',
+                //     fr: '/publications/general?id=general.lpr',
+                //   },
+                // },
               ]}
             >
               <GraphContent>
@@ -184,12 +185,12 @@ export default function NationalPublications() {
                   anchorId='general.langues-ouverture'
                 >
                   <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.general.langues.chart-publications-by-year'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                 </QuestionSection>
-                <QuestionSection
+                {/* <QuestionSection
                   anchorId='general.hal'
                   backgroundColor={blueSoft25}
                   intlKey='app.national-publi.general.hal'
@@ -208,7 +209,7 @@ export default function NationalPublications() {
                   anchorId='general.lpr'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture-article' />
-                </QuestionSection>
+                </QuestionSection> */}
               </GraphContent>
             </GraphItem>
 
@@ -258,7 +259,7 @@ export default function NationalPublications() {
                   anchorId='disciplines.dynamique-ouverture'
                 >
                   <BSOChart id='publi.disciplines.dynamique-ouverture.chart-taux-ouverture' />
-                  <BSOChart id='publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' />
+                  {/* <BSOChart id='publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' /> */}
                 </QuestionSection>
 
                 <QuestionSection
@@ -268,7 +269,7 @@ export default function NationalPublications() {
                   anchorId='disciplines.voies-ouverture'
                 >
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-repartition-publications' />
-                  <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
+                  {/* <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' /> */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -318,16 +319,16 @@ export default function NationalPublications() {
                     fr: '/publications/editeurs?id=publishers.politiques-ouverture',
                   },
                 },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.editeurs.revues',
-                  }),
-                  href: {
-                    en: '/publications/publishers?id=publishers.poids-revues',
-                    ja: '/publications/publishers?id=publishers.poids-revues',
-                    fr: '/publications/editeurs?id=publishers.poids-revues',
-                  },
-                },
+                // {
+                //   label: intl.formatMessage({
+                //     id: 'app.publi.navigation.editeurs.revues',
+                //   }),
+                //   href: {
+                //     en: '/publications/publishers?id=publishers.poids-revues',
+                //     ja: '/publications/publishers?id=publishers.poids-revues',
+                //     fr: '/publications/editeurs?id=publishers.poids-revues',
+                //   },
+                // },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.licences',
@@ -388,10 +389,10 @@ export default function NationalPublications() {
                   anchorId='publishers.politiques-ouverture'
                 >
                   <BSOChart id='publi.publishers.politiques-ouverture.chart-classement' />
-                  <BSOChart id='publi.publishers.politiques-ouverture.chart-comparaison' />
+                  {/* <BSOChart id='publi.publishers.politiques-ouverture.chart-comparaison' /> */}
                 </QuestionSection>
 
-                <QuestionSection
+                {/* <QuestionSection
                   intlKey='app.national-publi.publishers.poids-revues'
                   glossaryKeys={['predatory', 'list-beall']}
                   backgroundColor={blueSoft25}
@@ -401,7 +402,7 @@ export default function NationalPublications() {
                     id='publi.publishers.poids-revues.chart-repartition'
                     isDisplayed={!isInProduction()}
                   />
-                </QuestionSection>
+                </QuestionSection> */}
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.repartition-licences'
@@ -419,15 +420,15 @@ export default function NationalPublications() {
                   glossaryKeys={['apc', 'diamond', 'debusqapc']}
                   anchorId='publishers.couts-publication'
                 >
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.publishers.couts-publication.chart-depenses-estimees'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.publishers.couts-publication.chart-distribution-par-annee'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -467,17 +468,17 @@ export default function NationalPublications() {
                     fr: '/publications/archives?id=repositories.plus-utilisees',
                   },
                 },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.archives.depot',
-                  }),
-                  href: {
-                    en: '/publications/repositories?id=repositories.dynamique-depot',
-                    ja: '/publications/repositories?id=repositories.dynamique-depot',
-                    fr: '/publications/archives?id=repositories.dynamique-depot',
-                  },
-                  isDisplayed: !isInProduction(),
-                },
+                // {
+                //   label: intl.formatMessage({
+                //     id: 'app.publi.navigation.archives.depot',
+                //   }),
+                //   href: {
+                //     en: '/publications/repositories?id=repositories.dynamique-depot',
+                //     ja: '/publications/repositories?id=repositories.dynamique-depot',
+                //     fr: '/publications/archives?id=repositories.dynamique-depot',
+                //   },
+                //   isDisplayed: !isInProduction(),
+                // },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.archives.hal',
@@ -510,14 +511,14 @@ export default function NationalPublications() {
                   <BSOChart id='publi.repositories.plus-utilisees.chart-nombre-documents' />
                 </QuestionSection>
 
-                <QuestionSection
+                {/* <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-depot'
                   backgroundColor={blueSoft50}
                   anchorId='repositories.dynamique-depot'
                   isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='publi.repositories.dynamique-depot.chart-nombre-documents-depots' />
-                </QuestionSection>
+                </QuestionSection> */}
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-hal'
@@ -531,7 +532,8 @@ export default function NationalPublications() {
             </GraphItem>
 
             {/* Financements */}
-            <GraphItem
+            {/* Fundingsタブの非表示 */}
+            {/* <GraphItem
               paths={['/publications/financements', '/publications/fundings']}
               mainLabel={intl.formatMessage({
                 id: 'app.publi.fundings',
@@ -624,10 +626,11 @@ export default function NationalPublications() {
                   />
                 </QuestionSection>
               </GraphContent>
-            </GraphItem>
+            </GraphItem> */}
 
             {/* A valider */}
-            <GraphItem
+            {/* To be decidedタブの非表示 */}
+            {/* <GraphItem
               paths={['/publications/a-decider', '/publications/to-be-decided']}
               mainLabel={intl.formatMessage({
                 id: 'app.publi.to-be-decided',
@@ -664,7 +667,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.hal-no-doi.hal-no-doi-by-field-by-year' />
                 </QuestionSection>
               </GraphContent>
-            </GraphItem>
+            </GraphItem> */}
           </GraphNavigation>
         </Row>
       </section>

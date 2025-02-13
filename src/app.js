@@ -8,29 +8,29 @@ import Header from './components/Header';
 import WebTracking from './components/WebTracking';
 import PageTracker from './components/WebTracking/PageTracker';
 import HomePage from './pages';
-import Citation from './pages/About/Citation';
-import Communication from './pages/About/Communication';
-import FAQ from './pages/About/FAQ';
-import Glossary from './pages/About/Glossary';
-import Methodology from './pages/About/Methodology';
-import OpenData from './pages/About/OpenData';
+// import Citation from './pages/About/Citation';
+// import Communication from './pages/About/Communication';
+// import FAQ from './pages/About/FAQ';
+// import Glossary from './pages/About/Glossary';
+// import Methodology from './pages/About/Methodology';
+// import OpenData from './pages/About/OpenData';
 import Project from './pages/About/Project';
-import WorksMagnet from './pages/About/WorksMagnet';
+// import WorksMagnet from './pages/About/WorksMagnet';
 import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
-import NationalResearchData from './pages/BaroNational/NationalResearchData';
-import NationalSoftwareCode from './pages/BaroNational/NationalSoftwareCode';
-import NationalThesis from './pages/BaroNational/NationalThesis';
-import BaroSante from './pages/BaroSante';
-import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
-import Etudes from './pages/BaroSante/Etudes';
-import DataCode from './pages/DataCode';
-import HowTo from './pages/Declinaisons/HowTo';
-import Policy from './pages/Declinaisons/Policy';
-import Variations from './pages/Declinaisons/Variations';
+// import NationalResearchData from './pages/BaroNational/NationalResearchData';
+// import NationalSoftwareCode from './pages/BaroNational/NationalSoftwareCode';
+// import NationalThesis from './pages/BaroNational/NationalThesis';
+// import BaroSante from './pages/BaroSante';
+// import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
+// import Etudes from './pages/BaroSante/Etudes';
+// import DataCode from './pages/DataCode';
+// import HowTo from './pages/Declinaisons/HowTo';
+// import Policy from './pages/Declinaisons/Policy';
+// import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
-import Integration from './pages/Integration';
-import NationalOrcid from './pages/NationalOrcid';
+// import Integration from './pages/Integration';
+// import NationalOrcid from './pages/NationalOrcid';
 import messagesEN from './translations/en.json';
 import messagesJA from './translations/ja.json';
 import TranslationPage from './translations/translations-page';
@@ -115,7 +115,8 @@ function App() {
               path={tab[key]}
             />
           )))}
-          {urls.nationalThesis.tabs.map((tab) => Object.keys(tab).map((key) => (
+          {/* 日本版OSモニターで表示しないページのコメントアウト */}
+          {/* {urls.nationalThesis.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(
                 <PageTracker>
@@ -345,7 +346,7 @@ function App() {
               key={url}
               path={url}
             />
-          ))}
+          ))} */}
           {Object.keys(urls.project).map((key) => (
             <Route
               element={(

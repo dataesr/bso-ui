@@ -195,7 +195,8 @@ function Header() {
               asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
             />
           </NavItem>
-          <NavItem
+          {/* メニューの非表示 */}
+          {/* <NavItem
             current={
               path === urls.nationalDataCode[lang]
               || stringIsIntTheKitchen(path, lang, urls.nationalResearchData.tabs)
@@ -343,7 +344,7 @@ function Header() {
               })}
               asLink={<RouterLink to={urls.howto[lang] + search} />}
             />
-          </NavItem>
+          </NavItem> */}
           <NavItem
             current={path.startsWith(
               `/${urls.methodologie[lang].split('/')[1]}`,
