@@ -79,10 +79,13 @@ const HomePage = () => {
   return (
     <div className='baro-national page home'>
       <Banner
+        isHome
         backgroundColor='blue-soft-150'
         supTitle={<FormattedMessage id='app.header.welcome-on' />}
         title={<FormattedMessage id='app.header.title-bis' />}
-        subTitle={<FormattedMessage id='app.header.subtitle' />}
+        subTitle={
+          <FormattedMessage id='app.header.subtitle' values={{ br: <br /> }} />
+        }
         link={{
           label: <FormattedMessage id='app.communication.see' />,
           url: intl.formatMessage({ id: 'url.about.communication' }) + search,
