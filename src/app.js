@@ -29,7 +29,7 @@ import NationalPublications from './pages/BaroNational/NationalPublications';
 // import Policy from './pages/Declinaisons/Policy';
 // import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
-// import Integration from './pages/Integration';
+import Integration from './pages/Integration';
 // import NationalOrcid from './pages/NationalOrcid';
 import messagesEN from './translations/en.json';
 import messagesJA from './translations/ja.json';
@@ -334,7 +334,7 @@ function App() {
               key={key}
               path={urls.worksmagnet[key]}
             />
-          ))}
+          ))} */}
           {[...new Set(Object.values(urls.integration))].flat().map((url) => (
             <Route
               element={(
@@ -346,7 +346,7 @@ function App() {
               key={url}
               path={url}
             />
-          ))} */}
+          ))}
           {Object.keys(urls.project).map((key) => (
             <Route
               element={(
