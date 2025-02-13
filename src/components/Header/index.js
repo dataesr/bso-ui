@@ -117,7 +117,7 @@ function Header() {
           id: 'app.commons.close',
           defaultMessage: 'Fermer',
         })}
-        className='bso-header'
+        className='josm-header'
       >
         <HeaderBody>
           <Service

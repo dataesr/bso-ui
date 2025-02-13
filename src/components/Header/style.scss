@@ -1,4 +1,4 @@
-.bso-header.fr-header {
+.josm-header.fr-header {
   .main-title {
     color: var(--g-800);
     font-family: 'NotoSansJP-B', sans-serif;
@@ -6,6 +6,11 @@
 
   .fr-header__service {
     box-shadow: none;
+  }
+
+  .fr-header__service .fr-header__service-title {
+    color: var(--g-800);
+    text-decoration: none;
   }
 
   .fr-header__menu {
