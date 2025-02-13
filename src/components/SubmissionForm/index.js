@@ -63,7 +63,6 @@ const SubmissionForm = () => {
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
   const [previousDoiCount, setPreviousDoiCount] = useState('');
-  const [ror, setRor] = useState();
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -85,7 +84,6 @@ const SubmissionForm = () => {
         name,
         ...(acronym && { acronym }),
         ...(id && { siren: id }),
-        ...(ror && { ror }),
       },
       csv: content,
     };
@@ -164,8 +162,7 @@ const SubmissionForm = () => {
           <p>Email de contact: ${email}</p>
           <p>Nom de la structure: ${name}</p>
           <p>Acronyme de la structure: ${acronym}</p>
-          <p>Siren ou RNSR de la structure: ${id}</p>
-          <p>RoR de la structure: ${ror}</p>
+          <p>Identifiant de l'établissement: ${id}</p>
           </body></html>`,
         attachment: [{ content, name: `${id.length > 0 ? id : 'bso'}.csv` }],
       },
@@ -450,8 +447,8 @@ const SubmissionForm = () => {
                 value={acronym}
               />
               <TextInput
-                hint='Utiliser https://scanr.enseignementsup-recherche.gouv.fr/search/organizations pour trouver le Siren de la structure'
-                label='Siren ou RNSR de la structure'
+                hint='En cas de précédente demande'
+                label="Identifiant de l'établissement"
                 onChange={(e) => setInstitutionId(e)}
                 value={id}
               />
@@ -467,12 +464,6 @@ const SubmissionForm = () => {
                   .
                 </div>
               )}
-              <TextInput
-                hint='Utiliser https://ror.org/ pour trouver le RoR de la structure'
-                label='RoR de la structure'
-                onChange={(e) => setRor(e.target.value)}
-                value={ror}
-              />
               <File
                 hint="Fichier Excel, ODS ou CSV (séparateur point virgule ;). Merci d'inclure une ligne d'en-têtes avec les noms de colonnes, comme dans le fichier exemple."
                 label='Fichier de publications'
