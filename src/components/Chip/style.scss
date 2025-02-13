@@ -1,54 +1,35 @@
 .bso-chip {
-  @include font-size(12, 16);
-  position: relative;
-  display: flex;
-  z-index: 1;
-  background: var(--blue-soft-125);
-  justify-content: center;
-  align-items: center;
-  border-radius: 100%;
-  text-align: center;
-  height: 148px;
-  width: 148px;
-  padding: 20px;
-  margin: 0 auto;
+  border: solid 3px var(--green-800);
+  border-radius: 8px;
+  color: var(--green-800);
+  display: inline-flex;
+  padding: 16px 24px;
+  text-align: initial;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 136px;
-    height: 136px;
-    -moz-border-radius: 100px;
-    -webkit-border-radius: 100px;
-    border-radius: 100%;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(255, 113, 12, 0) 64%,
-      var(--blue-dark-125) 51.5%
-    );
-    z-index: -1;
+  @media (min-width: 992px) {
+    padding-block: 16px;
   }
 
-  .icon {
-    color: var(--yellow-medium-100);
+  .josm-update-date {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 
-    &.icon-left {
-      margin-right: 0;
+    p {
+      margin: 0;
     }
   }
-}
 
-@media screen and(min-width: 576px) {
-  .bso-chip {
-    @include font-size(12, 14);
-    width: 180px;
-    height: 180px;
+  .josm-update-date__update-date {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'NotoSansJP-B', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
 
-    &::after {
-      width: 168px;
-      height: 168px;
-    }
+  .josm-update-date__range {
+    font-size: 0.875rem;
+    line-height: 1.3;
   }
 }

@@ -193,6 +193,12 @@
       border-color: var(--blue-dark-125);
     }
   }
+
+  @media (max-width: 991px) {
+    .bso-chip-wrapper {
+      padding-top: 16px;
+    }
+  }
 }
 
 .bso-link {

@@ -98,7 +98,7 @@ function Banner({
           <Col
             n={classNames('12', {
               'md-6': chip && sticked,
-              'md-9': chip && !sticked,
+              'md-7': chip && !sticked,
             })}
             className={sticked && 'josm-banner__title-container'}
           >
@@ -163,10 +163,11 @@ function Banner({
           )} */}
           {children && <Col n='12'>{children}</Col>}
           {!sticked && chip && (
-            <Col n='12 md-3'>
+            <Col n='12 md-5'>
               <div
                 className={classNames({
                   'mb-60 mb-l-0': selectNavigation,
+                  'bso-chip-wrapper': true,
                 })}
               >
                 {chip}

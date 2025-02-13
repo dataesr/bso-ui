@@ -1160,7 +1160,7 @@
   "app.sante.essais.document.title": "French Open Science Monitorにおける健康に関する臨床試験",
   "app.sante.publications.document.title": "French Open Science Monitorの健康出版物",
   "app.sante.studies.document.title": "French Open Science Monitorの観察健康研究",
-  "app.sante.update.date": "{date}に更新されたデータで、{startDate}から{endDate}の間に発表された出版物です。",
+  "app.sante.update.date": "{startDate}から{endDate}の間に発表された出版物を含む",
   "app.scroll-to-top": "スクロールしてトップへ戻る",
   "app.see-details": "詳細を見る",
   "app.sponsor-filter-label": "リードスポンサーを選択してください（上位50）",
