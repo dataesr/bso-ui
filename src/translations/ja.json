@@ -40,7 +40,7 @@
   "app.baro-national.intro": "オープンアクセスの出版物は、技術的または財政的な障壁なしに、誰もがオンラインで利用できる科学研究からの出版物を指します。French Open cience Monitorは、フランスに所属する著者が少なくとも1人いる出版物、すなわちフランスの研究活動を考慮に入れた出版物に焦点を当てています。したがって、フランスの科学出版社の活動は対象外となります。オープンアクセス率は、オープンアクセス出版物の数を同じ範囲内の出版物の総数で割った比率を示します（例：年、分野、出版社による）。\n\n科学出版物に対するオープンアクセスの一般化は、フランスの国家オープンサイエンス戦略の一つの軸であり、2030年までに100%のオープンアクセス率を目指しています。これは、研究結果の科学共同体や一般社会（教師、学生、企業、団体、公共政策の関係者など）への普及を促進し、拡大し、加速させます。",
   "app.baro-national.main-title": "出版物",
   "app.baro-national.publications.title": "出版物",
-  "app.baro-national.today-title": "French Open cience Monitorは本日、...",
+  "app.baro-national.today-title": "本日の集計",
   "app.baro-sante.detail-publi": "出版物に関する詳細情報",
   "app.baro-sante.detail-studies": "観察研究に関する詳細情報",
   "app.baro-sante.detail-trials": "臨床試験に関する詳細情報",
