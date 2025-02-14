@@ -68,6 +68,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
               terms: {
                 field: 'calc_date',
                 size: 1000,
+                order: { _key: 'desc' },
               },
               aggs: {
                 nested_data: {
@@ -172,11 +173,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
       };
     }
 
-    // 観測年の降順にソート
-    const sortedHits = preRes.data.hits.hits.reverse();
-
     // 成形処理
-    const responses = sortedHits.flatMap((hit) => [
+    const responses = preRes.data.hits.hits.flatMap((hit) => [
       {
         data: {
           aggregations: {
