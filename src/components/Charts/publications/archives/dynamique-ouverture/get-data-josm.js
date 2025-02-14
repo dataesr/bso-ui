@@ -24,6 +24,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
           },
         },
       },
+      query: {
+        term: {
+          data_type: 'archives.dynamique-ouverture.get-data',
+        },
+      },
     });
 
     // ユニークな `calc_date` のリストを取得
