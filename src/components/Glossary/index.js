@@ -130,12 +130,8 @@ function Glossary({ entries }) {
   return (
     <section className={classNames('bso-glossary z-4000', { openPanel })}>
       <Container>
-        <DSIcon name='ri-information-fill' size='1x' iconPosition='right'>
-          <Button
-            size='sm'
-            onClick={() => glossaryPanel('', !openPanel)}
-            className='btn-blue color-white'
-          >
+        <DSIcon name='ri-information-fill' size='1x' iconPosition='left'>
+          <Button onClick={() => glossaryPanel('', !openPanel)}>
             <FormattedMessage
               id='app.header.nav.a-propos-glossaire'
               defaultMessage='Glossaire'

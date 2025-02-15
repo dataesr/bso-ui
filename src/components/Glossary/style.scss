@@ -56,15 +56,28 @@
   }
 
   .fr-btn {
+    --active-tint: var(--green-600);
+    --hover-tint: var(--green-600);
+    background-color: var(--green-800);
     position: relative;
-    width: 120px;
-    left: -136px;
-    top: 55px;
+    left: 0;
+    top: 80px;
+    transform: translateX(calc(-100% - 1rem));
     transition: top 0.4s ease-in-out;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    padding: 6px 8px;
+
+    @media (min-width: 992px) {
+      font-size: 1rem;
+      line-height: 1.7;
+      padding: 8px 16px;
+    }
 
     .banner-sticked & {
       transition: top 0.4s ease-in-out;
-      top: 10px;
+      top: 8px;
     }
   }
 
@@ -114,8 +127,8 @@
     right: -40vw;
 
     .fr-btn {
-      left: -144px;
       top: 52vh;
+      transform: translateX(calc(-100% - 1.5rem));
     }
   }
 }
