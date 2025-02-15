@@ -28,7 +28,6 @@ import {
 
 import { studiesTypes } from '../../utils/constants';
 import { getCSSValue } from '../../utils/helpers';
-import Button from '../Button';
 import FullScreen from '../FullScreen';
 
 const GraphFooter = ({
@@ -92,7 +91,9 @@ const GraphFooter = ({
                     </span>
                     <span className='graph-footer__field-value graph-footer__dl-btn'>
                       {onCsvButtonClick && (
-                        <Button
+                        <button
+                          className='josm-btn'
+                          type='button'
                           onClick={() => onCsvButtonClick()}
                           onKeyPress={() => onCsvButtonClick()}
                         >
@@ -100,10 +101,12 @@ const GraphFooter = ({
                             id='app.graph.download.csv'
                             defaultMessage='CSV'
                           />
-                        </Button>
+                        </button>
                       )}
                       {onPngButtonClick && (
-                        <Button
+                        <button
+                          className='josm-btn'
+                          type='button'
                           onClick={() => onPngButtonClick()}
                           onKeyPress={() => onPngButtonClick()}
                         >
@@ -111,7 +114,7 @@ const GraphFooter = ({
                             id='app.graph.download.png'
                             defaultMessage='PNG'
                           />
-                        </Button>
+                        </button>
                       )}
                     </span>
                   </div>
@@ -121,7 +124,9 @@ const GraphFooter = ({
                 )}
                 {srcPath && (
                   <div className='graph-footer__field-value'>
-                    <Button
+                    <button
+                      className='josm-btn'
+                      type='button'
                       onClick={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
                       onKeyPress={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
                     >
@@ -129,8 +134,10 @@ const GraphFooter = ({
                         id='app.graph.integration'
                         defaultMessage='Integration'
                       />
-                    </Button>
-                    <Button
+                    </button>
+                    <button
+                      className='josm-btn'
+                      type='button'
                       onClick={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
                       onKeyPress={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
                     >
@@ -138,7 +145,7 @@ const GraphFooter = ({
                         id='app.graph.fullscreen'
                         defaultMessage='Plein écran'
                       />
-                    </Button>
+                    </button>
                   </div>
                 )}
               </div>

@@ -131,7 +131,10 @@ function Glossary({ entries }) {
     <section className={classNames('bso-glossary z-4000', { openPanel })}>
       <Container fluid className='josm-glossary-container'>
         <DSIcon name='ri-information-fill' size='1x' iconPosition='left'>
-          <Button onClick={() => glossaryPanel('', !openPanel)}>
+          <Button
+            className='josm-btn'
+            onClick={() => glossaryPanel('', !openPanel)}
+          >
             <FormattedMessage
               id='app.header.nav.a-propos-glossaire'
               defaultMessage='Glossaire'

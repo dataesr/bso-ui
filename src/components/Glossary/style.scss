@@ -78,24 +78,12 @@
   }
 
   .fr-btn {
-    --active-tint: var(--green-600);
-    --hover-tint: var(--green-600);
-    background-color: var(--green-800);
     position: absolute;
     left: 0;
     top: 80px;
     transform: translateX(-100%);
     transition: top 0.4s ease-in-out;
     border-radius: 4px 0 0 4px;
-    font-size: 0.875rem;
-    line-height: 1.2;
-    padding: 6px 8px;
-
-    @media (min-width: 992px) {
-      font-size: 1rem;
-      line-height: 1.7;
-      padding: 8px 16px;
-    }
 
     .banner-sticked & {
       transition: top 0.4s ease-in-out;
@@ -165,7 +153,7 @@
   .banner-sticked {
     .bso-glossary {
       .fr-btn {
-        top: 10px;
+        top: 13px;
       }
     }
   }

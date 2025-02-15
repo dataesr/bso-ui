@@ -3,19 +3,7 @@
   position: fixed;
   right: 0;
 
-  .fr-btn {
-    --active-tint: var(--green-600);
-    --hover-tint: var(--green-600);
-    background-color: var(--green-800);
+  .josm-btn {
     border-radius: 4px 0 0 4px;
-    font-size: 0.875rem;
-    line-height: 1.2;
-    padding: 6px 8px;
-
-    @media (min-width: 992px) {
-      font-size: 1rem;
-      line-height: 1.7;
-      padding: 8px 16px;
-    }
   }
 }

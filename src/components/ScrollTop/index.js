@@ -11,7 +11,7 @@ export default function ScrollTop() {
       {scrollTop > 1500 && (
         <div className='scroll-top-btn z-4000'>
           <DSIcon name='ri-arrow-up-line' size='lg' iconPosition='left'>
-            <Button onClick={() => window.scrollTo(0, 0)}>
+            <Button className='josm-btn' onClick={() => window.scrollTo(0, 0)}>
               <FormattedMessage
                 id='app.scroll-to-top'
                 defaultMessage='scroll to top'
