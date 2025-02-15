@@ -290,7 +290,7 @@
   "app.glossary.resultat-essai-clinique": "臨床試験の結果",
   "app.glossary.resultat-essai-clinique.definition": "臨床試験から生じた構造化データ。このデータは、<cta>ClinicalTrials.org</cta>のような登録に提出され、公表されることができます。",
   "app.glossary.select-letter": "文字を選択してください。",
-  "app.glossary.title": "ページの用語集",
+  "app.glossary.title": "用語集",
   "app.glossary.type-hebergement-oa": "OAホスティングタイプ",
   "app.glossary.type-hebergement-oa.definition": "出版物に対するオープンアクセスにはいくつかのバリアントがあります。出版物は、これらのバリアントの一つまたは複数に従ってオープンアクセスである可能性があります。一部のバリエーションは、オープンアクセス出版物を提供する出版社や出版プラットフォームの経済モデルに基づいています：これは出版社のプラットフォームにホストされています。別のバリアントは、一つまたは複数のオープンアーカイブへのデポジットに基づいています：これはオープンリポジトリでホスティングされています。",
   "app.glossary.unpaywall": "アンペイウォール",

@@ -129,7 +129,7 @@ function Glossary({ entries }) {
 
   return (
     <section className={classNames('bso-glossary z-4000', { openPanel })}>
-      <Container>
+      <Container fluid className='josm-glossary-container'>
         <DSIcon name='ri-information-fill' size='1x' iconPosition='left'>
           <Button onClick={() => glossaryPanel('', !openPanel)}>
             <FormattedMessage
@@ -138,18 +138,18 @@ function Glossary({ entries }) {
             />
           </Button>
         </DSIcon>
-        <Row>
+        <Row className='josm-glossary-rows'>
           <Col n='12' className='wrapper-title'>
             <Row>
-              <Col n='9'>
-                <div className='fs-20-20 marianne-extra-bold'>
+              <Col n='6'>
+                <div className='fs-24-36 notosans-bold'>
                   <FormattedMessage
                     id='app.glossary.title'
                     defaultMessage='Glossaire de la page'
                   />
                 </div>
               </Col>
-              <Col n='3' className='text-right'>
+              <Col n='6' className='text-right'>
                 <button
                   className='close'
                   type='button'
@@ -157,7 +157,7 @@ function Glossary({ entries }) {
                 >
                   <DSIcon
                     className='ds-fr--v-middle'
-                    name='ri-close-circle-line'
+                    name='ri-close-large-fill'
                     size='lg'
                     iconPosition='right'
                   >
@@ -172,9 +172,7 @@ function Glossary({ entries }) {
               </Col>
             </Row>
           </Col>
-        </Row>
-        <Row>
-          <Col n='12'>
+          <Col n='12' className='content-wrapper'>
             <div ref={contentRef} className='content relative'>
               {glossaryEntries
                 && glossaryEntries.map((entry, i) => {
@@ -195,7 +193,7 @@ function Glossary({ entries }) {
             </div>
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col n='12'>
             <DSLink
               className='to-glossary-page'
@@ -212,7 +210,7 @@ function Glossary({ entries }) {
               })}
             </DSLink>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </section>
   );
