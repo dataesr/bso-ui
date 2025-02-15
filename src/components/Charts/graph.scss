@@ -3,32 +3,93 @@
   background-color: var(--white);
 }
 
-.graph-comments {
-  padding: 0 28px 16px 28px;
-  color: var(--blue-dark-125);
-}
-
 .graph-footer {
-  background-color: var(--blue-dark-25);
-  color: var(--blue-dark-125);
+  background-color: #fff;
+  color: var(--g-800);
   padding-top: 8px;
+  padding-inline: 8px;
 
-  .source {
-    font-style: italic;
+  @media (min-width: 992px) {
+    padding-inline: 24px;
+  }
+
+  .graph-footer__content {
+    border-top: solid 1px var(--g-200);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 24px;
+  }
+
+  .graph-footer__separator {
+    width: 1px;
+    height: 24px;
+    background-color: var(--g-200);
+
+    @media (max-width: 991px) {
+      display: none;
+    }
+  }
+
+  .graph-footer__field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @media (min-width: 992px) {
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+
+  .graph-footer__field {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 992px) {
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+
+  .graph-footer__field-label {
+    @media (min-width: 992px) {
+      width: 10em;
+    }
+  }
+
+  .graph-footer__field-value {
+    display: flex;
+    gap: 16px;
+  }
+
+  @media (max-width: 991px) {
+    .graph-footer__dl-btn {
+      margin-top: 0.5em;
+    }
   }
 
   .share-btn {
     display: inherit;
   }
 
-  .share {
-    background-color: var(--blue-soft-100);
-    color: white;
-    font-weight: bold;
+  .share-container {
+    align-items: center;
+    justify-self: flex-end;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 24px;
+    padding-right: 16px;
 
-    .text {
-      padding-right: 8px;
+    @media (min-width: 992px) {
+      padding-right: 24px;
+      padding-bottom: 32px;
     }
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 8px;
   }
 
   hr {
@@ -44,6 +105,19 @@
 
   .icon-click {
     cursor: pointer;
+  }
+}
+
+.graph-comments {
+  color: var(--g-800);
+  padding: 32px 0;
+
+  @media (min-width: 992px) {
+    padding: 0 24px 16px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 }
 

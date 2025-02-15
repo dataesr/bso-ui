@@ -295,7 +295,7 @@
   "app.glossary.type-hebergement-oa.definition": "出版物に対するオープンアクセスにはいくつかのバリアントがあります。出版物は、これらのバリアントの一つまたは複数に従ってオープンアクセスである可能性があります。一部のバリエーションは、オープンアクセス出版物を提供する出版社や出版プラットフォームの経済モデルに基づいています：これは出版社のプラットフォームにホストされています。別のバリアントは、一つまたは複数のオープンアーカイブへのデポジットに基づいています：これはオープンリポジトリでホスティングされています。",
   "app.glossary.unpaywall": "アンペイウォール",
   "app.glossary.unpaywall.definition": "<cta>グローバルなオープンデータベース</cta>で、1億以上の文献が利用可能なメタデータ（タイトル、著者、出版社...）とそのアクセス形式を持っています。",
-  "app.graph.data-updated": "データが更新されました",
+  "app.graph.data-updated": "データ更新日",
   "app.graph.download": "ダウンロード",
   "app.graph.download.csv": "CSV",
   "app.graph.download.png": "PNG",
