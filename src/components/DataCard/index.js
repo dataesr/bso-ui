@@ -19,7 +19,7 @@ function DataCard({
 
   return (
     <Card
-      bodyClassName={background}
+      // bodyClassName={background}
       className='bso-datacard text-center'
       hasArrow={false}
       hasBorder={false}
@@ -31,7 +31,7 @@ function DataCard({
             {isPercentage ? (
               <Gauge value={value} nbPosition={nbGaugePosition} />
             ) : (
-              <p className='top-data marianne-extra-bold'>{value}</p>
+              <p className='top-data notosans-bold'>{value}</p>
             )}
           </>
         ) : (
@@ -40,9 +40,9 @@ function DataCard({
         <p className='sentence'>{sentence}</p>
         {buttonLabel && (
           <Button
-            className='btn-bottom btn-blue color-white'
+            className='btn-bottom josm-btn'
             icon='ri-arrow-down-line'
-            iconPosition='right'
+            iconPosition='left'
             size='sm'
             title={buttonLabel}
             onClick={() => buttonHref && navigate(buttonHref)}

@@ -44,7 +44,7 @@ export default function NationalPublications() {
           <Container>
             <Row>
               <Col n='12'>
-                <Breadcrumb>
+                {/* <Breadcrumb>
                   <BreadcrumbItem href='/' className='underline'>
                     {intl.formatMessage({
                       id: 'app.header.nav.baro-national-accueil',
@@ -58,7 +58,7 @@ export default function NationalPublications() {
                 </Breadcrumb>
                 <h1 className='contentTitle marianne-bold mb-32'>
                   <FormattedMessage id='app.baro-national.publications.title' />
-                </h1>
+                </h1> */}
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.intro'
