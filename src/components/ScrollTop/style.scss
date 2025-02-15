@@ -1,5 +1,11 @@
 .scroll-top-btn {
   bottom: 50px;
   position: fixed;
-  right: 16px;
+  right: 0;
+
+  .fr-btn {
+    border-radius: 4px 0 0 4px;
+    line-height: 1.7;
+    padding: 8px 16px;
+  }
 }
