@@ -1,13 +1,16 @@
 .bso-banner {
   align-items: center;
   background: #fff;
-  box-shadow: var(--box-shadow);
   color: var(--bannerTextColor);
   display: flex;
   padding: 0 0 64px;
 
   @media (min-width: 992px) {
     padding: 80px 0;
+
+    &.is-home {
+      padding: 120px 0;
+    }
   }
 
   .sup-title {
@@ -83,6 +86,7 @@
   }
 
   &.sticky {
+    box-shadow: var(--box-shadow);
     height: 56px;
     padding: 0;
     position: sticky;

@@ -15,11 +15,11 @@ export default function UpdateDate() {
 
   return (
     <div className='josm-update-date'>
-      <p className='josm-update-date__update-date'>
+      <p className='josm-update-date__update-date m-0'>
         <span>{lang === 'ja' ? 'データ更新日：' : 'Data updated on: '}</span>
         <span>{getFormattedDate(updateDate, lang)}</span>
       </p>
-      <p className='josm-update-date__range'>
+      <p className='josm-update-date__range m-0'>
         <FormattedMessage
           values={{
             date: getFormattedDate(updateDate, lang),

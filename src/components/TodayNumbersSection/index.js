@@ -6,7 +6,7 @@ import React from 'react';
 
 function TodayNumbersSection({ updateDate, title, children }) {
   return (
-    <Container className='bg-white josm-today-numbers-info'>
+    <Container fluid className='bg-white josm-today-numbers-info'>
       <section>
         <h2 className='josm-today-numbers-info__title'>{title}</h2>
         {updateDate}

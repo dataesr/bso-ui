@@ -85,20 +85,20 @@ const HomePage = () => {
         chip={<Chip />}
       />
       <ScrollTop />
-      <Container fluid>
+      <Container>
         <section className='content'>
           <Row>
-            <Col n='12 md-12 xl-10' className='px-20 px-md-64' offset='xl-2'>
-              <section className='py-28'>
-                <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
+            <Col n='12'>
+              <section className='pb-48'>
+                <h2 className='notosans-bold fs-24-36 fs-45-63-xl m-0'>
                   <FormattedMessage id='app.national-home.numbers' />
                 </h2>
-                <p className='fs-14-24 blue m-0'>
+                <div className='mt-8'>
                   <UpdateDate />
-                </p>
+                </div>
               </section>
             </Col>
-            <Col n='12 xl-10' offset='xl-2'>
+            <Col n='12'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
                 link={{
@@ -135,6 +135,7 @@ const HomePage = () => {
                   </Row>
                 </Container>
               </HomeSection>
+              {/*
               <HomeSection
                 link={{
                   href: urls.nationalThesis.tabs[0][lang] + search,
@@ -158,7 +159,9 @@ const HomePage = () => {
                   </Row>
                 </Container>
               </HomeSection>
+              */}
             </Col>
+            {/*
             <Col n='12 xl-10' offset='xl-2'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
@@ -279,6 +282,7 @@ const HomePage = () => {
                 </Container>
               </HomeSection>
             </Col>
+            */}
             <Col n='12'>
               <TodayNumbersSection
                 title={<FormattedMessage id='app.baro-national.today-title' />}

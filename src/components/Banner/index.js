@@ -81,10 +81,12 @@ function Banner({
   return (
     <section
       className={classNames(
-        'josm-banner bso-banner z-200 text-left-l text-center',
+        `josm-banner bso-banner z-200 text-left-l text-center ${
+          isHome && 'is-home'
+        }`,
         {
-          'mb-60': !selectNavigation,
-          'mb-100': selectNavigation,
+          // 'mb-60': !selectNavigation,
+          // 'mb-100': selectNavigation,
           sticky: sticky && sticked,
         },
       )}
@@ -166,7 +168,7 @@ function Banner({
             <Col n='12 md-5'>
               <div
                 className={classNames({
-                  'mb-60 mb-l-0': selectNavigation,
+                  // 'mb-60 mb-l-0': selectNavigation,
                   'bso-chip-wrapper': true,
                 })}
               >
