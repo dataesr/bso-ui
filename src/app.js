@@ -8,6 +8,7 @@ import Header from './components/Header';
 import WebTracking from './components/WebTracking';
 import PageTracker from './components/WebTracking/PageTracker';
 import HomePage from './pages';
+import About from './pages/About';
 import Citation from './pages/About/Citation';
 import Communication from './pages/About/Communication';
 import FAQ from './pages/About/FAQ';
@@ -223,6 +224,9 @@ function App() {
               path={tab[key]}
             />
           )))}
+          {Object.keys(urls.about).map((key) => (
+            <Route element={<About />} exact key={key} path={urls.about[key]} />
+          ))}
           {Object.keys(urls.methodologie).map((key) => (
             <Route
               element={(
