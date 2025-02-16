@@ -1,4 +1,5 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
+import Axios from 'axios';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -93,37 +94,38 @@ export default function DataCardSection({ domain, lang }) {
             : '/sante/publications/general?id=general.genres-ouverture',
         activeDomains: [''],
       },
-      diamondPublicationRate: {
-        fetch: (buckets) => (
-          ((buckets?.find((countObj) => countObj.key === 'diamond')
-            ?.doc_count || 0)
-              / ((buckets?.find((countObj) => countObj.key === 'hybrid')
-                ?.doc_count || 0)
-                + (buckets?.find((countObj) => countObj.key === 'diamond')
-                  ?.doc_count || 0)
-                + (buckets?.find((countObj) => countObj.key === 'other')
-                  ?.doc_count || 0)
-                + (buckets?.find((countObj) => countObj.key === 'gold')
-                  ?.doc_count || 0)))
-            * 100
-        ).toFixed(0),
-        get: diamondPublicationRate,
-        set: (data) => setDiamonPublicationRate(data),
-        pathToValue:
-          'by_journal_article.by_oa_colors_with_priority_to_publisher.buckets',
-        isPercentage: true,
-        color: 'aqua',
-        intlKey:
-          domain === ''
-            ? 'app.national-publi.data.publi-diamond'
-            : 'app.health-publi.data.publi-diamond',
-        intlValues: {
-          publicationYear:
-            getPublicationYearFromObservationSnap(lastObservationSnap),
-        },
-        buttonHref: '/publications/editeurs?id=publishers.type-ouverture',
-        activeDomains: [],
-      },
+      // 日本版OSモニターで表示しないコンテンツのコメントアウト
+      // diamondPublicationRate: {
+      //   fetch: (buckets) => (
+      //     ((buckets?.find((countObj) => countObj.key === 'diamond')
+      //       ?.doc_count || 0)
+      //       / ((buckets?.find((countObj) => countObj.key === 'hybrid')
+      //         ?.doc_count || 0)
+      //         + (buckets?.find((countObj) => countObj.key === 'diamond')
+      //           ?.doc_count || 0)
+      //         + (buckets?.find((countObj) => countObj.key === 'other')
+      //           ?.doc_count || 0)
+      //         + (buckets?.find((countObj) => countObj.key === 'gold')
+      //           ?.doc_count || 0)))
+      //     * 100
+      //   ).toFixed(0),
+      //   get: diamondPublicationRate,
+      //   set: (data) => setDiamonPublicationRate(data),
+      //   pathToValue:
+      //     'by_journal_article.by_oa_colors_with_priority_to_publisher.buckets',
+      //   isPercentage: true,
+      //   color: 'aqua',
+      //   intlKey:
+      //     domain === ''
+      //       ? 'app.national-publi.data.publi-diamond'
+      //       : 'app.health-publi.data.publi-diamond',
+      //   intlValues: {
+      //     publicationYear:
+      //       getPublicationYearFromObservationSnap(lastObservationSnap),
+      //   },
+      //   buttonHref: '/publications/editeurs?id=publishers.type-ouverture',
+      //   activeDomains: [],
+      // },
       hostedDocument: {
         fetch: (buckets) => formatNumberByLang(
           buckets?.find((countObj) => countObj.key === 'HAL')?.doc_count || 0,
@@ -149,54 +151,55 @@ export default function DataCardSection({ domain, lang }) {
             : '/sante/publications/archives?id=repositories.dynamique-hal',
         activeDomains: [''],
       },
-      openHealthPublicationPublisherRepository: {
-        fetch: (buckets) => {
-          const documentsCount = buckets?.find((item) => item.key === 'publisher;repository')
-            ?.doc_count || 0;
-          return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
-            0,
-          )} %`;
-        },
-        get: openHealthPublicationPublisherRepository,
-        set: (data) => setOpenHealthPublicationPublisherRepository(data),
-        pathToValue: 'by_oa_host_type.buckets',
-        isPercentage: true,
-        color: 'aqua',
-        intlKey: 'app.health-publi.data.publisher-repository',
-        buttonHref:
-          domain === ''
-            ? '/publications/general?id=general.voies-ouverture'
-            : '/sante/publications/general?id=general.voies-ouverture',
-        activeDomains: ['health'],
-      },
-      hostedDocumentPMC: {
-        fetch: (buckets) => {
-          const documentsCount = buckets?.find((countObj) => countObj.key === 'PubMed Central')
-            ?.doc_count || 0;
-          return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
-            0,
-          )} %`;
-        },
-        get: hostedDocumentsPMC,
-        set: (data) => setHostedDocumentsPMC(data),
-        pathToValue: 'by_repositories.buckets',
-        isPercentage: true,
-        color: 'green',
-        intlKey:
-          domain === ''
-            ? 'app.national-publi.data.hosted-documents-pmc'
-            : 'app.health-publi.data.hosted-documents-pmc',
-        intlValues: {
-          total: totalHostedDocuments,
-          publicationYear:
-            getPublicationYearFromObservationSnap(lastObservationSnap),
-        },
-        buttonHref:
-          domain === ''
-            ? '/publications/archives?id=repositories.plus-utilisees'
-            : '/sante/publications/archives?id=repositories.plus-utilisees',
-        activeDomains: ['health'],
-      },
+      // 日本版OSモニターで表示しないコンテンツのコメントアウト
+      // openHealthPublicationPublisherRepository: {
+      //   fetch: (buckets) => {
+      //     const documentsCount = buckets?.find((item) => item.key === 'publisher;repository')
+      //       ?.doc_count || 0;
+      //     return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
+      //       0,
+      //     )} %`;
+      //   },
+      //   get: openHealthPublicationPublisherRepository,
+      //   set: (data) => setOpenHealthPublicationPublisherRepository(data),
+      //   pathToValue: 'by_oa_host_type.buckets',
+      //   isPercentage: true,
+      //   color: 'aqua',
+      //   intlKey: 'app.health-publi.data.publisher-repository',
+      //   buttonHref:
+      //     domain === ''
+      //       ? '/publications/general?id=general.voies-ouverture'
+      //       : '/sante/publications/general?id=general.voies-ouverture',
+      //   activeDomains: ['health'],
+      // },
+      // hostedDocumentPMC: {
+      //   fetch: (buckets) => {
+      //     const documentsCount = buckets?.find((countObj) => countObj.key === 'PubMed Central')
+      //       ?.doc_count || 0;
+      //     return `${((documentsCount / publicationsNumber) * 100)?.toFixed(
+      //       0,
+      //     )} %`;
+      //   },
+      //   get: hostedDocumentsPMC,
+      //   set: (data) => setHostedDocumentsPMC(data),
+      //   pathToValue: 'by_repositories.buckets',
+      //   isPercentage: true,
+      //   color: 'green',
+      //   intlKey:
+      //     domain === ''
+      //       ? 'app.national-publi.data.hosted-documents-pmc'
+      //       : 'app.health-publi.data.hosted-documents-pmc',
+      //   intlValues: {
+      //     total: totalHostedDocuments,
+      //     publicationYear:
+      //       getPublicationYearFromObservationSnap(lastObservationSnap),
+      //   },
+      //   buttonHref:
+      //     domain === ''
+      //       ? '/publications/archives?id=repositories.plus-utilisees'
+      //       : '/sante/publications/archives?id=repositories.plus-utilisees',
+      //   activeDomains: ['health'],
+      // },
     }),
     [
       diamondPublicationRate,
@@ -230,33 +233,33 @@ export default function DataCardSection({ domain, lang }) {
     [dataObj, publicationsNumber],
   );
 
-  // useEffect(() => {
-  //   if (response) {
-  //     const { aggregations } = response;
-  //     if (!publicationsNumber) {
-  //       const books = aggregations?.by_genre?.buckets?.find(
-  //         (item) => item.key === 'book',
-  //       ) || [];
-  //       const booksCount = books?.doc_count || 0;
-  //       const oaBooksCount = books?.by_is_oa?.buckets?.find((item) => item.key === 1)?.doc_count
-  //         || 0;
-  //       setOaBooksRate(((oaBooksCount / booksCount) * 100).toFixed(0));
-  //       setPublicationsNumber(
-  //         aggregations.by_is_oa.buckets[0].doc_count
-  //           + aggregations.by_is_oa.buckets[1].doc_count,
-  //       );
-  //       setTotalHostedDocuments(
-  //         formatNumberByLang(
-  //           aggregations.by_oa_colors.buckets?.find(
-  //             (item) => item.key === 'green',
-  //           )?.doc_count || 0,
-  //           lang,
-  //         ),
-  //       );
-  //     }
-  //     updateData(aggregations);
-  //   }
-  // }, [response, publicationsNumber, updateData, lang]);
+  useEffect(() => {
+    if (response) {
+      const { aggregations } = response;
+      if (!publicationsNumber) {
+        const books = aggregations?.by_genre?.buckets?.find(
+          (item) => item.key === 'book',
+        ) || [];
+        const booksCount = books?.doc_count || 0;
+        const oaBooksCount = books?.by_is_oa?.buckets?.find((item) => item.key === 1)?.doc_count
+          || 0;
+        setOaBooksRate(((oaBooksCount / booksCount) * 100).toFixed(0));
+        setPublicationsNumber(
+          aggregations.by_is_oa.buckets[0].doc_count
+          + aggregations.by_is_oa.buckets[1].doc_count,
+        );
+        setTotalHostedDocuments(
+          formatNumberByLang(
+            aggregations.by_oa_colors.buckets?.find(
+              (item) => item.key === 'green',
+            )?.doc_count || 0,
+            lang,
+          ),
+        );
+      }
+      updateData(aggregations);
+    }
+  }, [response, publicationsNumber, updateData, lang]);
 
   useEffect(() => {
     if (!response && isMounted.current && lastObservationSnap) {
