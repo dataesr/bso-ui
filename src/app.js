@@ -16,7 +16,7 @@ import HomePage from './pages';
 // import OpenData from './pages/About/OpenData';
 import Project from './pages/About/Project';
 // import WorksMagnet from './pages/About/WorksMagnet';
-import BaroNational from './pages/BaroNational';
+// import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
 // import NationalResearchData from './pages/BaroNational/NationalResearchData';
 // import NationalSoftwareCode from './pages/BaroNational/NationalSoftwareCode';
@@ -91,7 +91,8 @@ function App() {
               path={urls.national[key]}
             />
           ))}
-          <Route
+          {/* 日本版OSモニターで表示しないページのコメントアウト */}
+          {/* <Route
             element={(
               <PageTracker>
                 <BaroNational />
@@ -100,7 +101,7 @@ function App() {
             exact
             key={urls.nationalPublications[lang]}
             path={urls.nationalPublications[lang]}
-          />
+          /> */}
           {urls.nationalPublications.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(

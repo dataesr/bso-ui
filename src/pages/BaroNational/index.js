@@ -1,16 +1,15 @@
 import {
-  // Card,
-  // CardDescription,
+  Card,
+  CardDescription,
   Col,
   Container,
-  // Icon as DSIcon,
-  // Link as DSLink,
+  Icon as DSIcon,
+  Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-// import { Link, useLocation } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Banner from '../../components/Banner';
 import BSOChart from '../../components/Charts';
@@ -23,7 +22,7 @@ import ProgressionCard from '../../components/ProgressionCard';
 import ScrollTop from '../../components/ScrollTop';
 import TodayNumbersSection from '../../components/TodayNumbersSection';
 import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
-// import ToolCardsSection from '../../components/ToolCardsSection';
+import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
 import useLang from '../../utils/Hooks/useLang';
@@ -142,8 +141,7 @@ const BaroNational = () => {
                   </Row>
                 </Container>
               </HomeSection>
-              {/* PhDthesisの非表示 */}
-              {/* <HomeSection
+              <HomeSection
                 link={{
                   href: urls.nationalThesis.tabs[0][lang] + search,
                   label: (
@@ -165,10 +163,9 @@ const BaroNational = () => {
                     </Col>
                   </Row>
                 </Container>
-              </HomeSection> */}
+              </HomeSection>
             </Col>
-            {/* Key Figuresの非表示 */}
-            {/* <Col n='12'>
+            <Col n='12'>
               <Container fluid>
                 <section className='px-20 py-48 px-l-64 px-xl-142 bg-blue-soft-100'>
                   <Row justifyContent='center'>
@@ -249,7 +246,7 @@ const BaroNational = () => {
             </Col>
             <Col n='12'>
               <ToolCardsSection />
-            </Col> */}
+            </Col>
             <Col n='12'>
               <TodayNumbersSection
                 title={<FormattedMessage id='app.baro-national.today-title' />}
