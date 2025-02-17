@@ -47,11 +47,6 @@ function useGetData(observationSnap, domain) {
               },
             },
           ],
-          query: {
-            term: {
-              data_type: 'general.langues-ouverture.get-data',
-            },
-          },
         },
       );
 

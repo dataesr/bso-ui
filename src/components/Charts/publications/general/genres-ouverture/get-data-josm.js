@@ -45,11 +45,6 @@ function useGetData(observationSnap, domain) {
               },
             },
           ],
-          query: {
-            term: {
-              data_type: 'general.genres-ouverture.get-data',
-            },
-          },
         },
       );
 

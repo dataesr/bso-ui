@@ -74,13 +74,6 @@ function useGetData(
             },
           },
         },
-        query: {
-          bool: {
-            filter: [
-              { term: { data_type: 'general.dynamique-ouverture.get-data' } },
-            ],
-          },
-        },
       });
 
       // ユニークな `calc_date` のリストを取得

@@ -48,11 +48,6 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
               },
             },
           ],
-          query: {
-            term: {
-              data_type: 'disciplines.voies-ouverture.get-data',
-            },
-          },
         },
       );
 
