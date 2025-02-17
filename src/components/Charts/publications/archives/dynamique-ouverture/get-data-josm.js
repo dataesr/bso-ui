@@ -367,7 +367,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     let year = '';
     let year1 = '';
     let year2 = '';
-    if (observationSnaps && dataGraph1 && dataGraph2) {
+    if (observationSnaps && dataGraph1.length && dataGraph2.length) {
       //  eslint-disable-next-line prefer-destructuring
       year = observationSnaps[0];
       // year = getObservationLabel(observationSnaps[0], intl);
