@@ -14,7 +14,7 @@ server {
     client_max_body_size 10M;
   }
   location /ticket/(.*)$ {
-    proxy_pass https://ticket-office.dataesr.ovh/$1;
+    proxy_pass https://ticket-office.staging.dataesr.ovh/$1;
     proxy_set_header Authorization 'Basic $TICKET_OFFICE_API_KEY';
     proxy_set_header Accept application/json;
     proxy_set_header Content-Type application/json;
