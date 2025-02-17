@@ -290,7 +290,7 @@
   "app.glossary.resultat-essai-clinique": "Result of a clinical trial",
   "app.glossary.resultat-essai-clinique.definition": "Structured data resulting from a clinical trial. This data can be submitted and made public on a register as <cta>ClinicalTrials.org</cta>.",
   "app.glossary.select-letter": "Select a letter",
-  "app.glossary.title": "Glossary of the page",
+  "app.glossary.title": "Glossary",
   "app.glossary.type-hebergement-oa": "OA Hosting type",
   "app.glossary.type-hebergement-oa.definition": "There are a number of variants for open access to publications. A publication may be open access according to one or more of these variants. Some variations are based on the Economic Model of the publisher or publishing platform that itself puts the open access publication: it is hosted on the publisher's platform; Another variant is based on the deposit on one or more open archives: it is then an open repository hosting.",
   "app.glossary.unpaywall": "Unpaywall",

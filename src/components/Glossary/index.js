@@ -11,10 +11,12 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
+import GlossaryJSON from '../../translations/glossary.json';
 import { getAllIndexes } from '../../utils/helpers';
 import GlossaryItem from './GlossaryItem';
+
+const allGlossaries = GlossaryJSON[0];
 
 function Glossary({ entries }) {
   const { pathname } = useLocation();
@@ -177,22 +179,21 @@ function Glossary({ entries }) {
           </Col>
           <Col n='12' className='content-wrapper'>
             <div ref={contentRef} className='content relative'>
-              {glossaryEntries
-                && glossaryEntries.map((entry, i) => {
-                  const key = entry.getAttribute('data-glossary-key');
-                  const currentEntry = entries[0][key];
-                  return (
-                    <GlossaryItem
-                      glossaryKey={key}
-                      key={uuidv4()}
-                      intlDefinition={currentEntry.intlDefinition}
-                      active={key === activeKey}
-                      intlEntry={currentEntry.intlEntry}
-                      className={i === 0 ? 'pt-20' : ''}
-                      link={currentEntry.ctas || currentEntry.cta || null}
-                    />
-                  );
-                })}
+              {Object.keys(allGlossaries).map((key, i) => {
+                const currentEntry = entries[0][key];
+
+                return (
+                  <GlossaryItem
+                    glossaryKey={key}
+                    key={key}
+                    intlDefinition={currentEntry.intlDefinition}
+                    active={key === activeKey}
+                    intlEntry={currentEntry.intlEntry}
+                    className={i === 0 ? 'pt-20' : ''}
+                    link={currentEntry.ctas || currentEntry.cta || null}
+                  />
+                );
+              })}
             </div>
           </Col>
         </Row>
