@@ -411,7 +411,7 @@ export default function NationalPublications() {
                   anchorId='publishers.repartition-licences'
                 >
                   <BSOChart id='publi.publishers.repartition-licences.chart-repartition' />
-                  <BSOChart id='publi.publishers.repartition-licences.chart-classement' />
+                  {/* <BSOChart id='publi.publishers.repartition-licences.chart-classement' /> */}
                 </QuestionSection>
 
                 <QuestionSection
