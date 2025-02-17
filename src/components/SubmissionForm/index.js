@@ -75,6 +75,40 @@ const SubmissionForm = () => {
     setNntIdCount(undefined);
   };
 
+  const sendTicketOffice = (content) => {
+    const data = {
+      contact: {
+        email,
+      },
+      structure: {
+        name,
+        ...(acronym && { acronym }),
+        ...(id && { id }),
+      },
+      csv: content,
+    };
+
+    const options = {
+      method: 'POST',
+      url: `${window.location.origin}/ticket/api/variations`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data,
+    };
+
+    Axios.request(options)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      });
+
+    sendTicketOffice(content);
+  };
+
   const sendEmail = (event) => {
     event.preventDefault();
     const txt = Papa.unparse(dataFile, {
