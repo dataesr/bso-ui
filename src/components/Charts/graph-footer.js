@@ -77,7 +77,8 @@ const GraphFooter = ({
               {source ? (
                 <div className='graph-footer__field'>
                   <span className='graph-footer__field-label'>Sources</span>
-                  <span className='graph-footer__field-value'>{source}</span>
+                  {/* <span className='graph-footer__field-value'>{source}</span> */}
+                  <span className='graph-footer__field-value'>OpenAlex</span>
                 </div>
               ) : null}
               <div className='graph-footer__field-wrapper'>
