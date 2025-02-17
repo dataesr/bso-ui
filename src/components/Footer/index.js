@@ -9,33 +9,55 @@ import {
   Icon as DSIcon,
 } from '@dataesr/react-dsfr';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
-import useLang from '../../utils/Hooks/useLang';
 import WrapperDisplay from '../WrapperDisplay';
 
 export default function Footer() {
   const { pathname } = useLocation();
   const intl = useIntl();
-  const { lang, urls } = useLang();
 
   return (
     <WrapperDisplay display={!pathname.startsWith('/integration')}>
       <DSFooter className='josm-footer'>
         <FooterTop>
           <FooterTopCategory
-            title={intl.formatMessage({ id: 'app.footer.see-also' })}
+            title={intl.formatMessage({ id: 'app.footer.links' })}
           >
-            <FooterLink asLink={<RouterLink to={urls.methodologie[lang]} />}>
-              <FormattedMessage id='app.header.nav.a-propos' />
+            <FooterLink
+              target='_blank'
+              href='https://frenchopensciencemonitor.esr.gouv.fr/'
+            >
+              <DSIcon
+                className='ds-fr--v-middle'
+                name='ri-external-link-fill'
+                size='l'
+                iconPosition='right'
+              >
+                <span>French Open Science Monitor</span>
+              </DSIcon>
+            </FooterLink>
+          </FooterTopCategory>
+          <FooterTopCategory
+            title={intl.formatMessage({ id: 'app.footer.sources' })}
+          >
+            <FooterLink target='_blank' href='https://openalex.org/'>
+              <DSIcon
+                className='ds-fr--v-middle'
+                name='ri-external-link-fill'
+                size='l'
+                iconPosition='right'
+              >
+                <span>OpenAlex</span>
+              </DSIcon>
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
             title={intl.formatMessage({ id: 'app.footer.contact' })}
           >
             <FooterLink target='_blank' href='mailto:osm_support@nii.ac.jp'>
-              <DSIcon className='ds-fr--v-middle' name='ri-mail-fill' size='xl'>
+              <DSIcon className='ds-fr--v-middle' name='ri-mail-fill' size='l'>
                 <span>Email</span>
               </DSIcon>
             </FooterLink>

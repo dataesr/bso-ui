@@ -21,14 +21,21 @@
     margin: 0;
 
     a {
-      align-items: center;
       display: flex;
-      height: 32px;
+      min-height: 32px;
     }
   }
 
   .fr-footer__top-link {
     font-size: 1rem;
+  }
+
+  .fr-footer__top-link .icon-left {
+    margin-right: 4px;
+  }
+
+  .fr-footer__top-link .icon-right {
+    margin-left: 4px;
   }
 
   .josm-footer__brands {
