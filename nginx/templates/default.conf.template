@@ -1,5 +1,6 @@
 server {
   listen 3000;
+  resolver 8.8.8.8;
   location / {
     root /usr/share/nginx/html;
     index index.html index.htm;
@@ -13,12 +14,11 @@ server {
     proxy_pass https://api.brevo.com/v3/smtp/email;
     client_max_body_size 10M;
   }
-  location /ticket/(.*)$ {
+  location ~ ^/ticket/(.*)$ {
     proxy_pass https://ticket-office.staging.dataesr.ovh/$1;
     proxy_set_header Authorization 'Basic $TICKET_OFFICE_API_KEY';
     proxy_set_header Accept application/json;
     proxy_set_header Content-Type application/json;
-    proxy_ssl_server_name on;
     client_max_body_size 10M;
   }
 }

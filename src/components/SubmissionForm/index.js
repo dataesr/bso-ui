@@ -90,7 +90,7 @@ const SubmissionForm = () => {
 
     const options = {
       method: 'POST',
-      url: `${window.location.origin}/ticket/api/variations`,
+      url: '/ticket/api/variations/',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -99,14 +99,13 @@ const SubmissionForm = () => {
 
     Axios.request(options)
       .then((response) => {
+        // eslint-disable-next-line no-console
         console.log(response);
       })
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.error(e);
       });
-
-    sendTicketOffice(content);
   };
 
   const sendEmail = (event) => {
@@ -172,6 +171,7 @@ const SubmissionForm = () => {
 
     Axios.request(options)
       .then(() => {
+        sendTicketOffice(content);
         resetState();
         setMessage(
           "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
