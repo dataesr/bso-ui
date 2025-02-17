@@ -2,7 +2,8 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
+// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
@@ -33,15 +34,15 @@ function useGetData(observationSnaps, needle = '*', domain) {
         });
         // on veut calculer le ratio (open access avec oaHostType=publisher) / (toutes les publications)
         // il faut donc lancer deux requêtes : queryFiltered pour le numérateur et query pour le denominateur
-        queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
+        // queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));
         // a second query with all publications to compute the oa rate
-        queries.push(Axios.post(ES_API_URL, query, HEADERS));
+        // queries.push(Axios.post(ES_API_URL, query, HEADERS));
       });
 
     // const res = await Axios.all(queries);
 
     // 1回目のクエリ 最新のcalc_dateを取得
-    const latestDateRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
+    const latestDateRes = await Axios.post(ES_API_URL, {
       size: 0,
       aggs: {
         unique_calc_dates: {
@@ -84,7 +85,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
 
     if (needle === '*') {
       const preAllDataRes = await Axios.post(
-        'http://localhost:3000/elasticsearch/oa_index/_search',
+        ES_API_URL,
         {
           query: {
             bool: {
@@ -168,7 +169,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       }
     } else {
       preRes = await Axios.post(
-        'http://localhost:3000/elasticsearch/oa_index/_search',
+        ES_API_URL,
         {
           query: {
             bool: {

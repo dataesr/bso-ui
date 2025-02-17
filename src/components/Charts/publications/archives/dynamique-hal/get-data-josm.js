@@ -2,7 +2,8 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
+// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -45,7 +46,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
     // }, {
     // });
     // 1回目のクエリ 最新のcalc_dateを取得
-    const latestDateRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
+    const latestDateRes = await Axios.post(ES_API_URL, {
       size: 1,
       _source: ['calc_date'],
       sort: [
@@ -67,7 +68,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
     const latestCalcDate = latestDateRes.data.hits.hits[0]._source.calc_date;
 
     // 2回目のクエリ 最新のcalc_dateのデータを取得
-    const preRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
+    const preRes = await Axios.post(ES_API_URL, {
       query: {
         bool: {
           must: [

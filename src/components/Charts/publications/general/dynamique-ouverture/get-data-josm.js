@@ -2,7 +2,8 @@ import Axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { ES_API_URL, HEADERS, IS_TEST } from '../../../../../config/config';
+// import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { ES_API_URL, IS_TEST } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import {
   capitalize,
@@ -40,7 +41,7 @@ function useGetData(
             parameters: [oneDate, allPublishers, allOaHostType, genreType],
             objectType: ['publications'],
           });
-          queries.push(Axios.post(ES_API_URL, query, HEADERS));
+          // queries.push(Axios.post(ES_API_URL, query, HEADERS));
         });
       if (domain !== '') {
         observationYears
@@ -51,7 +52,7 @@ function useGetData(
               parameters: [oneDate],
               objectType: ['publications'],
             });
-            queries.push(Axios.post(ES_API_URL, query, HEADERS));
+            // queries.push(Axios.post(ES_API_URL, query, HEADERS));
           });
       }
 
@@ -64,7 +65,7 @@ function useGetData(
       /* eslint-disable no-underscore-dangle */
 
       // 1回目のクエリ 最新のcalc_dateを取得
-      const latestDateRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
+      const latestDateRes = await Axios.post(ES_API_URL, {
         size: 0,
         aggs: {
           unique_calc_dates: {
@@ -98,7 +99,7 @@ function useGetData(
       });
 
       const preRes = await Axios.post(
-        'http://localhost:3000/elasticsearch/oa_index/_search',
+        ES_API_URL,
         {
           size: 10000,
           query: {
