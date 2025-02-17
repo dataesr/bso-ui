@@ -5,6 +5,12 @@
   display: flex;
   padding: 0 0 64px;
 
+  @media (max-width: 767px) {
+    &:not(.is-home) {
+      padding-top: 48px;
+    }
+  }
+
   @media (min-width: 992px) {
     padding: 80px 0;
 
@@ -22,6 +28,7 @@
     color: var(--g-800);
     font-family: 'NotoSansJP-B', sans-serif;
     margin: 0;
+    text-align: left;
   }
 
   @media (min-width: 992px) {
@@ -201,6 +208,7 @@
   @media (max-width: 991px) {
     .bso-chip-wrapper {
       padding-top: 16px;
+      text-align: left;
     }
   }
 }
