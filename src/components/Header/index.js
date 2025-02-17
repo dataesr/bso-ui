@@ -4,7 +4,6 @@ import {
   HeaderBody,
   HeaderNav,
   NavItem,
-  NavSubItem,
   Service,
   SkiplinkItem,
   Skiplinks,
@@ -18,7 +17,6 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
-import { stringIsIntTheKitchen } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 import WrapperDisplay from '../WrapperDisplay';
 
@@ -164,121 +162,23 @@ function Header() {
               || path === urls.nationalThesis[lang]
             }
             title={intl.formatMessage({
-              id: 'app.header.nav.baro-publications-theses',
-              defaultMessage: 'Les publications et thèses',
+              id: 'app.header.nav.baro-national-publications',
+              defaultMessage: 'The publications',
             })}
-          >
-            <NavSubItem
-              current={path === urls.nationalPublications[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.baro-national-accueil',
-                defaultMessage: 'Accueil publications et thèses',
-              })}
-              asLink={
-                <RouterLink to={urls.nationalPublications[lang] + search} />
-              }
-            />
-            <NavSubItem
-              current={
-                stringIsIntTheKitchen(
-                  path,
-                  lang,
-                  urls.nationalPublications.tabs,
-                ).length > 0
-              }
-              title={intl.formatMessage({
-                id: 'app.header.nav.baro-national-publications',
-                defaultMessage: 'Les publications',
-              })}
-              asLink={(
-                <RouterLink
-                  to={urls.nationalPublications.tabs[0][lang] + search}
-                />
-              )}
-            />
-            <NavSubItem
-              current={path === urls.nationalThesis[lang]}
-              title={intl.formatMessage({
-                id: 'app.publi.thesis',
-                defaultMessage: 'Les thèses de doctorat',
-              })}
-              asLink={<RouterLink to={urls.nationalThesis[lang] + search} />}
-            />
-          </NavItem>
-          <NavItem
-            current={path.startsWith(
-              `/${urls.methodologie[lang].split('/')[1]}`,
+            asLink={(
+              <RouterLink
+                to={urls.nationalPublications.tabs[0][lang] + search}
+              />
             )}
+          />
+          <NavItem
+            current={path.startsWith(urls.about[lang])}
             title={intl.formatMessage({
               id: 'app.header.nav.a-propos',
-              defaultMessage: 'À propos',
+              defaultMessage: 'About',
             })}
-          >
-            <NavSubItem
-              current={path === urls.methodologie[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-methodologie',
-                defaultMessage: 'Méthodologie',
-              })}
-              asLink={<RouterLink to={urls.methodologie[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.faq[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-faq',
-                defaultMessage: 'FAQ',
-              })}
-              asLink={<RouterLink to={urls.faq[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.glossaire[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-glossaire',
-                defaultMessage: 'Glossaire',
-              })}
-              asLink={<RouterLink to={urls.glossaire[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.communication[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos.communication',
-                defaultMessage: 'Communication',
-              })}
-              asLink={<RouterLink to={urls.communication[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.opendata[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-opendata',
-                defaultMessage: 'Données ouvertes et code source du BSO',
-              })}
-              asLink={<RouterLink to={urls.opendata[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.citation[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.citation',
-                defaultMessage: 'Comment citer le Baromètre ?',
-              })}
-              asLink={<RouterLink to={urls.citation[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.worksmagnet[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.worksmagnet',
-                defaultMessage: 'Works-magnet',
-              })}
-              asLink={<RouterLink to={urls.worksmagnet[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.project[lang]}
-              title={intl.formatMessage({
-                id: 'app.footer.project.text',
-                defaultMessage: 'Projet',
-              })}
-              asLink={<RouterLink to={urls.project[lang] + search} />}
-            />
-          </NavItem>
+            asLink={<RouterLink to={urls.about[lang]} />}
+          />
         </HeaderNav>
       </DSHeader>
     </WrapperDisplay>
