@@ -105,10 +105,10 @@
 
 .glossary-entry {
   position: relative;
+  color: var(--green-1000);
   cursor: pointer;
   font-weight: bold;
-  border-bottom: 2px solid #fff;
-  border-color: inherit;
+  border-bottom: 2px solid var(--green-1000);
   margin: 0 26px 0 4px;
 
   &::after {
@@ -117,7 +117,7 @@
     font-family: 'dsfr-icons', serif;
     top: 4px;
     position: absolute;
-    background-color: var(--blue-dark-125);
+    background-color: var(--green-1000);
     border-radius: 30px;
     color: white;
     height: 18px;
