@@ -20,10 +20,10 @@ function HomeSection({
 }) {
   if (isDisplayed || isDisplayed == null) {
     return (
-      <section className='home-section px-20 mb-60 px-md-64'>
+      <section className='home-section'>
         <Container fluid>
           <Row>
-            <Col n='12 lg-12 xl-10'>
+            <Col n='12 lg-12 xl-12'>
               <h3 className='marianne-extra-bold fs-28-32 fs-32-40-xl'>
                 {title}
                 {hasBeta && <span> </span>}
@@ -35,8 +35,8 @@ function HomeSection({
               </h3>
               <p className='fs-16-28'>{introText}</p>
               {children}
-              <Col offset='2 md-4'>
-                <div className='button-link marianne-bold relative'>
+              <Col n='12'>
+                <div className='button-link'>
                   <DSIcon
                     className='ds-fr--v-middle'
                     size='xl'

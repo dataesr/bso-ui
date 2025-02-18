@@ -1,5 +1,9 @@
 .scroll-top-btn {
   bottom: 50px;
   position: fixed;
-  right: 16px;
+  right: 0;
+
+  .josm-btn {
+    border-radius: 4px 0 0 4px;
+  }
 }

@@ -1,0 +1,8 @@
+.chart-wrapper {
+  overflow: hidden;
+  border-radius: 16px;
+
+  & + & {
+    margin-top: 48px;
+  }
+}

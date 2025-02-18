@@ -1,7 +1,23 @@
 .bso-banner {
-  background: var(--bannerBackgroundColor);
+  align-items: center;
+  background: #fff;
   color: var(--bannerTextColor);
-  padding: 50px 0;
+  display: flex;
+  padding: 0 0 64px;
+
+  @media (max-width: 767px) {
+    &:not(.is-home) {
+      padding-top: 48px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    padding: 80px 0;
+
+    &.is-home {
+      padding: 120px 0;
+    }
+  }
 
   .sup-title {
     @include font-size(20, 24);
@@ -9,12 +25,45 @@
 
   .main-title {
     @include font-size(32, 40);
-    color: inherit;
+    color: var(--g-800);
+    font-family: 'NotoSansJP-B', sans-serif;
+    margin: 0;
+    text-align: left;
+  }
+
+  @media (min-width: 992px) {
+    .main-title {
+      font-size: 2.8125rem;
+      line-height: 1.4;
+    }
   }
 
   .sub-title {
     @include font-size(16, 24);
-    color: inherit;
+    color: var(--g-800);
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 991px) {
+    .sub-title {
+      font-size: 1rem;
+      font-weight: normal;
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    .sub-title > br {
+      display: none;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .sub-title {
+      font-family: 'NotoSansJP-B', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
   }
 
   .sub-sub-title {
@@ -44,9 +93,15 @@
   }
 
   &.sticky {
+    box-shadow: var(--box-shadow);
+    height: 56px;
     padding: 0;
     position: sticky;
     top: 0;
+
+    @media screen and (min-width: 992px) {
+      height: 64px;
+    }
 
     .sub-title,
     .sub-sub-title,
@@ -56,11 +111,33 @@
     }
 
     .sup-title {
-      @include font-size(12, 16);
+      font-size: 0.875rem;
+      line-height: 1;
+    }
+
+    @media screen and (min-width: 992px) {
+      .sup-title {
+        font-size: 1.25rem;
+      }
     }
 
     .main-title {
-      @include font-size(14, 16);
+      font-size: 0.875rem;
+      line-height: 1;
+      color: var(--g-800);
+    }
+
+    @media screen and (max-width: 991px) {
+      .main-title {
+        font-family: 'NotoSansJP-N', sans-serif;
+        font-weight: normal;
+      }
+    }
+
+    @media screen and (min-width: 992px) {
+      .main-title {
+        font-size: 1.25rem;
+      }
     }
 
     .bso-select-navigation {
@@ -76,6 +153,43 @@
 
     .home {
       box-shadow: none;
+      line-height: 1;
+    }
+
+    .josm-banner__title-container {
+      * {
+        margin: 0;
+      }
+
+      span:empty {
+        display: none;
+      }
+
+      .home {
+        color: var(--g-800);
+        font-family: 'NotoSansJP-B', sans-serif;
+        font-size: 0.875rem;
+        text-decoration: none;
+      }
+
+      color: var(--g-800);
+      display: flex;
+      flex-direction: column-reverse;
+      text-align: left;
+      gap: 6px;
+
+      @media screen and (min-width: 992px) {
+        align-items: center;
+        flex-direction: row;
+        gap: 16px;
+
+        span:empty {
+          background-color: var(--g-800);
+          display: block;
+          height: 16px;
+          width: 2px;
+        }
+      }
     }
   }
 
@@ -88,6 +202,13 @@
 
     &.active {
       border-color: var(--blue-dark-125);
+    }
+  }
+
+  @media (max-width: 991px) {
+    .bso-chip-wrapper {
+      padding-top: 16px;
+      text-align: left;
     }
   }
 }

@@ -280,9 +280,9 @@ export default function DataCardSection({ domain, lang }) {
   }, [domain, fetchData, isMounted, lastObservationSnap, response]);
 
   return (
-    <Container fluid className='pt-32 mb-20 px-20'>
+    <Container className='pt-32 mb-20'>
       <Row justifyContent='center'>
-        <Col n='12 md-11 xl-9' spacing='p-4w'>
+        <Col n='12' spacing='p-4w'>
           <section className='pb-32'>
             <Row gutters>
               {Object.keys(dataObj).map((cardKey) => {

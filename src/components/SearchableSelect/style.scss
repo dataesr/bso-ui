@@ -1,7 +1,15 @@
 .searchable-select {
   label {
-    color: var(--g-600);
-    font-style: italic;
+    color: var(--g-800);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (min-width: 992px) {
+      align-items: center;
+      flex-direction: row;
+      gap: 16px;
+    }
 
     .searchable-select-label {
       float: left;
@@ -9,17 +17,19 @@
 
     .fr-select-group {
       display: flex;
+      flex-grow: 1;
 
       .select-search-input {
         width: 100%;
 
         .fr-select {
-          --data-uri-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 24 24' ><path fill='%23fff' d='M12,13.1l5-4.9l1.4,1.4L12,15.9L5.6,9.5l1.4-1.4L12,13.1z'/></svg>");
-          background-color: var(--blue-dark-125);
-          border-radius: 0;
-          color: white;
+          --data-uri-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 24 24' ><path fill='%23333' d='M12,13.1l5-4.9l1.4,1.4L12,15.9L5.6,9.5l1.4-1.4L12,13.1z'/></svg>");
+          background-color: #fff;
+          border: solid 1px var(--g-200);
+          border-radius: 8px;
+          box-shadow: none;
+          color: var(--g-800);
           display: inline;
-          margin-left: 8px;
           padding: 4px 4px 4px 8px;
         }
       }

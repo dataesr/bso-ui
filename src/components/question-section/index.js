@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { Alert, Container } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -27,7 +29,7 @@ const QuestionSection = ({
     (isDisplayed || isDisplayed == null) && (
       <section
         style={{ backgroundColor, paddingTop: '28px' }}
-        className='w-100'
+        className='w-100 question-section'
         id={anchorId}
       >
         <Container>

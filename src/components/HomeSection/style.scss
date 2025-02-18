@@ -1,15 +1,18 @@
 .home-section {
-  background: var(--blue-soft-50);
-  padding-top: 50px;
+  background: var(--green-50);
+  padding-top: 24px;
+  padding-inline: 24px;
+  margin-inline: -16px;
+
+  @media (min-width: 992px) {
+    margin: 0;
+    border-radius: 16px;
+    padding-top: 50px;
+    padding-inline: 64px;
+  }
 
   .button-link {
-    padding: 16px 20px;
-    color: #fff;
-    background: var(--blue-soft-100);
-    bottom: -16px;
-
-    a {
-      box-shadow: none;
-    }
+    padding: 48px 0 48px;
+    text-align: right;
   }
 }
