@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -109,7 +111,7 @@ function ChartWrapper({
     return <>Error</>;
   }
   return (
-    <>
+    <div className='chart-wrapper'>
       <div className='graph-container' data-id={idWithContext}>
         {hasBeta && (
           <span className=''>
@@ -135,7 +137,7 @@ function ChartWrapper({
           title={title}
         />
       )}
-    </>
+    </div>
   );
 }
 

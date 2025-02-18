@@ -10,18 +10,12 @@ export default function ScrollTop() {
     <>
       {scrollTop > 1500 && (
         <div className='scroll-top-btn z-4000'>
-          <DSIcon name='ri-arrow-up-line' size='lg' iconPosition='right'>
-            <Button
-              size='sm'
-              onClick={() => window.scrollTo(0, 0)}
-              className='btn-blue color-white'
-            >
-              <div className='fs-12-12'>
-                <FormattedMessage
-                  id='app.scroll-to-top'
-                  defaultMessage='scroll to top'
-                />
-              </div>
+          <DSIcon name='ri-arrow-up-line' size='lg' iconPosition='left'>
+            <Button className='josm-btn' onClick={() => window.scrollTo(0, 0)}>
+              <FormattedMessage
+                id='app.scroll-to-top'
+                defaultMessage='scroll to top'
+              />
             </Button>
           </DSIcon>
         </div>

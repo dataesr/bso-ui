@@ -178,6 +178,11 @@ export default {
     en: '/health/observational-studies/general',
     ja: '/health/observational-studies/general',
   },
+  about: {
+    fr: '/a-propos',
+    en: '/about',
+    ja: '/about',
+  },
   methodologie: {
     fr: '/a-propos/methodologie',
     en: '/about/methodology',

@@ -16,6 +16,7 @@ import useScroll from '../../utils/Hooks/useScroll';
 import SelectNavigation from './SelectNavigation';
 
 function Banner({
+  isHome,
   backgroundColor,
   children,
   chip,
@@ -79,11 +80,16 @@ function Banner({
 
   return (
     <section
-      className={classNames('bso-banner z-200 text-left-l text-center', {
-        'mb-60': !selectNavigation,
-        'mb-100': selectNavigation,
-        sticky: sticky && sticked,
-      })}
+      className={classNames(
+        `josm-banner bso-banner z-200 text-left-l text-center ${
+          isHome && 'is-home'
+        }`,
+        {
+          // 'mb-60': !selectNavigation,
+          // 'mb-100': selectNavigation,
+          sticky: sticky && sticked,
+        },
+      )}
     >
       <Container>
         <Row
@@ -94,25 +100,31 @@ function Banner({
           <Col
             n={classNames('12', {
               'md-6': chip && sticked,
-              'md-9': chip && !sticked,
+              'md-7': chip && !sticked,
             })}
+            className={sticked && 'josm-banner__title-container'}
           >
-            {sticked && homeLink ? (
-              <DSIcon
-                name='ri-home-2-line'
-                size='sm'
-                as='span'
-                className='ds-fr--v-middle'
-              >
-                <DSLink as={<Link to={homeLink} />} className='home'>
-                  <small className='sup-title'>{supTitle}</small>
-                </DSLink>
-              </DSIcon>
+            {sticked ? (
+              <>
+                {isHome ? (
+                  <h2 className='main-title marianne-extra-bold'>{title}</h2>
+                ) : (
+                  <>
+                    <h2 className='main-title marianne-extra-bold'>{title}</h2>
+                    <span className='divider' />
+                    {homeLink ? (
+                      <DSLink as={<Link to={homeLink} />} className='home'>
+                        <small className='sup-title'>{supTitle}</small>
+                      </DSLink>
+                    ) : (
+                      <small className='sup-title'>{supTitle}</small>
+                    )}
+                  </>
+                )}
+              </>
             ) : (
-              <small className='sup-title'>{supTitle}</small>
+              !isHome && <h2 className='main-title'>{title}</h2>
             )}
-            <h2 className='main-title marianne-extra-bold'>{title}</h2>
-            <section className='icons'>{icons || ''}</section>
             {subTitle && (
               <h3
                 className={classNames('sub-title pt-16 ', {
@@ -122,7 +134,7 @@ function Banner({
                 {subTitle}
               </h3>
             )}
-            {subsubTitle && (
+            {/* {subsubTitle && (
               <h4
                 className={classNames('sub-sub-title pt-16 ', {
                   'mb-l-60': selectNavigation,
@@ -130,19 +142,9 @@ function Banner({
               >
                 {subsubTitle}
               </h4>
-            )}
-            {link && !sticked && (
-              <DSLink
-                className='bso-link'
-                icon='ri-arrow-right-line'
-                iconSize='lg'
-                as={<Link to={link.url} />}
-              >
-                {link.label}
-              </DSLink>
-            )}
+            )} */}
           </Col>
-          {selectNavigation && sticked && (
+          {/* {selectNavigation && sticked && (
             <Col
               className='relative'
               n={classNames('12', { 'md-4': sticked, 'md-3': !sticked })}
@@ -160,13 +162,14 @@ function Banner({
                 title={selectNavigation.title}
               />
             </Col>
-          )}
+          )} */}
           {children && <Col n='12'>{children}</Col>}
           {!sticked && chip && (
-            <Col n='12 md-3'>
+            <Col n='12 md-5'>
               <div
                 className={classNames({
-                  'mb-60 mb-l-0': selectNavigation,
+                  // 'mb-60 mb-l-0': selectNavigation,
+                  'bso-chip-wrapper': true,
                 })}
               >
                 {chip}
@@ -174,7 +177,7 @@ function Banner({
             </Col>
           )}
         </Row>
-        {selectNavigation && !sticked && (
+        {/* {selectNavigation && !sticked && (
           <Row>
             <Col n='12 md-5' className='relative'>
               <SelectNavigation
@@ -191,13 +194,14 @@ function Banner({
               />
             </Col>
           </Row>
-        )}
+        )} */}
       </Container>
     </section>
   );
 }
 
 Banner.defaultProps = {
+  isHome: false,
   children: null,
   chip: null,
   homeLink: '',
@@ -212,6 +216,7 @@ Banner.defaultProps = {
 };
 
 Banner.propTypes = {
+  isHome: PropTypes.bool,
   backgroundColor: PropTypes.string.isRequired,
   children: PropTypes.node,
   chip: PropTypes.element,

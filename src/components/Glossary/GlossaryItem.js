@@ -46,7 +46,7 @@ function GlossaryItem({
           name='ri-arrow-right-line'
           size='1x'
         >
-          <p className='m-0 fs-16-24 marianne-medium'>
+          <p className='m-0 fs-16-28 notosans-bold glossary-title-active'>
             <FormattedMessage
               id={intlEntry}
               defaultMessage={intlEntry}
@@ -55,7 +55,7 @@ function GlossaryItem({
           </p>
         </DSIcon>
       ) : (
-        <p className='m-0 fs-16-24 marianne-medium'>
+        <p className='m-0 fs-16-28 notosans-bold'>
           <FormattedMessage
             id={intlEntry}
             defaultMessage={intlEntry}
@@ -63,7 +63,7 @@ function GlossaryItem({
           />
         </p>
       )}
-      <p className='fs-14-24 m-0'>
+      <p className='fs-16-28 m-0'>
         <FormattedMessage
           id={intlDefinition}
           defaultMessage={intlDefinition}

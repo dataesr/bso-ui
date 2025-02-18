@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'NotoSansJP-N';
+  src:
+    url('NotoSansJP-Regular-subset.woff2') format('woff2'),
+    url('NotoSansJP-Regular-subset.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'NotoSansJP-B';
+  src:
+    url('NotoSansJP-Bold-subset.woff2') format('woff2'),
+    url('NotoSansJP-Bold-subset.woff') format('woff');
+}

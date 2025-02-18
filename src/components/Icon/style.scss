@@ -1,11 +1,21 @@
 @for $i from 1 through $icon-bsso-max {
   .icon-bsso-#{$i} {
     .color-2 {
-      stroke: var(--icon-bsso-#{$i}-color-2);
+      stroke: #fff;
     }
 
     .color-1 {
-      stroke: var(--icon-bsso-#{$i}-color-1);
+      stroke: var(--g-800);
+    }
+  }
+
+  .icon-bsso-33 {
+    .color-2 {
+      stroke: var(--green-50);
+    }
+
+    .color-1 {
+      stroke: var(--green-800);
     }
   }
 }
