@@ -75,7 +75,7 @@ const SubmissionForm = () => {
     setNntIdCount(undefined);
   };
 
-  const sendTicketOffice = (content) => {
+  const sendTicketOffice = (txt) => {
     const data = {
       contact: {
         email,
@@ -85,7 +85,7 @@ const SubmissionForm = () => {
         ...(acronym && { acronym }),
         ...(id && { id }),
       },
-      csv: content,
+      csv: txt,
     };
 
     const options = {
@@ -171,7 +171,7 @@ const SubmissionForm = () => {
 
     Axios.request(options)
       .then(() => {
-        sendTicketOffice(content);
+        sendTicketOffice(txt);
         resetState();
         setMessage(
           "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
