@@ -295,13 +295,13 @@ const HomePage = () => {
                   intlSubTitle='app.publications'
                   backgroundColorClass='bg-purple-25'
                 />
-                <TodayNumbersItem
+                {/* <TodayNumbersItem
                   itemKey='journal'
                   iconName='icon-bsso-2'
                   iconColor='purple-50'
                   intlSubTitle='app.journals'
                   backgroundColorClass='bg-publication-25'
-                />
+                /> */}
                 <TodayNumbersItem
                   itemKey='publisher'
                   iconName='icon-bsso-14'
@@ -309,7 +309,7 @@ const HomePage = () => {
                   intlSubTitle='app.health-publi.publishers'
                   backgroundColorClass='bg-yellow-medium-50'
                 />
-                <TodayNumbersItem
+                {/* <TodayNumbersItem
                   itemKey='repository'
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
@@ -322,7 +322,7 @@ const HomePage = () => {
                   iconColor='green-medium-75'
                   intlSubTitle='app.thesis'
                   backgroundColorClass='bg-purple-medium-50'
-                />
+                /> */}
                 <TodayNumbersItem
                   itemKey='obsDates'
                   iconName='icon-bsso-10'
