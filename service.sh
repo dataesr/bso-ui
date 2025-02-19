@@ -22,7 +22,7 @@ function start_application() {
     # コンテナの起動（ログをホスト側に出力）
     docker run -d --name "$CONTAINER_NAME" \
         --network "$NETWORK_NAME" \
-        -p "$PORT:$PORT" \
+        -p "$PORT:3000" \
         -v "$PROJECT_DIR:/app" \
         --log-driver=syslog \
         --log-opt syslog-address=udp://localhost:514 \

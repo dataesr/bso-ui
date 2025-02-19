@@ -1,6 +1,6 @@
 server {
   listen 3000 ssl;
-  server_name localhost;
+  server_name localhost osm.ir.rcos.nii.ac.jp 136.187.110.114;
 
   ssl_certificate /etc/nginx/server.crt;
   ssl_certificate_key /etc/nginx/server.key;
@@ -22,6 +22,10 @@ server {
     rewrite /elasticsearch/(.*) /$1 break;
     proxy_set_header Authorization "ApiKey XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     proxy_ssl_verify off;
-    proxy_pass https://es01:9200;
+    proxy_pass https://136.187.110.96:9200;
+
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type';
   }
 }

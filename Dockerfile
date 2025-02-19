@@ -19,6 +19,6 @@ RUN npm run build
 FROM nginx:stable
 COPY --from=build /app/build /usr/share/nginx/html
 COPY ./nginx/templates /etc/nginx/templates
-COPY /etc/nginx/ssl/osm.ir.rcos.nii.ac.jp.crt /etc/nginx/server.crt
-COPY /etc/nginx/ssl/osm.ir.rcos.nii.ac.jp.key /etc/nginx/server.key
+COPY ./nginx/osm.ir.rcos.nii.ac.jp.crt /etc/nginx/server.crt
+COPY ./nginx/osm.ir.rcos.nii.ac.jp.key /etc/nginx/server.key
 EXPOSE 3000
