@@ -1,3 +1,4 @@
+import { Col } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -10,8 +11,8 @@ import { getValueByPath } from '../../utils/helpers';
 import useFetch from '../../utils/Hooks/useFetch';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import Icon from '../Icon';
+import InfoCard from '../InfoCard';
 import Loader from '../Loader';
-import TodayNumbersInfoCard from '../TodayNumbersInfoCard';
 
 const fetchInfos = {
   publication: {
@@ -25,9 +26,9 @@ const fetchInfos = {
     objectType: ['publications'],
   },
   repository: {
-    path: 'aggregations.repositories_count.value',
-    url: ES_API_URL,
-    objectType: ['publications'],
+    path: '',
+    url: '',
+    objectType: [],
   },
   obsDates: {
     path: 'aggregations.observation_dates_count.value',
@@ -35,9 +36,9 @@ const fetchInfos = {
     objectType: ['publications'],
   },
   journal: {
-    path: 'aggregations.journal_count.value',
-    url: ES_API_URL,
-    objectType: ['publications'],
+    path: '',
+    url: '',
+    objectType: [],
   },
   // these: {
   //   path: 'aggregations.publication_count.value',
@@ -60,6 +61,7 @@ function TodayNumbersItem({
   iconName,
   iconColor,
   intlSubTitle,
+  backgroundColorClass,
   itemKey,
   domain,
 }) {
@@ -94,20 +96,30 @@ function TodayNumbersItem({
       }));
     }
   }, [response, todayData, setTodayData, itemKey]);
+  if (itemKey === 'journal' || itemKey === 'repository') {
+    return null;
+  }
   return (
-    <div ref={ref} className='josm-today-numbers-info-item'>
-      <TodayNumbersInfoCard
-        subTitle={<FormattedMessage id={intlSubTitle} />}
-        data1={
-          todayData[itemKey] ? (
-            todayData[itemKey]
-          ) : (
-            <Loader spacing='' size='80' />
-          )
-        }
-        icon={<Icon name={iconName} color2={iconColor} />}
-      />
-    </div>
+    <Col n='12 sm-6 md-6'>
+      <span ref={ref}>
+        <InfoCard
+          cardClassNames='text-left-l'
+          small
+          bodyClassName={backgroundColorClass}
+          subTitle={<FormattedMessage id={intlSubTitle} />}
+          data1={
+            todayData[itemKey] ? (
+              todayData[itemKey]
+            ) : (
+              <Loader spacing='' size='80' />
+            )
+          }
+          icon={
+            <Icon name={iconName} color1='blue-dark-125' color2={iconColor} />
+          }
+        />
+      </span>
+    </Col>
   );
 }
 
@@ -117,6 +129,7 @@ TodayNumbersItem.defaultProps = {
 };
 
 TodayNumbersItem.propTypes = {
+  backgroundColorClass: PropTypes.string.isRequired,
   todayData: PropTypes.shape({ publicationCount: PropTypes.string }),
   intlSubTitle: PropTypes.string.isRequired,
   domain: PropTypes.oneOf(domains),
