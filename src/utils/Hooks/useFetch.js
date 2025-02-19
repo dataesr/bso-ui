@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 
-import { HEADERS } from '../../config/config';
+import { ES_API_URL, IS_TEST } from '../../config/config';
 
 export default function useFetch({ method, options, url }) {
   const isMounted = useRef(true);
@@ -19,7 +19,7 @@ export default function useFetch({ method, options, url }) {
       const { options: fetchOptions, reload } = params;
 
       // 最新のcalc_dateを取得
-      const latestDateRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
+      const latestDateRes = await axios.post(ES_API_URL, {
         size: 0,
         aggs: {
           unique_calc_dates: {
@@ -69,7 +69,7 @@ export default function useFetch({ method, options, url }) {
       // 年ごとの出版物を取得する場合の処理
       if (params?.options?.aggs?.by_publication_year) {
         /* eslint-disable no-underscore-dangle */
-        const preRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search',
+        const preRes = await axios.post(ES_API_URL,
           {
             size: 10000,
             query: {
@@ -117,19 +117,39 @@ export default function useFetch({ method, options, url }) {
         const res = {};
         if (options.aggs.publication_count) {
           // publicationsに表示する値を取得
-          // const preRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search',
-          //   {
-          //     // 【TODO】データ取得について見当・実装
-          //   },
-          // );
-          // console.log('preRes: ', preRes);
+          const preRes = await axios.post(ES_API_URL,
+            {
+              size: 10000,
+              query: {
+                bool: {
+                  filter: [
+                    { terms: { calc_date: lastDateOfYear } },
+                    { term: { data_type: 'general.dynamique-ouverture.get-data' } },
+                  ],
+                },
+              },
+              aggs: {
+                data_nested: {
+                  nested: {
+                    path: 'data',
+                  },
+                  aggs: {
+                    total_sum: {
+                      sum: {
+                        field: 'data.total',
+                      },
+                    },
+                  },
+                },
+              },
+            });
           res.aggregations = {
             // 【TODO】取得した値を反映
-            publication_count: { value: 2434093 },
+            publication_count: { value: preRes.data.aggregations.data_nested.total_sum.value },
           };
         } else if (options.aggs.journal_count) {
           // journalsに表示する値を取得
-          // const preRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search',
+          // const preRes = await axios.post(ES_API_URL,
           //   {
           //     // 【TODO】データ取得について見当・実装
           //   },
@@ -137,23 +157,30 @@ export default function useFetch({ method, options, url }) {
           // console.log('preRes: ', preRes);
           res.aggregations = {
             // 【TODO】取得した値を反映
-            journal_count: { value: 46678 },
+            journal_count: { value: 1000 },
           };
         } else if (options.aggs.publisher_count) {
           // publishers and platformsに表示する値を取得
-          // const preRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search',
-          //   {
-          //     // 【TODO】データ取得について見当・実装
-          //   },
-          // );
-          // console.log('preRes: ', preRes);
+          const preRes = await axios.post(ES_API_URL,
+            {
+              size: 0,
+              query: {
+                bool: {
+                  filter: [
+                    { terms: { calc_date: lastDateOfYear } },
+                    { term: { data_type: 'editeurs.dynamique-ouverture.get-data' } },
+                  ],
+                },
+              },
+            });
+          console.log('preRes: ', preRes);
           res.aggregations = {
             // 【TODO】取得した値を反映
-            publisher_count: { value: 9946 },
+            publisher_count: { value: preRes.data.hits.total.value },
           };
         } else if (options.aggs.repositories_count) {
           // open archivesに表示する値を取得
-          // const preRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search',
+          // const preRes = await axios.post(ES_API_URL,
           //   {
           //     // 【TODO】データ取得について見当・実装
           //   },
@@ -161,19 +188,14 @@ export default function useFetch({ method, options, url }) {
           // console.log('preRes: ', preRes);
           res.aggregations = {
             // 【TODO】取得した値を反映
-            repositories_count: { value: 3871 },
+            repositories_count: { value: 2000 },
           };
         } else if (options.aggs.observation_dates_count) {
           // observation datesに表示する値を取得
-          // const preRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search',
-          //   {
-          //     // 【TODO】データ取得について見当・実装
-          //   },
-          // );
-          // console.log('preRes: ', preRes);
+          const observationDate = parseInt(lastDateOfYear, 10) - 2024;
           res.aggregations = {
             // 【TODO】取得した値を反映
-            observation_dates_count: { value: 7 },
+            observation_dates_count: { value: observationDate },
           };
         }
         if (res) {
@@ -184,7 +206,7 @@ export default function useFetch({ method, options, url }) {
         /* eslint-disable no-underscore-dangle */
         /* eslint-disable arrow-parens */
         /* eslint-disable camelcase */
-        const preRes = await axios.post('http://localhost:3000/elasticsearch/oa_index/_search',
+        const preRes = await axios.post(ES_API_URL,
           {
             size: 10000,
             query: {
