@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ES_API_URL, HEADERS, IS_TEST } from '../../config/config';
 import { clearSessionStorage } from '../helpers';
 
 export const GlobalsContext = createContext();

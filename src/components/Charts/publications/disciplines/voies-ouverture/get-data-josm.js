@@ -38,17 +38,16 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       /* eslint-disable no-underscore-dangle */
       // 1回目のクエリ 最新のcalc_dateを取得
       const latestDateRes = await Axios.post(ES_API_URL, {
-          size: 1,
-          _source: ['calc_date'],
-          sort: [
-            {
-              calc_date: {
-                order: 'desc',
-              },
+        size: 1,
+        _source: ['calc_date'],
+        sort: [
+          {
+            calc_date: {
+              order: 'desc',
             },
-          ],
-        },
-      );
+          },
+        ],
+      });
 
       // 1回目のクエリで得たcalc_dateをlatestCalcDateに代入
       /* eslint-disable no-underscore-dangle */
@@ -59,25 +58,24 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
       // 2回目のクエリ 最新のcalc_dateのデータを取得
       const preRes = await Axios.post(ES_API_URL, {
-          size: 10000,
-          query: {
-            bool: {
-              must: [
-                { term: { calc_date: latestCalcDate } },
-                { term: { data_type: 'disciplines.voies-ouverture.get-data' } },
-                {
-                  nested: {
-                    path: 'data',
-                    query: {
-                      term: { 'data.publication_year': graphYearData },
-                    },
+        size: 10000,
+        query: {
+          bool: {
+            must: [
+              { term: { calc_date: latestCalcDate } },
+              { term: { data_type: 'disciplines.voies-ouverture.get-data' } },
+              {
+                nested: {
+                  path: 'data',
+                  query: {
+                    term: { 'data.publication_year': graphYearData },
                   },
                 },
-              ],
-            },
+              },
+            ],
           },
         },
-      );
+      });
 
       // データ成形処理
       const res = { data: { aggregations: { by_discipline: { buckets: [] } } } };

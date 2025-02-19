@@ -70,17 +70,16 @@ function useGetData(observationSnaps, domain = '') {
         lastDateOfYear.push(lastDate);
       });
       const preRes = await Axios.post(ES_API_URL, {
-          size: 10000,
-          query: {
-            bool: {
-              filter: [
-                { terms: { calc_date: lastDateOfYear } },
-                { term: { data_type: 'disciplines.dynamique-ouverture.get-data' } },
-              ],
-            },
+        size: 10000,
+        query: {
+          bool: {
+            filter: [
+              { terms: { calc_date: lastDateOfYear } },
+              { term: { data_type: 'disciplines.dynamique-ouverture.get-data' } },
+            ],
           },
         },
-      );
+      });
 
       // データ成形処理
       const res = [];

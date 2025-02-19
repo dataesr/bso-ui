@@ -19,32 +19,6 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
   async function GetData() {
-    // const queries = [];
-    // const queryHAL = getFetchOptions({
-    //   key: 'couvertureHAL',
-    //   domain,
-    //   parameters: [lastObservationSnap],
-    //   objectType: ['publications'],
-    // });
-    // queries.push(Axios.post(ES_API_URL, queryHAL, HEADERS));
-    // const queryArchive = getFetchOptions({
-    //   key: 'couvertureAllRepo',
-    //   domain,
-    //   parameters: [lastObservationSnap],
-    //   objectType: ['publications'],
-    // });
-    // queries.push(Axios.post(ES_API_URL, queryArchive, HEADERS));
-    // const res = await Axios.all(queries);
-    // const protRes = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
-    //   query: {
-    //     term: {
-    //       data_type: 'archives.dynamique-hal.get-data',
-    //     },
-    //   },
-    //   sort: [{ calc_date: { order: 'desc' } }],
-    //   size: 1,
-    // }, {
-    // });
     // 1回目のクエリ 最新のcalc_dateを取得
     const latestDateRes = await Axios.post(ES_API_URL, {
       size: 1,
