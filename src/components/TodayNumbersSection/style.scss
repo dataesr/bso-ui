@@ -43,25 +43,25 @@
 
       // 上段
       .josm-today-numbers-info-item:nth-child(-n+3) {
-        border-bottom: dashed 1px var(--g-200);
-        padding-bottom: 8px;
+        // border-bottom: dashed 1px var(--g-200);
+        // padding-bottom: 8px;
       }
 
       // 下段
       .josm-today-numbers-info-item:nth-child(n+4) {
-        padding-top: 8px;
+        // padding-top: 8px;
       }
 
       // 左列
       .josm-today-numbers-info-item:nth-child(3n+1) {
         padding-left: 8px;
-        border-right: dashed 1px var(--g-200);
+        // border-right: dashed 1px var(--g-200);
       }
 
       // 中列
       .josm-today-numbers-info-item:nth-child(3n+2) {
         padding-inline: 8px;
-        border-right: dashed 1px var(--g-200);
+        // border-right: dashed 1px var(--g-200);
       }
 
       // 右列

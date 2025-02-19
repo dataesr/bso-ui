@@ -65,10 +65,12 @@ export default function NationalPublications() {
                   />
                 </p>
               </Col>
+              <Col n='12'>
+                <DataCardSection lang={lang} />
+              </Col>
             </Row>
           </Container>
           <Glossary entries={GlossaryEntries} />
-          <DataCardSection lang={lang} />
         </Row>
         <Row>
           <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
