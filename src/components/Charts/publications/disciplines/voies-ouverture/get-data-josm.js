@@ -37,8 +37,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
       /* eslint-disable no-underscore-dangle */
       // 1回目のクエリ 最新のcalc_dateを取得
-      const latestDateRes = await Axios.post(
-        'http://localhost:3000/elasticsearch/oa_index/_search', {
+      const latestDateRes = await Axios.post(ES_API_URL, {
           size: 1,
           _source: ['calc_date'],
           sort: [
@@ -59,9 +58,7 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
       const graphYearData = (parseInt(latestCalcDate.substring(0, 4), 10) - 1);
 
       // 2回目のクエリ 最新のcalc_dateのデータを取得
-      const preRes = await Axios.post(
-        'http://localhost:3000/elasticsearch/oa_index/_search',
-        {
+      const preRes = await Axios.post(ES_API_URL, {
           size: 10000,
           query: {
             bool: {

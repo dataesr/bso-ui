@@ -52,7 +52,7 @@ export const GlobalsContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   async function getObservationSnaps() {
-    const res = await Axios.post('http://localhost:3000/elasticsearch/oa_index/_search', {
+    const res = await Axios.post(ES_API_URL, {
       size: 0,
       aggs: {
         unique_calc_dates: {
