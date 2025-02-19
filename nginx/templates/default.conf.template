@@ -20,7 +20,7 @@ server {
   }
   location /elasticsearch/ {
     rewrite /elasticsearch/(.*) /$1 break;
-    proxy_set_header Authorization "ApiKey WFJRVmJwUUJGUTYzTF9zcVJkSDk6bWt4c19STjhSdmUwMGxDbHhxVDNqQQ==";
+    proxy_set_header Authorization "ApiKey XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     proxy_ssl_verify off;
     proxy_pass https://es01:9200;
   }
