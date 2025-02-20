@@ -65,7 +65,7 @@ export default function Footer() {
         </FooterTop>
         <div className='josm-footer__contents'>
           <div className='josm-footer__brands'>
-            <a href='https://nii.ac.jp' target='_blank' rel='noreferrer'>
+            <a href='https://www.nii.ac.jp' target='_blank' rel='noreferrer'>
               <img
                 src='/logos/nii.png'
                 alt='National Institute of Informatics'
