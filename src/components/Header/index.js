@@ -99,7 +99,7 @@ function Header() {
       </Skiplinks>
       <div className='brands'>
         <Container className='brands-container'>
-          <a href='https://nii.ac.jp' target='_blank' rel='noreferrer'>
+          <a href='https://www.nii.ac.jp' target='_blank' rel='noreferrer'>
             <img src='/logos/nii.png' alt='National Institute of Informatics' />
           </a>
           <a href='https://rcos.nii.ac.jp' target='_blank' rel='noreferrer'>
