@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom';
 
 import GlossaryJSON from '../../translations/glossary.json';
 import { getAllIndexes } from '../../utils/helpers';
+import Icon from '../Icon';
 import GlossaryItem from './GlossaryItem';
 
 const allGlossaries = GlossaryJSON[0];
@@ -132,17 +133,16 @@ function Glossary({ entries }) {
   return (
     <section className={classNames('bso-glossary z-4000', { openPanel })}>
       <Container fluid className='josm-glossary-container'>
-        <DSIcon name='ri-information-fill' size='1x' iconPosition='left'>
-          <Button
-            className='josm-btn'
-            onClick={() => glossaryPanel('', !openPanel)}
-          >
-            <FormattedMessage
-              id='app.header.nav.a-propos-glossaire'
-              defaultMessage='Glossaire'
-            />
-          </Button>
-        </DSIcon>
+        <Button
+          className='josm-btn bso-glossary__btn'
+          onClick={() => glossaryPanel('', !openPanel)}
+        >
+          <Icon name='glossary' />
+          <FormattedMessage
+            id='app.header.nav.a-propos-glossaire'
+            defaultMessage='Glossaire'
+          />
+        </Button>
         <Row className='josm-glossary-rows'>
           <Col n='12' className='wrapper-title'>
             <Row>
