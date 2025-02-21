@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 // import { ES_API_URL, HEADERS } from '../../../../../config/config';
 // import { PUBLISHER_LIST } from '../../../../../config/publisher';
 import { PUBLISHER_LIST } from '../../../../../config/publicationDataLists';
-// import customComments from '../../../../../utils/chartComments';
+import customComments from '../../../../../utils/chartComments';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -52,6 +52,10 @@ const Chart = ({ domain, id, hasComments, hasFooter }) => {
     dataGraph1,
     dataTitle,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   useEffect(() => {
     const opts = PUBLISHER_LIST.map((item) => ({ label: item, value: item }));

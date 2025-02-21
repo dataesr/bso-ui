@@ -53,13 +53,17 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
 
   useEffect(() => {
-      const opts = PUBLISHER_LIST.map((item) => ({ label: item, value: item }));
-      opts.unshift({
-        label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
-        value: '*',
-      });
-      setOptions(opts);
-    }, [intl]);
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
+
+  useEffect(() => {
+    const opts = PUBLISHER_LIST.map((item) => ({ label: item, value: item }));
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
+      value: '*',
+    });
+    setOptions(opts);
+  }, [intl]);
 
   return (
     <ChartWrapper
