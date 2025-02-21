@@ -93,7 +93,7 @@ function useGetData(observationSnap, domain) {
           if (year === graphYearData) {
             if (!bucketsObject[type]) {
               bucketsObject[type] = {
-                key: type,
+                key: type === 'proceedings-article' ? 'proceedings' : type,
                 doc_count: 0,
                 by_oa_host_type: {
                   doc_count_error_upper_bound: 0,

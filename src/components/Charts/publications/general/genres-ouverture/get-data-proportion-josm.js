@@ -87,7 +87,7 @@ function useGetData(observationSnap, domain) {
           let typeBucket = bucketsObject[year].by_type.buckets.find((b) => b.key === type);
           if (!typeBucket) {
             typeBucket = {
-              key: type,
+              key: type === 'proceedings-article' ? 'proceedings' : type,
               doc_count: 0,
               by_oa: {
                 doc_count_error_upper_bound: 0,
