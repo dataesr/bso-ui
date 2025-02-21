@@ -119,6 +119,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         id={id}
         options={optionsGraph}
         ref={chartRef}
+        style={{ height: '100%' }}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} hasFooter={hasFooter} />

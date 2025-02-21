@@ -226,9 +226,11 @@ export const chartOptions = {
     getOptions: (id, intl, categories, data, dataTitle, sortKey) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.type = 'bar';
-      options.chart.height = '600px';
+      options.chart.height = (categories.length - 1) * 40;
       options.xAxis = {
         categories,
+        min: 0,
+        max: categories.length - 1,
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
@@ -415,164 +417,164 @@ export const chartOptions = {
     },
   },
   'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement':
-    {
-      getOptions: (id, intl, data, dataTitle) => {
-        const options = getGraphOptions({ id, intl, dataTitle });
-        options.chart.type = 'bubble';
-        options.chart.zoomType = 'xy';
-        options.chart.height = '600px';
-        options.series = data.bubbleGraph;
-        options.xAxis = {
-          gridLineDashStyle: 'dash',
-          gridLineWidth: 1,
-          endOnTick: false,
-          min: 0,
-          max: 109,
-          plotBands: [
-            {
-              color: 'white',
-              zIndex: 1,
-              dashStyle: 'dash',
-              width: 2,
-              from: 100,
-              to: 1000,
-            },
-          ],
-          title: {
-            text: intl.formatMessage({
-              id: 'app.voies-ouverture.types-hebergement.xAxis',
-            }),
-          },
-          labels: {
-            formatter() {
-              return this.axis.defaultLabelFormatter.call(this).concat(' %');
-            },
-          },
-        };
-        options.yAxis = {
-          gridLineDashStyle: 'dash',
-          gridLineWidth: 1,
-          endOnTick: false,
-          min: 0,
-          max: 119,
-          plotBands: [
-            {
-              color: 'white',
-              zIndex: 1,
-              dashStyle: 'dash',
-              width: 2,
-              from: 100,
-              to: 1000,
-            },
-          ],
-          title: {
-            text: intl.formatMessage({
-              id: 'app.voies-ouverture.types-hebergement.yAxis',
-            }),
-          },
-          labels: {
-            formatter() {
-              return this.axis.defaultLabelFormatter.call(this).concat(' %');
-            },
-          },
-        };
-        options.legend = {
-          enabled: true,
-          floating: true,
-          align: 'right',
-          y: -60,
-          useHTML: true,
-          title: {
-            text: intl.formatMessage({ id: 'app.discipline.bubbleSize' }),
-          },
-          bubbleLegend: {
-            enabled: true,
-            borderWidth: 3,
-            borderColor: getCSSValue('--orange-soft-100'),
-            color: getCSSValue('--orange-soft-25'),
-            connectColor: getCSSValue('--orange-soft-100'),
-            labels: {
-              format: '{value:.0f}',
-            },
-          },
-        };
-        options.plotOptions = {
-          bubble: {
-            minSize: 30,
-            maxSize: 90,
-            jitter: {
-              x: 5,
-              y: 5,
-            },
-            dataLabels: {
-              enabled: 'true',
-              format: '{point.discipline}',
-              allowOverlap: true,
-              style: {
-                color: getCSSValue('--g-800'),
-                textOverflow: 'clip',
-              },
-            },
-          },
-          series: {
-            dataLabels: {
-              enabled: true,
-              filter: {
-                property: 'z',
-                operator: '>',
-                value: '0.1',
-              },
-            },
-          },
-        };
-        const annotations = [
+  {
+    getOptions: (id, intl, data, dataTitle) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.type = 'bubble';
+      options.chart.zoomType = 'xy';
+      options.chart.height = '600px';
+      options.series = data.bubbleGraph;
+      options.xAxis = {
+        gridLineDashStyle: 'dash',
+        gridLineWidth: 1,
+        endOnTick: false,
+        min: 0,
+        max: 109,
+        plotBands: [
           {
-            labelOptions: {
-              y: 0,
-              overflow: 'none',
-              shape: 'rect',
-              backgroundColor: 'white',
-              borderColor: getCSSValue('--g-400'),
-              borderWidth: 1,
-              useHTML: false,
-              borderRadius: 0,
-            },
-            labels: [
-              {
-                point: {
-                  x: 20,
-                  y: 1,
-                  xAxis: 0,
-                  yAxis: 0,
-                },
-                text: intl.formatMessage({
-                  id: 'app.below-line',
-                }),
-              },
-              {
-                point: {
-                  x: window.innerWidth < 991 ? 20 : 10,
-                  y: 20,
-                  xAxis: 0,
-                  yAxis: 0,
-                },
-                text: intl.formatMessage({
-                  id: 'app.above-line',
-                }),
-              },
-            ],
-            draggable: '',
+            color: 'white',
+            zIndex: 1,
+            dashStyle: 'dash',
+            width: 2,
+            from: 100,
+            to: 1000,
           },
-        ];
-        options.annotations = annotations;
-        // Create a deep copy
-        const exportingAnnotations = JSON.parse(JSON.stringify(annotations));
-        exportingAnnotations[0].labels[1].point.x = 20;
-        options.exporting.chartOptions.annotations = exportingAnnotations;
-        options.responsive.rules[0].chartOptions.legend.align = 'right';
-        return options;
-      },
+        ],
+        title: {
+          text: intl.formatMessage({
+            id: 'app.voies-ouverture.types-hebergement.xAxis',
+          }),
+        },
+        labels: {
+          formatter() {
+            return this.axis.defaultLabelFormatter.call(this).concat(' %');
+          },
+        },
+      };
+      options.yAxis = {
+        gridLineDashStyle: 'dash',
+        gridLineWidth: 1,
+        endOnTick: false,
+        min: 0,
+        max: 119,
+        plotBands: [
+          {
+            color: 'white',
+            zIndex: 1,
+            dashStyle: 'dash',
+            width: 2,
+            from: 100,
+            to: 1000,
+          },
+        ],
+        title: {
+          text: intl.formatMessage({
+            id: 'app.voies-ouverture.types-hebergement.yAxis',
+          }),
+        },
+        labels: {
+          formatter() {
+            return this.axis.defaultLabelFormatter.call(this).concat(' %');
+          },
+        },
+      };
+      options.legend = {
+        enabled: true,
+        floating: true,
+        align: 'right',
+        y: -60,
+        useHTML: true,
+        title: {
+          text: intl.formatMessage({ id: 'app.discipline.bubbleSize' }),
+        },
+        bubbleLegend: {
+          enabled: true,
+          borderWidth: 3,
+          borderColor: getCSSValue('--orange-soft-100'),
+          color: getCSSValue('--orange-soft-25'),
+          connectColor: getCSSValue('--orange-soft-100'),
+          labels: {
+            format: '{value:.0f}',
+          },
+        },
+      };
+      options.plotOptions = {
+        bubble: {
+          minSize: 30,
+          maxSize: 90,
+          jitter: {
+            x: 5,
+            y: 5,
+          },
+          dataLabels: {
+            enabled: 'true',
+            format: '{point.discipline}',
+            allowOverlap: true,
+            style: {
+              color: getCSSValue('--g-800'),
+              textOverflow: 'clip',
+            },
+          },
+        },
+        series: {
+          dataLabels: {
+            enabled: true,
+            filter: {
+              property: 'z',
+              operator: '>',
+              value: '0.1',
+            },
+          },
+        },
+      };
+      const annotations = [
+        {
+          labelOptions: {
+            y: 0,
+            overflow: 'none',
+            shape: 'rect',
+            backgroundColor: 'white',
+            borderColor: getCSSValue('--g-400'),
+            borderWidth: 1,
+            useHTML: false,
+            borderRadius: 0,
+          },
+          labels: [
+            {
+              point: {
+                x: 20,
+                y: 1,
+                xAxis: 0,
+                yAxis: 0,
+              },
+              text: intl.formatMessage({
+                id: 'app.below-line',
+              }),
+            },
+            {
+              point: {
+                x: window.innerWidth < 991 ? 20 : 10,
+                y: 20,
+                xAxis: 0,
+                yAxis: 0,
+              },
+              text: intl.formatMessage({
+                id: 'app.above-line',
+              }),
+            },
+          ],
+          draggable: '',
+        },
+      ];
+      options.annotations = annotations;
+      // Create a deep copy
+      const exportingAnnotations = JSON.parse(JSON.stringify(annotations));
+      exportingAnnotations[0].labels[1].point.x = 20;
+      options.exporting.chartOptions.annotations = exportingAnnotations;
+      options.responsive.rules[0].chartOptions.legend.align = 'right';
+      return options;
     },
+  },
   'publi.affiliations.pays.chart-classement-pays': {
     getOptions: (id, intl, categories, data) => {
       const options = getGraphOptions({ id, intl });
