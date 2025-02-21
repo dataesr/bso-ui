@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ES_API_URL, HEADERS, IS_TEST } from '../../config/config';
+import { ES_API_URL } from '../../config/config';
 import { clearSessionStorage } from '../helpers';
 
 export const GlobalsContext = createContext();
@@ -23,6 +23,7 @@ export const GlobalsContextProvider = ({ children }) => {
       '__lastObservationSnap__',
       '__lastObservationSnapThesis__',
       '__observationSnaps__',
+      '__updateDate__',
       'storedTimer',
     ]);
   }
@@ -50,6 +51,9 @@ export const GlobalsContextProvider = ({ children }) => {
     JSON.parse(storedObservationSnaps),
   );
 
+  const storedUpdateDate = sessionStorage.getItem('__updateDate__');
+  const [updateDate, setUpdateDate] = useState(storedUpdateDate);
+
   const navigate = useNavigate();
 
   async function getObservationSnaps() {
@@ -68,6 +72,26 @@ export const GlobalsContextProvider = ({ children }) => {
     const newObservationSnaps = [...new Set(observationBuckets.map((item) => item.key_as_string.slice(0, 4)))]
       .sort((a, b) => b - a);
     return newObservationSnaps;
+  }
+
+  async function getUpdateDate() {
+    // 最新のcalc_dateを取得
+    const latestDateRes = await Axios.post(ES_API_URL, {
+      size: 1,
+      _source: ['calc_date'],
+      sort: [
+        {
+          calc_date: {
+            order: 'desc',
+          },
+        },
+      ],
+    });
+
+    // calc_dateをdateに代入
+    /* eslint-disable no-underscore-dangle */
+    const date = latestDateRes.data.hits.hits[0]._source.calc_date;
+    return date;
   }
 
   useEffect(() => {
@@ -95,6 +119,10 @@ export const GlobalsContextProvider = ({ children }) => {
         setBeforeLastObservationSnap(beforeLast);
         sessionStorage.setItem('__beforeLastObservationSnap__', beforeLast);
 
+        const responseUpdateDate = await getUpdateDate(lastObs);
+        setUpdateDate(responseUpdateDate);
+        sessionStorage.setItem('__updateDate__', responseUpdateDate);
+
         const lastObservationYearThesis = process.env.REACT_APP_LAST_OBSERVATION_THESIS;
         setLastObservationSnapThesis(lastObservationYearThesis);
         sessionStorage.setItem(
@@ -115,6 +143,7 @@ export const GlobalsContextProvider = ({ children }) => {
         lastObservationSnap,
         lastObservationSnapThesis,
         observationSnaps,
+        updateDate,
       }}
     >
       {children}
