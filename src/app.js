@@ -226,10 +226,11 @@ function App() {
               path={tab[key]}
             />
           )))}
+          */ }
           {Object.keys(urls.about).map((key) => (
             <Route element={<About />} exact key={key} path={urls.about[key]} />
           ))}
-          {Object.keys(urls.methodologie).map((key) => (
+          {/* {Object.keys(urls.methodologie).map((key) => (
             <Route
               element={(
                 <PageTracker>
