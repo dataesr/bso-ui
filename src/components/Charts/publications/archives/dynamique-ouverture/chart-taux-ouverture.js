@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 
 // import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { REPOSITORY_LIST } from '../../../../../config/publicationDataLists';
-// import customComments from '../../../../../utils/chartComments';
+import customComments from '../../../../../utils/chartComments';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
@@ -48,6 +48,10 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     dataGraph1,
     dataTitle,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(data, idWithDomain, intl));
+  }, [data, idWithDomain, intl]);
 
   useEffect(() => {
     // REPOSITORY_LISTを配列に変換
