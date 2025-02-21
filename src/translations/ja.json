@@ -1074,7 +1074,7 @@
   "app.publi.to-be-decided": "決定待ち",
   "app.publi.general": "全体",
   "app.publi.general.genres-ouverture.chart-repartition-genres.tooltip": "<b>{point.name} が {point.publicationDate} に発表（{point.bsoDomain}）</b><br>{point.value} は {point.oaType} において<brすなわち、{point.publicationDate} の総出版物に対して {point.percentage:.2f}% です。",
-  "app.publi.general.genres-ouverture.chart-repartition-taux.tooltip": "<b>{point.x_val} ({point.bsoDomain})</b><br>• オープンアクセス率<br>ホスティング：{series.name}:<br>{point.y:.2f}% ({point.y_abs} / {point.y_tot})<br>• 総オープンアクセス率: {point.stacktotal:.2f}%",
+  "app.publi.general.genres-ouverture.chart-repartition-taux.tooltip": "<b>{point.x_val} ({point.bsoDomain})</b><br>• オープンアクセス率<br>ホスティング：{series.name}:<br>{point.y:.2f}% ({point.y_abs} / {point.y_tot})<br>• 総オープンアクセス率:<br>{point.stackTotal:.2f}% ({point.y_oa} / {point.y_tot})",
   "app.publi.general.langues-ouverture.chart-repartition-publications.tooltip": "<b>{point.name}は{point.publicationDate}に発表されました ({point.bsoDomain})</b><br>{point.value}は{point.oaType}で<br>それは{point.publicationDate}の総出版物の{point.percentage:.2f}%です",
   "app.national-publi.general.langues.chart-publications-by-year.title": "出版物の数の推移 {commentsName} それらの発表言語に応じて {scientificFieldTitle}",
   "app.publi.general.langues.chart-publications-by-year.tooltip": "<b>{point.lang}: {point.ypercent} % の出版物が {point.name} にあります</br>",

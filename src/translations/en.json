@@ -1074,7 +1074,7 @@
   "app.publi.to-be-decided": "To be decided",
   "app.publi.general": "General",
   "app.publi.general.genres-ouverture.chart-repartition-genres.tooltip": "<b>{point.name} published in {point.publicationDate} ({point.bsoDomain})</b><br>{point.value} in {point.oaType}<br>i.e. {point.percentage:.2f}% of the total of the publications of {point.publicationDate}",
-  "app.publi.general.genres-ouverture.chart-repartition-taux.tooltip": "<b>{point.x_val} ({point.bsoDomain})</b><br>• Open access rate<br>with hosting {series.name}:<br>{point.y:.2f}% ({point.y_abs} / {point.y_tot})<br>• Total open access rate: {point.stacktotal:.2f}%",
+  "app.publi.general.genres-ouverture.chart-repartition-taux.tooltip": "<b>{point.x_val} ({point.bsoDomain})</b><br>• Open access rate<br>with hosting {series.name}:<br>{point.y:.2f}% ({point.y_abs} / {point.y_tot} <br>• Total open access rate: {point.stacktotal:.2f}%{point.stackTotal:.2f}% ({point.y_oa} / {point.y_tot})",
   "app.publi.general.langues-ouverture.chart-repartition-publications.tooltip": "<b>{point.name} published in {point.publicationDate} ({point.bsoDomain})</b><br>{point.value} in {point.oaType}<br>that is {point.percentage:.2f}% of the total publications of {point.publicationDate}",
   "app.national-publi.general.langues.chart-publications-by-year.title": "Evolution of the number of publications {commentsName} according to their language of publication{scientificFieldTitle}",
   "app.publi.general.langues.chart-publications-by-year.tooltip": "<b>{point.lang}: {point.ypercent} % of publications in {point.name}</br>",
