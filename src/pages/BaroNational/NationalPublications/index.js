@@ -5,7 +5,7 @@ import {
   Container,
   Row,
 } from '@dataesr/react-dsfr';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
@@ -29,6 +29,11 @@ export default function NationalPublications() {
   const { pathname } = useLocation();
   const intl = useIntl();
   const greenBg = getCSSValue('--green-50');
+  const [rendered, setRendered] = useState(false);
+
+  useEffect(() => {
+    setRendered(true);
+  }, []);
 
   return (
     <Container fluid className='page'>
@@ -70,7 +75,7 @@ export default function NationalPublications() {
               </Col>
             </Row>
           </Container>
-          <Glossary entries={GlossaryEntries} />
+          {rendered && <Glossary entries={GlossaryEntries} />}
         </Row>
         <Row>
           <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
