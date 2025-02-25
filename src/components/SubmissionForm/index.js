@@ -101,10 +101,15 @@ const SubmissionForm = () => {
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
+        setIsError(false);
       })
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.error(e);
+        setIsError(true);
+        setMessage(
+          "Erreur lors de l'envoi de votre fichier, merci de contacter bso@recherche.gouv.fr.",
+        );
       });
   };
 
@@ -171,11 +176,14 @@ const SubmissionForm = () => {
 
     Axios.request(options)
       .then(() => {
-        sendTicketOffice(txt);
         resetState();
-        setMessage(
-          "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
-        );
+        setIsError(false);
+        sendTicketOffice(txt);
+        if (!isError) {
+          setMessage(
+            "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
+          );
+        }
       })
       .catch((e) => {
         // eslint-disable-next-line no-console
