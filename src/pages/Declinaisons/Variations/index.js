@@ -470,6 +470,13 @@ const Variations = () => {
                 img='/declinaisons/ined.svg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local ulille université de lille'
+                href='https://scienceouverte.univ-lille.fr/nos-engagements/barometre-de-la-science-ouverte'
+                img='/declinaisons/ulille.svg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
