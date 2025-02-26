@@ -66,6 +66,35 @@ export const mobileButtonLabel = {
     '/thesis/general': 'app.thesis.general',
     '/orcid/general': 'app.orcid.general',
   },
+  ja: {
+    '/health/publications/fields': 'app.publi.disciplines',
+    '/health/publications/affiliations': 'app.publi.affiliations',
+    '/health/publications/repositories': 'app.publi.archives',
+    '/health/publications/publishers': 'app.publi.editeurs',
+    '/health/publications/general': 'app.publi.general',
+    '/publications/fields': 'app.publi.disciplines',
+    '/publications/repositories': 'app.publi.archives',
+    '/publications/publishers': 'app.publi.editeurs',
+    '/publications/general': 'app.publi.general',
+    '/health/clinical-trials/general': 'app.health-interventional.general',
+    '/health/clinical-trials/caracteristiques':
+      'app.health-interventional.caracteristiques',
+    '/health/clinical-trials/promoteurs':
+      'app.health-interventional.promoteurs',
+    '/health/clinical-trials/resultats': 'app.health-interventional.resultats',
+    '/health/observational-studies/general': 'app.health-observational.general',
+    '/health/observational-studies/caracteristiques':
+      'app.health-observational.caracteristiques',
+    '/health/observational-studies/promoteurs':
+      'app.health-observational.promoteurs',
+    '/health/observational-studies/resultats':
+      'app.health-observational.resultats',
+    '/research-data/general': 'app.data.general',
+    '/research-data/disciplines': 'app.data.disciplines',
+    '/research-data/publishers': 'app.data.editeurs',
+    '/thesis/general': 'app.thesis.general',
+    '/orcid/general': 'app.orcid.general',
+  },
 };
 
 export const documentTitles = {

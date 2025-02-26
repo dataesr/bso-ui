@@ -209,54 +209,54 @@ export function withContext(id, domain, studyType) {
  */
 export function getSource(id, otherSources = []) {
   const sources = [];
-  if (id.includes('repositories.datasets')) {
-    sources.push('Datacite');
-  }
-  if (id.includes('-publi.') || id.includes('publication')) {
-    sources.push('Unpaywall');
-    sources.push('HAL');
-  }
-  if (
-    id.includes('health-general')
-    || id.includes('health-caracteristiques')
-    || id.includes('health-promoteurs')
-    || id.includes('health-resultats')
-  ) {
-    sources.push('clinicaltrials.gov');
-    sources.push('EU Clinical Trial Register');
-  }
-  if (id.includes('health-publi')) {
-    sources.push('PubMed');
-  }
-  if (id.includes('couts-publi')) {
-    sources.push('openAPC');
-    sources.push('DOAJ');
-  }
-  if (id.includes('publishers.poids-revue')) {
-    sources.push('beallslist.net');
-  }
-  if (
-    id.includes('thesis')
-    || id.includes('orcid.general.creation-by-year')
-    || id.includes('orcid.general.chart-indicator-these-year')
-    || id.includes('orcid.general.chart-indicator-these-discipline')
-  ) {
-    sources.push('theses.fr');
-  }
-  if (id.includes('hal')) {
-    sources.push('HAL');
-  }
-  if (id.includes('orcid')) {
-    sources.push('ORCID');
-  }
-  if (id.includes('idref')) {
-    sources.push('idref');
-  }
-  if (id.includes('retractions')) {
-    sources.push('Retractation Watch');
-  }
-  sources.push('MESR');
-  sources.push(...otherSources);
+  // if (id.includes('repositories.datasets')) {
+  //   sources.push('Datacite');
+  // }
+  // if (id.includes('-publi.') || id.includes('publication')) {
+  //   sources.push('Unpaywall');
+  //   sources.push('HAL');
+  // }
+  // if (
+  //   id.includes('health-general')
+  //   || id.includes('health-caracteristiques')
+  //   || id.includes('health-promoteurs')
+  //   || id.includes('health-resultats')
+  // ) {
+  //   sources.push('clinicaltrials.gov');
+  //   sources.push('EU Clinical Trial Register');
+  // }
+  // if (id.includes('health-publi')) {
+  //   sources.push('PubMed');
+  // }
+  // if (id.includes('couts-publi')) {
+  //   sources.push('openAPC');
+  //   sources.push('DOAJ');
+  // }
+  // if (id.includes('publishers.poids-revue')) {
+  //   sources.push('beallslist.net');
+  // }
+  // if (
+  //   id.includes('thesis')
+  //   || id.includes('orcid.general.creation-by-year')
+  //   || id.includes('orcid.general.chart-indicator-these-year')
+  //   || id.includes('orcid.general.chart-indicator-these-discipline')
+  // ) {
+  //   sources.push('theses.fr');
+  // }
+  // if (id.includes('hal')) {
+  //   sources.push('HAL');
+  // }
+  // if (id.includes('orcid')) {
+  //   sources.push('ORCID');
+  // }
+  // if (id.includes('idref')) {
+  //   sources.push('idref');
+  // }
+  // if (id.includes('retractions')) {
+  //   sources.push('Retractation Watch');
+  // }
+  // sources.push(...otherSources);
+  sources.push('japan Open cience Monitor');
   // Deduplicate sources
   return [...new Set(sources)].join(', ');
 }

@@ -1,15 +1,7 @@
-import {
-  Card,
-  CardDescription,
-  Col,
-  Container,
-  Icon as DSIcon,
-  Link as DSLink,
-  Row,
-} from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Banner from '../components/Banner';
 import BSOChart from '../components/Charts';
@@ -22,7 +14,6 @@ import ProgressionCard from '../components/ProgressionCard';
 import ScrollTop from '../components/ScrollTop';
 import TodayNumbersSection from '../components/TodayNumbersSection';
 import TodayNumbersItem from '../components/TodayNumbersSection/TodayNumbersItem';
-import ToolCardsSection from '../components/ToolCardsSection';
 import UpdateDate from '../components/UpdateDate';
 import GlossaryEntries from '../translations/glossary.json';
 import useLang from '../utils/Hooks/useLang';
@@ -79,10 +70,13 @@ const HomePage = () => {
   return (
     <div className='baro-national page home'>
       <Banner
+        isHome
         backgroundColor='blue-soft-150'
         supTitle={<FormattedMessage id='app.header.welcome-on' />}
         title={<FormattedMessage id='app.header.title-bis' />}
-        subTitle={<FormattedMessage id='app.header.subtitle' />}
+        subTitle={
+          <FormattedMessage id='app.header.subtitle' values={{ br: <br /> }} />
+        }
         link={{
           label: <FormattedMessage id='app.communication.see' />,
           url: intl.formatMessage({ id: 'url.about.communication' }) + search,
@@ -91,20 +85,20 @@ const HomePage = () => {
         chip={<Chip />}
       />
       <ScrollTop />
-      <Container fluid>
+      <Container>
         <section className='content'>
           <Row>
-            <Col n='12 md-12 xl-10' className='px-20 px-md-64' offset='xl-2'>
-              <section className='py-28'>
-                <h2 className='marianne-light fs-28-32 fs-40-48-xl m-0'>
+            <Col n='12'>
+              <section className='pb-48'>
+                <h2 className='notosans-bold fs-24-36 fs-45-63-xl m-0'>
                   <FormattedMessage id='app.national-home.numbers' />
                 </h2>
-                <p className='fs-14-24 blue m-0'>
+                <div className='mt-8'>
                   <UpdateDate />
-                </p>
+                </div>
               </section>
             </Col>
-            <Col n='12 xl-10' offset='xl-2'>
+            <Col n='12'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
                 link={{
@@ -141,6 +135,7 @@ const HomePage = () => {
                   </Row>
                 </Container>
               </HomeSection>
+              {/*
               <HomeSection
                 link={{
                   href: urls.nationalThesis.tabs[0][lang] + search,
@@ -164,7 +159,9 @@ const HomePage = () => {
                   </Row>
                 </Container>
               </HomeSection>
+              */}
             </Col>
+            {/*
             <Col n='12 xl-10' offset='xl-2'>
               <Glossary entries={GlossaryEntries} />
               <HomeSection
@@ -285,88 +282,7 @@ const HomePage = () => {
                 </Container>
               </HomeSection>
             </Col>
-            <Col n='12'>
-              <Container fluid>
-                <section className='px-20 py-48 px-l-64 px-xl-142 bg-blue-soft-100'>
-                  <Row justifyContent='center'>
-                    <Col n='12 lg-12 xl-9'>
-                      <Card
-                        bodyClassName='bg-white'
-                        hasArrow={false}
-                        hasBorder={false}
-                        href={urls.sante[lang] + search}
-                        isHorizontal
-                      >
-                        <CardDescription as='div'>
-                          <Container fluid>
-                            <Row justifyContent='center' alignItems='middle'>
-                              <Col n='12 md-5'>
-                                <p className='text-card-logo pb-16 blue-dark text-center text-left-l marianne-bold fs-24-32'>
-                                  <FormattedMessage id='app.commons.explore-sante' />
-                                </p>
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-3'
-                                  color1='blue-soft-150'
-                                  color2='yellow-medium-50'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-4'
-                                  color1='blue-soft-150'
-                                  color2='orange-medium-75'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-28'
-                                  color1='blue-soft-150'
-                                  color2='green-soft-50'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-15'
-                                  color1='blue-soft-150'
-                                  color2='blue-soft-50'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-17'
-                                  color1='blue-soft-150'
-                                  color2='pink-light-75'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-6'
-                                  color1='blue-soft-150'
-                                  color2='green-medium-50'
-                                />
-                              </Col>
-                              <Col n='12'>
-                                <DSIcon name='ri-link' size='2x' as='div'>
-                                  <DSLink
-                                    className='w-100 text-right'
-                                    as={<Link to={urls.sante[lang] + search} />}
-                                  />
-                                </DSIcon>
-                              </Col>
-                            </Row>
-                          </Container>
-                        </CardDescription>
-                      </Card>
-                    </Col>
-                  </Row>
-                </section>
-              </Container>
-            </Col>
-            <Col n='12'>
-              <ToolCardsSection />
-            </Col>
+            */}
             <Col n='12'>
               <TodayNumbersSection
                 title={<FormattedMessage id='app.baro-national.today-title' />}
@@ -379,13 +295,13 @@ const HomePage = () => {
                   intlSubTitle='app.publications'
                   backgroundColorClass='bg-purple-25'
                 />
-                <TodayNumbersItem
+                {/* <TodayNumbersItem
                   itemKey='journal'
                   iconName='icon-bsso-2'
                   iconColor='purple-50'
                   intlSubTitle='app.journals'
                   backgroundColorClass='bg-publication-25'
-                />
+                /> */}
                 <TodayNumbersItem
                   itemKey='publisher'
                   iconName='icon-bsso-14'
@@ -393,20 +309,21 @@ const HomePage = () => {
                   intlSubTitle='app.health-publi.publishers'
                   backgroundColorClass='bg-yellow-medium-50'
                 />
-                <TodayNumbersItem
+                {/* <TodayNumbersItem
                   itemKey='repository'
                   iconName='icon-bsso-10'
                   iconColor='green-medium-75'
                   intlSubTitle='app.health-publi.repositories'
                   backgroundColorClass='bg-green-medium-25'
                 />
-                <TodayNumbersItem
+                {/* 日本版OSモニターで表示しないページのコメントアウト */}
+                {/* <TodayNumbersItem
                   itemKey='these'
                   iconName='icon-these'
                   iconColor='green-medium-75'
                   intlSubTitle='app.thesis'
                   backgroundColorClass='bg-purple-medium-50'
-                />
+                /> */}
                 <TodayNumbersItem
                   itemKey='obsDates'
                   iconName='icon-bsso-10'

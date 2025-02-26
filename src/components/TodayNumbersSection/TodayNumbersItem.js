@@ -13,6 +13,7 @@ import useGlobals from '../../utils/Hooks/useGetGlobals';
 import Icon from '../Icon';
 import InfoCard from '../InfoCard';
 import Loader from '../Loader';
+import TodayNumbersInfoCard from '../TodayNumbersInfoCard';
 
 const fetchInfos = {
   publication: {
@@ -26,9 +27,9 @@ const fetchInfos = {
     objectType: ['publications'],
   },
   repository: {
-    path: 'aggregations.repositories_count.value',
-    url: ES_API_URL,
-    objectType: ['publications'],
+    path: '',
+    url: '',
+    objectType: [],
   },
   obsDates: {
     path: 'aggregations.observation_dates_count.value',
@@ -36,25 +37,25 @@ const fetchInfos = {
     objectType: ['publications'],
   },
   journal: {
-    path: 'aggregations.journal_count.value',
-    url: ES_API_URL,
-    objectType: ['publications'],
+    path: '',
+    url: '',
+    objectType: [],
   },
-  these: {
-    path: 'aggregations.publication_count.value',
-    url: ES_API_URL,
-    objectType: ['thesis'],
-  },
-  interventional: {
-    path: 'aggregations.study_type.buckets.0.doc_count',
-    url: ES_STUDIES_API_URL,
-    objectType: ['clinicalTrials'],
-  },
-  observational: {
-    path: 'aggregations.study_type.buckets.1.doc_count',
-    url: ES_STUDIES_API_URL,
-    objectType: ['clinicalTrials'],
-  },
+  // these: {
+  //   path: 'aggregations.publication_count.value',
+  //   url: ES_API_URL,
+  //   objectType: ['thesis'],
+  // },
+  // interventional: {
+  //   path: 'aggregations.study_type.buckets.0.doc_count',
+  //   url: ES_STUDIES_API_URL,
+  //   objectType: ['clinicalTrials'],
+  // },
+  // observational: {
+  //   path: 'aggregations.study_type.buckets.1.doc_count',
+  //   url: ES_STUDIES_API_URL,
+  //   objectType: ['clinicalTrials'],
+  // },
 };
 
 function TodayNumbersItem({
@@ -96,27 +97,23 @@ function TodayNumbersItem({
       }));
     }
   }, [response, todayData, setTodayData, itemKey]);
+  if (itemKey === 'journal' || itemKey === 'repository') {
+    return null;
+  }
   return (
-    <Col n='12 sm-6 md-6'>
-      <span ref={ref}>
-        <InfoCard
-          cardClassNames='text-left-l'
-          small
-          bodyClassName={backgroundColorClass}
-          subTitle={<FormattedMessage id={intlSubTitle} />}
-          data1={
-            todayData[itemKey] ? (
-              todayData[itemKey]
-            ) : (
-              <Loader spacing='' size='80' />
-            )
-          }
-          icon={
-            <Icon name={iconName} color1='blue-dark-125' color2={iconColor} />
-          }
-        />
-      </span>
-    </Col>
+    <div ref={ref} className='josm-today-numbers-info-item'>
+      <TodayNumbersInfoCard
+        subTitle={<FormattedMessage id={intlSubTitle} />}
+        data1={
+          todayData[itemKey] ? (
+            todayData[itemKey]
+          ) : (
+            <Loader spacing='' size='80' />
+          )
+        }
+        icon={<Icon name={iconName} color2={iconColor} />}
+      />
+    </div>
   );
 }
 

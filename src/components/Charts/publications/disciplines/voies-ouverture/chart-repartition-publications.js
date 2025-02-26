@@ -19,7 +19,8 @@ import {
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+// import useGetData from './get-data';
+import useGetData from './get-data-josm';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -118,6 +119,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
         id={id}
         options={optionsGraph}
         ref={chartRef}
+        style={{ height: '100%' }}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} hasFooter={hasFooter} />

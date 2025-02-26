@@ -68,6 +68,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/general?id=general.dynamique',
+                    ja: '/health/clinical-trials/general?id=general.dynamique',
                     fr: '/sante/essais-cliniques/general?id=general.dynamique',
                   },
                 },
@@ -77,6 +78,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/general?id=general.dynamique',
+                    ja: '/health/clinical-trials/general?id=general.dynamique',
                     fr: '/sante/essais-cliniques/general?id=general.dynamique',
                   },
                 },
@@ -86,6 +88,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/general?id=general.directions',
+                    ja: '/health/clinical-trials/general?id=general.directions',
                     fr: '/sante/essais-cliniques/general?id=general.directions',
                   },
                 },
@@ -160,6 +163,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/characteristics?id=caracteristiques.quand',
+                    ja: '/health/clinical-trials/characteristics?id=caracteristiques.quand',
                     fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
                   },
                 },
@@ -169,6 +173,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/characteristics?id=caracteristiques.quand',
+                    ja: '/health/clinical-trials/characteristics?id=caracteristiques.quand',
                     fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.quand',
                   },
                 },
@@ -178,6 +183,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/characteristics?id=caracteristiques.duree',
+                    ja: '/health/clinical-trials/characteristics?id=caracteristiques.duree',
                     fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.duree',
                   },
                 },
@@ -187,6 +193,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/characteristics?id=caracteristiques.combien',
+                    ja: '/health/clinical-trials/characteristics?id=caracteristiques.combien',
                     fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.combien',
                   },
                 },
@@ -196,6 +203,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/characteristics?id=caracteristiques.types',
+                    ja: '/health/clinical-trials/characteristics?id=caracteristiques.types',
                     fr: '/sante/essais-cliniques/caracteristiques?id=caracteristiques.types',
                   },
                 },
@@ -288,6 +296,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                    ja: '/health/clinical-trials/lead-sponsors?id=promoteurs.dynamique-ouverture',
                     fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
                   },
                 },
@@ -297,6 +306,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                    ja: '/health/clinical-trials/lead-sponsors?id=promoteurs.dynamique-ouverture',
                     fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.dynamique-ouverture',
                   },
                 },
@@ -306,6 +316,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/lead-sponsors?id=promoteurs.impact',
+                    ja: '/health/clinical-trials/lead-sponsors?id=promoteurs.impact',
                     fr: '/sante/essais-cliniques/promoteurs?id=promoteurs.impact',
                   },
                 },
@@ -358,6 +369,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/results?id=resultats.type-diffusion',
+                    ja: '/health/clinical-trials/results?id=resultats.type-diffusion',
                     fr: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
                   },
                 },
@@ -367,6 +379,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/results?id=resultats.type-diffusion',
+                    ja: '/health/clinical-trials/results?id=resultats.type-diffusion',
                     fr: '/sante/essais-cliniques/resultats?id=resultats.type-diffusion',
                   },
                 },
@@ -376,6 +389,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/results?id=resultats.plan-partage',
+                    ja: '/health/clinical-trials/results?id=resultats.plan-partage',
                     fr: '/sante/essais-cliniques/resultats?id=resultats.plan-partage',
                   },
                 },
@@ -385,6 +399,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/results?id=resultats.delai-diffusion',
+                    ja: '/health/clinical-trials/results?id=resultats.delai-diffusion',
                     fr: '/sante/essais-cliniques/resultats?id=resultats.delai-diffusion',
                   },
                 },
@@ -394,6 +409,7 @@ function EssaisCliniques() {
                   }),
                   href: {
                     en: '/health/clinical-trials/results?id=resultats.publication',
+                    ja: '/health/clinical-trials/results?id=resultats.publication',
                     fr: '/sante/essais-cliniques/resultats?id=resultats.publication',
                   },
                   isDisplayed: !isInProduction(),

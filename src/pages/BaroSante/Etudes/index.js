@@ -73,6 +73,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/general?id=general.dynamique',
+                    ja: '/health/observational-studies/general?id=general.dynamique',
                     fr: '/sante/etudes-observationnelles/general?id=general.dynamique',
                   },
                 },
@@ -83,6 +84,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/general?id=general.dynamique',
+                    ja: '/health/observational-studies/general?id=general.dynamique',
                     fr: '/sante/etudes-observationnelles/general?id=general.dynamique',
                   },
                 },
@@ -93,6 +95,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/general?id=general.directions',
+                    ja: '/health/observational-studies/general?id=general.directions',
                     fr: '/sante/etudes-observationnelles/general?id=general.directions',
                   },
                 },
@@ -152,6 +155,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/characteristics?id=caracteristiques.quand',
+                    ja: '/health/observational-studies/characteristics?id=caracteristiques.quand',
                     fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
                   },
                 },
@@ -161,6 +165,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/characteristics?id=caracteristiques.quand',
+                    ja: '/health/observational-studies/characteristics?id=caracteristiques.quand',
                     fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.quand',
                   },
                 },
@@ -170,6 +175,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/characteristics?id=caracteristiques.duree',
+                    ja: '/health/observational-studies/characteristics?id=caracteristiques.duree',
                     fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.duree',
                   },
                 },
@@ -179,6 +185,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/characteristics?id=caracteristiques.combien',
+                    ja: '/health/observational-studies/characteristics?id=caracteristiques.combien',
                     fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.combien',
                   },
                 },
@@ -188,6 +195,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/characteristics?id=caracteristiques.types',
+                    ja: '/health/observational-studies/characteristics?id=caracteristiques.types',
                     fr: '/sante/etudes-observationnelles/caracteristiques?id=caracteristiques.types',
                   },
                 },
@@ -259,6 +267,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                    ja: '/health/observational-studies/lead-sponsors?id=promoteurs.dynamique-ouverture',
                     fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
                   },
                 },
@@ -268,6 +277,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/lead-sponsors?id=promoteurs.dynamique-ouverture',
+                    ja: '/health/observational-studies/lead-sponsors?id=promoteurs.dynamique-ouverture',
                     fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.dynamique-ouverture',
                   },
                 },
@@ -277,6 +287,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/lead-sponsors?id=promoteurs.impact',
+                    ja: '/health/observational-studies/lead-sponsors?id=promoteurs.impact',
                     fr: '/sante/etudes-observationnelles/promoteurs?id=promoteurs.impact',
                   },
                 },
@@ -330,6 +341,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/results?id=resultats.type-diffusion',
+                    ja: '/health/observational-studies/results?id=resultats.type-diffusion',
                     fr: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
                   },
                 },
@@ -339,6 +351,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/results?id=resultats.type-diffusion',
+                    ja: '/health/observational-studies/results?id=resultats.type-diffusion',
                     fr: '/sante/etudes-observationnelles/resultats?id=resultats.type-diffusion',
                   },
                 },
@@ -348,6 +361,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/results?id=resultats.plan-partage',
+                    ja: '/health/observational-studies/results?id=resultats.plan-partage',
                     fr: '/sante/etudes-observationnelles/resultats?id=resultats.plan-partage',
                   },
                 },
@@ -357,6 +371,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/results?id=resultats.delai-diffusion',
+                    ja: '/health/observational-studies/results?id=resultats.delai-diffusion',
                     fr: '/sante/etudes-observationnelles/resultats?id=resultats.delai-diffusion',
                   },
                 },
@@ -366,6 +381,7 @@ function EtudesObservationnelles() {
                   }),
                   href: {
                     en: '/health/observational-studies/results?id=resultats.publication',
+                    ja: '/health/observational-studies/results?id=resultats.publication',
                     fr: '/sante/etudes-observationnelles/resultats?id=resultats.publication',
                   },
                 },

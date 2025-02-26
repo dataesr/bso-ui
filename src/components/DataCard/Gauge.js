@@ -26,7 +26,7 @@ function Gauge({ value, nbPosition }) {
               strokeLinecap='round'
               strokeWidth='26px'
               fill='none'
-              stroke='#fff'
+              stroke='#e6f5ec'
             />
             <path
               className='stroke'
@@ -39,7 +39,7 @@ function Gauge({ value, nbPosition }) {
               stroke='currentColor'
             />
           </g>
-          <text x={nbPosition} y='180' className='marianne-extra-bold'>
+          <text x={nbPosition} y='180' className='notosans-bold'>
             {`${value}`}
             <tspan className='marianne-bold fs-24-32'> %</tspan>
           </text>

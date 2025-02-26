@@ -54,7 +54,7 @@ const GraphFooter = ({
       Array.from(urlSearchParams).length ? '?' : ''
     }${urlSearchParams}`,
   );
-  const shareFill = getCSSValue('--blue-soft-100');
+
   const clipboardContent = `<iframe id="${srcPath}" title="${title}" width="800" height="${height}" src="${urlToShare}"></iframe>`;
 
   return (
@@ -62,172 +62,152 @@ const GraphFooter = ({
       <div className='graph-footer'>
         <Container>
           <Row>
-            <Col>
+            <Col className='graph-footer__content'>
               {date ? (
-                <Text size='xs'>
-                  <FormattedMessage
-                    id='app.graph.data-updated'
-                    defaultMessage='Data updated'
-                  />
-                  {` ${date}`}
-                </Text>
+                <div className='graph-footer__field'>
+                  <span className='graph-footer__field-label'>
+                    <FormattedMessage
+                      id='app.graph.data-updated'
+                      defaultMessage='Data updated'
+                    />
+                  </span>
+                  <span className='graph-footer__field-value'>{date}</span>
+                </div>
               ) : null}
-              {date && source ? <hr /> : null}
               {source ? (
-                <Text size='xs' className='source'>
-                  {`Sources : ${source}`}
-                </Text>
+                <div className='graph-footer__field'>
+                  <span className='graph-footer__field-label'>Sources</span>
+                  {/* <span className='graph-footer__field-value'>{source}</span> */}
+                  <span className='graph-footer__field-value'>OpenAlex</span>
+                </div>
               ) : null}
-              {source && srcPath ? <hr /> : null}
-              <p>
+              <div className='graph-footer__field-wrapper'>
                 {enableExport && (
-                  <>
-                    <Text size='xs' as='span'>
+                  <div className='graph-footer__field'>
+                    <span className='graph-footer__field-label'>
                       <FormattedMessage
                         id='app.graph.download'
                         defaultMessage='Download'
                       />
-                    </Text>
-                    {onCsvButtonClick && (
-                      <span
-                        className='icon-click ml-10 mr-26'
-                        tabIndex={0}
-                        role='button'
-                        onClick={() => onCsvButtonClick()}
-                        onKeyPress={() => onCsvButtonClick()}
-                      >
-                        <DSIcon
-                          name='ri-file-excel-fill'
-                          size='lg'
-                          as='span'
-                          iconPosition='right'
-                          className='ds-fr--v-text-top'
+                    </span>
+                    <span className='graph-footer__field-value graph-footer__dl-btn'>
+                      {onCsvButtonClick && (
+                        <button
+                          className='josm-btn'
+                          type='button'
+                          onClick={() => onCsvButtonClick()}
+                          onKeyPress={() => onCsvButtonClick()}
                         >
-                          <Text size='xs' as='span'>
-                            <FormattedMessage
-                              id='app.graph.download.csv'
-                              defaultMessage='CSV'
-                            />
-                          </Text>
-                        </DSIcon>
-                      </span>
-                    )}
-                    {onPngButtonClick && (
-                      <span
-                        className='icon-click mr-120'
-                        tabIndex={0}
-                        role='button'
-                        onClick={() => onPngButtonClick()}
-                        onKeyPress={() => onPngButtonClick()}
-                      >
-                        <DSIcon
-                          name='ri-file-chart-fill'
-                          size='lg'
-                          as='span'
-                          iconPosition='right'
-                          className='ds-fr--v-text-top'
+                          <FormattedMessage
+                            id='app.graph.download.csv'
+                            defaultMessage='CSV'
+                          />
+                        </button>
+                      )}
+                      {onPngButtonClick && (
+                        <button
+                          className='josm-btn'
+                          type='button'
+                          onClick={() => onPngButtonClick()}
+                          onKeyPress={() => onPngButtonClick()}
                         >
-                          <Text size='xs' as='span'>
-                            <FormattedMessage
-                              id='app.graph.download.png'
-                              defaultMessage='PNG'
-                            />
-                          </Text>
-                        </DSIcon>
-                      </span>
-                    )}
-                  </>
+                          <FormattedMessage
+                            id='app.graph.download.png'
+                            defaultMessage='PNG'
+                          />
+                        </button>
+                      )}
+                    </span>
+                  </div>
+                )}
+                {enableExport && srcPath && (
+                  <span className='graph-footer__separator' />
                 )}
                 {srcPath && (
-                  <>
-                    <span
-                      className='icon-click mr-26'
+                  <div className='graph-footer__field-value'>
+                    <button
+                      className='josm-btn'
+                      type='button'
                       onClick={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
                       onKeyPress={() => setIsModalIntegrationOpen(!isModalIntegrationOpen)}
-                      role='button'
-                      tabIndex={0}
                     >
-                      <DSIcon
-                        as='span'
-                        className='ds-fr--v-text-top'
-                        iconPosition='right'
-                        name='ri-file-code-fill'
-                        size='lg'
-                      >
-                        <Text size='xs' as='span' className=''>
-                          <FormattedMessage
-                            id='app.graph.integration'
-                            defaultMessage='Integration'
-                          />
-                        </Text>
-                      </DSIcon>
-                    </span>
-                    <span
-                      className='icon-click'
+                      <FormattedMessage
+                        id='app.graph.integration'
+                        defaultMessage='Integration'
+                      />
+                    </button>
+                    <button
+                      className='josm-btn'
+                      type='button'
                       onClick={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
                       onKeyPress={() => setIsModalFullscreenOpen(!isModalFullscreenOpen)}
-                      role='button'
-                      tabIndex={0}
                     >
-                      <DSIcon
-                        as='span'
-                        className='ds-fr--v-text-top'
-                        iconPosition='right'
-                        name='ri-fullscreen-line'
-                        size='lg'
-                      >
-                        <Text size='xs' as='span' className=''>
-                          <FormattedMessage
-                            id='app.graph.fullscreen'
-                            defaultMessage='Plein écran'
-                          />
-                        </Text>
-                      </DSIcon>
-                    </span>
-                  </>
+                      <FormattedMessage
+                        id='app.graph.fullscreen'
+                        defaultMessage='Plein écran'
+                      />
+                    </button>
+                  </div>
                 )}
-              </p>
+              </div>
             </Col>
           </Row>
         </Container>
         <Container fluid className='share'>
           <Row>
-            <Col className='text-right'>
-              <div className='flex flex-end align-center'>
-                <div className='fs-14-24 marianne'>
+            <Col>
+              <div className='share-container'>
+                <div className='share-label'>
                   <FormattedMessage
                     defaultMessage='Share'
                     id='app.graph.share'
                   />
                 </div>
-                <TwitterShareButton
-                  className='share-btn'
-                  hashtags={['OpenAccess', 'ScienceOuverte', 'dataESR']}
-                  related={['sup_recherche', 'ouvrirlascience']}
-                  text={title}
-                  title={title}
-                  url={urlToShare}
-                  via='ouvrirlascience'
-                >
-                  <XIcon size={30} bgStyle={{ fill: shareFill }} />
-                </TwitterShareButton>
-                <LinkedinShareButton
-                  className='share-btn'
-                  source='BSO'
-                  summary={title}
-                  title={title}
-                  url={urlToShare}
-                >
-                  <LinkedinIcon size={30} bgStyle={{ fill: shareFill }} />
-                </LinkedinShareButton>
-                <FacebookShareButton
-                  className='share-btn'
-                  hashtag='ScienceOuverte'
-                  quote={title}
-                  url={urlToShare}
-                >
-                  <FacebookIcon size={30} bgStyle={{ fill: shareFill }} />
-                </FacebookShareButton>
+                <div className='share-buttons'>
+                  <TwitterShareButton
+                    className='share-btn'
+                    hashtags={['OpenAccess', 'ScienceOuverte', 'dataESR']}
+                    related={['sup_recherche', 'ouvrirlascience']}
+                    text={title}
+                    title={title}
+                    url={urlToShare}
+                    via='ouvrirlascience'
+                    style={{ borderRadius: 16, border: 'solid 1px #333' }}
+                  >
+                    <XIcon
+                      size={32}
+                      iconFillColor='#333'
+                      bgStyle={{ fill: 'transparent' }}
+                    />
+                  </TwitterShareButton>
+                  <LinkedinShareButton
+                    className='share-btn'
+                    source='BSO'
+                    summary={title}
+                    title={title}
+                    url={urlToShare}
+                    style={{ borderRadius: 16, border: 'solid 1px #333' }}
+                  >
+                    <LinkedinIcon
+                      size={32}
+                      iconFillColor='#333'
+                      bgStyle={{ fill: 'transparent' }}
+                    />
+                  </LinkedinShareButton>
+                  <FacebookShareButton
+                    className='share-btn'
+                    hashtag='ScienceOuverte'
+                    quote={title}
+                    url={urlToShare}
+                    style={{ borderRadius: 16, border: 'solid 1px #333' }}
+                  >
+                    <FacebookIcon
+                      size={32}
+                      iconFillColor='#333'
+                      bgStyle={{ fill: 'transparent' }}
+                    />
+                  </FacebookShareButton>
+                </div>
               </div>
             </Col>
           </Row>

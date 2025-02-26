@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ES_API_URL, HEADERS } from '../../config/config';
-import getFetchOptions from '../chartFetchOptions';
-import { clearSessionStorage, getURLSearchParams } from '../helpers';
+import { ES_API_URL } from '../../config/config';
+import { clearSessionStorage } from '../helpers';
 
 export const GlobalsContext = createContext();
 
@@ -58,47 +57,41 @@ export const GlobalsContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   async function getObservationSnaps() {
-    const query = getFetchOptions({ key: 'observationSnaps' });
-    const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const { firstObservationYear, lastObservationYear } = getURLSearchParams();
-    let newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
-      .map((el) => el.key)
-      .sort((a, b) => b.substring(0, 4) - a.substring(0, 4))
-      .filter(
-        (el) => parseInt(el.substring(0, 4), 10)
-            <= parseInt(lastObservationYear.substring(0, 4), 10),
-      )
-      .filter(
-        (el) => parseInt(el.substring(0, 4), 10)
-            >= parseInt(firstObservationYear.substring(0, 4), 10),
-      );
-    newObservationSnaps = newObservationSnaps.filter(
-      (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
-    );
-    // If too many years displayed, exclude 2019 and 2021
-    if (newObservationSnaps.length > 6) {
-      newObservationSnaps = newObservationSnaps.filter(
-        (el) => !['2019', '2021'].includes(el.substring(0, 4)),
-      );
-    }
+    const res = await Axios.post(ES_API_URL, {
+      size: 0,
+      aggs: {
+        unique_calc_dates: {
+          terms: {
+            field: 'calc_date',
+            size: 10000,
+          },
+        },
+      },
+    });
+    const observationBuckets = res?.data?.aggregations?.unique_calc_dates?.buckets;
+    const newObservationSnaps = [...new Set(observationBuckets.map((item) => item.key_as_string.slice(0, 4)))]
+      .sort((a, b) => b - a);
     return newObservationSnaps;
   }
 
-  async function getUpdateDate(lastDate) {
-    // Récupération de la date de modification
-    const query = {
-      size: 0,
-      aggs: {
-        snapshot_date: {
-          terms: { field: `oa_details.${lastDate}.snapshot_date.keyword` },
+  async function getUpdateDate() {
+    // 最新のcalc_dateを取得
+    const latestDateRes = await Axios.post(ES_API_URL, {
+      size: 1,
+      _source: ['calc_date'],
+      sort: [
+        {
+          calc_date: {
+            order: 'desc',
+          },
         },
-      },
-    };
-    const res = await Axios.post(ES_API_URL, query, HEADERS);
-    const date = res?.data?.aggregations?.snapshot_date?.buckets[0]?.key;
-    return [date.slice(0, 4), '-', date.slice(4, 6), '-', date.slice(6)].join(
-      '',
-    );
+      ],
+    });
+
+    // calc_dateをdateに代入
+    /* eslint-disable no-underscore-dangle */
+    const date = latestDateRes.data.hits.hits[0]._source.calc_date;
+    return date;
   }
 
   useEffect(() => {

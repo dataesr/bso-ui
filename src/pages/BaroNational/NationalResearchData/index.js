@@ -85,6 +85,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/general?id=general.partage',
+                    ja: '/research-data/general?id=general.partage',
                     fr: '/donnees-de-la-recherche/general?id=general.partage',
                   },
                 },
@@ -94,6 +95,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/general?id=general.partage',
+                    ja: '/research-data/general?id=general.partage',
                     fr: '/donnees-de-la-recherche/general?id=general.partage',
                   },
                 },
@@ -103,6 +105,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/general?id=general.utilisation',
+                    ja: '/research-data/general?id=general.utilisation',
                     fr: '/donnees-de-la-recherche/general?id=general.utilisation',
                   },
                 },
@@ -112,6 +115,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/general?id=general.creation',
+                    ja: '/research-data/general?id=general.creation',
                     fr: '/donnees-de-la-recherche/general?id=general.creation',
                   },
                 },
@@ -121,6 +125,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/general?id=general.statement',
+                    ja: '/research-data/general?id=general.statement',
                     fr: '/donnees-de-la-recherche/general?id=general.statement',
                   },
                 },
@@ -196,6 +201,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/fields?id=disciplines.utilisation',
+                    ja: '/research-data/fields?id=disciplines.utilisation',
                     fr: '/donnees-de-la-recherche/disciplines?id=disciplines.utilisation',
                   },
                 },
@@ -205,6 +211,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/fields?id=disciplines.utilisation',
+                    ja: '/research-data/fields?id=disciplines.utilisation',
                     fr: '/donnees-de-la-recherche/disciplines?id=disciplines.utilisation',
                   },
                 },
@@ -214,6 +221,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/fields?id=disciplines.creation',
+                    ja: '/research-data/fields?id=disciplines.creation',
                     fr: '/donnees-de-la-recherche/disciplines?id=disciplines.creation',
                   },
                 },
@@ -223,6 +231,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/fields?id=disciplines.partage',
+                    ja: '/research-data/fields?id=disciplines.partage',
                     fr: '/donnees-de-la-recherche/disciplines?id=disciplines.partage',
                   },
                 },
@@ -232,6 +241,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/fields?id=disciplines.statement',
+                    ja: '/research-data/fields?id=disciplines.statement',
                     fr: '/donnees-de-la-recherche/disciplines?id=disciplines.statement',
                   },
                 },
@@ -296,6 +306,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/publishers?id=editeurs.availibility',
+                    ja: '/research-data/publishers?id=editeurs.availibility',
                     fr: '/donnees-de-la-recherche/editeurs?id=editeurs.availibility',
                   },
                 },
@@ -305,6 +316,7 @@ export default function NationalResearchData() {
                   }),
                   href: {
                     en: '/research-data/publishers?id=editeurs.availibility',
+                    ja: '/research-data/publishers?id=editeurs.availibility',
                     fr: '/donnees-de-la-recherche/editeurs?id=editeurs.availibility',
                   },
                 },

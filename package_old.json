@@ -1,0 +1,79 @@
+{
+  "name": "bso-ui",
+  "version": "1.13.9",
+  "private": true,
+  "dependencies": {
+    "@dataesr/react-dsfr": "^3.9.1",
+    "@datapunt/matomo-tracker-react": "^0.5.1",
+    "axios": "^0.21.1",
+    "classnames": "^2.3.1",
+    "env-cmd": "^10.1.0",
+    "highcharts": "^9.1.0",
+    "highcharts-react-official": "^3.0.0",
+    "papaparse": "^5.3.2",
+    "prop-types": "^15.7.2",
+    "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^8.32.0",
+    "react-intl": "^6.0.5",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "4.0.3",
+    "react-share": "^5.1.0",
+    "sanitize-html": "^2.5.3",
+    "uuid": "^8.3.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "node-sass": "^9.0.0",
+    "prettier": "^2.3.0",
+    "stylelint": "^13.13.1",
+    "stylelint-scss": "^3.19.0"
+  },
+  "scripts": {
+    "build": "react-scripts --openssl-legacy-provider build",
+    "build:staging": "env-cmd -f .env.staging react-scripts --openssl-legacy-provider build",
+    "deploy": "git switch main && git pull origin main --rebase --tags && git merge origin staging && npm version $npm_config_level && git push origin main --tags && git switch staging && git merge origin main && git push",
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix src/**/*.js",
+    "prepare": "husky install",
+    "prettier": "prettier --write **/*.js",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "stylelint": "stylelint --fix **/*.scss"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.+(js)": [
+      "eslint --fix"
+    ],
+    "src/**/*.{js,json,md}": [
+      "prettier --write"
+    ],
+    "src/**/*.scss": [
+      "stylelint"
+    ]
+  }
+}

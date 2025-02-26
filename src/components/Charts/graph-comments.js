@@ -6,10 +6,10 @@ import { FormattedMessage } from 'react-intl';
 
 const GraphComments = ({ comments, hasFooter }) => (
   <div className='graph-comments'>
-    <div className='fs-14-24 marianne-bold'>
+    <div className='fs-16-28 notosans-bold mb-8'>
       <FormattedMessage id='app.commons.graph-comment.label' />
     </div>
-    <p className={`marianne fs-14-24 ${hasFooter ? '' : 'm-0'}`}>{comments}</p>
+    <p className={`fs-16-28 ${hasFooter ? '' : 'm-0'}`}>{comments}</p>
   </div>
 );
 

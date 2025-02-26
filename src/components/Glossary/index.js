@@ -11,10 +11,13 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
+import GlossaryJSON from '../../translations/glossary.json';
 import { getAllIndexes } from '../../utils/helpers';
+import Icon from '../Icon';
 import GlossaryItem from './GlossaryItem';
+
+const allGlossaries = GlossaryJSON[0];
 
 function Glossary({ entries }) {
   const { pathname } = useLocation();
@@ -27,8 +30,16 @@ function Glossary({ entries }) {
   const activeClassManage = useCallback((glossaryKey = '', action) => {
     if (glossaryKey) {
       const activeClassObj = {
-        remove: (elm) => elm.classList.remove('active'),
-        add: (elm) => elm.classList.add('active'),
+        remove: (elm) => {
+          if (elm?.classList) {
+            elm.classList.remove('active');
+          }
+        },
+        add: (elm) => {
+          if (elm?.classList) {
+            elm.classList.add('active');
+          }
+        },
       };
       const glossaryKeyElement = document.querySelector(
         `[data-glossary-key=${glossaryKey}]`,
@@ -129,31 +140,29 @@ function Glossary({ entries }) {
 
   return (
     <section className={classNames('bso-glossary z-4000', { openPanel })}>
-      <Container>
-        <DSIcon name='ri-information-fill' size='1x' iconPosition='right'>
-          <Button
-            size='sm'
-            onClick={() => glossaryPanel('', !openPanel)}
-            className='btn-blue color-white'
-          >
-            <FormattedMessage
-              id='app.header.nav.a-propos-glossaire'
-              defaultMessage='Glossaire'
-            />
-          </Button>
-        </DSIcon>
-        <Row>
+      <Container fluid className='josm-glossary-container'>
+        <Button
+          className='josm-btn bso-glossary__btn'
+          onClick={() => glossaryPanel('', !openPanel)}
+        >
+          <Icon name='glossary' />
+          <FormattedMessage
+            id='app.header.nav.a-propos-glossaire'
+            defaultMessage='Glossaire'
+          />
+        </Button>
+        <Row className='josm-glossary-rows'>
           <Col n='12' className='wrapper-title'>
             <Row>
-              <Col n='9'>
-                <div className='fs-20-20 marianne-extra-bold'>
+              <Col n='6'>
+                <div className='fs-24-36 notosans-bold'>
                   <FormattedMessage
                     id='app.glossary.title'
                     defaultMessage='Glossaire de la page'
                   />
                 </div>
               </Col>
-              <Col n='3' className='text-right'>
+              <Col n='6' className='text-right'>
                 <button
                   className='close'
                   type='button'
@@ -161,7 +170,7 @@ function Glossary({ entries }) {
                 >
                   <DSIcon
                     className='ds-fr--v-middle'
-                    name='ri-close-circle-line'
+                    name='ri-close-large-fill'
                     size='lg'
                     iconPosition='right'
                   >
@@ -176,30 +185,27 @@ function Glossary({ entries }) {
               </Col>
             </Row>
           </Col>
-        </Row>
-        <Row>
-          <Col n='12'>
+          <Col n='12' className='content-wrapper'>
             <div ref={contentRef} className='content relative'>
-              {glossaryEntries
-                && glossaryEntries.map((entry, i) => {
-                  const key = entry.getAttribute('data-glossary-key');
-                  const currentEntry = entries[0][key];
-                  return (
-                    <GlossaryItem
-                      glossaryKey={key}
-                      key={uuidv4()}
-                      intlDefinition={currentEntry.intlDefinition}
-                      active={key === activeKey}
-                      intlEntry={currentEntry.intlEntry}
-                      className={i === 0 ? 'pt-20' : ''}
-                      link={currentEntry.ctas || currentEntry.cta || null}
-                    />
-                  );
-                })}
+              {Object.keys(allGlossaries).map((key, i) => {
+                const currentEntry = entries[0][key];
+
+                return (
+                  <GlossaryItem
+                    glossaryKey={key}
+                    key={key}
+                    intlDefinition={currentEntry.intlDefinition}
+                    active={key === activeKey}
+                    intlEntry={currentEntry.intlEntry}
+                    className={i === 0 ? 'pt-20' : ''}
+                    link={currentEntry.ctas || currentEntry.cta || null}
+                  />
+                );
+              })}
             </div>
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col n='12'>
             <DSLink
               className='to-glossary-page'
@@ -216,7 +222,7 @@ function Glossary({ entries }) {
               })}
             </DSLink>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </section>
   );

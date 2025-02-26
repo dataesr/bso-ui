@@ -1,5 +1,8 @@
 .bso-datacard {
-  color: var(--blue-dark-125);
+  border: solid 1px var(--g-800);
+  border-radius: 16px;
+  color: var(--g-800);
+  padding-bottom: 2rem;
 
   .pink {
     background-color: var(--publication-25);
@@ -34,13 +37,13 @@
         transform-origin: 100px 100px;
 
         &.stroke {
-          stroke: var(--blue-dark-125);
+          stroke: var(--green-800);
         }
       }
 
       text {
         @include font-size(40, 40);
-        fill: var(--blue-dark-125);
+        fill: var(--g-800);
       }
     }
   }
@@ -50,7 +53,8 @@
   }
 
   .sentence {
-    @include font-size(14, 20);
+    @include font-size(16, 28);
+    text-align: left;
   }
 
   .top-data {
@@ -61,7 +65,8 @@
   .btn-bottom {
     position: absolute;
     bottom: 20px;
-    width: 160px;
-    left: calc(50% - 80px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
   }
 }

@@ -33,7 +33,7 @@ function InfoCard({
           {data1 ? (
             <section>
               {title && <div className='fs-20-26'>{title}</div>}
-              <div className='marianne-extra-bold'>
+              <div className='notosans-bold'>
                 <span className='fs-48-48'>
                   {typeof data1 === 'number'
                     ? formatNumberByLang(data1, lang)

@@ -5,7 +5,7 @@ import {
   Container,
   Row,
 } from '@dataesr/react-dsfr';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
@@ -28,8 +28,12 @@ export default function NationalPublications() {
   const { lang } = useLang();
   const { pathname } = useLocation();
   const intl = useIntl();
-  const blueSoft25 = getCSSValue('--blue-soft-25');
-  const blueSoft50 = getCSSValue('--blue-soft-50');
+  const greenBg = getCSSValue('--green-50');
+  const [rendered, setRendered] = useState(false);
+
+  useEffect(() => {
+    setRendered(true);
+  }, []);
 
   return (
     <Container fluid className='page'>
@@ -44,7 +48,7 @@ export default function NationalPublications() {
           <Container>
             <Row>
               <Col n='12'>
-                <Breadcrumb>
+                {/* <Breadcrumb>
                   <BreadcrumbItem href='/' className='underline'>
                     {intl.formatMessage({
                       id: 'app.header.nav.baro-national-accueil',
@@ -58,7 +62,7 @@ export default function NationalPublications() {
                 </Breadcrumb>
                 <h1 className='contentTitle marianne-bold mb-32'>
                   <FormattedMessage id='app.baro-national.publications.title' />
-                </h1>
+                </h1> */}
                 <p>
                   <GlossaryFormattedMessage
                     intlKey='app.baro-national.intro'
@@ -66,10 +70,12 @@ export default function NationalPublications() {
                   />
                 </p>
               </Col>
+              <Col n='12'>
+                <DataCardSection lang={lang} />
+              </Col>
             </Row>
           </Container>
-          <Glossary entries={GlossaryEntries} />
-          <DataCardSection lang={lang} />
+          {rendered && <Glossary entries={GlossaryEntries} />}
         </Row>
         <Row>
           <GraphNavigation mobileTitleIntl={mobileButtonLabel[lang][pathname]}>
@@ -84,6 +90,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.dynamique-ouverture',
+                    ja: '/publications/general?id=general.dynamique-ouverture',
                     fr: '/publications/general?id=general.dynamique-ouverture',
                   },
                 },
@@ -93,6 +100,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.dynamique-ouverture',
+                    ja: '/publications/general?id=general.dynamique-ouverture',
                     fr: '/publications/general?id=general.dynamique-ouverture',
                   },
                 },
@@ -102,6 +110,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.voies-ouverture',
+                    ja: '/publications/general?id=general.voies-ouverture',
                     fr: '/publications/general?id=general.voies-ouverture',
                   },
                 },
@@ -111,6 +120,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.genres-ouverture',
+                    ja: '/publications/general?id=general.genres-ouverture',
                     fr: '/publications/general?id=general.genres-ouverture',
                   },
                 },
@@ -120,34 +130,37 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/general?id=general.langues-ouverture',
+                    ja: '/publications/general?id=general.langues-ouverture',
                     fr: '/publications/general?id=general.langues-ouverture',
                   },
                 },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.hal',
-                  }),
-                  href: {
-                    en: '/publications/general?id=general.hal',
-                    fr: '/publications/general?id=general.hal',
-                  },
-                },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.lpr',
-                  }),
-                  href: {
-                    en: '/publications/general?id=general.lpr',
-                    fr: '/publications/general?id=general.lpr',
-                  },
-                },
+                // {
+                //   label: intl.formatMessage({
+                //     id: 'app.publi.navigation.hal',
+                //   }),
+                //   href: {
+                //     en: '/publications/general?id=general.hal',
+                //     ja: '/publications/general?id=general.hal',
+                //     fr: '/publications/general?id=general.hal',
+                //   },
+                // },
+                // {
+                //   label: intl.formatMessage({
+                //     id: 'app.publi.navigation.lpr',
+                //   }),
+                //   href: {
+                //     en: '/publications/general?id=general.lpr',
+                //     ja: '/publications/general?id=general.lpr',
+                //     fr: '/publications/general?id=general.lpr',
+                //   },
+                // },
               ]}
             >
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.general.dynamique-ouverture'
                   glossaryKeys={['embargo', 'barriere-mobile']}
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='general.dynamique-ouverture'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture' />
@@ -156,7 +169,7 @@ export default function NationalPublications() {
                 <QuestionSection
                   intlKey='app.national-publi.general.voies-ouverture'
                   glossaryKeys={['archive-ouverte']}
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   anchorId='general.voies-ouverture'
                 >
                   <BSOChart id='publi.general.voies-ouverture.chart-repartition-publications' />
@@ -164,7 +177,7 @@ export default function NationalPublications() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.genres-ouverture'
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='general.genres-ouverture'
                   glossaryKeys={['preprints']}
                 >
@@ -173,18 +186,19 @@ export default function NationalPublications() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.langues-ouverture'
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   anchorId='general.langues-ouverture'
                 >
                   <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.general.langues.chart-publications-by-year'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                 </QuestionSection>
+                {/*
                 <QuestionSection
                   anchorId='general.hal'
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   intlKey='app.national-publi.general.hal'
                 >
                   <iframe
@@ -197,11 +211,12 @@ export default function NationalPublications() {
                 </QuestionSection>
                 <QuestionSection
                   intlKey='app.national-publi.general.lpr'
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   anchorId='general.lpr'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture-article' />
                 </QuestionSection>
+                */}
               </GraphContent>
             </GraphItem>
 
@@ -218,6 +233,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fields?id=disciplines.dynamique-ouverture',
+                    ja: '/publications/fields?id=disciplines.dynamique-ouverture',
                     fr: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                   },
                 },
@@ -227,6 +243,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fields?id=disciplines.dynamique-ouverture',
+                    ja: '/publications/fields?id=disciplines.dynamique-ouverture',
                     fr: '/publications/disciplines?id=disciplines.dynamique-ouverture',
                   },
                 },
@@ -236,6 +253,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fields?id=disciplines.voies-ouverture',
+                    ja: '/publications/fields?id=disciplines.voies-ouverture',
                     fr: '/publications/disciplines?id=disciplines.voies-ouverture',
                   },
                 },
@@ -244,21 +262,21 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.disciplines.dynamique-ouverture'
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='disciplines.dynamique-ouverture'
                 >
                   <BSOChart id='publi.disciplines.dynamique-ouverture.chart-taux-ouverture' />
-                  <BSOChart id='publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' />
+                  {/* <BSOChart id='publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' /> */}
                 </QuestionSection>
 
                 <QuestionSection
                   intlKey='app.national-publi.disciplines.voies-ouverture'
                   glossaryKeys={['archive-ouverte', 'pmc']}
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='disciplines.voies-ouverture'
                 >
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-repartition-publications' />
-                  <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
+                  {/* <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' /> */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -274,6 +292,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.dynamique-ouverture',
+                    ja: '/publications/publishers?id=publishers.dynamique-ouverture',
                     fr: '/publications/editeurs?id=publishers.dynamique-ouverture',
                   },
                 },
@@ -283,6 +302,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.dynamique-ouverture',
+                    ja: '/publications/publishers?id=publishers.dynamique-ouverture',
                     fr: '/publications/editeurs?id=publishers.dynamique-ouverture',
                   },
                 },
@@ -292,6 +312,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.type-ouverture',
+                    ja: '/publications/publishers?id=publishers.type-ouverture',
                     fr: '/publications/editeurs?id=publishers.type-ouverture',
                   },
                 },
@@ -301,30 +322,34 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.politiques-ouverture',
+                    ja: '/publications/publishers?id=publishers.politiques-ouverture',
                     fr: '/publications/editeurs?id=publishers.politiques-ouverture',
                   },
                 },
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.editeurs.revues',
-                  }),
-                  href: {
-                    en: '/publications/publishers?id=publishers.poids-revues',
-                    fr: '/publications/editeurs?id=publishers.poids-revues',
-                  },
-                },
+                // {
+                //   label: intl.formatMessage({
+                //     id: 'app.publi.navigation.editeurs.revues',
+                //   }),
+                //   href: {
+                //     en: '/publications/publishers?id=publishers.poids-revues',
+                //     ja: '/publications/publishers?id=publishers.poids-revues',
+                //     fr: '/publications/editeurs?id=publishers.poids-revues',
+                //   },
+                // },
                 {
                   label: intl.formatMessage({
                     id: 'app.publi.navigation.editeurs.licences',
                   }),
                   href: {
                     en: '/publications/publishers?id=publishers.repartition-licences',
+                    ja: '/publications/publishers?id=publishers.repartition-licences',
                     fr: '/publications/editeurs?id=publishers.repartition-licences',
                   },
                 },
                 {
                   href: {
                     en: '/publications/publishers?id=publishers.couts-publication',
+                    ja: '/publications/publishers?id=publishers.couts-publication',
                     fr: '/publications/editeurs?id=publishers.couts-publication',
                   },
                   label: intl.formatMessage({
@@ -336,7 +361,7 @@ export default function NationalPublications() {
               <GraphContent>
                 <QuestionSection
                   intlKey='app.national-publi.publishers.dynamique-ouverture'
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='publishers.dynamique-ouverture'
                 >
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-taux-ouverture' />
@@ -352,7 +377,7 @@ export default function NationalPublications() {
                     'diamond',
                     'barriere-mobile',
                   ]}
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   anchorId='publishers.type-ouverture'
                 >
                   <BSOChart id='publi.publishers.type-ouverture.chart-repartition-modeles' />
@@ -367,50 +392,50 @@ export default function NationalPublications() {
                     'embargo',
                     'hal',
                   ]}
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='publishers.politiques-ouverture'
                 >
                   <BSOChart id='publi.publishers.politiques-ouverture.chart-classement' />
-                  <BSOChart id='publi.publishers.politiques-ouverture.chart-comparaison' />
+                  {/* <BSOChart id='publi.publishers.politiques-ouverture.chart-comparaison' /> */}
                 </QuestionSection>
 
-                <QuestionSection
+                {/* <QuestionSection
                   intlKey='app.national-publi.publishers.poids-revues'
                   glossaryKeys={['predatory', 'list-beall']}
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   anchorId='publishers.poids-revues'
                 >
                   <BSOChart
                     id='publi.publishers.poids-revues.chart-repartition'
                     isDisplayed={!isInProduction()}
                   />
-                </QuestionSection>
+                </QuestionSection> */}
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.repartition-licences'
                   glossaryKeys={['licence']}
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='publishers.repartition-licences'
                 >
                   <BSOChart id='publi.publishers.repartition-licences.chart-repartition' />
-                  <BSOChart id='publi.publishers.repartition-licences.chart-classement' />
+                  {/* <BSOChart id='publi.publishers.repartition-licences.chart-classement' /> */}
                 </QuestionSection>
 
                 <QuestionSection
                   intlKey='app.national-publi.publishers.couts-publication'
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   glossaryKeys={['apc', 'diamond', 'debusqapc']}
                   anchorId='publishers.couts-publication'
                 >
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.publishers.couts-publication.chart-depenses-estimees'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.publishers.couts-publication.chart-distribution-par-annee'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -426,6 +451,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-ouverture',
+                    ja: '/publications/repositories?id=repositories.dynamique-ouverture',
                     fr: '/publications/archives?id=repositories.dynamique-ouverture',
                   },
                 },
@@ -435,6 +461,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-ouverture',
+                    ja: '/publications/repositories?id=repositories.dynamique-ouverture',
                     fr: '/publications/archives?id=repositories.dynamique-ouverture',
                   },
                 },
@@ -444,6 +471,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.plus-utilisees',
+                    ja: '/publications/repositories?id=repositories.plus-utilisees',
                     fr: '/publications/archives?id=repositories.plus-utilisees',
                   },
                 },
@@ -453,6 +481,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-depot',
+                    ja: '/publications/repositories?id=repositories.dynamique-depot',
                     fr: '/publications/archives?id=repositories.dynamique-depot',
                   },
                   isDisplayed: !isInProduction(),
@@ -463,6 +492,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/repositories?id=repositories.dynamique-hal',
+                    ja: '/publications/repositories?id=repositories.dynamique-hal',
                     fr: '/publications/archives?id=repositories.dynamique-hal',
                   },
                 },
@@ -472,7 +502,7 @@ export default function NationalPublications() {
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-ouverture'
                   glossaryKeys={['archive-ouverte', 'anr', 'preprints']}
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='repositories.dynamique-ouverture'
                 >
                   <BSOChart id='publi.repositories.dynamique-ouverture.chart-taux-ouverture' />
@@ -482,25 +512,25 @@ export default function NationalPublications() {
                 <QuestionSection
                   intlKey='app.national-publi.repositories.plus-utilisees'
                   glossaryKeys={['pmc', 'hal']}
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   anchorId='repositories.plus-utilisees'
                 >
                   <BSOChart id='publi.repositories.plus-utilisees.chart-nombre-documents' />
                 </QuestionSection>
 
-                <QuestionSection
+                {/* <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-depot'
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                   anchorId='repositories.dynamique-depot'
                   isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='publi.repositories.dynamique-depot.chart-nombre-documents-depots' />
-                </QuestionSection>
+                </QuestionSection> */}
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-hal'
                   glossaryKeys={['hal']}
-                  backgroundColor={blueSoft25}
+                  backgroundColor={greenBg}
                   anchorId='repositories.dynamique-hal'
                 >
                   <BSOChart id='publi.repositories.dynamique-hal.chart-couverture-hal' />
@@ -509,7 +539,7 @@ export default function NationalPublications() {
             </GraphItem>
 
             {/* Financements */}
-            <GraphItem
+            {/* <GraphItem
               paths={['/publications/financements', '/publications/fundings']}
               mainLabel={intl.formatMessage({
                 id: 'app.publi.fundings',
@@ -521,6 +551,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    ja: '/publications/fundings?id=fundings.chart-taux-ouverture',
                     fr: '/publications/financements?id=fundings.chart-taux-ouverture',
                   },
                 },
@@ -530,6 +561,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    ja: '/publications/fundings?id=fundings.chart-taux-ouverture',
                     fr: '/publications/financements?id=fundings.chart-taux-ouverture',
                   },
                 },
@@ -540,7 +572,7 @@ export default function NationalPublications() {
                 <QuestionSection
                   anchorId='fundings.chart-taux-ouverture'
                   intlKey=''
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                 >
                   <iframe
                     height='716'
@@ -600,10 +632,9 @@ export default function NationalPublications() {
                   />
                 </QuestionSection>
               </GraphContent>
-            </GraphItem>
-
+            </GraphItem> */}
             {/* A valider */}
-            <GraphItem
+            {/* <GraphItem
               paths={['/publications/a-decider', '/publications/to-be-decided']}
               mainLabel={intl.formatMessage({
                 id: 'app.publi.to-be-decided',
@@ -615,6 +646,7 @@ export default function NationalPublications() {
                   }),
                   href: {
                     en: '/publications/to-be-decided?id=to-be-decided.international-collaborations',
+                    ja: '/publications/to-be-decided?id=to-be-decided.international-collaborations',
                     fr: '/publications/a-decider?id=to-be-decided.international-collaborations',
                   },
                 },
@@ -625,7 +657,7 @@ export default function NationalPublications() {
                 <QuestionSection
                   anchorId='to-be-decided.international-collaborations'
                   intlKey=''
-                  backgroundColor={blueSoft50}
+                  backgroundColor={greenBg}
                 >
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
                   <BSOChart id='publi.others.retractions.chart-by-year' />
@@ -639,7 +671,7 @@ export default function NationalPublications() {
                   <BSOChart id='publi.others.hal-no-doi.hal-no-doi-by-field-by-year' />
                 </QuestionSection>
               </GraphContent>
-            </GraphItem>
+            </GraphItem> */}
           </GraphNavigation>
         </Row>
       </section>

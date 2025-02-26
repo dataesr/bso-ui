@@ -1,0 +1,35 @@
+:root .josm-btn {
+  --hover-tint: var(--green-600);
+  --hover: var(--green-600);
+  --active: var(--green-600);
+  align-items: center;
+  background-color: var(--green-800);
+  box-sizing: content-box;
+  color: #fff;
+  display: inline-flex;
+  font-family: 'NotoSansJP-N', sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  border-radius: 6px;
+  gap: 8px;
+  min-height: initial;
+  padding: 10px 16px;
+
+  .icon-left,
+  .icon-right {
+    margin: 0;
+
+    &::before {
+      line-height: 1;
+      vertical-align: middle;
+    }
+  }
+
+  .icon-left {
+    margin-left: -0.4rem;
+  }
+
+  .icon-right {
+    margin-right: -0.4rem;
+  }
+}
