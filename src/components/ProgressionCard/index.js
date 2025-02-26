@@ -17,7 +17,7 @@ export default function ProgressionCard({ domain }) {
 
   useEffect(() => {
     setPreviousObservationSnap(
-      observationSnaps?.[observationSnaps?.length - 1],
+      observationSnaps?.length === 1 ? observationSnaps[0] : observationSnaps?.[observationSnaps?.length - 1],
     );
   }, [beforeLastObservationSnap, observationSnaps]);
 

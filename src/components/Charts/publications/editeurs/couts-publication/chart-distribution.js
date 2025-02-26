@@ -1,5 +1,6 @@
 /* eslint-disable react/no-this-in-sfc */
-import Axios from 'axios';
+/* eslint-disable simple-import-sort/imports */
+// import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -8,9 +9,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { PUBLISHER_LIST } from '../../../../../config/publicationDataLists';
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import customComments from '../../../../../utils/chartComments';
-import getFetchOptions from '../../../../../utils/chartFetchOptions';
+// import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds } from '../../../../../utils/constants';
 import {
@@ -22,7 +24,8 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+// import useGetData from './get-data';
+import useGetData from './get-data-josm';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -32,7 +35,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
-  const [publisher, setPublisher] = useState('*');
+  const [publisher, setPublisher] = useState('all-publishers');
   const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals(domain);
   const { data, isError, isLoading } = useGetData(
     observationSnaps,
@@ -56,23 +59,16 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
 
   useEffect(() => {
-    const query = getFetchOptions({
-      key: 'publishersList',
-      domain,
-      parameters: [lastObservationSnap],
+    const opts = Object.entries(PUBLISHER_LIST).map(([key, value]) => ({
+      label: value,
+      value,
+    }));
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
+      value: 'all-publishers',
     });
-
-    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      const opts = response.data.aggregations.by_publisher.buckets
-        .filter((item) => !['unknown'].includes(item.key))
-        .map((item) => ({ label: item.key, value: item.key }));
-      opts.unshift({
-        label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
-        value: '*',
-      });
-      setOptions(opts);
-    });
-  }, [domain, intl, lastObservationSnap]);
+    setOptions(opts);
+  }, [domain, intl]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));

@@ -1,3 +1,13 @@
+# development environment
+FROM node:18-alpine AS development
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --silent
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+
+# build environment
 FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
@@ -9,4 +19,6 @@ RUN npm run build
 FROM nginx:stable
 COPY --from=build /app/build /usr/share/nginx/html
 COPY ./nginx/templates /etc/nginx/templates
+COPY ./nginx/osm.ir.rcos.nii.ac.jp.crt /etc/nginx/server.crt
+COPY ./nginx/osm.ir.rcos.nii.ac.jp.key /etc/nginx/server.key
 EXPOSE 3000

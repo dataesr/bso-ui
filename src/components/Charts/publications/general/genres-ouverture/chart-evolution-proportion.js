@@ -13,7 +13,8 @@ import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-proportion';
+// import useGetData from './get-data-proportion';
+import useGetData from './get-data-proportion-josm';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);

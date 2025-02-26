@@ -190,10 +190,10 @@ export default function NationalPublications() {
                   anchorId='general.langues-ouverture'
                 >
                   <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.general.langues.chart-publications-by-year'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                 </QuestionSection>
                 {/*
                 <QuestionSection
@@ -266,7 +266,7 @@ export default function NationalPublications() {
                   anchorId='disciplines.dynamique-ouverture'
                 >
                   <BSOChart id='publi.disciplines.dynamique-ouverture.chart-taux-ouverture' />
-                  <BSOChart id='publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' />
+                  {/* <BSOChart id='publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture' /> */}
                 </QuestionSection>
 
                 <QuestionSection
@@ -276,7 +276,7 @@ export default function NationalPublications() {
                   anchorId='disciplines.voies-ouverture'
                 >
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-repartition-publications' />
-                  <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
+                  {/* <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' /> */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -396,7 +396,7 @@ export default function NationalPublications() {
                   anchorId='publishers.politiques-ouverture'
                 >
                   <BSOChart id='publi.publishers.politiques-ouverture.chart-classement' />
-                  <BSOChart id='publi.publishers.politiques-ouverture.chart-comparaison' />
+                  {/* <BSOChart id='publi.publishers.politiques-ouverture.chart-comparaison' /> */}
                 </QuestionSection>
 
                 {/* <QuestionSection
@@ -418,7 +418,7 @@ export default function NationalPublications() {
                   anchorId='publishers.repartition-licences'
                 >
                   <BSOChart id='publi.publishers.repartition-licences.chart-repartition' />
-                  <BSOChart id='publi.publishers.repartition-licences.chart-classement' />
+                  {/* <BSOChart id='publi.publishers.repartition-licences.chart-classement' /> */}
                 </QuestionSection>
 
                 <QuestionSection
@@ -427,15 +427,15 @@ export default function NationalPublications() {
                   glossaryKeys={['apc', 'diamond', 'debusqapc']}
                   anchorId='publishers.couts-publication'
                 >
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.publishers.couts-publication.chart-depenses-estimees'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                   <BSOChart id='publi.publishers.couts-publication.chart-distribution' />
-                  <BSOChart
+                  {/* <BSOChart
                     id='publi.publishers.couts-publication.chart-distribution-par-annee'
                     isDisplayed={!isInProduction()}
-                  />
+                  /> */}
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -518,14 +518,14 @@ export default function NationalPublications() {
                   <BSOChart id='publi.repositories.plus-utilisees.chart-nombre-documents' />
                 </QuestionSection>
 
-                <QuestionSection
+                {/* <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-depot'
                   backgroundColor={greenBg}
                   anchorId='repositories.dynamique-depot'
                   isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='publi.repositories.dynamique-depot.chart-nombre-documents-depots' />
-                </QuestionSection>
+                </QuestionSection> */}
 
                 <QuestionSection
                   intlKey='app.national-publi.repositories.dynamique-hal'

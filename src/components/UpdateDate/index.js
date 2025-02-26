@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 
 import {
   getFormattedDate,
-  getPublicationYearFromObservationSnap,
 } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
@@ -23,13 +22,8 @@ export default function UpdateDate() {
         <FormattedMessage
           values={{
             date: getFormattedDate(updateDate, lang),
-            endDate:
-              lastObservationSnap.length > 4
-                ? getPublicationYearFromObservationSnap(
-                  lastObservationSnap.substring(0, 4),
-                )
-                : getPublicationYearFromObservationSnap(lastObservationSnap),
-            startDate: '2013',
+            endDate: lastObservationSnap,
+            startDate: '2018',
           }}
           id='app.sante.update.date'
           defaultMessage=''

@@ -16,22 +16,22 @@ import Glossary from './pages/About/Glossary';
 import Methodology from './pages/About/Methodology';
 import OpenData from './pages/About/OpenData';
 import Project from './pages/About/Project';
-import WorksMagnet from './pages/About/WorksMagnet';
-import BaroNational from './pages/BaroNational';
+// import WorksMagnet from './pages/About/WorksMagnet';
+// import BaroNational from './pages/BaroNational';
 import NationalPublications from './pages/BaroNational/NationalPublications';
-import NationalResearchData from './pages/BaroNational/NationalResearchData';
-import NationalSoftwareCode from './pages/BaroNational/NationalSoftwareCode';
-import NationalThesis from './pages/BaroNational/NationalThesis';
-import BaroSante from './pages/BaroSante';
-import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
-import Etudes from './pages/BaroSante/Etudes';
-import DataCode from './pages/DataCode';
-import HowTo from './pages/Declinaisons/HowTo';
-import Policy from './pages/Declinaisons/Policy';
-import Variations from './pages/Declinaisons/Variations';
+// import NationalResearchData from './pages/BaroNational/NationalResearchData';
+// import NationalSoftwareCode from './pages/BaroNational/NationalSoftwareCode';
+// import NationalThesis from './pages/BaroNational/NationalThesis';
+// import BaroSante from './pages/BaroSante';
+// import EssaisCliniques from './pages/BaroSante/EssaisCliniques';
+// import Etudes from './pages/BaroSante/Etudes';
+// import DataCode from './pages/DataCode';
+// import HowTo from './pages/Declinaisons/HowTo';
+// import Policy from './pages/Declinaisons/Policy';
+// import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
-import NationalOrcid from './pages/NationalOrcid';
+// import NationalOrcid from './pages/NationalOrcid';
 import messagesEN from './translations/en.json';
 import messagesJA from './translations/ja.json';
 import TranslationPage from './translations/translations-page';
@@ -92,7 +92,8 @@ function App() {
               path={urls.national[key]}
             />
           ))}
-          <Route
+          {/* 日本版OSモニターで表示しないページのコメントアウト */}
+          {/* <Route
             element={(
               <PageTracker>
                 <BaroNational />
@@ -101,7 +102,7 @@ function App() {
             exact
             key={urls.nationalPublications[lang]}
             path={urls.nationalPublications[lang]}
-          />
+          /> */}
           {urls.nationalPublications.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(
@@ -116,7 +117,8 @@ function App() {
               path={tab[key]}
             />
           )))}
-          {urls.nationalThesis.tabs.map((tab) => Object.keys(tab).map((key) => (
+          {/* 日本版OSモニターで表示しないページのコメントアウト */}
+          {/* {urls.nationalThesis.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(
                 <PageTracker>
@@ -224,10 +226,11 @@ function App() {
               path={tab[key]}
             />
           )))}
+          */ }
           {Object.keys(urls.about).map((key) => (
             <Route element={<About />} exact key={key} path={urls.about[key]} />
           ))}
-          {Object.keys(urls.methodologie).map((key) => (
+          {/* {Object.keys(urls.methodologie).map((key) => (
             <Route
               element={(
                 <PageTracker>
@@ -337,7 +340,7 @@ function App() {
               key={key}
               path={urls.worksmagnet[key]}
             />
-          ))}
+          ))} */}
           {[...new Set(Object.values(urls.integration))].flat().map((url) => (
             <Route
               element={(

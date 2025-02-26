@@ -316,7 +316,8 @@ const HomePage = () => {
                   intlSubTitle='app.health-publi.repositories'
                   backgroundColorClass='bg-green-medium-25'
                 />
-                <TodayNumbersItem
+                {/* 日本版OSモニターで表示しないページのコメントアウト */}
+                {/* <TodayNumbersItem
                   itemKey='these'
                   iconName='icon-these'
                   iconColor='green-medium-75'

@@ -10,6 +10,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_API_URL, HEADERS } from '../../../../../config/config';
+import { PUBLISHER_LIST } from '../../../../../config/publicationDataLists';
 import customComments from '../../../../../utils/chartComments';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -19,7 +20,8 @@ import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+// import useGetData from './get-data';
+import useGetData from './get-data-josm';
 
 treemapModule(Highcharts);
 HCExporting(Highcharts);
@@ -51,27 +53,17 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
 
   useEffect(() => {
-    const query = getFetchOptions({
-      key: 'publishersList',
-      domain,
-      parameters: [lastObservationSnap],
-    });
-
-    Axios.post(ES_API_URL, query, HEADERS).then((response) => {
-      const opts = response.data.aggregations.by_publisher.buckets
-        .filter((item) => !['unknown'].includes(item.key))
-        .map((item) => ({ label: item.key, value: item.key }));
-      opts.unshift({
-        label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
-        value: '*',
-      });
-      setOptions(opts);
-    });
-  }, [domain, intl, lastObservationSnap]);
-
-  useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
   }, [data, idWithDomain, intl]);
+
+  useEffect(() => {
+    const opts = PUBLISHER_LIST.map((item) => ({ label: item, value: item }));
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
+      value: '*',
+    });
+    setOptions(opts);
+  }, [intl]);
 
   return (
     <ChartWrapper

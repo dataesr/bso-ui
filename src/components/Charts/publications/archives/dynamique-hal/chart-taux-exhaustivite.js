@@ -10,7 +10,8 @@ import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
-import useGetData from './get-data';
+// import useGetData from './get-data';
+import useGetData from './get-data-josm';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
