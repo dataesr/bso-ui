@@ -30,8 +30,16 @@ function Glossary({ entries }) {
   const activeClassManage = useCallback((glossaryKey = '', action) => {
     if (glossaryKey) {
       const activeClassObj = {
-        remove: (elm) => elm.classList.remove('active'),
-        add: (elm) => elm.classList.add('active'),
+        remove: (elm) => {
+          if (elm?.classList) {
+            elm.classList.remove('active');
+          }
+        },
+        add: (elm) => {
+          if (elm?.classList) {
+            elm.classList.add('active');
+          }
+        },
       };
       const glossaryKeyElement = document.querySelector(
         `[data-glossary-key=${glossaryKey}]`,
