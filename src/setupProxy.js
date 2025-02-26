@@ -12,7 +12,7 @@ module.exports = function(app) {
       secure: false, // 自己署名証明書を使用する場合はこれを追加
       onProxyReq: (proxyReq, req, res) => {
         // APIキーをヘッダーに追加
-        proxyReq.setHeader('Authorization', 'ApiKey WFJRVmJwUUJGUTYzTF9zcVJkSDk6bWt4c19STjhSdmUwMGxDbHhxVDNqQQ==');
+        proxyReq.setHeader('Authorization', 'ApiKey XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
         proxyReq.setHeader('Content-Type', 'application/json');
       }
     })
