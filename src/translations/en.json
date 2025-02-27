@@ -1517,6 +1517,7 @@
   "app.national-orcid.general.chart-indicator-work.tooltip": "<b>ORCID having {series.name}</b><br/>{point.y:.2f}% of accounts {point.fr_reason}<br>ie. {point.y_abs} / {point.y_tot} ORCID",
   "app.national-orcid.general.chart-indicator-active-work.title": "Proportion of active French ORCID accounts that list at least one production on their profile",
   "app.software.navigation.disciplines.creation": "Code or software creation",
+  "app.repositories.label.ja-repository": "All japanese repositories",
   "app.repositories.label.archimer": "Archimer (France)",
   "app.repositories.label.arxiv": "ArXiv (USA)",
   "app.repositories.label.biorxiv": "bioRxiv (USA)",
