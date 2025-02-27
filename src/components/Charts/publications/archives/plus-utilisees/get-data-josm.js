@@ -57,6 +57,7 @@ function useGetData(observationSnap, domain) {
 
     // 2回目のクエリ 最新のcalc_dateのデータを取得
     const preRes = await Axios.post(ES_API_URL, {
+      size: 25,
       query: {
         bool: {
           must: [
@@ -65,6 +66,32 @@ function useGetData(observationSnap, domain) {
           ],
         },
       },
+      sort: [
+        {
+          _script: {
+            type: 'number',
+            script: {
+              source: `
+                def oa_count = 0;
+                for (item in params._source.data) {
+                  if (item.publication_year == params.targetYear) {
+                    for (entry in item.entrySet()) {
+                      if (entry.getKey() == 'oa' && entry.getValue() instanceof Number) {
+                        oa_count = entry.getValue();
+                      }
+                    }
+                  }
+                }
+                return oa_count;
+              `,
+              params: {
+                targetYear,
+              },
+            },
+            order: 'desc',
+          },
+        },
+      ],
     });
 
     // 成形処理
