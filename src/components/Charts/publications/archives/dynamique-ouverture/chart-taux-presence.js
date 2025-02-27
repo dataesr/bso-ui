@@ -65,7 +65,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       label: capitalize(intl.formatMessage({ id: 'app.all-repositories' })),
       value: '*',
     });
-    // console.log(opts);
     setOptions(repositoryArray);
   }, [intl]);
 

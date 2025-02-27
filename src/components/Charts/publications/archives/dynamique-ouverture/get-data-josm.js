@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, IS_TEST } from '../../../../../config/config';
 import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
-console.log('ES_API_URL:', ES_API_URL);
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
