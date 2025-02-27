@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import { ES_API_URL, IS_TEST } from '../../../../../config/config';
 import { getCSSValue, getObservationLabel } from '../../../../../utils/helpers';
 
-console.log('ES_API_URL:', ES_API_URL);
 function useGetData(observationSnaps, needle = '*', domain) {
   const [data, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -308,6 +307,14 @@ function useGetData(observationSnaps, needle = '*', domain) {
       'LongDashDotDot',
     ];
     const dataGraph2 = [];
+    let archive;
+    if (needle === '*') {
+      archive = intl.formatMessage({ id: 'app.all-repositories' });
+    } else if (needle === 'ja-repository') {
+      archive = intl.formatMessage({ id: 'app.ja-repositories' });
+    } else {
+      archive = needle;
+    }
     allData.forEach((observationSnapData, i) => {
       const serie = {};
       serie.name = getObservationLabel(
@@ -330,10 +337,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         y_tot: observationSnapData.data.all[index],
         y_abs: value,
         bsoDomain,
-        archive:
-          needle === '*'
-            ? intl.formatMessage({ id: 'app.all-repositories' })
-            : needle,
+        archive,
         name: getObservationLabel(observationSnapData.observationSnap, intl), // observation date
         publicationDate: observationSnapData.data.publicationDates[index],
       }));
@@ -350,10 +354,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
         name: el.name, // observation date
         bsoDomain,
         y: el.data[el.data.length - 1]?.y || 0,
-        archive:
-          needle === '*'
-            ? intl.formatMessage({ id: 'app.all-repositories' })
-            : needle,
+        archive,
         ratio: el.ratios[el.data.length - 1],
         publicationDate: el.publicationDate,
       }));

@@ -71,6 +71,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
 
     // 2回目のクエリ 最新のcalc_dateのデータを取得
     const preRes = await Axios.post(ES_API_URL, {
+      size: 25,
       query: {
         bool: {
           must: [
@@ -87,6 +88,32 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
           ],
         },
       },
+      sort: [
+        {
+          _script: {
+            type: 'number',
+            script: {
+              source: `
+                def sum = 0;
+                for (item in params._source.data) {
+                  if (item.publication_year == params.targetYear) {
+                    for (entry in item.entrySet()) {
+                      if (entry.getKey() != 'publication_year' && entry.getValue() instanceof Number) {
+                        sum += entry.getValue();
+                      }
+                    }
+                  }
+                }
+                return sum;
+              `,
+              params: {
+                targetYear,
+              },
+            },
+            order: 'desc',
+          },
+        },
+      ],
     });
 
     // 成形処理
