@@ -45,7 +45,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { dataGraphHistogram, categoriesHistogram } = data;
   const idWithDomain = withDomain(id, domain);
-  const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
+  const publisherTitle = publisher !== 'all-publishers' ? ` (${publisher})` : '';
   const dataTitle = {
     publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
     publisherTitle,

@@ -43,7 +43,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   );
   const { categoriesViolin, dataGraphViolin } = data;
   const idWithDomain = withDomain(id, domain);
-  const publisherTitle = publisher !== '*' ? ` (${publisher})` : '';
+  const publisherTitle = publisher !== 'all-publishers' ? ` (${publisher})` : '';
   const dataTitle = { publisherTitle };
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
