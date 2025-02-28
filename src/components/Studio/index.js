@@ -1,11 +1,4 @@
-import {
-  Button,
-  Col,
-  Row,
-  Select,
-  TextInput,
-  Toggle,
-} from '@dataesr/react-dsfr';
+import { Button, Col, Row, Select, TextInput } from '@dataesr/react-dsfr';
 import { useEffect, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useIntl } from 'react-intl';
@@ -17,6 +10,7 @@ import {
   isInProduction,
 } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
+import Toggle from '../Toggle/Toggle';
 import tree from './tree';
 
 const Studio = () => {
