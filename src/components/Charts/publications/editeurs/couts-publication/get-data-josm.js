@@ -22,7 +22,7 @@ function useGetData(
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const publisherName = needle === '*' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
+  const publisherName = needle === 'all-publishers' ? intl.formatMessage({ id: 'app.all-publishers' }) : needle;
 
   /* eslint-disable camelcase */
   /* eslint-disable-line no-underscore-dangle */

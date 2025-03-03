@@ -129,13 +129,6 @@ function useGetData(observationSnap, domain) {
       const data = res.data.aggregations.by_publication_year.buckets;
       const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
-      // const res = graphData;
-      // console.log('genres-ouverture_res:', res);
-      // const data = (res?.data?.aggregations?.by_publication_year?.buckets && Array.isArray(res.data.aggregations.by_publication_year.buckets))
-      // ? res.data.aggregations.by_publication_year.buckets
-      // : [];
-      // const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-
       // Tri pour avoir les années dans l'ordre d'affichage du graphe
       data.sort((a, b) => a.key - b.key);
       const categories = []; // Elements d'abscisse

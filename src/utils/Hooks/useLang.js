@@ -8,20 +8,23 @@ import { isInProduction } from '../helpers';
 export const LangContext = createContext();
 
 export const LangContextProvider = ({ supportedLanguages, children }) => {
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   // Default UI lang in French
-  let locale = 'en';
+  let locale = 'ja';
   // In production but not in integration aka iFrame, lang depends of the hostname
-  if (isInProduction() && !pathname.startsWith('/integration')) {
-    locale = window.location.hostname === 'frenchopensciencemonitor.esr.gouv.fr'
-      ? 'en'
-      : 'ja';
-    // In other env (local and staging), lang depends of the sessionStorage
-  } else {
+  // if (isInProduction() && !pathname.startsWith('/integration')) {
+  //   locale = window.location.hostname === 'frenchopensciencemonitor.esr.gouv.fr'
+  //     ? 'en'
+  //     : 'ja';
+  //   // In other env (local and staging), lang depends of the sessionStorage
+  // } else {
+  //   locale = sessionStorage.getItem('__bso_lang__');
+  // }
+  if (sessionStorage.getItem('__bso_lang__')) {
     locale = sessionStorage.getItem('__bso_lang__');
   }
-  const [lang, setLang] = useState(locale || 'en');
+  const [lang, setLang] = useState(locale || 'ja');
 
   const switchLang = (newLang, path, search) => {
     if (supportedLanguages.includes(newLang) && newLang !== lang) {
@@ -49,15 +52,15 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
 
       setLang(newLang);
 
-      // if (newUrl) {
+      if (newUrl) {
       //   if (isInProduction() && !pathname.startsWith('/integration')) {
       //     const domain = newLang === 'en'
       //       ? 'https://frenchopensciencemonitor.esr.gouv.fr'
       //       : 'https://barometredelascienceouverte.esr.gouv.fr';
       //     newUrl = domain + newUrl;
       //   }
-      //   window.location.replace(newUrl + search);
-      // }
+        window.location.replace(newUrl + search);
+      }
     }
   };
 
