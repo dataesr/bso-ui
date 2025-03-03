@@ -52,15 +52,15 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
 
       setLang(newLang);
 
-      // if (newUrl) {
+      if (newUrl) {
       //   if (isInProduction() && !pathname.startsWith('/integration')) {
       //     const domain = newLang === 'en'
       //       ? 'https://frenchopensciencemonitor.esr.gouv.fr'
       //       : 'https://barometredelascienceouverte.esr.gouv.fr';
       //     newUrl = domain + newUrl;
       //   }
-      //   window.location.replace(newUrl + search);
-      // }
+        window.location.replace(newUrl + search);
+      }
     }
   };
 
