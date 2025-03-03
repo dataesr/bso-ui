@@ -1,4 +1,3 @@
-import { Toggle } from '@dataesr/react-dsfr';
 import Axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -19,6 +18,7 @@ import { capitalize, withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
+import Toggle from '../../../../Toggle/Toggle';
 import GraphComments from '../../../graph-comments';
 // import useGetData from './get-data';
 import useGetData from './get-data-josm';

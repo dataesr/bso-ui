@@ -1,4 +1,3 @@
-import { Toggle } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -13,6 +12,7 @@ import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
 import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
 import ChartWrapper from '../../../../ChartWrapper';
+import Toggle from '../../../../Toggle/Toggle';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
