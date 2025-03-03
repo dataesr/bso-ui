@@ -154,7 +154,6 @@ export default function useFetch({ method, options, url }) {
           //     // 【TODO】データ取得について見当・実装
           //   },
           // );
-          // console.log('preRes: ', preRes);
           res.aggregations = {
             // 【TODO】取得した値を反映
             journal_count: { value: 1000 },
@@ -173,7 +172,6 @@ export default function useFetch({ method, options, url }) {
                 },
               },
             });
-          console.log('preRes: ', preRes);
           res.aggregations = {
             // 【TODO】取得した値を反映
             publisher_count: { value: preRes.data.hits.total.value },
@@ -185,7 +183,6 @@ export default function useFetch({ method, options, url }) {
           //     // 【TODO】データ取得について見当・実装
           //   },
           // );
-          // console.log('preRes: ', preRes);
           res.aggregations = {
             // 【TODO】取得した値を反映
             repositories_count: { value: 2000 },
@@ -289,7 +286,6 @@ export default function useFetch({ method, options, url }) {
           }
         });
 
-        console.log('res: ', res);
         setResponse(res);
         setLoading(false);
 

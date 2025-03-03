@@ -61,7 +61,6 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       label: capitalize(intl.formatMessage({ id: 'app.all-publishers' })),
       value: '*',
     });
-    // console.log(opts);
     setOptions(opts);
   }, [intl]);
 

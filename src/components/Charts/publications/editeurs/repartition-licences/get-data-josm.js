@@ -89,8 +89,37 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       query.bool.must.push({ term: { publisher: needle } });
     }
 
+    const sort = [
+      {
+        _script: {
+          type: 'number',
+          script: {
+            source: `
+              def sum = 0;
+              for (item in params._source.data) {
+                if (item.publication_year == params.targetYear) {
+                  for (entry in item.entrySet()) {
+                    if (entry.getKey() != 'publication_year' && entry.getValue() instanceof Number) {
+                      sum += entry.getValue();
+                    }
+                  }
+                }
+              }
+              return sum;
+            `,
+            params: {
+              targetYear,
+            },
+          },
+          order: 'desc',
+        },
+      },
+    ];
+
     const preRes = await Axios.post(ES_API_URL, {
+      size: 25,
       query,
+      sort,
     });
 
     // 成形処理
@@ -149,7 +178,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     });
 
     const byLicenceBuckets = Object.keys(licenceCounts).map((key) => ({
-      key,
+      key: key !== 'no_license' ? key : 'no license',
       doc_count: licenceCounts[key],
     }));
 
@@ -171,7 +200,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     const results = res[0].data.aggregations.by_is_oa.buckets?.[0]?.by_licence?.buckets ?? [];
     const nbTotal = res[0].data.aggregations.by_is_oa.buckets?.[0]?.doc_count ?? 0;
     const openLicenceNumber = results
-      .filter((item) => item.key !== 'no_license')
+      .filter((item) => item.key !== 'no license')
       .reduce((a, b) => a + b.doc_count, 0);
     const ccbyLicenceNumber = results.find((item) => item.key === 'cc-by')?.doc_count ?? 0;
     const openLicenceRate = (100 * openLicenceNumber) / nbTotal;
@@ -195,7 +224,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
           y_perc: (100 * el.doc_count) / nbTotal,
           publicationDate,
           color:
-            el.key === 'no_license'
+            el.key === 'no license'
               ? getCSSValue('--g-400')
               : getCSSValue('--acces-ouvert'),
         });
@@ -218,7 +247,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         y_perc: openLicenceRate,
         publicationDate,
       });
-      const noLicenceElem = results.find((el) => el.key === 'no_license');
+      const noLicenceElem = results.find((el) => el.key === 'no license');
       const nbNoLicence = noLicenceElem ? noLicenceElem.doc_count : 0;
       dataGraphTreemap.push({
         name: capitalize(
@@ -245,7 +274,7 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
     res[0].data.aggregations.by_publisher.buckets.forEach((elem) => {
       categories.push(elem.key);
       const noLicenceElem = elem.by_licence.buckets.find(
-        (el) => el.key === 'no_license',
+        (el) => el.key === 'no license',
       );
       noLicence.push({
         publisher: elem.key,
@@ -262,12 +291,12 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         bsoDomain,
         y_tot: elem.doc_count,
         y_abs: elem.by_licence.buckets
-          .filter((el) => el.key !== 'no_license')
+          .filter((el) => el.key !== 'no license')
           .reduce((a, b) => a + b.doc_count, 0),
         y:
           (100
             * elem.by_licence.buckets
-              .filter((el) => el.key !== 'no_license')
+              .filter((el) => el.key !== 'no license')
               .reduce((a, b) => a + b.doc_count, 0))
           / elem.doc_count,
         publicationDate,

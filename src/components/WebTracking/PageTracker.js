@@ -13,7 +13,7 @@ function PageTracker({ children }) {
   const getDocumentTitle = useCallback(
     () => intl.formatMessage({
       id: `${documentTitles[pathname]}`,
-      defaultMessage: 'Baromètre français de la Science Ouverte',
+      defaultMessage: 'Japanese Open Science Monitor',
     }),
     [intl, pathname],
   );
