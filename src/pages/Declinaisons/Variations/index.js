@@ -465,23 +465,30 @@ const Variations = () => {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local ined'
+                alt='bso local INED'
                 href='https://so.site.ined.fr/fr/publications/bso/'
                 img='/declinaisons/ined.svg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local ulille université de lille'
+                alt='bso local ULille université de lille'
                 href='https://scienceouverte.univ-lille.fr/nos-engagements/barometre-de-la-science-ouverte'
                 img='/declinaisons/ulille.svg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local ljk laboratoire jean kuntzmann'
+                alt='bso local LJK laboratoire jean kuntzmann'
                 href='https://www-ljk.imag.fr/spip.php?article120'
                 img='/declinaisons/ljk.png'
+              />
+            </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local IMT Mines Alès'
+                href='https://imt-mines-ales.hal.science/page/barometre-science-ouverte'
+                img='/declinaisons/imt-ales.jpg'
               />
             </Col>
           </Row>
