@@ -477,6 +477,13 @@ const Variations = () => {
                 img='/declinaisons/ulille.svg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local ljk laboratoire jean kuntzmann'
+                href='https://www-ljk.imag.fr/spip.php?article120'
+                img='/declinaisons/ljk.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
