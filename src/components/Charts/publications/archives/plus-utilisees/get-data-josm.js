@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 // import { ES_API_URL, HEADERS } from '../../../../../config/config';
 import { ES_API_URL, IS_TEST } from '../../../../../config/config';
 // import getFetchOptions from '../../../../../utils/chartFetchOptions';
+import { EXCLUDE_REPOSITORIES_LIST } from '../../../../../config/publicationDataLists';
 import {
   formatNumberByLang,
   getPublicationYearFromObservationSnap,
@@ -63,6 +64,13 @@ function useGetData(observationSnap, domain) {
           must: [
             { term: { calc_date: latestCalcDate } },
             { term: { data_type: 'archives.dynamique-ouverture.get-data' } },
+          ],
+          must_not: [
+            {
+              terms: {
+                repository: EXCLUDE_REPOSITORIES_LIST,
+              },
+            },
           ],
         },
       },

@@ -67,6 +67,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
                 { terms: { calc_date: lastDateOfYear } },
                 { term: { data_type: 'archives.dynamique-ouverture.get-data' } },
               ],
+              must_not: [
+                { term: { repository: 'ja-repository' } },
+              ],
             },
           },
           aggs: {
