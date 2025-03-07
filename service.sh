@@ -59,8 +59,7 @@ function rotate_logs() {
         for LOG_FILE in "${NOT_COMPRESSED_LOG_FILES[@]}"; do
             LOG_DATE=$(basename "$LOG_FILE" | awk -F'_' '{print $1}')
             if [ $LOG_DATE -le $(date -d "1 days ago" "+%Y%m%d") ]; then
-                gzip -k "/var/log/${LOG_DIR}/${LOG_FILE}"
-                rm -f "/var/log/${LOG_DIR}/${LOG_FILE}"
+                gzip -fk "/var/log/${LOG_DIR}/${LOG_FILE}" && rm -f "/var/log/${LOG_DIR}/${LOG_FILE}"
             fi
         done
 
