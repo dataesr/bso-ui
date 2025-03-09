@@ -1333,7 +1333,7 @@
   "app.faq.pid.entry": "What publication identifiers does the monitor use? Why only those?",
   "app.faq.pid.definition": "The monitor takes into account publications with a DOI Crossref and/or a HAL identifier. A unique identifier is required to avoid duplicates. Additionally, to find out if a publication is open access, an open access \"discovery\" tool is needed. <cta0>Unpaywall</cta0> provides this tool for Crossref DOIs, and <cta1>HAL</cta1> provides open access metadata for publications with a HAL ID. To our knowledge, there is no other open access discovery tool applicable to other identifiers. For this reason, non-Crossref DOIs are not taken into account, such as Datacite DOIs.",
   "app.faq.type.entry": "What types of publications are included in the monitor?",
-  "app.faq.type.definition": "In the monitor, only publications of type \"journal-article\", \"proceedings\", \"book-chapter\", \"book\" and \"preprint\" are taken into account. It means the types \"ART\", \"COMM\" with proceedings_s at 1, \"PROCEEDINGS\", \"COUV\", \"OUV\" and \"DOUV\" for publications from HAL.",
+  "app.faq.type.definition": "In the monitor, only publications of type \"journal-article\", \"proceedings\", \"book-chapter\", \"book\" and \"preprint\" are taken into account. It means the types \"ART\" (Journal articles), \"COMM\" (Conference papers) with proceedings_s at 1, \"PROCEEDINGS\" (Proceedings), \"COUV\" (Book sections), \"OUV\" (Books) and \"DOUV\" (Book direction) for publications from HAL.",
   "app.entry": "Glossary entrance",
   "app.glossary.datastet": "DataStet",
   "app.glossary.datastet-min": "DataStet",

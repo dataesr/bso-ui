@@ -283,7 +283,7 @@ const Studio = () => {
           <Toggle
             checked={displayTitle}
             hasLabelLeft
-            label='Afficher le titre du graphique'
+            label='Afficher "Baromètre français de la Science Ouverte"'
             onChange={() => setDisplayTitle(!displayTitle)}
           />
         </Col>
