@@ -1279,6 +1279,8 @@
   "app.baro-national.datasets": "Datasets",
   "app.baro-national.thesis.title": "PhD theses",
   "app.baro-national.data-and-software.title": "Research data and software",
+  "app.perimeter": "perimeter",
+  "app.of-perimeter": "of perimeter",
   "app.beta": "[beta]",
   "app.data.disciplines": "Disciplines",
   "app.data.editeurs": "Publishers",

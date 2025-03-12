@@ -268,7 +268,10 @@ export function getSource(id, otherSources = []) {
  * Capitalize the first letter of a word
  */
 export function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  if (typeof str === 'string') {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  return str;
 }
 
 /**
@@ -403,7 +406,12 @@ export function getURLSearchParams(intl = undefined, id = '') {
   if (bsoLocalAffiliation) {
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || localAffiliationSettings?.[commentsNameProperty]
-      || 'du périmètre '.concat(bsoLocalAffiliation)
+      || intl
+        ?.formatMessage({
+          id: 'app.of-perimeter',
+          defaultMessage: 'du périmètre',
+        })
+        .concat(` ${bsoLocalAffiliation}`)
       || intl?.formatMessage({ id: 'app.french', defaultMessage: 'françaises' })
       || 'françaises';
     displayTitle = !(
@@ -426,7 +434,11 @@ export function getURLSearchParams(intl = undefined, id = '') {
     }
     name = urlSearchParams.get('name')?.toLowerCase()
       || localAffiliationSettings?.name
-      || 'Périmètre '.concat(bsoLocalAffiliation);
+      || capitalize(
+        intl
+          ?.formatMessage({ id: 'app.perimeter', defaultMessage: 'Périmètre' })
+          .concat(` ${bsoLocalAffiliation}`),
+      );
     startYear = parseInt(
       urlSearchParams.get('startYear')?.toLowerCase()
         || localAffiliationSettings?.startYear
