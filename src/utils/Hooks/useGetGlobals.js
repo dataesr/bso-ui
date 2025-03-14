@@ -61,7 +61,7 @@ export const GlobalsContextProvider = ({ children }) => {
     const query = getFetchOptions({ key: 'observationSnaps' });
     const res = await Axios.post(ES_API_URL, query, HEADERS);
     const { firstObservationYear, lastObservationYear } = getURLSearchParams();
-    let newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
+    const newObservationSnaps = res?.data?.aggregations?.observation_dates?.buckets
       .map((el) => el.key)
       .sort((a, b) => b.substring(0, 4) - a.substring(0, 4))
       .filter(
@@ -72,16 +72,9 @@ export const GlobalsContextProvider = ({ children }) => {
         (el) => parseInt(el.substring(0, 4), 10)
             >= parseInt(firstObservationYear.substring(0, 4), 10),
       );
-    newObservationSnaps = newObservationSnaps.filter(
+    return newObservationSnaps.filter(
       (el) => el <= 2020 || el === newObservationSnaps[0] || el.includes('Q4'),
     );
-    // If too many years displayed, exclude 2019 and 2021
-    if (newObservationSnaps.length > 6) {
-      newObservationSnaps = newObservationSnaps.filter(
-        (el) => !['2019', '2021'].includes(el.substring(0, 4)),
-      );
-    }
-    return newObservationSnaps;
   }
 
   async function getUpdateDate(lastDate) {
