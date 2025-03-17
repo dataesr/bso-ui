@@ -49,10 +49,6 @@ bash service.sh startbsoui
 
 ## 補足
 
-### Elasticsearch用コンテナ停止
-
-josm-indicatorsリポジトリのREADME.md 環境構築関連手順を参考に、Elasticsearch関連コンテナを停止
-
 ### ウェブアプリケーション用コンテナを停止
 
 service.sh が配置されているディレクトリで以下のコマンドを実行し、bso-uiコンテナを停止
