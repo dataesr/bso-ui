@@ -37,7 +37,6 @@ josm-indicatorsリポジトリのREADME.md 環境構築関連手順を参考に�
 
 ```
 /nginx/templates/default.conf.template
-/.env.josm
 ```
 
 ### ウェブアプリケーション用コンテナを起動
@@ -78,7 +77,6 @@ REACT_APP_ES_API_URL_PUBLICATIONS=開発環境Elasticsearchのエンドポイン
 
 ```
 /nginx/templates/default.conf.template
-/.env.josm
 ```
 
 ### ウェブアプリケーション開発用コンテナの起動
