@@ -2,7 +2,7 @@
 
 ## 概要
 
-- 本リポジトリは French Open Science Monitor (<https://github.com/RCOSDP/bso-ui.git>) をフォークし作成された、日本語版のオープンアクセスモニターです
+- 本リポジトリは French Open Science Monitor (<https://github.com/dataesr/bso-ui>) をフォークし作成された、日本語版のオープンアクセスモニターです
 
 - 本ウェブアプリケーションは以下のURLから参照いただけます :
   - Japanese Open Science Monitor : <https://osm.nii.ac.jp/>
