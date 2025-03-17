@@ -24,10 +24,11 @@ josm-indicatorsリポジトリのREADME.md 環境構築関連手順を参考に�
 
 ### Nginxで使用するSSL証明書の設定
 
-ssl_certificate 用の server.crt と ssl_certificate_key 用の server.key を 以下に配置
+ssl_certificate 用の osm.ir.rcos.nii.ac.jp.crt と ssl_certificate_key 用の osm.ir.rcos.nii.ac.jp.key の各証明書を以下に配置
 
 ```
-/nginx/
+/nginx/osm.ir.rcos.nii.ac.jp.crt
+/nginx/osm.ir.rcos.nii.ac.jp.key
 ```
 
 ### ElasticsearchのAPIKEY設定
