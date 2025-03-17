@@ -5,11 +5,6 @@
       "intlDefinition": "app.glossary.acces-ouvert.definition",
       "intlEntry": "app.glossary.acces-ouvert"
     },
-    "anr": {
-      "intlDefinition": "app.glossary.anr.definition",
-      "intlEntry": "app.glossary.anr",
-      "cta": "https://anr.fr/"
-    },
     "apc": {
       "intlDefinition": "app.glossary.apc.definition",
       "intlEntry": "app.glossary.apc"
@@ -17,32 +12,6 @@
     "archive-ouverte": {
       "intlDefinition": "app.glossary.archive-ouverte.definition",
       "intlEntry": "app.glossary.archive-ouverte"
-    },
-    "barriere-mobile": {
-      "intlDefinition": "app.glossary.barriere-mobile.definition",
-      "intlEntry": "app.glossary.barriere-mobile"
-    },
-    "clinicaltrials-gov": {
-      "intlDefinition": "app.glossary.clinicaltrials-gov.definition",
-      "intlEntry": "app.glossary.clinicaltrials-gov",
-      "ctas": ["https://clinicaltrials.gov/", "https://www.nih.gov/"]
-    },
-    "code-source": {
-      "intlDefinition": "app.glossary.code-source.definition",
-      "intlEntry": "app.glossary.code-source"
-    },
-    "datastet": {
-      "intlDefinition": "app.glossary.datastet.definition",
-      "intlEntry": "app.glossary.datastet",
-      "cta": "https://github.com/kermitt2/datastet"
-    },
-    "debusqapc": {
-      "intlDefinition": "app.glossary.debusqapc.definition",
-      "intlEntry": "app.glossary.debusqapc",
-      "ctas": [
-        "https://hal-lara.archives-ouvertes.fr/OUVRIR-LA-SCIENCE/hal-03909068",
-        "https://www.ouvrirlascience.fr/wp-content/uploads/2022/12/APC_Cost_Study_Poster.pdf"
-      ]
     },
     "diamond": {
       "intlDefinition": "app.glossary.diamond.definition",
@@ -57,48 +26,13 @@
       "intlDefinition": "app.glossary.doi.definition",
       "intlEntry": "app.glossary.doi"
     },
-    "donnees-recherche": {
-      "intlDefinition": "app.glossary.donnees-recherche.definition",
-      "intlEntry": "app.glossary.donnees-recherche"
-    },
     "embargo": {
       "intlDefinition": "app.glossary.embargo.definition",
       "intlEntry": "app.glossary.embargo"
     },
-    "essai-clinique": {
-      "intlDefinition": "app.glossary.essai-clinique.definition",
-      "intlEntry": "app.glossary.essai-clinique"
-    },
-    "etude-observationelle": {
-      "intlDefinition": "app.glossary.etude-observationelle.definition",
-      "intlEntry": "app.glossary.etude-observationelle"
-    },
-    "euctr": {
-      "intlDefinition": "app.glossary.euctr.definition",
-      "intlEntry": "app.glossary.euctr",
-      "ctas": [
-        "https://www.clinicaltrialsregister.eu/",
-        "https://eudract.ema.europa.eu/"
-      ]
-    },
-    "eudract": {
-      "intlDefinition": "app.glossary.eudract.definition",
-      "intlEntry": "app.glossary.eudract",
-      "cta": "https://eudract.ema.europa.eu/"
-    },
     "gold-full-apc": {
       "intlDefinition": "app.glossary.gold-full-apc.definition",
       "intlEntry": "app.glossary.gold-full-apc"
-    },
-    "grobid": {
-      "intlDefinition": "app.glossary.grobid.definition",
-      "intlEntry": "app.glossary.grobid",
-      "cta": "https://github.com/kermitt2/grobid"
-    },
-    "hal": {
-      "intlDefinition": "app.glossary.hal.definition",
-      "intlEntry": "app.glossary.hal",
-      "ctas": ["https://hal.archives-ouvertes.fr/", "https://www.ccsd.cnrs.fr/"]
     },
     "hybrid": {
       "intlDefinition": "app.glossary.hybrid.definition",
@@ -107,16 +41,6 @@
     "licence": {
       "intlDefinition": "app.glossary.licence.definition",
       "intlEntry": "app.glossary.licence"
-    },
-    "list-beall": {
-      "intlDefinition": "app.glossary.list-beall.definition",
-      "intlEntry": "app.glossary.list-beall",
-      "cta": "https://beallslist.net/"
-    },
-    "loi-republique-numerique": {
-      "intlDefinition": "app.glossary.loi-republique-numerique.definition",
-      "intlEntry": "app.glossary.loi-republique-numerique",
-      "cta": "https://www.legifrance.gouv.fr/dossierlegislatif/JORFDOLE000031589829/"
     },
     "metadata": {
       "intlDefinition": "app.glossary.metadata.definition",
@@ -127,31 +51,14 @@
       "intlEntry": "app.glossary.openapc",
       "cta": "https://openapc.net/"
     },
-    "pgo": {
-      "intlDefinition": "app.glossary.pgo.definition",
-      "intlEntry": "app.glossary.pgo",
-      "cta": "https://www.opengovpartnership.org/"
-    },
     "pmc": {
       "intlDefinition": "app.glossary.pmc.definition",
       "intlEntry": "app.glossary.pmc",
       "cta": "https://www.ncbi.nlm.nih.gov/pmc/"
     },
-    "posted-results": {
-      "intlDefinition": "app.glossary.posted-results.definition",
-      "intlEntry": "app.glossary.posted-results"
-    },
-    "predatory": {
-      "intlDefinition": "app.glossary.predatory.definition",
-      "intlEntry": "app.glossary.predatory"
-    },
     "preprints": {
       "intlEntry": "app.glossary.preprint",
       "intlDefinition": "app.glossary.preprint.definition"
-    },
-    "promoteur": {
-      "intlDefinition": "app.glossary.promoteur.definition",
-      "intlEntry": "app.glossary.promoteur"
     },
     "publication": {
       "intlDefinition": "app.glossary.publication.definition",
@@ -161,10 +68,6 @@
       "intlDefinition": "app.glossary.publication-fr.definition",
       "intlEntry": "app.glossary.publication-fr"
     },
-    "published-results": {
-      "intlDefinition": "app.glossary.published-results.definition",
-      "intlEntry": "app.glossary.published-results"
-    },
     "pubmed": {
       "intlDefinition": "app.glossary.pubmed.definition",
       "intlEntry": "app.glossary.pubmed",
@@ -173,16 +76,6 @@
     "repository": {
       "intlDefinition": "app.glossary.repository.definition",
       "intlEntry": "app.glossary.repository"
-    },
-    "resultat-essai-clinique": {
-      "intlDefinition": "app.glossary.resultat-essai-clinique.definition",
-      "intlEntry": "app.glossary.resultat-essai-clinique",
-      "cta": "https://clinicaltrials.gov/"
-    },
-    "softcite": {
-      "intlDefinition": "app.glossary.softcite.definition",
-      "intlEntry": "app.glossary.softcite",
-      "cta": "https://github.com/ourresearch/software-mentions"
     },
     "type-hebergement-oa": {
       "intlDefinition": "app.glossary.type-hebergement-oa.definition",
