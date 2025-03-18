@@ -256,7 +256,7 @@ export function getSource(id, otherSources = []) {
   //   sources.push('Retractation Watch');
   // }
   // sources.push(...otherSources);
-  sources.push('japan Open cience Monitor');
+  sources.push('OpenAlex');
   // Deduplicate sources
   return [...new Set(sources)].join(', ');
 }
