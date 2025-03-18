@@ -1,117 +1,94 @@
-# bso-ui
+# 本リポジトリについて
 
-[![Discord Follow](https://dcbadge.vercel.app/api/server/TudsqDqTqb?style=flat)](https://discord.gg/TudsqDqTqb)
-![license](https://img.shields.io/github/license/dataesr/bso-ui)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/dataesr/bso-ui)
-[![Production deployment](https://github.com/dataesr/bso-ui/actions/workflows/production.yml/badge.svg)](https://github.com/dataesr/bso-ui/actions/workflows/production.yml)
-[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/dataesr/bso-ui)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/dataesr/bso-ui)
+## 概要
 
-Application web du Baromètre de la Science Ouverte accessible ici : 
-* fr : https://barometredelascienceouverte.esr.gouv.fr/
-* en : https://frenchopensciencemonitor.esr.gouv.fr/
+- 本リポジトリは French Open Science Monitor (<https://github.com/dataesr/bso-ui>) をフォークし作成された、日本語版のオープンアクセスモニターです
 
-## Requirements
+- 本ウェブアプリケーションは以下のURLから参照いただけます :
+  - Japanese Open Science Monitor : <https://osm.nii.ac.jp/>
 
-* node >= 18
-* npm > 7
+## 前提
 
-## Boilerplate
+- 本リポジトリは<https://github.com/RCOSDP/bso-ui.git>から git clone され、本 README.md に記載されている手順実施に必要なコマンドはインストールされていること
+- 本リポジトリは最低限必要なディレクトリ/ファイル構成を整理したものであり、Dockerfile や default.conf.template、.env、各シェルスクリプトの記載などは必要に応じて追記・編集すること
+- sudo権限のあるユーザーで実行すること
+- 本 README.md の実行前に、日本のオープンアクセス指標データベースが構築され、以下の条件が満たされていること
+   - dockerサービスが起動していること
+   - Elasticsearchのコンテナが起動されていること
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 環境構築手順
 
-The version number follows [semver](https://semver.org/).
+### Elasticsearch用コンテナ起動
 
-To create a new release, use `npm version patch|minor|major`.
+josm-indicatorsリポジトリのREADME.md 環境構築関連手順を参考に、Elasticsearch関連コンテナを起動
 
-## Scripts disponibles
+### Nginxで使用するSSL証明書の設定
 
-* `npm build`
-* `npm eject`
-* `npm prepare`
-* `npm run deploy --level=[patch|minor|major]`
-* `npm start`
-* `npm test`
-* `npm version [patch|minor|major]`
+ssl_certificate 用の osm.ir.rcos.nii.ac.jp.crt と ssl_certificate_key 用の osm.ir.rcos.nii.ac.jp.key の各証明書を以下に配置
 
-## Ajouter une nouvelle icône BSSO
-
-* Ajouter le fichier `icon-bsso-[x].svg` dans `src/components/Icon/svg` en respectant ce format de nommage
-* Ajouter à la balise `<svg>` du fichier la class `icon-bsso-[x]`
-* Ajouter une balise `<title>` pour l'accessibilité
-* Ajouter aux balises `<path>` les classes correspondantes `class="color-1"` `class="color-2"`
-* Mettre à jour la variable `$icon-bsso-max` dans `src/style/variables.scss`
-
-### Utilisation 
-```js
- <Icon
-    name='icon-bsso-[x]'
-    color1='blue-soft-125'
-    color2='gold'
-  />
+```
+/nginx/osm.ir.rcos.nii.ac.jp.crt
+/nginx/osm.ir.rcos.nii.ac.jp.key
 ```
 
-## Utiliser le glossaire
+### ElasticsearchのAPIKEY設定
 
-### 1. Ajouter les clefs nécessaires dans les fichiers de langues `src/translations/fr.json` et `src/translations/en.json`
+josm-indicatorsリポジトリのREADME.md 環境構築関連手順を参考に、以下のファイルのプレースホルダーにAPIKEYを設定
 
->  La balise `<glossary0>app.word</glossary0>` correspond au mot cliquable du texte dans la page
-
-```json
-{
-  "app.entry": "Entry in glossary",
-  "app.definition": "My definition <cta>my-link</cta>",
-  "app.word": "word to click",
-  "app.text": "Lorem <glossary0>app.word-1</glossary0> ip <cta>my-link</cta> sum <glossary1>app.word-2</glossary1>."
-}
+```
+/nginx/templates/default.conf.template
 ```
 
-### 2. Ajouter l'entrée voulue dans `glossary.json` avec les clefs de langues correspondantes
+### ウェブアプリケーション用コンテナを起動
 
-> La clef `intlEntry` correspond au titre dans le volet Glossaire
->
-> La clef `cta` est optionnelle
+service.sh が配置されているディレクトリで以下のコマンドを実行し、bso-uiコンテナを起動
 
-```json
-{
-    "entry": {
-      "intlEntry": "app.entry",
-      "intlDefinition": "app.definition",
-      "cta": "https://www.this-is-my-link.com"
-    }
-}
+```bash
+bash service.sh startbsoui
 ```
 
+## 補足
 
-### 3. Ajouter le composant `Glossary` dans la page
+### ウェブアプリケーション用コンテナを停止
 
-```js
-import GlossaryEntries from 'glossary.json';
+service.sh が配置されているディレクトリで以下のコマンドを実行し、bso-uiコンテナを停止
 
-<Glossary entries={GlossaryEntries} />
+```bash
+bash service.sh stopbsoui
 ```
 
-### 4. Ajouter dans la page le composant `GlossaryFormattedMessage` à l'emplacement souhaité
+## 開発環境構築関連手順
 
-> La props `intlKey` correspond au texte dans lequel se trouve le mot clickable
->
-> La props `glossaryKeys` correspond aux clefs dans `glossary.json` (dans l'ordre dans lequel elles apparaissent dans le texte)
->
-> La props `link` est optionnelle
+### .envファイル修正
 
-```js
-<GlossaryFormattedMessage
-  intlKey='app.text'
-  ctas={['https://www.link.fr']}
-  glossaryKeys={['entry1', 'entry2']}
-/>
+.envファイルのREACT_APP_ES_API_URL_PUBLICATIONSを開発環境用のエンドポイントに変更
+
+```bash
+REACT_APP_ES_API_URL_PUBLICATIONS=開発環境Elasticsearchのエンドポイント
 ```
 
-## Deployment
+### ElasticsearchのAPIKEY設定
 
-To deploy in production, simply run this command from your staging branch :
+以下のファイルのプレースホルダーに開発環境用のElasticsearchのAPIKEYを設定
 
-```sh
-npm run deploy --level=[patch|minor|major]
+```
+/nginx/templates/default.conf.template
 ```
 
-:warning: Obviously, only members of the [dataesr organization](https://github.com/dataesr/) have rights to push on the repo.
+### ウェブアプリケーション開発用コンテナの起動
+
+service.sh の Docker イメージのビルド（開発用）のコメントアウトを外し、本番用のイメージビルドをコメントアウト
+
+```bash
+# Docker イメージのビルド（開発用）
+docker build --target development -t "$IMAGE_NAME" "$PROJECT_DIR"
+
+# Docker イメージのビルド（本番用）
+# docker build -t "$IMAGE_NAME" "$PROJECT_DIR"
+```
+
+その後、service.sh が配置されているリポジトリで以下のコマンドを実行し、コンテナを起動
+
+```bash
+bash service.sh startbsoui
+```
