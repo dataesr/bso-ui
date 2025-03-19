@@ -2654,6 +2654,7 @@ export default function getFetchOptions({
               terms: {
                 field: `${aggregationType}.keyword`,
                 size: 35,
+                missing: 'N/A',
               },
             },
           },
