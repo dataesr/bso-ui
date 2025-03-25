@@ -26,7 +26,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
   const { allData, isError, isLoading } = useGetData(
     lastObservationSnap,
     domain,
-    'license',
+    'licenses',
     12,
   );
   const { categories, dataGraph } = allData;
