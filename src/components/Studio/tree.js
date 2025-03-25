@@ -284,6 +284,10 @@ const tree = [
             key: 'app.national-data.general.repositories.datasets-by-format.title',
             value: 'data.general.repositories.datasets-by-format',
           },
+          {
+            key: 'app.national-data.general.repositories.datasets-by-license.title',
+            value: 'data.general.repositories.datasets-by-license',
+          },
         ],
       },
     ],
