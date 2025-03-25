@@ -30,7 +30,10 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
       data.forEach((el) => {
         const year = el.key;
         years.push(el.key);
-        const numberOfDatasets = el.doc_count;
+        const numberOfDatasets = el.by_type.buckets.reduce(
+          (acc, curr) => acc + curr.doc_count,
+          0,
+        );
         totalByYear[year] = numberOfDatasets;
         el.by_type.buckets.forEach((k) => {
           let currentType = k.key;
@@ -47,7 +50,7 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
             y_abs: numberInRepo,
             y_tot: numberOfDatasets,
             year: el.key,
-            type: currentType,
+            type: currentType.toUpperCase(),
             bsoDomain,
           };
           types[currentType].total += numberInRepo;
@@ -89,7 +92,7 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
           color = '#dedede';
         }
         dataGraph.push({
-          name: e[0],
+          name: e[0].toUpperCase(),
           data: currentData,
           color,
         });
@@ -104,14 +107,14 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
           y_rel:
             ((totalByYear[y] - currentCountByYear[y]) / totalByYear[y]) * 100,
           year: y,
-          type: 'other',
+          type: 'Other',
         });
         totalOther += totalByYear[y] - currentCountByYear[y];
       });
       if (type !== 'format' && totalOther > 0) {
         dataGraph.unshift({
-          // add at the beginning of the array
-          name: 'other',
+          // Add at the beginning of the array
+          name: 'Other',
           data: otherData,
           color: 'grey',
         });
