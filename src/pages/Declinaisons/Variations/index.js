@@ -270,7 +270,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local IMT Mines Albi'
-                href='https://www.imt-mines-albi.fr/fr/barometre-science-ouverte-2022'
+                href='https://doc.imt-mines-albi.fr/fr/science-ouverte'
                 img='/declinaisons/imt-albi.png'
               />
             </Col>
