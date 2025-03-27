@@ -136,13 +136,6 @@ const Variations = () => {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Université de Bourgogne'
-                href='https://www.u-bourgogne.fr/non-categorise/politique-science-ouverte'
-                img='/declinaisons/universite-bourgogne.png'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
                 alt='bso local La Rochelle Université'
                 href='https://bu.univ-larochelle.fr/lappui-a-la-recherche/barometre-science-ouverte/'
                 img='/declinaisons/universite-la-rochelle.png'
@@ -157,13 +150,6 @@ const Variations = () => {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local INSA Toulouse'
-                href='https://bib.insa-toulouse.fr/fr/chercheurs-et-doctorants/science-ouverte/barometre.html'
-                img='/declinaisons/insa-toulouse.jpeg'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
                 alt='bso local INSA Lyon'
                 href='https://hal-insa-lyon.archives-ouvertes.fr/page/barometre-science-ouverte'
                 img='/declinaisons/insa-lyon.jpeg'
@@ -174,13 +160,6 @@ const Variations = () => {
                 alt='bso local Avignon Université'
                 href='https://bu.univ-avignon.fr/barometre-de-la-science-ouverte-avignon-universite/'
                 img='/declinaisons/avignon-universite.jpeg'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
-                alt='bso local CentraleSupélec'
-                href='http://pole-ist.centralesupelec.fr/fr/node/482'
-                img='/declinaisons/centrale-supelec.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -227,13 +206,6 @@ const Variations = () => {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Univeristé Brest UBO'
-                href='http://ubodoc.univ-brest.fr/science-ouverte-et-valorisation/science-ouverte-a-lubo/barometre_science_ouverte/'
-                img='/declinaisons/ubo.png'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
                 alt='bso local Institut Pasteur'
                 href='https://www.pasteur.fr/fr/ceris/bibliotheque/s-engager-science-ouverte#barometre'
                 img='/declinaisons/pasteur.png'
@@ -244,13 +216,6 @@ const Variations = () => {
                 alt='bso local Université Paris-Saclay'
                 href='https://www.universite-paris-saclay.fr/recherche/science-ouverte/le-barometre-de-la-science-ouverte-de-luniversite-paris-saclay'
                 img='/declinaisons/ups.svg'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
-                alt='bso local Université Lyon 1 UCBL'
-                href='https://www.univ-lyon1.fr/actualites/lacces-ouvert-progresse-encore-a-lyon-1'
-                img='/declinaisons/lyon1.jpg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -272,13 +237,6 @@ const Variations = () => {
                 alt='bso local IMT Mines Albi'
                 href='https://doc.imt-mines-albi.fr/fr/science-ouverte'
                 img='/declinaisons/imt-albi.png'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
-                alt='bso local Université de Montpellier'
-                href='https://bibliotheques.edu.umontpellier.fr/science-ouverte/bso-um/'
-                img='/declinaisons/montpellier.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -335,13 +293,6 @@ const Variations = () => {
                 alt='bso local cyu cergy'
                 href='https://bibliotheque.cyu.fr/version-francaise/science-ouverte/barometre-de-la-science-ouverte-2'
                 img='/declinaisons/cyu.png'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
-                alt='bso local cnam'
-                href='https://bibliotheques.cnam.fr/opac/article/le-barometre-science-ouverte-du-cnam/5_so_barometre2'
-                img='/declinaisons/cnam.svg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
