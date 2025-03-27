@@ -75,54 +75,16 @@ const SubmissionForm = () => {
     setNntIdCount(undefined);
   };
 
-  const sendTicketOffice = (txt) => {
-    const data = {
-      contact: {
-        email,
-      },
-      structure: {
-        name,
-        ...(acronym && { acronym }),
-        ...(id && { id }),
-      },
-      csv: txt,
-    };
-
-    const options = {
-      method: 'POST',
-      url: '/ticket/api/variations/',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data,
-    };
-
-    Axios.request(options)
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log(response);
-        setIsError(false);
-      })
-      .catch((e) => {
-        // eslint-disable-next-line no-console
-        console.error(e);
-        setIsError(true);
-        setMessage(
-          "Erreur lors de l'envoi de votre fichier, merci de contacter bso@recherche.gouv.fr.",
-        );
-      });
-  };
-
-  const sendEmail = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     const txt = Papa.unparse(dataFile, {
       delimiter: ',',
       header: true,
       skipEmptyLines: 'greedy',
     });
-    let content = '';
+    let csv = '';
     try {
-      content = window.btoa(txt);
+      csv = window.btoa(txt);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -147,30 +109,20 @@ const SubmissionForm = () => {
 
     const options = {
       method: 'POST',
-      url: `${window.location.origin}/mailer/`,
+      url: '/ticket/api/variations/',
       headers: {
         'Content-Type': 'application/json',
       },
       data: {
-        sender: {
-          email: 'bso@recherche.gouv.fr',
-          name: 'Baromètre français de la Science Ouverte',
+        contact: {
+          email,
         },
-        to: [
-          {
-            email: 'bso@recherche.gouv.fr',
-            name: 'Baromètre français de la Science Ouverte',
-          },
-          { email, name: email },
-        ],
-        subject: "Demande d'un nouveau BSO Local",
-        htmlContent: `<html><body>
-          <p>Email de contact: ${email}</p>
-          <p>Nom de la structure: ${name}</p>
-          <p>Acronyme de la structure: ${acronym}</p>
-          <p>Identifiant de l'établissement: ${id}</p>
-          </body></html>`,
-        attachment: [{ content, name: `${id.length > 0 ? id : 'bso'}.csv` }],
+        structure: {
+          name,
+          ...(acronym && { acronym }),
+          ...(id && { id }),
+        },
+        csv,
       },
     };
 
@@ -178,12 +130,9 @@ const SubmissionForm = () => {
       .then(() => {
         resetState();
         setIsError(false);
-        sendTicketOffice(txt);
-        if (!isError) {
-          setMessage(
-            "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
-          );
-        }
+        setMessage(
+          "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
+        );
       })
       .catch((e) => {
         // eslint-disable-next-line no-console
@@ -433,7 +382,7 @@ const SubmissionForm = () => {
               des "snapshots" des outils utilisés (Unpaywall, PubMed...).
             </div>
             <br />
-            <form onSubmit={sendEmail}>
+            <form onSubmit={onSubmit}>
               <TextInput
                 autoComplete='email'
                 autoFocus
