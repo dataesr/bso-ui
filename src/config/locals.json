@@ -1257,6 +1257,14 @@
     "paysage": "m2tBU",
     "ror": "https://ror.org/01z485314"
   },
+  "201119399T": {
+    "name": "Centre de recherche en neurosciences de Lyon (CRNL)",
+    "commentsName": "du CRNL",
+    "commentsNameEN": "of CRNL",
+    "paysage": "EnAR6",
+    "ror": "https://ror.org/00pdd0432",
+    "scale": "laboratory"
+  },
   "201119419P": {
     "name": "Laboratoire d'électrochimie et de physico-chimie des matériaux et des interfaces (LEPMI)",
     "commentsName": "du LEPMI",
