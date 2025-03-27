@@ -385,6 +385,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis(true, null, true); // absolute = true
       options.yAxis.title.text = intl.formatMessage({ id: 'app.nb.datasets' });
+      options.yAxis.stackLabels.enabled = false;
       options.legend.title.text = intl.formatMessage({
         id: 'app.data-license',
       });

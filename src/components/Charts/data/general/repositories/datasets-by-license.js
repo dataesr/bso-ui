@@ -30,6 +30,18 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     12,
   );
   const { categories, dataGraph } = allData;
+  // Remove "other" category, as it is a multi-valuated field, we can not count the rest
+  // And set license names uppercase
+  const dataGraph2 = dataGraph
+    ?.filter((license) => license.name !== 'other')
+    ?.map((license) => ({
+      ...license,
+      name: license.name.toUpperCase(),
+      data: license.data.map((d) => ({
+        ...d,
+        type: d?.type.toUpperCase(),
+      })),
+    }));
   const dataTitle = {
     observationYear: getObservationLabel(lastObservationSnap, intl),
   };
@@ -38,7 +50,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
     idWithDomain,
     intl,
     categories,
-    dataGraph,
+    dataGraph2,
     dataTitle,
   );
   const hasBeta = true;
