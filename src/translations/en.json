@@ -1186,6 +1186,7 @@
   "app.studies.intervention-type.DIAGNOSTIC_TEST": "diagnostic test",
   "app.studies.intervention-type.DIETARY_SUPPLEMENT": "dietary supplement",
   "app.studies.intervention-type.DRUG": "medication",
+  "app.studies.intervention-type.DRUG (presumed)": "medication (presumed)",
   "app.studies.intervention-type.GENETIC": "genetic",
   "app.studies.intervention-type.N/A": "unknown",
   "app.studies.intervention-type.OTHER": "other intervention",
