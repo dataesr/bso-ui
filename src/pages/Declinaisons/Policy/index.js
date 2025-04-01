@@ -16,7 +16,7 @@ import { getCSSValue, getPercentageYAxis } from '../../../utils/helpers';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const END_YEAR = 2024;
+const END_YEAR = new Date().getFullYear();
 const OPENDATASOFT_LIMIT = 100;
 const START_YEAR = 2016;
 
