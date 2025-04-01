@@ -442,6 +442,13 @@ const Variations = () => {
                 img='/declinaisons/imt-ales.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local UTC université de technologie de Compiègne'
+                href='https://www.utc.fr/recherche/science-ouverte/'
+                img='/declinaisons/utc.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
