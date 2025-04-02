@@ -75,7 +75,9 @@ const Policy = () => {
         item?.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
       ) {
         tmp[
-          item.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
+          item.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre.split(
+            ',',
+          )[0]
         ].y_abs += 1;
       }
     });
@@ -103,7 +105,7 @@ const Policy = () => {
       },
       {
         from: 2021,
-        to: 2024,
+        to: 2025,
         color: getCSSValue('--ouvrir-la-science-yellow'),
       },
     ];
