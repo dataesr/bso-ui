@@ -119,7 +119,7 @@ const SubmissionForm = () => {
         },
         structure: {
           name,
-          ...(acronym && { acronym }),
+          ...(acronym && { acronym: acronym.toUpperCase() }),
           ...(id && { id }),
         },
         csv,
