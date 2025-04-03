@@ -11,28 +11,33 @@ import GraphComments from '../../../components/Charts/graph-comments';
 import ChartWrapper from '../../../components/ChartWrapper';
 import customComments from '../../../utils/chartComments';
 import { getGraphOptions } from '../../../utils/chartOptions';
-import { getCSSValue, getPercentageYAxis } from '../../../utils/helpers';
+import {
+  getCSSValue,
+  getPercentageYAxis,
+  isInProduction,
+} from '../../../utils/helpers';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
 const END_YEAR = new Date().getFullYear();
 const OPENDATASOFT_LIMIT = 100;
+const SELECTED_TYPES = ['Grand établissement', 'Université'];
 const START_YEAR = 2016;
 
 const Policy = () => {
-  const [chartComments1, setChartComments1] = useState('');
-  // const [chartComments2, setChartComments2] = useState('');
+  const [chartComments, setChartComments] = useState('');
+  const [chartCommentsSelectedTypes, setChartCommentsSelectedTypes] = useState('');
   const [data, setData] = useState([]);
-  const [options1, setOptions1] = useState();
-  // const [options2, setOptions2] = useState();
+  const [options, setOptions] = useState();
+  const [optionsSelectedTypes, setOptionsSelectedTypes] = useState();
 
   const intl = useIntl();
-  const chartRef1 = useRef();
-  // const chartRef2 = useRef();
+  const chartRef = useRef();
+  const chartRefSelectedTypes = useRef();
 
-  const id1 = 'other.policy.open-science-policy';
-  const id2 = 'other.policy.open-science-document';
+  const id = 'other.policy.open-science-policy';
+  const idSelectedTypes = 'other.policy.open-science-policy-selected-types';
 
   useEffect(() => {
     const getDataFromPage = async ({
@@ -67,9 +72,17 @@ const Policy = () => {
       (year) => year + START_YEAR,
     );
     const tmp = {};
+    const tmpSelectedTypes = {};
     years.forEach((year) => {
       tmp[year] = { y: 0, y_percent: 0, y_tot: data.length, y_abs: 0 };
+      tmpSelectedTypes[year] = {
+        y: 0,
+        y_percent: 0,
+        y_tot: data.length,
+        y_abs: 0,
+      };
     });
+    const lll = data.filter((item) => SELECTED_TYPES.includes(item.type)).length;
     data.forEach((item) => {
       if (
         item?.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
@@ -79,14 +92,21 @@ const Policy = () => {
             ',',
           )[0]
         ].y_abs += 1;
+        if (SELECTED_TYPES.includes(item.type)) {
+          tmpSelectedTypes[
+            item.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre.split(
+              ',',
+            )[0]
+          ].y_abs += 1;
+        }
       }
     });
-    const series1 = {};
+    const series = {};
     Object.keys(tmp).forEach((year) => {
       const yAbs = Object.keys(tmp)
         .filter((key) => key <= year)
         .reduce((acc, curr) => acc + tmp[curr].y_abs, 0);
-      series1[year] = {
+      series[year] = {
         name: year,
         total: data.length,
         y_abs: yAbs,
@@ -95,9 +115,23 @@ const Policy = () => {
         y_percent: (yAbs / data.length) * 100,
       };
     });
-    const options1Tmp = getGraphOptions({ id: id1, intl });
-    options1Tmp.xAxis.tickInterval = 1;
-    options1Tmp.xAxis.plotBands = [
+    const seriesSelectedTypes = {};
+    Object.keys(tmpSelectedTypes).forEach((year) => {
+      const yAbs = Object.keys(tmpSelectedTypes)
+        .filter((key) => key <= year)
+        .reduce((acc, curr) => acc + tmpSelectedTypes[curr].y_abs, 0);
+      seriesSelectedTypes[year] = {
+        name: year,
+        total: lll,
+        y_abs: yAbs,
+        y_tot: lll,
+        y: (yAbs / lll) * 100,
+        y_percent: (yAbs / lll) * 100,
+      };
+    });
+    const optionsTmp = getGraphOptions({ id, intl });
+    optionsTmp.xAxis.tickInterval = 1;
+    optionsTmp.xAxis.plotBands = [
       {
         from: 2018,
         to: 2021,
@@ -109,115 +143,52 @@ const Policy = () => {
         color: getCSSValue('--ouvrir-la-science-yellow'),
       },
     ];
-    options1Tmp.yAxis = getPercentageYAxis();
-    options1Tmp.legend.enabled = false;
-    options1Tmp.plotOptions = {
+    optionsTmp.yAxis = getPercentageYAxis();
+    optionsTmp.legend.enabled = false;
+    optionsTmp.plotOptions = {
       series: {
         color: getCSSValue('--ouvrir-la-science-blue'),
         pointStart: START_YEAR,
       },
     };
-    options1Tmp.series = [
+    optionsTmp.series = [
       {
-        data: Object.values(series1),
+        data: Object.values(series),
       },
     ];
-    options1Tmp.exporting.chartOptions.legend.enabled = false;
-    setOptions1(options1Tmp);
-
-    const colorFromPolicyExists = {
-      Oui: getCSSValue('--ouvrir-la-science-blue'),
-      Non: getCSSValue('--ouvrir-la-science-green'),
-      'Pas encore, mais nous y travaillons': getCSSValue(
-        '--ouvrir-la-science-yellow',
-      ),
-    };
-
-    const orderFromPolicyExists = {
-      Oui: 3,
-      Non: 2,
-      'Pas encore, mais nous y travaillons': 1,
-    };
-
-    let series2 = [];
-    data.forEach((item) => {
-      if (
-        !series2.find(
-          (serie) => serie.name
-            === item[
-              '1_2_existe_t_il_un_document_cadre_charte_politique_precisant_votre_politique_de_science_ouverte'
-            ],
-        )
-      ) {
-        series2.push({
-          name: item[
-            '1_2_existe_t_il_un_document_cadre_charte_politique_precisant_votre_politique_de_science_ouverte'
-          ],
-          y: 0,
-        });
-      }
-      series2.find(
-        (serie) => serie.name
-          === item[
-            '1_2_existe_t_il_un_document_cadre_charte_politique_precisant_votre_politique_de_science_ouverte'
-          ],
-      ).y += 1;
-    });
-    series2 = series2
-      .map((item) => ({
-        ...item,
-        color: colorFromPolicyExists[item?.name] ?? getCSSValue('--g-500'),
-        name: intl.formatMessage({
-          id: `other.policy.${item.name.toLowerCase()}`,
-          default: 'Pas de réponse',
-        }),
-        order: orderFromPolicyExists[item?.name] ?? 0,
-        total: data.length,
-        y_percent: (item.y / data.length) * 100,
-      }))
-      .sort((a, b) => b.order - a.order);
-    const options2Tmp = getGraphOptions({ id: id2, intl });
-    options2Tmp.chart.type = 'pie';
-    options2Tmp.series = [
+    optionsTmp.exporting.chartOptions.legend.enabled = false;
+    setOptions(optionsTmp);
+    const optionsSelectedTypesTmp = { ...optionsTmp };
+    optionsSelectedTypesTmp.series = [
       {
-        data: series2,
-        innerSize: '60%',
+        data: Object.values(seriesSelectedTypes),
       },
     ];
-    options2Tmp.plotOptions = {
-      pie: {
-        dataLabels: {
-          enabled: true,
-          format: '{point.name}<br/>{point.y_percent:.0f} %',
-        },
-      },
-    };
-    options2Tmp.exporting.chartOptions.legend.enabled = false;
-    // setOptions2(options2Tmp);
+    setOptionsSelectedTypes(optionsSelectedTypesTmp);
   }, [data, intl]);
 
   useEffect(() => {
-    setChartComments1(
+    setChartComments(
       customComments(
         {
           comments: {},
           ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
         },
-        id1,
+        id,
         intl,
       ),
     );
-    // setChartComments2(
-    //  customComments(
-    //    {
-    //      comments: {},
-    //      ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
-    //    },
-    //    id2,
-    //    intl,
-    //  ),
-    // );
-  }, [id2, intl]);
+    setChartCommentsSelectedTypes(
+      customComments(
+        {
+          comments: {},
+          ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
+        },
+        idSelectedTypes,
+        intl,
+      ),
+    );
+  }, [id, idSelectedTypes, intl]);
 
   return (
     <div className='policy no-arrow-link'>
@@ -278,25 +249,52 @@ const Policy = () => {
           <Row>
             <Col n='12' className='fr-mt-5w'>
               <ChartWrapper
-                chartRef={chartRef1}
+                chartRef={chartRef}
                 domain=''
                 hasComments={false}
-                id={id1}
+                id={id}
                 isError={false}
                 isLoading={false}
               >
                 <HighchartsReact
                   highcharts={Highcharts}
-                  id={id1}
-                  options={options1}
-                  ref={chartRef1}
+                  id={id}
+                  options={options}
+                  ref={chartRef}
                 />
-                {chartComments1 && (
-                  <GraphComments comments={chartComments1} hasFooter />
+                {chartComments && (
+                  <GraphComments comments={chartComments} hasFooter />
                 )}
               </ChartWrapper>
             </Col>
           </Row>
+          {!isInProduction() && (
+            <Row>
+              <Col n='12' className='fr-mt-5w'>
+                <ChartWrapper
+                  chartRef={chartRefSelectedTypes}
+                  domain=''
+                  hasComments={false}
+                  id={idSelectedTypes}
+                  isError={false}
+                  isLoading={false}
+                >
+                  <HighchartsReact
+                    highcharts={Highcharts}
+                    id={idSelectedTypes}
+                    options={optionsSelectedTypes}
+                    ref={chartRefSelectedTypes}
+                  />
+                  {chartCommentsSelectedTypes && (
+                    <GraphComments
+                      comments={chartCommentsSelectedTypes}
+                      hasFooter
+                    />
+                  )}
+                </ChartWrapper>
+              </Col>
+            </Row>
+          )}
           <Row>
             <Col n='12' className='fr-mt-5w'>
               <span>
@@ -336,7 +334,7 @@ const Policy = () => {
                       (item) => item?.lien_vers_le_document_cadre_le_plus_recent,
                     )
                     .map((item) => (
-                      <tr>
+                      <tr key={item.identifiant_ror}>
                         <td>{item.uo_lib}</td>
                         <td>
                           {
