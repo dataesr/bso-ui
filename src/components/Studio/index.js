@@ -33,6 +33,7 @@ const Studio = () => {
   const [observationYearLast, setObservationYearLast] = useState();
   const [observationYears, setObservationYears] = useState([]);
   const [publicationYears, setPublicationYears] = useState([]);
+  const [repositoriesYears, setRepositoriesYears] = useState([]);
   const [startYear, setStartYear] = useState('2013');
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
@@ -46,8 +47,7 @@ const Studio = () => {
     setObservationYearLast(lastObservationYearTmp);
     const observationYearsTmp = [
       ...Array(
-        // Number(lastObservationYearTmp) - Number(observationYearFirst) + 1,
-        2024 - Number(observationYearFirst) + 1,
+        Number(lastObservationYearTmp) - Number(observationYearFirst) + 1,
       ).keys(),
     ].map((item) => ({
       label: `${item + Number(observationYearFirst)}`,
@@ -59,8 +59,7 @@ const Studio = () => {
     });
     setObservationYears(observationYearsTmp);
     const publicationYearsTmp = [
-      // ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
-      ...Array(2024 - Number(startYear)).keys(),
+      ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
     ].map((item) => ({
       label: `${item + Number(startYear)}`,
       value: `${item + Number(startYear)}`,
@@ -69,8 +68,19 @@ const Studio = () => {
       label: 'Date de publication utilisée dans le baromètre national',
       value: 'latest',
     });
-    setEndYear(publicationYearsTmp[publicationYearsTmp.length - 2].value);
     setPublicationYears(publicationYearsTmp);
+    const repositoriesYearsTmp = [
+      ...Array(Number(lastObservationYearTmp) - Number(startYear) + 1).keys(),
+    ].map((item) => ({
+      label: `${item + Number(startYear)}`,
+      value: `${item + Number(startYear)}`,
+    }));
+    repositoriesYearsTmp.push({
+      label: 'Date de publication utilisée dans le baromètre national',
+      value: 'latest',
+    });
+    setRepositoriesYears(repositoriesYearsTmp);
+    setEndYear(publicationYearsTmp[publicationYearsTmp.length - 2].value);
   }, [observationYearFirst, lastObservationSnap, startYear]);
 
   const commentsName = intl.formatMessage({
@@ -226,24 +236,24 @@ const Studio = () => {
       <Row gutters>
         <Col n='12 md-6'>
           <Select
-            disabled={object !== 'publi'}
+            disabled={!['publi', 'datasets'].includes(object)}
             hint="Filtre sur l'année de publication supérieure ou égale"
             label='Première année de publication'
             onChange={(e) => setStartYear(e.target.value)}
-            options={publicationYears}
+            options={object === 'publi' ? publicationYears : repositoriesYears}
             selected={startYear}
             style={{ backgroundColor: getCSSValue('--white') }}
           />
         </Col>
         <Col n='12 md-6'>
           <Select
-            disabled={object !== 'publi'}
+            disabled={!['publi', 'datasets'].includes(object)}
             hint="Filtre sur l'année de publication inférieure ou égale"
             label='Dernière année de publication'
             message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
             messageType={endYear < startYear ? 'error' : null}
             onChange={(e) => setEndYear(e.target.value)}
-            options={publicationYears}
+            options={object === 'publi' ? publicationYears : repositoriesYears}
             selected={endYear}
             style={{ backgroundColor: getCSSValue('--white') }}
           />
