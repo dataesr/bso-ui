@@ -1136,9 +1136,9 @@
     "scale": "laboratory"
   },
   "200610854B": {
-    "name": "Observatoire de Paris",
-    "commentsName": "de l'Observatoire de Paris",
-    "commentsNameEN": "of the Paris Observatory",
+    "name": "Observatoire de Paris (OBSPM)",
+    "commentsName": "de l'OBSPM",
+    "commentsNameEN": "of OBSPM",
     "paysage": "tr5VV",
     "ror": "https://ror.org/029nkcm90",
     "startYear": 2017
