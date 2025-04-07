@@ -6,14 +6,6 @@ server {
     index index.html index.htm;
     try_files $uri $uri/ /index.html =404;
   }
-  location /mailer/ {
-    proxy_set_header accept application/json;
-    proxy_set_header api-key $BREVO_KEY;
-    proxy_set_header content-type application/json;
-    proxy_ssl_server_name on;
-    proxy_pass https://api.brevo.com/v3/smtp/email;
-    client_max_body_size 10M;
-  }
   location ~ ^/ticket/(.*)$ {
     proxy_pass ${TICKET_OFFICE_API_URL}/$1;
     proxy_set_header Authorization 'Basic $TICKET_OFFICE_API_KEY';
