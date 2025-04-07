@@ -6,6 +6,7 @@ import {
   Container,
   File,
   Row,
+  Select,
   TextInput,
 } from '@dataesr/react-dsfr';
 import Axios from 'axios';
@@ -49,10 +50,12 @@ const nntEtabRegex = /^[a-zA-Z0-9]{4,6}$/;
 const nntIdRegex = /^(19|20)\d{2}[A-Z0-9]{4}\w{4}$/;
 
 const SubmissionForm = () => {
+  const [action, setAction] = useState('update-publications');
   const [acronym, setAcronym] = useState('');
   const [dataFile, setDataFile] = useState();
   const [doiCount, setDoiCount] = useState();
   const [email, setEmail] = useState('');
+  const [existingInstitutions, setExistingInstitutions] = useState({});
   const [halCollCodeCount, setHalCollCodeCount] = useState();
   const [halIdCount, setHalIdCount] = useState();
   const [halStructIdCount, setHalStructIdCount] = useState();
@@ -63,6 +66,18 @@ const SubmissionForm = () => {
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
   const [previousDoiCount, setPreviousDoiCount] = useState('');
+  const [typingTimer, setTypingTimer] = useState();
+
+  Axios.request({
+    url: 'https://raw.githubusercontent.com/dataesr/bso-ui/refs/heads/main/src/config/locals.json',
+  }).then((r) => {
+    const dataLowercase = {};
+    const data = r?.data ?? {};
+    Object.keys(data).forEach((key) => {
+      dataLowercase[key.toLowerCase()] = { ...data[key], key };
+    });
+    setExistingInstitutions(dataLowercase);
+  });
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -350,7 +365,11 @@ const SubmissionForm = () => {
   const setInstitutionId = async (e) => {
     e.preventDefault();
     const institutionId = e.target.value.replaceAll(' ', '');
-    setId(institutionId);
+    setId(existingInstitutions?.[institutionId.toLowerCase()]?.key ?? '');
+    setName(existingInstitutions?.[institutionId.toLowerCase()]?.name ?? '');
+    setAcronym(
+      existingInstitutions?.[institutionId.toLowerCase()]?.commentsName ?? '',
+    );
     try {
       const options = {
         url: `https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso-local/${institutionId}.csv`,
@@ -383,6 +402,28 @@ const SubmissionForm = () => {
             </div>
             <br />
             <form onSubmit={onSubmit}>
+              <Select
+                label='Action demandée'
+                onChange={(e) => setAction(e.target.value)}
+                options={[
+                  {
+                    label:
+                      "Mise à jour d'un baromètre et d'un scanR locaux existants",
+                    value: 'update-publications',
+                  },
+                  {
+                    label: "Création d'un baromètre et d'un scanR locaux",
+                    value: 'create-publications',
+                  },
+                  {
+                    label:
+                      "Création d'un nouveau baromètre des entrepôts de jeux de données",
+                    value: 'create-datasets',
+                    disabled: true,
+                  },
+                ]}
+                selected={action}
+              />
               <TextInput
                 autoComplete='email'
                 autoFocus
@@ -392,6 +433,23 @@ const SubmissionForm = () => {
                 type='email'
                 value={email}
               />
+              {action === 'update-publications' && (
+                <TextInput
+                  hint='Tel que communiqué lors de votre précédente demande'
+                  label="Identifiant de l'établissement"
+                  onChange={(e) => {
+                    if (typingTimer) {
+                      clearTimeout(typingTimer);
+                    }
+                    const typingTimerTmp = setTimeout(
+                      () => setInstitutionId(e),
+                      1000,
+                    );
+                    setTypingTimer(typingTimerTmp);
+                  }}
+                  required
+                />
+              )}
               <TextInput
                 label='Nom de la structure'
                 onChange={(e) => setName(e.target.value)}
@@ -402,12 +460,6 @@ const SubmissionForm = () => {
                 label='Acronyme de la structure'
                 onChange={(e) => setAcronym(e.target.value)}
                 value={acronym}
-              />
-              <TextInput
-                hint='En cas de précédente demande'
-                label="Identifiant de l'établissement"
-                onChange={(e) => setInstitutionId(e)}
-                value={id}
               />
               {previousDoiCount && (
                 <div className='text-green'>
