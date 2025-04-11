@@ -23,6 +23,7 @@ function ChartWrapper({
   chartRef,
   children,
   dataTitle,
+  date,
   domain,
   enableExport,
   hasBeta,
@@ -124,7 +125,7 @@ function ChartWrapper({
       </div>
       {hasFooter && (
         <GraphFooter
-          date={getFormattedDate(updateDate, lang)}
+          date={getFormattedDate(date ?? updateDate, lang)}
           enableExport={enableExport}
           height={height}
           onCsvButtonClick={exportChartCsv}
@@ -142,6 +143,7 @@ function ChartWrapper({
 ChartWrapper.defaultProps = {
   chartRef: () => {},
   dataTitle: {},
+  date: undefined,
   enableExport: true,
   hasBeta: false,
   hasComments: true,
@@ -160,6 +162,7 @@ ChartWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   dataTitle: PropTypes.object,
+  date: PropTypes.string,
   domain: PropTypes.oneOf(domains).isRequired,
   enableExport: PropTypes.bool,
   hasBeta: PropTypes.bool,
