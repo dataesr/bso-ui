@@ -130,7 +130,7 @@ const Variations = () => {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université de Rennes'
-                href='https://scienceouverte.univ-rennes.fr/barometre-science-ouverte-edition-2022'
+                href='https://scienceouverte.univ-rennes.fr/barometre-de-la-science-ouverte-0'
                 img='/declinaisons/rennes.jpeg'
               />
             </Col>
