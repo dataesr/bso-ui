@@ -22,7 +22,6 @@ import {
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
-  TwitterShareButton,
   XIcon,
 } from 'react-share';
 
@@ -200,17 +199,6 @@ const GraphFooter = ({
                     id='app.graph.share'
                   />
                 </div>
-                <TwitterShareButton
-                  className='share-btn'
-                  hashtags={['OpenAccess', 'ScienceOuverte', 'dataESR']}
-                  related={['sup_recherche', 'ouvrirlascience']}
-                  text={title}
-                  title={title}
-                  url={urlToShare}
-                  via='ouvrirlascience'
-                >
-                  <XIcon size={30} bgStyle={{ fill: shareFill }} />
-                </TwitterShareButton>
                 <LinkedinShareButton
                   className='share-btn'
                   source='BSO'

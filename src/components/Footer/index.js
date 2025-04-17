@@ -118,15 +118,6 @@ export default function Footer() {
           <FooterTopCategory
             title={intl.formatMessage({ id: 'app.footer.follow' })}
           >
-            <FooterLink target='_blank' href='https://x.com/dataESR'>
-              <DSIcon
-                className='ds-fr--v-middle'
-                name='ri-twitter-x-fill'
-                size='xl'
-              >
-                <span>X</span>
-              </DSIcon>
-            </FooterLink>
             <FooterLink
               target='_blank'
               href='https://www.linkedin.com/company/enseignementsup-recherche/mycompany/'
