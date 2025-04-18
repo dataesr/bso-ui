@@ -58,8 +58,8 @@ function EssaisCliniques() {
                 id: 'app.health-interventional.general',
               })}
               paths={[
-                '/sante/essais-cliniques/general',
                 '/health/clinical-trials/general',
+                '/sante/essais-cliniques/general',
               ]}
               links={[
                 {
@@ -93,6 +93,8 @@ function EssaisCliniques() {
             >
               <GraphContent>
                 <QuestionSection
+                  anchorId='general.dynamique'
+                  backgroundColor={blueSoft50}
                   ctas={[
                     'https://www.wma.net/fr/policies-post/declaration-dhelsinki-de-lamm-principes-ethiques-applicables-a-la-recherche-medicale-impliquant-des-etres-humains/',
                     'https://clinicaltrials.gov/',
@@ -100,44 +102,42 @@ function EssaisCliniques() {
                     'https://www.clinicaltrialsregister.eu/',
                   ]}
                   intlKey='app.health-interventional.general.dynamique'
-                  backgroundColor={blueSoft50}
-                  anchorId='general.dynamique'
                 >
                   <BSOChart
+                    domain='health'
                     id='general.dynamique.chart-evolution-within-3-years'
-                    domain='health'
                     studyType='Interventional'
                   />
                   <BSOChart
+                    domain='health'
                     id='general.dynamique.chart-evolution'
-                    domain='health'
                     studyType='Interventional'
                   />
                   <BSOChart
+                    domain='health'
                     id='general.dynamique.chart-evolution-within-3-years-by-year'
-                    domain='health'
                     studyType='Interventional'
                   />
                   <BSOChart
+                    domain='health'
                     id='general.dynamique.chart-evolution-within-1-year'
-                    domain='health'
                     studyType='Interventional'
                   />
                   <BSOChart
-                    id='general.dynamique.chart-evolution-within-1-year-by-year'
                     domain='health'
+                    id='general.dynamique.chart-evolution-within-1-year-by-year'
                     studyType='Interventional'
                   />
                 </QuestionSection>
 
                 <QuestionSection
-                  intlKey='app.health-interventional.general.trajectoires'
-                  backgroundColor={blueSoft25}
                   anchorId='general.directions'
+                  backgroundColor={blueSoft25}
+                  intlKey='app.health-interventional.general.trajectoires'
                 >
                   <BSOChart
-                    id='general.trajectoires.chart-repartition'
                     domain='health'
+                    id='general.trajectoires.chart-repartition'
                     studyType='Interventional'
                   />
                 </QuestionSection>
@@ -150,8 +150,8 @@ function EssaisCliniques() {
                 id: 'app.health-interventional.caracteristiques',
               })}
               paths={[
-                '/sante/essais-cliniques/caracteristiques',
                 '/health/clinical-trials/characteristics',
+                '/sante/essais-cliniques/caracteristiques',
               ]}
               links={[
                 {
@@ -203,82 +203,82 @@ function EssaisCliniques() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.health-interventional.caracteristiques.quand'
-                  backgroundColor={blueSoft50}
                   anchorId='caracteristiques.quand'
-                >
-                  <BSOChart
-                    id='caracteristiques.quand.chart-evolution-temporalites'
-                    domain='health'
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    id='caracteristiques.quand.chart-repartition-avant-apres'
-                    domain='health'
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    id='caracteristiques.quand.chart-distribution-declarations'
-                    domain='health'
-                    studyType='Interventional'
-                    isDisplayed={!isInProduction()}
-                  />
-                </QuestionSection>
-
-                <QuestionSection
-                  intlKey='app.health-interventional.caracteristiques.duree'
-                  backgroundColor={blueSoft25}
-                  anchorId='caracteristiques.duree'
-                >
-                  <BSOChart
-                    id='caracteristiques.duree.chart-nombre'
-                    domain='health'
-                    studyType='Interventional'
-                  />
-                </QuestionSection>
-
-                <QuestionSection
-                  intlKey='app.health-interventional.caracteristiques.combien'
                   backgroundColor={blueSoft50}
-                  anchorId='caracteristiques.combien'
+                  intlKey='app.health-interventional.caracteristiques.quand'
                 >
                   <BSOChart
-                    id='caracteristiques.combien.chart-groupes-patients'
                     domain='health'
+                    id='caracteristiques.quand.chart-evolution-temporalites'
                     studyType='Interventional'
                   />
                   <BSOChart
-                    id='caracteristiques.combien.chart-proportion-modes-repartition'
                     domain='health'
+                    id='caracteristiques.quand.chart-repartition-avant-apres'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='caracteristiques.quand.chart-distribution-declarations'
+                    isDisplayed={!isInProduction()}
                     studyType='Interventional'
                   />
                 </QuestionSection>
 
                 <QuestionSection
-                  intlKey='app.health-interventional.caracteristiques.types'
+                  anchorId='caracteristiques.duree'
                   backgroundColor={blueSoft25}
+                  intlKey='app.health-interventional.caracteristiques.duree'
+                >
+                  <BSOChart
+                    domain='health'
+                    id='caracteristiques.duree.chart-nombre'
+                    studyType='Interventional'
+                  />
+                </QuestionSection>
+
+                <QuestionSection
+                  anchorId='caracteristiques.combien'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.health-interventional.caracteristiques.combien'
+                >
+                  <BSOChart
+                    domain='health'
+                    id='caracteristiques.combien.chart-groupes-patients'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='caracteristiques.combien.chart-proportion-modes-repartition'
+                    studyType='Interventional'
+                  />
+                </QuestionSection>
+
+                <QuestionSection
                   anchorId='caracteristiques.types'
+                  backgroundColor={blueSoft25}
                   ctas={[
                     'https://clinicaltrials.gov/policy/protocol-definitions#InterventionType',
                   ]}
+                  intlKey='app.health-interventional.caracteristiques.types'
                 >
                   <BSOChart
-                    id='caracteristiques.types.chart-evolution-nombre'
                     domain='health'
+                    id='caracteristiques.types.chart-evolution-nombre'
                     studyType='Interventional'
                   />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
 
-            {/* Les promoteurs [MASQUE] */}
+            {/* Les promoteurs [STAGING] */}
             <GraphItem
               mainLabel={intl.formatMessage({
                 id: 'app.health-interventional.promoteurs',
               })}
               paths={[
-                '/sante/essais-cliniques/promoteurs',
                 '/health/clinical-trials/lead-sponsors',
+                '/sante/essais-cliniques/promoteurs',
               ]}
               isDisplayed={!isInProduction()}
               links={[
@@ -313,29 +313,29 @@ function EssaisCliniques() {
             >
               <GraphContent isDisplayed={!isInProduction()}>
                 <QuestionSection
-                  intlKey='app.health-interventional.promoteurs.dynamique-ouverture'
-                  backgroundColor={blueSoft50}
                   anchorId='promoteurs.dynamique-ouverture'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.health-interventional.promoteurs.dynamique-ouverture'
                 >
                   <BSOChart
-                    id='promoteurs.dynamique-ouverture.chart-part'
                     domain='health'
+                    id='promoteurs.dynamique-ouverture.chart-part'
                     studyType='Interventional'
                   />
                   <BSOChart
-                    id='promoteurs.dynamique-ouverture.chart-evolution-nombre'
                     domain='health'
+                    id='promoteurs.dynamique-ouverture.chart-evolution-nombre'
                     studyType='Interventional'
                   />
                 </QuestionSection>
                 <QuestionSection
-                  intlKey='app.health-interventional.promoteurs.impact'
-                  backgroundColor={blueSoft25}
                   anchorId='promoteurs.impact'
+                  backgroundColor={blueSoft25}
+                  intlKey='app.health-interventional.promoteurs.impact'
                 >
                   <BSOChart
-                    id='promoteurs.impact.chart-repartition'
                     domain='health'
+                    id='promoteurs.impact.chart-repartition'
                     studyType='Interventional'
                   />
                 </QuestionSection>
@@ -348,8 +348,8 @@ function EssaisCliniques() {
                 id: 'app.health-interventional.resultats',
               })}
               paths={[
-                '/sante/essais-cliniques/resultats',
                 '/health/clinical-trials/results',
+                '/sante/essais-cliniques/resultats',
               ]}
               links={[
                 {
@@ -402,56 +402,115 @@ function EssaisCliniques() {
             >
               <GraphContent>
                 <QuestionSection
-                  intlKey='app.health-interventional.resultats.type-diffusion'
-                  backgroundColor={blueSoft50}
                   anchorId='resultats.type-diffusion'
-                >
-                  <BSOChart
-                    id='resultats.type-diffusion.chart-repartition'
-                    domain='health'
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    id='resultats.type-diffusion.chart-repartition-par-type'
-                    domain='health'
-                    studyType='Interventional'
-                  />
-                </QuestionSection>
-
-                <QuestionSection
-                  intlKey='app.health-interventional.resultats.plan-partage'
-                  backgroundColor={blueSoft25}
-                  anchorId='resultats.plan-partage'
-                  ctas={['http://www.icmje.org/']}
-                >
-                  <BSOChart
-                    id='resultats.plan-partage.chart-repartition'
-                    domain='health'
-                    studyType='Interventional'
-                  />
-                </QuestionSection>
-
-                <QuestionSection
-                  intlKey='app.health-interventional.resultats.delai-diffusion'
                   backgroundColor={blueSoft50}
-                  anchorId='resultats.delai-diffusion'
+                  intlKey='app.health-interventional.resultats.type-diffusion'
                 >
                   <BSOChart
-                    id='resultats.delai-diffusion.chart-repartition'
                     domain='health'
+                    id='resultats.type-diffusion.chart-repartition'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='resultats.type-diffusion.chart-repartition-par-type'
                     studyType='Interventional'
                   />
                 </QuestionSection>
 
                 <QuestionSection
-                  intlKey='app.health-interventional.resultats.publication'
+                  anchorId='resultats.plan-partage'
                   backgroundColor={blueSoft25}
+                  ctas={['http://www.icmje.org/']}
+                  intlKey='app.health-interventional.resultats.plan-partage'
+                >
+                  <BSOChart
+                    domain='health'
+                    id='resultats.plan-partage.chart-repartition'
+                    studyType='Interventional'
+                  />
+                </QuestionSection>
+
+                <QuestionSection
+                  anchorId='resultats.delai-diffusion'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.health-interventional.resultats.delai-diffusion'
+                >
+                  <BSOChart
+                    domain='health'
+                    id='resultats.delai-diffusion.chart-repartition'
+                    studyType='Interventional'
+                  />
+                </QuestionSection>
+
+                <QuestionSection
                   anchorId='resultats.publication'
+                  backgroundColor={blueSoft25}
+                  intlKey='app.health-interventional.resultats.publication'
                   isDisplayed={!isInProduction()}
                 >
                   <BSOChart
-                    id='resultats.publication.chart-repartition'
                     domain='health'
+                    id='resultats.publication.chart-repartition'
+                    studyType='Interventional'
+                  />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+
+            {/* Médicaments [STAGING] */}
+            <GraphItem
+              mainLabel={intl.formatMessage({
+                id: 'app.health-interventional.navigation.drug',
+                defaultMessage: 'Clinical trials on drug',
+              })}
+              paths={[
+                '/health/clinical-trials/drug',
+                '/sante/essais-cliniques/medicament',
+              ]}
+              isDisplayed={!isInProduction()}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/health/clinical-trials/drug?id=general.dynamique',
+                    fr: '/sante/essais-cliniques/medicament?id=general.dynamique',
+                  },
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  anchorId='general.dynamique'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.health-interventional.resultats.publication'
+                  isDisplayed={!isInProduction()}
+                >
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-3-years-drug'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-drug'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-3-years-by-year-drug'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-1-year-drug'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-1-year-by-year-drug'
                     studyType='Interventional'
                   />
                 </QuestionSection>

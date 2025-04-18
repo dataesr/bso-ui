@@ -6,7 +6,7 @@ import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType, sponsor = '*') {
+function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -27,24 +27,38 @@ function useGetData(studyType, sponsor = '*') {
       parameters: [studyType, yearMin, yearMax],
       objectType: ['clinicalTrials'],
     });
-    queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     const query2 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureSponsor',
       parameters: [studyType, sponsor, yearMin, yearMax],
       objectType: ['clinicalTrials'],
     });
-    queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     const query3 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin3Years',
       parameters: [studyType, yearMin2, yearMax2],
       objectType: ['clinicalTrials'],
     });
-    queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     const query4 = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin1Year',
       parameters: [studyType, yearMin, yearMax],
       objectType: ['clinicalTrials'],
     });
+    if (filterOnDrug) {
+      query1.query.bool.filter.push({
+        term: { 'intervention_type.keyword': 'DRUG' },
+      });
+      query2.query.bool.filter.push({
+        term: { 'intervention_type.keyword': 'DRUG' },
+      });
+      query3.query.bool.filter.push({
+        term: { 'intervention_type.keyword': 'DRUG' },
+      });
+      query4.query.bool.filter.push({
+        term: { 'intervention_type.keyword': 'DRUG' },
+      });
+    }
+    queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
+    queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
+    queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
     queries.push(Axios.post(ES_STUDIES_API_URL, query4, HEADERS));
     const series1 = [{ data: [] }];
     const series3 = [{ data: [] }];

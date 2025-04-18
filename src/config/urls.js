@@ -1,201 +1,205 @@
 export default {
   national: {
-    fr: '/',
     en: '/',
+    fr: '/',
   },
   nationalPublications: {
     tabs: [
       {
-        fr: '/publications/general',
         en: '/publications/general',
+        fr: '/publications/general',
       },
       {
-        fr: '/publications/disciplines',
         en: '/publications/fields',
+        fr: '/publications/disciplines',
       },
       {
-        fr: '/publications/editeurs',
         en: '/publications/publishers',
+        fr: '/publications/editeurs',
       },
       {
-        fr: '/publications/archives',
         en: '/publications/repositories',
+        fr: '/publications/archives',
       },
       {
-        fr: '/publications/financements',
         en: '/publications/fundings',
+        fr: '/publications/financements',
       },
       {
-        fr: '/publications/a-decider',
         en: '/publications/to-be-decided',
+        fr: '/publications/a-decider',
       },
     ],
-    fr: '/publications',
     en: '/publications',
+    fr: '/publications',
   },
   nationalResearchData: {
     tabs: [
       {
-        fr: '/donnees-de-la-recherche/general',
         en: '/research-data/general',
+        fr: '/donnees-de-la-recherche/general',
       },
       {
-        fr: '/donnees-de-la-recherche/disciplines',
         en: '/research-data/fields',
+        fr: '/donnees-de-la-recherche/disciplines',
       },
       {
-        fr: '/donnees-de-la-recherche/editeurs',
         en: '/research-data/publishers',
+        fr: '/donnees-de-la-recherche/editeurs',
       },
     ],
-    fr: '/donnees-de-la-recherche/general',
     en: '/research-data/general',
+    fr: '/donnees-de-la-recherche/general',
   },
   nationalSoftwareCode: {
     tabs: [
       {
-        fr: '/codes-et-logiciels/general',
         en: '/software/general',
+        fr: '/codes-et-logiciels/general',
       },
       {
-        fr: '/codes-et-logiciels/disciplines',
         en: '/software/fields',
+        fr: '/codes-et-logiciels/disciplines',
       },
       {
-        fr: '/codes-et-logiciels/oa',
         en: '/software/oa',
+        fr: '/codes-et-logiciels/oa',
       },
     ],
-    fr: '/codes-et-logiciels/general',
     en: '/software/general',
+    fr: '/codes-et-logiciels/general',
   },
   nationalDataCode: {
-    fr: '/data-code',
     en: '/data-code',
+    fr: '/data-code',
   },
   nationalThesis: {
     tabs: [
       {
-        fr: '/theses-de-doctorat/general',
         en: '/thesis/general',
+        fr: '/theses-de-doctorat/general',
       },
     ],
-    fr: '/theses-de-doctorat/general',
     en: '/thesis/general',
+    fr: '/theses-de-doctorat/general',
   },
   nationalOrcid: {
     tabs: [
       {
-        fr: '/orcid/general',
         en: '/orcid/general',
+        fr: '/orcid/general',
       },
       {
-        fr: '/orcid/referentiels',
         en: '/orcid/referentiels',
+        fr: '/orcid/referentiels',
       },
     ],
-    fr: '/orcid/general',
     en: '/orcid/general',
+    fr: '/orcid/general',
   },
   sante: {
-    fr: '/sante',
     en: '/health',
+    fr: '/sante',
   },
   santeEssais: {
     tabs: [
       {
-        fr: '/sante/essais-cliniques/general',
         en: '/health/clinical-trials/general',
+        fr: '/sante/essais-cliniques/general',
       },
       {
-        fr: '/sante/essais-cliniques/caracteristiques',
         en: '/health/clinical-trials/characteristics',
+        fr: '/sante/essais-cliniques/caracteristiques',
       },
       {
-        fr: '/sante/essais-cliniques/promoteurs',
         en: '/health/clinical-trials/lead-sponsors',
+        fr: '/sante/essais-cliniques/promoteurs',
       },
       {
-        fr: '/sante/essais-cliniques/resultats',
         en: '/health/clinical-trials/results',
+        fr: '/sante/essais-cliniques/resultats',
+      },
+      {
+        en: '/health/clinical-trials/drug',
+        fr: '/sante/essais-cliniques/medicament',
       },
     ],
-    fr: '/sante/essais-cliniques/general',
     en: '/health/clinical-trials/general',
+    fr: '/sante/essais-cliniques/general',
   },
   santeEtudes: {
     tabs: [
       {
-        fr: '/sante/etudes-observationnelles/general',
         en: '/health/observational-studies/general',
+        fr: '/sante/etudes-observationnelles/general',
       },
       {
-        fr: '/sante/etudes-observationnelles/caracteristiques',
         en: '/health/observational-studies/characteristics',
+        fr: '/sante/etudes-observationnelles/caracteristiques',
       },
       {
-        fr: '/sante/etudes-observationnelles/promoteurs',
         en: '/health/observational-studies/lead-sponsors',
+        fr: '/sante/etudes-observationnelles/promoteurs',
       },
       {
-        fr: '/sante/etudes-observationnelles/resultats',
         en: '/health/observational-studies/results',
+        fr: '/sante/etudes-observationnelles/resultats',
       },
     ],
-    fr: '/sante/etudes-observationnelles/general',
     en: '/health/observational-studies/general',
+    fr: '/sante/etudes-observationnelles/general',
   },
   methodologie: {
-    fr: '/a-propos/methodologie',
     en: '/about/methodology',
+    fr: '/a-propos/methodologie',
   },
   faq: {
-    fr: '/a-propos/faq',
     en: '/about/faq',
+    fr: '/a-propos/faq',
   },
   glossaire: {
-    fr: '/a-propos/glossaire',
     en: '/about/glossary',
+    fr: '/a-propos/glossaire',
   },
   communication: {
-    fr: '/a-propos/communication',
     en: '/about/communication',
+    fr: '/a-propos/communication',
   },
   variations: {
-    fr: '/declinaisons/bso-locaux',
     en: '/declinaisons/bso-locaux',
+    fr: '/declinaisons/bso-locaux',
   },
   howto: {
-    fr: '/declinaisons/comment-realiser-bso-local',
     en: '/declinaisons/howto',
+    fr: '/declinaisons/comment-realiser-bso-local',
   },
   policy: {
-    fr: '/declinaisons/politique-etablissements',
     en: '/declinaisons/institutional-policy',
+    fr: '/declinaisons/politique-etablissements',
   },
   project: {
-    fr: '/projet-et-equipe',
     en: '/project-and-team',
+    fr: '/projet-et-equipe',
   },
   citation: {
-    fr: '/citation',
     en: '/citation',
+    fr: '/citation',
   },
   opendata: {
-    fr: '/a-propos/opendata',
     en: '/about/opendata',
+    fr: '/a-propos/opendata',
   },
   worksmagnet: {
-    fr: '/a-propos/works-magnet',
     en: '/about/works-magnet',
+    fr: '/a-propos/works-magnet',
   },
   integration: {
-    fr: [
+    en: [
       '/integration/:language/:graphId/:domain/:studyType',
       '/integration/:language/:graphId/:domain',
       '/integration/:language/:graphId',
     ],
-    en: [
+    fr: [
       '/integration/:language/:graphId/:domain/:studyType',
       '/integration/:language/:graphId/:domain',
       '/integration/:language/:graphId',

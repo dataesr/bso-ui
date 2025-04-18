@@ -140,17 +140,32 @@ const chartComponents = {
   'general.dynamique.chart-evolution': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
   )),
+  'general.dynamique.chart-evolution-drug': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-drug'
+  )),
   'general.dynamique.chart-evolution-within-3-years': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years'
+  )),
+  'general.dynamique.chart-evolution-within-3-years-drug': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-drug'
   )),
   'general.dynamique.chart-evolution-within-3-years-by-year': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year'
   )),
+  'general.dynamique.chart-evolution-within-3-years-by-year-drug': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year-drug'
+  )),
   'general.dynamique.chart-evolution-within-1-year': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
   )),
+  'general.dynamique.chart-evolution-within-1-year-drug': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year-drug'
+  )),
   'general.dynamique.chart-evolution-within-1-year-by-year': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year-by-year'
+  )),
+  'general.dynamique.chart-evolution-within-1-year-by-year-drug': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year-by-year-drug'
   )),
   'general.trajectoires.chart-repartition': lazy(() => import(
     '../components/Charts/studies/general/trajectoires/chart-repartition'
