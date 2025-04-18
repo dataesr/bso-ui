@@ -22,7 +22,6 @@ import {
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
-  XIcon,
 } from 'react-share';
 
 import { studiesTypes } from '../../utils/constants';
