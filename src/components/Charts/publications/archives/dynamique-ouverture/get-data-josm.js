@@ -182,8 +182,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
       };
     }
 
+    let responses;
+    if (observationYears) {
     // 成形処理
-    const responses = preRes.data.hits.hits.flatMap((hit) => [
+    responses = preRes.data.hits.hits.flatMap((hit) => [
       {
         data: {
           aggregations: {
@@ -235,6 +237,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
         },
       },
     ]);
+  } else {
+    responses = [];
+  }
 
     if (IS_TEST) {
       console.log('dynamique-ouverture_res:', responses); // eslint-disable-line no-console

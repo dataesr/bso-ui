@@ -82,8 +82,8 @@ function useGetData(observationSnaps, domain = '') {
       });
 
       // データ成形処理
-      const res = [];
-
+      let res = [];
+      if (observationYears) {
       // データをpublication_yearごとにグループ化
       const groupedByYear = {};
       for (let i = 0; i < lastDateOfYear.length; i += 1) {
@@ -135,6 +135,9 @@ function useGetData(observationSnaps, domain = '') {
           },
         });
       });
+      } else {
+        res = [];
+      }
 
       if (IS_TEST) {
         console.log('dynamique-ouverture_preRes:', preRes); // eslint-disable-line no-console

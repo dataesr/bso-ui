@@ -211,8 +211,9 @@ function useGetData(
     }
 
     const pre_buckets_list = [pre_buckets1, pre_buckets2, pre_buckets3];
-    const res = [];
+    let res = [];
 
+    if (observationYears) {
     for (let i = 0; i < pre_buckets_list.length; i += 1) {
       res.push({
         data: {
@@ -223,6 +224,9 @@ function useGetData(
           },
         },
       });
+    }
+    } else {
+      res = [];
     }
 
     if (IS_TEST) {

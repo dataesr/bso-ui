@@ -102,6 +102,8 @@ function useGetData(observationSnap, domain) {
       ],
     });
 
+    let res;
+    if (observationSnap) {
     // 成形処理
     const buckets = preRes.data.hits.hits.map((hit) => ({
       key: hit._source.repository,
@@ -111,7 +113,7 @@ function useGetData(observationSnap, domain) {
         .reduce((acc, item) => acc + item.oa, 0),
     }));
 
-    const res = {
+    res = {
       data: {
         aggregations: {
           by_repository: {
@@ -122,6 +124,17 @@ function useGetData(observationSnap, domain) {
         },
       },
     };
+  } else {
+    res = {
+      data: {
+        aggregations: {
+          by_repository: {
+            buckets: [],
+          },
+        },
+      },
+    };
+  }
     if (IS_TEST) {
       console.log('plus-utilisees_preRes:', preRes); // eslint-disable-line no-console
       console.log('plus-utilisees_res:', res); // eslint-disable-line no-console

@@ -77,8 +77,10 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         },
       });
 
+      let res;
+      if (lastObservationSnap) {
       // データ成形処理
-      const res = { data: { aggregations: { by_discipline: { buckets: [] } } } };
+      res = { data: { aggregations: { by_discipline: { buckets: [] } } } };
       const bucketsObject = {};
 
       // データを集計
@@ -118,6 +120,17 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
 
       // 集計したデータを配列に変換し、年順にソート
       res.data.aggregations.by_discipline.buckets = Object.values(bucketsObject).sort((a, b) => a.key - b.key);
+    } else {
+      res = {
+        data: {
+          aggregations: {
+            by_discipline: {
+              buckets: [],
+            },
+          },
+        },
+      };
+    }
 
       if (IS_TEST) {
         console.log('voies-ouverture_preRes:', preRes); // eslint-disable-line no-console

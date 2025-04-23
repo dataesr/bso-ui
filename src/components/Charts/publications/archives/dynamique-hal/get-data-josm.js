@@ -53,9 +53,11 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       },
     });
 
+    let res;
+    if (lastObservationSnap) {
     // 成形処理
     /* eslint-disable no-underscore-dangle */
-    const res = [
+    res = [
       {
         data: {
           aggregations: {
@@ -85,6 +87,26 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         },
       },
     ];
+  } else {
+    res = [{
+      data: {
+        aggregations: {
+          by_publication_year: {
+            buckets: [],
+          },
+        },
+      },
+    },
+    {
+      data: {
+        aggregations: {
+          by_publication_year: {
+            buckets: [],
+          },
+        },
+      },
+    }];
+  }
     /* eslint-enable no-underscore-dangle */
     if (IS_TEST) {
       console.log('dynamique-hal_preRes:', preRes); // eslint-disable-line no-console

@@ -122,8 +122,10 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
       sort,
     });
 
+    let res;
+    if (observationYears) {
     // 成形処理
-    const res = [{
+    res = [{
       data: {
         aggregations: {
           by_is_oa: {
@@ -192,6 +194,9 @@ function useGetData(observationSnaps, isDetailed, needle = '*', domain = '') {
         buckets: byLicenceBuckets,
       },
     });
+    } else {
+      res = [];
+    }
     if (IS_TEST) {
       console.log('repartition-licences_preRes:', preRes); // eslint-disable-line no-console
       console.log('repartition-licences_res:', res); // eslint-disable-line no-console

@@ -116,8 +116,10 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       ],
     });
 
+    let res;
+    if (lastObservationSnap) {
     // 成形処理
-    const res = [{
+    res = [{
       data: {
         aggregations: {
           by_publisher: {
@@ -145,6 +147,17 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
         },
       },
     }];
+  } else {
+    res = [{
+      data: {
+        aggregations: {
+          by_publisher: {
+            buckets: [],
+          },
+        },
+      },
+    }];
+  }
     if (IS_TEST) {
       console.log('politiques-ouverture_preRes:', preRes); // eslint-disable-line no-console
       console.log('politiques-ouverture_res:', res); // eslint-disable-line no-console

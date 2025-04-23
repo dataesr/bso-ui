@@ -61,8 +61,10 @@ function useGetData(observationSnap, domain) {
       },
     });
 
+    let res;
+    if (observationSnap) {
     // 成形処理
-    const res = {
+    res = {
       data: {
         aggregations: {
           by_year: {
@@ -86,6 +88,9 @@ function useGetData(observationSnap, domain) {
         },
       },
     };
+  } else {
+    res = [];
+  }
     if (IS_TEST) {
       console.log('type-ouverture_preRes:', preRes); // eslint-disable-line no-console
       console.log('type-ouverture_res:', res); // eslint-disable-line no-console

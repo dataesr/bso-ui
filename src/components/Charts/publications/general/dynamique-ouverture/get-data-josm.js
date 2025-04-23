@@ -114,9 +114,10 @@ function useGetData(
       );
 
       preRes.data.hits.hits.sort((a, b) => b._source.calc_date.localeCompare(a._source.calc_date));
-
+      let res;
+      if (observationYears) {
       // データ成形処理
-      const res = preRes.data.hits.hits.map((hit) => {
+      res = preRes.data.hits.hits.map((hit) => {
         const buckets = hit._source.data.map((item) => ({
           key: item.publication_year,
           doc_count: item.total,
@@ -142,6 +143,9 @@ function useGetData(
           },
         };
       });
+    } else {
+      res = [];
+    }
 
       if (IS_TEST) {
         console.log('dynamique-ouverture_preRes:', preRes); // eslint-disable-line no-console

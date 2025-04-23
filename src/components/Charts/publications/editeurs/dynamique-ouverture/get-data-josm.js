@@ -208,8 +208,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
       };
     }
 
+    let res;
+    if (observationYears) {
     // 成形処理
-    const res = preRes.data.hits.hits.flatMap((hit) => [
+    res = preRes.data.hits.hits.flatMap((hit) => [
       {
         data: {
           aggregations: {
@@ -261,6 +263,9 @@ function useGetData(observationSnaps, needle = '*', domain) {
         },
       },
     ]);
+  } else {
+    res = [];
+  }
     /* eslint-enable no-underscore-dangle */
     if (IS_TEST) {
       console.log('dynamique-ouverture_res:', res); // eslint-disable-line no-console
