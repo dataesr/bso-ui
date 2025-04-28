@@ -842,7 +842,7 @@
   "app.national-publi.general.impact-financement.chart-repartition-financements.tooltip": "<b>Année d'édition de l'AAP {series.name} ({point.bsoDomain})</b><br>{point.y:.2f} % des publications ((commentsName)) parues en {point.publicationDate} en accès ouvert ({point.y_abs} / {point.y_tot})",
   "app.health-publi.general.impact-financement.chart-repartition-financements.tooltip": "<b>Année d'édition de l'AAP {series.name} ({point.bsoDomain})</b><br>{point.y:.2f} % des publications ((commentsName)) parues en {point.publicationDate} en accès ouvert ({point.y_abs} / {point.y_tot})",
   "app.national-publi.general.impact-financement.chart-repartition-financements.source.all": "global",
-  "app.national-publi.general.impact-financement.chart-repartition-financements.source.ANR DOS": "ANR AAPG",
+  "app.national-publi.general.impact-financement.chart-repartition-financements.source.ANR DOS": "ANR Plan d'action",
   "app.national-publi.general.impact-financement.chart-repartition-financements.source.ANR PIA": "ANR France 2030 (intégrant les PIA 2, 3 et 4)",
   "app.national-publi.general.impact-financement.chart-repartition-taux.title": "Répartition des publications scientifiques {commentsName} en accès ouvert par voie d'ouverture et par année de financement",
   "app.national-publi.general.impact-financement.chart-repartition-taux.tooltip": "<b>Année d'édition de l'AAP {point.x_val}</b><br>• Taux d'accès ouvert<br>avec hébergement {series.name} :<br>{point.y:.2f} % ({point.y_abs} / {point.y_tot})<br>• Taux d'accès ouvert total :<br>{point.stackTotal:.2f} % ({point.y_oa} / {point.y_tot})",

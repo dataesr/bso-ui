@@ -1170,7 +1170,7 @@ export const chartOptions = {
       options.xAxis = {
         categories,
         labels: {
-          format: `<div style="text-align:center;">Global France&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ${agency}<br /><br />{value}</div>`,
+          format: `<div style="margin-left: -40%; text-align: center; width: 150%;"><div style="float: left;">Global France</div><div style="float: right;">${agency}</div><br /><br />{value}</div>`,
           useHTML: true,
         },
         title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
