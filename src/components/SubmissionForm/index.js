@@ -146,7 +146,7 @@ const SubmissionForm = () => {
         resetState();
         setIsError(false);
         setMessage(
-          "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir une copie du mail envoyé à l'équipe du baromètre.",
+          "Merci pour votre envoi! Si tout s'est bien passé, vous allez recevoir un accusé de réception à l'adresse email indiquée ci-dessus.",
         );
       })
       .catch((e) => {
