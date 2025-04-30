@@ -111,9 +111,13 @@ const SubmissionForm = () => {
       return;
     }
 
+    const url = ['create-publications', 'update-publications'].includes(action)
+      ? '/ticket/api/bso-local-variations-publications/'
+      : '/ticket/api/bso-local-variations-datasets/';
+
     const options = {
       method: 'POST',
-      url: '/ticket/api/bso-local-variations-publications/',
+      url,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -422,9 +426,13 @@ const SubmissionForm = () => {
                   },
                   {
                     label:
-                      "Création d'un nouveau baromètre des entrepôts de jeux de données",
+                      "Mise à jour d'un nouveau baromètre des jeux de données",
+                    value: 'update-datasets',
+                  },
+                  {
+                    label:
+                      "Création d'un nouveau baromètre des jeux de données",
                     value: 'create-datasets',
-                    disabled: true,
                   },
                 ]}
                 selected={action}
@@ -438,7 +446,7 @@ const SubmissionForm = () => {
                 type='email'
                 value={email}
               />
-              {action === 'update-publications' && (
+              {['update-datasets', 'update-publications'].includes(action) && (
                 <TextInput
                   hint='Tel que communiqué lors de votre précédente demande'
                   label="Identifiant de l'établissement"
