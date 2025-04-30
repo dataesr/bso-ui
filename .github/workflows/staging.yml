@@ -14,7 +14,7 @@ env:
 
 jobs:
   publish-ghcr:
-    name: Docker image
+    name: 🐋 Publish Docker image
     runs-on: ubuntu-latest
     steps:
       - name: 🏁 Checkout
@@ -40,7 +40,7 @@ jobs:
           docker push -a $IMAGE_ID
 
   deploy:
-    name: Update staging deployment
+    name: ✨ Update staging deployment
     runs-on: ubuntu-latest
     needs: publish-ghcr
     steps:
@@ -54,6 +54,7 @@ jobs:
           restart: ${{ env.DEPLOYMENT }}
 
   notify:
+    name: 📢 Mattermost notification
     needs: deploy
     if: always()
     runs-on: ubuntu-latest
