@@ -360,22 +360,24 @@ const SubmissionForm = () => {
       setAcronym(
         existingInstitutions?.[institutionId.toLowerCase()]?.commentsName ?? '',
       );
-    }
-    try {
-      const options = {
-        url: `https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso-local/${institutionId}.csv`,
-      };
-      Axios.request(options)
-        .then((r) => setPreviousDoiCount(
-          r.data
-            .split('\n')
-            .slice(1)
-            .filter((item) => item.length).length,
-        ))
-        .catch(() => {});
-    } catch (_) {
-      // eslint-disable-next-line no-console
-      console.error('ERROR');
+      try {
+        const options = {
+          url: `https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso-local/${institutionId}.csv`,
+        };
+        Axios.request(options)
+          .then((r) => setPreviousDoiCount(
+            r.data
+              .split('\n')
+              .slice(1)
+              .filter((item) => item.length).length,
+          ))
+          .catch(() => {});
+      } catch (_) {
+        // eslint-disable-next-line no-console
+        console.error('ERROR');
+      }
+    } else {
+      setId(institutionId);
     }
   };
 
