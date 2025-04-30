@@ -113,7 +113,7 @@ const SubmissionForm = () => {
 
     const options = {
       method: 'POST',
-      url: '/ticket/api/variations/',
+      url: '/ticket/api/bso-local-variations-publications/',
       headers: {
         'Content-Type': 'application/json',
       },
