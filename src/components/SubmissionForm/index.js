@@ -11,7 +11,7 @@ import {
 } from '@dataesr/react-dsfr';
 import Axios from 'axios';
 import Papa from 'papaparse';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { read, utils } from 'xlsx';
 
 const SUPPORTED_MIME_TYPES = [
@@ -67,17 +67,6 @@ const SubmissionForm = () => {
   const [nntIdCount, setNntIdCount] = useState();
   const [previousDoiCount, setPreviousDoiCount] = useState('');
   const [typingTimer, setTypingTimer] = useState();
-
-  Axios.request({
-    url: 'https://raw.githubusercontent.com/dataesr/bso-ui/refs/heads/main/src/config/locals.json',
-  }).then((r) => {
-    const dataLowercase = {};
-    const data = r?.data ?? {};
-    Object.keys(data).forEach((key) => {
-      dataLowercase[key.toLowerCase()] = { ...data[key], key };
-    });
-    setExistingInstitutions(dataLowercase);
-  });
 
   const resetState = () => {
     setDoiCount(undefined);
@@ -365,11 +354,13 @@ const SubmissionForm = () => {
   const setInstitutionId = async (e) => {
     e.preventDefault();
     const institutionId = e.target.value.replaceAll(' ', '');
-    setId(existingInstitutions?.[institutionId.toLowerCase()]?.key ?? '');
-    setName(existingInstitutions?.[institutionId.toLowerCase()]?.name ?? '');
-    setAcronym(
-      existingInstitutions?.[institutionId.toLowerCase()]?.commentsName ?? '',
-    );
+    if (existingInstitutions?.[institutionId.toLowerCase()]) {
+      setId(existingInstitutions?.[institutionId.toLowerCase()]?.key ?? '');
+      setName(existingInstitutions?.[institutionId.toLowerCase()]?.name ?? '');
+      setAcronym(
+        existingInstitutions?.[institutionId.toLowerCase()]?.commentsName ?? '',
+      );
+    }
     try {
       const options = {
         url: `https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso-local/${institutionId}.csv`,
@@ -382,12 +373,24 @@ const SubmissionForm = () => {
             .filter((item) => item.length).length,
         ))
         .catch(() => {});
-      // eslint-disable-next-line no-empty
     } catch (_) {
       // eslint-disable-next-line no-console
       console.error('ERROR');
     }
   };
+
+  useEffect(() => {
+    Axios.request({
+      url: 'https://raw.githubusercontent.com/dataesr/bso-ui/refs/heads/main/src/config/locals.json',
+    }).then((r) => {
+      const dataLowercase = {};
+      const data = r?.data ?? {};
+      Object.keys(data).forEach((key) => {
+        dataLowercase[key.toLowerCase()] = { ...data[key], key };
+      });
+      setExistingInstitutions(dataLowercase);
+    });
+  }, []);
 
   return (
     <Container>
@@ -520,7 +523,7 @@ const SubmissionForm = () => {
               </Button>
               {(email?.length === 0 || name?.length === 0 || isError) && (
                 <div className='italic text-red'>
-                  Veuillez remplir les champs email et nom ou corriger les
+                  Veuillez remplir les champs obligatoires ou corriger les
                   erreurs.
                 </div>
               )}
