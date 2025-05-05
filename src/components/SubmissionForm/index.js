@@ -50,7 +50,7 @@ const nntEtabRegex = /^[a-zA-Z0-9]{4,6}$/;
 const nntIdRegex = /^(19|20)\d{2}[A-Z0-9]{4}\w{4}$/;
 
 const SubmissionForm = () => {
-  const [action, setAction] = useState('update-publications');
+  const [action, setAction] = useState('publications');
   const [acronym, setAcronym] = useState('');
   const [dataFile, setDataFile] = useState();
   const [doiCount, setDoiCount] = useState();
@@ -111,7 +111,7 @@ const SubmissionForm = () => {
       return;
     }
 
-    const url = ['create-publications', 'update-publications'].includes(action)
+    const url = action === 'publications'
       ? '/ticket/api/bso-local-variations-publications/'
       : '/ticket/api/bso-local-variations-datasets/';
 
@@ -416,23 +416,12 @@ const SubmissionForm = () => {
                 onChange={(e) => setAction(e.target.value)}
                 options={[
                   {
-                    label:
-                      "Mise à jour d'un baromètre et d'un scanR locaux existants",
-                    value: 'update-publications',
+                    label: 'Baromètre et scanR locaux de publications',
+                    value: 'publications',
                   },
                   {
-                    label: "Création d'un baromètre et d'un scanR locaux",
-                    value: 'create-publications',
-                  },
-                  {
-                    label:
-                      "Mise à jour d'un nouveau baromètre des jeux de données",
-                    value: 'update-datasets',
-                  },
-                  {
-                    label:
-                      "Création d'un nouveau baromètre des jeux de données",
-                    value: 'create-datasets',
+                    label: 'Baromètre local des jeux de données',
+                    value: 'datasets',
                   },
                 ]}
                 selected={action}
@@ -446,7 +435,7 @@ const SubmissionForm = () => {
                 type='email'
                 value={email}
               />
-              {['update-datasets', 'update-publications'].includes(action) && (
+              {action === 'publications' && (
                 <TextInput
                   hint='Tel que communiqué lors de votre précédente demande'
                   label="Identifiant de l'établissement"
