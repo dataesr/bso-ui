@@ -45,42 +45,46 @@ const Studio = () => {
         : lastObservationSnap,
     );
     setObservationYearLast(lastObservationYearTmp);
-    const observationYearsTmp = [
-      ...Array(
-        Number(lastObservationYearTmp) - Number(observationYearFirst) + 1,
-      ).keys(),
-    ].map((item) => ({
-      label: `${item + Number(observationYearFirst)}`,
-      value: `${item + Number(observationYearFirst)}`,
-    }));
-    observationYearsTmp.push({
-      label: "Date d'observation utilisée dans le baromètre national",
-      value: 'latest',
-    });
-    setObservationYears(observationYearsTmp);
-    const publicationYearsTmp = [
-      ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
-    ].map((item) => ({
-      label: `${item + Number(startYear)}`,
-      value: `${item + Number(startYear)}`,
-    }));
-    publicationYearsTmp.push({
-      label: 'Date de publication utilisée dans le baromètre national',
-      value: 'latest',
-    });
-    setPublicationYears(publicationYearsTmp);
-    const repositoriesYearsTmp = [
-      ...Array(Number(lastObservationYearTmp) - Number(startYear) + 1).keys(),
-    ].map((item) => ({
-      label: `${item + Number(startYear)}`,
-      value: `${item + Number(startYear)}`,
-    }));
-    repositoriesYearsTmp.push({
-      label: 'Date de publication utilisée dans le baromètre national',
-      value: 'latest',
-    });
-    setRepositoriesYears(repositoriesYearsTmp);
-    setEndYear(publicationYearsTmp[publicationYearsTmp.length - 2].value);
+    if (lastObservationYearTmp) {
+      const observationYearsTmp = [
+        ...Array(
+          Number(lastObservationYearTmp ?? 0)
+            - Number(observationYearFirst)
+            + 1,
+        ).keys(),
+      ].map((item) => ({
+        label: `${item + Number(observationYearFirst)}`,
+        value: `${item + Number(observationYearFirst)}`,
+      }));
+      observationYearsTmp.push({
+        label: "Date d'observation utilisée dans le baromètre national",
+        value: 'latest',
+      });
+      setObservationYears(observationYearsTmp);
+      const publicationYearsTmp = [
+        ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
+      ].map((item) => ({
+        label: `${item + Number(startYear)}`,
+        value: `${item + Number(startYear)}`,
+      }));
+      publicationYearsTmp.push({
+        label: 'Date de publication utilisée dans le baromètre national',
+        value: 'latest',
+      });
+      setPublicationYears(publicationYearsTmp);
+      const repositoriesYearsTmp = [
+        ...Array(Number(lastObservationYearTmp) - Number(startYear) + 1).keys(),
+      ].map((item) => ({
+        label: `${item + Number(startYear)}`,
+        value: `${item + Number(startYear)}`,
+      }));
+      repositoriesYearsTmp.push({
+        label: 'Date de publication utilisée dans le baromètre national',
+        value: 'latest',
+      });
+      setRepositoriesYears(repositoriesYearsTmp);
+      setEndYear(publicationYearsTmp[publicationYearsTmp.length - 2].value);
+    }
   }, [observationYearFirst, lastObservationSnap, startYear]);
 
   const commentsName = intl.formatMessage({
