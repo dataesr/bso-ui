@@ -449,7 +449,6 @@ const SubmissionForm = () => {
                     );
                     setTypingTimer(typingTimerTmp);
                   }}
-                  required
                 />
               )}
               <TextInput
