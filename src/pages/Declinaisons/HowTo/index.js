@@ -209,7 +209,7 @@ function HowTo() {
                       {' '}
                     </b>
                     Pour les publications, le baromètre couvre la période de
-                    2013 à 2022, année de publication.
+                    2013 à 2023, année de publication.
                   </p>
                   <p>
                     <b>
