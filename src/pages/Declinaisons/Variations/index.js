@@ -449,6 +449,20 @@ const Variations = () => {
                 img='/declinaisons/utc.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Centrale Lyon'
+                href='https://bibliotheque.ec-lyon.fr/services-la-recherche/la-science-ouverte-centrale-lyon/barometre-science-ouverte'
+                img='/declinaisons/centrale-lyon.png'
+              />
+            </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local UNîmes Nîmes Université'
+                href='https://www.unimes.fr/fr/vie-de-campus/bibliotheque/utiliser-la-bibliotheque/barom-sci-ouv-un.html'
+                img='/declinaisons/unimes.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
