@@ -112,8 +112,8 @@ const SubmissionForm = () => {
     }
 
     const url = action === 'publications'
-      ? '/ticket/api/bso-local-variations-publications/'
-      : '/ticket/api/bso-local-variations-datasets/';
+      ? '/ticket/api/bso-local-variations/publications/'
+      : '/ticket/api/bso-local-variations/datasets/';
 
     const options = {
       method: 'POST',
