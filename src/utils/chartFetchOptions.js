@@ -1447,7 +1447,7 @@ export default function getFetchOptions({
       fieldY,
       fieldX = 'year',
       minPublicationDate = 2013,
-      size = 10,
+      size = 15,
       missing = 'N/A',
     ]) => ({
       size: 0,
