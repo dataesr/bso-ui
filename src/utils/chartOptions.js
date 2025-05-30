@@ -825,6 +825,61 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.general.dynamique-ouverture.chart-taux-ouverture-book': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'bar';
+      options.legend.title.text = '';
+      options.colors = [
+        getCSSValue('--orange-soft-100'),
+        getCSSValue('--orange-soft-175'),
+      ];
+      options.yAxis = {
+        max: 100,
+        min: 0,
+        visible: false,
+      };
+      options.plotOptions = {
+        series: {
+          grouping: false,
+        },
+        bar: {
+          states: {
+            hover: {
+              color: getCSSValue('--orange-soft-75'),
+            },
+          },
+          dataLabels: {
+            allowOverlap: true,
+            enabled: true,
+            format: '{point.y:.1f} %',
+            style: {
+              color: getCSSValue('--g-800'),
+              fontSize: '20px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      };
+      options.xAxis = {
+        type: 'category',
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g-800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'year' : item.name),
+      };
+      return options;
+    },
+  },
   'publi.general.dynamique-ouverture.chart-evolution-proportion': {
     getOptions: (id, intl, categories, data) => {
       const { startYear } = getURLSearchParams(intl);

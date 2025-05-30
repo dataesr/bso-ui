@@ -201,6 +201,10 @@ export default function NationalPublications() {
                   anchorId='general.lpr'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture-article' />
+                  <BSOChart
+                    id='publi.general.dynamique-ouverture.chart-taux-ouverture-book'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
@@ -545,56 +549,56 @@ export default function NationalPublications() {
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-taux-ouverture'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=00rbzpz17&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=00rbzpz17&displayTitle=false&lastObservationYear:latest`}
                     title='publi.general.impact-financement.chart-taux-ouverture'
                     width='100%'
                   />
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-taux-ouverture'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=130012024&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-taux-ouverture'
                     width='100%'
                   />
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-business-model'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=00rbzpz17&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=00rbzpz17&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-business-model'
                     width='100%'
                   />
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-business-model'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=130012024&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-business-model'
                     width='100%'
                   />
                   <iframe
                     height='788'
                     id='publi.general.impact-financement.chart-repartition-financements'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-financements?bsoLocalAffiliation=00rbzpz17&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-financements?bsoLocalAffiliation=00rbzpz17&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-repartition-financements'
                     width='100%'
                   />
                   <iframe
                     height='812'
                     id='publi.general.impact-financement.chart-repartition-financements'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-financements?bsoLocalAffiliation=130012024&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-financements?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-repartition-financements'
                     width='100%'
                   />
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-repartition-taux'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=00rbzpz17&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=00rbzpz17&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-repartition-taux'
                     width='100%'
                   />
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-repartition-taux'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=130012024&displayTitle=false`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-repartition-taux'
                     width='100%'
                   />

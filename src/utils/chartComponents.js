@@ -93,6 +93,9 @@ const chartComponents = {
   'publi.general.dynamique-ouverture.chart-taux-ouverture-article': lazy(() => import(
     '../components/Charts/publications/general/dynamique-ouverture/chart-taux-ouverture-article'
   )),
+  'publi.general.dynamique-ouverture.chart-taux-ouverture-book': lazy(() => import(
+    '../components/Charts/publications/general/dynamique-ouverture/chart-taux-ouverture-book'
+  )),
   'publi.publishers.type-ouverture.chart-repartition-modeles': lazy(() => import(
     '../components/Charts/publications/editeurs/type-ouverture/chart-repartition-modeles'
   )),
