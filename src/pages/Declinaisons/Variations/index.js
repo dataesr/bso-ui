@@ -463,6 +463,13 @@ const Variations = () => {
                 img='/declinaisons/unimes.jpg'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Université de Toulon'
+                href='https://www.univ-tln.fr/Barometre-toulonnais-de-la-science-ouverte.html'
+                img='/declinaisons/utln.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
