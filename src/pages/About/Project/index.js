@@ -25,6 +25,13 @@ function Project() {
             </Col>
             <Col n='lg-3 md-4 sm-6'>
               <CardLogo
+                alt='bso MESR'
+                href='https://www.enseignementsup-recherche.gouv.fr/fr'
+                img='/logos/mesr.png'
+              />
+            </Col>
+            <Col n='lg-3 md-4 sm-6'>
+              <CardLogo
                 alt='bso local UL'
                 href='https://scienceouverte.univ-lorraine.fr'
                 img='/declinaisons/ul.svg'
@@ -35,13 +42,6 @@ function Project() {
                 alt='inria'
                 href='https://www.inria.fr'
                 img='/declinaisons/inria.png'
-              />
-            </Col>
-            <Col n='lg-3 md-4 sm-6'>
-              <CardLogo
-                alt='bso local UL'
-                href='https://science-miner.com/'
-                img='/logos/science_miner.png'
               />
             </Col>
             <Col n='12 lg-8' className='p-0'>
