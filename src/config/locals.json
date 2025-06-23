@@ -96,6 +96,13 @@
     "ror": "https://ror.org/01k40cz91",
     "scale": "university"
   },
+  "130021421": {
+    "name": "École nationale supérieure de Chimie de Paris - PSL",
+    "commentsName": "de l'ENSCP - PSL",
+    "commentsNameEN": "of ENSCP - PSL",
+    "paysage": "uhDO3",
+    "ror": "https://ror.org/05q65zh81"
+  },
   "130023385": {
     "name": "Sorbonne Université (SU)",
     "commentsName": "de SU",
@@ -302,6 +309,13 @@
     "commentsNameEN": " of Télécom Paris",
     "paysage": "K6jgY",
     "ror": "https://ror.org/01naq7912"
+  },
+  "180092215": {
+    "name": "École nationale supérieure d’architecture de Paris-Malaquais - PSL",
+    "commentsName": "de l'ENSAPM - PSL",
+    "commentsNameEN": "of ENSAPM - PSL",
+    "paysage": "5Ic1n",
+    "ror": "https://ror.org/05hca2307"
   },
   "191010602": {
     "name": "Université de Technologie de Troyes (UTT)",
@@ -1441,6 +1455,13 @@
     "commentsNameEN": "of LS2N",
     "paysage": "rX21R",
     "ror": "https://ror.org/02snf8m58",
+    "scale": "laboratory"
+  },
+  "201722308D": {
+    "name": "Centre de Recherche Translationnelle en Transplantation et Immunologie (CR2TI)",
+    "commentsName": "du CR2TI",
+    "commentsNameEN": "of CR2TI",
+    "ror": "https://ror.org/01165k395",
     "scale": "laboratory"
   },
   "201722392V": {
