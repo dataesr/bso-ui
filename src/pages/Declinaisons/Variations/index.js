@@ -470,6 +470,13 @@ const Variations = () => {
                 img='/declinaisons/utln.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Université de Lyon 1'
+                href='https://portaildoc.univ-lyon1.fr/barometre-de-la-science-ouverte'
+                img='/declinaisons/lyon1.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
