@@ -742,7 +742,7 @@ export const chartOptions = {
           dataLabels: {
             allowOverlap: true,
             enabled: true,
-            format: '{point.y:.1f} %',
+            format: '{point.y:.0f} %',
             style: {
               color: getCSSValue('--g-800'),
               fontSize: '20px',
@@ -910,7 +910,7 @@ export const chartOptions = {
                 this.point.category === last.category
                 && this.point.y === last.y
               ) {
-                return this.point.y.toFixed(1).concat(' %');
+                return this.point.y.toFixed(0).concat(' %');
               }
               return '';
             },

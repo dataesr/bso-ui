@@ -1035,6 +1035,14 @@
     "ror": "https://ror.org/02mkbvg40",
     "scale": "laboratory"
   },
+  "200000685": {
+    "name": "École supérieure de physique et de chimie industrielles de la ville de Paris - PSL (ESPCI - PSL)",
+    "commentsName": "de l'ESPCI - PSL",
+    "commentsNameEN": "of ESPCI - PSL",
+    "paysage": "JGOcj",
+    "ror": "03zx86w41",
+    "scale": "school"
+  },
   "200017509L": {
     "name": "Centre de recherche sur l'hétéro-épitaxie et ses applications (CRHEA)",
     "commentsName": "du CRHEA",
@@ -1591,7 +1599,8 @@
     "commentsName": "de l'EM Normandie",
     "commentsNameEN": "of EM Normandie",
     "paysage": "NAzKJ",
-    "ror": "https://ror.org/052xwpe12"
+    "ror": "https://ror.org/052xwpe12",
+    "scale": "school"
   },
   "775663958": {
     "name": "ESSEC Business School",
