@@ -250,7 +250,7 @@ const Policy = () => {
             <Col n='12' className='fr-mt-5w'>
               <ChartWrapper
                 chartRef={chartRef}
-                date='2025-04-02'
+                date='2025-07-17'
                 domain=''
                 hasComments={false}
                 id={id}
