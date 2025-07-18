@@ -29,6 +29,10 @@ export default {
         en: '/publications/to-be-decided',
         fr: '/publications/a-decider',
       },
+      {
+        en: '/publications/integrity',
+        fr: '/publications/integrite',
+      },
     ],
     en: '/publications',
     fr: '/publications',

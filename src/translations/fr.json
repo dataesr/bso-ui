@@ -1265,6 +1265,7 @@
   "app.publi.editeurs": "Editeurs",
   "app.publi.fundings": "Financements",
   "app.publi.to-be-decided": "A décider",
+  "app.publi.integrity": "Intégrité scientifique",
   "app.publi.general": "Général",
   "app.publi.general.genres-ouverture.chart-repartition-genres.tooltip": "<b>{point.name} publiés en {point.publicationDate} ({point.bsoDomain})</b><br>{point.value} en {point.oaType}<br>soit {point.percentage:.2f} % du total des publications de {point.publicationDate}",
   "app.publi.general.genres-ouverture.chart-repartition-taux.tooltip": "<b>{point.x_val} ({point.bsoDomain})</b><br>• Taux d'accès ouvert<br>avec hébergement {series.name} :<br>{point.y:.2f} % ({point.y_abs} / {point.y_tot})<br>• Taux d'accès ouvert total :<br>{point.stackTotal:.2f} % ({point.y_oa} / {point.y_tot})",

@@ -606,6 +606,40 @@ export default function NationalPublications() {
               </GraphContent>
             </GraphItem>
 
+            {/* Integrité */}
+            <GraphItem
+              paths={['/publications/integrite', '/publications/integrity']}
+              mainLabel={intl.formatMessage({
+                id: 'app.publi.integrity',
+              })}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/publications/integrity?id=integrity.retractions',
+                    fr: '/publications/integrite?id=integrity.retractions',
+                  },
+                },
+              ]}
+              isDisplayed={!isInProduction()}
+            >
+              <GraphContent isDisplayed={!isInProduction()}>
+                <QuestionSection
+                  anchorId='integrity.retractions'
+                  intlKey=''
+                  backgroundColor={blueSoft50}
+                >
+                  <BSOChart id='publi.others.retractions.chart-by-year' />
+                  <BSOChart id='publi.others.retractions.chart-by-field' />
+                  <BSOChart id='publi.others.retractions.chart-by-publisher' />
+                  <BSOChart id='publi.others.retractions.chart-by-nature' />
+                  <BSOChart id='publi.others.retractions.chart-by-reason' />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
+
             {/* A valider */}
             <GraphItem
               paths={['/publications/a-decider', '/publications/to-be-decided']}
@@ -632,11 +666,6 @@ export default function NationalPublications() {
                   backgroundColor={blueSoft50}
                 >
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
-                  <BSOChart id='publi.others.retractions.chart-by-year' />
-                  <BSOChart id='publi.others.retractions.chart-by-field' />
-                  <BSOChart id='publi.others.retractions.chart-by-publisher' />
-                  <BSOChart id='publi.others.retractions.chart-by-nature' />
-                  <BSOChart id='publi.others.retractions.chart-by-reason' />
                   <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                   <BSOChart id='publi.others.sources.publications-by-source' />
                   <BSOChart id='publi.others.hal-no-doi.hal-no-doi-by-field' />
