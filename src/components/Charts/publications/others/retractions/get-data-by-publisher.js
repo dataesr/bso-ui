@@ -13,9 +13,9 @@ function useGetData(observationSnaps, domain = '') {
 
   const getDataByPublishers = useCallback(async () => {
     const query = getFetchOptions({
-      key: 'retractionsByPublisher',
+      key: 'anyByPublisher',
       domain,
-      parameters: [lastObservationSnap],
+      parameters: [lastObservationSnap, 'retraction_details.is_retracted'],
       objectType: ['publications'],
     });
     const response = await Axios.post(ES_API_URL, query, HEADERS);

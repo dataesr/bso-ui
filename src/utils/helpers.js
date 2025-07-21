@@ -255,6 +255,9 @@ export function getSource(id, otherSources = []) {
   if (id.includes('retractions')) {
     sources.push('Retractation Watch');
   }
+  if (id.includes('preprints')) {
+    sources.push('Crossref preprint matching dataset');
+  }
   sources.push('MESR');
   sources.push(...otherSources);
   // Deduplicate sources

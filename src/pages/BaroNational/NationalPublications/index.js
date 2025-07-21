@@ -665,6 +665,9 @@ export default function NationalPublications() {
                   intlKey=''
                   backgroundColor={blueSoft50}
                 >
+                  <BSOChart id='publi.others.preprints.chart-by-year' />
+                  <BSOChart id='publi.others.preprints.chart-by-field' />
+                  <BSOChart id='publi.others.preprints.chart-by-publisher' />
                   <BSOChart id='publi.others.collaborations.international-collaborations' />
                   <BSOChart id='publi.publishers.dynamique-ouverture-journals.chart-taux-ouverture' />
                   <BSOChart id='publi.others.sources.publications-by-source' />

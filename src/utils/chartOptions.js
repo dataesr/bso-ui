@@ -4967,6 +4967,91 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.others.preprints.chart-by-year': {
+    getOptions: (id, intl, categories, series) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.publication-year' }) },
+        categories,
+      };
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(1).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.preprints.chart-by-field': {
+    getOptions: (id, intl, categories, series, sort, yAxisTitleId) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.discipline' }) },
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(false, null, sort !== 'sort-percent');
+      options.yAxis.title.text = intl.formatMessage({ id: yAxisTitleId });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              if (sort === 'sort-percent') {
+                return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+              }
+              return this.y === 0 ? '' : this.y.toFixed();
+            },
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
+  'publi.others.preprints.chart-by-publisher': {
+    getOptions: (id, intl, categories, series, sort, yAxisTitleId) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.height = '1000px';
+      options.chart.type = 'bar';
+      options.xAxis = {
+        title: {
+          text: capitalize(intl.formatMessage({ id: 'app.publishers' })),
+        },
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(false, null, sort !== 'sort-percent');
+      options.yAxis.title.text = intl.formatMessage({ id: yAxisTitleId });
+      options.legend.enabled = false;
+      options.plotOptions = {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              if (sort === 'sort-percent') {
+                return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+              }
+              return this.y === 0 ? '' : this.y.toFixed();
+            },
+          },
+        },
+      };
+      options.series = series;
+      options.exporting.chartOptions.legend.enabled = false;
+      return options;
+    },
+  },
   'publi.others.retractions.chart-by-year': {
     getOptions: (id, intl, categories, series) => {
       const options = getGraphOptions({ id, intl });

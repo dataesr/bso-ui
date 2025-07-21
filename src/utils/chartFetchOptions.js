@@ -2259,7 +2259,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    retractionsByYear: ([lastObservationSnap, minPublicationDate = 2013]) => ({
+    anyByYear: ([lastObservationSnap, field, minPublicationDate = 2013]) => ({
       size: 0,
       query: {
         bool: {
@@ -2286,14 +2286,14 @@ export default function getFetchOptions({
           aggs: {
             by_retraction: {
               terms: {
-                field: 'retraction_details.is_retracted',
+                field: `${field}`,
               },
             },
           },
         },
       },
     }),
-    retractionsByField: ([lastObservationSnap, minPublicationDate = 2013]) => ({
+    anyByField: ([lastObservationSnap, field, minPublicationDate = 2013]) => ({
       size: 0,
       query: {
         bool: {
@@ -2319,15 +2319,16 @@ export default function getFetchOptions({
           aggs: {
             by_retraction: {
               terms: {
-                field: 'retraction_details.is_retracted',
+                field: `${field}`,
               },
             },
           },
         },
       },
     }),
-    retractionsByPublisher: ([
+    anyByPublisher: ([
       lastObservationSnap,
+      field,
       minPublicationDate = 2013,
     ]) => ({
       size: 0,
@@ -2356,7 +2357,7 @@ export default function getFetchOptions({
           aggs: {
             by_retraction: {
               terms: {
-                field: 'retraction_details.is_retracted',
+                field: `${field}`,
               },
             },
           },

@@ -16,7 +16,7 @@ function useGetData(observationSnaps, domain = '') {
     const query = getFetchOptions({
       key: 'anyByYear',
       domain,
-      parameters: [lastObservationSnap, 'retraction_details.is_retracted'],
+      parameters: [lastObservationSnap, 'preprint_details.has_preprint'],
       objectType: ['publications'],
     });
     const response = await Axios.post(ES_API_URL, query, HEADERS);
@@ -30,8 +30,18 @@ function useGetData(observationSnaps, domain = '') {
         color: getCSSValue('--orange-soft-100'),
         x: catIndex,
         y:
+          (100
+            * (item?.by_retraction?.buckets?.find((bucket) => bucket.key === 1)
+              ?.doc_count ?? 0))
+          / item.doc_count,
+        y_abs:
           item?.by_retraction?.buckets?.find((bucket) => bucket.key === 1)
             ?.doc_count ?? 0,
+        y_perc:
+          (100
+            * (item?.by_retraction?.buckets?.find((bucket) => bucket.key === 1)
+              ?.doc_count ?? 0))
+          / item.doc_count,
         year: categories[catIndex],
       })),
     };

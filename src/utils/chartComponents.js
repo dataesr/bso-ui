@@ -364,6 +364,11 @@ const chartComponents = {
   'publi.others.sources.publications-by-source': lazy(() => import(
     '../components/Charts/publications/others/sources/publications-by-source'
   )),
+  'publi.others.preprints.chart-by-year': lazy(() => import('../components/Charts/publications/others/preprints/chart-by-year')),
+  'publi.others.preprints.chart-by-field': lazy(() => import('../components/Charts/publications/others/preprints/chart-by-field')),
+  'publi.others.preprints.chart-by-publisher': lazy(() => import(
+    '../components/Charts/publications/others/preprints/chart-by-publisher'
+  )),
 };
 
 export default chartComponents;
