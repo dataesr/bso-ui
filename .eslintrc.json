@@ -22,12 +22,32 @@
           "TemplateLiteral"
         ]
       }
-    ]
+    ],
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/no-cycle": "off",
+    "no-unsafe-optional-chaining": "off",
+    "default-param-last": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/no-unstable-nested-components": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "react/jsx-no-constructed-context-values": "off",
+
+    "no-loss-of-precision": "off" 
   },
-  "plugins": ["simple-import-sort"],
+  "plugins": ["simple-import-sort", "import", "react", "jsx-a11y"],
   "extends": [
     "react-app",
-    "airbnb",
-    "airbnb/hooks"
-  ]
+    "airbnb"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
