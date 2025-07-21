@@ -86,5 +86,10 @@
   },
   "resolutions": {
     "ajv": "7.18.0"
+  },
+  "overrides": {
+    "eslint-config-airbnb": {
+      "eslint-plugin-react-hooks": "$eslint-plugin-react-hooks"
+    }
   }
 }
