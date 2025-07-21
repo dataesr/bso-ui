@@ -26,7 +26,7 @@ import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
 import useLang from '../../utils/Hooks/useLang';
 
-const DataCode = () => {
+function DataCode() {
   const intl = useIntl();
   const { lang, urls } = useLang();
   const { search } = useLocation();
@@ -294,6 +294,6 @@ const DataCode = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default DataCode;

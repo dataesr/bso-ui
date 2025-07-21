@@ -16,7 +16,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, hasFooter, id }) => {
+function Chart({ domain, hasFooter, id }) {
   const chartRef = useRef();
   const intl = useIntl();
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
@@ -51,7 +51,7 @@ const Chart = ({ domain, hasFooter, id }) => {
       />
     </ChartWrapper>
   );
-};
+}
 
 Chart.defaultProps = {
   domain: '',

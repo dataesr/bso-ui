@@ -27,7 +27,7 @@ import UpdateDate from '../components/UpdateDate';
 import GlossaryEntries from '../translations/glossary.json';
 import useLang from '../utils/Hooks/useLang';
 
-const HomePage = () => {
+function HomePage() {
   const intl = useIntl();
   const { lang, urls } = useLang();
   const { search } = useLocation();
@@ -421,6 +421,6 @@ const HomePage = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default HomePage;

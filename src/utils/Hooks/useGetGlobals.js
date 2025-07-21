@@ -9,7 +9,7 @@ import { clearSessionStorage, getURLSearchParams } from '../helpers';
 
 export const GlobalsContext = createContext();
 
-export const GlobalsContextProvider = ({ children }) => {
+export function GlobalsContextProvider({ children }) {
   const hours = 0.1;
   const storedTimer = sessionStorage.getItem('storedTimer');
   const hasNoStoredTimer = storedTimer == null;
@@ -149,7 +149,7 @@ export const GlobalsContextProvider = ({ children }) => {
       {children}
     </GlobalsContext.Provider>
   );
-};
+}
 
 GlobalsContextProvider.propTypes = {
   children: PropTypes.node.isRequired,

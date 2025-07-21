@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import GlossaryFormattedMessage from '../Glossary/GlossaryFormattedMessage';
 
-const QuestionSection = ({
+function QuestionSection({
   anchorId,
   backgroundColor,
   children,
@@ -13,7 +13,7 @@ const QuestionSection = ({
   glossaryKeys,
   intlKey,
   isDisplayed,
-}) => {
+}) {
   const intl = useIntl();
   const formatted = (
     <GlossaryFormattedMessage
@@ -53,7 +53,7 @@ const QuestionSection = ({
       </section>
     )
   );
-};
+}
 
 export default QuestionSection;
 

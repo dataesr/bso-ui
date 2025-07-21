@@ -24,7 +24,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
+function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -80,7 +80,7 @@ const Chart = ({ domain, hasComments, hasFooter, id, studyType }) => {
       )}
     </ChartWrapper>
   );
-};
+}
 
 Chart.defaultProps = {
   domain: 'health',

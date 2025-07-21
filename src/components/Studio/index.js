@@ -19,7 +19,7 @@ import {
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import tree from './tree';
 
-const Studio = () => {
+function Studio() {
   const intl = useIntl();
   const { lastObservationSnap } = useGlobals();
   const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506'); // University of Lorraine
@@ -395,6 +395,6 @@ const Studio = () => {
       </Row>
     </section>
   );
-};
+}
 
 export default Studio;

@@ -6,7 +6,7 @@ import Banner from '../../../components/Banner';
 import CardLogo from '../../../components/CardLogo';
 import Icon from '../../../components/Icon';
 
-const Variations = () => {
+function Variations() {
   const renderIcons = (
     <Row justifyContent='center' alignItems='middle' gutters>
       <Col n='12'>
@@ -537,6 +537,6 @@ const Variations = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default Variations;

@@ -24,7 +24,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, id, hasComments, hasFooter }) => {
+function Chart({ domain, id, hasComments, hasFooter }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -103,7 +103,7 @@ const Chart = ({ domain, id, hasComments, hasFooter }) => {
       )}
     </ChartWrapper>
   );
-};
+}
 
 Chart.defaultProps = {
   domain: '',

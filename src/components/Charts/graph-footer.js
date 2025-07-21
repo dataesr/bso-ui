@@ -28,7 +28,7 @@ import { studiesTypes } from '../../utils/constants';
 import { getCSSValue } from '../../utils/helpers';
 import FullScreen from '../FullScreen';
 
-const GraphFooter = ({
+function GraphFooter({
   date,
   enableExport,
   height,
@@ -38,7 +38,7 @@ const GraphFooter = ({
   srcPath,
   studyType,
   title,
-}) => {
+}) {
   const intl = useIntl();
   const { search } = useLocation();
   const [isModalIntegrationOpen, setIsModalIntegrationOpen] = useState(false);
@@ -304,7 +304,7 @@ const GraphFooter = ({
       </Modal>
     </>
   );
-};
+}
 
 export default GraphFooter;
 

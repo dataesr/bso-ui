@@ -18,7 +18,7 @@ import useGetData from './get-data-by-nature';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, hasComments, hasFooter, id }) => {
+function Chart({ domain, hasComments, hasFooter, id }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -58,7 +58,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       )}
     </ChartWrapper>
   );
-};
+}
 // TODO remove publi studyType from id
 Chart.defaultProps = {
   domain: '',

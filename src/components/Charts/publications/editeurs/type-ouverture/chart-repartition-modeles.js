@@ -20,7 +20,7 @@ treemapModule(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ id, domain, hasComments, hasFooter }) => {
+function Chart({ id, domain, hasComments, hasFooter }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -66,7 +66,7 @@ const Chart = ({ id, domain, hasComments, hasFooter }) => {
       )}
     </ChartWrapper>
   );
-};
+}
 
 Chart.defaultProps = {
   domain: '',

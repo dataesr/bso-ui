@@ -12,7 +12,7 @@ import { getCSSValue, setCSSProperty } from '../../utils/helpers';
  * @returns {JSX.Element}
  * @constructor
  */
-const Icon = ({ name, color1, color2, ...rest }) => {
+function Icon({ name, color1, color2, ...rest }) {
   const [iconModule, setIconModule] = useState();
   useEffect(() => {
     import(
@@ -42,7 +42,7 @@ const Icon = ({ name, color1, color2, ...rest }) => {
   };
 
   return <div className={`${name}`}>{renderIcon()}</div>;
-};
+}
 
 Icon.defaultProps = {
   color1: 'blue-dark-125',

@@ -26,7 +26,7 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, hasComments, hasFooter, id }) => {
+function Chart({ domain, hasComments, hasFooter, id }) {
   const intl = useIntl();
   const chartRef = useRef();
   const [activeData, setActiveData] = useState([]);
@@ -185,7 +185,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       />
     </ChartWrapper>
   );
-};
+}
 
 Chart.defaultProps = {
   domain: '',

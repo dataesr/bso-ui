@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 const GraphNavigationContext = createContext();
 
-export const GraphNavigationContextProvider = ({ children }) => {
+export function GraphNavigationContextProvider({ children }) {
   const [openedTab, setOpenedTab] = useState('');
   const openTab = (t) => setOpenedTab(t);
 
@@ -12,7 +12,7 @@ export const GraphNavigationContextProvider = ({ children }) => {
       {children}
     </GraphNavigationContext.Provider>
   );
-};
+}
 
 const useGraphNavigation = () => useContext(GraphNavigationContext);
 

@@ -27,7 +27,7 @@ import UpdateDate from '../../components/UpdateDate';
 import GlossaryEntries from '../../translations/glossary.json';
 import useLang from '../../utils/Hooks/useLang';
 
-const BaroNational = () => {
+function BaroNational() {
   const intl = useIntl();
   const { lang, urls } = useLang();
   const { search } = useLocation();
@@ -301,6 +301,6 @@ const BaroNational = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default BaroNational;

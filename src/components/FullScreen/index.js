@@ -5,23 +5,25 @@ import React, { Suspense } from 'react';
 import BSOChart from '../Charts';
 import Loader from '../Loader';
 
-const FullScreen = ({ domain, graphId, studyType }) => (
-  <Container fluid>
-    <Row justifyContent='center'>
-      <Col>
-        <Suspense fallback={<Loader />}>
-          <BSOChart
-            domain={domain || ''}
-            hasComments={false}
-            hasFooter={false}
-            id={graphId}
-            studyType={studyType || ''}
-          />
-        </Suspense>
-      </Col>
-    </Row>
-  </Container>
-);
+function FullScreen({ domain, graphId, studyType }) {
+  return (
+    <Container fluid>
+      <Row justifyContent='center'>
+        <Col>
+          <Suspense fallback={<Loader />}>
+            <BSOChart
+              domain={domain || ''}
+              hasComments={false}
+              hasFooter={false}
+              id={graphId}
+              studyType={studyType || ''}
+            />
+          </Suspense>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
 
 export default FullScreen;
 

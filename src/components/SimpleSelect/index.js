@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const SimpleSelect = ({ label, onChange, options, selected }) => {
+function SimpleSelect({ label, onChange, options, selected }) {
   const selectId = uuidv4();
   return (
     <div className='simple-select'>
@@ -15,7 +15,7 @@ const SimpleSelect = ({ label, onChange, options, selected }) => {
       </label>
     </div>
   );
-};
+}
 
 SimpleSelect.defaultProps = {
   selected: '',

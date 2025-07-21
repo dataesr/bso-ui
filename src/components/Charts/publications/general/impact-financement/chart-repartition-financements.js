@@ -20,7 +20,7 @@ import useGetData from './get-data-repartition-financements';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, hasComments, hasFooter, id }) => {
+function Chart({ domain, hasComments, hasFooter, id }) {
   const chartRef = useRef();
   const intl = useIntl();
 
@@ -104,7 +104,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       )}
     </ChartWrapper>
   );
-};
+}
 
 // TODO remove publi studyType from id
 Chart.defaultProps = {

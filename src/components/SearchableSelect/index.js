@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const SearchableSelect = ({ label, onChange, options, selected }) => {
+function SearchableSelect({ label, onChange, options, selected }) {
   const selectId = uuidv4();
   return (
     <div className='searchable-select'>
@@ -19,7 +19,7 @@ const SearchableSelect = ({ label, onChange, options, selected }) => {
       </label>
     </div>
   );
-};
+}
 
 SearchableSelect.defaultProps = {
   selected: '',

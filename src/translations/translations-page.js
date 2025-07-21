@@ -19,7 +19,7 @@ import React, { useEffect, useState } from 'react';
 import En from './en.json';
 import Fr from './fr.json';
 
-const TranslationsPage = () => {
+function TranslationsPage() {
   const [data, setData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [generation, setGeneration] = useState('');
@@ -70,7 +70,7 @@ const TranslationsPage = () => {
     setData(newData);
   };
 
-  if (!data || data === {}) {
+  if (!data || Object.keys(data).length === 0) {
     return null;
   }
 
@@ -140,6 +140,6 @@ const TranslationsPage = () => {
       </Modal>
     </>
   );
-};
+}
 
 export default TranslationsPage;

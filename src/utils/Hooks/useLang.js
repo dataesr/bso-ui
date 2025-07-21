@@ -7,7 +7,7 @@ import { isInProduction } from '../helpers';
 
 export const LangContext = createContext();
 
-export const LangContextProvider = ({ supportedLanguages, children }) => {
+export function LangContextProvider({ supportedLanguages, children }) {
   const { pathname } = useLocation();
 
   // Default UI lang in French
@@ -66,7 +66,7 @@ export const LangContextProvider = ({ supportedLanguages, children }) => {
       {children}
     </LangContext.Provider>
   );
-};
+}
 
 LangContextProvider.propTypes = {
   children: PropTypes.node.isRequired,

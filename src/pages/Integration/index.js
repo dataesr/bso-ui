@@ -8,7 +8,7 @@ import Loader from '../../components/Loader';
 import { getURLSearchParams } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
-const Integration = () => {
+function Integration() {
   const { domain, graphId, language, studyType } = useParams();
   const { pathname, search } = useLocation();
   const intl = useIntl();
@@ -41,6 +41,6 @@ const Integration = () => {
       </Row>
     </Container>
   );
-};
+}
 
 export default Integration;

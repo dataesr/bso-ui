@@ -49,7 +49,7 @@ const nntEtabRegex = /^[a-zA-Z0-9]{4,6}$/;
 // https://documentation.abes.fr/sudoc/regles/Catalogage/Retro_CodeCourt_NNT.htm
 const nntIdRegex = /^(19|20)\d{2}[A-Z0-9]{4}\w{4}$/;
 
-const SubmissionForm = () => {
+function SubmissionForm() {
   const [action, setAction] = useState('publications');
   const [acronym, setAcronym] = useState('');
   const [dataFile, setDataFile] = useState();
@@ -531,6 +531,6 @@ const SubmissionForm = () => {
       </section>
     </Container>
   );
-};
+}
 
 export default SubmissionForm;

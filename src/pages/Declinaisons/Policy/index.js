@@ -25,7 +25,7 @@ const OPENDATASOFT_LIMIT = 100;
 const SELECTED_TYPES = ['Grand établissement', 'Université'];
 const START_YEAR = 2016;
 
-const Policy = () => {
+function Policy() {
   const [chartComments, setChartComments] = useState('');
   const [chartCommentsSelectedTypes, setChartCommentsSelectedTypes] = useState('');
   const [data, setData] = useState([]);
@@ -412,6 +412,6 @@ const Policy = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default Policy;

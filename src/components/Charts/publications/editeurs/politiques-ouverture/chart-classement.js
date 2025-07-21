@@ -19,7 +19,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ domain, hasComments, hasFooter, id }) => {
+function Chart({ domain, hasComments, hasFooter, id }) {
   const chartRef = useRef();
   const [displayType, setDisplayType] = useState('display-open-access');
   const [optionsGraph, setOptionsGraph] = useState(null);
@@ -119,7 +119,7 @@ const Chart = ({ domain, hasComments, hasFooter, id }) => {
       )}
     </ChartWrapper>
   );
-};
+}
 
 Chart.defaultProps = {
   domain: '',
