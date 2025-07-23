@@ -5008,7 +5008,7 @@ export const chartOptions = {
             enabled: true,
             formatter() {
               if (sort === 'sort-percent') {
-                return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+                return this.y === 0 ? '' : this.y.toFixed(1).concat(' %');
               }
               return this.y === 0 ? '' : this.y.toFixed();
             },
@@ -5040,7 +5040,7 @@ export const chartOptions = {
             enabled: true,
             formatter() {
               if (sort === 'sort-percent') {
-                return this.y === 0 ? '' : this.y.toFixed(3).concat(' %');
+                return this.y === 0 ? '' : this.y.toFixed(1).concat(' %');
               }
               return this.y === 0 ? '' : this.y.toFixed();
             },

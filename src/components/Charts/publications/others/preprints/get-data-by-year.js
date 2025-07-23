@@ -29,6 +29,7 @@ function useGetData(observationSnaps, domain = '') {
       data: buckets.map((item, catIndex) => ({
         color: getCSSValue('--orange-soft-100'),
         x: catIndex,
+        y_tot: item.doc_count,
         y:
           (100
             * (item?.by_retraction?.buckets?.find((bucket) => bucket.key === 1)

@@ -31,11 +31,11 @@ function Chart({ domain, hasComments, hasFooter, id }) {
 
   useEffect(() => {
     let field = 'y_count';
-    let yAxisTitleId = 'app.publi.nb-publications-with-preprint';
+    let yAxisTitleId = 'app.publi.display-count-publi-with-preprint';
     switch (sort) {
     case 'sort-percent':
       field = 'y_percent';
-      yAxisTitleId = 'app.publi.percent-publications-with-preprint';
+      yAxisTitleId = 'app.publi.display-percent-publi-with-preprint';
       break;
     default:
     }
