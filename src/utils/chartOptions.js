@@ -672,6 +672,49 @@ export const chartOptions = {
       return options;
     },
   },
+  'publi.publishers.poids-editeurs.chart-evolution-repartition': {
+    getOptions: (id, intl, categories, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.legend.title.text = intl.formatMessage({
+        id: 'Publisher',
+      });
+      options.legend.reversed = true;
+      options.chart.type = 'area';
+      options.yAxis = getPercentageYAxis(false);
+      options.yAxis.title.text = intl.formatMessage({
+        id: 'app.publi.percentage-publi',
+      });
+      options.yAxis.stackLabels = {
+        enabled: true,
+        formatter() {
+          return `${cleanNumber(this.total, 2, true)} %`;
+        },
+        style: {
+          fontWeight: 'bold',
+        },
+      };
+      options.xAxis = {
+        categories,
+        tickmarkPlacement: 'on',
+        title: {
+          enabled: false,
+        },
+      };
+      options.plotOptions = {
+        area: {
+          stacking: 'normal',
+          lineColor: '#fff',
+          lineWidth: 3,
+          marker: {
+            lineWidth: 1,
+            lineColor: '#fff',
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
   'publi.publishers.type-ouverture.chart-repartition-modeles': {
     getOptions: (id, intl, data, dataTitle) => {
       const options = getGraphOptions({ id, intl, dataTitle });

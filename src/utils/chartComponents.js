@@ -102,6 +102,9 @@ const chartComponents = {
   'publi.publishers.type-ouverture.chart-evolution-repartition': lazy(() => import(
     '../components/Charts/publications/editeurs/type-ouverture/chart-evolution-repartition'
   )),
+  'publi.publishers.poids-editeurs.chart-evolution-repartition': lazy(() => import(
+    '../components/Charts/publications/editeurs/poids-editeurs/chart-evolution-repartition'
+  )),
   'publi.publishers.repartition-licences.chart-repartition': lazy(() => import(
     '../components/Charts/publications/editeurs/repartition-licences/chart-repartition'
   )),

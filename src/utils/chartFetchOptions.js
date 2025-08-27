@@ -741,18 +741,84 @@ export default function getFetchOptions({
         },
       },
     }),
-    predatory: () => ({
+    predatory: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+      size = 15,
+    ]) => ({
       size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
       aggs: {
         by_year: {
           terms: {
             field: 'year',
-            size: 15,
+            size,
           },
           aggs: {
             by_predatory: {
               terms: {
                 field: 'journal_or_publisher_in_bealls_list',
+              },
+            },
+          },
+        },
+      },
+    }),
+    predatoryPublishers: ([
+      lastObservationSnap,
+      minPublicationDate = 2013,
+      size = 15,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              range: {
+                year: {
+                  gte: minPublicationDate,
+                  lte: getPublicationYearFromObservationSnap(
+                    lastObservationSnap,
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'year',
+            size,
+          },
+          aggs: {
+            by_predatory: {
+              terms: {
+                field: 'journal_or_publisher_in_bealls_list',
+              },
+              aggs: {
+                by_publisher: {
+                  terms: {
+                    field: 'publisher_normalized.keyword',
+                    size: 2,
+                  },
+                },
               },
             },
           },

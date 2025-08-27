@@ -19,6 +19,7 @@ function useGetData(observationSnap, domain) {
     }
     const query = getFetchOptions({
       key: 'predatory',
+      parameters: [observationSnap[0], 2013],
       domain,
       objectType: ['publications'],
     });

@@ -388,6 +388,10 @@ export default function NationalPublications() {
                     id='publi.publishers.poids-revues.chart-repartition'
                     isDisplayed={!isInProduction()}
                   />
+                  <BSOChart
+                    id='publi.publishers.poids-editeurs.chart-evolution-repartition'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
 
                 <QuestionSection
