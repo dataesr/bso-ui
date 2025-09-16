@@ -277,7 +277,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université Jean Monnet Saint-Étienne UJM'
-                href='https://www.univ-st-etienne.fr/fr/recherche/science-ouverte/barometre-de-la-science-ouverte-2024.html'
+                href='https://www.univ-st-etienne.fr/fr/recherche/science-ouverte/barometre-de-la-science-ouverte-1/barometre-de-la-science-ouverte-2024.html'
                 img='/declinaisons/universite-saint-etienne.jpg'
               />
             </Col>
