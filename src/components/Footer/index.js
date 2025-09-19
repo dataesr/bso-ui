@@ -6,6 +6,7 @@ import {
   FooterBottom,
   FooterCopy,
   FooterLink,
+  FooterOperator,
   FooterTop,
   FooterTopCategory,
   Icon as DSIcon,
@@ -175,6 +176,15 @@ export default function Footer() {
           >
             {intl.formatMessage({ id: 'app.ministry' })}
           </Logo>
+          <FooterOperator>
+            <svg aria-hidden='true' viewBox='0 0 1167.77 752.85' width='100%'>
+              <use
+                className='fr-text-black-white--grey'
+                href='/logos/sies_logo_signature.svg#sies-logo-text'
+              />
+              <use href='/logos/sies_logo_signature.svg#sies-logo-artwork' />
+            </svg>
+          </FooterOperator>
           <FooterBodyItem>
             <Link target='_blank' href='https://www.service-public.fr/'>
               service-public.fr
