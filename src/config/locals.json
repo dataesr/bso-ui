@@ -1802,5 +1802,11 @@
     "commentsNameEN": "of INSA",
     "alias": "130018336,193101524,196727671,196901920,197601651,301232",
     "paysage": "WnZhe"
+  },
+  "RECHERCHEPARTICIPATIVEUL": {
+    "name": "Recherche participative à l'Université de Lorraine",
+    "commentsName": "de recherche participative à l'Université de Lorraine",
+    "commentsNameEN": "of Recherche participative à l'Université de Lorraine",
+    "startYear": 2016
   }
 }
