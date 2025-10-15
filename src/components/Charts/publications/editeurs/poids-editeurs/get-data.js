@@ -32,7 +32,6 @@ function useGetData(observationSnap, domain) {
           && parseInt(el.key, 10)
             < parseInt(String(observationSnap).substring(0, 4), 10),
       );
-    console.log('tttD', data);
     const categories = data.map((dataYear) => dataYear.key);
     const mdpiData = [];
     const frontiersData = [];
