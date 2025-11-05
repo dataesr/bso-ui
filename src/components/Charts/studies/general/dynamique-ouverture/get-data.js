@@ -22,6 +22,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const yearMin = yearMax - 10;
     const yearMax2 = currentYear - 3;
     const yearMin2 = yearMax2 - 6;
+    const query0 = getFetchOptions({
+      key: 'sponsorsList',
+      parameters: [studyType, yearMin, yearMax],
+      objectType: ['clinicalTrials'],
+    });
     const query1 = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
       parameters: [studyType, yearMin, yearMax],
@@ -56,6 +61,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         term: { 'intervention_type.keyword': 'DRUG' },
       });
     }
+    queries.push(Axios.post(ES_STUDIES_API_URL, query0, HEADERS));
     queries.push(Axios.post(ES_STUDIES_API_URL, query1, HEADERS));
     queries.push(Axios.post(ES_STUDIES_API_URL, query2, HEADERS));
     queries.push(Axios.post(ES_STUDIES_API_URL, query3, HEADERS));
@@ -64,10 +70,16 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const series3 = [{ data: [] }];
     const series4 = [{ data: [] }];
     const res = await Axios.all(queries);
-    const data1 = res[0].data.aggregations;
-    const data2 = res[1].data.aggregations;
-    const data3 = res[2].data.aggregations;
-    const data4 = res[3].data.aggregations;
+    const sponsors = res[0].data.aggregations.by_sponsor.buckets.map(
+      (item) => ({
+        value: item.key,
+        label: item.key,
+      }),
+    );
+    const data1 = res[1].data.aggregations;
+    const data2 = res[2].data.aggregations;
+    const data3 = res[3].data.aggregations;
+    const data4 = res[4].data.aggregations;
     // TODO rename data4 refers to 1Y, should be data1Y etc ...
     const academic1 = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
@@ -121,6 +133,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const indusTotal4 = (indusWith4?.doc_count || 0) + (indusWithout4?.doc_count || 0);
     const spons = data2;
     const sponsWith = spons?.by_has_result.buckets.find((el) => el.key === 1);
+    const sponsWithout = spons?.by_has_result.buckets.find(
+      (ele) => ele.key === 0,
+    );
     const categories = [
       capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
       capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
@@ -218,9 +233,12 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       series1[0].data.push({
         color: getCSSValue('--lead-sponsor-highlight'),
         name: sponsor,
-        y: 100 * ((sponsWith?.doc_count ?? 0) / spons?.doc_count),
-        y_abs: sponsWith?.doc_count ?? 0,
-        y_tot: spons?.doc_count ?? 0,
+        y:
+          100
+          * ((sponsWith?.doc_count || 0)
+            / ((sponsWith?.doc_count || 0) + (sponsWithout?.doc_count || 0))),
+        y_abs: sponsWith?.doc_count || 0,
+        y_tot: (sponsWith?.doc_count || 0) + (sponsWithout?.doc_count || 0),
         yearMax,
         yearMin,
       });
@@ -496,6 +514,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       dataGraph4,
       dataGraph5,
       dataGraph6,
+      sponsors,
     };
   }
 

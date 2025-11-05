@@ -114,16 +114,16 @@ function useGetData(studyType, sponsor = '*') {
     });
     if (sponsor !== '*') {
       series[0].data.push({
-        yearMin,
-        yearMax,
         color: getCSSValue('--lead-sponsor-highlight'),
         name: sponsor,
-        y_tot: (sponsWith?.doc_count || 0) + (sponsWithout?.doc_count || 0),
-        y_abs: sponsWith?.doc_count || 0,
         y:
           100
           * ((sponsWith?.doc_count || 0)
             / ((sponsWith?.doc_count || 0) + (sponsWithout?.doc_count || 0))),
+        y_abs: sponsWith?.doc_count || 0,
+        y_tot: (sponsWith?.doc_count || 0) + (sponsWithout?.doc_count || 0),
+        yearMax,
+        yearMin,
       });
       categories.push(sponsor);
     }
