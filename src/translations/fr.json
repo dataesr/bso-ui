@@ -642,6 +642,7 @@
   "app.health-interventional.general.dynamique.chart-evolution-within-1-year-by-year.title": "Part d'essais cliniques enregistrés et terminés ayant posté un résultat et/ou déclaré une publication scientifique dans l'année après la fin de l'essai clinique par année de fin",
   "app.health-interventional.general.dynamique.chart-evolution-within-1-year-by-year.tooltip": "<b>Essais cliniques terminés en {point.year}<br>{point.name}</b><br><b>{point.y:.2f} %</b> des essais cliniques enregistrés ont posté un résultat<br>et/ou déclaré une publication scientifique dans l'année après la fin de l'essai clinique par année de fin<b> ({point.y_abs} / {point.y_tot})</b>.",
   "app.health-interventional.general.dynamique.chart-evolution-within-1-year-by-year-drug.title": "Part d'essais cliniques sur le médicament enregistrés et terminés ayant posté un résultat et/ou déclaré une publication scientifique dans l'année après la fin de l'essai clinique par année de fin",
+  "app.health-interventional.general.dynamique.chart-evolution-10-years-within-1-year.title": "Taux de communication des résultats des essais terminés dans les 10 dernières années, dans un délai de 12 mois après la fin déclarée de l'essai",
   "app.health-interventional.general.sankey.Active, not recruiting.label": "Actif, ne recrute plus",
   "app.health-interventional.general.sankey.Completed.label": "Essais cliniques enregistrés publiquement<br>et terminés",
   "app.health-interventional.general.sankey.Enrolling by invitation.label": "Sur invitation",

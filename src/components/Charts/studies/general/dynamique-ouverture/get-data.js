@@ -69,6 +69,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const series1 = [{ data: [] }];
     const series3 = [{ data: [] }];
     const series4 = [{ data: [] }];
+    const series7 = [{ data: [] }];
     const res = await Axios.all(queries);
     const sponsors = res[0].data.aggregations.by_sponsor.buckets.map(
       (item) => ({
@@ -100,13 +101,20 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const academic4 = data4.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
-    const academicWith4 = academic4?.by_has_results_within_1_year.buckets
-      .find((ele) => ele.key === 1)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
-    const academicWithout4 = academic4?.by_has_results_within_1_year.buckets
-      .find((ele) => ele.key === 0)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
-    const academicTotal4 = (academicWith4?.doc_count || 0) + (academicWithout4?.doc_count || 0);
+    const academicWith4 = academic4?.by_has_results_within_1_year.buckets.find(
+      (ele) => ele.key === 1,
+    );
+    const academicWithLastYear4 = academicWith4?.by_completion_year.buckets.find(
+      (ele) => ele.key === yearMax,
+    );
+    const academicWithout4 = academic4?.by_has_results_within_1_year.buckets.find(
+      (ele) => ele.key === 0,
+    );
+    const academicWithoutLastYear4 = academicWithout4?.by_completion_year.buckets.find(
+      (ele) => ele.key === yearMax,
+    );
+    const academicTotalLastYear4 = (academicWithLastYear4?.doc_count || 0)
+      + (academicWithoutLastYear4?.doc_count || 0);
     const indus = data1.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
@@ -124,13 +132,20 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const indus4 = data4.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'industriel',
     );
-    const indusWith4 = indus4?.by_has_results_within_1_year.buckets
-      .find((el) => el.key === 1)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
-    const indusWithout4 = indus4?.by_has_results_within_1_year.buckets
-      .find((el) => el.key === 0)
-      ?.by_completion_year.buckets.find((ele) => ele.key === yearMax);
-    const indusTotal4 = (indusWith4?.doc_count || 0) + (indusWithout4?.doc_count || 0);
+    const indusWith4 = indus4?.by_has_results_within_1_year.buckets.find(
+      (ele) => ele.key === 1,
+    );
+    const indusWithLastYear4 = indusWith4?.by_completion_year.buckets.find(
+      (ele) => ele.key === yearMax,
+    );
+    const indusWithout4 = indus4?.by_has_results_within_1_year.buckets.find(
+      (el) => el.key === 0,
+    );
+    const indusWithoutLastYear4 = indusWithout4?.by_completion_year.buckets.find(
+      (ele) => ele.key === yearMax,
+    );
+    const indusTotalLastYear4 = (indusWithLastYear4?.doc_count || 0)
+      + (indusWithoutLastYear4?.doc_count || 0);
     const spons = data2;
     const sponsWith = spons?.by_has_result.buckets.find((el) => el.key === 1);
     const sponsWithout = spons?.by_has_result.buckets.find(
@@ -201,33 +216,65 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       yearMax: yearMax2,
     });
     const allLeadSponsorRate4 = 100
-      * ((academicWith4?.doc_count + indusWith4?.doc_count)
-        / (academicTotal4 + indusTotal4));
+      * ((academicWithLastYear4?.doc_count + indusWithLastYear4?.doc_count)
+        / (academicTotalLastYear4 + indusTotalLastYear4));
     series4[0].data.push({
       color: getCSSValue('--blue-soft-100'),
       name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
       y: allLeadSponsorRate4,
-      y_abs: (academicWith4?.doc_count ?? 0) + (indusWith4?.doc_count ?? 0),
-      y_tot: academicTotal4 + indusTotal4,
+      y_abs:
+        (academicWithLastYear4?.doc_count ?? 0)
+        + (indusWithLastYear4?.doc_count ?? 0),
+      y_tot: academicTotalLastYear4 + indusTotalLastYear4,
       yearMax,
     });
-    const publicLeadSponsorsRate4 = 100 * ((academicWith4?.doc_count ?? 0) / academicTotal4);
+    const publicLeadSponsorsRate4 = 100 * ((academicWithLastYear4?.doc_count ?? 0) / academicTotalLastYear4);
     series4[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: intl.formatMessage({ id: 'app.sponsor.academique' }),
       y: publicLeadSponsorsRate4,
-      y_abs: academicWith4?.doc_count ?? 0,
-      y_tot: academicTotal4,
+      y_abs: academicWithLastYear4?.doc_count ?? 0,
+      y_tot: academicTotalLastYear4,
       yearMax,
     });
-    const privateLeadSponsorsRate4 = 100 * ((indusWith4?.doc_count ?? 0) / indusTotal4);
+    const privateLeadSponsorsRate4 = 100 * ((indusWithLastYear4?.doc_count ?? 0) / indusTotalLastYear4);
     series4[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
       y: privateLeadSponsorsRate4,
-      y_abs: indusWith4?.doc_count ?? 0,
-      y_tot: indusTotal4,
+      y_abs: indusWithLastYear4?.doc_count ?? 0,
+      y_tot: indusTotalLastYear4,
       yearMax,
+    });
+    series7[0].data.push({
+      color: getCSSValue('--blue-soft-100'),
+      name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
+      y:
+        100
+        * ((academicWith4?.doc_count + indusWith4?.doc_count)
+          / (academic4?.doc_count + indus4?.doc_count)),
+      y_abs: (academicWith4?.doc_count ?? 0) + (indusWith4?.doc_count ?? 0),
+      y_tot: (academic4?.doc_count ?? 0) + (indus4?.doc_count ?? 0),
+      yearMax,
+      yearMin,
+    });
+    series7[0].data.push({
+      color: getCSSValue('--lead-sponsor-public'),
+      name: intl.formatMessage({ id: 'app.sponsor.academique' }),
+      y: 100 * ((academicWith4?.doc_count ?? 0) / academic4?.doc_count),
+      y_abs: academicWith4?.doc_count ?? 0,
+      y_tot: academic4?.doc_count ?? 0,
+      yearMax,
+      yearMin,
+    });
+    series7[0].data.push({
+      color: getCSSValue('--lead-sponsor-privee'),
+      name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
+      y: 100 * ((indusWith4?.doc_count ?? 0) / indus4?.doc_count),
+      y_abs: indusWithLastYear4?.doc_count ?? 0,
+      y_tot: indus4?.doc_count ?? 0,
+      yearMax,
+      yearMin,
     });
     if (sponsor !== '*') {
       series1[0].data.push({
@@ -264,6 +311,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const dataGraph1 = { categories, series: series1 };
     const dataGraph3 = { categories, series: series3 };
     const dataGraph4 = { categories, series: series4 };
+    const dataGraph7 = { categories, series: series7 };
+    console.log(data4);
+    console.log(series7);
 
     const categories5 = data3.by_sponsor_type.buckets[0].by_has_results_within_3_years.buckets[0].by_completion_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -514,6 +564,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       dataGraph4,
       dataGraph5,
       dataGraph6,
+      dataGraph7,
       sponsors,
     };
   }

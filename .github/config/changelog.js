@@ -14,13 +14,13 @@ module.exports = {
   ],
 
   excludeTypes: [
-    'other',
-    'perf',
-    'test',
-    'tests',
-    'style',
     'chore',
     'doc',
     'docs',
+    'other',
+    'perf',
+    'style',
+    'test',
+    'tests',
   ],
 };
