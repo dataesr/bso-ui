@@ -35,8 +35,8 @@ function useGetData(studyType, sponsorType = '*') {
       process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
       10,
     );
-    const yearMin = currentYear - 11;
     const yearMax = currentYear - 1;
+    const yearMin = yearMax - 9;
     const queries = [];
     const query1 = getFetchOptions({
       key: 'studiesResultsTypeDiffusion',

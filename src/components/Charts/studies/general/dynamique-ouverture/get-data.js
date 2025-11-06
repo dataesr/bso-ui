@@ -19,7 +19,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       10,
     );
     const years10Max = currentYear - 1;
-    const years10Min = years10Max - 10;
+    const years10Min = years10Max - 9;
     const years3Max = currentYear - 3;
     const years3Min = years3Max - 6;
     const querySponsorsList = getFetchOptions({
