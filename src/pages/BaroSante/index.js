@@ -7,7 +7,6 @@ import {
   Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -72,49 +71,6 @@ function BaroSante() {
                 </p>
               </section>
             </Col>
-            {/*
-            <Col n='12 xl-10' offset='xl-2'>
-              <Glossary entries={GlossaryEntries} />
-              <HomeSection
-                link={{
-                  href: '/sante/publications/general',
-                  label: <FormattedMessage id='app.baro-sante.detail-publi' />,
-                }}
-                title={
-                  <FormattedMessage id='app.header.nav.baro-national-publications' />
-                }
-                introText={(
-                  <GlossaryFormattedMessage
-                    intlKey='app.baro-sante.intro'
-                    glossaryKeys={['acces-ouvert', 'publication-fr', 'pubmed']}
-                  />
-                )}
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12 md-8'>
-                      <BSOChart
-                        id='publi.general.dynamique-ouverture.chart-taux-ouverture'
-                        domain='health'
-                        hasComments={false}
-                        hasFooter={false}
-                      />
-                    </Col>
-                    <Col n='12 md-4'>
-                      <ProgressionCard domain='health' />
-                    </Col>
-                    <Col n='12'>
-                      <BSOChart
-                        domain='health'
-                        id='publi.general.dynamique-ouverture.chart-evolution-proportion'
-                        hasComments={false}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection>
-            </Col>
-            */}
             <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{

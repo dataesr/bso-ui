@@ -48,7 +48,7 @@ function GlossaryFormattedMessage({
             <br />
           </>
         ),
-        i: (chunks) => <i>{sanitizeHtml(chunks)}</i>,
+        i: (chunks) => <i>{chunks}</i>,
         ...values,
       }}
     />
