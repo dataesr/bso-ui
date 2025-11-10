@@ -75,7 +75,6 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const series1 = [{ data: [] }];
     const series3 = [{ data: [] }];
     const series4 = [{ data: [] }];
-    const series7 = [{ data: [] }];
     const results = await Axios.all(queries);
     const sponsors = results[0].data.aggregations.by_sponsor.buckets.map(
       (item) => ({
@@ -311,49 +310,6 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       y_tot: dataHasResultsWithin1YearIndustrialLastYearCount,
       yearMax: years10Max,
     });
-    series7[0].data.push({
-      color: getCSSValue('--blue-soft-100'),
-      name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
-      y:
-        100
-        * ((dataHasResultsWithin1YearAcademicWithResults?.doc_count
-          + dataHasResultsWithin1YearIndustrialWithResults?.doc_count)
-          / (dataHasResultsWithin1YearAcademic?.doc_count
-            + dataHasResultsWithin1YearIndustrial?.doc_count)),
-      y_abs:
-        (dataHasResultsWithin1YearAcademicWithResults?.doc_count ?? 0)
-        + (dataHasResultsWithin1YearIndustrialWithResults?.doc_count ?? 0),
-      y_tot:
-        (dataHasResultsWithin1YearAcademic?.doc_count ?? 0)
-        + (dataHasResultsWithin1YearIndustrial?.doc_count ?? 0),
-      yearMax: years10Max,
-      yearMin: years10Min,
-    });
-    series7[0].data.push({
-      color: getCSSValue('--lead-sponsor-public'),
-      name: intl.formatMessage({ id: 'app.sponsor.academique' }),
-      y:
-        100
-        * ((dataHasResultsWithin1YearAcademicWithResults?.doc_count ?? 0)
-          / dataHasResultsWithin1YearAcademic?.doc_count),
-      y_abs: dataHasResultsWithin1YearAcademicWithResults?.doc_count ?? 0,
-      y_tot: dataHasResultsWithin1YearAcademic?.doc_count ?? 0,
-      yearMax: years10Max,
-      yearMin: years10Min,
-    });
-    series7[0].data.push({
-      color: getCSSValue('--lead-sponsor-privee'),
-      name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
-      y:
-        100
-        * ((dataHasResultsWithin1YearIndustrialWithResults?.doc_count ?? 0)
-          / dataHasResultsWithin1YearIndustrial?.doc_count),
-      y_abs:
-        dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count ?? 0,
-      y_tot: dataHasResultsWithin1YearIndustrial?.doc_count ?? 0,
-      yearMax: years10Max,
-      yearMin: years10Min,
-    });
     if (sponsor !== '*') {
       series1[0].data.push({
         color: getCSSValue('--lead-sponsor-highlight'),
@@ -398,7 +354,6 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const dataGraph1 = { categories, series: series1 };
     const dataGraph3 = { categories, series: series3 };
     const dataGraph4 = { categories, series: series4 };
-    const dataGraph7 = { categories, series: series7 };
 
     const categories5 = dataHasResultsWithin3Years.by_sponsor_type.buckets[0].by_has_results_within_3_years.buckets[0].by_completion_year.buckets
       .sort((a, b) => a.key - b.key)
@@ -639,7 +594,6 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       dataGraph4,
       dataGraph5,
       dataGraph6,
-      dataGraph7,
       sponsors,
     };
   }

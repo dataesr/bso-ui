@@ -1105,6 +1105,51 @@ export default function getFetchOptions({
         },
       },
     }),
+    studiesDynamiqueOuvertureWithin1YearSponsor: ([
+      studyType,
+      sponsor,
+      yearMin,
+      yearMax,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_normalized.keyword': sponsor,
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_has_results_within_1_year: {
+          terms: {
+            field: 'has_results_or_publications_within_1y',
+            missing: false,
+          },
+        },
+      },
+    }),
     studiesDynamiqueOuvertureSponsor: ([
       studyType,
       sponsor,
@@ -1121,8 +1166,8 @@ export default function getFetchOptions({
               },
             },
             {
-              wildcard: {
-                'lead_sponsor_normalized.keyword': sponsor,
+              term: {
+                'status.keyword': 'Completed',
               },
             },
             {
@@ -1134,8 +1179,8 @@ export default function getFetchOptions({
               },
             },
             {
-              term: {
-                'status.keyword': 'Completed',
+              wildcard: {
+                'lead_sponsor_normalized.keyword': sponsor,
               },
             },
           ],

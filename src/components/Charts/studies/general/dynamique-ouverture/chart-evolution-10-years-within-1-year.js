@@ -15,10 +15,16 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  isInProduction,
+  withDomain,
+  withtStudyType,
+} from '../../../../../utils/helpers';
 import ChartWrapper from '../../../../ChartWrapper';
+import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+import useGetData from './get-data-10-years-within-1-year';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -27,16 +33,27 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraph7 } = allData;
+  const [options, setOptions] = useState([]);
+  const [sponsor, setSponsor] = useState('*');
+  const { allData, isError, isLoading } = useGetData(studyType, sponsor);
+  const { dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    dataGraph7,
+    dataGraph,
     studyType,
   );
+
+  useEffect(() => {
+    const opts = allData?.sponsors || [];
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsors' })),
+      value: '*',
+    });
+    setOptions(opts);
+  }, [allData.sponsors, intl]);
 
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
@@ -54,6 +71,13 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
+      <SearchableSelect
+        isDisplayed={!isInProduction()}
+        label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
+        onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
+        options={options}
+        selected={sponsor}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}
