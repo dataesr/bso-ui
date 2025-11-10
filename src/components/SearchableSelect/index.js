@@ -2,30 +2,33 @@ import './style.scss';
 
 import { SearchableSelect as SearchableSelectDSFR } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-function SearchableSelect({ label, onChange, options, selected }) {
+function SearchableSelect({ isDisplayed, label, onChange, options, selected }) {
   const selectId = uuidv4();
   return (
-    <div className='searchable-select'>
-      <label htmlFor={selectId}>
-        <div className='searchable-select-label'>{label}</div>
-        <SearchableSelectDSFR
-          onChange={onChange}
-          options={options}
-          selected={selected}
-        />
-      </label>
-    </div>
+    (isDisplayed || isDisplayed == null) && (
+      <div className='searchable-select'>
+        <label htmlFor={selectId}>
+          <div className='searchable-select-label'>{label}</div>
+          <SearchableSelectDSFR
+            onChange={onChange}
+            options={options}
+            selected={selected}
+          />
+        </label>
+      </div>
+    )
   );
 }
 
 SearchableSelect.defaultProps = {
+  isDisplayed: null,
   selected: '',
 };
 
 SearchableSelect.propTypes = {
+  isDisplayed: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(

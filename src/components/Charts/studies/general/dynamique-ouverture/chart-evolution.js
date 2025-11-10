@@ -17,6 +17,7 @@ import {
 } from '../../../../../utils/constants';
 import {
   capitalize,
+  isInProduction,
   withDomain,
   withtStudyType,
 } from '../../../../../utils/helpers';
@@ -70,6 +71,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
       studyType={studyType}
     >
       <SearchableSelect
+        isDisplayed={!isInProduction()}
         label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
         onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
         options={options}
