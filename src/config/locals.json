@@ -1812,6 +1812,12 @@
     "alias": "130018336,193101524,196727671,196901920,197601651,301232",
     "paysage": "WnZhe"
   },
+  "130001803": {
+    "name": "Autorité de sûreté nucléaire et de radioprotection (ASNR)",
+    "commentsName": "de l'ASNR",
+    "commentsNameEN": "of ASNR",
+    "paysage": "ob8az"
+  },
   "RECHERCHEPARTICIPATIVEUL": {
     "name": "Recherche participative à l'Université de Lorraine",
     "commentsName": "de recherche participative à l'Université de Lorraine",
