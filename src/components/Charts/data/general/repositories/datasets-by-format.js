@@ -26,7 +26,7 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   const { allData, isError, isLoading } = useGetData(
     lastObservationSnap,
     domain,
-    'format',
+    'type',
     6,
   );
   const { categories, dataGraph } = allData;
