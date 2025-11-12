@@ -6,6 +6,13 @@
     "paysage": "a2a9U",
     "ror": "https://ror.org/021v2ka51"
   },
+  "130001803": {
+    "name": "Autorité de sûreté nucléaire et de radioprotection (ASNR)",
+    "commentsName": "de l'ASNR",
+    "commentsNameEN": "of ASNR",
+    "paysage": "ob8az",
+    "ror": "https://ror.org/04dbtaf18"
+  },
   "130002850": {
     "name": "Institut National des Sciences et Industries du Vivant et de l'Environnement (AgroParisTech)",
     "commentsName": "d'AgroParisTech",
@@ -28,15 +35,6 @@
     "startYear": 2016,
     "paysage": "4k25D",
     "ror": "https://ror.org/00pg6eq24",
-    "scale": "university"
-  },
-  "198706699": {
-    "name": "Université de Limoges (UNILIM)",
-    "commentsName": "de l'UNILIM",
-    "commentsNameEN": "of UNILIM",
-    "startYear": 2016,
-    "paysage": "nkbwh",
-    "ror": "https://ror.org/02cp04407",
     "scale": "university"
   },
   "130008584": {
@@ -238,6 +236,13 @@
     "paysage": "kWved",
     "ror": "https://ror.org/04zmssz18"
   },
+  "180006025": {
+    "name": "Institut de Recherche pour le Développement (IRD)",
+    "commentsName": "de l'IRD",
+    "commentsNameEN": "of IRD",
+    "paysage": "Uan45",
+    "ror": "https://ror.org/05q3vnk25"
+  },
   "180036048": {
     "name": "Institut National de la Santé et de la Recherche Médicale (Inserm)",
     "commentsName": "de l'Inserm",
@@ -253,13 +258,6 @@
     "paysage": "WuERk",
     "ror": "https://ror.org/02cnsac56"
   },
-  "180006025": {
-    "name": "Institut de Recherche pour le Développement (IRD)",
-    "commentsName": "de l'IRD",
-    "commentsNameEN": "of IRD",
-    "paysage": "Uan45",
-    "ror": "https://ror.org/05q3vnk25"
-  },
   "180044174": {
     "name": "Muséum national d'Histoire naturelle (MNHN)",
     "commentsName": "du MNHN",
@@ -274,6 +272,13 @@
     "startYear": 2016,
     "paysage": "t4SA4",
     "ror": "https://ror.org/003vg9w96"
+  },
+  "180089013": {
+    "name": "Centre national de la recherche scientifique (CNRS)",
+    "commentsName": "du CNRS",
+    "commentsNameEN": "of CNRS",
+    "paysage": "n2X5f",
+    "ror": "https://ror.org/02feahw73"
   },
   "180089047": {
     "name": "Institut national de recherche en sciences et technologies du numérique (INRIA)",
@@ -743,6 +748,15 @@
     "ror": "https://ror.org/04xhy8q59",
     "scale": "university",
     "startYear": 2016
+  },
+  "198706699": {
+    "name": "Université de Limoges (UNILIM)",
+    "commentsName": "de l'UNILIM",
+    "commentsNameEN": "of UNILIM",
+    "startYear": 2016,
+    "paysage": "nkbwh",
+    "ror": "https://ror.org/02cp04407",
+    "scale": "university"
   },
   "199111950H": {
     "name": "Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier (LIRMM)",
@@ -1811,12 +1825,6 @@
     "commentsNameEN": "of INSA",
     "alias": "130018336,193101524,196727671,196901920,197601651,301232",
     "paysage": "WnZhe"
-  },
-  "130001803": {
-    "name": "Autorité de sûreté nucléaire et de radioprotection (ASNR)",
-    "commentsName": "de l'ASNR",
-    "commentsNameEN": "of ASNR",
-    "paysage": "ob8az"
   },
   "RECHERCHEPARTICIPATIVEUL": {
     "name": "Recherche participative à l'Université de Lorraine",
