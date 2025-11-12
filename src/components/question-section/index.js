@@ -1,6 +1,5 @@
 import { Alert, Container } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { useIntl } from 'react-intl';
 
 import GlossaryFormattedMessage from '../Glossary/GlossaryFormattedMessage';

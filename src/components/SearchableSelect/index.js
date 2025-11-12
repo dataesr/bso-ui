@@ -1,23 +1,37 @@
 import './style.scss';
 
-import { SearchableSelect as SearchableSelectDSFR } from '@dataesr/react-dsfr';
+import {
+  Alert,
+  Container,
+  SearchableSelect as SearchableSelectDSFR,
+} from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
 function SearchableSelect({ isDisplayed, label, onChange, options, selected }) {
+  const intl = useIntl();
   const selectId = uuidv4();
   return (
     (isDisplayed || isDisplayed == null) && (
-      <div className='searchable-select'>
-        <label htmlFor={selectId}>
-          <div className='searchable-select-label'>{label}</div>
-          <SearchableSelectDSFR
-            onChange={onChange}
-            options={options}
-            selected={selected}
-          />
-        </label>
-      </div>
+      <Container>
+        <Alert
+          description={intl.formatMessage({
+            id: 'app.commons.select-warning',
+          })}
+          title=''
+        />
+        <div className='searchable-select'>
+          <label htmlFor={selectId}>
+            <div className='searchable-select-label'>{label}</div>
+            <SearchableSelectDSFR
+              onChange={onChange}
+              options={options}
+              selected={selected}
+            />
+          </label>
+        </div>
+      </Container>
     )
   );
 }

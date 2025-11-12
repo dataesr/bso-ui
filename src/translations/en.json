@@ -85,6 +85,7 @@
   "app.commons.points": "points",
   "app.commons.section-warning": "Please note that this section is not public. It is only visible on the staging interface.",
   "app.commons.tab-warning": "Please note that this tab is not public. It is only visible on the staging interface.",
+  "app.commons.select-warning": "Please note that this select is not public. It is only visible on the staging interface.",
   "app.commons.yes": "Yes",
   "app.country.Australia": "Australia",
   "app.country.Austria": "Austria",

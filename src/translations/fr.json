@@ -225,6 +225,7 @@
   "app.commons.points": "points",
   "app.commons.section-warning": "Attention, cette section n'est pas publique. Elle est visible uniquement sur l'interface de staging.",
   "app.commons.tab-warning": "Attention, cet onglet n'est pas public. Il est visible uniquement sur l'interface de staging.",
+  "app.commons.select-warning": "Attention, cette liste déroulante n'est pas publique. Elle est visible uniquement sur l'interface de staging.",
   "app.commons.yes": "Oui",
   "app.country.Australia": "Australie",
   "app.country.Austria": "Autriche",

@@ -2,7 +2,6 @@ import './style.scss';
 
 import { Select } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function SimpleSelect({ label, onChange, options, selected }) {
