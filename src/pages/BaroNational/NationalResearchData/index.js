@@ -177,6 +177,7 @@ export default function NationalResearchData() {
                   <BSOChart id='data.general.repositories.datasets-by-size' />
                   <BSOChart id='data.general.repositories.datasets-by-format' />
                   <BSOChart id='data.general.repositories.datasets-by-license' />
+                  <BSOChart id='data.general.repositories.datasets-by-client-id' />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

@@ -323,6 +323,9 @@ const chartComponents = {
   'data.general.repositories.datasets-by-license': lazy(() => import(
     '../components/Charts/data/general/repositories/datasets-by-license'
   )),
+  'data.general.repositories.datasets-by-client-id': lazy(() => import(
+    '../components/Charts/data/general/repositories/datasets-by-client-id'
+  )),
   // Orcid
   'orcid.general.chart-evolution': lazy(() => import('../components/Charts/orcid/general/chart-evolution')),
   'orcid.general.creation-by-year': lazy(() => import('../components/Charts/orcid/general/creation-by-year')),

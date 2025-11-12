@@ -288,6 +288,10 @@ const tree = [
             key: 'app.national-data.general.repositories.datasets-by-license.title',
             value: 'data.general.repositories.datasets-by-license',
           },
+          {
+            key: 'app.national-data.general.repositories.datasets-by-client-id.title',
+            value: 'data.general.repositories.datasets-by-client-id',
+          },
         ],
       },
     ],
