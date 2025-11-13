@@ -6,7 +6,7 @@ import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType, sponsor = '*') {
+function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -35,6 +35,14 @@ function useGetData(studyType, sponsor = '*') {
       objectType: ['clinicalTrials'],
       parameters: [studyType, sponsor, years10Min, years10Max],
     });
+    if (filterOnDrug) {
+      queryHasResultsWithin1Year.query.bool.filter.push({
+        term: { 'intervention_type.keyword': 'DRUG' },
+      });
+      queryHasResultsWithin1YearFilterBySponsor.query.bool.filter.push({
+        term: { 'intervention_type.keyword': 'DRUG' },
+      });
+    }
     const queries = [];
     queries.push(Axios.post(ES_STUDIES_API_URL, querySponsorsList, HEADERS));
     queries.push(

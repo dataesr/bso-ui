@@ -5,7 +5,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
@@ -24,7 +24,7 @@ import {
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data';
+import useGetData from './get-data-10-years-within-1-year';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -36,13 +36,13 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const [options, setOptions] = useState([]);
   const [sponsor, setSponsor] = useState('*');
   const { allData, isError, isLoading } = useGetData(studyType, sponsor, true);
-  const { dataGraph1 } = allData;
+  const { dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    dataGraph1,
+    dataGraph,
     studyType,
   );
 
@@ -62,6 +62,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={{ year: allData?.comments?.yearMax ?? 0 }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -94,7 +95,7 @@ Chart.defaultProps = {
   domain: 'health',
   hasComments: true,
   hasFooter: true,
-  id: 'general.dynamique.chart-evolution-drug',
+  id: 'general.dynamique.chart-evolution-10-years-within-1-year-drug',
   studyType: 'Interventional',
 };
 Chart.propTypes = {

@@ -519,6 +519,11 @@ function EssaisCliniques() {
                     id='general.dynamique.chart-evolution-within-1-year-by-year-drug'
                     studyType='Interventional'
                   />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-10-years-within-1-year-drug'
+                    studyType='Interventional'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

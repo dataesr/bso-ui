@@ -3052,6 +3052,52 @@ export const chartOptions = {
       return options;
     },
   },
+  'general.dynamique.chart-evolution-10-years-within-1-year-drug': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
+      options.plotOptions = {
+        series: {
+          stacking: false,
+          dataLabels: {
+            enabled: false,
+          },
+        },
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        title: {
+          text: intl.formatMessage({ id: 'app.sponsor-type' }),
+        },
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+      options.legend = { enabled: false };
+      options.tooltip = {
+        headerFormat: '',
+        pointFormat: intl.formatMessage({
+          id: `${withtStudyType(id, studyType)}.tooltip`,
+        }),
+      };
+      return options;
+    },
+  },
   'general.trajectoires.chart-repartition': {
     getOptions: (id, intl, data, studyType) => {
       const nodeColor = {
