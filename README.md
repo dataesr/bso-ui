@@ -19,7 +19,7 @@ Application web du Baromètre de la Science Ouverte accessible ici :
 
 The version number follows [semver](https://semver.org/).
 
-To push in prod, run `npm run deploy --level=[patch|minor|major]`
+To push in prod, run `npm run deploy -- [patch|minor|major]`
 
 ## Workflow
 
