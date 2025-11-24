@@ -107,7 +107,7 @@ export default function Footer() {
               OpenAPC
             </FooterLink>
             <FooterLink target='_blank' href='https://clinicaltrials.gov/'>
-              ClinicalTrials.org
+              ClinicalTrials.gov
             </FooterLink>
             <FooterLink
               target='_blank'

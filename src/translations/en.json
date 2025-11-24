@@ -289,7 +289,7 @@
   "app.glossary.publications-fr": "french publications",
   "app.glossary.publication-fr.definition": "Publication, at least one author has a French affiliation.",
   "app.glossary.resultat-essai-clinique": "Result of a clinical trial",
-  "app.glossary.resultat-essai-clinique.definition": "Structured data resulting from a clinical trial. This data can be submitted and made public on a register as <cta>ClinicalTrials.org</cta>.",
+  "app.glossary.resultat-essai-clinique.definition": "Structured data resulting from a clinical trial. This data can be submitted and made public on a register as <cta>ClinicalTrials.gov</cta>.",
   "app.glossary.select-letter": "Select a letter",
   "app.glossary.title": "Glossary of the page",
   "app.glossary.type-hebergement-oa": "OA Hosting type",

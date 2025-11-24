@@ -510,7 +510,7 @@
   "app.glossary.publications-fr": "publications françaises",
   "app.glossary.publication-fr.definition": "Publication dont au moins un auteur a une affiliation française.",
   "app.glossary.resultat-essai-clinique": "Résultat d'un essai clinique",
-  "app.glossary.resultat-essai-clinique.definition": "Données structurées résultantes d'un essai clinique. Ces données peuvent être soumises et rendues publiques sur un registre comme <cta>ClinicalTrials.org.</cta>",
+  "app.glossary.resultat-essai-clinique.definition": "Données structurées résultantes d'un essai clinique. Ces données peuvent être soumises et rendues publiques sur un registre comme <cta>ClinicalTrials.gov.</cta>",
   "app.glossary.select-letter": "Sélectionner une lettre",
   "app.glossary.title": "Glossaire de la page",
   "app.glossary.type-hebergement-oa": "Type d'hébergement pour l'accès ouvert",
