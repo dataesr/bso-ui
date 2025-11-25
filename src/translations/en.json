@@ -1180,7 +1180,7 @@
   "app.sante.update.date": "Data updated on {date} with publications released between {startDate} and {endDate}",
   "app.scroll-to-top": "Scroll to top",
   "app.see-details": "See in detail",
-  "app.sponsor-filter-label": "Select a lead sponsor (top 50)",
+  "app.sponsor-filter-label": "Select a lead sponsor (top 100)",
   "app.sponsor-type-filter-label": "Select a type of lead sponsor",
   "app.sponsor.academique": "Academic lead sponsor",
   "app.sponsor.industriel": "Industrial lead sponsor",

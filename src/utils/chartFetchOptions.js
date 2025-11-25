@@ -415,7 +415,7 @@ export default function getFetchOptions({
         by_sponsor: {
           terms: {
             field: 'lead_sponsor_normalized.keyword',
-            size: 50,
+            size: 100,
           },
         },
       },

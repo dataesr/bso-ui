@@ -1394,7 +1394,7 @@
   "app.sante.update.date": "Données mises à jour le {date} avec les publications parues entre {startDate} et {endDate}",
   "app.scroll-to-top": "Défiler vers le haut",
   "app.see-details": "Voir en détail",
-  "app.sponsor-filter-label": "Sélectionner un promoteur (top 50)",
+  "app.sponsor-filter-label": "Sélectionner un promoteur (top 100)",
   "app.sponsor-type-filter-label": "Sélectionner un type de promoteur",
   "app.sponsor.academique": "Promoteur académique",
   "app.sponsor.industriel": "Promoteur industriel",
