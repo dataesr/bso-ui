@@ -87,6 +87,7 @@ function Chart({ domain, id, hasComments, hasFooter }) {
       isLoading={isLoading || !dataGraph1}
     >
       <SearchableSelect
+        isDisplayed
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => (e.length > 0 ? setPublisher(e) : null)}
         options={options}
