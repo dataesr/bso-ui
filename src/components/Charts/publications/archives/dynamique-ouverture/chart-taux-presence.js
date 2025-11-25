@@ -91,7 +91,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
       isLoading={isLoading || !dataGraph2}
     >
       <SearchableSelect
-        isDisplayed
         label={intl.formatMessage({ id: 'app.repositories-filter-label' })}
         onChange={(e) => (e.length > 0 ? setArchive(e) : null)}
         options={options}

@@ -90,7 +90,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
       isLoading={isLoading || !dataGraphHistogram || !categoriesHistogram}
     >
       <SearchableSelect
-        isDisplayed
         label={intl.formatMessage({ id: 'app.publishers-filter-label' })}
         onChange={(e) => (e.length > 0 ? setPublisher(e) : null)}
         options={options || []}
