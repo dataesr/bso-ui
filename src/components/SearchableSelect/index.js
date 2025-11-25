@@ -13,26 +13,28 @@ function SearchableSelect({ isDisplayed, label, onChange, options, selected }) {
   const intl = useIntl();
   const selectId = uuidv4();
   return (
-    <Container>
-      {isDisplayed && (
-        <Alert
-          description={intl.formatMessage({
-            id: 'app.commons.select-warning',
-          })}
-          title=''
-        />
-      )}
-      <div className='searchable-select'>
-        <label htmlFor={selectId}>
-          <div className='searchable-select-label'>{label}</div>
-          <SearchableSelectDSFR
-            onChange={onChange}
-            options={options}
-            selected={selected}
+    (isDisplayed || isDisplayed == null) && (
+      <Container>
+        {isDisplayed && (
+          <Alert
+            description={intl.formatMessage({
+              id: 'app.commons.select-warning',
+            })}
+            title=''
           />
-        </label>
-      </div>
-    </Container>
+        )}
+        <div className='searchable-select'>
+          <label htmlFor={selectId}>
+            <div className='searchable-select-label'>{label}</div>
+            <SearchableSelectDSFR
+              onChange={onChange}
+              options={options}
+              selected={selected}
+            />
+          </label>
+        </div>
+      </Container>
+    )
   );
 }
 
