@@ -25,9 +25,9 @@ function Project() {
             </Col>
             <Col n='lg-3 md-4 sm-6'>
               <CardLogo
-                alt='bso MESR'
+                alt='bso MESRE'
                 href='https://www.enseignementsup-recherche.gouv.fr/fr'
-                img='/logos/mesr.png'
+                img='/logos/mesre.png'
               />
             </Col>
             <Col n='lg-3 md-4 sm-6'>
