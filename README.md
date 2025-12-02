@@ -1,6 +1,6 @@
 # bso-ui
 
-[![Discord Follow](https://dcbadge.vercel.app/api/server/TudsqDqTqb?style=flat)](https://discord.gg/TudsqDqTqb)
+[![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/TudsqDqTqb)
 ![license](https://img.shields.io/github/license/dataesr/bso-ui)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/dataesr/bso-ui)
 [![Production deployment](https://github.com/dataesr/bso-ui/actions/workflows/production.yml/badge.svg)](https://github.com/dataesr/bso-ui/actions/workflows/production.yml)
