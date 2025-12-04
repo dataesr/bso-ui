@@ -1,6 +1,5 @@
 {
   "app.ministry": "Ministère de l'enseignement supérieur, de la recherche et de l'espace",
-  "app.methodo-bso3-dmp": "Plan de Gestion des Données (PGD)",
   "app.methodo-contact": "Par ailleurs, pour toute question, vous pouvez nous contacter à l'adresse",
   "app.Q1": "1er trimestre",
   "app.Q2": "2e trimestre",
@@ -550,7 +549,7 @@
   "app.header.nav.baro-publications-theses": "Les publications et thèses",
   "app.header.nav.a-propos-projet": "Le projet",
   "app.header.nav.a-propos-variations": "Déclinaisons locales",
-  "app.header.nav.a-propos-opendata": "Données ouvertes et code source du BSO",
+  "app.header.nav.a-propos-open": "Données, code et publications du BSO",
   "app.header.nav.baro-national": "Le baromètre général",
   "app.header.nav.baro-national-accueil": "Accueil publications et thèses",
   "app.header.nav.baro-national-publications": "Les publications",
@@ -578,6 +577,7 @@
   "app.citation3": "Sur l'extension des indicateurs sur l'accès ouvert et suivi des essais cliniques :",
   "app.citation4": "Sur l'extension aux données de la recherche, codes et logiciels grâce à des techniques de fouille de texte:",
   "app.citation5": "Sur la construction d'un baromètre de la science ouverte basé sur les publications:",
+  "app.citation6": "Plan de Gestion de Données (PGD)",
   "app.health-home.numbers": "Les chiffres-clés de la science ouverte dans les recherches en santé",
   "app.health-interventional.caracteristiques": "Caractéristiques",
   "app.health-interventional.caracteristiques.combien.title": "Combien de patients sont impliqués dans les essais cliniques enregistrés ?",

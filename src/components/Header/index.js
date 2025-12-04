@@ -385,8 +385,8 @@ function Header() {
             <NavSubItem
               current={path === urls.opendata[lang]}
               title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-opendata',
-                defaultMessage: 'Données ouvertes et code source du BSO',
+                id: 'app.header.nav.a-propos-open',
+                defaultMessage: 'Données, code et publications du BSO',
               })}
               asLink={<RouterLink to={urls.opendata[lang] + search} />}
             />
