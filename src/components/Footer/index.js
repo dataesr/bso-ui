@@ -58,32 +58,32 @@ export default function Footer() {
             title={intl.formatMessage({ id: 'app.footer.see-also' })}
           >
             <FooterLink
-              target='_blank'
               href={intl.formatMessage({ id: 'app.card.open-science.url' })}
+              target='_blank'
             >
               <FormattedMessage id='app.footer.link.open-science' />
             </FooterLink>
             <FooterLink
-              target='_blank'
               href='https://scanr.enseignementsup-recherche.gouv.fr/'
+              target='_blank'
             >
               <FormattedMessage id='app.footer.scanr.text' />
             </FooterLink>
             <FooterLink
-              target='_blank'
               href='https://works-magnet.esr.gouv.fr/'
+              target='_blank'
             >
               <FormattedMessage id='app.footer.works-magnet.text' />
             </FooterLink>
             <FooterLink
-              target='_blank'
               href={intl.formatMessage({ id: 'app.footer.dataesr.url' })}
+              target='_blank'
             >
               #dataESR
             </FooterLink>
             <FooterLink
-              target='_blank'
               href='https://data.enseignementsup-recherche.gouv.fr/pages/home/'
+              target='_blank'
             >
               <FormattedMessage id='app.footer.link.platform-open-data' />
             </FooterLink>
@@ -91,29 +91,32 @@ export default function Footer() {
           <FooterTopCategory
             title={intl.formatMessage({ id: 'app.footer.sources' })}
           >
-            <FooterLink target='_blank' href='https://pubmed.ncbi.nlm.nih.gov/'>
+            <FooterLink href='https://pubmed.ncbi.nlm.nih.gov/' target='_blank'>
               PubMed
             </FooterLink>
-            <FooterLink target='_blank' href='https://unpaywall.org/'>
+            <FooterLink href='https://unpaywall.org/' target='_blank'>
               Unpaywall
             </FooterLink>
-            <FooterLink target='_blank' href='https://doaj.org/'>
+            <FooterLink href='https://doaj.org/' target='_blank'>
               DOAJ
             </FooterLink>
             <FooterLink
-              target='_blank'
               href='https://github.com/OpenAPC/openapc-de'
+              target='_blank'
             >
               OpenAPC
             </FooterLink>
-            <FooterLink target='_blank' href='https://clinicaltrials.gov/'>
+            <FooterLink href='https://clinicaltrials.gov/' target='_blank'>
               ClinicalTrials.gov
             </FooterLink>
             <FooterLink
-              target='_blank'
               href='https://www.clinicaltrialsregister.eu/'
+              target='_blank'
             >
               EU Clinical Trials Register
+            </FooterLink>
+            <FooterLink href='https://euclinicaltrials.eu/' target='_blank'>
+              CTIS
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory
@@ -121,14 +124,14 @@ export default function Footer() {
           >
             <FooterLink
               target='_blank'
-              href='https://www.linkedin.com/company/enseignementsup-recherche/mycompany/'
+              href="https://www.linkedin.com/company/minist%C3%A8re-charg%C3%A9-de-l'enseignement-sup%C3%A9rieur-et-de-la-recherche/"
             >
               <DSIcon
                 className='ds-fr--v-middle'
                 name='ri-linkedin-box-fill'
                 size='xl'
               >
-                <span>Linkedin</span>
+                <span>LinkedIn</span>
               </DSIcon>
             </FooterLink>
             <FooterLink
