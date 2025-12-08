@@ -28,7 +28,7 @@ function NotesFlash() {
         backgroundColor='yellow-medium-50'
         textColor='blue-dark-125'
         supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.header.nav.a-propos.communication' />}
+        title={<FormattedMessage id='app.header.nav.about.results' />}
         icons={renderIcons}
       />
       <Container>

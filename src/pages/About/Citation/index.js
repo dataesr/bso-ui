@@ -25,7 +25,7 @@ function Citation() {
         icons={renderIcons}
         supTitle={<FormattedMessage id='app.header.title' />}
         textColor='blue-dark-150'
-        title={<FormattedMessage id='app.header.nav.citation' />}
+        title={<FormattedMessage id='app.header.nav.about.citation' />}
       />
       <Container>
         <section className='color-blue-dark-125 content py-48'>
@@ -143,6 +143,28 @@ function Citation() {
                     rel='noreferrer'
                   >
                     hal-04854788
+                  </a>
+                </p>
+              </Col>
+            </section>
+            <section className='content py-4'>
+              <Col n='12 lg-10'>
+                <strong>
+                  <FormattedMessage id='app.citation6' />
+                </strong>
+                <p>
+                  Aricia Bassinet, Laetitia Bracco, Eric Jeangirard, Anne
+                  L'Hôte, Patrice Lopez, et al.. Plan de gestion de données du
+                  projet "Baromètre Science Ouverte Données et codes". Ministère
+                  de l'Enseignement Supérieur et de la Recherche; Université de
+                  Lorraine; Inria. 2022. hal:
+                  {' '}
+                  <a
+                    href='https://hal.science/hal-05391570'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    hal-05391570
                   </a>
                 </p>
               </Col>

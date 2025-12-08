@@ -24,7 +24,7 @@ function Variations() {
         backgroundColor='blue-soft-50'
         textColor='blue-dark-150'
         supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.header.nav.a-propos-variations' />}
+        title={<FormattedMessage id='app.header.nav.about.variations' />}
         icons={renderIcons}
       />
       <Container>

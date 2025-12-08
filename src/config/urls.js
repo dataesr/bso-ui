@@ -193,10 +193,6 @@ export default {
     en: '/about/opendata',
     fr: '/a-propos/opendata',
   },
-  worksmagnet: {
-    en: '/about/works-magnet',
-    fr: '/a-propos/works-magnet',
-  },
   integration: {
     en: [
       '/integration/:language/:graphId/:domain/:studyType',

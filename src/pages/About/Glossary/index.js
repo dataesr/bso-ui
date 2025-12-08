@@ -123,7 +123,7 @@ function Glossary() {
         backgroundColor='green-soft-25'
         textColor='blue-dark-125'
         supTitle={<FormattedMessage id='app.header.title' />}
-        title={<FormattedMessage id='app.header.nav.a-propos-glossaire' />}
+        title={<FormattedMessage id='app.header.nav.about.glossary' />}
         icons={renderIcons}
       >
         <section className='text-center text-left-m fs-16-24'>

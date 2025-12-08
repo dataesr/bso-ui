@@ -137,7 +137,7 @@ function Glossary({ entries }) {
             className='btn-blue color-white'
           >
             <FormattedMessage
-              id='app.header.nav.a-propos-glossaire'
+              id='app.header.nav.about.glossary'
               defaultMessage='Glossaire'
             />
           </Button>

@@ -32,26 +32,22 @@ export default function Footer() {
             title={intl.formatMessage({ id: 'app.footer.links' })}
           >
             <FooterLink
-              target='_blank'
-              href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?refine.keyword=BSO&sort=modified'
+              href={intl.formatMessage({ id: 'url.about.data-and-code' })}
             >
-              <FormattedMessage id='app.footer.link.open-data' />
+              <FormattedMessage id='app.header.nav.about.data-and-code' />
             </FooterLink>
-            <FooterLink
-              target='_blank'
-              href='https://github.com/orgs/dataesr/repositories?q=bso&type=&language=&sort='
-            >
-              <FormattedMessage id='app.glossary.code-source' />
+            <FooterLink href={intl.formatMessage({ id: 'url.about.citation' })}>
+              <FormattedMessage id='app.header.nav.about.citation' />
             </FooterLink>
             <FooterLink
               href={intl.formatMessage({ id: 'url.about.methodology' })}
             >
-              <FormattedMessage id='app.header.nav.a-propos-methodologie' />
+              <FormattedMessage id='app.header.nav.about.methodology' />
             </FooterLink>
             <FooterLink
               href={intl.formatMessage({ id: 'app.footer.project.url' })}
             >
-              <FormattedMessage id='app.footer.project.text' />
+              <FormattedMessage id='app.header.nav.about.project' />
             </FooterLink>
           </FooterTopCategory>
           <FooterTopCategory

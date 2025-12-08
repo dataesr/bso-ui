@@ -45,7 +45,9 @@ export default function NationalSoftwareCode() {
               <Col n='12'>
                 <Breadcrumb>
                   <BreadcrumbItem href='/' className='underline'>
-                    {intl.formatMessage({ id: 'app.header.nav.data-code' })}
+                    {intl.formatMessage({
+                      id: 'app.header.nav.about.data-and-code',
+                    })}
                   </BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({

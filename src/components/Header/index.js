@@ -204,8 +204,8 @@ function Header() {
                 .length > 0
             }
             title={intl.formatMessage({
-              id: 'app.header.nav.data-code',
-              defaultMessage: 'Les données et code',
+              id: 'app.header.nav.about.data-and-code',
+              defaultMessage: 'Données et code',
             })}
           >
             <NavSubItem
@@ -346,22 +346,54 @@ function Header() {
               `/${urls.methodologie[lang].split('/')[1]}`,
             )}
             title={intl.formatMessage({
-              id: 'app.header.nav.a-propos',
+              id: 'app.header.nav.about',
               defaultMessage: 'À propos',
             })}
           >
             <NavSubItem
+              current={path === urls.communication[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.about.results',
+                defaultMessage: 'Les résultats du BSO',
+              })}
+              asLink={<RouterLink to={urls.communication[lang] + search} />}
+            />
+            <NavSubItem
               current={path === urls.methodologie[lang]}
               title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-methodologie',
+                id: 'app.header.nav.about.methodology',
                 defaultMessage: 'Méthodologie',
               })}
               asLink={<RouterLink to={urls.methodologie[lang] + search} />}
             />
             <NavSubItem
+              current={path === urls.citation[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.about.citation',
+                defaultMessage: 'Comment citer le BSO ?',
+              })}
+              asLink={<RouterLink to={urls.citation[lang] + search} />}
+            />
+            <NavSubItem
+              current={path === urls.opendata[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.about.data-and-code',
+                defaultMessage: 'Données et code',
+              })}
+              asLink={<RouterLink to={urls.opendata[lang] + search} />}
+            />
+            <NavSubItem
+              current={path === urls.project[lang]}
+              title={intl.formatMessage({
+                id: 'app.header.nav.about.project',
+                defaultMessage: 'Projet',
+              })}
+              asLink={<RouterLink to={urls.project[lang] + search} />}
+            />
+            <NavSubItem
               current={path === urls.faq[lang]}
               title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-faq',
+                id: 'app.header.nav.about.faq',
                 defaultMessage: 'FAQ',
               })}
               asLink={<RouterLink to={urls.faq[lang] + search} />}
@@ -369,50 +401,10 @@ function Header() {
             <NavSubItem
               current={path === urls.glossaire[lang]}
               title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-glossaire',
+                id: 'app.header.nav.about.glossary',
                 defaultMessage: 'Glossaire',
               })}
               asLink={<RouterLink to={urls.glossaire[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.communication[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos.communication',
-                defaultMessage: 'Communication',
-              })}
-              asLink={<RouterLink to={urls.communication[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.opendata[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.a-propos-open',
-                defaultMessage: 'Données, code et publications du BSO',
-              })}
-              asLink={<RouterLink to={urls.opendata[lang] + search} />}
-            />
-            {/* <NavSubItem
-              current={path === urls.citation[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.citation',
-                defaultMessage: 'Comment citer le Baromètre ?',
-              })}
-              asLink={<RouterLink to={urls.citation[lang] + search} />}
-            /> */}
-            <NavSubItem
-              current={path === urls.worksmagnet[lang]}
-              title={intl.formatMessage({
-                id: 'app.header.nav.worksmagnet',
-                defaultMessage: 'Works-magnet',
-              })}
-              asLink={<RouterLink to={urls.worksmagnet[lang] + search} />}
-            />
-            <NavSubItem
-              current={path === urls.project[lang]}
-              title={intl.formatMessage({
-                id: 'app.footer.project.text',
-                defaultMessage: 'Projet',
-              })}
-              asLink={<RouterLink to={urls.project[lang] + search} />}
             />
           </NavItem>
         </HeaderNav>

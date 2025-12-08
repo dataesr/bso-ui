@@ -45,7 +45,9 @@ export default function NationalResearchData() {
               <Col n='12'>
                 <Breadcrumb>
                   <BreadcrumbItem href='/' className='underline'>
-                    {intl.formatMessage({ id: 'app.header.nav.data-code' })}
+                    {intl.formatMessage({
+                      id: 'app.header.nav.about.data-and-code',
+                    })}
                   </BreadcrumbItem>
                   <BreadcrumbItem href='#' className='bold'>
                     {intl.formatMessage({ id: 'app.baro-national.data.title' })}
