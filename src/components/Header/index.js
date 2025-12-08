@@ -342,9 +342,10 @@ function Header() {
             />
           </NavItem>
           <NavItem
-            current={path.startsWith(
-              `/${urls.methodologie[lang].split('/')[1]}`,
-            )}
+            current={
+              path.startsWith(`/${urls.methodologie[lang].split('/')[1]}`)
+              || [urls.project[lang], urls.citation[lang]].includes(path)
+            }
             title={intl.formatMessage({
               id: 'app.header.nav.about',
               defaultMessage: 'À propos',

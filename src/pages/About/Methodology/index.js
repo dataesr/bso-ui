@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Banner from '../../../components/Banner';
 import Icon from '../../../components/Icon';
 import useLang from '../../../utils/Hooks/useLang';
+import Citations from '../Citation/citations';
 
 function Methodology() {
   const { lang } = useLang();
@@ -98,6 +99,13 @@ function Methodology() {
           </a>
           .
         </p>
+      </Container>
+      <Container>
+        <section className='color-blue-dark-125 content py-48'>
+          <Row gutters>
+            <Citations />
+          </Row>
+        </section>
       </Container>
     </>
   );
