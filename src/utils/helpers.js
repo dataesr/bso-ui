@@ -257,7 +257,7 @@ export function getSource(id, otherSources = []) {
   if (id.includes('preprints')) {
     sources.push('Crossref preprint matching dataset');
   }
-  sources.push('MESR');
+  sources.push('MESRE');
   sources.push(...otherSources);
   // Deduplicate sources
   return [...new Set(sources)].join(', ');
