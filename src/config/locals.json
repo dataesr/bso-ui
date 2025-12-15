@@ -4,6 +4,7 @@
     "commentsName": "de l'INSHEA",
     "commentsNameEN": "of INSHEA",
     "paysage": "a2a9U",
+    "scale": "institution",
     "ror": "https://ror.org/021v2ka51"
   },
   "130001803": {
@@ -11,6 +12,7 @@
     "commentsName": "de l'ASNR",
     "commentsNameEN": "of ASNR",
     "paysage": "ob8az",
+    "scale": "institution",
     "ror": "https://ror.org/04dbtaf18"
   },
   "130002850": {
@@ -18,6 +20,7 @@
     "commentsName": "d'AgroParisTech",
     "commentsNameEN": "of AgroParisTech",
     "paysage": "SsSFH",
+    "scale": "institution",
     "ror": "https://ror.org/02kbmgc12"
   },
   "130003759": {
@@ -42,6 +45,7 @@
     "commentsName": "de VetAgro Sup",
     "commentsNameEN": "of VetAgro Sup",
     "paysage": "5cuYU",
+    "scale": "institution",
     "ror": "https://ror.org/01c7wz417"
   },
   "130012024": {
@@ -50,6 +54,7 @@
     "commentsNameEN": "of ANSES",
     "paysage": "gFuBu",
     "ror": "https://ror.org/0471kz689",
+    "scale": "funder",
     "agency": "ANSES"
   },
   "130015332": {
@@ -76,6 +81,7 @@
     "commentsName": "de l'INSA Centre Val de Loire",
     "commentsNameEN": "of INSA Centre Val de Loire",
     "paysage": "QYw7j",
+    "scale": "institution",
     "ror": "https://ror.org/03y0qc033"
   },
   "130018351": {
@@ -93,6 +99,7 @@
     "commentsNameEN": "of CentraleSupélec",
     "startYear": 2016,
     "paysage": "m84Aa",
+    "scale": "institution",
     "ror": "https://ror.org/019tcpt25"
   },
   "130021330": {
@@ -108,6 +115,7 @@
     "commentsName": "de l'ENSCP - PSL",
     "commentsNameEN": "of ENSCP - PSL",
     "paysage": "uhDO3",
+    "scale": "institution",
     "ror": "https://ror.org/05q65zh81"
   },
   "130023385": {
@@ -150,6 +158,7 @@
     "commentsName": "de l'INSA Hauts-de-France",
     "commentsNameEN": "of INSA Hauts-de-France",
     "paysage": "J3Mu2",
+    "scale": "institution",
     "ror": "https://ror.org/041rsh762"
   },
   "130025976": {
@@ -158,6 +167,7 @@
     "commentsNameEN": "of CY",
     "startYear": 2020,
     "paysage": "RS4WF",
+    "scale": "institution",
     "ror": "https://ror.org/043htjv09"
   },
   "130026024": {
@@ -235,6 +245,7 @@
     "commentsName": "de l'ENS de Lyon",
     "commentsNameEN": "of ENS of Lyon",
     "paysage": "kWved",
+    "scale": "institution",
     "ror": "https://ror.org/04zmssz18"
   },
   "180006025": {
@@ -242,6 +253,7 @@
     "commentsName": "de l'IRD",
     "commentsNameEN": "of IRD",
     "paysage": "Uan45",
+    "scale": "institution",
     "ror": "https://ror.org/05q3vnk25"
   },
   "180036048": {
@@ -250,6 +262,7 @@
     "commentsNameEN": "of Inserm",
     "startYear": 2016,
     "paysage": "bZiTA",
+    "scale": "institution",
     "ror": "https://ror.org/02vjkv261"
   },
   "180037020": {
@@ -257,6 +270,7 @@
     "commentsName": "de l'INED",
     "commentsNameEN": "of INED",
     "paysage": "WuERk",
+    "scale": "institution",
     "ror": "https://ror.org/02cnsac56"
   },
   "180044174": {
@@ -264,6 +278,7 @@
     "commentsName": "du MNHN",
     "commentsNameEN": "of MNHN",
     "paysage": "VaJ52",
+    "scale": "institution",
     "ror": "https://ror.org/03wkt5x30"
   },
   "180070039": {
@@ -272,6 +287,7 @@
     "commentsNameEN": "of INRAE",
     "startYear": 2016,
     "paysage": "t4SA4",
+    "scale": "institution",
     "ror": "https://ror.org/003vg9w96"
   },
   "180089013": {
@@ -279,6 +295,7 @@
     "commentsName": "du CNRS",
     "commentsNameEN": "of CNRS",
     "paysage": "n2X5f",
+    "scale": "institution",
     "ror": "https://ror.org/02feahw73"
   },
   "180089047": {
@@ -287,6 +304,7 @@
     "commentsNameEN": "of INRIA",
     "startYear": 2016,
     "paysage": "E1Wdn",
+    "scale": "institution",
     "ror": "https://ror.org/02kvxyf05"
   },
   "18009202500055": {
@@ -294,6 +312,7 @@
     "commentsName": "de TSP",
     "commentsNameEN": "of TSP",
     "paysage": "YvBkH",
+    "scale": "institution",
     "ror": "https://ror.org/05xvk4r52"
   },
   "18009202500063": {
@@ -301,6 +320,7 @@
     "commentsName": "de l'IMT-BS",
     "commentsNameEN": "of IMT-BS",
     "paysage": "6Bu79",
+    "scale": "institution",
     "ror": "https://ror.org/00nsf1h45"
   },
   "18009202500097": {
@@ -308,6 +328,7 @@
     "commentsName": "d'IMT Mines Albi",
     "commentsNameEN": "of IMT Mines Albi",
     "paysage": "M4CZX",
+    "scale": "institution",
     "ror": "https://ror.org/00bq8vv83"
   },
   "18009202500121": {
@@ -315,6 +336,7 @@
     "commentsName": "d'IMT Atlantique",
     "commentsNameEN": "of IMT Atlantique",
     "paysage": "krqUz",
+    "scale": "institution",
     "ror": "https://ror.org/030hj3061"
   },
   "18009202500139": {
@@ -322,6 +344,7 @@
     "commentsName": "de l'IMTNE",
     "commentsNameEN": "of IMTNE",
     "paysage": "qadtj",
+    "scale": "institution",
     "ror": "https://ror.org/042rh9p26"
   },
   "18009202500162": {
@@ -329,6 +352,7 @@
     "commentsName": "de Télécom Paris",
     "commentsNameEN": " of Télécom Paris",
     "paysage": "K6jgY",
+    "scale": "institution",
     "ror": "https://ror.org/01naq7912"
   },
   "180092215": {
@@ -336,6 +360,7 @@
     "commentsName": "de l'ENSAPM - PSL",
     "commentsNameEN": "of ENSAPM - PSL",
     "paysage": "5Ic1n",
+    "scale": "institution",
     "ror": "https://ror.org/05hca2307"
   },
   "191010602": {
@@ -394,6 +419,7 @@
     "commentsNameEN": "of IMT Mines Alès",
     "startYear": 2014,
     "paysage": "waCb4",
+    "scale": "institution",
     "ror": "https://ror.org/03e8rf594"
   },
   "193101524": {
@@ -401,6 +427,7 @@
     "commentsName": "de l'INSA Toulouse",
     "commentsNameEN": "of INSA Toulouse",
     "paysage": "dj88d",
+    "scale": "institution",
     "ror": "https://ror.org/01h8pf755"
   },
   "193112562": {
@@ -408,6 +435,7 @@
     "commentsName": "de l'ENAC",
     "commentsNameEN": "of ENAC",
     "paysage": "JQKHK",
+    "scale": "institution",
     "ror": "https://ror.org/022zdgq74"
   },
   "193113818": {
@@ -415,6 +443,7 @@
     "commentsName": "de l'INPT",
     "commentsNameEN": "of INPT",
     "paysage": "mMex4",
+    "scale": "institution",
     "ror": "https://ror.org/033p9g875"
   },
   "193113842": {
@@ -447,8 +476,7 @@
     "commentsName": "de Rennes II",
     "commentsNameEN": "of Rennes II",
     "paysage": "ti37C",
-    "ror": "https://ror.org/01m84wm78",
-    "scale": "university"
+    "ror": "https://ror.org/01m84wm78"
   },
   "193708005": {
     "name": "Université de Tours (UT)",
@@ -463,6 +491,7 @@
     "commentsName": "de l'IEPG",
     "commentsNameEN": "of IEPG",
     "paysage": "851ij",
+    "scale": "institution",
     "ror": "https://ror.org/03c7zyj82"
   },
   "194210951": {
@@ -479,6 +508,7 @@
     "commentsName": "de Centrale Nantes",
     "commentsNameEN": "of Centrale Nantes",
     "paysage": "gCAyK",
+    "scale": "institution",
     "ror": "https://ror.org/03nh7d505",
     "startYear": 2016
   },
@@ -504,6 +534,7 @@
     "commentsName": "du BRGM",
     "commentsNameEN": "of BRGM",
     "paysage": "MUQxd",
+    "scale": "institution",
     "ror": "https://ror.org/05hnb7x64",
     "startYear": 2016
   },
@@ -527,6 +558,7 @@
     "name": "Institut National des Sciences Appliquées de Strasbourg (INSA Strasbourg)",
     "commentsName": "de l'INSA Strasbourg",
     "commentsNameEN": "of INSA Strasbourg",
+    "scale": "institution",
     "paysage": "ab5z5",
     "ror": "https://ror.org/001nta019"
   },
@@ -543,6 +575,7 @@
     "name": "Sciences Po Lyon",
     "commentsName": "de Sciences Po Lyon",
     "commentsNameEN": "of Sciences Po Lyon",
+    "scale": "institution",
     "paysage": "hfCvd",
     "ror": "02h3vcz70"
   },
@@ -551,6 +584,7 @@
     "commentsName": "de l'ECL",
     "commentsNameEN": "of ECL",
     "paysage": "fWJJA",
+    "scale": "institution",
     "ror": "https://ror.org/05s6rge65",
     "startYear": 2015
   },
@@ -558,6 +592,7 @@
     "name": "Institut National des Sciences Appliquées de Lyon (INSA Lyon)",
     "commentsName": "de l'INSA Lyon",
     "commentsNameEN": "of INSA Lyon",
+    "scale": "institution",
     "paysage": "8k41p",
     "ror": "https://ror.org/050jn9y42",
     "startYear": 2016
@@ -615,6 +650,7 @@
     "commentsNameEN": "of Sciences Po",
     "paysage": "u79ZJ",
     "ror": "https://ror.org/05fe7ax82",
+    "scale": "institution",
     "startYear": 2016
   },
   "197534597": {
@@ -623,6 +659,7 @@
     "commentsNameEN": "of ENS-PSL",
     "paysage": "8618D",
     "ror": "https://ror.org/05a0dhs15",
+    "scale": "institution",
     "startYear": 2018
   },
   "197534712": {
@@ -630,6 +667,7 @@
     "commentsName": "du Cnam",
     "commentsNameEN": "of Cnam",
     "paysage": "XR16q",
+    "scale": "institution",
     "ror": "https://ror.org/0175hh227"
   },
   "197534712FULL": {
@@ -644,6 +682,7 @@
     "commentsName": "de l'ENSAM",
     "commentsNameEN": "of ENSAM",
     "paysage": "jYUcF",
+    "scale": "institution",
     "ror": "https://ror.org/018pp1107",
     "scale": "university"
   },
@@ -652,6 +691,7 @@
     "commentsName": "de l'ENC-PSL",
     "commentsNameEN": "of ENC-PSL",
     "paysage": "wAASR",
+    "scale": "institution",
     "ror": "013xvg556"
   },
   "197534860": {
@@ -659,6 +699,7 @@
     "commentsName": "de l'EPHE-PSL",
     "commentsNameEN": "of EPHE-PSL",
     "paysage": "QXnpG",
+    "scale": "institution",
     "ror": "https://ror.org/046b3cj80",
     "startYear": 2017
   },
@@ -667,6 +708,7 @@
     "commentsName": "des Mines Paris-PSL",
     "commentsNameEN": "of Mines Paris-PSL",
     "paysage": "KltnW",
+    "scale": "institution",
     "ror": "https://ror.org/04y8cs423",
     "startYear": 2017
   },
@@ -676,6 +718,7 @@
     "commentsNameEN": "of ENPC",
     "paysage": "44xxV",
     "ror": "https://ror.org/02nwvxz07",
+    "scale": "institution",
     "startYear": 2016
   },
   "197546922": {
@@ -691,6 +734,7 @@
     "commentsName": "de l'INSA Rouen Normandie",
     "commentsNameEN": "of INSA Rouen Normandie",
     "paysage": "TeXD3",
+    "scale": "institution",
     "ror": "https://ror.org/020ws7586"
   },
   "197619042": {
@@ -772,6 +816,7 @@
     "commentsName": "de l'ICA",
     "commentsNameEN": "of ICA",
     "paysage": "tdJI8",
+    "scale": "laboratory",
     "ror": "https://ror.org/040smqw14"
   },
   "199115684": {
@@ -779,6 +824,7 @@
     "commentsName": "de l'X",
     "commentsNameEN": "of X",
     "paysage": "DdW7n",
+    "scale": "institution",
     "ror": "https://ror.org/05hy3tk52"
   },
   "199117683P": {
@@ -786,6 +832,7 @@
     "commentsName": "du CEMES",
     "commentsNameEN": "of CEMES",
     "paysage": "Y69JT",
+    "scale": "laboratory",
     "ror": "https://ror.org/03kwnqq69",
     "scale": "laboratory"
   },
@@ -809,6 +856,7 @@
     "name": "Cibles et Médicaments des Infections et de l'Immunité (IICiMed)",
     "commentsName": "de l'IICiMed",
     "commentsNameEN": "of IICiMed",
+    "scale": "laboratory",
     "paysage": "vJ8wB"
   },
   "199213369W": {
@@ -844,6 +892,7 @@
     "name": "Institut de recherche en droit privé (IRDP)",
     "commentsName": "de l'IRDP",
     "commentsNameEN": "of IRDP",
+    "scale": "laboratory",
     "paysage": "4Jn23"
   },
   "199213422D": {
@@ -883,6 +932,7 @@
     "commentsNameEN": "of PCC",
     "paysage": "R7PyH",
     "ror": "https://ror.org/055ss7a31",
+    "scale": "laboratory",
     "startYear": 2017
   },
   "199511949P": {
@@ -890,6 +940,7 @@
     "commentsName": "de l'IRIT",
     "commentsNameEN": "of IRIT",
     "paysage": "vsGvv",
+    "scale": "laboratory",
     "ror": "https://ror.org/01rx4qw44"
   },
   "199511952T": {
@@ -937,6 +988,7 @@
     "commentsName": "de l'IMN",
     "commentsNameEN": "of IMN",
     "paysage": "LtqcK",
+    "scale": "laboratory",
     "ror": "https://ror.org/00cqpd580"
   },
   "199612340K": {
@@ -944,6 +996,7 @@
     "commentsName": "du LETG",
     "commentsNameEN": "of LETG",
     "paysage": "u5gbH",
+    "scale": "laboratory",
     "ror": "https://ror.org/05sat2s07"
   },
   "199612367P": {
@@ -982,6 +1035,7 @@
     "name": "Institut des Substances et des Organismes de la Mer (ISOMER)",
     "commentsName": "de l'ISOMER",
     "commentsNameEN": "of ISOMER",
+    "scale": "laboratory",
     "paysage": "GdjgA"
   },
   "199614172B": {
@@ -1073,7 +1127,7 @@
     "commentsNameEN": "of ESPCI - PSL",
     "paysage": "JGOcj",
     "ror": "03zx86w41",
-    "scale": "school"
+    "scale": "institution"
   },
   "200017509L": {
     "name": "Centre de recherche sur l'hétéro-épitaxie et ses applications (CRHEA)",
@@ -1104,6 +1158,7 @@
     "commentsName": "de l'ISIS",
     "commentsNameEN": "of ISIS",
     "paysage": "iwUNB",
+    "scale": "laboratory",
     "ror": "https://ror.org/00xts7d02"
   },
   "200112476L": {
@@ -1222,6 +1277,7 @@
     "commentsName": "de l'AD2M",
     "commentsNameEN": "of AD2M",
     "paysage": "2FLQ8",
+    "scale": "laboratory",
     "ror": "https://ror.org/0293jn610"
   },
   "200610854B": {
@@ -1230,6 +1286,7 @@
     "commentsNameEN": "of OBSPM",
     "paysage": "tr5VV",
     "ror": "https://ror.org/029nkcm90",
+    "scale": "laboratory",
     "startYear": 2017
   },
   "200612557C": {
@@ -1237,6 +1294,7 @@
     "commentsName": "de l'IPHC",
     "commentsNameEN": "of IPHC",
     "paysage": "3Kn73",
+    "scale": "laboratory",
     "ror": "01g3mb532"
   },
   "200616946Y": {
@@ -1244,6 +1302,7 @@
     "commentsName": "de la PHAN",
     "commentsNameEN": "of PHAN",
     "paysage": "d3cSu",
+    "scale": "laboratory",
     "ror": "https://ror.org/05vb5nm66"
   },
   "200711884S": {
@@ -1258,6 +1317,7 @@
     "name": "Institut de Mathématiques de Toulouse (IMT)",
     "commentsName": "de l'IMT",
     "commentsNameEN": "of IMT",
+    "scale": "laboratory",
     "paysage": "R95E1",
     "ror": "https://ror.org/014vp6c30"
   },
@@ -1282,6 +1342,7 @@
     "commentsName": "du CEISAM",
     "commentsNameEN": "of CEISAM",
     "paysage": "6065l",
+    "scale": "laboratory",
     "ror": "https://ror.org/04ysg2a58"
   },
   "200815509C": {
@@ -1295,12 +1356,14 @@
     "name": "Littératures Antiques et Modernes (LAMO)",
     "commentsName": "du LAMO",
     "commentsNameEN": "of LAMO",
+    "scale": "laboratory",
     "paysage": "h9zud"
   },
   "200815563L": {
     "name": "Motricité, interactions, performance (MIP)",
     "commentsName": "de la MIP",
     "commentsNameEN": "of MIP",
+    "scale": "laboratory",
     "paysage": "jCn2Q"
   },
   "200918490N": {
@@ -1351,6 +1414,7 @@
     "commentsName": "d'ESPACE-DEV",
     "commentsNameEN": "of ESPACE-DEV",
     "paysage": "m2tBU",
+    "scale": "laboratory",
     "ror": "https://ror.org/01z485314"
   },
   "201119399T": {
@@ -1383,6 +1447,7 @@
     "commentsNameEN": "of BIOM",
     "paysage": "x8K6I",
     "ror": "https://ror.org/03wg93s13",
+    "scale": "laboratory",
     "startYear": 2017
   },
   "201120462Y": {
@@ -1398,6 +1463,7 @@
     "commentsName": "de l'US2B",
     "commentsNameEN": "of US2B",
     "paysage": "JcJrk",
+    "scale": "laboratory",
     "ror": "https://ror.org/05ef4v550"
   },
   "201220071U": {
@@ -1412,6 +1478,7 @@
     "name": "Institut de recherche en énergie électrique de Nantes Atlantique (IREENA)",
     "commentsName": "de l'IREENA",
     "commentsNameEN": "of IREENA",
+    "scale": "laboratory",
     "paysage": "JROGX"
   },
   "201220148C": {
@@ -1427,6 +1494,7 @@
     "commentsName": "de HDS",
     "commentsNameEN": "of HDS",
     "paysage": "ZV6KH",
+    "scale": "laboratory",
     "ror": "https://ror.org/0075hvk77"
   },
   "201220315J": {
@@ -1475,6 +1543,7 @@
     "commentsName": "du LBI2M",
     "commentsNameEN": "of LBI2M",
     "paysage": "k6ip6",
+    "scale": "laboratory",
     "ror": "https://ror.org/001c8pb03"
   },
   "201420764N": {
@@ -1482,6 +1551,7 @@
     "commentsName": "de MONARIS",
     "commentsNameEN": "of MONARIS",
     "paysage": "2ldrn",
+    "scale": "laboratory",
     "ror": "https://ror.org/02jkg8m11"
   },
   "201420847D": {
@@ -1498,6 +1568,7 @@
     "commentsName": "de l'OOB",
     "commentsNameEN": "of OOB",
     "paysage": "e7ysv",
+    "scale": "laboratory",
     "ror": "https://ror.org/05gz4kr37",
     "startYear": 2017
   },
@@ -1544,6 +1615,7 @@
     "name": "Methods in patient-centered outcomes and health research (SPHERE)",
     "commentsName": "de SPHERE",
     "commentsNameEN": "of SPHERE",
+    "scale": "laboratory",
     "paysage": "3EORH"
   },
   "201722762X": {
@@ -1551,12 +1623,14 @@
     "commentsName": "du RMeS",
     "commentsNameEN": "of RMeS",
     "paysage": "NMb9s",
+    "scale": "laboratory",
     "ror": "https://ror.org/025agbr41"
   },
   "201722764Z": {
     "name": "The Enteric Nervous System in gut and brain disorders (TENS)",
     "commentsName": "du TENS",
     "commentsNameEN": "of TENS",
+    "scale": "laboratory",
     "paysage": "wo6ow",
     "ror": "https://ror.org/01kbkse74"
   },
@@ -1595,6 +1669,7 @@
     "name": "Immunologie et Nouveaux Concepts en Immunothérapie (INCIT)",
     "commentsName": "de l'INCIT",
     "commentsNameEN": "of INCIT",
+    "scale": "laboratory",
     "paysage": "cDsPX"
   },
   "202224192E": {
@@ -1610,6 +1685,7 @@
     "commentsName": "du CHU de Rennes",
     "commentsNameEN": "of CHU de Rennes",
     "paysage": "WdImd",
+    "scale": "institution",
     "ror": "https://ror.org/05qec5a53"
   },
   "266900273": {
@@ -1617,6 +1693,7 @@
     "commentsName": "des HCL",
     "commentsNameEN": "of HCL",
     "paysage": "Y4l0C",
+    "scale": "institution",
     "ror": "https://ror.org/01502ca60"
   },
   "330715368": {
@@ -1624,6 +1701,7 @@
     "commentsName": "de l'IFREMER",
     "commentsNameEN": "of IFREMER",
     "paysage": "F6Zt5",
+    "scale": "institution",
     "ror": "https://ror.org/044jxhp58"
   },
   "331596270": {
@@ -1631,6 +1709,7 @@
     "commentsName": "du CIRAD",
     "commentsNameEN": "of CIRAD",
     "paysage": "7dd3j",
+    "scale": "institution",
     "ror": "https://ror.org/05kpkpg04"
   },
   "381984921": {
@@ -1638,6 +1717,7 @@
     "commentsName": "de l'Ineris",
     "commentsNameEN": "of Ineris",
     "paysage": "86H3P",
+    "scale": "institution",
     "ror": "https://ror.org/034yrjf77"
   },
   "479806630": {
@@ -1646,13 +1726,14 @@
     "commentsNameEN": "of EM Normandie",
     "paysage": "NAzKJ",
     "ror": "https://ror.org/052xwpe12",
-    "scale": "school"
+    "scale": "institution"
   },
   "775663958": {
     "name": "ESSEC Business School",
     "commentsName": "de l'ESSEC Business School",
     "commentsNameEN": "of ESSEC Business School",
     "paysage": "5YWUA",
+    "scale": "institution",
     "ror": "https://ror.org/02dga6j42"
   },
   "775684897": {
@@ -1660,6 +1741,7 @@
     "commentsName": "de l'Institut Pasteur",
     "commentsNameEN": "of the Institut Pasteur",
     "paysage": "Sn8Nt",
+    "scale": "institution",
     "ror": "https://ror.org/0495fxg12",
     "startYear": 2016
   },
@@ -1667,6 +1749,7 @@
     "name": "Commissariat à l'énergie atomique et aux énergies alternatives (CEA)",
     "commentsName": "du CEA",
     "commentsNameEN": "of CEA",
+    "scale": "institution",
     "paysage": "zYXK8",
     "ror": "https://ror.org/00jjx8s55"
   },
@@ -1676,6 +1759,7 @@
     "commentsNameEN": "of ONERA",
     "paysage": "zO154",
     "ror": "https://ror.org/005y2ap84",
+    "scale": "institution",
     "startYear": 2016
   },
   "775729155": {
@@ -1683,6 +1767,7 @@
     "commentsName": "de l'IFPEN",
     "commentsNameEN": "of IFPEN",
     "paysage": "7053Q",
+    "scale": "institution",
     "ror": "https://ror.org/03gcbhc33"
   },
   "780507190": {
@@ -1691,6 +1776,7 @@
     "commentsNameEN": "of UniLaSalle",
     "paysage": "BmNtV",
     "ror": "https://ror.org/05wy89733",
+    "scale": "institution",
     "startYear": 2018
   },
   "784314064": {
@@ -1698,6 +1784,7 @@
     "commentsName": "de la FRM",
     "commentsNameEN": "of FRM",
     "paysage": "5O83k",
+    "scale": "funder",
     "ror": "https://ror.org/04w6kn183"
   },
   "817389141": {
@@ -1705,18 +1792,21 @@
     "commentsName": "de Grenoble Ecole de Management",
     "commentsNameEN": "of Grenoble Ecole de Management",
     "paysage": "AL1dg",
+    "scale": "institution",
     "ror": "https://ror.org/01h4fxd96"
   },
   "938230612": {
     "name": "Université Bourgogne Europe (UBE)",
     "commentsName": "de l'UBE",
     "commentsNameEN": "of UBE",
+    "scale": "university",
     "paysage": "l9qwd"
   },
   "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
     "commentsName": "du pôle A2F",
     "commentsNameEN": "of A2F",
+    "scale": "laboratory",
     "startYear": 2016
   },
   "ANR": {
@@ -1724,6 +1814,7 @@
     "commentsName": "issues de la collection HAL de l'ANR",
     "commentsNameEN": "resulting from the HAL collection from ANR",
     "startYear": 2016,
+    "scale": "funder",
     "agency": "ANR"
   },
   "CERCLL": {
@@ -1742,13 +1833,15 @@
   "EMPP": {
     "name": "Pôle scientifique Energie, Mécanique, Procédés, Produits (EMPP)",
     "commentsName": "de l'EMPP",
-    "commentsNameEN": "of EMPP"
+    "commentsNameEN": "of EMPP",
+    "scale": "laboratory"
   },
   "GRAP": {
     "name": "Groupe de Recherche sur l'Alcool et les Pharmacodépendances",
     "commentsName": "du GRAP",
     "commentsNameEN": "of the GRAP",
     "paysage": "laymk",
+    "scale": "laboratory",
     "ror": "https://ror.org/01c62av11"
   },
   "IMTS": {
@@ -1775,6 +1868,7 @@
   },
   "INSA": {
     "name": "INSA",
+    "scale": "institution",
     "commentsName": "des INSA",
     "commentsNameEN": "of INSA",
     "alias": "130018336,193101524,196727671,196901920,197601651,301232",
@@ -1784,6 +1878,7 @@
     "name": "Programme national de recherche Environnement-Santé-Travail financé par l'ANSES (PNR EST)",
     "commentsName": "du PNR EST",
     "commentsNameEN": "of PNR EST",
+    "scale": "funder",
     "agency": "\"ANSES PNR EST\""
   },
   "POLEM4": {
@@ -1811,6 +1906,7 @@
     "name": "UFR de Chimie de Sorbonne Université (UFR-Chimie)",
     "commentsName": "de l'UFR-Chimie",
     "commentsNameEN": "of UFR-Chimie",
+    "scale": "laboratory",
     "paysage": "gl7b4"
   },
   "007gfwn20": {
@@ -1827,6 +1923,7 @@
     "paysage": "Nc86W",
     "ror": "https://ror.org/00rbzpz17",
     "startYear": 2016,
+    "scale": "funder",
     "agency": "ANR"
   },
   "04b0z7q78": {
@@ -1834,6 +1931,7 @@
     "commentsName": "de l'INSHS",
     "commentsNameEN": "of INSHS",
     "paysage": "EH4gV",
+    "scale": "institution",
     "ror": "https://ror.org/04b0z7q78"
   },
   "0755976N": {
