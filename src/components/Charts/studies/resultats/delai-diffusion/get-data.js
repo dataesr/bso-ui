@@ -42,7 +42,11 @@ function useGetData(studyType, sponsorType = '*', id, domain = 'health') {
 
     const query2 = getFetchOptions({
       key: 'studiesCaracteristiquesQuandRepartition',
-      parameters: ['delay_first_results_completion', studyType, sponsorType],
+      parameters: [
+        `results_details.${process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS}.delay_first_results_completion`,
+        studyType,
+        sponsorType,
+      ],
       objectType: ['clinicalTrials'],
     });
     query2.query.bool.filter.push({

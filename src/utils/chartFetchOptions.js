@@ -17,6 +17,8 @@ export default function getFetchOptions({
   objectType = [],
   parameters = [],
 }) {
+  const lastObservationClinicalTrials = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
+
   const allOptions = {
     publicationRate: ([
       observationSnap,
@@ -953,7 +955,7 @@ export default function getFetchOptions({
               aggs: {
                 by_has_result: {
                   terms: {
-                    field: 'has_results_or_publications',
+                    field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications`,
                     missing: false,
                   },
                 },
@@ -997,7 +999,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_result: {
               terms: {
-                field: 'has_results_or_publications',
+                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications`,
                 missing: false,
               },
             },
@@ -1039,7 +1041,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_results_within_3_years: {
               terms: {
-                field: 'has_results_or_publications_within_3y',
+                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications_within_3y`,
                 missing: false,
               },
               aggs: {
@@ -1089,7 +1091,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_results_within_1_year: {
               terms: {
-                field: 'has_results_or_publications_within_1y',
+                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications_within_1y`,
                 missing: false,
               },
               aggs: {
@@ -1144,7 +1146,7 @@ export default function getFetchOptions({
       aggs: {
         by_has_results_within_1_year: {
           terms: {
-            field: 'has_results_or_publications_within_1y',
+            field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications_within_1y`,
             missing: false,
           },
         },
@@ -1189,7 +1191,7 @@ export default function getFetchOptions({
       aggs: {
         by_has_result: {
           terms: {
-            field: 'has_results_or_publications',
+            field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications`,
             missing: false,
           },
         },
@@ -1234,13 +1236,13 @@ export default function getFetchOptions({
       aggs: {
         by_has_result: {
           terms: {
-            field: 'has_results',
+            field: `results_details.${lastObservationClinicalTrials}.has_results`,
             missing: false,
           },
           aggs: {
             by_has_publications_result: {
               terms: {
-                field: 'has_publications_result',
+                field: `results_details.${lastObservationClinicalTrials}.has_publications_result`,
                 missing: false,
               },
             },
@@ -1293,13 +1295,13 @@ export default function getFetchOptions({
           aggs: {
             by_has_result: {
               terms: {
-                field: 'has_results',
+                field: `results_details.${lastObservationClinicalTrials}.has_results`,
                 missing: false,
               },
               aggs: {
                 by_has_publications_result: {
                   terms: {
-                    field: 'has_publications_result',
+                    field: `results_details.${lastObservationClinicalTrials}.has_publications_result`,
                     missing: false,
                   },
                 },
@@ -1381,7 +1383,7 @@ export default function getFetchOptions({
                   aggs: {
                     by_has_result_or_publi: {
                       terms: {
-                        field: 'has_results_or_publications',
+                        field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications`,
                         missing: false,
                       },
                     },
@@ -1425,7 +1427,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_result_or_publi: {
               terms: {
-                field: 'has_results_or_publications',
+                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications`,
                 missing: false,
               },
             },
@@ -1465,13 +1467,13 @@ export default function getFetchOptions({
           aggs: {
             by_has_publications: {
               terms: {
-                field: 'has_publications_result',
+                field: `results_details.${lastObservationClinicalTrials}.has_publications_result`,
                 missing: false,
               },
               aggs: {
                 by_oa: {
                   terms: {
-                    field: 'publication_access',
+                    field: `results_details.${lastObservationClinicalTrials}.publication_access`,
                   },
                 },
               },
@@ -1847,19 +1849,19 @@ export default function getFetchOptions({
           aggs: {
             by_has_results: {
               terms: {
-                field: 'has_results_or_publications',
+                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications`,
                 missing: false,
               },
               aggs: {
                 by_has_publications_result: {
                   terms: {
-                    field: 'has_publications_result',
+                    field: `results_details.${lastObservationClinicalTrials}.has_publications_result`,
                     missing: false,
                   },
                   aggs: {
                     by_has_publication_oa: {
                       terms: {
-                        field: 'has_publication_oa',
+                        field: `results_details.${lastObservationClinicalTrials}.has_publication_oa`,
                         missing: false,
                       },
                     },
