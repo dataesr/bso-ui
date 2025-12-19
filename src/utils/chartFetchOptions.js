@@ -1007,7 +1007,12 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueOuvertureWithin3Years: ([studyType, yearMin, yearMax]) => ({
+    studiesDynamiqueOuvertureWithin3Years: ([
+      studyType,
+      yearMin,
+      yearMax,
+      observationSnap,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -1030,6 +1035,7 @@ export default function getFetchOptions({
                 },
               },
             },
+            { exists: { field: `results_details.${observationSnap}` } },
           ],
         },
       },
@@ -1041,7 +1047,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_results_within_3_years: {
               terms: {
-                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications_within_3y`,
+                field: `results_details.${observationSnap}.has_results_or_publications_within_3y`,
                 missing: false,
               },
               aggs: {

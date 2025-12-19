@@ -161,6 +161,9 @@ const chartComponents = {
   'general.dynamique.chart-evolution-within-3-years-by-year-drug': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year-drug'
   )),
+  'general.dynamique.chart-evolution-within-3-years-historical': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical'
+  )),
   'general.dynamique.chart-evolution-within-1-year': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
   )),

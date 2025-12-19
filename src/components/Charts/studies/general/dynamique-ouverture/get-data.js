@@ -18,10 +18,12 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
       10,
     );
+    const observationSnap = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
     const years10Max = currentYear - 1;
     const years10Min = years10Max - 9;
     const years3Max = currentYear - 3;
     const years3Min = years3Max - 6;
+
     const querySponsorsList = getFetchOptions({
       key: 'sponsorsList',
       parameters: [studyType, years10Min, years10Max],
@@ -39,7 +41,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     });
     const queryHasResultsWithin3Years = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin3Years',
-      parameters: [studyType, years3Min, years3Max],
+      parameters: [studyType, years3Min, years3Max, observationSnap],
       objectType: ['clinicalTrials'],
     });
     const queryHasResultsWithin1Year = getFetchOptions({
