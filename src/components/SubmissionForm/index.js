@@ -435,22 +435,20 @@ function SubmissionForm() {
                 type='email'
                 value={email}
               />
-              {action === 'publications' && (
-                <TextInput
-                  hint='Tel que communiqué lors de votre précédente demande'
-                  label="Identifiant de l'établissement"
-                  onChange={(e) => {
-                    if (typingTimer) {
-                      clearTimeout(typingTimer);
-                    }
-                    const typingTimerTmp = setTimeout(
-                      () => setInstitutionId(e),
-                      1000,
-                    );
-                    setTypingTimer(typingTimerTmp);
-                  }}
-                />
-              )}
+              <TextInput
+                hint='Tel que communiqué lors de votre précédente demande'
+                label="Identifiant de l'établissement"
+                onChange={(e) => {
+                  if (typingTimer) {
+                    clearTimeout(typingTimer);
+                  }
+                  const typingTimerTmp = setTimeout(
+                    () => setInstitutionId(e),
+                    1000,
+                  );
+                  setTypingTimer(typingTimerTmp);
+                }}
+              />
               <TextInput
                 label='Nom de la structure'
                 onChange={(e) => setName(e.target.value)}
