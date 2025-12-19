@@ -1,7 +1,6 @@
 import './graph.scss';
 
 import PropTypes from 'prop-types';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 function GraphComments({ comments, hasFooter }) {

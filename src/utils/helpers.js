@@ -1,4 +1,5 @@
 import locals from '../config/locals.json';
+import openalex from '../config/openalex.json';
 
 /**
  *
@@ -317,20 +318,21 @@ function getLocalAffiliation(urlSearchParams) {
   if (!window.location.href.includes('integration')) {
     return undefined;
   }
+  const allNames = { ...locals, ...openalex };
   let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation') || undefined;
   // If bsoLocalAffiliation exists in config
   if (
-    Object.keys(locals)
+    Object.keys(allNames)
       .map((item) => item.toLowerCase())
       .includes(bsoLocalAffiliation)
   ) {
     return bsoLocalAffiliation;
   }
-  // If bsoLocalAffiliation is the Paysage or the RoR of a structure in locals config file
-  const matched = Object.keys(locals).filter((key) => [
-    locals[key]?.paysage?.toLowerCase(),
-    locals[key]?.ror?.toLowerCase(),
-    locals[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+  // If bsoLocalAffiliation is the Paysage or the RoR of a structure in all config file
+  const matched = Object.keys(allNames).filter((key) => [
+    allNames[key]?.paysage?.toLowerCase(),
+    allNames[key]?.ror?.toLowerCase(),
+    allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
   ].includes(bsoLocalAffiliation));
   if (bsoLocalAffiliation && matched.length > 0) {
     bsoLocalAffiliation = matched[0].toLocaleLowerCase();
@@ -346,9 +348,9 @@ function getLocalAffiliation(urlSearchParams) {
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
-  // Turn all the keys of locals object to lower case?
+  const allNames = { ...locals, ...openalex };
   const localsLowerCase = Object.fromEntries(
-    Object.entries(locals).map(([k, v]) => [k.toLowerCase(), v]),
+    Object.entries(allNames).map(([k, v]) => [k.toLowerCase(), v]),
   );
   const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation?.toLowerCase()];
   const alias = localAffiliationSettings?.alias;
