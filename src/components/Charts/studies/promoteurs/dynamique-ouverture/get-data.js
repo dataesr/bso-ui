@@ -14,7 +14,7 @@ function useGetData(studyType, sponsor = '*') {
 
   async function getDataAxios() {
     const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION.substring(0, 4),
+      process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
       10,
     );
     const yearMax = currentYear - 1;
