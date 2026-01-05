@@ -18,14 +18,10 @@ function useGetData(studyType, filterOnDrug = false) {
 
   async function getDataAxios() {
     const queries = [];
-    const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
-      10,
-    );
-    const years3Max = currentYear - 3;
-    const years3Min = years3Max - 6;
 
     observationSnaps.forEach((observationSnap) => {
+      const years3Max = parseInt(observationSnap, 10) - 3;
+      const years3Min = years3Max - 6;
       const queryHasResultsWithin3Years = getFetchOptions({
         key: 'studiesDynamiqueOuvertureWithin3Years',
         parameters: [studyType, years3Min, years3Max, observationSnap],
@@ -51,6 +47,7 @@ function useGetData(studyType, filterOnDrug = false) {
 
     const series = [];
     observationSnaps.forEach((observationSnap, index) => {
+      const years3Max = parseInt(observationSnap, 10) - 3;
       const dataHasResultsWithin3Years = results[index].data.aggregations;
       const dataHasResultsWithin3YearsAcademic = dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
         (ele) => ele.key === 'academique',
@@ -141,12 +138,8 @@ function useGetData(studyType, filterOnDrug = false) {
       series.push({ name: observationSnap, data });
     });
     const dataGraph = { categories, series };
-    const comments = { yearMax: years3Max };
 
-    return {
-      comments,
-      dataGraph,
-    };
+    return { dataGraph };
   }
 
   useEffect(() => {
