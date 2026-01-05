@@ -224,6 +224,7 @@ export function getSource(id, otherSources = []) {
   ) {
     sources.push('clinicaltrials.gov');
     sources.push('EU Clinical Trial Register');
+    sources.push('CTIS');
   }
   if (id.includes('health-publi')) {
     sources.push('PubMed');
