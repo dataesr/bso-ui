@@ -12,7 +12,7 @@ function useGetData(studyType, filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = ['2023Q4', '2024Q4', '2025Q1']?.sort(
+  const observationSnaps = ['2023Q4', '2024Q4', '2025Q4']?.sort(
     (a, b) => a.substring(0, 4) - b.substring(0, 4),
   );
 
