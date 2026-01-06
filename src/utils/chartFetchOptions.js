@@ -1035,7 +1035,6 @@ export default function getFetchOptions({
                 },
               },
             },
-            { exists: { field: `results_details.${observationSnap}` } },
           ],
         },
       },
