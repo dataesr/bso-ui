@@ -155,6 +155,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         y_tot:
           dataHasResultsWithin3YearsAcademicLastYearCount
           + dataHasResultsWithin3YearsIndustrialCount,
+        yearMax: years3Max,
       });
       const publicLeadSponsorsRate3 = 100
         * ((dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
@@ -168,6 +169,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         y_abs:
           dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0,
         y_tot: dataHasResultsWithin3YearsAcademicLastYearCount,
+        yearMax: years3Max,
       });
       const privateLeadSponsorsRate3 = 100
         * ((dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
@@ -182,6 +184,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
           ?? 0,
         y_tot: dataHasResultsWithin3YearsIndustrialCount,
+        yearMax: years3Max,
       });
       if (sponsor !== '*') {
         const dataHasResultsWithin3YearsSponsor = resultsSponsor[index].data.aggregations;
@@ -239,6 +242,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
               dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
               ?? 0,
             y_tot: dataHasResultsWithin3YearsAcademicLastYearCountSponsor,
+            yearMax: years3Max,
           });
         }
 
@@ -257,6 +261,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
               dataHasResultsWithin3YearsIndustrialWithResultsLastYearSponsor?.doc_count
               ?? 0,
             y_tot: dataHasResultsWithin3YearsIndustrialCountSponsor,
+            yearMax: years3Max,
           });
         }
       }
