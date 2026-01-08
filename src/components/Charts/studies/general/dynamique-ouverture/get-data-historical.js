@@ -12,9 +12,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = ['2023Q4', '2024Q4', '2025Q4']?.sort(
-    (a, b) => a.substring(0, 4) - b.substring(0, 4),
-  );
+  const observationSnaps = ['2023Q4', '2024Q4', '2025Q1', '2025Q4']?.sort();
 
   async function getDataAxios() {
     // Create sponsors list
@@ -42,7 +40,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const queries = [];
     const queriesSponsor = [];
     observationSnaps.forEach((observationSnap) => {
-      const years3Max = parseInt(observationSnap, 10) - 3;
+      const quarter = observationSnap.substring(4, 6);
+      let years3Max = parseInt(observationSnap.substring(0, 4), 10) - 3;
+      if (quarter !== 'Q4') {
+        years3Max = parseInt(observationSnap.substring(0, 4), 10) - 4;
+      }
       const years3Min = years3Max - 6;
       const queryHasResultsWithin3Years = getFetchOptions({
         key: 'studiesDynamiqueOuvertureWithin3Years',
@@ -86,7 +88,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
 
     const series = [];
     observationSnaps.forEach((observationSnap, index) => {
-      const years3Max = parseInt(observationSnap, 10) - 3;
+      const quarter = observationSnap.substring(4, 6);
+      let years3Max = parseInt(observationSnap.substring(0, 4), 10) - 3;
+      if (quarter !== 'Q4') {
+        years3Max = parseInt(observationSnap.substring(0, 4), 10) - 4;
+      }
       const dataHasResultsWithin3Years = results[index].data.aggregations;
       const dataHasResultsWithin3YearsAcademic = dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
         (ele) => ele.key === 'academique',
@@ -136,7 +142,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       data.push({
         color: getCSSValue('--blue-soft-100'),
         name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
-        observationSnap: observationSnap.substring(0, 4),
+        observationSnap,
         y: allLeadSponsorRate3,
         y_abs:
           (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
@@ -155,7 +161,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       data.push({
         color: getCSSValue('--lead-sponsor-public'),
         name: intl.formatMessage({ id: 'app.sponsor.academique' }),
-        observationSnap: observationSnap.substring(0, 4),
+        observationSnap,
         y: publicLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0,
@@ -169,7 +175,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       data.push({
         color: getCSSValue('--lead-sponsor-privee'),
         name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
-        observationSnap: observationSnap.substring(0, 4),
+        observationSnap,
         y: privateLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
@@ -206,7 +212,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         data.push({
           color: getCSSValue('--lead-sponsor-highlight'),
           name: sponsor,
-          observationSnap: observationSnap.substring(0, 4),
+          observationSnap,
           y: publicLeadSponsorsRate3Sponsor,
           y_abs:
             dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
