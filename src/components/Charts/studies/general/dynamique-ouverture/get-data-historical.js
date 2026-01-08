@@ -97,6 +97,7 @@ function useGetData(studyType, filterOnDrug = false) {
       data.push({
         color: getCSSValue('--blue-soft-100'),
         name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
+        observationSnap: observationSnap.substring(0, 4),
         y: allLeadSponsorRate3,
         y_abs:
           (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
@@ -115,6 +116,7 @@ function useGetData(studyType, filterOnDrug = false) {
       data.push({
         color: getCSSValue('--lead-sponsor-public'),
         name: intl.formatMessage({ id: 'app.sponsor.academique' }),
+        observationSnap: observationSnap.substring(0, 4),
         y: publicLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0,
@@ -128,6 +130,7 @@ function useGetData(studyType, filterOnDrug = false) {
       data.push({
         color: getCSSValue('--lead-sponsor-privee'),
         name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
+        observationSnap: observationSnap.substring(0, 4),
         y: privateLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
