@@ -6,7 +6,7 @@ import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType, filterOnDrug = false) {
+function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isError, setError] = useState(false);
@@ -17,8 +17,30 @@ function useGetData(studyType, filterOnDrug = false) {
   );
 
   async function getDataAxios() {
-    const queries = [];
+    // Create sponsors list
+    const currentYear = parseInt(
+      process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
+      10,
+    );
+    const years10Max = currentYear - 1;
+    const years10Min = years10Max - 9;
+    const querySponsorsList = getFetchOptions({
+      key: 'sponsorsList',
+      parameters: [studyType, years10Min, years10Max],
+      objectType: ['clinicalTrials'],
+    });
+    const resultsSponsorsList = await Axios.post(
+      ES_STUDIES_API_URL,
+      querySponsorsList,
+      HEADERS,
+    );
+    const sponsors = resultsSponsorsList.data.aggregations.by_sponsor.buckets.map((item) => ({
+      value: item.key,
+      label: item.key,
+    }));
 
+    const queries = [];
+    const queriesSponsor = [];
     observationSnaps.forEach((observationSnap) => {
       const years3Max = parseInt(observationSnap, 10) - 3;
       const years3Min = years3Max - 6;
@@ -35,9 +57,26 @@ function useGetData(studyType, filterOnDrug = false) {
       queries.push(
         Axios.post(ES_STUDIES_API_URL, queryHasResultsWithin3Years, HEADERS),
       );
+      const queryHasResultsWithin3YearsSponsor = getFetchOptions({
+        key: 'studiesDynamiqueOuvertureWithin3YearsSponsor',
+        parameters: [studyType, sponsor, years3Min, years3Max, observationSnap],
+        objectType: ['clinicalTrials'],
+      });
+      if (filterOnDrug) {
+        queryHasResultsWithin3YearsSponsor.query.bool.filter.push({
+          term: { 'intervention_type.keyword': 'DRUG' },
+        });
+      }
+      queriesSponsor.push(
+        Axios.post(
+          ES_STUDIES_API_URL,
+          queryHasResultsWithin3YearsSponsor,
+          HEADERS,
+        ),
+      );
     });
-
     const results = await Axios.all(queries);
+    const resultsSponsor = await Axios.all(queriesSponsor);
 
     const categories = [
       capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
@@ -138,11 +177,53 @@ function useGetData(studyType, filterOnDrug = false) {
         y_tot: dataHasResultsWithin3YearsIndustrialCount,
         yearMax: years3Max,
       });
+      if (sponsor !== '*') {
+        const dataHasResultsWithin3YearsSponsor = resultsSponsor[index].data.aggregations;
+        const dataHasResultsWithin3YearsAcademicSponsor = dataHasResultsWithin3YearsSponsor.by_sponsor_type.buckets.find(
+          (ele) => ele.key === 'academique',
+        );
+        const dataHasResultsWithin3YearsAcademicWithResultsSponsor = dataHasResultsWithin3YearsAcademicSponsor?.by_has_results_within_3_years.buckets.find(
+          (ele) => ele.key === 1,
+        );
+        const dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor = dataHasResultsWithin3YearsAcademicWithResultsSponsor?.by_completion_year.buckets.find(
+          (ele) => ele.key === years3Max,
+        );
+        const dataHasResultsWithin3YearsAcademicWithoutResultsSponsor = dataHasResultsWithin3YearsAcademicSponsor?.by_has_results_within_3_years.buckets.find(
+          (ele) => ele.key === 0,
+        );
+        const dataHasResultsWithin3YearsAcademicWithoutResultsLastYearSponsor = dataHasResultsWithin3YearsAcademicWithoutResultsSponsor?.by_completion_year.buckets.find(
+          (ele) => ele.key === years3Max,
+        );
+        const dataHasResultsWithin3YearsAcademicLastYearCountSponsor = (dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
+            || 0)
+          + (dataHasResultsWithin3YearsAcademicWithoutResultsLastYearSponsor?.doc_count
+            || 0);
+
+        const publicLeadSponsorsRate3Sponsor = 100
+          * ((dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
+            ?? 0)
+            / dataHasResultsWithin3YearsAcademicLastYearCountSponsor);
+        data.push({
+          color: getCSSValue('--lead-sponsor-highlight'),
+          name: sponsor,
+          observationSnap: observationSnap.substring(0, 4),
+          y: publicLeadSponsorsRate3Sponsor,
+          y_abs:
+            dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
+            ?? 0,
+          y_tot: dataHasResultsWithin3YearsAcademicLastYearCountSponsor,
+          yearMax: years3Max,
+        });
+      }
       series.push({ name: observationSnap, data });
+      categories.push(sponsor);
     });
     const dataGraph = { categories, series };
 
-    return { dataGraph };
+    return {
+      dataGraph,
+      sponsors,
+    };
   }
 
   useEffect(() => {
@@ -160,7 +241,7 @@ function useGetData(studyType, filterOnDrug = false) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType]);
+  }, [studyType, sponsor]);
 
   return { allData, isError, isLoading };
 }

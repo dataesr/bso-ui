@@ -7,6 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -15,8 +16,15 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  isInProduction,
+  withDomain,
+  withtStudyType,
+} from '../../../../../utils/helpers';
+import useLang from '../../../../../utils/Hooks/useLang';
 import ChartWrapper from '../../../../ChartWrapper';
+import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data-historical';
 
@@ -26,8 +34,12 @@ HCExportingData(Highcharts);
 function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const chartRef = useRef();
   const intl = useIntl();
+  const { lang, urls } = useLang();
+  const { pathname } = useLocation();
   const [chartComments, setChartComments] = useState('');
-  const { allData, isError, isLoading } = useGetData(studyType);
+  const [options, setOptions] = useState([]);
+  const [sponsor, setSponsor] = useState('*');
+  const { allData, isError, isLoading } = useGetData(studyType, sponsor);
   const { dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
@@ -37,6 +49,15 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
     dataGraph,
     studyType,
   );
+
+  useEffect(() => {
+    const opts = allData?.sponsors || [];
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsors' })),
+      value: '*',
+    });
+    setOptions(opts);
+  }, [allData.sponsors, intl]);
 
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
@@ -54,6 +75,15 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
+      <SearchableSelect
+        isDisplayed={
+          !isInProduction() && pathname === urls.santeEssais.tabs[2][lang]
+        }
+        label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
+        onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
+        options={options}
+        selected={sponsor}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}

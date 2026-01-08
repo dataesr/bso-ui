@@ -336,6 +336,11 @@ function EssaisCliniques() {
                   />
                   <BSOChart
                     domain='health'
+                    id='general.dynamique.chart-evolution-within-3-years-historical'
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
                     id='promoteurs.dynamique-ouverture.chart-evolution-nombre'
                     studyType='Interventional'
                   />
