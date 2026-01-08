@@ -85,6 +85,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
       capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
     ];
+    if (sponsor !== '*') {
+      categories.push(sponsor);
+    }
 
     const series = [];
     observationSnaps.forEach((observationSnap, index) => {
@@ -141,7 +144,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       const data = [];
       data.push({
         color: getCSSValue('--blue-soft-100'),
-        name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
+        name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
         observationSnap,
         y: allLeadSponsorRate3,
         y_abs:
@@ -152,7 +155,6 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         y_tot:
           dataHasResultsWithin3YearsAcademicLastYearCount
           + dataHasResultsWithin3YearsIndustrialCount,
-        yearMax: years3Max,
       });
       const publicLeadSponsorsRate3 = 100
         * ((dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
@@ -160,13 +162,12 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           / dataHasResultsWithin3YearsAcademicLastYearCount);
       data.push({
         color: getCSSValue('--lead-sponsor-public'),
-        name: intl.formatMessage({ id: 'app.sponsor.academique' }),
+        name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
         observationSnap,
         y: publicLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0,
         y_tot: dataHasResultsWithin3YearsAcademicLastYearCount,
-        yearMax: years3Max,
       });
       const privateLeadSponsorsRate3 = 100
         * ((dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
@@ -174,14 +175,13 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           / dataHasResultsWithin3YearsIndustrialCount);
       data.push({
         color: getCSSValue('--lead-sponsor-privee'),
-        name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
+        name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
         observationSnap,
         y: privateLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
           ?? 0,
         y_tot: dataHasResultsWithin3YearsIndustrialCount,
-        yearMax: years3Max,
       });
       if (sponsor !== '*') {
         const dataHasResultsWithin3YearsSponsor = resultsSponsor[index].data.aggregations;
@@ -204,25 +204,63 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
             || 0)
           + (dataHasResultsWithin3YearsAcademicWithoutResultsLastYearSponsor?.doc_count
             || 0);
+        const dataHasResultsWithin3YearsIndustrialSponsor = dataHasResultsWithin3YearsSponsor.by_sponsor_type.buckets.find(
+          (ele) => ele.key === 'industriel',
+        );
+        const dataHasResultsWithin3YearsIndustrialWithResultsSponsor = dataHasResultsWithin3YearsIndustrialSponsor?.by_has_results_within_3_years.buckets.find(
+          (el) => el.key === 1,
+        );
+        const dataHasResultsWithin3YearsIndustrialWithResultsLastYearSponsor = dataHasResultsWithin3YearsIndustrialWithResultsSponsor?.by_completion_year.buckets.find(
+          (ele) => ele.key === years3Max,
+        );
+        const dataHasResultsWithin3YearsIndustrialWithoutResultsSponsor = dataHasResultsWithin3YearsIndustrialSponsor?.by_has_results_within_3_years.buckets.find(
+          (el) => el.key === 0,
+        );
+        const dataHasResultsWithin3YearsIndustrialWithoutResultsLastYearSponsor = dataHasResultsWithin3YearsIndustrialWithoutResultsSponsor?.by_completion_year.buckets.find(
+          (ele) => ele.key === years3Max,
+        );
+        const dataHasResultsWithin3YearsIndustrialCountSponsor = (dataHasResultsWithin3YearsIndustrialWithResultsLastYearSponsor?.doc_count
+            || 0)
+          + (dataHasResultsWithin3YearsIndustrialWithoutResultsLastYearSponsor?.doc_count
+            || 0);
 
         const publicLeadSponsorsRate3Sponsor = 100
           * ((dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
             ?? 0)
             / dataHasResultsWithin3YearsAcademicLastYearCountSponsor);
-        data.push({
-          color: getCSSValue('--lead-sponsor-highlight'),
-          name: sponsor,
-          observationSnap,
-          y: publicLeadSponsorsRate3Sponsor,
-          y_abs:
-            dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
-            ?? 0,
-          y_tot: dataHasResultsWithin3YearsAcademicLastYearCountSponsor,
-          yearMax: years3Max,
-        });
+        // If the selected sponsor is an academic lead sponsor
+        if (publicLeadSponsorsRate3Sponsor) {
+          data.push({
+            color: getCSSValue('--lead-sponsor-highlight'),
+            name: sponsor,
+            observationSnap,
+            y: publicLeadSponsorsRate3Sponsor,
+            y_abs:
+              dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
+              ?? 0,
+            y_tot: dataHasResultsWithin3YearsAcademicLastYearCountSponsor,
+          });
+        }
+
+        const privateLeadSponsorsRate3Sponsor = 100
+          * ((dataHasResultsWithin3YearsIndustrialWithResultsLastYearSponsor?.doc_count
+            ?? 0)
+            / dataHasResultsWithin3YearsIndustrialCountSponsor);
+        // If the selected sponsor is a private lead sponsor
+        if (privateLeadSponsorsRate3Sponsor) {
+          data.push({
+            color: getCSSValue('--lead-sponsor-highlight'),
+            name: sponsor,
+            observationSnap,
+            y: privateLeadSponsorsRate3Sponsor,
+            y_abs:
+              dataHasResultsWithin3YearsIndustrialWithResultsLastYearSponsor?.doc_count
+              ?? 0,
+            y_tot: dataHasResultsWithin3YearsIndustrialCountSponsor,
+          });
+        }
       }
       series.push({ name: observationSnap, data });
-      categories.push(sponsor);
     });
     const dataGraph = { categories, series };
 

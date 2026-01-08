@@ -1,5 +1,6 @@
 import '../../../graph.scss';
 
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -38,17 +39,13 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const { pathname } = useLocation();
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
+  const [optionsGraph, setOptionsGraph] = useState(null);
+  const [sort, setSort] = useState('all');
   const [sponsor, setSponsor] = useState('*');
   const { allData, isError, isLoading } = useGetData(studyType, sponsor);
   const { dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    dataGraph,
-    studyType,
-  );
 
   useEffect(() => {
     const opts = allData?.sponsors || [];
@@ -60,13 +57,27 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   }, [allData.sponsors, intl]);
 
   useEffect(() => {
+    const dataGraphEmail = {
+      ...dataGraph,
+      series: dataGraph?.series?.filter((item) => ['2025Q1', '2025Q4'].includes(item.name)),
+    };
+    setOptionsGraph(
+      chartOptions[id].getOptions(
+        idWithDomain,
+        intl,
+        sort === 'all' ? dataGraph : dataGraphEmail,
+        studyType,
+      ),
+    );
+  }, [dataGraph, id, idWithDomain, intl, sort, studyType]);
+
+  useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
 
   return (
     <ChartWrapper
       chartRef={chartRef}
-      dataTitle={{ year: allData?.comments?.yearMax ?? 0 }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -75,15 +86,40 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
-      <SearchableSelect
-        isDisplayed={
-          !isInProduction() && pathname === urls.santeEssais.tabs[2][lang]
-        }
-        label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
-        onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
-        options={options}
-        selected={sponsor}
-      />
+      {!isInProduction() && pathname === urls.santeEssais.tabs[2][lang] && (
+        <>
+          <SearchableSelect
+            label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
+            onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
+            options={options}
+            selected={sponsor}
+          />
+          <RadioGroup
+            className='d-inline-block'
+            isInline
+            legend={intl.formatMessage({ id: 'app.publi.sort' })}
+            onChange={(newValue) => {
+              const dataGraphEmail = {
+                ...dataGraph,
+                series: dataGraph?.series?.filter((item) => ['2025Q1', '2025Q4'].includes(item.name)),
+              };
+              setOptionsGraph(
+                chartOptions[id].getOptions(
+                  idWithDomain,
+                  intl,
+                  sort === 'all' ? dataGraph : dataGraphEmail,
+                  studyType,
+                ),
+              );
+              setSort(newValue);
+            }}
+            value={sort}
+          >
+            <Radio label='Tout afficher' value='all' />
+            <Radio label='Afficher les valeurs du publipostage' value='email' />
+          </RadioGroup>
+        </>
+      )}
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}
