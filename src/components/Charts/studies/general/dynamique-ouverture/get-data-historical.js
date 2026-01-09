@@ -4,7 +4,11 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import {
+  capitalize,
+  getCSSValue,
+  getObservationLabel,
+} from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const intl = useIntl();
@@ -12,7 +16,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = ['2024Q4', '2025Q1', '2025Q4']?.sort();
+  const observationSnaps = JSON.parse(
+    process.env.REACT_APP_OBSERVATIONS_CLINICAL_TRIALS,
+  )?.sort();
 
   async function getDataAxios() {
     // Create sponsors list
@@ -141,6 +147,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--blue-soft-100'),
         name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
         observationSnap,
+        observationSnapLabel: `${intl.formatMessage({
+          id: 'app.observedin',
+        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
         y:
           100
           * ((dataHasResultsAcademicWithResults?.doc_count
@@ -160,6 +169,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--lead-sponsor-public'),
         name: intl.formatMessage({ id: 'app.sponsor.academique' }),
         observationSnap,
+        observationSnapLabel: `${intl.formatMessage({
+          id: 'app.observedin',
+        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
         y:
           100
           * ((dataHasResultsAcademicWithResults?.doc_count ?? 0)
@@ -173,6 +185,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--lead-sponsor-privee'),
         name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
         observationSnap,
+        observationSnapLabel: `${intl.formatMessage({
+          id: 'app.observedin',
+        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
         y:
           100
           * ((dataHasResultsIndustrialWithResults?.doc_count ?? 0)
@@ -233,6 +248,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--blue-soft-100'),
         name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
         observationSnap,
+        observationSnapLabel: `${intl.formatMessage({
+          id: 'app.observedin',
+        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
         y: allLeadSponsorRate3,
         y_abs:
           (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
@@ -252,6 +270,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--lead-sponsor-public'),
         name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
         observationSnap,
+        observationSnapLabel: `${intl.formatMessage({
+          id: 'app.observedin',
+        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
         y: publicLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0,
@@ -266,6 +287,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--lead-sponsor-privee'),
         name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
         observationSnap,
+        observationSnapLabel: `${intl.formatMessage({
+          id: 'app.observedin',
+        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
         y: privateLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
@@ -285,6 +309,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           color: getCSSValue('--lead-sponsor-highlight'),
           name: sponsor,
           observationSnap,
+          observationSnapLabel: `${intl.formatMessage({
+            id: 'app.observedin',
+          })} ${getObservationLabel(observationSnap, intl, false, true)}`,
           y:
             100
             * ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0)
@@ -347,6 +374,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
             color: getCSSValue('--lead-sponsor-highlight'),
             name: sponsor,
             observationSnap,
+            observationSnapLabel: `${intl.formatMessage({
+              id: 'app.observedin',
+            })} ${getObservationLabel(observationSnap, intl, false, true)}`,
             y: publicLeadSponsorsRate3Sponsor,
             y_abs:
               dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
@@ -366,6 +396,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
             color: getCSSValue('--lead-sponsor-highlight'),
             name: sponsor,
             observationSnap,
+            observationSnapLabel: `${intl.formatMessage({
+              id: 'app.observedin',
+            })} ${getObservationLabel(observationSnap, intl, false, true)}`,
             y: privateLeadSponsorsRate3Sponsor,
             y_abs:
               dataHasResultsWithin3YearsIndustrialWithResultsLastYearSponsor?.doc_count
@@ -375,11 +408,8 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           });
         }
       }
-      series.push({ name: observationSnap, data });
-      seriesWithin3Years.push({
-        name: observationSnap,
-        data: dataWithin3Years,
-      });
+      series.push({ data });
+      seriesWithin3Years.push({ data: dataWithin3Years });
     });
     const dataGraph = { categories, series };
     const dataGraphWithin3Years = { categories, series: seriesWithin3Years };

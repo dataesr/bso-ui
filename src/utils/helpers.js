@@ -150,12 +150,17 @@ export function getPublicationYearFromObservationSnap(observationSnap) {
   return publicationYear;
 }
 
-export function getObservationLabel(observationSnap, intl, newline = false) {
+export function getObservationLabel(
+  observationSnap,
+  intl,
+  newline = false,
+  verbose = false,
+) {
   let label = observationSnap?.substring(0, 4);
   if (observationSnap?.length > 4) {
     const quarter = observationSnap?.substring(4, 6);
     const sep = newline ? '<br/>' : ' - ';
-    if (quarter !== 'Q4' && intl.messages[`app.${quarter}`]) {
+    if (intl.messages[`app.${quarter}`] && (verbose || quarter !== 'Q4')) {
       label = label
         .concat(sep)
         .concat(intl.formatMessage({ id: `app.${quarter}` }));

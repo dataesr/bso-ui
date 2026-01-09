@@ -44,6 +44,23 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
 
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraphWithin3Years,
+    studyType,
+  );
+
+  const dataTitle = {
+    year:
+      parseInt(
+        JSON.parse(
+          process.env.REACT_APP_OBSERVATIONS_CLINICAL_TRIALS,
+        )[0].substring(0, 4),
+        10,
+      ) - 3,
+  };
+
   useEffect(() => {
     const opts = allData?.sponsors || [];
     opts.unshift({
@@ -53,13 +70,6 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
     setOptions(opts);
   }, [allData.sponsors, intl]);
 
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    dataGraphWithin3Years,
-    studyType,
-  );
-
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
   }, [allData, idWithDomainAndStudyType, intl]);
@@ -67,6 +77,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
