@@ -12,7 +12,13 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = ['2023Q4', '2024Q4', '2025Q1', '2025Q4']?.sort();
+  const observationSnaps = [
+    '2023Q4',
+    '2024Q4',
+    '2025Q1',
+    '2025Q4',
+    '2025Q4',
+  ]?.sort();
 
   async function getDataAxios() {
     // Create sponsors list
@@ -39,11 +45,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
 
     const queries = [];
     const queriesSponsor = [];
-    observationSnaps.forEach((observationSnap) => {
+    observationSnaps.forEach((observationSnap, index) => {
       const quarter = observationSnap.substring(4, 6);
       let years3Max = parseInt(observationSnap.substring(0, 4), 10) - 3;
       let years10Max = parseInt(observationSnap.substring(0, 4), 10) - 1;
-      if (quarter !== 'Q4') {
+      if (quarter !== 'Q4' || index === 3) {
         years3Max = parseInt(observationSnap.substring(0, 4), 10) - 4;
         years10Max = parseInt(observationSnap.substring(0, 4), 10) - 2;
       }
@@ -118,7 +124,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       const quarter = observationSnap.substring(4, 6);
       let years3Max = parseInt(observationSnap.substring(0, 4), 10) - 3;
       let years10Max = parseInt(observationSnap.substring(0, 4), 10) - 1;
-      if (quarter !== 'Q4') {
+      if (quarter !== 'Q4' || index === 3) {
         years3Max = parseInt(observationSnap.substring(0, 4), 10) - 4;
         years10Max = parseInt(observationSnap.substring(0, 4), 10) - 2;
       }

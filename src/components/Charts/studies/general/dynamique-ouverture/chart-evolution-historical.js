@@ -17,7 +17,6 @@ import {
 } from '../../../../../utils/constants';
 import {
   capitalize,
-  isInProduction,
   withDomain,
   withtStudyType,
 } from '../../../../../utils/helpers';
