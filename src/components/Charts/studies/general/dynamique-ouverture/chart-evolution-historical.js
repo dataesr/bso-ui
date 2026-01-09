@@ -1,14 +1,12 @@
 import '../../../graph.scss';
 
-import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -23,7 +21,6 @@ import {
   withDomain,
   withtStudyType,
 } from '../../../../../utils/helpers';
-import useLang from '../../../../../utils/Hooks/useLang';
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
@@ -35,17 +32,19 @@ HCExportingData(Highcharts);
 function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang, urls } = useLang();
-  const { pathname } = useLocation();
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
-  const [optionsGraph, setOptionsGraph] = useState(null);
-  const [sort, setSort] = useState('all');
   const [sponsor, setSponsor] = useState('*');
   const { allData, isError, isLoading } = useGetData(studyType, sponsor);
-  const { dataGraphWithin3Years } = allData;
+  const { dataGraph } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+  const optionsGraph = chartOptions[id].getOptions(
+    idWithDomain,
+    intl,
+    dataGraph,
+    studyType,
+  );
 
   useEffect(() => {
     const opts = allData?.sponsors || [];
@@ -55,21 +54,6 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
     });
     setOptions(opts);
   }, [allData.sponsors, intl]);
-
-  useEffect(() => {
-    const dataGraphWithin3YearsEmail = {
-      ...dataGraphWithin3Years,
-      series: dataGraphWithin3Years?.series?.filter((item) => ['2025Q1', '2025Q4'].includes(item.name)),
-    };
-    setOptionsGraph(
-      chartOptions[id].getOptions(
-        idWithDomain,
-        intl,
-        sort === 'all' ? dataGraphWithin3Years : dataGraphWithin3YearsEmail,
-        studyType,
-      ),
-    );
-  }, [dataGraphWithin3Years, id, idWithDomain, intl, sort, studyType]);
 
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
@@ -86,42 +70,12 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
-      {!isInProduction() && pathname === urls.santeEssais.tabs[2][lang] && (
-        <>
-          <SearchableSelect
-            label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
-            onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
-            options={options}
-            selected={sponsor}
-          />
-          <RadioGroup
-            className='d-inline-block'
-            isInline
-            legend={intl.formatMessage({ id: 'app.publi.sort' })}
-            onChange={(newValue) => {
-              const dataGraphWithin3YearsEmail = {
-                ...dataGraphWithin3Years,
-                series: dataGraphWithin3Years?.series?.filter((item) => ['2025Q1', '2025Q4'].includes(item.name)),
-              };
-              setOptionsGraph(
-                chartOptions[id].getOptions(
-                  idWithDomain,
-                  intl,
-                  sort === 'all'
-                    ? dataGraphWithin3Years
-                    : dataGraphWithin3YearsEmail,
-                  studyType,
-                ),
-              );
-              setSort(newValue);
-            }}
-            value={sort}
-          >
-            <Radio label='Tout afficher' value='all' />
-            <Radio label='Afficher les valeurs du publipostage' value='email' />
-          </RadioGroup>
-        </>
-      )}
+      <SearchableSelect
+        label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
+        onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
+        options={options}
+        selected={sponsor}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}
@@ -139,7 +93,7 @@ Chart.defaultProps = {
   domain: 'health',
   hasComments: true,
   hasFooter: true,
-  id: 'general.dynamique.chart-evolution-within-3-years-historical',
+  id: 'general.dynamique.chart-evolution-historical',
   studyType: 'Interventional',
 };
 Chart.propTypes = {

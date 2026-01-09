@@ -146,6 +146,9 @@ const chartComponents = {
   'general.dynamique.chart-evolution': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution'
   )),
+  'general.dynamique.chart-evolution-historical': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-historical'
+  )),
   'general.dynamique.chart-evolution-drug': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-drug'
   )),
