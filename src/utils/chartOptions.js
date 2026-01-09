@@ -2878,7 +2878,7 @@ export const chartOptions = {
         bar: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f} %',
+            format: '{point.y:.0f} % en {series.name}',
           },
         },
       };
