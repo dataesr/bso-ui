@@ -160,7 +160,7 @@ export function getObservationLabel(
   if (observationSnap?.length > 4) {
     const quarter = observationSnap?.substring(4, 6);
     const sep = newline ? '<br/>' : ' - ';
-    if (intl.messages[`app.${quarter}`] && (verbose || quarter !== 'Q4')) {
+    if (intl?.messages?.[`app.${quarter}`] && (verbose || quarter !== 'Q4')) {
       label = label
         .concat(sep)
         .concat(intl.formatMessage({ id: `app.${quarter}` }));
