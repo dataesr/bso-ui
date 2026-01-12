@@ -1,5 +1,4 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';

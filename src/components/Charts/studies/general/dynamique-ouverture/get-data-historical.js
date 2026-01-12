@@ -57,7 +57,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       const years10Min = years10Max - 9;
       const queryHasResults = getFetchOptions({
         key: 'studiesDynamiqueOuverture',
-        parameters: [studyType, years10Min, years10Max],
+        parameters: [studyType, years10Min, years10Max, observationSnap],
         objectType: ['clinicalTrials'],
       });
       const queryHasResultsWithin3Years = getFetchOptions({

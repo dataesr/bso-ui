@@ -14,11 +14,8 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
 
   async function getDataAxios() {
     const queries = [];
-    const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
-      10,
-    );
     const observationSnap = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
+    const currentYear = parseInt(observationSnap.substring(0, 4), 10);
     const years10Max = currentYear - 1;
     const years10Min = years10Max - 9;
     const years3Max = currentYear - 3;
@@ -31,7 +28,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     });
     const queryHasResults = getFetchOptions({
       key: 'studiesDynamiqueOuverture',
-      parameters: [studyType, years10Min, years10Max],
+      parameters: [studyType, years10Min, years10Max, observationSnap],
       objectType: ['clinicalTrials'],
     });
     const queryHasResultsFilterBySponsor = getFetchOptions({
