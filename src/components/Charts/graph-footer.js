@@ -73,7 +73,7 @@ function GraphFooter({
               {date && source ? <hr /> : null}
               {source ? (
                 <Text size='xs' className='source'>
-                  {`Sources: ${source}`}
+                  {`Sources : ${source}`}
                 </Text>
               ) : null}
               {source && srcPath ? <hr /> : null}
