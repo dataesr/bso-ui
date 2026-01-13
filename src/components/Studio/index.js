@@ -352,14 +352,14 @@ function Studio() {
       <Row gutters>
         <Col n='12 md-6'>
           <CopyToClipboard text={getIframeText()}>
-            <Button icon='ri-clipboard-fill' iconPosition='right'>
+            <Button icon='ri-clipboard-fill' iconPosition='right' secondary>
               Copier le code de l'iframe
             </Button>
           </CopyToClipboard>
         </Col>
         <Col n='12 md-6'>
           <CopyToClipboard text={getGraphUrl()}>
-            <Button icon='ri-clipboard-fill' iconPosition='right'>
+            <Button icon='ri-clipboard-fill' iconPosition='right' secondary>
               Copier l'url
             </Button>
           </CopyToClipboard>
@@ -375,6 +375,7 @@ function Studio() {
               name: 'bso_urls.csv',
               type: 'octet/stream',
             })}
+            secondary
           >
             Télécharger la liste des urls des graphiques (.csv)
           </Button>
@@ -388,6 +389,7 @@ function Studio() {
               name: 'bso_graphs.html',
               type: 'octet/stream',
             })}
+            secondary
           >
             Télécharger la liste des graphiques (.html)
           </Button>
