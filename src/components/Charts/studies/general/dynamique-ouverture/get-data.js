@@ -33,7 +33,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     });
     const queryHasResultsFilterBySponsor = getFetchOptions({
       key: 'studiesDynamiqueOuvertureSponsor',
-      parameters: [studyType, sponsor, years10Min, years10Max],
+      parameters: [studyType, sponsor, years10Min, years10Max, observationSnap],
       objectType: ['clinicalTrials'],
     });
     const queryHasResultsWithin3Years = getFetchOptions({

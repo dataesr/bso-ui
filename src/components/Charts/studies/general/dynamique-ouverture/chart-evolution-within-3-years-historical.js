@@ -51,16 +51,6 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
     studyType,
   );
 
-  const dataTitle = {
-    year:
-      parseInt(
-        JSON.parse(
-          process.env.REACT_APP_OBSERVATIONS_CLINICAL_TRIALS,
-        )[0].substring(0, 4),
-        10,
-      ) - 3,
-  };
-
   useEffect(() => {
     const opts = allData?.sponsors || [];
     opts.unshift({
@@ -77,7 +67,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
-      dataTitle={dataTitle}
+      dataTitle={allData?.dataTitleWithin3Years ?? {}}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

@@ -61,6 +61,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={allData?.dataTitle ?? {}}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

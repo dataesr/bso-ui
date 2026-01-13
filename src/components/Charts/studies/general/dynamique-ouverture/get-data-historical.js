@@ -79,7 +79,13 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       );
       const queryHasResultsFilterBySponsor = getFetchOptions({
         key: 'studiesDynamiqueOuvertureSponsor',
-        parameters: [studyType, sponsor, years10Min, years10Max],
+        parameters: [
+          studyType,
+          sponsor,
+          years10Min,
+          years10Max,
+          observationSnap,
+        ],
         objectType: ['clinicalTrials'],
       });
       const queryHasResultsWithin3YearsSponsor = getFetchOptions({
@@ -414,9 +420,20 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const dataGraph = { categories, series };
     const dataGraphWithin3Years = { categories, series: seriesWithin3Years };
 
+    const dataTitle = {
+      yearMax: parseInt(observationSnaps[0].substring(0, 4), 10) - 1,
+      yearMin: parseInt(observationSnaps[0].substring(0, 4), 10) - 10,
+    };
+
+    const dataTitleWithin3Years = {
+      year: parseInt(observationSnaps[0].substring(0, 4), 10) - 3,
+    };
+
     return {
       dataGraph,
       dataGraphWithin3Years,
+      dataTitle,
+      dataTitleWithin3Years,
       sponsors,
     };
   }

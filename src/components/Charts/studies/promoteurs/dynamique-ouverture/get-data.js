@@ -34,7 +34,7 @@ function useGetData(studyType, sponsor = '*') {
     );
     const queryDynamiqueOuvertureSponsor = getFetchOptions({
       key: 'studiesDynamiqueOuvertureSponsor',
-      parameters: [studyType, sponsor, yearMin, yearMax],
+      parameters: [studyType, sponsor, yearMin, yearMax, observationSnap],
       objectType: ['clinicalTrials'],
     });
     queries.push(

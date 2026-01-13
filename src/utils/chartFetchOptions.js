@@ -1017,6 +1017,7 @@ export default function getFetchOptions({
       sponsor,
       yearMin,
       yearMax,
+      observationSnap,
     ]) => ({
       size: 0,
       query: {
@@ -1051,7 +1052,7 @@ export default function getFetchOptions({
       aggs: {
         by_has_result: {
           terms: {
-            field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications`,
+            field: `results_details.${observationSnap}.has_results_or_publications`,
             missing: false,
           },
         },

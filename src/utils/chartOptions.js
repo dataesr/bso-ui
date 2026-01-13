@@ -2601,16 +2601,10 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
       options.plotOptions = {
-        series: {
-          stacking: false,
-          dataLabels: {
-            enabled: false,
-          },
-        },
         bar: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f} %',
+            format: '{point.y:.0f} % {point.observationSnapLabel}',
           },
         },
       };
