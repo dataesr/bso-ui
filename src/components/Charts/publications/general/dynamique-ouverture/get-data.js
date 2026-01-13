@@ -64,16 +64,16 @@ function useGetData(
       const bsoDomainGlobal = intl.formatMessage({ id: 'app.bsoDomain.' });
       const colors = [
         getCSSValue('--orange-soft-100'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
-        getCSSValue('--orange-soft-125'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-75'),
       ];
       const dashStyles = [
         'Solid',
@@ -165,10 +165,14 @@ function useGetData(
           }
           serie1.push({
             bsoDomain,
+            color:
+              el.name === observationYears[0].substring(0, 4)
+                ? getCSSValue('--orange-soft-100')
+                : getCSSValue('--orange-soft-75'),
             name: el.name,
-            y: y?.y ?? 0,
-            ratio,
             publicationDate,
+            ratio,
+            y: y?.y ?? 0,
           });
         }
       });
