@@ -26,7 +26,7 @@ import useLang from '../../../../../utils/Hooks/useLang';
 import ChartWrapper from '../../../../ChartWrapper';
 import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-historical';
+import useGetData from './get-data-within-3-years-historical';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
