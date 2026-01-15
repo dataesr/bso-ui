@@ -19,18 +19,14 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const observationSnaps = JSON.parse(
     process.env.REACT_APP_OBSERVATIONS_CLINICAL_TRIALS,
   )?.sort();
+  const years10Max = 2023;
+  const years10Min = 2014;
 
   async function getDataAxios() {
     // Create sponsors list
-    const currentYear = parseInt(
-      process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
-      10,
-    );
-    const yearsMax = currentYear - 1;
-    const yearsMin = yearsMax - 9;
     const querySponsorsList = getFetchOptions({
       key: 'sponsorsList',
-      parameters: [studyType, yearsMin, yearsMax],
+      parameters: [studyType, years10Min, years10Max],
       objectType: ['clinicalTrials'],
     });
     const resultsSponsorsList = await Axios.post(
@@ -42,19 +38,15 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       value: item.key,
       label: item.key,
     }));
-
     const queries = [];
     const queriesSponsor = [];
     observationSnaps.forEach((observationSnap, index) => {
       const quarter = observationSnap.substring(4, 6);
       let years3Max = parseInt(observationSnap.substring(0, 4), 10) - 3;
-      let years10Max = parseInt(observationSnap.substring(0, 4), 10) - 1;
       if (quarter !== 'Q4' || index === 2) {
         years3Max = parseInt(observationSnap.substring(0, 4), 10) - 4;
-        years10Max = parseInt(observationSnap.substring(0, 4), 10) - 2;
       }
       const years3Min = years3Max - 6;
-      const years10Min = years10Max - 9;
       const queryHasResults = getFetchOptions({
         key: 'studiesDynamiqueOuverture',
         parameters: [studyType, years10Min, years10Max, observationSnap],
@@ -129,12 +121,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     observationSnaps.forEach((observationSnap, index) => {
       const quarter = observationSnap.substring(4, 6);
       let years3Max = parseInt(observationSnap.substring(0, 4), 10) - 3;
-      let years10Max = parseInt(observationSnap.substring(0, 4), 10) - 1;
       if (quarter !== 'Q4' || index === 2) {
         years3Max = parseInt(observationSnap.substring(0, 4), 10) - 4;
-        years10Max = parseInt(observationSnap.substring(0, 4), 10) - 2;
       }
-      const years10Min = years10Max - 9;
       const dataHasResults = results[index * 2].data.aggregations;
       const dataHasResultsAcademic = dataHasResults.by_sponsor_type.buckets.find(
         (ele) => ele.key === 'academique',
