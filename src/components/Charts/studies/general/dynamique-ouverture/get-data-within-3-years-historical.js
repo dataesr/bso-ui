@@ -16,13 +16,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = JSON.parse(
-    process.env.REACT_APP_OBSERVATIONS_CLINICAL_TRIALS,
-  )?.sort();
+  const observationSnaps = ['2024Q4', '2025Q1', '2025Q4', '2026Q1'].sort();
   const years10Max = 2023;
   const years10Min = 2014;
   const years3Max = 2021;
-  const years3Min = years3Max - 6;
+  const years3Min = 2015;
 
   async function getDataAxios() {
     // Create sponsors list
