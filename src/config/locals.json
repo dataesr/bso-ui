@@ -1825,6 +1825,14 @@
     "scale": "funder",
     "agency": "ANR"
   },
+  "03m8vkq32": {
+    "name": "Institut national du Cancer (INCa)",
+    "commentsName": "issues d'un projet financé par l'INCa",
+    "commentsNameEN": "resulting from an INCa-funded project",
+    "startYear": 2016,
+    "scale": "funder",
+    "agency": "INCa"
+  },
   "CERCLL": {
     "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
     "commentsName": "du CERCLL",
