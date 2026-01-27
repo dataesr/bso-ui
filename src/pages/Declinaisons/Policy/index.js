@@ -82,7 +82,7 @@ function Policy() {
         y_abs: 0,
       };
     });
-    const lll = data.filter((item) => SELECTED_TYPES.includes(item.type)).length;
+    const dataFitered = data.filter((item) => SELECTED_TYPES.includes(item.type)).length;
     data.forEach((item) => {
       if (
         item?.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
@@ -122,11 +122,11 @@ function Policy() {
         .reduce((acc, curr) => acc + tmpSelectedTypes[curr].y_abs, 0);
       seriesSelectedTypes[year] = {
         name: year,
-        total: lll,
+        total: dataFitered,
         y_abs: yAbs,
-        y_tot: lll,
-        y: (yAbs / lll) * 100,
-        y_percent: (yAbs / lll) * 100,
+        y_tot: dataFitered,
+        y: (yAbs / dataFitered) * 100,
+        y_percent: (yAbs / dataFitered) * 100,
       };
     });
     const optionsTmp = getGraphOptions({ id, intl });
@@ -139,7 +139,7 @@ function Policy() {
       },
       {
         from: 2021,
-        to: 2025,
+        to: END_YEAR,
         color: getCSSValue('--ouvrir-la-science-yellow'),
       },
     ];
