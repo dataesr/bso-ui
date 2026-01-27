@@ -1554,6 +1554,35 @@ export default function getFetchOptions({
         },
       },
     }),
+    publishersByClassification: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_discipline: {
+          terms: {
+            field: 'bso_classification.keyword',
+            size: 50,
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
     publiCardData: ([observationSnap]) => ({
       size: 0,
       query: {
