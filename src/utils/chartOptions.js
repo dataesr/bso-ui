@@ -713,7 +713,7 @@ export const chartOptions = {
   'publi.publishers.type-ouverture.chart-by-scientific-fields': {
     getOptions: (id, intl, categories, data, dataTitle, displayType) => {
       const options = getGraphOptions({ id, intl, dataTitle });
-      options.chart.height = '1000px';
+      options.chart.height = '600px';
       options.chart.type = 'bar';
       options.xAxis = {
         categories,
@@ -732,7 +732,13 @@ export const chartOptions = {
         series: {
           stacking: 'normal',
           dataLabels: {
-            enabled: false,
+            enabled: true,
+            style: {
+              textOutline: 'none',
+            },
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
           },
         },
       };
