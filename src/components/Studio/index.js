@@ -36,7 +36,6 @@ function Studio() {
   const [observationYearThesisLast, setObservationYearThesisLast] = useState();
   const [observationYears, setObservationYears] = useState([]);
   const [publicationYears, setPublicationYears] = useState([]);
-  const [thesisYears, setThesisYears] = useState([]);
   const [startYear, setStartYear] = useState('2013');
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
@@ -107,7 +106,6 @@ function Studio() {
         label: 'Date de publication utilisée dans le baromètre national',
         value: 'latest',
       });
-      setThesisYears(thesisYearsTmp);
       setEndYearThesis(thesisYearsTmp[thesisYearsTmp.length - 2].value);
     }
   }, [
@@ -202,21 +200,6 @@ function Studio() {
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .map((item) => getIframeText(item.value));
-
-  let options = [];
-  switch (object) {
-  case 'publi':
-    options = publicationYears;
-    break;
-  case 'theses':
-    options = thesisYears;
-    break;
-  case 'datasets':
-    options = datasetsYears;
-    break;
-  default:
-    break;
-  }
 
   return (
     <section
