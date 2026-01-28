@@ -37,7 +37,10 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   });
   let embargoText = '';
   let isEmbargo = false;
-  if (lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION) {
+  if (
+    lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION
+    && !titleId.includes('.national-thesis.')
+  ) {
     isEmbargo = true;
   }
   if (bsoLocalAffiliation && isEmbargo) {

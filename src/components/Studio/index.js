@@ -21,19 +21,22 @@ import tree from './tree';
 
 function Studio() {
   const intl = useIntl();
-  const { lastObservationSnap } = useGlobals();
+  const { lastObservationSnap, lastObservationSnapThesis } = useGlobals();
   const [bsoLocalAffiliation, setBsoLocalAffiliation] = useState('130015506'); // University of Lorraine
+  const [datasetsYears, setDatasetsYears] = useState([]);
   const [displayComment, setDisplayComment] = useState(true);
   const [displayFooter, setDisplayFooter] = useState(true);
   const [displayTitle, setDisplayTitle] = useState(false);
   const [endYear, setEndYear] = useState();
+  const [endYearThesis, setEndYearThesis] = useState();
   const [lang, setLang] = useState('fr');
   const [object, setObject] = useState('publi');
   const [observationYearFirst, setObservationYearFirst] = useState('2018');
   const [observationYearLast, setObservationYearLast] = useState();
+  const [observationYearThesisLast, setObservationYearThesisLast] = useState();
   const [observationYears, setObservationYears] = useState([]);
   const [publicationYears, setPublicationYears] = useState([]);
-  const [repositoriesYears, setRepositoriesYears] = useState([]);
+  const [thesisYears, setThesisYears] = useState([]);
   const [startYear, setStartYear] = useState('2013');
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
@@ -82,10 +85,37 @@ function Studio() {
         label: 'Date de publication utilisée dans le baromètre national',
         value: 'latest',
       });
-      setRepositoriesYears(repositoriesYearsTmp);
+      setDatasetsYears(repositoriesYearsTmp);
       setEndYear(publicationYearsTmp[publicationYearsTmp.length - 2].value);
     }
-  }, [observationYearFirst, lastObservationSnap, startYear]);
+    const lastObservationYearThesisTmp = getObservationLabel(
+      lastObservationSnapThesis > process.env.REACT_APP_LAST_OBSERVATION_THESIS
+        ? process.env.REACT_APP_LAST_OBSERVATION_THESIS
+        : lastObservationSnapThesis,
+    );
+    setObservationYearThesisLast(lastObservationYearThesisTmp);
+    if (lastObservationYearThesisTmp) {
+      const thesisYearsTmp = [
+        ...Array(
+          Number(lastObservationYearThesisTmp) - Number(startYear),
+        ).keys(),
+      ].map((item) => ({
+        label: `${item + Number(startYear)}`,
+        value: `${item + Number(startYear)}`,
+      }));
+      thesisYearsTmp.push({
+        label: 'Date de publication utilisée dans le baromètre national',
+        value: 'latest',
+      });
+      setThesisYears(thesisYearsTmp);
+      setEndYearThesis(thesisYearsTmp[thesisYearsTmp.length - 2].value);
+    }
+  }, [
+    observationYearFirst,
+    lastObservationSnap,
+    lastObservationSnapThesis,
+    startYear,
+  ]);
 
   const commentsName = intl.formatMessage({
     id: 'app.french',
@@ -140,7 +170,11 @@ function Studio() {
 
   const getGraphUrl = (graphId = null) => `${window.location.origin}/integration/${lang}/${
       graphId || graph
-    }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${endYear}&lastObservationYear=${observationYearLast}&startYear=${startYear}&firstObservationYear=${observationYearFirst}&useHalId=${useHalId}`;
+    }?bsoLocalAffiliation=${bsoLocalAffiliation}&displayComment=${displayComment}&displayTitle=${displayTitle}&displayFooter=${displayFooter}&endYear=${
+      object === 'theses' ? endYearThesis : endYear
+    }&lastObservationYear=${
+      object === 'theses' ? observationYearThesisLast : observationYearLast
+    }&startYear=${startYear}&firstObservationYear=${observationYearFirst}&useHalId=${useHalId}`;
 
   const getIframeSnippet = (graphId = null) => (
     <iframe
@@ -168,6 +202,21 @@ function Studio() {
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .reduce((acc, curr) => acc.concat(curr.children), [])
     .map((item) => getIframeText(item.value));
+
+  let options = [];
+  switch (object) {
+  case 'publi':
+    options = publicationYears;
+    break;
+  case 'theses':
+    options = thesisYears;
+    break;
+  case 'datasets':
+    options = datasetsYears;
+    break;
+  default:
+    break;
+  }
 
   return (
     <section
@@ -244,7 +293,7 @@ function Studio() {
             hint="Filtre sur l'année de publication supérieure ou égale"
             label='Première année de publication'
             onChange={(e) => setStartYear(e.target.value)}
-            options={object === 'publi' ? publicationYears : repositoriesYears}
+            options={object === 'publi' ? publicationYears : datasetsYears}
             selected={startYear}
             style={{ backgroundColor: getCSSValue('--white') }}
           />
@@ -257,7 +306,7 @@ function Studio() {
             message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
             messageType={endYear < startYear ? 'error' : null}
             onChange={(e) => setEndYear(e.target.value)}
-            options={object === 'publi' ? publicationYears : repositoriesYears}
+            options={object === 'publi' ? publicationYears : datasetsYears}
             selected={endYear}
             style={{ backgroundColor: getCSSValue('--white') }}
           />
