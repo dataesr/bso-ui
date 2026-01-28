@@ -19,6 +19,9 @@ import {
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import tree from './tree';
 
+const START_OBSERVATION_YEAR = 2018;
+const START_PUBLICATION_YEAR = 2013;
+
 function Studio() {
   const intl = useIntl();
   const { lastObservationSnap, lastObservationSnapThesis } = useGlobals();
@@ -31,12 +34,14 @@ function Studio() {
   const [endYearThesis, setEndYearThesis] = useState();
   const [lang, setLang] = useState('fr');
   const [object, setObject] = useState('publi');
-  const [observationYearFirst, setObservationYearFirst] = useState('2018');
+  const [observationYearFirst, setObservationYearFirst] = useState(
+    `${START_OBSERVATION_YEAR}`,
+  );
   const [observationYearLast, setObservationYearLast] = useState();
   const [observationYearThesisLast, setObservationYearThesisLast] = useState();
   const [observationYears, setObservationYears] = useState([]);
   const [publicationYears, setPublicationYears] = useState([]);
-  const [startYear, setStartYear] = useState('2013');
+  const [startYear, setStartYear] = useState(`${START_PUBLICATION_YEAR}`);
   const [tab, setTab] = useState('general');
   const [useHalId, setUseHalId] = useState(false);
 
@@ -50,13 +55,11 @@ function Studio() {
     if (lastObservationYearTmp) {
       const observationYearsTmp = [
         ...Array(
-          Number(lastObservationYearTmp ?? 0)
-            - Number(observationYearFirst)
-            + 1,
+          Number(lastObservationYearTmp ?? 0) - START_OBSERVATION_YEAR + 1,
         ).keys(),
       ].map((item) => ({
-        label: `${item + Number(observationYearFirst)}`,
-        value: `${item + Number(observationYearFirst)}`,
+        label: `${item + START_OBSERVATION_YEAR}`,
+        value: `${item + START_OBSERVATION_YEAR}`,
       }));
       observationYearsTmp.push({
         label: "Date d'observation utilisée dans le baromètre national",
@@ -64,10 +67,12 @@ function Studio() {
       });
       setObservationYears(observationYearsTmp);
       const publicationYearsTmp = [
-        ...Array(Number(lastObservationYearTmp) - Number(startYear)).keys(),
+        ...Array(
+          Number(lastObservationYearTmp) - START_PUBLICATION_YEAR,
+        ).keys(),
       ].map((item) => ({
-        label: `${item + Number(startYear)}`,
-        value: `${item + Number(startYear)}`,
+        label: `${item + START_PUBLICATION_YEAR}`,
+        value: `${item + START_PUBLICATION_YEAR}`,
       }));
       publicationYearsTmp.push({
         label: 'Date de publication utilisée dans le baromètre national',
@@ -75,10 +80,12 @@ function Studio() {
       });
       setPublicationYears(publicationYearsTmp);
       const repositoriesYearsTmp = [
-        ...Array(Number(lastObservationYearTmp) - Number(startYear) + 1).keys(),
+        ...Array(
+          Number(lastObservationYearTmp) - START_PUBLICATION_YEAR + 1,
+        ).keys(),
       ].map((item) => ({
-        label: `${item + Number(startYear)}`,
-        value: `${item + Number(startYear)}`,
+        label: `${item + START_PUBLICATION_YEAR}`,
+        value: `${item + START_PUBLICATION_YEAR}`,
       }));
       repositoriesYearsTmp.push({
         label: 'Date de publication utilisée dans le baromètre national',
@@ -96,11 +103,11 @@ function Studio() {
     if (lastObservationYearThesisTmp) {
       const thesisYearsTmp = [
         ...Array(
-          Number(lastObservationYearThesisTmp) - Number(startYear),
+          Number(lastObservationYearThesisTmp) - START_PUBLICATION_YEAR,
         ).keys(),
       ].map((item) => ({
-        label: `${item + Number(startYear)}`,
-        value: `${item + Number(startYear)}`,
+        label: `${item + START_PUBLICATION_YEAR}`,
+        value: `${item + START_PUBLICATION_YEAR}`,
       }));
       thesisYearsTmp.push({
         label: 'Date de publication utilisée dans le baromètre national',
@@ -108,12 +115,7 @@ function Studio() {
       });
       setEndYearThesis(thesisYearsTmp[thesisYearsTmp.length - 2].value);
     }
-  }, [
-    observationYearFirst,
-    lastObservationSnap,
-    lastObservationSnapThesis,
-    startYear,
-  ]);
+  }, [lastObservationSnap, lastObservationSnapThesis]);
 
   const commentsName = intl.formatMessage({
     id: 'app.french',
@@ -287,7 +289,9 @@ function Studio() {
             hint="Filtre sur l'année de publication inférieure ou égale"
             label='Dernière année de publication'
             message='Attention, la dernière année de publication doit être inférieure à la première année de publication'
-            messageType={endYear < startYear ? 'error' : null}
+            messageType={
+              startYear !== 'latest' && endYear < startYear ? 'error' : null
+            }
             onChange={(e) => setEndYear(e.target.value)}
             options={object === 'publi' ? publicationYears : datasetsYears}
             selected={endYear}
@@ -314,7 +318,10 @@ function Studio() {
             label="Dernière année d'observation"
             message="Attention, la dernière année d'observation doit être inférieure à la première année d'observation"
             messageType={
-              observationYearLast < observationYearFirst ? 'error' : null
+              observationYearFirst !== 'latest'
+              && observationYearLast < observationYearFirst
+                ? 'error'
+                : null
             }
             onChange={(e) => setObservationYearLast(e.target.value)}
             options={observationYears}
