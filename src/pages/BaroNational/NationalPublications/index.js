@@ -545,13 +545,31 @@ export default function NationalPublications() {
                     fr: '/publications/financements?id=fundings.chart-taux-ouverture',
                   },
                 },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.fundings.anses',
+                  }),
+                  href: {
+                    en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    fr: '/publications/financements?id=fundings.chart-taux-ouverture',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.fundings.inca',
+                  }),
+                  href: {
+                    en: '/publications/fundings?id=fundings.chart-taux-ouverture',
+                    fr: '/publications/financements?id=fundings.chart-taux-ouverture',
+                  },
+                },
               ]}
               isDisplayed={!isInProduction()}
             >
               <GraphContent isDisplayed={!isInProduction()}>
                 <QuestionSection
-                  anchorId='fundings.chart-taux-ouverture'
-                  intlKey=''
+                  anchorId='fundings.anr'
+                  intlKey='app.publi.navigation.fundings.anr'
                   backgroundColor={blueSoft50}
                 >
                   <iframe
@@ -563,22 +581,8 @@ export default function NationalPublications() {
                   />
                   <iframe
                     height='716'
-                    id='publi.general.impact-financement.chart-taux-ouverture'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
-                    title='publi.general.impact-financement.chart-taux-ouverture'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
                     id='publi.general.impact-financement.chart-business-model'
                     src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=00rbzpz17&displayTitle=false&lastObservationYear=latest`}
-                    title='publi.general.impact-financement.chart-business-model'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
-                    id='publi.general.impact-financement.chart-business-model'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-business-model'
                     width='100%'
                   />
@@ -590,7 +594,35 @@ export default function NationalPublications() {
                     width='100%'
                   />
                   <iframe
-                    height='812'
+                    height='716'
+                    id='publi.general.impact-financement.chart-repartition-taux'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=00rbzpz17&displayTitle=false&lastObservationYear=latest`}
+                    title='publi.general.impact-financement.chart-repartition-taux'
+                    width='100%'
+                  />
+                </QuestionSection>
+
+                <QuestionSection
+                  anchorId='fundings.anses'
+                  intlKey='app.publi.navigation.fundings.anses'
+                  backgroundColor={blueSoft50}
+                >
+                  <iframe
+                    height='716'
+                    id='publi.general.impact-financement.chart-taux-ouverture'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
+                    title='publi.general.impact-financement.chart-taux-ouverture'
+                    width='100%'
+                  />
+                  <iframe
+                    height='716'
+                    id='publi.general.impact-financement.chart-business-model'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
+                    title='publi.general.impact-financement.chart-business-model'
+                    width='100%'
+                  />
+                  <iframe
+                    height='716'
                     id='publi.general.impact-financement.chart-repartition-financements'
                     src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-financements?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-repartition-financements'
@@ -599,14 +631,42 @@ export default function NationalPublications() {
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-repartition-taux'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=00rbzpz17&displayTitle=false&lastObservationYear=latest`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-repartition-taux'
+                    width='100%'
+                  />
+                </QuestionSection>
+
+                <QuestionSection
+                  anchorId='fundings.inca'
+                  intlKey='app.publi.navigation.fundings.inca'
+                  backgroundColor={blueSoft50}
+                >
+                  <iframe
+                    height='716'
+                    id='publi.general.impact-financement.chart-taux-ouverture'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-taux-ouverture?bsoLocalAffiliation=03m8vkq32&displayTitle=false&lastObservationYear=latest`}
+                    title='publi.general.impact-financement.chart-taux-ouverture'
+                    width='100%'
+                  />
+                  <iframe
+                    height='716'
+                    id='publi.general.impact-financement.chart-business-model'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-business-model?bsoLocalAffiliation=03m8vkq32&displayTitle=false&lastObservationYear=latest`}
+                    title='publi.general.impact-financement.chart-business-model'
+                    width='100%'
+                  />
+                  <iframe
+                    height='716'
+                    id='publi.general.impact-financement.chart-repartition-financements'
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-financements?bsoLocalAffiliation=03m8vkq32&displayTitle=false&lastObservationYear=latest`}
+                    title='publi.general.impact-financement.chart-repartition-financements'
                     width='100%'
                   />
                   <iframe
                     height='716'
                     id='publi.general.impact-financement.chart-repartition-taux'
-                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=130012024&displayTitle=false&lastObservationYear=latest`}
+                    src={`../integration/${lang}/publi.general.impact-financement.chart-repartition-taux?bsoLocalAffiliation=03m8vkq32&displayTitle=false&lastObservationYear=latest`}
                     title='publi.general.impact-financement.chart-repartition-taux'
                     width='100%'
                   />
