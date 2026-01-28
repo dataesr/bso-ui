@@ -66,7 +66,7 @@ function Chart({ domain, hasComments, hasFooter, id }) {
       isError={isError}
       isLoading={isLoading || !dataGraph}
     >
-      {subAgencies?.length > 0 && (
+      {subAgencies?.length > 0 && agency === 'ANR' && (
         <RadioGroup
           className='d-inline-block'
           isInline
