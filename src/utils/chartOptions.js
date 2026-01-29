@@ -5597,7 +5597,7 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              return `${this.y} €`;
+              return cleanNumber(this.y).concat(' €');
             },
             style: { textOutline: 'none' },
           },
@@ -5624,7 +5624,7 @@ export const chartOptions = {
           enabled: true,
           // eslint-disable-next-line func-names, object-shorthand
           formatter: function () {
-            return `${this.total} €`;
+            return cleanNumber(this.total).concat(' €');
           },
         },
         title: {
