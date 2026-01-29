@@ -1,6 +1,6 @@
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { domains, graphIds, studiesTypes } from '../../utils/constants';

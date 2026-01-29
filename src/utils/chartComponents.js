@@ -191,6 +191,7 @@ const chartComponents = {
   'general.trajectoires.chart-repartition': lazy(() => import(
     '../components/Charts/studies/general/trajectoires/chart-repartition'
   )),
+  'general.waste.money-waste': lazy(() => import('../components/Charts/studies/general/waste/money-waste')),
   'caracteristiques.quand.chart-evolution-temporalites': lazy(() => import(
     '../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites'
   )),

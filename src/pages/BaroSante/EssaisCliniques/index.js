@@ -147,6 +147,12 @@ function EssaisCliniques() {
                     isDisplayed={!isInProduction()}
                     studyType='Interventional'
                   />
+                  <BSOChart
+                    domain='health'
+                    id='general.waste.money-waste'
+                    isDisplayed={!isInProduction()}
+                    studyType='Interventional'
+                  />
                 </QuestionSection>
 
                 <QuestionSection

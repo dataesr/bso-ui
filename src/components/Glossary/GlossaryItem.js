@@ -1,7 +1,6 @@
 import { Icon as DSIcon } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 function GlossaryItem({

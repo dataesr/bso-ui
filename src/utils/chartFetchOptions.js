@@ -2876,6 +2876,67 @@ export default function getFetchOptions({
         },
       },
     }),
+    wasteByYear: ([studyType, yearMin, yearMax, hasResults]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              terms: {
+                'all_sources.keyword': ['clinical_trials', 'ctis', 'euctr'],
+              },
+            },
+            {
+              term: {
+                'results_details.2025Q4.has_results_or_publications':
+                  hasResults,
+              },
+            },
+          ],
+          must: [
+            {
+              exists: {
+                field: 'financements.financement_total',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_year: {
+          terms: {
+            field: 'study_completion_year',
+            order: { _key: 'asc' },
+            size: 15,
+          },
+          aggs: {
+            financement_total: {
+              sum: {
+                field: 'financement_total',
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

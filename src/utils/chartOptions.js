@@ -5587,4 +5587,62 @@ export const chartOptions = {
   },
   'other.policy.open-science-policy': {},
   'other.policy.open-science-document': {},
+  'general.waste.money-waste': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+            formatter() {
+              return `${this.y} €`;
+            },
+            style: { textOutline: 'none' },
+          },
+        },
+      };
+      options.xAxis = {
+        type: 'category',
+        categories: data?.categories || [],
+        title: {
+          text: intl.formatMessage({ id: 'app.study-completion-year' }),
+        },
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.yAxis = {
+        stackLabels: {
+          enabled: true,
+          // eslint-disable-next-line func-names, object-shorthand
+          formatter: function () {
+            return `${this.total} €`;
+          },
+        },
+        title: {
+          text: intl.formatMessage({
+            id: 'app.studies.amount',
+            defaultMessage: 'Montant (€)',
+          }),
+        },
+      };
+      options.series = data?.series || [];
+      options.legend = { reversed: true };
+      options.tooltip = {
+        headerFormat: '',
+        pointFormat: intl.formatMessage({
+          id: `${withtStudyType(id, studyType)}.tooltip`,
+        }),
+      };
+      return options;
+    },
+  },
 };
