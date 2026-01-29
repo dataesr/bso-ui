@@ -81,72 +81,68 @@ function useGetData(beforeLastObservationSnap, observationSnap, domain) {
         const publisherRepositoryCurrent = item.by_oa_host_type.buckets.find(
           (item2) => item2.key === 'publisher;repository',
         )?.doc_count || 0;
-        const totalCurrent = repositoryCurrent
-          + publisherCurrent
-          + publisherRepositoryCurrent
-          + closedCurrent;
         const oaCurrent = repositoryCurrent + publisherCurrent + publisherRepositoryCurrent;
         const nameClean = item.key.replace(/\n/g, '').replace('  ', ' ');
         categories.push({
           key: nameClean,
-          staff: totalCurrent,
-          percent: (oaCurrent / totalCurrent) * 100,
+          percent: (oaCurrent / item.total) * 100,
+          staff: item.total,
         });
         categoriesComments.push(
           capitalize(intl.formatMessage({ id: `app.discipline.${nameClean}` })),
         );
         closed.push({
-          y: (closedCurrent / totalCurrent) * 100,
-          y_abs: closedCurrent,
-          y_tot: totalCurrent,
-          x: catIndex,
+          bsoDomain,
+          discipline: categoriesComments[catIndex],
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categoriesComments[catIndex],
-          bsoDomain,
+          x: catIndex,
+          y_abs: closedCurrent,
+          y_tot: item.total,
+          y: (closedCurrent / item.total) * 100,
         });
         oa.push({
-          y: (oaCurrent / totalCurrent) * 100,
-          y_abs: oaCurrent,
-          y_tot: totalCurrent,
-          x: catIndex,
+          bsoDomain,
+          discipline: categoriesComments[catIndex],
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categoriesComments[catIndex],
-          bsoDomain,
+          x: catIndex,
+          y_abs: oaCurrent,
+          y_tot: item.total,
+          y: (oaCurrent / item.total) * 100,
         });
         repository.push({
-          y: (repositoryCurrent / totalCurrent) * 100,
-          y_abs: repositoryCurrent,
-          y_tot: totalCurrent,
-          x: catIndex,
+          bsoDomain,
+          discipline: categoriesComments[catIndex],
+          oaRate: (oaCurrent / item.total) * 100,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categoriesComments[catIndex],
-          bsoDomain,
-          oaRate: (oaCurrent / totalCurrent) * 100,
+          x: catIndex,
+          y_abs: repositoryCurrent,
+          y_tot: item.total,
+          y: (repositoryCurrent / item.total) * 100,
         });
         publisher.push({
-          y: (publisherCurrent / totalCurrent) * 100,
-          y_abs: publisherCurrent,
-          y_tot: totalCurrent,
-          x: catIndex,
+          bsoDomain,
+          discipline: categoriesComments[catIndex],
+          oaRate: (oaCurrent / item.total) * 100,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categoriesComments[catIndex],
-          bsoDomain,
-          oaRate: (oaCurrent / totalCurrent) * 100,
+          x: catIndex,
+          y_abs: publisherCurrent,
+          y_tot: item.total,
+          y: (publisherCurrent / item.total) * 100,
         });
         publisherRepository.push({
-          y: (publisherRepositoryCurrent / totalCurrent) * 100,
-          y_abs: publisherRepositoryCurrent,
-          y_tot: totalCurrent,
-          x: catIndex,
+          bsoDomain,
+          discipline: categoriesComments[catIndex],
+          oaRate: (oaCurrent / item.total) * 100,
           publicationDate:
             getPublicationYearFromObservationSnap(lastObservationSnap),
-          discipline: categoriesComments[catIndex],
-          bsoDomain,
-          oaRate: (oaCurrent / totalCurrent) * 100,
+          x: catIndex,
+          y_abs: publisherRepositoryCurrent,
+          y_tot: item.total,
+          y: (publisherRepositoryCurrent / item.total) * 100,
         });
       });
 

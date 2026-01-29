@@ -203,7 +203,9 @@ function useGetData(observationSnap, domain) {
     const categoriesByClassification = dataByClassification.map((bucket) => capitalize(
       intl.formatMessage({
         defaultMessage: bucket.key,
-        id: `app.discipline.${bucket.key}`,
+        id: `app.discipline.${bucket.key
+          .replace(/\n/g, '')
+          .replace('  ', ' ')}`,
       }),
     )
       .concat('<br>(')
