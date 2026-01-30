@@ -10,7 +10,7 @@ function useGetData(studyType) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
-  const observationSnaps = ['2025Q4', '2026Q1'].sort();
+  const observationSnaps = ['2025Q1', '2026Q1'].sort();
 
   async function getDataAxios() {
     const currentYear = parseInt(

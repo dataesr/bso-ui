@@ -264,6 +264,9 @@ export function getSource(id, otherSources = []) {
   if (id.includes('preprints')) {
     sources.push('Crossref preprint matching dataset');
   }
+  if (id === 'general.waste.money-waste') {
+    sources.push('SIRANo');
+  }
   sources.push('MESRE');
   sources.push(...otherSources);
   // Deduplicate sources
