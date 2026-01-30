@@ -713,7 +713,43 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.publishers.type-ouverture.chart-by-scientific-fields': {
+  'publi.publishers.type-ouverture.chart-by-classifications': {
+    getOptions: (id, intl, categories, data, dataTitle, displayType) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '600px';
+      options.chart.type = 'bar';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(
+        true,
+        null,
+        displayType === 'display-staff',
+      );
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-oa',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+            style: {
+              textOutline: 'none',
+            },
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'publi.publishers.type-ouverture.chart-by-classifications-publishers': {
     getOptions: (id, intl, categories, data, dataTitle, displayType) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '600px';

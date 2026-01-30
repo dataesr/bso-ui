@@ -27,7 +27,10 @@ function Chart({ id, domain, hasComments, hasFooter }) {
     lastObservationSnap,
     domain,
   );
-  const { categoriesByClassification, dataGraphByClassification } = allData;
+  const {
+    categoriesByClassificationsByPublishers,
+    dataGraphByClassificationsByPublishers,
+  } = allData;
   const dataTitle = {
     publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
   };
@@ -38,8 +41,8 @@ function Chart({ id, domain, hasComments, hasFooter }) {
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    categoriesByClassification,
-    dataGraphByClassification,
+    categoriesByClassificationsByPublishers,
+    dataGraphByClassificationsByPublishers,
   );
 
   return (
@@ -70,7 +73,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publi.publishers.type-ouverture.chart-by-scientific-fields',
+  id: 'publi.publishers.type-ouverture.chart-by-classifications-publishers',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

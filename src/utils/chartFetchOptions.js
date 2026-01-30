@@ -1554,7 +1554,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    publishersByClassification: ([observationSnap]) => ({
+    publishersByClassifications: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
@@ -1568,7 +1568,46 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        by_discipline: {
+        by_classifications: {
+          terms: {
+            field: 'bso_classification.keyword',
+            size: 50,
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    publishersByClassificationsByPublishers: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+            {
+              term: {
+                [`oa_details.${observationSnap}.oa_host_type`]: 'publisher',
+              },
+            },
+            {
+              term: {
+                'genre.keyword': 'journal-article',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_classifications: {
           terms: {
             field: 'bso_classification.keyword',
             size: 50,

@@ -102,9 +102,14 @@ const chartComponents = {
   'publi.publishers.type-ouverture.chart-evolution-repartition': lazy(() => import(
     '../components/Charts/publications/editeurs/type-ouverture/chart-evolution-repartition'
   )),
-  'publi.publishers.type-ouverture.chart-by-scientific-fields': lazy(() => import(
-    '../components/Charts/publications/editeurs/type-ouverture/chart-by-scientific-fields'
+  'publi.publishers.type-ouverture.chart-by-classifications': lazy(() => import(
+    '../components/Charts/publications/editeurs/type-ouverture/chart-by-classifications'
   )),
+  'publi.publishers.type-ouverture.chart-by-classifications-publishers': lazy(
+    () => import(
+      '../components/Charts/publications/editeurs/type-ouverture/chart-by-classifications-publishers'
+    ),
+  ),
   'publi.publishers.poids-editeurs.chart-evolution-repartition': lazy(() => import(
     '../components/Charts/publications/editeurs/poids-editeurs/chart-evolution-repartition'
   )),

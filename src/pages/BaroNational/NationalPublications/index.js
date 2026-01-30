@@ -362,7 +362,11 @@ export default function NationalPublications() {
                   <BSOChart id='publi.publishers.type-ouverture.chart-repartition-modeles' />
                   <BSOChart id='publi.publishers.type-ouverture.chart-evolution-repartition' />
                   <BSOChart
-                    id='publi.publishers.type-ouverture.chart-by-scientific-fields'
+                    id='publi.publishers.type-ouverture.chart-by-classifications'
+                    isDisplayed={!isInProduction()}
+                  />
+                  <BSOChart
+                    id='publi.publishers.type-ouverture.chart-by-classifications-publishers'
                     isDisplayed={!isInProduction()}
                   />
                 </QuestionSection>
