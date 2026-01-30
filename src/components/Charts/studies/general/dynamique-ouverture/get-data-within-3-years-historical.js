@@ -16,7 +16,13 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = ['2024Q4', '2025Q1', '2025Q4', '2026Q1'].sort();
+  const observationSnaps = [
+    '2022Q4',
+    '2023Q4',
+    '2024Q4',
+    '2025Q4',
+    '2026Q1',
+  ].sort();
   const years10Max = 2023;
   const years10Min = 2014;
   const years3Max = 2021;
@@ -146,7 +152,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         observationSnap,
         observationSnapLabel: `${intl.formatMessage({
           id: 'app.observedin',
-        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
+        })} ${getObservationLabel(observationSnap, intl)}`,
         y: allLeadSponsorRate3,
         y_abs:
           (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
@@ -168,7 +174,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         observationSnap,
         observationSnapLabel: `${intl.formatMessage({
           id: 'app.observedin',
-        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
+        })} ${getObservationLabel(observationSnap, intl)}`,
         y: publicLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0,
@@ -185,7 +191,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         observationSnap,
         observationSnapLabel: `${intl.formatMessage({
           id: 'app.observedin',
-        })} ${getObservationLabel(observationSnap, intl, false, true)}`,
+        })} ${getObservationLabel(observationSnap, intl)}`,
         y: privateLeadSponsorsRate3,
         y_abs:
           dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
@@ -246,7 +252,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
             observationSnap,
             observationSnapLabel: `${intl.formatMessage({
               id: 'app.observedin',
-            })} ${getObservationLabel(observationSnap, intl, false, true)}`,
+            })} ${getObservationLabel(observationSnap, intl)}`,
             y: publicLeadSponsorsRate3Sponsor,
             y_abs:
               dataHasResultsWithin3YearsAcademicWithResultsLastYearSponsor?.doc_count
@@ -268,7 +274,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
             observationSnap,
             observationSnapLabel: `${intl.formatMessage({
               id: 'app.observedin',
-            })} ${getObservationLabel(observationSnap, intl, false, true)}`,
+            })} ${getObservationLabel(observationSnap, intl)}`,
             y: privateLeadSponsorsRate3Sponsor,
             y_abs:
               dataHasResultsWithin3YearsIndustrialWithResultsLastYearSponsor?.doc_count

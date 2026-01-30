@@ -10,57 +10,71 @@ function useGetData(studyType) {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
+  const observationSnaps = ['2025Q4', '2026Q1'].sort();
+
   async function getDataAxios() {
     const currentYear = parseInt(
       process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
       10,
     );
-    const yearMin = currentYear - 11;
+    const yearMin = 2018;
     const yearMax = currentYear - 1;
     const queries = [];
-    const queryWaste = getFetchOptions({
-      key: 'wasteByYear',
-      parameters: [studyType, yearMin, yearMax, false],
-      objectType: ['clinicalTrials'],
+    observationSnaps.forEach((observationSnap) => {
+      const queryWaste = getFetchOptions({
+        key: 'wasteByYear',
+        parameters: [studyType, yearMin, yearMax, false, observationSnap],
+        objectType: ['clinicalTrials'],
+      });
+      queries.push(Axios.post(ES_STUDIES_API_URL, queryWaste, HEADERS));
+      const queryValuation = getFetchOptions({
+        key: 'wasteByYear',
+        parameters: [studyType, yearMin, yearMax, true, observationSnap],
+        objectType: ['clinicalTrials'],
+      });
+      queries.push(Axios.post(ES_STUDIES_API_URL, queryValuation, HEADERS));
     });
-    queries.push(Axios.post(ES_STUDIES_API_URL, queryWaste, HEADERS));
-    const queryValuation = getFetchOptions({
-      key: 'wasteByYear',
-      parameters: [studyType, yearMin, yearMax, true],
-      objectType: ['clinicalTrials'],
-    });
-    queries.push(Axios.post(ES_STUDIES_API_URL, queryValuation, HEADERS));
     const results = await Axios.all(queries);
-    const bucketsWaste = results?.[0]?.data?.aggregations?.by_year?.buckets ?? [];
-    const years = bucketsWaste.map((bucket) => bucket.key);
-    const waste = years.map((year) => {
-      const ct = bucketsWaste.find((bucket) => bucket.key === year);
-      return {
-        count: ct?.doc_count ?? 0,
+    const series = [];
+    const categories = ['2018', '2019', '2020', '2021', '2022', '2023', '2024'];
+
+    for (let i = 0; i < results.length; i += 2) {
+      const bucketsWaste = results?.[i]?.data?.aggregations?.by_year?.buckets ?? [];
+      const years = bucketsWaste.map((bucket) => bucket.key);
+      const waste = years.map((year) => {
+        const ct = bucketsWaste.find((bucket) => bucket.key === year);
+        return {
+          count: ct?.doc_count ?? 0,
+          y: ct?.financement_total?.value ?? 0,
+          year,
+        };
+      });
+      const bucketsValuation = results?.[i + 1]?.data?.aggregations?.by_year?.buckets ?? [];
+      const valuation = years.map((year) => {
+        const ct = bucketsValuation.find((bucket) => bucket.key === year);
+        return {
+          count: ct?.doc_count ?? 0,
+          y: ct?.financement_total?.value ?? 0,
+          year,
+        };
+      });
+      series.push({
+        color: getCSSValue('--hybrid'),
+        data: waste,
         name: 'waste',
-        y: ct?.financement_total?.value ?? 0,
-        year,
-      };
-    });
-    const bucketsValuation = results?.[1]?.data?.aggregations?.by_year?.buckets ?? [];
-    const valuation = years.map((year) => {
-      const ct = bucketsValuation.find((bucket) => bucket.key === year);
-      return {
-        count: ct?.doc_count ?? 0,
-        name: 'valuation',
-        y: ct?.financement_total?.value ?? 0,
-        year,
-      };
-    });
-    const series = [
-      { color: getCSSValue('--hybrid'), data: waste, name: 'Waste' },
-      {
+        stack: i === 0 ? 'before' : 'after',
+        stackLabel: i === 0 ? 'Avant le courrier' : 'Après le courrier',
+      });
+      series.push({
         color: getCSSValue('--yellow-medium-100'),
         data: valuation,
-        name: 'Valuation',
-      },
-    ];
-    return { dataGraph: { categories: years, series } };
+        name: 'valuation',
+        stack: i === 0 ? 'before' : 'after',
+        stackLabel: i === 0 ? 'Avant le courrier' : 'Après le courrier',
+      });
+    }
+
+    return { dataGraph: { categories, series } };
   }
 
   useEffect(() => {

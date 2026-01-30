@@ -2915,7 +2915,13 @@ export default function getFetchOptions({
         },
       },
     }),
-    wasteByYear: ([studyType, yearMin, yearMax, hasResults]) => ({
+    wasteByYear: ([
+      studyType,
+      yearMin,
+      yearMax,
+      hasResults,
+      observationSnap,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -2945,7 +2951,7 @@ export default function getFetchOptions({
             },
             {
               term: {
-                'results_details.2025Q4.has_results_or_publications':
+                [`results_details.${observationSnap}.has_results_or_publications`]:
                   hasResults,
               },
             },

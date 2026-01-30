@@ -2964,7 +2964,7 @@ export const chartOptions = {
           style: {
             color: getCSSValue('--g800'),
             fontSize: '12px',
-            fontWeight: 'bold',
+            textOutline: 'none',
           },
         },
       };
@@ -5633,34 +5633,27 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             formatter() {
-              return cleanNumber(this.y).concat(' €');
+              return `${cleanNumber(this.y)} € pour ${this.point.count} EC`;
             },
             style: { textOutline: 'none' },
           },
         },
       };
       options.xAxis = {
-        type: 'category',
         categories: data?.categories || [],
         title: {
           text: intl.formatMessage({ id: 'app.study-completion-year' }),
-        },
-        lineWidth: 0,
-        tickWidth: 0,
-        labels: {
-          style: {
-            color: getCSSValue('--g800'),
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
         },
       };
       options.yAxis = {
         stackLabels: {
           enabled: true,
-          // eslint-disable-next-line func-names, object-shorthand
-          formatter: function () {
-            return cleanNumber(this.total).concat(' €');
+          formatter() {
+            return `${cleanNumber(this.total)} € observé ${
+              this.stack === 'before'
+                ? 'avant le courrier'
+                : 'après le courrier'
+            }`;
           },
         },
         title: {

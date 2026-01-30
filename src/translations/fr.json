@@ -718,7 +718,7 @@
   "app.health-interventional.resultats.type-diffusion.chart-repartition-par-type.tooltip": "<b>Essais cliniques enregistrés et terminés entre {point.yearMin} et {point.yearMax}, de type {point.intervention_type} <span style='text-transform: lowercase'>{series.name}</span></b><br>{point.y:.2f} % d'essais <span style='text-transform: lowercase'>{series.name}</span> ({point.y_abs} / {point.y_tot})",
   "app.health-interventional.navigation.drug": "Essais sur le médicament",
   "app.health-interventional.general.waste.money-waste.title": "Somme des montants perçus pour des essais cliniques déclaré comme terminés mais n'ayant pas communiqué de résultat trouvé, par année de fin des essais",
-  "app.health-interventional.general.waste.money-waste.tooltip": "En {point.year}, {point.count} essais cliniques terminés sont ici concernés pour un financement total de {point.y} €",
+  "app.health-interventional.general.waste.money-waste.tooltip": "{series.userOptions.stackLabel}, {point.count} essais cliniques étaient dénombrés comme terminés en {point.year} pour un financement total de {point.y} €",
   "app.health-observational.caracteristiques": "Caratéristiques",
   "app.health-observational.caracteristiques.combien.title": "Combien de patients sont impliqué dans les études observationnelles ?",
   "app.health-observational.caracteristiques.combien.chart-groupes-patients.legend": "Nombre d'études observationnelles enregistrées",
@@ -1609,5 +1609,5 @@
   "app.repositories.label.univoak": "univOAK (France)",
   "app.repositories.label.usofficeofscientificandtechnicalinformation": "US OSTP (USA)",
   "app.repositories.label.zenodo": "Zenodo (Europe)",
-  "app.observedin": "observés en"
+  "app.observedin": "observé en"
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
@@ -20,19 +21,19 @@ import GraphTitle from '../Charts/graph-title';
 import Loader from '../Loader';
 
 function ChartWrapper({
-  chartRef,
+  chartRef = () => {},
   children,
-  dataTitle,
-  date,
+  dataTitle = {},
+  date = undefined,
   domain,
-  enableExport,
-  hasBeta,
-  hasComments,
-  hasFooter,
+  enableExport = true,
+  hasBeta = false,
+  hasComments = true,
+  hasFooter = true,
   id,
-  isError,
-  isLoading,
-  studyType,
+  isError = false,
+  isLoading = false,
+  studyType = '',
 }) {
   const { lang } = useLang();
   const { updateDate } = useGlobals();
@@ -139,19 +140,6 @@ function ChartWrapper({
     </>
   );
 }
-
-ChartWrapper.defaultProps = {
-  chartRef: () => {},
-  dataTitle: {},
-  date: undefined,
-  enableExport: true,
-  hasBeta: false,
-  hasComments: true,
-  hasFooter: true,
-  isError: false,
-  isLoading: false,
-  studyType: '',
-};
 
 ChartWrapper.propTypes = {
   chartRef: PropTypes.oneOfType([
