@@ -1,5 +1,4 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 
@@ -14,7 +13,7 @@ import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
-import { getCSSValue, isInProduction } from '../../../utils/helpers';
+import { getCSSValue, isInLocal, isInProduction } from '../../../utils/helpers';
 import useLang from '../../../utils/Hooks/useLang';
 
 function EssaisCliniques() {
@@ -127,18 +126,7 @@ function EssaisCliniques() {
                   />
                   <BSOChart
                     domain='health'
-                    id='general.dynamique.chart-evolution-within-3-years-by-year'
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    domain='health'
                     id='general.dynamique.chart-evolution-within-1-year'
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    domain='health'
-                    id='general.dynamique.chart-evolution-within-1-year-by-year'
-                    isDisplayed={!isInProduction()}
                     studyType='Interventional'
                   />
                   <BSOChart
@@ -151,6 +139,18 @@ function EssaisCliniques() {
                     domain='health'
                     id='general.waste.money-waste'
                     isDisplayed={!isInProduction()}
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-3-years-by-year'
+                    isDisplayed={isInLocal()}
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-1-year-by-year'
+                    isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
                 </QuestionSection>
@@ -530,22 +530,24 @@ function EssaisCliniques() {
                   />
                   <BSOChart
                     domain='health'
-                    id='general.dynamique.chart-evolution-within-3-years-by-year-drug'
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    domain='health'
                     id='general.dynamique.chart-evolution-within-1-year-drug'
                     studyType='Interventional'
                   />
                   <BSOChart
                     domain='health'
-                    id='general.dynamique.chart-evolution-within-1-year-by-year-drug'
+                    id='general.dynamique.chart-evolution-10-years-within-1-year-drug'
                     studyType='Interventional'
                   />
                   <BSOChart
                     domain='health'
-                    id='general.dynamique.chart-evolution-10-years-within-1-year-drug'
+                    id='general.dynamique.chart-evolution-within-3-years-by-year-drug'
+                    isDisplayed={isInLocal()}
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-1-year-by-year-drug'
+                    isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
                 </QuestionSection>
