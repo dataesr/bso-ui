@@ -89,14 +89,18 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const results = await Axios.all(queries);
     const resultsSponsor = await Axios.all(queriesSponsor);
 
-    const categories = [
+    // The horizontal bars order is defined by the categories order
+    const categories = [];
+    if (sponsor !== '*') categories.push(sponsor);
+    categories.push(
       capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+    );
+    categories.push(
       capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
+    );
+    categories.push(
       capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
-    ];
-    if (sponsor !== '*') {
-      categories.push(sponsor);
-    }
+    );
 
     const seriesWithin3Years = [];
     observationSnaps.forEach((observationSnap, index) => {

@@ -75,13 +75,22 @@ function useGetData(studyType, sponsor = '*') {
     const sponsWithout = spons?.by_has_result.buckets.find(
       (ele) => ele.key === 0,
     );
-    const categories = [
+
+    // The horizontal bars order is defined by the categories order
+    const categories = [];
+    if (sponsor !== '*') categories.push(sponsor);
+    categories.push(
       capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+    );
+    categories.push(
       capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
+    );
+    categories.push(
       capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
-    ];
+    );
+
     series[0].data.push({
-      name: intl.formatMessage({ id: 'app.all-sponsor-types' }),
+      name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
       yearMin,
       yearMax,
       color: getCSSValue('--blue-soft-100'),
@@ -95,7 +104,7 @@ function useGetData(studyType, sponsor = '*') {
     series[0].data.push({
       yearMin,
       yearMax,
-      name: intl.formatMessage({ id: 'app.sponsor.academique' }),
+      name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
       y_tot: academic?.doc_count || 0,
       y_abs: academicWith?.doc_count || 0,
       y: 100 * ((academicWith?.doc_count || 0) / academic?.doc_count),
@@ -104,7 +113,7 @@ function useGetData(studyType, sponsor = '*') {
     series[0].data.push({
       yearMin,
       yearMax,
-      name: intl.formatMessage({ id: 'app.sponsor.industriel' }),
+      name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
       y_tot: indus?.doc_count || 0,
       y_abs: indusWith?.doc_count || 0,
       y: 100 * ((indusWith?.doc_count || 0) / indus?.doc_count),
@@ -123,7 +132,6 @@ function useGetData(studyType, sponsor = '*') {
         yearMax,
         yearMin,
       });
-      categories.push(sponsor);
     }
     const dataGraph1 = { categories, series };
 
