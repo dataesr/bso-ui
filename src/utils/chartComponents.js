@@ -172,9 +172,14 @@ const chartComponents = {
   'general.dynamique.chart-evolution-within-3-years-by-year-drug': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year-drug'
   )),
-  'general.dynamique.chart-evolution-within-3-years-historical': lazy(() => import(
-    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical'
+  'general.dynamique.chart-evolution-within-3-years-historical-all': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical-all'
   )),
+  'general.dynamique.chart-evolution-within-3-years-historical-academic': lazy(
+    () => import(
+      '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical-academic'
+    ),
+  ),
   'general.dynamique.chart-evolution-within-1-year': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
   )),

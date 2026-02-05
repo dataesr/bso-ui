@@ -21,6 +21,7 @@ import TodayNumbersSection from '../../components/TodayNumbersSection';
 import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
+import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
@@ -93,6 +94,12 @@ function BaroSante() {
                       <BSOChart
                         id='general.dynamique.chart-evolution-within-3-years'
                         domain='health'
+                        studyType='Interventional'
+                      />
+                      <BSOChart
+                        domain='health'
+                        id='general.dynamique.chart-evolution-within-3-years-historical-academic'
+                        isDisplayed={!isInProduction()}
                         studyType='Interventional'
                       />
                     </Col>

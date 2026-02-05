@@ -24,6 +24,7 @@ import TodayNumbersItem from '../components/TodayNumbersSection/TodayNumbersItem
 import ToolCardsSection from '../components/ToolCardsSection';
 import UpdateDate from '../components/UpdateDate';
 import GlossaryEntries from '../translations/glossary.json';
+import { isInProduction } from '../utils/helpers';
 import useLang from '../utils/Hooks/useLang';
 
 function HomePage() {
@@ -242,6 +243,12 @@ function HomePage() {
                       <BSOChart
                         id='general.dynamique.chart-evolution-within-3-years'
                         domain='health'
+                        studyType='Interventional'
+                      />
+                      <BSOChart
+                        domain='health'
+                        id='general.dynamique.chart-evolution-within-3-years-historical-academic'
+                        isDisplayed={!isInProduction()}
                         studyType='Interventional'
                       />
                     </Col>
