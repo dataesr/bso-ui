@@ -150,7 +150,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       ];
       dataGraph2.push(serie);
     });
-    const dataGraph1 = dataGraph2.map((el) => ({
+    const dataGraph1 = dataGraph2.map((el, index) => ({
       name: el.name,
       bsoDomain,
       y: el.data.length ? el.data[el.data.length - 1].y : 0,
@@ -160,6 +160,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
           : needle,
       ratio: el.ratios[el.data.length - 1],
       publicationDate: el.publicationDate,
+      color:
+        index === 0
+          ? getCSSValue('--yellow-medium-125')
+          : getCSSValue('--yellow-medium-75'),
     }));
 
     const categories = dataGraph2?.[0]?.data.map(
@@ -195,11 +199,11 @@ function useGetData(observationSnaps, needle = '*', domain) {
       rate1 = dataGraph2
         .find((item) => item.name === year1)
         ?.data?.find((item) => item.publicationDate === year3)
-        ?.y.toFixed(0);
+        ?.y?.toFixed(0) ?? 0;
       rate2 = dataGraph2
         .find((item) => item.name === year2)
         ?.data?.find((item) => item.publicationDate === year3)
-        ?.y.toFixed(0);
+        ?.y?.toFixed(0) ?? 0;
       firstObservationYear = getObservationLabel(
         observationYears[observationYears.length - 1],
         intl,

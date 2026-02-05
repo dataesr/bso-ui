@@ -42,13 +42,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   const { observationSnaps, lastObservationSnap } = useGlobals();
   const { data, isError, isLoading } = useGetData(observationSnaps, domain);
   const idWithDomain = withDomain(id, domain);
-  const orangeSoft25 = getCSSValue('--orange-soft-25');
-  const orangeSoft50 = getCSSValue('--orange-soft-50');
-  const orangeSoft75 = getCSSValue('--orange-soft-75');
-  const orangeSoft100 = getCSSValue('--orange-soft-100');
-  const orangeSoft125 = getCSSValue('--orange-soft-125');
-  const orangeSoft150 = getCSSValue('--orange-soft-150');
-  const orangeSoft175 = getCSSValue('--orange-soft-175');
 
   useEffect(() => {
     let newData = [];
@@ -77,41 +70,45 @@ function Chart({ domain, hasComments, hasFooter, id }) {
       }
 
       for (let index = 1; index < dates.length + 1; index += 1) {
-        let lowColor = '';
-        let lineColor = 'white';
         let fillColor = '';
+        let lineColor = 'white';
+        let lowColor = '';
         let radius = 7;
         let showInLegend = true;
         const delta = parseInt(lastObservationSnap.substring(0, 4), 10)
           - parseInt(dates[index - 1].substring(0, 4), 10);
         switch (delta) {
+        case 7:
+          fillColor = getCSSValue('--orange-soft-25');
+          lowColor = fillColor;
+          break;
         case 6:
-          fillColor = orangeSoft25;
+          fillColor = getCSSValue('--orange-soft-25');
           lowColor = fillColor;
           break;
         case 5:
-          fillColor = orangeSoft50;
+          fillColor = getCSSValue('--orange-soft-50');
           lowColor = fillColor;
           break;
         case 4:
-          fillColor = orangeSoft75;
+          fillColor = getCSSValue('--orange-soft-75');
           lowColor = fillColor;
           break;
         case 3:
-          fillColor = orangeSoft125;
+          fillColor = getCSSValue('--orange-soft-125');
           lowColor = fillColor;
           break;
         case 2:
-          fillColor = orangeSoft150;
+          fillColor = getCSSValue('--orange-soft-150');
           lowColor = fillColor;
           break;
         case 1:
-          fillColor = orangeSoft175;
+          fillColor = getCSSValue('--orange-soft-175');
           lowColor = fillColor;
           break;
         case 0:
           fillColor = 'white';
-          lineColor = orangeSoft100;
+          lineColor = getCSSValue('--orange-soft-100');
           lowColor = lineColor;
           radius = 8;
           showInLegend = false;
@@ -170,27 +167,13 @@ function Chart({ domain, hasComments, hasFooter, id }) {
           radius: 8,
           fillColor: 'white',
           symbol: 'circle',
-          lineColor: orangeSoft100,
+          lineColor: getCSSValue('--orange-soft-100'),
         },
       });
 
       setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, series));
     }
-  }, [
-    data,
-    id,
-    idWithDomain,
-    intl,
-    lastObservationSnap,
-    orangeSoft50,
-    orangeSoft75,
-    orangeSoft100,
-    orangeSoft125,
-    orangeSoft175,
-    sort,
-    orangeSoft25,
-    orangeSoft150,
-  ]);
+  }, [data, id, idWithDomain, intl, lastObservationSnap, sort]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));

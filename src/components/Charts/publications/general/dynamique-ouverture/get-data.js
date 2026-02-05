@@ -64,16 +64,16 @@ function useGetData(
       const bsoDomainGlobal = intl.formatMessage({ id: 'app.bsoDomain.' });
       const colors = [
         getCSSValue('--orange-soft-100'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
       ];
       const dashStyles = [
         'Solid',
@@ -214,18 +214,18 @@ function useGetData(
       const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0;
       const value2 = dataGraph1?.series[0]?.data
         .find((item) => item.name === year3)
-        ?.y.toFixed(1) || 0;
+        ?.y?.toFixed(1) ?? 0;
       const healthPublicationsLabel = capitalize(
         intl.formatMessage({ id: 'app.publications.health' }),
       );
       const healthValue1 = dataGraph1?.series
         .find((item) => item.name === healthPublicationsLabel)
         ?.data?.find((item) => item.name === year2)
-        ?.y.toFixed(0) || 0;
+        ?.y?.toFixed(0) ?? 0;
       const healthValue2 = dataGraph1?.series
         .find((item) => item.name === healthPublicationsLabel)
         ?.data?.find((item) => item.name === year3)
-        ?.y.toFixed(0) || 0;
+        ?.y?.toFixed(0) ?? 0;
 
       // Should collect data from last year and 3 years before
       const slice = parseInt(dataGraph2[0]?.name, 10)

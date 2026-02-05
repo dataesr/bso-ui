@@ -876,10 +876,6 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'bar';
       options.legend.title.text = '';
-      options.colors = [
-        getCSSValue('--orange-soft-100'),
-        getCSSValue('--orange-soft-175'),
-      ];
       options.yAxis = {
         max: 100,
         min: 0,
@@ -892,7 +888,7 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--orange-soft-75'),
+              color: getCSSValue('--orange-soft-50'),
             },
           },
           dataLabels: {
@@ -947,7 +943,7 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--orange-soft-75'),
+              color: getCSSValue('--orange-soft-50'),
             },
           },
           dataLabels: {
@@ -1002,7 +998,7 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--orange-soft-75'),
+              color: getCSSValue('--orange-soft-50'),
             },
           },
           dataLabels: {
@@ -1654,13 +1650,12 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.legend = {};
       options.chart.type = 'bar';
-      options.colors = [getCSSValue('--yellow-medium-125')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--yellow-medium-75'),
+              color: getCSSValue('--yellow-medium-50'),
             },
           },
           dataLabels: {
@@ -1751,7 +1746,7 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--yellow-medium-75'),
+              color: getCSSValue('--yellow-medium-50'),
             },
           },
           dataLabels: {
@@ -2039,7 +2034,7 @@ export const chartOptions = {
             color:
               i === data.length - 1
                 ? getCSSValue('--orange-soft-100')
-                : getCSSValue('--orange-soft-125'),
+                : getCSSValue('--orange-soft-75'),
           })),
         },
       ];
@@ -2327,13 +2322,12 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.legend = {};
       options.chart.type = 'bar';
-      options.colors = [getCSSValue('--green-medium-125')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--green-medium-75'),
+              color: getCSSValue('--green-medium-50'),
             },
           },
           dataLabels: {
