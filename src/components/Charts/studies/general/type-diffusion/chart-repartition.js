@@ -70,7 +70,7 @@ Chart.defaultProps = {
   domain: 'health',
   hasComments: true,
   hasFooter: true,
-  id: 'general.waste.money-waste',
+  id: 'general.type-diffusion.chart-repartition',
   studyType: 'Interventional',
 };
 Chart.propTypes = {

@@ -61,14 +61,14 @@ function useGetData(studyType) {
       series.push({
         color: getCSSValue('--hybrid'),
         data: waste,
-        name: 'waste',
+        name: `Gaspillage ${i === 0 ? 'avant' : 'après'} le courrier`,
         stack: i === 0 ? 'before' : 'after',
         stackLabel: i === 0 ? 'Avant le courrier' : 'Après le courrier',
       });
       series.push({
         color: getCSSValue('--yellow-medium-100'),
         data: valuation,
-        name: 'valuation',
+        name: `Valorisation ${i === 0 ? 'avant' : 'après'} le courrier`,
         stack: i === 0 ? 'before' : 'after',
         stackLabel: i === 0 ? 'Avant le courrier' : 'Après le courrier',
       });

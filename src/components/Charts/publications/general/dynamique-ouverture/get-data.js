@@ -90,7 +90,7 @@ function useGetData(
       ];
       const dataGraph2 = [];
       const dataGraphGlobal = [];
-      allData.forEach((observationSnapData, i) => {
+      allData.forEach((observationSnapData, index) => {
         const serie = {};
         const filtered = observationSnapData.data
           .sort((a, b) => a.key - b.key)
@@ -108,16 +108,17 @@ function useGetData(
           observationSnapData.observationSnap,
           intl,
         );
-        serie.color = colors[i];
-        serie.dashStyle = dashStyles[i];
-        if (i === 0) {
+        serie.color = colors[index];
+        serie.dashStyle = dashStyles[index];
+        if (index === 0) {
           serie.marker = {
             fillColor: 'white',
-            lineColor: colors[i],
+            lineColor: colors[index],
             symbol: 'circle',
             lineWidth: 2,
             radius: 5,
           };
+          serie.lineWidth = 2;
         }
         serie.data = filtered.map((el) => ({
           y_tot:
@@ -141,7 +142,7 @@ function useGetData(
             })`,
         );
         serie.lastPublicationDate = filtered.length > 0 ? filtered[filtered.length - 1].key : 0;
-        if (i < observationYears.length) {
+        if (index < observationYears.length) {
           dataGraph2.push(serie);
         } else {
           dataGraphGlobal.push(serie);

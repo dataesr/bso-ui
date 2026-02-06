@@ -129,6 +129,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           lineWidth: 2,
           radius: 5,
         };
+        serie.lineWidth = 2;
       }
       serie.data = observationSnapData.data.oaHostType.map((value, index) => ({
         y: (value * 100) / observationSnapData.data.all[index],

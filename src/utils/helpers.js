@@ -67,14 +67,14 @@ export function sortByPath(array, path) {
 export function cleanNumber(num, precision = 1, small = false) {
   let myCleanedNumber;
   if (num < 1000 && small === false) {
-    myCleanedNumber = num.toFixed(0);
+    myCleanedNumber = num?.toFixed(0);
   } else {
     const units = ['k', 'M', 'B', 'T', 'Q'];
-    const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
+    const unit = Math.floor((num / 1.0e1)?.toFixed(0)?.toString()?.length);
     const r = unit % 3;
     const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`);
     const finalUnit = units[Math.floor(unit / 3) - 1] || '';
-    myCleanedNumber = `${x.toFixed(precision)} ${finalUnit}`;
+    myCleanedNumber = `${x?.toFixed(precision)} ${finalUnit}`;
   }
   return myCleanedNumber;
 }

@@ -16,13 +16,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = [
-    '2022Q4',
-    '2023Q4',
-    '2024Q4',
-    '2025Q4',
-    '2026Q1',
-  ].sort();
+  const observationSnaps = ['2022Q4', '2023Q4', '2024Q4', '2025Q4'].sort();
   const years10Max = 2023;
   const years10Min = 2014;
 

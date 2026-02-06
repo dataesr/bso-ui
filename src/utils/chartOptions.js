@@ -894,7 +894,11 @@ export const chartOptions = {
           dataLabels: {
             allowOverlap: true,
             enabled: true,
-            format: '{point.y:.0f} %',
+            formatter() {
+              return `${this.point.y.toFixed(0)} %${
+                this.point.x === 0 ? ' *' : ''
+              }`;
+            },
             style: {
               color: getCSSValue('--g-800'),
               fontSize: '20px',
@@ -914,6 +918,14 @@ export const chartOptions = {
             fontWeight: 'bold',
           },
         },
+        plotLines: [
+          {
+            color: getCSSValue('--g-800'),
+            dashStyle: 'ShortDash',
+            value: 0.5,
+            width: 1,
+          },
+        ],
       };
       options.series = data?.series;
       options.exporting.csv = {
@@ -1067,6 +1079,8 @@ export const chartOptions = {
               return '';
             },
           },
+          lineWidth: 1,
+          marker: { lineWidth: 1 },
         },
       };
       options.series = data;
@@ -1729,6 +1743,8 @@ export const chartOptions = {
               return '';
             },
           },
+          lineWidth: 1,
+          marker: { lineWidth: 1 },
         },
       };
       options.series = data;
@@ -2311,6 +2327,8 @@ export const chartOptions = {
               return '';
             },
           },
+          linewidth: 1,
+          marker: { lineWidth: 1 },
         },
       };
       options.series = data;
@@ -2937,7 +2955,6 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
-      options.chart.height = '200px';
       options.plotOptions = {
         bar: {
           dataLabels: {
@@ -2948,6 +2965,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
         type: 'category',
         categories: data?.categories || [],
         lineWidth: 0,
@@ -2975,7 +2993,6 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
-      options.chart.height = '200px';
       options.plotOptions = {
         bar: {
           dataLabels: {
@@ -2986,6 +3003,7 @@ export const chartOptions = {
       };
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
         type: 'category',
         categories: data?.categories || [],
         lineWidth: 0,
@@ -5657,6 +5675,7 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
+      options.chart.height = '600px';
       options.plotOptions = {
         series: {
           stacking: 'normal',
@@ -5665,7 +5684,6 @@ export const chartOptions = {
             formatter() {
               return `${cleanNumber(this.y)} € pour ${this.point.count} EC`;
             },
-            style: { textOutline: 'none' },
           },
         },
       };
@@ -5694,7 +5712,6 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-      options.legend = { reversed: true };
       options.tooltip = {
         headerFormat: '',
         pointFormat: intl.formatMessage({

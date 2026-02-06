@@ -128,7 +128,6 @@ function HomePage() {
                     <Col n='12 md-8'>
                       <BSOChart
                         id='publi.general.dynamique-ouverture.chart-taux-ouverture'
-                        hasComments={false}
                         hasFooter={false}
                       />
                     </Col>
