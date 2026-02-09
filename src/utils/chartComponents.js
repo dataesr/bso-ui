@@ -180,6 +180,10 @@ const chartComponents = {
       '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical-academic'
     ),
   ),
+  'general.dynamique.chart-evolution-within-3-years-historical-industrial':
+    lazy(() => import(
+      '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical-industrial'
+    )),
   'general.dynamique.chart-evolution-within-1-year': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
   )),

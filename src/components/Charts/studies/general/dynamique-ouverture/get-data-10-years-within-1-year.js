@@ -13,11 +13,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
 
   async function getDataAxios() {
-    const currentYear = parseInt(
+    const lastObservationYear = parseInt(
       process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
       10,
     );
-    const years10Max = currentYear - 1;
+    const years10Max = lastObservationYear - 1;
     const years10Min = years10Max - 9;
 
     const querySponsorsList = getFetchOptions({

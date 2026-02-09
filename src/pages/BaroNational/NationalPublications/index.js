@@ -364,10 +364,12 @@ export default function NationalPublications() {
                   <BSOChart
                     id='publi.publishers.type-ouverture.chart-by-classifications'
                     isDisplayed={!isInProduction()}
+                    productionReady
                   />
                   <BSOChart
                     id='publi.publishers.type-ouverture.chart-by-classifications-publishers'
                     isDisplayed={!isInProduction()}
+                    productionReady
                   />
                 </QuestionSection>
 

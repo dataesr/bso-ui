@@ -1,25 +1,28 @@
+/* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { domains } from '../../utils/constants';
 import { getObservationLabel } from '../../utils/helpers';
 import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useGetPublicationRateFrom from '../../utils/Hooks/useGetPublicationRateFrom';
+import useGetStudiesRateFrom from '../../utils/Hooks/useGetStudiesRateFrom';
 import Icon from '../Icon';
 import InfoCard from '../InfoCard';
 
-export default function ProgressionCard({ domain }) {
+export default function ProgressionCard({ domain = '' }) {
   const intl = useIntl();
-  const { beforeLastObservationSnap, lastObservationSnap, observationSnaps } = useGlobals();
+  const { lastObservationSnap, observationSnaps } = useGlobals();
   const [previousObservationSnap, setPreviousObservationSnap] = useState('');
   const [progression, setProgression] = useState({});
 
+  const observationSnapsHealth = ['2025Q4', '2024Q4', '2023Q4', '2022Q4'];
+  const obs = domain === '' ? observationSnaps : observationSnapsHealth;
+
   useEffect(() => {
-    setPreviousObservationSnap(
-      observationSnaps?.[observationSnaps?.length - 1],
-    );
-  }, [beforeLastObservationSnap, observationSnaps]);
+    setPreviousObservationSnap(obs?.[obs?.length - 1]);
+  }, [obs]);
 
   const updateProgression = (res, year) => {
     const { rate } = res;
@@ -31,13 +34,14 @@ export default function ProgressionCard({ domain }) {
     }
   };
 
-  useGetPublicationRateFrom(domain, previousObservationSnap).then((res) => {
+  const fn = domain === '' ? useGetPublicationRateFrom : useGetStudiesRateFrom;
+
+  fn(domain, previousObservationSnap).then((res) => {
     if (previousObservationSnap && Object.keys(res).length > 0) {
       updateProgression(res, previousObservationSnap);
     }
   });
-
-  useGetPublicationRateFrom(domain, lastObservationSnap).then((res) => {
+  fn(domain, lastObservationSnap).then((res) => {
     if (lastObservationSnap) {
       updateProgression(res, lastObservationSnap);
     }
@@ -67,7 +71,7 @@ export default function ProgressionCard({ domain }) {
         <Icon
           name='icon-bsso-33'
           color1='blue-dark-125'
-          color2='orange-soft-50'
+          color2={domain === '' ? 'orange-soft-50' : 'patient-50'}
         />
       )}
       data1={progressionPoints()}
@@ -94,10 +98,6 @@ export default function ProgressionCard({ domain }) {
     />
   );
 }
-
-ProgressionCard.defaultProps = {
-  domain: '',
-};
 
 ProgressionCard.propTypes = {
   domain: PropTypes.oneOf(domains),

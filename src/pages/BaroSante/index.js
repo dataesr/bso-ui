@@ -100,6 +100,7 @@ function BaroSante() {
                         domain='health'
                         id='general.dynamique.chart-evolution-within-3-years-historical-academic'
                         isDisplayed={!isInProduction()}
+                        productionReady
                         studyType='Interventional'
                       />
                     </Col>

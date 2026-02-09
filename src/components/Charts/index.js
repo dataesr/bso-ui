@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { Alert } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import { Suspense } from 'react';
@@ -8,12 +9,13 @@ import { domains, graphIds, studiesTypes } from '../../utils/constants';
 import Loader from '../Loader';
 
 function BSOChart({
+  domain = '',
+  hasComments = true,
+  hasFooter = true,
   id,
-  domain,
-  hasComments,
-  hasFooter,
-  isDisplayed,
-  studyType,
+  isDisplayed = null,
+  productionReady = null,
+  studyType = null,
 }) {
   const intl = useIntl();
   const Chart = chartComponents[id];
@@ -25,7 +27,14 @@ function BSOChart({
             description={intl.formatMessage({
               id: 'app.commons.graph-warning',
             })}
-            title=''
+          />
+        )}
+        {productionReady && (
+          <Alert
+            description={intl.formatMessage({
+              id: 'app.commons.production-ready',
+            })}
+            type='error'
           />
         )}
         {Chart && (
@@ -42,20 +51,13 @@ function BSOChart({
   );
 }
 
-BSOChart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  isDisplayed: null,
-  studyType: null,
-};
-
 BSOChart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
   hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds).isRequired,
   isDisplayed: PropTypes.bool,
+  productionReady: PropTypes.bool,
   studyType: PropTypes.oneOf(studiesTypes),
 };
 

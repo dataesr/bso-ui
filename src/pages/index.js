@@ -238,16 +238,22 @@ function HomePage() {
               >
                 <Container fluid>
                   <Row gutters alignItems='top'>
-                    <Col n='12'>
-                      <BSOChart
-                        id='general.dynamique.chart-evolution-within-3-years'
-                        domain='health'
-                        studyType='Interventional'
-                      />
+                    <Col n='12 md-8'>
                       <BSOChart
                         domain='health'
                         id='general.dynamique.chart-evolution-within-3-years-historical-academic'
                         isDisplayed={!isInProduction()}
+                        productionReady
+                        studyType='Interventional'
+                      />
+                    </Col>
+                    <Col>
+                      <ProgressionCard domain='health' />
+                    </Col>
+                    <Col n='12'>
+                      <BSOChart
+                        id='general.dynamique.chart-evolution-within-3-years'
+                        domain='health'
                         studyType='Interventional'
                       />
                     </Col>
