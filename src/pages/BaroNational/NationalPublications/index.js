@@ -262,6 +262,11 @@ export default function NationalPublications() {
                   anchorId='disciplines.voies-ouverture'
                 >
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-repartition-publications' />
+                  <BSOChart
+                    id='publi.publishers.type-ouverture.chart-by-classifications'
+                    isDisplayed={!isInProduction()}
+                    productionReady
+                  />
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
                 </QuestionSection>
               </GraphContent>
@@ -361,11 +366,6 @@ export default function NationalPublications() {
                 >
                   <BSOChart id='publi.publishers.type-ouverture.chart-repartition-modeles' />
                   <BSOChart id='publi.publishers.type-ouverture.chart-evolution-repartition' />
-                  <BSOChart
-                    id='publi.publishers.type-ouverture.chart-by-classifications'
-                    isDisplayed={!isInProduction()}
-                    productionReady
-                  />
                   <BSOChart
                     id='publi.publishers.type-ouverture.chart-by-classifications-publishers'
                     isDisplayed={!isInProduction()}

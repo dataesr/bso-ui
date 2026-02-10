@@ -388,17 +388,17 @@ function useGetData(observationSnap, domain) {
       .concat(' = ')
       .concat(cleanNumber(bucket.doc_count))
       .concat(')'));
-    const goldDataByClassificationsByPublishers = [];
-    const hybridDataByClassificationsByPublishers = [];
+    const goldAndHybridDataByClassificationsByPublishers = [];
     const diamondDataByClassificationsByPublishers = [];
     const otherDataByClassificationsByPublishers = [];
     dataByClassificationsByPublishers.forEach((bucket) => {
-      const goldPublicationsCountByClassificationsByPublishers = parseInt(
-        bucket.by_oa_colors.buckets.find((item) => item.key === 'gold')
-          ?.doc_count || 0,
+      const goldAndHybridPublicationsCountByClassificationsByPublishers = parseInt(
+        bucket.by_oa_colors.buckets
+          .filter((item) => item.key === 'gold' || item === 'hybrid')
+          .reduce((acc, cur) => acc + (cur?.doc_count ?? 0), 0),
         10,
       );
-      goldDataByClassificationsByPublishers.push({
+      goldAndHybridDataByClassificationsByPublishers.push({
         classification: capitalize(
           intl.formatMessage({
             id: `app.discipline.${bucket.key}`,
@@ -406,29 +406,10 @@ function useGetData(observationSnap, domain) {
           }),
         ),
         publicationYear,
-        y_abs: goldPublicationsCountByClassificationsByPublishers,
+        y_abs: goldAndHybridPublicationsCountByClassificationsByPublishers,
         y_tot: bucket?.doc_count || 0,
         y:
-          (goldPublicationsCountByClassificationsByPublishers
-            / bucket?.doc_count || 0) * 100,
-      });
-      const hybridPublicationsCountByClassificationsByPublishers = parseInt(
-        bucket.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
-          ?.doc_count || 0,
-        10,
-      );
-      hybridDataByClassificationsByPublishers.push({
-        classification: capitalize(
-          intl.formatMessage({
-            id: `app.discipline.${bucket.key}`,
-            defaultMessage: bucket.key,
-          }),
-        ),
-        publicationYear,
-        y_abs: hybridPublicationsCountByClassificationsByPublishers,
-        y_tot: bucket?.doc_count || 0,
-        y:
-          (hybridPublicationsCountByClassificationsByPublishers
+          (goldAndHybridPublicationsCountByClassificationsByPublishers
             / bucket?.doc_count || 0) * 100,
       });
       const diamondPublicationsCountByClassificationsByPublishers = parseInt(
@@ -481,20 +462,11 @@ function useGetData(observationSnap, domain) {
         ),
       },
       {
-        color: getCSSValue('--hybrid'),
-        data: hybridDataByClassificationsByPublishers,
+        color: getCSSValue('--yellow-medium-150'),
+        data: goldAndHybridDataByClassificationsByPublishers,
         name: capitalize(
           intl.formatMessage({
-            id: 'app.publishers.hybrid',
-          }),
-        ),
-      },
-      {
-        color: getCSSValue('--yellow-medium-100'),
-        data: goldDataByClassificationsByPublishers,
-        name: capitalize(
-          intl.formatMessage({
-            id: 'app.publishers.gold',
+            id: 'app.publishers.gold-hybrid',
           }),
         ),
       },

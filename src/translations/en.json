@@ -1175,6 +1175,7 @@
   "app.publishers.apc-hybrid-median": "Median of APC hybrid journals",
   "app.publishers.diamond": "diamond",
   "app.publishers.gold": "gold full APC",
+  "app.publishers.gold-hybrid": "gold (full APC + hybride)",
   "app.publishers.green-only": "open access only on open archive",
   "app.publishers.hybrid": "hybrid",
   "app.publishers.other": "other",
