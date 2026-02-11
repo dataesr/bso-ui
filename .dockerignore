@@ -1,6 +1,7 @@
 # IDE
 .idea
 .vscode
+.zed
 
 # Jupyter Notebooks
 .ipynb_checkpoints/

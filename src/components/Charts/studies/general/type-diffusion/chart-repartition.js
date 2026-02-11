@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import '../../../graph.scss';
 
 import Highcharts from 'highcharts';
@@ -23,12 +24,18 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id, studyType }) {
+function Chart({
+  domain = 'health',
+  hasComments = true,
+  hasFooter = true,
+  id = 'general.type-diffusion.chart-repartition',
+  studyType = 'Interventional',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraph } = allData;
+  const { dataGraph, dataTitle } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(
@@ -45,6 +52,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -66,13 +74,6 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: 'health',
-  hasComments: true,
-  hasFooter: true,
-  id: 'general.type-diffusion.chart-repartition',
-  studyType: 'Interventional',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

@@ -17,7 +17,8 @@ export default function getFetchOptions({
   objectType = [],
   parameters = [],
 }) {
-  const lastObservationClinicalTrials = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
+  const lastObservationClinicalTrials =
+    process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
 
   const allOptions = {
     publicationRate: ([
@@ -2828,8 +2829,8 @@ export default function getFetchOptions({
                 year: {
                   gte: minPublicationDate,
                   lte:
-                    getPublicationYearFromObservationSnap(lastObservationSnap)
-                    + 1,
+                    getPublicationYearFromObservationSnap(lastObservationSnap) +
+                    1,
                 },
               },
             },
@@ -2921,6 +2922,74 @@ export default function getFetchOptions({
         },
       },
     }),
+    studiesResultsByDiffusionBySponsorType: ([
+      studyType,
+      yearMin,
+      yearMax,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_lead_sponsor_type: {
+          terms: {
+            field: 'lead_sponsor_type.keyword',
+          },
+          aggs: {
+            by_results: {
+              terms: {
+                field: `results_details.${lastObservationClinicalTrials}.has_results_within_3y`,
+                missing: false,
+              },
+              aggs: {
+                by_publications_and_results: {
+                  terms: {
+                    field: `results_details.${lastObservationClinicalTrials}.has_publication_within_3y`,
+                    missing: false,
+                  },
+                },
+              },
+            },
+            by_publications: {
+              terms: {
+                field: `results_details.${lastObservationClinicalTrials}.has_publication_within_3y`,
+                missing: false,
+              },
+              aggs: {
+                by_publications_and_results: {
+                  terms: {
+                    field: `results_details.${lastObservationClinicalTrials}.has_results_within_3y`,
+                    missing: false,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
@@ -2931,7 +3000,8 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const { bsoCountry, bsoLocalAffiliation, endYear, idTypes, startYear } = getURLSearchParams();
+  const { bsoCountry, bsoLocalAffiliation, endYear, idTypes, startYear } =
+    getURLSearchParams();
   let useBsoCountry = true;
   const isHealthTrialsStudies = objectType.includes('clinicalTrials');
   const isOrcid = objectType.includes('orcid');

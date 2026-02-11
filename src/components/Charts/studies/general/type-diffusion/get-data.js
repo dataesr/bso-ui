@@ -17,194 +17,162 @@ function useGetData(studyType) {
       process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
       10,
     );
-    const years3Max = currentYear - 3;
-    const years3Min = years3Max - 6;
+    const year = currentYear - 3;
     const query = getFetchOptions({
       key: 'studiesResultsByDiffusionBySponsorType',
-      parameters: [studyType, years3Min, years3Max],
+      parameters: [studyType, year, year],
       objectType: ['clinicalTrials'],
     });
     const results = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
-    const sponsorsTypes = results.data.aggregations.by_lead_sponsor_type.buckets;
+    const sponsorsTypes =
+      results.data.aggregations.by_lead_sponsor_type.buckets;
+    const academic = sponsorsTypes.find(
+      (bucket) => bucket.key === 'academique',
+    );
+    const academicWithPublicationsAndResults = academic.by_results.buckets
+      .find((bucket) => bucket.key === 1)
+      .by_publications_and_results.buckets.find(
+        (bucket) => bucket.key === 1,
+      ).doc_count;
+    const academicWithPublicationsAndResultsPercent =
+      (academicWithPublicationsAndResults / academic.doc_count) * 100;
+    const academicWithResultsOnly = academic.by_results.buckets
+      .find((bucket) => bucket.key === 1)
+      .by_publications_and_results.buckets.find(
+        (bucket) => bucket.key === 0,
+      ).doc_count;
+    const academicWithResultsOnlyPercent =
+      (academicWithResultsOnly / academic.doc_count) * 100;
+    const academicWithPublicationsOnly = academic.by_publications.buckets
+      .find((bucket) => bucket.key === 1)
+      .by_publications_and_results.buckets.find(
+        (bucket) => bucket.key === 0,
+      ).doc_count;
+    const academicWithPublicationsOnlyPercent =
+      (academicWithPublicationsOnly / academic.doc_count) * 100;
+    const industrial = sponsorsTypes.find(
+      (bucket) => bucket.key === 'industriel',
+    );
+    const industrialWithPublicationsAndResults = industrial.by_results.buckets
+      .find((bucket) => bucket.key === 1)
+      .by_publications_and_results.buckets.find(
+        (bucket) => bucket.key === 1,
+      ).doc_count;
+    const industrialWithPublicationsAndResultsPercent =
+      (industrialWithPublicationsAndResults / industrial.doc_count) * 100;
+    const industrialWithResultsOnly = industrial.by_results.buckets
+      .find((bucket) => bucket.key === 1)
+      .by_publications_and_results.buckets.find(
+        (bucket) => bucket.key === 0,
+      ).doc_count;
+    const industrialWithResultsOnlyPercent =
+      (industrialWithResultsOnly / industrial.doc_count) * 100;
+    const industrialWithPublicationsOnly = industrial.by_publications.buckets
+      .find((bucket) => bucket.key === 1)
+      .by_publications_and_results.buckets.find(
+        (bucket) => bucket.key === 0,
+      ).doc_count;
+    const industrialWithPublicationsOnlyPercent =
+      (industrialWithPublicationsOnly / industrial.doc_count) * 100;
+    const all = academic.doc_count + industrial.doc_count;
+    const allWithPublicationsAndResults =
+      academicWithPublicationsAndResults + industrialWithPublicationsAndResults;
+    const allWithPublicationsAndResultsPercent =
+      (allWithPublicationsAndResults / all) * 100;
+    const allWithResultsOnly =
+      academicWithResultsOnly + industrialWithResultsOnly;
+    const allWithResultsOnlyPercent = (allWithResultsOnly / all) * 100;
+    const allWithPublicationsOnly =
+      academicWithPublicationsOnly + industrialWithPublicationsOnly;
+    const allWithPublicationsOnlyPercent =
+      (allWithPublicationsOnly / all) * 100;
     const categories = [
-      // capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
-      // capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
-      // capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
+      capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+      capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
+      capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
     ];
     const series = [
       {
         color: getCSSValue('--publication-100'),
-        data: [],
-        id: 'has_publications_only',
+        data: [
+          {
+            y: allWithResultsOnlyPercent,
+            y_abs: allWithResultsOnly,
+            y_tot: all,
+          },
+          {
+            y: industrialWithResultsOnlyPercent,
+            y_abs: industrialWithResultsOnly,
+            y_tot: industrial.doc_count,
+          },
+          {
+            y: academicWithResultsOnlyPercent,
+            y_abs: academicWithResultsOnly,
+            y_tot: academic.doc_count,
+          },
+        ],
+        id: 'has_results_only',
         index: 3,
         name: capitalize(
           intl.formatMessage({ id: 'app.studies.results-only' }),
         ),
+        year,
       },
       {
         color: getCSSValue('--resultat-100'),
-        data: [],
-        id: 'has_results_only',
+        data: [
+          {
+            y: allWithPublicationsOnlyPercent,
+            y_abs: allWithPublicationsOnly,
+            y_tot: all,
+          },
+          {
+            y: industrialWithPublicationsOnlyPercent,
+            y_abs: industrialWithPublicationsOnly,
+            y_tot: industrial.doc_count,
+          },
+          {
+            y: academicWithPublicationsOnlyPercent,
+            y_abs: academicWithPublicationsOnly,
+            y_tot: academic.doc_count,
+          },
+        ],
+        id: 'has_publications_only',
         index: 2,
         name: capitalize(
           intl.formatMessage({ id: 'app.studies.publications-only' }),
         ),
+        year,
       },
       {
         color: getCSSValue('--resultat-et-publication'),
-        data: [],
+        data: [
+          {
+            y: allWithPublicationsAndResultsPercent,
+            y_abs: allWithPublicationsAndResults,
+            y_tot: all,
+          },
+          {
+            y: industrialWithPublicationsAndResultsPercent,
+            y_abs: industrialWithPublicationsAndResults,
+            y_tot: industrial.doc_count,
+          },
+          {
+            y: academicWithPublicationsAndResultsPercent,
+            y_abs: academicWithPublicationsAndResults,
+            y_tot: academic.doc_count,
+          },
+        ],
         id: 'has_publications_and_results',
         index: 1,
         name: capitalize(
           intl.formatMessage({ id: 'app.studies.results-and-publications' }),
         ),
-      },
-      {
-        color: getCSSValue('--g-400'),
-        data: [],
-        id: 'no_results',
-        index: 0,
-        name: capitalize(
-          intl.formatMessage({ id: 'app.studies.no-results-publications' }),
-        ),
+        year,
       },
     ];
-    console.log(sponsorsTypes);
-    sponsorsTypes.forEach((sponsorType) => {
-      // categories.push(capitalize(intl.formatMessage({ id: `app.sponsor.${sponsorType.key}` })));
-      const hasPublicationsOnly = sponsorType.by_has_results.buckets
-        .find((bucket) => bucket.key === 0)
-        .by_has_publications_result.buckets.find((bucket) => bucket.key === 1)
-        ?.doc_count ?? 0;
-      const hasResultsOnly = sponsorType.by_has_results.buckets
-        .find((bucket) => bucket.key === 1)
-        .by_has_publications_result.buckets.find((bucket) => bucket.key === 0)
-        ?.doc_count ?? 0;
-      const hasPublicationsAndResults = sponsorType.by_has_results.buckets
-        .find((bucket) => bucket.key === 1)
-        .by_has_publications_result.buckets.find((bucket) => bucket.key === 1)
-        ?.doc_count ?? 0;
-      const noResult = sponsorType.by_has_results.buckets
-        .find((bucket) => bucket.key === 0)
-        .by_has_publications_result.buckets.find((bucket) => bucket.key === 0)
-        ?.doc_count ?? 0;
-      const total = hasPublicationsAndResults
-        + hasResultsOnly
-        + hasPublicationsOnly
-        + noResult;
-      const hasPublicationsOnlyPercent = (hasPublicationsOnly / total) * 100;
-      const hasResultsOnlyPercent = (hasResultsOnly / total) * 100;
-      const hasPublicationsAndResultsPercent = (hasPublicationsAndResults / total) * 100;
-      const noResultPercent = (noResult / total) * 100;
-      series
-        .find((serie) => serie.id === 'has_publications_only')
-        .data.push({
-          y: hasPublicationsOnlyPercent,
-          y_abs: hasPublicationsOnly,
-        });
-      series
-        .find((serie) => serie.id === 'has_results_only')
-        .data.push({
-          y: hasResultsOnlyPercent,
-          y_abs: hasResultsOnly,
-        });
-      series
-        .find((serie) => serie.id === 'has_publications_and_results')
-        .data.push({
-          y: hasPublicationsAndResultsPercent,
-          y_abs: hasPublicationsAndResults,
-        });
-      series
-        .find((serie) => serie.id === 'no_results')
-        .data.push({
-          y: noResultPercent,
-          y_abs: noResult,
-        });
-    });
-    // const series = [
-    //   {
-    //     name: capitalize(intl.formatMessage({ id: 'app.studies.no-results-publications' })),
-    //     y_abs: data.by_has_result.buckets
-    //       .find((ele) => ele.key === 0)
-    //       ?.by_has_publications_result.buckets.find(
-    //         (ele) => ele.key === 0,
-    //       )?.doc_count,
-    //     y:
-    //       (100
-    //         * (data.by_has_result.buckets
-    //           .find((ele) => ele.key === 0)
-    //           ?.by_has_publications_result.buckets.find(
-    //             (ele) => ele.key === 0,
-    //           )?.doc_count || 0))
-    //       / dataTotal,
-    //     y_tot: dataTotal,
-    //     yearMin,
-    //     yearMax,
-    //     color: getCSSValue('--g-400'),
-    //   },
-    //   {
-    //     name: capitalize(intl.formatMessage({ id: 'app.studies.results-and-publications' })),
-    //     y_abs: data.by_has_result.buckets
-    //       .find((ele) => ele.key === 1)
-    //       ?.by_has_publications_result.buckets.find(
-    //         (ele) => ele.key === 1,
-    //       )?.doc_count,
-    //     y:
-    //       (100
-    //         * (data.by_has_result.buckets
-    //           .find((ele) => ele.key === 1)
-    //           ?.by_has_publications_result.buckets.find(
-    //             (ele) => ele.key === 1,
-    //           )?.doc_count || 0))
-    //       / dataTotal,
-    //     y_tot: dataTotal,
-    //     yearMin,
-    //     yearMax,
-    //     color: getCSSValue('--resultat-et-publication'),
-    //   },
-    //   {
-    //     name: capitalize(intl.formatMessage({ id: 'app.studies.publications-only' })),
-    //     y_abs: data.by_has_result.buckets
-    //       .find((ele) => ele.key === 0)
-    //       ?.by_has_publications_result.buckets.find(
-    //         (ele) => ele.key === 1,
-    //       )?.doc_count,
-    //     y:
-    //       (100
-    //         * (data.by_has_result.buckets
-    //           .find((ele) => ele.key === 0)
-    //           ?.by_has_publications_result.buckets.find(
-    //             (ele) => ele.key === 1,
-    //           )?.doc_count || 0))
-    //       / dataTotal,
-    //     y_tot: dataTotal,
-    //     yearMin,
-    //     yearMax,
-    //     color: getCSSValue('--publication-100'),
-    //   },
-    //   {
-    //     name: capitalize(intl.formatMessage({ id: 'app.studies.results-only' })),
-    //     y_abs: data.by_has_result.buckets
-    //       .find((ele) => ele.key === 1)
-    //       ?.by_has_publications_result.buckets.find(
-    //         (ele) => ele.key === 0,
-    //       )?.doc_count,
-    //     y:
-    //       (100
-    //         * (data.by_has_result.buckets
-    //           .find((ele) => ele.key === 1)
-    //           ?.by_has_publications_result.buckets.find(
-    //             (ele) => ele.key === 0,
-    //           )?.doc_count || 0))
-    //       / dataTotal,
-    //     y_tot: dataTotal,
-    //     yearMin,
-    //     yearMax,
-    //     color: getCSSValue('--resultat-100'),
-    //   },
-    // ];
 
-    return { dataGraph: { categories, series } };
+    return { dataGraph: { categories, series }, dataTitle: { year } };
   }
 
   useEffect(() => {

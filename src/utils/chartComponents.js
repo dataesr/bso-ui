@@ -209,6 +209,9 @@ const chartComponents = {
   'caracteristiques.quand.chart-evolution-temporalites': lazy(() => import(
     '../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites'
   )),
+  'general.type-diffusion.chart-repartition': lazy(() => import(
+    '../components/Charts/studies/general/type-diffusion/chart-repartition'
+  )),
   'caracteristiques.quand.chart-repartition-avant-apres': lazy(() => import(
     '../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres'
   )),

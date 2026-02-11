@@ -10,6 +10,7 @@
     "jsx-quotes": [2, "prefer-single"],
     "template-curly-spacing": "off",
     "object-curly-newline": "off",
+    "operator-linebreak": "off",
     "react/jsx-props-no-spreading": "off",
     "react-hooks/exhaustive-deps": "warn",
     "max-len": ["warn", 450],
@@ -18,16 +19,14 @@
       "warn",
       2,
       {
-        "ignoredNodes": [
-          "TemplateLiteral"
-        ]
+        "ignoredNodes": ["TemplateLiteral"]
       }
     ],
     "react/function-component-definition": [
       "warn",
       {
-        "namedComponents": "function-declaration", 
-        "unnamedComponents": "arrow-function"     
+        "namedComponents": "function-declaration",
+        "unnamedComponents": "arrow-function"
       }
     ],
     "import/no-cycle": "off",
@@ -40,10 +39,7 @@
     "no-loss-of-precision": "off"
   },
   "plugins": ["simple-import-sort", "import", "react", "jsx-a11y"],
-  "extends": [
-    "react-app",
-    "airbnb"
-  ],
+  "extends": ["react-app", "airbnb"],
   "settings": {
     "react": {
       "version": "detect"

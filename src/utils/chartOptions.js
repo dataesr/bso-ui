@@ -26,7 +26,8 @@ import {
  */
 export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let otherSources = [];
-  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl, id);
+  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } =
+    getURLSearchParams(intl, id);
   otherSources = [name];
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;
@@ -38,13 +39,14 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let embargoText = '';
   let isEmbargo = false;
   if (
-    lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION
-    && !titleId.includes('.national-thesis.')
+    lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION &&
+    !titleId.includes('.national-thesis.')
   ) {
     isEmbargo = true;
   }
   if (bsoLocalAffiliation && isEmbargo) {
-    embargoText = 'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
+    embargoText =
+      'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
   }
   const tooltip = intl
     .formatMessage({
@@ -1071,8 +1073,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1252,8 +1254,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1501,8 +1503,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1575,8 +1577,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1735,8 +1737,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -2008,8 +2010,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -2080,8 +2082,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -2319,8 +2321,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -2569,10 +2571,10 @@ export const chartOptions = {
       if (data) {
         options.series[0].dataLabels = {
           format:
-            '<div style="text-align:center">'
-            + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
-            + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
-            + '</div>',
+            '<div style="text-align:center">' +
+            '<span style="font-size:25px;">{y:.1f} %</span><br/>' +
+            '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>' +
+            '</div>',
         };
         color = options.series[0].color;
       }
@@ -2666,7 +2668,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2706,7 +2708,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2752,7 +2754,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2798,7 +2800,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2844,7 +2846,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2895,7 +2897,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2940,7 +2942,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3094,7 +3096,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3140,7 +3142,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3191,7 +3193,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3236,7 +3238,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3276,7 +3278,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3322,7 +3324,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3415,6 +3417,47 @@ export const chartOptions = {
       return options;
     },
   },
+  'general.type-diffusion.chart-repartition': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+          },
+        },
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.yAxis.stackLabels = { enabled: true, format: '{total:.0f} %' };
+      options.xAxis = {
+        type: 'category',
+        title: {
+          text: intl.formatMessage({ id: 'app.sponsor-type' }),
+        },
+        categories: data?.categories || [],
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g-800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+      options.legend.reversed = true;
+      return options;
+    },
+  },
   'resultats.type-diffusion.chart-repartition': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
       const options = getGraphOptions({ id, intl, studyType, dataTitle });
@@ -3445,7 +3488,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3759,7 +3802,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3893,7 +3936,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3933,7 +3976,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3970,7 +4013,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -4023,7 +4066,7 @@ export const chartOptions = {
           },
           useHTML: true,
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -4059,7 +4102,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },

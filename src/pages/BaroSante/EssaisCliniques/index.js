@@ -453,6 +453,13 @@ function EssaisCliniques() {
                   />
                   <BSOChart
                     domain='health'
+                    id='general.type-diffusion.chart-repartition'
+                    isDisplayed={!isInProduction()}
+                    productionReady
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
                     id='resultats.type-diffusion.chart-repartition-par-type'
                     studyType='Interventional'
                   />

@@ -5,7 +5,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
@@ -37,9 +37,10 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const { allData, isError, isLoading } = useGetData(studyType, sponsorType);
   const { dataGraph1 } = allData;
   const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
-  const sponsorTypeTitle = sponsorType !== '*'
-    ? ` (${intl.formatMessage({ id: translationId })})`
-    : '';
+  const sponsorTypeTitle =
+    sponsorType !== '*'
+      ? ` (${intl.formatMessage({ id: translationId })})`
+      : '';
   const dataTitle = { sponsorTypeTitle };
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
