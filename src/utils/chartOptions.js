@@ -3658,6 +3658,13 @@ export const chartOptions = {
         title: null,
       };
       options.series = data?.dataGraph || [];
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
       return options;
     },
   },
@@ -3681,6 +3688,13 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraphGroupes || [];
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
       return options;
     },
   },
@@ -3700,6 +3714,10 @@ export const chartOptions = {
       options.plotOptions = {
         column: {
           stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+            style: { textOutline: 'none' },
+          },
         },
       };
       options.tooltip.useHTML = true;

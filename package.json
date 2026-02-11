@@ -79,7 +79,7 @@
     "src/**/*.+(js)": [
       "eslint --fix"
     ],
-    "src/**/*.{js,json,md}": [
+    "src/**/*.{json,md}": [
       "prettier --write"
     ],
     "src/**/*.scss": [
