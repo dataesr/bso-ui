@@ -1,10 +1,11 @@
+/* eslint-disable react/require-default-props */
 import './style.scss';
 
 import { Select } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 
-function SimpleSelect({ label, onChange, options, selected }) {
+function SimpleSelect({ label, onChange, options, selected = '' }) {
   const selectId = uuidv4();
   return (
     <div className='simple-select'>
@@ -15,10 +16,6 @@ function SimpleSelect({ label, onChange, options, selected }) {
     </div>
   );
 }
-
-SimpleSelect.defaultProps = {
-  selected: '',
-};
 
 SimpleSelect.propTypes = {
   label: PropTypes.string.isRequired,

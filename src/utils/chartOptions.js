@@ -3004,6 +3004,7 @@ export const chartOptions = {
         },
       };
       options.yAxis = getPercentageYAxis(false);
+      options.yAxis.max = 100;
       options.xAxis = {
         title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
         type: 'category',

@@ -28,7 +28,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraphWithin3Years } = allData;
+  const { dataGraphWithin3Years, year } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
 
@@ -46,7 +46,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
-      dataTitle={allData?.dataTitleWithin3Years ?? {}}
+      dataTitle={{ year }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import '../../../graph.scss';
 
 import Highcharts from 'highcharts';
@@ -23,7 +24,13 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id, studyType }) {
+function Chart({
+  domain = 'health',
+  hasComments = true,
+  hasFooter = true,
+  id = 'general.dynamique.chart-evolution-within-3-years',
+  studyType = 'Interventional',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -67,13 +74,6 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: 'health',
-  hasComments: true,
-  hasFooter: true,
-  id: 'general.dynamique.chart-evolution-within-3-years',
-  studyType: 'Interventional',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

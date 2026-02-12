@@ -10,7 +10,7 @@ import {
   getObservationLabel,
 } from '../../../../../utils/helpers';
 
-function useGetData(studyType, filterOnDrug = false) {
+function useGetData(studyType, sponsorType = '*', selectedDelay = '3y', filterOnDrug = false) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isError, setError] = useState(false);
@@ -26,6 +26,31 @@ function useGetData(studyType, filterOnDrug = false) {
   const year = 2019;
 
   async function getDataAxios() {
+    // Sponsor types
+    const querySponsorTypes = getFetchOptions({
+      key: 'sponsorsTypesList',
+      parameters: [studyType],
+      objectType: ['clinicalTrials'],
+    });
+    const responseSponsorTypes = await Axios.post(
+      ES_STUDIES_API_URL,
+      querySponsorTypes,
+      HEADERS,
+    );
+    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+      (item) => item.key,
+    );
+    sponsorTypes = sponsorTypes.map((st) => ({
+      value: st,
+      label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+    }));
+
+    let queryKey = 'studiesDynamiqueOuvertureWithin3Years';
+    let responseField = 'by_has_results_within_3_years';
+    if (selectedDelay === '1y') {
+      queryKey = 'studiesDynamiqueOuvertureWithin1Year';
+      responseField = 'by_has_results_within_1_year';
+    }
     const queries = [];
     observationSnaps.forEach((observationSnap) => {
       const queryHasResults = getFetchOptions({
@@ -34,8 +59,8 @@ function useGetData(studyType, filterOnDrug = false) {
         objectType: ['clinicalTrials'],
       });
       const queryHasResultsWithin3Years = getFetchOptions({
-        key: 'studiesDynamiqueOuvertureWithin3Years',
-        parameters: [studyType, year, year, observationSnap],
+        key: queryKey,
+        parameters: [studyType, sponsorType, year, year, observationSnap],
         objectType: ['clinicalTrials'],
       });
       if (filterOnDrug) {
@@ -53,22 +78,34 @@ function useGetData(studyType, filterOnDrug = false) {
     const results = await Axios.all(queries);
 
     const categories = [];
-    const seriesWithin3Years = [{ data: [] }];
-    const seriesWithin3YearsAcademic = [{ data: [] }];
-    const seriesWithin3YearsIndustrial = [{ data: [] }];
+    const seriesWithin3Years = [{
+      data: [],
+      delay: intl.formatMessage({ id: `app.sponsor-results-delay-${selectedDelay}` }),
+      name: intl.formatMessage({ id: 'app.all-sponsors' }).toLowerCase(),
+    }];
+    const seriesWithin3YearsAcademic = [{
+      data: [],
+      delay: intl.formatMessage({ id: `app.sponsor-results-delay-${selectedDelay}` }),
+      name: intl.formatMessage({ id: 'app.sponsors.academique' }).toLowerCase(),
+    }];
+    const seriesWithin3YearsIndustrial = [{
+      data: [],
+      delay: intl.formatMessage({ id: `app.sponsor-results-delay-${selectedDelay}` }),
+      name: intl.formatMessage({ id: 'app.sponsors.industriel' }).toLowerCase(),
+    }];
     observationSnaps.forEach((observationSnap, index) => {
       categories.push(getObservationLabel(observationSnap, intl));
       const dataHasResultsWithin3Years = results[index].data.aggregations;
       const dataHasResultsWithin3YearsAcademic = dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
         (ele) => ele.key === 'academique',
       );
-      const dataHasResultsWithin3YearsAcademicWithResults = dataHasResultsWithin3YearsAcademic?.by_has_results_within_3_years.buckets.find(
+      const dataHasResultsWithin3YearsAcademicWithResults = dataHasResultsWithin3YearsAcademic?.[responseField].buckets.find(
         (ele) => ele.key === 1,
       );
       const dataHasResultsWithin3YearsAcademicWithResultsLastYear = dataHasResultsWithin3YearsAcademicWithResults?.by_completion_year.buckets.find(
         (ele) => ele.key === year,
       );
-      const dataHasResultsWithin3YearsAcademicWithoutResults = dataHasResultsWithin3YearsAcademic?.by_has_results_within_3_years.buckets.find(
+      const dataHasResultsWithin3YearsAcademicWithoutResults = dataHasResultsWithin3YearsAcademic?.[responseField].buckets.find(
         (ele) => ele.key === 0,
       );
       const dataHasResultsWithin3YearsAcademicWithoutResultsLastYear = dataHasResultsWithin3YearsAcademicWithoutResults?.by_completion_year.buckets.find(
@@ -81,13 +118,13 @@ function useGetData(studyType, filterOnDrug = false) {
       const dataHasResultsWithin3YearsIndustrial = dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
         (ele) => ele.key === 'industriel',
       );
-      const dataHasResultsWithin3YearsIndustrialWithResults = dataHasResultsWithin3YearsIndustrial?.by_has_results_within_3_years.buckets.find(
+      const dataHasResultsWithin3YearsIndustrialWithResults = dataHasResultsWithin3YearsIndustrial?.[responseField].buckets.find(
         (el) => el.key === 1,
       );
       const dataHasResultsWithin3YearsIndustrialWithResultsLastYear = dataHasResultsWithin3YearsIndustrialWithResults?.by_completion_year.buckets.find(
         (ele) => ele.key === year,
       );
-      const dataHasResultsWithin3YearsIndustrialWithoutResults = dataHasResultsWithin3YearsIndustrial?.by_has_results_within_3_years.buckets.find(
+      const dataHasResultsWithin3YearsIndustrialWithoutResults = dataHasResultsWithin3YearsIndustrial?.[responseField].buckets.find(
         (el) => el.key === 0,
       );
       const dataHasResultsWithin3YearsIndustrialWithoutResultsLastYear = dataHasResultsWithin3YearsIndustrialWithoutResults?.by_completion_year.buckets.find(
@@ -167,13 +204,25 @@ function useGetData(studyType, filterOnDrug = false) {
       categories,
       series: seriesWithin3YearsIndustrial,
     };
-    const dataTitleWithin3Years = { year };
+    let dataGraphWithin3YearsWithType;
+    switch (sponsorType) {
+    case 'academique':
+      dataGraphWithin3YearsWithType = dataGraphWithin3YearsAcademic;
+      break;
+    case 'industriel':
+      dataGraphWithin3YearsWithType = dataGraphWithin3YearsIndustrial;
+      break;
+    default:
+      dataGraphWithin3YearsWithType = dataGraphWithin3Years;
+    }
 
     return {
       dataGraphWithin3Years,
       dataGraphWithin3YearsAcademic,
       dataGraphWithin3YearsIndustrial,
-      dataTitleWithin3Years,
+      dataGraphWithin3YearsWithType,
+      sponsorTypes,
+      year,
     };
   }
 
@@ -192,7 +241,7 @@ function useGetData(studyType, filterOnDrug = false) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType]);
+  }, [studyType, sponsorType, selectedDelay]);
 
   return { allData, isError, isLoading };
 }

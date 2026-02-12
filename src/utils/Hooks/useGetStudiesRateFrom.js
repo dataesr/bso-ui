@@ -12,19 +12,12 @@ export default async function useGetStudiesRateFrom(domain, observationSnap) {
     method: 'post',
   });
 
-  // console.log(ES_STUDIES_API_URL);
-  // console.log(getFetchOptions({
-  //   key: 'studiesDynamiqueOuvertureWithin3Years',
-  //   parameters: ['Interventional', 2019, 2019, observationSnap],
-  //   objectType: ['clinicalTrials'],
-  // }));
-
   useEffect(() => {
     if (!response && isMounted.current && observationSnap) {
       fetch({
         options: getFetchOptions({
           key: 'studiesDynamiqueOuvertureWithin3Years',
-          parameters: ['Interventional', 2019, 2019, observationSnap],
+          parameters: ['Interventional', '*', 2019, 2019, observationSnap],
           objectType: ['clinicalTrials'],
         }),
       });

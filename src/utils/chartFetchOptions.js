@@ -1059,7 +1059,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueOuvertureWithin1Year: ([studyType, yearMin, yearMax]) => ({
+    studiesDynamiqueOuvertureWithin1Year: ([studyType, sponsorType, yearMin, yearMax, observationSnap]) => ({
       size: 0,
       query: {
         bool: {
@@ -1072,6 +1072,11 @@ export default function getFetchOptions({
             {
               term: {
                 'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
             {
@@ -1093,7 +1098,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_results_within_1_year: {
               terms: {
-                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications_within_1y`,
+                field: `results_details.${observationSnap}.has_results_or_publications_within_1y`,
                 missing: false,
               },
               aggs: {
@@ -1156,6 +1161,7 @@ export default function getFetchOptions({
     }),
     studiesDynamiqueOuvertureWithin3Years: ([
       studyType,
+      sponsorType,
       yearMin,
       yearMax,
       observationSnap,
@@ -1172,6 +1178,11 @@ export default function getFetchOptions({
             {
               term: {
                 'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
             {

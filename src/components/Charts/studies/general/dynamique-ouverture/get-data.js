@@ -15,10 +15,10 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   async function getDataAxios() {
     const queries = [];
     const observationSnap = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
-    const currentYear = parseInt(observationSnap.substring(0, 4), 10);
-    const years10Max = currentYear - 1;
+    const lastObservationYear = parseInt(observationSnap.substring(0, 4), 10);
+    const years10Max = lastObservationYear - 1;
     const years10Min = years10Max - 9;
-    const years3Max = currentYear - 3;
+    const years3Max = lastObservationYear - 3;
     const years3Min = years3Max - 6;
 
     const querySponsorsList = getFetchOptions({
@@ -38,12 +38,12 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     });
     const queryHasResultsWithin3Years = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin3Years',
-      parameters: [studyType, years3Min, years3Max, observationSnap],
+      parameters: [studyType, '*', years3Min, years3Max, observationSnap],
       objectType: ['clinicalTrials'],
     });
     const queryHasResultsWithin1Year = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin1Year',
-      parameters: [studyType, years10Min, years10Max],
+      parameters: [studyType, '*', years10Min, years10Max, observationSnap],
       objectType: ['clinicalTrials'],
     });
     if (filterOnDrug) {
@@ -366,7 +366,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
 
     const categories5 = dataHasResultsWithin3Years.by_sponsor_type.buckets[0].by_has_results_within_3_years.buckets[0].by_completion_year.buckets
       .sort((a, b) => a.key - b.key)
-      .filter((y) => y.key >= 2010 && y.key <= currentYear)
+      .filter((y) => y.key >= 2010 && y.key <= lastObservationYear)
       .map((item) => item.key);
     const academicData5 = [];
     const industrialData5 = [];
@@ -457,7 +457,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
 
     const categories6 = dataHasResultsWithin1Year.by_sponsor_type.buckets[0].by_has_results_within_1_year.buckets[0].by_completion_year.buckets
       .sort((a, b) => a.key - b.key)
-      .filter((y) => y.key >= 2010 && y.key <= currentYear)
+      .filter((y) => y.key >= 2010 && y.key <= lastObservationYear)
       .map((item) => item.key);
     const academic6 = dataHasResultsWithin1Year.by_sponsor_type.buckets.find(
       (item) => item.key === 'academique',
