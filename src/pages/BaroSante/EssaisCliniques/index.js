@@ -117,15 +117,13 @@ function EssaisCliniques() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-within-3-years-historical-all'
-                    isDisplayed={!isInProduction()}
-                    productionReady
+                    isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-within-3-years-historical-industrial'
-                    isDisplayed={!isInProduction()}
-                    productionReady
+                    isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
                   <BSOChart
