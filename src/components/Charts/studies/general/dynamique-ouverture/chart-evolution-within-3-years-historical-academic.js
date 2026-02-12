@@ -37,7 +37,7 @@ function Chart({
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
   const [selectedDelay, setSelectedDelay] = useState('3y');
-  const [sponsorType, setSponsorType] = useState('*');
+  const [sponsorType, setSponsorType] = useState('academic');
   const { allData, isError, isLoading } = useGetData(studyType, sponsorType, selectedDelay);
   const { dataGraphWithin3YearsWithType, sponsorTypes, year } = allData;
   const idWithDomain = withDomain(id, domain);
