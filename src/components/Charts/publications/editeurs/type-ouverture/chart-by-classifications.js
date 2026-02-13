@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -18,7 +19,12 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ id, domain, hasComments, hasFooter }) {
+function Chart({
+  domain = '',
+  hasComments = true,
+  hasFooter = true,
+  id = 'publi.publishers.type-ouverture.chart-by-classifications',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -32,15 +38,16 @@ function Chart({ id, domain, hasComments, hasFooter }) {
     publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
   };
   const idWithDomain = withDomain(id, domain);
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomain, intl));
-  }, [allData, idWithDomain, intl]);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
     categoriesByClassifications,
     dataGraphByClassifications,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomain, intl));
+  }, [allData, idWithDomain, intl]);
 
   return (
     <ChartWrapper
@@ -66,12 +73,6 @@ function Chart({ id, domain, hasComments, hasFooter }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  id: 'publi.publishers.type-ouverture.chart-by-classifications',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

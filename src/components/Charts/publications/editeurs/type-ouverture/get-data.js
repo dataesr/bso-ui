@@ -375,19 +375,6 @@ function useGetData(observationSnap, domain) {
     const dataByClassificationsByPublishers = res[2].data.aggregations.by_classifications.buckets.filter(
       (bucket) => bucket.key !== 'unknown',
     );
-    const categoriesByClassificationsByPublishers = dataByClassificationsByPublishers.map((bucket) => capitalize(
-      intl.formatMessage({
-        defaultMessage: bucket.key,
-        id: `app.discipline.${bucket.key
-          .replace(/\n/g, '')
-          .replace('  ', ' ')}`,
-      }),
-    )
-      .concat('<br>(')
-      .concat(intl.formatMessage({ id: 'app.effectif' }))
-      .concat(' = ')
-      .concat(cleanNumber(bucket.doc_count))
-      .concat(')'));
     const goldAndHybridDataByClassificationsByPublishers = [];
     const diamondDataByClassificationsByPublishers = [];
     const otherDataByClassificationsByPublishers = [];
@@ -499,7 +486,6 @@ function useGetData(observationSnap, domain) {
     return {
       categories,
       categoriesByClassifications,
-      categoriesByClassificationsByPublishers,
       comments,
       dataGraph,
       dataGraphByClassifications,
