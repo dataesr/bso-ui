@@ -494,15 +494,6 @@
     "scale": "institution",
     "ror": "https://ror.org/03c7zyj82"
   },
-  "194210951": {
-    "name": "Université Jean Monnet Saint-Étienne (UJM)",
-    "commentsName": "de l'UJM",
-    "commentsNameEN": "of UJM",
-    "paysage": "tIJ02",
-    "ror": "https://ror.org/04yznqr36",
-    "scale": "university",
-    "startYear": 2020
-  },
   "194401006": {
     "name": "Centrale Nantes",
     "commentsName": "de Centrale Nantes",
@@ -1823,6 +1814,16 @@
     "commentsNameEN": "of UBE",
     "scale": "university",
     "paysage": "l9qwd"
+  },
+  "938501681": {
+    "name": "Université Jean Monnet EPE (UJM)",
+    "commentsName": "de l'UJM",
+    "commentsNameEN": "of UJM",
+    "paysage": "5gqzw",
+    "ror": "https://ror.org/030bahv93",
+    "scale": "university",
+    "alias": "194210951",
+    "startYear": 2020
   },
   "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
