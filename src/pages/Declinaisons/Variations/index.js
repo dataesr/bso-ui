@@ -220,7 +220,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université Strasbourg UNISTRA'
-                href='https://scienceouverte.unistra.fr/strategie/bso/'
+                href='https://scienceouverte.unistra.fr/strategie/barometre-science-ouverte-universite-strasbourg/'
                 img='/declinaisons/unistra.png'
               />
             </Col>
