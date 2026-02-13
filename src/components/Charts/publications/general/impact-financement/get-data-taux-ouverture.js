@@ -95,7 +95,7 @@ function useGetData(observationSnap, domain, split) {
       green_only: getCSSValue('--green-medium-125'),
       'publisher;repository': getCSSValue('--green-light-100'),
       publisher: getCSSValue('--yellow-medium-125'),
-      other: getCSSValue('--orange-soft-100'),
+      other: getCSSValue('--other'),
       hybrid: getCSSValue('--hybrid'),
       gold: getCSSValue('--yellow-medium-100'),
       diamond: getCSSValue('--diamond'),

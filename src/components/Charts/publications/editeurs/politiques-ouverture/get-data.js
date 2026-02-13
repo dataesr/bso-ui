@@ -18,9 +18,6 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
   const [isError, setError] = useState(false);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
-  const yellowMedium125 = getCSSValue('--yellow-medium-125');
-  const yellowMedium100 = getCSSValue('--yellow-medium-100');
-  const yellowMedium25 = getCSSValue('--yellow-medium-25');
 
   async function getDataGraph() {
     const queries = [];
@@ -115,7 +112,7 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
           intl.formatMessage({ id: 'app.publishers.open-by-publisher' }),
         ),
         data: openByPublishers,
-        color: yellowMedium125,
+        color: getCSSValue('--orange-soft-100'),
       },
       {
         name: capitalize(
@@ -156,11 +153,11 @@ function useGetData(beforeLastObservationSnap, lastObservationSnap, domain) {
       {
         name: intl.formatMessage({ id: 'app.publishers' }),
         data: bubbles,
-        color: yellowMedium100,
+        color: getCSSValue('--yellow-medium-100'),
         marker: {
-          fillColor: yellowMedium25,
+          fillColor: getCSSValue('--yellow-medium-25'),
           lineWidth: 3,
-          lineColor: yellowMedium100,
+          lineColor: getCSSValue('--yellow-medium-100'),
         },
         showInLegend: false,
       },

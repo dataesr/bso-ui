@@ -119,7 +119,7 @@ function useGetData(observationSnap, domain) {
           }),
         ),
         data: otherData,
-        color: getCSSValue('--orange-soft-100'),
+        color: getCSSValue('--other'),
       },
       {
         name: capitalize(
@@ -175,7 +175,7 @@ function useGetData(observationSnap, domain) {
         y_tot: otherData[otherData.length - 1].y_tot,
         y_abs: otherData[otherData.length - 1].y_abs,
         value: otherData[otherData.length - 1].y,
-        color: getCSSValue('--orange-soft-100'),
+        color: getCSSValue('--other'),
       },
       {
         name: capitalize(
@@ -302,7 +302,7 @@ function useGetData(observationSnap, domain) {
         ),
       },
       {
-        color: getCSSValue('--orange-soft-100'),
+        color: getCSSValue('--other'),
         data: otherDataByClassifications,
         name: capitalize(
           intl.formatMessage({
@@ -398,7 +398,7 @@ function useGetData(observationSnap, domain) {
     });
     const dataGraphByClassificationsByPublishers = [
       {
-        color: getCSSValue('--orange-soft-100'),
+        color: getCSSValue('--other'),
         data: otherDataByClassificationsByPublishers,
         name: capitalize(
           intl.formatMessage({
