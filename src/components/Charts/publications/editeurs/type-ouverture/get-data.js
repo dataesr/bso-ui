@@ -62,22 +62,22 @@ function useGetData(observationSnap, domain) {
     const otherData = [];
     data.forEach((dataYear) => {
       const goldPublicationsCount = parseInt(
-        dataYear.by_oa_colors.buckets.find((item) => item.key === 'gold')
+        dataYear.by_oa_colors.buckets.find((bucket) => bucket.key === 'gold')
           ?.doc_count || 0,
         10,
       );
       const hybridPublicationsCount = parseInt(
-        dataYear.by_oa_colors.buckets.find((el) => el.key === 'hybrid')
+        dataYear.by_oa_colors.buckets.find((bucket) => bucket.key === 'hybrid')
           ?.doc_count || 0,
         10,
       );
       const diamondPublicationsCount = parseInt(
-        dataYear.by_oa_colors.buckets.find((el) => el.key === 'diamond')
+        dataYear.by_oa_colors.buckets.find((bucket) => bucket.key === 'diamond')
           ?.doc_count || 0,
         10,
       );
       const otherPublicationsCount = parseInt(
-        dataYear.by_oa_colors.buckets.find((el) => el.key === 'other')
+        dataYear.by_oa_colors.buckets.find((bucket) => bucket.key === 'other')
           ?.doc_count || 0,
         10,
       );
@@ -214,8 +214,8 @@ function useGetData(observationSnap, domain) {
     const greenOnlyDataByClassifications = [];
     dataByClassifications.forEach((bucket) => {
       const goldAndHybridPublicationsCountByClassifications = parseInt(
-        bucket.by_oa_colors.buckets.find((el) => el.key === 'gold' || el.key === 'hybrid')
-          ?.doc_count || 0,
+        bucket.by_oa_colors.buckets.filter((el) => el.key === 'gold' || el.key === 'hybrid')
+          .reduce((acc, cur) => acc + (cur?.doc_count ?? 0), 0),
         10,
       );
       goldAndHybridDataByClassifications.push({
@@ -294,6 +294,7 @@ function useGetData(observationSnap, domain) {
       {
         color: getCSSValue('--green-medium-125'),
         data: greenOnlyDataByClassifications,
+        key: 'green-only',
         name: capitalize(
           intl.formatMessage({
             id: 'app.publishers.green-only',
@@ -303,6 +304,7 @@ function useGetData(observationSnap, domain) {
       {
         color: getCSSValue('--other'),
         data: otherDataByClassifications,
+        key: 'other',
         name: capitalize(
           intl.formatMessage({
             id: 'app.publishers.other',
@@ -312,6 +314,7 @@ function useGetData(observationSnap, domain) {
       {
         color: getCSSValue('--yellow-medium-150'),
         data: goldAndHybridDataByClassifications,
+        key: 'gold-hybrid',
         name: capitalize(
           intl.formatMessage({
             id: 'app.publishers.gold-hybrid',
@@ -321,6 +324,7 @@ function useGetData(observationSnap, domain) {
       {
         color: getCSSValue('--diamond'),
         data: diamondDataByClassifications,
+        key: 'diamond',
         name: capitalize(
           intl.formatMessage({
             id: 'app.publishers.diamond',
@@ -338,7 +342,7 @@ function useGetData(observationSnap, domain) {
     dataByClassificationsByPublishers.forEach((bucket) => {
       const goldAndHybridPublicationsCountByClassificationsByPublishers = parseInt(
         bucket.by_oa_colors.buckets
-          .filter((item) => item.key === 'gold' || item === 'hybrid')
+          .filter((item) => item.key === 'gold' || item.key === 'hybrid')
           .reduce((acc, cur) => acc + (cur?.doc_count ?? 0), 0),
         10,
       );
@@ -399,6 +403,7 @@ function useGetData(observationSnap, domain) {
       {
         color: getCSSValue('--other'),
         data: otherDataByClassificationsByPublishers,
+        key: 'other',
         name: capitalize(
           intl.formatMessage({
             id: 'app.publishers.other',
@@ -408,6 +413,7 @@ function useGetData(observationSnap, domain) {
       {
         color: getCSSValue('--yellow-medium-150'),
         data: goldAndHybridDataByClassificationsByPublishers,
+        key: 'gold-hybrid',
         name: capitalize(
           intl.formatMessage({
             id: 'app.publishers.gold-hybrid',
@@ -417,6 +423,7 @@ function useGetData(observationSnap, domain) {
       {
         color: getCSSValue('--diamond'),
         data: diamondDataByClassificationsByPublishers,
+        key: 'diamond',
         name: capitalize(
           intl.formatMessage({
             id: 'app.publishers.diamond',

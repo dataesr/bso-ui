@@ -29,7 +29,7 @@ function Chart({
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const [sort, setSort] = useState('Diamant');
+  const [sort, setSort] = useState('diamond');
   const [optionsGraph, setOptionsGraph] = useState(null);
   const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
   const { allData, isError, isLoading } = useGetData(
@@ -45,7 +45,7 @@ function Chart({
   useEffect(() => {
     let categories = dataGraphByClassificationsByPublishers?.[0]?.data?.toSorted((a, b) => b.y_tot - a.y_tot) ?? [];
     if (sort !== 'sort-staff') {
-      categories = dataGraphByClassificationsByPublishers?.find((item) => item.name === sort)?.data?.toSorted((a, b) => b.y - a.y) ?? [];
+      categories = dataGraphByClassificationsByPublishers?.find((item) => item.key === sort)?.data?.toSorted((a, b) => b.y - a.y) ?? [];
     }
     const categoriesLabels = categories.map((bucket) => capitalize(
       intl.formatMessage({
@@ -109,15 +109,15 @@ function Chart({
       >
         <Radio
           label={capitalize(intl.formatMessage({ id: 'app.publishers.diamond' }))}
-          value={capitalize(intl.formatMessage({ id: 'app.publishers.diamond' }))}
+          value='diamond'
         />
         <Radio
           label={capitalize(intl.formatMessage({ id: 'app.publishers.gold-hybrid' }))}
-          value={capitalize(intl.formatMessage({ id: 'app.publishers.gold-hybrid' }))}
+          value='gold-hybrid'
         />
         <Radio
           label={capitalize(intl.formatMessage({ id: 'app.publishers.other' }))}
-          value={capitalize(intl.formatMessage({ id: 'app.publishers.other' }))}
+          value='other'
         />
         <Radio
           label={capitalize(intl.formatMessage({ id: 'app.effectif' }))}
