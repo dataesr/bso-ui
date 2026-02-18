@@ -1,14 +1,15 @@
 import {
-  Card,
-  CardDescription,
+  // Card,
+  // CardDescription,
   Col,
   Container,
-  Icon as DSIcon,
-  Link as DSLink,
+  // Icon as DSIcon,
+  // Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Link, useLocation } from 'react-router-dom';
+// import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Banner from '../components/Banner';
 import BSOChart from '../components/Charts';

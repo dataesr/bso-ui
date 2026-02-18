@@ -42,10 +42,10 @@ function Chart({
 
   useEffect(() => {
     data?.dataGraph?.forEach((line) => {
-      const nextLine = data.dataGraph.find((l) => l.name === `${Number(line.name) + 1}`);
+      const nextLine = data.dataGraph.find((l) => l.year === line.year + 1);
       line.data.forEach((point) => {
         // eslint-disable-next-line no-param-reassign
-        point.high = nextLine?.data?.find((p) => p.name === point.name)?.low ?? point?.low;
+        point.high = nextLine?.data?.find((p) => p.year === point.year)?.low ?? point?.low;
       });
     });
     setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, data.dataGraph, studyType));

@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { Alert, Container } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
@@ -5,13 +6,13 @@ import { useIntl } from 'react-intl';
 import GlossaryFormattedMessage from '../Glossary/GlossaryFormattedMessage';
 
 function QuestionSection({
-  anchorId,
-  backgroundColor,
-  children,
-  ctas,
-  glossaryKeys,
+  anchorId = '',
+  backgroundColor = '',
+  children = null,
+  ctas = [],
+  glossaryKeys = [],
   intlKey,
-  isDisplayed,
+  isDisplayed = null,
 }) {
   const intl = useIntl();
   const formatted = (
@@ -56,14 +57,6 @@ function QuestionSection({
 
 export default QuestionSection;
 
-QuestionSection.defaultProps = {
-  anchorId: '',
-  backgroundColor: '',
-  children: null,
-  glossaryKeys: [],
-  ctas: [],
-  isDisplayed: null,
-};
 QuestionSection.propTypes = {
   anchorId: PropTypes.string,
   backgroundColor: PropTypes.string,

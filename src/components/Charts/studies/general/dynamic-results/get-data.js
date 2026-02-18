@@ -12,7 +12,6 @@ function useGetData(studyType) {
 
   const getDataByObservationSnaps = useCallback(
     async () => {
-      // Pour chaque date d'observation, récupération des données associées
       const observationYears = ['2022Q4', '2023Q4', '2024Q4', '2025Q4'];
       const years = [2019, 2020, 2021, 2022];
       const colors = ['--blue-soft-75', '--blue-soft-100', '--blue-soft-125', '--blue-soft-150'];
@@ -27,11 +26,12 @@ function useGetData(studyType) {
             lowColor: getCSSValue(colors[index]),
             marker: { fillColor: getCSSValue(colors[index]), lineColor: 'white', radius: 7, symbol: 'circle' },
             name: observationYear.substring(0, 4),
-            showInLegend: true,
+            year: observationYear.substring(0, 4),
           });
         });
 
       years.forEach(async (year) => {
+        // Pour chaque date d'observation, récupération des données associées
         const queries = [];
         observationYears
           ?.sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
@@ -49,7 +49,7 @@ function useGetData(studyType) {
           const total = response.data.aggregations.by_has_result.buckets.reduce((acc, cur) => acc + cur?.doc_count ?? 0, 0);
           const open = response.data.aggregations.by_has_result.buckets.find((bucket) => bucket.key === 1)?.doc_count ?? 0;
           dataGraph.find((item) => item.name === observationYears[index].substring(0, 4)).data.push(
-            { low: (open / total) * 100, name: `Essais terminés en ${year}`, y_abs: total, y_tot: open },
+            { low: (open / total) * 100, name: `Essais terminés en ${year}`, y_abs: total, y_tot: open, year },
           );
         });
       });
