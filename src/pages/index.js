@@ -261,6 +261,7 @@ function HomePage() {
                 </Container>
               </HomeSection>
             </Col>
+            {/*
             <Col n='12 xl-10' offset='xl-2'>
               <HomeSection
                 link={{
@@ -296,6 +297,8 @@ function HomePage() {
                 </Container>
               </HomeSection>
             </Col>
+            */}
+            {/*
             <Col n='12'>
               <Container fluid>
                 <section className='px-20 py-48 px-l-64 px-xl-142 bg-blue-soft-100'>
@@ -375,6 +378,7 @@ function HomePage() {
                 </section>
               </Container>
             </Col>
+            */}
             <Col n='12'>
               <ToolCardsSection />
             </Col>
