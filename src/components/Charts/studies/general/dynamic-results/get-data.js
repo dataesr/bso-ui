@@ -15,7 +15,7 @@ function useGetData(studyType) {
       // Pour chaque date d'observation, récupération des données associées
       const observationYears = ['2022Q4', '2023Q4', '2024Q4', '2025Q4'];
       const years = [2019, 2020, 2021, 2022];
-      const colors = ['--orange-soft-75', '--orange-soft-100', '--orange-soft-125', '--orange-soft-150'];
+      const colors = ['--blue-soft-75', '--blue-soft-100', '--blue-soft-125', '--blue-soft-150'];
       const dataGraph = [];
       observationYears
         ?.sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
