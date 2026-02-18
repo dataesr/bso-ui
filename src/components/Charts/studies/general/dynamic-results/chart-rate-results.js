@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds, studiesTypes } from '../../../../../utils/constants';
-import { getCSSValue, withDomain } from '../../../../../utils/helpers';
+import { getCSSValue, withDomain, withtStudyType } from '../../../../../utils/helpers';
 import ChartWrapper from '../../../../ChartWrapper';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -29,32 +29,39 @@ function Chart({
 }) {
   const chartRef = useRef();
   const intl = useIntl();
+
   const [chartComments, setChartComments] = useState('');
+  const [optionsGraph, setOptionsGraph] = useState(null);
+
   const { data, isError, isLoading } = useGetData(studyType);
   const idWithDomain = withDomain(id, domain);
-  const dataYears = (data?.dataGraph ?? []).map((d, index) => {
-    if (d.data.length > 0) {
-      const res = d.data.find((item) => item.year === d.year - 3);
-      return {
-        color: index === (data.dataGraph.length - 1) ? getCSSValue('--blue-soft-150') : getCSSValue('--blue-soft-100'),
-        completionDate: res.year,
-        name: d.year,
-        y: res.low,
-        y_abs: res.y_abs,
-        y_tot: res.y_tot,
-      };
-    }
-    return {};
-  });
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    [{ data: dataYears.reverse() }],
-  );
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+
+  useEffect(() => {
+    const dataYears = (data?.dataGraph ?? []).map((d, index) => {
+      if (d.data.length > 0) {
+        const res = d.data.find((item) => item.year === d.year - 3);
+        return {
+          color: index === (data.dataGraph.length - 1) ? getCSSValue('--blue-soft-150') : getCSSValue('--blue-soft-100'),
+          completionDate: res.year,
+          name: d.year,
+          y: res.low,
+          y_abs: res.y_abs,
+          y_tot: res.y_tot,
+        };
+      }
+      return {};
+    });
+    setOptionsGraph(chartOptions[id].getOptions(
+      idWithDomain,
+      intl,
+      [{ data: dataYears.reverse() }],
+    ));
+  }, [data.dataGraph, id, idWithDomain, intl]);
 
   useEffect(() => {
     setChartComments(customComments(data, idWithDomain, intl));
-  }, [data, idWithDomain, intl]);
+  }, [data, idWithDomainAndStudyType, intl]);
 
   return (
     <ChartWrapper
