@@ -49,7 +49,7 @@ function useGetData(studyType) {
           const total = response.data.aggregations.by_has_result.buckets.reduce((acc, cur) => acc + cur?.doc_count ?? 0, 0);
           const open = response.data.aggregations.by_has_result.buckets.find((bucket) => bucket.key === 1)?.doc_count ?? 0;
           dataGraph.find((item) => item.name === observationYears[index].substring(0, 4)).data.push(
-            { low: (open / total) * 100, name: `Essais terminés en ${year}`, y_abs: total, y_tot: open, year },
+            { low: (open / total) * 100, name: `Essais terminés en ${year}`, y_abs: open, y_tot: total, year },
           );
         });
       });
