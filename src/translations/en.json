@@ -444,6 +444,7 @@
   "app.health-interventional.general.type-diffusion.chart-repartition.title": "Procedures for reporting the results of clinical trials completed in {year}, within 3 years of the declared end of the clinical trial",
   "app.health-interventional.general.type-diffusion.chart-repartition.tooltip": "<b>Registered and completed clinical trials in {series.userOptions.year} <span style='text-transform: lowercase'>{point.name}</span></b><br>{point.y:.2f}% of these trials <span style='text-transform: lowercase'>have {series.name}</span> ({point.y_abs} / {point.y_tot})",
   "app.health-general.dynamic-results.tooltip": "<b>Communication rate of the clinical trials</b><br>Measured in {series.name} : {point.y:.2f} % ({point.y_abs} / {point.y_tot})",
+  "app.health-general.rate-results.tooltip": "Communication rate of the clinical trials completed in {point.completionDate} and measured within 3 years in {point.name} {point.y:.2f}% ({point.y_abs}/{point.y_tot})",
   "app.health-interventional.navigation.caracteristiques.combien": "How many patients?",
   "app.health-interventional.navigation.caracteristiques.duree": "How long do the clinical trials last?",
   "app.health-interventional.navigation.caracteristiques.quand": "When does the registration take place?",

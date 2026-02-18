@@ -262,6 +262,9 @@ const chartComponents = {
   'general.dynamic-results': lazy(() => import(
     '../components/Charts/studies/general/dynamic-results/chart-dynamic-results'
   )),
+  'general.rate-results': lazy(() => import(
+    '../components/Charts/studies/general/dynamic-results/chart-rate-results'
+  )),
   'thesis.general.voies-ouverture.chart-repartition-taux': lazy(() => import(
     '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'
   )),

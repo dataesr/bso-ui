@@ -26,11 +26,11 @@ function useGetData(studyType) {
             lowColor: getCSSValue(colors[index]),
             marker: { fillColor: getCSSValue(colors[index]), lineColor: 'white', radius: 7, symbol: 'circle' },
             name: observationYear.substring(0, 4),
-            year: observationYear.substring(0, 4),
+            year: Number(observationYear.substring(0, 4)),
           });
         });
 
-      years.forEach(async (year) => {
+      await Promise.all(years.map(async (year) => {
         // Pour chaque date d'observation, récupération des données associées
         const queries = [];
         observationYears
@@ -52,7 +52,7 @@ function useGetData(studyType) {
             { low: (open / total) * 100, name: `Essais terminés en ${year}`, y_abs: open, y_tot: total, year },
           );
         });
-      });
+      }));
       return { dataGraph };
     },
     [studyType],

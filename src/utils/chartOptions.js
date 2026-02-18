@@ -5856,4 +5856,52 @@ export const chartOptions = {
       return options;
     },
   },
+  'general.rate-results': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'bar';
+      options.legend.enabled = false;
+      options.yAxis = {
+        max: 100,
+        min: 0,
+        visible: false,
+      };
+      options.plotOptions = {
+        series: {
+          grouping: false,
+        },
+        bar: {
+          dataLabels: {
+            allowOverlap: true,
+            enabled: true,
+            formatter() {
+              return `${this.point.y.toFixed(0)} %`;
+            },
+            style: {
+              color: getCSSValue('--g-800'),
+              fontSize: '20px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      };
+      options.xAxis = {
+        type: 'category',
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g-800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'year' : item.name),
+      };
+      return options;
+    },
+  },
 };

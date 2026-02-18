@@ -674,6 +674,7 @@
   "app.health-interventional.general.type-diffusion.chart-repartition.title": "Modalités de communication des résultats des essais cliniques terminés en {year}, dans un délai de 3 ans après la fin déclarée de l'essai",
   "app.health-interventional.general.type-diffusion.chart-repartition.tooltip": "<b>Essais cliniques enregistrés et terminés en {series.userOptions.year} <span style='text-transform: lowercase'>{point.name}</span></b><br>{point.y:.2f} % de ces essais <span style='text-transform: lowercase'>ont des {series.name}</span> ({point.y_abs} / {point.y_tot})",
   "app.health-general.dynamic-results.tooltip": "<b>Taux de communication des essais cliniques</b><br>Mesuré en {series.name} : {point.y:.2f} % ({point.y_abs} / {point.y_tot})",
+  "app.health-general.rate-results.tooltip": "Taux de communication des résultats des essais cliniques terminés en {point.completionDate} tel que mesuré 3 ans après soit en {point.name} {point.y:.2f} % ({point.y_abs} / {point.y_tot})",
   "app.health-interventional.navigation.caracteristiques.combien": "Combien de patients ?",
   "app.health-interventional.navigation.caracteristiques.duree": "Combien de temps durent les essais ?",
   "app.health-interventional.navigation.caracteristiques.quand": "Quand a lieu l'enregistrement?",
