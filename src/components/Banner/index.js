@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import {
   Col,
   Container,
@@ -8,7 +9,7 @@ import {
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { getCSSValue, setCSSProperty } from '../../utils/helpers';
@@ -17,17 +18,17 @@ import SelectNavigation from './SelectNavigation';
 
 function Banner({
   backgroundColor,
-  children,
-  chip,
-  homeLink,
-  icons,
-  link,
-  selectNavigation,
-  sticky,
-  subsubTitle,
-  subTitle,
-  supTitle,
-  textColor,
+  children = null,
+  chip = null,
+  homeLink = '',
+  icons = null,
+  link = null,
+  selectNavigation = null,
+  sticky = true,
+  subsubTitle = null,
+  subTitle = null,
+  supTitle = null,
+  textColor = '#fff',
   title,
 }) {
   const [navSelected, setNavSelected] = useState(
@@ -196,20 +197,6 @@ function Banner({
     </section>
   );
 }
-
-Banner.defaultProps = {
-  children: null,
-  chip: null,
-  homeLink: '',
-  icons: null,
-  link: null,
-  selectNavigation: null,
-  sticky: true,
-  subsubTitle: null,
-  subTitle: null,
-  supTitle: null,
-  textColor: '#fff',
-};
 
 Banner.propTypes = {
   backgroundColor: PropTypes.string.isRequired,

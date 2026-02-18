@@ -1010,6 +1010,7 @@
   "app.communication.see": "See the last communication",
   "app.notes.flash.title": "SIES Note Flash",
   "app.oa-rate": "Open access rate",
+  "app.communication-rate": "Communication rate",
   "app.nb.datasets": "Datasets number",
   "app.data-repository": "Datasets repositories",
   "app.data-size": "Datasets size",

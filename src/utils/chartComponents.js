@@ -259,6 +259,9 @@ const chartComponents = {
   'resultats.publication.chart-repartition-icmje': lazy(() => import(
     '../components/Charts/studies/resultats/publication/chart-repartition-icmje'
   )),
+  'general.dynamic-results': lazy(() => import(
+    '../components/Charts/studies/general/dynamic-results/chart-dynamic-results'
+  )),
   'thesis.general.voies-ouverture.chart-repartition-taux': lazy(() => import(
     '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'
   )),

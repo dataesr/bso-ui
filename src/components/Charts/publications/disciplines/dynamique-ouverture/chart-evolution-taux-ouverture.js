@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/no-this-in-sfc */
 import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
@@ -7,7 +8,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
@@ -31,7 +32,12 @@ highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id }) {
+function Chart({
+  domain = '',
+  hasComments = true,
+  hasFooter = true,
+  id = 'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
+}) {
   const intl = useIntl();
   const chartRef = useRef();
 
@@ -223,13 +229,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
     </ChartWrapper>
   );
 }
-
-Chart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  id: 'publi.disciplines.dynamique-ouverture.chart-evolution-taux-ouverture',
-};
 
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

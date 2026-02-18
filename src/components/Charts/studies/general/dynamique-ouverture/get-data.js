@@ -622,7 +622,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     }
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [studyType, sponsor]);
+  }, [sponsor, studyType]);
 
   return { allData, isError, isLoading };
 }

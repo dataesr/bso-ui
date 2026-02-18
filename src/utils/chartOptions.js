@@ -5821,4 +5821,39 @@ export const chartOptions = {
       return options;
     },
   },
+  'general.dynamic-results': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.observation-dates',
+      });
+      options.chart = {
+        type: 'dumbbell',
+        inverted: true,
+        zoomType: 'x',
+        height: '600px',
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.communication-rate' });
+      options.yAxis.gridLineColor = getCSSValue('--g-500');
+      options.yAxis.gridLineDashStyle = 'dot';
+      options.xAxis = {
+        type: 'category',
+      };
+      options.plotOptions = {
+        dumbbell: {
+          grouping: false,
+        },
+        series: {
+          marker: {
+            enabled: true,
+            lineWidth: 2,
+            fillColor: getCSSValue('--black'),
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
 };

@@ -3021,7 +3021,7 @@ export default function getFetchOptions({
   const isDatasets = objectType.includes('datasets');
   if (isHealthTrialsStudies || isOrcid || isDatasets) {
     // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
-    // TODO to remove once the data is in the index
+    // TODO TOREMOVE to remove once the data is in the index
     useBsoCountry = false;
   }
   if (isHealthTrialsStudies) {

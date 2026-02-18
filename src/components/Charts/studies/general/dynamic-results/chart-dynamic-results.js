@@ -1,7 +1,8 @@
 /* eslint-disable react/require-default-props */
-import '../../../graph.scss';
-
+/* eslint-disable react/no-this-in-sfc */
 import Highcharts from 'highcharts';
+import highchartsMore from 'highcharts/highcharts-more';
+import highchartsDumbbell from 'highcharts/modules/dumbbell';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
@@ -11,22 +12,14 @@ import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
-import {
-  domains,
-  graphIds,
-  studiesTypes,
-} from '../../../../../utils/constants';
-import {
-  capitalize,
-  isInProduction,
-  withDomain,
-  withtStudyType,
-} from '../../../../../utils/helpers';
+import { domains, graphIds, studiesTypes } from '../../../../../utils/constants';
+import { withDomain, withtStudyType } from '../../../../../utils/helpers';
 import ChartWrapper from '../../../../ChartWrapper';
-import SearchableSelect from '../../../../SearchableSelect';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
+highchartsMore(Highcharts);
+highchartsDumbbell(Highcharts);
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
@@ -34,37 +27,33 @@ function Chart({
   domain = 'health',
   hasComments = true,
   hasFooter = true,
-  id = 'general.dynamique.chart-evolution',
+  id = 'general.dynamic-results',
   studyType = 'Interventional',
 }) {
-  const chartRef = useRef();
   const intl = useIntl();
+  const chartRef = useRef();
+
   const [chartComments, setChartComments] = useState('');
-  const [options, setOptions] = useState([]);
-  const [sponsor, setSponsor] = useState('*');
-  const { allData, isError, isLoading } = useGetData(studyType, sponsor);
-  const { dataGraph1 } = allData;
+  const [optionsGraph, setOptionsGraph] = useState(null);
+
+  const { data, isError, isLoading } = useGetData(studyType);
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    dataGraph1,
-    studyType,
-  );
 
   useEffect(() => {
-    const opts = allData?.sponsors || [];
-    opts.unshift({
-      label: capitalize(intl.formatMessage({ id: 'app.all-sponsors' })),
-      value: '*',
+    data?.dataGraph?.forEach((line) => {
+      const nextLine = data.dataGraph.find((l) => l.name === `${Number(line.name) + 1}`);
+      line.data.forEach((point) => {
+        // eslint-disable-next-line no-param-reassign
+        point.high = nextLine?.data?.find((p) => p.name === point.name)?.low ?? point?.low;
+      });
     });
-    setOptions(opts);
-  }, [allData.sponsors, intl]);
+    setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, data.dataGraph, studyType));
+  }, [data.dataGraph, id, idWithDomain, intl, studyType]);
 
   useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
+    setChartComments(customComments(data, idWithDomainAndStudyType, intl));
+  }, [data, idWithDomainAndStudyType, intl]);
 
   return (
     <ChartWrapper
@@ -74,16 +63,9 @@ function Chart({
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !allData}
+      isLoading={isLoading || !data || data.length <= 0}
       studyType={studyType}
     >
-      <SearchableSelect
-        isDisplayed={!isInProduction()}
-        label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
-        onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
-        options={options}
-        selected={sponsor}
-      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}

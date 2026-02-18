@@ -1272,6 +1272,7 @@
   "app.data-license": "Licence des jeux de données",
   "app.oa-rate": "Taux d'accès ouvert",
   "app.obs-dates": "dates d'observation",
+  "app.communication-rate": "Taux de communication",
   "app.observation-dates": "Date d'observation",
   "app.funding-year": "Année d'édition de l'AAP",
   "app.observational.after_completion": "après la fin de l'étude",

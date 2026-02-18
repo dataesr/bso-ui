@@ -1,14 +1,14 @@
+/* eslint-disable react/require-default-props */
 import { Select } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 function SelectNavigation({
-  backgroundClass,
+  backgroundClass = '',
   onChange,
   options,
   selected,
-  sticked,
+  sticked = false,
   title,
 }) {
   return (
@@ -34,11 +34,6 @@ function SelectNavigation({
     </section>
   );
 }
-
-SelectNavigation.defaultProps = {
-  backgroundClass: '',
-  sticked: false,
-};
 
 SelectNavigation.propTypes = {
   backgroundClass: PropTypes.string,

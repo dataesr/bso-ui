@@ -15,7 +15,7 @@ function BSOChart({
   id,
   isDisplayed = null,
   productionReady = null,
-  studyType = null,
+  studyType = undefined,
 }) {
   const intl = useIntl();
   const Chart = chartComponents[id];
