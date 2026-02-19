@@ -29,7 +29,7 @@ function Chart({
   domain = 'health',
   hasComments = true,
   hasFooter = true,
-  id = 'general.dynamique.chart-evolution-within-3-years-historical-all',
+  id = 'general.dynamique.chart-evolution-all-historical',
   studyType = 'Interventional',
 }) {
   const chartRef = useRef();
@@ -66,10 +66,10 @@ function Chart({
       studyType,
     ));
     const comments = { comments: {
-      obsMax: series[0].observationSnap.substring(0, 4),
-      obsMin: series[series.length - 1].observationSnap.substring(0, 4),
-      valueMax: Math.round(series[0].y),
-      valueMin: Math.round(series[series.length - 1].y),
+      obsMax: series?.[0]?.observationSnap?.substring(0, 4),
+      obsMin: series?.[series.length - 1]?.observationSnap?.substring(0, 4),
+      valueMax: Math.round(series?.[0]?.y),
+      valueMin: Math.round(series?.[series.length - 1]?.y),
       yearMax: dataTitle?.yearMax,
       yearMin: dataTitle?.yearMin,
     } };

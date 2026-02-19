@@ -2953,7 +2953,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'general.dynamique.chart-evolution-within-3-years-historical-all': {
+  'general.dynamique.chart-evolution-all-historical': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
@@ -2968,6 +2968,7 @@ export const chartOptions = {
       options.yAxis = getPercentageYAxis(false);
       options.yAxis.max = 100;
       options.yAxis.min = 0;
+      options.yAxis.title = { text: intl.formatMessage({ id: 'app.communication-rate' }) };
       options.xAxis = {
         categories: data?.categories || [],
         labels: { style: { color: getCSSValue('--g-800'), fontSize: '12px', fontWeight: 'bold' } },
