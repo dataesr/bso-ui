@@ -21,7 +21,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
     10,
   );
-  const years10Max = lastObservationYear - 1;
+  const years10Max = lastObservationYear - 4;
   const years10Min = years10Max - 9;
 
   async function getDataAxios() {
