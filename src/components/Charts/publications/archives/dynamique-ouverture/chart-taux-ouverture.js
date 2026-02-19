@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import '../../../graph.scss';
 
 import Axios from 'axios';
@@ -24,7 +25,12 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id }) {
+function Chart({
+  domain = '',
+  hasComments = true,
+  hasFooter = true,
+  id = 'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const [archive, setArchive] = useState('*');
@@ -107,12 +113,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  id: 'publi.repositories.dynamique-ouverture.chart-taux-ouverture',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

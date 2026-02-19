@@ -57,10 +57,10 @@ function Chart({
       intl,
       [{ data: dataYears.reverse() }],
     ));
-  }, [data.dataGraph, id, idWithDomain, intl]);
+  }, [data.dataGraph, id, idWithDomain, intl, studyType]);
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomain, intl));
+    setChartComments(customComments(data, idWithDomainAndStudyType, intl));
   }, [data, idWithDomainAndStudyType, intl]);
 
   return (
@@ -72,10 +72,11 @@ function Chart({
       id={id}
       isError={isError}
       isLoading={isLoading || !data.dataGraph}
+      studyType={studyType}
     >
       <HighchartsReact
         highcharts={Highcharts}
-        id={idWithDomain}
+        id={idWithDomainAndStudyType}
         options={optionsGraph}
         ref={chartRef}
       />
