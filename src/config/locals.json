@@ -1857,6 +1857,13 @@
     "scale": "funder",
     "agency": "ANR"
   },
+  "ASU": {
+    "name": "Alliance Sorbonne Université (ASU)",
+    "commentsName": "de l'ASU",
+    "commentsNameEN": "of ASU",
+    "alias": "130023385,180044174,196012231,197534712",
+    "ror": "https://ror.org/r32pq"
+  },
   "CERCLL": {
     "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
     "commentsName": "du CERCLL",
