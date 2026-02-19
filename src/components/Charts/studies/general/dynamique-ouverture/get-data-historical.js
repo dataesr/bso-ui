@@ -25,6 +25,25 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const years10Min = years10Max - 9;
 
   async function getDataAxios() {
+    // Create sponsors types list
+    const querySponsorTypes = getFetchOptions({
+      key: 'sponsorsTypesList',
+      parameters: [studyType],
+      objectType: ['clinicalTrials'],
+    });
+    const responseSponsorTypes = await Axios.post(
+      ES_STUDIES_API_URL,
+      querySponsorTypes,
+      HEADERS,
+    );
+    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+      (item) => item.key,
+    );
+    sponsorTypes = sponsorTypes.map((st) => ({
+      value: st,
+      label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+    }));
+
     // Create sponsors list
     const querySponsorsList = getFetchOptions({
       key: 'sponsorsList',
@@ -202,6 +221,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       dataGraph,
       dataTitle,
       sponsors,
+      sponsorTypes,
     };
   }
 

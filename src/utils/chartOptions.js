@@ -2966,19 +2966,15 @@ export const chartOptions = {
         },
       };
       options.yAxis = getPercentageYAxis(false);
+      options.yAxis.max = 100;
+      options.yAxis.min = 0;
       options.xAxis = {
-        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
-        type: 'category',
         categories: data?.categories || [],
+        labels: { style: { color: getCSSValue('--g-800'), fontSize: '12px', fontWeight: 'bold' } },
         lineWidth: 0,
         tickWidth: 0,
-        labels: {
-          style: {
-            color: getCSSValue('--g-800'),
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
-        },
+        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
+        type: 'category',
       };
       options.series = data?.series || [];
       options.legend = { enabled: false };
