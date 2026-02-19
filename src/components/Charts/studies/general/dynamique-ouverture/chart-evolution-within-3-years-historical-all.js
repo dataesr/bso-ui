@@ -39,7 +39,7 @@ function Chart({
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [sponsorType, setSponsorType] = useState('*');
   const { allData, isError, isLoading } = useGetData(studyType, '*', false, sponsorType);
-  const { dataGraph, dataTitle } = allData;
+  const { dataTitle } = allData;
 
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
@@ -55,9 +55,9 @@ function Chart({
 
   useEffect(() => {
     // Deepcopy of the collected data
-    const dgS = JSON.parse(JSON.stringify(dataGraph?.series ?? []));
+    const dgS = JSON.parse(JSON.stringify(allData?.dataGraph?.series ?? []));
     const sponsorTypeI18nId = sponsorType === '*' ? 'app.all-sponsor-types' : `app.sponsor.${sponsorType}`;
-    const series = dgS?.map((serie) => serie.data.find((item) => item.name === capitalize(intl.formatMessage({ id: sponsorTypeI18nId })))) ?? [];
+    const series = dgS?.map((serie) => serie.data.find((item) => item.name === capitalize(intl.formatMessage({ id: sponsorTypeI18nId })))).reverse() ?? [];
     const categories = series.map((serie) => `${capitalize(intl.formatMessage({ id: 'app.observedin' }))} ${serie.observationSnap.substring(0, 4)}`);
     setOptionsGraph(chartOptions[id].getOptions(
       idWithDomain,
@@ -65,11 +65,16 @@ function Chart({
       { categories, series: [{ data: series }] },
       studyType,
     ));
-  }, [dataGraph?.series, id, idWithDomain, intl, sponsorType, studyType]);
-
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
+    const comments = { comments: {
+      obsMax: series[0].observationSnap.substring(0, 4),
+      obsMin: series[series.length - 1].observationSnap.substring(0, 4),
+      valueMax: Math.round(series[0].y),
+      valueMin: Math.round(series[series.length - 1].y),
+      yearMax: dataTitle?.yearMax,
+      yearMin: dataTitle?.yearMin,
+    } };
+    setChartComments(customComments(comments, idWithDomainAndStudyType, intl));
+  }, [allData, dataTitle, id, idWithDomain, idWithDomainAndStudyType, intl, sponsorType, studyType]);
 
   return (
     <ChartWrapper
