@@ -19,14 +19,24 @@ function useGetData(studyType) {
       observationYears
         ?.sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
         .forEach((observationYear, index) => {
+          let fillColor = getCSSValue(colors[index]);
+          let lineColor = 'white';
+          let lowColor = getCSSValue(colors[index]);
+          let radius = 7;
+          if (index === observationYears.length - 1) {
+            fillColor = 'white';
+            lineColor = getCSSValue(colors[index]);
+            lowColor = getCSSValue(colors[index]);
+            radius = 8;
+          }
           dataGraph.push({
-            color: getCSSValue(colors[index]),
+            color: lowColor,
             dashStyle: 'ShortDot',
             data: [],
-            dataLabels: [{ enabled: true, formatter() { return this.point?.label ?? ''; }, padding: 10 }, { enabled: false }],
-            lowColor: getCSSValue(colors[index]),
-            marker: { fillColor: getCSSValue(colors[index]), lineColor: 'white', radius: 7, symbol: 'circle' },
+            dataLabels: [{ enabled: true, formatter() { return this.point?.label ?? ''; }, padding: 12 }, { enabled: false }],
+            lowColor,
             name: observationYear.substring(0, 4),
+            marker: { fillColor, lineColor, radius, symbol: 'circle' },
             year: Number(observationYear.substring(0, 4)),
           });
         });
