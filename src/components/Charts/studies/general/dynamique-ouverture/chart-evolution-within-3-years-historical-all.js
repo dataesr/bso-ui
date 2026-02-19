@@ -54,8 +54,10 @@ function Chart({
   }, [allData, intl]);
 
   useEffect(() => {
+    // Deepcopy of the collected data
+    const dgS = JSON.parse(JSON.stringify(dataGraph?.series ?? []));
     const sponsorTypeI18nId = sponsorType === '*' ? 'app.all-sponsor-types' : `app.sponsor.${sponsorType}`;
-    const series = dataGraph?.series?.map((serie) => serie.data.find((item) => item.name === capitalize(intl.formatMessage({ id: sponsorTypeI18nId })))) ?? [];
+    const series = dgS?.map((serie) => serie.data.find((item) => item.name === capitalize(intl.formatMessage({ id: sponsorTypeI18nId })))) ?? [];
     const categories = series.map((serie) => `${capitalize(intl.formatMessage({ id: 'app.observedin' }))} ${serie.observationSnap.substring(0, 4)}`);
     setOptionsGraph(chartOptions[id].getOptions(
       idWithDomain,
