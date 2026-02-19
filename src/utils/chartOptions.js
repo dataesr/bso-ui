@@ -5834,6 +5834,8 @@ export const chartOptions = {
       options.yAxis.title.text = intl.formatMessage({ id: 'app.communication-rate' });
       options.yAxis.gridLineColor = getCSSValue('--g-500');
       options.yAxis.gridLineDashStyle = 'dot';
+      options.yAxis.max = 100;
+      options.yAxis.min = 0;
       options.xAxis = {
         type: 'category',
       };

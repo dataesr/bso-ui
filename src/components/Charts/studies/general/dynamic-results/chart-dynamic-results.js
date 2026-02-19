@@ -13,8 +13,9 @@ import { useIntl } from 'react-intl';
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
 import { domains, graphIds, studiesTypes } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import { capitalize, withDomain, withtStudyType } from '../../../../../utils/helpers';
 import ChartWrapper from '../../../../ChartWrapper';
+import SimpleSelect from '../../../../SimpleSelect';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
 
@@ -34,11 +35,22 @@ function Chart({
   const chartRef = useRef();
 
   const [chartComments, setChartComments] = useState('');
+  const [options, setOptions] = useState([]);
   const [optionsGraph, setOptionsGraph] = useState(null);
+  const [sponsorType, setSponsorType] = useState('*');
 
-  const { data, isError, isLoading } = useGetData(studyType);
+  const { data, isError, isLoading } = useGetData(studyType, sponsorType);
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
+
+  useEffect(() => {
+    const opts = data?.sponsorTypes || [];
+    opts.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
+      value: '*',
+    });
+    setOptions(opts);
+  }, [data, intl]);
 
   useEffect(() => {
     data?.dataGraph?.forEach((line, index) => {
@@ -70,6 +82,12 @@ function Chart({
       isLoading={isLoading || !data || data.length <= 0}
       studyType={studyType}
     >
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
+        onChange={(e) => setSponsorType(e.target.value)}
+        options={options}
+        selected={sponsorType}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}
