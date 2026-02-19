@@ -194,8 +194,8 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const dataGraph = { categories, series };
 
     const dataTitle = {
-      yearMax: parseInt(observationSnaps[0].substring(0, 4), 10) - 1,
-      yearMin: parseInt(observationSnaps[0].substring(0, 4), 10) - 10,
+      yearMax: years10Max,
+      yearMin: years10Min,
     };
 
     return {

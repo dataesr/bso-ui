@@ -105,7 +105,7 @@ function EssaisCliniques() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-within-3-years-historical-academic'
-                    isDisplayed={!isInProduction()}
+                    isDisplayed={isInLocal()}
                     productionReady
                     studyType='Interventional'
                   />
@@ -127,7 +127,7 @@ function EssaisCliniques() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-within-3-years-historical-all'
-                    isDisplayed={isInLocal()}
+                    isDisplayed={!isInProduction()}
                     studyType='Interventional'
                   />
                   <BSOChart

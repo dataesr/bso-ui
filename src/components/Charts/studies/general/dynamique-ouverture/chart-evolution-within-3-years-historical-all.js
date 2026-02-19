@@ -15,10 +15,10 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import { withDomain, withtStudyType } from '../../../../../utils/helpers';
+import { capitalize, withDomain, withtStudyType } from '../../../../../utils/helpers';
 import ChartWrapper from '../../../../ChartWrapper';
 import GraphComments from '../../../graph-comments';
-import useGetData from './get-data-within-3-years-historical';
+import useGetData from './get-data-historical';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -27,17 +27,23 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
+  const [optionsGraph, setOptionsGraph] = useState(null);
   const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraphWithin3Years, year } = allData;
+  const { dataGraph, dataTitle } = allData;
+
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
 
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    dataGraphWithin3Years,
-    studyType,
-  );
+  useEffect(() => {
+    const series = dataGraph?.series?.map((serie) => serie.data[0]) ?? [];
+    const categories = series.map((serie) => `${capitalize(intl.formatMessage({ id: 'app.observedin' }))} ${serie.observationSnap.substring(0, 4)}`);
+    setOptionsGraph(chartOptions[id].getOptions(
+      idWithDomain,
+      intl,
+      { categories, series: [{ data: series }] },
+      studyType,
+    ));
+  }, [dataGraph?.series, id, idWithDomain, intl, studyType]);
 
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
@@ -46,7 +52,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
-      dataTitle={{ year }}
+      dataTitle={dataTitle}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
