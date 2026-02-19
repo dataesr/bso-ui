@@ -14,7 +14,7 @@ function useGetData(studyType) {
     async () => {
       const observationYears = ['2022Q4', '2023Q4', '2024Q4', '2025Q4'];
       const years = [2019, 2020, 2021, 2022];
-      const colors = ['--blue-soft-25', '--blue-soft-75', '--blue-soft-125', '--blue-soft-175'];
+      const colors = ['--blue-soft-50', '--blue-soft-75', '--blue-soft-125', '--blue-soft-175'];
       const dataGraph = [];
       observationYears
         ?.sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
@@ -23,6 +23,7 @@ function useGetData(studyType) {
             color: getCSSValue(colors[index]),
             dashStyle: 'ShortDot',
             data: [],
+            dataLabels: [{ enabled: true, formatter() { return this.point?.label ?? ''; }, padding: 10 }, { enabled: false }],
             lowColor: getCSSValue(colors[index]),
             marker: { fillColor: getCSSValue(colors[index]), lineColor: 'white', radius: 7, symbol: 'circle' },
             name: observationYear.substring(0, 4),

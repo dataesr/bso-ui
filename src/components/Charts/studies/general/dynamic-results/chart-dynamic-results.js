@@ -41,11 +41,15 @@ function Chart({
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
 
   useEffect(() => {
-    data?.dataGraph?.forEach((line) => {
+    data?.dataGraph?.forEach((line, index) => {
       const nextLine = data.dataGraph.find((l) => l.year === line.year + 1);
       line.data.forEach((point) => {
         // eslint-disable-next-line no-param-reassign
         point.high = nextLine?.data?.find((p) => p.year === point.year)?.low ?? point?.low;
+        if (index === data.dataGraph.length - 1) {
+          // eslint-disable-next-line no-param-reassign
+          point.label = `${Math.round(point.high)} %`;
+        }
       });
     });
     setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, data.dataGraph, studyType));
