@@ -71,8 +71,14 @@ function Chart({
   }, [data.dataGraph, id, idWithDomain, intl, studyType]);
 
   useEffect(() => {
-    setChartComments(customComments(data, idWithDomainAndStudyType, intl));
-  }, [data, idWithDomainAndStudyType, intl]);
+    const exampleYear = 2020;
+    const comments = { comments: {
+      exampleValue: Math.round(data?.dataGraph?.[data?.dataGraph?.length - 1]?.data?.find((item) => item.year === exampleYear)?.low),
+      exampleYear,
+      obsMin: data?.dataGraph?.[0]?.year,
+    } };
+    setChartComments(customComments(comments, idWithDomainAndStudyType, intl));
+  }, [data?.dataGraph, idWithDomainAndStudyType, intl]);
 
   return (
     <ChartWrapper
