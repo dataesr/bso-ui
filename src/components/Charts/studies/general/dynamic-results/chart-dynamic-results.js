@@ -39,6 +39,9 @@ function Chart({
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [sponsorType, setSponsorType] = useState('*');
 
+  const sponsorTypeTitle = sponsorType !== '*'
+    ? ` (${intl.formatMessage({ id: `app.sponsor.${sponsorType}` })})`
+    : '';
   const { data, isError, isLoading } = useGetData(studyType, sponsorType);
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
@@ -74,6 +77,7 @@ function Chart({
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={{ sponsorTypeTitle, year: data?.dataGraph?.[0].data?.[0]?.year }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import '../../../graph.scss';
 
 import Highcharts from 'highcharts';
@@ -30,7 +31,13 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 highchartsMore(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id, studyType }) {
+function Chart({
+  domain = 'health',
+  hasComments = true,
+  hasFooter = true,
+  id = 'caracteristiques.quand.chart-distribution-declarations',
+  studyType = 'Interventional',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -45,6 +52,9 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
     allData,
     studyType,
   );
+  const sponsorTypeTitle = sponsorType !== '*'
+    ? ` (${intl.formatMessage({ id: `app.sponsor.${sponsorType}` })})`
+    : '';
 
   useEffect(() => {
     const opts = allData?.sponsorTypes || [];
@@ -62,6 +72,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={{ sponsorTypeTitle }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -89,13 +100,6 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: 'health',
-  hasComments: true,
-  hasFooter: true,
-  id: 'caracteristiques.quand.chart-distribution-declarations',
-  studyType: 'Interventional',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
