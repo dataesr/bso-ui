@@ -231,7 +231,7 @@ function useGetData(
 
       // Should collect data from last year and 3 years before
       const slice = parseInt(dataGraph2[0]?.name, 10)
-        - parseInt(dataGraph2[3]?.name, 10)
+        - parseInt(dataGraph2[7]?.name, 10)
         + 1;
       const comments = {
         fistObservationYear: getObservationLabel(
@@ -239,11 +239,11 @@ function useGetData(
           intl,
         ),
         observationDate: dataGraph2[0]?.name,
-        observationDate4: dataGraph2[3]?.name,
-        oaYMinusOne4: dataGraph2[3]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0,
+        observationDate4: dataGraph2[7]?.name,
+        oaYMinusOne4: dataGraph2[7]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0,
         oaYMinus4: dataGraph2[0]?.data.slice(-slice)?.[0]?.y.toFixed(1) || 0,
         publicationDate4:
-          dataGraph2[3]?.data.slice(-1)?.[0]?.publicationDate || 0,
+          dataGraph2[7]?.data.slice(-1)?.[0]?.publicationDate || 0,
         minPublicationDate: dataGraph2[0]?.data?.[0]?.publicationDate || 0,
         oaYMinusOne: dataGraph2[0]?.data.slice(-2)?.[0]?.y.toFixed(0) || 0,
         oaEvolution:
