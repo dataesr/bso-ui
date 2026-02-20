@@ -117,11 +117,14 @@ function EssaisCliniques() {
                     domain='health'
                     id='general.dynamic-results'
                     isDisplayed={!isInProduction()}
+                    productionReady
+                    studyType='Interventional'
                   />
                   <BSOChart
                     domain='health'
                     id='general.rate-results'
                     isDisplayed={!isInProduction()}
+                    studyType='Interventional'
                   />
                   <BSOChart
                     domain='health'
@@ -144,7 +147,7 @@ function EssaisCliniques() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-historical'
-                    isDisplayed={!isInProduction()}
+                    isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
                   <BSOChart
@@ -155,7 +158,7 @@ function EssaisCliniques() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-10-years-within-1-year'
-                    isDisplayed={!isInProduction()}
+                    isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
                   <BSOChart
