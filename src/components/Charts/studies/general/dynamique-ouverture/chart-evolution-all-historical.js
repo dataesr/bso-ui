@@ -35,6 +35,7 @@ function Chart({
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
+  const [collectedData, setCollectedData] = useState({});
   const [options, setOptions] = useState([]);
   const [optionsGraph, setOptionsGraph] = useState(null);
   const [sponsorType, setSponsorType] = useState('*');
@@ -54,30 +55,38 @@ function Chart({
       value: '*',
     });
     setOptions(opts);
-  }, [allData, intl]);
+    const dgS = JSON.parse(JSON.stringify(allData?.dataGraph?.series ?? []));
+    const tmpTmp = {};
+    opts.forEach((o) => {
+      const sponsorTypeI18nId = o.value === '*' ? 'app.all-sponsor-types' : `app.sponsor.${o.value}`;
+      const series = dgS?.map((serie) => serie.data.find((item) => item.name === capitalize(intl.formatMessage({ id: sponsorTypeI18nId })))).reverse() ?? [];
+      const categories = series.map((serie) => `${capitalize(intl.formatMessage({ id: 'app.observedin' }))} ${serie.observationSnap.substring(0, 4)}`);
+      tmpTmp[o.value] = { categories, series: [{ data: series }] };
+    });
+    setCollectedData(tmpTmp);
+  }, [allData?.sponsorTypes, allData?.dataGraph, intl]);
 
   useEffect(() => {
-    // Deepcopy of the collected data
-    const dgS = JSON.parse(JSON.stringify(allData?.dataGraph?.series ?? []));
-    const sponsorTypeI18nId = sponsorType === '*' ? 'app.all-sponsor-types' : `app.sponsor.${sponsorType}`;
-    const series = dgS?.map((serie) => serie.data.find((item) => item.name === capitalize(intl.formatMessage({ id: sponsorTypeI18nId })))).reverse() ?? [];
-    const categories = series.map((serie) => `${capitalize(intl.formatMessage({ id: 'app.observedin' }))} ${serie.observationSnap.substring(0, 4)}`);
     setOptionsGraph(chartOptions[id].getOptions(
       idWithDomain,
       intl,
-      { categories, series: [{ data: series }] },
+      collectedData[sponsorType],
       studyType,
     ));
     const comments = { comments: {
-      obsMax: series?.[0]?.observationSnap?.substring(0, 4),
-      obsMin: series?.[series.length - 1]?.observationSnap?.substring(0, 4),
-      valueMax: Math.round(series?.[0]?.y),
-      valueMin: Math.round(series?.[series.length - 1]?.y),
+      academicMax: Math.round(collectedData?.academique?.series?.[0]?.data?.[0]?.y),
+      academicMin: Math.round(collectedData?.academique?.series?.[0]?.data?.[collectedData?.academique?.series?.[0]?.data.length - 1]?.y),
+      allMax: Math.round(collectedData?.['*']?.series?.[0]?.data?.[0]?.y),
+      allMin: Math.round(collectedData?.['*']?.series?.[0]?.data?.[collectedData?.['*']?.series?.[0]?.data.length - 1]?.y),
+      industrialMax: Math.round(collectedData?.industriel?.series?.[0]?.data?.[0]?.y),
+      industrialMin: Math.round(collectedData?.industriel?.series?.[0]?.data?.[collectedData?.industriel?.series?.[0]?.data.length - 1]?.y),
+      obsMax: collectedData?.['*']?.series?.[0]?.data?.[0]?.observationSnap?.substring(0, 4),
+      obsMin: collectedData?.['*']?.series?.[0]?.data?.[collectedData?.['*']?.series?.[0]?.data?.length - 1]?.observationSnap?.substring(0, 4),
       yearMax: dataTitle?.yearMax,
       yearMin: dataTitle?.yearMin,
     } };
     setChartComments(customComments(comments, idWithDomainAndStudyType, intl));
-  }, [allData, dataTitle, id, idWithDomain, idWithDomainAndStudyType, intl, sponsorType, studyType]);
+  }, [dataTitle?.yearMax, dataTitle?.yearMin, id, idWithDomain, idWithDomainAndStudyType, intl, sponsorType, studyType, collectedData]);
 
   return (
     <ChartWrapper

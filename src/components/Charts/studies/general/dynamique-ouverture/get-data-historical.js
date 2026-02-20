@@ -40,8 +40,8 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       (item) => item.key,
     );
     sponsorTypes = sponsorTypes.map((st) => ({
-      value: st,
       label: intl.formatMessage({ id: `app.sponsor.${st}` }),
+      value: st,
     }));
 
     // Create sponsors list
