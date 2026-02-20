@@ -432,8 +432,8 @@ function useGetData(observationSnap, domain) {
       },
     ];
 
-    const year1 = diamondData[diamondData.length - 3].publicationDate;
-    const diamond1 = diamondData[diamondData.length - 3]?.y.toFixed(0);
+    const year1 = diamondData[5].publicationDate;
+    const diamond1 = diamondData[5]?.y.toFixed(0);
     const year2 = diamondData[diamondData.length - 2].publicationDate;
     const diamond2 = diamondData[diamondData.length - 2]?.y.toFixed(0);
     const year3 = diamondData[diamondData.length - 1].publicationDate;

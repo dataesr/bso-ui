@@ -209,12 +209,13 @@ function useGetData(
       }
       const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 
-      const year3 = getObservationLabel(observationYears?.[0], intl);
+      const year4 = getObservationLabel(observationYears?.[observationYears?.length - 1], intl);
+      const year3 = year4 - 1;
       const year2 = getObservationLabel(observationYears?.[1], intl);
       const year1 = year2 - 1;
       const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0;
       const value2 = dataGraph1?.series[0]?.data
-        .find((item) => item.name === year3)
+        .find((item) => item.name === year4)
         ?.y?.toFixed(1) ?? 0;
       const healthPublicationsLabel = capitalize(
         intl.formatMessage({ id: 'app.publications.health' }),
@@ -255,11 +256,12 @@ function useGetData(
         year1,
         year2,
         year3,
+        year4,
         value1,
         value2,
         healthValue1,
         healthValue2,
-        differenceValue: (value2 - value1).toFixed(1),
+        differenceValue: (value1 - value2).toFixed(1),
         healthDifferenceValue: healthValue2 - healthValue1,
       };
 
