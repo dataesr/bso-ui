@@ -16,7 +16,6 @@ import TodayNumbersItem from '../components/TodayNumbersSection/TodayNumbersItem
 import ToolCardsSection from '../components/ToolCardsSection';
 import UpdateDate from '../components/UpdateDate';
 import GlossaryEntries from '../translations/glossary.json';
-import { isInProduction } from '../utils/helpers';
 import useLang from '../utils/Hooks/useLang';
 
 function HomePage() {

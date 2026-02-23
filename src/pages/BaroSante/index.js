@@ -21,7 +21,6 @@ import TodayNumbersSection from '../../components/TodayNumbersSection';
 import TodayNumbersItem from '../../components/TodayNumbersSection/TodayNumbersItem';
 import ToolCardsSection from '../../components/ToolCardsSection';
 import UpdateDate from '../../components/UpdateDate';
-import { isInProduction } from '../../utils/helpers';
 import useLang from '../../utils/Hooks/useLang';
 
 function BaroSante() {
