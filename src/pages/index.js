@@ -1,14 +1,5 @@
-import {
-  // Card,
-  // CardDescription,
-  Col,
-  Container,
-  // Icon as DSIcon,
-  // Link as DSLink,
-  Row,
-} from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import { FormattedMessage, useIntl } from 'react-intl';
-// import { Link, useLocation } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 import Banner from '../components/Banner';
@@ -239,18 +230,6 @@ function HomePage() {
               >
                 <Container fluid>
                   <Row gutters alignItems='top'>
-                    <Col n='12 md-8'>
-                      <BSOChart
-                        domain='health'
-                        id='general.dynamique.chart-evolution-within-3-years-historical-academic'
-                        isDisplayed={!isInProduction()}
-                        productionReady
-                        studyType='Interventional'
-                      />
-                    </Col>
-                    <Col>
-                      <ProgressionCard domain='health' />
-                    </Col>
                     <Col n='12'>
                       <BSOChart
                         id='general.dynamique.chart-evolution-within-3-years'
@@ -262,124 +241,6 @@ function HomePage() {
                 </Container>
               </HomeSection>
             </Col>
-            {/*
-            <Col n='12 xl-10' offset='xl-2'>
-              <HomeSection
-                link={{
-                  href: '/sante/etudes-observationnelles/general',
-                  label: (
-                    <FormattedMessage id='app.baro-sante.detail-studies' />
-                  ),
-                }}
-                title={
-                  <FormattedMessage id='app.header.nav.baro-sante-etudes' />
-                }
-                introText={(
-                  <GlossaryFormattedMessage
-                    intlKey='app.baro-sante.studies-intro'
-                    glossaryKeys={[]}
-                    ctas={[
-                      'https://clinicaltrials.gov/',
-                      'https://www.clinicaltrialsregister.eu/',
-                    ]}
-                  />
-                )}
-              >
-                <Container fluid>
-                  <Row gutters alignItems='top'>
-                    <Col n='12'>
-                      <BSOChart
-                        id='general.dynamique.chart-evolution-within-3-years'
-                        domain='health'
-                        studyType='Observational'
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-              </HomeSection>
-            </Col>
-            */}
-            {/*
-            <Col n='12'>
-              <Container fluid>
-                <section className='px-20 py-48 px-l-64 px-xl-142 bg-blue-soft-100'>
-                  <Row justifyContent='center'>
-                    <Col n='12 lg-12 xl-9'>
-                      <Card
-                        bodyClassName='bg-white'
-                        hasArrow={false}
-                        hasBorder={false}
-                        href={urls.sante[lang] + search}
-                        isHorizontal
-                      >
-                        <CardDescription as='div'>
-                          <Container fluid>
-                            <Row justifyContent='center' alignItems='middle'>
-                              <Col n='12 md-5'>
-                                <p className='text-card-logo pb-16 blue-dark text-center text-left-l marianne-bold fs-24-32'>
-                                  <FormattedMessage id='app.commons.explore-sante' />
-                                </p>
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-3'
-                                  color1='blue-soft-150'
-                                  color2='yellow-medium-50'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-4'
-                                  color1='blue-soft-150'
-                                  color2='orange-medium-75'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-28'
-                                  color1='blue-soft-150'
-                                  color2='green-soft-50'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-15'
-                                  color1='blue-soft-150'
-                                  color2='blue-soft-50'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-17'
-                                  color1='blue-soft-150'
-                                  color2='pink-light-75'
-                                />
-                              </Col>
-                              <Col n='4 md-1'>
-                                <Icon
-                                  name='icon-bsso-6'
-                                  color1='blue-soft-150'
-                                  color2='green-medium-50'
-                                />
-                              </Col>
-                              <Col n='12'>
-                                <DSIcon name='ri-link' size='2x' as='div'>
-                                  <DSLink
-                                    className='w-100 text-right'
-                                    as={<Link to={urls.sante[lang] + search} />}
-                                  />
-                                </DSIcon>
-                              </Col>
-                            </Row>
-                          </Container>
-                        </CardDescription>
-                      </Card>
-                    </Col>
-                  </Row>
-                </section>
-              </Container>
-            </Col>
-            */}
             <Col n='12'>
               <ToolCardsSection />
             </Col>

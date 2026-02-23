@@ -39,7 +39,7 @@ function Chart({
 
   useEffect(() => {
     const dataYears = (data?.dataGraph ?? []).map((d, index) => {
-      if (d.data.length > 0) {
+      if ((d?.data?.length ?? []) > 0) {
         const res = d.data.find((item) => item.year === d.year - 3);
         return {
           color: index === (data.dataGraph.length - 1) ? getCSSValue('--blue-soft-150') : getCSSValue('--blue-soft-100'),

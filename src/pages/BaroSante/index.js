@@ -96,13 +96,6 @@ function BaroSante() {
                         domain='health'
                         studyType='Interventional'
                       />
-                      <BSOChart
-                        domain='health'
-                        id='general.dynamique.chart-evolution-within-3-years-historical-academic'
-                        isDisplayed={!isInProduction()}
-                        productionReady
-                        studyType='Interventional'
-                      />
                     </Col>
                   </Row>
                 </Container>
