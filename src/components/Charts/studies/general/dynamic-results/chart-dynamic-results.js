@@ -56,9 +56,9 @@ function Chart({
   }, [data, intl]);
 
   useEffect(() => {
-    data?.dataGraph?.forEach((line, index) => {
+    (data?.dataGraph ?? [])?.forEach((line, index) => {
       const nextLine = data.dataGraph.find((l) => l.year === line.year + 1);
-      line.data.forEach((point) => {
+      (line?.data ?? [])?.forEach((point) => {
         // eslint-disable-next-line no-param-reassign
         point.high = nextLine?.data?.find((p) => p.year === point.year)?.low ?? point?.low;
         if (index === data.dataGraph.length - 1) {

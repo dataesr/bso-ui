@@ -43,16 +43,18 @@ function useGetData(studyType, sponsorType = '*') {
       const dataGraph = [];
       observationYears
         ?.sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
-        .forEach((observationYear, index) => {
+        ?.forEach((observationYear, index) => {
           let fillColor = getCSSValue(colors[sponsorType][index]);
           let lineColor = 'white';
           let lowColor = getCSSValue(colors[sponsorType][index]);
           let radius = 7;
+          let showInLegend = true;
           if (index === observationYears.length - 1) {
             fillColor = 'white';
             lineColor = getCSSValue(colors[sponsorType][index]);
             lowColor = getCSSValue(colors[sponsorType][index]);
             radius = 8;
+            showInLegend = false;
           }
           dataGraph.push({
             color: lowColor,
@@ -62,16 +64,27 @@ function useGetData(studyType, sponsorType = '*') {
             lowColor,
             name: observationYear.substring(0, 4),
             marker: { fillColor, lineColor, radius, symbol: 'circle' },
+            showInLegend,
             year: Number(observationYear.substring(0, 4)),
           });
         });
+      dataGraph.push({
+        marker: {
+          fillColor: 'white',
+          lineColor: getCSSValue(colors[sponsorType][colors[sponsorType].length - 1]),
+          radius: 8,
+          symbol: 'circle',
+        },
+        name: observationYears[observationYears.length - 1].substring(0, 4),
+        type: 'scatter',
+      });
 
       await Promise.all(years.map(async (year) => {
         // Pour chaque date d'observation, récupération des données associées
         const queries = [];
         observationYears
           ?.sort((a, b) => a.substring(0, 4) - b.substring(0, 4))
-          .forEach((observationYear) => {
+          ?.forEach((observationYear) => {
             const query = getFetchOptions({
               key: 'studiesDynamiqueOuvertureSponsor',
               parameters: [studyType, '*', sponsorType, year, year, observationYear],
@@ -81,7 +94,7 @@ function useGetData(studyType, sponsorType = '*') {
           });
 
         const responses = await Axios.all(queries);
-        responses.forEach((response, index) => {
+        responses?.forEach((response, index) => {
           const total = response.data.aggregations.by_has_result.buckets.reduce((acc, cur) => acc + cur?.doc_count ?? 0, 0);
           const open = response.data.aggregations.by_has_result.buckets.find((bucket) => bucket.key === 1)?.doc_count ?? 0;
           dataGraph.find((item) => item.name === observationYears[index].substring(0, 4)).data.push(

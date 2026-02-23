@@ -5825,10 +5825,10 @@ export const chartOptions = {
         id: 'app.observation-dates',
       });
       options.chart = {
-        type: 'dumbbell',
-        inverted: true,
-        zoomType: 'x',
         height: '600px',
+        inverted: true,
+        type: 'dumbbell',
+        zoomType: 'x',
       };
       options.yAxis = getPercentageYAxis();
       options.yAxis.title.text = intl.formatMessage({ id: 'app.communication-rate' });
@@ -5846,8 +5846,8 @@ export const chartOptions = {
         series: {
           marker: {
             enabled: true,
-            lineWidth: 2,
             fillColor: getCSSValue('--black'),
+            lineWidth: 2,
           },
         },
       };

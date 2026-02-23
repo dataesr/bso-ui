@@ -104,12 +104,6 @@ function EssaisCliniques() {
                 >
                   <BSOChart
                     domain='health'
-                    id='general.dynamique.chart-evolution-within-3-years-historical-academic'
-                    isDisplayed={isInLocal()}
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    domain='health'
                     id='general.dynamique.chart-evolution-within-3-years'
                     studyType='Interventional'
                   />
@@ -122,21 +116,9 @@ function EssaisCliniques() {
                   />
                   <BSOChart
                     domain='health'
-                    id='general.rate-results'
-                    isDisplayed={!isInProduction()}
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    domain='health'
                     id='general.dynamique.chart-evolution-all-historical'
                     isDisplayed={!isInProduction()}
                     productionReady
-                    studyType='Interventional'
-                  />
-                  <BSOChart
-                    domain='health'
-                    id='general.dynamique.chart-evolution-within-3-years-historical-industrial'
-                    isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
                   <BSOChart
@@ -176,6 +158,24 @@ function EssaisCliniques() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-within-1-year-by-year'
+                    isDisplayed={isInLocal()}
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-3-years-historical-academic'
+                    isDisplayed={isInLocal()}
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.rate-results'
+                    isDisplayed={isInLocal()}
+                    studyType='Interventional'
+                  />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-within-3-years-historical-industrial'
                     isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />

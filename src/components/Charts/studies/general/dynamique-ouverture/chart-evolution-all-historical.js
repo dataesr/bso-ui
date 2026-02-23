@@ -55,15 +55,17 @@ function Chart({
       value: '*',
     });
     setOptions(opts);
+    // Deep copy
     const dgS = JSON.parse(JSON.stringify(allData?.dataGraph?.series ?? []));
-    const tmpTmp = {};
+    const collectedDataTmp = {};
     opts.forEach((o) => {
       const sponsorTypeI18nId = o.value === '*' ? 'app.all-sponsor-types' : `app.sponsor.${o.value}`;
+      const sponsorTypeI18nNameId = o.value === '*' ? 'app.all-sponsors' : `app.sponsors.${o.value}`;
       const series = dgS?.map((serie) => serie.data.find((item) => item.name === capitalize(intl.formatMessage({ id: sponsorTypeI18nId })))).reverse() ?? [];
       const categories = series.map((serie) => `${capitalize(intl.formatMessage({ id: 'app.observedin' }))} ${serie.observationSnap.substring(0, 4)}`);
-      tmpTmp[o.value] = { categories, series: [{ data: series }] };
+      collectedDataTmp[o.value] = { categories, series: [{ data: series, name: intl.formatMessage({ id: sponsorTypeI18nNameId }) }] };
     });
-    setCollectedData(tmpTmp);
+    setCollectedData(collectedDataTmp);
   }, [allData?.sponsorTypes, allData?.dataGraph, intl]);
 
   useEffect(() => {

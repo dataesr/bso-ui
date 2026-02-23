@@ -176,7 +176,6 @@ function Chart({
           lineColor: getCSSValue('--orange-soft-100'),
         },
       });
-
       setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, series));
     }
   }, [data, id, idWithDomain, intl, lastObservationSnap, sort]);
