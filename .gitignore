@@ -7,18 +7,18 @@
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
-# dependencies
-/node_modules
-/.pnp
+# Dependencies
+node_modules
+.pnp
 .pnp.js
 
 # testing
-/coverage
+coverage
 
-# production
-/build
+# Build
+build
 
-# misc
+# Misc
 .DS_Store
 .env.local
 .env.development.local
@@ -28,4 +28,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/yarn.lock
+yarn.lock
+es_requests
+.husky
