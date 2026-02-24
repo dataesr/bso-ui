@@ -1,5 +1,4 @@
 import { Col, Container, Link as DSLink, Row } from '@dataesr/react-dsfr';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Banner from '../../../components/Banner';
@@ -42,14 +41,14 @@ function NotesFlash() {
                 <FormattedMessage id='app.notes.flash.last-note-title' />
               </h4>
               <p className='fs-16-28'>
-                <FormattedMessage id='app.note.flash.edition.2024' />
+                <FormattedMessage id='app.note.flash.edition.2025' values={{ br: <br /> }} />
               </p>
             </Col>
             <Col n='12 sm-6 lg-4'>
               <FlashCard
-                intlTitle='app.note.flash.jan-2025'
-                url='https://www.enseignementsup-recherche.gouv.fr/fr/le-barometre-francais-de-la-science-ouverte-2024-98423'
-                urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2025-01/nf-sies-2025-01-36071.pdf'
+                doi='10.5281/zenodo.18758226'
+                intlTitle='app.note.flash-fev-2026'
+                // urlPdf=''
               />
             </Col>
           </Row>
@@ -131,48 +130,55 @@ function NotesFlash() {
                   <Row gutters>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
+                        doi='10.5281/zenodo.18660896'
+                        intlTitle='app.note.flash.jan-2025'
+                        urlPdf='https://zenodo.org/records/18660896/files/1180.pdf?download=1'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <FlashCard
+                        doi='10.5281/zenodo.18660768'
                         intlTitle='app.note.flash.fev-2024'
-                        url='https://www.enseignementsup-recherche.gouv.fr/fr/le-barometre-francais-de-la-science-ouverte-2023-94953'
-                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2024-02/nf-sies-2024-05-31926.pdf'
+                        urlPdf='https://zenodo.org/records/18660768/files/1133.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
+                        doi='10.5281/zenodo.18660627'
                         intlTitle='app.note.flash.mar-2023'
-                        url='https://www.enseignementsup-recherche.gouv.fr/fr/barometre-francais-science-ouverte-2022-89981'
-                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2023-03/nf-sies-2023-03-26906.pdf'
+                        urlPdf='https://zenodo.org/records/18660627/files/1082.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
+                        doi='10.5281/zenodo.17527255'
                         intlTitle='app.note.flash.jan-2022'
-                        url='https://enseignementsup-recherche.gouv.fr/fr/barometre-francais-de-la-science-ouverte-2021'
                         urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-tableaux-et-graphiques-16328.xlsx'
-                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-16325.pdf'
+                        urlPdf='https://zenodo.org/records/17527255/files/1026.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
+                        doi='10.5281/zenodo.18660365'
                         intlTitle='app.note.flash.jan-2021'
-                        url='https://www.enseignementsup-recherche.gouv.fr/cid156502/barometre-francais-de-la-science-ouverte-2020.html'
                         urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF2021_01_Barometre_Science_Ouverte_1370577.xlsx'
-                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF2021_01_Barometre_Science_Ouverte_1370579.pdf'
+                        urlPdf='https://zenodo.org/records/18660365/files/964.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
+                        doi='10.5281/zenodo.18660142'
                         intlTitle='app.note.flash.jan-2020'
-                        url='https://www.enseignementsup-recherche.gouv.fr/cid148931/barometre-francais-de-la-science-ouverte.html'
                         urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF_Bso_2019_1236202.xlsx'
-                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF_BarometreSO_1236191.pdf'
+                        urlPdf='https://zenodo.org/records/18660142/files/899.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
+                        doi='10.5281/zenodo.18660101'
                         intlTitle='app.note.flash.oct-2019'
-                        url='https://www.enseignementsup-recherche.gouv.fr/fr/barometre-francais-de-la-science-ouverte-47368'
                         urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF22_Bso_1194931.xlsx'
-                        urlPdf='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/BSO_NoteFlash_Oct2019vf_1194933.pdf'
+                        urlPdf='https://zenodo.org/records/18660101/files/881.pdf?download=1'
                       />
                     </Col>
                   </Row>
