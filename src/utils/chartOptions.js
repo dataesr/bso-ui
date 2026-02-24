@@ -2785,7 +2785,7 @@ export const chartOptions = {
         bar: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f} %',
+            format: '{point.y:.0f} % ({point.y_abs} / {point.y_tot})',
           },
         },
       };
@@ -2961,7 +2961,7 @@ export const chartOptions = {
         bar: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f} %',
+            format: '{point.y:.0f} % ({point.y_abs} / {point.y_tot})',
           },
         },
       };
@@ -5836,9 +5836,7 @@ export const chartOptions = {
       options.yAxis.gridLineDashStyle = 'dot';
       options.yAxis.max = 100;
       options.yAxis.min = 0;
-      options.xAxis = {
-        type: 'category',
-      };
+      options.xAxis = { type: 'category' };
       options.plotOptions = {
         dumbbell: {
           grouping: false,

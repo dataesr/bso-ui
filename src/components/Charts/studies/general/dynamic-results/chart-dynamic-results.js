@@ -61,9 +61,9 @@ function Chart({
       (line?.data ?? [])?.forEach((point) => {
         // eslint-disable-next-line no-param-reassign
         point.high = nextLine?.data?.find((p) => p.year === point.year)?.low ?? point?.low;
-        if (index === data.dataGraph.length - 1) {
+        if (index === data.dataGraph.length - 2) {
           // eslint-disable-next-line no-param-reassign
-          point.label = `${Math.round(point.high)} %`;
+          point.label = `${Math.round(point.high)} % (${point.y_abs} / ${point.y_tot})`;
         }
       });
     });
