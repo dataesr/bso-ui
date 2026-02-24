@@ -51,7 +51,7 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   const tooltip = intl
     .formatMessage({
       id: `${titleId}.tooltip`,
-      defaultMessage: ' ',
+      defaultMessage: `${titleId}.tooltip`,
     })
     .replaceAll('((commentsName))', commentsName);
   const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
@@ -5819,8 +5819,8 @@ export const chartOptions = {
     },
   },
   'general.dynamic-results': {
-    getOptions: (id, intl, data) => {
-      const options = getGraphOptions({ id, intl });
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
       options.legend.title.text = intl.formatMessage({
         id: 'app.observation-dates',
       });
