@@ -130,55 +130,56 @@ function NotesFlash() {
                   <Row gutters>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
-                        doi='10.5281/zenodo.18660896'
+                        doi='10.5281/zenodo.18660895'
                         intlTitle='app.note.flash.jan-2025'
+                        urlData='https://zenodo.org/records/18660896/files/1180_1.xlsx?download=1'
                         urlPdf='https://zenodo.org/records/18660896/files/1180.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
-                        doi='10.5281/zenodo.18660768'
+                        doi='10.5281/zenodo.18660767'
                         intlTitle='app.note.flash.fev-2024'
                         urlPdf='https://zenodo.org/records/18660768/files/1133.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
-                        doi='10.5281/zenodo.18660627'
+                        doi='10.5281/zenodo.18660626'
                         intlTitle='app.note.flash.mar-2023'
                         urlPdf='https://zenodo.org/records/18660627/files/1082.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
-                        doi='10.5281/zenodo.17527255'
+                        doi='10.5281/zenodo.17527254'
                         intlTitle='app.note.flash.jan-2022'
-                        urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/2022-01/nf-sies-2022-03-tableaux-et-graphiques-16328.xlsx'
-                        urlPdf='https://zenodo.org/records/17527255/files/1026.pdf?download=1'
+                        urlData='https://zenodo.org/records/18759132/files/nf-sies-2022-03-tableaux-et-graphiques-16328.xlsx?download=1'
+                        urlPdf='https://zenodo.org/records/18759132/files/1026.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
-                        doi='10.5281/zenodo.18660365'
+                        doi='10.5281/zenodo.18660364'
                         intlTitle='app.note.flash.jan-2021'
-                        urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF2021_01_Barometre_Science_Ouverte_1370577.xlsx'
-                        urlPdf='https://zenodo.org/records/18660365/files/964.pdf?download=1'
+                        urlData='https://zenodo.org/records/18759166/files/NF2021_01_Barometre_Science_Ouverte_1370577.xlsx?download=1'
+                        urlPdf='https://zenodo.org/records/18759166/files/964.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
-                        doi='10.5281/zenodo.18660142'
+                        doi='10.5281/zenodo.18660141'
                         intlTitle='app.note.flash.jan-2020'
-                        urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF_Bso_2019_1236202.xlsx'
+                        urlData='https://zenodo.org/records/18660142/files/NF_Bso_2019_1236202.xlsx?download=1'
                         urlPdf='https://zenodo.org/records/18660142/files/899.pdf?download=1'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <FlashCard
-                        doi='10.5281/zenodo.18660101'
+                        doi='10.5281/zenodo.18660100'
                         intlTitle='app.note.flash.oct-2019'
-                        urlData='https://www.enseignementsup-recherche.gouv.fr/sites/default/files/imported_files/documents/NF22_Bso_1194931.xlsx'
-                        urlPdf='https://zenodo.org/records/18660101/files/881.pdf?download=1'
+                        urlData='https://zenodo.org/records/18759211/files/NF22_Bso_1194931.xlsx?download=1'
+                        urlPdf='https://zenodo.org/records/18759211/files/881.pdf?download=1'
                       />
                     </Col>
                   </Row>
