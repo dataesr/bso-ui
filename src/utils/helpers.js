@@ -378,9 +378,14 @@ export function getURLSearchParams(intl = undefined, id = '') {
   } else if (bsoLocalAffiliation === undefined) {
     lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
   }
-  let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
-    || localAffiliationSettings?.firstObservationYear
-    || '2018';
+  let firstObservationYear = '2018';
+  if (urlSearchParams.get('firstObservationYear')?.toLowerCase() === 'latest') {
+    firstObservationYear = '2018';
+  } else {
+    firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
+      || localAffiliationSettings?.firstObservationYear
+      || '2018';
+  }
   const agency = urlSearchParams.get('agency')?.toLowerCase()
     || localAffiliationSettings?.agency;
   const idTypes = ['crossref'];
@@ -452,12 +457,16 @@ export function getURLSearchParams(intl = undefined, id = '') {
           ?.formatMessage({ id: 'app.perimeter', defaultMessage: 'Périmètre' })
           .concat(` ${bsoLocalAffiliation}`),
       );
-    startYear = parseInt(
-      urlSearchParams.get('startYear')?.toLowerCase()
-        || localAffiliationSettings?.startYear
-        || 2013,
-      10,
-    );
+    if (urlSearchParams.get('startYear')?.toLowerCase() === 'latest') {
+      startYear = parseInt(process.env.REACT_APP_LAST_OBSERVATION, 10) - 1;
+    } else {
+      startYear = parseInt(
+        urlSearchParams.get('startYear')?.toLowerCase()
+          || localAffiliationSettings?.startYear
+          || 2013,
+        10,
+      );
+    }
   }
 
   if (isPublication) {
