@@ -458,7 +458,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
           .concat(` ${bsoLocalAffiliation}`),
       );
     if (urlSearchParams.get('startYear')?.toLowerCase() === 'latest') {
-      startYear = parseInt(process.env.REACT_APP_LAST_OBSERVATION, 10) - 1;
+      startYear = 2013;
     } else {
       startYear = parseInt(
         urlSearchParams.get('startYear')?.toLowerCase()
