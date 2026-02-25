@@ -170,9 +170,9 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Toulouse III'
+                alt='bso local Université Toulouse'
                 href='https://www.univ-tlse3.fr/la-recherche/science-ouverte'
-                img='/declinaisons/ut3.jpeg'
+                img='/declinaisons/utc.jpg'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
