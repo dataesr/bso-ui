@@ -172,7 +172,7 @@ function Variations() {
               <CardLogo
                 alt='bso local Université Toulouse'
                 href='https://www.univ-tlse3.fr/la-recherche/science-ouverte'
-                img='/declinaisons/utc.jpg'
+                img='/declinaisons/ut.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
