@@ -561,15 +561,15 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     let publicLeadSponsorsRate = '';
     if (dataGraph1) {
       const data = dataGraph1?.series[0]?.data;
-      const allLeadSponsorLabel = intl.formatMessage({
+      const allLeadSponsorLabel = capitalize(intl.formatMessage({
         id: 'app.all-sponsor-types',
-      });
-      const privateLeadSponsorsLabel = intl.formatMessage({
+      }));
+      const privateLeadSponsorsLabel = capitalize(intl.formatMessage({
         id: 'app.sponsor.industriel',
-      });
-      const publicLeadSponsorsLabel = intl.formatMessage({
+      }));
+      const publicLeadSponsorsLabel = capitalize(intl.formatMessage({
         id: 'app.sponsor.academique',
-      });
+      }));
       allLeadSponsorRate = data
         ?.find((item) => item.name === allLeadSponsorLabel)
         ?.y?.toFixed(0);
