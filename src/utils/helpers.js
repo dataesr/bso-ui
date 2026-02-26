@@ -28,7 +28,7 @@ export function setCSSProperty(property, value) {
 export function getFormattedDate(date, lang) {
   const dateFormat = { fr: 'fr-fr', en: 'en-en' };
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
-  return new Date(date).toLocaleDateString(dateFormat[lang], options);
+  return new Date(date).toLocaleDateString(dateFormat?.[lang] ?? 'fr-fr', options);
 }
 
 /**

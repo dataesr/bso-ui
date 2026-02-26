@@ -11,15 +11,14 @@ import useGlobals from '../../utils/Hooks/useGetGlobals';
 import useLang from '../../utils/Hooks/useLang';
 
 export default function UpdateDate({ domain = '' }) {
-  const { lastObservationSnap } = useGlobals();
-  const { updateDate } = useGlobals();
+  const { lastObservationSnap, updateDate, updateDateClinicalTrials } = useGlobals();
   const { lang } = useLang();
 
   return (
     domain === 'health' ? (
       <FormattedMessage
         values={{
-          date: getFormattedDate('2026-02-10', lang),
+          date: getFormattedDate(updateDateClinicalTrials, lang),
         }}
         id='app.health.update.date'
         defaultMessage='Doonées mises à jour pour les essais cliniques'

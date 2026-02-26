@@ -50,7 +50,7 @@ function BaroSante() {
     <div className='baro-sante page home'>
       <Banner
         backgroundColor='blue-soft-100'
-        chip={<Chip backgroundColor='blue-soft-125' domain='health' />}
+        chip={<Chip domain='health' />}
         homeLink={urls.national[lang] + search}
         icons={renderIcons}
         subTitle={<FormattedMessage id='app.header.subtitle-health' />}
