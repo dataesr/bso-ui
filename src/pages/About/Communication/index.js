@@ -46,9 +46,10 @@ function NotesFlash() {
             </Col>
             <Col n='12 sm-6 lg-4'>
               <FlashCard
-                doi='10.5281/zenodo.18758226'
+                doi='10.5281/zenodo.18758225'
                 intlTitle='app.note.flash-fev-2026'
-                // urlPdf=''
+                urlData='https://zenodo.org/records/18758226/files/1247_1.xlsx?download=1'
+                urlPdf='https://zenodo.org/records/18758226/files/1247.pdf?download=1'
               />
             </Col>
           </Row>
