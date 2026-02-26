@@ -50,12 +50,12 @@ function BaroSante() {
     <div className='baro-sante page home'>
       <Banner
         backgroundColor='blue-soft-100'
+        chip={<Chip backgroundColor='blue-soft-125' domain='health' />}
+        homeLink={urls.national[lang] + search}
+        icons={renderIcons}
+        subTitle={<FormattedMessage id='app.header.subtitle-health' />}
         supTitle={<FormattedMessage id='app.header.welcome-on' />}
         title={<FormattedMessage id='app.header.title-health-bis' />}
-        subTitle={<FormattedMessage id='app.header.subtitle-health' />}
-        chip={<Chip backgroundColor='blue-soft-125' />}
-        icons={renderIcons}
-        homeLink={urls.national[lang] + search}
       />
       <ScrollTop />
       <Container fluid>

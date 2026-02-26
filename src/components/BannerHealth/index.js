@@ -62,16 +62,16 @@ function BannerHealth({ selected, title }) {
   return (
     <Banner
       backgroundColor='blue-soft-100'
+      chip={<Chip domain='health' />}
       homeLink={urls.sante[lang] + search}
-      supTitle={<FormattedMessage id='app.header.title-health' />}
-      title={<FormattedMessage id={title} />}
-      chip={<Chip />}
       icons={renderIcons}
       selectNavigation={{
         title: intl.formatMessage({ id: 'app.navigation.objet-recherche' }),
         selected: intl.formatMessage({ id: selected }),
         options,
       }}
+      supTitle={<FormattedMessage id='app.header.title-health' />}
+      title={<FormattedMessage id={title} />}
     />
   );
 }
