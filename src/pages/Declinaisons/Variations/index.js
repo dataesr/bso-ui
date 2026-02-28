@@ -483,6 +483,13 @@ function Variations() {
                 img='/declinaisons/umontpellier.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Université de Limoges'
+                href='https://www.scienceouverte.unilim.fr/outils-et-guides-pratiques/outils/le-barometre-de-la-science-ouverte/'
+                img='/declinaisons/unilim.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
