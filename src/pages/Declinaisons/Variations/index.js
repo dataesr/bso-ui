@@ -479,7 +479,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université de Montpellier'
-                href='https://scienceouverte.edu.umontpellier.fr/le-barometre-de-la-science-ouverte-a-lum/'
+                href='https://scienceouverte.edu.umontpellier.fr/science-ouverte-a-lum/barometre-de-la-science-ouverte/'
                 img='/declinaisons/umontpellier.png'
               />
             </Col>
