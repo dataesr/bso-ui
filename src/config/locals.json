@@ -1842,6 +1842,11 @@
     "scale": "university",
     "startYear": 2020
   },
+  "CIRADHAL": {
+    "name": "CIRAD et HAL",
+    "commentsName": "de CIRAD et HAL",
+    "commentsNameEN": "of CIRAD and HAL"
+  },
   "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
     "commentsName": "du pôle A2F",
