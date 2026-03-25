@@ -1,9 +1,15 @@
+/* eslint-disable react/require-default-props */
 import { Card, CardDescription, CardDetail, Link } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-function FlashCard({ intlTitle, url, urlData, urlPdf }) {
+function FlashCard({
+  doi = undefined,
+  intlTitle,
+  url,
+  urlData = undefined,
+  urlPdf = undefined,
+}) {
   return (
     <Card
       bodyClassName='bso-flash-card bg-yellow-medium-50'
@@ -15,12 +21,15 @@ function FlashCard({ intlTitle, url, urlData, urlPdf }) {
         <FormattedMessage id='app.notes.flash.title' />
       </CardDetail>
       <CardDescription as='div'>
-        <div className='fs-20-20 marianne-bold pb-32'>
+        <div className='fs-20-20 marianne-bold pb-16'>
           <FormattedMessage id={intlTitle} />
+        </div>
+        <div className='fs-12-12 marianne pb-32'>
+          {doi && <FormattedMessage id={doi} />}
         </div>
         <section className='text-right'>
           <div>
-            <Link target='_blank' href={url}>
+            <Link target='_blank' href={doi ? `https://doi.org/${doi}` : url}>
               <FormattedMessage id='app.notes.flash.note' />
             </Link>
           </div>
@@ -44,12 +53,8 @@ function FlashCard({ intlTitle, url, urlData, urlPdf }) {
   );
 }
 
-FlashCard.defaultProps = {
-  urlData: undefined,
-  urlPdf: undefined,
-};
-
 FlashCard.propTypes = {
+  doi: PropTypes.string,
   intlTitle: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   urlData: PropTypes.string,

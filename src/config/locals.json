@@ -447,9 +447,9 @@
     "ror": "https://ror.org/033p9g875"
   },
   "193113842": {
-    "name": "Université Toulouse III - Paul Sabatier (UT3)",
-    "commentsName": "de l'UT3",
-    "commentsNameEN": "of UT3",
+    "name": "Université de Toulouse (UT)",
+    "commentsName": "de l'UT",
+    "commentsNameEN": "of UT",
     "paysage": "m7K6T",
     "ror": "https://ror.org/02v6kpv12",
     "scale": "university",
@@ -493,15 +493,6 @@
     "paysage": "851ij",
     "scale": "institution",
     "ror": "https://ror.org/03c7zyj82"
-  },
-  "194210951": {
-    "name": "Université Jean Monnet Saint-Étienne (UJM)",
-    "commentsName": "de l'UJM",
-    "commentsNameEN": "of UJM",
-    "paysage": "tIJ02",
-    "ror": "https://ror.org/04yznqr36",
-    "scale": "university",
-    "startYear": 2020
   },
   "194401006": {
     "name": "Centrale Nantes",
@@ -554,6 +545,14 @@
     "ror": "https://ror.org/053x9s498",
     "scale": "university"
   },
+  "196402515": {
+    "name": "Université de Pau et des Pays de l'Adour (UPPA)",
+    "commentsName": "de l'UPPA",
+    "commentsNameEN": "of UPPA",
+    "paysage": "Mz286",
+    "ror": "https://ror.org/01frn9647",
+    "scale": "university"
+  },
   "196727671": {
     "name": "Institut National des Sciences Appliquées de Strasbourg (INSA Strasbourg)",
     "commentsName": "de l'INSA Strasbourg",
@@ -564,8 +563,8 @@
   },
   "196811665": {
     "name": "Université de Haute-Alsace (UHA)",
-    "commentsName": "de l'université de Haute-Alsace",
-    "commentsNameEN": "of the university of Haute-Alsace",
+    "commentsName": "de l'UHA",
+    "commentsNameEN": "of UHA",
     "paysage": "OJZ4a",
     "ror": "https://ror.org/04k8k6n84",
     "scale": "university",
@@ -682,9 +681,8 @@
     "commentsName": "de l'ENSAM",
     "commentsNameEN": "of ENSAM",
     "paysage": "jYUcF",
-    "scale": "institution",
     "ror": "https://ror.org/018pp1107",
-    "scale": "university"
+    "scale": "institution"
   },
   "197534787": {
     "name": "École nationale des chartes - PSL (ENC-PSL)",
@@ -832,7 +830,6 @@
     "commentsName": "du CEMES",
     "commentsNameEN": "of CEMES",
     "paysage": "Y69JT",
-    "scale": "laboratory",
     "ror": "https://ror.org/03kwnqq69",
     "scale": "laboratory"
   },
@@ -1329,6 +1326,14 @@
     "ror": "https://ror.org/00zn13224",
     "scale": "laboratory"
   },
+  "200711921G": {
+    "name": "Institut de Recherches sur la Catalyse et l'Environnement de Lyon (IRCELYON)",
+    "commentsName": "de l'IRCELYON",
+    "commentsNameEN": "of IRCELYON",
+    "paysage": "WtV43",
+    "ror": "04fy20a51",
+    "scale": "laboratory"
+  },
   "200717404S": {
     "name": "Laboratoire de biomécanique et mécanique des chocs (LBMC)",
     "commentsName": "du LBMC",
@@ -1681,12 +1686,20 @@
     "scale": "laboratory"
   },
   "263500076": {
-    "name": "Centre Hospitalier Universitaire de Rennes",
+    "name": "Centre Hospitalier Universitaire de Rennes (CHU de Rennes)",
     "commentsName": "du CHU de Rennes",
     "commentsNameEN": "of CHU de Rennes",
     "paysage": "WdImd",
     "scale": "institution",
     "ror": "https://ror.org/05qec5a53"
+  },
+  "263800302": {
+    "name": "Centre Hospitalier Universitaire Grenoble Alpes (CHUGA)",
+    "commentsName": "du CHUGA",
+    "commentsNameEN": "of CHUGA",
+    "paysage": "tzBvi",
+    "scale": "institution",
+    "ror": "https://ror.org/041rhpw39"
   },
   "266900273": {
     "name": "Hospices Civils de Lyon (HCL)",
@@ -1810,6 +1823,30 @@
     "scale": "university",
     "paysage": "l9qwd"
   },
+  "938501681": {
+    "name": "Université Jean Monnet EPE (UJM)",
+    "commentsName": "de l'UJM",
+    "commentsNameEN": "of UJM",
+    "paysage": "5gqzw",
+    "ror": "https://ror.org/030bahv93",
+    "scale": "university",
+    "alias": "194210951",
+    "startYear": 2020
+  },
+  "194210951": {
+    "name": "Université Jean Monnet EPE (UJM)",
+    "commentsName": "de l'UJM",
+    "commentsNameEN": "of UJM",
+    "paysage": "5gqzw",
+    "ror": "https://ror.org/030bahv93",
+    "scale": "university",
+    "startYear": 2020
+  },
+  "CIRADHAL": {
+    "name": "CIRAD et HAL",
+    "commentsName": "de CIRAD et HAL",
+    "commentsNameEN": "of CIRAD and HAL"
+  },
   "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
     "commentsName": "du pôle A2F",
@@ -1825,13 +1862,12 @@
     "scale": "funder",
     "agency": "ANR"
   },
-  "03m8vkq32": {
-    "name": "Institut national du Cancer (INCa)",
-    "commentsName": "issues d'un projet financé par l'INCa",
-    "commentsNameEN": "resulting from an INCa-funded project",
-    "startYear": 2016,
-    "scale": "funder",
-    "agency": "INCa"
+  "ASU": {
+    "name": "Alliance Sorbonne Université (ASU)",
+    "commentsName": "de l'ASU",
+    "commentsNameEN": "of ASU",
+    "alias": "130023385,180044174,196012231,197534712",
+    "ror": "https://ror.org/r32pq"
   },
   "CERCLL": {
     "name": "Centre d'Etudes des Relations et Contacts Linguistiques et Littéraires (CERCLL)",
@@ -1890,12 +1926,22 @@
     "alias": "130018336,193101524,196727671,196901920,197601651,301232",
     "paysage": "WnZhe"
   },
+  "PEPLOR": {
+    "name": "Plateforme Expérimentale Phytotronique de Lorraine (PEPLOR)",
+    "commentsName": "de PEPLOR",
+    "commentsNameEN": "of PEPLOR"
+  },
   "PNR_EST": {
     "name": "Programme national de recherche Environnement-Santé-Travail financé par l'ANSES (PNR EST)",
     "commentsName": "du PNR EST",
     "commentsNameEN": "of PNR EST",
     "scale": "funder",
     "agency": "\"ANSES PNR EST\""
+  },
+  "POLE_S_T": {
+    "name": "Pôle Sciences et technologie - Nantes Université (PÔLE S&T)",
+    "commentsName": "du PÔLE S&T",
+    "commentsNameEN": "of PÔLE S&T"
   },
   "POLEM4": {
     "name": "Pôle M4 - Université de Lorraine",
@@ -1941,6 +1987,14 @@
     "startYear": 2016,
     "scale": "funder",
     "agency": "ANR"
+  },
+  "03m8vkq32": {
+    "name": "Institut national du Cancer (INCa)",
+    "commentsName": "issues d'un projet financé par l'INCa",
+    "commentsNameEN": "resulting from an INCa-funded project",
+    "startYear": 2016,
+    "scale": "funder",
+    "agency": "INCa"
   },
   "04b0z7q78": {
     "name": "Institut national des sciences humaines et sociales (INSHS)",

@@ -28,7 +28,7 @@ export function setCSSProperty(property, value) {
 export function getFormattedDate(date, lang) {
   const dateFormat = { fr: 'fr-fr', en: 'en-en' };
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
-  return new Date(date).toLocaleDateString(dateFormat[lang], options);
+  return new Date(date).toLocaleDateString(dateFormat?.[lang] ?? 'fr-fr', options);
 }
 
 /**
@@ -67,14 +67,14 @@ export function sortByPath(array, path) {
 export function cleanNumber(num, precision = 1, small = false) {
   let myCleanedNumber;
   if (num < 1000 && small === false) {
-    myCleanedNumber = num.toFixed(0);
+    myCleanedNumber = num?.toFixed(0);
   } else {
     const units = ['k', 'M', 'B', 'T', 'Q'];
-    const unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
+    const unit = Math.floor((num / 1.0e1)?.toFixed(0)?.toString()?.length);
     const r = unit % 3;
     const x = Math.abs(Number(num)) / Number(`1.0e+${unit - r}`);
     const finalUnit = units[Math.floor(unit / 3) - 1] || '';
-    myCleanedNumber = `${x.toFixed(precision)} ${finalUnit}`;
+    myCleanedNumber = `${x?.toFixed(precision)} ${finalUnit}`;
   }
   return myCleanedNumber;
 }
@@ -264,6 +264,9 @@ export function getSource(id, otherSources = []) {
   if (id.includes('preprints')) {
     sources.push('Crossref preprint matching dataset');
   }
+  if (id === 'general.waste.money-waste') {
+    sources.push('SIRANo');
+  }
   sources.push('MESRE');
   sources.push(...otherSources);
   // Deduplicate sources
@@ -375,9 +378,14 @@ export function getURLSearchParams(intl = undefined, id = '') {
   } else if (bsoLocalAffiliation === undefined) {
     lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
   }
-  let firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
-    || localAffiliationSettings?.firstObservationYear
-    || '2018';
+  let firstObservationYear = '2018';
+  if (urlSearchParams.get('firstObservationYear')?.toLowerCase() === 'latest') {
+    firstObservationYear = '2018';
+  } else {
+    firstObservationYear = urlSearchParams.get('firstObservationYear')?.toLowerCase()
+      || localAffiliationSettings?.firstObservationYear
+      || '2018';
+  }
   const agency = urlSearchParams.get('agency')?.toLowerCase()
     || localAffiliationSettings?.agency;
   const idTypes = ['crossref'];
@@ -449,12 +457,16 @@ export function getURLSearchParams(intl = undefined, id = '') {
           ?.formatMessage({ id: 'app.perimeter', defaultMessage: 'Périmètre' })
           .concat(` ${bsoLocalAffiliation}`),
       );
-    startYear = parseInt(
-      urlSearchParams.get('startYear')?.toLowerCase()
-        || localAffiliationSettings?.startYear
-        || 2013,
-      10,
-    );
+    if (urlSearchParams.get('startYear')?.toLowerCase() === 'latest') {
+      startYear = 2013;
+    } else {
+      startYear = parseInt(
+        urlSearchParams.get('startYear')?.toLowerCase()
+          || localAffiliationSettings?.startYear
+          || 2013,
+        10,
+      );
+    }
   }
 
   if (isPublication) {

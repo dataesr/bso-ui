@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -23,7 +24,12 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id }) {
+function Chart({
+  domain = '',
+  hasComments = true,
+  hasFooter = true,
+  id = 'data.disciplines.mentions.datasets-with-at-least-one-explicit-mention',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
@@ -87,12 +93,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  id: 'data.disciplines.mentions.datasets-with-at-least-one-explicit-mention',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

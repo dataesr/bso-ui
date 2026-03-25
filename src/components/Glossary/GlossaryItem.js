@@ -1,15 +1,16 @@
+/* eslint-disable react/require-default-props */
 import { Icon as DSIcon } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 function GlossaryItem({
-  intlEntry,
   active,
-  intlDefinition,
   className,
   glossaryKey,
-  link,
+  intlDefinition,
+  intlEntry,
+  link = () => {},
 }) {
   let values = {};
   if (link) {
@@ -72,10 +73,6 @@ function GlossaryItem({
     </article>
   );
 }
-
-GlossaryItem.defaultProps = {
-  link: () => {},
-};
 
 GlossaryItem.propTypes = {
   glossaryKey: PropTypes.string.isRequired,

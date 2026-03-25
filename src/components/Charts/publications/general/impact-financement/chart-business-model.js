@@ -1,9 +1,10 @@
+/* eslint-disable react/require-default-props */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
@@ -18,7 +19,12 @@ import useGetData from './get-data-taux-ouverture';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id }) {
+function Chart({
+  domain = '',
+  hasComments = true,
+  hasFooter = true,
+  id = 'publi.general.impact-financement.chart-business-model',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const { agency } = getURLSearchParams(intl);
@@ -66,12 +72,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  id: 'publi.general.impact-financement.chart-business-model',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

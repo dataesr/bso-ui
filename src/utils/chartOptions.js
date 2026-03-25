@@ -26,7 +26,8 @@ import {
  */
 export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let otherSources = [];
-  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } = getURLSearchParams(intl, id);
+  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } =
+    getURLSearchParams(intl, id);
   otherSources = [name];
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;
@@ -38,18 +39,19 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
   let embargoText = '';
   let isEmbargo = false;
   if (
-    lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION
-    && !titleId.includes('.national-thesis.')
+    lastObservationYear > process.env.REACT_APP_LAST_OBSERVATION &&
+    !titleId.includes('.national-thesis.')
   ) {
     isEmbargo = true;
   }
   if (bsoLocalAffiliation && isEmbargo) {
-    embargoText = 'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
+    embargoText =
+      'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
   }
   const tooltip = intl
     .formatMessage({
       id: `${titleId}.tooltip`,
-      defaultMessage: ' ',
+      defaultMessage: `${titleId}.tooltip`,
     })
     .replaceAll('((commentsName))', commentsName);
   const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
@@ -713,7 +715,43 @@ export const chartOptions = {
       return options;
     },
   },
-  'publi.publishers.type-ouverture.chart-by-scientific-fields': {
+  'publi.publishers.type-ouverture.chart-by-classifications': {
+    getOptions: (id, intl, categories, data, dataTitle, displayType) => {
+      const options = getGraphOptions({ id, intl, dataTitle });
+      options.chart.height = '600px';
+      options.chart.type = 'bar';
+      options.xAxis = {
+        categories,
+      };
+      options.yAxis = getPercentageYAxis(
+        true,
+        null,
+        displayType === 'display-staff',
+      );
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.oa-rate' });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.publi.type-oa',
+      });
+      options.legend.reversed = true;
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+            style: {
+              textOutline: 'none',
+            },
+            formatter() {
+              return this.y === 0 ? '' : this.y.toFixed(0).concat(' %');
+            },
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'publi.publishers.type-ouverture.chart-by-classifications-publishers': {
     getOptions: (id, intl, categories, data, dataTitle, displayType) => {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.chart.height = '600px';
@@ -840,10 +878,6 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'bar';
       options.legend.title.text = '';
-      options.colors = [
-        getCSSValue('--orange-soft-100'),
-        getCSSValue('--orange-soft-175'),
-      ];
       options.yAxis = {
         max: 100,
         min: 0,
@@ -856,13 +890,17 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--orange-soft-75'),
+              color: getCSSValue('--orange-soft-50'),
             },
           },
           dataLabels: {
             allowOverlap: true,
             enabled: true,
-            format: '{point.y:.0f} %',
+            formatter() {
+              return `${this.point.y.toFixed(0)} %${
+                this.point.x === 0 ? ' *' : ''
+              }`;
+            },
             style: {
               color: getCSSValue('--g-800'),
               fontSize: '20px',
@@ -882,6 +920,14 @@ export const chartOptions = {
             fontWeight: 'bold',
           },
         },
+        plotLines: [
+          {
+            color: getCSSValue('--g-800'),
+            dashStyle: 'ShortDash',
+            value: 0.5,
+            width: 1,
+          },
+        ],
       };
       options.series = data?.series;
       options.exporting.csv = {
@@ -911,7 +957,7 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--orange-soft-75'),
+              color: getCSSValue('--orange-soft-50'),
             },
           },
           dataLabels: {
@@ -966,7 +1012,7 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--orange-soft-75'),
+              color: getCSSValue('--orange-soft-50'),
             },
           },
           dataLabels: {
@@ -1027,14 +1073,16 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
               return '';
             },
           },
+          lineWidth: 1,
+          marker: { lineWidth: 1 },
         },
       };
       options.series = data;
@@ -1206,8 +1254,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1455,8 +1503,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1529,8 +1577,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -1618,13 +1666,12 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.legend = {};
       options.chart.type = 'bar';
-      options.colors = [getCSSValue('--yellow-medium-125')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--yellow-medium-75'),
+              color: getCSSValue('--yellow-medium-50'),
             },
           },
           dataLabels: {
@@ -1690,14 +1737,16 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
               return '';
             },
           },
+          lineWidth: 1,
+          marker: { lineWidth: 1 },
         },
       };
       options.series = data;
@@ -1715,7 +1764,7 @@ export const chartOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--yellow-medium-75'),
+              color: getCSSValue('--yellow-medium-50'),
             },
           },
           dataLabels: {
@@ -1961,8 +2010,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -2003,7 +2052,7 @@ export const chartOptions = {
             color:
               i === data.length - 1
                 ? getCSSValue('--orange-soft-100')
-                : getCSSValue('--orange-soft-125'),
+                : getCSSValue('--orange-soft-75'),
           })),
         },
       ];
@@ -2033,8 +2082,8 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
@@ -2272,14 +2321,16 @@ export const chartOptions = {
             formatter() {
               const last = this.series.data[this.series.data.length - 1];
               if (
-                this.point.category === last.category
-                && this.point.y === last.y
+                this.point.category === last.category &&
+                this.point.y === last.y
               ) {
                 return this.point.y.toFixed(0).concat(' %');
               }
               return '';
             },
           },
+          linewidth: 1,
+          marker: { lineWidth: 1 },
         },
       };
       options.series = data;
@@ -2291,13 +2342,12 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl, dataTitle });
       options.legend = {};
       options.chart.type = 'bar';
-      options.colors = [getCSSValue('--green-medium-125')];
       options.yAxis = { visible: false, min: 0, max: 100 };
       options.plotOptions = {
         bar: {
           states: {
             hover: {
-              color: getCSSValue('--green-medium-75'),
+              color: getCSSValue('--green-medium-50'),
             },
           },
           dataLabels: {
@@ -2521,10 +2571,10 @@ export const chartOptions = {
       if (data) {
         options.series[0].dataLabels = {
           format:
-            '<div style="text-align:center">'
-            + '<span style="font-size:25px;">{y:.1f} %</span><br/>'
-            + '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>'
-            + '</div>',
+            '<div style="text-align:center">' +
+            '<span style="font-size:25px;">{y:.1f} %</span><br/>' +
+            '<span style="font-size:12px;opacity:0.4">{point.y_abs} publications</span>' +
+            '</div>',
         };
         color = options.series[0].color;
       }
@@ -2618,7 +2668,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2658,7 +2708,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2704,7 +2754,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2735,7 +2785,7 @@ export const chartOptions = {
         bar: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f} %',
+            format: '{point.y:.0f} % ({point.y_abs} / {point.y_tot})',
           },
         },
       };
@@ -2750,7 +2800,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2796,7 +2846,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2847,7 +2897,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2892,7 +2942,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2903,7 +2953,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'general.dynamique.chart-evolution-within-3-years-historical': {
+  'general.dynamique.chart-evolution-all-historical': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
@@ -2911,22 +2961,94 @@ export const chartOptions = {
         bar: {
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f} % {point.observationSnapLabel}',
+            format: '{point.y:.0f} % ({point.y_abs} / {point.y_tot})',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.yAxis.max = 100;
+      options.yAxis.min = 0;
+      options.yAxis.title = { text: intl.formatMessage({ id: 'app.communication-rate' }) };
+      options.xAxis = {
+        categories: data?.categories || [],
+        labels: { style: { color: getCSSValue('--g-800'), fontSize: '12px', fontWeight: 'bold' } },
+        lineWidth: 0,
+        tickWidth: 0,
+        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
+        type: 'category',
+      };
+      options.series = data?.series || [];
+      options.legend = { enabled: false };
+      options.tooltip = {
+        headerFormat: '',
+        pointFormat: intl.formatMessage({
+          id: `${withtStudyType(id, studyType)}.tooltip`,
+        }),
+      };
+      return options;
+    },
+  },
+  'general.dynamique.chart-evolution-within-3-years-historical-academic': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
+      options.plotOptions = {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.yAxis.max = 100;
+      options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
+        type: 'category',
+        categories: data?.categories || [],
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g-800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+      options.legend = { enabled: false };
+      options.tooltip = {
+        headerFormat: '',
+        pointFormat: intl.formatMessage({
+          id: `${withtStudyType(id, studyType)}.tooltip`,
+        }),
+      };
+      return options;
+    },
+  },
+  'general.dynamique.chart-evolution-within-3-years-historical-industrial': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
+      options.plotOptions = {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
           },
         },
       };
       options.yAxis = getPercentageYAxis(false);
       options.xAxis = {
+        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
         type: 'category',
         categories: data?.categories || [],
-        title: {
-          text: intl.formatMessage({ id: 'app.sponsor-type' }),
-        },
         lineWidth: 0,
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -2972,7 +3094,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3018,7 +3140,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3069,7 +3191,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3114,7 +3236,7 @@ export const chartOptions = {
         reversed: false,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3154,7 +3276,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3200,7 +3322,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3293,6 +3415,47 @@ export const chartOptions = {
       return options;
     },
   },
+  'general.type-diffusion.chart-repartition': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
+      options.plotOptions = {
+        series: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+          },
+        },
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} %',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.yAxis.stackLabels = { enabled: true, format: '{total:.0f} %' };
+      options.xAxis = {
+        type: 'category',
+        title: {
+          text: intl.formatMessage({ id: 'app.sponsor-type' }),
+        },
+        categories: data?.categories || [],
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g-800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data?.series || [];
+      options.legend.reversed = true;
+      return options;
+    },
+  },
   'resultats.type-diffusion.chart-repartition': {
     getOptions: (id, intl, data, studyType, dataTitle) => {
       const options = getGraphOptions({ id, intl, studyType, dataTitle });
@@ -3323,7 +3486,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3493,6 +3656,13 @@ export const chartOptions = {
         title: null,
       };
       options.series = data?.dataGraph || [];
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
       return options;
     },
   },
@@ -3516,6 +3686,13 @@ export const chartOptions = {
         },
       };
       options.series = data?.dataGraphGroupes || [];
+      options.plotOptions = {
+        column: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      };
       return options;
     },
   },
@@ -3535,6 +3712,10 @@ export const chartOptions = {
       options.plotOptions = {
         column: {
           stacking: 'normal',
+          dataLabels: {
+            enabled: true,
+            style: { textOutline: 'none' },
+          },
         },
       };
       options.tooltip.useHTML = true;
@@ -3637,7 +3818,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3771,7 +3952,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3811,7 +3992,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3848,7 +4029,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3901,7 +4082,7 @@ export const chartOptions = {
           },
           useHTML: true,
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -3937,7 +4118,7 @@ export const chartOptions = {
         tickWidth: 0,
         labels: {
           style: {
-            color: getCSSValue('--g800'),
+            color: getCSSValue('--g-800'),
             fontSize: '12px',
             fontWeight: 'bold',
           },
@@ -5591,40 +5772,33 @@ export const chartOptions = {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.type = 'bar';
+      options.chart.height = '600px';
       options.plotOptions = {
         series: {
           stacking: 'normal',
           dataLabels: {
             enabled: true,
             formatter() {
-              return cleanNumber(this.y).concat(' €');
+              return `${cleanNumber(this.y)} € pour ${this.point.count} EC`;
             },
-            style: { textOutline: 'none' },
           },
         },
       };
       options.xAxis = {
-        type: 'category',
         categories: data?.categories || [],
         title: {
           text: intl.formatMessage({ id: 'app.study-completion-year' }),
-        },
-        lineWidth: 0,
-        tickWidth: 0,
-        labels: {
-          style: {
-            color: getCSSValue('--g800'),
-            fontSize: '12px',
-            fontWeight: 'bold',
-          },
         },
       };
       options.yAxis = {
         stackLabels: {
           enabled: true,
-          // eslint-disable-next-line func-names, object-shorthand
-          formatter: function () {
-            return cleanNumber(this.total).concat(' €');
+          formatter() {
+            return `${cleanNumber(this.total)} € observé ${
+              this.stack === 'before'
+                ? 'avant le courrier'
+                : 'après le courrier'
+            }`;
           },
         },
         title: {
@@ -5635,12 +5809,94 @@ export const chartOptions = {
         },
       };
       options.series = data?.series || [];
-      options.legend = { reversed: true };
       options.tooltip = {
         headerFormat: '',
         pointFormat: intl.formatMessage({
           id: `${withtStudyType(id, studyType)}.tooltip`,
         }),
+      };
+      return options;
+    },
+  },
+  'general.dynamic-results': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.legend.title.text = intl.formatMessage({
+        id: 'app.observation-dates',
+      });
+      options.chart = {
+        height: '600px',
+        inverted: true,
+        type: 'dumbbell',
+        zoomType: 'x',
+      };
+      options.yAxis = getPercentageYAxis();
+      options.yAxis.title.text = intl.formatMessage({ id: 'app.communication-rate' });
+      options.yAxis.gridLineColor = getCSSValue('--g-500');
+      options.yAxis.gridLineDashStyle = 'dot';
+      options.yAxis.max = 100;
+      options.yAxis.min = 0;
+      options.xAxis = { type: 'category' };
+      options.plotOptions = {
+        dumbbell: {
+          grouping: false,
+        },
+        series: {
+          marker: {
+            enabled: true,
+            fillColor: getCSSValue('--black'),
+            lineWidth: 2,
+          },
+        },
+      };
+      options.series = data;
+      return options;
+    },
+  },
+  'general.rate-results': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'bar';
+      options.legend.enabled = false;
+      options.yAxis = {
+        max: 100,
+        min: 0,
+        visible: false,
+      };
+      options.plotOptions = {
+        series: {
+          grouping: false,
+        },
+        bar: {
+          dataLabels: {
+            allowOverlap: true,
+            enabled: true,
+            formatter() {
+              return `${this.point.y.toFixed(0)} %`;
+            },
+            style: {
+              color: getCSSValue('--g-800'),
+              fontSize: '20px',
+              fontWeight: 'bold',
+            },
+          },
+        },
+      };
+      options.xAxis = {
+        type: 'category',
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          style: {
+            color: getCSSValue('--g-800'),
+            fontSize: '12px',
+            fontWeight: 'bold',
+          },
+        },
+      };
+      options.series = data;
+      options.exporting.csv = {
+        columnHeaderFormatter: (item) => (item.isXAxis ? 'year' : item.name),
       };
       return options;
     },

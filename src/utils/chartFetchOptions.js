@@ -17,7 +17,8 @@ export default function getFetchOptions({
   objectType = [],
   parameters = [],
 }) {
-  const lastObservationClinicalTrials = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
+  const lastObservationClinicalTrials =
+    process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
 
   const allOptions = {
     publicationRate: ([
@@ -1015,6 +1016,7 @@ export default function getFetchOptions({
     studiesDynamiqueOuvertureSponsor: ([
       studyType,
       sponsor,
+      sponsorType,
       yearMin,
       yearMax,
       observationSnap,
@@ -1046,6 +1048,11 @@ export default function getFetchOptions({
                 'lead_sponsor_normalized.keyword': sponsor,
               },
             },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
           ],
         },
       },
@@ -1058,7 +1065,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueOuvertureWithin1Year: ([studyType, yearMin, yearMax]) => ({
+    studiesDynamiqueOuvertureWithin1Year: ([studyType, sponsorType, yearMin, yearMax, observationSnap]) => ({
       size: 0,
       query: {
         bool: {
@@ -1071,6 +1078,11 @@ export default function getFetchOptions({
             {
               term: {
                 'status.keyword': 'Completed',
+              },
+            },
+            {
+              wildcard: {
+                'lead_sponsor_type.keyword': sponsorType,
               },
             },
             {
@@ -1092,7 +1104,7 @@ export default function getFetchOptions({
           aggs: {
             by_has_results_within_1_year: {
               terms: {
-                field: `results_details.${lastObservationClinicalTrials}.has_results_or_publications_within_1y`,
+                field: `results_details.${observationSnap}.has_results_or_publications_within_1y`,
                 missing: false,
               },
               aggs: {
@@ -1155,6 +1167,7 @@ export default function getFetchOptions({
     }),
     studiesDynamiqueOuvertureWithin3Years: ([
       studyType,
+      sponsorType,
       yearMin,
       yearMax,
       observationSnap,
@@ -1171,75 +1184,19 @@ export default function getFetchOptions({
             {
               term: {
                 'status.keyword': 'Completed',
-              },
-            },
-            {
-              range: {
-                study_completion_year: {
-                  gte: yearMin,
-                  lte: yearMax,
-                },
-              },
-            },
-          ],
-        },
-      },
-      aggs: {
-        by_sponsor_type: {
-          terms: {
-            field: 'lead_sponsor_type.keyword',
-          },
-          aggs: {
-            by_has_results_within_3_years: {
-              terms: {
-                field: `results_details.${observationSnap}.has_results_or_publications_within_3y`,
-                missing: false,
-              },
-              aggs: {
-                by_completion_year: {
-                  terms: {
-                    field: 'study_completion_year',
-                    size: 30,
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    }),
-    studiesDynamiqueOuvertureWithin3YearsSponsor: ([
-      studyType,
-      sponsor,
-      yearMin,
-      yearMax,
-      observationSnap,
-    ]) => ({
-      size: 0,
-      query: {
-        bool: {
-          filter: [
-            {
-              term: {
-                'study_type.keyword': studyType,
-              },
-            },
-            {
-              term: {
-                'status.keyword': 'Completed',
-              },
-            },
-            {
-              range: {
-                study_completion_year: {
-                  gte: yearMin,
-                  lte: yearMax,
-                },
               },
             },
             {
               wildcard: {
-                'lead_sponsor_normalized.keyword': sponsor,
+                'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
               },
             },
           ],
@@ -1554,7 +1511,7 @@ export default function getFetchOptions({
         },
       },
     }),
-    publishersByClassification: ([observationSnap]) => ({
+    publishersByClassifications: ([observationSnap]) => ({
       size: 0,
       query: {
         bool: {
@@ -1573,7 +1530,46 @@ export default function getFetchOptions({
         },
       },
       aggs: {
-        by_discipline: {
+        by_classifications: {
+          terms: {
+            field: 'bso_classification.keyword',
+            size: 50,
+          },
+          aggs: {
+            by_oa_colors: {
+              terms: {
+                field: `oa_details.${observationSnap}.oa_colors_with_priority_to_publisher.keyword`,
+              },
+            },
+          },
+        },
+      },
+    }),
+    publishersByClassificationsByPublishers: ([observationSnap]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                year: getPublicationYearFromObservationSnap(observationSnap),
+              },
+            },
+            {
+              term: {
+                [`oa_details.${observationSnap}.oa_host_type`]: 'publisher',
+              },
+            },
+            {
+              term: {
+                'genre.keyword': 'journal-article',
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_classifications: {
           terms: {
             field: 'bso_classification.keyword',
             size: 50,
@@ -2855,8 +2851,8 @@ export default function getFetchOptions({
                 year: {
                   gte: minPublicationDate,
                   lte:
-                    getPublicationYearFromObservationSnap(lastObservationSnap)
-                    + 1,
+                    getPublicationYearFromObservationSnap(lastObservationSnap) +
+                    1,
                 },
               },
             },
@@ -2881,7 +2877,13 @@ export default function getFetchOptions({
         },
       },
     }),
-    wasteByYear: ([studyType, yearMin, yearMax, hasResults]) => ({
+    wasteByYear: ([
+      studyType,
+      yearMin,
+      yearMax,
+      hasResults,
+      observationSnap,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -2911,7 +2913,7 @@ export default function getFetchOptions({
             },
             {
               term: {
-                'results_details.2025Q4.has_results_or_publications':
+                [`results_details.${observationSnap}.has_results_or_publications`]:
                   hasResults,
               },
             },
@@ -2942,6 +2944,74 @@ export default function getFetchOptions({
         },
       },
     }),
+    studiesResultsByDiffusionBySponsorType: ([
+      studyType,
+      yearMin,
+      yearMax,
+    ]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_lead_sponsor_type: {
+          terms: {
+            field: 'lead_sponsor_type.keyword',
+          },
+          aggs: {
+            by_results: {
+              terms: {
+                field: `results_details.${lastObservationClinicalTrials}.has_results_within_3y`,
+                missing: false,
+              },
+              aggs: {
+                by_publications_and_results: {
+                  terms: {
+                    field: `results_details.${lastObservationClinicalTrials}.has_publication_within_3y`,
+                    missing: false,
+                  },
+                },
+              },
+            },
+            by_publications: {
+              terms: {
+                field: `results_details.${lastObservationClinicalTrials}.has_publication_within_3y`,
+                missing: false,
+              },
+              aggs: {
+                by_publications_and_results: {
+                  terms: {
+                    field: `results_details.${lastObservationClinicalTrials}.has_results_within_3y`,
+                    missing: false,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
@@ -2952,7 +3022,8 @@ export default function getFetchOptions({
       term: { 'domains.keyword': domain },
     });
   }
-  const { bsoCountry, bsoLocalAffiliation, endYear, idTypes, startYear } = getURLSearchParams();
+  const { bsoCountry, bsoLocalAffiliation, endYear, idTypes, startYear } =
+    getURLSearchParams();
   let useBsoCountry = true;
   const isHealthTrialsStudies = objectType.includes('clinicalTrials');
   const isOrcid = objectType.includes('orcid');
@@ -2961,7 +3032,7 @@ export default function getFetchOptions({
   const isDatasets = objectType.includes('datasets');
   if (isHealthTrialsStudies || isOrcid || isDatasets) {
     // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
-    // TODO to remove once the data is in the index
+    // TODO TOREMOVE to remove once the data is in the index
     useBsoCountry = false;
   }
   if (isHealthTrialsStudies) {

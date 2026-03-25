@@ -1,9 +1,9 @@
 {
   "name": "bso-ui",
-  "version": "1.17.21",
+  "version": "1.18.8",
   "private": true,
   "dependencies": {
-    "@dataesr/react-dsfr": "^3.9.1",
+    "@dataesr/react-dsfr": "^3.10.2",
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
@@ -79,7 +79,7 @@
     "src/**/*.+(js)": [
       "eslint --fix"
     ],
-    "src/**/*.{js,json,md}": [
+    "src/**/*.{json,md}": [
       "prettier --write"
     ],
     "src/**/*.scss": [

@@ -1,13 +1,17 @@
+/* eslint-disable react/require-default-props */
 import { Link as DSLink } from '@dataesr/react-dsfr';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 import PropTypes from 'prop-types';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useGraphNavigation from '../../utils/Hooks/useGraphNavigation';
 import Icon from '../Icon';
 
-export default function GraphNavigationLink({ href, label, hasHr }) {
+export default function GraphNavigationLink({
+  href,
+  label,
+  hasHr = false,
+}) {
   const { trackEvent } = useMatomo();
   const { openTab } = useGraphNavigation();
   const navigate = useNavigate();
@@ -32,10 +36,6 @@ export default function GraphNavigationLink({ href, label, hasHr }) {
     </li>
   );
 }
-
-GraphNavigationLink.defaultProps = {
-  hasHr: false,
-};
 
 GraphNavigationLink.propTypes = {
   hasHr: PropTypes.bool,

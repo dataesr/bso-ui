@@ -1,6 +1,6 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 
 import BSOChart from '../Charts';
 import Loader from '../Loader';

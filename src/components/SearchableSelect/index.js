@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import './style.scss';
 
 import {
@@ -9,7 +10,13 @@ import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { v4 as uuidv4 } from 'uuid';
 
-function SearchableSelect({ isDisplayed, label, onChange, options, selected }) {
+function SearchableSelect({
+  isDisplayed = null,
+  label,
+  onChange,
+  options,
+  selected = '',
+}) {
   const intl = useIntl();
   const selectId = uuidv4();
   return (
@@ -37,11 +44,6 @@ function SearchableSelect({ isDisplayed, label, onChange, options, selected }) {
     )
   );
 }
-
-SearchableSelect.defaultProps = {
-  isDisplayed: null,
-  selected: '',
-};
 
 SearchableSelect.propTypes = {
   isDisplayed: PropTypes.bool,

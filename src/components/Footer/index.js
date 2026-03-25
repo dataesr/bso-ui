@@ -210,7 +210,13 @@ export default function Footer() {
             Gouvernement Ouvert (PGO)
           </FooterLink>
           <FooterLink href={intl.formatMessage({ id: 'url.about.faq' })}>
-            FAQ
+            <FormattedMessage id='app.header.nav.about.faq' />
+          </FooterLink>
+          <FooterLink
+            href={`https://github.com/dataesr/bso-ui/releases/tag/v${process.env.REACT_APP_VERSION}`}
+            target='_blank'
+          >
+            {`v${process.env.REACT_APP_VERSION}`}
           </FooterLink>
           <FooterCopy className='w-100'>
             <Row>
@@ -229,7 +235,6 @@ export default function Footer() {
                 />
               </Col>
             </Row>
-            <p className='float-right'>{`v${process.env.REACT_APP_VERSION}`}</p>
             <p>
               {intl.formatMessage({ id: 'app.footer.licence.usage' })}
               {' '}

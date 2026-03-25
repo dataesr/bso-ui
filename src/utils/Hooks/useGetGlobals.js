@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ES_API_URL, HEADERS } from '../../config/config';
+import { ES_API_URL, ES_STUDIES_API_URL, HEADERS } from '../../config/config';
 import getFetchOptions from '../chartFetchOptions';
 import { clearSessionStorage, getURLSearchParams } from '../helpers';
 
@@ -26,6 +26,7 @@ export function GlobalsContextProvider({ children }) {
       '__lastObservationSnapThesis__',
       '__observationSnaps__',
       '__updateDate__',
+      '__updateDateClinicalTrials__',
       'storedTimer',
     ]);
   }
@@ -58,6 +59,9 @@ export function GlobalsContextProvider({ children }) {
 
   const storedUpdateDate = sessionStorage.getItem('__updateDate__');
   const [updateDate, setUpdateDate] = useState(storedUpdateDate);
+
+  const storedUpdateDateClinicalTrials = sessionStorage.getItem('__updateDateClinicalTrials__');
+  const [updateDateClinicalTrials, setUpdateDateClinicalTrials] = useState(storedUpdateDateClinicalTrials);
 
   const navigate = useNavigate();
 
@@ -96,6 +100,20 @@ export function GlobalsContextProvider({ children }) {
     return [date.slice(0, 4), '-', date.slice(4, 6), '-', date.slice(6)].join(
       '',
     );
+  }
+
+  async function getUpdateDateClinicalTrials() {
+    // Récupération de la date de modification
+    const query = {
+      size: 0,
+      aggs: {
+        snapshot_date: {
+          terms: { field: 'snapshot_date' },
+        },
+      },
+    };
+    const res = await Axios.post(ES_STUDIES_API_URL, query, HEADERS);
+    return res?.data?.aggregations?.snapshot_date?.buckets[0]?.key_as_string.slice(0, 10);
   }
 
   useEffect(() => {
@@ -142,6 +160,10 @@ export function GlobalsContextProvider({ children }) {
         setUpdateDate(responseUpdateDate);
         sessionStorage.setItem('__updateDate__', responseUpdateDate);
 
+        const responseUpdateDateClinicalTrials = await getUpdateDateClinicalTrials();
+        setUpdateDateClinicalTrials(responseUpdateDateClinicalTrials);
+        sessionStorage.setItem('__updateDateClinicalTrials____', responseUpdateDateClinicalTrials);
+
         sessionStorage.setItem('storedTimer', new Date().getTime());
       }
     }
@@ -157,6 +179,7 @@ export function GlobalsContextProvider({ children }) {
         lastObservationSnapThesis,
         observationSnaps,
         updateDate,
+        updateDateClinicalTrials,
       }}
     >
       {children}

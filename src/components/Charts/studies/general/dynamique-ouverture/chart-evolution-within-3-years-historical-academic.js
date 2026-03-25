@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import '../../../graph.scss';
 
 import Highcharts from 'highcharts';
@@ -7,7 +8,6 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useLocation } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -16,49 +16,51 @@ import {
   graphIds,
   studiesTypes,
 } from '../../../../../utils/constants';
-import {
-  capitalize,
-  isInProduction,
-  withDomain,
-  withtStudyType,
-} from '../../../../../utils/helpers';
-import useLang from '../../../../../utils/Hooks/useLang';
+import { capitalize, withDomain, withtStudyType } from '../../../../../utils/helpers';
 import ChartWrapper from '../../../../ChartWrapper';
-import SearchableSelect from '../../../../SearchableSelect';
+import SimpleSelect from '../../../../SimpleSelect';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data-within-3-years-historical';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id, studyType }) {
+function Chart({
+  domain = 'health',
+  hasComments = true,
+  hasFooter = true,
+  id = 'general.dynamique.chart-evolution-within-3-years-historical-academic',
+  studyType = 'Interventional',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
-  const { lang, urls } = useLang();
-  const { pathname } = useLocation();
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
-  const [sponsor, setSponsor] = useState('*');
-  const { allData, isError, isLoading } = useGetData(studyType, sponsor);
-  const { dataGraphWithin3Years } = allData;
+  const [selectedDelay, setSelectedDelay] = useState('3y');
+  const [sponsorType, setSponsorType] = useState('academique');
+  const { allData, isError, isLoading } = useGetData(studyType, sponsorType, selectedDelay);
+  const { dataGraphWithin3YearsWithType, sponsorTypes, year } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-
+  const sponsorTypeTitle = sponsorType !== '*'
+    ? ` (${intl.formatMessage({ id: `app.sponsor.${sponsorType}` })})`
+    : '';
+  const selectedDelayTitle = intl.formatMessage({ id: `app.sponsor-results-delay-${selectedDelay}` });
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    dataGraphWithin3Years,
+    dataGraphWithin3YearsWithType,
     studyType,
   );
 
   useEffect(() => {
-    const opts = allData?.sponsors || [];
-    opts.unshift({
-      label: capitalize(intl.formatMessage({ id: 'app.all-sponsors' })),
+    const optionsTmp = sponsorTypes || [];
+    optionsTmp.unshift({
+      label: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
       value: '*',
     });
-    setOptions(opts);
-  }, [allData.sponsors, intl]);
+    setOptions(optionsTmp);
+  }, [intl, sponsorTypes]);
 
   useEffect(() => {
     setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
@@ -67,7 +69,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
-      dataTitle={allData?.dataTitleWithin3Years ?? {}}
+      dataTitle={{ selectedDelayTitle, sponsorTypeTitle, year }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
@@ -76,14 +78,21 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
-      {!isInProduction() && pathname === urls.santeEssais.tabs[2][lang] && (
-        <SearchableSelect
-          label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
-          onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
-          options={options}
-          selected={sponsor}
-        />
-      )}
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.sponsor-type-filter-label' })}
+        onChange={(e) => setSponsorType(e.target.value)}
+        options={options}
+        selected={sponsorType}
+      />
+      <SimpleSelect
+        label={intl.formatMessage({ id: 'app.sponsor-results-delay-filter-label' })}
+        onChange={(e) => setSelectedDelay(e.target.value)}
+        options={[
+          { label: intl.formatMessage({ id: 'app.sponsor-results-delay-1y' }), value: '1y' },
+          { label: intl.formatMessage({ id: 'app.sponsor-results-delay-3y' }), value: '3y' },
+        ]}
+        selected={selectedDelay}
+      />
       <HighchartsReact
         highcharts={Highcharts}
         id={idWithDomainAndStudyType}
@@ -97,13 +106,6 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: 'health',
-  hasComments: true,
-  hasFooter: true,
-  id: 'general.dynamique.chart-evolution-within-3-years-historical',
-  studyType: 'Interventional',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,

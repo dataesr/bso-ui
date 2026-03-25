@@ -170,9 +170,9 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local Toulouse III'
+                alt='bso local Université Toulouse'
                 href='https://www.univ-tlse3.fr/la-recherche/science-ouverte'
-                img='/declinaisons/ut3.jpeg'
+                img='/declinaisons/ut.png'
               />
             </Col>
             <Col n='lg-2 md-4 sm-6'>
@@ -220,7 +220,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université Strasbourg UNISTRA'
-                href='https://scienceouverte.unistra.fr/strategie/bso/'
+                href='https://scienceouverte.unistra.fr/strategie/barometre-science-ouverte-universite-strasbourg/'
                 img='/declinaisons/unistra.png'
               />
             </Col>
@@ -479,8 +479,15 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université de Montpellier'
-                href='https://scienceouverte.edu.umontpellier.fr/le-barometre-de-la-science-ouverte-a-lum/'
+                href='https://scienceouverte.edu.umontpellier.fr/science-ouverte-a-lum/barometre-de-la-science-ouverte/'
                 img='/declinaisons/umontpellier.png'
+              />
+            </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Université de Limoges'
+                href='https://www.scienceouverte.unilim.fr/outils-et-guides-pratiques/outils/le-barometre-de-la-science-ouverte/'
+                img='/declinaisons/unilim.png'
               />
             </Col>
           </Row>

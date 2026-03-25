@@ -1,5 +1,3 @@
-import sanitizeHtml from 'sanitize-html';
-
 import { getURLSearchParams } from './helpers';
 
 export default function customComments(data, id, intl) {
@@ -22,12 +20,8 @@ export default function customComments(data, id, intl) {
       {
         ...(data.comments || {}),
         commentsName,
-        linebreak: (chunks) => (
-          <>
-            {sanitizeHtml(chunks)}
-            <br />
-          </>
-        ),
+        linebreak: () => <br />,
+        b: (chunk) => <b>{chunk}</b>,
         ...values,
       },
     );

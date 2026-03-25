@@ -188,7 +188,7 @@ export default function NationalPublications() {
                   intlKey='app.national-publi.general.hal'
                 >
                   <iframe
-                    height={lang === 'fr' ? '788' : '765'}
+                    height={lang === 'fr' ? '860' : '836'}
                     id='publi.general.dynamique-ouverture.chart-taux-ouverture'
                     src={`../integration/${lang}/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true`}
                     title='publi.general.dynamique-ouverture.chart-taux-ouverture'
@@ -262,6 +262,7 @@ export default function NationalPublications() {
                   anchorId='disciplines.voies-ouverture'
                 >
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-repartition-publications' />
+                  <BSOChart id='publi.publishers.type-ouverture.chart-by-classifications' />
                   <BSOChart id='publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement' />
                 </QuestionSection>
               </GraphContent>
@@ -361,10 +362,7 @@ export default function NationalPublications() {
                 >
                   <BSOChart id='publi.publishers.type-ouverture.chart-repartition-modeles' />
                   <BSOChart id='publi.publishers.type-ouverture.chart-evolution-repartition' />
-                  <BSOChart
-                    id='publi.publishers.type-ouverture.chart-by-scientific-fields'
-                    isDisplayed={!isInProduction()}
-                  />
+                  <BSOChart id='publi.publishers.type-ouverture.chart-by-classifications-publishers' />
                 </QuestionSection>
 
                 <QuestionSection

@@ -87,7 +87,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
     }
 
     const colors = [
-      getCSSValue('--green-medium-125'),
+      getCSSValue('--green-medium-100'),
       getCSSValue('--green-medium-150'),
       getCSSValue('--green-medium-150'),
       getCSSValue('--green-medium-150'),
@@ -129,6 +129,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
           lineWidth: 2,
           radius: 5,
         };
+        serie.lineWidth = 2;
       }
       serie.data = observationSnapData.data.oaHostType.map((value, index) => ({
         y: (value * 100) / observationSnapData.data.all[index],
@@ -151,7 +152,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       dataGraph2.push(serie);
     });
     const dataGraph1 = dataGraph2
-      .map((el) => ({
+      .map((el, index) => ({
         name: el.name, // observation date
         bsoDomain,
         y: el.data[el.data.length - 1]?.y || 0,
@@ -161,6 +162,10 @@ function useGetData(observationSnaps, needle = '*', domain) {
             : needle,
         ratio: el.ratios[el.data.length - 1],
         publicationDate: el.publicationDate,
+        color:
+          index === 0
+            ? getCSSValue('--green-medium-100')
+            : getCSSValue('--green-medium-75'),
       }))
       .filter((el) => el.y > 0);
 

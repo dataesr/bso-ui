@@ -319,7 +319,7 @@ function Policy() {
                     <th scope='col'>
                       <FormattedMessage
                         id='other.policy.publication_year'
-                        defaultMessage='Année de publication du document-cadre'
+                        defaultMessage='Années de publication du document-cadre'
                       />
                     </th>
                     <th scope='col'>

@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/require-default-props */
 import './graph.scss';
 
 import {
@@ -13,7 +14,7 @@ import {
   Text,
 } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
@@ -29,15 +30,15 @@ import { getCSSValue } from '../../utils/helpers';
 import FullScreen from '../FullScreen';
 
 function GraphFooter({
-  date,
-  enableExport,
-  height,
-  onCsvButtonClick,
-  onPngButtonClick,
-  source,
-  srcPath,
-  studyType,
-  title,
+  date = '',
+  enableExport = true,
+  height = 600,
+  onCsvButtonClick = null,
+  onPngButtonClick = null,
+  source = '',
+  srcPath = '',
+  studyType = null,
+  title = '',
 }) {
   const intl = useIntl();
   const { search } = useLocation();
@@ -308,17 +309,6 @@ function GraphFooter({
 
 export default GraphFooter;
 
-GraphFooter.defaultProps = {
-  date: '',
-  enableExport: true,
-  height: 600,
-  onCsvButtonClick: null,
-  onPngButtonClick: null,
-  source: '',
-  srcPath: '',
-  studyType: null,
-  title: '',
-};
 GraphFooter.propTypes = {
   date: PropTypes.string,
   enableExport: PropTypes.bool,

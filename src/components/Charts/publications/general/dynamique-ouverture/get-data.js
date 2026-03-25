@@ -64,16 +64,16 @@ function useGetData(
       const bsoDomainGlobal = intl.formatMessage({ id: 'app.bsoDomain.' });
       const colors = [
         getCSSValue('--orange-soft-100'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
-        getCSSValue('--orange-soft-75'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
+        getCSSValue('--orange-soft-150'),
       ];
       const dashStyles = [
         'Solid',
@@ -90,7 +90,7 @@ function useGetData(
       ];
       const dataGraph2 = [];
       const dataGraphGlobal = [];
-      allData.forEach((observationSnapData, i) => {
+      allData.forEach((observationSnapData, index) => {
         const serie = {};
         const filtered = observationSnapData.data
           .sort((a, b) => a.key - b.key)
@@ -108,16 +108,17 @@ function useGetData(
           observationSnapData.observationSnap,
           intl,
         );
-        serie.color = colors[i];
-        serie.dashStyle = dashStyles[i];
-        if (i === 0) {
+        serie.color = colors[index];
+        serie.dashStyle = dashStyles[index];
+        if (index === 0) {
           serie.marker = {
             fillColor: 'white',
-            lineColor: colors[i],
+            lineColor: colors[index],
             symbol: 'circle',
             lineWidth: 2,
             radius: 5,
           };
+          serie.lineWidth = 2;
         }
         serie.data = filtered.map((el) => ({
           y_tot:
@@ -141,7 +142,7 @@ function useGetData(
             })`,
         );
         serie.lastPublicationDate = filtered.length > 0 ? filtered[filtered.length - 1].key : 0;
-        if (i < observationYears.length) {
+        if (index < observationYears.length) {
           dataGraph2.push(serie);
         } else {
           dataGraphGlobal.push(serie);
@@ -208,28 +209,29 @@ function useGetData(
       }
       const categories = dataGraph2?.[0]?.data.map((item) => item.publicationDate) || [];
 
-      const year3 = getObservationLabel(observationYears?.[0], intl);
+      const year4 = getObservationLabel(observationYears?.[observationYears?.length - 1], intl);
+      const year3 = year4 - 1;
       const year2 = getObservationLabel(observationYears?.[1], intl);
       const year1 = year2 - 1;
       const value1 = dataGraph2[1]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0;
       const value2 = dataGraph1?.series[0]?.data
-        .find((item) => item.name === year3)
-        ?.y.toFixed(1) || 0;
+        .find((item) => item.name === year4)
+        ?.y?.toFixed(1) ?? 0;
       const healthPublicationsLabel = capitalize(
         intl.formatMessage({ id: 'app.publications.health' }),
       );
       const healthValue1 = dataGraph1?.series
         .find((item) => item.name === healthPublicationsLabel)
         ?.data?.find((item) => item.name === year2)
-        ?.y.toFixed(0) || 0;
+        ?.y?.toFixed(0) ?? 0;
       const healthValue2 = dataGraph1?.series
         .find((item) => item.name === healthPublicationsLabel)
         ?.data?.find((item) => item.name === year3)
-        ?.y.toFixed(0) || 0;
+        ?.y?.toFixed(0) ?? 0;
 
       // Should collect data from last year and 3 years before
       const slice = parseInt(dataGraph2[0]?.name, 10)
-        - parseInt(dataGraph2[3]?.name, 10)
+        - parseInt(dataGraph2[7]?.name, 10)
         + 1;
       const comments = {
         fistObservationYear: getObservationLabel(
@@ -237,11 +239,11 @@ function useGetData(
           intl,
         ),
         observationDate: dataGraph2[0]?.name,
-        observationDate4: dataGraph2[3]?.name,
-        oaYMinusOne4: dataGraph2[3]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0,
+        observationDate4: dataGraph2[7]?.name,
+        oaYMinusOne4: dataGraph2[7]?.data.slice(-1)?.[0]?.y.toFixed(1) || 0,
         oaYMinus4: dataGraph2[0]?.data.slice(-slice)?.[0]?.y.toFixed(1) || 0,
         publicationDate4:
-          dataGraph2[3]?.data.slice(-1)?.[0]?.publicationDate || 0,
+          dataGraph2[7]?.data.slice(-1)?.[0]?.publicationDate || 0,
         minPublicationDate: dataGraph2[0]?.data?.[0]?.publicationDate || 0,
         oaYMinusOne: dataGraph2[0]?.data.slice(-2)?.[0]?.y.toFixed(0) || 0,
         oaEvolution:
@@ -254,11 +256,12 @@ function useGetData(
         year1,
         year2,
         year3,
+        year4,
         value1,
         value2,
         healthValue1,
         healthValue2,
-        differenceValue: (value2 - value1).toFixed(1),
+        differenceValue: (value1 - value2).toFixed(1),
         healthDifferenceValue: healthValue2 - healthValue1,
       };
 

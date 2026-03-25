@@ -1,9 +1,10 @@
+/* eslint-disable react/require-default-props */
 import './graph.scss';
 
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-function GraphComments({ comments, hasFooter }) {
+function GraphComments({ comments, hasFooter = true }) {
   return (
     <div className='graph-comments'>
       <div className='fs-14-24 marianne-bold'>
@@ -16,9 +17,6 @@ function GraphComments({ comments, hasFooter }) {
   );
 }
 
-GraphComments.defaultProps = {
-  hasFooter: true,
-};
 GraphComments.propTypes = {
   comments: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
   hasFooter: PropTypes.bool,

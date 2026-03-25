@@ -102,9 +102,14 @@ const chartComponents = {
   'publi.publishers.type-ouverture.chart-evolution-repartition': lazy(() => import(
     '../components/Charts/publications/editeurs/type-ouverture/chart-evolution-repartition'
   )),
-  'publi.publishers.type-ouverture.chart-by-scientific-fields': lazy(() => import(
-    '../components/Charts/publications/editeurs/type-ouverture/chart-by-scientific-fields'
+  'publi.publishers.type-ouverture.chart-by-classifications': lazy(() => import(
+    '../components/Charts/publications/editeurs/type-ouverture/chart-by-classifications'
   )),
+  'publi.publishers.type-ouverture.chart-by-classifications-publishers': lazy(
+    () => import(
+      '../components/Charts/publications/editeurs/type-ouverture/chart-by-classifications-publishers'
+    ),
+  ),
   'publi.publishers.poids-editeurs.chart-evolution-repartition': lazy(() => import(
     '../components/Charts/publications/editeurs/poids-editeurs/chart-evolution-repartition'
   )),
@@ -167,9 +172,18 @@ const chartComponents = {
   'general.dynamique.chart-evolution-within-3-years-by-year-drug': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-by-year-drug'
   )),
-  'general.dynamique.chart-evolution-within-3-years-historical': lazy(() => import(
-    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical'
+  'general.dynamique.chart-evolution-all-historical': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-all-historical'
   )),
+  'general.dynamique.chart-evolution-within-3-years-historical-academic': lazy(
+    () => import(
+      '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical-academic'
+    ),
+  ),
+  'general.dynamique.chart-evolution-within-3-years-historical-industrial':
+    lazy(() => import(
+      '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical-industrial'
+    )),
   'general.dynamique.chart-evolution-within-1-year': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-1-year'
   )),
@@ -194,6 +208,9 @@ const chartComponents = {
   'general.waste.money-waste': lazy(() => import('../components/Charts/studies/general/waste/money-waste')),
   'caracteristiques.quand.chart-evolution-temporalites': lazy(() => import(
     '../components/Charts/studies/caracteristiques/quand/chart-evolution-temporalites'
+  )),
+  'general.type-diffusion.chart-repartition': lazy(() => import(
+    '../components/Charts/studies/general/type-diffusion/chart-repartition'
   )),
   'caracteristiques.quand.chart-repartition-avant-apres': lazy(() => import(
     '../components/Charts/studies/caracteristiques/quand/chart-repartition-avant-apres'
@@ -241,6 +258,12 @@ const chartComponents = {
   )),
   'resultats.publication.chart-repartition-icmje': lazy(() => import(
     '../components/Charts/studies/resultats/publication/chart-repartition-icmje'
+  )),
+  'general.dynamic-results': lazy(() => import(
+    '../components/Charts/studies/general/dynamic-results/chart-dynamic-results'
+  )),
+  'general.rate-results': lazy(() => import(
+    '../components/Charts/studies/general/dynamic-results/chart-rate-results'
   )),
   'thesis.general.voies-ouverture.chart-repartition-taux': lazy(() => import(
     '../components/Charts/thesis/general/voies-ouverture/chart-repartition-taux'

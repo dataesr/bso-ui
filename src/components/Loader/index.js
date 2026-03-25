@@ -1,9 +1,10 @@
+/* eslint-disable react/require-default-props */
 import './style.scss';
 
 import { Col, Container, Row } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
 
-export default function LoadingSpinner({ size, spacing }) {
+export default function LoadingSpinner({ size = '100px', spacing = 'py-15w px-auto' }) {
   return (
     <Container>
       <Row alignItems='middle' spacing={spacing} justifyContent='center'>
@@ -26,9 +27,4 @@ export default function LoadingSpinner({ size, spacing }) {
 LoadingSpinner.propTypes = {
   size: PropTypes.string,
   spacing: PropTypes.string,
-};
-
-LoadingSpinner.defaultProps = {
-  size: '100px',
-  spacing: 'py-15w px-auto',
 };

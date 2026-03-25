@@ -1,3 +1,6 @@
+/* eslint-disable react/require-default-props */
+import '../../../graph.scss';
+
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -8,9 +11,12 @@ import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
-import { domains, graphIds } from '../../../../../utils/constants';
-import { getObservationLabel, withDomain } from '../../../../../utils/helpers';
-import useGlobals from '../../../../../utils/Hooks/useGetGlobals';
+import {
+  domains,
+  graphIds,
+  studiesTypes,
+} from '../../../../../utils/constants';
+import { withDomain, withtStudyType } from '../../../../../utils/helpers';
 import ChartWrapper from '../../../../ChartWrapper';
 import GraphComments from '../../../graph-comments';
 import useGetData from './get-data';
@@ -18,29 +24,30 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ id, domain, hasComments, hasFooter }) {
+function Chart({
+  domain = 'health',
+  hasComments = true,
+  hasFooter = true,
+  id = 'general.type-diffusion.chart-repartition',
+  studyType = 'Interventional',
+}) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { beforeLastObservationSnap, lastObservationSnap } = useGlobals();
-  const { allData, isError, isLoading } = useGetData(
-    lastObservationSnap,
-    domain,
-  );
-  const { categoriesByClassification, dataGraphByClassification } = allData;
-  const dataTitle = {
-    publicationYear: getObservationLabel(beforeLastObservationSnap, intl),
-  };
+  const { allData, isError, isLoading } = useGetData(studyType);
+  const { dataGraph, dataTitle } = allData;
   const idWithDomain = withDomain(id, domain);
-  useEffect(() => {
-    setChartComments(customComments(allData, idWithDomain, intl));
-  }, [allData, idWithDomain, intl]);
+  const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
     intl,
-    categoriesByClassification,
-    dataGraphByClassification,
+    dataGraph,
+    studyType,
   );
+
+  useEffect(() => {
+    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+  }, [allData, idWithDomainAndStudyType, intl]);
 
   return (
     <ChartWrapper
@@ -52,12 +59,13 @@ function Chart({ id, domain, hasComments, hasFooter }) {
       id={id}
       isError={isError}
       isLoading={isLoading || !allData}
+      studyType={studyType}
     >
       <HighchartsReact
         highcharts={Highcharts}
+        id={idWithDomainAndStudyType}
         options={optionsGraph}
         ref={chartRef}
-        id={idWithDomain}
       />
       {hasComments && chartComments && (
         <GraphComments comments={chartComments} hasFooter={hasFooter} />
@@ -66,17 +74,12 @@ function Chart({ id, domain, hasComments, hasFooter }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  id: 'publi.publishers.type-ouverture.chart-by-scientific-fields',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
   hasFooter: PropTypes.bool,
   id: PropTypes.oneOf(graphIds),
+  studyType: PropTypes.oneOf(studiesTypes),
 };
 
 export default Chart;
