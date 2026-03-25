@@ -1564,6 +1564,11 @@ export default function getFetchOptions({
                 year: getPublicationYearFromObservationSnap(observationSnap),
               },
             },
+            {
+              term: {
+                'genre.keyword': 'journal-article',
+              },
+            },
           ],
         },
       },
