@@ -1830,7 +1830,6 @@
     "paysage": "5gqzw",
     "ror": "https://ror.org/030bahv93",
     "scale": "university",
-    "alias": "194210951",
     "startYear": 2020
   },
   "194210951": {
@@ -1840,7 +1839,8 @@
     "paysage": "5gqzw",
     "ror": "https://ror.org/030bahv93",
     "scale": "university",
-    "startYear": 2020
+    "startYear": 2020,
+    "comment": "OUTDATED, use 938501681 instead"
   },
   "CIRADHAL": {
     "name": "CIRAD et HAL",
