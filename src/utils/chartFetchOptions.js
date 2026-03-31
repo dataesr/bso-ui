@@ -3076,7 +3076,7 @@ export default function getFetchOptions({
     });
   }
   if (bsoLocalAffiliation) {
-    const inputAffiliations = bsoLocalAffiliation.split(/[ ,]+/);
+    const inputAffiliations = bsoLocalAffiliation.split(/[ ,]+/).filter((input) => input.length > 0);
     let affiliationsToSearch = [];
     inputAffiliations.forEach((el) => {
       affiliationsToSearch.push(el);
