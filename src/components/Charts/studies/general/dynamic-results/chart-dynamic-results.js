@@ -71,9 +71,9 @@ function Chart({
   }, [data.dataGraph, id, idWithDomain, intl, studyType]);
 
   useEffect(() => {
-    const exampleYear = 2020;
+    const exampleYear = 2022;
     const comments = { comments: {
-      exampleValue: Math.round(data?.dataGraph?.[data?.dataGraph?.length - 1]?.data?.find((item) => item.year === exampleYear)?.low),
+      exampleValue: Math.round(data?.dataGraph?.[data?.dataGraph?.length - 2]?.data?.find((item) => item.year === exampleYear)?.low),
       exampleYear,
       obsMin: data?.dataGraph?.[0]?.year,
     } };
