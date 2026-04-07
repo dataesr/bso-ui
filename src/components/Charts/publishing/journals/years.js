@@ -41,7 +41,7 @@ function Chart({ domain, hasComments, hasFooter, id }) {
       hasFooter={hasFooter}
       id={id}
       isError={isError}
-      isLoading={isLoading || !data}
+      isLoading={isLoading || (data?.categories?.length ?? 0) === 0}
     >
       <HighchartsReact
         highcharts={Highcharts}

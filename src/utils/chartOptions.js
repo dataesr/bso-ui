@@ -5910,8 +5910,8 @@ export const chartOptions = {
           stacking: 'normal',
         },
       };
-      options.series = data.series;
-      options.xAxis = { categories: data.categories };
+      options.series = data?.series ?? {};
+      options.xAxis = { categories: data?.categories ?? [] };
       return options;
     },
   },
@@ -5920,8 +5920,8 @@ export const chartOptions = {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
       options.legend.enabled = false;
-      options.series = data.series;
-      options.xAxis = { categories: data.categories };
+      options.series = data?.series ?? {};
+      options.xAxis = { categories: data?.categories ?? [] };
       return options;
     },
   },

@@ -17,7 +17,7 @@ function useGetData() {
         const aggregations = response?.data?.aggregations?.byYear?.buckets ?? [];
         const categories = aggregations.map((item) => item.key).reverse();
         const dataSeries = aggregations.map((item) => item?.doc_count ?? 0).reverse();
-        const series = { data: dataSeries };
+        const series = [{ data: dataSeries }];
         setData({ categories, series });
       } catch (e) {
         // eslint-disable-next-line no-console
