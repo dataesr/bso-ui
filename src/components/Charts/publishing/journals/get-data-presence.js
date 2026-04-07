@@ -12,12 +12,7 @@ function useGetData() {
   useEffect(() => {
     async function getData() {
       try {
-        const tmp = getFetchOptions({
-          key: 'publishingJournalsPresence',
-          // domain,
-          // parameters: [oneDate, needlePublisher, allOaHostType],
-        });
-        const { query, ...rest } = tmp;
+        const { query, ...rest } = getFetchOptions({ key: 'publishingJournalsPresence' });
         const response = await Axios.post(ES_API_URL_JOURNALS, rest, HEADERS);
         const aggregations = response?.data?.aggregations ?? {};
         const categories = Object.keys(aggregations);

@@ -1065,7 +1065,13 @@ export default function getFetchOptions({
         },
       },
     }),
-    studiesDynamiqueOuvertureWithin1Year: ([studyType, sponsorType, yearMin, yearMax, observationSnap]) => ({
+    studiesDynamiqueOuvertureWithin1Year: ([
+      studyType,
+      sponsorType,
+      yearMin,
+      yearMax,
+      observationSnap,
+    ]) => ({
       size: 0,
       query: {
         bool: {
@@ -3053,6 +3059,21 @@ export default function getFetchOptions({
         },
       },
     }),
+    publishingJournalsYears: () => ({
+      size: 0,
+      aggs: {
+        byYear: {
+          terms: {
+            field: 'datedebut.keyword',
+            missing: 'N/A',
+            size: '50',
+            order: {
+              _key: 'desc',
+            },
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {
@@ -3117,7 +3138,9 @@ export default function getFetchOptions({
     });
   }
   if (bsoLocalAffiliation) {
-    const inputAffiliations = bsoLocalAffiliation.split(/[ ,]+/).filter((input) => input.length > 0);
+    const inputAffiliations = bsoLocalAffiliation
+      .split(/[ ,]+/)
+      .filter((input) => input.length > 0);
     let affiliationsToSearch = [];
     inputAffiliations.forEach((el) => {
       affiliationsToSearch.push(el);

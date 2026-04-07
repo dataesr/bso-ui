@@ -12,7 +12,7 @@ import { domains, graphIds } from '../../../../utils/constants';
 import { withDomain } from '../../../../utils/helpers';
 import ChartWrapper from '../../../ChartWrapper';
 import GraphComments from '../../graph-comments';
-import useGetData from './get-data-presence';
+import useGetData from './get-data-years';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
@@ -60,7 +60,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publishing.journals.presence',
+  id: 'publishing.journals.years',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

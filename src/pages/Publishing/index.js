@@ -8,6 +8,7 @@ function Publishing() {
       <section className='content'>
         <Container>
           <BSOChart id='publishing.journals.presence' />
+          <BSOChart id='publishing.journals.years' />
         </Container>
       </section>
     </Container>
