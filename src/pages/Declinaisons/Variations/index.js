@@ -17,6 +17,7 @@ function Variations() {
       </Col>
     </Row>
   );
+
   return (
     <div className='variations no-arrow-link'>
       <Banner

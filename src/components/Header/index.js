@@ -408,6 +408,24 @@ function Header() {
               asLink={<RouterLink to={urls.glossaire[lang] + search} />}
             />
           </NavItem>
+          {!isInProduction() && (
+            <NavItem
+              current={path.startsWith(`/${urls.publishing[lang].split('/')[1]}`)}
+              title={intl.formatMessage({
+                defaultMessage: 'Edition scientifique',
+                id: 'app.header.nav.publishing',
+              })}
+            >
+              <NavSubItem
+                current={path === urls.publishing[lang]}
+                title={intl.formatMessage({
+                  defaultMessage: 'Les revues',
+                  id: 'app.header.nav.publishing.journal',
+                })}
+                asLink={<RouterLink to={urls.publishing[lang] + search} />}
+              />
+            </NavItem>
+          )}
         </HeaderNav>
       </DSHeader>
     </WrapperDisplay>

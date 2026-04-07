@@ -7,7 +7,6 @@ import {
   Link as DSLink,
   Row,
 } from '@dataesr/react-dsfr';
-import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
 

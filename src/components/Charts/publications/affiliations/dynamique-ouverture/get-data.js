@@ -13,8 +13,8 @@ function useGetData(
   domain,
 ) {
   const [data, setData] = useState({});
-  const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const intl = useIntl();
   const bsoDomain = intl.formatMessage({ id: `app.bsoDomain.${domain}` });
 
@@ -178,4 +178,5 @@ function useGetData(
 
   return { data, isError, isLoading };
 }
+
 export default useGetData;

@@ -30,6 +30,7 @@ import Variations from './pages/Declinaisons/Variations';
 import Error404 from './pages/Error404';
 import Integration from './pages/Integration';
 import NationalOrcid from './pages/NationalOrcid';
+import Publishing from './pages/Publishing';
 import messagesEN from './translations/en.json';
 import messagesFR from './translations/fr.json';
 import TranslationPage from './translations/translations-page';
@@ -343,6 +344,18 @@ function App() {
               exact
               key={key}
               path={urls.project[key]}
+            />
+          ))}
+          {Object.keys(urls.publishing).map((key) => (
+            <Route
+              element={(
+                <PageTracker>
+                  <Publishing />
+                </PageTracker>
+              )}
+              exact
+              key={key}
+              path={urls.publishing[key]}
             />
           ))}
           <Route exact path='*' element={<Error404 />} />

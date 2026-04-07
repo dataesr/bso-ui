@@ -205,4 +205,8 @@ export default {
       '/integration/:language/:graphId',
     ],
   },
+  publishing: {
+    en: '/publishing/journals',
+    fr: '/edition/revues',
+  },
 };

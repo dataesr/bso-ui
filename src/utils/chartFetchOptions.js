@@ -3012,6 +3012,47 @@ export default function getFetchOptions({
         },
       },
     }),
+    publishingJournalsPresence: () => ({
+      size: 0,
+      aggs: {
+        isInOpenAlex: {
+          terms: {
+            field: 'infos_openalex.is_in_openalex',
+            missing: false,
+          },
+        },
+        isInHal: {
+          terms: {
+            field: 'infos_hal.is_in_hal',
+            missing: false,
+          },
+        },
+        isInDdh: {
+          terms: {
+            field: 'infos_ddh.is_in_ddh',
+            missing: false,
+          },
+        },
+        isInWos: {
+          terms: {
+            field: 'infos_wos.is_in_wos',
+            missing: false,
+          },
+        },
+        isInDoaj: {
+          terms: {
+            field: 'infos_doaj.is_in_doaj',
+            missing: false,
+          },
+        },
+        isInScopus: {
+          terms: {
+            field: 'infos_scopus.is_in_scopus',
+            missing: false,
+          },
+        },
+      },
+    }),
   };
   const queryResponse = allOptions[key](parameters) || {};
   if (!queryResponse.query?.bool?.filter) {

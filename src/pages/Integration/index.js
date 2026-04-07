@@ -1,5 +1,5 @@
 import { Col, Container, Row } from '@dataesr/react-dsfr';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation, useParams } from 'react-router-dom';
 

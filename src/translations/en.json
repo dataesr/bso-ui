@@ -331,6 +331,8 @@
   "app.header.nav.declinaisons": "The local monitors",
   "app.header.nav.declinaisons.howto": "Tutorial to create your institutional monitor",
   "app.header.nav.declinaisons.policy": "Open science policies of research institutions in France",
+  "app.header.nav.publishing": "Edition scientifique",
+  "app.header.nav.publishing.journal": "Les revues",
   "app.header.subtitle": "Measure the evolution of open science in France using reliable, open and controlled data.",
   "app.header.title": "French Open Science Monitor",
   "app.header.title-bis": "the French Open Science Monitor",

@@ -5901,4 +5901,18 @@ export const chartOptions = {
       return options;
     },
   },
+  'publishing.journals.presence': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+        },
+      };
+      options.series = data.series;
+      options.xAxis = { categories: data.categories };
+      return options;
+    },
+  },
 };
