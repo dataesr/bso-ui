@@ -267,6 +267,9 @@ export function getSource(id, otherSources = []) {
   if (id === 'general.waste.money-waste') {
     sources.push('SIRANo');
   }
+  if (id.includes('publishing.journals')) {
+    sources.push('Mir@bel');
+  }
   sources.push('MESRE');
   sources.push(...otherSources);
   // Deduplicate sources
