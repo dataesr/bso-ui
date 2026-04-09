@@ -14,9 +14,12 @@ function useGetData() {
       try {
         const { query, ...rest } = getFetchOptions({ key: 'publishingJournalsYears' });
         const response = await Axios.post(ES_API_URL_JOURNALS, rest, HEADERS);
-        const aggregations = response?.data?.aggregations?.byYear?.buckets ?? [];
-        const categories = aggregations.map((item) => item.key).reverse();
-        const dataSeries = aggregations.map((item) => item?.doc_count ?? 0).reverse();
+        const aggregations = (response?.data?.aggregations?.byYear?.buckets ?? []).reverse();
+        const categories = aggregations.map((item) => item.key);
+        const dataSeries = aggregations.map((item, index) => ({
+          category: categories[index],
+          y: item?.doc_count ?? 0,
+        }));
         const series = [{ data: dataSeries }];
         setData({ categories, series });
       } catch (e) {

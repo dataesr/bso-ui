@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { ES_API_URL_JOURNALS, HEADERS } from '../../../../config/config';
 import getFetchOptions from '../../../../utils/chartFetchOptions';
+import { getCSSValue } from '../../../../utils/helpers';
 
 function useGetData() {
   const [data, setData] = useState({});
@@ -16,20 +17,29 @@ function useGetData() {
         const response = await Axios.post(ES_API_URL_JOURNALS, rest, HEADERS);
         const aggregations = response?.data?.aggregations ?? {};
         const categories = Object.keys(aggregations);
+        const total = response?.data?.hits?.total?.value ?? 0;
         const absence = [];
         const presence = [];
         categories.forEach((category) => {
-          absence.push(aggregations?.[category]?.buckets?.find((item) => item.key === 0)?.doc_count ?? 0);
-          presence.push(aggregations?.[category]?.buckets?.find((item) => item.key === 1)?.doc_count ?? 0);
+          absence.push({
+            source: category,
+            y: aggregations?.[category]?.buckets?.find((item) => item.key === 0)?.doc_count ?? 0,
+            percent: ((aggregations?.[category]?.buckets?.find((item) => item.key === 0)?.doc_count ?? 0) / total) * 100,
+          });
+          presence.push({
+            source: category,
+            y: aggregations?.[category]?.buckets?.find((item) => item.key === 1)?.doc_count ?? 0,
+            percent: ((aggregations?.[category]?.buckets?.find((item) => item.key === 1)?.doc_count ?? 0) / total) * 100,
+          });
         });
         const series = [{
-          color: 'red',
+          color: getCSSValue('--publication-100'),
           data: absence,
           name: 'Absence',
         }, {
-          color: 'green',
+          color: getCSSValue('--green-soft-100'),
           data: presence,
-          name: 'Presence',
+          name: 'Présence',
         }];
         setData({ categories, series });
       } catch (e) {

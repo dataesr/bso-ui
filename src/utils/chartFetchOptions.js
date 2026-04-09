@@ -3021,37 +3021,37 @@ export default function getFetchOptions({
     publishingJournalsPresence: () => ({
       size: 0,
       aggs: {
-        isInOpenAlex: {
+        OpenAlex: {
           terms: {
             field: 'infos_openalex.is_in_openalex',
             missing: false,
           },
         },
-        isInHal: {
+        Hal: {
           terms: {
             field: 'infos_hal.is_in_hal',
             missing: false,
           },
         },
-        isInDdh: {
+        DDH: {
           terms: {
             field: 'infos_ddh.is_in_ddh',
             missing: false,
           },
         },
-        isInWos: {
+        Wos: {
           terms: {
             field: 'infos_wos.is_in_wos',
             missing: false,
           },
         },
-        isInDoaj: {
+        DOAJ: {
           terms: {
             field: 'infos_doaj.is_in_doaj',
             missing: false,
           },
         },
-        isInScopus: {
+        Scopus: {
           terms: {
             field: 'infos_scopus.is_in_scopus',
             missing: false,
@@ -3066,7 +3066,7 @@ export default function getFetchOptions({
           terms: {
             field: 'datedebut.keyword',
             missing: 'N/A',
-            size: '50',
+            size: '51',
             order: {
               _key: 'desc',
             },
