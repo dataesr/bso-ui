@@ -2020,5 +2020,89 @@
     "ror": "https://ror.org/015m7wh34",
     "scale": "university",
     "startYear": 2016
+  },
+  "i4387152634": {
+    "name": "Développement, Adaptation et Handicap",
+    "commentsName": "du DEVAH",
+    "commentsNameEN": "of DEVAH",
+    "paysage": "8weo1",
+    "ror": "https://ror.org/019c1xz73",
+    "scale": "laboratory"
+  },
+  "i4387156376": {
+    "name": "Cibles thérapeutiques, formulation et expertise préclinique du médicament",
+    "commentsName": "du CITHEFOR",
+    "commentsNameEN": "of CITHEFOR",
+    "paysage": "2rump",
+    "ror": "https://ror.org/05adajg67",
+    "scale": "laboratory"
+  },
+  "i4387155877": {
+    "name": "Défaillance Cardiovasculaire Aiguë et Chronique",
+    "commentsName": "du DCAC",
+    "commentsNameEN": "of DCAC",
+    "paysage": "jg42z",
+    "ror": "https://ror.org/05ft9wv42",
+    "scale": "laboratory"
+  },
+  "i4210116041": {
+    "name": "Imagerie Adaptative Diagnostique et Interventionnelle",
+    "commentsName": "de l'IADI",
+    "commentsNameEN": "of IADI",
+    "ror": "https://ror.org/025mhc977",
+    "scale": "laboratory"
+  },
+  "i4210152866": {
+    "name": "Ingénierie Moléculaire et Physiopathologie Articulaire",
+    "commentsName": "de l'IMOPA",
+    "commentsNameEN": "of IMOPA",
+    "paysage": "C4twZ",
+    "ror": "https://ror.org/04yc2e502",
+    "scale": "laboratory"
+  },
+  "i4387156389": {
+    "name": "Interdisciplinarité en Santé Publique, Interventions & Instruments de Mesure Complexes - Région Est",
+    "commentsName": "de l'INSPIIRE",
+    "commentsNameEN": "of INSPIIRE",
+    "ror": "https://ror.org/04dx32582",
+    "scale": "laboratory"
+  },
+  "i4387152275": {
+    "name": "Nutrition-Génétique et Exposition aux Risques Environnementaux",
+    "commentsName": "du NGERE",
+    "commentsNameEN": "of NGERE",
+    "ror": "https://ror.org/053d03003",
+    "scale": "laboratory"
+  },
+  "i4387154726": {
+    "name": "Stress, immunité, pathogènes",
+    "commentsName": "du SIMPA",
+    "commentsNameEN": "of SIMPA",
+    "ror": "https://ror.org/04f50n919",
+    "scale": "laboratory"
+  },
+  "i4210147295": {
+    "name": "Institut Jean Lamour",
+    "commentsName": "de l'IJL",
+    "commentsNameEN": "of IJL",
+    "paysage": "iV99t",
+    "ror": "https://ror.org/05k1smh27",
+    "scale": "laboratory"
+  },
+  "i4210148061": {
+    "name": "Laboratoire Matériaux Optiques, Photonique et Systèmes",
+    "commentsName": "du LMOPS",
+    "commentsNameEN": "of LMOPS",
+    "paysage": "po3e9",
+    "ror": "https://ror.org/055swm364",
+    "scale": "laboratory"
+  },
+  "i4210115482": {
+    "name": "Laboratoire d'Étude des Microstructures et de Mécanique des Matériaux",
+    "commentsName": "du LEM3",
+    "commentsNameEN": "of LEM3",
+    "paysage": "b8q7t",
+    "ror": "https://ror.org/01nyrrx14",
+    "scale": "laboratory"
   }
 }
