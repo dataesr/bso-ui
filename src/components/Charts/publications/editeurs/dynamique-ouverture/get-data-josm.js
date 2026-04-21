@@ -80,6 +80,27 @@ function useGetData(observationSnaps, needle = '*', domain) {
       lastDateOfYear.push(lastDate);
     });
 
+    // 分母を取得してMapを作成
+    const generalDataRes = await Axios.post(ES_API_URL, {
+      query: {
+        bool: {
+          filter: [
+            { terms: { calc_date: lastDateOfYear } },
+            { term: { data_type: 'general.dynamique-ouverture.get-data' } },
+          ],
+        },
+      },
+    });
+
+    const generalTotalMap = {};
+    generalDataRes.data.hits.hits.forEach((hit) => {
+      /* eslint-disable no-underscore-dangle */
+      hit._source.data.forEach((item) => {
+        const key = `${hit._source.calc_date.slice(0, 10)}_${item.publication_year}`;
+        generalTotalMap[key] = item.total;
+      });
+    });
+
     /* eslint-disable no-underscore-dangle */
     let preRes;
 
@@ -135,27 +156,24 @@ function useGetData(observationSnaps, needle = '*', domain) {
       );
 
       const preSource = [];
-      let preData = [];
+      // let preData = [];
       const preBuckets = preAllDataRes.data.aggregations.by_calc_date.buckets;
 
       for (let i = 0; i < preBuckets.length; i += 1) {
+        const calcDate = preBuckets[i].key_as_string.slice(0, 10);
+        const currentData = [];
         const preNestDatabuckets = preBuckets[i].nested_data.total_per_year.buckets;
         for (let j = 0; j < preNestDatabuckets.length; j += 1) {
-          const publicationYear = preNestDatabuckets[j].key;
-          const total = preNestDatabuckets[j].total_sum.value;
-          const oa = preNestDatabuckets[j].oa_sum.value;
-          preData.push({
-            pubulication_year: publicationYear,
-            total,
-            oa,
+          currentData.push({
+            pubulication_year: preNestDatabuckets[j].key,
+            total: preNestDatabuckets[j].total_sum.value,
+            oa: preNestDatabuckets[j].oa_sum.value,
           });
         }
         preSource.push({
-          _source: {
-            data: preData,
-          },
+          calc_date: calcDate,
+          _source: { data: currentData },
         });
-        preData = [];
       }
       preRes = {
         data: {
@@ -168,7 +186,7 @@ function useGetData(observationSnaps, needle = '*', domain) {
       console.log('dynamique-ouverture_preRes', preRes); // eslint-disable-line no-console
       }
     } else {
-      preRes = await Axios.post(
+      const response = await Axios.post(
         ES_API_URL,
         {
           query: {
@@ -186,9 +204,8 @@ function useGetData(observationSnaps, needle = '*', domain) {
         console.log('dynamique-ouverture_preRes', preRes); // eslint-disable-line no-console
       }
 
-      const preList = preRes.data.hits.hits;
-
-      const preSource = preList.map((hit) => ({
+      const preSource = response.data.hits.hits.map((hit) => ({
+        calc_date: hit._source.calc_date.slice(0, 10),
         _source: {
           data: hit._source.data.map((item) => ({
             pubulication_year: item.publication_year,
@@ -197,7 +214,6 @@ function useGetData(observationSnaps, needle = '*', domain) {
           })),
         },
       }));
-
       // preResのデータ構造変更
       preRes = {
         data: {
@@ -206,66 +222,79 @@ function useGetData(observationSnaps, needle = '*', domain) {
           },
         },
       };
+      // calc_dateの降順にソートする
+      preRes.data.hits.hits.sort((a, b) => b.calc_date.localeCompare(a.calc_date));
     }
 
     let res;
     if (observationYears) {
     // 成形処理
-    res = preRes.data.hits.hits.flatMap((hit) => [
-      {
-        data: {
-          aggregations: {
-            by_publication_year: {
-              doc_count_error_upper_bound: 0,
-              sum_other_doc_count: 0,
-              buckets: hit._source.data.map((item) => ({
-                key: item.pubulication_year,
-                doc_count: item.oa,
-                by_is_oa: {
-                  doc_count_error_upper_bound: 0,
-                  sum_other_doc_count: 0,
-                  buckets: [
-                    {
-                      key: 1,
-                      key_as_string: 'true',
-                      doc_count: item.oa,
+      res = preRes.data.hits.hits.flatMap((hit) => {
+        const currentCalcDate = hit.calc_date;
+
+        return [
+          // 分子
+          {
+            data: {
+              aggregations: {
+                by_publication_year: {
+                  buckets: hit._source.data.map((item) => ({
+                    key: item.pubulication_year,
+                    doc_count: item.oa,
+                    by_is_oa: {
+                      buckets: [
+                        {
+                          key: 1,
+                          key_as_string: 'true',
+                          doc_count: item.oa,
+                        },
+                      ],
                     },
-                  ],
+                  })),
                 },
-              })),
+              },
             },
           },
-        },
-      },
-      {
-        data: {
-          aggregations: {
-            by_publication_year: {
-              doc_count_error_upper_bound: 0,
-              sum_other_doc_count: 0,
-              buckets: hit._source.data.map((item) => ({
-                key: item.pubulication_year,
-                doc_count: item.total,
-                by_is_oa: {
-                  doc_count_error_upper_bound: 0,
-                  sum_other_doc_count: 0,
-                  buckets: [
-                    {
-                      key: 1,
-                      key_as_string: 'true',
-                      doc_count: item.total,
-                    },
-                  ],
+          // 分母
+          {
+            data: {
+              aggregations: {
+                by_publication_year: {
+                  buckets: hit._source.data.map((item) => {
+                    let correctedTotal;
+
+                    if (needle === '*') {
+                      // 「すべての出版者」選択時：全体の合計を取得
+                      const key = `${currentCalcDate}_${item.pubulication_year}`;
+                      correctedTotal = generalTotalMap[key] || item.total;
+                    } else {
+                      // 「個別の出版者」選択時：その出版者の元の合計(item.total)を使う
+                      correctedTotal = item.total;
+                    }
+
+                    return {
+                      key: item.pubulication_year,
+                      doc_count: correctedTotal,
+                      by_is_oa: {
+                        buckets: [
+                          {
+                            key: 1,
+                            key_as_string: 'true',
+                            doc_count: correctedTotal,
+                          },
+                        ],
+                      },
+                    };
+                  }),
                 },
-              })),
+              },
             },
           },
-        },
-      },
-    ]);
-  } else {
-    res = [];
-  }
+        ];
+      });
+    } else {
+      res = [];
+    }
     /* eslint-enable no-underscore-dangle */
     if (IS_TEST) {
       console.log('dynamique-ouverture_res:', res); // eslint-disable-line no-console
