@@ -330,7 +330,7 @@ function getLocalAffiliation(urlSearchParams) {
   if (!window.location.href.includes('integration')) {
     return undefined;
   }
-  const allNames = { ...locals, ...openalex };
+  const allNames = { ...openalex, ...locals };
   let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation') || undefined;
   // If bsoLocalAffiliation exists in config
   if (
