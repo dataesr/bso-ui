@@ -181,8 +181,8 @@
   },
   "130026081": {
     "name": "Université Grenoble Alpes (UGA)",
-    "commentsName": "de l'université Grenoble Alpes",
-    "commentsNameEN": "of Grenoble Alpes university",
+    "commentsName": "de l'UGA",
+    "commentsNameEN": "of UGA",
     "paysage": "Y7ch7",
     "ror": "https://ror.org/02rx3b187",
     "scale": "university",
@@ -1295,9 +1295,9 @@
     "ror": "01g3mb532"
   },
   "200616946Y": {
-    "name": "PhysioPathologie des Adaptations Nutritionnelles (PHAN)",
-    "commentsName": "de la PHAN",
-    "commentsNameEN": "of PHAN",
+    "name": "PhysioPathologie des Adaptations Nutritionnelles (PhAN)",
+    "commentsName": "de PhAN",
+    "commentsNameEN": "of PhAN",
     "paysage": "d3cSu",
     "scale": "laboratory",
     "ror": "https://ror.org/05vb5nm66"
