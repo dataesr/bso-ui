@@ -767,7 +767,7 @@
   "app.health-publi.general.langues-ouverture.description": "（不使用）",
   "app.national-publi.general.langues-ouverture.chart-repartition-publications.title": "{publicationYear}年の出版物の言語別のオープンアクセス率",
   "app.health-publi.general.langues-ouverture.chart-repartition-publications.title": "（不使用）",
-  "app.national-publi.general.langues-ouverture.chart-repartition-publications.comments": "{publicationYear}年のデータでは、英語論文のOA率よりも日本語論文で高い数値を示しています。これは日本語で出版される分野の特性や、国内の公開基盤の影響が考えられます。 ※言語判定はOpenAlexによる機械学習を用いた推定に基づいています。",
+  "app.national-publi.general.langues-ouverture.chart-repartition-publications.comments": "{publicationYear}年のデータでは、英語論文よりも日本語論文で高いのOA率を示しています。これは日本語で出版される分野の特性や、国内の公開基盤の影響が考えられます。 ※言語判定はOpenAlexによる機械学習を用いた推定に基づいています。",
   "app.health-publi.general.langues-ouverture.chart-repartition-publications.comments": "（不使用）",
   "app.national-publi.general.voies-ouverture.description": "出版物のオープンアクセスを実現するルートはいくつか存在します。出版者のプラットフォームでのオープンアクセス出版、または著者による<glossary0>app.glossary.archive-ouverte-min</glossary0>での公開が挙げられます。これらのルートは排他的ではなく、1件の出版物がリポジトリと出版者のプラットフォームの両方で公開されることもあります。",
   "app.health-publi.general.voies-ouverture.description": "（不使用）",
