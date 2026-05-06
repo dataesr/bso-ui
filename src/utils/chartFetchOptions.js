@@ -3023,19 +3023,19 @@ export default function getFetchOptions({
       aggs: {
         OpenAlex: {
           terms: {
-            field: 'infos_openalex.is_in_openalex',
+            field: 'liens.OpenAlex',
             missing: false,
           },
         },
         Hal: {
           terms: {
-            field: 'infos_hal.is_in_hal',
+            field: 'liens.HAL',
             missing: false,
           },
         },
         DDH: {
           terms: {
-            field: 'infos_ddh.is_in_ddh',
+            field: 'liens.DDH',
             missing: false,
           },
         },
@@ -3047,13 +3047,13 @@ export default function getFetchOptions({
         },
         DOAJ: {
           terms: {
-            field: 'infos_doaj.is_in_doaj',
+            field: 'liens.DOAJ',
             missing: false,
           },
         },
         Scopus: {
           terms: {
-            field: 'infos_scopus.is_in_scopus',
+            field: 'liens.Scopus',
             missing: false,
           },
         },
