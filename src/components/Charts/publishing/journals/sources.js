@@ -60,7 +60,7 @@ Chart.defaultProps = {
   domain: '',
   hasComments: true,
   hasFooter: true,
-  id: 'publishing.journals.presence',
+  id: 'publishing.journals.sources',
 };
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),

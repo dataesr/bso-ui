@@ -307,7 +307,16 @@ function Header() {
               />
             </NavItem>
           )}
-
+          {!isInProduction() && (
+            <NavItem
+              asLink={<RouterLink to={urls.publishing.tabs[0][lang] + search} />}
+              current={path.startsWith(urls.publishing[lang])}
+              title={intl.formatMessage({
+                id: 'app.header.nav.publishing',
+                defaultMessage: 'Edition scientifique',
+              })}
+            />
+          )}
           <NavItem
             current={path.startsWith(`/${urls.variations[lang].split('/')[1]}`)}
             title={intl.formatMessage({
@@ -343,8 +352,8 @@ function Header() {
           </NavItem>
           <NavItem
             current={
-              path.startsWith(`/${urls.methodologie[lang].split('/')[1]}`)
-              || [urls.project[lang], urls.citation[lang]].includes(path)
+              path.startsWith(`/${urls.methodologie[lang].split('/')[1]}`) ||
+              [urls.project[lang], urls.citation[lang]].includes(path)
             }
             title={intl.formatMessage({
               id: 'app.header.nav.about',
@@ -408,24 +417,6 @@ function Header() {
               asLink={<RouterLink to={urls.glossaire[lang] + search} />}
             />
           </NavItem>
-          {!isInProduction() && (
-            <NavItem
-              current={path.startsWith(`/${urls.publishing[lang].split('/')[1]}`)}
-              title={intl.formatMessage({
-                defaultMessage: 'Edition scientifique',
-                id: 'app.header.nav.publishing',
-              })}
-            >
-              <NavSubItem
-                current={path === urls.publishing[lang]}
-                title={intl.formatMessage({
-                  defaultMessage: 'Les revues',
-                  id: 'app.header.nav.publishing.journal',
-                })}
-                asLink={<RouterLink to={urls.publishing[lang] + search} />}
-              />
-            </NavItem>
-          )}
         </HeaderNav>
       </DSHeader>
     </WrapperDisplay>

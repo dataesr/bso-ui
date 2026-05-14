@@ -206,7 +206,21 @@ export default {
     ],
   },
   publishing: {
-    en: '/publishing/journals',
-    fr: '/edition/revues',
+    tabs: [
+      {
+        en: '/publishing/general',
+        fr: '/edition/general',
+      },
+      {
+        en: '/publishing/publications',
+        fr: '/edition/publications',
+      },
+      {
+        en: '/publishing/journals',
+        fr: '/edition/revues',
+      },
+    ],
+    en: '/publishing',
+    fr: '/edition',
   },
 };

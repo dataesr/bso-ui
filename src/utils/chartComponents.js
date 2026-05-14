@@ -414,7 +414,7 @@ const chartComponents = {
   'publi.others.preprints.chart-by-publisher': lazy(() => import(
     '../components/Charts/publications/others/preprints/chart-by-publisher'
   )),
-  'publishing.journals.presence': lazy(() => import('../components/Charts/publishing/journals/presence')),
+  'publishing.journals.sources': lazy(() => import('../components/Charts/publishing/journals/sources')),
   'publishing.journals.years': lazy(() => import('../components/Charts/publishing/journals/years')),
 };
 

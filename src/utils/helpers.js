@@ -1,5 +1,6 @@
 import locals from '../config/locals.json';
 import openalex from '../config/openalex.json';
+import urls from '../config/urls';
 
 /**
  *
@@ -273,7 +274,9 @@ export function getSource(id, otherSources = []) {
   sources.push('MESRE');
   sources.push(...otherSources);
   // Deduplicate sources
-  return [...new Set(sources)].join(', ');
+  const result = [...new Set(sources)];
+  result.sort();
+  return result.join(', ');
 }
 
 /**
@@ -325,9 +328,9 @@ export function isInProduction() {
  * @returns {string}
  */
 function getLocalAffiliation(urlSearchParams) {
-  // Should adapt the graph only in iframes
+  // Should adapt the graph only in iframes or publishing part
   // Prevent seeing the whole website for a bsoLocalAffiliation
-  if (!window.location.href.includes('integration')) {
+  if (!window.location.href.includes('integration') && !(window.location.href.includes(urls.publishing.fr) || window.location.href.includes(urls.publishing.en))) {
     return undefined;
   }
   const allNames = { ...openalex, ...locals };
@@ -420,6 +423,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   let displayTitle;
   let endYear;
   let name;
+  let source;
   let startYear = 2013;
   const selectedLang = sessionStorage.getItem('__bso_lang__');
   const commentsNameProperty = selectedLang === 'en' ? 'commentsNameEN' : 'commentsName';
@@ -460,6 +464,8 @@ export function getURLSearchParams(intl = undefined, id = '') {
           ?.formatMessage({ id: 'app.perimeter', defaultMessage: 'Périmètre' })
           .concat(` ${bsoLocalAffiliation}`),
       );
+    source = urlSearchParams.get('source')?.toLowerCase()
+      || localAffiliationSettings?.source;
     if (urlSearchParams.get('startYear')?.toLowerCase() === 'latest') {
       startYear = 2013;
     } else {
@@ -507,6 +513,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
     idTypes,
     lastObservationYear,
     name,
+    source,
     startYear,
   };
 }

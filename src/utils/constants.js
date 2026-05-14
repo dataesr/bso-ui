@@ -36,6 +36,7 @@ export const mobileButtonLabel = {
     '/donnees-de-la-recherche/editeurs': 'app.data.editeurs',
     '/theses-de-doctorat/general': 'app.thesis.general',
     '/orcid/general': 'app.orcid.general',
+    '/edition/general': 'app.publi.general',
   },
   en: {
     '/health/publications/fields': 'app.publi.disciplines',
@@ -65,6 +66,7 @@ export const mobileButtonLabel = {
     '/research-data/publishers': 'app.data.editeurs',
     '/thesis/general': 'app.thesis.general',
     '/orcid/general': 'app.orcid.general',
+    '/publishing/general': 'app.publi.general',
   },
 };
 

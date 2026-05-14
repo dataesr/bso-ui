@@ -3021,27 +3021,9 @@ export default function getFetchOptions({
     publishingJournalsPresence: () => ({
       size: 0,
       aggs: {
-        OpenAlex: {
-          terms: {
-            field: 'liens.OpenAlex',
-            missing: false,
-          },
-        },
-        Hal: {
-          terms: {
-            field: 'liens.HAL',
-            missing: false,
-          },
-        },
         DDH: {
           terms: {
             field: 'liens.DDH',
-            missing: false,
-          },
-        },
-        Wos: {
-          terms: {
-            field: 'infos_wos.is_in_wos',
             missing: false,
           },
         },
@@ -3051,9 +3033,63 @@ export default function getFetchOptions({
             missing: false,
           },
         },
+        Erih: {
+          terms: {
+            field: 'liens.Erih',
+            missing: false,
+          },
+        },
+        Hal: {
+          terms: {
+            field: 'liens.HAL',
+            missing: false,
+          },
+        },
+        Latindex: {
+          terms: {
+            field: 'liens.Latindex',
+            missing: false,
+          },
+        },
+        MIAR: {
+          terms: {
+            field: 'liens.MIAR',
+            missing: false,
+          },
+        },
+        OpenAlex: {
+          terms: {
+            field: 'liens.OpenAlex',
+            missing: false,
+          },
+        },
+        OpenPolicyFinder: {
+          terms: {
+            field: 'liens.OpenPolicyFinder',
+            missing: false,
+          },
+        },
+        ROAD: {
+          terms: {
+            field: 'liens.ROAD',
+            missing: false,
+          },
+        },
         Scopus: {
           terms: {
             field: 'liens.Scopus',
+            missing: false,
+          },
+        },
+        'Wikipedia-en': {
+          terms: {
+            field: 'liens.Wikipedia-en',
+            missing: false,
+          },
+        },
+        'Wikipedia-fr': {
+          terms: {
+            field: 'liens.Wikipedia-fr',
             missing: false,
           },
         },
@@ -3064,7 +3100,7 @@ export default function getFetchOptions({
       aggs: {
         byYear: {
           terms: {
-            field: 'datedebut.keyword',
+            field: 'dates.debut.keyword',
             missing: 'N/A',
             size: '51',
             order: {

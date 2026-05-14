@@ -25,10 +25,8 @@ import {
  * }}
  */
 export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
-  let otherSources = [];
-  const { bsoLocalAffiliation, commentsName, lastObservationYear, name } =
+  const { bsoLocalAffiliation, commentsName, lastObservationYear, name, source: localSource } =
     getURLSearchParams(intl, id);
-  otherSources = [name];
   // eslint-disable-next-line no-param-reassign
   dataTitle.commentsName = commentsName;
   const titleId = studyType ? withtStudyType(id, studyType.toLowerCase()) : id;
@@ -56,7 +54,7 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
     .replaceAll('((commentsName))', commentsName);
   const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
   const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: ' ' });
-  const source = getSource(id, otherSources);
+  const source = getSource(id, [localSource || name]);
   const title = intl.formatMessage(
     { id: `${titleId}.title`, defaultMessage: ' ' },
     dataTitle,
@@ -5901,7 +5899,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'publishing.journals.presence': {
+  'publishing.journals.sources': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
