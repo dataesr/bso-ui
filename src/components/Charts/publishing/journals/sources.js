@@ -12,7 +12,7 @@ import { domains, graphIds } from '../../../../utils/constants';
 import { withDomain } from '../../../../utils/helpers';
 import ChartWrapper from '../../../ChartWrapper';
 import GraphComments from '../../graph-comments';
-import useGetData from './get-data-presence';
+import useGetData from './get-data-sources';
 
 HCExporting(Highcharts);
 HCExportingData(Highcharts);

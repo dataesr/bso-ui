@@ -3128,9 +3128,9 @@ export default function getFetchOptions({
   const isThesis = objectType.includes('thesis');
   const isPublications = objectType.includes('publications');
   const isDatasets = objectType.includes('datasets');
-  if (isHealthTrialsStudies || isOrcid || isDatasets) {
+  const isBsoEdition = bsoLocalAffiliation === 'bsoedition';
+  if (isHealthTrialsStudies || isOrcid || isDatasets || isBsoEdition) {
     // On graphs about interventional trials and observational studies, no filter on country is needed because it is only about France
-    // TODO TOREMOVE to remove once the data is in the index
     useBsoCountry = false;
   }
   if (isHealthTrialsStudies) {
@@ -3185,19 +3185,15 @@ export default function getFetchOptions({
     });
     // Filter on unique affiliations
     affiliationsToSearch = [...new Set(affiliationsToSearch)];
+    let field = 'bso_local_affiliations.keyword';
     if (isDatasets) {
-      queryResponse.query.bool.filter.push({
-        terms: {
-          'bso3_local_affiliations.keyword': affiliationsToSearch,
-        },
-      });
-    } else {
-      queryResponse.query.bool.filter.push({
-        terms: {
-          'bso_local_affiliations.keyword': affiliationsToSearch,
-        },
-      });
+      field = 'bso3_local_affiliations.keyword';
     }
+    queryResponse.query.bool.filter.push({
+      terms: {
+        [field]: affiliationsToSearch,
+      },
+    });
     const year = {};
     if (startYear) {
       year.gte = parseInt(startYear, 10);
