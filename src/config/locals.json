@@ -215,9 +215,9 @@
     "startYear": 2017
   },
   "130029747": {
-    "name": "Nantes Université (NantesU)",
-    "commentsName": "de NantesU",
-    "commentsNameEN": "of NantesU",
+    "name": "Nantes Université",
+    "commentsName": "de Nantes Université",
+    "commentsNameEN": "of Nantes Université",
     "paysage": "qUCQp",
     "ror": "https://ror.org/03gnr7b55",
     "scale": "university",
@@ -1104,7 +1104,7 @@
   },
   "199819322R": {
     "name": "Ambiances architectures urbanités (AAU)",
-    "commentsName": "de l'AAU",
+    "commentsName": "de AAU",
     "commentsNameEN": "of AAU",
     "paysage": "1BroQ",
     "ror": "https://ror.org/05hz99a17",
@@ -1366,7 +1366,7 @@
   },
   "200815563L": {
     "name": "Motricité, interactions, performance (MIP)",
-    "commentsName": "de la MIP",
+    "commentsName": "du MIP",
     "commentsNameEN": "of MIP",
     "scale": "laboratory",
     "paysage": "jCn2Q"
@@ -1610,7 +1610,7 @@
   },
   "201722464Y": {
     "name": "Centre atlantique de philosophie (CAPHI)",
-    "commentsName": "de CAPHI",
+    "commentsName": "du CAPHI",
     "commentsNameEN": "of CAPHI",
     "paysage": "lbMta",
     "ror": "https://ror.org/059ynac98",
@@ -1625,7 +1625,7 @@
   },
   "201722762X": {
     "name": "Regenerative medicine and skeleton (RMeS)",
-    "commentsName": "du RMeS",
+    "commentsName": "de RMeS",
     "commentsNameEN": "of RMeS",
     "paysage": "NMb9s",
     "scale": "laboratory",
@@ -2104,5 +2104,10 @@
     "paysage": "b8q7t",
     "ror": "https://ror.org/01nyrrx14",
     "scale": "laboratory"
+  },
+  "bsoedition": {
+    "name": "Edition scientifique française",
+    "commentsName": "du BSO édition",
+    "commentsNameEN": "of BSO édition"
   }
 }
