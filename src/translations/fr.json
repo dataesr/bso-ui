@@ -230,6 +230,7 @@
   "app.commons.select-warning": "Attention, cette liste déroulante n'est pas publique. Elle est visible uniquement sur l'interface de staging.",
   "app.commons.yes": "Oui",
   "app.commons.production-ready": "Ce graphique est retenu pour être publié à la prochaine version du BSO.",
+  "app.commons.and": "et",
   "app.country.Australia": "Australie",
   "app.country.Austria": "Autriche",
   "app.country.Belgium": "Belgique",

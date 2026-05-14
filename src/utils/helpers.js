@@ -429,8 +429,10 @@ export function getURLSearchParams(intl = undefined, id = '') {
   const commentsNameProperty = selectedLang === 'en' ? 'commentsNameEN' : 'commentsName';
 
   if (bsoLocalAffiliation) {
+    const bsoLocalAffiliations = bsoLocalAffiliation.split(/[ ,]+/);
+    const localAffiliationsSettings = bsoLocalAffiliations.map((item) => localsLowerCase?.[item?.trim()?.toLowerCase()]);
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || localAffiliationSettings?.[commentsNameProperty]
+      || localAffiliationsSettings.map((item) => item?.[commentsNameProperty]).join(` ${intl?.formatMessage({ id: 'app.commons.and', defaultMessage: 'et' })} `)
       || intl
         ?.formatMessage({
           id: 'app.of-perimeter',
@@ -458,7 +460,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
       );
     }
     name = urlSearchParams.get('name')?.toLowerCase()
-      || localAffiliationSettings?.name
+      || localAffiliationsSettings.map((item) => item?.name).join(` ${intl?.formatMessage({ id: 'app.commons.and', defaultMessage: 'et' })} `)
       || capitalize(
         intl
           ?.formatMessage({ id: 'app.perimeter', defaultMessage: 'Périmètre' })

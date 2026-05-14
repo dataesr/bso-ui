@@ -87,6 +87,7 @@
   "app.commons.select-warning": "Please note that this select is not public. It is only visible on the staging interface.",
   "app.commons.yes": "Yes",
   "app.commons.production-ready": "This graph has been selected for publication in the next version of the FOSM.",
+  "app.commons.and": "and",
   "app.country.Australia": "Australia",
   "app.country.Austria": "Austria",
   "app.country.Belgium": "Belgium",
