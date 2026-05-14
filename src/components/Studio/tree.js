@@ -64,6 +64,10 @@ const tree = [
               'publi.disciplines.voies-ouverture.chart-repartition-publications',
           },
           {
+            key: 'app.national-publi.publishers.type-ouverture.chart-by-classifications.title',
+            value: 'publi.publishers.type-ouverture.chart-by-classifications',
+          },
+          {
             key: 'app.national-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.title',
             value:
               'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
@@ -91,6 +95,10 @@ const tree = [
             key: 'app.national-publi.publishers.type-ouverture.chart-evolution-repartition.title',
             value:
               'publi.publishers.type-ouverture.chart-evolution-repartition',
+          },
+          {
+            key: 'app.national-publi.publishers.type-ouverture.chart-by-classifications-publishers.title',
+            value: 'publi.publishers.type-ouverture.chart-by-classifications-publishers',
           },
           {
             key: 'app.national-publi.publishers.politiques-ouverture.chart-classement.title',
