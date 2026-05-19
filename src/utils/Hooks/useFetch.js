@@ -189,7 +189,7 @@ export default function useFetch({ method, options, url }) {
           };
         } else if (options.aggs.observation_dates_count) {
           // observation datesに表示する値を取得
-          const observationDate = parseInt(lastDateOfYear, 10) - 2024;
+          const observationDate = lastDateOfYear.length;
           res.aggregations = {
             // 【TODO】取得した値を反映
             observation_dates_count: { value: observationDate },
