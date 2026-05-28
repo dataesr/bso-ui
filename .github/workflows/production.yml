@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🏁 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: 🏷️ Get tag
         id: tag
@@ -44,7 +44,7 @@ jobs:
     needs: publish-ghcr
     steps:
       - name: 🏁 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -54,13 +54,13 @@ jobs:
 
       - name: Create changelog text
         id: changelog
-        uses: loopwerk/tag-changelog@v1
+        uses: loopwerk/tag-changelog@v1.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config_file: .github/config/changelog.js
 
       - name: 📦 Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
