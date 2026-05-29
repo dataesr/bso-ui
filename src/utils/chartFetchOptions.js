@@ -3201,7 +3201,7 @@ export default function getFetchOptions({
     if (endYear) {
       year.lte = parseInt(endYear, 10);
     }
-    if (year) {
+    if (!isHealthTrialsStudies && year) {
       queryResponse.query.bool.filter.push({
         range: { year },
       });

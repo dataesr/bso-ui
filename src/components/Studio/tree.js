@@ -304,6 +304,23 @@ const tree = [
       },
     ],
   },
+  {
+    key: 'app.baro-sante.trials.main-title',
+    value: 'clinical-trials',
+    isInProduction: false,
+    children: [
+      {
+        key: 'app.data.general',
+        value: 'general',
+        children: [
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution.title',
+            value: 'general.dynamique.chart-evolution/health/Interventional',
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export default tree;
