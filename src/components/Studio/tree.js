@@ -317,6 +317,18 @@ const tree = [
             key: 'app.health-interventional.general.dynamique.chart-evolution.title',
             value: 'general.dynamique.chart-evolution/health/Interventional',
           },
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution-drug.title',
+            value: 'general.dynamique.chart-evolution-drug/health/Interventional',
+          },
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution-10-years-within-1-year.title',
+            value: 'general.dynamique.chart-evolution-10-years-within-1-year/health/Interventional',
+          },
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution-10-years-within-1-year-drug.title',
+            value: 'general.dynamique.chart-evolution-10-years-within-1-year-drug/health/Interventional',
+          },
         ],
       },
     ],

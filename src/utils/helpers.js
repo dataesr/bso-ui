@@ -348,6 +348,7 @@ function getLocalAffiliation(urlSearchParams) {
     allNames[key]?.paysage?.toLowerCase(),
     allNames[key]?.ror?.toLowerCase(),
     allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+    allNames[key]?.openalex?.toLowerCase(),
   ].includes(bsoLocalAffiliation));
   if (bsoLocalAffiliation && matched.length > 0) {
     bsoLocalAffiliation = matched[0].toLocaleLowerCase();
@@ -363,11 +364,18 @@ function getLocalAffiliation(urlSearchParams) {
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
-  const allNames = { ...locals, ...openalex };
+  const allNames = { ...openalex, ...locals };
   const localsLowerCase = Object.fromEntries(
     Object.entries(allNames).map(([k, v]) => [k.toLowerCase(), v]),
   );
-  const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation?.toLowerCase()];
+  const matched = Object.keys(allNames).filter((key) => [
+    allNames[key]?.paysage?.toLowerCase(),
+    allNames[key]?.ror?.toLowerCase(),
+    allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+    allNames[key]?.openalex?.toLowerCase(),
+    allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
+  ].includes(bsoLocalAffiliation?.toLowerCase()));
+  const localAffiliationSettings = localsLowerCase?.[matched?.[0]];
   const alias = localAffiliationSettings?.alias;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
@@ -430,7 +438,16 @@ export function getURLSearchParams(intl = undefined, id = '') {
 
   if (bsoLocalAffiliation) {
     const bsoLocalAffiliations = bsoLocalAffiliation.split(/[ ,]+/);
-    const localAffiliationsSettings = bsoLocalAffiliations.map((item) => localsLowerCase?.[item?.trim()?.toLowerCase()]);
+    const localAffiliationsSettings = bsoLocalAffiliations.map((item) => {
+      const matchedLocal = Object.keys(allNames).filter((key) => [
+        allNames[key]?.paysage?.toLowerCase(),
+        allNames[key]?.ror?.toLowerCase(),
+        allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+        allNames[key]?.openalex?.toLowerCase(),
+        allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
+      ].includes(bsoLocalAffiliation?.trim()?.toLowerCase()));
+      return localsLowerCase?.[matchedLocal?.[0]];
+    });
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || localAffiliationsSettings.map((item) => item?.[commentsNameProperty]).join(` ${intl?.formatMessage({ id: 'app.commons.and', defaultMessage: 'et' })} `)
       || intl
