@@ -372,7 +372,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
   const matched = Object.keys(allNames).filter((key) => [
     allNames[key]?.paysage?.toLowerCase(),
     allNames[key]?.ror?.toLowerCase(),
-    allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+    allNames[key]?.ror?.replace('https://ror.org/', '')?.toLowerCase(),
     allNames[key]?.openalex?.toLowerCase(),
     allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
   ].includes(bsoLocalAffiliation?.toLowerCase()));
@@ -443,10 +443,10 @@ export function getURLSearchParams(intl = undefined, id = '') {
       const matchedLocal = Object.keys(allNames).filter((key) => [
         allNames[key]?.paysage?.toLowerCase(),
         allNames[key]?.ror?.toLowerCase(),
-        allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+        allNames[key]?.ror?.replace('https://ror.org/', '')?.toLowerCase(),
         allNames[key]?.openalex?.toLowerCase(),
         allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
-      ].includes(bsoLocalAffiliation?.trim()?.toLowerCase()));
+      ].includes(item?.trim()?.toLowerCase()));
       return localsLowerCase?.[matchedLocal?.[0]];
     });
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
