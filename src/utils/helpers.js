@@ -334,7 +334,7 @@ function getLocalAffiliation(urlSearchParams) {
     return undefined;
   }
   const allNames = { ...openalex, ...locals };
-  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation') || undefined;
+  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation').replace('https://ror.org/', '') || undefined;
   // If bsoLocalAffiliation exists in config
   if (
     Object.keys(allNames)
@@ -347,8 +347,9 @@ function getLocalAffiliation(urlSearchParams) {
   const matched = Object.keys(allNames).filter((key) => [
     allNames[key]?.paysage?.toLowerCase(),
     allNames[key]?.ror?.toLowerCase(),
-    allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+    allNames[key]?.ror?.replace('https://ror.org/', '')?.toLowerCase(),
     allNames[key]?.openalex?.toLowerCase(),
+    allNames[key]?.openalex?.replace('https://openalex.org/institutions/', '')?.toLowerCase(),
   ].includes(bsoLocalAffiliation));
   if (bsoLocalAffiliation && matched.length > 0) {
     bsoLocalAffiliation = matched[0].toLocaleLowerCase();
