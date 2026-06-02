@@ -2110,5 +2110,50 @@
     "commentsName": "du BSO édition",
     "commentsNameEN": "of BSO publishing",
     "source": "Mir@bel"
+  },
+  "LMA-PAU": {
+    "name": "Laboratoire de Mathématiques et de leurs Applications de Pau",
+    "commentsName": "du LMA-PAU",
+    "commentsNameEN": "of LMA-PAU",
+    "paysage": "TXMG3",
+    "ror": "https://ror.org/00g669j87",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "SIAME": {
+    "name": "Laboratoire des sciences de l'ingénieur appliquées à la mécanique et génie électrique",
+    "commentsName": "du SIAME",
+    "commentsNameEN": "of SIAME",
+    "paysage": "6Vvr1",
+    "ror": "https://ror.org/01az1jj42",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "LATEP": {
+    "name": "Laboratoire de Thermique, Energétique et Procédés",
+    "commentsName": "du LATEP",
+    "commentsNameEN": "of LATEP",
+    "paysage": "7h6ou",
+    "ror": "https://ror.org/05kbvd578",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "LFCR": {
+    "name": "Laboratoire des Fluides Complexes et leurs Réservoirs",
+    "commentsName": "du LFCR",
+    "commentsNameEN": "of LFCR",
+    "paysage": "74kk5",
+    "ror": "https://ror.org/03dg47v24",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "DMEX": {
+    "name": "Développement de méthodologies expérimentales",
+    "commentsName": "du DMEX",
+    "commentsNameEN": "of DMEX",
+    "paysage": "g4h2c",
+    "ror": "https://ror.org/0213f8g15",
+    "scale": "laboratory",
+    "source": "HAL"
   }
 }
