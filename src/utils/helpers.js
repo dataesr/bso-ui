@@ -376,7 +376,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
     allNames[key]?.openalex?.toLowerCase(),
     allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
   ].includes(bsoLocalAffiliation?.toLowerCase()));
-  const localAffiliationSettings = localsLowerCase?.[matched?.[0]];
+  const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation?.toLowerCase()] ?? localsLowerCase?.[matched?.[0]];
   const alias = localAffiliationSettings?.alias;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
@@ -447,7 +447,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
         allNames[key]?.openalex?.toLowerCase(),
         allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
       ].includes(item?.trim()?.toLowerCase()));
-      return localsLowerCase?.[matchedLocal?.[0]];
+      return localsLowerCase?.[item?.toLowerCase()] ?? localsLowerCase?.[matchedLocal?.[0]];
     });
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
       || localAffiliationsSettings.map((item) => item?.[commentsNameProperty]).join(` ${intl?.formatMessage({ id: 'app.commons.and', defaultMessage: 'et' })} `)
