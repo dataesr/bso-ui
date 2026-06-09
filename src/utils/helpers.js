@@ -333,9 +333,11 @@ function getLocalAffiliation(urlSearchParams) {
   if (!window.location.href.includes('/integration/') && !(window.location.href.includes(urls.publishing.fr) || window.location.href.includes(urls.publishing.en))) {
     return undefined;
   }
+  // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json
+  // If a key is present in both files, locals.json is the one the should be kept
   const allNames = { ...openalex, ...locals };
   let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation').replace('https://ror.org/', '') || undefined;
-  // If bsoLocalAffiliation exists in config
+  // If bsoLocalAffiliation is a key in the config files, return it as it is
   if (
     Object.keys(allNames)
       .map((item) => item.toLowerCase())
@@ -343,7 +345,7 @@ function getLocalAffiliation(urlSearchParams) {
   ) {
     return bsoLocalAffiliation;
   }
-  // If bsoLocalAffiliation is the Paysage or the RoR of a structure in all config file
+  // If bsoLocalAffiliation is one of the fields "paysage", "ror" or "openalex", return the matched key
   const matched = Object.keys(allNames).filter((key) => [
     allNames[key]?.paysage?.toLowerCase(),
     allNames[key]?.ror?.toLowerCase(),
@@ -365,10 +367,13 @@ function getLocalAffiliation(urlSearchParams) {
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
+  // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json
+  // If a key is present in both files, locals.json is the one the should be kept
   const allNames = { ...openalex, ...locals };
   const localsLowerCase = Object.fromEntries(
     Object.entries(allNames).map(([k, v]) => [k.toLowerCase(), v]),
   );
+  // If bsoLocalAffiliation is one of the fields "paysage", "ror" or "openalex", return the matched key
   const matched = Object.keys(allNames).filter((key) => [
     allNames[key]?.paysage?.toLowerCase(),
     allNames[key]?.ror?.toLowerCase(),
@@ -376,12 +381,13 @@ export function getURLSearchParams(intl = undefined, id = '') {
     allNames[key]?.openalex?.toLowerCase(),
     allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
   ].includes(bsoLocalAffiliation?.toLowerCase()));
+  // Set the object settings from bsoLocalAffiliation
   const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation?.toLowerCase()] ?? localsLowerCase?.[matched?.[0]];
   const alias = localAffiliationSettings?.alias;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
     || 'fr';
-  let lastObservationYear = '2023Q4';
+  let lastObservationYear = '2025Q4';
   if (urlSearchParams.get('lastObservationYear')?.toLowerCase() === 'latest') {
     lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
   } else if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
