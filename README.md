@@ -21,10 +21,6 @@ The version number follows [semver](https://semver.org/).
 
 To push in prod, run `npm run deploy -- [patch|minor|major]`
 
-## Workflow
-
-The workflow to submit a new FOSM local variation is described in workflow.md.
-
 ## Ajouter une nouvelle icône BSSO
 
 * Ajouter le fichier `icon-bsso-[x].svg` dans `src/components/Icon/svg` en respectant ce format de nommage

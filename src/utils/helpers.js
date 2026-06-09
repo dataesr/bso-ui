@@ -328,9 +328,9 @@ export function isInProduction() {
  * @returns {string}
  */
 function getLocalAffiliation(urlSearchParams) {
-  // Should adapt the graph only in iframes or publishing part
+  // Should adapt the graph only in iframes (aka integration url) or publishing part
   // Prevent seeing the whole website for a bsoLocalAffiliation
-  if (!window.location.href.includes('integration') && !(window.location.href.includes(urls.publishing.fr) || window.location.href.includes(urls.publishing.en))) {
+  if (!window.location.href.includes('/integration/') && !(window.location.href.includes(urls.publishing.fr) || window.location.href.includes(urls.publishing.en))) {
     return undefined;
   }
   const allNames = { ...openalex, ...locals };
