@@ -32,17 +32,22 @@ export default function Footer() {
             title={intl.formatMessage({ id: 'app.footer.links' })}
           >
             <FooterLink
-              href={intl.formatMessage({ id: 'url.about.data-and-code' })}
+              href={intl.formatMessage({ id: 'url.about.communication' })}
             >
-              <FormattedMessage id='app.header.nav.about.data-and-code' />
-            </FooterLink>
-            <FooterLink href={intl.formatMessage({ id: 'url.about.citation' })}>
-              <FormattedMessage id='app.header.nav.about.citation' />
+              <FormattedMessage id='app.header.nav.about.results' />
             </FooterLink>
             <FooterLink
               href={intl.formatMessage({ id: 'url.about.methodology' })}
             >
               <FormattedMessage id='app.header.nav.about.methodology' />
+            </FooterLink>
+            <FooterLink href={intl.formatMessage({ id: 'url.about.citation' })}>
+              <FormattedMessage id='app.header.nav.about.citation' />
+            </FooterLink>
+            <FooterLink
+              href={intl.formatMessage({ id: 'url.about.data-and-code' })}
+            >
+              <FormattedMessage id='app.header.nav.about.data-and-code' />
             </FooterLink>
             <FooterLink
               href={intl.formatMessage({ id: 'app.footer.project.url' })}
@@ -140,6 +145,18 @@ export default function Footer() {
                 size='xl'
               >
                 <span>Facebook</span>
+              </DSIcon>
+            </FooterLink>
+            <FooterLink
+              target='_blank'
+              href='https://www.youtube.com/@dataesr2116'
+            >
+              <DSIcon
+                className='ds-fr--v-middle'
+                name='ri-youtube-fill'
+                size='xl'
+              >
+                <span>Youtube</span>
               </DSIcon>
             </FooterLink>
           </FooterTopCategory>

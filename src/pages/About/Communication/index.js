@@ -122,7 +122,7 @@ function NotesFlash() {
           <Row gutters>
             <Col>
               <Col n='12 md-6 lg-4'>
-                <h4 className='marianne-bold fs-24-32'>
+                <h4 className='marianne-bold fs-24-32 fr-mt-4w' id='last-notes'>
                   <FormattedMessage id='app.notes.flash.last-notes.title' />
                 </h4>
               </Col>
@@ -185,6 +185,54 @@ function NotesFlash() {
                     </Col>
                   </Row>
                 </Container>
+              </Col>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col>
+              <Col n='12 md-6 lg-4'>
+                <h4 className='marianne-bold fs-24-32 fr-mt-4w' id='users-club'>
+                  <FormattedMessage id='app.notes.flash.users-club.title' />
+                </h4>
+              </Col>
+              <Col n='12'>
+                <ul>
+                  <li>
+                    <DSLink href='https://www.youtube.com/watch?v=AhPUkKWFqzQ&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
+                      Webinaire Club utilisateurs BSO 20260511
+                    </DSLink>
+                  </li>
+                  <li>
+                    <DSLink href='https://www.youtube.com/watch?v=FHzXFXfnjv4&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
+                      Webinaire Club utilisateurs BSO 20250304 - Déclinaisons locales et Works-magnet
+                    </DSLink>
+                  </li>
+                  <li>
+                    <DSLink href='https://www.youtube.com/watch?v=pQfPy6wLAZg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
+                      Webinaire Club utilisateurs BSO 20240516 - Works-magnet
+                    </DSLink>
+                  </li>
+                  <li>
+                    <DSLink href='https://www.youtube.com/watch?v=_I-NBzo93Jg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
+                      Webinaire Club utilisateurs BSO 20240313
+                    </DSLink>
+                  </li>
+                  <li>
+                    <DSLink href='https://www.youtube.com/watch?v=FV_x5qKmd9I&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
+                      Webinaire Club utilisateurs BSO 20230308 (1/2) - Données et code
+                    </DSLink>
+                  </li>
+                  <li>
+                    <DSLink href='https://www.youtube.com/watch?v=DQZUne8sA-o&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
+                      Webinaire Club utilisateurs BSO 20230308 (2/2) - Données et code
+                    </DSLink>
+                  </li>
+                  <li>
+                    <DSLink href='https://www.youtube.com/watch?v=ZhN_b-IBqx0&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
+                      Webinaire Club utilisateurs BSO 20221117 - Intégration HAL et thèses
+                    </DSLink>
+                  </li>
+                </ul>
               </Col>
             </Col>
           </Row>
