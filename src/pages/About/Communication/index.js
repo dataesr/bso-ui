@@ -238,18 +238,10 @@ function NotesFlash() {
                     </Col>
                     <Col n='12 md-6 lg-4'>
                       <WebinarCard
-                        intlTitle='Webinaire n°3 - Mars 2023 (1/2)'
+                        intlTitle='Webinaire n°3 - Mars 2023'
                         doi='Données et code'
                         urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_3_20230308_nouveautes_donnees_codes/presentation_bso_20230308_club.pdf'
-                        urlVisio='https://www.youtube.com/watch?v=FV_x5qKmd9I&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
-                      />
-                    </Col>
-                    <Col n='12 md-6 lg-4'>
-                      <WebinarCard
-                        intlTitle='Webinaire n°3 - Mars 2023 (2/2)'
-                        doi='Données et code'
-                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_3_20230308_nouveautes_donnees_codes/presentation_bso_20230308_club.pdf'
-                        urlVisio='https://www.youtube.com/watch?v=DQZUne8sA-o&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                        urlVisio='https://www.youtube.com/watch?v=4-JrCCW-EtI&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
                       />
                     </Col>
                     <Col n='12 md-6 lg-4'>
