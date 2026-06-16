@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Banner from '../../../components/Banner';
 import FlashCard from '../../../components/FlashCard';
 import Icon from '../../../components/Icon';
+import WebinarCard from '../../../components/WebinarCard';
 import useLang from '../../../utils/Hooks/useLang';
 
 function NotesFlash() {
@@ -196,43 +197,65 @@ function NotesFlash() {
                 </h4>
               </Col>
               <Col n='12'>
-                <ul>
-                  <li>
-                    <DSLink href='https://www.youtube.com/watch?v=AhPUkKWFqzQ&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
-                      Webinaire Club utilisateurs BSO 20260511
-                    </DSLink>
-                  </li>
-                  <li>
-                    <DSLink href='https://www.youtube.com/watch?v=FHzXFXfnjv4&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
-                      Webinaire Club utilisateurs BSO 20250304 - Déclinaisons locales et Works-magnet
-                    </DSLink>
-                  </li>
-                  <li>
-                    <DSLink href='https://www.youtube.com/watch?v=pQfPy6wLAZg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
-                      Webinaire Club utilisateurs BSO 20240516 - Works-magnet
-                    </DSLink>
-                  </li>
-                  <li>
-                    <DSLink href='https://www.youtube.com/watch?v=_I-NBzo93Jg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
-                      Webinaire Club utilisateurs BSO 20240313
-                    </DSLink>
-                  </li>
-                  <li>
-                    <DSLink href='https://www.youtube.com/watch?v=FV_x5qKmd9I&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
-                      Webinaire Club utilisateurs BSO 20230308 (1/2) - Données et code
-                    </DSLink>
-                  </li>
-                  <li>
-                    <DSLink href='https://www.youtube.com/watch?v=DQZUne8sA-o&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
-                      Webinaire Club utilisateurs BSO 20230308 (2/2) - Données et code
-                    </DSLink>
-                  </li>
-                  <li>
-                    <DSLink href='https://www.youtube.com/watch?v=ZhN_b-IBqx0&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN' target='_blank'>
-                      Webinaire Club utilisateurs BSO 20221117 - Intégration HAL et thèses
-                    </DSLink>
-                  </li>
-                </ul>
+                <Container fluid>
+                  <Row gutters>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 8 - 11/05/2026'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_8_20260511_bso2026/Webinaire%20BSO%202026%20-%2020260511.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=AhPUkKWFqzQ&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 7 - 04/04/2025 -  Décliner ScanR pour son établissement ou son laboratoire'
+                        urlVisio='https://www.youtube.com/watch?v=s4UYVOCa3iw'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 6 - 04/03/2025 - Déclinaisons locales et Works-magnet'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_6_20250304_bso2025/BSO%202025.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=FHzXFXfnjv4&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 5 - 16/05/2024 - Works-magnet'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_5_20240516_w-magnet/Webinaire_20240516_works-magnet.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=pQfPy6wLAZg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 4 - 13/03/2024'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_4_20240313_nouvelle_edition_bso/BSO%20-%20Club%20Utilisateurs%20-%2013_03_2024.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=_I-NBzo93Jg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 3 - 08/03/2023 (1/2) - Données et code'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_3_20230308_nouveautes_donnees_codes/presentation_bso_20230308_club.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=FV_x5qKmd9I&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 3 - 08/03/2023 (2/2) - Données et code'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_3_20230308_nouveautes_donnees_codes/presentation_bso_20230308_club.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=DQZUne8sA-o&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire Club utilisateurs BSO 2 - 17/11/2022 - Intégration HAL et thèses'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_2_20221117_nouveautes_publications_theses/20221117%20-%20nouveautes_2023%20%28publications%29.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=ZhN_b-IBqx0&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                  </Row>
+                </Container>
               </Col>
             </Col>
           </Row>

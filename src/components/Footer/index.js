@@ -149,7 +149,7 @@ export default function Footer() {
             </FooterLink>
             <FooterLink
               target='_blank'
-              href='https://www.youtube.com/@dataesr2116'
+              href='https://www.youtube.com/playlist?list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
             >
               <DSIcon
                 className='ds-fr--v-middle'
