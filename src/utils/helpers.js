@@ -336,7 +336,7 @@ function getLocalAffiliation(urlSearchParams) {
   // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json
   // If a key is present in both files, locals.json is the one the should be kept
   const allNames = { ...openalex, ...locals };
-  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation').replace('https://ror.org/', '') || undefined;
+  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.replace('https://ror.org/', '') || undefined;
   // If bsoLocalAffiliation is a key in the config files, return it as it is
   if (
     Object.keys(allNames)
