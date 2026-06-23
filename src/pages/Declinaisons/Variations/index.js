@@ -101,13 +101,6 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local AMU'
-                href='https://oaamu.hypotheses.org/4850'
-                img='/declinaisons/amu.png'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
                 alt='bso local PSL'
                 href='https://explore.psl.eu/fr/se-former/publier/barometre-de-la-science-ouverte-de-luniversite-psl'
                 img='/declinaisons/psl.png'
@@ -533,6 +526,15 @@ function Variations() {
                     target='_blank'
                   >
                     CNRS
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.univ-amu.fr/fr/recherche/partager-les-savoirs-avec-la-societe'
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    amU
                   </a>
                 </li>
                 <li>
