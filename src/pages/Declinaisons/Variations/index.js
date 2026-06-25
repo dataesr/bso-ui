@@ -491,6 +491,13 @@ function Variations() {
                 img='/declinaisons/unilim.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local Université Marie et Louis Pasteur'
+                href='https://scienceouverte.umlp.fr/accueil/la-science-ouverte-a-lufc/le-barometre-de-la-science-ouverte-a-lufc/'
+                img='/declinaisons/umlp.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
