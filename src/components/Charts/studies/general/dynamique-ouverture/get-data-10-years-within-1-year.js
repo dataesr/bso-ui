@@ -102,12 +102,12 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series[0].data.push({
       color: getCSSValue('--blue-soft-100'),
       name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
-      y:
+      y: !dataHasResultsWithin1YearAcademic?.doc_count && !dataHasResultsWithin1YearIndustrial?.doc_count ? 0 :
         100
-        * ((dataHasResultsWithin1YearAcademicWithResults?.doc_count
-          + dataHasResultsWithin1YearIndustrialWithResults?.doc_count)
-          / (dataHasResultsWithin1YearAcademic?.doc_count
-            + dataHasResultsWithin1YearIndustrial?.doc_count)),
+        * ((dataHasResultsWithin1YearAcademicWithResults?.doc_count ?? 0
+          + dataHasResultsWithin1YearIndustrialWithResults?.doc_count ?? 0)
+          / (dataHasResultsWithin1YearAcademic?.doc_count ?? 0
+            + dataHasResultsWithin1YearIndustrial?.doc_count ?? 0)),
       y_abs:
         (dataHasResultsWithin1YearAcademicWithResults?.doc_count ?? 0)
         + (dataHasResultsWithin1YearIndustrialWithResults?.doc_count ?? 0),
@@ -120,7 +120,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
-      y:
+      y: !dataHasResultsWithin1YearAcademic?.doc_count ? 0 :
         100
         * ((dataHasResultsWithin1YearAcademicWithResults?.doc_count ?? 0)
           / dataHasResultsWithin1YearAcademic?.doc_count),
@@ -132,7 +132,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
-      y:
+      y: !dataHasResultsWithin1YearIndustrial?.doc_count ? 0 :
         100
         * ((dataHasResultsWithin1YearIndustrialWithResults?.doc_count ?? 0)
           / dataHasResultsWithin1YearIndustrial?.doc_count),

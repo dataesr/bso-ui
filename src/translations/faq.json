@@ -92,7 +92,7 @@
     "intlDefinition": "app.faq.download.definition",
     "intlEntry": "app.faq.download.entry",
     "ctas": [
-      "https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?q=bso&sort=modified",
+      "https://data.enseignementsup-recherche.gouv.fr/explore/?refines=keywords%3ABSO&orderBy=updated_at+DESC",
       "https://github.com/orgs/dataesr/repositories?q=bso"
     ]
   },

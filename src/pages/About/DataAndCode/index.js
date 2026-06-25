@@ -42,7 +42,7 @@ function OpenData() {
                 bodyClassName='bg-blue-soft-100 color-white'
                 hasArrow={false}
                 hasBorder={false}
-                href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?refine.keyword=BSO&sort=modified'
+                href='https://data.enseignementsup-recherche.gouv.fr/explore/?refines=keywords%3ABSO&orderBy=updated_at+DESC'
               >
                 <CardDescription as='div'>
                   <Container>
@@ -69,7 +69,7 @@ function OpenData() {
                         >
                           <DSLink
                             className='w-100 text-right no-content-after'
-                            href='https://data.enseignementsup-recherche.gouv.fr/pages/explorer/?refine.keyword=BSO&sort=modified'
+                            href='https://data.enseignementsup-recherche.gouv.fr/explore/?refines=keywords%3ABSO&orderBy=updated_at+DESC'
                             target='_blank'
                           />
                         </DSIcon>

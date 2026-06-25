@@ -1,5 +1,6 @@
 import locals from '../config/locals.json';
 import openalex from '../config/openalex.json';
+import urls from '../config/urls';
 
 /**
  *
@@ -273,7 +274,9 @@ export function getSource(id, otherSources = []) {
   sources.push('MESRE');
   sources.push(...otherSources);
   // Deduplicate sources
-  return [...new Set(sources)].join(', ');
+  const result = [...new Set(sources)];
+  result.sort();
+  return result.join(', ');
 }
 
 /**
@@ -325,14 +328,16 @@ export function isInProduction() {
  * @returns {string}
  */
 function getLocalAffiliation(urlSearchParams) {
-  // Should adapt the graph only in iframes
+  // Should adapt the graph only in iframes (aka integration url) or publishing part
   // Prevent seeing the whole website for a bsoLocalAffiliation
-  if (!window.location.href.includes('integration')) {
+  if (!window.location.href.includes('/integration/') && !(window.location.href.includes(urls.publishing.fr) || window.location.href.includes(urls.publishing.en))) {
     return undefined;
   }
+  // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json
+  // If a key is present in both files, locals.json is the one the should be kept
   const allNames = { ...openalex, ...locals };
-  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation') || undefined;
-  // If bsoLocalAffiliation exists in config
+  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.replace('https://ror.org/', '') || undefined;
+  // If bsoLocalAffiliation is a key in the config files, return it as it is
   if (
     Object.keys(allNames)
       .map((item) => item.toLowerCase())
@@ -340,11 +345,13 @@ function getLocalAffiliation(urlSearchParams) {
   ) {
     return bsoLocalAffiliation;
   }
-  // If bsoLocalAffiliation is the Paysage or the RoR of a structure in all config file
+  // If bsoLocalAffiliation is one of the fields "paysage", "ror" or "openalex", return the matched key
   const matched = Object.keys(allNames).filter((key) => [
     allNames[key]?.paysage?.toLowerCase(),
     allNames[key]?.ror?.toLowerCase(),
-    allNames[key]?.ror?.replace('https://ror.org/', '').toLowerCase(),
+    allNames[key]?.ror?.replace('https://ror.org/', '')?.toLowerCase(),
+    allNames[key]?.openalex?.toLowerCase(),
+    allNames[key]?.openalex?.replace('https://openalex.org/institutions/', '')?.toLowerCase(),
   ].includes(bsoLocalAffiliation));
   if (bsoLocalAffiliation && matched.length > 0) {
     bsoLocalAffiliation = matched[0].toLocaleLowerCase();
@@ -360,16 +367,27 @@ function getLocalAffiliation(urlSearchParams) {
 export function getURLSearchParams(intl = undefined, id = '') {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const bsoLocalAffiliation = getLocalAffiliation(urlSearchParams);
-  const allNames = { ...locals, ...openalex };
+  // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json
+  // If a key is present in both files, locals.json is the one the should be kept
+  const allNames = { ...openalex, ...locals };
   const localsLowerCase = Object.fromEntries(
     Object.entries(allNames).map(([k, v]) => [k.toLowerCase(), v]),
   );
-  const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation?.toLowerCase()];
+  // If bsoLocalAffiliation is one of the fields "paysage", "ror" or "openalex", return the matched key
+  const matched = Object.keys(allNames).filter((key) => [
+    allNames[key]?.paysage?.toLowerCase(),
+    allNames[key]?.ror?.toLowerCase(),
+    allNames[key]?.ror?.replace('https://ror.org/', '')?.toLowerCase(),
+    allNames[key]?.openalex?.toLowerCase(),
+    allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
+  ].includes(bsoLocalAffiliation?.toLowerCase()));
+  // Set the object settings from bsoLocalAffiliation
+  const localAffiliationSettings = localsLowerCase?.[bsoLocalAffiliation?.toLowerCase()] ?? localsLowerCase?.[matched?.[0]];
   const alias = localAffiliationSettings?.alias;
   const bsoCountry = urlSearchParams.get('bsoCountry')?.toLowerCase()
     || localAffiliationSettings?.country
     || 'fr';
-  let lastObservationYear = '2023Q4';
+  let lastObservationYear = '2025Q4';
   if (urlSearchParams.get('lastObservationYear')?.toLowerCase() === 'latest') {
     lastObservationYear = process.env.REACT_APP_LAST_OBSERVATION;
   } else if (urlSearchParams.get('lastObservationYear')?.toLowerCase()) {
@@ -420,13 +438,25 @@ export function getURLSearchParams(intl = undefined, id = '') {
   let displayTitle;
   let endYear;
   let name;
+  let source;
   let startYear = 2013;
   const selectedLang = sessionStorage.getItem('__bso_lang__');
   const commentsNameProperty = selectedLang === 'en' ? 'commentsNameEN' : 'commentsName';
 
   if (bsoLocalAffiliation) {
+    const bsoLocalAffiliations = bsoLocalAffiliation.split(/[ ,]+/);
+    const localAffiliationsSettings = bsoLocalAffiliations.map((item) => {
+      const matchedLocal = Object.keys(allNames).filter((key) => [
+        allNames[key]?.paysage?.toLowerCase(),
+        allNames[key]?.ror?.toLowerCase(),
+        allNames[key]?.ror?.replace('https://ror.org/', '')?.toLowerCase(),
+        allNames[key]?.openalex?.toLowerCase(),
+        allNames[key]?.openalex?.replace('https://openalex.org/', '')?.toLowerCase(),
+      ].includes(item?.trim()?.toLowerCase()));
+      return localsLowerCase?.[item?.toLowerCase()] ?? localsLowerCase?.[matchedLocal?.[0]];
+    });
     commentsName = urlSearchParams.get('commentsName')?.toLowerCase()
-      || localAffiliationSettings?.[commentsNameProperty]
+      || localAffiliationsSettings.map((item) => item?.[commentsNameProperty]).join(` ${intl?.formatMessage({ id: 'app.commons.and', defaultMessage: 'et' })} `)
       || intl
         ?.formatMessage({
           id: 'app.of-perimeter',
@@ -454,12 +484,14 @@ export function getURLSearchParams(intl = undefined, id = '') {
       );
     }
     name = urlSearchParams.get('name')?.toLowerCase()
-      || localAffiliationSettings?.name
+      || localAffiliationsSettings.map((item) => item?.name).join(` ${intl?.formatMessage({ id: 'app.commons.and', defaultMessage: 'et' })} `)
       || capitalize(
         intl
           ?.formatMessage({ id: 'app.perimeter', defaultMessage: 'Périmètre' })
           .concat(` ${bsoLocalAffiliation}`),
       );
+    source = urlSearchParams.get('source')?.toLowerCase()
+      || localAffiliationSettings?.source;
     if (urlSearchParams.get('startYear')?.toLowerCase() === 'latest') {
       startYear = 2013;
     } else {
@@ -507,6 +539,7 @@ export function getURLSearchParams(intl = undefined, id = '') {
     idTypes,
     lastObservationYear,
     name,
+    source,
     startYear,
   };
 }

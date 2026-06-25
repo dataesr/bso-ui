@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Banner from '../../../components/Banner';
 import FlashCard from '../../../components/FlashCard';
 import Icon from '../../../components/Icon';
+import WebinarCard from '../../../components/WebinarCard';
 import useLang from '../../../utils/Hooks/useLang';
 
 function NotesFlash() {
@@ -59,7 +60,7 @@ function NotesFlash() {
                 <FormattedMessage id='app.flyer.presentation' />
               </h4>
               <div>
-                <DSLink href='/assets/flyer_bso_2025_fr.pdf' target='_blank'>
+                <DSLink href='/assets/flyer_bso_2026_fr.pdf' target='_blank'>
                   <FormattedMessage id='app.flyer.presentation.description-fr' />
                 </DSLink>
               </div>
@@ -69,7 +70,7 @@ function NotesFlash() {
                 </DSLink>
               </div>
               <img
-                src={`/assets/flyer_bso_2025_${lang}.png`}
+                src={`/assets/flyer_bso_2026_${lang}.png`}
                 alt='flyer bso'
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
@@ -80,7 +81,7 @@ function NotesFlash() {
               </h4>
               <div>
                 <DSLink
-                  href='/assets/flyer_resultats_bso_2025_fr.pdf'
+                  href='/assets/flyer_resultats_bso_2026_fr.pdf'
                   target='_blank'
                 >
                   <FormattedMessage id='app.flyer.results.description-fr' />
@@ -95,7 +96,7 @@ function NotesFlash() {
                 </DSLink>
               </div>
               <img
-                src={`/assets/flyer_resultats_bso_2025_${lang}.png`}
+                src={`/assets/flyer_resultats_bso_2026_${lang}.png`}
                 alt='flyer resultats bso'
                 className='w-100 flex img-fluid w-100 ds-fr--v-middle'
               />
@@ -122,7 +123,7 @@ function NotesFlash() {
           <Row gutters>
             <Col>
               <Col n='12 md-6 lg-4'>
-                <h4 className='marianne-bold fs-24-32'>
+                <h4 className='marianne-bold fs-24-32 fr-mt-4w' id='last-notes'>
                   <FormattedMessage id='app.notes.flash.last-notes.title' />
                 </h4>
               </Col>
@@ -181,6 +182,74 @@ function NotesFlash() {
                         intlTitle='app.note.flash.oct-2019'
                         urlData='https://zenodo.org/records/18759211/files/NF22_Bso_1194931.xlsx?download=1'
                         urlPdf='https://zenodo.org/records/18759211/files/881.pdf?download=1'
+                      />
+                    </Col>
+                  </Row>
+                </Container>
+              </Col>
+            </Col>
+          </Row>
+          <Row gutters>
+            <Col>
+              <Col n='12 md-6 lg-4'>
+                <h4 className='marianne-bold fs-24-32 fr-mt-4w' id='users-club'>
+                  <FormattedMessage id='app.notes.flash.users-club.title' />
+                </h4>
+              </Col>
+              <Col n='12'>
+                <Container fluid>
+                  <Row gutters>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire n°8 - Mai 2026'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_8_20260511_bso2026/Webinaire%20BSO%202026%20-%2020260511.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=AhPUkKWFqzQ&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire n°7 - Avril 2025'
+                        doi='Décliner ScanR pour son établissement ou son laboratoire'
+                        urlVisio='https://www.youtube.com/watch?v=s4UYVOCa3iw'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire n°6 - Mars 2025'
+                        doi='Déclinaisons locales et Works-magnet'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_6_20250304_bso2025/BSO%202025.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=FHzXFXfnjv4&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire n°5 - Mai 2024'
+                        doi='Works-magnet'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_5_20240516_w-magnet/Webinaire_20240516_works-magnet.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=pQfPy6wLAZg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire n°4 - Mars 2024'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_4_20240313_nouvelle_edition_bso/BSO%20-%20Club%20Utilisateurs%20-%2013_03_2024.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=_I-NBzo93Jg&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire n°3 - Mars 2023'
+                        doi='Données et code'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_3_20230308_nouveautes_donnees_codes/presentation_bso_20230308_club.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=4-JrCCW-EtI&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
+                      />
+                    </Col>
+                    <Col n='12 md-6 lg-4'>
+                      <WebinarCard
+                        intlTitle='Webinaire n°2 - Novembre 2022'
+                        doi='Intégration HAL et thèses'
+                        urlPresentation='https://groupes.renater.fr/sympa/d_read/bso-etablissements/Webinaire_2_20221117_nouveautes_publications_theses/20221117%20-%20nouveautes_2023%20%28publications%29.pdf'
+                        urlVisio='https://www.youtube.com/watch?v=ZhN_b-IBqx0&list=PLDKKTELNKIS6h5J0mO_B0z9mHVz-DCMsN'
                       />
                     </Col>
                   </Row>

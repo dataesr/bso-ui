@@ -192,12 +192,12 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series1[0].data.push({
       color: getCSSValue('--blue-soft-100'),
       name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
-      y:
+      y: !dataHasResultsAcademic?.doc_count && !dataHasResultsAcademic?.doc_count ? 0 :
         100
-        * ((dataHasResultsAcademicWithResults?.doc_count
-          + dataHasResultsIndustrialWithResults?.doc_count)
-          / (dataHasResultsAcademic?.doc_count
-            + dataHasResultsIndustrial?.doc_count)),
+        * ((dataHasResultsAcademicWithResults?.doc_count ?? 0
+          + dataHasResultsIndustrialWithResults?.doc_count ?? 0)
+          / (dataHasResultsAcademic?.doc_count ?? 0
+            + dataHasResultsIndustrial?.doc_count ?? 0)),
       y_abs:
         (dataHasResultsAcademicWithResults?.doc_count ?? 0)
         + (dataHasResultsIndustrialWithResults?.doc_count ?? 0),
@@ -210,7 +210,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series1[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
-      y:
+      y: !dataHasResultsAcademic?.doc_count ? 0 :
         100
         * ((dataHasResultsAcademicWithResults?.doc_count ?? 0)
           / dataHasResultsAcademic?.doc_count),
@@ -222,7 +222,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series1[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
-      y:
+      y: !dataHasResultsIndustrial?.doc_count ? 0 :
         100
         * ((dataHasResultsIndustrialWithResults?.doc_count ?? 0)
           / dataHasResultsIndustrial?.doc_count),
@@ -364,7 +364,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const dataGraph3 = { categories, series: series3 };
     const dataGraph4 = { categories, series: series4 };
 
-    const categories5 = dataHasResultsWithin3Years.by_sponsor_type.buckets[0].by_has_results_within_3_years.buckets[0].by_completion_year.buckets
+    const categories5 = (dataHasResultsWithin3Years?.by_sponsor_type.buckets?.[0]?.by_has_results_within_3_years?.buckets?.[0]?.by_completion_year?.buckets ?? [])
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= lastObservationYear)
       .map((item) => item.key);
@@ -455,7 +455,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     ];
     const dataGraph5 = { categories: categories5, series: series5 };
 
-    const categories6 = dataHasResultsWithin1Year.by_sponsor_type.buckets[0].by_has_results_within_1_year.buckets[0].by_completion_year.buckets
+    const categories6 = (dataHasResultsWithin1Year?.by_sponsor_type.buckets?.[0]?.by_has_results_within_1_year?.buckets?.[0]?.by_completion_year?.buckets ?? [])
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= lastObservationYear)
       .map((item) => item.key);

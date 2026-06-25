@@ -43,7 +43,7 @@ function ChartWrapper({
   const idWithContext = withContext(id, domain, studyType);
   const { trackEvent } = useMatomo();
 
-  const { commentsName, name } = getURLSearchParams(intl, id);
+  const { commentsName, name, source: localSource } = getURLSearchParams(intl, id);
   let title = intl.formatMessage(
     {
       id: `${!studyType ? idWithDomain : idWithContext}.title`,
@@ -56,7 +56,7 @@ function ChartWrapper({
   let otherSources = [];
   if (name) {
     title = `${name} : ${title}`;
-    otherSources = [name];
+    otherSources = [localSource || name];
   }
   const comments = intl.formatMessage({
     id: `${idWithDomain}.comments`,

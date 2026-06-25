@@ -66,7 +66,7 @@ function HowTo() {
                     </li>
                     <li>
                       Pour les publications, le baromètre couvre la période de
-                      2013 à 2023, année de publication
+                      2013 à 2024, année de publication
                     </li>
                     <li>Aucune donnée concernant les APC n'est à fournir</li>
                     <li>Une déduplication des publications sera effectuée</li>
@@ -209,7 +209,7 @@ function HowTo() {
                       {' '}
                     </b>
                     Pour les publications, le baromètre couvre la période de
-                    2013 à 2023, année de publication.
+                    2013 à 2024, année de publication.
                   </p>
                   <p>
                     <b>
@@ -250,6 +250,31 @@ function HowTo() {
                       >
                         <a href='https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso_dump/BSO_local.csv'>
                           Voir un fichier d'exemple
+                        </a>
+                      </DSIcon>
+                    </div>
+                  </Col>
+                  <p>
+                    Si vous souhaitez créer ou mettre à jour le baromètre local pour de nombreuses structures, le format de fichier attendu est
+                    un CSV constitué des colonnes "doi", "hal_id", "RNSR", "ROR" et "labels". Le séparateur du CSV est le point virgule ";". Les
+                    colonnes "RNSR", "ROR" et "labels" peuvent contenir plusieurs valeurs séparées par des virgules ",".
+                  </p>
+                  <p>
+                    Une fois constitué, ce fichier est à nous envoyer par e-mail à
+                    {' '}
+                    <a href='mailto:bso@recherche.gouv.fr'><FormattedMessage id='app.variations.email' /></a>
+                    .
+                  </p>
+                  <Col offset='2 md-4'>
+                    <div className='button-link marianne-bold relative my-button'>
+                      <DSIcon
+                        className='ds-fr--v-middle'
+                        size='xl'
+                        name='ri-arrow-right-line'
+                        iconPosition='right'
+                      >
+                        <a href='https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso_dump/FULLETAB_example.csv'>
+                          Voir un fichier d'exemple pour l'ajout en masse
                         </a>
                       </DSIcon>
                     </div>

@@ -101,13 +101,6 @@ function Variations() {
             </Col>
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
-                alt='bso local AMU'
-                href='https://oaamu.hypotheses.org/4850'
-                img='/declinaisons/amu.png'
-              />
-            </Col>
-            <Col n='lg-2 md-4 sm-6'>
-              <CardLogo
                 alt='bso local PSL'
                 href='https://explore.psl.eu/fr/se-former/publier/barometre-de-la-science-ouverte-de-luniversite-psl'
                 img='/declinaisons/psl.png'
@@ -123,7 +116,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local INSERM'
-                href='https://insermbiblio.inist.fr/barometre-de-la-science-ouverte-inserm-2024/'
+                href='https://insermbiblio.inserm.fr/le-barometre-inserm-de-la-science-ouverte-en-2026/'
                 img='/declinaisons/inserm.svg'
               />
             </Col>
@@ -487,7 +480,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université de Limoges'
-                href='https://www.scienceouverte.unilim.fr/outils-et-guides-pratiques/outils/le-barometre-de-la-science-ouverte/'
+                href='https://www.scienceouverte.unilim.fr/outils-et-guides-pratiques/barometre-unilim-de-la-science-ouverte/'
                 img='/declinaisons/unilim.png'
               />
             </Col>
@@ -540,6 +533,15 @@ function Variations() {
                     target='_blank'
                   >
                     CNRS
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='https://www.univ-amu.fr/fr/recherche/partager-les-savoirs-avec-la-societe'
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    amU
                   </a>
                 </li>
                 <li>

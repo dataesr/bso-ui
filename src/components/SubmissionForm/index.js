@@ -65,7 +65,8 @@ function SubmissionForm() {
   const [name, setName] = useState('');
   const [nntEtabCount, setNntEtabCount] = useState();
   const [nntIdCount, setNntIdCount] = useState();
-  const [previousDoiCount, setPreviousDoiCount] = useState('');
+  const [previousDoiCountDatasets, setPreviousDoiCountDatasets] = useState('');
+  const [previousDoiCountPublications, setPreviousDoiCountPublications] = useState('');
   const [typingTimer, setTypingTimer] = useState();
 
   const resetState = () => {
@@ -365,11 +366,22 @@ function SubmissionForm() {
         existingInstitutions?.[institutionId.toLowerCase()]?.commentsName ?? '',
       );
       try {
-        const options = {
+        const optionsPublications = {
           url: `https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso-local/${institutionId}.csv`,
         };
-        Axios.request(options)
-          .then((r) => setPreviousDoiCount(
+        Axios.request(optionsPublications)
+          .then((r) => setPreviousDoiCountPublications(
+            r.data
+              .split('\n')
+              .slice(1)
+              .filter((item) => item.length).length,
+          ))
+          .catch(() => {});
+        const optionsDatasets = {
+          url: `https://storage.gra.cloud.ovh.net/v1/AUTH_32c5d10cb0fe4519b957064a111717e3/bso3-local/${institutionId}.csv`,
+        };
+        Axios.request(optionsDatasets)
+          .then((r) => setPreviousDoiCountDatasets(
             r.data
               .split('\n')
               .slice(1)
@@ -460,12 +472,24 @@ function SubmissionForm() {
                 onChange={(e) => setAcronym(e.target.value)}
                 value={acronym}
               />
-              {previousDoiCount && (
+              {action === 'publications' && previousDoiCountPublications && (
                 <div className='text-green'>
-                  Le précédent baromètre local de cette structure comptait
+                  Le précédent baromètre local de publications de cette structure comptait
                   {' '}
                   <b>
-                    {previousDoiCount}
+                    {previousDoiCountPublications}
+                    {' '}
+                    lignes
+                  </b>
+                  .
+                </div>
+              )}
+              {action === 'datasets' && previousDoiCountDatasets && (
+                <div className='text-green'>
+                  Le précédent baromètre local des jeux de données de cette structure comptait
+                  {' '}
+                  <b>
+                    {previousDoiCountDatasets}
                     {' '}
                     lignes
                   </b>

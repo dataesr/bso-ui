@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_DATACITE_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-// import { capitalize, getCSSValue } from '../../../../../utils/helpers';
+import { capitalize } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
   const intl = useIntl();
@@ -78,18 +78,18 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
         '#C7B42E',
         '#CB2027',
       ];
-      entries.slice(-nbElementsToDisplay).forEach((e) => {
+      entries.slice(-nbElementsToDisplay).forEach((entry) => {
         const currentData = [];
         years.forEach((y) => {
-          currentData.push(e[1].data[y] || null);
-          currentCountByYear[y] += e[1].data[y]?.y_abs || 0;
+          currentData.push(entry[1].data[y] || null);
+          currentCountByYear[y] += entry[1].data[y]?.y_abs || 0;
         });
         let color = colors[dataGraph.length];
-        if (e[0] === 'N/A') {
+        if (entry[0] === 'N/A') {
           color = '#dedede';
         }
         dataGraph.push({
-          name: e[0],
+          name: capitalize(entry[0]),
           data: currentData,
           color,
         });
@@ -104,14 +104,14 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
           y_rel:
             ((totalByYear[y] - currentCountByYear[y]) / totalByYear[y]) * 100,
           year: y,
-          type: 'other',
+          type: 'Other',
         });
         totalOther += totalByYear[y] - currentCountByYear[y];
       });
       if (type !== 'format' && totalOther > 0) {
         dataGraph.unshift({
           // add at the beginning of the array
-          name: 'other',
+          name: 'Other',
           data: otherData,
           color: 'grey',
         });

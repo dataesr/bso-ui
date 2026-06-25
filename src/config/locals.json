@@ -215,9 +215,9 @@
     "startYear": 2017
   },
   "130029747": {
-    "name": "Nantes Université (NantesU)",
-    "commentsName": "de NantesU",
-    "commentsNameEN": "of NantesU",
+    "name": "Nantes Université",
+    "commentsName": "de Nantes Université",
+    "commentsNameEN": "of Nantes Université",
     "paysage": "qUCQp",
     "ror": "https://ror.org/03gnr7b55",
     "scale": "university",
@@ -721,8 +721,8 @@
   },
   "197546922": {
     "name": "Université Paris Dauphine-PSL",
-    "commentsName": "de l'Université Paris Dauphine-PSL",
-    "commentsNameEN": "of Université Paris Dauphine-PSL",
+    "commentsName": "de UPD-PSL",
+    "commentsNameEN": "of UPD-PSL",
     "paysage": "C6Ps7",
     "ror": "https://ror.org/052bz7812",
     "scale": "university"
@@ -1104,7 +1104,7 @@
   },
   "199819322R": {
     "name": "Ambiances architectures urbanités (AAU)",
-    "commentsName": "de l'AAU",
+    "commentsName": "de AAU",
     "commentsNameEN": "of AAU",
     "paysage": "1BroQ",
     "ror": "https://ror.org/05hz99a17",
@@ -1366,7 +1366,7 @@
   },
   "200815563L": {
     "name": "Motricité, interactions, performance (MIP)",
-    "commentsName": "de la MIP",
+    "commentsName": "du MIP",
     "commentsNameEN": "of MIP",
     "scale": "laboratory",
     "paysage": "jCn2Q"
@@ -1610,7 +1610,7 @@
   },
   "201722464Y": {
     "name": "Centre atlantique de philosophie (CAPHI)",
-    "commentsName": "de CAPHI",
+    "commentsName": "du CAPHI",
     "commentsNameEN": "of CAPHI",
     "paysage": "lbMta",
     "ror": "https://ror.org/059ynac98",
@@ -1625,7 +1625,7 @@
   },
   "201722762X": {
     "name": "Regenerative medicine and skeleton (RMeS)",
-    "commentsName": "du RMeS",
+    "commentsName": "de RMeS",
     "commentsNameEN": "of RMeS",
     "paysage": "NMb9s",
     "scale": "laboratory",
@@ -2104,5 +2104,56 @@
     "paysage": "b8q7t",
     "ror": "https://ror.org/01nyrrx14",
     "scale": "laboratory"
+  },
+  "bsoedition": {
+    "name": "Edition scientifique française",
+    "commentsName": "du BSO édition",
+    "commentsNameEN": "of BSO publishing",
+    "source": "Mir@bel"
+  },
+  "LMA-PAU": {
+    "name": "Laboratoire de Mathématiques et de leurs Applications de Pau",
+    "commentsName": "du LMA-PAU",
+    "commentsNameEN": "of LMA-PAU",
+    "paysage": "TXMG3",
+    "ror": "https://ror.org/00g669j87",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "SIAME": {
+    "name": "Laboratoire des sciences de l'ingénieur appliquées à la mécanique et génie électrique",
+    "commentsName": "du SIAME",
+    "commentsNameEN": "of SIAME",
+    "paysage": "6Vvr1",
+    "ror": "https://ror.org/01az1jj42",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "LATEP": {
+    "name": "Laboratoire de Thermique, Energétique et Procédés",
+    "commentsName": "du LATEP",
+    "commentsNameEN": "of LATEP",
+    "paysage": "7h6ou",
+    "ror": "https://ror.org/05kbvd578",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "LFCR": {
+    "name": "Laboratoire des Fluides Complexes et leurs Réservoirs",
+    "commentsName": "du LFCR",
+    "commentsNameEN": "of LFCR",
+    "paysage": "74kk5",
+    "ror": "https://ror.org/03dg47v24",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "DMEX": {
+    "name": "Développement de méthodologies expérimentales",
+    "commentsName": "du DMEX",
+    "commentsNameEN": "of DMEX",
+    "paysage": "g4h2c",
+    "ror": "https://ror.org/0213f8g15",
+    "scale": "laboratory",
+    "source": "HAL"
   }
 }

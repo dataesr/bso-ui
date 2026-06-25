@@ -346,18 +346,20 @@ function App() {
               path={urls.project[key]}
             />
           ))}
-          {Object.keys(urls.publishing).map((key) => (
+          {urls.publishing.tabs.map((tab) => Object.keys(tab).map((key) => (
             <Route
               element={(
                 <PageTracker>
-                  <Publishing />
+                  <GraphNavigationContextProvider>
+                    <Publishing />
+                  </GraphNavigationContextProvider>
                 </PageTracker>
               )}
               exact
               key={key}
-              path={urls.publishing[key]}
+              path={tab[key]}
             />
-          ))}
+          )))}
           <Route exact path='*' element={<Error404 />} />
         </Routes>
         <Footer />

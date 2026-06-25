@@ -64,6 +64,10 @@ const tree = [
               'publi.disciplines.voies-ouverture.chart-repartition-publications',
           },
           {
+            key: 'app.national-publi.publishers.type-ouverture.chart-by-classifications.title',
+            value: 'publi.publishers.type-ouverture.chart-by-classifications',
+          },
+          {
             key: 'app.national-publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement.title',
             value:
               'publi.disciplines.voies-ouverture.chart-evolution-comparaison-types-hebergement',
@@ -91,6 +95,10 @@ const tree = [
             key: 'app.national-publi.publishers.type-ouverture.chart-evolution-repartition.title',
             value:
               'publi.publishers.type-ouverture.chart-evolution-repartition',
+          },
+          {
+            key: 'app.national-publi.publishers.type-ouverture.chart-by-classifications-publishers.title',
+            value: 'publi.publishers.type-ouverture.chart-by-classifications-publishers',
           },
           {
             key: 'app.national-publi.publishers.politiques-ouverture.chart-classement.title',
@@ -291,6 +299,35 @@ const tree = [
           {
             key: 'app.national-data.general.repositories.datasets-by-client-id.title',
             value: 'data.general.repositories.datasets-by-client-id',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'app.baro-sante.trials.main-title',
+    value: 'clinical-trials',
+    isInProduction: false,
+    children: [
+      {
+        key: 'app.data.general',
+        value: 'general',
+        children: [
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution.title',
+            value: 'general.dynamique.chart-evolution/health/Interventional',
+          },
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution-drug.title',
+            value: 'general.dynamique.chart-evolution-drug/health/Interventional',
+          },
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution-10-years-within-1-year.title',
+            value: 'general.dynamique.chart-evolution-10-years-within-1-year/health/Interventional',
+          },
+          {
+            key: 'app.health-interventional.general.dynamique.chart-evolution-10-years-within-1-year-drug.title',
+            value: 'general.dynamique.chart-evolution-10-years-within-1-year-drug/health/Interventional',
           },
         ],
       },
