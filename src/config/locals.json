@@ -1842,11 +1842,6 @@
     "startYear": 2020,
     "comment": "OUTDATED, use 938501681 instead"
   },
-  "CIRADHAL": {
-    "name": "CIRAD et HAL",
-    "commentsName": "de CIRAD et HAL",
-    "commentsNameEN": "of CIRAD and HAL"
-  },
   "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
     "commentsName": "du pôle A2F",
@@ -1876,11 +1871,30 @@
     "paysage": "dKt1t",
     "scale": "laboratory"
   },
+  "CIRADHAL": {
+    "name": "CIRAD et HAL",
+    "commentsName": "de CIRAD et HAL",
+    "commentsNameEN": "of CIRAD and HAL"
+  },
+  "DMEX": {
+    "name": "Développement de méthodologies expérimentales",
+    "commentsName": "du DMEX",
+    "commentsNameEN": "of DMEX",
+    "paysage": "g4h2c",
+    "ror": "https://ror.org/0213f8g15",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
   "DRIIHM": {
     "name": "Laboratoire d'Excellence Dispositif de Recherche Interdisciplinaire sur les Interactions Hommes-Milieux (LabEx DRIIHM)",
     "commentsName": "du LabEx DRIIHM",
     "commentsNameEN": "of the LabEx DRIIHM",
     "scale": "laboratory"
+  },
+  "ECODOR": {
+    "name": "Atelier de la Donnée EcoDoR de Montpellier (ECODOR)",
+    "commentsName": "de ECODOR",
+    "commentsNameEN": "of ECODOR"
   },
   "EMPP": {
     "name": "Pôle scientifique Energie, Mécanique, Procédés, Produits (EMPP)",
@@ -1926,6 +1940,33 @@
     "alias": "130018336,193101524,196727671,196901920,197601651,301232",
     "paysage": "WnZhe"
   },
+  "LATEP": {
+    "name": "Laboratoire de Thermique, Energétique et Procédés",
+    "commentsName": "du LATEP",
+    "commentsNameEN": "of LATEP",
+    "paysage": "7h6ou",
+    "ror": "https://ror.org/05kbvd578",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "LFCR": {
+    "name": "Laboratoire des Fluides Complexes et leurs Réservoirs",
+    "commentsName": "du LFCR",
+    "commentsNameEN": "of LFCR",
+    "paysage": "74kk5",
+    "ror": "https://ror.org/03dg47v24",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
+  "LMA-PAU": {
+    "name": "Laboratoire de Mathématiques et de leurs Applications de Pau",
+    "commentsName": "du LMA-PAU",
+    "commentsNameEN": "of LMA-PAU",
+    "paysage": "TXMG3",
+    "ror": "https://ror.org/00g669j87",
+    "scale": "laboratory",
+    "source": "HAL"
+  },
   "PEPLOR": {
     "name": "Plateforme Expérimentale Phytotronique de Lorraine (PEPLOR)",
     "commentsName": "de PEPLOR",
@@ -1963,6 +2004,15 @@
     "name": "RIBAC 2022 chapitres",
     "commentsName": "de RIBAC 2022 chapitres",
     "commentsNameEN": "of RIBAC 2022 chapitres"
+  },
+  "SIAME": {
+    "name": "Laboratoire des sciences de l'ingénieur appliquées à la mécanique et génie électrique",
+    "commentsName": "du SIAME",
+    "commentsNameEN": "of SIAME",
+    "paysage": "6Vvr1",
+    "ror": "https://ror.org/01az1jj42",
+    "scale": "laboratory",
+    "source": "HAL"
   },
   "UFRCHIMIESU": {
     "name": "UFR de Chimie de Sorbonne Université (UFR-Chimie)",
@@ -2110,50 +2160,5 @@
     "commentsName": "du BSO édition",
     "commentsNameEN": "of BSO publishing",
     "source": "Mir@bel"
-  },
-  "LMA-PAU": {
-    "name": "Laboratoire de Mathématiques et de leurs Applications de Pau",
-    "commentsName": "du LMA-PAU",
-    "commentsNameEN": "of LMA-PAU",
-    "paysage": "TXMG3",
-    "ror": "https://ror.org/00g669j87",
-    "scale": "laboratory",
-    "source": "HAL"
-  },
-  "SIAME": {
-    "name": "Laboratoire des sciences de l'ingénieur appliquées à la mécanique et génie électrique",
-    "commentsName": "du SIAME",
-    "commentsNameEN": "of SIAME",
-    "paysage": "6Vvr1",
-    "ror": "https://ror.org/01az1jj42",
-    "scale": "laboratory",
-    "source": "HAL"
-  },
-  "LATEP": {
-    "name": "Laboratoire de Thermique, Energétique et Procédés",
-    "commentsName": "du LATEP",
-    "commentsNameEN": "of LATEP",
-    "paysage": "7h6ou",
-    "ror": "https://ror.org/05kbvd578",
-    "scale": "laboratory",
-    "source": "HAL"
-  },
-  "LFCR": {
-    "name": "Laboratoire des Fluides Complexes et leurs Réservoirs",
-    "commentsName": "du LFCR",
-    "commentsNameEN": "of LFCR",
-    "paysage": "74kk5",
-    "ror": "https://ror.org/03dg47v24",
-    "scale": "laboratory",
-    "source": "HAL"
-  },
-  "DMEX": {
-    "name": "Développement de méthodologies expérimentales",
-    "commentsName": "du DMEX",
-    "commentsNameEN": "of DMEX",
-    "paysage": "g4h2c",
-    "ror": "https://ror.org/0213f8g15",
-    "scale": "laboratory",
-    "source": "HAL"
   }
 }
