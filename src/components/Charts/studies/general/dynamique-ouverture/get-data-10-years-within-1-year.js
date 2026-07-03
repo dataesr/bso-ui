@@ -35,10 +35,10 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     });
     if (filterOnDrug) {
       queryHasResultsWithin1Year.query.bool.filter.push({
-        term: { 'intervention_type.keyword': 'DRUG' },
+        terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
       });
       queryHasResultsWithin1YearFilterBySponsor.query.bool.filter.push({
-        term: { 'intervention_type.keyword': 'DRUG' },
+        terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
       });
     }
     const queries = [];

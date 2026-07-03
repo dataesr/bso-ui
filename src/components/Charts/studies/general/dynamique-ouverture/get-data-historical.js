@@ -36,9 +36,10 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       querySponsorTypes,
       HEADERS,
     );
-    let sponsorTypes = responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
-      (item) => item.key,
-    );
+    let sponsorTypes =
+      responseSponsorTypes.data.aggregations.by_sponsor_type.buckets.map(
+        (item) => item.key,
+      );
     sponsorTypes = sponsorTypes.map((st) => ({
       label: intl.formatMessage({ id: `app.sponsor.${st}` }),
       value: st,
@@ -55,10 +56,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       querySponsorsList,
       HEADERS,
     );
-    const sponsors = resultsSponsorsList.data.aggregations.by_sponsor.buckets.map((item) => ({
-      value: item.key,
-      label: item.key,
-    }));
+    const sponsors =
+      resultsSponsorsList.data.aggregations.by_sponsor.buckets.map((item) => ({
+        value: item.key,
+        label: item.key,
+      }));
     const queries = [];
     const queriesSponsor = [];
     observationSnaps.forEach((observationSnap) => {
@@ -69,7 +71,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       });
       if (filterOnDrug) {
         queryHasResults.query.bool.filter.push({
-          term: { 'intervention_type.keyword': 'DRUG' },
+          terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
         });
       }
       queries.push(Axios.post(ES_STUDIES_API_URL, queryHasResults, HEADERS));
@@ -87,7 +89,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       });
       if (filterOnDrug) {
         queryHasResultsFilterBySponsor.query.bool.filter.push({
-          term: { 'intervention_type.keyword': 'DRUG' },
+          terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
         });
       }
       queriesSponsor.push(
@@ -113,18 +115,22 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const series = [];
     observationSnaps.forEach((observationSnap, index) => {
       const dataHasResults = results[index].data.aggregations;
-      const dataHasResultsAcademic = dataHasResults.by_sponsor_type.buckets.find(
-        (ele) => ele.key === 'academique',
-      );
-      const dataHasResultsAcademicWithResults = dataHasResultsAcademic?.by_has_result.buckets.find(
-        (ele) => ele.key === 1,
-      );
-      const dataHasResultsIndustrial = dataHasResults.by_sponsor_type.buckets.find(
-        (ele) => ele.key === 'industriel',
-      );
-      const dataHasResultsIndustrialWithResults = dataHasResultsIndustrial?.by_has_result.buckets.find(
-        (el) => el.key === 1,
-      );
+      const dataHasResultsAcademic =
+        dataHasResults.by_sponsor_type.buckets.find(
+          (ele) => ele.key === 'academique',
+        );
+      const dataHasResultsAcademicWithResults =
+        dataHasResultsAcademic?.by_has_result.buckets.find(
+          (ele) => ele.key === 1,
+        );
+      const dataHasResultsIndustrial =
+        dataHasResults.by_sponsor_type.buckets.find(
+          (ele) => ele.key === 'industriel',
+        );
+      const dataHasResultsIndustrialWithResults =
+        dataHasResultsIndustrial?.by_has_result.buckets.find(
+          (el) => el.key === 1,
+        );
       const data = [];
       data.push({
         color: getCSSValue('--blue-soft-100'),
@@ -134,17 +140,17 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           id: 'app.observedin',
         })} ${getObservationLabel(observationSnap, intl)}`,
         y:
-          100
-          * ((dataHasResultsAcademicWithResults?.doc_count
-            + dataHasResultsIndustrialWithResults?.doc_count)
-            / (dataHasResultsAcademic?.doc_count
-              + dataHasResultsIndustrial?.doc_count)),
+          100 *
+          ((dataHasResultsAcademicWithResults?.doc_count +
+            dataHasResultsIndustrialWithResults?.doc_count) /
+            (dataHasResultsAcademic?.doc_count +
+              dataHasResultsIndustrial?.doc_count)),
         y_abs:
-          (dataHasResultsAcademicWithResults?.doc_count ?? 0)
-          + (dataHasResultsIndustrialWithResults?.doc_count ?? 0),
+          (dataHasResultsAcademicWithResults?.doc_count ?? 0) +
+          (dataHasResultsIndustrialWithResults?.doc_count ?? 0),
         y_tot:
-          (dataHasResultsAcademic?.doc_count ?? 0)
-          + (dataHasResultsIndustrial?.doc_count ?? 0),
+          (dataHasResultsAcademic?.doc_count ?? 0) +
+          (dataHasResultsIndustrial?.doc_count ?? 0),
         yearMax: years10Max,
         yearMin: years10Min,
       });
@@ -156,9 +162,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           id: 'app.observedin',
         })} ${getObservationLabel(observationSnap, intl)}`,
         y:
-          100
-          * ((dataHasResultsAcademicWithResults?.doc_count ?? 0)
-            / dataHasResultsAcademic?.doc_count),
+          100 *
+          ((dataHasResultsAcademicWithResults?.doc_count ?? 0) /
+            dataHasResultsAcademic?.doc_count),
         y_abs: dataHasResultsAcademicWithResults?.doc_count ?? 0,
         y_tot: dataHasResultsAcademic?.doc_count ?? 0,
         yearMax: years10Max,
@@ -172,9 +178,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           id: 'app.observedin',
         })} ${getObservationLabel(observationSnap, intl)}`,
         y:
-          100
-          * ((dataHasResultsIndustrialWithResults?.doc_count ?? 0)
-            / dataHasResultsIndustrial?.doc_count),
+          100 *
+          ((dataHasResultsIndustrialWithResults?.doc_count ?? 0) /
+            dataHasResultsIndustrial?.doc_count),
         y_abs: dataHasResultsIndustrialWithResults?.doc_count ?? 0,
         y_tot: dataHasResultsIndustrial?.doc_count ?? 0,
         yearMax: years10Max,
@@ -182,13 +188,16 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       });
 
       if (sponsor !== '*') {
-        const dataHasResultsFilterBySponsor = resultsSponsor[index].data.aggregations;
-        const dataHasResultsFilterBySponsorWithResults = dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
-          (el) => el.key === 1,
-        );
-        const dataHasResultsFilterBySponsorWithoutResults = dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
-          (ele) => ele.key === 0,
-        );
+        const dataHasResultsFilterBySponsor =
+          resultsSponsor[index].data.aggregations;
+        const dataHasResultsFilterBySponsorWithResults =
+          dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
+            (el) => el.key === 1,
+          );
+        const dataHasResultsFilterBySponsorWithoutResults =
+          dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
+            (ele) => ele.key === 0,
+          );
         data.push({
           color: getCSSValue('--lead-sponsor-highlight'),
           name: sponsor,
@@ -197,14 +206,14 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
             id: 'app.observedin',
           })} ${getObservationLabel(observationSnap, intl)}`,
           y:
-            100
-            * ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0)
-              / ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0)
-                + (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0))),
+            100 *
+            ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0) /
+              ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0) +
+                (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0))),
           y_abs: dataHasResultsFilterBySponsorWithResults?.doc_count || 0,
           y_tot:
-            (dataHasResultsFilterBySponsorWithResults?.doc_count || 0)
-            + (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0),
+            (dataHasResultsFilterBySponsorWithResults?.doc_count || 0) +
+            (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0),
           yearMax: years10Max,
           yearMin: years10Min,
         });

@@ -14,7 +14,8 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
 
   async function getDataAxios() {
     const queries = [];
-    const observationSnap = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
+    const observationSnap =
+      process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
     const lastObservationYear = parseInt(observationSnap.substring(0, 4), 10);
     const years10Max = lastObservationYear - 1;
     const years10Min = years10Max - 9;
@@ -33,7 +34,14 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     });
     const queryHasResultsFilterBySponsor = getFetchOptions({
       key: 'studiesDynamiqueOuvertureSponsor',
-      parameters: [studyType, sponsor, '*', years10Min, years10Max, observationSnap],
+      parameters: [
+        studyType,
+        sponsor,
+        '*',
+        years10Min,
+        years10Max,
+        observationSnap,
+      ],
       objectType: ['clinicalTrials'],
     });
     const queryHasResultsWithin3Years = getFetchOptions({
@@ -48,16 +56,16 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     });
     if (filterOnDrug) {
       queryHasResults.query.bool.filter.push({
-        term: { 'intervention_type.keyword': 'DRUG' },
+        terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
       });
       queryHasResultsFilterBySponsor.query.bool.filter.push({
-        term: { 'intervention_type.keyword': 'DRUG' },
+        terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
       });
       queryHasResultsWithin3Years.query.bool.filter.push({
-        term: { 'intervention_type.keyword': 'DRUG' },
+        terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
       });
       queryHasResultsWithin1Year.query.bool.filter.push({
-        term: { 'intervention_type.keyword': 'DRUG' },
+        terms: { 'intervention_type.keyword': ['DRUG', 'DRUG (presumed)'] },
       });
     }
     queries.push(Axios.post(ES_STUDIES_API_URL, querySponsorsList, HEADERS));
@@ -88,93 +96,122 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const dataHasResultsAcademic = dataHasResults.by_sponsor_type.buckets.find(
       (ele) => ele.key === 'academique',
     );
-    const dataHasResultsAcademicWithResults = dataHasResultsAcademic?.by_has_result.buckets.find(
-      (ele) => ele.key === 1,
-    );
-    const dataHasResultsWithin3YearsAcademic = dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
-      (ele) => ele.key === 'academique',
-    );
-    const dataHasResultsWithin3YearsAcademicWithResults = dataHasResultsWithin3YearsAcademic?.by_has_results_within_3_years.buckets.find(
-      (ele) => ele.key === 1,
-    );
-    const dataHasResultsWithin3YearsAcademicWithResultsLastYear = dataHasResultsWithin3YearsAcademicWithResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years3Max,
-    );
-    const dataHasResultsWithin3YearsAcademicWithoutResults = dataHasResultsWithin3YearsAcademic?.by_has_results_within_3_years.buckets.find(
-      (ele) => ele.key === 0,
-    );
-    const dataHasResultsWithin3YearsAcademicWithoutResultsLastYear = dataHasResultsWithin3YearsAcademicWithoutResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years3Max,
-    );
-    const dataHasResultsWithin3YearsAcademicLastYearCount = (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count || 0)
-      + (dataHasResultsWithin3YearsAcademicWithoutResultsLastYear?.doc_count
-        || 0);
-    const dataHasResultsWithin1YearAcademic = dataHasResultsWithin1Year.by_sponsor_type.buckets.find(
-      (ele) => ele.key === 'academique',
-    );
-    const dataHasResultsWithin1YearAcademicWithResults = dataHasResultsWithin1YearAcademic?.by_has_results_within_1_year.buckets.find(
-      (ele) => ele.key === 1,
-    );
-    const dataHasResultsWithin1YearAcademicWithResultsLastYear = dataHasResultsWithin1YearAcademicWithResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years10Max,
-    );
-    const dataHasResultsWithin1YearAcademicWithoutResults = dataHasResultsWithin1YearAcademic?.by_has_results_within_1_year.buckets.find(
-      (ele) => ele.key === 0,
-    );
-    const dataHasResultsWithin1YearAcademicWithoutResultsLastYear = dataHasResultsWithin1YearAcademicWithoutResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years10Max,
-    );
-    const academicTotalLastYear4 = (dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count || 0)
-      + (dataHasResultsWithin1YearAcademicWithoutResultsLastYear?.doc_count || 0);
-    const dataHasResultsIndustrial = dataHasResults.by_sponsor_type.buckets.find(
-      (ele) => ele.key === 'industriel',
-    );
-    const dataHasResultsIndustrialWithResults = dataHasResultsIndustrial?.by_has_result.buckets.find(
-      (el) => el.key === 1,
-    );
-    const dataHasResultsWithin3YearsIndustrial = dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
-      (ele) => ele.key === 'industriel',
-    );
-    const dataHasResultsWithin3YearsIndustrialWithResults = dataHasResultsWithin3YearsIndustrial?.by_has_results_within_3_years.buckets.find(
-      (el) => el.key === 1,
-    );
-    const dataHasResultsWithin3YearsIndustrialWithResultsLastYear = dataHasResultsWithin3YearsIndustrialWithResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years3Max,
-    );
-    const dataHasResultsWithin3YearsIndustrialWithoutResults = dataHasResultsWithin3YearsIndustrial?.by_has_results_within_3_years.buckets.find(
-      (el) => el.key === 0,
-    );
-    const dataHasResultsWithin3YearsIndustrialWithoutResultsLastYear = dataHasResultsWithin3YearsIndustrialWithoutResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years3Max,
-    );
-    const dataHasResultsWithin3YearsIndustrialCount = (dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
-        || 0)
-      + (dataHasResultsWithin3YearsIndustrialWithoutResultsLastYear?.doc_count
-        || 0);
-    const dataHasResultsWithin1YearIndustrial = dataHasResultsWithin1Year.by_sponsor_type.buckets.find(
-      (ele) => ele.key === 'industriel',
-    );
-    const dataHasResultsWithin1YearIndustrialWithResults = dataHasResultsWithin1YearIndustrial?.by_has_results_within_1_year.buckets.find(
-      (ele) => ele.key === 1,
-    );
-    const dataHasResultsWithin1YearIndustrialWithResultsLastYear = dataHasResultsWithin1YearIndustrialWithResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years10Max,
-    );
-    const dataHasResultsWithin1YearIndustrialWithoutResults = dataHasResultsWithin1YearIndustrial?.by_has_results_within_1_year.buckets.find(
-      (el) => el.key === 0,
-    );
-    const dataHasResultsWithin1YearIndustrialWithoutResultsLastYear = dataHasResultsWithin1YearIndustrialWithoutResults?.by_completion_year.buckets.find(
-      (ele) => ele.key === years10Max,
-    );
-    const dataHasResultsWithin1YearIndustrialLastYearCount = (dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count || 0)
-      + (dataHasResultsWithin1YearIndustrialWithoutResultsLastYear?.doc_count
-        || 0);
-    const dataHasResultsFilterBySponsorWithResults = dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
-      (el) => el.key === 1,
-    );
-    const dataHasResultsFilterBySponsorWithoutResults = dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
-      (ele) => ele.key === 0,
-    );
+    const dataHasResultsAcademicWithResults =
+      dataHasResultsAcademic?.by_has_result.buckets.find(
+        (ele) => ele.key === 1,
+      );
+    const dataHasResultsWithin3YearsAcademic =
+      dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'academique',
+      );
+    const dataHasResultsWithin3YearsAcademicWithResults =
+      dataHasResultsWithin3YearsAcademic?.by_has_results_within_3_years.buckets.find(
+        (ele) => ele.key === 1,
+      );
+    const dataHasResultsWithin3YearsAcademicWithResultsLastYear =
+      dataHasResultsWithin3YearsAcademicWithResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years3Max,
+      );
+    const dataHasResultsWithin3YearsAcademicWithoutResults =
+      dataHasResultsWithin3YearsAcademic?.by_has_results_within_3_years.buckets.find(
+        (ele) => ele.key === 0,
+      );
+    const dataHasResultsWithin3YearsAcademicWithoutResultsLastYear =
+      dataHasResultsWithin3YearsAcademicWithoutResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years3Max,
+      );
+    const dataHasResultsWithin3YearsAcademicLastYearCount =
+      (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count || 0) +
+      (dataHasResultsWithin3YearsAcademicWithoutResultsLastYear?.doc_count ||
+        0);
+    const dataHasResultsWithin1YearAcademic =
+      dataHasResultsWithin1Year.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'academique',
+      );
+    const dataHasResultsWithin1YearAcademicWithResults =
+      dataHasResultsWithin1YearAcademic?.by_has_results_within_1_year.buckets.find(
+        (ele) => ele.key === 1,
+      );
+    const dataHasResultsWithin1YearAcademicWithResultsLastYear =
+      dataHasResultsWithin1YearAcademicWithResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years10Max,
+      );
+    const dataHasResultsWithin1YearAcademicWithoutResults =
+      dataHasResultsWithin1YearAcademic?.by_has_results_within_1_year.buckets.find(
+        (ele) => ele.key === 0,
+      );
+    const dataHasResultsWithin1YearAcademicWithoutResultsLastYear =
+      dataHasResultsWithin1YearAcademicWithoutResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years10Max,
+      );
+    const academicTotalLastYear4 =
+      (dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count || 0) +
+      (dataHasResultsWithin1YearAcademicWithoutResultsLastYear?.doc_count || 0);
+    const dataHasResultsIndustrial =
+      dataHasResults.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'industriel',
+      );
+    const dataHasResultsIndustrialWithResults =
+      dataHasResultsIndustrial?.by_has_result.buckets.find(
+        (el) => el.key === 1,
+      );
+    const dataHasResultsWithin3YearsIndustrial =
+      dataHasResultsWithin3Years.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'industriel',
+      );
+    const dataHasResultsWithin3YearsIndustrialWithResults =
+      dataHasResultsWithin3YearsIndustrial?.by_has_results_within_3_years.buckets.find(
+        (el) => el.key === 1,
+      );
+    const dataHasResultsWithin3YearsIndustrialWithResultsLastYear =
+      dataHasResultsWithin3YearsIndustrialWithResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years3Max,
+      );
+    const dataHasResultsWithin3YearsIndustrialWithoutResults =
+      dataHasResultsWithin3YearsIndustrial?.by_has_results_within_3_years.buckets.find(
+        (el) => el.key === 0,
+      );
+    const dataHasResultsWithin3YearsIndustrialWithoutResultsLastYear =
+      dataHasResultsWithin3YearsIndustrialWithoutResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years3Max,
+      );
+    const dataHasResultsWithin3YearsIndustrialCount =
+      (dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count ||
+        0) +
+      (dataHasResultsWithin3YearsIndustrialWithoutResultsLastYear?.doc_count ||
+        0);
+    const dataHasResultsWithin1YearIndustrial =
+      dataHasResultsWithin1Year.by_sponsor_type.buckets.find(
+        (ele) => ele.key === 'industriel',
+      );
+    const dataHasResultsWithin1YearIndustrialWithResults =
+      dataHasResultsWithin1YearIndustrial?.by_has_results_within_1_year.buckets.find(
+        (ele) => ele.key === 1,
+      );
+    const dataHasResultsWithin1YearIndustrialWithResultsLastYear =
+      dataHasResultsWithin1YearIndustrialWithResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years10Max,
+      );
+    const dataHasResultsWithin1YearIndustrialWithoutResults =
+      dataHasResultsWithin1YearIndustrial?.by_has_results_within_1_year.buckets.find(
+        (el) => el.key === 0,
+      );
+    const dataHasResultsWithin1YearIndustrialWithoutResultsLastYear =
+      dataHasResultsWithin1YearIndustrialWithoutResults?.by_completion_year.buckets.find(
+        (ele) => ele.key === years10Max,
+      );
+    const dataHasResultsWithin1YearIndustrialLastYearCount =
+      (dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count || 0) +
+      (dataHasResultsWithin1YearIndustrialWithoutResultsLastYear?.doc_count ||
+        0);
+    const dataHasResultsFilterBySponsorWithResults =
+      dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
+        (el) => el.key === 1,
+      );
+    const dataHasResultsFilterBySponsorWithoutResults =
+      dataHasResultsFilterBySponsor?.by_has_result.buckets.find(
+        (ele) => ele.key === 0,
+      );
 
     // The horizontal bars order is defined by the categories order
     const categories = [];
@@ -192,28 +229,33 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series1[0].data.push({
       color: getCSSValue('--blue-soft-100'),
       name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
-      y: !dataHasResultsAcademic?.doc_count && !dataHasResultsAcademic?.doc_count ? 0 :
-        100
-        * ((dataHasResultsAcademicWithResults?.doc_count ?? 0
-          + dataHasResultsIndustrialWithResults?.doc_count ?? 0)
-          / (dataHasResultsAcademic?.doc_count ?? 0
-            + dataHasResultsIndustrial?.doc_count ?? 0)),
+      y:
+        !dataHasResultsAcademic?.doc_count && !dataHasResultsAcademic?.doc_count
+          ? 0
+          : 100 *
+            ((dataHasResultsAcademicWithResults?.doc_count ??
+              0 + dataHasResultsIndustrialWithResults?.doc_count ??
+              0) /
+              (dataHasResultsAcademic?.doc_count ??
+                0 + dataHasResultsIndustrial?.doc_count ??
+                0)),
       y_abs:
-        (dataHasResultsAcademicWithResults?.doc_count ?? 0)
-        + (dataHasResultsIndustrialWithResults?.doc_count ?? 0),
+        (dataHasResultsAcademicWithResults?.doc_count ?? 0) +
+        (dataHasResultsIndustrialWithResults?.doc_count ?? 0),
       y_tot:
-        (dataHasResultsAcademic?.doc_count ?? 0)
-        + (dataHasResultsIndustrial?.doc_count ?? 0),
+        (dataHasResultsAcademic?.doc_count ?? 0) +
+        (dataHasResultsIndustrial?.doc_count ?? 0),
       yearMax: years10Max,
       yearMin: years10Min,
     });
     series1[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
-      y: !dataHasResultsAcademic?.doc_count ? 0 :
-        100
-        * ((dataHasResultsAcademicWithResults?.doc_count ?? 0)
-          / dataHasResultsAcademic?.doc_count),
+      y: !dataHasResultsAcademic?.doc_count
+        ? 0
+        : 100 *
+          ((dataHasResultsAcademicWithResults?.doc_count ?? 0) /
+            dataHasResultsAcademic?.doc_count),
       y_abs: dataHasResultsAcademicWithResults?.doc_count ?? 0,
       y_tot: dataHasResultsAcademic?.doc_count ?? 0,
       yearMax: years10Max,
@@ -222,37 +264,40 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     series1[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
-      y: !dataHasResultsIndustrial?.doc_count ? 0 :
-        100
-        * ((dataHasResultsIndustrialWithResults?.doc_count ?? 0)
-          / dataHasResultsIndustrial?.doc_count),
+      y: !dataHasResultsIndustrial?.doc_count
+        ? 0
+        : 100 *
+          ((dataHasResultsIndustrialWithResults?.doc_count ?? 0) /
+            dataHasResultsIndustrial?.doc_count),
       y_abs: dataHasResultsIndustrialWithResults?.doc_count ?? 0,
       y_tot: dataHasResultsIndustrial?.doc_count ?? 0,
       yearMax: years10Max,
       yearMin: years10Min,
     });
-    const allLeadSponsorRate3 = 100
-      * ((dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
-        + dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count)
-        / (dataHasResultsWithin3YearsAcademicLastYearCount
-          + dataHasResultsWithin3YearsIndustrialCount));
+    const allLeadSponsorRate3 =
+      100 *
+      ((dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count +
+        dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count) /
+        (dataHasResultsWithin3YearsAcademicLastYearCount +
+          dataHasResultsWithin3YearsIndustrialCount));
     series3[0].data.push({
       color: getCSSValue('--blue-soft-100'),
       name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
       y: allLeadSponsorRate3,
       y_abs:
-        (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count
-          ?? 0)
-        + (dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
-          ?? 0),
+        (dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ??
+          0) +
+        (dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count ??
+          0),
       y_tot:
-        dataHasResultsWithin3YearsAcademicLastYearCount
-        + dataHasResultsWithin3YearsIndustrialCount,
+        dataHasResultsWithin3YearsAcademicLastYearCount +
+        dataHasResultsWithin3YearsIndustrialCount,
       yearMax: years3Max,
     });
-    const publicLeadSponsorsRate3 = 100
-      * ((dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0)
-        / dataHasResultsWithin3YearsAcademicLastYearCount);
+    const publicLeadSponsorsRate3 =
+      100 *
+      ((dataHasResultsWithin3YearsAcademicWithResultsLastYear?.doc_count ?? 0) /
+        dataHasResultsWithin3YearsAcademicLastYearCount);
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
@@ -262,10 +307,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       y_tot: dataHasResultsWithin3YearsAcademicLastYearCount,
       yearMax: years3Max,
     });
-    const privateLeadSponsorsRate3 = 100
-      * ((dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count
-        ?? 0)
-        / dataHasResultsWithin3YearsIndustrialCount);
+    const privateLeadSponsorsRate3 =
+      100 *
+      ((dataHasResultsWithin3YearsIndustrialWithResultsLastYear?.doc_count ??
+        0) /
+        dataHasResultsWithin3YearsIndustrialCount);
     series3[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
@@ -275,27 +321,29 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       y_tot: dataHasResultsWithin3YearsIndustrialCount,
       yearMax: years3Max,
     });
-    const allLeadSponsorRate4 = 100
-      * ((dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count
-        + dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count)
-        / (academicTotalLastYear4
-          + dataHasResultsWithin1YearIndustrialLastYearCount));
+    const allLeadSponsorRate4 =
+      100 *
+      ((dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count +
+        dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count) /
+        (academicTotalLastYear4 +
+          dataHasResultsWithin1YearIndustrialLastYearCount));
     series4[0].data.push({
       color: getCSSValue('--blue-soft-100'),
       name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
       y: allLeadSponsorRate4,
       y_abs:
-        (dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count ?? 0)
-        + (dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count
-          ?? 0),
+        (dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count ?? 0) +
+        (dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count ??
+          0),
       y_tot:
-        academicTotalLastYear4
-        + dataHasResultsWithin1YearIndustrialLastYearCount,
+        academicTotalLastYear4 +
+        dataHasResultsWithin1YearIndustrialLastYearCount,
       yearMax: years10Max,
     });
-    const publicLeadSponsorsRate4 = 100
-      * ((dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count ?? 0)
-        / academicTotalLastYear4);
+    const publicLeadSponsorsRate4 =
+      100 *
+      ((dataHasResultsWithin1YearAcademicWithResultsLastYear?.doc_count ?? 0) /
+        academicTotalLastYear4);
     series4[0].data.push({
       color: getCSSValue('--lead-sponsor-public'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.academique' })),
@@ -305,10 +353,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       y_tot: academicTotalLastYear4,
       yearMax: years10Max,
     });
-    const privateLeadSponsorsRate4 = 100
-      * ((dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count
-        ?? 0)
-        / dataHasResultsWithin1YearIndustrialLastYearCount);
+    const privateLeadSponsorsRate4 =
+      100 *
+      ((dataHasResultsWithin1YearIndustrialWithResultsLastYear?.doc_count ??
+        0) /
+        dataHasResultsWithin1YearIndustrialLastYearCount);
     series4[0].data.push({
       color: getCSSValue('--lead-sponsor-privee'),
       name: capitalize(intl.formatMessage({ id: 'app.sponsor.industriel' })),
@@ -324,14 +373,14 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--lead-sponsor-highlight'),
         name: sponsor,
         y:
-          100
-          * ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0)
-            / ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0)
-              + (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0))),
+          100 *
+          ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0) /
+            ((dataHasResultsFilterBySponsorWithResults?.doc_count || 0) +
+              (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0))),
         y_abs: dataHasResultsFilterBySponsorWithResults?.doc_count || 0,
         y_tot:
-          (dataHasResultsFilterBySponsorWithResults?.doc_count || 0)
-          + (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0),
+          (dataHasResultsFilterBySponsorWithResults?.doc_count || 0) +
+          (dataHasResultsFilterBySponsorWithoutResults?.doc_count || 0),
         yearMax: years10Max,
         yearMin: years10Min,
       });
@@ -339,9 +388,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--lead-sponsor-highlight'),
         name: sponsor,
         y:
-          100
-          * ((dataHasResultsFilterBySponsorWithResults?.doc_count ?? 0)
-            / dataHasResultsFilterBySponsor?.doc_count),
+          100 *
+          ((dataHasResultsFilterBySponsorWithResults?.doc_count ?? 0) /
+            dataHasResultsFilterBySponsor?.doc_count),
         y_abs: dataHasResultsFilterBySponsorWithResults?.doc_count ?? 0,
         y_tot: dataHasResultsFilterBySponsor?.doc_count ?? 0,
         yearMax: years3Max,
@@ -351,9 +400,9 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
         color: getCSSValue('--lead-sponsor-highlight'),
         name: sponsor,
         y:
-          100
-          * ((dataHasResultsFilterBySponsorWithResults?.doc_count ?? 0)
-            / dataHasResultsFilterBySponsor?.doc_count),
+          100 *
+          ((dataHasResultsFilterBySponsorWithResults?.doc_count ?? 0) /
+            dataHasResultsFilterBySponsor?.doc_count),
         y_abs: dataHasResultsFilterBySponsorWithResults?.doc_count ?? 0,
         y_tot: dataHasResultsFilterBySponsor?.doc_count ?? 0,
         yearMax: years10Max,
@@ -364,7 +413,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const dataGraph3 = { categories, series: series3 };
     const dataGraph4 = { categories, series: series4 };
 
-    const categories5 = (dataHasResultsWithin3Years?.by_sponsor_type.buckets?.[0]?.by_has_results_within_3_years?.buckets?.[0]?.by_completion_year?.buckets ?? [])
+    const categories5 = (
+      dataHasResultsWithin3Years?.by_sponsor_type.buckets?.[0]
+        ?.by_has_results_within_3_years?.buckets?.[0]?.by_completion_year
+        ?.buckets ?? []
+    )
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= lastObservationYear)
       .map((item) => item.key);
@@ -373,24 +426,28 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const allTypesData5 = [];
 
     categories5.forEach((year) => {
-      const academicDataWithResultsForYear = dataHasResultsWithin3YearsAcademicWithResults?.by_completion_year.buckets?.find(
-        (item) => item.key === year,
-      )?.doc_count ?? 0;
-      const academicDataWithoutResultsForYear = dataHasResultsWithin3YearsAcademicWithoutResults?.by_completion_year.buckets?.find(
-        (item) => item.key === year,
-      )?.doc_count ?? 0;
-      const industrialDataWithResultsForYear = dataHasResultsWithin3YearsIndustrialWithResults?.by_completion_year.buckets?.find(
-        (item) => item.key === year,
-      )?.doc_count ?? 0;
-      const industrialDataWithoutResultsForYear = dataHasResultsWithin3YearsIndustrialWithoutResults?.by_completion_year.buckets?.find(
-        (item) => item.key === year,
-      )?.doc_count ?? 0;
+      const academicDataWithResultsForYear =
+        dataHasResultsWithin3YearsAcademicWithResults?.by_completion_year.buckets?.find(
+          (item) => item.key === year,
+        )?.doc_count ?? 0;
+      const academicDataWithoutResultsForYear =
+        dataHasResultsWithin3YearsAcademicWithoutResults?.by_completion_year.buckets?.find(
+          (item) => item.key === year,
+        )?.doc_count ?? 0;
+      const industrialDataWithResultsForYear =
+        dataHasResultsWithin3YearsIndustrialWithResults?.by_completion_year.buckets?.find(
+          (item) => item.key === year,
+        )?.doc_count ?? 0;
+      const industrialDataWithoutResultsForYear =
+        dataHasResultsWithin3YearsIndustrialWithoutResults?.by_completion_year.buckets?.find(
+          (item) => item.key === year,
+        )?.doc_count ?? 0;
       academicData5.push({
         y:
-          100
-          * (academicDataWithResultsForYear
-            / (academicDataWithResultsForYear
-              + academicDataWithoutResultsForYear)),
+          100 *
+          (academicDataWithResultsForYear /
+            (academicDataWithResultsForYear +
+              academicDataWithoutResultsForYear)),
         y_abs: academicDataWithResultsForYear,
         y_tot:
           academicDataWithResultsForYear + academicDataWithoutResultsForYear,
@@ -399,33 +456,33 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       industrialData5.push({
         year,
         y:
-          100
-          * (industrialDataWithResultsForYear
-            / (industrialDataWithResultsForYear
-              + industrialDataWithoutResultsForYear)),
+          100 *
+          (industrialDataWithResultsForYear /
+            (industrialDataWithResultsForYear +
+              industrialDataWithoutResultsForYear)),
         y_abs: industrialDataWithResultsForYear,
         y_tot:
-          industrialDataWithResultsForYear
-          + industrialDataWithoutResultsForYear,
+          industrialDataWithResultsForYear +
+          industrialDataWithoutResultsForYear,
         yearMax: years10Max,
         yearMin: years10Min,
       });
       allTypesData5.push({
         year,
         y:
-          100
-          * ((academicDataWithResultsForYear + industrialDataWithResultsForYear)
-            / (academicDataWithResultsForYear
-              + academicDataWithoutResultsForYear
-              + industrialDataWithResultsForYear
-              + industrialDataWithoutResultsForYear)),
+          100 *
+          ((academicDataWithResultsForYear + industrialDataWithResultsForYear) /
+            (academicDataWithResultsForYear +
+              academicDataWithoutResultsForYear +
+              industrialDataWithResultsForYear +
+              industrialDataWithoutResultsForYear)),
         y_abs:
           academicDataWithResultsForYear + industrialDataWithResultsForYear,
         y_tot:
-          academicDataWithResultsForYear
-          + academicDataWithoutResultsForYear
-          + industrialDataWithResultsForYear
-          + industrialDataWithoutResultsForYear,
+          academicDataWithResultsForYear +
+          academicDataWithoutResultsForYear +
+          industrialDataWithResultsForYear +
+          industrialDataWithoutResultsForYear,
         yearMax: years10Max,
         yearMin: years10Min,
       });
@@ -455,7 +512,11 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     ];
     const dataGraph5 = { categories: categories5, series: series5 };
 
-    const categories6 = (dataHasResultsWithin1Year?.by_sponsor_type.buckets?.[0]?.by_has_results_within_1_year?.buckets?.[0]?.by_completion_year?.buckets ?? [])
+    const categories6 = (
+      dataHasResultsWithin1Year?.by_sponsor_type.buckets?.[0]
+        ?.by_has_results_within_1_year?.buckets?.[0]?.by_completion_year
+        ?.buckets ?? []
+    )
       .sort((a, b) => a.key - b.key)
       .filter((y) => y.key >= 2010 && y.key <= lastObservationYear)
       .map((item) => item.key);
@@ -470,28 +531,32 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const allTypesData6 = [];
 
     categories6.forEach((year) => {
-      const academicDataWithResultsForYear = academic6?.by_has_results_within_1_year?.buckets
-        ?.find((item) => item.key === 1)
-        ?.by_completion_year.buckets?.find((item) => item.key === year)
-        ?.doc_count ?? 0;
-      const academicDataWithoutResultsForYear = academic6?.by_has_results_within_1_year?.buckets
-        ?.find((item) => item.key === 0)
-        ?.by_completion_year.buckets?.find((item) => item.key === year)
-        ?.doc_count ?? 0;
-      const industrialDataWithResultsForYear = industrial6?.by_has_results_within_1_year?.buckets
-        ?.find((item) => item.key === 1)
-        ?.by_completion_year.buckets?.find((item) => item.key === year)
-        ?.doc_count ?? 0;
-      const industrialDataWithoutResultsForYear = industrial6?.by_has_results_within_1_year?.buckets
-        ?.find((item) => item.key === 0)
-        ?.by_completion_year.buckets?.find((item) => item.key === year)
-        ?.doc_count ?? 0;
+      const academicDataWithResultsForYear =
+        academic6?.by_has_results_within_1_year?.buckets
+          ?.find((item) => item.key === 1)
+          ?.by_completion_year.buckets?.find((item) => item.key === year)
+          ?.doc_count ?? 0;
+      const academicDataWithoutResultsForYear =
+        academic6?.by_has_results_within_1_year?.buckets
+          ?.find((item) => item.key === 0)
+          ?.by_completion_year.buckets?.find((item) => item.key === year)
+          ?.doc_count ?? 0;
+      const industrialDataWithResultsForYear =
+        industrial6?.by_has_results_within_1_year?.buckets
+          ?.find((item) => item.key === 1)
+          ?.by_completion_year.buckets?.find((item) => item.key === year)
+          ?.doc_count ?? 0;
+      const industrialDataWithoutResultsForYear =
+        industrial6?.by_has_results_within_1_year?.buckets
+          ?.find((item) => item.key === 0)
+          ?.by_completion_year.buckets?.find((item) => item.key === year)
+          ?.doc_count ?? 0;
       academicData6.push({
         y:
-          100
-          * (academicDataWithResultsForYear
-            / (academicDataWithResultsForYear
-              + academicDataWithoutResultsForYear)),
+          100 *
+          (academicDataWithResultsForYear /
+            (academicDataWithResultsForYear +
+              academicDataWithoutResultsForYear)),
         y_abs: academicDataWithResultsForYear,
         y_tot:
           academicDataWithResultsForYear + academicDataWithoutResultsForYear,
@@ -500,33 +565,33 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       industrialData6.push({
         year,
         y:
-          100
-          * (industrialDataWithResultsForYear
-            / (industrialDataWithResultsForYear
-              + industrialDataWithoutResultsForYear)),
+          100 *
+          (industrialDataWithResultsForYear /
+            (industrialDataWithResultsForYear +
+              industrialDataWithoutResultsForYear)),
         y_abs: industrialDataWithResultsForYear,
         y_tot:
-          industrialDataWithResultsForYear
-          + industrialDataWithoutResultsForYear,
+          industrialDataWithResultsForYear +
+          industrialDataWithoutResultsForYear,
         yearMax: years10Max,
         yearMin: years10Min,
       });
       allTypesData6.push({
         year,
         y:
-          100
-          * ((academicDataWithResultsForYear + industrialDataWithResultsForYear)
-            / (academicDataWithResultsForYear
-              + academicDataWithoutResultsForYear
-              + industrialDataWithResultsForYear
-              + industrialDataWithoutResultsForYear)),
+          100 *
+          ((academicDataWithResultsForYear + industrialDataWithResultsForYear) /
+            (academicDataWithResultsForYear +
+              academicDataWithoutResultsForYear +
+              industrialDataWithResultsForYear +
+              industrialDataWithoutResultsForYear)),
         y_abs:
           academicDataWithResultsForYear + industrialDataWithResultsForYear,
         y_tot:
-          academicDataWithResultsForYear
-          + academicDataWithoutResultsForYear
-          + industrialDataWithResultsForYear
-          + industrialDataWithoutResultsForYear,
+          academicDataWithResultsForYear +
+          academicDataWithoutResultsForYear +
+          industrialDataWithResultsForYear +
+          industrialDataWithoutResultsForYear,
         yearMax: years10Max,
         yearMin: years10Min,
       });
@@ -561,15 +626,21 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     let publicLeadSponsorsRate = '';
     if (dataGraph1) {
       const data = dataGraph1?.series[0]?.data;
-      const allLeadSponsorLabel = capitalize(intl.formatMessage({
-        id: 'app.all-sponsor-types',
-      }));
-      const privateLeadSponsorsLabel = capitalize(intl.formatMessage({
-        id: 'app.sponsor.industriel',
-      }));
-      const publicLeadSponsorsLabel = capitalize(intl.formatMessage({
-        id: 'app.sponsor.academique',
-      }));
+      const allLeadSponsorLabel = capitalize(
+        intl.formatMessage({
+          id: 'app.all-sponsor-types',
+        }),
+      );
+      const privateLeadSponsorsLabel = capitalize(
+        intl.formatMessage({
+          id: 'app.sponsor.industriel',
+        }),
+      );
+      const publicLeadSponsorsLabel = capitalize(
+        intl.formatMessage({
+          id: 'app.sponsor.academique',
+        }),
+      );
       allLeadSponsorRate = data
         ?.find((item) => item.name === allLeadSponsorLabel)
         ?.y?.toFixed(0);
