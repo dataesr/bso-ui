@@ -1,4 +1,4 @@
-import { Col, Container, Row } from '@dataesr/react-dsfr';
+import { Alert, Col, Container, Row } from '@dataesr/react-dsfr';
 import axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -468,6 +468,11 @@ function Policy() {
           {!isInProduction() && (
             <Row>
               <Col n='12' className='fr-mt-5w'>
+                <Alert
+                  description={intl.formatMessage({
+                    id: 'app.commons.graph-warning',
+                  })}
+                />
                 <ChartWrapper
                   chartRef={chartRefSelectedTypes}
                   date='2025-04-02'
@@ -493,6 +498,31 @@ function Policy() {
               </Col>
             </Row>
           )}
+          <Row>
+            <Col n='12' className='fr-mt-5w'>
+              <span>
+                <h3 className='fs-16-24 marianne-bold'>
+                  <FormattedMessage
+                    id='other.policy.secret-stat.title'
+                    defaultMessage='Etablissements sous secret statistique'
+                  />
+                </h3>
+              </span>
+              <ul>
+                <li>Ecole d'ingénieur généraliste en informatique et technologies du numérique</li>
+                <li>Institut national d'enseignement supérieur pour l'agriculture, l'alimentation et l'environnement</li>
+                <li>Institut Pasteur</li>
+                <li>Ecole supérieure d'agriculture</li>
+                <li>Ecole supérieure des sciences économiques et commerciales</li>
+                <li>Institut supérieur d'électronique de Paris</li>
+                <li>Montpellier Business School</li>
+                <li>Institut des sciences et industries du vivant et de l'environnement</li>
+                <li>Institut Mines-Télécom</li>
+                <li>Skema Business School</li>
+                <li>Vet Agro Sup</li>
+              </ul>
+            </Col>
+          </Row>
           <Row>
             <Col n='12' className='fr-mt-5w'>
               <span>
