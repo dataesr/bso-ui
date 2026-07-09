@@ -62,7 +62,7 @@ function Studio() {
         value: `${item + START_OBSERVATION_YEAR}`,
       }));
       observationYearsTmp.push({
-        label: "Date d'observation utilisée dans le baromètre national",
+        label: "Année d'observation utilisée dans le baromètre national",
         value: 'latest',
       });
       setObservationYears(observationYearsTmp);

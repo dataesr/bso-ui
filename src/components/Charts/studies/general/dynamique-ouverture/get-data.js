@@ -16,7 +16,8 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const queries = [];
     const observationSnap =
       process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
-    const lastObservationYear = parseInt(observationSnap.substring(0, 4), 10);
+    let lastObservationYear = parseInt(observationSnap.substring(0, 4), 10);
+    if (!process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.endsWith('Q4')) lastObservationYear -= 1;
     const years10Max = lastObservationYear - 1;
     const years10Min = years10Max - 9;
     const years3Max = lastObservationYear - 3;
@@ -675,6 +676,8 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
       dataGraph5,
       dataGraph6,
       sponsors,
+      years10Max,
+      years10Min,
     };
   }
 

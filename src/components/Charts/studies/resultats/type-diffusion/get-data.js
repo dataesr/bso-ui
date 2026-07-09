@@ -31,11 +31,12 @@ function useGetData(studyType, sponsorType = '*') {
       value: st,
     }));
 
-    const currentYear = parseInt(
+    let lastObservationYear = parseInt(
       process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
       10,
     );
-    const yearMax = currentYear - 1;
+    if (!process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.endsWith('Q4')) lastObservationYear -= 1;
+    const yearMax = lastObservationYear - 1;
     const yearMin = yearMax - 9;
     const queries = [];
     const query1 = getFetchOptions({
@@ -295,6 +296,8 @@ function useGetData(studyType, sponsorType = '*') {
       dataGraph1,
       dataGraph2,
       sponsorTypes,
+      yearMax,
+      yearMin,
     };
   }
 

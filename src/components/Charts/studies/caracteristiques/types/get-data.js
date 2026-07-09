@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { getCSSValue } from '../../../../../utils/helpers';
+import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsorType = '*') {
   const intl = useIntl();
@@ -72,9 +72,9 @@ function useGetData(studyType, sponsorType = '*') {
 
     Array.from(categoriesSet).forEach((cat) => {
       dataGraph.push({
-        name: intl.formatMessage({
+        name: capitalize(intl.formatMessage({
           id: `app.studies.intervention-type.${cat}`,
-        }),
+        })),
         color: colors[cat.split(' ').join('')],
         data: dataSortedByYear.map((el) => {
           const x = el.key;

@@ -35,13 +35,13 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const [options, setOptions] = useState([]);
   const [sponsorType, setSponsorType] = useState('*');
   const { allData, isError, isLoading } = useGetData(studyType, sponsorType);
-  const { dataGraph1 } = allData;
+  const { dataGraph1, yearMax, yearMin } = allData;
   const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
   const sponsorTypeTitle =
     sponsorType !== '*'
       ? ` (${intl.formatMessage({ id: translationId })})`
       : '';
-  const dataTitle = { sponsorTypeTitle };
+  const dataTitle = { sponsorTypeTitle, yearMax, yearMin };
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(

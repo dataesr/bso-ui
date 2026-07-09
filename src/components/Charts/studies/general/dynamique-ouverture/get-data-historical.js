@@ -8,6 +8,7 @@ import {
   capitalize,
   getCSSValue,
   getObservationLabel,
+  isInProduction,
 } from '../../../../../utils/helpers';
 
 function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
@@ -16,12 +17,15 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  const observationSnaps = ['2022Q4', '2023Q4', '2024Q4', '2025Q4'].sort();
-  const lastObservationYear = parseInt(
+  const observationSnaps = ['2022Q4', '2023Q4', '2024Q4', '2025Q4'];
+  if (!isInProduction()) observationSnaps.push('2026Q2');
+  observationSnaps.sort();
+  let lastObservationYear = parseInt(
     process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.substring(0, 4),
     10,
   );
-  const years10Max = lastObservationYear - 4;
+  if (!process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.endsWith('Q4')) lastObservationYear -= 1;
+  const years10Max = lastObservationYear - 1;
   const years10Min = years10Max - 9;
 
   async function getDataAxios() {
