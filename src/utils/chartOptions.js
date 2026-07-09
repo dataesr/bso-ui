@@ -46,12 +46,12 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
     embargoText =
       'EMBARGO - Ne pas diffuser<br>avant la sortie du BSO national';
   }
-  const tooltip = intl
+  const tooltip = intl?.messages?.[`${titleId}.tooltip`] ? intl
     .formatMessage({
       id: `${titleId}.tooltip`,
       defaultMessage: `${titleId}.tooltip`,
     })
-    .replaceAll('((commentsName))', commentsName);
+    .replaceAll('((commentsName))', commentsName) : false;
   const xAxis = intl.formatMessage({ id: `${id}.xAxis`, defaultMessage: ' ' });
   const yAxis = intl.formatMessage({ id: `${id}.yAxis`, defaultMessage: ' ' });
   const source = getSource(id, [localSource || name]);
@@ -59,7 +59,7 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
     { id: `${titleId}.title`, defaultMessage: ' ' },
     dataTitle,
   );
-  return {
+  const result = {
     chart: {
       backgroundColor: getCSSValue('--white'),
       events: {
@@ -84,7 +84,6 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
     title: { text: '' },
     tooltip: {
       headerFormat: '',
-      pointFormat: tooltip,
     },
     credits: {
       text: intl.formatMessage({ id: 'app.credit' }),
@@ -147,6 +146,8 @@ export function getGraphOptions({ id, intl, studyType = '', dataTitle = {} }) {
       filename: title,
     },
   };
+  if (tooltip) result.tooltip.pointFormat = tooltip;
+  return result;
 }
 
 export const chartOptions = {

@@ -133,37 +133,106 @@ function Policy() {
     optionsTmp.xAxis.tickInterval = 1;
     optionsTmp.xAxis.plotBands = [
       {
-        from: 2018,
-        to: 2021,
         color: getCSSValue('--ouvrir-la-science-green'),
+        from: 2018,
+        label: { text: 'PNSO 1' },
+        to: 2021,
       },
       {
-        from: 2021,
-        to: END_YEAR,
         color: getCSSValue('--ouvrir-la-science-yellow'),
+        from: 2021,
+        label: { text: 'PNSO 2' },
+        to: END_YEAR,
       },
     ];
-    optionsTmp.yAxis = getPercentageYAxis();
-    optionsTmp.legend.enabled = false;
+    optionsTmp.yAxis = [
+      { ...getPercentageYAxis(), title: { text: 'Part d\'établissements' } },
+    ];
+    if (!isInProduction()) optionsTmp.yAxis.push({ title: { text: 'Nombre de personnels permanents en 2023' }, opposite: true });
+    optionsTmp.legend.enabled = true;
     optionsTmp.plotOptions = {
       series: {
-        color: getCSSValue('--ouvrir-la-science-blue'),
         pointStart: START_YEAR,
       },
     };
     optionsTmp.series = [
       {
+        color: getCSSValue('--ouvrir-la-science-blue'),
         data: Object.values(series),
+        marker: { symbol: 'circle' },
+        name: 'Part d\'établissements',
+        tooltip: {
+          pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-structures' }),
+        },
       },
     ];
+    if (!isInProduction()) {
+      optionsTmp.series.push(
+        {
+          color: getCSSValue('--ouvrir-la-science-purple'),
+          data: [
+            { name: 2016, y: 5210 },
+            { name: 2017, y: 5210 },
+            { name: 2018, y: 5392 },
+            { name: 2019, y: 39169 },
+            { name: 2020, y: 41219 },
+            { name: 2021, y: 71779 },
+            { name: 2022, y: 91424 },
+            { name: 2023, y: 98532 },
+            { name: 2024, y: 108930 },
+            { name: 2025, y: 110451 },
+            { name: 2026, y: 110831 },
+          ],
+          marker: { symbol: 'circle' },
+          name: 'Nombre de personnels permanents en 2023',
+          tooltip: {
+            pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-employees' }),
+          },
+          yAxis: 1,
+        },
+      );
+    }
     optionsTmp.exporting.chartOptions.legend.enabled = false;
+    optionsTmp.tooltip.shared = true;
     setOptions(optionsTmp);
     const optionsSelectedTypesTmp = { ...optionsTmp };
     optionsSelectedTypesTmp.series = [
       {
+        color: getCSSValue('--ouvrir-la-science-blue'),
         data: Object.values(seriesSelectedTypes),
+        marker: { symbol: 'circle' },
+        name: 'Part d\'établissements',
+        tooltip: {
+          pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-structures' }),
+        },
       },
     ];
+    if (!isInProduction()) {
+      optionsSelectedTypesTmp.series.push(
+        {
+          color: getCSSValue('--ouvrir-la-science-purple'),
+          data: [
+            { name: 2016, y: 0 },
+            { name: 2017, y: 0 },
+            { name: 2018, y: 182 },
+            { name: 2019, y: 11944 },
+            { name: 2020, y: 13127 },
+            { name: 2021, y: 32762 },
+            { name: 2022, y: 50011 },
+            { name: 2023, y: 56125 },
+            { name: 2024, y: 61558 },
+            { name: 2025, y: 63079 },
+            { name: 2026, y: 63079 },
+          ],
+          marker: { symbol: 'circle' },
+          name: 'Nombre de personnels permanents en 2023',
+          tooltip: {
+            pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-employees' }),
+          },
+          yAxis: 1,
+        },
+      );
+    }
     setOptionsSelectedTypes(optionsSelectedTypesTmp);
   }, [data, intl]);
 
