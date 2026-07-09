@@ -145,10 +145,7 @@ function Policy() {
         to: END_YEAR,
       },
     ];
-    optionsTmp.yAxis = [
-      { ...getPercentageYAxis(), title: { text: 'Part d\'établissements' } },
-    ];
-    if (!isInProduction()) optionsTmp.yAxis.push({ title: { text: 'Nombre de personnels permanents en 2023' }, opposite: true });
+    optionsTmp.yAxis = { ...getPercentageYAxis() };
     optionsTmp.legend.enabled = true;
     optionsTmp.plotOptions = {
       series: {
@@ -160,7 +157,7 @@ function Policy() {
         color: getCSSValue('--ouvrir-la-science-blue'),
         data: Object.values(series),
         marker: { symbol: 'circle' },
-        name: 'Part d\'établissements',
+        name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-structures' }),
         tooltip: {
           pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-structures' }),
         },
@@ -171,24 +168,89 @@ function Policy() {
         {
           color: getCSSValue('--ouvrir-la-science-purple'),
           data: [
-            { name: 2016, y: 5210 },
-            { name: 2017, y: 5210 },
-            { name: 2018, y: 5392 },
-            { name: 2019, y: 39169 },
-            { name: 2020, y: 41219 },
-            { name: 2021, y: 71779 },
-            { name: 2022, y: 91424 },
-            { name: 2023, y: 98532 },
-            { name: 2024, y: 108930 },
-            { name: 2025, y: 110451 },
-            { name: 2026, y: 110831 },
+            {
+              name: 2016,
+              y: 4.1141864413,
+              y_abs: 5210.0,
+              y_tot: 126635.0,
+              y_percent: 4.1141864413,
+            },
+            {
+              name: 2017,
+              y: 4.1141864413,
+              y_abs: 5210.0,
+              y_tot: 126635.0,
+              y_percent: 4.1141864413,
+            },
+            {
+              name: 2018,
+              y: 4.2579065819,
+              y_abs: 5392.0,
+              y_tot: 126635.0,
+              y_percent: 4.2579065819,
+            },
+            {
+              name: 2019,
+              y: 30.9306273937,
+              y_abs: 39169.0,
+              y_tot: 126635.0,
+              y_percent: 30.9306273937,
+            },
+            {
+              name: 2020,
+              y: 32.5494531528,
+              y_abs: 41219.0,
+              y_tot: 126635.0,
+              y_percent: 32.5494531528,
+            },
+            {
+              name: 2021,
+              y: 56.6818020295,
+              y_abs: 71779.0,
+              y_tot: 126635.0,
+              y_percent: 56.6818020295,
+            },
+            {
+              name: 2022,
+              y: 72.194890828,
+              y_abs: 91424.0,
+              y_tot: 126635.0,
+              y_percent: 72.194890828,
+            },
+            {
+              name: 2023,
+              y: 77.8078730209,
+              y_abs: 98532.0,
+              y_tot: 126635.0,
+              y_percent: 77.8078730209,
+            },
+            {
+              name: 2024,
+              y: 86.0188731393,
+              y_abs: 108930.0,
+              y_tot: 126635.0,
+              y_percent: 86.0188731393,
+            },
+            {
+              name: 2025,
+              y: 87.2199628855,
+              y_abs: 110451.0,
+              y_tot: 126635.0,
+              y_percent: 87.2199628855,
+            },
+            {
+              name: 2026,
+              y: 87.5200379042,
+              y_abs: 110831.0,
+              y_tot: 126635.0,
+              y_percent: 87.5200379042,
+            },
           ],
           marker: { symbol: 'circle' },
-          name: 'Nombre de personnels permanents en 2023',
+          name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-researchers' }),
           tooltip: {
             pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-employees' }),
           },
-          yAxis: 1,
         },
       );
     }
@@ -201,7 +263,7 @@ function Policy() {
         color: getCSSValue('--ouvrir-la-science-blue'),
         data: Object.values(seriesSelectedTypes),
         marker: { symbol: 'circle' },
-        name: 'Part d\'établissements',
+        name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-structures' }),
         tooltip: {
           pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-structures' }),
         },
@@ -212,24 +274,89 @@ function Policy() {
         {
           color: getCSSValue('--ouvrir-la-science-purple'),
           data: [
-            { name: 2016, y: 0 },
-            { name: 2017, y: 0 },
-            { name: 2018, y: 182 },
-            { name: 2019, y: 11944 },
-            { name: 2020, y: 13127 },
-            { name: 2021, y: 32762 },
-            { name: 2022, y: 50011 },
-            { name: 2023, y: 56125 },
-            { name: 2024, y: 61558 },
-            { name: 2025, y: 63079 },
-            { name: 2026, y: 63079 },
+            {
+              name: 2016,
+              y: 0.0,
+              y_abs: 0.0,
+              y_tot: 76074.0,
+              y_percent: 0.0,
+            },
+            {
+              name: 2017,
+              y: 0.0,
+              y_abs: 0.0,
+              y_tot: 76074.0,
+              y_percent: 0.0,
+            },
+            {
+              name: 2018,
+              y: 0.2392407393,
+              y_abs: 182.0,
+              y_tot: 76074.0,
+              y_percent: 0.2392407393,
+            },
+            {
+              name: 2019,
+              y: 15.7005021427,
+              y_abs: 11944.0,
+              y_tot: 76074.0,
+              y_percent: 15.7005021427,
+            },
+            {
+              name: 2020,
+              y: 17.255566948,
+              y_abs: 13127.0,
+              y_tot: 76074.0,
+              y_percent: 17.255566948,
+            },
+            {
+              name: 2021,
+              y: 43.0659620895,
+              y_abs: 32762.0,
+              y_tot: 76074.0,
+              y_percent: 43.0659620895,
+            },
+            {
+              name: 2022,
+              y: 65.7399374293,
+              y_abs: 50011.0,
+              y_tot: 76074.0,
+              y_percent: 65.7399374293,
+            },
+            {
+              name: 2023,
+              y: 73.7768488577,
+              y_abs: 56125.0,
+              y_tot: 76074.0,
+              y_percent: 73.7768488577,
+            },
+            {
+              name: 2024,
+              y: 80.9185792781,
+              y_abs: 61558.0,
+              y_tot: 76074.0,
+              y_percent: 80.9185792781,
+            },
+            {
+              name: 2025,
+              y: 82.9179483135,
+              y_abs: 63079.0,
+              y_tot: 76074.0,
+              y_percent: 82.9179483135,
+            },
+            {
+              name: 2026,
+              y: 82.9179483135,
+              y_abs: 63079.0,
+              y_tot: 76074.0,
+              y_percent: 82.9179483135,
+            },
           ],
           marker: { symbol: 'circle' },
-          name: 'Nombre de personnels permanents en 2023',
+          name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-researchers' }),
           tooltip: {
             pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-employees' }),
           },
-          yAxis: 1,
         },
       );
     }
