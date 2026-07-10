@@ -14,8 +14,9 @@ function useGetData(studyType, sponsor = '*') {
 
   async function getDataAxios() {
     const observationSnap = process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS;
-    const currentYear = parseInt(observationSnap.substring(0, 4), 10);
-    const yearMax = currentYear - 1;
+    let lastObservationYear = parseInt(observationSnap.substring(0, 4), 10);
+    if (!process.env.REACT_APP_LAST_OBSERVATION_CLINICAL_TRIALS.endsWith('Q4')) lastObservationYear -= 1;
+    const yearMax = lastObservationYear - 1;
     const yearMin = yearMax - 9;
     const queries = [];
     const querySponsors = getFetchOptions({
@@ -168,6 +169,8 @@ function useGetData(studyType, sponsor = '*') {
       dataGraph1,
       dataGraph2,
       sponsors,
+      yearMax,
+      yearMin,
     };
   }
 

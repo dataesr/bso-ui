@@ -41,14 +41,15 @@ function Chart({ hasFooter, hasComments, domain, id, studyType }) {
   const [sponsorType, setSponsorType] = useState('*');
 
   const { allData, isError, isLoading } = useGetData(studyType, sponsorType);
+  const { dataGraph2, yearMax, yearMin } = allData;
   const idWithDomainAndStudyType = withContext(id, domain, studyType);
 
   useEffect(() => {
-    if (allData?.dataGraph2) {
+    if (dataGraph2) {
       const field = sort === 'sort-percent' ? 'y_percent_results' : 'y_tot';
       const opts = {};
       // Deep copy
-      const dataCopy = JSON.parse(JSON.stringify(allData.dataGraph2));
+      const dataCopy = JSON.parse(JSON.stringify(dataGraph2));
       opts.series = dataCopy.map((serie) => ({
         ...serie,
         data: serie.data.sort((a, b) => b[field] - a[field]),
@@ -74,15 +75,15 @@ function Chart({ hasFooter, hasComments, domain, id, studyType }) {
         ),
       );
     }
-  }, [dataTitle, allData.dataGraph2, id, domain, intl, studyType, sort]);
+  }, [dataGraph2, dataTitle, id, domain, intl, studyType, sort]);
 
   useEffect(() => {
     const translationId = sponsorType !== '*' ? `app.sponsor.${sponsorType}` : '';
     const sponsorTypeTitle = sponsorType !== '*'
       ? ` (${intl.formatMessage({ id: translationId })})`
       : '';
-    setDataTitle({ sponsorTypeTitle });
-  }, [intl, sponsorType]);
+    setDataTitle({ sponsorTypeTitle, yearMax, yearMin });
+  }, [intl, sponsorType, yearMax, yearMin]);
 
   useEffect(() => {
     const opts = allData?.sponsorTypes || [];

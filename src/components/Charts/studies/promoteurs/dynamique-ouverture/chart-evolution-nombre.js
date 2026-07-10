@@ -29,7 +29,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
   const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraph2 } = allData;
+  const { dataGraph2, yearMax, yearMin } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
   const optionsGraph = chartOptions[id].getOptions(
@@ -46,6 +46,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={{ yearMax, yearMin }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}

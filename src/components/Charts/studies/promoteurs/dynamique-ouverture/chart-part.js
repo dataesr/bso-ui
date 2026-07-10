@@ -35,7 +35,7 @@ function Chart({ hasFooter, hasComments, domain, id, studyType }) {
   const [options, setOptions] = useState([]);
   const [sponsor, setSponsor] = useState('*');
   const { allData, isError, isLoading } = useGetData(studyType, sponsor);
-  const { dataGraph1 } = allData;
+  const { dataGraph1, yearMax, yearMin } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
 
@@ -62,6 +62,7 @@ function Chart({ hasFooter, hasComments, domain, id, studyType }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      dataTitle={{ yearMax, yearMin }}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
