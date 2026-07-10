@@ -163,6 +163,7 @@ function Policy() {
         },
       },
     ];
+    // @eric: MEP policy
     if (!isInProduction()) {
       optionsTmp.series.push(
         {
@@ -269,6 +270,7 @@ function Policy() {
         },
       },
     ];
+    // @eric: MEP policy
     if (!isInProduction()) {
       optionsSelectedTypesTmp.series.push(
         {
