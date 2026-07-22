@@ -531,7 +531,7 @@ function Policy() {
                 <h3 className='fs-16-24 marianne-bold'>
                   <FormattedMessage
                     id='other.policy.open-science-table.title'
-                    defaultMessage='Etablissements ayant publié en ligne un document de politique de science ouverte'
+                    defaultMessage="Etablissements disposant d'une politique de science ouverte"
                   />
                 </h3>
               </span>
@@ -561,7 +561,7 @@ function Policy() {
                 <tbody>
                   {data
                     .filter(
-                      (item) => item?.lien_vers_le_document_cadre_le_plus_recent,
+                      (item) => item?.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre,
                     )
                     .map((item) => (
                       <tr key={item.identifiant_ror}>
@@ -572,18 +572,22 @@ function Policy() {
                           }
                         </td>
                         <td>
-                          <a
-                            href={
-                              item.lien_vers_le_document_cadre_le_plus_recent
-                            }
-                            rel='noreferrer'
-                            target='_blank'
-                          >
-                            <FormattedMessage
-                              id='other.policy.link2'
-                              defaultMessage='lien'
-                            />
-                          </a>
+                          {
+                            item?.lien_vers_le_document_cadre_le_plus_recent ? (
+                              <a
+                                href={
+                                  item.lien_vers_le_document_cadre_le_plus_recent
+                                }
+                                rel='noreferrer'
+                                target='_blank'
+                              >
+                                <FormattedMessage
+                                  id='other.policy.link2'
+                                  defaultMessage='lien'
+                                />
+                              </a>
+                            ) : ''
+                          }
                         </td>
                       </tr>
                     ))}
