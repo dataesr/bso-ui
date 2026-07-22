@@ -178,7 +178,7 @@ function EssaisCliniques() {
                   <BSOChart
                     domain='health'
                     id='general.dynamique.chart-evolution-10-years'
-                    isDisplayed={isInLocal()}
+                    isDisplayed={!isInProduction()}
                     studyType='Interventional'
                   />
                 </QuestionSection>
