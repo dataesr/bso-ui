@@ -1,4 +1,4 @@
-import { Alert, Col, Container, Row } from '@dataesr/react-dsfr';
+import { Col, Container, Row } from '@dataesr/react-dsfr';
 import axios from 'axios';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
@@ -22,22 +22,15 @@ HCExportingData(Highcharts);
 
 const END_YEAR = new Date().getFullYear();
 const OPENDATASOFT_LIMIT = 100;
-const SELECTED_TYPES = ['Grand établissement', 'Université'];
 const START_YEAR = 2016;
 
 function Policy() {
   const [chartComments, setChartComments] = useState('');
-  const [chartCommentsSelectedTypes, setChartCommentsSelectedTypes] = useState('');
   const [data, setData] = useState([]);
   const [options, setOptions] = useState();
-  const [optionsSelectedTypes, setOptionsSelectedTypes] = useState();
-
   const intl = useIntl();
   const chartRef = useRef();
-  const chartRefSelectedTypes = useRef();
-
   const id = 'other.policy.open-science-policy';
-  const idSelectedTypes = 'other.policy.open-science-policy-selected-types';
 
   useEffect(() => {
     const getDataFromPage = async ({
@@ -72,17 +65,9 @@ function Policy() {
       (year) => year + START_YEAR,
     );
     const tmp = {};
-    const tmpSelectedTypes = {};
     years.forEach((year) => {
       tmp[year] = { y: 0, y_percent: 0, y_tot: data.length, y_abs: 0 };
-      tmpSelectedTypes[year] = {
-        y: 0,
-        y_percent: 0,
-        y_tot: data.length,
-        y_abs: 0,
-      };
     });
-    const dataFitered = data.filter((item) => SELECTED_TYPES.includes(item.type)).length;
     data.forEach((item) => {
       if (
         item?.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre
@@ -92,13 +77,6 @@ function Policy() {
             ',',
           )[0]
         ].y_abs += 1;
-        if (SELECTED_TYPES.includes(item.type)) {
-          tmpSelectedTypes[
-            item.premiere_annee_de_publication_annees_de_mises_a_jour_du_document_cadre.split(
-              ',',
-            )[0]
-          ].y_abs += 1;
-        }
       }
     });
     const series = {};
@@ -113,20 +91,6 @@ function Policy() {
         y_tot: data.length,
         y: (yAbs / data.length) * 100,
         y_percent: (yAbs / data.length) * 100,
-      };
-    });
-    const seriesSelectedTypes = {};
-    Object.keys(tmpSelectedTypes).forEach((year) => {
-      const yAbs = Object.keys(tmpSelectedTypes)
-        .filter((key) => key <= year)
-        .reduce((acc, curr) => acc + tmpSelectedTypes[curr].y_abs, 0);
-      seriesSelectedTypes[year] = {
-        name: year,
-        total: dataFitered,
-        y_abs: yAbs,
-        y_tot: dataFitered,
-        y: (yAbs / dataFitered) * 100,
-        y_percent: (yAbs / dataFitered) * 100,
       };
     });
     const optionsTmp = getGraphOptions({ id, intl });
@@ -163,7 +127,6 @@ function Policy() {
         },
       },
     ];
-    // @eric: MEP policy
     if (!isInProduction()) {
       optionsTmp.series.push(
         {
@@ -258,111 +221,6 @@ function Policy() {
     optionsTmp.exporting.chartOptions.legend.enabled = false;
     optionsTmp.tooltip.shared = true;
     setOptions(optionsTmp);
-    const optionsSelectedTypesTmp = { ...optionsTmp };
-    optionsSelectedTypesTmp.series = [
-      {
-        color: getCSSValue('--ouvrir-la-science-blue'),
-        data: Object.values(seriesSelectedTypes),
-        marker: { symbol: 'circle' },
-        name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-structures' }),
-        tooltip: {
-          pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-structures' }),
-        },
-      },
-    ];
-    // @eric: MEP policy
-    if (!isInProduction()) {
-      optionsSelectedTypesTmp.series.push(
-        {
-          color: getCSSValue('--ouvrir-la-science-purple'),
-          data: [
-            {
-              name: 2016,
-              y: 0.0,
-              y_abs: 0,
-              y_tot: 79790,
-              y_percent: 0.0,
-            },
-            {
-              name: 2017,
-              y: 0.0,
-              y_abs: 0,
-              y_tot: 79790,
-              y_percent: 0.0,
-            },
-            {
-              name: 2018,
-              y: 0.2280987592,
-              y_abs: 182,
-              y_tot: 79790,
-              y_percent: 0.2280987592,
-            },
-            {
-              name: 2019,
-              y: 14.9692943978,
-              y_abs: 11944,
-              y_tot: 79790,
-              y_percent: 14.9692943978,
-            },
-            {
-              name: 2020,
-              y: 16.4519363329,
-              y_abs: 13127,
-              y_tot: 79790,
-              y_percent: 16.4519363329,
-            },
-            {
-              name: 2021,
-              y: 41.4588294272,
-              y_abs: 33080,
-              y_tot: 79790,
-              y_percent: 41.4588294272,
-            },
-            {
-              name: 2022,
-              y: 64.1295901742,
-              y_abs: 51169,
-              y_tot: 79790,
-              y_percent: 64.1295901742,
-            },
-            {
-              name: 2023,
-              y: 71.7922045369,
-              y_abs: 57283,
-              y_tot: 79790,
-              y_percent: 71.7922045369,
-            },
-            {
-              name: 2024,
-              y: 79.7405689936,
-              y_abs: 63625,
-              y_tot: 79790,
-              y_percent: 79.7405689936,
-            },
-            {
-              name: 2025,
-              y: 81.6468229101,
-              y_abs: 65146,
-              y_tot: 79790,
-              y_percent: 81.6468229101,
-            },
-            {
-              name: 2026,
-              y: 82.9289384635,
-              y_abs: 66169,
-              y_tot: 79790,
-              y_percent: 82.9289384635,
-            },
-          ],
-          marker: { symbol: 'circle' },
-          name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-researchers' }),
-          tooltip: {
-            pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-employees' }),
-          },
-        },
-      );
-    }
-    setOptionsSelectedTypes(optionsSelectedTypesTmp);
   }, [data, intl]);
 
   useEffect(() => {
@@ -376,17 +234,7 @@ function Policy() {
         intl,
       ),
     );
-    setChartCommentsSelectedTypes(
-      customComments(
-        {
-          comments: {},
-          ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
-        },
-        idSelectedTypes,
-        intl,
-      ),
-    );
-  }, [id, idSelectedTypes, intl]);
+  }, [id, intl]);
 
   return (
     <div className='policy no-arrow-link'>
@@ -467,39 +315,6 @@ function Policy() {
               </ChartWrapper>
             </Col>
           </Row>
-          {!isInProduction() && (
-            <Row>
-              <Col n='12' className='fr-mt-5w'>
-                <Alert
-                  description={intl.formatMessage({
-                    id: 'app.commons.graph-warning',
-                  })}
-                />
-                <ChartWrapper
-                  chartRef={chartRefSelectedTypes}
-                  date='2025-04-02'
-                  domain=''
-                  hasComments={false}
-                  id={idSelectedTypes}
-                  isError={false}
-                  isLoading={false}
-                >
-                  <HighchartsReact
-                    highcharts={Highcharts}
-                    id={idSelectedTypes}
-                    options={optionsSelectedTypes}
-                    ref={chartRefSelectedTypes}
-                  />
-                  {chartCommentsSelectedTypes && (
-                    <GraphComments
-                      comments={chartCommentsSelectedTypes}
-                      hasFooter
-                    />
-                  )}
-                </ChartWrapper>
-              </Col>
-            </Row>
-          )}
           <Row>
             <Col n='12' className='fr-mt-5w'>
               <span>

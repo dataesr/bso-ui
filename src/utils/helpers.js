@@ -271,7 +271,7 @@ export function getSource(id, otherSources = []) {
   if (id.includes('publishing.journals')) {
     sources.push('Mir@bel');
   }
-  if (id.includes('other.policy.open-science-policy') || id.includes('other.policy.open-science-policy-selected-types')) {
+  if (id.includes('other.policy.open-science-policy')) {
     sources.push('MESRE DGESIP/DGRI - SIES - Enquête sur les moyens consacrés à la R&D');
   }
   sources.push('MESRE');
