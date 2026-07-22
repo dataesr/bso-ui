@@ -313,7 +313,7 @@ function Policy() {
               <Col n='12' className='fr-mt-5w'>
                 <ChartWrapper
                   chartRef={chartRef}
-                  date='2025-07-17'
+                  date='2026-07-20'
                   domain=''
                   hasComments={false}
                   id={idStaff}
@@ -337,7 +337,7 @@ function Policy() {
             <Col n='12' className='fr-mt-5w'>
               <ChartWrapper
                 chartRef={chartRef}
-                date='2025-07-17'
+                date='2026-07-20'
                 domain=''
                 hasComments={false}
                 id={id}
