@@ -95,7 +95,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local ENSAM'
-                href='https://bibliotheques.ensam.eu/page/barometre-de-la-science-ouverte'
+                href='https://atrium.ensam.eu/barometre-de-la-science-ouverte'
                 img='/declinaisons/ensam.png'
               />
             </Col>
@@ -277,7 +277,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local IFREMER'
-                href='https://blp.ifremer.fr/Services/Science-Ouverte/Declinaison-Ifremer-du-Barometre-francais-Science-Ouverte'
+                href='https://blp.ifremer.fr/Services/Science-Ouverte/Declinaison-Ifremer-du-Barometre-francais-de-la-Science-Ouverte'
                 img='/declinaisons/ifremer.svg'
               />
             </Col>
@@ -298,7 +298,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local upjv'
-                href='https://www.bu.u-picardie.fr/pages-daccueil-appui-a-la-recherche/barometre-upjv-de-la-science-ouverte/'
+                href='https://www.bu.u-picardie.fr/opac/article/science-ouverte/science_ouverte'
                 img='/declinaisons/upjv.png'
               />
             </Col>
@@ -347,7 +347,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local université Bordeaux'
-                href='https://bibliotheques.u-bordeaux.fr/Soutien-a-la-recherche/Acces-ouvert-Open-access/Barometre-de-la-science-ouverte/Barometre-de-la-Science-Ouverte-de-l-universite-de-Bordeaux'
+                href='https://bibliotheques.u-bordeaux.fr/appui-aux-chercheurs/publier-en-acces-ouvert/barometre-science-ouverte'
                 img='/declinaisons/universite-bordeaux.jpg'
               />
             </Col>
@@ -452,7 +452,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local UNîmes Nîmes Université'
-                href='https://www.unimes.fr/fr/vie-de-campus/bibliotheque/utiliser-la-bibliotheque/barom-sci-ouv-un.html'
+                href='https://www.scienceouverte.unilim.fr/outils-et-guides-pratiques/barometre-unilim-de-la-science-ouverte/'
                 img='/declinaisons/unimes.jpg'
               />
             </Col>
