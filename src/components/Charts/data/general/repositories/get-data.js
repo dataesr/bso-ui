@@ -47,7 +47,7 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
             y_abs: numberInRepo,
             y_tot: numberOfDatasets,
             year: el.key,
-            type: currentType,
+            type: intl.formatMessage({ id: `app.repositories.client-id.${currentType}`, defaultMessage: currentType }),
             bsoDomain,
           };
           types[currentType].total += numberInRepo;
@@ -104,7 +104,7 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
           y_rel:
             ((totalByYear[y] - currentCountByYear[y]) / totalByYear[y]) * 100,
           year: y,
-          type: 'Other',
+          type: intl.formatMessage({ id: 'app.commons.other', defaultMessage: 'Other' }),
         });
         totalOther += totalByYear[y] - currentCountByYear[y];
       });
