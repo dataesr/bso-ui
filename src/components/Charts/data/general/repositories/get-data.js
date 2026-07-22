@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 
 import { ES_DATACITE_API_URL, HEADERS } from '../../../../../config/config';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
-import { capitalize } from '../../../../../utils/helpers';
 
 function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
   const intl = useIntl();
