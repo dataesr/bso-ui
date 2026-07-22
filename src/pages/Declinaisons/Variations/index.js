@@ -459,7 +459,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local Université de Toulon'
-                href='https://www.univ-tln.fr/Barometre-toulonnais-de-la-science-ouverte.html'
+                href='https://www.univ-tln.fr/barometre-toulonnais-de-la-science-ouverte/'
                 img='/declinaisons/utln.png'
               />
             </Col>
