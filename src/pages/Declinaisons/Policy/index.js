@@ -26,11 +26,14 @@ const START_YEAR = 2016;
 
 function Policy() {
   const [chartComments, setChartComments] = useState('');
+  const [chartCommentsStaff, setChartCommentsStaff] = useState('');
   const [data, setData] = useState([]);
   const [options, setOptions] = useState();
+  const [optionsStaff, setOptionsStaff] = useState();
   const intl = useIntl();
   const chartRef = useRef();
   const id = 'other.policy.open-science-policy';
+  const idStaff = 'other.policy.open-science-policy-staff';
 
   useEffect(() => {
     const getDataFromPage = async ({
@@ -109,7 +112,7 @@ function Policy() {
         to: END_YEAR,
       },
     ];
-    optionsTmp.yAxis = { ...getPercentageYAxis() };
+    optionsTmp.yAxis = { ...getPercentageYAxis(), max: 100 };
     optionsTmp.legend.enabled = true;
     optionsTmp.plotOptions = {
       series: {
@@ -127,8 +130,12 @@ function Policy() {
         },
       },
     ];
+    optionsTmp.exporting.chartOptions.legend.enabled = false;
+    optionsTmp.tooltip.shared = true;
+    setOptions(optionsTmp);
     if (!isInProduction()) {
-      optionsTmp.series.push(
+      const optionsTmpStaff = { ...optionsTmp };
+      optionsTmpStaff.series = [
         {
           color: getCSSValue('--ouvrir-la-science-purple'),
           data: [
@@ -210,17 +217,17 @@ function Policy() {
               y_percent: 87.5428338011,
             },
           ],
-          marker: { symbol: 'circle' },
+          marker: { symbol: 'square' },
           name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-researchers' }),
           tooltip: {
             pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-employees' }),
           },
         },
-      );
+      ];
+      optionsTmpStaff.exporting.chartOptions.legend.enabled = false;
+      optionsTmpStaff.tooltip.shared = true;
+      setOptionsStaff(optionsTmpStaff);
     }
-    optionsTmp.exporting.chartOptions.legend.enabled = false;
-    optionsTmp.tooltip.shared = true;
-    setOptions(optionsTmp);
   }, [data, intl]);
 
   useEffect(() => {
@@ -234,7 +241,16 @@ function Policy() {
         intl,
       ),
     );
-  }, [id, intl]);
+    setChartCommentsStaff(
+      customComments(
+        {
+          comments: { first: optionsStaff?.series?.[0]?.data?.[2]?.y.toFixed(0), last: optionsStaff?.series?.[0]?.data?.[10]?.y.toFixed(0) },
+        },
+        idStaff,
+        intl,
+      ),
+    );
+  }, [id, idStaff, intl, optionsStaff]);
 
   return (
     <div className='policy no-arrow-link'>
@@ -292,6 +308,31 @@ function Policy() {
               />
             </Col>
           </Row>
+          {!isInProduction() && (
+            <Row>
+              <Col n='12' className='fr-mt-5w'>
+                <ChartWrapper
+                  chartRef={chartRef}
+                  date='2025-07-17'
+                  domain=''
+                  hasComments={false}
+                  id={idStaff}
+                  isError={false}
+                  isLoading={false}
+                >
+                  <HighchartsReact
+                    highcharts={Highcharts}
+                    id={id}
+                    options={optionsStaff}
+                    ref={chartRef}
+                  />
+                  {chartCommentsStaff && (
+                    <GraphComments comments={chartCommentsStaff} hasFooter />
+                  )}
+                </ChartWrapper>
+              </Col>
+            </Row>
+          )}
           <Row>
             <Col n='12' className='fr-mt-5w'>
               <ChartWrapper
@@ -346,7 +387,7 @@ function Policy() {
                 <h3 className='fs-16-24 marianne-bold'>
                   <FormattedMessage
                     id='other.policy.open-science-table.title'
-                    defaultMessage="Etablissements disposant d'une politique de science ouverte"
+                    defaultMessage='Etablissements ayant adopté une politique de science ouverte'
                   />
                 </h3>
               </span>
