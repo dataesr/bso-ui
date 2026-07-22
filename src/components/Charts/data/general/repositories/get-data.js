@@ -89,7 +89,7 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
           color = '#dedede';
         }
         dataGraph.push({
-          name: capitalize(entry[0]),
+          name: intl.formatMessage({ id: `app.repositories.client-id.${entry[0]}`, defaultMessage: entry[0] }),
           data: currentData,
           color,
         });
@@ -111,7 +111,7 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
       if (type !== 'format' && totalOther > 0) {
         dataGraph.unshift({
           // add at the beginning of the array
-          name: 'Other',
+          name: intl.formatMessage({ id: 'app.commons.other', defaultMessage: 'Other' }),
           data: otherData,
           color: 'grey',
         });
