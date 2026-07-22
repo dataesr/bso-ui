@@ -175,6 +175,9 @@ const chartComponents = {
   'general.dynamique.chart-evolution-all-historical': lazy(() => import(
     '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-all-historical'
   )),
+  'general.dynamique.chart-evolution-10-years': lazy(() => import(
+    '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-10-years'
+  )),
   'general.dynamique.chart-evolution-within-3-years-historical-academic': lazy(
     () => import(
       '../components/Charts/studies/general/dynamique-ouverture/chart-evolution-within-3-years-historical-academic'

@@ -2987,6 +2987,41 @@ export const chartOptions = {
       return options;
     },
   },
+  'general.dynamique.chart-evolution-10-years': {
+    getOptions: (id, intl, data, studyType) => {
+      const options = getGraphOptions({ id, intl, studyType });
+      options.chart.type = 'bar';
+      options.plotOptions = {
+        bar: {
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.0f} % ({point.y_abs} / {point.y_tot})',
+          },
+        },
+      };
+      options.yAxis = getPercentageYAxis(false);
+      options.yAxis.max = 100;
+      options.yAxis.min = 0;
+      options.yAxis.title = { text: intl.formatMessage({ id: 'app.communication-rate' }) };
+      options.xAxis = {
+        categories: data?.categories || [],
+        labels: { style: { color: getCSSValue('--g-800'), fontSize: '12px', fontWeight: 'bold' } },
+        lineWidth: 0,
+        tickWidth: 0,
+        title: { text: intl.formatMessage({ id: 'app.observation-dates' }) },
+        type: 'category',
+      };
+      options.series = data?.series || [];
+      options.legend = { enabled: false };
+      options.tooltip = {
+        headerFormat: '',
+        pointFormat: intl.formatMessage({
+          id: `${withtStudyType(id, studyType)}.tooltip`,
+        }),
+      };
+      return options;
+    },
+  },
   'general.dynamique.chart-evolution-within-3-years-historical-academic': {
     getOptions: (id, intl, data, studyType) => {
       const options = getGraphOptions({ id, intl, studyType });

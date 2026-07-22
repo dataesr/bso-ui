@@ -175,6 +175,12 @@ function EssaisCliniques() {
                     isDisplayed={isInLocal()}
                     studyType='Interventional'
                   />
+                  <BSOChart
+                    domain='health'
+                    id='general.dynamique.chart-evolution-10-years'
+                    isDisplayed={isInLocal()}
+                    studyType='Interventional'
+                  />
                 </QuestionSection>
 
                 <QuestionSection
