@@ -5939,6 +5939,7 @@ export const chartOptions = {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
+      options.legend.enabled = false;
       options.plotOptions = {
         column: {
           stacking: 'normal',

@@ -18,30 +18,21 @@ function useGetData() {
         const aggregations = response?.data?.aggregations ?? {};
         const categories = Object.keys(aggregations);
         const total = response?.data?.hits?.total?.value ?? 0;
-        const absence = [];
-        const presence = [];
+        let presence = [];
         categories.forEach((category) => {
-          absence.push({
-            source: category,
-            y: aggregations?.[category]?.buckets?.find((item) => item.key === 0)?.doc_count ?? 0,
-            percent: ((aggregations?.[category]?.buckets?.find((item) => item.key === 0)?.doc_count ?? 0) / total) * 100,
-          });
           presence.push({
+            percent: ((aggregations?.[category]?.buckets?.find((item) => item.key === 1)?.doc_count ?? 0) / total) * 100,
             source: category,
             y: aggregations?.[category]?.buckets?.find((item) => item.key === 1)?.doc_count ?? 0,
-            percent: ((aggregations?.[category]?.buckets?.find((item) => item.key === 1)?.doc_count ?? 0) / total) * 100,
           });
         });
+        presence = presence.sort((a, b) => b.y - a.y);
         const series = [{
-          color: getCSSValue('--publication-100'),
-          data: absence,
-          name: 'Absence',
-        }, {
           color: getCSSValue('--green-soft-100'),
           data: presence,
           name: 'Présence',
         }];
-        setData({ categories, series });
+        setData({ categories: presence.map((p) => p.source), series });
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);

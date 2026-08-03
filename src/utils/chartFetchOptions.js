@@ -3081,6 +3081,11 @@ export default function getFetchOptions({
             missing: false,
           },
         },
+      },
+    }),
+    publishingJournalsWikipedia: () => ({
+      size: 0,
+      aggs: {
         'Wikipedia-en': {
           terms: {
             field: 'liens.Wikipedia-en',
