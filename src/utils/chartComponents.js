@@ -418,6 +418,7 @@ const chartComponents = {
     '../components/Charts/publications/others/preprints/chart-by-publisher'
   )),
   'publishing.journals.sources': lazy(() => import('../components/Charts/publishing/journals/sources')),
+  'publishing.journals.sources.wikipedia': lazy(() => import('../components/Charts/publishing/journals/sources-wikipedia')),
   'publishing.journals.years': lazy(() => import('../components/Charts/publishing/journals/years')),
 };
 

@@ -5950,6 +5950,21 @@ export const chartOptions = {
       return options;
     },
   },
+  'publishing.journals.sources.wikipedia': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+        },
+      };
+      options.series = data?.series ?? {};
+      options.xAxis = { categories: data?.categories ?? [] };
+      return options;
+    },
+  },
   'publishing.journals.years': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions({ id, intl });

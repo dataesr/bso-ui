@@ -269,6 +269,7 @@ function Publishing() {
                   intlKey='app.publishing.journals.sources'
                 >
                   <BSOChart id='publishing.journals.sources' />
+                  <BSOChart id='publishing.journals.sources.wikipedia' />
                   <BSOChart id='publishing.journals.years' />
                 </QuestionSection>
               </GraphContent>
