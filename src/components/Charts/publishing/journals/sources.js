@@ -36,6 +36,7 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   return (
     <ChartWrapper
       chartRef={chartRef}
+      date={process.env.REACT_APP_PUBLISHING_UPDATE}
       domain={domain}
       hasComments={false}
       hasFooter={hasFooter}
