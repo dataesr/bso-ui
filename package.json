@@ -1,6 +1,6 @@
 {
   "name": "bso-ui",
-  "version": "1.18.37",
+  "version": "1.18.38",
   "private": true,
   "dependencies": {
     "@dataesr/react-dsfr": "^3.10.2",
