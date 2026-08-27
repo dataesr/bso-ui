@@ -118,12 +118,16 @@ export default function NationalOrcid() {
                   backgroundColor={blueSoft50}
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.users'
+                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart
                     id='orcid.general.chart-indicator-these-year'
                     isDisplayed={!isInProduction()}
                   />
-                  <BSOChart id='orcid.general.chart-evolution' />
+                  <BSOChart
+                    id='orcid.general.chart-evolution'
+                    isDisplayed={!isInProduction()}
+                  />
                   <BSOChart
                     id='orcid.general.creation-by-year'
                     isDisplayed={!isInProduction()}
@@ -132,13 +136,17 @@ export default function NationalOrcid() {
                     id='orcid.general.chart-indicator-these-discipline'
                     isDisplayed={!isInProduction()}
                   />
-                  <BSOChart id='orcid.general.chart-indicator-active' />
+                  <BSOChart
+                    id='orcid.general.chart-indicator-active'
+                    isDisplayed={!isInProduction()}
+                  />
                 </QuestionSection>
                 <QuestionSection
                   anchorId='general.publications'
                   backgroundColor={blueSoft25}
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.publications'
+                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='orcid.general.chart-indicator-work' />
                   <BSOChart id='orcid.general.chart-indicator-active-work' />
@@ -150,6 +158,7 @@ export default function NationalOrcid() {
                   backgroundColor={blueSoft50}
                   glossaryKeys={['embargo', 'barriere-mobile']}
                   intlKey='app.national-orcid.general.affiliations'
+                  isDisplayed={!isInProduction()}
                 >
                   <BSOChart id='orcid.general.chart-indicator-affiliationsource' />
                 </QuestionSection>
