@@ -40,7 +40,8 @@ function Policy() {
       limit = OPENDATASOFT_LIMIT,
       offset = 0,
     } = {}) => {
-      let url = 'https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets';
+      let url =
+        'https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets';
       url += `/fr-esr-politiques-so-etablissements/records?limit=${limit}&offset=${offset}&order_by=uo_lib`;
       const response = await axios.get(url, {
         headers: { accept: 'application/json; charset=utf-8' },
@@ -124,110 +125,116 @@ function Policy() {
         color: getCSSValue('--ouvrir-la-science-blue'),
         data: Object.values(series),
         marker: { symbol: 'circle' },
-        name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-structures' }),
+        name: intl.formatMessage({
+          id: 'other.policy.open-science-policy.legend-structures',
+        }),
         tooltip: {
-          pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-structures' }),
+          pointFormat: intl.formatMessage({
+            id: 'other.policy.open-science-policy.tooltip-structures',
+          }),
         },
       },
     ];
     optionsTmp.exporting.chartOptions.legend.enabled = false;
     optionsTmp.tooltip.shared = true;
     setOptions(optionsTmp);
-    if (!isInProduction()) {
-      const optionsTmpStaff = { ...optionsTmp };
-      optionsTmpStaff.series = [
-        {
-          color: getCSSValue('--ouvrir-la-science-purple'),
-          data: [
-            {
-              name: 2016,
-              y: 3.9410879218,
-              y_abs: 5210,
-              y_tot: 132197,
-              y_percent: 3.9410879218,
-            },
-            {
-              name: 2017,
-              y: 3.9410879218,
-              y_abs: 5210,
-              y_tot: 132197,
-              y_percent: 3.9410879218,
-            },
-            {
-              name: 2018,
-              y: 4.0787612427,
-              y_abs: 5392,
-              y_tot: 132197,
-              y_percent: 4.0787612427,
-            },
-            {
-              name: 2019,
-              y: 29.6292654145,
-              y_abs: 39169,
-              y_tot: 132197,
-              y_percent: 29.6292654145,
-            },
-            {
-              name: 2020,
-              y: 31.43944265,
-              y_abs: 41562,
-              y_tot: 132197,
-              y_percent: 31.43944265,
-            },
-            {
-              name: 2021,
-              y: 54.7970074964,
-              y_abs: 72440,
-              y_tot: 132197,
-              y_percent: 54.7970074964,
-            },
-            {
-              name: 2022,
-              y: 71.4010151516,
-              y_abs: 94390,
-              y_tot: 132197,
-              y_percent: 71.4010151516,
-            },
-            {
-              name: 2023,
-              y: 76.777839134,
-              y_abs: 101498,
-              y_tot: 132197,
-              y_percent: 76.777839134,
-            },
-            {
-              name: 2024,
-              y: 85.3309833052,
-              y_abs: 112805,
-              y_tot: 132197,
-              y_percent: 85.3309833052,
-            },
-            {
-              name: 2025,
-              y: 86.4815389154,
-              y_abs: 114326,
-              y_tot: 132197,
-              y_percent: 86.4815389154,
-            },
-            {
-              name: 2026,
-              y: 87.5428338011,
-              y_abs: 115729,
-              y_tot: 132197,
-              y_percent: 87.5428338011,
-            },
-          ],
-          marker: { symbol: 'square' },
-          name: intl.formatMessage({ id: 'other.policy.open-science-policy.legend-researchers' }),
-          tooltip: {
-            pointFormat: intl.formatMessage({ id: 'other.policy.open-science-policy.tooltip-employees' }),
+    const optionsTmpStaff = { ...optionsTmp };
+    optionsTmpStaff.series = [
+      {
+        color: getCSSValue('--ouvrir-la-science-purple'),
+        data: [
+          {
+            name: 2016,
+            y: 3.9410879218,
+            y_abs: 5210,
+            y_tot: 132197,
+            y_percent: 3.9410879218,
           },
+          {
+            name: 2017,
+            y: 3.9410879218,
+            y_abs: 5210,
+            y_tot: 132197,
+            y_percent: 3.9410879218,
+          },
+          {
+            name: 2018,
+            y: 4.0787612427,
+            y_abs: 5392,
+            y_tot: 132197,
+            y_percent: 4.0787612427,
+          },
+          {
+            name: 2019,
+            y: 29.6292654145,
+            y_abs: 39169,
+            y_tot: 132197,
+            y_percent: 29.6292654145,
+          },
+          {
+            name: 2020,
+            y: 31.43944265,
+            y_abs: 41562,
+            y_tot: 132197,
+            y_percent: 31.43944265,
+          },
+          {
+            name: 2021,
+            y: 54.7970074964,
+            y_abs: 72440,
+            y_tot: 132197,
+            y_percent: 54.7970074964,
+          },
+          {
+            name: 2022,
+            y: 71.4010151516,
+            y_abs: 94390,
+            y_tot: 132197,
+            y_percent: 71.4010151516,
+          },
+          {
+            name: 2023,
+            y: 76.777839134,
+            y_abs: 101498,
+            y_tot: 132197,
+            y_percent: 76.777839134,
+          },
+          {
+            name: 2024,
+            y: 85.3309833052,
+            y_abs: 112805,
+            y_tot: 132197,
+            y_percent: 85.3309833052,
+          },
+          {
+            name: 2025,
+            y: 86.4815389154,
+            y_abs: 114326,
+            y_tot: 132197,
+            y_percent: 86.4815389154,
+          },
+          {
+            name: 2026,
+            y: 87.5428338011,
+            y_abs: 115729,
+            y_tot: 132197,
+            y_percent: 87.5428338011,
+          },
+        ],
+        marker: { symbol: 'square' },
+        name: intl.formatMessage({
+          id: 'other.policy.open-science-policy.legend-researchers',
+        }),
+        tooltip: {
+          pointFormat: intl.formatMessage({
+            id: 'other.policy.open-science-policy.tooltip-employees',
+          }),
         },
-      ];
-      optionsTmpStaff.exporting.chartOptions.legend.enabled = false;
-      optionsTmpStaff.tooltip.shared = true;
-      setOptionsStaff(optionsTmpStaff);
-    }
+      },
+    ];
+    optionsTmpStaff.exporting.chartOptions.legend.enabled = false;
+    optionsTmpStaff.tooltip.shared = true;
+    setOptionsStaff(optionsTmpStaff);
   }, [data, intl]);
 
   useEffect(() => {
@@ -244,7 +251,10 @@ function Policy() {
     setChartCommentsStaff(
       customComments(
         {
-          comments: { first: optionsStaff?.series?.[0]?.data?.[2]?.y.toFixed(0), last: optionsStaff?.series?.[0]?.data?.[10]?.y.toFixed(0) },
+          comments: {
+            first: optionsStaff?.series?.[0]?.data?.[2]?.y.toFixed(0),
+            last: optionsStaff?.series?.[0]?.data?.[10]?.y.toFixed(0),
+          },
         },
         idStaff,
         intl,
@@ -308,6 +318,29 @@ function Policy() {
               />
             </Col>
           </Row>
+          <Row>
+            <Col n='12' className='fr-mt-5w'>
+              <ChartWrapper
+                chartRef={chartRef}
+                date='2026-07-20'
+                domain=''
+                hasComments={false}
+                id={idStaff}
+                isError={false}
+                isLoading={false}
+              >
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  id={id}
+                  options={optionsStaff}
+                  ref={chartRef}
+                />
+                {chartCommentsStaff && (
+                  <GraphComments comments={chartCommentsStaff} hasFooter />
+                )}
+              </ChartWrapper>
+            </Col>
+          </Row>
           {!isInProduction() && (
             <Row>
               <Col n='12' className='fr-mt-5w'>
@@ -316,46 +349,23 @@ function Policy() {
                   date='2026-07-20'
                   domain=''
                   hasComments={false}
-                  id={idStaff}
+                  id={id}
                   isError={false}
                   isLoading={false}
                 >
                   <HighchartsReact
                     highcharts={Highcharts}
                     id={id}
-                    options={optionsStaff}
+                    options={options}
                     ref={chartRef}
                   />
-                  {chartCommentsStaff && (
-                    <GraphComments comments={chartCommentsStaff} hasFooter />
+                  {chartComments && (
+                    <GraphComments comments={chartComments} hasFooter />
                   )}
                 </ChartWrapper>
               </Col>
             </Row>
           )}
-          <Row>
-            <Col n='12' className='fr-mt-5w'>
-              <ChartWrapper
-                chartRef={chartRef}
-                date='2026-07-20'
-                domain=''
-                hasComments={false}
-                id={id}
-                isError={false}
-                isLoading={false}
-              >
-                <HighchartsReact
-                  highcharts={Highcharts}
-                  id={id}
-                  options={options}
-                  ref={chartRef}
-                />
-                {chartComments && (
-                  <GraphComments comments={chartComments} hasFooter />
-                )}
-              </ChartWrapper>
-            </Col>
-          </Row>
           <Row>
             <Col n='12' className='fr-mt-5w'>
               <span>
@@ -403,22 +413,22 @@ function Policy() {
                           }
                         </td>
                         <td>
-                          {
-                            item?.lien_vers_le_document_cadre_le_plus_recent ? (
-                              <a
-                                href={
-                                  item.lien_vers_le_document_cadre_le_plus_recent
-                                }
-                                rel='noreferrer'
-                                target='_blank'
-                              >
-                                <FormattedMessage
-                                  id='other.policy.link2'
-                                  defaultMessage='lien'
-                                />
-                              </a>
-                            ) : ''
-                          }
+                          {item?.lien_vers_le_document_cadre_le_plus_recent ? (
+                            <a
+                              href={
+                                item.lien_vers_le_document_cadre_le_plus_recent
+                              }
+                              rel='noreferrer'
+                              target='_blank'
+                            >
+                              <FormattedMessage
+                                id='other.policy.link2'
+                                defaultMessage='lien'
+                              />
+                            </a>
+                          ) : (
+                            ''
+                          )}
                         </td>
                       </tr>
                     ))}
