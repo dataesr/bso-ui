@@ -23,13 +23,12 @@ const OPENDATASOFT_LIMIT = 100;
 const START_YEAR = 2016;
 
 function Chart() {
-  const [chartCommentsStaff, setChartCommentsStaff] = useState('');
+  const [chartComments, setChartComments] = useState('');
   const [data, setData] = useState([]);
-  const [optionsStaff, setOptionsStaff] = useState();
+  const [options, setOptions] = useState();
   const intl = useIntl();
   const chartRef = useRef();
   const id = 'other.policy.open-science-policy';
-  const idStaff = 'other.policy.open-science-policy-staff';
 
   useEffect(() => {
     const getDataFromPage = async ({
@@ -133,119 +132,21 @@ function Chart() {
     ];
     optionsTmp.exporting.chartOptions.legend.enabled = false;
     optionsTmp.tooltip.shared = true;
-    const optionsTmpStaff = { ...optionsTmp };
-    optionsTmpStaff.series = [
-      {
-        color: getCSSValue('--ouvrir-la-science-purple'),
-        data: [
-          {
-            name: 2016,
-            y: 3.9410879218,
-            y_abs: 5210,
-            y_tot: 132197,
-            y_percent: 3.9410879218,
-          },
-          {
-            name: 2017,
-            y: 3.9410879218,
-            y_abs: 5210,
-            y_tot: 132197,
-            y_percent: 3.9410879218,
-          },
-          {
-            name: 2018,
-            y: 4.0787612427,
-            y_abs: 5392,
-            y_tot: 132197,
-            y_percent: 4.0787612427,
-          },
-          {
-            name: 2019,
-            y: 29.6292654145,
-            y_abs: 39169,
-            y_tot: 132197,
-            y_percent: 29.6292654145,
-          },
-          {
-            name: 2020,
-            y: 31.43944265,
-            y_abs: 41562,
-            y_tot: 132197,
-            y_percent: 31.43944265,
-          },
-          {
-            name: 2021,
-            y: 54.7970074964,
-            y_abs: 72440,
-            y_tot: 132197,
-            y_percent: 54.7970074964,
-          },
-          {
-            name: 2022,
-            y: 71.4010151516,
-            y_abs: 94390,
-            y_tot: 132197,
-            y_percent: 71.4010151516,
-          },
-          {
-            name: 2023,
-            y: 76.777839134,
-            y_abs: 101498,
-            y_tot: 132197,
-            y_percent: 76.777839134,
-          },
-          {
-            name: 2024,
-            y: 85.3309833052,
-            y_abs: 112805,
-            y_tot: 132197,
-            y_percent: 85.3309833052,
-          },
-          {
-            name: 2025,
-            y: 86.4815389154,
-            y_abs: 114326,
-            y_tot: 132197,
-            y_percent: 86.4815389154,
-          },
-          {
-            name: 2026,
-            y: 87.5428338011,
-            y_abs: 115729,
-            y_tot: 132197,
-            y_percent: 87.5428338011,
-          },
-        ],
-        marker: { symbol: 'square' },
-        name: intl.formatMessage({
-          id: 'other.policy.open-science-policy.legend-researchers',
-        }),
-        tooltip: {
-          pointFormat: intl.formatMessage({
-            id: 'other.policy.open-science-policy.tooltip-employees',
-          }),
-        },
-      },
-    ];
-    optionsTmpStaff.exporting.chartOptions.legend.enabled = false;
-    optionsTmpStaff.tooltip.shared = true;
-    setOptionsStaff(optionsTmpStaff);
+    setOptions(optionsTmp);
   }, [data, intl]);
 
   useEffect(() => {
-    setChartCommentsStaff(
+    setChartComments(
       customComments(
         {
-          comments: {
-            first: optionsStaff?.series?.[0]?.data?.[2]?.y.toFixed(0),
-            last: optionsStaff?.series?.[0]?.data?.[10]?.y.toFixed(0),
-          },
+          comments: {},
+          ctas: ['https://hal-lara.archives-ouvertes.fr/hal-04842977'],
         },
-        idStaff,
+        id,
         intl,
       ),
     );
-  }, [idStaff, intl, optionsStaff]);
+  }, [id, intl]);
 
   return (
     <ChartWrapper
@@ -253,18 +154,18 @@ function Chart() {
       date='2026-07-20'
       domain=''
       hasComments={false}
-      id={idStaff}
+      id={id}
       isError={false}
       isLoading={false}
     >
       <HighchartsReact
         highcharts={Highcharts}
-        id={idStaff}
-        options={optionsStaff}
+        id={id}
+        options={options}
         ref={chartRef}
       />
-      {chartCommentsStaff && (
-        <GraphComments comments={chartCommentsStaff} hasFooter />
+      {chartComments && (
+        <GraphComments comments={chartComments} hasFooter />
       )}
     </ChartWrapper>
   );
