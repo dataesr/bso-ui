@@ -240,6 +240,35 @@ function HomePage() {
                 </Container>
               </HomeSection>
             </Col>
+            <Col n='12 xl-10' offset='xl-2'>
+              <HomeSection
+                link={{
+                  href: '/declinaisons/politique-etablissements',
+                  label: <FormattedMessage id='app.baro-policy.details' />,
+                }}
+                title={
+                  <FormattedMessage id='app.header.nav.policy' />
+                }
+                introText={(
+                  <GlossaryFormattedMessage
+                    intlKey='other.policy.open-science-policy-contact'
+                    ctas={[
+                      'https://hal-lara.archives-ouvertes.fr/hal-04842977',
+                      'https://www.ouvrirlascience.fr',
+                      'mailto:coso@recherche.gouv.fr',
+                    ]}
+                  />
+                )}
+              >
+                <Container fluid>
+                  <Row gutters alignItems='top'>
+                    <Col n='12'>
+                      <BSOChart id='other.policy.open-science-policy-staff' />
+                    </Col>
+                  </Row>
+                </Container>
+              </HomeSection>
+            </Col>
             <Col n='12'>
               <ToolCardsSection />
             </Col>

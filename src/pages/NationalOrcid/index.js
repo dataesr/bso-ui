@@ -72,10 +72,7 @@ export default function NationalOrcid() {
                   <FormattedMessage id='app.baro-national.orcid.title' />
                 </h1>
                 <p>
-                  <GlossaryFormattedMessage
-                    intlKey='app.orcid.intro'
-                    glossaryKeys={[]}
-                  />
+                  <GlossaryFormattedMessage intlKey='app.orcid.intro' />
                 </p>
               </Col>
             </Row>

@@ -58,10 +58,7 @@ export default function NationalThesis() {
                   <FormattedMessage id='app.baro-national.thesis.title' />
                 </h1>
                 <p>
-                  <GlossaryFormattedMessage
-                    intlKey='app.thesis.intro'
-                    glossaryKeys={[]}
-                  />
+                  <GlossaryFormattedMessage intlKey='app.thesis.intro' />
                 </p>
               </Col>
             </Row>

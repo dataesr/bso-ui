@@ -7,6 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 import { useEffect, useRef, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import BSOChart from '../../../components/Charts';
 import GraphComments from '../../../components/Charts/graph-comments';
 import ChartWrapper from '../../../components/ChartWrapper';
 import customComments from '../../../utils/chartComments';
@@ -14,7 +15,6 @@ import { getGraphOptions } from '../../../utils/chartOptions';
 import {
   getCSSValue,
   getPercentageYAxis,
-  isInProduction,
 } from '../../../utils/helpers';
 
 HCExporting(Highcharts);
@@ -26,7 +26,7 @@ const START_YEAR = 2016;
 
 function Policy() {
   const [chartComments, setChartComments] = useState('');
-  const [chartCommentsStaff, setChartCommentsStaff] = useState('');
+  // const [chartCommentsStaff, setChartCommentsStaff] = useState('');
   const [data, setData] = useState([]);
   const [options, setOptions] = useState();
   const [optionsStaff, setOptionsStaff] = useState();
@@ -248,18 +248,18 @@ function Policy() {
         intl,
       ),
     );
-    setChartCommentsStaff(
-      customComments(
-        {
-          comments: {
-            first: optionsStaff?.series?.[0]?.data?.[2]?.y.toFixed(0),
-            last: optionsStaff?.series?.[0]?.data?.[10]?.y.toFixed(0),
-          },
-        },
-        idStaff,
-        intl,
-      ),
-    );
+    // setChartCommentsStaff(
+    //   customComments(
+    //     {
+    //       comments: {
+    //         first: optionsStaff?.series?.[0]?.data?.[2]?.y.toFixed(0),
+    //         last: optionsStaff?.series?.[0]?.data?.[10]?.y.toFixed(0),
+    //       },
+    //     },
+    //     idStaff,
+    //     intl,
+    //   ),
+    // );
   }, [id, idStaff, intl, optionsStaff]);
 
   return (
@@ -320,52 +320,32 @@ function Policy() {
           </Row>
           <Row>
             <Col n='12' className='fr-mt-5w'>
+              <BSOChart id='other.policy.open-science-policy-staff' />
+            </Col>
+          </Row>
+          <Row>
+            <Col n='12' className='fr-mt-5w'>
               <ChartWrapper
                 chartRef={chartRef}
                 date='2026-07-20'
                 domain=''
                 hasComments={false}
-                id={idStaff}
+                id={id}
                 isError={false}
                 isLoading={false}
               >
                 <HighchartsReact
                   highcharts={Highcharts}
                   id={id}
-                  options={optionsStaff}
+                  options={options}
                   ref={chartRef}
                 />
-                {chartCommentsStaff && (
-                  <GraphComments comments={chartCommentsStaff} hasFooter />
+                {chartComments && (
+                  <GraphComments comments={chartComments} hasFooter />
                 )}
               </ChartWrapper>
             </Col>
           </Row>
-          {!isInProduction() && (
-            <Row>
-              <Col n='12' className='fr-mt-5w'>
-                <ChartWrapper
-                  chartRef={chartRef}
-                  date='2026-07-20'
-                  domain=''
-                  hasComments={false}
-                  id={id}
-                  isError={false}
-                  isLoading={false}
-                >
-                  <HighchartsReact
-                    highcharts={Highcharts}
-                    id={id}
-                    options={options}
-                    ref={chartRef}
-                  />
-                  {chartComments && (
-                    <GraphComments comments={chartComments} hasFooter />
-                  )}
-                </ChartWrapper>
-              </Col>
-            </Row>
-          )}
           <Row>
             <Col n='12' className='fr-mt-5w'>
               <span>

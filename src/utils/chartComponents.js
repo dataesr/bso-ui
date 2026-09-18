@@ -420,6 +420,8 @@ const chartComponents = {
   'publishing.journals.sources': lazy(() => import('../components/Charts/publishing/journals/sources')),
   'publishing.journals.sources.wikipedia': lazy(() => import('../components/Charts/publishing/journals/sources-wikipedia')),
   'publishing.journals.years': lazy(() => import('../components/Charts/publishing/journals/years')),
+  // Policy
+  'other.policy.open-science-policy-staff': lazy(() => import('../components/Charts/policy/staff/staff')),
 };
 
 export default chartComponents;

@@ -90,10 +90,7 @@ function Publishing() {
                   <FormattedMessage id='app.publishing.title' />
                 </h1>
                 <p>
-                  <GlossaryFormattedMessage
-                    intlKey='app.publishing.intro'
-                    glossaryKeys={[]}
-                  />
+                  <GlossaryFormattedMessage intlKey='app.publishing.intro' />
                 </p>
               </Col>
             </Row>

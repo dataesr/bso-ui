@@ -10,7 +10,7 @@ import GlossaryEntry from './GlossaryEntry';
 
 function GlossaryFormattedMessage({
   ctas = [],
-  glossaryKeys,
+  glossaryKeys = [],
   intlKey,
   values = {},
 }) {
