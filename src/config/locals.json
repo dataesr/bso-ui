@@ -1842,6 +1842,14 @@
     "startYear": 2020,
     "comment": "OUTDATED, use 938501681 instead"
   },
+  "201220430J": {
+    "name": "Laboratoire Jean-Alexandre Dieudonné (LJAD)",
+    "commentsName": "du LJAD",
+    "commentsNameEN": "of LJAD",
+    "paysage": "5gqzw",
+    "ror": "https://ror.org/0274zdr66",
+    "scale": "laboratory"
+  },
   "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
     "commentsName": "du pôle A2F",
