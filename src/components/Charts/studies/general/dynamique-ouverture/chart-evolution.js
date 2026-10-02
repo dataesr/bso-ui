@@ -8,6 +8,7 @@ import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useSearchParams } from 'react-router-dom';
 
 import customComments from '../../../../../utils/chartComments';
 import { chartOptions } from '../../../../../utils/chartOptions';
@@ -39,10 +40,12 @@ function Chart({
 }) {
   const chartRef = useRef();
   const intl = useIntl();
+  const [searchParams] = useSearchParams();
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);
+  const bsoLocalAffiliation = searchParams.get('bsoLocalAffiliation') ?? '*';
   const [sponsor, setSponsor] = useState('*');
-  const { allData, isError, isLoading } = useGetData(studyType, sponsor);
+  const { allData, isError, isLoading } = useGetData(studyType, sponsor, bsoLocalAffiliation);
   const { dataGraph1, years10Max, years10Min } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
@@ -79,7 +82,7 @@ function Chart({
       studyType={studyType}
     >
       <SearchableSelect
-        isDisplayed={!isInProduction()}
+        isDisplayed={!isInProduction() && bsoLocalAffiliation === '*'}
         label={intl.formatMessage({ id: 'app.sponsor-filter-label' })}
         onChange={(e) => (e.length > 0 ? setSponsor(e) : null)}
         options={options}

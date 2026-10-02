@@ -1016,6 +1016,7 @@ export default function getFetchOptions({
     studiesDynamiqueOuvertureSponsor: ([
       studyType,
       sponsor,
+      bsoLocalAffiliation,
       sponsorType,
       yearMin,
       yearMax,
@@ -1046,6 +1047,11 @@ export default function getFetchOptions({
             {
               wildcard: {
                 'lead_sponsor_normalized.keyword': sponsor,
+              },
+            },
+            {
+              wildcard: {
+                'ror.keyword': bsoLocalAffiliation,
               },
             },
             {

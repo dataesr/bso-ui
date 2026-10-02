@@ -333,7 +333,13 @@ export function isInProduction() {
 function getLocalAffiliation(urlSearchParams) {
   // Should adapt the graph only in iframes (aka integration url) or publishing part
   // Prevent seeing the whole website for a bsoLocalAffiliation
-  if (!window.location.href.includes('/integration/') && !(window.location.href.includes(urls.publishing.fr) || window.location.href.includes(urls.publishing.en))) {
+  if ((!window.location.href.includes('/integration/')
+    // BSO Edition because the bsoLocalaffiliation will be forced later
+    && !window.location.href.includes(urls.publishing.fr)
+    && !window.location.href.includes(urls.publishing.en))
+    // No bsoLocalAffiliation is taken into consideration for health graphs, this is managed in a different way
+    || (window.location.href.includes('/integration/') && window.location.href.includes('/health/'))
+  ) {
     return undefined;
   }
   // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json

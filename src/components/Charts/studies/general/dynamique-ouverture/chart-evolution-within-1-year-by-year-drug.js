@@ -27,7 +27,7 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { allData, isError, isLoading } = useGetData(studyType, '*', true);
+  const { allData, isError, isLoading } = useGetData(studyType, '*', '*', true);
   const { dataGraph6 } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
