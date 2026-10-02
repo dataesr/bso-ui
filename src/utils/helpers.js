@@ -336,10 +336,12 @@ function getLocalAffiliation(urlSearchParams) {
   if (!window.location.href.includes('/integration/') && !(window.location.href.includes(urls.publishing.fr) || window.location.href.includes(urls.publishing.en))) {
     return undefined;
   }
+  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.replace('https://ror.org/', '') || undefined;
+  // If the graph is about clinical trials, only ROR is accepted without transformation needed
+  if (window.location.href.includes('/health/')) return bsoLocalAffiliation;
   // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json
   // If a key is present in both files, locals.json is the one the should be kept
   const allNames = { ...openalex, ...locals };
-  let bsoLocalAffiliation = urlSearchParams?.get('bsoLocalAffiliation')?.replace('https://ror.org/', '') || undefined;
   // If bsoLocalAffiliation is a key in the config files, return it as it is
   if (
     Object.keys(allNames)
