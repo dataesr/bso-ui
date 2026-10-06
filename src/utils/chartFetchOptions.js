@@ -1051,7 +1051,7 @@ export default function getFetchOptions({
             },
             {
               wildcard: {
-                'bso_local_affiliations.keyword': bsoLocalAffiliation.replace('https://ror.org/', ''),
+                'bso_local_affiliations.keyword': bsoLocalAffiliation.replace('https://ror.org/', '').toLowerCase(),
               },
             },
             {
