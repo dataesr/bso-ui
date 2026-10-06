@@ -405,14 +405,13 @@
     "scale": "university"
   },
   "192903466": {
-    "name": "Université de Brest (UBO)",
+    "name": "Université de Bretagne Occidentale (UBO)",
     "commentsName": "de l'UBO",
     "commentsNameEN": "of UBO",
     "paysage": "06SE7",
     "ror": "https://ror.org/01b8h3982",
     "scale": "university",
-    "startYear": 2017,
-    "alias": "941298317"
+    "startYear": 2017
   },
   "193000635": {
     "name": "IMT Mines Alès",
@@ -494,6 +493,16 @@
     "paysage": "851ij",
     "scale": "institution",
     "ror": "https://ror.org/03c7zyj82"
+  },
+  "194210951": {
+    "name": "Université Jean Monnet EPE (UJM)",
+    "commentsName": "de l'UJM",
+    "commentsNameEN": "of UJM",
+    "paysage": "5gqzw",
+    "ror": "https://ror.org/030bahv93",
+    "scale": "university",
+    "startYear": 2020,
+    "comment": "OUTDATED, use 938501681 instead"
   },
   "194401006": {
     "name": "Centrale Nantes",
@@ -1535,6 +1544,14 @@
     "ror": "006z7v557",
     "scale": "laboratory"
   },
+  "201220430J": {
+    "name": "Laboratoire Jean-Alexandre Dieudonné (LJAD)",
+    "commentsName": "du LJAD",
+    "commentsNameEN": "of LJAD",
+    "paysage": "5gqzw",
+    "ror": "https://ror.org/0274zdr66",
+    "scale": "laboratory"
+  },
   "201420738K": {
     "name": "Centre de Recherche en Epidémiologie et StatistiqueS (CRESS)",
     "commentsName": "du CRESS",
@@ -1833,23 +1850,15 @@
     "scale": "university",
     "startYear": 2020
   },
-  "194210951": {
-    "name": "Université Jean Monnet EPE (UJM)",
-    "commentsName": "de l'UJM",
-    "commentsNameEN": "of UJM",
-    "paysage": "5gqzw",
-    "ror": "https://ror.org/030bahv93",
+  "941298317": {
+    "name": "Université de Bretagne Occidentale (UBO)",
+    "commentsName": "de l'UBO",
+    "commentsNameEN": "of UBO",
+    "paysage": "e2uv7",
+    "ror": "https://ror.org/0372th171",
     "scale": "university",
-    "startYear": 2020,
-    "comment": "OUTDATED, use 938501681 instead"
-  },
-  "201220430J": {
-    "name": "Laboratoire Jean-Alexandre Dieudonné (LJAD)",
-    "commentsName": "du LJAD",
-    "commentsNameEN": "of LJAD",
-    "paysage": "5gqzw",
-    "ror": "https://ror.org/0274zdr66",
-    "scale": "laboratory"
+    "startYear": 2017,
+    "alias": "192903466"
   },
   "A2F": {
     "name": "Pôle Agronomie, Agroalimentaire, Forêt (A2F)",
