@@ -1433,6 +1433,7 @@
   "app.sante.essais.document.title": "Essais cliniques en santé du Baromètre français de la Science Ouverte",
   "app.sante.publications.document.title": "Publications en santé du Baromètre français de la Science Ouverte",
   "app.sante.studies.document.title": "Etudes observationnelles en santé du Baromètre français de la Science Ouverte",
+  "app.code.document.title": "Les code et logiciels [bêta]",
   "app.publis.update.date": "Données mises à jour le {date} avec les publications parues entre {startDate} et {endDate}",
   "app.health.update.date": "Données mises à jour le {date} avec les essais cliniques issus de CT.gov, EUCTR et CTIS",
   "app.scroll-to-top": "Défiler vers le haut",

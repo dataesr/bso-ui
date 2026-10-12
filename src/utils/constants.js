@@ -37,6 +37,8 @@ export const mobileButtonLabel = {
     '/theses-de-doctorat/general': 'app.thesis.general',
     '/orcid/general': 'app.orcid.general',
     '/edition/general': 'app.publi.general',
+    '/codes-et-logiciels/general': 'app.code.document.title',
+    '/codes-et-logiciels/disciplines': 'app.code.document.title',
   },
   en: {
     '/health/publications/fields': 'app.publi.disciplines',
@@ -67,6 +69,8 @@ export const mobileButtonLabel = {
     '/thesis/general': 'app.thesis.general',
     '/orcid/general': 'app.orcid.general',
     '/publishing/general': 'app.publi.general',
+    '/software/general': 'app.code.document.title',
+    '/software/fields': 'app.code.document.title',
   },
 };
 
@@ -127,6 +131,10 @@ export const documentTitles = {
   '/theses-de-doctorat/general': 'app.thesis.document.title',
   '/thesis/general': 'app.thesis.document.title',
   '/orcid/general': 'app.orcid.document.title',
+  '/codes-et-logiciels/general': 'app.code.document.title',
+  '/codes-et-logiciels/disciplines': 'app.code.document.title',
+  '/software/general': 'app.code.document.title',
+  '/software/fields': 'app.code.document.title',
 };
 
 export const alphabet = [
