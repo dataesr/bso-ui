@@ -491,6 +491,13 @@ function Variations() {
                 img='/declinaisons/umlp.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local ubo université bretagne occidentale'
+                href='https://www.univ-brest.fr/fr/page/barometre-de-la-science-ouverte'
+                img='/declinaisons/ubo.png'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
