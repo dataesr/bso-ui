@@ -106,8 +106,15 @@ function Chart() {
         color: getCSSValue('--ouvrir-la-science-yellow'),
         from: 2021,
         label: { text: 'PNSO 2' },
-        to: END_YEAR,
+        to: 2026,
       },
+      // For the release in 2027
+      // {
+      //   color: getCSSValue('--ouvrir-la-science-orange'),
+      //   from: 2026,
+      //   label: { text: 'SSO' },
+      //   to: END_YEAR,
+      // },
     ];
     optionsTmp.yAxis = { ...getPercentageYAxis(), max: 100 };
     optionsTmp.legend.enabled = true;
