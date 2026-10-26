@@ -1935,6 +1935,12 @@
     "alias": "18009202500121,18009202500139,18009202500097,193000635,18009202500063,18009202500162,18009202500055",
     "ror": "https://ror.org/025vp2923"
   },
+  "funders": {
+    "name": "Agences de financements (ANR, ANSES, INCa)",
+    "commentsName": "des agences de financement",
+    "commentsNameEN": "of funding agences",
+    "alias": "00rbzpz17,130012024,03m8vkq32"
+  },
   "IPHC-DEPE": {
     "name": "Institut Pluridisciplinaire Hubert Curien - Département Écologie, physiologie et éthologie (IPHC - DEPE)",
     "commentsName": "de l'IPHC - DEPE",
