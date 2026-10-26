@@ -77,7 +77,7 @@ function useGetData(observationSnap, domain, split) {
     query.query.bool.filter.splice(indexToDelete, 1);
     if (agency) {
       queryFiltered.query.bool.filter.push({
-        term: { 'grants.agency.keyword': agency },
+        terms: { 'grants.agency.keyword': agency.split(',') },
       });
     }
     queries.push(Axios.post(ES_API_URL, queryFiltered, HEADERS));

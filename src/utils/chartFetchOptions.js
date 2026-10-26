@@ -1763,8 +1763,8 @@ export default function getFetchOptions({
               },
             },
             {
-              term: {
-                'grants.agency.keyword': agency,
+              terms: {
+                'grants.agency.keyword': agency.split(','),
               },
             },
             {
@@ -1822,8 +1822,8 @@ export default function getFetchOptions({
               },
             },
             {
-              term: {
-                'grants.agency.keyword': agency,
+              terms: {
+                'grants.agency.keyword': agency.split(','),
               },
             },
             {

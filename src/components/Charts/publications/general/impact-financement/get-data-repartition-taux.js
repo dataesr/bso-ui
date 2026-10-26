@@ -39,7 +39,7 @@ function useGetData(observationSnap, domain) {
       objectType: ['publications'],
     });
     query.query.bool.filter.push({
-      term: { 'grants.agency.keyword': agency },
+      terms: { 'grants.agency.keyword': agency.split(',') },
     });
     queries.push(Axios.post(ES_API_URL, query, HEADERS));
     const res = await Axios.all(queries);
