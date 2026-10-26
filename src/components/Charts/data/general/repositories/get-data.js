@@ -88,7 +88,7 @@ function useGetData(observationSnap, domain, type, nbElementsToDisplay) {
           color = '#dedede';
         }
         dataGraph.push({
-          name: intl.formatMessage({ id: `app.repositories.client-id.${entry[0]}`, defaultMessage: entry[0] }),
+          name: entry?.[0]?.split('###')?.[1] ?? entry?.[0],
           data: currentData,
           color,
         });
