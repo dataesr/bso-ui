@@ -23,6 +23,7 @@ export function GlobalsContextProvider({ children }) {
       '__beforeLastObservationSnap__',
       '__beforeLastObservationSnapThesis__',
       '__lastObservationSnap__',
+      '__lastObservationSnapDatasets__',
       '__lastObservationSnapThesis__',
       '__observationSnaps__',
       '__updateDate__',
@@ -50,6 +51,11 @@ export function GlobalsContextProvider({ children }) {
   const storedLastObservationSnapThesis = sessionStorage.getItem('__lastObservationSnapThesis__') || '';
   const [lastObservationSnapThesis, setLastObservationSnapThesis] = useState(
     storedLastObservationSnapThesis,
+  );
+
+  const storedLastObservationSnapDatasets = sessionStorage.getItem('__lastObservationSnapDatasets__') || '';
+  const [lastObservationSnapDatasets, setLastObservationSnapDatasets] = useState(
+    storedLastObservationSnapDatasets,
   );
 
   const storedObservationSnaps = sessionStorage.getItem('__observationSnaps__');
@@ -143,29 +149,32 @@ export function GlobalsContextProvider({ children }) {
         setBeforeLastObservationSnap(beforeLastObs);
         sessionStorage.setItem('__beforeLastObservationSnap__', beforeLastObs);
 
-        const lastObsThesis = process.env.REACT_APP_LAST_OBSERVATION_THESIS;
-        setLastObservationSnapThesis(lastObsThesis);
-        sessionStorage.setItem('__lastObservationSnapThesis__', lastObsThesis);
-
-        const beforeLastObsThesis = (
-          parseInt(lastObsThesis.substring(0, 4), 10) - 1
-        ).toString();
-        setBeforeLastObservationSnapThesis(beforeLastObsThesis);
-        sessionStorage.setItem(
-          '__lastObservationSnapThesis__',
-          beforeLastObsThesis,
-        );
-
         const responseUpdateDate = await getUpdateDate(lastObs);
         setUpdateDate(responseUpdateDate);
         sessionStorage.setItem('__updateDate__', responseUpdateDate);
-
-        const responseUpdateDateClinicalTrials = await getUpdateDateClinicalTrials();
-        setUpdateDateClinicalTrials(responseUpdateDateClinicalTrials);
-        sessionStorage.setItem('__updateDateClinicalTrials____', responseUpdateDateClinicalTrials);
-
-        sessionStorage.setItem('storedTimer', new Date().getTime());
       }
+      const lastObsThesis = process.env.REACT_APP_LAST_OBSERVATION_THESIS;
+      setLastObservationSnapThesis(lastObsThesis);
+      sessionStorage.setItem('__lastObservationSnapThesis__', lastObsThesis);
+
+      const beforeLastObsThesis = (
+        parseInt(lastObsThesis.substring(0, 4), 10) - 1
+      ).toString();
+      setBeforeLastObservationSnapThesis(beforeLastObsThesis);
+      sessionStorage.setItem(
+        '__beforeLastObservationSnapThesis__',
+        beforeLastObsThesis,
+      );
+
+      const responseUpdateDateClinicalTrials = await getUpdateDateClinicalTrials();
+      setUpdateDateClinicalTrials(responseUpdateDateClinicalTrials);
+      sessionStorage.setItem('__updateDateClinicalTrials____', responseUpdateDateClinicalTrials);
+
+      const lastObsDatasets = process.env.REACT_APP_LAST_OBSERVATION_DATASETS;
+      setLastObservationSnapDatasets(lastObsDatasets);
+      sessionStorage.setItem('__lastObservationSnapDatasets__', lastObsDatasets);
+
+      sessionStorage.setItem('storedTimer', new Date().getTime());
     }
     getData();
   }, [navigate]);
@@ -176,6 +185,7 @@ export function GlobalsContextProvider({ children }) {
         beforeLastObservationSnap,
         beforeLastObservationSnapThesis,
         lastObservationSnap,
+        lastObservationSnapDatasets,
         lastObservationSnapThesis,
         observationSnaps,
         updateDate,

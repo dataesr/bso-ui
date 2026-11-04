@@ -22,16 +22,16 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { lastObservationSnap } = useGlobals();
+  const { lastObservationSnapDatasets } = useGlobals();
   const { allData, isError, isLoading } = useGetData(
-    lastObservationSnap,
+    lastObservationSnapDatasets,
     domain,
     'client_id_name',
     12,
   );
   const { categories, dataGraph } = allData;
   const dataTitle = {
-    observationYear: getObservationLabel(lastObservationSnap, intl),
+    observationYear: getObservationLabel(lastObservationSnapDatasets, intl),
   };
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
