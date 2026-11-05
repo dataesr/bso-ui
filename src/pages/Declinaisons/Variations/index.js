@@ -498,6 +498,13 @@ function Variations() {
                 img='/declinaisons/ubo.png'
               />
             </Col>
+            <Col n='lg-2 md-4 sm-6'>
+              <CardLogo
+                alt='bso local ube université bourgogne europe'
+                href='https://www.ube.fr/la-science-ouverte-a-luniversite-bourgogne-europe/'
+                img='/declinaisons/ube.jpg'
+              />
+            </Col>
           </Row>
           <Row gutters>
             <Col n='12' className='p-0'>
