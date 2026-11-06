@@ -452,7 +452,7 @@ function Variations() {
             <Col n='lg-2 md-4 sm-6'>
               <CardLogo
                 alt='bso local UNîmes Nîmes Université'
-                href='https://www.scienceouverte.unilim.fr/outils-et-guides-pratiques/barometre-unilim-de-la-science-ouverte/'
+                href='https://bibliotheque.unimes.fr/appui-a-la-recherche/diffuser-ouvrir-la-science'
                 img='/declinaisons/unimes.jpg'
               />
             </Col>
