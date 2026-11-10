@@ -1662,13 +1662,13 @@
   "app.between": "entre",
   "app.publishing.header": "Baromètre de l'édition scientifique",
   "app.publishing.header.subtitle": "Réalisé via le comité scientifique et Mir@bel",
-  "app.publishing.title": "Les revues françaises",
+  "app.publishing.title": "Les revues scientifiques françaises",
   "app.publishing.intro": "Texte d'introduction à rédiger",
   "app.publishing.publications": "Les revues scientifiques françaises",
   "app.publishing.publications.title": "Les revues scientifiques françaises",
   "app.publishing.publications.general.title": "Général",
   "app.publishing.publications.disciplines.title": "Disciplines",
-  "app.publishing.publications.publishers.title": "Editeurs",
+  "app.publishing.publications.publishers.title": "Editeurs et plateformes",
   "app.publishing.journals": "Les revues",
   "app.publishing.journals.sources.title": "Sources"
 }
