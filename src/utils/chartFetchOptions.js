@@ -3126,6 +3126,9 @@ export default function getFetchOptions({
   if (!queryResponse.query?.bool?.filter) {
     queryResponse.query = { bool: { filter: [] } };
   }
+  if (!queryResponse.query?.bool?.must_not) {
+    queryResponse.query = { bool: { must_not: [] } };
+  }
   if (domain) {
     queryResponse.query.bool.filter.push({
       term: { 'domains.keyword': domain },
@@ -3157,7 +3160,7 @@ export default function getFetchOptions({
   }
   if (isThesis) {
     queryResponse.query.bool.filter.push({
-      terms: { 'id_type.keyword': ['nnt'] },
+      terms: { 'external_ids.id_type.keyword': ['nnt_id'] },
     });
     // make sure the thesis taken into account come from the theses.fr source
     // (not HAL only, even with an nnt)
@@ -3171,6 +3174,9 @@ export default function getFetchOptions({
   if (isPublications) {
     queryResponse.query.bool.filter.push({
       terms: { 'external_ids.id_type.keyword': idTypes },
+    });
+    queryResponse.query.bool.must_not.push({
+      terms: { 'external_ids.id_type.keyword': 'nnt_id' },
     });
     queryResponse.query.bool.filter.push({
       terms: {
