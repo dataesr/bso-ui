@@ -3126,8 +3126,8 @@ export default function getFetchOptions({
   if (!queryResponse.query?.bool?.filter) {
     queryResponse.query = { bool: { filter: [] } };
   }
-  if (!queryResponse.query?.bool?.must_not) {
-    queryResponse.query = { bool: { must_not: [] } };
+  if (!queryResponse.query.bool.must_not) {
+    queryResponse.query.bool.must_not = [];
   }
   if (domain) {
     queryResponse.query.bool.filter.push({
@@ -3176,7 +3176,7 @@ export default function getFetchOptions({
       terms: { 'external_ids.id_type.keyword': idTypes },
     });
     queryResponse.query.bool.must_not.push({
-      terms: { 'external_ids.id_type.keyword': 'nnt_id' },
+      terms: { 'external_ids.id_type.keyword': ['nnt_id'] },
     });
     queryResponse.query.bool.filter.push({
       terms: {
