@@ -51,6 +51,7 @@ function Chart({ hasFooter, hasComments, id, domain }) {
     const query = getFetchOptions({
       key: 'publishersList',
       domain,
+      objectType: ['publications'],
       parameters: [lastObservationSnap],
     });
 
