@@ -1,6 +1,6 @@
 import { Link as DSLink, SideMenuItem } from '@dataesr/react-dsfr';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 

@@ -581,6 +581,74 @@ function EssaisCliniques() {
                 </QuestionSection>
               </GraphContent>
             </GraphItem>
+
+            <GraphItem
+              mainLabel={intl.formatMessage({
+                id: 'app.health-interventional.navigation.sponsors-families',
+                defaultMessage: 'Sponsors families',
+              })}
+              paths={[
+                '/health/clinical-trials/sponsors-families',
+                '/sante/essais-cliniques/familles-de-sponsors',
+              ]}
+              isDisplayed={!isInProduction()}
+              links={[
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publi.navigation.go-to-page',
+                  }),
+                  href: {
+                    en: '/health/clinical-trials/sponsors-families?id=general.dynamique',
+                    fr: '/sante/essais-cliniques/familles-de-sponsors?id=general.dynamique',
+                  },
+                },
+              ]}
+            >
+              <GraphContent>
+                <QuestionSection
+                  anchorId='sponsors-families.'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.health-interventional.sponsors-families.chu'
+                  isDisplayed={!isInProduction()}
+                >
+                  <iframe
+                    height='908'
+                    id='general.dynamique.chart-evolution'
+                    src={`../../integration/${lang}/general.dynamique.chart-evolution/health/Interventional?bsoLocalAffiliation=CHU&displayTitle=false&lastObservationYear=latest`}
+                    title='general.dynamique.chart-evolution'
+                    width='100%'
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='sponsors-families.'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.health-interventional.sponsors-families.clcc'
+                  isDisplayed={!isInProduction()}
+                >
+                  <iframe
+                    height='908'
+                    id='general.dynamique.chart-evolution'
+                    src={`../../integration/${lang}/general.dynamique.chart-evolution/health/Interventional?bsoLocalAffiliation=CLCC&displayTitle=false&lastObservationYear=latest`}
+                    title='general.dynamique.chart-evolution'
+                    width='100%'
+                  />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='sponsors-families.'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.health-interventional.sponsors-families.espic'
+                  isDisplayed={!isInProduction()}
+                >
+                  <iframe
+                    height='908'
+                    id='general.dynamique.chart-evolution'
+                    src={`../../integration/${lang}/general.dynamique.chart-evolution/health/Interventional?bsoLocalAffiliation=ESPIC&displayTitle=false&lastObservationYear=latest`}
+                    title='general.dynamique.chart-evolution'
+                    width='100%'
+                  />
+                </QuestionSection>
+              </GraphContent>
+            </GraphItem>
           </GraphNavigation>
         </Row>
       </section>

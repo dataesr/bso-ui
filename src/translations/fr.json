@@ -737,6 +737,7 @@
   "app.health-interventional.resultats.type-diffusion.chart-repartition-par-type.comments": "Pour l'ensemble des essais cliniques français enregistrés dans un registre public sur les 10 dernières années et indiqués comme terminés, ce graphique montre, en fonction du type d'intervention réalisée, la part de ceux qui ont communiqué des résultats.",
   "app.health-interventional.resultats.type-diffusion.chart-repartition-par-type.tooltip": "<b>Essais cliniques enregistrés et terminés entre {point.yearMin} et {point.yearMax}, de type {point.intervention_type} <span style='text-transform: lowercase'>{series.name}</span></b><br>{point.y:.2f} % d'essais <span style='text-transform: lowercase'>{series.name}</span> ({point.y_abs} / {point.y_tot})",
   "app.health-interventional.navigation.drug": "Essais sur le médicament",
+  "app.health-interventional.navigation.sponsors-families": "Familles de promoteurs",
   "app.health-interventional.general.waste.money-waste.title": "Somme des montants perçus pour des essais cliniques déclaré comme terminés mais n'ayant pas communiqué de résultat trouvé, par année de fin des essais",
   "app.health-interventional.general.waste.money-waste.tooltip": "{series.userOptions.stackLabel}, {point.count} essais cliniques étaient dénombrés comme terminés en {point.year} pour un financement total de {point.y} €",
   "app.health-observational.caracteristiques": "Caratéristiques",
@@ -1670,5 +1671,8 @@
   "app.publishing.publications.disciplines.title": "Disciplines",
   "app.publishing.publications.publishers.title": "Editeurs et plateformes",
   "app.publishing.journals": "Les revues",
-  "app.publishing.journals.sources.title": "Sources"
+  "app.publishing.journals.sources.title": "Sources",
+  "app.health-interventional.sponsors-families.chu.title": "Centres hospitaliers universitaires (CHU)",
+  "app.health-interventional.sponsors-families.clcc.title": "Centres de lutte contre le cancer (CLCC)",
+  "app.health-interventional.sponsors-families.espic.title": "Établissements de santé privés d'intérêt collectif (ESPIC)"
 }

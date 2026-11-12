@@ -507,6 +507,7 @@
   "app.health-interventional.resultats.type-diffusion.chart-repartition-par-type.comments": "For all French clinical trials registered in a public registry over the past 10 years and indicated as completed, this graph shows, according to the type of intervention performed, the share of those that have communicated results.",
   "app.health-interventional.resultats.type-diffusion.chart-repartition-par-type.tooltip": "<b>registered and completed clinical trials between {point.yearMin} and {point.yearMax}, of type {point.intervention_type} <span style='text-transform: lowercase'>{series.name}</span></b><br>{point.y:.2f}% of trials <span style='text-transform: lowercase'>{series.name}</span> ({point.y_abs} / {point.y_tot})",
   "app.health-interventional.navigation.drug": "Clinical trials on drug",
+  "app.health-interventional.navigation.sponsors-families": "Sponsors families",
   "app.health-observational.caracteristiques": "Features",
   "app.health-observational.caracteristiques.combien.title": "How many patients are involved in observational studies?",
   "app.health-observational.caracteristiques.combien.chart-groupes-patients.legend": "Number of registered observational studies",
@@ -1611,5 +1612,8 @@
   "app.publishing.publications.general.title": "General",
   "app.publishing.publications.disciplines": "Fields",
   "app.publishing.publications.publishers": "Publishers and platforms",
-  "app.publishing.journals.sources.title": "Sources"
+  "app.publishing.journals.sources.title": "Sources",
+  "app.health-interventional.sponsors-families.chu.title": "University hospitals (CHU)",
+  "app.health-interventional.sponsors-families.clcc.title": "Cancer centres (CLCC)",
+  "app.health-interventional.sponsors-families.espic.title": "Private healthcare establishments serving the public interest (ESPIC)"
 }

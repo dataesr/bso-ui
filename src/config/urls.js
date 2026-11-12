@@ -127,6 +127,10 @@ export default {
         en: '/health/clinical-trials/drug',
         fr: '/sante/essais-cliniques/medicament',
       },
+      {
+        en: '/health/clinical-trials/sponsors-families',
+        fr: '/sante/essais-cliniques/familles-de-sponsors',
+      },
     ],
     en: '/health/clinical-trials/general',
     fr: '/sante/essais-cliniques/general',
