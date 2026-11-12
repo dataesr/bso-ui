@@ -423,6 +423,41 @@ export default function getFetchOptions({
         },
       },
     }),
+    sponsorsRorList: ([studyType, yearMin, yearMax]) => ({
+      size: 0,
+      query: {
+        bool: {
+          filter: [
+            {
+              term: {
+                'study_type.keyword': studyType,
+              },
+            },
+            {
+              term: {
+                'status.keyword': 'Completed',
+              },
+            },
+            {
+              range: {
+                study_completion_year: {
+                  gte: yearMin,
+                  lte: yearMax,
+                },
+              },
+            },
+          ],
+        },
+      },
+      aggs: {
+        by_sponsor: {
+          terms: {
+            field: 'ror_lead_sponsor_normalized.keyword',
+            size: 100,
+          },
+        },
+      },
+    }),
     publisher: () => ({
       size: 0,
       aggs: {

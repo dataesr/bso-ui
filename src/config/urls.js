@@ -128,16 +128,8 @@ export default {
         fr: '/sante/essais-cliniques/medicament',
       },
       {
-        en: '/health/clinical-trials/chu',
-        fr: '/sante/essais-cliniques/chu',
-      },
-      {
-        en: '/health/clinical-trials/clcc',
-        fr: '/sante/essais-cliniques/clcc',
-      },
-      {
-        en: '/health/clinical-trials/espic',
-        fr: '/sante/essais-cliniques/espic',
+        en: '/health/clinical-trials/by-sponsor',
+        fr: '/sante/essais-cliniques/par-promoteur',
       },
     ],
     en: '/health/clinical-trials/general',

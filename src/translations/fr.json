@@ -1674,5 +1674,7 @@
   "app.publishing.journals.sources.title": "Sources",
   "app.health-interventional.sponsors-families.chu.title": "Centres hospitaliers universitaires (CHU)",
   "app.health-interventional.sponsors-families.clcc.title": "Centres de lutte contre le cancer (CLCC)",
-  "app.health-interventional.sponsors-families.espic.title": "Établissements de santé privés d'intérêt collectif (ESPIC)"
+  "app.health-interventional.sponsors-families.espic.title": "Établissements de santé privés d'intérêt collectif (ESPIC)",
+  "app.health-interventional.by-sponsor": "Vue par promoteur",
+  "app.health-interventional.by-sponsor.title": "Vue par promoteur"
 }

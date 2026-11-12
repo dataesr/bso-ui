@@ -11,6 +11,7 @@ import GraphContent from '../../../components/GraphNavigation/GraphContent';
 import GraphItem from '../../../components/GraphNavigation/GraphItem';
 import QuestionSection from '../../../components/question-section';
 import ScrollTop from '../../../components/ScrollTop';
+import SponsorSelect from '../../../components/SponsorSelect';
 import GlossaryEntries from '../../../translations/glossary.json';
 import { mobileButtonLabel } from '../../../utils/constants';
 import { getCSSValue, isInLocal, isInProduction } from '../../../utils/helpers';
@@ -582,15 +583,15 @@ function EssaisCliniques() {
               </GraphContent>
             </GraphItem>
 
-            {/* CHU */}
+            {/* Vue par promoteur */}
             <GraphItem
               mainLabel={intl.formatMessage({
-                id: 'app.health-interventional.sponsors-families.chu',
-                defaultMessage: 'CHU',
+                id: 'app.health-interventional.by-sponsor',
+                defaultMessage: 'Vue par sponsor',
               })}
               paths={[
-                '/health/clinical-trials/chu',
-                '/sante/essais-cliniques/chu',
+                '/health/clinical-trials/by-sponsor',
+                '/sante/essais-cliniques/par-promoteur',
               ]}
               isDisplayed={!isInProduction()}
               links={[
@@ -599,8 +600,8 @@ function EssaisCliniques() {
                     id: 'app.publi.navigation.go-to-page',
                   }),
                   href: {
-                    en: '/health/clinical-trials/chu?id=general',
-                    fr: '/sante/essais-cliniques/chu?id=general',
+                    en: '/health/clinical-trials/by-sponsor?id=general',
+                    fr: '/sante/essais-cliniques/par-promoteur?id=general',
                   },
                 },
               ]}
@@ -609,161 +610,10 @@ function EssaisCliniques() {
                 <QuestionSection
                   anchorId='general'
                   backgroundColor={blueSoft50}
-                  intlKey='app.health-interventional.sponsors-families.chu'
                   isDisplayed={!isInProduction()}
+                  intlKey='app.health-interventional.by-sponsor'
                 >
-                  <iframe
-                    height='908'
-                    id='general.dynamique.chart-evolution'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution/health/Interventional?bsoLocalAffiliation=CHU&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
-                    id='general.dynamique.chart-evolution-10-years-within-1-year/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-10-years-within-1-year/health/Interventional?bsoLocalAffiliation=CHU&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-10-years-within-1-year/health'
-                    width='100%'
-                  />
-                  <iframe
-                    height='692'
-                    id='general.dynamique.chart-evolution-drug/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-drug/health/Interventional?bsoLocalAffiliation=CHU&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-drug/health'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
-                    id='general.dynamique.chart-evolution-10-years-within-1-year-drug/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-10-years-within-1-year-drug/health/Interventional?bsoLocalAffiliation=CHU&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-10-years-within-1-year-drug/health'
-                    width='100%'
-                  />
-                </QuestionSection>
-              </GraphContent>
-            </GraphItem>
-
-            {/* CLCC */}
-            <GraphItem
-              mainLabel={intl.formatMessage({
-                id: 'app.health-interventional.sponsors-families.clcc',
-                defaultMessage: 'CLCC',
-              })}
-              paths={[
-                '/health/clinical-trials/clcc',
-                '/sante/essais-cliniques/clcc',
-              ]}
-              isDisplayed={!isInProduction()}
-              links={[
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.go-to-page',
-                  }),
-                  href: {
-                    en: '/health/clinical-trials/clcc?id=general',
-                    fr: '/sante/essais-cliniques/clcc?id=general',
-                  },
-                },
-              ]}
-            >
-              <GraphContent>
-                <QuestionSection
-                  anchorId='sponsors-families.'
-                  backgroundColor={blueSoft50}
-                  intlKey='app.health-interventional.sponsors-families.clcc'
-                  isDisplayed={!isInProduction()}
-                >
-                  <iframe
-                    height='908'
-                    id='general.dynamique.chart-evolution'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution/health/Interventional?bsoLocalAffiliation=CLCC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
-                    id='general.dynamique.chart-evolution-10-years-within-1-year/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-10-years-within-1-year/health/Interventional?bsoLocalAffiliation=CLCC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-10-years-within-1-year/health'
-                    width='100%'
-                  />
-                  <iframe
-                    height='692'
-                    id='general.dynamique.chart-evolution-drug/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-drug/health/Interventional?bsoLocalAffiliation=CLCC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-drug/health'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
-                    id='general.dynamique.chart-evolution-10-years-within-1-year-drug/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-10-years-within-1-year-drug/health/Interventional?bsoLocalAffiliation=CLCC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-10-years-within-1-year-drug/health'
-                    width='100%'
-                  />
-                </QuestionSection>
-              </GraphContent>
-            </GraphItem>
-
-            {/* ESPIC */}
-            <GraphItem
-              mainLabel={intl.formatMessage({
-                id: 'app.health-interventional.sponsors-families.espic',
-                defaultMessage: 'ESPIC',
-              })}
-              paths={[
-                '/health/clinical-trials/espic',
-                '/sante/essais-cliniques/espic',
-              ]}
-              isDisplayed={!isInProduction()}
-              links={[
-                {
-                  label: intl.formatMessage({
-                    id: 'app.publi.navigation.go-to-page',
-                  }),
-                  href: {
-                    en: '/health/clinical-trials/espic?id=general',
-                    fr: '/sante/essais-cliniques/espic?id=general',
-                  },
-                },
-              ]}
-            >
-              <GraphContent>
-                <QuestionSection
-                  anchorId='sponsors-families.'
-                  backgroundColor={blueSoft50}
-                  intlKey='app.health-interventional.sponsors-families.espic'
-                  isDisplayed={!isInProduction()}
-                >
-                  <iframe
-                    height='908'
-                    id='general.dynamique.chart-evolution'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution/health/Interventional?bsoLocalAffiliation=ESPIC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
-                    id='general.dynamique.chart-evolution-10-years-within-1-year/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-10-years-within-1-year/health/Interventional?bsoLocalAffiliation=ESPIC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-10-years-within-1-year/health'
-                    width='100%'
-                  />
-                  <iframe
-                    height='692'
-                    id='general.dynamique.chart-evolution-drug/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-drug/health/Interventional?bsoLocalAffiliation=ESPIC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-drug/health'
-                    width='100%'
-                  />
-                  <iframe
-                    height='716'
-                    id='general.dynamique.chart-evolution-10-years-within-1-year-drug/health'
-                    src={`../../integration/${lang}/general.dynamique.chart-evolution-10-years-within-1-year-drug/health/Interventional?bsoLocalAffiliation=ESPIC&displayTitle=false&lastObservationYear=latest`}
-                    title='general.dynamique.chart-evolution-10-years-within-1-year-drug/health'
-                    width='100%'
-                  />
+                  <SponsorSelect />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

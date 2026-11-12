@@ -1615,5 +1615,7 @@
   "app.publishing.journals.sources.title": "Sources",
   "app.health-interventional.sponsors-families.chu.title": "University hospitals (CHU)",
   "app.health-interventional.sponsors-families.clcc.title": "Cancer centres (CLCC)",
-  "app.health-interventional.sponsors-families.espic.title": "Private healthcare establishments serving the public interest (ESPIC)"
+  "app.health-interventional.sponsors-families.espic.title": "Private healthcare establishments serving the public interest (ESPIC)",
+  "app.health-interventional.by-sponsor": "View by sponsor",
+  "app.health-interventional.by-sponsor.title": "View by sponsor"
 }
