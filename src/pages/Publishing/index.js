@@ -150,7 +150,7 @@ function Publishing() {
               </GraphContent>
             </GraphItem>
 
-            {/* Publications */}
+            {/* Publications - Les revues scientifiques françaises */}
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publishing.publications' })}
               paths={['/publishing/publications', '/edition/publications']}
@@ -234,7 +234,7 @@ function Publishing() {
               </GraphContent>
             </GraphItem>
 
-            {/* Journals */}
+            {/* Journals - Les revues */}
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publishing.journals' })}
               paths={['/publishing/journals', '/edition/revues']}

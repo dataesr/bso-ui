@@ -87,7 +87,7 @@ function useGetData(studyType, sponsorType = '*') {
           ?.forEach((observationYear) => {
             const query = getFetchOptions({
               key: 'studiesDynamiqueOuvertureSponsor',
-              parameters: [studyType, '*', sponsorType, year, year, observationYear],
+              parameters: [studyType, '*', '*', sponsorType, year, year, observationYear],
               objectType: ['clinicalTrials'],
             });
             queries.push(Axios.post(ES_STUDIES_API_URL, query, HEADERS));

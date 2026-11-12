@@ -85,6 +85,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
           studyType,
           sponsor,
           '*',
+          '*',
           years10Min,
           years10Max,
           observationSnap,
