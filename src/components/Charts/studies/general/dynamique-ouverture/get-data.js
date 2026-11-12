@@ -66,12 +66,12 @@ function useGetData(studyType, sponsor = '*', bsoLocalAffiliation = '*', filterO
     });
     const queryHasResultsWithin3Years = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin3Years',
-      parameters: [studyType, '*', years3Min, years3Max, observationSnap],
+      parameters: [studyType, '*', '*', years3Min, years3Max, observationSnap],
       objectType: ['clinicalTrials'],
     });
     const queryHasResultsWithin1Year = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin1Year',
-      parameters: [studyType, '*', years10Min, years10Max, observationSnap],
+      parameters: [studyType, '*', '*', years10Min, years10Max, observationSnap],
       objectType: ['clinicalTrials'],
     });
     if (filterOnDrug) {

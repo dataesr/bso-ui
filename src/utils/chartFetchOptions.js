@@ -1074,6 +1074,7 @@ export default function getFetchOptions({
     studiesDynamiqueOuvertureWithin1Year: ([
       studyType,
       sponsorType,
+      bsoLocalAffiliation,
       yearMin,
       yearMax,
       observationSnap,
@@ -1095,6 +1096,11 @@ export default function getFetchOptions({
             {
               wildcard: {
                 'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+            {
+              wildcard: {
+                'bso_local_affiliations.keyword': bsoLocalAffiliation.replace('https://ror.org/', '').toLowerCase(),
               },
             },
             {
@@ -1135,6 +1141,7 @@ export default function getFetchOptions({
     studiesDynamiqueOuvertureWithin1YearSponsor: ([
       studyType,
       sponsor,
+      bsoLocalAffiliation,
       yearMin,
       yearMax,
     ]) => ({
@@ -1165,6 +1172,11 @@ export default function getFetchOptions({
                 'lead_sponsor_normalized.keyword': sponsor,
               },
             },
+            {
+              wildcard: {
+                'bso_local_affiliations.keyword': bsoLocalAffiliation.replace('https://ror.org/', '').toLowerCase(),
+              },
+            },
           ],
         },
       },
@@ -1180,6 +1192,7 @@ export default function getFetchOptions({
     studiesDynamiqueOuvertureWithin3Years: ([
       studyType,
       sponsorType,
+      bsoLocalAffiliation,
       yearMin,
       yearMax,
       observationSnap,
@@ -1201,6 +1214,11 @@ export default function getFetchOptions({
             {
               wildcard: {
                 'lead_sponsor_type.keyword': sponsorType,
+              },
+            },
+            {
+              wildcard: {
+                'bso_local_affiliations.keyword': bsoLocalAffiliation.replace('https://ror.org/', '').toLowerCase(),
               },
             },
             {

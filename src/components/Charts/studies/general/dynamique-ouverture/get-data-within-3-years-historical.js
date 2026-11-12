@@ -66,7 +66,7 @@ function useGetData(
       });
       const queryHasResultsWithin3Years = getFetchOptions({
         key: queryKey,
-        parameters: [studyType, sponsorType, year, year, observationSnap],
+        parameters: [studyType, sponsorType, '*', year, year, observationSnap],
         objectType: ['clinicalTrials'],
       });
       if (filterOnDrug) {

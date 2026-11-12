@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { ES_STUDIES_API_URL, HEADERS } from '../../../../../config/config';
+import locals from '../../../../../config/locals.json';
+import openalex from '../../../../../config/openalex.json';
 import getFetchOptions from '../../../../../utils/chartFetchOptions';
 import { capitalize, getCSSValue } from '../../../../../utils/helpers';
 
-function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
+function useGetData(studyType, sponsor = '*', bsoLocalAffiliation = '*', filterOnDrug = false) {
   const intl = useIntl();
   const [allData, setData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -19,6 +21,22 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const years10Max = lastObservationYear - 1;
     const years10Min = years10Max - 9;
 
+    // Merge the 2 sources files: ./src/config/openalex.json and ./src/config/locals.json
+    // If a key is present in both files, locals.json is the one the should be kept
+    let bsoLocalName = bsoLocalAffiliation;
+    const allNames = { ...openalex, ...locals };
+    const matched = Object.keys(allNames).filter((key) => [
+      allNames[key]?.paysage?.toLowerCase(),
+      allNames[key]?.ror?.toLowerCase(),
+      allNames[key]?.ror?.replace('https://ror.org/', '')?.toLowerCase(),
+      allNames[key]?.openalex?.toLowerCase(),
+      allNames[key]?.openalex?.replace('https://openalex.org/institutions/', '')?.toLowerCase(),
+    ].includes(bsoLocalAffiliation));
+    if (bsoLocalAffiliation && matched.length > 0) {
+      bsoLocalName = matched[0].toLocaleLowerCase();
+      bsoLocalName = allNames?.[bsoLocalName]?.name ?? bsoLocalName;
+    }
+
     const querySponsorsList = getFetchOptions({
       key: 'sponsorsList',
       objectType: ['clinicalTrials'],
@@ -27,12 +45,12 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     const queryHasResultsWithin1Year = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin1Year',
       objectType: ['clinicalTrials'],
-      parameters: [studyType, '*', years10Min, years10Max, observationSnap],
+      parameters: [studyType, '*', '*', years10Min, years10Max, observationSnap],
     });
     const queryHasResultsWithin1YearFilterBySponsor = getFetchOptions({
       key: 'studiesDynamiqueOuvertureWithin1YearSponsor',
       objectType: ['clinicalTrials'],
-      parameters: [studyType, sponsor, years10Min, years10Max],
+      parameters: [studyType, sponsor, bsoLocalAffiliation, years10Min, years10Max],
     });
     if (filterOnDrug) {
       queryHasResultsWithin1Year.query.bool.filter.push({
@@ -59,6 +77,7 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
     // The horizontal bars order is defined by the categories order
     const categories = [];
     if (sponsor !== '*') categories.push(sponsor);
+    if (bsoLocalAffiliation !== '*') categories.push(bsoLocalName);
     categories.push(
       capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
     );
@@ -163,6 +182,23 @@ function useGetData(studyType, sponsor = '*', filterOnDrug = false) {
             || 0)
           + (dataHasResultsWithin1YearFilterBySponsorWithoutResults?.doc_count
             || 0),
+        yearMax: years10Max,
+        yearMin: years10Min,
+      });
+    }
+    if (bsoLocalAffiliation !== '*') {
+      series[0].data.push({
+        color: getCSSValue('--lead-sponsor-highlight'),
+        name: bsoLocalName,
+        y:
+          100 *
+          ((dataHasResultsWithin1YearFilterBySponsorWithResults?.doc_count || 0) /
+            ((dataHasResultsWithin1YearFilterBySponsorWithResults?.doc_count || 0) +
+              (dataHasResultsWithin1YearFilterBySponsorWithoutResults?.doc_count || 0))),
+        y_abs: dataHasResultsWithin1YearFilterBySponsorWithResults?.doc_count || 0,
+        y_tot:
+          (dataHasResultsWithin1YearFilterBySponsorWithResults?.doc_count || 0) +
+          (dataHasResultsWithin1YearFilterBySponsorWithoutResults?.doc_count || 0),
         yearMax: years10Max,
         yearMin: years10Min,
       });

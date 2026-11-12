@@ -17,7 +17,7 @@ export default async function useGetStudiesRateFrom(domain, observationSnap) {
       fetch({
         options: getFetchOptions({
           key: 'studiesDynamiqueOuvertureWithin3Years',
-          parameters: ['Interventional', '*', 2019, 2019, observationSnap],
+          parameters: ['Interventional', '*', '*', 2019, 2019, observationSnap],
           objectType: ['clinicalTrials'],
         }),
       });
