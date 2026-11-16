@@ -90,7 +90,10 @@ function Publishing() {
                   <FormattedMessage id='app.publishing.title' />
                 </h1>
                 <p>
-                  <GlossaryFormattedMessage intlKey='app.publishing.intro' />
+                  <GlossaryFormattedMessage
+                    ctas={['https://www.enseignementsup-recherche.gouv.fr/fr/l-edition-scientifique-92391']}
+                    intlKey='app.publishing.intro'
+                  />
                 </p>
               </Col>
             </Row>
@@ -123,11 +126,20 @@ function Publishing() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.publishing.title',
+                    id: 'app.publishing.access',
                   }),
                   href: {
-                    en: '/publishing/general?id=general.journals',
-                    fr: '/edition/general?id=general.journals',
+                    en: '/publishing/general?id=general.access',
+                    fr: '/edition/general?id=general.access',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publishing.language',
+                  }),
+                  href: {
+                    en: '/publishing/general?id=general.language',
+                    fr: '/edition/general?id=general.language',
                   },
                 },
               ]}
@@ -136,16 +148,35 @@ function Publishing() {
                 <QuestionSection
                   anchorId='general.publications'
                   backgroundColor={blueSoft50}
+                  ctas={['https://www.enseignementsup-recherche.gouv.fr/fr/le-soutien-l-edition-scientifique-46559']}
                   intlKey='app.publishing.publications'
                 >
                   <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture' />
                 </QuestionSection>
                 <QuestionSection
-                  anchorId='general.journals'
-                  backgroundColor={blueSoft25}
-                  intlKey='app.publishing'
+                  anchorId='general.access'
+                  backgroundColor={blueSoft50}
+                  ctas={['https://www.enseignementsup-recherche.gouv.fr/fr/le-soutien-l-edition-scientifique-46559']}
+                  intlKey='app.publishing.access'
                 >
-                  <BSOChart id='publishing.journals.sources' />
+                  <BSOChart id='publi.general.voies-ouverture.chart-repartition-publications' />
+                  <BSOChart id='publi.general.voies-ouverture.chart-repartition-taux' />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='general.language'
+                  backgroundColor={blueSoft50}
+                  ctas={['https://www.enseignementsup-recherche.gouv.fr/fr/le-soutien-l-edition-scientifique-46559']}
+                  intlKey='app.publishing.language'
+                >
+                  <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
+                  <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture-article' />
+                  <iframe
+                    height={lang === 'fr' ? '860' : '836'}
+                    id='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                    src={`../integration/${lang}/publi.general.dynamique-ouverture.chart-taux-ouverture?useHalId=true&bsoLocalAffiliation=bsoedition&displayTitle=false`}
+                    title='publi.general.dynamique-ouverture.chart-taux-ouverture'
+                    width='100%'
+                  />
                 </QuestionSection>
               </GraphContent>
             </GraphItem>

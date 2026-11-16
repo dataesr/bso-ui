@@ -49,6 +49,9 @@ function GlossaryFormattedMessage({
           </>
         ),
         i: (chunks) => <i>{chunks}</i>,
+        strong: (chunks) => (
+          <strong>{chunks}</strong>
+        ),
         ...values,
       }}
     />
