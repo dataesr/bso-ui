@@ -181,7 +181,7 @@ function Publishing() {
               </GraphContent>
             </GraphItem>
 
-            {/* Publications - Les revues scientifiques françaises */}
+            {/* Publications - Les publications dans les revues scientifiques françaises */}
             <GraphItem
               mainLabel={intl.formatMessage({ id: 'app.publishing.publications' })}
               paths={['/publishing/publications', '/edition/publications']}
@@ -222,21 +222,27 @@ function Publishing() {
                     fr: '/edition/publications?id=publications.publishers',
                   },
                 },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publishing.publications.business-models.title',
+                  }),
+                  href: {
+                    en: '/publishing/publications?id=publications.business-models',
+                    fr: '/edition/publications?id=publications.business-models',
+                  },
+                },
+                {
+                  label: intl.formatMessage({
+                    id: 'app.publishing.publications.policies.title',
+                  }),
+                  href: {
+                    en: '/publishing/publications?id=publications.policies',
+                    fr: '/edition/publications?id=publications.policies',
+                  },
+                },
               ]}
             >
               <GraphContent>
-                <QuestionSection
-                  anchorId='publications.general'
-                  backgroundColor={blueSoft50}
-                  intlKey='app.publishing.publications.general'
-                >
-                  <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture' />
-                  <BSOChart id='publi.general.dynamique-ouverture.chart-evolution-proportion' />
-                  <BSOChart id='publi.general.voies-ouverture.chart-repartition-publications' />
-                  <BSOChart id='publi.general.voies-ouverture.chart-repartition-taux' />
-                  <BSOChart id='publi.general.langues-ouverture.chart-repartition-publications' />
-                  <BSOChart id='publi.general.dynamique-ouverture.chart-taux-ouverture-article' />
-                </QuestionSection>
                 <QuestionSection
                   anchorId='publications.disciplines'
                   backgroundColor={blueSoft25}
@@ -254,8 +260,21 @@ function Publishing() {
                 >
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-taux-ouverture' />
                   <BSOChart id='publi.publishers.dynamique-ouverture.chart-evolution-proportion' />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='publications.business-models'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.publishing.publications.business-models'
+                >
                   <BSOChart id='publi.publishers.type-ouverture.chart-repartition-modeles' />
                   <BSOChart id='publi.publishers.type-ouverture.chart-evolution-repartition' />
+                  <BSOChart id='publi.publishers.type-ouverture.chart-by-classifications-publishers' />
+                </QuestionSection>
+                <QuestionSection
+                  anchorId='publications.policies'
+                  backgroundColor={blueSoft50}
+                  intlKey='app.publishing.publications.policies'
+                >
                   <BSOChart id='publi.publishers.politiques-ouverture.chart-classement' />
                   <BSOChart id='publi.publishers.politiques-ouverture.chart-comparaison' />
                   <BSOChart id='publi.publishers.repartition-licences.chart-repartition' />
