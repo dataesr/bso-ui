@@ -300,23 +300,23 @@ function Publishing() {
                 },
                 {
                   label: intl.formatMessage({
-                    id: 'app.publishing.journals.sources.title',
+                    id: 'app.publishing.journals.indexes.title',
                   }),
                   href: {
-                    en: '/publishing/journals?id=journals.sources',
-                    fr: '/edition/revues?id=journals.sources',
+                    en: '/publishing/journals?id=journals.indexes',
+                    fr: '/edition/revues?id=journals.indexes',
                   },
                 },
               ]}
             >
               <GraphContent>
                 <QuestionSection
-                  anchorId='journals.sources'
+                  anchorId='journals.indexes'
                   backgroundColor={blueSoft50}
-                  intlKey='app.publishing.journals.sources'
+                  intlKey='app.publishing.journals.indexes'
                 >
-                  <BSOChart id='publishing.journals.sources' />
-                  <BSOChart id='publishing.journals.sources.wikipedia' />
+                  <BSOChart id='publishing.journals.indexes' />
+                  <BSOChart id='publishing.journals.indexes.wikipedia' />
                   <BSOChart id='publishing.journals.years' />
                 </QuestionSection>
               </GraphContent>

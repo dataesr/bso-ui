@@ -417,8 +417,8 @@ const chartComponents = {
   'publi.others.preprints.chart-by-publisher': lazy(() => import(
     '../components/Charts/publications/others/preprints/chart-by-publisher'
   )),
-  'publishing.journals.sources': lazy(() => import('../components/Charts/publishing/journals/sources')),
-  'publishing.journals.sources.wikipedia': lazy(() => import('../components/Charts/publishing/journals/sources-wikipedia')),
+  'publishing.journals.indexes': lazy(() => import('../components/Charts/publishing/journals/indexes')),
+  'publishing.journals.indexes.wikipedia': lazy(() => import('../components/Charts/publishing/journals/indexes-wikipedia')),
   'publishing.journals.years': lazy(() => import('../components/Charts/publishing/journals/years')),
   // Policy
   'other.policy.open-science-policy': lazy(() => import('../components/Charts/policy/institutions/institutions')),

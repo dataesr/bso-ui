@@ -5935,7 +5935,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'publishing.journals.sources': {
+  'publishing.journals.indexes': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';
@@ -5950,7 +5950,7 @@ export const chartOptions = {
       return options;
     },
   },
-  'publishing.journals.sources.wikipedia': {
+  'publishing.journals.indexes.wikipedia': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions({ id, intl });
       options.chart.type = 'column';

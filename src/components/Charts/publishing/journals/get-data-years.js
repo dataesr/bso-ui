@@ -21,7 +21,7 @@ function useGetData() {
           y: item?.doc_count ?? 0,
         }));
         const series = [{ data: dataSeries }];
-        setData({ categories, series });
+        setData({ categories, ctas: ['https://reseau-mirabel.info/'], series });
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
