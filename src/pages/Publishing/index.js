@@ -316,6 +316,8 @@ function Publishing() {
                   intlKey='app.publishing.journals.indexes'
                 >
                   <BSOChart id='publishing.journals.indexes' />
+                  <BSOChart id='publishing.journals.indexes-international' />
+                  <BSOChart id='publishing.journals.indexes-fields' />
                   <BSOChart id='publishing.journals.indexes.wikipedia' />
                   <BSOChart id='publishing.journals.years' />
                 </QuestionSection>

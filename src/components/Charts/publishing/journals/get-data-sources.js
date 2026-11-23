@@ -5,7 +5,7 @@ import { ES_API_URL_JOURNALS, HEADERS } from '../../../../config/config';
 import getFetchOptions from '../../../../utils/chartFetchOptions';
 import { getCSSValue } from '../../../../utils/helpers';
 
-function useGetData() {
+function useGetData(filteredCategories) {
   const [data, setData] = useState({});
   const [isError, setError] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ function useGetData() {
         const { query, ...rest } = getFetchOptions({ key: 'publishingJournalsPresence' });
         const response = await Axios.post(ES_API_URL_JOURNALS, rest, HEADERS);
         const aggregations = response?.data?.aggregations ?? {};
-        const categories = Object.keys(aggregations);
+        const categories = Object.keys(aggregations).filter((category) => filteredCategories.includes(category));
         const total = response?.data?.hits?.total?.value ?? 0;
         let presence = [];
         categories.forEach((category) => {

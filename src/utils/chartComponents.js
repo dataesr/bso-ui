@@ -418,6 +418,8 @@ const chartComponents = {
     '../components/Charts/publications/others/preprints/chart-by-publisher'
   )),
   'publishing.journals.indexes': lazy(() => import('../components/Charts/publishing/journals/indexes')),
+  'publishing.journals.indexes-international': lazy(() => import('../components/Charts/publishing/journals/indexes-international')),
+  'publishing.journals.indexes-fields': lazy(() => import('../components/Charts/publishing/journals/indexes-fields')),
   'publishing.journals.indexes.wikipedia': lazy(() => import('../components/Charts/publishing/journals/indexes-wikipedia')),
   'publishing.journals.years': lazy(() => import('../components/Charts/publishing/journals/years')),
   // Policy

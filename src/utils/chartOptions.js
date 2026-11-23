@@ -5950,6 +5950,36 @@ export const chartOptions = {
       return options;
     },
   },
+  'publishing.journals.indexes-international': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+        },
+      };
+      options.series = data?.series ?? {};
+      options.xAxis = { categories: data?.categories ?? [] };
+      return options;
+    },
+  },
+  'publishing.journals.indexes-fields': {
+    getOptions: (id, intl, data) => {
+      const options = getGraphOptions({ id, intl });
+      options.chart.type = 'column';
+      options.legend.enabled = false;
+      options.plotOptions = {
+        column: {
+          stacking: 'normal',
+        },
+      };
+      options.series = data?.series ?? {};
+      options.xAxis = { categories: data?.categories ?? [] };
+      return options;
+    },
+  },
   'publishing.journals.indexes.wikipedia': {
     getOptions: (id, intl, data) => {
       const options = getGraphOptions({ id, intl });

@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -17,11 +18,11 @@ import useGetData from './get-data-sources';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-function Chart({ domain, hasComments, hasFooter, id }) {
+function Chart({ domain = '', hasComments = true, hasFooter = true, id = 'publishing.journals.indexes' }) {
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { data, isError, isLoading } = useGetData();
+  const { data, isError, isLoading } = useGetData(['ROAD', 'DDH', 'DOAJ', 'Hal']);
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
@@ -57,12 +58,6 @@ function Chart({ domain, hasComments, hasFooter, id }) {
   );
 }
 
-Chart.defaultProps = {
-  domain: '',
-  hasComments: true,
-  hasFooter: true,
-  id: 'publishing.journals.sources',
-};
 Chart.propTypes = {
   domain: PropTypes.oneOf(domains),
   hasComments: PropTypes.bool,
