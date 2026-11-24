@@ -1,7 +1,7 @@
 import { Container, Row, SideMenu } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, {
+import {
   Children,
   cloneElement,
   useCallback,

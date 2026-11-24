@@ -4,7 +4,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 
 import { domains, graphIds } from '../../../../../utils/constants';
 import { withDomain } from '../../../../../utils/helpers';
@@ -15,7 +15,7 @@ import useGetData from './get-data';
 HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
-const Chart = ({ hasFooter, hasComments, id, domain }) => {
+function Chart({ hasFooter, hasComments, id, domain }) {
   const chartRef = useRef();
   const idWithDomain = withDomain(id, domain);
 
@@ -44,7 +44,7 @@ const Chart = ({ hasFooter, hasComments, id, domain }) => {
       />
     </ChartWrapper>
   );
-};
+}
 
 Chart.defaultProps = {
   domain: '',

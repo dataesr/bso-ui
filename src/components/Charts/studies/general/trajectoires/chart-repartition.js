@@ -6,7 +6,7 @@ import HCExporting from 'highcharts/modules/exporting';
 import HCSankeyModule from 'highcharts/modules/sankey';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';

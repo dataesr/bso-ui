@@ -8,7 +8,7 @@ import {
   Select,
 } from '@dataesr/react-dsfr';
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useSearchParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';

@@ -4,7 +4,7 @@ import HCExporting from 'highcharts/modules/exporting';
 import HCSolidGaugeModule from 'highcharts/modules/solid-gauge';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useIntl } from 'react-intl';
 
 import { chartOptions } from '../../../../../utils/chartOptions';

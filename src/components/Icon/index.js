@@ -1,6 +1,6 @@
 // https://codesandbox.io/s/serene-beaver-hi5wo?file=/src/Icon.js
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getCSSValue, setCSSProperty } from '../../utils/helpers';
 
