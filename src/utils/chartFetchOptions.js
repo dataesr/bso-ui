@@ -3098,6 +3098,12 @@ export default function getFetchOptions({
             missing: false,
           },
         },
+        EZB: {
+          terms: {
+            field: 'liens.EZB',
+            missing: false,
+          },
+        },
         Hal: {
           terms: {
             field: 'liens.HAL',
@@ -3119,6 +3125,12 @@ export default function getFetchOptions({
         OpenAlex: {
           terms: {
             field: 'liens.OpenAlex',
+            missing: false,
+          },
+        },
+        OpenEditorsPlus: {
+          terms: {
+            field: 'liens.OpenEditorsPlus',
             missing: false,
           },
         },
