@@ -22,7 +22,7 @@ function Chart({ domain = '', hasComments = true, hasFooter = true, id = 'publis
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { data, isError, isLoading } = useGetData(['OpenAlex', 'Scopus', 'MIAR']);
+  const { data, isError, isLoading } = useGetData(['MIAR', 'OpenAlex', 'OpenEditorsPlus', 'OpenPolicyFinder', 'Scopus']);
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,

@@ -22,7 +22,7 @@ function Chart({ domain = '', hasComments = true, hasFooter = true, id = 'publis
   const chartRef = useRef();
   const intl = useIntl();
   const [chartComments, setChartComments] = useState('');
-  const { data, isError, isLoading } = useGetData(['ROAD', 'DDH', 'DOAJ', 'Hal']);
+  const { data, isError, isLoading } = useGetData(['DDH', 'DOAJ', 'Hal', 'ROAD']);
   const idWithDomain = withDomain(id, domain);
   const optionsGraph = chartOptions[id].getOptions(
     idWithDomain,
