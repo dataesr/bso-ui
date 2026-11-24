@@ -4037,7 +4037,7 @@ export const chartOptions = {
     },
   },
   'promoteurs.dynamique-ouverture.chart-evolution-nombre': {
-    getOptions: (id, intl, graph, studyType) => {
+    getOptions: (id, intl, categories, series, studyType, sortKey) => {
       const options = getGraphOptions({ id, intl, studyType });
       options.chart.height = '900px';
       options.chart.type = 'bar';
@@ -4047,6 +4047,10 @@ export const chartOptions = {
           dataLabels: {
             enabled: true,
             format: '{point.y:.0f} %',
+          },
+          dataSorting: {
+            enabled: true,
+            sortKey,
           },
         },
       };
@@ -4058,7 +4062,7 @@ export const chartOptions = {
         title: {
           text: intl.formatMessage({ id: 'app.sponsor-type' }),
         },
-        categories: graph?.categories2 || [],
+        categories,
         lineWidth: 0,
         tickWidth: 0,
         labels: {
@@ -4068,7 +4072,7 @@ export const chartOptions = {
           },
         },
       };
-      options.series = graph?.series2 || [];
+      options.series = series;
       options.legend.enabled = false;
       return options;
     },

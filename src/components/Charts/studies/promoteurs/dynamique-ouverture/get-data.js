@@ -137,7 +137,6 @@ function useGetData(studyType, sponsor = '*') {
     const dataGraph1 = { categories, series };
 
     const tab = { data: [] };
-    const categories2 = [];
     res[3].data.aggregations.by_sponsor.buckets.forEach((currentSponsor) => {
       if (currentSponsor.key !== 'N/A') {
         const bucket = currentSponsor.by_type.buckets[0];
@@ -160,14 +159,11 @@ function useGetData(studyType, sponsor = '*') {
                 ?.doc_count || 0) / bucket.doc_count,
         };
         tab.data.push(obj);
-        categories2.push(currentSponsor.key);
       }
     });
-    const series2 = [tab];
-    const dataGraph2 = { categories2, series2 };
     return {
       dataGraph1,
-      dataGraph2,
+      series2: [tab],
       sponsors,
       yearMax,
       yearMin,

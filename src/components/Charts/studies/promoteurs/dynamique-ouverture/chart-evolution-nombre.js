@@ -7,7 +7,7 @@ import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import customComments from '../../../../../utils/chartComments';
@@ -29,25 +29,29 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
   const intl = useIntl();
   const chartRef = useRef();
   const [chartComments, setChartComments] = useState('');
+  const [optionsGraph, setOptionsGraph] = useState(null);
   const [sort, setSort] = useState('sort-staff');
   const { allData, isError, isLoading } = useGetData(studyType);
-  const { dataGraph2, yearMax, yearMin } = allData;
+  const { series2, yearMax, yearMin } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-  const [optionsGraph, setOptionsGraph] = useState(null);
 
   useEffect(() => {
-    if (dataGraph2) {
-      if (sort === 'sort-staff') {
-        dataGraph2?.series2?.[0]?.data?.sort((a, b) => b.y_tot - a.y_tot);
-      } else {
-        dataGraph2?.series2?.[0]?.data?.sort((a, b) => b.y - a.y);
-      }
-      dataGraph2.categories2 = (dataGraph2?.series2?.[0]?.data ?? []).map((d) => `<b>${d.name}</b> (${d.y_tot} ${intl.formatMessage({ id: 'app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.label' })})`);
-      setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, dataGraph2, studyType));
-      setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+    let sortKey;
+    if (sort === 'sort-staff') {
+      series2?.[0]?.data?.sort((a, b) => b.y_tot - a.y_tot);
+      sortKey = 'y_tot';
+    } else {
+      series2?.[0]?.data?.sort((a, b) => b.y - a.y);
+      sortKey = 'y';
     }
-  }, [allData, dataGraph2, id, idWithDomain, idWithDomainAndStudyType, intl, sort, studyType]);
+    const categories = series2?.[0]?.data?.map((d) => d.name);
+    setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, categories, series2, studyType, sortKey));
+    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+  }, [allData, id, idWithDomain, idWithDomainAndStudyType, intl, series2, sort, studyType]);
+
+  useEffect(() => {
+  }, [allData, idWithDomainAndStudyType, intl]);
 
   return (
     <ChartWrapper
@@ -65,7 +69,19 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
         className='d-inline-block'
         isInline
         legend={intl.formatMessage({ id: 'app.publi.sort' })}
-        onChange={(newValue) => setSort(newValue)}
+        onChange={(newValue) => {
+          setOptionsGraph(
+            chartOptions[id].getOptions(
+              idWithDomain,
+              intl,
+              [],
+              [],
+              studyType,
+              'y_tot',
+            ),
+          );
+          setSort(newValue);
+        }}
         value={sort}
       >
         <Radio
