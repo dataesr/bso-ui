@@ -469,7 +469,7 @@
   "app.health-interventional.navigation.resultats.plan-partage": "The data sharing statement",
   "app.health-interventional.navigation.resultats.publication": "The publications",
   "app.health-interventional.navigation.resultats.type-diffusion": "Reporting procedures",
-  "app.health-interventional.promoteurs": "The lead sponsors",
+  "app.health-interventional.promoteurs": "Comparaison of lead sponsors",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Percentage of clinical trials completed between {yearMin} and {yearMax} that produced results and/or publications, by sponsor (top 50, ranked by number of registered trials)",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.tooltip": "<b>{point.name}</b><br><b>{point.y:.2f}%</b> ({point.y_abs} / {point.y_tot}) for the trials completed between {point.yearMin} and {point.yearMax}",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.label": "registered trials",
@@ -1640,6 +1640,6 @@
   "app.health-interventional.sponsors-families.chu.title": "University hospitals (CHU)",
   "app.health-interventional.sponsors-families.clcc.title": "Cancer centres (CLCC)",
   "app.health-interventional.sponsors-families.espic.title": "Private healthcare establishments serving the public interest (ESPIC)",
-  "app.health-interventional.by-sponsor": "View by sponsor",
-  "app.health-interventional.by-sponsor.title": "View by sponsor"
+  "app.health-interventional.by-sponsor": "For one sponsor",
+  "app.health-interventional.by-sponsor.title": "For one sponsor"
 }

@@ -699,7 +699,7 @@
   "app.health-interventional.navigation.resultats.plan-partage": "La déclaration de partage des données",
   "app.health-interventional.navigation.resultats.publication": "Les publications",
   "app.health-interventional.navigation.resultats.type-diffusion": "Les modalités de communication",
-  "app.health-interventional.promoteurs": "Les promoteurs",
+  "app.health-interventional.promoteurs": "Comparaison des promoteurs",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.title": "Part d'essais cliniques terminés entre {yearMin} et {yearMax} ayant produit des résultats et/ou publications par promoteur (top 50, classement par nombre d'essais enregistrés)",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.tooltip": "<b>{point.name}</b><br><b>{point.y:.2f} %</b> ({point.y_abs} / {point.y_tot}) pour les essais terminés entre {point.yearMin} et {point.yearMax}",
   "app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.label": "essais enregistrés",
@@ -1698,6 +1698,6 @@
   "app.health-interventional.sponsors-families.chu.title": "Centres hospitaliers universitaires (CHU)",
   "app.health-interventional.sponsors-families.clcc.title": "Centres de lutte contre le cancer (CLCC)",
   "app.health-interventional.sponsors-families.espic.title": "Établissements de santé privés d'intérêt collectif (ESPIC)",
-  "app.health-interventional.by-sponsor": "Vue par promoteur",
-  "app.health-interventional.by-sponsor.title": "Vue par promoteur"
+  "app.health-interventional.by-sponsor": "Pour un promoteur",
+  "app.health-interventional.by-sponsor.title": "Pour un promoteur"
 }
