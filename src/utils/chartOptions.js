@@ -4065,7 +4065,6 @@ export const chartOptions = {
           style: {
             color: getCSSValue('--g-800'),
             fontSize: '12px',
-            fontWeight: 'bold',
           },
         },
       };

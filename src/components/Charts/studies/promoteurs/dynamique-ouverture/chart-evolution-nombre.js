@@ -1,6 +1,7 @@
 import './chart-evolution-nombre.scss';
 import '../../../graph.scss';
 
+import { Radio, RadioGroup } from '@dataesr/react-dsfr';
 import Highcharts from 'highcharts';
 import HCExportingData from 'highcharts/modules/export-data';
 import HCExporting from 'highcharts/modules/exporting';
@@ -25,23 +26,28 @@ HCExporting(Highcharts);
 HCExportingData(Highcharts);
 
 function Chart({ domain, hasComments, hasFooter, id, studyType }) {
-  const chartRef = useRef();
   const intl = useIntl();
+  const chartRef = useRef();
   const [chartComments, setChartComments] = useState('');
+  const [sort, setSort] = useState('sort-staff');
   const { allData, isError, isLoading } = useGetData(studyType);
   const { dataGraph2, yearMax, yearMin } = allData;
   const idWithDomain = withDomain(id, domain);
   const idWithDomainAndStudyType = withtStudyType(idWithDomain, studyType);
-  const optionsGraph = chartOptions[id].getOptions(
-    idWithDomain,
-    intl,
-    dataGraph2,
-    studyType,
-  );
+  const [optionsGraph, setOptionsGraph] = useState(null);
 
   useEffect(() => {
-    setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
-  }, [allData, idWithDomainAndStudyType, intl]);
+    if (dataGraph2) {
+      if (sort === 'sort-staff') {
+        dataGraph2?.series2?.[0]?.data?.sort((a, b) => b.y_tot - a.y_tot);
+      } else {
+        dataGraph2?.series2?.[0]?.data?.sort((a, b) => b.y - a.y);
+      }
+      dataGraph2.categories2 = (dataGraph2?.series2?.[0]?.data ?? []).map((d) => `<b>${d.name}</b> (${d.y_tot} ${intl.formatMessage({ id: 'app.health-interventional.promoteurs.dynamique-ouverture.chart-evolution-nombre.label' })})`);
+      setOptionsGraph(chartOptions[id].getOptions(idWithDomain, intl, dataGraph2, studyType));
+      setChartComments(customComments(allData, idWithDomainAndStudyType, intl));
+    }
+  }, [allData, dataGraph2, id, idWithDomain, idWithDomainAndStudyType, intl, sort, studyType]);
 
   return (
     <ChartWrapper
@@ -55,6 +61,22 @@ function Chart({ domain, hasComments, hasFooter, id, studyType }) {
       isLoading={isLoading || !allData}
       studyType={studyType}
     >
+      <RadioGroup
+        className='d-inline-block'
+        isInline
+        legend={intl.formatMessage({ id: 'app.publi.sort' })}
+        onChange={(newValue) => setSort(newValue)}
+        value={sort}
+      >
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.sort-staff' })}
+          value='sort-staff'
+        />
+        <Radio
+          label={intl.formatMessage({ id: 'app.publi.sort-percent' })}
+          value='sort-percent'
+        />
+      </RadioGroup>
       {/* Add home made legend */}
       <div className='legend'>
         <span>

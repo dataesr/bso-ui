@@ -48,6 +48,7 @@ function Chart({ domain, hasComments, hasFooter, id }) {
     });
   }, [beforeLastObservationSnap, intl]);
   const hasBeta = true;
+
   useEffect(() => {
     let sortKey;
     if (sort === 'sort-staff') {
