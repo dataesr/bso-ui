@@ -38,8 +38,8 @@ function Chart({
   id = 'general.dynamique.chart-evolution',
   studyType = 'Interventional',
 }) {
-  const chartRef = useRef();
   const intl = useIntl();
+  const chartRef = useRef();
   const [searchParams] = useSearchParams();
   const [chartComments, setChartComments] = useState('');
   const [options, setOptions] = useState([]);

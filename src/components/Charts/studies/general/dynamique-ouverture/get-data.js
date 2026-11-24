@@ -251,15 +251,11 @@ function useGetData(studyType, sponsor = '*', bsoLocalAffiliation = '*', filterO
       color: getCSSValue('--blue-soft-100'),
       name: capitalize(intl.formatMessage({ id: 'app.all-sponsor-types' })),
       y:
-        !dataHasResultsAcademic?.doc_count && !dataHasResultsAcademic?.doc_count
+        !dataHasResultsAcademic?.doc_count && !dataHasResultsIndustrial?.doc_count
           ? 0
           : 100 *
-            ((dataHasResultsAcademicWithResults?.doc_count ??
-              0 + dataHasResultsIndustrialWithResults?.doc_count ??
-              0) /
-              (dataHasResultsAcademic?.doc_count ??
-                0 + dataHasResultsIndustrial?.doc_count ??
-                0)),
+            (((dataHasResultsAcademicWithResults?.doc_count ?? 0) + (dataHasResultsIndustrialWithResults?.doc_count ?? 0))
+            / ((dataHasResultsAcademic?.doc_count ?? 0) + (dataHasResultsIndustrial?.doc_count ?? 0))),
       y_abs:
         (dataHasResultsAcademicWithResults?.doc_count ?? 0) +
         (dataHasResultsIndustrialWithResults?.doc_count ?? 0),
